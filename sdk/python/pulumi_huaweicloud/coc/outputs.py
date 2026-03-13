@@ -16,24 +16,107 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AlarmActionTargetInstance',
+    'AlarmActionTargetInstanceSubTargetInstance',
+    'ChangeUpdateSubTicket',
+    'DiagnosisTaskNodeList',
     'DocumentExecuteExecutionParameter',
     'DocumentExecuteParameter',
     'DocumentExecuteSysTag',
     'DocumentExecuteTarget',
     'DocumentVersion',
+    'GroupRelationConfiguration',
+    'GroupSyncRule',
     'IncidentEnumDataList',
+    'IssueEnumDataList',
+    'IssueSubTicket',
+    'OtherResourceUniagentSyncResourceInfo',
+    'PublicScriptExecuteExecuteBatch',
+    'PublicScriptExecuteExecuteBatchTargetInstance',
+    'PublicScriptExecuteExecuteBatchTargetInstanceCustomAttribute',
+    'PublicScriptExecuteScriptParam',
+    'PublicScriptExecuteScriptParamParamRefer',
+    'ResourceUniagentSyncResourceInfo',
+    'ScheduledTaskMessageNotification',
+    'ScheduledTaskReviewerNotification',
+    'ScheduledTaskTargetInstance',
+    'ScheduledTaskTargetInstanceSubTargetInstance',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResource',
+    'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParam',
+    'ScheduledTaskTargetInstanceTargetResource',
+    'ScheduledTaskTargetInstanceTargetResourceParam',
+    'ScheduledTaskTicketInfo',
+    'ScheduledTaskTriggerTime',
     'ScriptExecuteParameter',
     'ScriptParameter',
+    'ScriptReviewer',
+    'TicketAddSubTicket',
     'WarRoomIncident',
     'WarRoomScheduleGroup',
     'WarRoomWarRoomStatus',
+    'GetAlarmActionHistoriesAlarmHandleHistoryResult',
+    'GetApplicationCapacitiesDataResult',
+    'GetApplicationCapacitiesProviderObjResult',
+    'GetApplicationCapacityOrdersDataResult',
+    'GetApplicationCapacityOrdersDataRankListResult',
+    'GetApplicationNextModelsComponentResult',
+    'GetApplicationNextModelsGroupResult',
+    'GetApplicationNextModelsGroupSyncRuleResult',
+    'GetApplicationNextModelsSubApplicationResult',
     'GetApplicationViewsDataResult',
     'GetApplicationsDataResult',
+    'GetChangeSubTicketsTicketResult',
+    'GetCloudVendorAccountsDataResult',
     'GetComponentsDataResult',
-    'GetDocumentAtomicDetailInputResult',
-    'GetDocumentAtomicDetailOutputResult',
+    'GetDiagnosisTaskSummaryInstanceSummaryResult',
+    'GetDiagnosisTasksDataResult',
     'GetDocumentAtomicsDataResult',
+    'GetDocumentExecutionStepInstancesDataResult',
+    'GetDocumentExecutionStepsDataResult',
+    'GetDocumentExecutionStepsDataInputResult',
+    'GetDocumentExecutionStepsDataOutputResult',
+    'GetDocumentExecutionsDataResult',
+    'GetDocumentExecutionsDataParameterResult',
+    'GetDocumentExecutionsDataSysTagResult',
+    'GetDocumentExecutionsDataTagResult',
+    'GetDocumentExecutionsDataTargetResult',
     'GetDocumentsDataResult',
+    'GetEnterpriseProjectCollectionsDataResult',
+    'GetGroupResourceRelationsDataResult',
+    'GetGroupResourceRelationsDataTagResult',
+    'GetGroupsDataResult',
+    'GetGroupsDataRelationConfigurationResult',
+    'GetGroupsDataSyncRuleResult',
+    'GetIncidentActionHistoriesCountFilterResult',
+    'GetIncidentActionHistoriesCountFilterFilterResult',
+    'GetIncidentActionHistoriesDataResult',
+    'GetIncidentActionHistoriesDataEnumDataListResult',
+    'GetIncidentActionHistoriesGroupByFilterResult',
+    'GetIncidentActionHistoriesIntFilterResult',
+    'GetIncidentActionHistoriesSortFilterResult',
+    'GetIncidentActionHistoriesStringFilterResult',
+    'GetIncidentTasksDataResult',
+    'GetIncidentTasksDataOperationResult',
+    'GetIncidentsCountFilterResult',
+    'GetIncidentsCountFilterFilterResult',
+    'GetIncidentsGroupByFilterResult',
+    'GetIncidentsIntFilterResult',
+    'GetIncidentsSortFilterResult',
+    'GetIncidentsStringFilterResult',
+    'GetIncidentsTicketResult',
+    'GetIncidentsTicketEnumDataListResult',
+    'GetInstanceBatchesDataResult',
+    'GetInstanceBatchesDataTargetInstanceResult',
+    'GetInstanceBatchesDataTargetInstanceCustomAttributeResult',
+    'GetInstanceBatchesDataTargetInstancePropertyResult',
+    'GetInstanceBatchesTargetInstanceResult',
+    'GetInstanceBatchesTargetInstanceCustomAttributeResult',
+    'GetInstanceBatchesTargetInstancePropertiesResult',
+    'GetIssueTicketsSortFilterResult',
+    'GetIssueTicketsStringFilterResult',
+    'GetIssueTicketsTicketResult',
+    'GetIssueTicketsTicketEnumDataListResult',
+    'GetIssueTicketsTicketSubTicketResult',
     'GetPatchComplianceReportItemsComplianceItemResult',
     'GetPatchComplianceReportItemsComplianceItemPatchDetailResult',
     'GetPatchComplianceReportsInstanceCompliantResult',
@@ -48,6 +131,8 @@ __all__ = [
     'GetPublicScriptsDataPropertyResult',
     'GetResourcesDataResult',
     'GetResourcesDataTagResult',
+    'GetScheduledTaskHistoriesScheduledTaskHistoryListResult',
+    'GetScheduledTasksScheduledTaskResult',
     'GetScriptOrderBatchDetailsExecuteInstanceResult',
     'GetScriptOrderBatchDetailsExecuteInstanceTargetInstanceResult',
     'GetScriptOrderBatchDetailsExecuteInstanceTargetInstanceCustomAttributeResult',
@@ -56,16 +141,483 @@ __all__ = [
     'GetScriptOrderStatisticsExecuteStatisticResult',
     'GetScriptOrdersDataResult',
     'GetScriptOrdersDataPropertyResult',
+    'GetScriptTagsTagResult',
     'GetScriptsDataResult',
     'GetScriptsDataPropertyResult',
     'GetScriptsDataPropertyReviewerResult',
     'GetScriptsDataResourceTagResult',
+    'GetTicketOperationHistoriesDataResult',
+    'GetTicketOperationHistoriesDataEnumDataListResult',
+    'GetTicketOperationHistoriesSortFilterResult',
+    'GetTicketOperationHistoriesStringFilterResult',
     'GetWarRoomsListResult',
     'GetWarRoomsListImpactedApplicationResult',
     'GetWarRoomsListIncidentResult',
     'GetWarRoomsListRegionResult',
     'GetWarRoomsListWarRoomStatusResult',
 ]
+
+@pulumi.output_type
+class AlarmActionTargetInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orderNo":
+            suggest = "order_no"
+        elif key == "targetSelection":
+            suggest = "target_selection"
+        elif key == "batchStrategy":
+            suggest = "batch_strategy"
+        elif key == "subTargetInstances":
+            suggest = "sub_target_instances"
+        elif key == "targetInstances":
+            suggest = "target_instances"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmActionTargetInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmActionTargetInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmActionTargetInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 order_no: _builtins.int,
+                 target_selection: _builtins.str,
+                 batch_strategy: Optional[_builtins.str] = None,
+                 sub_target_instances: Optional[Sequence['outputs.AlarmActionTargetInstanceSubTargetInstance']] = None,
+                 target_instances: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int order_no: Specifies the step number.
+        :param _builtins.str target_selection: Specifies the target selection method.
+               The valid values are as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manually select an instance.
+               + **NONE**: No instance.
+        :param _builtins.str batch_strategy: Specifies the batching strategy.
+               The valid values are as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+        :param Sequence['AlarmActionTargetInstanceSubTargetInstanceArgs'] sub_target_instances: Specifies the incident number.
+               
+               The sub_target_instances structure is documented below.
+        :param _builtins.str target_instances: Specifies the instance information.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if sub_target_instances is not None:
+            pulumi.set(__self__, "sub_target_instances", sub_target_instances)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> _builtins.int:
+        """
+        Specifies the step number.
+        """
+        return pulumi.get(self, "order_no")
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> _builtins.str:
+        """
+        Specifies the target selection method.
+        The valid values are as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manually select an instance.
+        + **NONE**: No instance.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the batching strategy.
+        The valid values are as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="subTargetInstances")
+    def sub_target_instances(self) -> Optional[Sequence['outputs.AlarmActionTargetInstanceSubTargetInstance']]:
+        """
+        Specifies the incident number.
+
+        The sub_target_instances structure is documented below.
+        """
+        return pulumi.get(self, "sub_target_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance information.
+        """
+        return pulumi.get(self, "target_instances")
+
+
+@pulumi.output_type
+class AlarmActionTargetInstanceSubTargetInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orderNo":
+            suggest = "order_no"
+        elif key == "targetSelection":
+            suggest = "target_selection"
+        elif key == "batchStrategy":
+            suggest = "batch_strategy"
+        elif key == "targetInstances":
+            suggest = "target_instances"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlarmActionTargetInstanceSubTargetInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlarmActionTargetInstanceSubTargetInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlarmActionTargetInstanceSubTargetInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 order_no: _builtins.int,
+                 target_selection: _builtins.str,
+                 batch_strategy: Optional[_builtins.str] = None,
+                 target_instances: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int order_no: Specifies the step number.
+        :param _builtins.str target_selection: Specifies the target selection method.
+               The valid values are as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manually select an instance.
+               + **NONE**: No instance.
+        :param _builtins.str batch_strategy: Specifies the batching strategy.
+               The valid values are as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+        :param _builtins.str target_instances: Specifies the instance information.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> _builtins.int:
+        """
+        Specifies the step number.
+        """
+        return pulumi.get(self, "order_no")
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> _builtins.str:
+        """
+        Specifies the target selection method.
+        The valid values are as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manually select an instance.
+        + **NONE**: No instance.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the batching strategy.
+        The valid values are as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance information.
+        """
+        return pulumi.get(self, "target_instances")
+
+
+@pulumi.output_type
+class ChangeUpdateSubTicket(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "changeFailType":
+            suggest = "change_fail_type"
+        elif key == "changeResult":
+            suggest = "change_result"
+        elif key == "isMonitorFound":
+            suggest = "is_monitor_found"
+        elif key == "isRollbackSuccess":
+            suggest = "is_rollback_success"
+        elif key == "isVerifiedInChangeTime":
+            suggest = "is_verified_in_change_time"
+        elif key == "rollbackEndTime":
+            suggest = "rollback_end_time"
+        elif key == "rollbackStartTime":
+            suggest = "rollback_start_time"
+        elif key == "ticketId":
+            suggest = "ticket_id"
+        elif key == "verifiedDocs":
+            suggest = "verified_docs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ChangeUpdateSubTicket. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ChangeUpdateSubTicket.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ChangeUpdateSubTicket.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 change_fail_type: Optional[_builtins.str] = None,
+                 change_result: Optional[_builtins.str] = None,
+                 comment: Optional[_builtins.str] = None,
+                 is_monitor_found: Optional[_builtins.bool] = None,
+                 is_rollback_success: Optional[_builtins.bool] = None,
+                 is_verified_in_change_time: Optional[_builtins.bool] = None,
+                 rollback_end_time: Optional[_builtins.int] = None,
+                 rollback_start_time: Optional[_builtins.int] = None,
+                 ticket_id: Optional[_builtins.str] = None,
+                 verified_docs: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str change_fail_type: Specifies the change failure type.
+        :param _builtins.str change_result: Specifies the result of the change.
+        :param _builtins.str comment: Specifies the reason why the change failed.
+        :param _builtins.bool is_monitor_found: Specifies whether the device is detected by monitoring.
+        :param _builtins.bool is_rollback_success: Specifies whether the rollback is successful.
+        :param _builtins.bool is_verified_in_change_time: Specifies whether verification is possible within the
+               time window.
+        :param _builtins.int rollback_end_time: Specifies the rollback end time.
+        :param _builtins.int rollback_start_time: Specifies the rollback start time.
+        :param _builtins.str ticket_id: Specifies the sub-order ID.
+        :param _builtins.str verified_docs: Specifies the verification document ID.
+        """
+        if change_fail_type is not None:
+            pulumi.set(__self__, "change_fail_type", change_fail_type)
+        if change_result is not None:
+            pulumi.set(__self__, "change_result", change_result)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if is_monitor_found is not None:
+            pulumi.set(__self__, "is_monitor_found", is_monitor_found)
+        if is_rollback_success is not None:
+            pulumi.set(__self__, "is_rollback_success", is_rollback_success)
+        if is_verified_in_change_time is not None:
+            pulumi.set(__self__, "is_verified_in_change_time", is_verified_in_change_time)
+        if rollback_end_time is not None:
+            pulumi.set(__self__, "rollback_end_time", rollback_end_time)
+        if rollback_start_time is not None:
+            pulumi.set(__self__, "rollback_start_time", rollback_start_time)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if verified_docs is not None:
+            pulumi.set(__self__, "verified_docs", verified_docs)
+
+    @_builtins.property
+    @pulumi.getter(name="changeFailType")
+    def change_fail_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the change failure type.
+        """
+        return pulumi.get(self, "change_fail_type")
+
+    @_builtins.property
+    @pulumi.getter(name="changeResult")
+    def change_result(self) -> Optional[_builtins.str]:
+        """
+        Specifies the result of the change.
+        """
+        return pulumi.get(self, "change_result")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> Optional[_builtins.str]:
+        """
+        Specifies the reason why the change failed.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter(name="isMonitorFound")
+    def is_monitor_found(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the device is detected by monitoring.
+        """
+        return pulumi.get(self, "is_monitor_found")
+
+    @_builtins.property
+    @pulumi.getter(name="isRollbackSuccess")
+    def is_rollback_success(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the rollback is successful.
+        """
+        return pulumi.get(self, "is_rollback_success")
+
+    @_builtins.property
+    @pulumi.getter(name="isVerifiedInChangeTime")
+    def is_verified_in_change_time(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether verification is possible within the
+        time window.
+        """
+        return pulumi.get(self, "is_verified_in_change_time")
+
+    @_builtins.property
+    @pulumi.getter(name="rollbackEndTime")
+    def rollback_end_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the rollback end time.
+        """
+        return pulumi.get(self, "rollback_end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="rollbackStartTime")
+    def rollback_start_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the rollback start time.
+        """
+        return pulumi.get(self, "rollback_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the sub-order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="verifiedDocs")
+    def verified_docs(self) -> Optional[_builtins.str]:
+        """
+        Specifies the verification document ID.
+        """
+        return pulumi.get(self, "verified_docs")
+
+
+@pulumi.output_type
+class DiagnosisTaskNodeList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diagnosisTaskId":
+            suggest = "diagnosis_task_id"
+        elif key == "nameZh":
+            suggest = "name_zh"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DiagnosisTaskNodeList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DiagnosisTaskNodeList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DiagnosisTaskNodeList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 code: Optional[_builtins.str] = None,
+                 diagnosis_task_id: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 name_zh: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str code: Indicates the step code.
+        :param _builtins.str diagnosis_task_id: Indicates the diagnostic task ID.
+        :param _builtins.str id: Indicates the diagnostic task node ID.
+        :param _builtins.str name: Indicates the diagnosis step name.
+        :param _builtins.str name_zh: Indicates the Chinese name of the diagnostic step.
+        :param _builtins.str status: Indicates the execution status of the diagnostic task.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if diagnosis_task_id is not None:
+            pulumi.set(__self__, "diagnosis_task_id", diagnosis_task_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if name_zh is not None:
+            pulumi.set(__self__, "name_zh", name_zh)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> Optional[_builtins.str]:
+        """
+        Indicates the step code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="diagnosisTaskId")
+    def diagnosis_task_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the diagnostic task ID.
+        """
+        return pulumi.get(self, "diagnosis_task_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the diagnostic task node ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Indicates the diagnosis step name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> Optional[_builtins.str]:
+        """
+        Indicates the Chinese name of the diagnostic step.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Indicates the execution status of the diagnostic task.
+        """
+        return pulumi.get(self, "status")
+
 
 @pulumi.output_type
 class DocumentExecuteExecutionParameter(dict):
@@ -282,6 +834,93 @@ class DocumentVersion(dict):
 
 
 @pulumi.output_type
+class GroupRelationConfiguration(dict):
+    def __init__(__self__, *,
+                 parameters: Optional[Mapping[str, _builtins.str]] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param Mapping[str, _builtins.str] parameters: Specifies the configuration parameters.
+        :param _builtins.str type: Specifies the configuration type.
+        """
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Specifies the configuration parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the configuration type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GroupSyncRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "ruleTags":
+            suggest = "rule_tags"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupSyncRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupSyncRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupSyncRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 rule_tags: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+        :param _builtins.str rule_tags: Specifies the associated tag.
+               
+               <a name="relation_configurations_struct"></a>
+               The `relation_configurations` block supports:
+        """
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if rule_tags is not None:
+            pulumi.set(__self__, "rule_tags", rule_tags)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleTags")
+    def rule_tags(self) -> Optional[_builtins.str]:
+        """
+        Specifies the associated tag.
+
+        <a name="relation_configurations_struct"></a>
+        The `relation_configurations` block supports:
+        """
+        return pulumi.get(self, "rule_tags")
+
+
+@pulumi.output_type
 class IncidentEnumDataList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -357,6 +996,1992 @@ class IncidentEnumDataList(dict):
         Indicates the Chinese name.
         """
         return pulumi.get(self, "name_zh")
+
+
+@pulumi.output_type
+class IssueEnumDataList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bizId":
+            suggest = "biz_id"
+        elif key == "isDeleted":
+            suggest = "is_deleted"
+        elif key == "matchType":
+            suggest = "match_type"
+        elif key == "modelId":
+            suggest = "model_id"
+        elif key == "nameEn":
+            suggest = "name_en"
+        elif key == "nameZh":
+            suggest = "name_zh"
+        elif key == "propId":
+            suggest = "prop_id"
+        elif key == "realTicketId":
+            suggest = "real_ticket_id"
+        elif key == "ticketId":
+            suggest = "ticket_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IssueEnumDataList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IssueEnumDataList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IssueEnumDataList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 biz_id: Optional[_builtins.str] = None,
+                 is_deleted: Optional[_builtins.bool] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 model_id: Optional[_builtins.str] = None,
+                 name_en: Optional[_builtins.str] = None,
+                 name_zh: Optional[_builtins.str] = None,
+                 prop_id: Optional[_builtins.str] = None,
+                 real_ticket_id: Optional[_builtins.str] = None,
+                 ticket_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str biz_id: Indicates the unique id corresponding to the enumeration value.
+        :param _builtins.bool is_deleted: Indicates whether it has been deleted.
+        :param _builtins.str match_type: Indicates the matching enumeration type.
+        :param _builtins.str model_id: Indicates the model ID corresponding to different background applications.
+        :param _builtins.str name_en: Indicates the English name.
+        :param _builtins.str name_zh: Indicates the Chinese name.
+        :param _builtins.str prop_id: Indicates the type corresponding to the current enumeration value.
+        :param _builtins.str real_ticket_id: Indicates the work order number.
+        :param _builtins.str ticket_id: Indicates the current work order ID.
+        """
+        if biz_id is not None:
+            pulumi.set(__self__, "biz_id", biz_id)
+        if is_deleted is not None:
+            pulumi.set(__self__, "is_deleted", is_deleted)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if model_id is not None:
+            pulumi.set(__self__, "model_id", model_id)
+        if name_en is not None:
+            pulumi.set(__self__, "name_en", name_en)
+        if name_zh is not None:
+            pulumi.set(__self__, "name_zh", name_zh)
+        if prop_id is not None:
+            pulumi.set(__self__, "prop_id", prop_id)
+        if real_ticket_id is not None:
+            pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the unique id corresponding to the enumeration value.
+        """
+        return pulumi.get(self, "biz_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> Optional[_builtins.bool]:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Indicates the matching enumeration type.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter(name="modelId")
+    def model_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the model ID corresponding to different background applications.
+        """
+        return pulumi.get(self, "model_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> Optional[_builtins.str]:
+        """
+        Indicates the English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> Optional[_builtins.str]:
+        """
+        Indicates the Chinese name.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the type corresponding to the current enumeration value.
+        """
+        return pulumi.get(self, "prop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+
+@pulumi.output_type
+class IssueSubTicket(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createTime":
+            suggest = "create_time"
+        elif key == "isDeleted":
+            suggest = "is_deleted"
+        elif key == "mainTicketId":
+            suggest = "main_ticket_id"
+        elif key == "parentTicketId":
+            suggest = "parent_ticket_id"
+        elif key == "realTicketId":
+            suggest = "real_ticket_id"
+        elif key == "targetType":
+            suggest = "target_type"
+        elif key == "targetValue":
+            suggest = "target_value"
+        elif key == "ticketId":
+            suggest = "ticket_id"
+        elif key == "ticketPath":
+            suggest = "ticket_path"
+        elif key == "updateTime":
+            suggest = "update_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IssueSubTicket. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IssueSubTicket.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IssueSubTicket.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 create_time: Optional[_builtins.int] = None,
+                 creator: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 is_deleted: Optional[_builtins.bool] = None,
+                 main_ticket_id: Optional[_builtins.str] = None,
+                 operator: Optional[_builtins.str] = None,
+                 parent_ticket_id: Optional[_builtins.str] = None,
+                 real_ticket_id: Optional[_builtins.str] = None,
+                 target_type: Optional[_builtins.str] = None,
+                 target_value: Optional[_builtins.str] = None,
+                 ticket_id: Optional[_builtins.str] = None,
+                 ticket_path: Optional[_builtins.str] = None,
+                 update_time: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int create_time: Indicates the time when the work order was created.
+        :param _builtins.str creator: Indicates the ID of the work order creator.
+        :param _builtins.str id: Indicates the work order ID.
+        :param _builtins.bool is_deleted: Indicates whether it has been deleted.
+        :param _builtins.str main_ticket_id: Indicates the work order primary key ID.
+        :param _builtins.str operator: Indicates the ID of the work order operator.
+        :param _builtins.str parent_ticket_id: Indicates the parent work order ID.
+        :param _builtins.str real_ticket_id: Indicates the work order number.
+        :param _builtins.str target_type: Indicates the sub-order type.
+        :param _builtins.str target_value: Indicates the region information.
+        :param _builtins.str ticket_id: Indicates the current work order ID.
+        :param _builtins.str ticket_path: Indicates the work order path.
+        :param _builtins.int update_time: Indicates the time when the work order was updated.
+        """
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
+        if creator is not None:
+            pulumi.set(__self__, "creator", creator)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_deleted is not None:
+            pulumi.set(__self__, "is_deleted", is_deleted)
+        if main_ticket_id is not None:
+            pulumi.set(__self__, "main_ticket_id", main_ticket_id)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if parent_ticket_id is not None:
+            pulumi.set(__self__, "parent_ticket_id", parent_ticket_id)
+        if real_ticket_id is not None:
+            pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        if target_type is not None:
+            pulumi.set(__self__, "target_type", target_type)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if ticket_path is not None:
+            pulumi.set(__self__, "ticket_path", ticket_path)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[_builtins.int]:
+        """
+        Indicates the time when the work order was created.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> Optional[_builtins.str]:
+        """
+        Indicates the ID of the work order creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the work order ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> Optional[_builtins.bool]:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="mainTicketId")
+    def main_ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the work order primary key ID.
+        """
+        return pulumi.get(self, "main_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[_builtins.str]:
+        """
+        Indicates the ID of the work order operator.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="parentTicketId")
+    def parent_ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the parent work order ID.
+        """
+        return pulumi.get(self, "parent_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[_builtins.str]:
+        """
+        Indicates the sub-order type.
+        """
+        return pulumi.get(self, "target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> Optional[_builtins.str]:
+        """
+        Indicates the region information.
+        """
+        return pulumi.get(self, "target_value")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketPath")
+    def ticket_path(self) -> Optional[_builtins.str]:
+        """
+        Indicates the work order path.
+        """
+        return pulumi.get(self, "ticket_path")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[_builtins.int]:
+        """
+        Indicates the time when the work order was updated.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class OtherResourceUniagentSyncResourceInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionId":
+            suggest = "region_id"
+        elif key == "resourceId":
+            suggest = "resource_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OtherResourceUniagentSyncResourceInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OtherResourceUniagentSyncResourceInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OtherResourceUniagentSyncResourceInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_id: Optional[_builtins.str] = None,
+                 resource_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str region_id: Specifies the region ID to which the resource belongs.
+        :param _builtins.str resource_id: Specifies the resource ID.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID to which the resource belongs.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+
+@pulumi.output_type
+class PublicScriptExecuteExecuteBatch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "batchIndex":
+            suggest = "batch_index"
+        elif key == "rotationStrategy":
+            suggest = "rotation_strategy"
+        elif key == "targetInstances":
+            suggest = "target_instances"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PublicScriptExecuteExecuteBatch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PublicScriptExecuteExecuteBatch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PublicScriptExecuteExecuteBatch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 batch_index: _builtins.int,
+                 rotation_strategy: _builtins.str,
+                 target_instances: Sequence['outputs.PublicScriptExecuteExecuteBatchTargetInstance']):
+        """
+        :param _builtins.int batch_index: Specifies the batch index, starting from **1**.
+        :param _builtins.str rotation_strategy: Specifies the pause-resume policy.
+               Values can be **CONTINUE** or **PAUSE**.
+               
+               <a name="execute_batches_target_instances_struct"></a>
+               The `target_instances` block supports:
+        :param Sequence['PublicScriptExecuteExecuteBatchTargetInstanceArgs'] target_instances: Specifies the list of target nodes.
+               The target_instances structure is documented below.
+        """
+        pulumi.set(__self__, "batch_index", batch_index)
+        pulumi.set(__self__, "rotation_strategy", rotation_strategy)
+        pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="batchIndex")
+    def batch_index(self) -> _builtins.int:
+        """
+        Specifies the batch index, starting from **1**.
+        """
+        return pulumi.get(self, "batch_index")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationStrategy")
+    def rotation_strategy(self) -> _builtins.str:
+        """
+        Specifies the pause-resume policy.
+        Values can be **CONTINUE** or **PAUSE**.
+
+        <a name="execute_batches_target_instances_struct"></a>
+        The `target_instances` block supports:
+        """
+        return pulumi.get(self, "rotation_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Sequence['outputs.PublicScriptExecuteExecuteBatchTargetInstance']:
+        """
+        Specifies the list of target nodes.
+        The target_instances structure is documented below.
+        """
+        return pulumi.get(self, "target_instances")
+
+
+@pulumi.output_type
+class PublicScriptExecuteExecuteBatchTargetInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionId":
+            suggest = "region_id"
+        elif key == "resourceId":
+            suggest = "resource_id"
+        elif key == "cloudServiceName":
+            suggest = "cloud_service_name"
+        elif key == "customAttributes":
+            suggest = "custom_attributes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PublicScriptExecuteExecuteBatchTargetInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PublicScriptExecuteExecuteBatchTargetInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PublicScriptExecuteExecuteBatchTargetInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 cloud_service_name: Optional[_builtins.str] = None,
+                 custom_attributes: Optional[Sequence['outputs.PublicScriptExecuteExecuteBatchTargetInstanceCustomAttribute']] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Specifies the ECS cloud server ID.
+        :param _builtins.str cloud_service_name: Specifies the resource provider. The default value is **ECS**.
+        :param Sequence['PublicScriptExecuteExecuteBatchTargetInstanceCustomAttributeArgs'] custom_attributes: Specifies the five user-defined attributes in the key_value
+               format are supported.
+               The custom_attributes structure is documented below.
+               
+               <a name="execute_batches_target_instances_custom_attributes_struct"></a>
+               The `custom_attributes` block supports:
+        :param _builtins.str type: Specifies the resource type under the resource provider. The default value
+               is **CLOUDSERVER**.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        if cloud_service_name is not None:
+            pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        if custom_attributes is not None:
+            pulumi.set(__self__, "custom_attributes", custom_attributes)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the ECS cloud server ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource provider. The default value is **ECS**.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="customAttributes")
+    def custom_attributes(self) -> Optional[Sequence['outputs.PublicScriptExecuteExecuteBatchTargetInstanceCustomAttribute']]:
+        """
+        Specifies the five user-defined attributes in the key_value
+        format are supported.
+        The custom_attributes structure is documented below.
+
+        <a name="execute_batches_target_instances_custom_attributes_struct"></a>
+        The `custom_attributes` block supports:
+        """
+        return pulumi.get(self, "custom_attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource type under the resource provider. The default value
+        is **CLOUDSERVER**.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class PublicScriptExecuteExecuteBatchTargetInstanceCustomAttribute(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the custom attribute key.
+        :param _builtins.str value: Specifies the custom attribute value.
+               
+               <a name="script_params_struct"></a>
+               The `script_params` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the custom attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the custom attribute value.
+
+        <a name="script_params_struct"></a>
+        The `script_params` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PublicScriptExecuteScriptParam(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "paramName":
+            suggest = "param_name"
+        elif key == "paramValue":
+            suggest = "param_value"
+        elif key == "paramRefer":
+            suggest = "param_refer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PublicScriptExecuteScriptParam. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PublicScriptExecuteScriptParam.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PublicScriptExecuteScriptParam.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 param_name: _builtins.str,
+                 param_value: _builtins.str,
+                 param_refer: Optional['outputs.PublicScriptExecuteScriptParamParamRefer'] = None):
+        """
+        :param _builtins.str param_name: Specifies the name of the script input parameter.
+               The parameter name cannot be repeated in the same script.
+        :param _builtins.str param_value: Specifies the value of the script input parameter.
+               
+               > This is required by default. It can be empty when **param_refer** is not empty.
+        :param 'PublicScriptExecuteScriptParamParamReferArgs' param_refer: Specifies the parameter reference.
+               The param_refer structure is documented below.
+               
+               <a name="script_params_param_refer_struct"></a>
+               The `param_refer` block supports:
+        """
+        pulumi.set(__self__, "param_name", param_name)
+        pulumi.set(__self__, "param_value", param_value)
+        if param_refer is not None:
+            pulumi.set(__self__, "param_refer", param_refer)
+
+    @_builtins.property
+    @pulumi.getter(name="paramName")
+    def param_name(self) -> _builtins.str:
+        """
+        Specifies the name of the script input parameter.
+        The parameter name cannot be repeated in the same script.
+        """
+        return pulumi.get(self, "param_name")
+
+    @_builtins.property
+    @pulumi.getter(name="paramValue")
+    def param_value(self) -> _builtins.str:
+        """
+        Specifies the value of the script input parameter.
+
+        > This is required by default. It can be empty when **param_refer** is not empty.
+        """
+        return pulumi.get(self, "param_value")
+
+    @_builtins.property
+    @pulumi.getter(name="paramRefer")
+    def param_refer(self) -> Optional['outputs.PublicScriptExecuteScriptParamParamRefer']:
+        """
+        Specifies the parameter reference.
+        The param_refer structure is documented below.
+
+        <a name="script_params_param_refer_struct"></a>
+        The `param_refer` block supports:
+        """
+        return pulumi.get(self, "param_refer")
+
+
+@pulumi.output_type
+class PublicScriptExecuteScriptParamParamRefer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "paramId":
+            suggest = "param_id"
+        elif key == "referType":
+            suggest = "refer_type"
+        elif key == "paramVersion":
+            suggest = "param_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PublicScriptExecuteScriptParamParamRefer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PublicScriptExecuteScriptParamParamRefer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PublicScriptExecuteScriptParamParamRefer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 param_id: _builtins.str,
+                 refer_type: _builtins.str,
+                 param_version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str param_id: Specifies the unique primary key id of the reference parameter.
+               Values can be **LOW**, **MEDIUM** and **HIGH**.
+        :param _builtins.str refer_type: Specifies the parameter reference type: PARAM_STORE.
+        :param _builtins.str param_version: Specifies the version number of the reference parameter.
+        """
+        pulumi.set(__self__, "param_id", param_id)
+        pulumi.set(__self__, "refer_type", refer_type)
+        if param_version is not None:
+            pulumi.set(__self__, "param_version", param_version)
+
+    @_builtins.property
+    @pulumi.getter(name="paramId")
+    def param_id(self) -> _builtins.str:
+        """
+        Specifies the unique primary key id of the reference parameter.
+        Values can be **LOW**, **MEDIUM** and **HIGH**.
+        """
+        return pulumi.get(self, "param_id")
+
+    @_builtins.property
+    @pulumi.getter(name="referType")
+    def refer_type(self) -> _builtins.str:
+        """
+        Specifies the parameter reference type: PARAM_STORE.
+        """
+        return pulumi.get(self, "refer_type")
+
+    @_builtins.property
+    @pulumi.getter(name="paramVersion")
+    def param_version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the version number of the reference parameter.
+        """
+        return pulumi.get(self, "param_version")
+
+
+@pulumi.output_type
+class ResourceUniagentSyncResourceInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionId":
+            suggest = "region_id"
+        elif key == "resourceId":
+            suggest = "resource_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ResourceUniagentSyncResourceInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ResourceUniagentSyncResourceInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ResourceUniagentSyncResourceInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_id: Optional[_builtins.str] = None,
+                 resource_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str region_id: Specifies the region ID to which the resource belongs.
+        :param _builtins.str resource_id: Specifies the resource ID.
+        """
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID to which the resource belongs.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+
+@pulumi.output_type
+class ScheduledTaskMessageNotification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "notificationEndpointType":
+            suggest = "notification_endpoint_type"
+        elif key == "scheduleRoleId":
+            suggest = "schedule_role_id"
+        elif key == "scheduleSceneId":
+            suggest = "schedule_scene_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskMessageNotification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskMessageNotification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskMessageNotification.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 notification_endpoint_type: _builtins.str,
+                 policy: Optional[_builtins.str] = None,
+                 protocol: Optional[_builtins.str] = None,
+                 recipients: Optional[_builtins.str] = None,
+                 schedule_role_id: Optional[_builtins.str] = None,
+                 schedule_scene_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str notification_endpoint_type: Specifies the notification endpoint type. The default value is
+               **ONCALL**.
+               Values can be as follows:
+               + **ONCALL**: Scheduled.
+               + **USER**: Individual.
+        :param _builtins.str policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param _builtins.str protocol: Specifies the notification channel. The default value is **DEFAULT**.
+               Values can be as follows:
+               + **DEFAULT**: Selects one of your subscribed notification channels.
+               + **NONE**: No notification.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DINGDING**: DingTalk.
+               + **LARK**: Lark.
+               + **CALLNOTIFY**: Voice.
+               + **WECHAT**: WeChat Work.
+        :param _builtins.str recipients: Specifies the ID of the notification recipient.
+               
+               > This value is required if the notification recipient type is **USER**.
+        :param _builtins.str schedule_role_id: Specifies the schedule role ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        :param _builtins.str schedule_scene_id: Specifies the schedule scenario ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        """
+        pulumi.set(__self__, "notification_endpoint_type", notification_endpoint_type)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if schedule_role_id is not None:
+            pulumi.set(__self__, "schedule_role_id", schedule_role_id)
+        if schedule_scene_id is not None:
+            pulumi.set(__self__, "schedule_scene_id", schedule_scene_id)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationEndpointType")
+    def notification_endpoint_type(self) -> _builtins.str:
+        """
+        Specifies the notification endpoint type. The default value is
+        **ONCALL**.
+        Values can be as follows:
+        + **ONCALL**: Scheduled.
+        + **USER**: Individual.
+        """
+        return pulumi.get(self, "notification_endpoint_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the notification channel. The default value is **DEFAULT**.
+        Values can be as follows:
+        + **DEFAULT**: Selects one of your subscribed notification channels.
+        + **NONE**: No notification.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DINGDING**: DingTalk.
+        + **LARK**: Lark.
+        + **CALLNOTIFY**: Voice.
+        + **WECHAT**: WeChat Work.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the notification recipient.
+
+        > This value is required if the notification recipient type is **USER**.
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleRoleId")
+    def schedule_role_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the schedule role ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleSceneId")
+    def schedule_scene_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the schedule scenario ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_scene_id")
+
+
+@pulumi.output_type
+class ScheduledTaskReviewerNotification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "notificationEndpointType":
+            suggest = "notification_endpoint_type"
+        elif key == "scheduleRoleId":
+            suggest = "schedule_role_id"
+        elif key == "scheduleSceneId":
+            suggest = "schedule_scene_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskReviewerNotification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskReviewerNotification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskReviewerNotification.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 notification_endpoint_type: _builtins.str,
+                 policy: Optional[_builtins.str] = None,
+                 protocol: Optional[_builtins.str] = None,
+                 recipients: Optional[_builtins.str] = None,
+                 schedule_role_id: Optional[_builtins.str] = None,
+                 schedule_scene_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str notification_endpoint_type: Specifies the notification endpoint type. The default value is
+               **ONCALL**.
+               Values can be as follows:
+               + **ONCALL**: Scheduled.
+               + **USER**: Individual.
+        :param _builtins.str policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param _builtins.str protocol: Specifies the notification channel. The default value is **DEFAULT**.
+               Values can be as follows:
+               + **DEFAULT**: Selects one of your subscribed notification channels.
+               + **NONE**: No notification.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DINGDING**: DingTalk.
+               + **LARK**: Lark.
+               + **CALLNOTIFY**: Voice.
+               + **WECHAT**: WeChat Work.
+        :param _builtins.str recipients: Specifies the ID of the notification recipient.
+               
+               > This value is required if the notification recipient type is **USER**.
+        :param _builtins.str schedule_role_id: Specifies the schedule role ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        :param _builtins.str schedule_scene_id: Specifies the schedule scenario ID.
+               
+               > This value is required if the notification recipient type is **ONCALL**.
+        """
+        pulumi.set(__self__, "notification_endpoint_type", notification_endpoint_type)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if recipients is not None:
+            pulumi.set(__self__, "recipients", recipients)
+        if schedule_role_id is not None:
+            pulumi.set(__self__, "schedule_role_id", schedule_role_id)
+        if schedule_scene_id is not None:
+            pulumi.set(__self__, "schedule_scene_id", schedule_scene_id)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationEndpointType")
+    def notification_endpoint_type(self) -> _builtins.str:
+        """
+        Specifies the notification endpoint type. The default value is
+        **ONCALL**.
+        Values can be as follows:
+        + **ONCALL**: Scheduled.
+        + **USER**: Individual.
+        """
+        return pulumi.get(self, "notification_endpoint_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the notification channel. The default value is **DEFAULT**.
+        Values can be as follows:
+        + **DEFAULT**: Selects one of your subscribed notification channels.
+        + **NONE**: No notification.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DINGDING**: DingTalk.
+        + **LARK**: Lark.
+        + **CALLNOTIFY**: Voice.
+        + **WECHAT**: WeChat Work.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipients(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the notification recipient.
+
+        > This value is required if the notification recipient type is **USER**.
+        """
+        return pulumi.get(self, "recipients")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleRoleId")
+    def schedule_role_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the schedule role ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleSceneId")
+    def schedule_scene_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the schedule scenario ID.
+
+        > This value is required if the notification recipient type is **ONCALL**.
+        """
+        return pulumi.get(self, "schedule_scene_id")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orderNo":
+            suggest = "order_no"
+        elif key == "targetSelection":
+            suggest = "target_selection"
+        elif key == "batchStrategy":
+            suggest = "batch_strategy"
+        elif key == "createTime":
+            suggest = "create_time"
+        elif key == "scheduleId":
+            suggest = "schedule_id"
+        elif key == "subTargetInstances":
+            suggest = "sub_target_instances"
+        elif key == "targetInstances":
+            suggest = "target_instances"
+        elif key == "targetResource":
+            suggest = "target_resource"
+        elif key == "updateTime":
+            suggest = "update_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTargetInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTargetInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTargetInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 order_no: _builtins.int,
+                 target_selection: _builtins.str,
+                 batch_strategy: Optional[_builtins.str] = None,
+                 create_time: Optional[_builtins.int] = None,
+                 id: Optional[_builtins.str] = None,
+                 schedule_id: Optional[_builtins.str] = None,
+                 sub_target_instances: Optional[Sequence['outputs.ScheduledTaskTargetInstanceSubTargetInstance']] = None,
+                 target_instances: Optional[_builtins.str] = None,
+                 target_resource: Optional['outputs.ScheduledTaskTargetInstanceTargetResource'] = None,
+                 update_time: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int order_no: Specifies the step number.
+               + When a scheduled task is associated with a script, this value is **1**.
+               + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        :param _builtins.str target_selection: Specifies the target instance selection method. The default value is **MANUAL**.
+               Values can be as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manual selection.
+               + **NONE**: No instance specified.
+        :param _builtins.str batch_strategy: Specifies the instance batching strategy.
+               Values can be as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+               
+               > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+               value must be **NONE**.
+               <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+               <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        :param _builtins.int create_time: Indicates the target instance creation time.
+        :param _builtins.str id: Specifies the region or application ID.
+        :param _builtins.str schedule_id: Indicates the schedule task ID.
+        :param Sequence['ScheduledTaskTargetInstanceSubTargetInstanceArgs'] sub_target_instances: Specifies the secondary resource instance information.
+               
+               The sub_target_instances structure is documented below.
+               
+               > If a step in a job associated with a scheduled task has multiple tasks and the `runbook_instance_mode` is **DIFF**,
+               this value is required. This means that each task specifies a separate resource instance for the operation.
+               
+               <a name="target_instances_target_resource_struct"></a>
+               The `target_resource` block supports:
+        :param _builtins.str target_instances: Specifies the instance information.
+               
+               > This field is required if the `target_selection` is **MANUAL**.
+        :param 'ScheduledTaskTargetInstanceTargetResourceArgs' target_resource: Specifies the target instance query condition. The default value is empty.
+               
+               The target_resource structure is documented below.
+               
+               > This field is required if the `target_selection` is **ALL**.
+        :param _builtins.int update_time: Indicates the target instance update time.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if schedule_id is not None:
+            pulumi.set(__self__, "schedule_id", schedule_id)
+        if sub_target_instances is not None:
+            pulumi.set(__self__, "sub_target_instances", sub_target_instances)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+        if target_resource is not None:
+            pulumi.set(__self__, "target_resource", target_resource)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> _builtins.int:
+        """
+        Specifies the step number.
+        + When a scheduled task is associated with a script, this value is **1**.
+        + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        """
+        return pulumi.get(self, "order_no")
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> _builtins.str:
+        """
+        Specifies the target instance selection method. The default value is **MANUAL**.
+        Values can be as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manual selection.
+        + **NONE**: No instance specified.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance batching strategy.
+        Values can be as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+
+        > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+        value must be **NONE**.
+        <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+        <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[_builtins.int]:
+        """
+        Indicates the target instance creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduleId")
+    def schedule_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the schedule task ID.
+        """
+        return pulumi.get(self, "schedule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="subTargetInstances")
+    def sub_target_instances(self) -> Optional[Sequence['outputs.ScheduledTaskTargetInstanceSubTargetInstance']]:
+        """
+        Specifies the secondary resource instance information.
+
+        The sub_target_instances structure is documented below.
+
+        > If a step in a job associated with a scheduled task has multiple tasks and the `runbook_instance_mode` is **DIFF**,
+        this value is required. This means that each task specifies a separate resource instance for the operation.
+
+        <a name="target_instances_target_resource_struct"></a>
+        The `target_resource` block supports:
+        """
+        return pulumi.get(self, "sub_target_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance information.
+
+        > This field is required if the `target_selection` is **MANUAL**.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="targetResource")
+    def target_resource(self) -> Optional['outputs.ScheduledTaskTargetInstanceTargetResource']:
+        """
+        Specifies the target instance query condition. The default value is empty.
+
+        The target_resource structure is documented below.
+
+        > This field is required if the `target_selection` is **ALL**.
+        """
+        return pulumi.get(self, "target_resource")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[_builtins.int]:
+        """
+        Indicates the target instance update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstanceSubTargetInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orderNo":
+            suggest = "order_no"
+        elif key == "targetSelection":
+            suggest = "target_selection"
+        elif key == "batchStrategy":
+            suggest = "batch_strategy"
+        elif key == "targetInstances":
+            suggest = "target_instances"
+        elif key == "targetResource":
+            suggest = "target_resource"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTargetInstanceSubTargetInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTargetInstanceSubTargetInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTargetInstanceSubTargetInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 order_no: _builtins.int,
+                 target_selection: _builtins.str,
+                 batch_strategy: Optional[_builtins.str] = None,
+                 target_instances: Optional[_builtins.str] = None,
+                 target_resource: Optional['outputs.ScheduledTaskTargetInstanceSubTargetInstanceTargetResource'] = None):
+        """
+        :param _builtins.int order_no: Specifies the step number.
+               + When a scheduled task is associated with a script, this value is **1**.
+               + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        :param _builtins.str target_selection: Specifies the target instance selection method. The default value is **MANUAL**.
+               Values can be as follows:
+               + **ALL**: All instances.
+               + **MANUAL**: Manual selection.
+               + **NONE**: No instance specified.
+        :param _builtins.str batch_strategy: Specifies the instance batching strategy.
+               Values can be as follows:
+               + **AUTO_BATCH**: Automatic batching.
+               + **MANUAL_BATCH**: Manual batching.
+               + **NONE**: No batching.
+               
+               > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+               value must be **NONE**.
+               <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+               <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        :param _builtins.str target_instances: Specifies the instance information.
+               
+               > This field is required if the `target_selection` is **MANUAL**.
+        :param 'ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceArgs' target_resource: Specifies the target instance query condition. The default value is empty.
+               
+               The target_resource structure is documented below.
+               
+               > This field is required if the `target_selection` is **ALL**.
+        """
+        pulumi.set(__self__, "order_no", order_no)
+        pulumi.set(__self__, "target_selection", target_selection)
+        if batch_strategy is not None:
+            pulumi.set(__self__, "batch_strategy", batch_strategy)
+        if target_instances is not None:
+            pulumi.set(__self__, "target_instances", target_instances)
+        if target_resource is not None:
+            pulumi.set(__self__, "target_resource", target_resource)
+
+    @_builtins.property
+    @pulumi.getter(name="orderNo")
+    def order_no(self) -> _builtins.int:
+        """
+        Specifies the step number.
+        + When a scheduled task is associated with a script, this value is **1**.
+        + When a scheduled task is associated with a job, this value indicates the step number within the job.
+        """
+        return pulumi.get(self, "order_no")
+
+    @_builtins.property
+    @pulumi.getter(name="targetSelection")
+    def target_selection(self) -> _builtins.str:
+        """
+        Specifies the target instance selection method. The default value is **MANUAL**.
+        Values can be as follows:
+        + **ALL**: All instances.
+        + **MANUAL**: Manual selection.
+        + **NONE**: No instance specified.
+        """
+        return pulumi.get(self, "target_selection")
+
+    @_builtins.property
+    @pulumi.getter(name="batchStrategy")
+    def batch_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance batching strategy.
+        Values can be as follows:
+        + **AUTO_BATCH**: Automatic batching.
+        + **MANUAL_BATCH**: Manual batching.
+        + **NONE**: No batching.
+
+        > When a scheduled task is associated with a job and the current step does not require a resource instance, this
+        value must be **NONE**.
+        <br>When the `target_selection` is **ALL**, this value must be **AUTO_BATCH**.
+        <br>When the resource instance list is not empty, this value can only be **AUTO_BATCH** or **MANUAL_BATCH**.
+        """
+        return pulumi.get(self, "batch_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance information.
+
+        > This field is required if the `target_selection` is **MANUAL**.
+        """
+        return pulumi.get(self, "target_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="targetResource")
+    def target_resource(self) -> Optional['outputs.ScheduledTaskTargetInstanceSubTargetInstanceTargetResource']:
+        """
+        Specifies the target instance query condition. The default value is empty.
+
+        The target_resource structure is documented below.
+
+        > This field is required if the `target_selection` is **ALL**.
+        """
+        return pulumi.get(self, "target_resource")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "appName":
+            suggest = "app_name"
+        elif key == "regionId":
+            suggest = "region_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTargetInstanceSubTargetInstanceTargetResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTargetInstanceSubTargetInstanceTargetResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTargetInstanceSubTargetInstanceTargetResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 app_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 params: Optional[Sequence['outputs.ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParam']] = None,
+                 region_id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str app_name: Specifies the application name. Separate hierarchical elements with dot(.).
+               
+               > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+               selected application.
+        :param _builtins.str id: Specifies the region or application ID.
+        :param Sequence['ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParamArgs'] params: Specifies the dynamic query conditions for resource instances.
+               
+               The params structure is documented below.
+               
+               <a name="target_instances_target_resource_params_struct"></a>
+               The `params` block supports:
+        :param _builtins.str region_id: Specifies the region ID which the application is associated.
+               
+               > When the resource selection method is **APPLICATION**, this value is required.
+        :param _builtins.str type: Specifies the resource selection method. The default value is **REGION**.
+               Values can be as follows:
+               + **REGION**: Selects resource instances by region.
+               + **APPLICATION**: Selects resource instances by application.
+        """
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if params is not None:
+            pulumi.set(__self__, "params", params)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the application name. Separate hierarchical elements with dot(.).
+
+        > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+        selected application.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def params(self) -> Optional[Sequence['outputs.ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParam']]:
+        """
+        Specifies the dynamic query conditions for resource instances.
+
+        The params structure is documented below.
+
+        <a name="target_instances_target_resource_params_struct"></a>
+        The `params` block supports:
+        """
+        return pulumi.get(self, "params")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID which the application is associated.
+
+        > When the resource selection method is **APPLICATION**, this value is required.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource selection method. The default value is **REGION**.
+        Values can be as follows:
+        + **REGION**: Selects resource instances by region.
+        + **APPLICATION**: Selects resource instances by application.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstanceSubTargetInstanceTargetResourceParam(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        :param _builtins.str value: Specifies the parameter value corresponding to the resource attribute.
+               
+               <a name="ticket_infos_struct"></a>
+               The `ticket_infos` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the parameter value corresponding to the resource attribute.
+
+        <a name="ticket_infos_struct"></a>
+        The `ticket_infos` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstanceTargetResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "appName":
+            suggest = "app_name"
+        elif key == "regionId":
+            suggest = "region_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTargetInstanceTargetResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTargetInstanceTargetResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTargetInstanceTargetResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 app_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 params: Optional[Sequence['outputs.ScheduledTaskTargetInstanceTargetResourceParam']] = None,
+                 region_id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str app_name: Specifies the application name. Separate hierarchical elements with dot(.).
+               
+               > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+               selected application.
+        :param _builtins.str id: Specifies the region or application ID.
+        :param Sequence['ScheduledTaskTargetInstanceTargetResourceParamArgs'] params: Specifies the dynamic query conditions for resource instances.
+               
+               The params structure is documented below.
+               
+               <a name="target_instances_target_resource_params_struct"></a>
+               The `params` block supports:
+        :param _builtins.str region_id: Specifies the region ID which the application is associated.
+               
+               > When the resource selection method is **APPLICATION**, this value is required.
+        :param _builtins.str type: Specifies the resource selection method. The default value is **REGION**.
+               Values can be as follows:
+               + **REGION**: Selects resource instances by region.
+               + **APPLICATION**: Selects resource instances by application.
+        """
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if params is not None:
+            pulumi.set(__self__, "params", params)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the application name. Separate hierarchical elements with dot(.).
+
+        > When the resource selection method is **APPLICATION**, this value is required and specifies the name of the
+        selected application.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region or application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def params(self) -> Optional[Sequence['outputs.ScheduledTaskTargetInstanceTargetResourceParam']]:
+        """
+        Specifies the dynamic query conditions for resource instances.
+
+        The params structure is documented below.
+
+        <a name="target_instances_target_resource_params_struct"></a>
+        The `params` block supports:
+        """
+        return pulumi.get(self, "params")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID which the application is associated.
+
+        > When the resource selection method is **APPLICATION**, this value is required.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource selection method. The default value is **REGION**.
+        Values can be as follows:
+        + **REGION**: Selects resource instances by region.
+        + **APPLICATION**: Selects resource instances by application.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ScheduledTaskTargetInstanceTargetResourceParam(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        :param _builtins.str value: Specifies the parameter value corresponding to the resource attribute.
+               
+               <a name="ticket_infos_struct"></a>
+               The `ticket_infos` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the resource attribute name. For example, **ep_id**, **agent_state** and so on.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the parameter value corresponding to the resource attribute.
+
+        <a name="ticket_infos_struct"></a>
+        The `ticket_infos` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ScheduledTaskTicketInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "scopeId":
+            suggest = "scope_id"
+        elif key == "targetId":
+            suggest = "target_id"
+        elif key == "ticketId":
+            suggest = "ticket_id"
+        elif key == "ticketType":
+            suggest = "ticket_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTicketInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTicketInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTicketInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 scope_id: Optional[_builtins.str] = None,
+                 target_id: Optional[_builtins.str] = None,
+                 ticket_id: Optional[_builtins.str] = None,
+                 ticket_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str scope_id: Specifies the region ID.
+               
+               <a name="message_notification_struct"></a>
+               The `reviewer_notification` and `message_notification` block supports:
+        :param _builtins.str target_id: Specifies the application ID associated with the work order.
+        :param _builtins.str ticket_id: Specifies the ID of the work order related to the change management.
+        :param _builtins.str ticket_type: Specifies the work order type.
+               Values can be as follows:
+               + **CHANGE**: Change order.
+               + **INCIDENT**: Incident order.
+               + **WARROOM**: War room order.
+        """
+        if scope_id is not None:
+            pulumi.set(__self__, "scope_id", scope_id)
+        if target_id is not None:
+            pulumi.set(__self__, "target_id", target_id)
+        if ticket_id is not None:
+            pulumi.set(__self__, "ticket_id", ticket_id)
+        if ticket_type is not None:
+            pulumi.set(__self__, "ticket_type", ticket_type)
+
+    @_builtins.property
+    @pulumi.getter(name="scopeId")
+    def scope_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID.
+
+        <a name="message_notification_struct"></a>
+        The `reviewer_notification` and `message_notification` block supports:
+        """
+        return pulumi.get(self, "scope_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetId")
+    def target_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the application ID associated with the work order.
+        """
+        return pulumi.get(self, "target_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the work order related to the change management.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketType")
+    def ticket_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the work order type.
+        Values can be as follows:
+        + **CHANGE**: Change order.
+        + **INCIDENT**: Incident order.
+        + **WARROOM**: War room order.
+        """
+        return pulumi.get(self, "ticket_type")
+
+
+@pulumi.output_type
+class ScheduledTaskTriggerTime(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timeZone":
+            suggest = "time_zone"
+        elif key == "periodicScheduledTime":
+            suggest = "periodic_scheduled_time"
+        elif key == "scheduledCloseTime":
+            suggest = "scheduled_close_time"
+        elif key == "singleScheduledTime":
+            suggest = "single_scheduled_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScheduledTaskTriggerTime. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScheduledTaskTriggerTime.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScheduledTaskTriggerTime.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 policy: _builtins.str,
+                 time_zone: _builtins.str,
+                 cron: Optional[_builtins.str] = None,
+                 period: Optional[_builtins.str] = None,
+                 periodic_scheduled_time: Optional[_builtins.str] = None,
+                 scheduled_close_time: Optional[_builtins.int] = None,
+                 single_scheduled_time: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str policy: Specifies the notification policy.
+               Values can be as follows:
+               + **START_EXECUTION**: Starts execution.
+               + **EXECUTION_FAILED**: Execution failed.
+               + **EXECUTION_SUCCEEDED**: Execution succeeded.
+               
+               > This value is required when `enable_message_notification` is **true**.
+        :param _builtins.str time_zone: Specifies the time zone. The default value is **Asia/Shanghai**.
+        :param _builtins.str cron: Specifies the specific CRON expression value for executing a scheduled task based on a
+               CRON expression.
+               
+               > This value is required if the scheduled task execution policy is **CRON**. A valid CRON expression is sufficient.
+               For example, to execute a task at 10:15 AM every day, use `0 15 10 ? * *`.
+        :param _builtins.str period: Specifies the specific week list for periodic scheduled tasks.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC**. Days of the week are separated by
+               commas. For example, Sunday is **1** and Monday is **3**. If a task is to be executed on Monday, Wednesday, Thursday,
+               and Sunday, the value would be **1,2,4,5**.
+        :param _builtins.str periodic_scheduled_time: Specifies the daily execution time for periodic scheduled tasks.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC**. A 24-hour time string. For example,
+               if a task is to be executed at 5:30 PM on a given day, it would be **17:30:00**.
+        :param _builtins.int scheduled_close_time: Specifies the deadline for scheduled task execution.
+               
+               > This value is required if the scheduled task execution policy is **PERIODIC** or **CRON**. It specifies the
+               timestamp of the scheduled task rule deadline. UTC timestamp in milliseconds.
+               
+               <a name="target_instances_struct"></a>
+               The `target_instances` block supports:
+        :param _builtins.int single_scheduled_time: Specifies the execution time of a single scheduled task.
+               
+               > This value is required if the scheduled task execution policy is **ONCE**. UTC timestamp in milliseconds.
+        """
+        pulumi.set(__self__, "policy", policy)
+        pulumi.set(__self__, "time_zone", time_zone)
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if periodic_scheduled_time is not None:
+            pulumi.set(__self__, "periodic_scheduled_time", periodic_scheduled_time)
+        if scheduled_close_time is not None:
+            pulumi.set(__self__, "scheduled_close_time", scheduled_close_time)
+        if single_scheduled_time is not None:
+            pulumi.set(__self__, "single_scheduled_time", single_scheduled_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def policy(self) -> _builtins.str:
+        """
+        Specifies the notification policy.
+        Values can be as follows:
+        + **START_EXECUTION**: Starts execution.
+        + **EXECUTION_FAILED**: Execution failed.
+        + **EXECUTION_SUCCEEDED**: Execution succeeded.
+
+        > This value is required when `enable_message_notification` is **true**.
+        """
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> _builtins.str:
+        """
+        Specifies the time zone. The default value is **Asia/Shanghai**.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> Optional[_builtins.str]:
+        """
+        Specifies the specific CRON expression value for executing a scheduled task based on a
+        CRON expression.
+
+        > This value is required if the scheduled task execution policy is **CRON**. A valid CRON expression is sufficient.
+        For example, to execute a task at 10:15 AM every day, use `0 15 10 ? * *`.
+        """
+        return pulumi.get(self, "cron")
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[_builtins.str]:
+        """
+        Specifies the specific week list for periodic scheduled tasks.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC**. Days of the week are separated by
+        commas. For example, Sunday is **1** and Monday is **3**. If a task is to be executed on Monday, Wednesday, Thursday,
+        and Sunday, the value would be **1,2,4,5**.
+        """
+        return pulumi.get(self, "period")
+
+    @_builtins.property
+    @pulumi.getter(name="periodicScheduledTime")
+    def periodic_scheduled_time(self) -> Optional[_builtins.str]:
+        """
+        Specifies the daily execution time for periodic scheduled tasks.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC**. A 24-hour time string. For example,
+        if a task is to be executed at 5:30 PM on a given day, it would be **17:30:00**.
+        """
+        return pulumi.get(self, "periodic_scheduled_time")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledCloseTime")
+    def scheduled_close_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the deadline for scheduled task execution.
+
+        > This value is required if the scheduled task execution policy is **PERIODIC** or **CRON**. It specifies the
+        timestamp of the scheduled task rule deadline. UTC timestamp in milliseconds.
+
+        <a name="target_instances_struct"></a>
+        The `target_instances` block supports:
+        """
+        return pulumi.get(self, "scheduled_close_time")
+
+    @_builtins.property
+    @pulumi.getter(name="singleScheduledTime")
+    def single_scheduled_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the execution time of a single scheduled task.
+
+        > This value is required if the scheduled task execution policy is **ONCE**. UTC timestamp in milliseconds.
+        """
+        return pulumi.get(self, "single_scheduled_time")
 
 
 @pulumi.output_type
@@ -438,6 +3063,222 @@ class ScriptParameter(dict):
         Specifies whether the parameter is sensitive.
         """
         return pulumi.get(self, "sensitive")
+
+
+@pulumi.output_type
+class ScriptReviewer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "reviewerId":
+            suggest = "reviewer_id"
+        elif key == "reviewerName":
+            suggest = "reviewer_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScriptReviewer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScriptReviewer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScriptReviewer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 reviewer_id: _builtins.str,
+                 reviewer_name: _builtins.str):
+        """
+        :param _builtins.str reviewer_id: Specifies the ID of the reviewer.
+               
+               <a name="block--parameters"></a>
+               The `parameters` block supports:
+        :param _builtins.str reviewer_name: Specifies the name of the reviewer.
+        """
+        pulumi.set(__self__, "reviewer_id", reviewer_id)
+        pulumi.set(__self__, "reviewer_name", reviewer_name)
+
+    @_builtins.property
+    @pulumi.getter(name="reviewerId")
+    def reviewer_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the reviewer.
+
+        <a name="block--parameters"></a>
+        The `parameters` block supports:
+        """
+        return pulumi.get(self, "reviewer_id")
+
+    @_builtins.property
+    @pulumi.getter(name="reviewerName")
+    def reviewer_name(self) -> _builtins.str:
+        """
+        Specifies the name of the reviewer.
+        """
+        return pulumi.get(self, "reviewer_name")
+
+
+@pulumi.output_type
+class TicketAddSubTicket(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "appName":
+            suggest = "app_name"
+        elif key == "expectedEndTime":
+            suggest = "expected_end_time"
+        elif key == "expectedStartTime":
+            suggest = "expected_start_time"
+        elif key == "targetType":
+            suggest = "target_type"
+        elif key == "targetValue":
+            suggest = "target_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TicketAddSubTicket. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TicketAddSubTicket.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TicketAddSubTicket.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 app_name: Optional[_builtins.str] = None,
+                 cooperators: Optional[_builtins.str] = None,
+                 executors: Optional[_builtins.str] = None,
+                 expected_end_time: Optional[_builtins.int] = None,
+                 expected_start_time: Optional[_builtins.int] = None,
+                 region: Optional[_builtins.str] = None,
+                 target_type: Optional[_builtins.str] = None,
+                 target_value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str app_name: Specifies the change service.
+               
+               > When `target_type` is set to **change_scope**, this field must contain the corresponding change service name in Chinese.
+        :param _builtins.str cooperators: Specifies the person to collaborate on the change order.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param _builtins.str executors: Specifies the person who will implement the change order.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param _builtins.int expected_end_time: Specifies the timestamp of the change order's scheduled end time.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param _builtins.int expected_start_time: Specifies the timestamp of the change order's scheduled start time.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        :param _builtins.str region: Specifies the change region.
+               
+               > When `target_type` is set to **change_scope**, this field must contain the corresponding change region ID.
+        :param _builtins.str target_type: Specifies the target option information.
+               Values can be as follows:
+               + **change_scope**: Change application.
+               + **child_ticket**: Change plan.
+        :param _builtins.str target_value: Specifies the region ID of the change order to be transferred.
+               
+               > This value is valid only when `target_type` is **child_ticket**.
+        """
+        if app_name is not None:
+            pulumi.set(__self__, "app_name", app_name)
+        if cooperators is not None:
+            pulumi.set(__self__, "cooperators", cooperators)
+        if executors is not None:
+            pulumi.set(__self__, "executors", executors)
+        if expected_end_time is not None:
+            pulumi.set(__self__, "expected_end_time", expected_end_time)
+        if expected_start_time is not None:
+            pulumi.set(__self__, "expected_start_time", expected_start_time)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if target_type is not None:
+            pulumi.set(__self__, "target_type", target_type)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the change service.
+
+        > When `target_type` is set to **change_scope**, this field must contain the corresponding change service name in Chinese.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def cooperators(self) -> Optional[_builtins.str]:
+        """
+        Specifies the person to collaborate on the change order.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "cooperators")
+
+    @_builtins.property
+    @pulumi.getter
+    def executors(self) -> Optional[_builtins.str]:
+        """
+        Specifies the person who will implement the change order.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "executors")
+
+    @_builtins.property
+    @pulumi.getter(name="expectedEndTime")
+    def expected_end_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the timestamp of the change order's scheduled end time.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "expected_end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="expectedStartTime")
+    def expected_start_time(self) -> Optional[_builtins.int]:
+        """
+        Specifies the timestamp of the change order's scheduled start time.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "expected_start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        Specifies the change region.
+
+        > When `target_type` is set to **change_scope**, this field must contain the corresponding change region ID.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the target option information.
+        Values can be as follows:
+        + **change_scope**: Change application.
+        + **child_ticket**: Change plan.
+        """
+        return pulumi.get(self, "target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID of the change order to be transferred.
+
+        > This value is valid only when `target_type` is **child_ticket**.
+        """
+        return pulumi.get(self, "target_value")
 
 
 @pulumi.output_type
@@ -650,6 +3491,633 @@ class WarRoomWarRoomStatus(dict):
         Indicates the war room status enumeration type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAlarmActionHistoriesAlarmHandleHistoryResult(dict):
+    def __init__(__self__, *,
+                 create_alias: _builtins.str,
+                 create_name: _builtins.str,
+                 duration: _builtins.int,
+                 end_time: _builtins.int,
+                 start_time: _builtins.int,
+                 status: _builtins.str,
+                 task_type: _builtins.str,
+                 work_order_id: _builtins.str):
+        """
+        :param _builtins.str create_alias: Indicates the alias of the person who created the work order.
+        :param _builtins.str create_name: Indicates the name of the person who created the work order.
+        :param _builtins.int duration: Indicates the time taken to execute the work order.
+        :param _builtins.int end_time: Indicates the work order execution end time.
+        :param _builtins.int start_time: Indicates the work order execution start time.
+        :param _builtins.str status: Indicates the work order status.
+        :param _builtins.str task_type: Indicates the work order task type.
+        :param _builtins.str work_order_id: Indicates the task execution work order ID.
+        """
+        pulumi.set(__self__, "create_alias", create_alias)
+        pulumi.set(__self__, "create_name", create_name)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "work_order_id", work_order_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createAlias")
+    def create_alias(self) -> _builtins.str:
+        """
+        Indicates the alias of the person who created the work order.
+        """
+        return pulumi.get(self, "create_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="createName")
+    def create_name(self) -> _builtins.str:
+        """
+        Indicates the name of the person who created the work order.
+        """
+        return pulumi.get(self, "create_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> _builtins.int:
+        """
+        Indicates the time taken to execute the work order.
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        Indicates the work order execution end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        Indicates the work order execution start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the work order status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        Indicates the work order task type.
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="workOrderId")
+    def work_order_id(self) -> _builtins.str:
+        """
+        Indicates the task execution work order ID.
+        """
+        return pulumi.get(self, "work_order_id")
+
+
+@pulumi.output_type
+class GetApplicationCapacitiesDataResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_name: _builtins.str,
+                 sum_cpu: _builtins.str,
+                 sum_mem: _builtins.str,
+                 sum_size: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str cloud_service_name: Specifies the cloud service name.
+               The value can be **ecs**, **cce**, **rds** and so on.
+        :param _builtins.str sum_cpu: Indicates the total amount of CPU allocated.
+        :param _builtins.str sum_mem: Indicates the total amount of memory allocated.
+        :param _builtins.str sum_size: Indicates the total size of the hard disk.
+        :param _builtins.str type: Specifies the resource type name.
+               There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+               + **cloudservers**: Elastic Cloud Servers.
+               + **servers**: Bare Metal Servers.
+               + **clusters**: Cloud Container Engines.
+               + **instances**: Cloud Databases.
+        """
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "sum_cpu", sum_cpu)
+        pulumi.set(__self__, "sum_mem", sum_mem)
+        pulumi.set(__self__, "sum_size", sum_size)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Specifies the cloud service name.
+        The value can be **ecs**, **cce**, **rds** and so on.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sumCpu")
+    def sum_cpu(self) -> _builtins.str:
+        """
+        Indicates the total amount of CPU allocated.
+        """
+        return pulumi.get(self, "sum_cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="sumMem")
+    def sum_mem(self) -> _builtins.str:
+        """
+        Indicates the total amount of memory allocated.
+        """
+        return pulumi.get(self, "sum_mem")
+
+    @_builtins.property
+    @pulumi.getter(name="sumSize")
+    def sum_size(self) -> _builtins.str:
+        """
+        Indicates the total size of the hard disk.
+        """
+        return pulumi.get(self, "sum_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type name.
+        There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+        + **cloudservers**: Elastic Cloud Servers.
+        + **servers**: Bare Metal Servers.
+        + **clusters**: Cloud Container Engines.
+        + **instances**: Cloud Databases.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetApplicationCapacitiesProviderObjResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_name: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cloud_service_name: Specifies the cloud service name.
+               The value can be **ecs**, **cce**, **rds** and so on.
+        :param _builtins.str type: Specifies the resource type name.
+               There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+               + **cloudservers**: Elastic Cloud Servers.
+               + **servers**: Bare Metal Servers.
+               + **clusters**: Cloud Container Engines.
+               + **instances**: Cloud Databases.
+        """
+        if cloud_service_name is not None:
+            pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cloud service name.
+        The value can be **ecs**, **cce**, **rds** and so on.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource type name.
+        There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+        + **cloudservers**: Elastic Cloud Servers.
+        + **servers**: Bare Metal Servers.
+        + **clusters**: Cloud Container Engines.
+        + **instances**: Cloud Databases.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetApplicationCapacityOrdersDataResult(dict):
+    def __init__(__self__, *,
+                 rank_lists: Sequence['outputs.GetApplicationCapacityOrdersDataRankListResult'],
+                 type: _builtins.str):
+        """
+        :param Sequence['GetApplicationCapacityOrdersDataRankListArgs'] rank_lists: Indicates the list of TOP 5 ranked objects.
+        :param _builtins.str type: Specifies the resource type name.
+               There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+               + **cloudservers**: Elastic Cloud Servers.
+               + **servers**: Bare Metal Servers.
+               + **clusters**: Cloud Container Engines.
+               + **instances**: Cloud Databases.
+        """
+        pulumi.set(__self__, "rank_lists", rank_lists)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="rankLists")
+    def rank_lists(self) -> Sequence['outputs.GetApplicationCapacityOrdersDataRankListResult']:
+        """
+        Indicates the list of TOP 5 ranked objects.
+        """
+        return pulumi.get(self, "rank_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type name.
+        There are many resource types. Choose the resource type based on your business needs. Common resource types are as follows:
+        + **cloudservers**: Elastic Cloud Servers.
+        + **servers**: Bare Metal Servers.
+        + **clusters**: Cloud Container Engines.
+        + **instances**: Cloud Databases.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetApplicationCapacityOrdersDataRankListResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the application, component or group ID.
+        :param _builtins.str name: Indicates the application, component or group name.
+        :param _builtins.str value: Indicates the capacity value of an application, component or group.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the application, component or group ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the application, component or group name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the capacity value of an application, component or group.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetApplicationNextModelsComponentResult(dict):
+    def __init__(__self__, *,
+                 application_id: _builtins.str,
+                 code: _builtins.str,
+                 domain_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 path: _builtins.str):
+        """
+        :param _builtins.str application_id: Specifies the application ID.
+        :param _builtins.str code: Indicates the group code.
+        :param _builtins.str domain_id: Indicates the account ID.
+        :param _builtins.str id: Indicates the group ID.
+        :param _builtins.str name: Indicates the group name.
+        :param _builtins.str path: Indicates the component node path.
+        """
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> _builtins.str:
+        """
+        Specifies the application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Indicates the group code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the group ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Indicates the component node path.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class GetApplicationNextModelsGroupResult(dict):
+    def __init__(__self__, *,
+                 application_id: _builtins.str,
+                 code: _builtins.str,
+                 component_id: _builtins.str,
+                 domain_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 region_id: _builtins.str,
+                 relation_configurations: Sequence[_builtins.str],
+                 sync_mode: _builtins.str,
+                 sync_rules: Sequence['outputs.GetApplicationNextModelsGroupSyncRuleResult'],
+                 vendor: _builtins.str):
+        """
+        :param _builtins.str application_id: Specifies the application ID.
+        :param _builtins.str code: Indicates the group code.
+        :param _builtins.str component_id: Specifies the component ID.
+        :param _builtins.str domain_id: Indicates the account ID.
+        :param _builtins.str id: Indicates the group ID.
+        :param _builtins.str name: Indicates the group name.
+        :param _builtins.str region_id: Indicates the region ID.
+        :param Sequence[_builtins.str] relation_configurations: Indicates the group configuration information.
+        :param _builtins.str sync_mode: Indicates the resource association method.
+        :param Sequence['GetApplicationNextModelsGroupSyncRuleArgs'] sync_rules: Indicates the intelligent association rules.
+        :param _builtins.str vendor: Indicates the manufacturer.
+        """
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "relation_configurations", relation_configurations)
+        pulumi.set(__self__, "sync_mode", sync_mode)
+        pulumi.set(__self__, "sync_rules", sync_rules)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> _builtins.str:
+        """
+        Specifies the application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Indicates the group code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        Specifies the component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the group ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="relationConfigurations")
+    def relation_configurations(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the group configuration information.
+        """
+        return pulumi.get(self, "relation_configurations")
+
+    @_builtins.property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> _builtins.str:
+        """
+        Indicates the resource association method.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="syncRules")
+    def sync_rules(self) -> Sequence['outputs.GetApplicationNextModelsGroupSyncRuleResult']:
+        """
+        Indicates the intelligent association rules.
+        """
+        return pulumi.get(self, "sync_rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        Indicates the manufacturer.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class GetApplicationNextModelsGroupSyncRuleResult(dict):
+    def __init__(__self__, *,
+                 enterprise_project_id: _builtins.str,
+                 rule_tags: _builtins.str):
+        """
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param _builtins.str rule_tags: Indicates the associated tag.
+        """
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "rule_tags", rule_tags)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleTags")
+    def rule_tags(self) -> _builtins.str:
+        """
+        Indicates the associated tag.
+        """
+        return pulumi.get(self, "rule_tags")
+
+
+@pulumi.output_type
+class GetApplicationNextModelsSubApplicationResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.str,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 parent_id: _builtins.str,
+                 path: _builtins.str,
+                 update_time: _builtins.str):
+        """
+        :param _builtins.str code: Indicates the group code.
+        :param _builtins.str create_time: Indicates the creation time.
+        :param _builtins.str description: Indicates the application description.
+        :param _builtins.str domain_id: Indicates the account ID.
+        :param _builtins.str id: Indicates the group ID.
+        :param _builtins.str name: Indicates the group name.
+        :param _builtins.str parent_id: Indicates the parent ID.
+        :param _builtins.str path: Indicates the component node path.
+        :param _builtins.str update_time: Indicates the modification time.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parent_id", parent_id)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Indicates the group code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the application description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the group ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> _builtins.str:
+        """
+        Indicates the parent ID.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Indicates the component node path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        Indicates the modification time.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -887,6 +4355,410 @@ class GetApplicationsDataResult(dict):
 
 
 @pulumi.output_type
+class GetChangeSubTicketsTicketResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_name: _builtins.str,
+                 create_time: _builtins.int,
+                 creator: _builtins.str,
+                 domain_id: _builtins.str,
+                 ep_id: _builtins.str,
+                 hosting_id: _builtins.str,
+                 id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 main_ticket_id: _builtins.str,
+                 name: _builtins.str,
+                 operator: _builtins.str,
+                 parent_ticket_id: _builtins.str,
+                 properties_json: _builtins.str,
+                 real_ticket_id: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 tags_json: _builtins.str,
+                 target_type: _builtins.str,
+                 target_value: _builtins.str,
+                 ticket_id: _builtins.str,
+                 ticket_path: _builtins.str,
+                 type: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str cloud_service_name: Indicates the cloud service name.
+        :param _builtins.int create_time: Indicates the change order creation time.
+        :param _builtins.str creator: Indicates the change order creator.
+        :param _builtins.str domain_id: Indicates the tenant ID.
+        :param _builtins.str ep_id: Indicates the enterprise project ID.
+        :param _builtins.str hosting_id: Indicates the host ID.
+        :param _builtins.str id: Indicates the change ticket ID.
+        :param _builtins.bool is_deleted: Indicates whether the change order has been deleted.
+        :param _builtins.str main_ticket_id: Indicates the primary key ID of the change work order.
+        :param _builtins.str name: Indicates the resource name.
+        :param _builtins.str operator: Indicates the change order operator.
+        :param _builtins.str parent_ticket_id: Indicates the parent work order ID.
+        :param _builtins.str properties_json: Indicates the resource attribute information.
+        :param _builtins.str real_ticket_id: Indicates the change order number.
+        :param _builtins.str region_id: Indicates the region ID.
+        :param _builtins.str resource_id: Indicates the resource ID.
+        :param _builtins.str tags_json: Indicates the resource tag information.
+        :param _builtins.str target_type: Indicates the change order sub-document type.
+        :param _builtins.str target_value: Indicates the region information of the change order sub-order.
+        :param _builtins.str ticket_id: Specifies the change order ticket id.
+        :param _builtins.str ticket_path: Indicates the change order work order path.
+        :param _builtins.str type: Specifies the resource type.
+        :param _builtins.int update_time: Indicates the change order update time.
+        """
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator", creator)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "ep_id", ep_id)
+        pulumi.set(__self__, "hosting_id", hosting_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "main_ticket_id", main_ticket_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "parent_ticket_id", parent_ticket_id)
+        pulumi.set(__self__, "properties_json", properties_json)
+        pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "tags_json", tags_json)
+        pulumi.set(__self__, "target_type", target_type)
+        pulumi.set(__self__, "target_value", target_value)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "ticket_path", ticket_path)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Indicates the cloud service name.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        Indicates the change order creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> _builtins.str:
+        """
+        Indicates the change order creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the tenant ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epId")
+    def ep_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostingId")
+    def hosting_id(self) -> _builtins.str:
+        """
+        Indicates the host ID.
+        """
+        return pulumi.get(self, "hosting_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the change ticket ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether the change order has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="mainTicketId")
+    def main_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the primary key ID of the change work order.
+        """
+        return pulumi.get(self, "main_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the resource name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Indicates the change order operator.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="parentTicketId")
+    def parent_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the parent work order ID.
+        """
+        return pulumi.get(self, "parent_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="propertiesJson")
+    def properties_json(self) -> _builtins.str:
+        """
+        Indicates the resource attribute information.
+        """
+        return pulumi.get(self, "properties_json")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the change order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="tagsJson")
+    def tags_json(self) -> _builtins.str:
+        """
+        Indicates the resource tag information.
+        """
+        return pulumi.get(self, "tags_json")
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> _builtins.str:
+        """
+        Indicates the change order sub-document type.
+        """
+        return pulumi.get(self, "target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> _builtins.str:
+        """
+        Indicates the region information of the change order sub-order.
+        """
+        return pulumi.get(self, "target_value")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Specifies the change order ticket id.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketPath")
+    def ticket_path(self) -> _builtins.str:
+        """
+        Indicates the change order work order path.
+        """
+        return pulumi.get(self, "ticket_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        Indicates the change order update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetCloudVendorAccountsDataResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 account_name: _builtins.str,
+                 ak: _builtins.str,
+                 create_time: _builtins.str,
+                 domain_id: _builtins.str,
+                 failure_msg: _builtins.str,
+                 id: _builtins.str,
+                 sync_date: _builtins.str,
+                 sync_status: _builtins.str,
+                 update_time: _builtins.str,
+                 vendor: _builtins.str):
+        """
+        :param _builtins.str account_id: Specifies the account ID of a supplier.
+        :param _builtins.str account_name: Specifies the account name.
+        :param _builtins.str ak: Indicates the AK.
+        :param _builtins.str create_time: Indicates the creation time.
+        :param _builtins.str domain_id: Indicates the tenant ID.
+        :param _builtins.str failure_msg: Indicates the error message.
+        :param _builtins.str id: Indicates the cloud vendor account ID allocated by CloudCMDB
+        :param _builtins.str sync_date: Indicates the synchronization time.
+        :param _builtins.str sync_status: Indicates the task status.
+        :param _builtins.str update_time: Indicates the update time.
+        :param _builtins.str vendor: Specifies the cloud vendor information.
+               Value options::
+               + **RMS**: Huawei Cloud.
+               + **AZURE**: Microsoft Azure
+               + **ALI**: Alibaba Cloud
+               + **VMWARE**: VMware
+               + **OPENSTACK**: OpenStack cloud platform
+               + **HCS**: Huawei hybrid cloud solution Huawei Cloud Stack
+               + **OTHER**: other cloud vendors
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "ak", ak)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "failure_msg", failure_msg)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "sync_date", sync_date)
+        pulumi.set(__self__, "sync_status", sync_status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        Specifies the account ID of a supplier.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> _builtins.str:
+        """
+        Specifies the account name.
+        """
+        return pulumi.get(self, "account_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def ak(self) -> _builtins.str:
+        """
+        Indicates the AK.
+        """
+        return pulumi.get(self, "ak")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the tenant ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="failureMsg")
+    def failure_msg(self) -> _builtins.str:
+        """
+        Indicates the error message.
+        """
+        return pulumi.get(self, "failure_msg")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the cloud vendor account ID allocated by CloudCMDB
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="syncDate")
+    def sync_date(self) -> _builtins.str:
+        """
+        Indicates the synchronization time.
+        """
+        return pulumi.get(self, "sync_date")
+
+    @_builtins.property
+    @pulumi.getter(name="syncStatus")
+    def sync_status(self) -> _builtins.str:
+        """
+        Indicates the task status.
+        """
+        return pulumi.get(self, "sync_status")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        Specifies the cloud vendor information.
+        Value options::
+        + **RMS**: Huawei Cloud.
+        + **AZURE**: Microsoft Azure
+        + **ALI**: Alibaba Cloud
+        + **VMWARE**: VMware
+        + **OPENSTACK**: OpenStack cloud platform
+        + **HCS**: Huawei hybrid cloud solution Huawei Cloud Stack
+        + **OTHER**: other cloud vendors
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
 class GetComponentsDataResult(dict):
     def __init__(__self__, *,
                  application_id: _builtins.str,
@@ -949,149 +4821,284 @@ class GetComponentsDataResult(dict):
 
 
 @pulumi.output_type
-class GetDocumentAtomicDetailInputResult(dict):
+class GetDiagnosisTaskSummaryInstanceSummaryResult(dict):
     def __init__(__self__, *,
-                 max: _builtins.int,
-                 max_len: _builtins.int,
-                 min: _builtins.int,
-                 min_len: _builtins.int,
-                 param_key: _builtins.str,
-                 param_name_en: _builtins.str,
-                 param_name_zh: _builtins.str,
-                 param_type: _builtins.str,
-                 pattern: _builtins.str,
-                 required: _builtins.bool):
+                 abnormal_item_num: _builtins.int,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 normal_item_num: _builtins.int,
+                 progress: _builtins.int,
+                 status: _builtins.str):
         """
-        :param _builtins.int max: Indicates the maximum value.
-        :param _builtins.int max_len: Indicates the maximum length.
-        :param _builtins.int min: Indicates the minimum value.
-        :param _builtins.int min_len: Indicates the minimum length.
-        :param _builtins.str param_key: Indicates the parameter variable name.
-        :param _builtins.str param_name_en: Indicates the English name of the parameter.
-        :param _builtins.str param_name_zh: Indicates the Chinese name of the parameter.
-        :param _builtins.str param_type: Indicates the parameter type: constant/dictionary.
-        :param _builtins.str pattern: Indicates the regular restriction expression.
-        :param _builtins.bool required: Indicates whether the field is required.
+        :param _builtins.int abnormal_item_num: Indicates the number of abnormal diagnosis items of the instance.
+        :param _builtins.str instance_id: Indicates the ID of the diagnosed instance.
+        :param _builtins.str instance_name: Indicates the name of the instance being diagnosed.
+        :param _builtins.int normal_item_num: Indicates the number of normal diagnostic items of the instance.
+        :param _builtins.int progress: Indicates the execution progress of the diagnostic task.
+        :param _builtins.str status: Indicates the execution status of the diagnostic task.
         """
-        pulumi.set(__self__, "max", max)
-        pulumi.set(__self__, "max_len", max_len)
-        pulumi.set(__self__, "min", min)
-        pulumi.set(__self__, "min_len", min_len)
-        pulumi.set(__self__, "param_key", param_key)
-        pulumi.set(__self__, "param_name_en", param_name_en)
-        pulumi.set(__self__, "param_name_zh", param_name_zh)
-        pulumi.set(__self__, "param_type", param_type)
-        pulumi.set(__self__, "pattern", pattern)
-        pulumi.set(__self__, "required", required)
+        pulumi.set(__self__, "abnormal_item_num", abnormal_item_num)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "normal_item_num", normal_item_num)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="abnormalItemNum")
+    def abnormal_item_num(self) -> _builtins.int:
+        """
+        Indicates the number of abnormal diagnosis items of the instance.
+        """
+        return pulumi.get(self, "abnormal_item_num")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the diagnosed instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Indicates the name of the instance being diagnosed.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="normalItemNum")
+    def normal_item_num(self) -> _builtins.int:
+        """
+        Indicates the number of normal diagnostic items of the instance.
+        """
+        return pulumi.get(self, "normal_item_num")
 
     @_builtins.property
     @pulumi.getter
-    def max(self) -> _builtins.int:
+    def progress(self) -> _builtins.int:
         """
-        Indicates the maximum value.
+        Indicates the execution progress of the diagnostic task.
         """
-        return pulumi.get(self, "max")
-
-    @_builtins.property
-    @pulumi.getter(name="maxLen")
-    def max_len(self) -> _builtins.int:
-        """
-        Indicates the maximum length.
-        """
-        return pulumi.get(self, "max_len")
+        return pulumi.get(self, "progress")
 
     @_builtins.property
     @pulumi.getter
-    def min(self) -> _builtins.int:
+    def status(self) -> _builtins.str:
         """
-        Indicates the minimum value.
+        Indicates the execution status of the diagnostic task.
         """
-        return pulumi.get(self, "min")
-
-    @_builtins.property
-    @pulumi.getter(name="minLen")
-    def min_len(self) -> _builtins.int:
-        """
-        Indicates the minimum length.
-        """
-        return pulumi.get(self, "min_len")
-
-    @_builtins.property
-    @pulumi.getter(name="paramKey")
-    def param_key(self) -> _builtins.str:
-        """
-        Indicates the parameter variable name.
-        """
-        return pulumi.get(self, "param_key")
-
-    @_builtins.property
-    @pulumi.getter(name="paramNameEn")
-    def param_name_en(self) -> _builtins.str:
-        """
-        Indicates the English name of the parameter.
-        """
-        return pulumi.get(self, "param_name_en")
-
-    @_builtins.property
-    @pulumi.getter(name="paramNameZh")
-    def param_name_zh(self) -> _builtins.str:
-        """
-        Indicates the Chinese name of the parameter.
-        """
-        return pulumi.get(self, "param_name_zh")
-
-    @_builtins.property
-    @pulumi.getter(name="paramType")
-    def param_type(self) -> _builtins.str:
-        """
-        Indicates the parameter type: constant/dictionary.
-        """
-        return pulumi.get(self, "param_type")
-
-    @_builtins.property
-    @pulumi.getter
-    def pattern(self) -> _builtins.str:
-        """
-        Indicates the regular restriction expression.
-        """
-        return pulumi.get(self, "pattern")
-
-    @_builtins.property
-    @pulumi.getter
-    def required(self) -> _builtins.bool:
-        """
-        Indicates whether the field is required.
-        """
-        return pulumi.get(self, "required")
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
-class GetDocumentAtomicDetailOutputResult(dict):
+class GetDiagnosisTasksDataResult(dict):
     def __init__(__self__, *,
-                 supported: _builtins.bool,
-                 type: _builtins.str):
+                 code: _builtins.str,
+                 domain_id: _builtins.str,
+                 end_time: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 instance_num: _builtins.int,
+                 os_type: _builtins.str,
+                 progress: _builtins.int,
+                 project_id: _builtins.str,
+                 region: _builtins.str,
+                 start_time: _builtins.str,
+                 status: _builtins.str,
+                 type: _builtins.str,
+                 user_id: _builtins.str,
+                 user_name: _builtins.str,
+                 work_order_id: _builtins.str):
         """
-        :param _builtins.bool supported: Indicates whether output is supported.
-        :param _builtins.str type: Indicates the output type.
+        :param _builtins.str code: Indicates the step code.
+        :param _builtins.str domain_id: Indicates the account ID to which the diagnostic record belongs.
+        :param _builtins.str end_time: Specifies the end time of the diagnostic work order.
+        :param _builtins.str id: Indicates the diagnostic task node ID.
+        :param _builtins.str instance_id: Indicates the ID of the instance being diagnosed.
+        :param _builtins.str instance_name: Indicates the name of the instance being diagnosed.
+        :param _builtins.int instance_num: Indicates the number of instances included in the diagnostic task.
+        :param _builtins.str os_type: Indicates the operating system type of the diagnosed instance.
+        :param _builtins.int progress: Indicates the progress of the diagnostic task execution.
+        :param _builtins.str project_id: Indicates the project ID to which the diagnosed instance belongs.
+        :param _builtins.str region: Specifies the region where the diagnosed instance is located.
+        :param _builtins.str start_time: Specifies the start time of the diagnostic work order.
+        :param _builtins.str status: Specifies the execution status of the diagnostic task.
+               Values can be as follows:
+               + **cancel**: Cancelled.
+               + **executing**: Executing.
+               + **waiting**: Waiting to be executed.
+               + **failed**: Exception.
+               + **finish**: Completed.
+        :param _builtins.str type: Specifies the instance types supported by the diagnostic task.
+               The value can be **ECS**, **RDS**, **DCS**, **DMS** or **ELB**.
+        :param _builtins.str user_id: Indicates the user ID to which the diagnostic record belongs.
+        :param _builtins.str user_name: Indicates the user name to which the diagnostic record belongs.
+        :param _builtins.str work_order_id: Indicates the diagnostic task ticket ID.
         """
-        pulumi.set(__self__, "supported", supported)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_num", instance_num)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+        pulumi.set(__self__, "work_order_id", work_order_id)
 
     @_builtins.property
     @pulumi.getter
-    def supported(self) -> _builtins.bool:
+    def code(self) -> _builtins.str:
         """
-        Indicates whether output is supported.
+        Indicates the step code.
         """
-        return pulumi.get(self, "supported")
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the account ID to which the diagnostic record belongs.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        Specifies the end time of the diagnostic work order.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the diagnostic task node ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the instance being diagnosed.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Indicates the name of the instance being diagnosed.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceNum")
+    def instance_num(self) -> _builtins.int:
+        """
+        Indicates the number of instances included in the diagnostic task.
+        """
+        return pulumi.get(self, "instance_num")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Indicates the operating system type of the diagnosed instance.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def progress(self) -> _builtins.int:
+        """
+        Indicates the progress of the diagnostic task execution.
+        """
+        return pulumi.get(self, "progress")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID to which the diagnosed instance belongs.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region where the diagnosed instance is located.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Specifies the start time of the diagnostic work order.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the execution status of the diagnostic task.
+        Values can be as follows:
+        + **cancel**: Cancelled.
+        + **executing**: Executing.
+        + **waiting**: Waiting to be executed.
+        + **failed**: Exception.
+        + **finish**: Completed.
+        """
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Indicates the output type.
+        Specifies the instance types supported by the diagnostic task.
+        The value can be **ECS**, **RDS**, **DCS**, **DMS** or **ELB**.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Indicates the user ID to which the diagnostic record belongs.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        Indicates the user name to which the diagnostic record belongs.
+        """
+        return pulumi.get(self, "user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="workOrderId")
+    def work_order_id(self) -> _builtins.str:
+        """
+        Indicates the diagnostic task ticket ID.
+        """
+        return pulumi.get(self, "work_order_id")
 
 
 @pulumi.output_type
@@ -1145,6 +5152,588 @@ class GetDocumentAtomicsDataResult(dict):
         The value can be **CLOUD_API**, **FUNCTION**.
         """
         return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetDocumentExecutionStepInstancesDataResult(dict):
+    def __init__(__self__, *,
+                 end_time: _builtins.int,
+                 execution_instance_id: _builtins.str,
+                 execution_step_id: _builtins.str,
+                 id: _builtins.int,
+                 message: _builtins.str,
+                 properties: Mapping[str, _builtins.str],
+                 start_time: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.int end_time: Indicates the instance execution end time.
+        :param _builtins.str execution_instance_id: Indicates the execution instance ID.
+        :param _builtins.str execution_step_id: Specifies the execution step ID.
+        :param _builtins.int id: Indicates the batch execution instance ID.
+        :param _builtins.str message: Indicates the instance execution information.
+        :param Mapping[str, _builtins.str] properties: Indicates the instance information in a batch.
+        :param _builtins.int start_time: Indicates the instance execution start time.
+        :param _builtins.str status: Indicates the instance execution status.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "execution_instance_id", execution_instance_id)
+        pulumi.set(__self__, "execution_step_id", execution_step_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "properties", properties)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        Indicates the instance execution end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="executionInstanceId")
+    def execution_instance_id(self) -> _builtins.str:
+        """
+        Indicates the execution instance ID.
+        """
+        return pulumi.get(self, "execution_instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="executionStepId")
+    def execution_step_id(self) -> _builtins.str:
+        """
+        Specifies the execution step ID.
+        """
+        return pulumi.get(self, "execution_step_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the batch execution instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        Indicates the instance execution information.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the instance information in a batch.
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        Indicates the instance execution start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the instance execution status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetDocumentExecutionStepsDataResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 end_time: _builtins.int,
+                 execution_step_id: _builtins.str,
+                 inputs: Sequence['outputs.GetDocumentExecutionStepsDataInputResult'],
+                 message: _builtins.str,
+                 name: _builtins.str,
+                 outputs: Sequence['outputs.GetDocumentExecutionStepsDataOutputResult'],
+                 properties: Mapping[str, _builtins.str],
+                 start_time: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.str action: Indicates the atomic capability action.
+        :param _builtins.int end_time: Indicates the work order step end time.
+        :param _builtins.str execution_step_id: Indicates the work order step ID.
+        :param Sequence['GetDocumentExecutionStepsDataInputArgs'] inputs: Indicates the step input parameters.
+        :param _builtins.str message: Indicates the work order step execution information.
+        :param _builtins.str name: Indicates the work order step name.
+        :param Sequence['GetDocumentExecutionStepsDataOutputArgs'] outputs: Indicates the step output parameters.
+        :param Mapping[str, _builtins.str] properties: Indicates the additional attributes for the work order step, stored in map format. For example, to
+               display the intranet IP address, it would be **{"fixed_ip": "192.168.1.xx"}.**
+        :param _builtins.int start_time: Indicates the work order step start time.
+        :param _builtins.str status: Indicates the work order step execution status.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "execution_step_id", execution_step_id)
+        pulumi.set(__self__, "inputs", inputs)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "outputs", outputs)
+        pulumi.set(__self__, "properties", properties)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Indicates the atomic capability action.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        Indicates the work order step end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="executionStepId")
+    def execution_step_id(self) -> _builtins.str:
+        """
+        Indicates the work order step ID.
+        """
+        return pulumi.get(self, "execution_step_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def inputs(self) -> Sequence['outputs.GetDocumentExecutionStepsDataInputResult']:
+        """
+        Indicates the step input parameters.
+        """
+        return pulumi.get(self, "inputs")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        Indicates the work order step execution information.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the work order step name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def outputs(self) -> Sequence['outputs.GetDocumentExecutionStepsDataOutputResult']:
+        """
+        Indicates the step output parameters.
+        """
+        return pulumi.get(self, "outputs")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the additional attributes for the work order step, stored in map format. For example, to
+        display the intranet IP address, it would be **{"fixed_ip": "192.168.1.xx"}.**
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        Indicates the work order step start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the work order step execution status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetDocumentExecutionStepsDataInputResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the key of the parameter.
+        :param _builtins.str value: Indicates the value of the parameter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the key of the parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDocumentExecutionStepsDataOutputResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the key of the parameter.
+        :param _builtins.str value: Indicates the value of the parameter.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the key of the parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDocumentExecutionsDataResult(dict):
+    def __init__(__self__, *,
+                 creator: _builtins.str,
+                 description: _builtins.str,
+                 document_id: _builtins.str,
+                 document_name: _builtins.str,
+                 document_version: _builtins.str,
+                 document_version_id: _builtins.str,
+                 end_time: _builtins.int,
+                 execution_id: _builtins.str,
+                 parameters: Sequence['outputs.GetDocumentExecutionsDataParameterResult'],
+                 start_time: _builtins.int,
+                 status: _builtins.str,
+                 sys_tags: Sequence['outputs.GetDocumentExecutionsDataSysTagResult'],
+                 tags: Sequence['outputs.GetDocumentExecutionsDataTagResult'],
+                 target_parameter_name: _builtins.str,
+                 targets: Sequence['outputs.GetDocumentExecutionsDataTargetResult'],
+                 type: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str creator: Specifies the fuzzy query the creator.
+        :param _builtins.str description: Indicates the work order execution description.
+        :param _builtins.str document_id: Specifies the document ID.
+        :param _builtins.str document_name: Specifies the fuzzy query the document name.
+        :param _builtins.str document_version: Indicates the document version.
+        :param _builtins.str document_version_id: Indicates the document version ID.
+        :param _builtins.int end_time: Specifies the end time less than.
+        :param _builtins.str execution_id: Indicates the execution ID.
+        :param Sequence['GetDocumentExecutionsDataParameterArgs'] parameters: Indicates the global parameters for work order execution.
+        :param _builtins.int start_time: Specifies the start time greater than.
+        :param _builtins.str status: Indicates the work order status.
+        :param Sequence['GetDocumentExecutionsDataSysTagArgs'] sys_tags: Indicates the list of system tags.
+        :param Sequence['GetDocumentExecutionsDataTagArgs'] tags: Specifies the tag filtering conditions.
+        :param _builtins.str target_parameter_name: Indicates the rate mode executes the specified parameters.
+        :param Sequence['GetDocumentExecutionsDataTargetArgs'] targets: Indicates the rate mode executes the specified element.
+        :param _builtins.str type: Indicates the work order type.
+        :param _builtins.int update_time: Indicates the work order update time.
+        """
+        pulumi.set(__self__, "creator", creator)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "document_id", document_id)
+        pulumi.set(__self__, "document_name", document_name)
+        pulumi.set(__self__, "document_version", document_version)
+        pulumi.set(__self__, "document_version_id", document_version_id)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "execution_id", execution_id)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sys_tags", sys_tags)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "target_parameter_name", target_parameter_name)
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> _builtins.str:
+        """
+        Specifies the fuzzy query the creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the work order execution description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="documentId")
+    def document_id(self) -> _builtins.str:
+        """
+        Specifies the document ID.
+        """
+        return pulumi.get(self, "document_id")
+
+    @_builtins.property
+    @pulumi.getter(name="documentName")
+    def document_name(self) -> _builtins.str:
+        """
+        Specifies the fuzzy query the document name.
+        """
+        return pulumi.get(self, "document_name")
+
+    @_builtins.property
+    @pulumi.getter(name="documentVersion")
+    def document_version(self) -> _builtins.str:
+        """
+        Indicates the document version.
+        """
+        return pulumi.get(self, "document_version")
+
+    @_builtins.property
+    @pulumi.getter(name="documentVersionId")
+    def document_version_id(self) -> _builtins.str:
+        """
+        Indicates the document version ID.
+        """
+        return pulumi.get(self, "document_version_id")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        Specifies the end time less than.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="executionId")
+    def execution_id(self) -> _builtins.str:
+        """
+        Indicates the execution ID.
+        """
+        return pulumi.get(self, "execution_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.GetDocumentExecutionsDataParameterResult']:
+        """
+        Indicates the global parameters for work order execution.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        Specifies the start time greater than.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the work order status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="sysTags")
+    def sys_tags(self) -> Sequence['outputs.GetDocumentExecutionsDataSysTagResult']:
+        """
+        Indicates the list of system tags.
+        """
+        return pulumi.get(self, "sys_tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetDocumentExecutionsDataTagResult']:
+        """
+        Specifies the tag filtering conditions.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="targetParameterName")
+    def target_parameter_name(self) -> _builtins.str:
+        """
+        Indicates the rate mode executes the specified parameters.
+        """
+        return pulumi.get(self, "target_parameter_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.GetDocumentExecutionsDataTargetResult']:
+        """
+        Indicates the rate mode executes the specified element.
+        """
+        return pulumi.get(self, "targets")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the work order type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        Indicates the work order update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetDocumentExecutionsDataParameterResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the rate mode execution type, **InstanceValues**.
+        :param _builtins.str value: Indicates the value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the rate mode execution type, **InstanceValues**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDocumentExecutionsDataSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the rate mode execution type, **InstanceValues**.
+        :param _builtins.str value: Indicates the value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the rate mode execution type, **InstanceValues**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDocumentExecutionsDataTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the rate mode execution type, **InstanceValues**.
+        :param _builtins.str value: Indicates the value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the rate mode execution type, **InstanceValues**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDocumentExecutionsDataTargetResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the rate mode execution type, **InstanceValues**.
+        :param Sequence[_builtins.str] values: Indicates the rate mode execution element, currently only supports cmdb resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the rate mode execution type, **InstanceValues**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the rate mode execution element, currently only supports cmdb resources.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -1240,6 +5829,3414 @@ class GetDocumentsDataResult(dict):
         Indicates the document version, such as **v1**.
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetEnterpriseProjectCollectionsDataResult(dict):
+    def __init__(__self__, *,
+                 ep_id_lists: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 user_id: _builtins.str):
+        """
+        :param Sequence[_builtins.str] ep_id_lists: Indicates the list of enterprise project favorites.
+        :param _builtins.str id: Indicates the unique identifier ID.
+        :param _builtins.str user_id: Indicates the user ID.
+        """
+        pulumi.set(__self__, "ep_id_lists", ep_id_lists)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="epIdLists")
+    def ep_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of enterprise project favorites.
+        """
+        return pulumi.get(self, "ep_id_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the unique identifier ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Indicates the user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetGroupResourceRelationsDataResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 agent_state: _builtins.str,
+                 cloud_service_name: _builtins.str,
+                 cmdb_resource_id: _builtins.str,
+                 create_time: _builtins.str,
+                 domain_id: _builtins.str,
+                 ep_id: _builtins.str,
+                 ep_name: _builtins.str,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 id: _builtins.str,
+                 ingest_properties: _builtins.str,
+                 inner_ip: _builtins.str,
+                 name: _builtins.str,
+                 operable: _builtins.str,
+                 project_id: _builtins.str,
+                 properties: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 tags: Sequence['outputs.GetGroupResourceRelationsDataTagResult'],
+                 type: _builtins.str):
+        """
+        :param _builtins.str agent_id: Indicates the ID assigned by unified agent.
+        :param _builtins.str agent_state: Specifies the unified agent status.
+               Values can be **ONLINE**, **OFFLINE**, **INSTALLING**, **FAILED**, **UNINSTALLED** or **null**.
+        :param _builtins.str cloud_service_name: Specifies the cloud service name.
+               The value can be **ecs**, **cce**, **rds** and so on.
+        :param _builtins.str cmdb_resource_id: Indicates the cmdb database resource ID.
+        :param _builtins.str create_time: Indicates the creation time.
+        :param _builtins.str domain_id: Indicates the tenant ID.
+        :param _builtins.str ep_id: Indicates the enterprise project ID.
+        :param _builtins.str ep_name: Indicates the enterprise project name.
+        :param _builtins.str group_id: Specifies the group ID.
+               
+               > `application_id`, `component_id` and `group_id` cannot coexist, and one of them is required.
+        :param _builtins.str group_name: Indicates the group name.
+        :param _builtins.str id: Indicates the application ID.
+        :param _builtins.str ingest_properties: Indicates the ingest attributes of the resource.
+        :param _builtins.str inner_ip: Indicates the inner IP.
+        :param _builtins.str name: Specifies the cloud resource name.
+        :param _builtins.str operable: Indicates whether the user defined resource can operate the instance.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str properties: Indicates the resource properties.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Indicates the resource ID.
+        :param Sequence['GetGroupResourceRelationsDataTagArgs'] tags: Indicates the resource tags.
+        :param _builtins.str type: Specifies the resource type name.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "agent_state", agent_state)
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "cmdb_resource_id", cmdb_resource_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "ep_id", ep_id)
+        pulumi.set(__self__, "ep_name", ep_name)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ingest_properties", ingest_properties)
+        pulumi.set(__self__, "inner_ip", inner_ip)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operable", operable)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "properties", properties)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        Indicates the ID assigned by unified agent.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="agentState")
+    def agent_state(self) -> _builtins.str:
+        """
+        Specifies the unified agent status.
+        Values can be **ONLINE**, **OFFLINE**, **INSTALLING**, **FAILED**, **UNINSTALLED** or **null**.
+        """
+        return pulumi.get(self, "agent_state")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Specifies the cloud service name.
+        The value can be **ecs**, **cce**, **rds** and so on.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cmdbResourceId")
+    def cmdb_resource_id(self) -> _builtins.str:
+        """
+        Indicates the cmdb database resource ID.
+        """
+        return pulumi.get(self, "cmdb_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the tenant ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epId")
+    def ep_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epName")
+    def ep_name(self) -> _builtins.str:
+        """
+        Indicates the enterprise project name.
+        """
+        return pulumi.get(self, "ep_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the group ID.
+
+        > `application_id`, `component_id` and `group_id` cannot coexist, and one of them is required.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the application ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ingestProperties")
+    def ingest_properties(self) -> _builtins.str:
+        """
+        Indicates the ingest attributes of the resource.
+        """
+        return pulumi.get(self, "ingest_properties")
+
+    @_builtins.property
+    @pulumi.getter(name="innerIp")
+    def inner_ip(self) -> _builtins.str:
+        """
+        Indicates the inner IP.
+        """
+        return pulumi.get(self, "inner_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the cloud resource name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operable(self) -> _builtins.str:
+        """
+        Indicates whether the user defined resource can operate the instance.
+        """
+        return pulumi.get(self, "operable")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> _builtins.str:
+        """
+        Indicates the resource properties.
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetGroupResourceRelationsDataTagResult']:
+        """
+        Indicates the resource tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type name.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetGroupResourceRelationsDataTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the key of the tag.
+        :param _builtins.str value: Indicates the value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGroupsDataResult(dict):
+    def __init__(__self__, *,
+                 application_id: _builtins.str,
+                 code: _builtins.str,
+                 component_id: _builtins.str,
+                 domain_id: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 region_id: _builtins.str,
+                 relation_configurations: Sequence['outputs.GetGroupsDataRelationConfigurationResult'],
+                 sync_mode: _builtins.str,
+                 sync_rules: Sequence['outputs.GetGroupsDataSyncRuleResult'],
+                 vendor: _builtins.str):
+        """
+        :param _builtins.str application_id: Specifies the application ID.
+        :param _builtins.str code: Specifies the group code.
+        :param _builtins.str component_id: Specifies the component ID.
+        :param _builtins.str domain_id: Indicates the tenant ID.
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param _builtins.str id: Indicates the UUID assigned by the CMDB.
+        :param _builtins.str name: Indicates the group name.
+        :param _builtins.str region_id: Indicates the region ID.
+        :param Sequence['GetGroupsDataRelationConfigurationArgs'] relation_configurations: Indicates the group configuration information.
+        :param _builtins.str sync_mode: Indicates the resource synchronization mode.
+        :param Sequence['GetGroupsDataSyncRuleArgs'] sync_rules: Indicates the smart association rules.
+        :param _builtins.str vendor: Indicates the manufacturer information.
+        """
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "relation_configurations", relation_configurations)
+        pulumi.set(__self__, "sync_mode", sync_mode)
+        pulumi.set(__self__, "sync_rules", sync_rules)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> _builtins.str:
+        """
+        Specifies the application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Specifies the group code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        Specifies the component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        Indicates the tenant ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the UUID assigned by the CMDB.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the group name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="relationConfigurations")
+    def relation_configurations(self) -> Sequence['outputs.GetGroupsDataRelationConfigurationResult']:
+        """
+        Indicates the group configuration information.
+        """
+        return pulumi.get(self, "relation_configurations")
+
+    @_builtins.property
+    @pulumi.getter(name="syncMode")
+    def sync_mode(self) -> _builtins.str:
+        """
+        Indicates the resource synchronization mode.
+        """
+        return pulumi.get(self, "sync_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="syncRules")
+    def sync_rules(self) -> Sequence['outputs.GetGroupsDataSyncRuleResult']:
+        """
+        Indicates the smart association rules.
+        """
+        return pulumi.get(self, "sync_rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        Indicates the manufacturer information.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class GetGroupsDataRelationConfigurationResult(dict):
+    def __init__(__self__, *,
+                 parameters: Mapping[str, _builtins.str],
+                 type: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] parameters: Indicates the configuration parameters.
+        :param _builtins.str type: Indicates the configuration type.
+        """
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the configuration parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the configuration type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetGroupsDataSyncRuleResult(dict):
+    def __init__(__self__, *,
+                 enterprise_project_id: _builtins.str,
+                 rule_tags: _builtins.str):
+        """
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param _builtins.str rule_tags: Indicates the associated tag.
+        """
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "rule_tags", rule_tags)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleTags")
+    def rule_tags(self) -> _builtins.str:
+        """
+        Indicates the associated tag.
+        """
+        return pulumi.get(self, "rule_tags")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesCountFilterResult(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.GetIncidentActionHistoriesCountFilterFilterResult']] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence['GetIncidentActionHistoriesCountFilterFilterArgs'] filters: Specifies the list of filters.
+               
+               The filters structure is documented below.
+               
+               <a name="filters_struct"></a>
+               The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        """
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.GetIncidentActionHistoriesCountFilterFilterResult']]:
+        """
+        Specifies the list of filters.
+
+        The filters structure is documented below.
+
+        <a name="filters_struct"></a>
+        The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        """
+        return pulumi.get(self, "filters")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesCountFilterFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesDataResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 action_name_en: _builtins.str,
+                 action_name_zh: _builtins.str,
+                 comment: _builtins.str,
+                 enum_data_lists: Sequence['outputs.GetIncidentActionHistoriesDataEnumDataListResult'],
+                 operator: _builtins.str,
+                 start_time: _builtins.str,
+                 status: _builtins.str,
+                 stop_time: _builtins.str):
+        """
+        :param _builtins.str action: Indicates the operation type.
+        :param _builtins.str action_name_en: Indicates the English operation type.
+        :param _builtins.str action_name_zh: Indicates the Chinese operation type.
+        :param _builtins.str comment: Indicates the comment information.
+        :param Sequence['GetIncidentActionHistoriesDataEnumDataListArgs'] enum_data_lists: Indicates the enumeration data list.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param _builtins.str start_time: Indicates the start time of the operation.
+        :param _builtins.str status: Indicates the current status.
+        :param _builtins.str stop_time: Indicates the end time of the operation.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "action_name_en", action_name_en)
+        pulumi.set(__self__, "action_name_zh", action_name_zh)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "enum_data_lists", enum_data_lists)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "stop_time", stop_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Indicates the operation type.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="actionNameEn")
+    def action_name_en(self) -> _builtins.str:
+        """
+        Indicates the English operation type.
+        """
+        return pulumi.get(self, "action_name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="actionNameZh")
+    def action_name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese operation type.
+        """
+        return pulumi.get(self, "action_name_zh")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Indicates the comment information.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter(name="enumDataLists")
+    def enum_data_lists(self) -> Sequence['outputs.GetIncidentActionHistoriesDataEnumDataListResult']:
+        """
+        Indicates the enumeration data list.
+        """
+        return pulumi.get(self, "enum_data_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Indicates the start time of the operation.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the current status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="stopTime")
+    def stop_time(self) -> _builtins.str:
+        """
+        Indicates the end time of the operation.
+        """
+        return pulumi.get(self, "stop_time")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesDataEnumDataListResult(dict):
+    def __init__(__self__, *,
+                 biz_id: _builtins.str,
+                 name_en: _builtins.str,
+                 name_zh: _builtins.str,
+                 prop_id: _builtins.str):
+        """
+        :param _builtins.str biz_id: Indicates the enumeration key.
+        :param _builtins.str name_en: Indicates the English name.
+        :param _builtins.str name_zh: Indicates the Chinese name.
+        :param _builtins.str prop_id: Indicates the field identified by the field key.
+        """
+        pulumi.set(__self__, "biz_id", biz_id)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "name_zh", name_zh)
+        pulumi.set(__self__, "prop_id", prop_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> _builtins.str:
+        """
+        Indicates the enumeration key.
+        """
+        return pulumi.get(self, "biz_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese name.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> _builtins.str:
+        """
+        Indicates the field identified by the field key.
+        """
+        return pulumi.get(self, "prop_id")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesGroupByFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesIntFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesSortFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentActionHistoriesStringFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentTasksDataResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 name: _builtins.str,
+                 operations: Sequence['outputs.GetIncidentTasksDataOperationResult'],
+                 state: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the task key.
+        :param _builtins.str name: Indicates the node name.
+        :param Sequence['GetIncidentTasksDataOperationArgs'] operations: Indicates the list of operations.
+        :param _builtins.str state: Indicates the node status.
+        :param _builtins.str type: Indicates the node type.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operations", operations)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the task key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the node name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operations(self) -> Sequence['outputs.GetIncidentTasksDataOperationResult']:
+        """
+        Indicates the list of operations.
+        """
+        return pulumi.get(self, "operations")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Indicates the node status.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the node type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetIncidentTasksDataOperationResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 task_id: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the task key.
+        :param _builtins.str task_id: Indicates the task ID.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "task_id", task_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the task key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> _builtins.str:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "task_id")
+
+
+@pulumi.output_type
+class GetIncidentsCountFilterResult(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.GetIncidentsCountFilterFilterResult']] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence['GetIncidentsCountFilterFilterArgs'] filters: Specifies the list of filters.
+               
+               The filters structure is documented below.
+               
+               <a name="filters_struct"></a>
+               The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        """
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.GetIncidentsCountFilterFilterResult']]:
+        """
+        Specifies the list of filters.
+
+        The filters structure is documented below.
+
+        <a name="filters_struct"></a>
+        The `string_filters`, `sort_filter`, `filters`, `group_by_filter`, and `int_filters` block supports:
+        """
+        return pulumi.get(self, "filters")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetIncidentsCountFilterFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentsGroupByFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentsIntFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentsSortFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentsStringFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str],
+                 group: Optional[_builtins.str] = None,
+                 match_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 priority_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str field: Specifies the field key. For values, refer to the return field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        :param _builtins.str group: Specifies the group to query information.
+        :param _builtins.str match_type: Specifies the matching method.
+        :param _builtins.str name: Specifies the filter name for condition expression splicing.
+        :param _builtins.str priority_type: Specifies the priority processing method.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority_type is not None:
+            pulumi.set(__self__, "priority_type", priority_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the field key. For values, refer to the return field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        The value content supports String, timestamp, enumeration, and integer, all of which are passed in the form of strings.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the group to query information.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching method.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the filter name for condition expression splicing.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="priorityType")
+    def priority_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the priority processing method.
+        """
+        return pulumi.get(self, "priority_type")
+
+
+@pulumi.output_type
+class GetIncidentsTicketResult(dict):
+    def __init__(__self__, *,
+                 assignee: _builtins.str,
+                 create_time: _builtins.str,
+                 creator: _builtins.str,
+                 current_cloud_service_id: _builtins.str,
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 enum_data_lists: Sequence['outputs.GetIncidentsTicketEnumDataListResult'],
+                 forward_rule_id: _builtins.str,
+                 handle_time: _builtins.str,
+                 incident_ownership: _builtins.str,
+                 is_service_interrupt: _builtins.str,
+                 level_id: _builtins.str,
+                 mtm_region: _builtins.str,
+                 mtm_type: _builtins.str,
+                 operator: _builtins.str,
+                 phase: _builtins.str,
+                 source_id: _builtins.str,
+                 start_time: _builtins.str,
+                 ticket_id: _builtins.str,
+                 title: _builtins.str,
+                 update_time: _builtins.str,
+                 work_flow_status: _builtins.str):
+        """
+        :param _builtins.str assignee: Indicates the assignee.
+        :param _builtins.str create_time: Indicates the creation time.
+        :param _builtins.str creator: Indicates the creator.
+        :param _builtins.str current_cloud_service_id: Indicates the cloud service ID.
+        :param _builtins.str description: Indicates the event description.
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param Sequence['GetIncidentsTicketEnumDataListArgs'] enum_data_lists: Indicates the enumeration list.
+        :param _builtins.str forward_rule_id: Indicates the forwarding rules.
+        :param _builtins.str handle_time: Indicates the processing time.
+        :param _builtins.str incident_ownership: Indicates the incident ownership.
+        :param _builtins.str is_service_interrupt: Indicates whether the service is interrupted.
+        :param _builtins.str level_id: Indicates the event level.
+               [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section289718103710)
+        :param _builtins.str mtm_region: Indicates the region.
+        :param _builtins.str mtm_type: Indicates the event category.
+               [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section137541363918)
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param _builtins.str phase: Indicates the process stage.
+        :param _builtins.str source_id: Indicates the event source.
+               [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section10172124616391)
+        :param _builtins.str start_time: Indicates the fault start time.
+        :param _builtins.str ticket_id: Indicates the event ticket number.
+        :param _builtins.str title: Indicates the event title.
+        :param _builtins.str update_time: Indicates the update time.
+        :param _builtins.str work_flow_status: Indicates the process status.
+        """
+        pulumi.set(__self__, "assignee", assignee)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator", creator)
+        pulumi.set(__self__, "current_cloud_service_id", current_cloud_service_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "enum_data_lists", enum_data_lists)
+        pulumi.set(__self__, "forward_rule_id", forward_rule_id)
+        pulumi.set(__self__, "handle_time", handle_time)
+        pulumi.set(__self__, "incident_ownership", incident_ownership)
+        pulumi.set(__self__, "is_service_interrupt", is_service_interrupt)
+        pulumi.set(__self__, "level_id", level_id)
+        pulumi.set(__self__, "mtm_region", mtm_region)
+        pulumi.set(__self__, "mtm_type", mtm_type)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "source_id", source_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "work_flow_status", work_flow_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def assignee(self) -> _builtins.str:
+        """
+        Indicates the assignee.
+        """
+        return pulumi.get(self, "assignee")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> _builtins.str:
+        """
+        Indicates the creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter(name="currentCloudServiceId")
+    def current_cloud_service_id(self) -> _builtins.str:
+        """
+        Indicates the cloud service ID.
+        """
+        return pulumi.get(self, "current_cloud_service_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the event description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enumDataLists")
+    def enum_data_lists(self) -> Sequence['outputs.GetIncidentsTicketEnumDataListResult']:
+        """
+        Indicates the enumeration list.
+        """
+        return pulumi.get(self, "enum_data_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="forwardRuleId")
+    def forward_rule_id(self) -> _builtins.str:
+        """
+        Indicates the forwarding rules.
+        """
+        return pulumi.get(self, "forward_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="handleTime")
+    def handle_time(self) -> _builtins.str:
+        """
+        Indicates the processing time.
+        """
+        return pulumi.get(self, "handle_time")
+
+    @_builtins.property
+    @pulumi.getter(name="incidentOwnership")
+    def incident_ownership(self) -> _builtins.str:
+        """
+        Indicates the incident ownership.
+        """
+        return pulumi.get(self, "incident_ownership")
+
+    @_builtins.property
+    @pulumi.getter(name="isServiceInterrupt")
+    def is_service_interrupt(self) -> _builtins.str:
+        """
+        Indicates whether the service is interrupted.
+        """
+        return pulumi.get(self, "is_service_interrupt")
+
+    @_builtins.property
+    @pulumi.getter(name="levelId")
+    def level_id(self) -> _builtins.str:
+        """
+        Indicates the event level.
+        [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section289718103710)
+        """
+        return pulumi.get(self, "level_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mtmRegion")
+    def mtm_region(self) -> _builtins.str:
+        """
+        Indicates the region.
+        """
+        return pulumi.get(self, "mtm_region")
+
+    @_builtins.property
+    @pulumi.getter(name="mtmType")
+    def mtm_type(self) -> _builtins.str:
+        """
+        Indicates the event category.
+        [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section137541363918)
+        """
+        return pulumi.get(self, "mtm_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def phase(self) -> _builtins.str:
+        """
+        Indicates the process stage.
+        """
+        return pulumi.get(self, "phase")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> _builtins.str:
+        """
+        Indicates the event source.
+        [For details](https://support.huaweicloud.com/api-coc/coc_api_04_03_001_006.html#coc_api_04_03_001_006__section10172124616391)
+        """
+        return pulumi.get(self, "source_id")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Indicates the fault start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the event ticket number.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Indicates the event title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workFlowStatus")
+    def work_flow_status(self) -> _builtins.str:
+        """
+        Indicates the process status.
+        """
+        return pulumi.get(self, "work_flow_status")
+
+
+@pulumi.output_type
+class GetIncidentsTicketEnumDataListResult(dict):
+    def __init__(__self__, *,
+                 biz_id: _builtins.str,
+                 name_en: _builtins.str,
+                 name_zh: _builtins.str,
+                 prop_id: _builtins.str):
+        """
+        :param _builtins.str biz_id: Indicates the enumeration key.
+        :param _builtins.str name_en: Indicates the English name.
+        :param _builtins.str name_zh: Indicates the Chinese name.
+        :param _builtins.str prop_id: Indicates the field identified by the field key.
+        """
+        pulumi.set(__self__, "biz_id", biz_id)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "name_zh", name_zh)
+        pulumi.set(__self__, "prop_id", prop_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> _builtins.str:
+        """
+        Indicates the enumeration key.
+        """
+        return pulumi.get(self, "biz_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese name.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> _builtins.str:
+        """
+        Indicates the field identified by the field key.
+        """
+        return pulumi.get(self, "prop_id")
+
+
+@pulumi.output_type
+class GetInstanceBatchesDataResult(dict):
+    def __init__(__self__, *,
+                 batch_index: _builtins.int,
+                 target_instances: Sequence['outputs.GetInstanceBatchesDataTargetInstanceResult']):
+        """
+        :param _builtins.int batch_index: Indicates the batch ID.
+        :param Sequence['GetInstanceBatchesDataTargetInstanceArgs'] target_instances: Specifies the target host instance.
+               
+               The target_instances structure is documented below.
+               
+               <a name="target_instances_struct"></a>
+               The `target_instances` block supports:
+        """
+        pulumi.set(__self__, "batch_index", batch_index)
+        pulumi.set(__self__, "target_instances", target_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="batchIndex")
+    def batch_index(self) -> _builtins.int:
+        """
+        Indicates the batch ID.
+        """
+        return pulumi.get(self, "batch_index")
+
+    @_builtins.property
+    @pulumi.getter(name="targetInstances")
+    def target_instances(self) -> Sequence['outputs.GetInstanceBatchesDataTargetInstanceResult']:
+        """
+        Specifies the target host instance.
+
+        The target_instances structure is documented below.
+
+        <a name="target_instances_struct"></a>
+        The `target_instances` block supports:
+        """
+        return pulumi.get(self, "target_instances")
+
+
+@pulumi.output_type
+class GetInstanceBatchesDataTargetInstanceResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_name: _builtins.str,
+                 custom_attributes: Sequence['outputs.GetInstanceBatchesDataTargetInstanceCustomAttributeResult'],
+                 properties: Sequence['outputs.GetInstanceBatchesDataTargetInstancePropertyResult'],
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str cloud_service_name: Specifies the resource provider: ECS. For a single script ticket, the
+               provider is the same for each instance.
+        :param Sequence['GetInstanceBatchesDataTargetInstanceCustomAttributeArgs'] custom_attributes: Specifies the users can customize five attributes in the key_value format.
+               
+               The custom_attributes structure is documented below.
+        :param Sequence['GetInstanceBatchesDataTargetInstancePropertyArgs'] properties: Specifies the additional host properties.
+               
+               The properties structure is documented below.
+               
+               <a name="target_instances_custom_attributes_struct"></a>
+               The `custom_attributes` block supports:
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Specifies the unique ID of the instance.
+        :param _builtins.str type: Specifies the resource type under the resource provider. If not specified, it defaults to
+               **CLOUDSERVER**.
+        """
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "custom_attributes", custom_attributes)
+        pulumi.set(__self__, "properties", properties)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Specifies the resource provider: ECS. For a single script ticket, the
+        provider is the same for each instance.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="customAttributes")
+    def custom_attributes(self) -> Sequence['outputs.GetInstanceBatchesDataTargetInstanceCustomAttributeResult']:
+        """
+        Specifies the users can customize five attributes in the key_value format.
+
+        The custom_attributes structure is documented below.
+        """
+        return pulumi.get(self, "custom_attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Sequence['outputs.GetInstanceBatchesDataTargetInstancePropertyResult']:
+        """
+        Specifies the additional host properties.
+
+        The properties structure is documented below.
+
+        <a name="target_instances_custom_attributes_struct"></a>
+        The `custom_attributes` block supports:
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the unique ID of the instance.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type under the resource provider. If not specified, it defaults to
+        **CLOUDSERVER**.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetInstanceBatchesDataTargetInstanceCustomAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the custom attribute key.
+        :param _builtins.str value: Specifies the custom attribute value.
+               
+               <a name="target_instances_properties_struct"></a>
+               The `properties` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the custom attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the custom attribute value.
+
+        <a name="target_instances_properties_struct"></a>
+        The `properties` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstanceBatchesDataTargetInstancePropertyResult(dict):
+    def __init__(__self__, *,
+                 fixed_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 region_id: _builtins.str,
+                 zone_id: _builtins.str):
+        """
+        :param _builtins.str fixed_ip: Specifies the fixed IP.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str zone_id: Specifies the availability zone.
+        """
+        pulumi.set(__self__, "fixed_ip", fixed_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIp")
+    def fixed_ip(self) -> _builtins.str:
+        """
+        Specifies the fixed IP.
+        """
+        return pulumi.get(self, "fixed_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> _builtins.str:
+        """
+        Specifies the availability zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetInstanceBatchesTargetInstanceResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_name: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_id: _builtins.str,
+                 type: _builtins.str,
+                 custom_attributes: Optional[Sequence['outputs.GetInstanceBatchesTargetInstanceCustomAttributeResult']] = None,
+                 properties: Optional['outputs.GetInstanceBatchesTargetInstancePropertiesResult'] = None):
+        """
+        :param _builtins.str cloud_service_name: Specifies the resource provider: ECS. For a single script ticket, the
+               provider is the same for each instance.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str resource_id: Specifies the unique ID of the instance.
+        :param _builtins.str type: Specifies the resource type under the resource provider. If not specified, it defaults to
+               **CLOUDSERVER**.
+        :param Sequence['GetInstanceBatchesTargetInstanceCustomAttributeArgs'] custom_attributes: Specifies the users can customize five attributes in the key_value format.
+               
+               The custom_attributes structure is documented below.
+        :param 'GetInstanceBatchesTargetInstancePropertiesArgs' properties: Specifies the additional host properties.
+               
+               The properties structure is documented below.
+               
+               <a name="target_instances_custom_attributes_struct"></a>
+               The `custom_attributes` block supports:
+        """
+        pulumi.set(__self__, "cloud_service_name", cloud_service_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "type", type)
+        if custom_attributes is not None:
+            pulumi.set(__self__, "custom_attributes", custom_attributes)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceName")
+    def cloud_service_name(self) -> _builtins.str:
+        """
+        Specifies the resource provider: ECS. For a single script ticket, the
+        provider is the same for each instance.
+        """
+        return pulumi.get(self, "cloud_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the unique ID of the instance.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the resource type under the resource provider. If not specified, it defaults to
+        **CLOUDSERVER**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="customAttributes")
+    def custom_attributes(self) -> Optional[Sequence['outputs.GetInstanceBatchesTargetInstanceCustomAttributeResult']]:
+        """
+        Specifies the users can customize five attributes in the key_value format.
+
+        The custom_attributes structure is documented below.
+        """
+        return pulumi.get(self, "custom_attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Optional['outputs.GetInstanceBatchesTargetInstancePropertiesResult']:
+        """
+        Specifies the additional host properties.
+
+        The properties structure is documented below.
+
+        <a name="target_instances_custom_attributes_struct"></a>
+        The `custom_attributes` block supports:
+        """
+        return pulumi.get(self, "properties")
+
+
+@pulumi.output_type
+class GetInstanceBatchesTargetInstanceCustomAttributeResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the custom attribute key.
+        :param _builtins.str value: Specifies the custom attribute value.
+               
+               <a name="target_instances_properties_struct"></a>
+               The `properties` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the custom attribute key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the custom attribute value.
+
+        <a name="target_instances_properties_struct"></a>
+        The `properties` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstanceBatchesTargetInstancePropertiesResult(dict):
+    def __init__(__self__, *,
+                 fixed_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 region_id: _builtins.str,
+                 zone_id: _builtins.str):
+        """
+        :param _builtins.str fixed_ip: Specifies the fixed IP.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str zone_id: Specifies the availability zone.
+        """
+        pulumi.set(__self__, "fixed_ip", fixed_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIp")
+    def fixed_ip(self) -> _builtins.str:
+        """
+        Specifies the fixed IP.
+        """
+        return pulumi.get(self, "fixed_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> _builtins.str:
+        """
+        Specifies the availability zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetIssueTicketsSortFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str field: Specifies the name of the field to be operated.
+               + When querying work orders, the field name is **ticket_id**.
+               + When sorting the query results by creation time, the condition value is result field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               + When querying work orders, the condition value is the work order ID.
+               + When sorting the query results by creation time, the condition value is result field name.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the name of the field to be operated.
+        + When querying work orders, the field name is **ticket_id**.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        + When querying work orders, the condition value is the work order ID.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetIssueTicketsStringFilterResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str field: Specifies the name of the field to be operated.
+               + When querying work orders, the field name is **ticket_id**.
+               + When sorting the query results by creation time, the condition value is result field name.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param Sequence[_builtins.str] values: Specifies the value to be filtered.
+               + When querying work orders, the condition value is the work order ID.
+               + When sorting the query results by creation time, the condition value is result field name.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Specifies the name of the field to be operated.
+        + When querying work orders, the field name is **ticket_id**.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the value to be filtered.
+        + When querying work orders, the condition value is the work order ID.
+        + When sorting the query results by creation time, the condition value is result field name.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetIssueTicketsTicketResult(dict):
+    def __init__(__self__, *,
+                 assignee: _builtins.str,
+                 baseline_status: _builtins.str,
+                 commit_upload_attachment: _builtins.str,
+                 create_time: _builtins.int,
+                 creator: _builtins.str,
+                 current_cloud_service_id: _builtins.str,
+                 description: _builtins.str,
+                 engine_error_msg: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 enum_data_lists: Sequence['outputs.GetIssueTicketsTicketEnumDataListResult'],
+                 form_info: _builtins.str,
+                 found_time: _builtins.int,
+                 handle_time: _builtins.int,
+                 id: _builtins.str,
+                 is_common_issue: _builtins.bool,
+                 is_deleted: _builtins.bool,
+                 is_enable_suspension: _builtins.bool,
+                 is_need_change: _builtins.bool,
+                 is_return_full_info: _builtins.bool,
+                 is_start_process: _builtins.bool,
+                 is_start_process_async: _builtins.bool,
+                 is_update_null: _builtins.bool,
+                 issue_contact_person: _builtins.str,
+                 issue_correlation_sla: _builtins.str,
+                 issue_version: _builtins.str,
+                 level: _builtins.str,
+                 level_approve_config: _builtins.str,
+                 meta_data_version: _builtins.int,
+                 operator: _builtins.str,
+                 participator: _builtins.str,
+                 phase: _builtins.str,
+                 real_ticket_id: _builtins.str,
+                 regions: _builtins.str,
+                 regions_search: _builtins.str,
+                 root_cause_cloud_service: _builtins.str,
+                 root_cause_comment: _builtins.str,
+                 root_cause_type: _builtins.str,
+                 solution: _builtins.str,
+                 source: _builtins.str,
+                 source_id: _builtins.str,
+                 sub_tickets: Sequence['outputs.GetIssueTicketsTicketSubTicketResult'],
+                 suspension_approve_config: _builtins.str,
+                 ticket_id: _builtins.str,
+                 ticket_type: _builtins.str,
+                 ticket_type_id: _builtins.str,
+                 title: _builtins.str,
+                 update_time: _builtins.int,
+                 virtual_schedule_type: _builtins.str,
+                 work_flow_status: _builtins.str):
+        """
+        :param _builtins.str assignee: Indicates the current person responsible for the issue ticket.
+        :param _builtins.str baseline_status: Indicates the baseline state.
+        :param _builtins.str commit_upload_attachment: Indicates the ID of the uploaded attachment.
+        :param _builtins.int create_time: Indicates the creation time.
+        :param _builtins.str creator: Indicates the creator.
+        :param _builtins.str current_cloud_service_id: Indicates the problem ticket service.
+        :param _builtins.str description: Indicates the problem ticket description.
+        :param _builtins.str engine_error_msg: Indicates the process status.
+        :param _builtins.str enterprise_project_id: Indicates the issue ticket enterprise project ID.
+        :param Sequence['GetIssueTicketsTicketEnumDataListArgs'] enum_data_lists: Indicates the enumerated list representing issue associations.
+        :param _builtins.str form_info: Indicates the action information.
+        :param _builtins.int found_time: Indicates the time when the problem ticket was discovered.
+        :param _builtins.int handle_time: Indicates the time it takes to handle a problem ticket.
+        :param _builtins.str id: Indicates the change work order ID.
+        :param _builtins.bool is_common_issue: Indicates whether it is a common problem.
+        :param _builtins.bool is_deleted: Indicates whether it has been deleted.
+        :param _builtins.bool is_enable_suspension: Indicates whether the ticket is open or pending.
+        :param _builtins.bool is_need_change: Indicates whether the issue ticket requires changes.
+        :param _builtins.bool is_return_full_info: Indicates whether to return all field information.
+        :param _builtins.bool is_start_process: Indicates whether to start the process.
+        :param _builtins.bool is_start_process_async: Indicates whether to start an asynchronous process.
+        :param _builtins.bool is_update_null: Indicates whether to resubmit empty fields.
+        :param _builtins.str issue_contact_person: Indicates the contact person for the problem ticket.
+        :param _builtins.str issue_correlation_sla: Indicates the SLA to which the problem is associated.
+        :param _builtins.str issue_version: Indicates the version number where the problem was found.
+        :param _builtins.str level: Indicates the problem ticket level.
+        :param _builtins.str level_approve_config: Indicates the ticket level approval configuration.
+        :param _builtins.int meta_data_version: Indicates the application version that caused the problem.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param _builtins.str participator: Indicates the ticket participant.
+        :param _builtins.str phase: Indicates the current stage information of the issue ticket.
+        :param _builtins.str real_ticket_id: Indicates the work order number.
+        :param _builtins.str regions: Indicates the region information of the problem ticket.
+        :param _builtins.str regions_search: Indicates the value representing a ticket region search.
+        :param _builtins.str root_cause_cloud_service: Indicates the problem ticket responsibility service.
+        :param _builtins.str root_cause_comment: Indicates the root cause analysis of a problem work order.
+        :param _builtins.str root_cause_type: Indicates the classification of single root causes of problems.
+        :param _builtins.str solution: Indicates the problem ticket solution.
+        :param _builtins.str source: Indicates the source of the issue.
+        :param _builtins.str source_id: Indicates the source ID of the problem ticket.
+        :param Sequence['GetIssueTicketsTicketSubTicketArgs'] sub_tickets: Indicates the change sub-order information.
+        :param _builtins.str suspension_approve_config: Indicates the configuration of pending approval for a problem ticket.
+        :param _builtins.str ticket_id: Indicates the current work order ID.
+        :param _builtins.str ticket_type: Specifies the ticket type to search for.
+               + When querying the issue ticket list, the value **issues_mgmt**.
+        :param _builtins.str ticket_type_id: Indicates the work order type.
+        :param _builtins.str title: Indicates the issue title.
+        :param _builtins.int update_time: Indicates the update time.
+        :param _builtins.str virtual_schedule_type: Indicates the problem ticket scheduling type.
+        :param _builtins.str work_flow_status: Indicates the status of the problem ticket.
+        """
+        pulumi.set(__self__, "assignee", assignee)
+        pulumi.set(__self__, "baseline_status", baseline_status)
+        pulumi.set(__self__, "commit_upload_attachment", commit_upload_attachment)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator", creator)
+        pulumi.set(__self__, "current_cloud_service_id", current_cloud_service_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "engine_error_msg", engine_error_msg)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "enum_data_lists", enum_data_lists)
+        pulumi.set(__self__, "form_info", form_info)
+        pulumi.set(__self__, "found_time", found_time)
+        pulumi.set(__self__, "handle_time", handle_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_common_issue", is_common_issue)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "is_enable_suspension", is_enable_suspension)
+        pulumi.set(__self__, "is_need_change", is_need_change)
+        pulumi.set(__self__, "is_return_full_info", is_return_full_info)
+        pulumi.set(__self__, "is_start_process", is_start_process)
+        pulumi.set(__self__, "is_start_process_async", is_start_process_async)
+        pulumi.set(__self__, "is_update_null", is_update_null)
+        pulumi.set(__self__, "issue_contact_person", issue_contact_person)
+        pulumi.set(__self__, "issue_correlation_sla", issue_correlation_sla)
+        pulumi.set(__self__, "issue_version", issue_version)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "level_approve_config", level_approve_config)
+        pulumi.set(__self__, "meta_data_version", meta_data_version)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "participator", participator)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "regions_search", regions_search)
+        pulumi.set(__self__, "root_cause_cloud_service", root_cause_cloud_service)
+        pulumi.set(__self__, "root_cause_comment", root_cause_comment)
+        pulumi.set(__self__, "root_cause_type", root_cause_type)
+        pulumi.set(__self__, "solution", solution)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "source_id", source_id)
+        pulumi.set(__self__, "sub_tickets", sub_tickets)
+        pulumi.set(__self__, "suspension_approve_config", suspension_approve_config)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "ticket_type", ticket_type)
+        pulumi.set(__self__, "ticket_type_id", ticket_type_id)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "virtual_schedule_type", virtual_schedule_type)
+        pulumi.set(__self__, "work_flow_status", work_flow_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def assignee(self) -> _builtins.str:
+        """
+        Indicates the current person responsible for the issue ticket.
+        """
+        return pulumi.get(self, "assignee")
+
+    @_builtins.property
+    @pulumi.getter(name="baselineStatus")
+    def baseline_status(self) -> _builtins.str:
+        """
+        Indicates the baseline state.
+        """
+        return pulumi.get(self, "baseline_status")
+
+    @_builtins.property
+    @pulumi.getter(name="commitUploadAttachment")
+    def commit_upload_attachment(self) -> _builtins.str:
+        """
+        Indicates the ID of the uploaded attachment.
+        """
+        return pulumi.get(self, "commit_upload_attachment")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> _builtins.str:
+        """
+        Indicates the creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter(name="currentCloudServiceId")
+    def current_cloud_service_id(self) -> _builtins.str:
+        """
+        Indicates the problem ticket service.
+        """
+        return pulumi.get(self, "current_cloud_service_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the problem ticket description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="engineErrorMsg")
+    def engine_error_msg(self) -> _builtins.str:
+        """
+        Indicates the process status.
+        """
+        return pulumi.get(self, "engine_error_msg")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the issue ticket enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enumDataLists")
+    def enum_data_lists(self) -> Sequence['outputs.GetIssueTicketsTicketEnumDataListResult']:
+        """
+        Indicates the enumerated list representing issue associations.
+        """
+        return pulumi.get(self, "enum_data_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="formInfo")
+    def form_info(self) -> _builtins.str:
+        """
+        Indicates the action information.
+        """
+        return pulumi.get(self, "form_info")
+
+    @_builtins.property
+    @pulumi.getter(name="foundTime")
+    def found_time(self) -> _builtins.int:
+        """
+        Indicates the time when the problem ticket was discovered.
+        """
+        return pulumi.get(self, "found_time")
+
+    @_builtins.property
+    @pulumi.getter(name="handleTime")
+    def handle_time(self) -> _builtins.int:
+        """
+        Indicates the time it takes to handle a problem ticket.
+        """
+        return pulumi.get(self, "handle_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the change work order ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isCommonIssue")
+    def is_common_issue(self) -> _builtins.bool:
+        """
+        Indicates whether it is a common problem.
+        """
+        return pulumi.get(self, "is_common_issue")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="isEnableSuspension")
+    def is_enable_suspension(self) -> _builtins.bool:
+        """
+        Indicates whether the ticket is open or pending.
+        """
+        return pulumi.get(self, "is_enable_suspension")
+
+    @_builtins.property
+    @pulumi.getter(name="isNeedChange")
+    def is_need_change(self) -> _builtins.bool:
+        """
+        Indicates whether the issue ticket requires changes.
+        """
+        return pulumi.get(self, "is_need_change")
+
+    @_builtins.property
+    @pulumi.getter(name="isReturnFullInfo")
+    def is_return_full_info(self) -> _builtins.bool:
+        """
+        Indicates whether to return all field information.
+        """
+        return pulumi.get(self, "is_return_full_info")
+
+    @_builtins.property
+    @pulumi.getter(name="isStartProcess")
+    def is_start_process(self) -> _builtins.bool:
+        """
+        Indicates whether to start the process.
+        """
+        return pulumi.get(self, "is_start_process")
+
+    @_builtins.property
+    @pulumi.getter(name="isStartProcessAsync")
+    def is_start_process_async(self) -> _builtins.bool:
+        """
+        Indicates whether to start an asynchronous process.
+        """
+        return pulumi.get(self, "is_start_process_async")
+
+    @_builtins.property
+    @pulumi.getter(name="isUpdateNull")
+    def is_update_null(self) -> _builtins.bool:
+        """
+        Indicates whether to resubmit empty fields.
+        """
+        return pulumi.get(self, "is_update_null")
+
+    @_builtins.property
+    @pulumi.getter(name="issueContactPerson")
+    def issue_contact_person(self) -> _builtins.str:
+        """
+        Indicates the contact person for the problem ticket.
+        """
+        return pulumi.get(self, "issue_contact_person")
+
+    @_builtins.property
+    @pulumi.getter(name="issueCorrelationSla")
+    def issue_correlation_sla(self) -> _builtins.str:
+        """
+        Indicates the SLA to which the problem is associated.
+        """
+        return pulumi.get(self, "issue_correlation_sla")
+
+    @_builtins.property
+    @pulumi.getter(name="issueVersion")
+    def issue_version(self) -> _builtins.str:
+        """
+        Indicates the version number where the problem was found.
+        """
+        return pulumi.get(self, "issue_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        Indicates the problem ticket level.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter(name="levelApproveConfig")
+    def level_approve_config(self) -> _builtins.str:
+        """
+        Indicates the ticket level approval configuration.
+        """
+        return pulumi.get(self, "level_approve_config")
+
+    @_builtins.property
+    @pulumi.getter(name="metaDataVersion")
+    def meta_data_version(self) -> _builtins.int:
+        """
+        Indicates the application version that caused the problem.
+        """
+        return pulumi.get(self, "meta_data_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def participator(self) -> _builtins.str:
+        """
+        Indicates the ticket participant.
+        """
+        return pulumi.get(self, "participator")
+
+    @_builtins.property
+    @pulumi.getter
+    def phase(self) -> _builtins.str:
+        """
+        Indicates the current stage information of the issue ticket.
+        """
+        return pulumi.get(self, "phase")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def regions(self) -> _builtins.str:
+        """
+        Indicates the region information of the problem ticket.
+        """
+        return pulumi.get(self, "regions")
+
+    @_builtins.property
+    @pulumi.getter(name="regionsSearch")
+    def regions_search(self) -> _builtins.str:
+        """
+        Indicates the value representing a ticket region search.
+        """
+        return pulumi.get(self, "regions_search")
+
+    @_builtins.property
+    @pulumi.getter(name="rootCauseCloudService")
+    def root_cause_cloud_service(self) -> _builtins.str:
+        """
+        Indicates the problem ticket responsibility service.
+        """
+        return pulumi.get(self, "root_cause_cloud_service")
+
+    @_builtins.property
+    @pulumi.getter(name="rootCauseComment")
+    def root_cause_comment(self) -> _builtins.str:
+        """
+        Indicates the root cause analysis of a problem work order.
+        """
+        return pulumi.get(self, "root_cause_comment")
+
+    @_builtins.property
+    @pulumi.getter(name="rootCauseType")
+    def root_cause_type(self) -> _builtins.str:
+        """
+        Indicates the classification of single root causes of problems.
+        """
+        return pulumi.get(self, "root_cause_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def solution(self) -> _builtins.str:
+        """
+        Indicates the problem ticket solution.
+        """
+        return pulumi.get(self, "solution")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        Indicates the source of the issue.
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> _builtins.str:
+        """
+        Indicates the source ID of the problem ticket.
+        """
+        return pulumi.get(self, "source_id")
+
+    @_builtins.property
+    @pulumi.getter(name="subTickets")
+    def sub_tickets(self) -> Sequence['outputs.GetIssueTicketsTicketSubTicketResult']:
+        """
+        Indicates the change sub-order information.
+        """
+        return pulumi.get(self, "sub_tickets")
+
+    @_builtins.property
+    @pulumi.getter(name="suspensionApproveConfig")
+    def suspension_approve_config(self) -> _builtins.str:
+        """
+        Indicates the configuration of pending approval for a problem ticket.
+        """
+        return pulumi.get(self, "suspension_approve_config")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketType")
+    def ticket_type(self) -> _builtins.str:
+        """
+        Specifies the ticket type to search for.
+        + When querying the issue ticket list, the value **issues_mgmt**.
+        """
+        return pulumi.get(self, "ticket_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketTypeId")
+    def ticket_type_id(self) -> _builtins.str:
+        """
+        Indicates the work order type.
+        """
+        return pulumi.get(self, "ticket_type_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Indicates the issue title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="virtualScheduleType")
+    def virtual_schedule_type(self) -> _builtins.str:
+        """
+        Indicates the problem ticket scheduling type.
+        """
+        return pulumi.get(self, "virtual_schedule_type")
+
+    @_builtins.property
+    @pulumi.getter(name="workFlowStatus")
+    def work_flow_status(self) -> _builtins.str:
+        """
+        Indicates the status of the problem ticket.
+        """
+        return pulumi.get(self, "work_flow_status")
+
+
+@pulumi.output_type
+class GetIssueTicketsTicketEnumDataListResult(dict):
+    def __init__(__self__, *,
+                 biz_id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 match_type: _builtins.str,
+                 model_id: _builtins.str,
+                 name_en: _builtins.str,
+                 name_zh: _builtins.str,
+                 prop_id: _builtins.str,
+                 real_ticket_id: _builtins.str,
+                 ticket_id: _builtins.str):
+        """
+        :param _builtins.str biz_id: Indicates the unique ID corresponding to the enumeration value.
+        :param _builtins.bool is_deleted: Indicates whether it has been deleted.
+        :param _builtins.str match_type: Indicates the matching enumeration type.
+        :param _builtins.str model_id: Indicates the model ID corresponding to different background applications.
+        :param _builtins.str name_en: Indicates the English name.
+        :param _builtins.str name_zh: Indicates the Chinese name.
+        :param _builtins.str prop_id: Indicates the type corresponding to the current enumeration value.
+        :param _builtins.str real_ticket_id: Indicates the work order number.
+        :param _builtins.str ticket_id: Indicates the current work order ID.
+        """
+        pulumi.set(__self__, "biz_id", biz_id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "match_type", match_type)
+        pulumi.set(__self__, "model_id", model_id)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "name_zh", name_zh)
+        pulumi.set(__self__, "prop_id", prop_id)
+        pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> _builtins.str:
+        """
+        Indicates the unique ID corresponding to the enumeration value.
+        """
+        return pulumi.get(self, "biz_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> _builtins.str:
+        """
+        Indicates the matching enumeration type.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter(name="modelId")
+    def model_id(self) -> _builtins.str:
+        """
+        Indicates the model ID corresponding to different background applications.
+        """
+        return pulumi.get(self, "model_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese name.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> _builtins.str:
+        """
+        Indicates the type corresponding to the current enumeration value.
+        """
+        return pulumi.get(self, "prop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+
+@pulumi.output_type
+class GetIssueTicketsTicketSubTicketResult(dict):
+    def __init__(__self__, *,
+                 change_ticket_id: _builtins.str,
+                 change_ticket_id_sub: _builtins.str,
+                 create_time: _builtins.int,
+                 creator: _builtins.str,
+                 id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 main_ticket_id: _builtins.str,
+                 operator: _builtins.str,
+                 parent_ticket_id: _builtins.str,
+                 real_ticket_id: _builtins.str,
+                 target_type: _builtins.str,
+                 target_value: _builtins.str,
+                 ticket_id: _builtins.str,
+                 ticket_path: _builtins.str,
+                 update_time: _builtins.int,
+                 whether_to_change: _builtins.bool):
+        """
+        :param _builtins.str change_ticket_id: Indicates the associated change order number.
+        :param _builtins.str change_ticket_id_sub: Indicates the change of sub-order number.
+        :param _builtins.int create_time: Indicates the creation time.
+        :param _builtins.str creator: Indicates the creator.
+        :param _builtins.str id: Indicates the change work order ID.
+        :param _builtins.bool is_deleted: Indicates whether it has been deleted.
+        :param _builtins.str main_ticket_id: Indicates the primary key ID of the change work order.
+        :param _builtins.str operator: Specifies the operator.
+               The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        :param _builtins.str parent_ticket_id: Indicates the parent work order ID.
+        :param _builtins.str real_ticket_id: Indicates the work order number.
+        :param _builtins.str target_type: Indicates the sub-order type.
+        :param _builtins.str target_value: Indicates the region information.
+        :param _builtins.str ticket_id: Indicates the current work order ID.
+        :param _builtins.str ticket_path: Indicates the work order path.
+        :param _builtins.int update_time: Indicates the update time.
+        :param _builtins.bool whether_to_change: Indicates whether a change is required.
+        """
+        pulumi.set(__self__, "change_ticket_id", change_ticket_id)
+        pulumi.set(__self__, "change_ticket_id_sub", change_ticket_id_sub)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator", creator)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "main_ticket_id", main_ticket_id)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "parent_ticket_id", parent_ticket_id)
+        pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        pulumi.set(__self__, "target_type", target_type)
+        pulumi.set(__self__, "target_value", target_value)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "ticket_path", ticket_path)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "whether_to_change", whether_to_change)
+
+    @_builtins.property
+    @pulumi.getter(name="changeTicketId")
+    def change_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the associated change order number.
+        """
+        return pulumi.get(self, "change_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="changeTicketIdSub")
+    def change_ticket_id_sub(self) -> _builtins.str:
+        """
+        Indicates the change of sub-order number.
+        """
+        return pulumi.get(self, "change_ticket_id_sub")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def creator(self) -> _builtins.str:
+        """
+        Indicates the creator.
+        """
+        return pulumi.get(self, "creator")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the change work order ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether it has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="mainTicketId")
+    def main_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the primary key ID of the change work order.
+        """
+        return pulumi.get(self, "main_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the operator.
+        The values can be **in**, **like**, **startwith**, **endwith**, **=**, **!=**, **>** or **<**.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="parentTicketId")
+    def parent_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the parent work order ID.
+        """
+        return pulumi.get(self, "parent_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the work order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> _builtins.str:
+        """
+        Indicates the sub-order type.
+        """
+        return pulumi.get(self, "target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> _builtins.str:
+        """
+        Indicates the region information.
+        """
+        return pulumi.get(self, "target_value")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the current work order ID.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketPath")
+    def ticket_path(self) -> _builtins.str:
+        """
+        Indicates the work order path.
+        """
+        return pulumi.get(self, "ticket_path")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="whetherToChange")
+    def whether_to_change(self) -> _builtins.bool:
+        """
+        Indicates whether a change is required.
+        """
+        return pulumi.get(self, "whether_to_change")
 
 
 @pulumi.output_type
@@ -2279,6 +10276,441 @@ class GetResourcesDataTagResult(dict):
 
 
 @pulumi.output_type
+class GetScheduledTaskHistoriesScheduledTaskHistoryListResult(dict):
+    def __init__(__self__, *,
+                 associated_task_name: _builtins.str,
+                 associated_task_name_en: _builtins.str,
+                 created_by: _builtins.str,
+                 execution_id: _builtins.str,
+                 execution_msg: _builtins.str,
+                 finished_time: _builtins.int,
+                 id: _builtins.str,
+                 region: _builtins.str,
+                 started_time: _builtins.int,
+                 status: _builtins.str,
+                 task_type: _builtins.str):
+        """
+        :param _builtins.str associated_task_name: Indicates the reference task name.
+        :param _builtins.str associated_task_name_en: Indicates the referenced task name (in English).
+        :param _builtins.str created_by: Indicates the creator.
+        :param _builtins.str execution_id: Indicates the execution ID.
+        :param _builtins.str execution_msg: Indicates the description of the execution result.
+        :param _builtins.int finished_time: Indicates the end time timestamp.
+        :param _builtins.str id: Indicates the history record ID.
+        :param _builtins.str region: Specifies the task region ID.
+        :param _builtins.int started_time: Indicates the start time timestamp.
+        :param _builtins.str status: Specifies the task execution status.
+               The valid values are as follows:
+               + **READY**: Pending execution.
+               + **PROCESSING**: Executing.
+               + **ABNORMAL**: Abnormal.
+               + **PAUSED**: Paused.
+               + **CANCELED**: Cancelled.
+               + **FINISHED**: Successful.
+        :param _builtins.str task_type: Indicates the reference task type.
+        """
+        pulumi.set(__self__, "associated_task_name", associated_task_name)
+        pulumi.set(__self__, "associated_task_name_en", associated_task_name_en)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "execution_id", execution_id)
+        pulumi.set(__self__, "execution_msg", execution_msg)
+        pulumi.set(__self__, "finished_time", finished_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "started_time", started_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_type", task_type)
+
+    @_builtins.property
+    @pulumi.getter(name="associatedTaskName")
+    def associated_task_name(self) -> _builtins.str:
+        """
+        Indicates the reference task name.
+        """
+        return pulumi.get(self, "associated_task_name")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedTaskNameEn")
+    def associated_task_name_en(self) -> _builtins.str:
+        """
+        Indicates the referenced task name (in English).
+        """
+        return pulumi.get(self, "associated_task_name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        Indicates the creator.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="executionId")
+    def execution_id(self) -> _builtins.str:
+        """
+        Indicates the execution ID.
+        """
+        return pulumi.get(self, "execution_id")
+
+    @_builtins.property
+    @pulumi.getter(name="executionMsg")
+    def execution_msg(self) -> _builtins.str:
+        """
+        Indicates the description of the execution result.
+        """
+        return pulumi.get(self, "execution_msg")
+
+    @_builtins.property
+    @pulumi.getter(name="finishedTime")
+    def finished_time(self) -> _builtins.int:
+        """
+        Indicates the end time timestamp.
+        """
+        return pulumi.get(self, "finished_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the history record ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the task region ID.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="startedTime")
+    def started_time(self) -> _builtins.int:
+        """
+        Indicates the start time timestamp.
+        """
+        return pulumi.get(self, "started_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the task execution status.
+        The valid values are as follows:
+        + **READY**: Pending execution.
+        + **PROCESSING**: Executing.
+        + **ABNORMAL**: Abnormal.
+        + **PAUSED**: Paused.
+        + **CANCELED**: Cancelled.
+        + **FINISHED**: Successful.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        Indicates the reference task type.
+        """
+        return pulumi.get(self, "task_type")
+
+
+@pulumi.output_type
+class GetScheduledTasksScheduledTaskResult(dict):
+    def __init__(__self__, *,
+                 approve_status: _builtins.str,
+                 associated_task_name: _builtins.str,
+                 associated_task_name_en: _builtins.str,
+                 associated_task_type: _builtins.str,
+                 created_by: _builtins.str,
+                 created_time: _builtins.int,
+                 created_user_name: _builtins.str,
+                 enabled: _builtins.bool,
+                 enterprise_project_id: _builtins.str,
+                 execution_count: _builtins.int,
+                 id: _builtins.str,
+                 last_execution_status: _builtins.str,
+                 last_execution_time: _builtins.int,
+                 modified_time: _builtins.int,
+                 name: _builtins.str,
+                 region_id: _builtins.str,
+                 reviewer: _builtins.str,
+                 reviewer_user_name: _builtins.str,
+                 risk_level: _builtins.str,
+                 scheduled_type: _builtins.str,
+                 task_type: _builtins.str,
+                 update_by: _builtins.str):
+        """
+        :param _builtins.str approve_status: Specifies the approval status of the scheduled task.
+               The valid values are as follows:
+               + **PASSED**: Passed.
+               + **PENDING**: Pending approval.
+               + **REJECTED**: Rejected.
+        :param _builtins.str associated_task_name: Indicates the script/job name associated with the task.
+        :param _builtins.str associated_task_name_en: Indicates the English name of the script or job associated with the task.
+        :param _builtins.str associated_task_type: Specifies the type of the associated task.
+               The valid values are as follows:
+               + **CUSTOMIZATION**: Custom script/job.
+               + **COMMUNAL**: Public script/job.
+        :param _builtins.str created_by: Specifies the IAM user ID of the person who created the scheduled task.
+        :param _builtins.int created_time: Indicates the task create time.
+        :param _builtins.str created_user_name: Indicates the nickname of the task creator.
+        :param _builtins.bool enabled: Indicates whether the task is enabled.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+        :param _builtins.int execution_count: Indicates the number of times a task is executed.
+        :param _builtins.str id: Indicates the task ID.
+        :param _builtins.str last_execution_status: Specifies the most recent execution status of a scheduled task.
+               The valid values are as follows:
+               + **READY**: Ready for execution.
+               + **PROCESSING**: Executing.
+               + **ABNORMAL**: Abnormal.
+               + **PAUSED**: Paused.
+               + **CANCELED**: Cancelled.
+               + **FINISHED**: Successful.
+        :param _builtins.int last_execution_time: Indicates the timestamp of the most recent task execution time.
+        :param _builtins.int modified_time: Indicates the task update time.
+        :param _builtins.str name: Indicates the task name.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str reviewer: Specifies the IAM user ID of the scheduled task approver.
+        :param _builtins.str reviewer_user_name: Specifies the IAM user nickname of the scheduled task approver.
+        :param _builtins.str risk_level: Specifies the risk level of the scheduled task.
+               The valid values can be **HIGH**, **MEDIUM** or **LOW**.
+        :param _builtins.str scheduled_type: Specifies the scheduled task execution strategy.
+               The valid values are as follows:
+               + **PERIODIC**: Periodic execution.
+               + **ONCE**: Single execution.
+               + **CRON**: Execute according to a CRON expression.
+        :param _builtins.str task_type: Specifies the scheduled task type.
+               The valid values are as follows:
+               + **SCRIPT**: Script.
+               + **RUNBOOK**: Job.
+        :param _builtins.str update_by: Indicates the task modifier.
+        """
+        pulumi.set(__self__, "approve_status", approve_status)
+        pulumi.set(__self__, "associated_task_name", associated_task_name)
+        pulumi.set(__self__, "associated_task_name_en", associated_task_name_en)
+        pulumi.set(__self__, "associated_task_type", associated_task_type)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "created_user_name", created_user_name)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "execution_count", execution_count)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_execution_status", last_execution_status)
+        pulumi.set(__self__, "last_execution_time", last_execution_time)
+        pulumi.set(__self__, "modified_time", modified_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "reviewer", reviewer)
+        pulumi.set(__self__, "reviewer_user_name", reviewer_user_name)
+        pulumi.set(__self__, "risk_level", risk_level)
+        pulumi.set(__self__, "scheduled_type", scheduled_type)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "update_by", update_by)
+
+    @_builtins.property
+    @pulumi.getter(name="approveStatus")
+    def approve_status(self) -> _builtins.str:
+        """
+        Specifies the approval status of the scheduled task.
+        The valid values are as follows:
+        + **PASSED**: Passed.
+        + **PENDING**: Pending approval.
+        + **REJECTED**: Rejected.
+        """
+        return pulumi.get(self, "approve_status")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedTaskName")
+    def associated_task_name(self) -> _builtins.str:
+        """
+        Indicates the script/job name associated with the task.
+        """
+        return pulumi.get(self, "associated_task_name")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedTaskNameEn")
+    def associated_task_name_en(self) -> _builtins.str:
+        """
+        Indicates the English name of the script or job associated with the task.
+        """
+        return pulumi.get(self, "associated_task_name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedTaskType")
+    def associated_task_type(self) -> _builtins.str:
+        """
+        Specifies the type of the associated task.
+        The valid values are as follows:
+        + **CUSTOMIZATION**: Custom script/job.
+        + **COMMUNAL**: Public script/job.
+        """
+        return pulumi.get(self, "associated_task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        Specifies the IAM user ID of the person who created the scheduled task.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.int:
+        """
+        Indicates the task create time.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter(name="createdUserName")
+    def created_user_name(self) -> _builtins.str:
+        """
+        Indicates the nickname of the task creator.
+        """
+        return pulumi.get(self, "created_user_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the task is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="executionCount")
+    def execution_count(self) -> _builtins.int:
+        """
+        Indicates the number of times a task is executed.
+        """
+        return pulumi.get(self, "execution_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastExecutionStatus")
+    def last_execution_status(self) -> _builtins.str:
+        """
+        Specifies the most recent execution status of a scheduled task.
+        The valid values are as follows:
+        + **READY**: Ready for execution.
+        + **PROCESSING**: Executing.
+        + **ABNORMAL**: Abnormal.
+        + **PAUSED**: Paused.
+        + **CANCELED**: Cancelled.
+        + **FINISHED**: Successful.
+        """
+        return pulumi.get(self, "last_execution_status")
+
+    @_builtins.property
+    @pulumi.getter(name="lastExecutionTime")
+    def last_execution_time(self) -> _builtins.int:
+        """
+        Indicates the timestamp of the most recent task execution time.
+        """
+        return pulumi.get(self, "last_execution_time")
+
+    @_builtins.property
+    @pulumi.getter(name="modifiedTime")
+    def modified_time(self) -> _builtins.int:
+        """
+        Indicates the task update time.
+        """
+        return pulumi.get(self, "modified_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the task name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def reviewer(self) -> _builtins.str:
+        """
+        Specifies the IAM user ID of the scheduled task approver.
+        """
+        return pulumi.get(self, "reviewer")
+
+    @_builtins.property
+    @pulumi.getter(name="reviewerUserName")
+    def reviewer_user_name(self) -> _builtins.str:
+        """
+        Specifies the IAM user nickname of the scheduled task approver.
+        """
+        return pulumi.get(self, "reviewer_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> _builtins.str:
+        """
+        Specifies the risk level of the scheduled task.
+        The valid values can be **HIGH**, **MEDIUM** or **LOW**.
+        """
+        return pulumi.get(self, "risk_level")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledType")
+    def scheduled_type(self) -> _builtins.str:
+        """
+        Specifies the scheduled task execution strategy.
+        The valid values are as follows:
+        + **PERIODIC**: Periodic execution.
+        + **ONCE**: Single execution.
+        + **CRON**: Execute according to a CRON expression.
+        """
+        return pulumi.get(self, "scheduled_type")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        Specifies the scheduled task type.
+        The valid values are as follows:
+        + **SCRIPT**: Script.
+        + **RUNBOOK**: Job.
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> _builtins.str:
+        """
+        Indicates the task modifier.
+        """
+        return pulumi.get(self, "update_by")
+
+
+@pulumi.output_type
 class GetScriptOrderBatchDetailsExecuteInstanceResult(dict):
     def __init__(__self__, *,
                  execute_costs: _builtins.int,
@@ -2827,6 +11259,35 @@ class GetScriptOrdersDataPropertyResult(dict):
 
 
 @pulumi.output_type
+class GetScriptTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the key of the tag.
+        :param Sequence[_builtins.str] values: Indicates the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetScriptsDataResult(dict):
     def __init__(__self__, *,
                  creator: _builtins.str,
@@ -3136,6 +11597,494 @@ class GetScriptsDataResourceTagResult(dict):
         Indicates the resource tag value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTicketOperationHistoriesDataResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 action_id: _builtins.str,
+                 action_name_en: _builtins.str,
+                 action_name_zh: _builtins.str,
+                 action_template_en: _builtins.str,
+                 action_template_zh: _builtins.str,
+                 comment: _builtins.str,
+                 enum_data_lists: Sequence['outputs.GetTicketOperationHistoriesDataEnumDataListResult'],
+                 final_sub_action: _builtins.str,
+                 id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 operator: _builtins.str,
+                 start_time: _builtins.int,
+                 status: _builtins.str,
+                 stop_time: _builtins.int,
+                 sub_action: _builtins.str,
+                 target_type: _builtins.str,
+                 target_value: _builtins.str,
+                 ticket_id: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str action: Indicates the action information of the current operation.
+        :param _builtins.str action_id: Indicates the operation identifier.
+        :param _builtins.str action_name_en: Indicates the English name of the current action.
+        :param _builtins.str action_name_zh: Indicates the Chinese name of the current action.
+        :param _builtins.str action_template_en: Indicates the English template of the current operation action.
+        :param _builtins.str action_template_zh: Indicates the Chinese template of the current operation action.
+        :param _builtins.str comment: Indicates the comment information of the current operation.
+        :param Sequence['GetTicketOperationHistoriesDataEnumDataListArgs'] enum_data_lists: Indicates the list of enumeration data.
+        :param _builtins.str final_sub_action: Indicates the final sub-action.
+        :param _builtins.str id: Indicates the primary key ID of the operation record.
+        :param _builtins.bool is_deleted: Indicates whether the current enumeration value has been deleted.
+        :param _builtins.str operator: Specifies the expression operators.
+               The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        :param _builtins.int start_time: Indicates the start time of the current operation.
+        :param _builtins.str status: Indicates the work order status corresponding to the current operation.
+        :param _builtins.int stop_time: Indicates the stop time of the current operation.
+        :param _builtins.str sub_action: Indicates the sub-action of the current operation.
+        :param _builtins.str target_type: Indicates the target type.
+        :param _builtins.str target_value: Indicates the target value.
+        :param _builtins.str ticket_id: Indicates the order number.
+        :param _builtins.int update_time: Indicates the update time.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "action_id", action_id)
+        pulumi.set(__self__, "action_name_en", action_name_en)
+        pulumi.set(__self__, "action_name_zh", action_name_zh)
+        pulumi.set(__self__, "action_template_en", action_template_en)
+        pulumi.set(__self__, "action_template_zh", action_template_zh)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "enum_data_lists", enum_data_lists)
+        pulumi.set(__self__, "final_sub_action", final_sub_action)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "stop_time", stop_time)
+        pulumi.set(__self__, "sub_action", sub_action)
+        pulumi.set(__self__, "target_type", target_type)
+        pulumi.set(__self__, "target_value", target_value)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Indicates the action information of the current operation.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="actionId")
+    def action_id(self) -> _builtins.str:
+        """
+        Indicates the operation identifier.
+        """
+        return pulumi.get(self, "action_id")
+
+    @_builtins.property
+    @pulumi.getter(name="actionNameEn")
+    def action_name_en(self) -> _builtins.str:
+        """
+        Indicates the English name of the current action.
+        """
+        return pulumi.get(self, "action_name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="actionNameZh")
+    def action_name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese name of the current action.
+        """
+        return pulumi.get(self, "action_name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="actionTemplateEn")
+    def action_template_en(self) -> _builtins.str:
+        """
+        Indicates the English template of the current operation action.
+        """
+        return pulumi.get(self, "action_template_en")
+
+    @_builtins.property
+    @pulumi.getter(name="actionTemplateZh")
+    def action_template_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese template of the current operation action.
+        """
+        return pulumi.get(self, "action_template_zh")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Indicates the comment information of the current operation.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter(name="enumDataLists")
+    def enum_data_lists(self) -> Sequence['outputs.GetTicketOperationHistoriesDataEnumDataListResult']:
+        """
+        Indicates the list of enumeration data.
+        """
+        return pulumi.get(self, "enum_data_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="finalSubAction")
+    def final_sub_action(self) -> _builtins.str:
+        """
+        Indicates the final sub-action.
+        """
+        return pulumi.get(self, "final_sub_action")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the primary key ID of the operation record.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether the current enumeration value has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Specifies the expression operators.
+        The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        Indicates the start time of the current operation.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the work order status corresponding to the current operation.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="stopTime")
+    def stop_time(self) -> _builtins.int:
+        """
+        Indicates the stop time of the current operation.
+        """
+        return pulumi.get(self, "stop_time")
+
+    @_builtins.property
+    @pulumi.getter(name="subAction")
+    def sub_action(self) -> _builtins.str:
+        """
+        Indicates the sub-action of the current operation.
+        """
+        return pulumi.get(self, "sub_action")
+
+    @_builtins.property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> _builtins.str:
+        """
+        Indicates the target type.
+        """
+        return pulumi.get(self, "target_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetValue")
+    def target_value(self) -> _builtins.str:
+        """
+        Indicates the target value.
+        """
+        return pulumi.get(self, "target_value")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the order number.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetTicketOperationHistoriesDataEnumDataListResult(dict):
+    def __init__(__self__, *,
+                 biz_id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 match_type: _builtins.str,
+                 model_id: _builtins.str,
+                 name_en: _builtins.str,
+                 name_zh: _builtins.str,
+                 prop_id: _builtins.str,
+                 real_ticket_id: _builtins.str,
+                 ticket_id: _builtins.str,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.str biz_id: Indicates the unique ID corresponding to the enumeration value.
+        :param _builtins.bool is_deleted: Indicates whether the current enumeration value has been deleted.
+        :param _builtins.str match_type: Indicates the match type.
+        :param _builtins.str model_id: Indicates the model ID corresponding to different background applications.
+        :param _builtins.str name_en: Indicates the English name corresponding to the enumeration value.
+        :param _builtins.str name_zh: Indicates the Chinese name corresponding to the enumeration value.
+        :param _builtins.str prop_id: Indicates the type corresponding to the current enumeration value.
+        :param _builtins.str real_ticket_id: Indicates the real order number.
+        :param _builtins.str ticket_id: Indicates the order number.
+        :param _builtins.str user_name: Indicates the operator name.
+        """
+        pulumi.set(__self__, "biz_id", biz_id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "match_type", match_type)
+        pulumi.set(__self__, "model_id", model_id)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "name_zh", name_zh)
+        pulumi.set(__self__, "prop_id", prop_id)
+        pulumi.set(__self__, "real_ticket_id", real_ticket_id)
+        pulumi.set(__self__, "ticket_id", ticket_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="bizId")
+    def biz_id(self) -> _builtins.str:
+        """
+        Indicates the unique ID corresponding to the enumeration value.
+        """
+        return pulumi.get(self, "biz_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Indicates whether the current enumeration value has been deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> _builtins.str:
+        """
+        Indicates the match type.
+        """
+        return pulumi.get(self, "match_type")
+
+    @_builtins.property
+    @pulumi.getter(name="modelId")
+    def model_id(self) -> _builtins.str:
+        """
+        Indicates the model ID corresponding to different background applications.
+        """
+        return pulumi.get(self, "model_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the English name corresponding to the enumeration value.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="nameZh")
+    def name_zh(self) -> _builtins.str:
+        """
+        Indicates the Chinese name corresponding to the enumeration value.
+        """
+        return pulumi.get(self, "name_zh")
+
+    @_builtins.property
+    @pulumi.getter(name="propId")
+    def prop_id(self) -> _builtins.str:
+        """
+        Indicates the type corresponding to the current enumeration value.
+        """
+        return pulumi.get(self, "prop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realTicketId")
+    def real_ticket_id(self) -> _builtins.str:
+        """
+        Indicates the real order number.
+        """
+        return pulumi.get(self, "real_ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ticketId")
+    def ticket_id(self) -> _builtins.str:
+        """
+        Indicates the order number.
+        """
+        return pulumi.get(self, "ticket_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        Indicates the operator name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetTicketOperationHistoriesSortFilterResult(dict):
+    def __init__(__self__, *,
+                 field: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 operator: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str field: Specifies the name of the field that needs to be operated.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str name: Specifies the name of the condition that requires action.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str operator: Specifies the expression operators.
+               The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        :param Sequence[_builtins.str] values: Specifies the conditional value that needs to be met when performing a certain operation
+               on a field.
+               + When querying work orders, the conditional value is the work order ID.
+               + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the field that needs to be operated.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the condition that requires action.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression operators.
+        The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the conditional value that needs to be met when performing a certain operation
+        on a field.
+        + When querying work orders, the conditional value is the work order ID.
+        + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetTicketOperationHistoriesStringFilterResult(dict):
+    def __init__(__self__, *,
+                 field: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 operator: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str field: Specifies the name of the field that needs to be operated.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str name: Specifies the name of the condition that requires action.
+               + When querying tickets, the field name is **ticket_id**.
+               + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        :param _builtins.str operator: Specifies the expression operators.
+               The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        :param Sequence[_builtins.str] values: Specifies the conditional value that needs to be met when performing a certain operation
+               on a field.
+               + When querying work orders, the conditional value is the work order ID.
+               + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the field that needs to be operated.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the condition that requires action.
+        + When querying tickets, the field name is **ticket_id**.
+        + When sorting and filtering the query results by creation time, the field name is **start_time**.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression operators.
+        The value can be **in**, **like**, **desc**, **startwith**, **endwith**, **=**, **!=**, **>**, **<**, etc.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the conditional value that needs to be met when performing a certain operation
+        on a field.
+        + When querying work orders, the conditional value is the work order ID.
+        + When sorting and filtering query results by creation time, the conditional value is **start_time**.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

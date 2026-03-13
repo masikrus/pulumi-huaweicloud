@@ -29,6 +29,7 @@ class GlobalGatewayPeerLinkArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GlobalGatewayPeerLink resource.
+
         :param pulumi.Input[_builtins.str] global_dc_gateway_id: Specifies the global DC gateway ID.
                
                > It is required that the gateway has created a virtual interface.
@@ -150,6 +151,7 @@ class _GlobalGatewayPeerLinkState:
                  updated_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalGatewayPeerLink resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['GlobalGatewayPeerLinkBandwidthInfoArgs']]] bandwidth_infos: The bandwidth information.
                The bandwidth_info structure is documented below.
         :param pulumi.Input[_builtins.str] create_owner: The cloud service where the peer link is used. This attribute values include:
@@ -374,7 +376,7 @@ class _GlobalGatewayPeerLinkState:
         pulumi.set(self, "updated_time", value)
 
 
-@pulumi.type_token("huaweicloud:dc/globalGatewayPeerLink:GlobalGatewayPeerLink")
+@pulumi.type_token("huaweicloud:Dc/globalGatewayPeerLink:GlobalGatewayPeerLink")
 class GlobalGatewayPeerLink(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -416,14 +418,12 @@ class GlobalGatewayPeerLink(pulumi.CustomResource):
         ## Import
 
         The DC global gateway peer link resource can be imported using the `global_dc_gateway_id` and `id`,
-
         separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGatewayPeerLink:GlobalGatewayPeerLink test <global_dc_gateway_id>/<id>
+        $ pulumi import huaweicloud:Dc/globalGatewayPeerLink:GlobalGatewayPeerLink test <global_dc_gateway_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -476,14 +476,12 @@ class GlobalGatewayPeerLink(pulumi.CustomResource):
         ## Import
 
         The DC global gateway peer link resource can be imported using the `global_dc_gateway_id` and `id`,
-
         separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGatewayPeerLink:GlobalGatewayPeerLink test <global_dc_gateway_id>/<id>
+        $ pulumi import huaweicloud:Dc/globalGatewayPeerLink:GlobalGatewayPeerLink test <global_dc_gateway_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalGatewayPeerLinkArgs args: The arguments to use to populate this resource's properties.
@@ -533,7 +531,7 @@ class GlobalGatewayPeerLink(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_time"] = None
         super(GlobalGatewayPeerLink, __self__).__init__(
-            'huaweicloud:dc/globalGatewayPeerLink:GlobalGatewayPeerLink',
+            'huaweicloud:Dc/globalGatewayPeerLink:GlobalGatewayPeerLink',
             resource_name,
             __props__,
             opts)

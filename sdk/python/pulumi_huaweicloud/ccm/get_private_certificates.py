@@ -125,7 +125,7 @@ def get_private_certificates(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_private_certificates()
+    test = huaweicloud.Ccm.get_private_certificates()
     ```
 
 
@@ -153,7 +153,7 @@ def get_private_certificates(name: Optional[_builtins.str] = None,
     __args__['sortKey'] = sort_key
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getPrivateCertificates:getPrivateCertificates', __args__, opts=opts, typ=GetPrivateCertificatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getPrivateCertificates:getPrivateCertificates', __args__, opts=opts, typ=GetPrivateCertificatesResult).value
 
     return AwaitableGetPrivateCertificatesResult(
         certificates=pulumi.get(__ret__, 'certificates'),
@@ -178,7 +178,7 @@ def get_private_certificates_output(name: Optional[pulumi.Input[Optional[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_private_certificates()
+    test = huaweicloud.Ccm.get_private_certificates()
     ```
 
 
@@ -206,7 +206,7 @@ def get_private_certificates_output(name: Optional[pulumi.Input[Optional[_builti
     __args__['sortKey'] = sort_key
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getPrivateCertificates:getPrivateCertificates', __args__, opts=opts, typ=GetPrivateCertificatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getPrivateCertificates:getPrivateCertificates', __args__, opts=opts, typ=GetPrivateCertificatesResult)
     return __ret__.apply(lambda __response__: GetPrivateCertificatesResult(
         certificates=pulumi.get(__response__, 'certificates'),
         id=pulumi.get(__response__, 'id'),

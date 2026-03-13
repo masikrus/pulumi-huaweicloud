@@ -123,7 +123,7 @@ def get_policy_assignments(assignment_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     policy_assignment_name = config.require_object("policyAssignmentName")
-    test = huaweicloud.rms.get_policy_assignments(name=policy_assignment_name,
+    test = huaweicloud.Rms.get_policy_assignments(name=policy_assignment_name,
         status="Enabled")
     ```
 
@@ -139,7 +139,7 @@ def get_policy_assignments(assignment_id: Optional[_builtins.str] = None,
     __args__['policyDefinitionId'] = policy_definition_id
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyAssignments:getPolicyAssignments', __args__, opts=opts, typ=GetPolicyAssignmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyAssignments:getPolicyAssignments', __args__, opts=opts, typ=GetPolicyAssignmentsResult).value
 
     return AwaitableGetPolicyAssignmentsResult(
         assignment_id=pulumi.get(__ret__, 'assignment_id'),
@@ -164,7 +164,7 @@ def get_policy_assignments_output(assignment_id: Optional[pulumi.Input[Optional[
 
     config = pulumi.Config()
     policy_assignment_name = config.require_object("policyAssignmentName")
-    test = huaweicloud.rms.get_policy_assignments(name=policy_assignment_name,
+    test = huaweicloud.Rms.get_policy_assignments(name=policy_assignment_name,
         status="Enabled")
     ```
 
@@ -180,7 +180,7 @@ def get_policy_assignments_output(assignment_id: Optional[pulumi.Input[Optional[
     __args__['policyDefinitionId'] = policy_definition_id
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyAssignments:getPolicyAssignments', __args__, opts=opts, typ=GetPolicyAssignmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyAssignments:getPolicyAssignments', __args__, opts=opts, typ=GetPolicyAssignmentsResult)
     return __ret__.apply(lambda __response__: GetPolicyAssignmentsResult(
         assignment_id=pulumi.get(__response__, 'assignment_id'),
         assignments=pulumi.get(__response__, 'assignments'),

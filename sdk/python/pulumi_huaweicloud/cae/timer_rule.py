@@ -29,10 +29,12 @@ class TimerRuleArgs:
                  type: pulumi.Input[_builtins.str],
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['TimerRuleApplicationArgs']]]] = None,
                  components: Optional[pulumi.Input[Sequence[pulumi.Input['TimerRuleComponentArgs']]]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TimerRule resource.
+
         :param pulumi.Input[_builtins.str] cron: Specifies the cron expression of the timer rule.  
                The triggered time of the rule must be at least two minutes later than the current time.
                When `effective_policy` is set to **periodic**, the rule can only be executed by week of day.
@@ -61,6 +63,12 @@ class TimerRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['TimerRuleComponentArgs']]] components: Specifies the list of the components in which the timer rule takes effect.  
                The components structure is documented below.
                This parameter is required and available only when the `effective_range` parameter is set to **component**.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               timer rule belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
                
                <a name="timer_rule_applications"></a>
                The `applications` block supports:
@@ -79,6 +87,8 @@ class TimerRuleArgs:
             pulumi.set(__self__, "applications", applications)
         if components is not None:
             pulumi.set(__self__, "components", components)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -193,15 +203,32 @@ class TimerRuleArgs:
         Specifies the list of the components in which the timer rule takes effect.  
         The components structure is documented below.
         This parameter is required and available only when the `effective_range` parameter is set to **component**.
-
-        <a name="timer_rule_applications"></a>
-        The `applications` block supports:
         """
         return pulumi.get(self, "components")
 
     @components.setter
     def components(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TimerRuleComponentArgs']]]]):
         pulumi.set(self, "components", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        timer rule belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+
+        <a name="timer_rule_applications"></a>
+        The `applications` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -238,6 +265,7 @@ class _TimerRuleState:
                  cron: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -245,15 +273,13 @@ class _TimerRuleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TimerRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['TimerRuleApplicationArgs']]] applications: Specifies the list of the applications in which the timer rule takes effect.  
                The applications structure is documented below.
                This parameter is required and available only when the `effective_range` parameter is set to **application**.
         :param pulumi.Input[Sequence[pulumi.Input['TimerRuleComponentArgs']]] components: Specifies the list of the components in which the timer rule takes effect.  
                The components structure is documented below.
                This parameter is required and available only when the `effective_range` parameter is set to **component**.
-               
-               <a name="timer_rule_applications"></a>
-               The `applications` block supports:
         :param pulumi.Input[_builtins.str] cron: Specifies the cron expression of the timer rule.  
                The triggered time of the rule must be at least two minutes later than the current time.
                When `effective_policy` is set to **periodic**, the rule can only be executed by week of day.
@@ -266,6 +292,15 @@ class _TimerRuleState:
                + **environment**: The rule takes effect for all components in the environment.
                + **application**: The rule takes effect for all components in the application.
                + **component**: The rule takes effect for the specified components.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               timer rule belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
+               
+               <a name="timer_rule_applications"></a>
+               The `applications` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the component.
@@ -291,6 +326,8 @@ class _TimerRuleState:
             pulumi.set(__self__, "effective_policy", effective_policy)
         if effective_range is not None:
             pulumi.set(__self__, "effective_range", effective_range)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if name is not None:
@@ -323,9 +360,6 @@ class _TimerRuleState:
         Specifies the list of the components in which the timer rule takes effect.  
         The components structure is documented below.
         This parameter is required and available only when the `effective_range` parameter is set to **component**.
-
-        <a name="timer_rule_applications"></a>
-        The `applications` block supports:
         """
         return pulumi.get(self, "components")
 
@@ -377,6 +411,26 @@ class _TimerRuleState:
     @effective_range.setter
     def effective_range(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "effective_range", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        timer rule belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+
+        <a name="timer_rule_applications"></a>
+        The `applications` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -448,7 +502,7 @@ class _TimerRuleState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:cae/timerRule:TimerRule")
+@pulumi.type_token("huaweicloud:Cae/timerRule:TimerRule")
 class TimerRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -459,6 +513,7 @@ class TimerRule(pulumi.CustomResource):
                  cron: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -483,7 +538,7 @@ class TimerRule(pulumi.CustomResource):
             components=[{
                 "id": entry["value"]["id"],
                 "name": entry["value"]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in component_configurations]],
+            } for entry in [{"key": k, "value": v} for k, v in component_configurations.items()]],
             environment_id=environment_id,
             name=rule_name,
             type="start",
@@ -497,41 +552,24 @@ class TimerRule(pulumi.CustomResource):
 
         The resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/timerRule:TimerRule test <environment_id>/<name>
+        ```
+
+        For the timer rule with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/timerRule:TimerRule test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/timerRule:TimerRule test <environment_id>/<name>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `status`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_timer_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -541,9 +579,6 @@ class TimerRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['TimerRuleComponentArgs', 'TimerRuleComponentArgsDict']]]] components: Specifies the list of the components in which the timer rule takes effect.  
                The components structure is documented below.
                This parameter is required and available only when the `effective_range` parameter is set to **component**.
-               
-               <a name="timer_rule_applications"></a>
-               The `applications` block supports:
         :param pulumi.Input[_builtins.str] cron: Specifies the cron expression of the timer rule.  
                The triggered time of the rule must be at least two minutes later than the current time.
                When `effective_policy` is set to **periodic**, the rule can only be executed by week of day.
@@ -556,6 +591,15 @@ class TimerRule(pulumi.CustomResource):
                + **environment**: The rule takes effect for all components in the environment.
                + **application**: The rule takes effect for all components in the application.
                + **component**: The rule takes effect for the specified components.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               timer rule belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
+               
+               <a name="timer_rule_applications"></a>
+               The `applications` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the component.
@@ -595,7 +639,7 @@ class TimerRule(pulumi.CustomResource):
             components=[{
                 "id": entry["value"]["id"],
                 "name": entry["value"]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in component_configurations]],
+            } for entry in [{"key": k, "value": v} for k, v in component_configurations.items()]],
             environment_id=environment_id,
             name=rule_name,
             type="start",
@@ -609,41 +653,24 @@ class TimerRule(pulumi.CustomResource):
 
         The resource can be imported using `environment_id` and `name`, separated by a slash (/), e.g.
 
-        bash
+        ```sh
+        $ pulumi import huaweicloud:Cae/timerRule:TimerRule test <environment_id>/<name>
+        ```
+
+        For the timer rule with the non-default enterprise project ID, its enterprise project ID need to be specified
+        additionanlly when importing. All fields are separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/timerRule:TimerRule test <environment_id>/<name>
+        $ pulumi import huaweicloud:Cae/timerRule:TimerRule test <environment_id>/<name>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `status`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_timer_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TimerRuleArgs args: The arguments to use to populate this resource's properties.
@@ -665,6 +692,7 @@ class TimerRule(pulumi.CustomResource):
                  cron: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  effective_range: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -690,6 +718,7 @@ class TimerRule(pulumi.CustomResource):
             if effective_range is None and not opts.urn:
                 raise TypeError("Missing required property 'effective_range'")
             __props__.__dict__["effective_range"] = effective_range
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -702,7 +731,7 @@ class TimerRule(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
         super(TimerRule, __self__).__init__(
-            'huaweicloud:cae/timerRule:TimerRule',
+            'huaweicloud:Cae/timerRule:TimerRule',
             resource_name,
             __props__,
             opts)
@@ -716,6 +745,7 @@ class TimerRule(pulumi.CustomResource):
             cron: Optional[pulumi.Input[_builtins.str]] = None,
             effective_policy: Optional[pulumi.Input[_builtins.str]] = None,
             effective_range: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -734,9 +764,6 @@ class TimerRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['TimerRuleComponentArgs', 'TimerRuleComponentArgsDict']]]] components: Specifies the list of the components in which the timer rule takes effect.  
                The components structure is documented below.
                This parameter is required and available only when the `effective_range` parameter is set to **component**.
-               
-               <a name="timer_rule_applications"></a>
-               The `applications` block supports:
         :param pulumi.Input[_builtins.str] cron: Specifies the cron expression of the timer rule.  
                The triggered time of the rule must be at least two minutes later than the current time.
                When `effective_policy` is set to **periodic**, the rule can only be executed by week of day.
@@ -749,6 +776,15 @@ class TimerRule(pulumi.CustomResource):
                + **environment**: The rule takes effect for all components in the environment.
                + **application**: The rule takes effect for all components in the application.
                + **component**: The rule takes effect for the specified components.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               timer rule belongs.
+               Changing this creates a new resource.
+               
+               > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+               only valid for enterprise users.
+               
+               <a name="timer_rule_applications"></a>
+               The `applications` block supports:
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the CAE environment.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the component.
@@ -773,6 +809,7 @@ class TimerRule(pulumi.CustomResource):
         __props__.__dict__["cron"] = cron
         __props__.__dict__["effective_policy"] = effective_policy
         __props__.__dict__["effective_range"] = effective_range
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -797,9 +834,6 @@ class TimerRule(pulumi.CustomResource):
         Specifies the list of the components in which the timer rule takes effect.  
         The components structure is documented below.
         This parameter is required and available only when the `effective_range` parameter is set to **component**.
-
-        <a name="timer_rule_applications"></a>
-        The `applications` block supports:
         """
         return pulumi.get(self, "components")
 
@@ -835,6 +869,22 @@ class TimerRule(pulumi.CustomResource):
         + **component**: The rule takes effect for the specified components.
         """
         return pulumi.get(self, "effective_range")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        timer rule belongs.
+        Changing this creates a new resource.
+
+        > If the `environment_id` belongs to the non-default enterprise project, this parameter is required and is
+        only valid for enterprise users.
+
+        <a name="timer_rule_applications"></a>
+        The `applications` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

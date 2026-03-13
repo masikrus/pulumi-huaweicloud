@@ -26,7 +26,11 @@ class DataspaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Dataspace resource.
+
         :param pulumi.Input[_builtins.str] dataspace_name: Sepcifies the name of the dataspace.
+               The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+               nor can they appear consecutively.
+               The name valid length is limited from `5` to `63`.
         :param pulumi.Input[_builtins.str] description: Sepcifies the description of the dataspace.
         :param pulumi.Input[_builtins.str] workspace_id: Sepcifies the ID of the workspace to which the dataspace belongs.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -46,6 +50,9 @@ class DataspaceArgs:
     def dataspace_name(self) -> pulumi.Input[_builtins.str]:
         """
         Sepcifies the name of the dataspace.
+        The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+        nor can they appear consecutively.
+        The name valid length is limited from `5` to `63`.
         """
         return pulumi.get(self, "dataspace_name")
 
@@ -104,42 +111,119 @@ class DataspaceArgs:
 @pulumi.input_type
 class _DataspaceState:
     def __init__(__self__, *,
+                 create_by: Optional[pulumi.Input[_builtins.str]] = None,
+                 create_time: Optional[pulumi.Input[_builtins.int]] = None,
                  dataspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 dataspace_type: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 domain_id: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 update_by: Optional[pulumi.Input[_builtins.str]] = None,
+                 update_time: Optional[pulumi.Input[_builtins.int]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Dataspace resources.
+
+        :param pulumi.Input[_builtins.str] create_by: The dataspace creator.
+        :param pulumi.Input[_builtins.int] create_time: The dataspace creation time.
         :param pulumi.Input[_builtins.str] dataspace_name: Sepcifies the name of the dataspace.
+               The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+               nor can they appear consecutively.
+               The name valid length is limited from `5` to `63`.
+        :param pulumi.Input[_builtins.str] dataspace_type: The dataspace type.
+               The valid values are as follows:
+               + **system-defined**
+               + **user-defined**
         :param pulumi.Input[_builtins.str] description: Sepcifies the description of the dataspace.
+        :param pulumi.Input[_builtins.str] domain_id: The account ID.
+        :param pulumi.Input[_builtins.str] project_id: The project ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] update_by: The dataspace updater.
+        :param pulumi.Input[_builtins.int] update_time: The dataspace update time.
         :param pulumi.Input[_builtins.str] workspace_id: Sepcifies the ID of the workspace to which the dataspace belongs.
         """
+        if create_by is not None:
+            pulumi.set(__self__, "create_by", create_by)
+        if create_time is not None:
+            pulumi.set(__self__, "create_time", create_time)
         if dataspace_name is not None:
             pulumi.set(__self__, "dataspace_name", dataspace_name)
+        if dataspace_type is not None:
+            pulumi.set(__self__, "dataspace_type", dataspace_type)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if update_by is not None:
+            pulumi.set(__self__, "update_by", update_by)
+        if update_time is not None:
+            pulumi.set(__self__, "update_time", update_time)
         if workspace_id is not None:
             pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The dataspace creator.
+        """
+        return pulumi.get(self, "create_by")
+
+    @create_by.setter
+    def create_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create_by", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The dataspace creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @create_time.setter
+    def create_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "create_time", value)
 
     @_builtins.property
     @pulumi.getter(name="dataspaceName")
     def dataspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Sepcifies the name of the dataspace.
+        The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+        nor can they appear consecutively.
+        The name valid length is limited from `5` to `63`.
         """
         return pulumi.get(self, "dataspace_name")
 
     @dataspace_name.setter
     def dataspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "dataspace_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceType")
+    def dataspace_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The dataspace type.
+        The valid values are as follows:
+        + **system-defined**
+        + **user-defined**
+        """
+        return pulumi.get(self, "dataspace_type")
+
+    @dataspace_type.setter
+    def dataspace_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dataspace_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -154,6 +238,18 @@ class _DataspaceState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "enable_force_new")
@@ -161,6 +257,18 @@ class _DataspaceState:
     @enable_force_new.setter
     def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -177,6 +285,30 @@ class _DataspaceState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The dataspace updater.
+        """
+        return pulumi.get(self, "update_by")
+
+    @update_by.setter
+    def update_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "update_by", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The dataspace update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @update_time.setter
+    def update_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "update_time", value)
+
+    @_builtins.property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -189,7 +321,7 @@ class _DataspaceState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/dataspace:Dataspace")
+@pulumi.type_token("huaweicloud:Secmaster/dataspace:Dataspace")
 class Dataspace(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -203,8 +335,6 @@ class Dataspace(pulumi.CustomResource):
                  __props__=None):
         """
         Manages a SecMaster dataspace resource within HuaweiCloud.
-
-        > The current resource is a one-time resource, and destroying this resource will not change the current status.
 
         ## Example Usage
 
@@ -222,9 +352,21 @@ class Dataspace(pulumi.CustomResource):
             description=description)
         ```
 
+        ## Import
+
+        The dataspace can be imported using the `workspace_id` and their `id`, separated by a slash (/), e.g.
+
+        ```sh
+        $ pulumi import huaweicloud:Secmaster/dataspace:Dataspace test <workspace_id>/<id>
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dataspace_name: Sepcifies the name of the dataspace.
+               The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+               nor can they appear consecutively.
+               The name valid length is limited from `5` to `63`.
         :param pulumi.Input[_builtins.str] description: Sepcifies the description of the dataspace.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -240,8 +382,6 @@ class Dataspace(pulumi.CustomResource):
         """
         Manages a SecMaster dataspace resource within HuaweiCloud.
 
-        > The current resource is a one-time resource, and destroying this resource will not change the current status.
-
         ## Example Usage
 
         ```python
@@ -257,6 +397,15 @@ class Dataspace(pulumi.CustomResource):
             dataspace_name=workflow_id,
             description=description)
         ```
+
+        ## Import
+
+        The dataspace can be imported using the `workspace_id` and their `id`, separated by a slash (/), e.g.
+
+        ```sh
+        $ pulumi import huaweicloud:Secmaster/dataspace:Dataspace test <workspace_id>/<id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param DataspaceArgs args: The arguments to use to populate this resource's properties.
@@ -298,8 +447,15 @@ class Dataspace(pulumi.CustomResource):
             if workspace_id is None and not opts.urn:
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
+            __props__.__dict__["create_by"] = None
+            __props__.__dict__["create_time"] = None
+            __props__.__dict__["dataspace_type"] = None
+            __props__.__dict__["domain_id"] = None
+            __props__.__dict__["project_id"] = None
+            __props__.__dict__["update_by"] = None
+            __props__.__dict__["update_time"] = None
         super(Dataspace, __self__).__init__(
-            'huaweicloud:secmaster/dataspace:Dataspace',
+            'huaweicloud:Secmaster/dataspace:Dataspace',
             resource_name,
             __props__,
             opts)
@@ -308,10 +464,17 @@ class Dataspace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            create_by: Optional[pulumi.Input[_builtins.str]] = None,
+            create_time: Optional[pulumi.Input[_builtins.int]] = None,
             dataspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+            dataspace_type: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            domain_id: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+            project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            update_by: Optional[pulumi.Input[_builtins.str]] = None,
+            update_time: Optional[pulumi.Input[_builtins.int]] = None,
             workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Dataspace':
         """
         Get an existing Dataspace resource's state with the given name, id, and optional extra
@@ -320,31 +483,81 @@ class Dataspace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] create_by: The dataspace creator.
+        :param pulumi.Input[_builtins.int] create_time: The dataspace creation time.
         :param pulumi.Input[_builtins.str] dataspace_name: Sepcifies the name of the dataspace.
+               The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+               nor can they appear consecutively.
+               The name valid length is limited from `5` to `63`.
+        :param pulumi.Input[_builtins.str] dataspace_type: The dataspace type.
+               The valid values are as follows:
+               + **system-defined**
+               + **user-defined**
         :param pulumi.Input[_builtins.str] description: Sepcifies the description of the dataspace.
+        :param pulumi.Input[_builtins.str] domain_id: The account ID.
+        :param pulumi.Input[_builtins.str] project_id: The project ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] update_by: The dataspace updater.
+        :param pulumi.Input[_builtins.int] update_time: The dataspace update time.
         :param pulumi.Input[_builtins.str] workspace_id: Sepcifies the ID of the workspace to which the dataspace belongs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _DataspaceState.__new__(_DataspaceState)
 
+        __props__.__dict__["create_by"] = create_by
+        __props__.__dict__["create_time"] = create_time
         __props__.__dict__["dataspace_name"] = dataspace_name
+        __props__.__dict__["dataspace_type"] = dataspace_type
         __props__.__dict__["description"] = description
+        __props__.__dict__["domain_id"] = domain_id
         __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["update_by"] = update_by
+        __props__.__dict__["update_time"] = update_time
         __props__.__dict__["workspace_id"] = workspace_id
         return Dataspace(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> pulumi.Output[_builtins.str]:
+        """
+        The dataspace creator.
+        """
+        return pulumi.get(self, "create_by")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> pulumi.Output[_builtins.int]:
+        """
+        The dataspace creation time.
+        """
+        return pulumi.get(self, "create_time")
 
     @_builtins.property
     @pulumi.getter(name="dataspaceName")
     def dataspace_name(self) -> pulumi.Output[_builtins.str]:
         """
         Sepcifies the name of the dataspace.
+        The name can only contain English letters, digits and hyphens (-), and cannot start or end with a hyphens (-),
+        nor can they appear consecutively.
+        The name valid length is limited from `5` to `63`.
         """
         return pulumi.get(self, "dataspace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceType")
+    def dataspace_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The dataspace type.
+        The valid values are as follows:
+        + **system-defined**
+        + **user-defined**
+        """
+        return pulumi.get(self, "dataspace_type")
 
     @_builtins.property
     @pulumi.getter
@@ -355,9 +568,25 @@ class Dataspace(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "enable_force_new")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
@@ -368,6 +597,22 @@ class Dataspace(pulumi.CustomResource):
         Changing this creates a new resource.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> pulumi.Output[_builtins.str]:
+        """
+        The dataspace updater.
+        """
+        return pulumi.get(self, "update_by")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> pulumi.Output[_builtins.int]:
+        """
+        The dataspace update time.
+        """
+        return pulumi.get(self, "update_time")
 
     @_builtins.property
     @pulumi.getter(name="workspaceId")

@@ -24,6 +24,7 @@ class AssetAgencyAuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AssetAgencyAuthorization resource.
+
         :param pulumi.Input[_builtins.bool] csms: Specifies whether to enable CSMS credential agency authorization. The value can be **true**
                or **false**.
                If set to **true** to enable agency authorization, the CBH service will have the permission to query your CSMS
@@ -94,6 +95,7 @@ class _AssetAgencyAuthorizationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AssetAgencyAuthorization resources.
+
         :param pulumi.Input[_builtins.bool] csms: Specifies whether to enable CSMS credential agency authorization. The value can be **true**
                or **false**.
                If set to **true** to enable agency authorization, the CBH service will have the permission to query your CSMS
@@ -158,7 +160,7 @@ class _AssetAgencyAuthorizationState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cbh/assetAgencyAuthorization:AssetAgencyAuthorization")
+@pulumi.type_token("huaweicloud:Cbh/assetAgencyAuthorization:AssetAgencyAuthorization")
 class AssetAgencyAuthorization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -185,6 +187,7 @@ class AssetAgencyAuthorization(pulumi.CustomResource):
             csms=True,
             kms=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +227,7 @@ class AssetAgencyAuthorization(pulumi.CustomResource):
             kms=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AssetAgencyAuthorizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,7 +263,7 @@ class AssetAgencyAuthorization(pulumi.CustomResource):
             __props__.__dict__["kms"] = kms
             __props__.__dict__["region"] = region
         super(AssetAgencyAuthorization, __self__).__init__(
-            'huaweicloud:cbh/assetAgencyAuthorization:AssetAgencyAuthorization',
+            'huaweicloud:Cbh/assetAgencyAuthorization:AssetAgencyAuthorization',
             resource_name,
             __props__,
             opts)

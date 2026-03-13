@@ -82,7 +82,7 @@ def get_trusted_services(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_trusted_services()
+    test = huaweicloud.Organizations.get_trusted_services()
     ```
 
 
@@ -92,7 +92,7 @@ def get_trusted_services(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getTrustedServices:getTrustedServices', __args__, opts=opts, typ=GetTrustedServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getTrustedServices:getTrustedServices', __args__, opts=opts, typ=GetTrustedServicesResult).value
 
     return AwaitableGetTrustedServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_trusted_services_output(region: Optional[pulumi.Input[Optional[_builtins
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_trusted_services()
+    test = huaweicloud.Organizations.get_trusted_services()
     ```
 
 
@@ -119,7 +119,7 @@ def get_trusted_services_output(region: Optional[pulumi.Input[Optional[_builtins
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getTrustedServices:getTrustedServices', __args__, opts=opts, typ=GetTrustedServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getTrustedServices:getTrustedServices', __args__, opts=opts, typ=GetTrustedServicesResult)
     return __ret__.apply(lambda __response__: GetTrustedServicesResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

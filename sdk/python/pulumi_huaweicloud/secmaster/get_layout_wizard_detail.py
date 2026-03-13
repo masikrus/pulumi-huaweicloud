@@ -119,7 +119,7 @@ def get_layout_wizard_detail(field_id: Optional[_builtins.str] = None,
     workspace_id = config.require_object("workspaceId")
     layout_id = config.require_object("layoutId")
     field_id = config.require_object("fieldId")
-    test = huaweicloud.secmaster.get_layout_wizard_detail(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_layout_wizard_detail(workspace_id=workspace_id,
         layout_id=layout_id,
         field_id=field_id)
     ```
@@ -137,7 +137,7 @@ def get_layout_wizard_detail(field_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getLayoutWizardDetail:getLayoutWizardDetail', __args__, opts=opts, typ=GetLayoutWizardDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getLayoutWizardDetail:getLayoutWizardDetail', __args__, opts=opts, typ=GetLayoutWizardDetailResult).value
 
     return AwaitableGetLayoutWizardDetailResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -164,7 +164,7 @@ def get_layout_wizard_detail_output(field_id: Optional[pulumi.Input[_builtins.st
     workspace_id = config.require_object("workspaceId")
     layout_id = config.require_object("layoutId")
     field_id = config.require_object("fieldId")
-    test = huaweicloud.secmaster.get_layout_wizard_detail(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_layout_wizard_detail(workspace_id=workspace_id,
         layout_id=layout_id,
         field_id=field_id)
     ```
@@ -182,7 +182,7 @@ def get_layout_wizard_detail_output(field_id: Optional[pulumi.Input[_builtins.st
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getLayoutWizardDetail:getLayoutWizardDetail', __args__, opts=opts, typ=GetLayoutWizardDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getLayoutWizardDetail:getLayoutWizardDetail', __args__, opts=opts, typ=GetLayoutWizardDetailResult)
     return __ret__.apply(lambda __response__: GetLayoutWizardDetailResult(
         datas=pulumi.get(__response__, 'datas'),
         field_id=pulumi.get(__response__, 'field_id'),

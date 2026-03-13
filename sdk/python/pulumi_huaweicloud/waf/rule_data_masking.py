@@ -29,6 +29,7 @@ class RuleDataMaskingArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RuleDataMasking resource.
+
         :param pulumi.Input[_builtins.str] field: Specifies the position where the masked field stored. Valid values are:
                + **params**: The field in the parameter.
                + **header**: The field in the header.
@@ -177,6 +178,7 @@ class _RuleDataMaskingState:
                  subfield: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuleDataMasking resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of WAF data masking rule.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF data masking rule.
                For enterprise users, if omitted, default enterprise project will be used.
@@ -361,19 +363,16 @@ class RuleDataMasking(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleDataMasking:RuleDataMasking test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleDataMasking:RuleDataMasking test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -430,19 +429,16 @@ class RuleDataMasking(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleDataMasking:RuleDataMasking test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleDataMasking:RuleDataMasking test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleDataMaskingArgs args: The arguments to use to populate this resource's properties.

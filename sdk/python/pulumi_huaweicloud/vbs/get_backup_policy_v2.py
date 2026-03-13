@@ -156,7 +156,7 @@ def get_backup_policy_v2(filter_tags: Optional[Sequence[Union['GetBackupPolicyV2
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vbs/getBackupPolicyV2:getBackupPolicyV2', __args__, opts=opts, typ=GetBackupPolicyV2Result).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vbs/getBackupPolicyV2:getBackupPolicyV2', __args__, opts=opts, typ=GetBackupPolicyV2Result).value
 
     return AwaitableGetBackupPolicyV2Result(
         filter_tags=pulumi.get(__ret__, 'filter_tags'),
@@ -188,7 +188,7 @@ def get_backup_policy_v2_output(filter_tags: Optional[pulumi.Input[Optional[Sequ
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vbs/getBackupPolicyV2:getBackupPolicyV2', __args__, opts=opts, typ=GetBackupPolicyV2Result)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vbs/getBackupPolicyV2:getBackupPolicyV2', __args__, opts=opts, typ=GetBackupPolicyV2Result)
     return __ret__.apply(lambda __response__: GetBackupPolicyV2Result(
         filter_tags=pulumi.get(__response__, 'filter_tags'),
         frequency=pulumi.get(__response__, 'frequency'),

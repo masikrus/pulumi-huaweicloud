@@ -28,6 +28,7 @@ class SparkTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SparkTemplate resource.
+
         :param pulumi.Input['SparkTemplateBodyArgs'] body: The content of the spark template.
                The body structure is documented below.
         :param pulumi.Input[_builtins.str] description: The description of the spark template.
@@ -125,6 +126,7 @@ class _SparkTemplateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SparkTemplate resources.
+
         :param pulumi.Input['SparkTemplateBodyArgs'] body: The content of the spark template.
                The body structure is documented below.
         :param pulumi.Input[_builtins.str] description: The description of the spark template.
@@ -251,11 +253,10 @@ class SparkTemplate(pulumi.CustomResource):
 
         The spark template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sparkTemplate:SparkTemplate test 9680ed93-fa3f-47e5-8471-ff6e7e1a6499
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,11 +303,10 @@ class SparkTemplate(pulumi.CustomResource):
 
         The spark template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sparkTemplate:SparkTemplate test 9680ed93-fa3f-47e5-8471-ff6e7e1a6499
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SparkTemplateArgs args: The arguments to use to populate this resource's properties.

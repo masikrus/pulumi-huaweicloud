@@ -34,6 +34,7 @@ class ProductArgs:
                  space_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Product resource.
+
         :param pulumi.Input[_builtins.str] data_type: Specifies the type of data.
                The valid values are **json** and **binary**.
         :param pulumi.Input[_builtins.str] device_type: Specifies the device type. The device type contains a maximum of `32` characters.
@@ -256,6 +257,7 @@ class _ProductState:
                  space_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Product resources.
+
         :param pulumi.Input[_builtins.str] data_type: Specifies the type of data.
                The valid values are **json** and **binary**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the parameter. The description contains a maximum of
@@ -575,11 +577,10 @@ class Product(pulumi.CustomResource):
 
         The product resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/product:Product test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -713,11 +714,10 @@ class Product(pulumi.CustomResource):
 
         The product resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/product:Product test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProductArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class KafkaConsumerGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaConsumerGroup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the kafka instance.
                
                Changing this parameter will create a new resource.
@@ -110,13 +111,14 @@ class _KafkaConsumerGroupState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaConsumerGroup resources.
+
         :param pulumi.Input[_builtins.int] coordinator_id: Indicates the coordinator id of the consumer group.
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time of the consumer group.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the consumer group.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the kafka instance.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.int] lag: Indicates the lag number of the consumer group.
+        :param pulumi.Input[_builtins.int] lag: The lag number of the consumer group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the consumer group.
                
                Changing this parameter will create a new resource.
@@ -196,7 +198,7 @@ class _KafkaConsumerGroupState:
     @pulumi.getter
     def lag(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Indicates the lag number of the consumer group.
+        The lag number of the consumer group.
         """
         return pulumi.get(self, "lag")
 
@@ -277,11 +279,10 @@ class KafkaConsumerGroup(pulumi.CustomResource):
 
         The kafka consumer group can be imported using the kafka `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaConsumerGroup:KafkaConsumerGroup test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -322,11 +323,10 @@ class KafkaConsumerGroup(pulumi.CustomResource):
 
         The kafka consumer group can be imported using the kafka `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaConsumerGroup:KafkaConsumerGroup test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaConsumerGroupArgs args: The arguments to use to populate this resource's properties.
@@ -397,7 +397,7 @@ class KafkaConsumerGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the kafka instance.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.int] lag: Indicates the lag number of the consumer group.
+        :param pulumi.Input[_builtins.int] lag: The lag number of the consumer group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the consumer group.
                
                Changing this parameter will create a new resource.
@@ -458,7 +458,7 @@ class KafkaConsumerGroup(pulumi.CustomResource):
     @pulumi.getter
     def lag(self) -> pulumi.Output[_builtins.int]:
         """
-        Indicates the lag number of the consumer group.
+        The lag number of the consumer group.
         """
         return pulumi.get(self, "lag")
 

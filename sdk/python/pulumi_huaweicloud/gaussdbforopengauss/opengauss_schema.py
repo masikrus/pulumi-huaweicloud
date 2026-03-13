@@ -26,6 +26,7 @@ class OpengaussSchemaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussSchema resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
                
                Changing this parameter will create a new resource.
@@ -141,6 +142,7 @@ class _OpengaussSchemaState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussSchema resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
                
                Changing this parameter will create a new resource.
@@ -283,11 +285,10 @@ class OpengaussSchema(pulumi.CustomResource):
 
         The GaussDB OpenGauss schema can be imported using the `instance_id`, `db_name` and `name` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussSchema:OpengaussSchema test <instance_id>/<db_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -340,11 +341,10 @@ class OpengaussSchema(pulumi.CustomResource):
 
         The GaussDB OpenGauss schema can be imported using the `instance_id`, `db_name` and `name` separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussSchema:OpengaussSchema test <instance_id>/<db_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussSchemaArgs args: The arguments to use to populate this resource's properties.

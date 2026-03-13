@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['PromInstanceArgs', 'PromInstance']
 
@@ -22,28 +24,40 @@ class PromInstanceArgs:
                  prom_name: pulumi.Input[_builtins.str],
                  prom_type: pulumi.Input[_builtins.str],
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 prom_limits: Optional[pulumi.Input['PromInstancePromLimitsArgs']] = None,
                  prom_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PromInstance resource.
-        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the AOM prometheus instance.
+
+        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the prometheus instance.  
                The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
                and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the prometheus instance.
                The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
                **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the
-               AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the prometheus
+               instance belongs.
+               This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+               Changing this parameter will create a new resource.
+        :param pulumi.Input['PromInstancePromLimitsArgs'] prom_limits: Specifies the limit configurations of the prometheus instance.
+               The prom_limits structure is documented below.
+               
+               > The limits can only be updated once every `24` hours.
+               
+               <a name="aom_prom_instance_prom_limits"></a>
+               The `prom_limits` block supports:
+        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of the prometheus instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the prometheus instance is located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "prom_name", prom_name)
         pulumi.set(__self__, "prom_type", prom_type)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if prom_limits is not None:
+            pulumi.set(__self__, "prom_limits", prom_limits)
         if prom_version is not None:
             pulumi.set(__self__, "prom_version", prom_version)
         if region is not None:
@@ -53,10 +67,9 @@ class PromInstanceArgs:
     @pulumi.getter(name="promName")
     def prom_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the name of the AOM prometheus instance.
+        Specifies the name of the prometheus instance.  
         The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
         and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "prom_name")
 
@@ -68,7 +81,7 @@ class PromInstanceArgs:
     @pulumi.getter(name="promType")
     def prom_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the type of the AOM prometheus instance.
+        Specifies the type of the prometheus instance.
         The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
         **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
         Changing this parameter will create a new resource.
@@ -83,8 +96,10 @@ class PromInstanceArgs:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID of the
-        AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
+        Specifies the enterprise project ID to which the prometheus
+        instance belongs.
+        This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -93,10 +108,28 @@ class PromInstanceArgs:
         pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="promLimits")
+    def prom_limits(self) -> Optional[pulumi.Input['PromInstancePromLimitsArgs']]:
+        """
+        Specifies the limit configurations of the prometheus instance.
+        The prom_limits structure is documented below.
+
+        > The limits can only be updated once every `24` hours.
+
+        <a name="aom_prom_instance_prom_limits"></a>
+        The `prom_limits` block supports:
+        """
+        return pulumi.get(self, "prom_limits")
+
+    @prom_limits.setter
+    def prom_limits(self, value: Optional[pulumi.Input['PromInstancePromLimitsArgs']]):
+        pulumi.set(self, "prom_limits", value)
+
+    @_builtins.property
     @pulumi.getter(name="promVersion")
     def prom_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the version of AOM prometheus instance.
+        Specifies the version of the prometheus instance.
         """
         return pulumi.get(self, "prom_version")
 
@@ -108,7 +141,7 @@ class PromInstanceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the AOM prometheus instance.
+        Specifies the region where the prometheus instance is located.
         If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "region")
@@ -124,6 +157,7 @@ class _PromInstanceState:
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_http_api_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 prom_limits: Optional[pulumi.Input['PromInstancePromLimitsArgs']] = None,
                  prom_name: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_type: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -132,23 +166,32 @@ class _PromInstanceState:
                  remote_write_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PromInstance resources.
-        :param pulumi.Input[_builtins.str] created_at: The creation time of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the
-               AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_http_api_endpoint: The url for calling the AOM Prometheus instance.
-        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the AOM prometheus instance.
+
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the prometheus instance, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the prometheus
+               instance belongs.
+               This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] prom_http_api_endpoint: The HTTP URL for calling the prometheus instance.
+        :param pulumi.Input['PromInstancePromLimitsArgs'] prom_limits: Specifies the limit configurations of the prometheus instance.
+               The prom_limits structure is documented below.
+               
+               > The limits can only be updated once every `24` hours.
+               
+               <a name="aom_prom_instance_prom_limits"></a>
+               The `prom_limits` block supports:
+        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the prometheus instance.  
                The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
                and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the prometheus instance.
                The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
                **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of the prometheus instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the prometheus instance is located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_read_url: The remote read address of AOM Prometheus instance.
-        :param pulumi.Input[_builtins.str] remote_write_url: The remote write address of AOM Prometheus instance.
+        :param pulumi.Input[_builtins.str] remote_read_url: The remote read address of the prometheus instance.
+        :param pulumi.Input[_builtins.str] remote_write_url: The remote write address of the Prometheus instance.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -156,6 +199,8 @@ class _PromInstanceState:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if prom_http_api_endpoint is not None:
             pulumi.set(__self__, "prom_http_api_endpoint", prom_http_api_endpoint)
+        if prom_limits is not None:
+            pulumi.set(__self__, "prom_limits", prom_limits)
         if prom_name is not None:
             pulumi.set(__self__, "prom_name", prom_name)
         if prom_type is not None:
@@ -173,7 +218,7 @@ class _PromInstanceState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The creation time of AOM prometheus instance.
+        The creation time of the prometheus instance, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -185,8 +230,10 @@ class _PromInstanceState:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID of the
-        AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
+        Specifies the enterprise project ID to which the prometheus
+        instance belongs.
+        This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -198,7 +245,7 @@ class _PromInstanceState:
     @pulumi.getter(name="promHttpApiEndpoint")
     def prom_http_api_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The url for calling the AOM Prometheus instance.
+        The HTTP URL for calling the prometheus instance.
         """
         return pulumi.get(self, "prom_http_api_endpoint")
 
@@ -207,13 +254,30 @@ class _PromInstanceState:
         pulumi.set(self, "prom_http_api_endpoint", value)
 
     @_builtins.property
+    @pulumi.getter(name="promLimits")
+    def prom_limits(self) -> Optional[pulumi.Input['PromInstancePromLimitsArgs']]:
+        """
+        Specifies the limit configurations of the prometheus instance.
+        The prom_limits structure is documented below.
+
+        > The limits can only be updated once every `24` hours.
+
+        <a name="aom_prom_instance_prom_limits"></a>
+        The `prom_limits` block supports:
+        """
+        return pulumi.get(self, "prom_limits")
+
+    @prom_limits.setter
+    def prom_limits(self, value: Optional[pulumi.Input['PromInstancePromLimitsArgs']]):
+        pulumi.set(self, "prom_limits", value)
+
+    @_builtins.property
     @pulumi.getter(name="promName")
     def prom_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the AOM prometheus instance.
+        Specifies the name of the prometheus instance.  
         The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
         and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "prom_name")
 
@@ -225,7 +289,7 @@ class _PromInstanceState:
     @pulumi.getter(name="promType")
     def prom_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of the AOM prometheus instance.
+        Specifies the type of the prometheus instance.
         The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
         **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
         Changing this parameter will create a new resource.
@@ -240,7 +304,7 @@ class _PromInstanceState:
     @pulumi.getter(name="promVersion")
     def prom_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the version of AOM prometheus instance.
+        Specifies the version of the prometheus instance.
         """
         return pulumi.get(self, "prom_version")
 
@@ -252,7 +316,7 @@ class _PromInstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the AOM prometheus instance.
+        Specifies the region where the prometheus instance is located.
         If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "region")
@@ -265,7 +329,7 @@ class _PromInstanceState:
     @pulumi.getter(name="remoteReadUrl")
     def remote_read_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The remote read address of AOM Prometheus instance.
+        The remote read address of the prometheus instance.
         """
         return pulumi.get(self, "remote_read_url")
 
@@ -277,7 +341,7 @@ class _PromInstanceState:
     @pulumi.getter(name="remoteWriteUrl")
     def remote_write_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The remote write address of AOM Prometheus instance.
+        The remote write address of the Prometheus instance.
         """
         return pulumi.get(self, "remote_write_url")
 
@@ -293,6 +357,7 @@ class PromInstance(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 prom_limits: Optional[pulumi.Input[Union['PromInstancePromLimitsArgs', 'PromInstancePromLimitsArgsDict']]] = None,
                  prom_name: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_type: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -312,33 +377,44 @@ class PromInstance(pulumi.CustomResource):
         instance = huaweicloud.aom.PromInstance("instance",
             prom_name="test_demo",
             prom_type="ECS",
-            enterprise_project_id=enterprise_project_id)
+            enterprise_project_id=enterprise_project_id,
+            prom_version="1.5",
+            prom_limits={
+                "compactor_blocks_retention_period": "360h",
+            })
         ```
 
         ## Import
 
-        The AOM prometheus instance can be imported using `id`, e.g.
-
-        bash
+        The prometheus instance can be imported using `id`, e.g.
 
         ```sh
         $ pulumi import huaweicloud:Aom/promInstance:PromInstance test <id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the
-               AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the prometheus
+               instance belongs.
+               This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+               Changing this parameter will create a new resource.
+        :param pulumi.Input[Union['PromInstancePromLimitsArgs', 'PromInstancePromLimitsArgsDict']] prom_limits: Specifies the limit configurations of the prometheus instance.
+               The prom_limits structure is documented below.
+               
+               > The limits can only be updated once every `24` hours.
+               
+               <a name="aom_prom_instance_prom_limits"></a>
+               The `prom_limits` block supports:
+        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the prometheus instance.  
                The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
                and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the prometheus instance.
                The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
                **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of the prometheus instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the prometheus instance is located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         ...
@@ -361,18 +437,21 @@ class PromInstance(pulumi.CustomResource):
         instance = huaweicloud.aom.PromInstance("instance",
             prom_name="test_demo",
             prom_type="ECS",
-            enterprise_project_id=enterprise_project_id)
+            enterprise_project_id=enterprise_project_id,
+            prom_version="1.5",
+            prom_limits={
+                "compactor_blocks_retention_period": "360h",
+            })
         ```
 
         ## Import
 
-        The AOM prometheus instance can be imported using `id`, e.g.
-
-        bash
+        The prometheus instance can be imported using `id`, e.g.
 
         ```sh
         $ pulumi import huaweicloud:Aom/promInstance:PromInstance test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PromInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -390,6 +469,7 @@ class PromInstance(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 prom_limits: Optional[pulumi.Input[Union['PromInstancePromLimitsArgs', 'PromInstancePromLimitsArgsDict']]] = None,
                  prom_name: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_type: Optional[pulumi.Input[_builtins.str]] = None,
                  prom_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -404,6 +484,7 @@ class PromInstance(pulumi.CustomResource):
             __props__ = PromInstanceArgs.__new__(PromInstanceArgs)
 
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
+            __props__.__dict__["prom_limits"] = prom_limits
             if prom_name is None and not opts.urn:
                 raise TypeError("Missing required property 'prom_name'")
             __props__.__dict__["prom_name"] = prom_name
@@ -429,6 +510,7 @@ class PromInstance(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             prom_http_api_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+            prom_limits: Optional[pulumi.Input[Union['PromInstancePromLimitsArgs', 'PromInstancePromLimitsArgsDict']]] = None,
             prom_name: Optional[pulumi.Input[_builtins.str]] = None,
             prom_type: Optional[pulumi.Input[_builtins.str]] = None,
             prom_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -442,23 +524,31 @@ class PromInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] created_at: The creation time of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the
-               AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_http_api_endpoint: The url for calling the AOM Prometheus instance.
-        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the prometheus instance, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the prometheus
+               instance belongs.
+               This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] prom_http_api_endpoint: The HTTP URL for calling the prometheus instance.
+        :param pulumi.Input[Union['PromInstancePromLimitsArgs', 'PromInstancePromLimitsArgsDict']] prom_limits: Specifies the limit configurations of the prometheus instance.
+               The prom_limits structure is documented below.
+               
+               > The limits can only be updated once every `24` hours.
+               
+               <a name="aom_prom_instance_prom_limits"></a>
+               The `prom_limits` block supports:
+        :param pulumi.Input[_builtins.str] prom_name: Specifies the name of the prometheus instance.  
                The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
                and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_type: Specifies the type of the prometheus instance.
                The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
                **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of AOM prometheus instance.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the AOM prometheus instance.
+        :param pulumi.Input[_builtins.str] prom_version: Specifies the version of the prometheus instance.
+        :param pulumi.Input[_builtins.str] region: Specifies the region where the prometheus instance is located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_read_url: The remote read address of AOM Prometheus instance.
-        :param pulumi.Input[_builtins.str] remote_write_url: The remote write address of AOM Prometheus instance.
+        :param pulumi.Input[_builtins.str] remote_read_url: The remote read address of the prometheus instance.
+        :param pulumi.Input[_builtins.str] remote_write_url: The remote write address of the Prometheus instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -467,6 +557,7 @@ class PromInstance(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["prom_http_api_endpoint"] = prom_http_api_endpoint
+        __props__.__dict__["prom_limits"] = prom_limits
         __props__.__dict__["prom_name"] = prom_name
         __props__.__dict__["prom_type"] = prom_type
         __props__.__dict__["prom_version"] = prom_version
@@ -479,7 +570,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The creation time of AOM prometheus instance.
+        The creation time of the prometheus instance, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -487,8 +578,10 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the enterprise project ID of the
-        AOM prometheus instance. Defaults to **0**. Changing this parameter will create a new resource.
+        Specifies the enterprise project ID to which the prometheus
+        instance belongs.
+        This field is only valid for enterprise users, if omitted, default enterprise project will be used.
+        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -496,18 +589,31 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="promHttpApiEndpoint")
     def prom_http_api_endpoint(self) -> pulumi.Output[_builtins.str]:
         """
-        The url for calling the AOM Prometheus instance.
+        The HTTP URL for calling the prometheus instance.
         """
         return pulumi.get(self, "prom_http_api_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="promLimits")
+    def prom_limits(self) -> pulumi.Output['outputs.PromInstancePromLimits']:
+        """
+        Specifies the limit configurations of the prometheus instance.
+        The prom_limits structure is documented below.
+
+        > The limits can only be updated once every `24` hours.
+
+        <a name="aom_prom_instance_prom_limits"></a>
+        The `prom_limits` block supports:
+        """
+        return pulumi.get(self, "prom_limits")
 
     @_builtins.property
     @pulumi.getter(name="promName")
     def prom_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the name of the AOM prometheus instance.
+        Specifies the name of the prometheus instance.  
         The value can contain `1` to `100` characters. Only Chinese and English letters, digits, underscores (_)
         and hyphens (-) are allowed, and it must start with letters, digits or Chinese characters.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "prom_name")
 
@@ -515,7 +621,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="promType")
     def prom_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the type of the AOM prometheus instance.
+        Specifies the type of the prometheus instance.
         The value can be: **ECS**, **VPC**, **CCE**, **REMOTE_WRITE**, **KUBERNETES**,
         **CLOUD_SERVICE** or **ACROSS_ACCOUNT**.
         Changing this parameter will create a new resource.
@@ -526,7 +632,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="promVersion")
     def prom_version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the version of AOM prometheus instance.
+        Specifies the version of the prometheus instance.
         """
         return pulumi.get(self, "prom_version")
 
@@ -534,7 +640,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create the AOM prometheus instance.
+        Specifies the region where the prometheus instance is located.
         If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "region")
@@ -543,7 +649,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="remoteReadUrl")
     def remote_read_url(self) -> pulumi.Output[_builtins.str]:
         """
-        The remote read address of AOM Prometheus instance.
+        The remote read address of the prometheus instance.
         """
         return pulumi.get(self, "remote_read_url")
 
@@ -551,7 +657,7 @@ class PromInstance(pulumi.CustomResource):
     @pulumi.getter(name="remoteWriteUrl")
     def remote_write_url(self) -> pulumi.Output[_builtins.str]:
         """
-        The remote write address of AOM Prometheus instance.
+        The remote write address of the Prometheus instance.
         """
         return pulumi.get(self, "remote_write_url")
 

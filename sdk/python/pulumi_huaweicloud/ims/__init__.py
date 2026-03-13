@@ -12,14 +12,17 @@ from .ecs_whole_image import *
 from .evs_data_image import *
 from .evs_system_image import *
 from .get_image import *
+from .get_image_shared_members import *
 from .get_image_v2 import *
 from .get_images import *
+from .get_images_by_tags import *
 from .get_os_versions import *
 from .get_quotas import *
 from .get_tags import *
 from .image import *
 from .image_copy import *
 from .image_export import *
+from .image_export_v21 import *
 from .image_metadata import *
 from .image_registration import *
 from .image_share import *
@@ -30,4 +33,5 @@ from .obs_iso_image import *
 from .obs_system_image import *
 from .quickimport_data_image import *
 from .quickimport_system_image import *
+from ._inputs import *
 from . import outputs

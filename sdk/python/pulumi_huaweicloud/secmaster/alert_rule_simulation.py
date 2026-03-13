@@ -33,6 +33,7 @@ class AlertRuleSimulationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlertRuleSimulation resource.
+
         :param pulumi.Input[_builtins.str] from_time: Specifies the start time of the alert rule simulation.
         :param pulumi.Input[_builtins.str] pipeline_id: Specifies the pipeline ID of the alert rule.
         :param pulumi.Input[_builtins.str] query_rule: Specifies the query rule of the alert rule.
@@ -212,6 +213,7 @@ class _AlertRuleSimulationState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlertRuleSimulation resources.
+
         :param pulumi.Input[_builtins.bool] event_grouping: Specifies whether to put events in a group.
                The value can be:
                + **true**: one alarm for all query results;
@@ -383,7 +385,7 @@ class _AlertRuleSimulationState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/alertRuleSimulation:AlertRuleSimulation")
+@pulumi.type_token("huaweicloud:Secmaster/alertRuleSimulation:AlertRuleSimulation")
 class AlertRuleSimulation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -429,6 +431,7 @@ class AlertRuleSimulation(pulumi.CustomResource):
                 "accumulated_times": 1,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -489,6 +492,7 @@ class AlertRuleSimulation(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AlertRuleSimulationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -548,7 +552,7 @@ class AlertRuleSimulation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(AlertRuleSimulation, __self__).__init__(
-            'huaweicloud:secmaster/alertRuleSimulation:AlertRuleSimulation',
+            'huaweicloud:Secmaster/alertRuleSimulation:AlertRuleSimulation',
             resource_name,
             __props__,
             opts)

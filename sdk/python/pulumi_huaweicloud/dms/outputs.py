@@ -16,6 +16,9 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'ConsumerGroupTopicBatchDeleteResult',
+    'KafkaInstanceCluster',
+    'KafkaInstanceClusterBroker',
     'KafkaInstanceCrossVpcAccess',
     'KafkaInstanceParameter',
     'KafkaInstancePortProtocol',
@@ -50,13 +53,21 @@ __all__ = [
     'RocketmqTopicQueue',
     'RocketmqUserGroupPerm',
     'RocketmqUserTopicPerm',
+    'SmartConnectorValidateTask',
+    'TopicMessageBatchDeletePartition',
+    'TopicMessageBatchDeleteResult',
+    'GetConsumerGroupMembersMemberResult',
+    'GetConsumerGroupMessageOffsetsMessageOffsetResult',
+    'GetConsumerGroupTopicsTopicResult',
     'GetFlavorsFlavorResult',
     'GetFlavorsFlavorIoResult',
     'GetFlavorsFlavorPropertyResult',
     'GetFlavorsFlavorSupportFeatureResult',
     'GetFlavorsFlavorSupportFeaturePropertyResult',
+    'GetInstanceCoordinatorsCoordinatorResult',
     'GetInstancesInstanceResult',
     'GetInstancesInstanceCrossVpcAccessResult',
+    'GetInstancesInstancePortProtocolResult',
     'GetKafkaBackgroundTasksTaskResult',
     'GetKafkaConsumerGroupsGroupResult',
     'GetKafkaConsumerGroupsGroupGroupMessageOffsetResult',
@@ -78,6 +89,7 @@ __all__ = [
     'GetKafkav2SmartConnectTasksTaskResult',
     'GetKafkav2SmartConnectTasksTaskDestinationTaskResult',
     'GetKafkav2SmartConnectTasksTaskSourceTaskResult',
+    'GetMaintainwindowsMaintainWindowResult',
     'GetRabbitmqBackgroundTasksTaskResult',
     'GetRabbitmqExchangesExchangeResult',
     'GetRabbitmqExtendFlavorsFlavorResult',
@@ -98,6 +110,8 @@ __all__ = [
     'GetRocketmqAvailabilityZonesAvailabilityZoneResult',
     'GetRocketmqBackgroundTasksTaskResult',
     'GetRocketmqConsumerGroupAccessUsersPolicyResult',
+    'GetRocketmqConsumerGroupTopicsBrokerResult',
+    'GetRocketmqConsumerGroupTopicsBrokerQueueResult',
     'GetRocketmqConsumerGroupsGroupResult',
     'GetRocketmqConsumersClientResult',
     'GetRocketmqConsumersClientSubscriptionResult',
@@ -112,6 +126,7 @@ __all__ = [
     'GetRocketmqFlavorsFlavorPropertyResult',
     'GetRocketmqFlavorsFlavorSupportFeatureResult',
     'GetRocketmqFlavorsFlavorSupportFeaturePropertyResult',
+    'GetRocketmqInstanceDiagnosesReportResult',
     'GetRocketmqInstanceNodesNodeResult',
     'GetRocketmqInstancesInstanceResult',
     'GetRocketmqInstancesInstanceCrossVpcAccessResult',
@@ -126,7 +141,164 @@ __all__ = [
     'GetRocketmqUsersUserResult',
     'GetRocketmqUsersUserGroupPermResult',
     'GetRocketmqUsersUserTopicPermResult',
+    'GetTagsTagResult',
+    'GetTopicBrokerDiskUsagesDiskUsageResult',
+    'GetTopicBrokerDiskUsagesDiskUsageTopicResult',
+    'GetTopicQuotasQuotaResult',
 ]
+
+@pulumi.output_type
+class ConsumerGroupTopicBatchDeleteResult(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "errorCode":
+            suggest = "error_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ConsumerGroupTopicBatchDeleteResult. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ConsumerGroupTopicBatchDeleteResult.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ConsumerGroupTopicBatchDeleteResult.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 error_code: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 success: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str error_code: The error code if the topic deletion failed.
+        :param _builtins.str name: The name of the topic.
+        :param _builtins.bool success: Whether the topic was deleted successfully.
+        """
+        if error_code is not None:
+            pulumi.set(__self__, "error_code", error_code)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if success is not None:
+            pulumi.set(__self__, "success", success)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> Optional[_builtins.str]:
+        """
+        The error code if the topic deletion failed.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        The name of the topic.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def success(self) -> Optional[_builtins.bool]:
+        """
+        Whether the topic was deleted successfully.
+        """
+        return pulumi.get(self, "success")
+
+
+@pulumi.output_type
+class KafkaInstanceCluster(dict):
+    def __init__(__self__, *,
+                 brokers: Optional[Sequence['outputs.KafkaInstanceClusterBroker']] = None):
+        """
+        :param Sequence['KafkaInstanceClusterBrokerArgs'] brokers: The list of broker nodes in the cluster.  
+               The brokers structure is documented below.
+        """
+        if brokers is not None:
+            pulumi.set(__self__, "brokers", brokers)
+
+    @_builtins.property
+    @pulumi.getter
+    def brokers(self) -> Optional[Sequence['outputs.KafkaInstanceClusterBroker']]:
+        """
+        The list of broker nodes in the cluster.  
+        The brokers structure is documented below.
+        """
+        return pulumi.get(self, "brokers")
+
+
+@pulumi.output_type
+class KafkaInstanceClusterBroker(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "brokerId":
+            suggest = "broker_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KafkaInstanceClusterBroker. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KafkaInstanceClusterBroker.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KafkaInstanceClusterBroker.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 broker_id: Optional[_builtins.str] = None,
+                 health: Optional[_builtins.bool] = None,
+                 host: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str broker_id: The ID of the broker.
+        :param _builtins.bool health: Whether the broker is healthy.
+        :param _builtins.str host: The host of the broker.
+        :param _builtins.int port: The port of the broker.
+        """
+        if broker_id is not None:
+            pulumi.set(__self__, "broker_id", broker_id)
+        if health is not None:
+            pulumi.set(__self__, "health", health)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerId")
+    def broker_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the broker.
+        """
+        return pulumi.get(self, "broker_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def health(self) -> Optional[_builtins.bool]:
+        """
+        Whether the broker is healthy.
+        """
+        return pulumi.get(self, "health")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        The host of the broker.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        The port of the broker.
+        """
+        return pulumi.get(self, "port")
+
 
 @pulumi.output_type
 class KafkaInstanceCrossVpcAccess(dict):
@@ -165,7 +337,7 @@ class KafkaInstanceCrossVpcAccess(dict):
                <a name="dms_parameters"></a>
                The `parameters` block supports:
         :param _builtins.str listener_ip: The listener IP address.
-        :param _builtins.int port: The port number.
+        :param _builtins.int port: The port of the broker.
         :param _builtins.str port_id: The port ID associated with the address.
         """
         if advertised_ip is not None:
@@ -208,7 +380,7 @@ class KafkaInstanceCrossVpcAccess(dict):
     @pulumi.getter
     def port(self) -> Optional[_builtins.int]:
         """
-        The port number.
+        The port of the broker.
         """
         return pulumi.get(self, "port")
 
@@ -227,8 +399,12 @@ class KafkaInstanceParameter(dict):
                  name: _builtins.str,
                  value: _builtins.str):
         """
-        :param _builtins.str name: Specifies the parameter name. Static parameter needs to restart the instance to take effect.
+        :param _builtins.str name: Specifies the parameter name. Static parameter needs to restart the instance
+               to take effect.
         :param _builtins.str value: Specifies the parameter value.
+               
+               <a name="kafka_instance_port_protocol"></a>
+               The `port_protocol` block supports:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
@@ -237,7 +413,8 @@ class KafkaInstanceParameter(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the parameter name. Static parameter needs to restart the instance to take effect.
+        Specifies the parameter name. Static parameter needs to restart the instance
+        to take effect.
         """
         return pulumi.get(self, "name")
 
@@ -246,6 +423,9 @@ class KafkaInstanceParameter(dict):
     def value(self) -> _builtins.str:
         """
         Specifies the parameter value.
+
+        <a name="kafka_instance_port_protocol"></a>
+        The `port_protocol` block supports:
         """
         return pulumi.get(self, "value")
 
@@ -325,22 +505,26 @@ class KafkaInstancePortProtocol(dict):
         """
         :param _builtins.str private_plain_address: The private plain address.
         :param _builtins.str private_plain_domain_name: The private plain domain name.
-        :param _builtins.bool private_plain_enable: Whether the private plain enabled.
+        :param _builtins.bool private_plain_enable: Specifies whether the private plaintext access is enabled.
+               
+               > The private plaintext access and private SSL access cannot be disabled at the same time.
         :param _builtins.str private_sasl_plaintext_address: The private sasl plaintext address.
         :param _builtins.str private_sasl_plaintext_domain_name: The private sasl plaintext domain name.
-        :param _builtins.bool private_sasl_plaintext_enable: Whether the private sasl plaintext enabled.
+        :param _builtins.bool private_sasl_plaintext_enable: Specifies whether the private SASL plaintext access is enabled.
         :param _builtins.str private_sasl_ssl_address: The private sasl ssl address.
         :param _builtins.str private_sasl_ssl_domain_name: The private sasl ssl domain name.
-        :param _builtins.bool private_sasl_ssl_enable: Whether the private sasl ssl enabled.
+        :param _builtins.bool private_sasl_ssl_enable: Specifies whether the private SASL SSL access is enabled.  
+               This parameter and `private_sasl_plaintext_enable` cannot be set to **true** at the same time.
         :param _builtins.str public_plain_address: The public plain address.
         :param _builtins.str public_plain_domain_name: The public plain domain name.
-        :param _builtins.bool public_plain_enable: Whether the public plain enabled.
+        :param _builtins.bool public_plain_enable: Specifies whether the public plaintext access is enabled.
         :param _builtins.str public_sasl_plaintext_address: The public sasl plaintext address.
         :param _builtins.str public_sasl_plaintext_domain_name: The public sasl plaintext domain name.
-        :param _builtins.bool public_sasl_plaintext_enable: Whether the public sasl plaintext enabled.
+        :param _builtins.bool public_sasl_plaintext_enable: Specifies whether the public SASL plaintext access is enabled.
         :param _builtins.str public_sasl_ssl_address: The public sasl ssl address.
         :param _builtins.str public_sasl_ssl_domain_name: The public sasl ssl domain name.
-        :param _builtins.bool public_sasl_ssl_enable: Whether the public sasl ssl enabled.
+        :param _builtins.bool public_sasl_ssl_enable: Specifies whether the public SASL SSL access is enabled.
+               This parameter and `public_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         if private_plain_address is not None:
             pulumi.set(__self__, "private_plain_address", private_plain_address)
@@ -399,7 +583,9 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="privatePlainEnable")
     def private_plain_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the private plain enabled.
+        Specifies whether the private plaintext access is enabled.
+
+        > The private plaintext access and private SSL access cannot be disabled at the same time.
         """
         return pulumi.get(self, "private_plain_enable")
 
@@ -423,7 +609,7 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="privateSaslPlaintextEnable")
     def private_sasl_plaintext_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the private sasl plaintext enabled.
+        Specifies whether the private SASL plaintext access is enabled.
         """
         return pulumi.get(self, "private_sasl_plaintext_enable")
 
@@ -447,7 +633,8 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="privateSaslSslEnable")
     def private_sasl_ssl_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the private sasl ssl enabled.
+        Specifies whether the private SASL SSL access is enabled.  
+        This parameter and `private_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         return pulumi.get(self, "private_sasl_ssl_enable")
 
@@ -471,7 +658,7 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="publicPlainEnable")
     def public_plain_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the public plain enabled.
+        Specifies whether the public plaintext access is enabled.
         """
         return pulumi.get(self, "public_plain_enable")
 
@@ -495,7 +682,7 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="publicSaslPlaintextEnable")
     def public_sasl_plaintext_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the public sasl plaintext enabled.
+        Specifies whether the public SASL plaintext access is enabled.
         """
         return pulumi.get(self, "public_sasl_plaintext_enable")
 
@@ -519,7 +706,8 @@ class KafkaInstancePortProtocol(dict):
     @pulumi.getter(name="publicSaslSslEnable")
     def public_sasl_ssl_enable(self) -> Optional[_builtins.bool]:
         """
-        Whether the public sasl ssl enabled.
+        Specifies whether the public SASL SSL access is enabled.
+        This parameter and `public_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         return pulumi.get(self, "public_sasl_ssl_enable")
 
@@ -1478,8 +1666,8 @@ class Kafkav2SmartConnectTaskSourceTask(dict):
                Changing this parameter will create a new resource.
         :param _builtins.str peer_instance_id: Specifies the peer Kafka instance ID.
                Changing this parameter will create a new resource.
-        :param _builtins.bool provenance_header_enabled: Specifies whether the message header contains the message source.
-               Changing this parameter will create a new resource.
+        :param _builtins.bool provenance_header_enabled: Specifies whether the message header contains the message
+               source. Changing this parameter will create a new resource.
         :param _builtins.bool rename_topic_enabled: Specifies whether to rename the topic. If true, will add the
                alias of the source Kafka instance before the target topic name to form a new name of the target topic.
                Changing this parameter will create a new resource.
@@ -1495,8 +1683,8 @@ class Kafkav2SmartConnectTaskSourceTask(dict):
         :param _builtins.bool sync_consumer_offsets_enabled: Specifies whether to sync the consumption progress.
                Changing this parameter will create a new resource.
         :param _builtins.int task_num: Specifies the number of data replication tasks.
-               If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure here.
-               Changing this parameter will create a new resource.
+               If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure
+               here. Changing this parameter will create a new resource.
         :param Sequence[_builtins.str] topics_mappings: Specifies the topic mapping string list, which is used to customize
                the target topic name, e.g., topic-sc-1:topic-sc-2. Changing this parameter will create a new resource.
                
@@ -1630,8 +1818,8 @@ class Kafkav2SmartConnectTaskSourceTask(dict):
     @pulumi.getter(name="provenanceHeaderEnabled")
     def provenance_header_enabled(self) -> Optional[_builtins.bool]:
         """
-        Specifies whether the message header contains the message source.
-        Changing this parameter will create a new resource.
+        Specifies whether the message header contains the message
+        source. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "provenance_header_enabled")
 
@@ -1689,8 +1877,8 @@ class Kafkav2SmartConnectTaskSourceTask(dict):
     def task_num(self) -> Optional[_builtins.int]:
         """
         Specifies the number of data replication tasks.
-        If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure here.
-        Changing this parameter will create a new resource.
+        If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure
+        here. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "task_num")
 
@@ -3075,6 +3263,575 @@ class RocketmqUserTopicPerm(dict):
 
 
 @pulumi.output_type
+class SmartConnectorValidateTask(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bootstrapServers":
+            suggest = "bootstrap_servers"
+        elif key == "clusterName":
+            suggest = "cluster_name"
+        elif key == "compressionType":
+            suggest = "compression_type"
+        elif key == "consumerStrategy":
+            suggest = "consumer_strategy"
+        elif key == "currentClusterName":
+            suggest = "current_cluster_name"
+        elif key == "instanceId":
+            suggest = "instance_id"
+        elif key == "provenanceHeaderEnabled":
+            suggest = "provenance_header_enabled"
+        elif key == "renameTopicEnabled":
+            suggest = "rename_topic_enabled"
+        elif key == "replicationFactor":
+            suggest = "replication_factor"
+        elif key == "saslMechanism":
+            suggest = "sasl_mechanism"
+        elif key == "securityProtocol":
+            suggest = "security_protocol"
+        elif key == "syncConsumerOffsetsEnabled":
+            suggest = "sync_consumer_offsets_enabled"
+        elif key == "taskNum":
+            suggest = "task_num"
+        elif key == "topicsMapping":
+            suggest = "topics_mapping"
+        elif key == "userName":
+            suggest = "user_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SmartConnectorValidateTask. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SmartConnectorValidateTask.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SmartConnectorValidateTask.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bootstrap_servers: Optional[_builtins.str] = None,
+                 cluster_name: Optional[_builtins.str] = None,
+                 compression_type: Optional[_builtins.str] = None,
+                 consumer_strategy: Optional[_builtins.str] = None,
+                 current_cluster_name: Optional[_builtins.str] = None,
+                 direction: Optional[_builtins.str] = None,
+                 instance_id: Optional[_builtins.str] = None,
+                 password: Optional[_builtins.str] = None,
+                 provenance_header_enabled: Optional[_builtins.bool] = None,
+                 rename_topic_enabled: Optional[_builtins.bool] = None,
+                 replication_factor: Optional[_builtins.int] = None,
+                 sasl_mechanism: Optional[_builtins.str] = None,
+                 security_protocol: Optional[_builtins.str] = None,
+                 sync_consumer_offsets_enabled: Optional[_builtins.bool] = None,
+                 task_num: Optional[_builtins.int] = None,
+                 topics_mapping: Optional[_builtins.str] = None,
+                 user_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str bootstrap_servers: Specifies the address of the peer instance.  
+               Multiple addresses are separated by commas (,).
+        :param _builtins.str cluster_name: Specifies the alias of the peer instance.
+        :param _builtins.str compression_type: Specifies the compression algorithm of the Smart Connect task.  
+               The valid values are as follows:
+               + **none**
+               + **gzip**
+               + **snappy**
+               + **lz4**
+               + **zstd**
+        :param _builtins.str consumer_strategy: Specifies the startup offset of the Smart Connect task.  
+               The valid values are as follows:
+               + **latest**
+               + **earliest**
+        :param _builtins.str current_cluster_name: Specifies the alias of the current instance.
+        :param _builtins.str direction: Specifies the synchronization direction of the Smart Connect task.  
+               The valid values are as follows:
+               + **push**
+               + **pull**
+               + **two-way**
+        :param _builtins.str instance_id: Specifies the ID of the peer instance.
+        :param _builtins.str password: Specifies the password of the peer instance.
+        :param _builtins.bool provenance_header_enabled: Specifies whether to add source header.  
+               Defaults to **false**.
+        :param _builtins.bool rename_topic_enabled: Specifies whether to rename topic.  
+               Defaults to **false**. This parameter cannot together with `topics_mapping`.
+        :param _builtins.int replication_factor: Specifies the number of replicas of the Smart Connect task.
+        :param _builtins.str sasl_mechanism: Specifies the authentication mechanism of the peer instance.  
+               The valid values are as follows:
+               + **SCRAM-SHA-512**
+               + **PLAIN**
+        :param _builtins.str security_protocol: Specifies the authentication method of the peer instance.  
+               The valid values are as follows:
+               + **SASL_SSL**
+               + **PLAINTEXT**
+               + **SASL_PLAINTEXT**
+        :param _builtins.bool sync_consumer_offsets_enabled: Specifies whether to synchronize consumption
+               progress. Defaults to **false**.
+        :param _builtins.int task_num: Specifies the number of tasks of the data replication.
+        :param _builtins.str topics_mapping: Specifies the topics mapping of the Smart Connect task.  
+               The format is `source_topic_name:target_topic_name`, multiple topics are separated by commas (,).
+        :param _builtins.str user_name: Specifies the username of the peer instance.
+        """
+        if bootstrap_servers is not None:
+            pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if compression_type is not None:
+            pulumi.set(__self__, "compression_type", compression_type)
+        if consumer_strategy is not None:
+            pulumi.set(__self__, "consumer_strategy", consumer_strategy)
+        if current_cluster_name is not None:
+            pulumi.set(__self__, "current_cluster_name", current_cluster_name)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if provenance_header_enabled is not None:
+            pulumi.set(__self__, "provenance_header_enabled", provenance_header_enabled)
+        if rename_topic_enabled is not None:
+            pulumi.set(__self__, "rename_topic_enabled", rename_topic_enabled)
+        if replication_factor is not None:
+            pulumi.set(__self__, "replication_factor", replication_factor)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+        if sync_consumer_offsets_enabled is not None:
+            pulumi.set(__self__, "sync_consumer_offsets_enabled", sync_consumer_offsets_enabled)
+        if task_num is not None:
+            pulumi.set(__self__, "task_num", task_num)
+        if topics_mapping is not None:
+            pulumi.set(__self__, "topics_mapping", topics_mapping)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> Optional[_builtins.str]:
+        """
+        Specifies the address of the peer instance.  
+        Multiple addresses are separated by commas (,).
+        """
+        return pulumi.get(self, "bootstrap_servers")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the alias of the peer instance.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="compressionType")
+    def compression_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the compression algorithm of the Smart Connect task.  
+        The valid values are as follows:
+        + **none**
+        + **gzip**
+        + **snappy**
+        + **lz4**
+        + **zstd**
+        """
+        return pulumi.get(self, "compression_type")
+
+    @_builtins.property
+    @pulumi.getter(name="consumerStrategy")
+    def consumer_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the startup offset of the Smart Connect task.  
+        The valid values are as follows:
+        + **latest**
+        + **earliest**
+        """
+        return pulumi.get(self, "consumer_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="currentClusterName")
+    def current_cluster_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the alias of the current instance.
+        """
+        return pulumi.get(self, "current_cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def direction(self) -> Optional[_builtins.str]:
+        """
+        Specifies the synchronization direction of the Smart Connect task.  
+        The valid values are as follows:
+        + **push**
+        + **pull**
+        + **two-way**
+        """
+        return pulumi.get(self, "direction")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the peer instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        Specifies the password of the peer instance.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="provenanceHeaderEnabled")
+    def provenance_header_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to add source header.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "provenance_header_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="renameTopicEnabled")
+    def rename_topic_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to rename topic.  
+        Defaults to **false**. This parameter cannot together with `topics_mapping`.
+        """
+        return pulumi.get(self, "rename_topic_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> Optional[_builtins.int]:
+        """
+        Specifies the number of replicas of the Smart Connect task.
+        """
+        return pulumi.get(self, "replication_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[_builtins.str]:
+        """
+        Specifies the authentication mechanism of the peer instance.  
+        The valid values are as follows:
+        + **SCRAM-SHA-512**
+        + **PLAIN**
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @_builtins.property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the authentication method of the peer instance.  
+        The valid values are as follows:
+        + **SASL_SSL**
+        + **PLAINTEXT**
+        + **SASL_PLAINTEXT**
+        """
+        return pulumi.get(self, "security_protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="syncConsumerOffsetsEnabled")
+    def sync_consumer_offsets_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to synchronize consumption
+        progress. Defaults to **false**.
+        """
+        return pulumi.get(self, "sync_consumer_offsets_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="taskNum")
+    def task_num(self) -> Optional[_builtins.int]:
+        """
+        Specifies the number of tasks of the data replication.
+        """
+        return pulumi.get(self, "task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="topicsMapping")
+    def topics_mapping(self) -> Optional[_builtins.str]:
+        """
+        Specifies the topics mapping of the Smart Connect task.  
+        The format is `source_topic_name:target_topic_name`, multiple topics are separated by commas (,).
+        """
+        return pulumi.get(self, "topics_mapping")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the username of the peer instance.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class TopicMessageBatchDeletePartition(dict):
+    def __init__(__self__, *,
+                 offset: _builtins.int,
+                 partition: _builtins.int):
+        """
+        :param _builtins.int offset: Specifies the offset of the message to be deleted.
+               
+               > The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset
+               is `2` and the entered offset is `5`, the messages whose offset ranges from `2` to `4` will be deleted.
+        :param _builtins.int partition: Specifies the number of the partition.
+        """
+        pulumi.set(__self__, "offset", offset)
+        pulumi.set(__self__, "partition", partition)
+
+    @_builtins.property
+    @pulumi.getter
+    def offset(self) -> _builtins.int:
+        """
+        Specifies the offset of the message to be deleted.
+
+        > The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset
+        is `2` and the entered offset is `5`, the messages whose offset ranges from `2` to `4` will be deleted.
+        """
+        return pulumi.get(self, "offset")
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> _builtins.int:
+        """
+        Specifies the number of the partition.
+        """
+        return pulumi.get(self, "partition")
+
+
+@pulumi.output_type
+class TopicMessageBatchDeleteResult(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "errorCode":
+            suggest = "error_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TopicMessageBatchDeleteResult. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TopicMessageBatchDeleteResult.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TopicMessageBatchDeleteResult.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 error_code: Optional[_builtins.str] = None,
+                 partition: Optional[_builtins.int] = None,
+                 result: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str error_code: The error code if the operation failed.
+        :param _builtins.int partition: Specifies the number of the partition.
+        :param _builtins.str result: The operation result.
+        """
+        if error_code is not None:
+            pulumi.set(__self__, "error_code", error_code)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
+        if result is not None:
+            pulumi.set(__self__, "result", result)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> Optional[_builtins.str]:
+        """
+        The error code if the operation failed.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> Optional[_builtins.int]:
+        """
+        Specifies the number of the partition.
+        """
+        return pulumi.get(self, "partition")
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> Optional[_builtins.str]:
+        """
+        The operation result.
+        """
+        return pulumi.get(self, "result")
+
+
+@pulumi.output_type
+class GetConsumerGroupMembersMemberResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 host: _builtins.str,
+                 id: _builtins.str):
+        """
+        :param _builtins.str client_id: The ID of the client.
+        :param _builtins.str host: Specifies the address of the consumer.  
+               Fuzzy search is supported.
+        :param _builtins.str id: The ID of the consumer.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The ID of the client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        Specifies the address of the consumer.  
+        Fuzzy search is supported.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the consumer.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetConsumerGroupMessageOffsetsMessageOffsetResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 consumer_id: _builtins.str,
+                 host: _builtins.str,
+                 message_current_offset: _builtins.int,
+                 message_log_end_offset: _builtins.int,
+                 message_log_start_offset: _builtins.int,
+                 partition: _builtins.int):
+        """
+        :param _builtins.str client_id: The ID of the client.
+        :param _builtins.str consumer_id: The consumer ID of the consumed message.
+        :param _builtins.str host: The consumer address of the consumed message.
+        :param _builtins.int message_current_offset: The current offset of the message.
+        :param _builtins.int message_log_end_offset: The end offset of the message.
+        :param _builtins.int message_log_start_offset: The start offset of the message.
+        :param _builtins.int partition: The name of the partition.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "consumer_id", consumer_id)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "message_current_offset", message_current_offset)
+        pulumi.set(__self__, "message_log_end_offset", message_log_end_offset)
+        pulumi.set(__self__, "message_log_start_offset", message_log_start_offset)
+        pulumi.set(__self__, "partition", partition)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The ID of the client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="consumerId")
+    def consumer_id(self) -> _builtins.str:
+        """
+        The consumer ID of the consumed message.
+        """
+        return pulumi.get(self, "consumer_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The consumer address of the consumed message.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter(name="messageCurrentOffset")
+    def message_current_offset(self) -> _builtins.int:
+        """
+        The current offset of the message.
+        """
+        return pulumi.get(self, "message_current_offset")
+
+    @_builtins.property
+    @pulumi.getter(name="messageLogEndOffset")
+    def message_log_end_offset(self) -> _builtins.int:
+        """
+        The end offset of the message.
+        """
+        return pulumi.get(self, "message_log_end_offset")
+
+    @_builtins.property
+    @pulumi.getter(name="messageLogStartOffset")
+    def message_log_start_offset(self) -> _builtins.int:
+        """
+        The start offset of the message.
+        """
+        return pulumi.get(self, "message_log_start_offset")
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> _builtins.int:
+        """
+        The name of the partition.
+        """
+        return pulumi.get(self, "partition")
+
+
+@pulumi.output_type
+class GetConsumerGroupTopicsTopicResult(dict):
+    def __init__(__self__, *,
+                 lag: _builtins.int,
+                 partitions: _builtins.int,
+                 topic: _builtins.str):
+        """
+        :param _builtins.int lag: The number of message accumulations.
+        :param _builtins.int partitions: The number of partitions.
+        :param _builtins.str topic: Specifies the name of the topic to be queried.  
+               Fuzzy search is supported.
+        """
+        pulumi.set(__self__, "lag", lag)
+        pulumi.set(__self__, "partitions", partitions)
+        pulumi.set(__self__, "topic", topic)
+
+    @_builtins.property
+    @pulumi.getter
+    def lag(self) -> _builtins.int:
+        """
+        The number of message accumulations.
+        """
+        return pulumi.get(self, "lag")
+
+    @_builtins.property
+    @pulumi.getter
+    def partitions(self) -> _builtins.int:
+        """
+        The number of partitions.
+        """
+        return pulumi.get(self, "partitions")
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> _builtins.str:
+        """
+        Specifies the name of the topic to be queried.  
+        Fuzzy search is supported.
+        """
+        return pulumi.get(self, "topic")
+
+
+@pulumi.output_type
 class GetFlavorsFlavorResult(dict):
     def __init__(__self__, *,
                  arch_types: Sequence[_builtins.str],
@@ -3419,125 +4176,273 @@ class GetFlavorsFlavorSupportFeaturePropertyResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceCoordinatorsCoordinatorResult(dict):
+    def __init__(__self__, *,
+                 group_id: _builtins.str,
+                 host: _builtins.str,
+                 id: _builtins.int,
+                 port: _builtins.int):
+        """
+        :param _builtins.str group_id: The ID of the consumer group.
+        :param _builtins.str host: The address of the broker of the corresponding to the coordinator.
+        :param _builtins.int id: The ID of the broker of the corresponding to the coordinator.
+        :param _builtins.int port: The port number of the corresponding to the coordinator.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The ID of the consumer group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The address of the broker of the corresponding to the coordinator.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID of the broker of the corresponding to the coordinator.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The port number of the corresponding to the coordinator.
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
 class GetInstancesInstanceResult(dict):
     def __init__(__self__, *,
                  access_user: _builtins.str,
                  availability_zones: Sequence[_builtins.str],
+                 broker_num: _builtins.int,
+                 ces_version: _builtins.str,
+                 charging_mode: _builtins.str,
                  connect_address: _builtins.str,
+                 connector_id: _builtins.str,
+                 connector_node_num: _builtins.int,
+                 created_at: _builtins.str,
                  cross_vpc_accesses: Sequence['outputs.GetInstancesInstanceCrossVpcAccessResult'],
                  description: _builtins.str,
+                 disk_encrypted_enable: _builtins.bool,
+                 disk_encrypted_key: _builtins.str,
                  dumping: _builtins.bool,
                  enable_auto_topic: _builtins.bool,
+                 enable_log_collection: _builtins.bool,
                  enable_public_ip: _builtins.bool,
                  enabled_mechanisms: Sequence[_builtins.str],
                  engine_version: _builtins.str,
                  enterprise_project_id: _builtins.str,
+                 extend_times: _builtins.int,
                  id: _builtins.str,
+                 ipv6_connect_addresses: Sequence[_builtins.str],
+                 ipv6_enable: _builtins.bool,
+                 is_logical_volume: _builtins.bool,
                  maintain_begin: _builtins.str,
                  maintain_end: _builtins.str,
                  management_connect_address: _builtins.str,
                  manager_user: _builtins.str,
                  manegement_connect_address: _builtins.str,
+                 message_query_inst_enable: _builtins.bool,
                  name: _builtins.str,
                  network_id: _builtins.str,
+                 new_auth_cert: _builtins.bool,
+                 new_spec_billing_enable: _builtins.bool,
+                 node_num: _builtins.int,
+                 order_id: _builtins.str,
                  partition_num: _builtins.int,
+                 pod_connect_address: _builtins.str,
                  port: _builtins.int,
+                 port_protocols: Sequence['outputs.GetInstancesInstancePortProtocolResult'],
                  product_id: _builtins.str,
+                 public_bandwidth: _builtins.int,
+                 public_boundwidth: _builtins.int,
                  public_conn_addresses: _builtins.str,
                  public_ip_ids: Sequence[_builtins.str],
                  resource_spec_code: _builtins.str,
                  retention_policy: _builtins.str,
                  security_group_id: _builtins.str,
+                 security_group_name: _builtins.str,
                  security_protocol: _builtins.str,
+                 specification: _builtins.str,
                  ssl_enable: _builtins.bool,
+                 ssl_two_way_enable: _builtins.bool,
                  status: _builtins.str,
+                 storage_resource_id: _builtins.str,
                  storage_space: _builtins.int,
                  storage_spec_code: _builtins.str,
+                 storage_type: _builtins.str,
+                 support_features: _builtins.str,
                  tags: Mapping[str, _builtins.str],
                  type: _builtins.str,
                  used_storage_space: _builtins.int,
                  user_id: _builtins.str,
                  user_name: _builtins.str,
-                 vpc_id: _builtins.str):
+                 vpc_client_plain: _builtins.bool,
+                 vpc_id: _builtins.str,
+                 vpc_name: _builtins.str):
         """
         :param _builtins.str access_user: The access username.
         :param Sequence[_builtins.str] availability_zones: The list of AZ names.
+        :param _builtins.int broker_num: The number of brokers in the instance.
+        :param _builtins.str ces_version: The CES version corresponding to the instance.
+        :param _builtins.str charging_mode: The charging mode of the instance.
         :param _builtins.str connect_address: The IP address for instance connection.
-        :param Sequence['GetInstancesInstanceCrossVpcAccessArgs'] cross_vpc_accesses: Indicates the Access information of cross-VPC. The structure is documented below.
+        :param _builtins.str connector_id: The ID of the dump task.
+        :param _builtins.int connector_node_num: The number of dump nodes.
+        :param _builtins.str created_at: The creation time of the instance, in RFC3339 format.
+        :param Sequence['GetInstancesInstanceCrossVpcAccessArgs'] cross_vpc_accesses: Indicates the Access information of cross-VPC.  
+               The cross_vpc_accesses structure is documented below.
         :param _builtins.str description: The instance description.
+        :param _builtins.bool disk_encrypted_enable: Whether the disk encryption is enabled.
+        :param _builtins.str disk_encrypted_key: The key ID of the disk encryption.
         :param _builtins.bool dumping: Whether to dumping is enabled.
         :param _builtins.bool enable_auto_topic: Whether to enable automatic topic creation.
+        :param _builtins.bool enable_log_collection: Whether log collection is enabled.
         :param _builtins.bool enable_public_ip: Whether public access to the instance is enabled.
         :param Sequence[_builtins.str] enabled_mechanisms: The authentication mechanisms to use after SASL is enabled.
         :param _builtins.str engine_version: The kafka engine version.
         :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which all instances of the list
                belong.
+               This field is only valid for enterprise users. For enterprise users, if omitted, all instances under the enterprise
+               project will be queried.
+        :param _builtins.int extend_times: The extend times.
         :param _builtins.str id: The instance ID.
+        :param Sequence[_builtins.str] ipv6_connect_addresses: The IPv6 connect addresses of the instance.
+        :param _builtins.bool ipv6_enable: Whether the IPv6 is enabled.
+        :param _builtins.bool is_logical_volume: Whether the expansion is new instance.
+               + **true**: The new instance, allowing disk dynamic expansion without restart.
+               + **false**: The old instance.
         :param _builtins.str maintain_begin: The time at which a maintenance time window starts, the format is `HH:mm`.
         :param _builtins.str maintain_end: The time at which a maintenance time window ends, the format is `HH:mm`.
         :param _builtins.str management_connect_address: The connection address of the Kafka manager of an instance.
         :param _builtins.str manager_user: The username for logging in to the Kafka Manager.
+        :param _builtins.str manegement_connect_address: Indicates the management connection address.
+        :param _builtins.bool message_query_inst_enable: Whether message query is enabled.
         :param _builtins.str name: Specifies the kafka instance name for data-source queries.
         :param _builtins.str network_id: The subnet ID to which the instance belongs.
+        :param _builtins.bool new_auth_cert: Whether the new auth cert is enabled.
+        :param _builtins.bool new_spec_billing_enable: Whether the new billing specification is enabled.
+        :param _builtins.int node_num: The number of nodes in the instance.
+        :param _builtins.str order_id: The order ID of the instance.
         :param _builtins.int partition_num: The maximum number of topics in the DMS kafka instance.
+        :param _builtins.str pod_connect_address: The connection address on the tenant side.
         :param _builtins.int port: The port number.
+        :param Sequence['GetInstancesInstancePortProtocolArgs'] port_protocols: The port protocol of the instance.  
+               The port_protocol structure is documented below.
         :param _builtins.str product_id: The product ID used by the instance.
+        :param _builtins.int public_bandwidth: The public bandwidth of the instance.
+        :param _builtins.int public_boundwidth: The public boundwidth of the instance.
         :param _builtins.str public_conn_addresses: The instance public access address.
                The format of each connection address is `{IP address}:{port}`.
         :param Sequence[_builtins.str] public_ip_ids: The IDs of the elastic IP address (EIP).
         :param _builtins.str resource_spec_code: The resource specifications identifier.
         :param _builtins.str retention_policy: The action to be taken when the memory usage reaches the disk capacity threshold.
         :param _builtins.str security_group_id: The security group ID associated with the instance.
+        :param _builtins.str security_group_name: The security group name associated with the instance.
         :param _builtins.str security_protocol: The protocol to use after SASL is enabled.
+        :param _builtins.str specification: The specification of the instance.
         :param _builtins.bool ssl_enable: Whether the Kafka SASL_SSL is enabled.
+        :param _builtins.bool ssl_two_way_enable: Whether the SSL two-way authentication is enabled.
         :param _builtins.str status: Specifies the kafka instance status for data-source queries.
+        :param _builtins.str storage_resource_id: The storage resource ID of the instance.
         :param _builtins.int storage_space: The message storage capacity, in GB unit.
         :param _builtins.str storage_spec_code: The storage I/O specification.
+        :param _builtins.str storage_type: TThe storage type of the instance.
+        :param _builtins.str support_features: The support features of the instance.
         :param Mapping[str, _builtins.str] tags: The key/value pairs to associate with the instance.
         :param _builtins.str type: The instance type.
         :param _builtins.int used_storage_space: The used message storage space, in GB unit.
         :param _builtins.str user_id: The user ID who created the instance.
         :param _builtins.str user_name: The username who created the instance.
+        :param _builtins.bool vpc_client_plain: Whether the intra-VPC plaintext access is enabled.
         :param _builtins.str vpc_id: The VPC ID to which the instance belongs.
+        :param _builtins.str vpc_name: The VPC name to which the instance belongs.
         """
         pulumi.set(__self__, "access_user", access_user)
         pulumi.set(__self__, "availability_zones", availability_zones)
+        pulumi.set(__self__, "broker_num", broker_num)
+        pulumi.set(__self__, "ces_version", ces_version)
+        pulumi.set(__self__, "charging_mode", charging_mode)
         pulumi.set(__self__, "connect_address", connect_address)
+        pulumi.set(__self__, "connector_id", connector_id)
+        pulumi.set(__self__, "connector_node_num", connector_node_num)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "cross_vpc_accesses", cross_vpc_accesses)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disk_encrypted_enable", disk_encrypted_enable)
+        pulumi.set(__self__, "disk_encrypted_key", disk_encrypted_key)
         pulumi.set(__self__, "dumping", dumping)
         pulumi.set(__self__, "enable_auto_topic", enable_auto_topic)
+        pulumi.set(__self__, "enable_log_collection", enable_log_collection)
         pulumi.set(__self__, "enable_public_ip", enable_public_ip)
         pulumi.set(__self__, "enabled_mechanisms", enabled_mechanisms)
         pulumi.set(__self__, "engine_version", engine_version)
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "extend_times", extend_times)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipv6_connect_addresses", ipv6_connect_addresses)
+        pulumi.set(__self__, "ipv6_enable", ipv6_enable)
+        pulumi.set(__self__, "is_logical_volume", is_logical_volume)
         pulumi.set(__self__, "maintain_begin", maintain_begin)
         pulumi.set(__self__, "maintain_end", maintain_end)
         pulumi.set(__self__, "management_connect_address", management_connect_address)
         pulumi.set(__self__, "manager_user", manager_user)
         pulumi.set(__self__, "manegement_connect_address", manegement_connect_address)
+        pulumi.set(__self__, "message_query_inst_enable", message_query_inst_enable)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "network_id", network_id)
+        pulumi.set(__self__, "new_auth_cert", new_auth_cert)
+        pulumi.set(__self__, "new_spec_billing_enable", new_spec_billing_enable)
+        pulumi.set(__self__, "node_num", node_num)
+        pulumi.set(__self__, "order_id", order_id)
         pulumi.set(__self__, "partition_num", partition_num)
+        pulumi.set(__self__, "pod_connect_address", pod_connect_address)
         pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "port_protocols", port_protocols)
         pulumi.set(__self__, "product_id", product_id)
+        pulumi.set(__self__, "public_bandwidth", public_bandwidth)
+        pulumi.set(__self__, "public_boundwidth", public_boundwidth)
         pulumi.set(__self__, "public_conn_addresses", public_conn_addresses)
         pulumi.set(__self__, "public_ip_ids", public_ip_ids)
         pulumi.set(__self__, "resource_spec_code", resource_spec_code)
         pulumi.set(__self__, "retention_policy", retention_policy)
         pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_name", security_group_name)
         pulumi.set(__self__, "security_protocol", security_protocol)
+        pulumi.set(__self__, "specification", specification)
         pulumi.set(__self__, "ssl_enable", ssl_enable)
+        pulumi.set(__self__, "ssl_two_way_enable", ssl_two_way_enable)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "storage_resource_id", storage_resource_id)
         pulumi.set(__self__, "storage_space", storage_space)
         pulumi.set(__self__, "storage_spec_code", storage_spec_code)
+        pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "support_features", support_features)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "used_storage_space", used_storage_space)
         pulumi.set(__self__, "user_id", user_id)
         pulumi.set(__self__, "user_name", user_name)
+        pulumi.set(__self__, "vpc_client_plain", vpc_client_plain)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_name", vpc_name)
 
     @_builtins.property
     @pulumi.getter(name="accessUser")
@@ -3556,6 +4461,30 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "availability_zones")
 
     @_builtins.property
+    @pulumi.getter(name="brokerNum")
+    def broker_num(self) -> _builtins.int:
+        """
+        The number of brokers in the instance.
+        """
+        return pulumi.get(self, "broker_num")
+
+    @_builtins.property
+    @pulumi.getter(name="cesVersion")
+    def ces_version(self) -> _builtins.str:
+        """
+        The CES version corresponding to the instance.
+        """
+        return pulumi.get(self, "ces_version")
+
+    @_builtins.property
+    @pulumi.getter(name="chargingMode")
+    def charging_mode(self) -> _builtins.str:
+        """
+        The charging mode of the instance.
+        """
+        return pulumi.get(self, "charging_mode")
+
+    @_builtins.property
     @pulumi.getter(name="connectAddress")
     def connect_address(self) -> _builtins.str:
         """
@@ -3564,10 +4493,35 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "connect_address")
 
     @_builtins.property
+    @pulumi.getter(name="connectorId")
+    def connector_id(self) -> _builtins.str:
+        """
+        The ID of the dump task.
+        """
+        return pulumi.get(self, "connector_id")
+
+    @_builtins.property
+    @pulumi.getter(name="connectorNodeNum")
+    def connector_node_num(self) -> _builtins.int:
+        """
+        The number of dump nodes.
+        """
+        return pulumi.get(self, "connector_node_num")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the instance, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
     @pulumi.getter(name="crossVpcAccesses")
     def cross_vpc_accesses(self) -> Sequence['outputs.GetInstancesInstanceCrossVpcAccessResult']:
         """
-        Indicates the Access information of cross-VPC. The structure is documented below.
+        Indicates the Access information of cross-VPC.  
+        The cross_vpc_accesses structure is documented below.
         """
         return pulumi.get(self, "cross_vpc_accesses")
 
@@ -3578,6 +4532,22 @@ class GetInstancesInstanceResult(dict):
         The instance description.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedEnable")
+    def disk_encrypted_enable(self) -> _builtins.bool:
+        """
+        Whether the disk encryption is enabled.
+        """
+        return pulumi.get(self, "disk_encrypted_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedKey")
+    def disk_encrypted_key(self) -> _builtins.str:
+        """
+        The key ID of the disk encryption.
+        """
+        return pulumi.get(self, "disk_encrypted_key")
 
     @_builtins.property
     @pulumi.getter
@@ -3594,6 +4564,14 @@ class GetInstancesInstanceResult(dict):
         Whether to enable automatic topic creation.
         """
         return pulumi.get(self, "enable_auto_topic")
+
+    @_builtins.property
+    @pulumi.getter(name="enableLogCollection")
+    def enable_log_collection(self) -> _builtins.bool:
+        """
+        Whether log collection is enabled.
+        """
+        return pulumi.get(self, "enable_log_collection")
 
     @_builtins.property
     @pulumi.getter(name="enablePublicIp")
@@ -3625,8 +4603,18 @@ class GetInstancesInstanceResult(dict):
         """
         Specifies the enterprise project ID to which all instances of the list
         belong.
+        This field is only valid for enterprise users. For enterprise users, if omitted, all instances under the enterprise
+        project will be queried.
         """
         return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="extendTimes")
+    def extend_times(self) -> _builtins.int:
+        """
+        The extend times.
+        """
+        return pulumi.get(self, "extend_times")
 
     @_builtins.property
     @pulumi.getter
@@ -3635,6 +4623,32 @@ class GetInstancesInstanceResult(dict):
         The instance ID.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6ConnectAddresses")
+    def ipv6_connect_addresses(self) -> Sequence[_builtins.str]:
+        """
+        The IPv6 connect addresses of the instance.
+        """
+        return pulumi.get(self, "ipv6_connect_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Enable")
+    def ipv6_enable(self) -> _builtins.bool:
+        """
+        Whether the IPv6 is enabled.
+        """
+        return pulumi.get(self, "ipv6_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="isLogicalVolume")
+    def is_logical_volume(self) -> _builtins.bool:
+        """
+        Whether the expansion is new instance.
+        + **true**: The new instance, allowing disk dynamic expansion without restart.
+        + **false**: The old instance.
+        """
+        return pulumi.get(self, "is_logical_volume")
 
     @_builtins.property
     @pulumi.getter(name="maintainBegin")
@@ -3672,7 +4686,18 @@ class GetInstancesInstanceResult(dict):
     @pulumi.getter(name="manegementConnectAddress")
     @_utilities.deprecated("""typo in manegement_connect_address, please use \"management_connect_address\" instead.""")
     def manegement_connect_address(self) -> _builtins.str:
+        """
+        Indicates the management connection address.
+        """
         return pulumi.get(self, "manegement_connect_address")
+
+    @_builtins.property
+    @pulumi.getter(name="messageQueryInstEnable")
+    def message_query_inst_enable(self) -> _builtins.bool:
+        """
+        Whether message query is enabled.
+        """
+        return pulumi.get(self, "message_query_inst_enable")
 
     @_builtins.property
     @pulumi.getter
@@ -3691,12 +4716,52 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "network_id")
 
     @_builtins.property
+    @pulumi.getter(name="newAuthCert")
+    def new_auth_cert(self) -> _builtins.bool:
+        """
+        Whether the new auth cert is enabled.
+        """
+        return pulumi.get(self, "new_auth_cert")
+
+    @_builtins.property
+    @pulumi.getter(name="newSpecBillingEnable")
+    def new_spec_billing_enable(self) -> _builtins.bool:
+        """
+        Whether the new billing specification is enabled.
+        """
+        return pulumi.get(self, "new_spec_billing_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeNum")
+    def node_num(self) -> _builtins.int:
+        """
+        The number of nodes in the instance.
+        """
+        return pulumi.get(self, "node_num")
+
+    @_builtins.property
+    @pulumi.getter(name="orderId")
+    def order_id(self) -> _builtins.str:
+        """
+        The order ID of the instance.
+        """
+        return pulumi.get(self, "order_id")
+
+    @_builtins.property
     @pulumi.getter(name="partitionNum")
     def partition_num(self) -> _builtins.int:
         """
         The maximum number of topics in the DMS kafka instance.
         """
         return pulumi.get(self, "partition_num")
+
+    @_builtins.property
+    @pulumi.getter(name="podConnectAddress")
+    def pod_connect_address(self) -> _builtins.str:
+        """
+        The connection address on the tenant side.
+        """
+        return pulumi.get(self, "pod_connect_address")
 
     @_builtins.property
     @pulumi.getter
@@ -3707,12 +4772,37 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "port")
 
     @_builtins.property
+    @pulumi.getter(name="portProtocols")
+    def port_protocols(self) -> Sequence['outputs.GetInstancesInstancePortProtocolResult']:
+        """
+        The port protocol of the instance.  
+        The port_protocol structure is documented below.
+        """
+        return pulumi.get(self, "port_protocols")
+
+    @_builtins.property
     @pulumi.getter(name="productId")
     def product_id(self) -> _builtins.str:
         """
         The product ID used by the instance.
         """
         return pulumi.get(self, "product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicBandwidth")
+    def public_bandwidth(self) -> _builtins.int:
+        """
+        The public bandwidth of the instance.
+        """
+        return pulumi.get(self, "public_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="publicBoundwidth")
+    def public_boundwidth(self) -> _builtins.int:
+        """
+        The public boundwidth of the instance.
+        """
+        return pulumi.get(self, "public_boundwidth")
 
     @_builtins.property
     @pulumi.getter(name="publicConnAddresses")
@@ -3756,12 +4846,28 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "security_group_id")
 
     @_builtins.property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> _builtins.str:
+        """
+        The security group name associated with the instance.
+        """
+        return pulumi.get(self, "security_group_name")
+
+    @_builtins.property
     @pulumi.getter(name="securityProtocol")
     def security_protocol(self) -> _builtins.str:
         """
         The protocol to use after SASL is enabled.
         """
         return pulumi.get(self, "security_protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def specification(self) -> _builtins.str:
+        """
+        The specification of the instance.
+        """
+        return pulumi.get(self, "specification")
 
     @_builtins.property
     @pulumi.getter(name="sslEnable")
@@ -3772,12 +4878,28 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "ssl_enable")
 
     @_builtins.property
+    @pulumi.getter(name="sslTwoWayEnable")
+    def ssl_two_way_enable(self) -> _builtins.bool:
+        """
+        Whether the SSL two-way authentication is enabled.
+        """
+        return pulumi.get(self, "ssl_two_way_enable")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> _builtins.str:
         """
         Specifies the kafka instance status for data-source queries.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="storageResourceId")
+    def storage_resource_id(self) -> _builtins.str:
+        """
+        The storage resource ID of the instance.
+        """
+        return pulumi.get(self, "storage_resource_id")
 
     @_builtins.property
     @pulumi.getter(name="storageSpace")
@@ -3794,6 +4916,22 @@ class GetInstancesInstanceResult(dict):
         The storage I/O specification.
         """
         return pulumi.get(self, "storage_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> _builtins.str:
+        """
+        TThe storage type of the instance.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @_builtins.property
+    @pulumi.getter(name="supportFeatures")
+    def support_features(self) -> _builtins.str:
+        """
+        The support features of the instance.
+        """
+        return pulumi.get(self, "support_features")
 
     @_builtins.property
     @pulumi.getter
@@ -3836,12 +4974,28 @@ class GetInstancesInstanceResult(dict):
         return pulumi.get(self, "user_name")
 
     @_builtins.property
+    @pulumi.getter(name="vpcClientPlain")
+    def vpc_client_plain(self) -> _builtins.bool:
+        """
+        Whether the intra-VPC plaintext access is enabled.
+        """
+        return pulumi.get(self, "vpc_client_plain")
+
+    @_builtins.property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> _builtins.str:
         """
         The VPC ID to which the instance belongs.
         """
         return pulumi.get(self, "vpc_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> _builtins.str:
+        """
+        The VPC name to which the instance belongs.
+        """
+        return pulumi.get(self, "vpc_name")
 
 
 @pulumi.output_type
@@ -3854,6 +5008,7 @@ class GetInstancesInstanceCrossVpcAccessResult(dict):
                  port_id: _builtins.str):
         """
         :param _builtins.str advertised_ip: The advertised IP Address.
+        :param _builtins.str lisenter_ip: Indicates the listener IP address.
         :param _builtins.str listener_ip: The listener IP address.
         :param _builtins.int port: The port number.
         :param _builtins.str port_id: The port ID associated with the address.
@@ -3876,6 +5031,9 @@ class GetInstancesInstanceCrossVpcAccessResult(dict):
     @pulumi.getter(name="lisenterIp")
     @_utilities.deprecated("""typo in lisenter_ip, please use \"listener_ip\" instead.""")
     def lisenter_ip(self) -> _builtins.str:
+        """
+        Indicates the listener IP address.
+        """
         return pulumi.get(self, "lisenter_ip")
 
     @_builtins.property
@@ -3901,6 +5059,211 @@ class GetInstancesInstanceCrossVpcAccessResult(dict):
         The port ID associated with the address.
         """
         return pulumi.get(self, "port_id")
+
+
+@pulumi.output_type
+class GetInstancesInstancePortProtocolResult(dict):
+    def __init__(__self__, *,
+                 private_plain_address: _builtins.str,
+                 private_plain_domain_name: _builtins.str,
+                 private_plain_enable: _builtins.bool,
+                 private_sasl_plaintext_address: _builtins.str,
+                 private_sasl_plaintext_domain_name: _builtins.str,
+                 private_sasl_plaintext_enable: _builtins.bool,
+                 private_sasl_ssl_address: _builtins.str,
+                 private_sasl_ssl_domain_name: _builtins.str,
+                 private_sasl_ssl_enable: _builtins.bool,
+                 public_plain_address: _builtins.str,
+                 public_plain_domain_name: _builtins.str,
+                 public_plain_enable: _builtins.bool,
+                 public_sasl_plaintext_address: _builtins.str,
+                 public_sasl_plaintext_domain_name: _builtins.str,
+                 public_sasl_plaintext_enable: _builtins.bool,
+                 public_sasl_ssl_address: _builtins.str,
+                 public_sasl_ssl_domain_name: _builtins.str,
+                 public_sasl_ssl_enable: _builtins.bool):
+        """
+        :param _builtins.str private_plain_address: The private plain address.
+        :param _builtins.str private_plain_domain_name: The private plain domain name.
+        :param _builtins.bool private_plain_enable: Whether private plaintext access is enabled.
+        :param _builtins.str private_sasl_plaintext_address: The private SASL plaintext address.
+        :param _builtins.str private_sasl_plaintext_domain_name: The private SASL plaintext domain name.
+        :param _builtins.bool private_sasl_plaintext_enable: Whether private SASL plaintext access is enabled.
+        :param _builtins.str private_sasl_ssl_address: The private SASL SSL address.
+        :param _builtins.str private_sasl_ssl_domain_name: The private SASL SSL domain name.
+        :param _builtins.bool private_sasl_ssl_enable: Whether private SASL SSL access is enabled.
+        :param _builtins.str public_plain_address: The public plain address.
+        :param _builtins.str public_plain_domain_name: The public plain domain name.
+        :param _builtins.bool public_plain_enable: Whether public plaintext access is enabled.
+        :param _builtins.str public_sasl_plaintext_address: The public SASL plaintext address.
+        :param _builtins.str public_sasl_plaintext_domain_name: The public SASL plaintext domain name.
+        :param _builtins.bool public_sasl_plaintext_enable: Whether public SASL plaintext access is enabled.
+        :param _builtins.str public_sasl_ssl_address: The public SASL SSL address.
+        :param _builtins.str public_sasl_ssl_domain_name: The public SASL SSL domain name.
+        :param _builtins.bool public_sasl_ssl_enable: Whether public SASL SSL access is enabled.
+        """
+        pulumi.set(__self__, "private_plain_address", private_plain_address)
+        pulumi.set(__self__, "private_plain_domain_name", private_plain_domain_name)
+        pulumi.set(__self__, "private_plain_enable", private_plain_enable)
+        pulumi.set(__self__, "private_sasl_plaintext_address", private_sasl_plaintext_address)
+        pulumi.set(__self__, "private_sasl_plaintext_domain_name", private_sasl_plaintext_domain_name)
+        pulumi.set(__self__, "private_sasl_plaintext_enable", private_sasl_plaintext_enable)
+        pulumi.set(__self__, "private_sasl_ssl_address", private_sasl_ssl_address)
+        pulumi.set(__self__, "private_sasl_ssl_domain_name", private_sasl_ssl_domain_name)
+        pulumi.set(__self__, "private_sasl_ssl_enable", private_sasl_ssl_enable)
+        pulumi.set(__self__, "public_plain_address", public_plain_address)
+        pulumi.set(__self__, "public_plain_domain_name", public_plain_domain_name)
+        pulumi.set(__self__, "public_plain_enable", public_plain_enable)
+        pulumi.set(__self__, "public_sasl_plaintext_address", public_sasl_plaintext_address)
+        pulumi.set(__self__, "public_sasl_plaintext_domain_name", public_sasl_plaintext_domain_name)
+        pulumi.set(__self__, "public_sasl_plaintext_enable", public_sasl_plaintext_enable)
+        pulumi.set(__self__, "public_sasl_ssl_address", public_sasl_ssl_address)
+        pulumi.set(__self__, "public_sasl_ssl_domain_name", public_sasl_ssl_domain_name)
+        pulumi.set(__self__, "public_sasl_ssl_enable", public_sasl_ssl_enable)
+
+    @_builtins.property
+    @pulumi.getter(name="privatePlainAddress")
+    def private_plain_address(self) -> _builtins.str:
+        """
+        The private plain address.
+        """
+        return pulumi.get(self, "private_plain_address")
+
+    @_builtins.property
+    @pulumi.getter(name="privatePlainDomainName")
+    def private_plain_domain_name(self) -> _builtins.str:
+        """
+        The private plain domain name.
+        """
+        return pulumi.get(self, "private_plain_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privatePlainEnable")
+    def private_plain_enable(self) -> _builtins.bool:
+        """
+        Whether private plaintext access is enabled.
+        """
+        return pulumi.get(self, "private_plain_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslPlaintextAddress")
+    def private_sasl_plaintext_address(self) -> _builtins.str:
+        """
+        The private SASL plaintext address.
+        """
+        return pulumi.get(self, "private_sasl_plaintext_address")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslPlaintextDomainName")
+    def private_sasl_plaintext_domain_name(self) -> _builtins.str:
+        """
+        The private SASL plaintext domain name.
+        """
+        return pulumi.get(self, "private_sasl_plaintext_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslPlaintextEnable")
+    def private_sasl_plaintext_enable(self) -> _builtins.bool:
+        """
+        Whether private SASL plaintext access is enabled.
+        """
+        return pulumi.get(self, "private_sasl_plaintext_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslSslAddress")
+    def private_sasl_ssl_address(self) -> _builtins.str:
+        """
+        The private SASL SSL address.
+        """
+        return pulumi.get(self, "private_sasl_ssl_address")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslSslDomainName")
+    def private_sasl_ssl_domain_name(self) -> _builtins.str:
+        """
+        The private SASL SSL domain name.
+        """
+        return pulumi.get(self, "private_sasl_ssl_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateSaslSslEnable")
+    def private_sasl_ssl_enable(self) -> _builtins.bool:
+        """
+        Whether private SASL SSL access is enabled.
+        """
+        return pulumi.get(self, "private_sasl_ssl_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="publicPlainAddress")
+    def public_plain_address(self) -> _builtins.str:
+        """
+        The public plain address.
+        """
+        return pulumi.get(self, "public_plain_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicPlainDomainName")
+    def public_plain_domain_name(self) -> _builtins.str:
+        """
+        The public plain domain name.
+        """
+        return pulumi.get(self, "public_plain_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="publicPlainEnable")
+    def public_plain_enable(self) -> _builtins.bool:
+        """
+        Whether public plaintext access is enabled.
+        """
+        return pulumi.get(self, "public_plain_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslPlaintextAddress")
+    def public_sasl_plaintext_address(self) -> _builtins.str:
+        """
+        The public SASL plaintext address.
+        """
+        return pulumi.get(self, "public_sasl_plaintext_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslPlaintextDomainName")
+    def public_sasl_plaintext_domain_name(self) -> _builtins.str:
+        """
+        The public SASL plaintext domain name.
+        """
+        return pulumi.get(self, "public_sasl_plaintext_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslPlaintextEnable")
+    def public_sasl_plaintext_enable(self) -> _builtins.bool:
+        """
+        Whether public SASL plaintext access is enabled.
+        """
+        return pulumi.get(self, "public_sasl_plaintext_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslSslAddress")
+    def public_sasl_ssl_address(self) -> _builtins.str:
+        """
+        The public SASL SSL address.
+        """
+        return pulumi.get(self, "public_sasl_ssl_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslSslDomainName")
+    def public_sasl_ssl_domain_name(self) -> _builtins.str:
+        """
+        The public SASL SSL domain name.
+        """
+        return pulumi.get(self, "public_sasl_ssl_domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="publicSaslSslEnable")
+    def public_sasl_ssl_enable(self) -> _builtins.bool:
+        """
+        Whether public SASL SSL access is enabled.
+        """
+        return pulumi.get(self, "public_sasl_ssl_enable")
 
 
 @pulumi.output_type
@@ -5723,6 +7086,57 @@ class GetKafkav2SmartConnectTasksTaskSourceTaskResult(dict):
 
 
 @pulumi.output_type
+class GetMaintainwindowsMaintainWindowResult(dict):
+    def __init__(__self__, *,
+                 begin: _builtins.str,
+                 default: _builtins.bool,
+                 end: _builtins.str,
+                 seq: _builtins.int):
+        """
+        :param _builtins.str begin: The start time of the maintain window.
+        :param _builtins.bool default: Whether this is the default time window.
+        :param _builtins.str end: The end time of the maintain window.
+        :param _builtins.int seq: The sequence number.
+        """
+        pulumi.set(__self__, "begin", begin)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "seq", seq)
+
+    @_builtins.property
+    @pulumi.getter
+    def begin(self) -> _builtins.str:
+        """
+        The start time of the maintain window.
+        """
+        return pulumi.get(self, "begin")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> _builtins.bool:
+        """
+        Whether this is the default time window.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def end(self) -> _builtins.str:
+        """
+        The end time of the maintain window.
+        """
+        return pulumi.get(self, "end")
+
+    @_builtins.property
+    @pulumi.getter
+    def seq(self) -> _builtins.int:
+        """
+        The sequence number.
+        """
+        return pulumi.get(self, "seq")
+
+
+@pulumi.output_type
 class GetRabbitmqBackgroundTasksTaskResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -5820,6 +7234,7 @@ class GetRabbitmqBackgroundTasksTaskResult(dict):
 @pulumi.output_type
 class GetRabbitmqExchangesExchangeResult(dict):
     def __init__(__self__, *,
+                 arguments: _builtins.str,
                  auto_delete: _builtins.bool,
                  default: _builtins.bool,
                  durable: _builtins.bool,
@@ -5827,6 +7242,7 @@ class GetRabbitmqExchangesExchangeResult(dict):
                  name: _builtins.str,
                  type: _builtins.str):
         """
+        :param _builtins.str arguments: The argument configuration of the exchange, in JSON format.
         :param _builtins.bool auto_delete: Indicates whether the auto delete is enabled.
         :param _builtins.bool default: Indicates whether the exchange is default.
         :param _builtins.bool durable: Indicates whether the durable is enabled.
@@ -5834,12 +7250,21 @@ class GetRabbitmqExchangesExchangeResult(dict):
         :param _builtins.str name: Indicates the exchange name.
         :param _builtins.str type: Indicates the exchange type.
         """
+        pulumi.set(__self__, "arguments", arguments)
         pulumi.set(__self__, "auto_delete", auto_delete)
         pulumi.set(__self__, "default", default)
         pulumi.set(__self__, "durable", durable)
         pulumi.set(__self__, "internal", internal)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def arguments(self) -> _builtins.str:
+        """
+        The argument configuration of the exchange, in JSON format.
+        """
+        return pulumi.get(self, "arguments")
 
     @_builtins.property
     @pulumi.getter(name="autoDelete")
@@ -6518,6 +7943,8 @@ class GetRabbitmqInstancesInstanceResult(dict):
                  connect_address: _builtins.str,
                  created_at: _builtins.str,
                  description: _builtins.str,
+                 disk_encrypted_enable: _builtins.bool,
+                 disk_encrypted_key: _builtins.str,
                  engine: _builtins.str,
                  engine_version: _builtins.str,
                  enterprise_project_id: _builtins.str,
@@ -6553,6 +7980,8 @@ class GetRabbitmqInstancesInstanceResult(dict):
         :param _builtins.str connect_address: Indicates the IP address of the RabbitMQ instance.
         :param _builtins.str created_at: Indicates the creation time of the RabbitMQ instance.
         :param _builtins.str description: Indicates the description of the RabbitMQ instance.
+        :param _builtins.bool disk_encrypted_enable: Whether the disk is encrypted.
+        :param _builtins.str disk_encrypted_key: The key of the disk encryption.
         :param _builtins.str engine: Indicates the message engine type. The value is `rabbitmq`.
         :param _builtins.str engine_version: Specifies the version of the RabbitMQ engine.
         :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RabbitMQ instance belongs.
@@ -6592,6 +8021,8 @@ class GetRabbitmqInstancesInstanceResult(dict):
         pulumi.set(__self__, "connect_address", connect_address)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disk_encrypted_enable", disk_encrypted_enable)
+        pulumi.set(__self__, "disk_encrypted_key", disk_encrypted_key)
         pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "engine_version", engine_version)
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
@@ -6675,6 +8106,22 @@ class GetRabbitmqInstancesInstanceResult(dict):
         Indicates the description of the RabbitMQ instance.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedEnable")
+    def disk_encrypted_enable(self) -> _builtins.bool:
+        """
+        Whether the disk is encrypted.
+        """
+        return pulumi.get(self, "disk_encrypted_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedKey")
+    def disk_encrypted_key(self) -> _builtins.str:
+        """
+        The key of the disk encryption.
+        """
+        return pulumi.get(self, "disk_encrypted_key")
 
     @_builtins.property
     @pulumi.getter
@@ -7424,6 +8871,99 @@ class GetRocketmqConsumerGroupAccessUsersPolicyResult(dict):
         Indicates the IP address whitelist.
         """
         return pulumi.get(self, "white_remote_address")
+
+
+@pulumi.output_type
+class GetRocketmqConsumerGroupTopicsBrokerResult(dict):
+    def __init__(__self__, *,
+                 broker_name: _builtins.str,
+                 queues: Sequence['outputs.GetRocketmqConsumerGroupTopicsBrokerQueueResult']):
+        """
+        :param _builtins.str broker_name: The name of the broker.
+        :param Sequence['GetRocketmqConsumerGroupTopicsBrokerQueueArgs'] queues: The queue details of the associated broker.  
+               The queues structure is documented below.
+        """
+        pulumi.set(__self__, "broker_name", broker_name)
+        pulumi.set(__self__, "queues", queues)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerName")
+    def broker_name(self) -> _builtins.str:
+        """
+        The name of the broker.
+        """
+        return pulumi.get(self, "broker_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def queues(self) -> Sequence['outputs.GetRocketmqConsumerGroupTopicsBrokerQueueResult']:
+        """
+        The queue details of the associated broker.  
+        The queues structure is documented below.
+        """
+        return pulumi.get(self, "queues")
+
+
+@pulumi.output_type
+class GetRocketmqConsumerGroupTopicsBrokerQueueResult(dict):
+    def __init__(__self__, *,
+                 broker_offset: _builtins.int,
+                 consumer_offset: _builtins.int,
+                 id: _builtins.int,
+                 lag: _builtins.int,
+                 last_message_time: _builtins.str):
+        """
+        :param _builtins.int broker_offset: The total number of messages.
+        :param _builtins.int consumer_offset: The number of consumed messages.
+        :param _builtins.int id: The ID of the queue.
+        :param _builtins.int lag: The number of consumption accumulations.
+        :param _builtins.str last_message_time: The storage time of the latest consumed message, in RFC3339 format.
+        """
+        pulumi.set(__self__, "broker_offset", broker_offset)
+        pulumi.set(__self__, "consumer_offset", consumer_offset)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lag", lag)
+        pulumi.set(__self__, "last_message_time", last_message_time)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerOffset")
+    def broker_offset(self) -> _builtins.int:
+        """
+        The total number of messages.
+        """
+        return pulumi.get(self, "broker_offset")
+
+    @_builtins.property
+    @pulumi.getter(name="consumerOffset")
+    def consumer_offset(self) -> _builtins.int:
+        """
+        The number of consumed messages.
+        """
+        return pulumi.get(self, "consumer_offset")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID of the queue.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def lag(self) -> _builtins.int:
+        """
+        The number of consumption accumulations.
+        """
+        return pulumi.get(self, "lag")
+
+    @_builtins.property
+    @pulumi.getter(name="lastMessageTime")
+    def last_message_time(self) -> _builtins.str:
+        """
+        The storage time of the latest consumed message, in RFC3339 format.
+        """
+        return pulumi.get(self, "last_message_time")
 
 
 @pulumi.output_type
@@ -8440,6 +9980,79 @@ class GetRocketmqFlavorsFlavorSupportFeaturePropertyResult(dict):
         Indicates the minimum number of tasks for the dump function.
         """
         return pulumi.get(self, "min_task")
+
+
+@pulumi.output_type
+class GetRocketmqInstanceDiagnosesReportResult(dict):
+    def __init__(__self__, *,
+                 abnormal_item_sum: _builtins.int,
+                 created_at: _builtins.str,
+                 faulted_node_sum: _builtins.int,
+                 group_name: _builtins.str,
+                 report_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.int abnormal_item_sum: The number of abnormal items.
+        :param _builtins.str created_at: The creation time of the report.
+        :param _builtins.int faulted_node_sum: The number of faulted nodes.
+        :param _builtins.str group_name: The name of the consumer group.
+        :param _builtins.str report_id: The ID of the diagnosis report.
+        :param _builtins.str status: The status of the report.
+        """
+        pulumi.set(__self__, "abnormal_item_sum", abnormal_item_sum)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "faulted_node_sum", faulted_node_sum)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "report_id", report_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="abnormalItemSum")
+    def abnormal_item_sum(self) -> _builtins.int:
+        """
+        The number of abnormal items.
+        """
+        return pulumi.get(self, "abnormal_item_sum")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the report.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="faultedNodeSum")
+    def faulted_node_sum(self) -> _builtins.int:
+        """
+        The number of faulted nodes.
+        """
+        return pulumi.get(self, "faulted_node_sum")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The name of the consumer group.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="reportId")
+    def report_id(self) -> _builtins.str:
+        """
+        The ID of the diagnosis report.
+        """
+        return pulumi.get(self, "report_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the report.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -9739,5 +11352,211 @@ class GetRocketmqUsersUserTopicPermResult(dict):
         Value options: **SUB**, **DENY**.
         """
         return pulumi.get(self, "perm")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the tag.
+        :param Sequence[_builtins.str] values: All values corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        All values corresponding to the key.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetTopicBrokerDiskUsagesDiskUsageResult(dict):
+    def __init__(__self__, *,
+                 broker_name: _builtins.str,
+                 data_disk_free: _builtins.str,
+                 data_disk_size: _builtins.str,
+                 data_disk_use: _builtins.str,
+                 data_disk_use_percentage: _builtins.str,
+                 status: _builtins.str,
+                 topics: Sequence['outputs.GetTopicBrokerDiskUsagesDiskUsageTopicResult']):
+        """
+        :param _builtins.str broker_name: The name of the broker.
+        :param _builtins.str data_disk_free: The free disk capacity.
+        :param _builtins.str data_disk_size: The total disk capacity.
+        :param _builtins.str data_disk_use: The used disk capacity.
+        :param _builtins.str data_disk_use_percentage: The disk usage percentage.
+        :param _builtins.str status: The status of the broker.
+        :param Sequence['GetTopicBrokerDiskUsagesDiskUsageTopicArgs'] topics: The list of topic disk usage.  
+               The topics structure is documented below.
+        """
+        pulumi.set(__self__, "broker_name", broker_name)
+        pulumi.set(__self__, "data_disk_free", data_disk_free)
+        pulumi.set(__self__, "data_disk_size", data_disk_size)
+        pulumi.set(__self__, "data_disk_use", data_disk_use)
+        pulumi.set(__self__, "data_disk_use_percentage", data_disk_use_percentage)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "topics", topics)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerName")
+    def broker_name(self) -> _builtins.str:
+        """
+        The name of the broker.
+        """
+        return pulumi.get(self, "broker_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDiskFree")
+    def data_disk_free(self) -> _builtins.str:
+        """
+        The free disk capacity.
+        """
+        return pulumi.get(self, "data_disk_free")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDiskSize")
+    def data_disk_size(self) -> _builtins.str:
+        """
+        The total disk capacity.
+        """
+        return pulumi.get(self, "data_disk_size")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDiskUse")
+    def data_disk_use(self) -> _builtins.str:
+        """
+        The used disk capacity.
+        """
+        return pulumi.get(self, "data_disk_use")
+
+    @_builtins.property
+    @pulumi.getter(name="dataDiskUsePercentage")
+    def data_disk_use_percentage(self) -> _builtins.str:
+        """
+        The disk usage percentage.
+        """
+        return pulumi.get(self, "data_disk_use_percentage")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the broker.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def topics(self) -> Sequence['outputs.GetTopicBrokerDiskUsagesDiskUsageTopicResult']:
+        """
+        The list of topic disk usage.  
+        The topics structure is documented below.
+        """
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class GetTopicBrokerDiskUsagesDiskUsageTopicResult(dict):
+    def __init__(__self__, *,
+                 percentage: _builtins.float,
+                 size: _builtins.str,
+                 topic_name: _builtins.str,
+                 topic_partition: _builtins.str):
+        """
+        :param _builtins.float percentage: Specifies the percentage threshold to be queried.
+        :param _builtins.str size: The size of the disk usage.
+        :param _builtins.str topic_name: The name of the topic.
+        :param _builtins.str topic_partition: The partition of the topic.
+        """
+        pulumi.set(__self__, "percentage", percentage)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "topic_partition", topic_partition)
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> _builtins.float:
+        """
+        Specifies the percentage threshold to be queried.
+        """
+        return pulumi.get(self, "percentage")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.str:
+        """
+        The size of the disk usage.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> _builtins.str:
+        """
+        The name of the topic.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @_builtins.property
+    @pulumi.getter(name="topicPartition")
+    def topic_partition(self) -> _builtins.str:
+        """
+        The partition of the topic.
+        """
+        return pulumi.get(self, "topic_partition")
+
+
+@pulumi.output_type
+class GetTopicQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 consumer_byte_rate: _builtins.int,
+                 producer_byte_rate: _builtins.int,
+                 topic: _builtins.str):
+        """
+        :param _builtins.int consumer_byte_rate: The consumer byte rate limit. The unit is B/s.
+        :param _builtins.int producer_byte_rate: The producer byte rate limit. The unit is B/s.
+        :param _builtins.str topic: The name of the topic.
+        """
+        pulumi.set(__self__, "consumer_byte_rate", consumer_byte_rate)
+        pulumi.set(__self__, "producer_byte_rate", producer_byte_rate)
+        pulumi.set(__self__, "topic", topic)
+
+    @_builtins.property
+    @pulumi.getter(name="consumerByteRate")
+    def consumer_byte_rate(self) -> _builtins.int:
+        """
+        The consumer byte rate limit. The unit is B/s.
+        """
+        return pulumi.get(self, "consumer_byte_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="producerByteRate")
+    def producer_byte_rate(self) -> _builtins.int:
+        """
+        The producer byte rate limit. The unit is B/s.
+        """
+        return pulumi.get(self, "producer_byte_rate")
+
+    @_builtins.property
+    @pulumi.getter
+    def topic(self) -> _builtins.str:
+        """
+        The name of the topic.
+        """
+        return pulumi.get(self, "topic")
 
 

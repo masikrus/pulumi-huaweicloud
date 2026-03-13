@@ -36,6 +36,7 @@ class ContainerKubernetesClusterDaemonsetArgs:
                  schedule_info: Optional[pulumi.Input['ContainerKubernetesClusterDaemonsetScheduleInfoArgs']] = None):
         """
         The set of arguments for constructing a ContainerKubernetesClusterDaemonset resource.
+
         :param pulumi.Input[_builtins.bool] auto_upgrade: Specifies whether to enable automatic agent upgrade.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the CCE cluster ID.
         :param pulumi.Input[_builtins.str] cluster_name: Specifies the CCE cluster name.
@@ -299,6 +300,7 @@ class _ContainerKubernetesClusterDaemonsetState:
                  yaml_content: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerKubernetesClusterDaemonset resources.
+
         :param pulumi.Input[_builtins.str] agent_version: Specifies the agent version.
         :param pulumi.Input[_builtins.bool] auto_upgrade: Specifies whether to enable automatic agent upgrade.
         :param pulumi.Input[_builtins.str] cce_protection_type: Specifies the CCE protection type.  
@@ -662,7 +664,7 @@ class _ContainerKubernetesClusterDaemonsetState:
         pulumi.set(self, "yaml_content", value)
 
 
-@pulumi.type_token("huaweicloud:hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset")
+@pulumi.type_token("huaweicloud:Hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset")
 class ContainerKubernetesClusterDaemonset(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -709,45 +711,18 @@ class ContainerKubernetesClusterDaemonset(pulumi.CustomResource):
 
         The HSS container kubernetes cluster daemonset can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset test <id>
+        $ pulumi import huaweicloud:Hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `cluster_id`, `cluster_name`,
-
         `auto_upgrade`, `agent_version`, `invoked_service`, `charging_mode`, `cce_protection_type`, `prefer_packet_cycle`,
-
         `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_container_kubernetes_cluster_daemonset" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id, cluster_name, auto_upgrade, agent_version, invoked_service, charging_mode, cce_protection_type,
-            
-              prefer_packet_cycle, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -822,45 +797,18 @@ class ContainerKubernetesClusterDaemonset(pulumi.CustomResource):
 
         The HSS container kubernetes cluster daemonset can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset test <id>
+        $ pulumi import huaweicloud:Hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `cluster_id`, `cluster_name`,
-
         `auto_upgrade`, `agent_version`, `invoked_service`, `charging_mode`, `cce_protection_type`, `prefer_packet_cycle`,
-
         `enterprise_project_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_container_kubernetes_cluster_daemonset" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id, cluster_name, auto_upgrade, agent_version, invoked_service, charging_mode, cce_protection_type,
-            
-              prefer_packet_cycle, enterprise_project_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ContainerKubernetesClusterDaemonsetArgs args: The arguments to use to populate this resource's properties.
@@ -926,7 +874,7 @@ class ContainerKubernetesClusterDaemonset(pulumi.CustomResource):
             __props__.__dict__["node_num"] = None
             __props__.__dict__["yaml_content"] = None
         super(ContainerKubernetesClusterDaemonset, __self__).__init__(
-            'huaweicloud:hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset',
+            'huaweicloud:Hss/containerKubernetesClusterDaemonset:ContainerKubernetesClusterDaemonset',
             resource_name,
             __props__,
             opts)

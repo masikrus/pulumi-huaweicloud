@@ -27,6 +27,7 @@ class ClusterNodeReplaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClusterNodeReplace resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the CSS cluster node.
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
@@ -129,6 +130,7 @@ class _ClusterNodeReplaceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterNodeReplace resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.bool] migrate_data: Specifies whether to migrate data. Defaults to **true**.
@@ -254,6 +256,7 @@ class ClusterNodeReplace(pulumi.CustomResource):
             migrate_data=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
@@ -288,6 +291,7 @@ class ClusterNodeReplace(pulumi.CustomResource):
             agency="ess_replace_agency",
             migrate_data=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterNodeReplaceArgs args: The arguments to use to populate this resource's properties.

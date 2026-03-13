@@ -19,20 +19,15 @@ __all__ = [
     'StackAgencyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class StackAgencyArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of IAM agency authorized to IAC account for resources modification.
-        """
-        provider_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the provider corresponding to the IAM agency.
-        """
-elif False:
-    StackAgencyArgsDict: TypeAlias = Mapping[str, Any]
+class StackAgencyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of IAM agency authorized to IAC account for resources modification.
+    """
+    provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the provider corresponding to the IAM agency.
+    """
 
 @pulumi.input_type
 class StackAgencyArgs:

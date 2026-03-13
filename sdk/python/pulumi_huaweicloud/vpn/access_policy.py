@@ -28,6 +28,7 @@ class AccessPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessPolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dest_ip_cidrs: Specifies the list of destination IP CIDRs.
         :param pulumi.Input[_builtins.str] user_group_id: Specifies the user group ID.
         :param pulumi.Input[_builtins.str] vpn_server_id: Specifies the VPN server ID.
@@ -148,6 +149,7 @@ class _AccessPolicyState:
                  vpn_server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessPolicy resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the access policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dest_ip_cidrs: Specifies the list of destination IP CIDRs.
@@ -301,7 +303,7 @@ class _AccessPolicyState:
         pulumi.set(self, "vpn_server_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/accessPolicy:AccessPolicy")
+@pulumi.type_token("huaweicloud:Vpn/accessPolicy:AccessPolicy")
 class AccessPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -340,11 +342,10 @@ class AccessPolicy(pulumi.CustomResource):
 
         The access policy can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/accessPolicy:AccessPolicy test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/accessPolicy:AccessPolicy test <vpn_server_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -388,11 +389,10 @@ class AccessPolicy(pulumi.CustomResource):
 
         The access policy can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/accessPolicy:AccessPolicy test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/accessPolicy:AccessPolicy test <vpn_server_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -442,7 +442,7 @@ class AccessPolicy(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["user_group_name"] = None
         super(AccessPolicy, __self__).__init__(
-            'huaweicloud:vpn/accessPolicy:AccessPolicy',
+            'huaweicloud:Vpn/accessPolicy:AccessPolicy',
             resource_name,
             __props__,
             opts)

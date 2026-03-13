@@ -36,48 +36,21 @@ class AppPublishmentArgs:
                  work_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppPublishment resource.
-        :param pulumi.Input[_builtins.str] app_group_id: Specifies the APP group ID to which the application belongs.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] execute_path: Specifies the location where the application file is installed.
-               e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
-        :param pulumi.Input[_builtins.int] type: Specifies the type of the application.
-               Changing this creates a new resource.
-               The valid values are as follows:
-               + **2**: Private image APP.
-               + **3**: Custom APP.
-        :param pulumi.Input[_builtins.str] command_param: Specifies the command line parameter used to start the application.  
-               If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the application.
-        :param pulumi.Input[_builtins.int] icon_index: Specifies the icon index of the application.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] icon_path: Specifies the path where the application icon is located.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
-               The name valid length is limited from `1` to `64` and cannot be all spaces.
-               The name must be unique.
-        :param pulumi.Input[_builtins.str] publisher: Specifies the publisher of the application.
-               Changing this creates a new resource.
-               If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] sandbox_enable: Specifies whether to run in sandbox mode, defaults to `false`.  
-               If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-               group instance. Otherwise, the application cannot be started.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: Specifies the list of image IDs corresponding to the server instance
-               to which the application belongs.
-               The maximum length is `20`.
-               This parameter is required and available only when the `type` is `2`.
-               
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the current status of the application, defaults to **NORMAL**.
-               The valid values are as follows:
-               + **NORMAL**
-               + **FORBIDDEN**
-        :param pulumi.Input[_builtins.str] version: Specifies the version of the application.  
-               If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
-        :param pulumi.Input[_builtins.str] work_path: Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+
+        :param pulumi.Input[_builtins.str] app_group_id: The APP group ID to which the application belongs.
+        :param pulumi.Input[_builtins.str] execute_path: The location where the application file is installed.
+        :param pulumi.Input[_builtins.int] type: The type of the application.
+        :param pulumi.Input[_builtins.str] command_param: The command line parameter used to start the application.
+        :param pulumi.Input[_builtins.str] description: The description of the application.
+        :param pulumi.Input[_builtins.int] icon_index: The icon index of the application.
+        :param pulumi.Input[_builtins.str] icon_path: The path where the application icon is located.
+        :param pulumi.Input[_builtins.str] name: The name of the application.
+        :param pulumi.Input[_builtins.str] publisher: The publisher of the application.
+        :param pulumi.Input[_builtins.bool] sandbox_enable: Whether to run in sandbox mode.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: The list of image IDs corresponding to the server instance to which the application belongs.
+        :param pulumi.Input[_builtins.str] status: The current status of the application.
+        :param pulumi.Input[_builtins.str] version: The version of the application.
+        :param pulumi.Input[_builtins.str] work_path: The working directory of the application.
         """
         pulumi.set(__self__, "app_group_id", app_group_id)
         pulumi.set(__self__, "execute_path", execute_path)
@@ -111,8 +84,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="appGroupId")
     def app_group_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the APP group ID to which the application belongs.
-        Changing this creates a new resource.
+        The APP group ID to which the application belongs.
         """
         return pulumi.get(self, "app_group_id")
 
@@ -124,8 +96,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="executePath")
     def execute_path(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the location where the application file is installed.
-        e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
+        The location where the application file is installed.
         """
         return pulumi.get(self, "execute_path")
 
@@ -137,11 +108,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the type of the application.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **2**: Private image APP.
-        + **3**: Custom APP.
+        The type of the application.
         """
         return pulumi.get(self, "type")
 
@@ -153,9 +120,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="commandParam")
     def command_param(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the command line parameter used to start the application.  
-        If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-        double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        The command line parameter used to start the application.
         """
         return pulumi.get(self, "command_param")
 
@@ -167,7 +132,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the description of the application.
+        The description of the application.
         """
         return pulumi.get(self, "description")
 
@@ -179,8 +144,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="iconIndex")
     def icon_index(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the icon index of the application.
-        Changing this creates a new resource.
+        The icon index of the application.
         """
         return pulumi.get(self, "icon_index")
 
@@ -192,8 +156,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="iconPath")
     def icon_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the path where the application icon is located.
-        Changing this creates a new resource.
+        The path where the application icon is located.
         """
         return pulumi.get(self, "icon_path")
 
@@ -205,9 +168,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the application.  
-        The name valid length is limited from `1` to `64` and cannot be all spaces.
-        The name must be unique.
+        The name of the application.
         """
         return pulumi.get(self, "name")
 
@@ -219,9 +180,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def publisher(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the publisher of the application.
-        Changing this creates a new resource.
-        If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
+        The publisher of the application.
         """
         return pulumi.get(self, "publisher")
 
@@ -232,11 +191,6 @@ class AppPublishmentArgs:
     @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used.
-        Changing this creates a new resource.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -247,9 +201,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="sandboxEnable")
     def sandbox_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to run in sandbox mode, defaults to `false`.  
-        If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-        group instance. Otherwise, the application cannot be started.
+        Whether to run in sandbox mode.
         """
         return pulumi.get(self, "sandbox_enable")
 
@@ -261,12 +213,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="sourceImageIds")
     def source_image_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the list of image IDs corresponding to the server instance
-        to which the application belongs.
-        The maximum length is `20`.
-        This parameter is required and available only when the `type` is `2`.
-
-        Changing this creates a new resource.
+        The list of image IDs corresponding to the server instance to which the application belongs.
         """
         return pulumi.get(self, "source_image_ids")
 
@@ -278,10 +225,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the current status of the application, defaults to **NORMAL**.
-        The valid values are as follows:
-        + **NORMAL**
-        + **FORBIDDEN**
+        The current status of the application.
         """
         return pulumi.get(self, "status")
 
@@ -293,8 +237,7 @@ class AppPublishmentArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the version of the application.  
-        If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
+        The version of the application.
         """
         return pulumi.get(self, "version")
 
@@ -306,7 +249,7 @@ class AppPublishmentArgs:
     @pulumi.getter(name="workPath")
     def work_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        The working directory of the application.
         """
         return pulumi.get(self, "work_path")
 
@@ -336,49 +279,22 @@ class _AppPublishmentState:
                  work_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppPublishment resources.
-        :param pulumi.Input[_builtins.str] app_group_id: Specifies the APP group ID to which the application belongs.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] command_param: Specifies the command line parameter used to start the application.  
-               If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the application.
-        :param pulumi.Input[_builtins.str] execute_path: Specifies the location where the application file is installed.
-               e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
-        :param pulumi.Input[_builtins.int] icon_index: Specifies the icon index of the application.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] icon_path: Specifies the path where the application icon is located.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
-               The name valid length is limited from `1` to `64` and cannot be all spaces.
-               The name must be unique.
+
+        :param pulumi.Input[_builtins.str] app_group_id: The APP group ID to which the application belongs.
+        :param pulumi.Input[_builtins.str] command_param: The command line parameter used to start the application.
+        :param pulumi.Input[_builtins.str] description: The description of the application.
+        :param pulumi.Input[_builtins.str] execute_path: The location where the application file is installed.
+        :param pulumi.Input[_builtins.int] icon_index: The icon index of the application.
+        :param pulumi.Input[_builtins.str] icon_path: The path where the application icon is located.
+        :param pulumi.Input[_builtins.str] name: The name of the application.
         :param pulumi.Input[_builtins.str] published_at: The release time of the application, in RFC3339 format.
-        :param pulumi.Input[_builtins.str] publisher: Specifies the publisher of the application.
-               Changing this creates a new resource.
-               If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] sandbox_enable: Specifies whether to run in sandbox mode, defaults to `false`.  
-               If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-               group instance. Otherwise, the application cannot be started.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: Specifies the list of image IDs corresponding to the server instance
-               to which the application belongs.
-               The maximum length is `20`.
-               This parameter is required and available only when the `type` is `2`.
-               
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the current status of the application, defaults to **NORMAL**.
-               The valid values are as follows:
-               + **NORMAL**
-               + **FORBIDDEN**
-        :param pulumi.Input[_builtins.int] type: Specifies the type of the application.
-               Changing this creates a new resource.
-               The valid values are as follows:
-               + **2**: Private image APP.
-               + **3**: Custom APP.
-        :param pulumi.Input[_builtins.str] version: Specifies the version of the application.  
-               If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
-        :param pulumi.Input[_builtins.str] work_path: Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        :param pulumi.Input[_builtins.str] publisher: The publisher of the application.
+        :param pulumi.Input[_builtins.bool] sandbox_enable: Whether to run in sandbox mode.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: The list of image IDs corresponding to the server instance to which the application belongs.
+        :param pulumi.Input[_builtins.str] status: The current status of the application.
+        :param pulumi.Input[_builtins.int] type: The type of the application.
+        :param pulumi.Input[_builtins.str] version: The version of the application.
+        :param pulumi.Input[_builtins.str] work_path: The working directory of the application.
         """
         if app_group_id is not None:
             pulumi.set(__self__, "app_group_id", app_group_id)
@@ -417,8 +333,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="appGroupId")
     def app_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the APP group ID to which the application belongs.
-        Changing this creates a new resource.
+        The APP group ID to which the application belongs.
         """
         return pulumi.get(self, "app_group_id")
 
@@ -430,9 +345,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="commandParam")
     def command_param(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the command line parameter used to start the application.  
-        If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-        double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        The command line parameter used to start the application.
         """
         return pulumi.get(self, "command_param")
 
@@ -444,7 +357,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the description of the application.
+        The description of the application.
         """
         return pulumi.get(self, "description")
 
@@ -456,8 +369,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="executePath")
     def execute_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the location where the application file is installed.
-        e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
+        The location where the application file is installed.
         """
         return pulumi.get(self, "execute_path")
 
@@ -469,8 +381,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="iconIndex")
     def icon_index(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the icon index of the application.
-        Changing this creates a new resource.
+        The icon index of the application.
         """
         return pulumi.get(self, "icon_index")
 
@@ -482,8 +393,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="iconPath")
     def icon_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the path where the application icon is located.
-        Changing this creates a new resource.
+        The path where the application icon is located.
         """
         return pulumi.get(self, "icon_path")
 
@@ -495,9 +405,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the name of the application.  
-        The name valid length is limited from `1` to `64` and cannot be all spaces.
-        The name must be unique.
+        The name of the application.
         """
         return pulumi.get(self, "name")
 
@@ -521,9 +429,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def publisher(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the publisher of the application.
-        Changing this creates a new resource.
-        If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
+        The publisher of the application.
         """
         return pulumi.get(self, "publisher")
 
@@ -534,11 +440,6 @@ class _AppPublishmentState:
     @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used.
-        Changing this creates a new resource.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -549,9 +450,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="sandboxEnable")
     def sandbox_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to run in sandbox mode, defaults to `false`.  
-        If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-        group instance. Otherwise, the application cannot be started.
+        Whether to run in sandbox mode.
         """
         return pulumi.get(self, "sandbox_enable")
 
@@ -563,12 +462,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="sourceImageIds")
     def source_image_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the list of image IDs corresponding to the server instance
-        to which the application belongs.
-        The maximum length is `20`.
-        This parameter is required and available only when the `type` is `2`.
-
-        Changing this creates a new resource.
+        The list of image IDs corresponding to the server instance to which the application belongs.
         """
         return pulumi.get(self, "source_image_ids")
 
@@ -580,10 +474,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the current status of the application, defaults to **NORMAL**.
-        The valid values are as follows:
-        + **NORMAL**
-        + **FORBIDDEN**
+        The current status of the application.
         """
         return pulumi.get(self, "status")
 
@@ -595,11 +486,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the type of the application.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **2**: Private image APP.
-        + **3**: Custom APP.
+        The type of the application.
         """
         return pulumi.get(self, "type")
 
@@ -611,8 +498,7 @@ class _AppPublishmentState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the version of the application.  
-        If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
+        The version of the application.
         """
         return pulumi.get(self, "version")
 
@@ -624,7 +510,7 @@ class _AppPublishmentState:
     @pulumi.getter(name="workPath")
     def work_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        The working directory of the application.
         """
         return pulumi.get(self, "work_path")
 
@@ -656,113 +542,24 @@ class AppPublishment(pulumi.CustomResource):
                  work_path: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a Workspace APP pulishing resource within HuaweiCloud.
-
-        > 1. Before using this resource, ensure that the `type` parameter of the `Workspace.AppGroup` resource
-        >       must be **COMMON_APP** and `server_group_id` parameter must be set.
-        >       <br>2. Deleting this resource will unpublish the APP.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_huaweicloud as huaweicloud
-
-        config = pulumi.Config()
-        app_group_id = config.require_object("appGroupId")
-        app_name = config.require_object("appName")
-        execute_path = config.require_object("executePath")
-        test = huaweicloud.workspace.AppPublishment("test",
-            app_group_id=app_group_id,
-            name=app_name,
-            type=3,
-            execute_path=execute_path)
-        ```
-
-        ## Import
-
-        The resource can be imported using `app_group_id` and `name`, separated by a slash (/), e.g.
-
-        bash
-
-        ```sh
-        $ pulumi import huaweicloud:Workspace/appPublishment:AppPublishment test <app_group_id>/<name>
-        ```
-
-        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
-        API response, security or some other reason.
-
-        The missing attributes include: `source_image_ids`.
-
-        It is generally recommended running `pulumi preview` after importing the resource.
-
-        You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
-        align with the instance. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_workspace_app_publishment" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_image_ids,
-            
-            ]
-
-          }
-
-        }
+        Create a AppPublishment resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] app_group_id: Specifies the APP group ID to which the application belongs.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] command_param: Specifies the command line parameter used to start the application.  
-               If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the application.
-        :param pulumi.Input[_builtins.str] execute_path: Specifies the location where the application file is installed.
-               e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
-        :param pulumi.Input[_builtins.int] icon_index: Specifies the icon index of the application.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] icon_path: Specifies the path where the application icon is located.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
-               The name valid length is limited from `1` to `64` and cannot be all spaces.
-               The name must be unique.
-        :param pulumi.Input[_builtins.str] publisher: Specifies the publisher of the application.
-               Changing this creates a new resource.
-               If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] sandbox_enable: Specifies whether to run in sandbox mode, defaults to `false`.  
-               If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-               group instance. Otherwise, the application cannot be started.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: Specifies the list of image IDs corresponding to the server instance
-               to which the application belongs.
-               The maximum length is `20`.
-               This parameter is required and available only when the `type` is `2`.
-               
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the current status of the application, defaults to **NORMAL**.
-               The valid values are as follows:
-               + **NORMAL**
-               + **FORBIDDEN**
-        :param pulumi.Input[_builtins.int] type: Specifies the type of the application.
-               Changing this creates a new resource.
-               The valid values are as follows:
-               + **2**: Private image APP.
-               + **3**: Custom APP.
-        :param pulumi.Input[_builtins.str] version: Specifies the version of the application.  
-               If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
-        :param pulumi.Input[_builtins.str] work_path: Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        :param pulumi.Input[_builtins.str] app_group_id: The APP group ID to which the application belongs.
+        :param pulumi.Input[_builtins.str] command_param: The command line parameter used to start the application.
+        :param pulumi.Input[_builtins.str] description: The description of the application.
+        :param pulumi.Input[_builtins.str] execute_path: The location where the application file is installed.
+        :param pulumi.Input[_builtins.int] icon_index: The icon index of the application.
+        :param pulumi.Input[_builtins.str] icon_path: The path where the application icon is located.
+        :param pulumi.Input[_builtins.str] name: The name of the application.
+        :param pulumi.Input[_builtins.str] publisher: The publisher of the application.
+        :param pulumi.Input[_builtins.bool] sandbox_enable: Whether to run in sandbox mode.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: The list of image IDs corresponding to the server instance to which the application belongs.
+        :param pulumi.Input[_builtins.str] status: The current status of the application.
+        :param pulumi.Input[_builtins.int] type: The type of the application.
+        :param pulumi.Input[_builtins.str] version: The version of the application.
+        :param pulumi.Input[_builtins.str] work_path: The working directory of the application.
         """
         ...
     @overload
@@ -771,68 +568,7 @@ class AppPublishment(pulumi.CustomResource):
                  args: AppPublishmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Workspace APP pulishing resource within HuaweiCloud.
-
-        > 1. Before using this resource, ensure that the `type` parameter of the `Workspace.AppGroup` resource
-        >       must be **COMMON_APP** and `server_group_id` parameter must be set.
-        >       <br>2. Deleting this resource will unpublish the APP.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_huaweicloud as huaweicloud
-
-        config = pulumi.Config()
-        app_group_id = config.require_object("appGroupId")
-        app_name = config.require_object("appName")
-        execute_path = config.require_object("executePath")
-        test = huaweicloud.workspace.AppPublishment("test",
-            app_group_id=app_group_id,
-            name=app_name,
-            type=3,
-            execute_path=execute_path)
-        ```
-
-        ## Import
-
-        The resource can be imported using `app_group_id` and `name`, separated by a slash (/), e.g.
-
-        bash
-
-        ```sh
-        $ pulumi import huaweicloud:Workspace/appPublishment:AppPublishment test <app_group_id>/<name>
-        ```
-
-        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
-        API response, security or some other reason.
-
-        The missing attributes include: `source_image_ids`.
-
-        It is generally recommended running `pulumi preview` after importing the resource.
-
-        You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
-        align with the instance. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_workspace_app_publishment" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_image_ids,
-            
-            ]
-
-          }
-
-        }
+        Create a AppPublishment resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param AppPublishmentArgs args: The arguments to use to populate this resource's properties.
@@ -928,49 +664,21 @@ class AppPublishment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] app_group_id: Specifies the APP group ID to which the application belongs.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] command_param: Specifies the command line parameter used to start the application.  
-               If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
-        :param pulumi.Input[_builtins.str] description: Specifies the description of the application.
-        :param pulumi.Input[_builtins.str] execute_path: Specifies the location where the application file is installed.
-               e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
-        :param pulumi.Input[_builtins.int] icon_index: Specifies the icon index of the application.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] icon_path: Specifies the path where the application icon is located.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the name of the application.  
-               The name valid length is limited from `1` to `64` and cannot be all spaces.
-               The name must be unique.
+        :param pulumi.Input[_builtins.str] app_group_id: The APP group ID to which the application belongs.
+        :param pulumi.Input[_builtins.str] command_param: The command line parameter used to start the application.
+        :param pulumi.Input[_builtins.str] description: The description of the application.
+        :param pulumi.Input[_builtins.str] execute_path: The location where the application file is installed.
+        :param pulumi.Input[_builtins.int] icon_index: The icon index of the application.
+        :param pulumi.Input[_builtins.str] icon_path: The path where the application icon is located.
+        :param pulumi.Input[_builtins.str] name: The name of the application.
         :param pulumi.Input[_builtins.str] published_at: The release time of the application, in RFC3339 format.
-        :param pulumi.Input[_builtins.str] publisher: Specifies the publisher of the application.
-               Changing this creates a new resource.
-               If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
-               If omitted, the provider-level region will be used.
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.bool] sandbox_enable: Specifies whether to run in sandbox mode, defaults to `false`.  
-               If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-               group instance. Otherwise, the application cannot be started.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: Specifies the list of image IDs corresponding to the server instance
-               to which the application belongs.
-               The maximum length is `20`.
-               This parameter is required and available only when the `type` is `2`.
-               
-               Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the current status of the application, defaults to **NORMAL**.
-               The valid values are as follows:
-               + **NORMAL**
-               + **FORBIDDEN**
-        :param pulumi.Input[_builtins.int] type: Specifies the type of the application.
-               Changing this creates a new resource.
-               The valid values are as follows:
-               + **2**: Private image APP.
-               + **3**: Custom APP.
-        :param pulumi.Input[_builtins.str] version: Specifies the version of the application.  
-               If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
-        :param pulumi.Input[_builtins.str] work_path: Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        :param pulumi.Input[_builtins.str] publisher: The publisher of the application.
+        :param pulumi.Input[_builtins.bool] sandbox_enable: Whether to run in sandbox mode.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] source_image_ids: The list of image IDs corresponding to the server instance to which the application belongs.
+        :param pulumi.Input[_builtins.str] status: The current status of the application.
+        :param pulumi.Input[_builtins.int] type: The type of the application.
+        :param pulumi.Input[_builtins.str] version: The version of the application.
+        :param pulumi.Input[_builtins.str] work_path: The working directory of the application.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -998,8 +706,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="appGroupId")
     def app_group_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the APP group ID to which the application belongs.
-        Changing this creates a new resource.
+        The APP group ID to which the application belongs.
         """
         return pulumi.get(self, "app_group_id")
 
@@ -1007,9 +714,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="commandParam")
     def command_param(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the command line parameter used to start the application.  
-        If the `sandbox_enable` is set to `true`, the path of the APP to be started must be enclosed in
-        double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        The command line parameter used to start the application.
         """
         return pulumi.get(self, "command_param")
 
@@ -1017,7 +722,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the description of the application.
+        The description of the application.
         """
         return pulumi.get(self, "description")
 
@@ -1025,8 +730,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="executePath")
     def execute_path(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the location where the application file is installed.
-        e.g. `C:\\Program Files\\Internet Explorer\\iexplore.exe`.
+        The location where the application file is installed.
         """
         return pulumi.get(self, "execute_path")
 
@@ -1034,8 +738,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="iconIndex")
     def icon_index(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Specifies the icon index of the application.
-        Changing this creates a new resource.
+        The icon index of the application.
         """
         return pulumi.get(self, "icon_index")
 
@@ -1043,8 +746,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="iconPath")
     def icon_path(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the path where the application icon is located.
-        Changing this creates a new resource.
+        The path where the application icon is located.
         """
         return pulumi.get(self, "icon_path")
 
@@ -1052,9 +754,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the name of the application.  
-        The name valid length is limited from `1` to `64` and cannot be all spaces.
-        The name must be unique.
+        The name of the application.
         """
         return pulumi.get(self, "name")
 
@@ -1070,29 +770,20 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def publisher(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the publisher of the application.
-        Changing this creates a new resource.
-        If the `sandbox_enable` is set to `true`, this parameter value is the publisher of the sandboxed application.
+        The publisher of the application.
         """
         return pulumi.get(self, "publisher")
 
     @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
-        """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used.
-        Changing this creates a new resource.
-        """
         return pulumi.get(self, "region")
 
     @_builtins.property
     @pulumi.getter(name="sandboxEnable")
     def sandbox_enable(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to run in sandbox mode, defaults to `false`.  
-        If you want to set `true`, please ensure that the application sandbox software has been installed on the associated server
-        group instance. Otherwise, the application cannot be started.
+        Whether to run in sandbox mode.
         """
         return pulumi.get(self, "sandbox_enable")
 
@@ -1100,12 +791,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="sourceImageIds")
     def source_image_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        Specifies the list of image IDs corresponding to the server instance
-        to which the application belongs.
-        The maximum length is `20`.
-        This parameter is required and available only when the `type` is `2`.
-
-        Changing this creates a new resource.
+        The list of image IDs corresponding to the server instance to which the application belongs.
         """
         return pulumi.get(self, "source_image_ids")
 
@@ -1113,10 +799,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the current status of the application, defaults to **NORMAL**.
-        The valid values are as follows:
-        + **NORMAL**
-        + **FORBIDDEN**
+        The current status of the application.
         """
         return pulumi.get(self, "status")
 
@@ -1124,11 +807,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.int]:
         """
-        Specifies the type of the application.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **2**: Private image APP.
-        + **3**: Custom APP.
+        The type of the application.
         """
         return pulumi.get(self, "type")
 
@@ -1136,8 +815,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the version of the application.  
-        If the `sandbox_enable` is set to `true`, this parameter value is the version of the sandboxed application.
+        The version of the application.
         """
         return pulumi.get(self, "version")
 
@@ -1145,7 +823,7 @@ class AppPublishment(pulumi.CustomResource):
     @pulumi.getter(name="workPath")
     def work_path(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the publisher of the application, e.g. `C:\\Program Files\\Internet Explorer`.
+        The working directory of the application.
         """
         return pulumi.get(self, "work_path")
 

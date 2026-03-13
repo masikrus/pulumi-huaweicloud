@@ -27,6 +27,7 @@ class ClusterActionArgs:
                  restart: Optional[pulumi.Input['ClusterActionRestartArgs']] = None):
         """
         The set of arguments for constructing a ClusterAction resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: ID of CDM cluster.  
                
                Changing this parameter will create a new resource.
@@ -127,6 +128,7 @@ class _ClusterActionState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterAction resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: ID of CDM cluster.  
                
                Changing this parameter will create a new resource.
@@ -284,6 +286,7 @@ class ClusterAction(pulumi.CustomResource):
             type="start")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: ID of CDM cluster.  
@@ -364,6 +367,7 @@ class ClusterAction(pulumi.CustomResource):
             cluster_id=cdm_cluster_id,
             type="start")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterActionArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class ScriptExecuteArgs:
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptExecuteParameterArgs']]]] = None):
         """
         The set of arguments for constructing a ScriptExecute resource.
+
         :param pulumi.Input[_builtins.str] execute_user: Specifies the user to execute the script.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ECS instance ID.
         :param pulumi.Input[_builtins.str] script_id: Specifies the COC script ID.
@@ -156,6 +157,7 @@ class _ScriptExecuteState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ScriptExecute resources.
+
         :param pulumi.Input[_builtins.str] created_at: The start time of the script execution.
         :param pulumi.Input[_builtins.str] execute_user: Specifies the user to execute the script.
         :param pulumi.Input[_builtins.str] finished_at: The end time of the script execution.
@@ -330,7 +332,7 @@ class _ScriptExecuteState:
         pulumi.set(self, "timeout", value)
 
 
-@pulumi.type_token("huaweicloud:coc/scriptExecute:ScriptExecute")
+@pulumi.type_token("huaweicloud:Coc/scriptExecute:ScriptExecute")
 class ScriptExecute(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -379,39 +381,17 @@ class ScriptExecute(pulumi.CustomResource):
 
         The COC script execution can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/scriptExecute:ScriptExecute test <id>
+        $ pulumi import huaweicloud:Coc/scriptExecute:ScriptExecute test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include `instance_id`, `parameters` and `is_sync`.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_script_execute" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              instance_id, parameters, is_sync
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -468,39 +448,17 @@ class ScriptExecute(pulumi.CustomResource):
 
         The COC script execution can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/scriptExecute:ScriptExecute test <id>
+        $ pulumi import huaweicloud:Coc/scriptExecute:ScriptExecute test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include `instance_id`, `parameters` and `is_sync`.
 
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_script_execute" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              instance_id, parameters, is_sync
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ScriptExecuteArgs args: The arguments to use to populate this resource's properties.
@@ -553,7 +511,7 @@ class ScriptExecute(pulumi.CustomResource):
             __props__.__dict__["script_name"] = None
             __props__.__dict__["status"] = None
         super(ScriptExecute, __self__).__init__(
-            'huaweicloud:coc/scriptExecute:ScriptExecute',
+            'huaweicloud:Coc/scriptExecute:ScriptExecute',
             resource_name,
             __props__,
             opts)

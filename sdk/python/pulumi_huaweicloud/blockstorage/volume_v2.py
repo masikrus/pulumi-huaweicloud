@@ -36,6 +36,7 @@ class VolumeV2Args:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeV2 resource.
+
         :param pulumi.Input[_builtins.int] size: The size of the volume to create (in gigabytes).
         :param pulumi.Input[_builtins.str] availability_zone: The availability zone for the volume. Changing this creates a new
                volume.
@@ -266,6 +267,7 @@ class _VolumeV2State:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['VolumeV2AttachmentArgs']]] attachments: If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and
                the Device as the Instance sees it.
         :param pulumi.Input[_builtins.str] availability_zone: The availability zone for the volume. Changing this creates a new
@@ -495,7 +497,7 @@ class _VolumeV2State:
         pulumi.set(self, "volume_type", value)
 
 
-@pulumi.type_token("huaweicloud:blockstorage/volumeV2:VolumeV2")
+@pulumi.type_token("huaweicloud:Blockstorage/volumeV2:VolumeV2")
 class VolumeV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -537,11 +539,10 @@ class VolumeV2(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:blockstorage/volumeV2:VolumeV2 volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d
+        $ pulumi import huaweicloud:Blockstorage/volumeV2:VolumeV2 volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -594,11 +595,10 @@ class VolumeV2(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:blockstorage/volumeV2:VolumeV2 volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d
+        $ pulumi import huaweicloud:Blockstorage/volumeV2:VolumeV2 volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeV2Args args: The arguments to use to populate this resource's properties.
@@ -654,7 +654,7 @@ class VolumeV2(pulumi.CustomResource):
             __props__.__dict__["volume_type"] = volume_type
             __props__.__dict__["attachments"] = None
         super(VolumeV2, __self__).__init__(
-            'huaweicloud:blockstorage/volumeV2:VolumeV2',
+            'huaweicloud:Blockstorage/volumeV2:VolumeV2',
             resource_name,
             __props__,
             opts)

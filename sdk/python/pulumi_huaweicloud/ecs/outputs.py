@@ -19,17 +19,45 @@ __all__ = [
     'AutoLaunchGroupOverride',
     'InstanceBandwidth',
     'InstanceDataDisk',
+    'InstanceEnclaveOptions',
     'InstanceNetwork',
     'InstanceSchedulerHint',
     'InstanceV1DataDisk',
     'InstanceV1Nic',
     'InstanceV2Bandwidth',
     'InstanceV2DataDisk',
+    'InstanceV2EnclaveOptions',
     'InstanceV2Network',
     'InstanceV2SchedulerHint',
     'InstanceV2VolumeAttached',
     'InstanceVolumeAttached',
+    'OsChangeOsChangeValue',
+    'OsChangeOsChangeValueMetadata',
+    'OsReinstallOsReinstallValue',
+    'OsReinstallOsReinstallValueMetadata',
     'SecgroupV2Rule',
+    'TemplateTemplateData',
+    'TemplateTemplateDataBlockDeviceMapping',
+    'TemplateTemplateDataBlockDeviceMappingAttachment',
+    'TemplateTemplateDataInternetAccess',
+    'TemplateTemplateDataInternetAccessPublicip',
+    'TemplateTemplateDataInternetAccessPublicipBandwidth',
+    'TemplateTemplateDataMarketOptions',
+    'TemplateTemplateDataMarketOptionsSpotOptions',
+    'TemplateTemplateDataNetworkInterface',
+    'TemplateTemplateDataNetworkInterfaceAttachment',
+    'TemplateTemplateDataOsProfile',
+    'TemplateTemplateDataTagOption',
+    'TemplateTemplateDataTagOptionTag',
+    'GetAttachableNicsAttachableQuantityResult',
+    'GetAttachableNicsInterfaceAttachmentResult',
+    'GetAttachableNicsInterfaceAttachmentFixedIpResult',
+    'GetAutoLaunchGroupInstancesInstanceResult',
+    'GetAutoLaunchGroupsAutoLaunchGroupResult',
+    'GetAvailabilityZonesAvailabilityZoneResult',
+    'GetFlavorCapacityResourceResult',
+    'GetFlavorSalesPoliciesSellPolicyResult',
+    'GetFlavorSalesPoliciesSellPolicySpotOptionResult',
     'GetFlavorsFlavorResult',
     'GetInstanceNetworkResult',
     'GetInstanceSchedulerHintResult',
@@ -38,7 +66,52 @@ __all__ = [
     'GetInstancesInstanceNetworkResult',
     'GetInstancesInstanceSchedulerHintResult',
     'GetInstancesInstanceVolumeAttachedResult',
+    'GetQuotasAbsoluteResult',
+    'GetRecycleBinServersServerResult',
+    'GetRecycleBinServersServerCpuOptionResult',
+    'GetRecycleBinServersServerFlavorResult',
+    'GetRecycleBinServersServerFlavorAsicAcceleratorResult',
+    'GetRecycleBinServersServerFlavorGpusResult',
+    'GetRecycleBinServersServerHypervisorResult',
+    'GetRecycleBinServersServerImageResult',
+    'GetRecycleBinServersServerNetworkInterfaceResult',
+    'GetRecycleBinServersServerNetworkInterfaceAssociationResult',
+    'GetRecycleBinServersServerOsExtendedVolumesVolumesAttachedResult',
+    'GetRecycleBinServersServerOsSchedulerHintResult',
+    'GetRecycleBinServersServerSecurityGroupResult',
+    'GetRecycleBinServersServerSecurityOptionResult',
+    'GetRecycleBinServersServerSysTagResult',
+    'GetResizeFlavorsFlavorResult',
+    'GetResizeFlavorsFlavorExtraSpecResult',
+    'GetResizeFlavorsFlavorLinkResult',
+    'GetScheduledEventsEventResult',
+    'GetScheduledEventsEventExecuteOptionResult',
+    'GetScheduledEventsEventSourceResult',
     'GetServergroupsServergroupResult',
+    'GetSupplyRecommendationsFlavorConstraintResult',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementResult',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuResult',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbResult',
+    'GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountResult',
+    'GetSupplyRecommendationsLocationResult',
+    'GetSupplyRecommendationsOptionResult',
+    'GetSupplyRecommendationsSupplyRecommendationResult',
+    'GetTemplateVersionsLaunchTemplateVersionResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingAttachmentResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipBandwidthResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionSpotOptionResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceAttachmentResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataOsProfileResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionResult',
+    'GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionTagResult',
+    'GetTemplatesLaunchTemplateResult',
+    'GetVolumeAttachmentsVolumeAttachmentResult',
 ]
 
 @pulumi.output_type
@@ -189,17 +262,20 @@ class InstanceBandwidth(dict):
                  id: Optional[_builtins.str] = None,
                  size: Optional[_builtins.int] = None):
         """
-        :param _builtins.str share_type: Specifies the bandwidth sharing type. Changing this creates a new instance.
+        :param _builtins.str share_type: Specifies the bandwidth sharing type. Changing this creates a new
+               instance.
                Possible values are as follows:
                + **PER**: Dedicated bandwidth
                + **WHOLE**: Shared bandwidth
-        :param _builtins.str charge_mode: Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
+        :param _builtins.str charge_mode: Specifies the bandwidth billing mode. The value can be *traffic* or
+               *bandwidth*.
                Changing this creates a new instance.
         :param Mapping[str, _builtins.str] extend_param: Specifies the additional EIP information.
                Changing this creates a new instance.
                
                > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
-               The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this table.
+               The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this
+               table.
                
                <!-- markdownlint-disable MD033 -->
                <table class="tg"><thead>
@@ -243,7 +319,8 @@ class InstanceBandwidth(dict):
     @pulumi.getter(name="shareType")
     def share_type(self) -> _builtins.str:
         """
-        Specifies the bandwidth sharing type. Changing this creates a new instance.
+        Specifies the bandwidth sharing type. Changing this creates a new
+        instance.
         Possible values are as follows:
         + **PER**: Dedicated bandwidth
         + **WHOLE**: Shared bandwidth
@@ -254,7 +331,8 @@ class InstanceBandwidth(dict):
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> Optional[_builtins.str]:
         """
-        Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
+        Specifies the bandwidth billing mode. The value can be *traffic* or
+        *bandwidth*.
         Changing this creates a new instance.
         """
         return pulumi.get(self, "charge_mode")
@@ -267,7 +345,8 @@ class InstanceBandwidth(dict):
         Changing this creates a new instance.
 
         > Currently, only the `charging_mode` key is supported and the value can be **prePaid** or **postPaid**.
-        The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this table.
+        The value combinations of the `charging_mode` of instance, this `charging_mode` and `charge_mode` are shown in this
+        table.
 
         <!-- markdownlint-disable MD033 -->
         <table class="tg"><thead>
@@ -376,8 +455,8 @@ class InstanceDataDisk(dict):
                Changing this creates a new instance.
         :param _builtins.str kms_key_id: Specifies the ID of a KMS key. This is used to encrypt the disk.
                Changing this creates a new instance.
-        :param _builtins.str snapshot_id: Specifies the EVS snapshot ID or ID of the original data disk contained in
-               the full-ECS image. Changing this creates a new instance.
+        :param _builtins.str snapshot_id: Specifies the EVS snapshot ID or ID of the original data disk contained
+               in the full-ECS image. Changing this creates a new instance.
         :param _builtins.int throughput: Specifies the throughput for the disk. The Unit is MiB/s.
                The field is valid and required when `type` is set to **GPSSD2**.
                
@@ -468,8 +547,8 @@ class InstanceDataDisk(dict):
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[_builtins.str]:
         """
-        Specifies the EVS snapshot ID or ID of the original data disk contained in
-        the full-ECS image. Changing this creates a new instance.
+        Specifies the EVS snapshot ID or ID of the original data disk contained
+        in the full-ECS image. Changing this creates a new instance.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -486,6 +565,26 @@ class InstanceDataDisk(dict):
         Changing this creates a new instance.
         """
         return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class InstanceEnclaveOptions(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool):
+        """
+        :param _builtins.bool enabled: Specifies whether to enable Enclave.
+               Changing this creates a new instance.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Specifies whether to enable Enclave.
+        Changing this creates a new instance.
+        """
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type
@@ -655,14 +754,16 @@ class InstanceSchedulerHint(dict):
                  group: Optional[_builtins.str] = None,
                  tenancy: Optional[_builtins.str] = None):
         """
-        :param _builtins.str deh_id: Specifies the ID of DeH.
-               This parameter takes effect only when the value of tenancy is dedicated. Changing this creates a new instance.
+        :param _builtins.str deh_id: Specifies the ID of DeH. This parameter takes effect only when the value of tenancy is
+               **dedicated**.
+               
+               <a name="enclave_options"></a>
+               The `enclave_options` block supports:
         :param _builtins.str fault_domain: schema: Internal
         :param _builtins.str group: Specifies a UUID of a Server Group.
                The instance will be placed into that group. Changing this creates a new instance.
-        :param _builtins.str tenancy: Specifies the tenancy specifies whether the ECS is to be created on a
-               Dedicated Host
-               (DeH) or in a shared pool. Changing this creates a new instance.
+        :param _builtins.str tenancy: Specifies the tenancy specifies whether the ECS is to be created on a Dedicated
+               Host(DeH) or in a shared pool. Value options: **share**, **dedicate**.
         """
         if deh_id is not None:
             pulumi.set(__self__, "deh_id", deh_id)
@@ -677,8 +778,11 @@ class InstanceSchedulerHint(dict):
     @pulumi.getter(name="dehId")
     def deh_id(self) -> Optional[_builtins.str]:
         """
-        Specifies the ID of DeH.
-        This parameter takes effect only when the value of tenancy is dedicated. Changing this creates a new instance.
+        Specifies the ID of DeH. This parameter takes effect only when the value of tenancy is
+        **dedicated**.
+
+        <a name="enclave_options"></a>
+        The `enclave_options` block supports:
         """
         return pulumi.get(self, "deh_id")
 
@@ -703,9 +807,8 @@ class InstanceSchedulerHint(dict):
     @pulumi.getter
     def tenancy(self) -> Optional[_builtins.str]:
         """
-        Specifies the tenancy specifies whether the ECS is to be created on a
-        Dedicated Host
-        (DeH) or in a shared pool. Changing this creates a new instance.
+        Specifies the tenancy specifies whether the ECS is to be created on a Dedicated
+        Host(DeH) or in a shared pool. Value options: **share**, **dedicate**.
         """
         return pulumi.get(self, "tenancy")
 
@@ -956,6 +1059,18 @@ class InstanceV2DataDisk(dict):
     @pulumi.getter
     def throughput(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class InstanceV2EnclaveOptions(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool):
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type
@@ -1309,6 +1424,351 @@ class InstanceVolumeAttached(dict):
 
 
 @pulumi.output_type
+class OsChangeOsChangeValue(dict):
+    def __init__(__self__, *,
+                 imageid: _builtins.str,
+                 adminpass: Optional[_builtins.str] = None,
+                 keyname: Optional[_builtins.str] = None,
+                 metadata: Optional['outputs.OsChangeOsChangeValueMetadata'] = None,
+                 mode: Optional[_builtins.str] = None,
+                 userid: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str imageid: Specifies the ID of the new image in UUID format.
+        :param _builtins.str adminpass: Specifies the initial password of the ECS administrator. The Windows
+               administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+               + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+               sequence as they appear in the username.
+               + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+               + Either `adminpass` or `keyname` is specified.
+               + If both `adminpass` and `keyname` are empty, Linux ECSs can use `user_data` specified in `metadata`.
+        :param _builtins.str keyname: Specifies the key name.
+        :param 'OsChangeOsChangeValueMetadataArgs' metadata: Specifies the metadata of the ECS for which the OS is to be changed.
+               The metadata structure is documented below.
+               
+               <a name="os_change_metadata_struct"></a>
+               The `metadata` block supports:
+        :param _builtins.str mode: Specifies whether the ECS supports OS changeation when the ECS is running.
+               If the parameter value is **withStopServer**, the ECS supports OS changeation when the ECS is running. In such a case,
+               the system automatically stops the ECS before changeing its OS.
+        :param _builtins.str userid: Specifies the user ID. When the `keyname` parameter is being specified, the
+               value of this parameter is used preferentially. If this parameter is left blank, the user ID in the token is used by default.
+        """
+        pulumi.set(__self__, "imageid", imageid)
+        if adminpass is not None:
+            pulumi.set(__self__, "adminpass", adminpass)
+        if keyname is not None:
+            pulumi.set(__self__, "keyname", keyname)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if userid is not None:
+            pulumi.set(__self__, "userid", userid)
+
+    @_builtins.property
+    @pulumi.getter
+    def imageid(self) -> _builtins.str:
+        """
+        Specifies the ID of the new image in UUID format.
+        """
+        return pulumi.get(self, "imageid")
+
+    @_builtins.property
+    @pulumi.getter
+    def adminpass(self) -> Optional[_builtins.str]:
+        """
+        Specifies the initial password of the ECS administrator. The Windows
+        administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+        + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+        sequence as they appear in the username.
+        + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+        + Either `adminpass` or `keyname` is specified.
+        + If both `adminpass` and `keyname` are empty, Linux ECSs can use `user_data` specified in `metadata`.
+        """
+        return pulumi.get(self, "adminpass")
+
+    @_builtins.property
+    @pulumi.getter
+    def keyname(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "keyname")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.OsChangeOsChangeValueMetadata']:
+        """
+        Specifies the metadata of the ECS for which the OS is to be changed.
+        The metadata structure is documented below.
+
+        <a name="os_change_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether the ECS supports OS changeation when the ECS is running.
+        If the parameter value is **withStopServer**, the ECS supports OS changeation when the ECS is running. In such a case,
+        the system automatically stops the ECS before changeing its OS.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def userid(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID. When the `keyname` parameter is being specified, the
+        value of this parameter is used preferentially. If this parameter is left blank, the user ID in the token is used by default.
+        """
+        return pulumi.get(self, "userid")
+
+
+@pulumi.output_type
+class OsChangeOsChangeValueMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "__systemCmkid":
+            suggest = "__system_cmkid"
+        elif key == "__systemEncrypted":
+            suggest = "__system_encrypted"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OsChangeOsChangeValueMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OsChangeOsChangeValueMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OsChangeOsChangeValueMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[_builtins.str] = None,
+                 __system_encrypted: Optional[_builtins.str] = None,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str __system_cmkid: Specifies the CMK ID, which indicates encryption in `metadata`.
+               This parameter must be used with `__system__encrypted`.
+        :param _builtins.str __system_encrypted: Specifies the encryption field in `metadata`.
+               + **0**: indicates a non-encrypted disk.
+               + **1**: indicates an encrypted disk.
+        :param _builtins.str user_data: Specifies the user data to be injected to the ECS during the creation.
+               Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[_builtins.str]:
+        """
+        Specifies the CMK ID, which indicates encryption in `metadata`.
+        This parameter must be used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[_builtins.str]:
+        """
+        Specifies the encryption field in `metadata`.
+        + **0**: indicates a non-encrypted disk.
+        + **1**: indicates an encrypted disk.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user data to be injected to the ECS during the creation.
+        Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class OsReinstallOsReinstallValue(dict):
+    def __init__(__self__, *,
+                 adminpass: Optional[_builtins.str] = None,
+                 keyname: Optional[_builtins.str] = None,
+                 metadata: Optional['outputs.OsReinstallOsReinstallValueMetadata'] = None,
+                 mode: Optional[_builtins.str] = None,
+                 userid: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str adminpass: Specifies the initial password of the ECS administrator. The Windows
+               administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+               + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+               sequence as they appear in the username.
+               + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+               + Either `adminpass` or `keyname` is specified.
+               + If both `adminpass` and `keyname` are empty, `user_data` in metadata must be set.
+               + The `password` must contain **8** to **26** characters.
+               + The `password` must contain at least three of the following character types: uppercase letters, lowercase letters,
+               digits, and special characters (!@$%^-_=+[{}]:,./?~#*).
+        :param _builtins.str keyname: Specifies the key name.
+        :param 'OsReinstallOsReinstallValueMetadataArgs' metadata: Specifies the metadata of the reinstalled ECS.
+               The metadata structure is documented below.
+               
+               <a name="os_reinstall_metadata_struct"></a>
+               The `metadata` block supports:
+        :param _builtins.str mode: Specifies whether the ECS supports OS reinstallation when the ECS is running.
+               If the parameter value is **withStopServer**, the ECS supports OS reinstallation when the ECS is running. In such a case,
+               the system automatically stops the ECS before reinstalling its OS.
+        :param _builtins.str userid: Specifies the user ID.
+        """
+        if adminpass is not None:
+            pulumi.set(__self__, "adminpass", adminpass)
+        if keyname is not None:
+            pulumi.set(__self__, "keyname", keyname)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if userid is not None:
+            pulumi.set(__self__, "userid", userid)
+
+    @_builtins.property
+    @pulumi.getter
+    def adminpass(self) -> Optional[_builtins.str]:
+        """
+        Specifies the initial password of the ECS administrator. The Windows
+        administrator username is **Administrator**, and the Linux administrator username is **root**. Constraints:
+        + The Windows ECS password cannot contain the username, the username in reverse, or more than two characters in the same
+        sequence as they appear in the username.
+        + Linux ECSs can use `user_data` to inject passwords. In such a case, `adminpass` is unavailable.
+        + Either `adminpass` or `keyname` is specified.
+        + If both `adminpass` and `keyname` are empty, `user_data` in metadata must be set.
+        + The `password` must contain **8** to **26** characters.
+        + The `password` must contain at least three of the following character types: uppercase letters, lowercase letters,
+        digits, and special characters (!@$%^-_=+[{}]:,./?~#*).
+        """
+        return pulumi.get(self, "adminpass")
+
+    @_builtins.property
+    @pulumi.getter
+    def keyname(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "keyname")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.OsReinstallOsReinstallValueMetadata']:
+        """
+        Specifies the metadata of the reinstalled ECS.
+        The metadata structure is documented below.
+
+        <a name="os_reinstall_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether the ECS supports OS reinstallation when the ECS is running.
+        If the parameter value is **withStopServer**, the ECS supports OS reinstallation when the ECS is running. In such a case,
+        the system automatically stops the ECS before reinstalling its OS.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def userid(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID.
+        """
+        return pulumi.get(self, "userid")
+
+
+@pulumi.output_type
+class OsReinstallOsReinstallValueMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "__systemCmkid":
+            suggest = "__system_cmkid"
+        elif key == "__systemEncrypted":
+            suggest = "__system_encrypted"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OsReinstallOsReinstallValueMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OsReinstallOsReinstallValueMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OsReinstallOsReinstallValueMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[_builtins.str] = None,
+                 __system_encrypted: Optional[_builtins.str] = None,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str __system_cmkid: Specifies the CMK ID, which indicates encryption in `metadata`.
+               This parameter must be used with `__system__encrypted`.
+        :param _builtins.str __system_encrypted: Specifies the encryption field in `metadata`.
+               + **0**: indicates a non-encrypted disk.
+               + **1**: indicates an encrypted disk.
+        :param _builtins.str user_data: Specifies the user data to be injected to the ECS during the creation.
+               Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[_builtins.str]:
+        """
+        Specifies the CMK ID, which indicates encryption in `metadata`.
+        This parameter must be used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[_builtins.str]:
+        """
+        Specifies the encryption field in `metadata`.
+        + **0**: indicates a non-encrypted disk.
+        + **1**: indicates an encrypted disk.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user data to be injected to the ECS during the creation.
+        Text and text files can be injected. It is only supported when `cloud_init_installed` is set to **true**.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
 class SecgroupV2Rule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1387,6 +1847,1660 @@ class SecgroupV2Rule(dict):
     @pulumi.getter
     def self(self) -> Optional[_builtins.bool]:
         return pulumi.get(self, "self")
+
+
+@pulumi.output_type
+class TemplateTemplateData(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoRecovery":
+            suggest = "auto_recovery"
+        elif key == "availabilityZoneId":
+            suggest = "availability_zone_id"
+        elif key == "blockDeviceMappings":
+            suggest = "block_device_mappings"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "flavorId":
+            suggest = "flavor_id"
+        elif key == "internetAccess":
+            suggest = "internet_access"
+        elif key == "marketOptions":
+            suggest = "market_options"
+        elif key == "networkInterfaces":
+            suggest = "network_interfaces"
+        elif key == "osProfile":
+            suggest = "os_profile"
+        elif key == "securityGroupIds":
+            suggest = "security_group_ids"
+        elif key == "tagOptions":
+            suggest = "tag_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateData. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateData.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateData.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_recovery: Optional[_builtins.bool] = None,
+                 availability_zone_id: Optional[_builtins.str] = None,
+                 block_device_mappings: Optional[Sequence['outputs.TemplateTemplateDataBlockDeviceMapping']] = None,
+                 description: Optional[_builtins.str] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 flavor_id: Optional[_builtins.str] = None,
+                 internet_access: Optional['outputs.TemplateTemplateDataInternetAccess'] = None,
+                 market_options: Optional['outputs.TemplateTemplateDataMarketOptions'] = None,
+                 metadata: Optional[Mapping[str, _builtins.str]] = None,
+                 name: Optional[_builtins.str] = None,
+                 network_interfaces: Optional[Sequence['outputs.TemplateTemplateDataNetworkInterface']] = None,
+                 os_profile: Optional['outputs.TemplateTemplateDataOsProfile'] = None,
+                 security_group_ids: Optional[Sequence[_builtins.str]] = None,
+                 tag_options: Optional[Sequence['outputs.TemplateTemplateDataTagOption']] = None):
+        """
+        :param _builtins.bool auto_recovery: Specifies whether enable auto-recovery.
+        :param _builtins.str availability_zone_id: Specifies the AZ.
+        :param Sequence['TemplateTemplateDataBlockDeviceMappingArgs'] block_device_mappings: Specifies the BDM mounting information.
+               The block_device_mappings structure is documented below.
+        :param _builtins.str description: Specifies the ECS description.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+        :param _builtins.str flavor_id: Specifies the flavor ID of the ECS to be created based on the template.
+        :param 'TemplateTemplateDataInternetAccessArgs' internet_access: Specifies the public network access.
+               The internet_access structure is documented below.
+        :param 'TemplateTemplateDataMarketOptionsArgs' market_options: Specifies the billing information.
+               The market_options structure is documented below.
+        :param Mapping[str, _builtins.str] metadata: Specifies the metadata.
+        :param _builtins.str name: Specifies the ECS name.
+        :param Sequence['TemplateTemplateDataNetworkInterfaceArgs'] network_interfaces: Specifies the network interfaces.
+               The network_interfaces structure is documented below.
+        :param 'TemplateTemplateDataOsProfileArgs' os_profile: Specifies the image attribute.
+               The os_profile structure is documented below.
+        :param Sequence[_builtins.str] security_group_ids: Specifies the security group ID list.
+        :param Sequence['TemplateTemplateDataTagOptionArgs'] tag_options: Specifies the VM tags. Currently, only VMs can be tagged. In the future,
+               associated resources such as volumes can be tagged, too.
+               The tag_options structure is documented below.
+               
+               <a name="os_profile_struct"></a>
+               The `os_profile` block supports:
+        """
+        if auto_recovery is not None:
+            pulumi.set(__self__, "auto_recovery", auto_recovery)
+        if availability_zone_id is not None:
+            pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        if block_device_mappings is not None:
+            pulumi.set(__self__, "block_device_mappings", block_device_mappings)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if flavor_id is not None:
+            pulumi.set(__self__, "flavor_id", flavor_id)
+        if internet_access is not None:
+            pulumi.set(__self__, "internet_access", internet_access)
+        if market_options is not None:
+            pulumi.set(__self__, "market_options", market_options)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if network_interfaces is not None:
+            pulumi.set(__self__, "network_interfaces", network_interfaces)
+        if os_profile is not None:
+            pulumi.set(__self__, "os_profile", os_profile)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if tag_options is not None:
+            pulumi.set(__self__, "tag_options", tag_options)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRecovery")
+    def auto_recovery(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether enable auto-recovery.
+        """
+        return pulumi.get(self, "auto_recovery")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the AZ.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="blockDeviceMappings")
+    def block_device_mappings(self) -> Optional[Sequence['outputs.TemplateTemplateDataBlockDeviceMapping']]:
+        """
+        Specifies the BDM mounting information.
+        The block_device_mappings structure is documented below.
+        """
+        return pulumi.get(self, "block_device_mappings")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ECS description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the flavor ID of the ECS to be created based on the template.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="internetAccess")
+    def internet_access(self) -> Optional['outputs.TemplateTemplateDataInternetAccess']:
+        """
+        Specifies the public network access.
+        The internet_access structure is documented below.
+        """
+        return pulumi.get(self, "internet_access")
+
+    @_builtins.property
+    @pulumi.getter(name="marketOptions")
+    def market_options(self) -> Optional['outputs.TemplateTemplateDataMarketOptions']:
+        """
+        Specifies the billing information.
+        The market_options structure is documented below.
+        """
+        return pulumi.get(self, "market_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Specifies the metadata.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ECS name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Optional[Sequence['outputs.TemplateTemplateDataNetworkInterface']]:
+        """
+        Specifies the network interfaces.
+        The network_interfaces structure is documented below.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @_builtins.property
+    @pulumi.getter(name="osProfile")
+    def os_profile(self) -> Optional['outputs.TemplateTemplateDataOsProfile']:
+        """
+        Specifies the image attribute.
+        The os_profile structure is documented below.
+        """
+        return pulumi.get(self, "os_profile")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the security group ID list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="tagOptions")
+    def tag_options(self) -> Optional[Sequence['outputs.TemplateTemplateDataTagOption']]:
+        """
+        Specifies the VM tags. Currently, only VMs can be tagged. In the future,
+        associated resources such as volumes can be tagged, too.
+        The tag_options structure is documented below.
+
+        <a name="os_profile_struct"></a>
+        The `os_profile` block supports:
+        """
+        return pulumi.get(self, "tag_options")
+
+
+@pulumi.output_type
+class TemplateTemplateDataBlockDeviceMapping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cmkId":
+            suggest = "cmk_id"
+        elif key == "sourceId":
+            suggest = "source_id"
+        elif key == "sourceType":
+            suggest = "source_type"
+        elif key == "volumeSize":
+            suggest = "volume_size"
+        elif key == "volumeType":
+            suggest = "volume_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataBlockDeviceMapping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataBlockDeviceMapping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataBlockDeviceMapping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 attachment: Optional['outputs.TemplateTemplateDataBlockDeviceMappingAttachment'] = None,
+                 cmk_id: Optional[_builtins.str] = None,
+                 encrypted: Optional[_builtins.bool] = None,
+                 source_id: Optional[_builtins.str] = None,
+                 source_type: Optional[_builtins.str] = None,
+                 volume_size: Optional[_builtins.int] = None,
+                 volume_type: Optional[_builtins.str] = None):
+        """
+        :param 'TemplateTemplateDataBlockDeviceMappingAttachmentArgs' attachment: Specifies the disk interface.
+               The block_device_mappings_attachment structure is documented below.
+               
+               <a name="block_device_mappings_attachment_struct"></a>
+               The `block_device_mappings_attachment` block supports:
+        :param _builtins.str cmk_id: Specifies the key ID.
+        :param _builtins.bool encrypted: Specifies the encrypted or not.
+        :param _builtins.str source_id: Specifies the VM volume data source type.
+        :param _builtins.str source_type: Specifies the source type of the volume device.
+        :param _builtins.int volume_size: Specifies the volume size.
+        :param _builtins.str volume_type: Specifies the volume type.
+        """
+        if attachment is not None:
+            pulumi.set(__self__, "attachment", attachment)
+        if cmk_id is not None:
+            pulumi.set(__self__, "cmk_id", cmk_id)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if source_id is not None:
+            pulumi.set(__self__, "source_id", source_id)
+        if source_type is not None:
+            pulumi.set(__self__, "source_type", source_type)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachment(self) -> Optional['outputs.TemplateTemplateDataBlockDeviceMappingAttachment']:
+        """
+        Specifies the disk interface.
+        The block_device_mappings_attachment structure is documented below.
+
+        <a name="block_device_mappings_attachment_struct"></a>
+        The `block_device_mappings_attachment` block supports:
+        """
+        return pulumi.get(self, "attachment")
+
+    @_builtins.property
+    @pulumi.getter(name="cmkId")
+    def cmk_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key ID.
+        """
+        return pulumi.get(self, "cmk_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypted(self) -> Optional[_builtins.bool]:
+        """
+        Specifies the encrypted or not.
+        """
+        return pulumi.get(self, "encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VM volume data source type.
+        """
+        return pulumi.get(self, "source_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the source type of the volume device.
+        """
+        return pulumi.get(self, "source_type")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> Optional[_builtins.int]:
+        """
+        Specifies the volume size.
+        """
+        return pulumi.get(self, "volume_size")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the volume type.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class TemplateTemplateDataBlockDeviceMappingAttachment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bootIndex":
+            suggest = "boot_index"
+        elif key == "deleteOnTermination":
+            suggest = "delete_on_termination"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataBlockDeviceMappingAttachment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataBlockDeviceMappingAttachment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataBlockDeviceMappingAttachment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 boot_index: Optional[_builtins.int] = None,
+                 delete_on_termination: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int boot_index: Specifies the loading sequence. The value **0** indicates the system disk.
+        :param _builtins.bool delete_on_termination: Specifies whether the EIP is released along with the instance.
+               
+               <a name="bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        """
+        if boot_index is not None:
+            pulumi.set(__self__, "boot_index", boot_index)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> Optional[_builtins.int]:
+        """
+        Specifies the loading sequence. The value **0** indicates the system disk.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the EIP is released along with the instance.
+
+        <a name="bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+
+@pulumi.output_type
+class TemplateTemplateDataInternetAccess(dict):
+    def __init__(__self__, *,
+                 publicip: Optional['outputs.TemplateTemplateDataInternetAccessPublicip'] = None):
+        """
+        :param 'TemplateTemplateDataInternetAccessPublicipArgs' publicip: Specifies the public network access.
+               The publicip structure is documented below.
+               
+               <a name="publicip_struct"></a>
+               The `publicip` block supports:
+        """
+        if publicip is not None:
+            pulumi.set(__self__, "publicip", publicip)
+
+    @_builtins.property
+    @pulumi.getter
+    def publicip(self) -> Optional['outputs.TemplateTemplateDataInternetAccessPublicip']:
+        """
+        Specifies the public network access.
+        The publicip structure is documented below.
+
+        <a name="publicip_struct"></a>
+        The `publicip` block supports:
+        """
+        return pulumi.get(self, "publicip")
+
+
+@pulumi.output_type
+class TemplateTemplateDataInternetAccessPublicip(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chargingMode":
+            suggest = "charging_mode"
+        elif key == "deleteOnTermination":
+            suggest = "delete_on_termination"
+        elif key == "publicipType":
+            suggest = "publicip_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataInternetAccessPublicip. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataInternetAccessPublicip.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataInternetAccessPublicip.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bandwidth: Optional['outputs.TemplateTemplateDataInternetAccessPublicipBandwidth'] = None,
+                 charging_mode: Optional[_builtins.str] = None,
+                 delete_on_termination: Optional[_builtins.bool] = None,
+                 publicip_type: Optional[_builtins.str] = None):
+        """
+        :param 'TemplateTemplateDataInternetAccessPublicipBandwidthArgs' bandwidth: Specifies the bandwidth.
+               The bandwidth structure is documented below.
+        :param _builtins.str charging_mode: Specifies the EIP billing mode.
+        :param _builtins.bool delete_on_termination: Specifies whether the EIP is released along with the instance.
+               
+               <a name="bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        :param _builtins.str publicip_type: Specifies the EIP type.
+        """
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if charging_mode is not None:
+            pulumi.set(__self__, "charging_mode", charging_mode)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if publicip_type is not None:
+            pulumi.set(__self__, "publicip_type", publicip_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidth(self) -> Optional['outputs.TemplateTemplateDataInternetAccessPublicipBandwidth']:
+        """
+        Specifies the bandwidth.
+        The bandwidth structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="chargingMode")
+    def charging_mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies the EIP billing mode.
+        """
+        return pulumi.get(self, "charging_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the EIP is released along with the instance.
+
+        <a name="bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipType")
+    def publicip_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the EIP type.
+        """
+        return pulumi.get(self, "publicip_type")
+
+
+@pulumi.output_type
+class TemplateTemplateDataInternetAccessPublicipBandwidth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chargeMode":
+            suggest = "charge_mode"
+        elif key == "shareType":
+            suggest = "share_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataInternetAccessPublicipBandwidth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataInternetAccessPublicipBandwidth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataInternetAccessPublicipBandwidth.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 charge_mode: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 share_type: Optional[_builtins.str] = None,
+                 size: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str charge_mode: Specifies the billing mode.
+        :param _builtins.str id: Specifies the bandwidth ID. You can use an existing shared bandwidth when
+               applying for an EIP for the bandwidth of type **WHOLE**.
+               
+               <a name="tag_options_struct"></a>
+               The `tag_options` block supports:
+        :param _builtins.str share_type: Specifies the bandwidth type.
+        :param _builtins.int size: Specifies the bandwidth size.
+        """
+        if charge_mode is not None:
+            pulumi.set(__self__, "charge_mode", charge_mode)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if share_type is not None:
+            pulumi.set(__self__, "share_type", share_type)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies the billing mode.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the bandwidth ID. You can use an existing shared bandwidth when
+        applying for an EIP for the bandwidth of type **WHOLE**.
+
+        <a name="tag_options_struct"></a>
+        The `tag_options` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="shareType")
+    def share_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the bandwidth type.
+        """
+        return pulumi.get(self, "share_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        """
+        Specifies the bandwidth size.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class TemplateTemplateDataMarketOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "marketType":
+            suggest = "market_type"
+        elif key == "spotOptions":
+            suggest = "spot_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataMarketOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataMarketOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataMarketOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 market_type: Optional[_builtins.str] = None,
+                 spot_options: Optional['outputs.TemplateTemplateDataMarketOptionsSpotOptions'] = None):
+        """
+        :param _builtins.str market_type: Specifies the billing mode. Value options: **postpaid**, **spot**.
+        :param 'TemplateTemplateDataMarketOptionsSpotOptionsArgs' spot_options: Specifies the spot instance parameters.
+               The spot_options structure is documented below.
+               
+               <a name="spot_options_struct"></a>
+               The `spot_options` block supports:
+        """
+        if market_type is not None:
+            pulumi.set(__self__, "market_type", market_type)
+        if spot_options is not None:
+            pulumi.set(__self__, "spot_options", spot_options)
+
+    @_builtins.property
+    @pulumi.getter(name="marketType")
+    def market_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the billing mode. Value options: **postpaid**, **spot**.
+        """
+        return pulumi.get(self, "market_type")
+
+    @_builtins.property
+    @pulumi.getter(name="spotOptions")
+    def spot_options(self) -> Optional['outputs.TemplateTemplateDataMarketOptionsSpotOptions']:
+        """
+        Specifies the spot instance parameters.
+        The spot_options structure is documented below.
+
+        <a name="spot_options_struct"></a>
+        The `spot_options` block supports:
+        """
+        return pulumi.get(self, "spot_options")
+
+
+@pulumi.output_type
+class TemplateTemplateDataMarketOptionsSpotOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "blockDurationMinutes":
+            suggest = "block_duration_minutes"
+        elif key == "instanceInterruptionBehavior":
+            suggest = "instance_interruption_behavior"
+        elif key == "spotPrice":
+            suggest = "spot_price"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataMarketOptionsSpotOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataMarketOptionsSpotOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataMarketOptionsSpotOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 block_duration_minutes: Optional[_builtins.int] = None,
+                 instance_interruption_behavior: Optional[_builtins.str] = None,
+                 spot_price: Optional[_builtins.float] = None):
+        """
+        :param _builtins.int block_duration_minutes: Specifies the predefined duration of the spot ECS.
+        :param _builtins.str instance_interruption_behavior: Specifies the spot ECS interruption policy, which
+               can only be set to **immediate** currently.
+               
+               <a name="internet_access_struct"></a>
+               The `internet_access` block supports:
+        :param _builtins.float spot_price: Specifies the highest price per hour you are willing to pay for a spot
+               ECS.
+        """
+        if block_duration_minutes is not None:
+            pulumi.set(__self__, "block_duration_minutes", block_duration_minutes)
+        if instance_interruption_behavior is not None:
+            pulumi.set(__self__, "instance_interruption_behavior", instance_interruption_behavior)
+        if spot_price is not None:
+            pulumi.set(__self__, "spot_price", spot_price)
+
+    @_builtins.property
+    @pulumi.getter(name="blockDurationMinutes")
+    def block_duration_minutes(self) -> Optional[_builtins.int]:
+        """
+        Specifies the predefined duration of the spot ECS.
+        """
+        return pulumi.get(self, "block_duration_minutes")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceInterruptionBehavior")
+    def instance_interruption_behavior(self) -> Optional[_builtins.str]:
+        """
+        Specifies the spot ECS interruption policy, which
+        can only be set to **immediate** currently.
+
+        <a name="internet_access_struct"></a>
+        The `internet_access` block supports:
+        """
+        return pulumi.get(self, "instance_interruption_behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="spotPrice")
+    def spot_price(self) -> Optional[_builtins.float]:
+        """
+        Specifies the highest price per hour you are willing to pay for a spot
+        ECS.
+        """
+        return pulumi.get(self, "spot_price")
+
+
+@pulumi.output_type
+class TemplateTemplateDataNetworkInterface(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "virsubnetId":
+            suggest = "virsubnet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataNetworkInterface. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataNetworkInterface.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataNetworkInterface.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 attachment: Optional['outputs.TemplateTemplateDataNetworkInterfaceAttachment'] = None,
+                 virsubnet_id: Optional[_builtins.str] = None):
+        """
+        :param 'TemplateTemplateDataNetworkInterfaceAttachmentArgs' attachment: Specifies the disk interface.
+               The block_device_mappings_attachment structure is documented below.
+               
+               <a name="block_device_mappings_attachment_struct"></a>
+               The `block_device_mappings_attachment` block supports:
+        :param _builtins.str virsubnet_id: Specifies the subnet ID.
+        """
+        if attachment is not None:
+            pulumi.set(__self__, "attachment", attachment)
+        if virsubnet_id is not None:
+            pulumi.set(__self__, "virsubnet_id", virsubnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachment(self) -> Optional['outputs.TemplateTemplateDataNetworkInterfaceAttachment']:
+        """
+        Specifies the disk interface.
+        The block_device_mappings_attachment structure is documented below.
+
+        <a name="block_device_mappings_attachment_struct"></a>
+        The `block_device_mappings_attachment` block supports:
+        """
+        return pulumi.get(self, "attachment")
+
+    @_builtins.property
+    @pulumi.getter(name="virsubnetId")
+    def virsubnet_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subnet ID.
+        """
+        return pulumi.get(self, "virsubnet_id")
+
+
+@pulumi.output_type
+class TemplateTemplateDataNetworkInterfaceAttachment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deviceIndex":
+            suggest = "device_index"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataNetworkInterfaceAttachment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataNetworkInterfaceAttachment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataNetworkInterfaceAttachment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 device_index: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int device_index: Specifies the loading sequence. The value **0** indicates the primary
+               network interface.
+               
+               <a name="block_device_mappings_struct"></a>
+               The `block_device_mappings` block supports:
+        """
+        if device_index is not None:
+            pulumi.set(__self__, "device_index", device_index)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceIndex")
+    def device_index(self) -> Optional[_builtins.int]:
+        """
+        Specifies the loading sequence. The value **0** indicates the primary
+        network interface.
+
+        <a name="block_device_mappings_struct"></a>
+        The `block_device_mappings` block supports:
+        """
+        return pulumi.get(self, "device_index")
+
+
+@pulumi.output_type
+class TemplateTemplateDataOsProfile(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "enableMonitoringService":
+            suggest = "enable_monitoring_service"
+        elif key == "iamAgencyName":
+            suggest = "iam_agency_name"
+        elif key == "keyName":
+            suggest = "key_name"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateTemplateDataOsProfile. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateTemplateDataOsProfile.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateTemplateDataOsProfile.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enable_monitoring_service: Optional[_builtins.bool] = None,
+                 iam_agency_name: Optional[_builtins.str] = None,
+                 key_name: Optional[_builtins.str] = None,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enable_monitoring_service: Specifies whether enable HSS.
+               
+               <a name="network_interfaces_struct"></a>
+               The `network_interfaces` block supports:
+        :param _builtins.str iam_agency_name: Specifies the agency name.
+        :param _builtins.str key_name: Specifies the key name.
+        :param _builtins.str user_data: Specifies the custom user data to be injected into the instance during
+               instance creation. Text and text files can be injected.
+        """
+        if enable_monitoring_service is not None:
+            pulumi.set(__self__, "enable_monitoring_service", enable_monitoring_service)
+        if iam_agency_name is not None:
+            pulumi.set(__self__, "iam_agency_name", iam_agency_name)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMonitoringService")
+    def enable_monitoring_service(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether enable HSS.
+
+        <a name="network_interfaces_struct"></a>
+        The `network_interfaces` block supports:
+        """
+        return pulumi.get(self, "enable_monitoring_service")
+
+    @_builtins.property
+    @pulumi.getter(name="iamAgencyName")
+    def iam_agency_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the agency name.
+        """
+        return pulumi.get(self, "iam_agency_name")
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        """
+        Specifies the custom user data to be injected into the instance during
+        instance creation. Text and text files can be injected.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class TemplateTemplateDataTagOption(dict):
+    def __init__(__self__, *,
+                 tags: Optional[Sequence['outputs.TemplateTemplateDataTagOptionTag']] = None):
+        """
+        :param Sequence['TemplateTemplateDataTagOptionTagArgs'] tags: Specifies the tags.
+               The tags structure is documented below.
+               
+               <a name="tags_struct"></a>
+               The `tags` block supports:
+        """
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.TemplateTemplateDataTagOptionTag']]:
+        """
+        Specifies the tags.
+        The tags structure is documented below.
+
+        <a name="tags_struct"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class TemplateTemplateDataTagOptionTag(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str key: Specifies the tag key.
+        :param _builtins.str value: Specifies the tag value.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the tag value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAttachableNicsAttachableQuantityResult(dict):
+    def __init__(__self__, *,
+                 free_blk: _builtins.int,
+                 free_disk: _builtins.int,
+                 free_efi_nic: _builtins.int,
+                 free_nic: _builtins.int,
+                 free_scsi: _builtins.int):
+        """
+        :param _builtins.int free_blk: Indicates the number of virtio_blk disks that can be attached.
+        :param _builtins.int free_disk: Indicates the total number of disks that can be attached.
+        :param _builtins.int free_efi_nic: Indicates the remaining number of EFI NICs that can be attached to an ECS.
+        :param _builtins.int free_nic: Indicates the total number of NICs that can be attached.
+        :param _builtins.int free_scsi: Indicates the number of SCSI disks that can be attached.
+        """
+        pulumi.set(__self__, "free_blk", free_blk)
+        pulumi.set(__self__, "free_disk", free_disk)
+        pulumi.set(__self__, "free_efi_nic", free_efi_nic)
+        pulumi.set(__self__, "free_nic", free_nic)
+        pulumi.set(__self__, "free_scsi", free_scsi)
+
+    @_builtins.property
+    @pulumi.getter(name="freeBlk")
+    def free_blk(self) -> _builtins.int:
+        """
+        Indicates the number of virtio_blk disks that can be attached.
+        """
+        return pulumi.get(self, "free_blk")
+
+    @_builtins.property
+    @pulumi.getter(name="freeDisk")
+    def free_disk(self) -> _builtins.int:
+        """
+        Indicates the total number of disks that can be attached.
+        """
+        return pulumi.get(self, "free_disk")
+
+    @_builtins.property
+    @pulumi.getter(name="freeEfiNic")
+    def free_efi_nic(self) -> _builtins.int:
+        """
+        Indicates the remaining number of EFI NICs that can be attached to an ECS.
+        """
+        return pulumi.get(self, "free_efi_nic")
+
+    @_builtins.property
+    @pulumi.getter(name="freeNic")
+    def free_nic(self) -> _builtins.int:
+        """
+        Indicates the total number of NICs that can be attached.
+        """
+        return pulumi.get(self, "free_nic")
+
+    @_builtins.property
+    @pulumi.getter(name="freeScsi")
+    def free_scsi(self) -> _builtins.int:
+        """
+        Indicates the number of SCSI disks that can be attached.
+        """
+        return pulumi.get(self, "free_scsi")
+
+
+@pulumi.output_type
+class GetAttachableNicsInterfaceAttachmentResult(dict):
+    def __init__(__self__, *,
+                 delete_on_termination: _builtins.bool,
+                 driver_mode: _builtins.str,
+                 fixed_ips: Sequence['outputs.GetAttachableNicsInterfaceAttachmentFixedIpResult'],
+                 mac_addr: _builtins.str,
+                 min_rate: _builtins.int,
+                 multiqueue_num: _builtins.int,
+                 net_id: _builtins.str,
+                 pci_address: _builtins.str,
+                 port_id: _builtins.str,
+                 port_state: _builtins.str,
+                 preserve_on_delete: _builtins.bool):
+        """
+        :param _builtins.bool delete_on_termination: Indicates whether to delete a NIC when detaching it.
+               The value can be:
+               + **true**: Delete the NIC.
+               + **false**: Do not delete the NIC.
+        :param _builtins.str driver_mode: Indicates the NIC driver type, which is virtio by default.
+        :param Sequence['GetAttachableNicsInterfaceAttachmentFixedIpArgs'] fixed_ips: Indicates the private IP address list for NICs.
+        :param _builtins.str mac_addr: Indicates the MAC address of the NIC.
+        :param _builtins.int min_rate: Indicates the minimum NIC bandwidth.
+        :param _builtins.int multiqueue_num: Indicates the number of queues.
+        :param _builtins.str net_id: Indicates the network ID (network_id) that the NIC port belongs to.
+        :param _builtins.str pci_address: Indicates the BDF number of the elastic network interface in Linux GuestOS.
+        :param _builtins.str port_id: Indicates the ID of the NIC port.
+        :param _builtins.str port_state: Indicates the NIC port status.
+        :param _builtins.bool preserve_on_delete: Indicates whether to retain the NIC when it is deleted.
+               The value can be:
+               + **true**: Retain the NIC.
+               + **false**: Do not retain the NIC.
+        """
+        pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        pulumi.set(__self__, "driver_mode", driver_mode)
+        pulumi.set(__self__, "fixed_ips", fixed_ips)
+        pulumi.set(__self__, "mac_addr", mac_addr)
+        pulumi.set(__self__, "min_rate", min_rate)
+        pulumi.set(__self__, "multiqueue_num", multiqueue_num)
+        pulumi.set(__self__, "net_id", net_id)
+        pulumi.set(__self__, "pci_address", pci_address)
+        pulumi.set(__self__, "port_id", port_id)
+        pulumi.set(__self__, "port_state", port_state)
+        pulumi.set(__self__, "preserve_on_delete", preserve_on_delete)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> _builtins.bool:
+        """
+        Indicates whether to delete a NIC when detaching it.
+        The value can be:
+        + **true**: Delete the NIC.
+        + **false**: Do not delete the NIC.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
+    @pulumi.getter(name="driverMode")
+    def driver_mode(self) -> _builtins.str:
+        """
+        Indicates the NIC driver type, which is virtio by default.
+        """
+        return pulumi.get(self, "driver_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIps")
+    def fixed_ips(self) -> Sequence['outputs.GetAttachableNicsInterfaceAttachmentFixedIpResult']:
+        """
+        Indicates the private IP address list for NICs.
+        """
+        return pulumi.get(self, "fixed_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> _builtins.str:
+        """
+        Indicates the MAC address of the NIC.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="minRate")
+    def min_rate(self) -> _builtins.int:
+        """
+        Indicates the minimum NIC bandwidth.
+        """
+        return pulumi.get(self, "min_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="multiqueueNum")
+    def multiqueue_num(self) -> _builtins.int:
+        """
+        Indicates the number of queues.
+        """
+        return pulumi.get(self, "multiqueue_num")
+
+    @_builtins.property
+    @pulumi.getter(name="netId")
+    def net_id(self) -> _builtins.str:
+        """
+        Indicates the network ID (network_id) that the NIC port belongs to.
+        """
+        return pulumi.get(self, "net_id")
+
+    @_builtins.property
+    @pulumi.getter(name="pciAddress")
+    def pci_address(self) -> _builtins.str:
+        """
+        Indicates the BDF number of the elastic network interface in Linux GuestOS.
+        """
+        return pulumi.get(self, "pci_address")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the NIC port.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter(name="portState")
+    def port_state(self) -> _builtins.str:
+        """
+        Indicates the NIC port status.
+        """
+        return pulumi.get(self, "port_state")
+
+    @_builtins.property
+    @pulumi.getter(name="preserveOnDelete")
+    def preserve_on_delete(self) -> _builtins.bool:
+        """
+        Indicates whether to retain the NIC when it is deleted.
+        The value can be:
+        + **true**: Retain the NIC.
+        + **false**: Do not retain the NIC.
+        """
+        return pulumi.get(self, "preserve_on_delete")
+
+
+@pulumi.output_type
+class GetAttachableNicsInterfaceAttachmentFixedIpResult(dict):
+    def __init__(__self__, *,
+                 ip_address: _builtins.str,
+                 subnet_id: _builtins.str):
+        """
+        :param _builtins.str ip_address: Indicates the NIC private IP address.
+        :param _builtins.str subnet_id: Indicates the subnet of the NIC private IP address.
+        """
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Indicates the NIC private IP address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        Indicates the subnet of the NIC private IP address.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetAutoLaunchGroupInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 availability_zone_id: _builtins.str,
+                 flavor_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 sell_mode: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str availability_zone_id: Indicates the ID of the AZ.
+        :param _builtins.str flavor_id: Indicates flavor ID of the instance.
+        :param _builtins.str id: Indicates the ID of the instance.
+        :param _builtins.str name: Indicates name ID of the instance.
+        :param _builtins.str sell_mode: Indicates the sales model of the instance.
+               The value can be: **spot**, **onDemand**.
+        :param _builtins.str status: Indicates state of the instance.
+        """
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sell_mode", sell_mode)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the AZ.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        Indicates flavor ID of the instance.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the instance.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates name ID of the instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="sellMode")
+    def sell_mode(self) -> _builtins.str:
+        """
+        Indicates the sales model of the instance.
+        The value can be: **spot**, **onDemand**.
+        """
+        return pulumi.get(self, "sell_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates state of the instance.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetAutoLaunchGroupsAutoLaunchGroupResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 status: _builtins.str,
+                 task_state: _builtins.str,
+                 type: _builtins.str,
+                 valid_since: _builtins.str,
+                 valid_until: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the auto launch group.
+        :param _builtins.str name: Specifies the name of the auto launch group.
+        :param _builtins.str status: Indicates the status of the auto launch group.
+               The value can be: **SUBMITTED**, **ACTIVE**, **DELETING**, **DELETED**.
+        :param _builtins.str task_state: Indicates the status of the auto launch group task.
+               The value can be:
+               + **HANDLING**: Launching.
+               + **FULFILLED**: The auto launch group task is fully equipped.
+               + **ERROR**: Error occurs in the auto launch group task.
+        :param _builtins.str type: Indicates the request type.
+        :param _builtins.str valid_since: Specifies the request start time.
+               The value is in the format of **yyyy-MM-ddTHH:mm:ssZ** in UTC+0 and complies with ISO8601.
+        :param _builtins.str valid_until: Specifies the request end time.
+               The value is in the format of **yyyy-MM-ddTHH:mm:ssZ** in UTC+0 and complies with ISO8601.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_state", task_state)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "valid_since", valid_since)
+        pulumi.set(__self__, "valid_until", valid_until)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the auto launch group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the auto launch group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the auto launch group.
+        The value can be: **SUBMITTED**, **ACTIVE**, **DELETING**, **DELETED**.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskState")
+    def task_state(self) -> _builtins.str:
+        """
+        Indicates the status of the auto launch group task.
+        The value can be:
+        + **HANDLING**: Launching.
+        + **FULFILLED**: The auto launch group task is fully equipped.
+        + **ERROR**: Error occurs in the auto launch group task.
+        """
+        return pulumi.get(self, "task_state")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the request type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="validSince")
+    def valid_since(self) -> _builtins.str:
+        """
+        Specifies the request start time.
+        The value is in the format of **yyyy-MM-ddTHH:mm:ssZ** in UTC+0 and complies with ISO8601.
+        """
+        return pulumi.get(self, "valid_since")
+
+    @_builtins.property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> _builtins.str:
+        """
+        Specifies the request end time.
+        The value is in the format of **yyyy-MM-ddTHH:mm:ssZ** in UTC+0 and complies with ISO8601.
+        """
+        return pulumi.get(self, "valid_until")
+
+
+@pulumi.output_type
+class GetAvailabilityZonesAvailabilityZoneResult(dict):
+    def __init__(__self__, *,
+                 alias: _builtins.str,
+                 availability_zone_id: _builtins.str,
+                 az_group_ids: Sequence[_builtins.str],
+                 category: _builtins.int,
+                 mode: _builtins.str,
+                 public_border_group: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str alias: Indicates the mode of the availability zone.
+        :param _builtins.str availability_zone_id: Indicates the ID of the availability zone.
+        :param Sequence[_builtins.str] az_group_ids: Indicates the availability zone group ids.
+        :param _builtins.int category: Indicates the category of the availability zone.
+        :param _builtins.str mode: Indicates the mode of the availability zone.
+        :param _builtins.str public_border_group: Indicates the public border group of the availability zone.
+        :param _builtins.str type: Indicates the type of the availability zone.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        pulumi.set(__self__, "az_group_ids", az_group_ids)
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "public_border_group", public_border_group)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> _builtins.str:
+        """
+        Indicates the mode of the availability zone.
+        """
+        return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the availability zone.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="azGroupIds")
+    def az_group_ids(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the availability zone group ids.
+        """
+        return pulumi.get(self, "az_group_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.int:
+        """
+        Indicates the category of the availability zone.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        Indicates the mode of the availability zone.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> _builtins.str:
+        """
+        Indicates the public border group of the availability zone.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of the availability zone.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetFlavorCapacityResourceResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: _builtins.str,
+                 prefer: _builtins.bool,
+                 region_id: _builtins.str):
+        """
+        :param _builtins.str availability_zone: Indicates the AZ that the flavor belongs to.
+        :param _builtins.bool prefer: Indicates whether the resources of the flavor in the current AZ are sufficient.
+               Value options:
+               + **true**: Sufficient
+               + **false**: Insufficient
+        :param _builtins.str region_id: Indicates the ID of the region that the flavor belongs to.
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "prefer", prefer)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        Indicates the AZ that the flavor belongs to.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def prefer(self) -> _builtins.bool:
+        """
+        Indicates whether the resources of the flavor in the current AZ are sufficient.
+        Value options:
+        + **true**: Sufficient
+        + **false**: Insufficient
+        """
+        return pulumi.get(self, "prefer")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the region that the flavor belongs to.
+        """
+        return pulumi.get(self, "region_id")
+
+
+@pulumi.output_type
+class GetFlavorSalesPoliciesSellPolicyResult(dict):
+    def __init__(__self__, *,
+                 availability_zone_id: _builtins.str,
+                 flavor_id: _builtins.str,
+                 id: _builtins.int,
+                 sell_mode: _builtins.str,
+                 sell_status: _builtins.str,
+                 spot_options: Sequence['outputs.GetFlavorSalesPoliciesSellPolicySpotOptionResult']):
+        """
+        :param _builtins.str availability_zone_id: Specifies the AZ.
+        :param _builtins.str flavor_id: Specifies the flavor ID of the ECS.
+        :param _builtins.int id: Indicates the index of the ECS flavor.
+        :param _builtins.str sell_mode: Specifies the billing mode.
+               Value options:
+               + **postPaid**: indicates the pay-per-use billing mode, which is not supported currently.
+               + **prePaid**: indicates the yearly/monthly billing mode, which is not supported currently.
+               + **spot**: indicates the spot pricing billing mode.
+               + **ri**: indicates the reserved instance, which is not supported currently.
+        :param _builtins.str sell_status: Specifies the sales status of the ECS system flavor.
+               Value options:
+               + **available**: indicates that the flavor is available.
+               + **sellout**: indicates that the flavor has been sold out.
+        :param Sequence['GetFlavorSalesPoliciesSellPolicySpotOptionArgs'] spot_options: Indicates the sales policy details of the spot ECS flavor.
+        """
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "sell_mode", sell_mode)
+        pulumi.set(__self__, "sell_status", sell_status)
+        pulumi.set(__self__, "spot_options", spot_options)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> _builtins.str:
+        """
+        Specifies the AZ.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        Specifies the flavor ID of the ECS.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        Indicates the index of the ECS flavor.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="sellMode")
+    def sell_mode(self) -> _builtins.str:
+        """
+        Specifies the billing mode.
+        Value options:
+        + **postPaid**: indicates the pay-per-use billing mode, which is not supported currently.
+        + **prePaid**: indicates the yearly/monthly billing mode, which is not supported currently.
+        + **spot**: indicates the spot pricing billing mode.
+        + **ri**: indicates the reserved instance, which is not supported currently.
+        """
+        return pulumi.get(self, "sell_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="sellStatus")
+    def sell_status(self) -> _builtins.str:
+        """
+        Specifies the sales status of the ECS system flavor.
+        Value options:
+        + **available**: indicates that the flavor is available.
+        + **sellout**: indicates that the flavor has been sold out.
+        """
+        return pulumi.get(self, "sell_status")
+
+    @_builtins.property
+    @pulumi.getter(name="spotOptions")
+    def spot_options(self) -> Sequence['outputs.GetFlavorSalesPoliciesSellPolicySpotOptionResult']:
+        """
+        Indicates the sales policy details of the spot ECS flavor.
+        """
+        return pulumi.get(self, "spot_options")
+
+
+@pulumi.output_type
+class GetFlavorSalesPoliciesSellPolicySpotOptionResult(dict):
+    def __init__(__self__, *,
+                 interruption_policy: _builtins.str,
+                 largest_spot_duration_count: _builtins.int,
+                 longest_spot_duration_hours: _builtins.int):
+        """
+        :param _builtins.str interruption_policy: Specifies the interruption policy.
+               Value options:
+               + **immediate**: Resources are released immediately.
+               + **delay**: The release of resources is delayed.
+        :param _builtins.int largest_spot_duration_count: Specifies the policy of a spot ECS with the number of durations equal
+               to the configured value.
+        :param _builtins.int longest_spot_duration_hours: Specifies the policy of a spot ECS whose predefined duration is equal
+               to the configured value.
+        """
+        pulumi.set(__self__, "interruption_policy", interruption_policy)
+        pulumi.set(__self__, "largest_spot_duration_count", largest_spot_duration_count)
+        pulumi.set(__self__, "longest_spot_duration_hours", longest_spot_duration_hours)
+
+    @_builtins.property
+    @pulumi.getter(name="interruptionPolicy")
+    def interruption_policy(self) -> _builtins.str:
+        """
+        Specifies the interruption policy.
+        Value options:
+        + **immediate**: Resources are released immediately.
+        + **delay**: The release of resources is delayed.
+        """
+        return pulumi.get(self, "interruption_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="largestSpotDurationCount")
+    def largest_spot_duration_count(self) -> _builtins.int:
+        """
+        Specifies the policy of a spot ECS with the number of durations equal
+        to the configured value.
+        """
+        return pulumi.get(self, "largest_spot_duration_count")
+
+    @_builtins.property
+    @pulumi.getter(name="longestSpotDurationHours")
+    def longest_spot_duration_hours(self) -> _builtins.int:
+        """
+        Specifies the policy of a spot ECS whose predefined duration is equal
+        to the configured value.
+        """
+        return pulumi.get(self, "longest_spot_duration_hours")
 
 
 @pulumi.output_type
@@ -2026,6 +4140,2462 @@ class GetInstancesInstanceVolumeAttachedResult(dict):
 
 
 @pulumi.output_type
+class GetQuotasAbsoluteResult(dict):
+    def __init__(__self__, *,
+                 max_cluster_server_group_members: _builtins.int,
+                 max_fault_domain_members: _builtins.int,
+                 max_image_meta: _builtins.int,
+                 max_personality: _builtins.int,
+                 max_personality_size: _builtins.int,
+                 max_security_group_rules: _builtins.int,
+                 max_security_groups: _builtins.int,
+                 max_server_group_members: _builtins.int,
+                 max_server_groups: _builtins.int,
+                 max_server_meta: _builtins.int,
+                 max_total_cores: _builtins.int,
+                 max_total_floating_ips: _builtins.int,
+                 max_total_instances: _builtins.int,
+                 max_total_keypairs: _builtins.int,
+                 max_total_ram_size: _builtins.int,
+                 max_total_spot_cores: _builtins.int,
+                 max_total_spot_instances: _builtins.int,
+                 max_total_spot_ram_size: _builtins.int,
+                 total_cores_used: _builtins.int,
+                 total_floating_ips_used: _builtins.int,
+                 total_instances_used: _builtins.int,
+                 total_ram_used: _builtins.int,
+                 total_security_groups_used: _builtins.int,
+                 total_server_groups_used: _builtins.int,
+                 total_spot_cores_used: _builtins.int,
+                 total_spot_instances_used: _builtins.int,
+                 total_spot_ram_used: _builtins.int):
+        """
+        :param _builtins.int max_cluster_server_group_members: Indicates the maximum number of cluster server group.
+        :param _builtins.int max_fault_domain_members: Indicates the maximum number of fault domain.
+        :param _builtins.int max_image_meta: Indicates the maximum length of the image metadata.
+        :param _builtins.int max_personality: Indicates the maximum number of files that can be injected.
+        :param _builtins.int max_personality_size: Indicates the maximum size (byte) of the file to be injected.
+        :param _builtins.int max_security_group_rules: Indicates the maximum number of security group rules that you can configure in a security
+               group. The quota complies with the VPC quota limit.
+        :param _builtins.int max_security_groups: Indicates the maximum number of security groups you can use.
+               The quota complies with the VPC quota limit.
+        :param _builtins.int max_server_group_members: Indicates the maximum number of ECSs in an ECS group.
+        :param _builtins.int max_server_groups: Indicates the maximum number of server groups.
+        :param _builtins.int max_server_meta: Indicates the maximum length of the metadata you can use.
+        :param _builtins.int max_total_cores: Indicates the maximum number of CPU cores that the current tenant can apply for.
+        :param _builtins.int max_total_floating_ips: Indicates the maximum number of floating IP addresses you can use.
+        :param _builtins.int max_total_instances: Indicates the maximum number of ECSs that can be requested.
+        :param _builtins.int max_total_keypairs: Indicates the maximum number of SSH key pairs you can use.
+        :param _builtins.int max_total_ram_size: Indicates the maximum memory size (MiB) allowed.
+        :param _builtins.int max_total_spot_cores: Indicates the maximum number of CPU cores that can be requested for a spot instance.
+        :param _builtins.int max_total_spot_instances: Indicates the maximum number of Spot Instances that can be applied for.
+        :param _builtins.int max_total_spot_ram_size: Indicates the maximum memory size (MiB) allowed.
+        :param _builtins.int total_cores_used: Indicates the number of the used CPU cores.
+        :param _builtins.int total_floating_ips_used: Indicates the number of used floating IP addresses.
+        :param _builtins.int total_instances_used: Indicates the number of used ECSs.
+        :param _builtins.int total_ram_used: Indicates the used memory size (MiB).
+        :param _builtins.int total_security_groups_used: Indicates the number of used security groups.
+        :param _builtins.int total_server_groups_used: Indicates the number of used server groups.
+        :param _builtins.int total_spot_cores_used: Indicates the number of CPU cores currently used by the spot instance.
+        :param _builtins.int total_spot_instances_used: Indicates the current number of Spot instances in use.
+        :param _builtins.int total_spot_ram_used: Indicates the memory usage of the current spot instance (unit: MB).
+        """
+        pulumi.set(__self__, "max_cluster_server_group_members", max_cluster_server_group_members)
+        pulumi.set(__self__, "max_fault_domain_members", max_fault_domain_members)
+        pulumi.set(__self__, "max_image_meta", max_image_meta)
+        pulumi.set(__self__, "max_personality", max_personality)
+        pulumi.set(__self__, "max_personality_size", max_personality_size)
+        pulumi.set(__self__, "max_security_group_rules", max_security_group_rules)
+        pulumi.set(__self__, "max_security_groups", max_security_groups)
+        pulumi.set(__self__, "max_server_group_members", max_server_group_members)
+        pulumi.set(__self__, "max_server_groups", max_server_groups)
+        pulumi.set(__self__, "max_server_meta", max_server_meta)
+        pulumi.set(__self__, "max_total_cores", max_total_cores)
+        pulumi.set(__self__, "max_total_floating_ips", max_total_floating_ips)
+        pulumi.set(__self__, "max_total_instances", max_total_instances)
+        pulumi.set(__self__, "max_total_keypairs", max_total_keypairs)
+        pulumi.set(__self__, "max_total_ram_size", max_total_ram_size)
+        pulumi.set(__self__, "max_total_spot_cores", max_total_spot_cores)
+        pulumi.set(__self__, "max_total_spot_instances", max_total_spot_instances)
+        pulumi.set(__self__, "max_total_spot_ram_size", max_total_spot_ram_size)
+        pulumi.set(__self__, "total_cores_used", total_cores_used)
+        pulumi.set(__self__, "total_floating_ips_used", total_floating_ips_used)
+        pulumi.set(__self__, "total_instances_used", total_instances_used)
+        pulumi.set(__self__, "total_ram_used", total_ram_used)
+        pulumi.set(__self__, "total_security_groups_used", total_security_groups_used)
+        pulumi.set(__self__, "total_server_groups_used", total_server_groups_used)
+        pulumi.set(__self__, "total_spot_cores_used", total_spot_cores_used)
+        pulumi.set(__self__, "total_spot_instances_used", total_spot_instances_used)
+        pulumi.set(__self__, "total_spot_ram_used", total_spot_ram_used)
+
+    @_builtins.property
+    @pulumi.getter(name="maxClusterServerGroupMembers")
+    def max_cluster_server_group_members(self) -> _builtins.int:
+        """
+        Indicates the maximum number of cluster server group.
+        """
+        return pulumi.get(self, "max_cluster_server_group_members")
+
+    @_builtins.property
+    @pulumi.getter(name="maxFaultDomainMembers")
+    def max_fault_domain_members(self) -> _builtins.int:
+        """
+        Indicates the maximum number of fault domain.
+        """
+        return pulumi.get(self, "max_fault_domain_members")
+
+    @_builtins.property
+    @pulumi.getter(name="maxImageMeta")
+    def max_image_meta(self) -> _builtins.int:
+        """
+        Indicates the maximum length of the image metadata.
+        """
+        return pulumi.get(self, "max_image_meta")
+
+    @_builtins.property
+    @pulumi.getter(name="maxPersonality")
+    def max_personality(self) -> _builtins.int:
+        """
+        Indicates the maximum number of files that can be injected.
+        """
+        return pulumi.get(self, "max_personality")
+
+    @_builtins.property
+    @pulumi.getter(name="maxPersonalitySize")
+    def max_personality_size(self) -> _builtins.int:
+        """
+        Indicates the maximum size (byte) of the file to be injected.
+        """
+        return pulumi.get(self, "max_personality_size")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSecurityGroupRules")
+    def max_security_group_rules(self) -> _builtins.int:
+        """
+        Indicates the maximum number of security group rules that you can configure in a security
+        group. The quota complies with the VPC quota limit.
+        """
+        return pulumi.get(self, "max_security_group_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSecurityGroups")
+    def max_security_groups(self) -> _builtins.int:
+        """
+        Indicates the maximum number of security groups you can use.
+        The quota complies with the VPC quota limit.
+        """
+        return pulumi.get(self, "max_security_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerGroupMembers")
+    def max_server_group_members(self) -> _builtins.int:
+        """
+        Indicates the maximum number of ECSs in an ECS group.
+        """
+        return pulumi.get(self, "max_server_group_members")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerGroups")
+    def max_server_groups(self) -> _builtins.int:
+        """
+        Indicates the maximum number of server groups.
+        """
+        return pulumi.get(self, "max_server_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="maxServerMeta")
+    def max_server_meta(self) -> _builtins.int:
+        """
+        Indicates the maximum length of the metadata you can use.
+        """
+        return pulumi.get(self, "max_server_meta")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalCores")
+    def max_total_cores(self) -> _builtins.int:
+        """
+        Indicates the maximum number of CPU cores that the current tenant can apply for.
+        """
+        return pulumi.get(self, "max_total_cores")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalFloatingIps")
+    def max_total_floating_ips(self) -> _builtins.int:
+        """
+        Indicates the maximum number of floating IP addresses you can use.
+        """
+        return pulumi.get(self, "max_total_floating_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalInstances")
+    def max_total_instances(self) -> _builtins.int:
+        """
+        Indicates the maximum number of ECSs that can be requested.
+        """
+        return pulumi.get(self, "max_total_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalKeypairs")
+    def max_total_keypairs(self) -> _builtins.int:
+        """
+        Indicates the maximum number of SSH key pairs you can use.
+        """
+        return pulumi.get(self, "max_total_keypairs")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalRamSize")
+    def max_total_ram_size(self) -> _builtins.int:
+        """
+        Indicates the maximum memory size (MiB) allowed.
+        """
+        return pulumi.get(self, "max_total_ram_size")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalSpotCores")
+    def max_total_spot_cores(self) -> _builtins.int:
+        """
+        Indicates the maximum number of CPU cores that can be requested for a spot instance.
+        """
+        return pulumi.get(self, "max_total_spot_cores")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalSpotInstances")
+    def max_total_spot_instances(self) -> _builtins.int:
+        """
+        Indicates the maximum number of Spot Instances that can be applied for.
+        """
+        return pulumi.get(self, "max_total_spot_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTotalSpotRamSize")
+    def max_total_spot_ram_size(self) -> _builtins.int:
+        """
+        Indicates the maximum memory size (MiB) allowed.
+        """
+        return pulumi.get(self, "max_total_spot_ram_size")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCoresUsed")
+    def total_cores_used(self) -> _builtins.int:
+        """
+        Indicates the number of the used CPU cores.
+        """
+        return pulumi.get(self, "total_cores_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalFloatingIpsUsed")
+    def total_floating_ips_used(self) -> _builtins.int:
+        """
+        Indicates the number of used floating IP addresses.
+        """
+        return pulumi.get(self, "total_floating_ips_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalInstancesUsed")
+    def total_instances_used(self) -> _builtins.int:
+        """
+        Indicates the number of used ECSs.
+        """
+        return pulumi.get(self, "total_instances_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRamUsed")
+    def total_ram_used(self) -> _builtins.int:
+        """
+        Indicates the used memory size (MiB).
+        """
+        return pulumi.get(self, "total_ram_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSecurityGroupsUsed")
+    def total_security_groups_used(self) -> _builtins.int:
+        """
+        Indicates the number of used security groups.
+        """
+        return pulumi.get(self, "total_security_groups_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalServerGroupsUsed")
+    def total_server_groups_used(self) -> _builtins.int:
+        """
+        Indicates the number of used server groups.
+        """
+        return pulumi.get(self, "total_server_groups_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSpotCoresUsed")
+    def total_spot_cores_used(self) -> _builtins.int:
+        """
+        Indicates the number of CPU cores currently used by the spot instance.
+        """
+        return pulumi.get(self, "total_spot_cores_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSpotInstancesUsed")
+    def total_spot_instances_used(self) -> _builtins.int:
+        """
+        Indicates the current number of Spot instances in use.
+        """
+        return pulumi.get(self, "total_spot_instances_used")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSpotRamUsed")
+    def total_spot_ram_used(self) -> _builtins.int:
+        """
+        Indicates the memory usage of the current spot instance (unit: MB).
+        """
+        return pulumi.get(self, "total_spot_ram_used")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerResult(dict):
+    def __init__(__self__, *,
+                 auto_terminate_time: _builtins.str,
+                 config_drive: _builtins.str,
+                 cpu_options: Sequence['outputs.GetRecycleBinServersServerCpuOptionResult'],
+                 created: _builtins.str,
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 flavors: Sequence['outputs.GetRecycleBinServersServerFlavorResult'],
+                 host_id: _builtins.str,
+                 host_status: _builtins.str,
+                 hypervisors: Sequence['outputs.GetRecycleBinServersServerHypervisorResult'],
+                 id: _builtins.str,
+                 images: Sequence['outputs.GetRecycleBinServersServerImageResult'],
+                 key_name: _builtins.str,
+                 locked: _builtins.bool,
+                 metadata: Mapping[str, _builtins.str],
+                 name: _builtins.str,
+                 network_interfaces: Sequence['outputs.GetRecycleBinServersServerNetworkInterfaceResult'],
+                 os_dcf_disk_config: _builtins.str,
+                 os_ext_az_availability_zone: _builtins.str,
+                 os_ext_srv_attr_host: _builtins.str,
+                 os_ext_srv_attr_hostname: _builtins.str,
+                 os_ext_srv_attr_hypervisor_hostname: _builtins.str,
+                 os_ext_srv_attr_instance_name: _builtins.str,
+                 os_ext_srv_attr_kernel_id: _builtins.str,
+                 os_ext_srv_attr_launch_index: _builtins.int,
+                 os_ext_srv_attr_ramdisk_id: _builtins.str,
+                 os_ext_srv_attr_reservation_id: _builtins.str,
+                 os_ext_srv_attr_root_device_name: _builtins.str,
+                 os_ext_srv_attr_user_data: _builtins.str,
+                 os_ext_sts_power_state: _builtins.int,
+                 os_ext_sts_task_state: _builtins.str,
+                 os_ext_sts_vm_state: _builtins.str,
+                 os_extended_volumes_volumes_attacheds: Sequence['outputs.GetRecycleBinServersServerOsExtendedVolumesVolumesAttachedResult'],
+                 os_scheduler_hints: Sequence['outputs.GetRecycleBinServersServerOsSchedulerHintResult'],
+                 os_srv_usg_launched_at: _builtins.str,
+                 os_srv_usg_terminated_at: _builtins.str,
+                 progress: _builtins.int,
+                 security_groups: Sequence['outputs.GetRecycleBinServersServerSecurityGroupResult'],
+                 security_options: Sequence['outputs.GetRecycleBinServersServerSecurityOptionResult'],
+                 status: _builtins.str,
+                 sys_tags: Sequence['outputs.GetRecycleBinServersServerSysTagResult'],
+                 tags: Sequence[_builtins.str],
+                 updated: _builtins.str,
+                 user_id: _builtins.str):
+        """
+        :param _builtins.str auto_terminate_time: Indicates the scheduled deletion time for the ECS.
+        :param _builtins.str config_drive: Indicates the config drive.
+        :param Sequence['GetRecycleBinServersServerCpuOptionArgs'] cpu_options: Indicates the CPU options.
+        :param _builtins.str created: Indicates the time when the ECS was created.
+        :param _builtins.str description: Indicates the ECS description.
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param Sequence['GetRecycleBinServersServerFlavorArgs'] flavors: Indicates the ECS flavor.
+        :param _builtins.str host_id: Indicates the ID of the host where the ECS located.
+        :param _builtins.str host_status: Indicates the status of the host accommodating the ECS.
+        :param Sequence['GetRecycleBinServersServerHypervisorArgs'] hypervisors: Indicates the virtualization information.
+        :param _builtins.str id: Indicates the image ID.
+        :param Sequence['GetRecycleBinServersServerImageArgs'] images: Indicates the ECS image.
+        :param _builtins.str key_name: Indicates the key pair that is used to authenticate an ECS.
+        :param _builtins.bool locked: Indicates whether an ECS is locked.
+        :param Mapping[str, _builtins.str] metadata: Indicates the ECS metadata
+        :param _builtins.str name: Specifies the ECS name, which is fuzzy-matched.
+        :param Sequence['GetRecycleBinServersServerNetworkInterfaceArgs'] network_interfaces: Indicates the network interface information.
+        :param _builtins.str os_dcf_disk_config: Indicates the disk configuration type.
+        :param _builtins.str os_ext_az_availability_zone: Indicates the AZ of an ECS.
+        :param _builtins.str os_ext_srv_attr_host: Indicates the name of the host where the ECS is deployed.
+        :param _builtins.str os_ext_srv_attr_hostname: Indicates the host name of the ECS.
+        :param _builtins.str os_ext_srv_attr_hypervisor_hostname: Indicates the name of the host on which the ECS is deployed.
+        :param _builtins.str os_ext_srv_attr_instance_name: Indicates the ECS alias.
+        :param _builtins.str os_ext_srv_attr_kernel_id: Indicates the UUID of the kernel image if an AMI image is used.
+        :param _builtins.int os_ext_srv_attr_launch_index: Indicates the sequence in which ECSs start if the ECSs are created in a batch.
+        :param _builtins.str os_ext_srv_attr_ramdisk_id: Indicates the UUID of the ramdisk image if an AMI image is used.
+        :param _builtins.str os_ext_srv_attr_reservation_id: Indicates the ID reserved for the ECSs to be created in a batch.
+        :param _builtins.str os_ext_srv_attr_root_device_name: Indicates the device name of the ECS system disk.
+        :param _builtins.str os_ext_srv_attr_user_data: Indicates the user data (encoded) configured during ECS creation.
+        :param _builtins.int os_ext_sts_power_state: Indicates the power status of the ECS.
+        :param _builtins.str os_ext_sts_task_state: Indicates the ECS task status.
+        :param _builtins.str os_ext_sts_vm_state: Indicates the ECS status.
+        :param Sequence['GetRecycleBinServersServerOsExtendedVolumesVolumesAttachedArgs'] os_extended_volumes_volumes_attacheds: Indicates the disks attached to an ECS.
+        :param Sequence['GetRecycleBinServersServerOsSchedulerHintArgs'] os_scheduler_hints: Indicates the ECS scheduling information.
+        :param _builtins.str os_srv_usg_launched_at: Indicates the time when the ECS was started.
+        :param _builtins.str os_srv_usg_terminated_at: Indicates the time when the ECS was deleted.
+        :param _builtins.int progress: Indicates the ECS progress.
+        :param Sequence['GetRecycleBinServersServerSecurityGroupArgs'] security_groups: Indicates the security groups of the ECS.
+        :param Sequence['GetRecycleBinServersServerSecurityOptionArgs'] security_options: Indicates the security options.
+        :param _builtins.str status: Indicates  the ECS status.
+        :param Sequence['GetRecycleBinServersServerSysTagArgs'] sys_tags: Indicates the ECS system tags.
+        :param Sequence[_builtins.str] tags: Specifies the queries ECSs with tags containing the specified value.
+        :param _builtins.str updated: Indicates the last time when the ECS was updated.
+        :param _builtins.str user_id: Indicates the ID of the user for creating the ECS.
+        """
+        pulumi.set(__self__, "auto_terminate_time", auto_terminate_time)
+        pulumi.set(__self__, "config_drive", config_drive)
+        pulumi.set(__self__, "cpu_options", cpu_options)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "flavors", flavors)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "hypervisors", hypervisors)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "images", images)
+        pulumi.set(__self__, "key_name", key_name)
+        pulumi.set(__self__, "locked", locked)
+        pulumi.set(__self__, "metadata", metadata)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "network_interfaces", network_interfaces)
+        pulumi.set(__self__, "os_dcf_disk_config", os_dcf_disk_config)
+        pulumi.set(__self__, "os_ext_az_availability_zone", os_ext_az_availability_zone)
+        pulumi.set(__self__, "os_ext_srv_attr_host", os_ext_srv_attr_host)
+        pulumi.set(__self__, "os_ext_srv_attr_hostname", os_ext_srv_attr_hostname)
+        pulumi.set(__self__, "os_ext_srv_attr_hypervisor_hostname", os_ext_srv_attr_hypervisor_hostname)
+        pulumi.set(__self__, "os_ext_srv_attr_instance_name", os_ext_srv_attr_instance_name)
+        pulumi.set(__self__, "os_ext_srv_attr_kernel_id", os_ext_srv_attr_kernel_id)
+        pulumi.set(__self__, "os_ext_srv_attr_launch_index", os_ext_srv_attr_launch_index)
+        pulumi.set(__self__, "os_ext_srv_attr_ramdisk_id", os_ext_srv_attr_ramdisk_id)
+        pulumi.set(__self__, "os_ext_srv_attr_reservation_id", os_ext_srv_attr_reservation_id)
+        pulumi.set(__self__, "os_ext_srv_attr_root_device_name", os_ext_srv_attr_root_device_name)
+        pulumi.set(__self__, "os_ext_srv_attr_user_data", os_ext_srv_attr_user_data)
+        pulumi.set(__self__, "os_ext_sts_power_state", os_ext_sts_power_state)
+        pulumi.set(__self__, "os_ext_sts_task_state", os_ext_sts_task_state)
+        pulumi.set(__self__, "os_ext_sts_vm_state", os_ext_sts_vm_state)
+        pulumi.set(__self__, "os_extended_volumes_volumes_attacheds", os_extended_volumes_volumes_attacheds)
+        pulumi.set(__self__, "os_scheduler_hints", os_scheduler_hints)
+        pulumi.set(__self__, "os_srv_usg_launched_at", os_srv_usg_launched_at)
+        pulumi.set(__self__, "os_srv_usg_terminated_at", os_srv_usg_terminated_at)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "security_groups", security_groups)
+        pulumi.set(__self__, "security_options", security_options)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sys_tags", sys_tags)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated", updated)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="autoTerminateTime")
+    def auto_terminate_time(self) -> _builtins.str:
+        """
+        Indicates the scheduled deletion time for the ECS.
+        """
+        return pulumi.get(self, "auto_terminate_time")
+
+    @_builtins.property
+    @pulumi.getter(name="configDrive")
+    def config_drive(self) -> _builtins.str:
+        """
+        Indicates the config drive.
+        """
+        return pulumi.get(self, "config_drive")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuOptions")
+    def cpu_options(self) -> Sequence['outputs.GetRecycleBinServersServerCpuOptionResult']:
+        """
+        Indicates the CPU options.
+        """
+        return pulumi.get(self, "cpu_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> _builtins.str:
+        """
+        Indicates the time when the ECS was created.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the ECS description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavors(self) -> Sequence['outputs.GetRecycleBinServersServerFlavorResult']:
+        """
+        Indicates the ECS flavor.
+        """
+        return pulumi.get(self, "flavors")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the host where the ECS located.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        Indicates the status of the host accommodating the ECS.
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def hypervisors(self) -> Sequence['outputs.GetRecycleBinServersServerHypervisorResult']:
+        """
+        Indicates the virtualization information.
+        """
+        return pulumi.get(self, "hypervisors")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def images(self) -> Sequence['outputs.GetRecycleBinServersServerImageResult']:
+        """
+        Indicates the ECS image.
+        """
+        return pulumi.get(self, "images")
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> _builtins.str:
+        """
+        Indicates the key pair that is used to authenticate an ECS.
+        """
+        return pulumi.get(self, "key_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def locked(self) -> _builtins.bool:
+        """
+        Indicates whether an ECS is locked.
+        """
+        return pulumi.get(self, "locked")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the ECS metadata
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the ECS name, which is fuzzy-matched.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Sequence['outputs.GetRecycleBinServersServerNetworkInterfaceResult']:
+        """
+        Indicates the network interface information.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @_builtins.property
+    @pulumi.getter(name="osDcfDiskConfig")
+    def os_dcf_disk_config(self) -> _builtins.str:
+        """
+        Indicates the disk configuration type.
+        """
+        return pulumi.get(self, "os_dcf_disk_config")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtAzAvailabilityZone")
+    def os_ext_az_availability_zone(self) -> _builtins.str:
+        """
+        Indicates the AZ of an ECS.
+        """
+        return pulumi.get(self, "os_ext_az_availability_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrHost")
+    def os_ext_srv_attr_host(self) -> _builtins.str:
+        """
+        Indicates the name of the host where the ECS is deployed.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_host")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrHostname")
+    def os_ext_srv_attr_hostname(self) -> _builtins.str:
+        """
+        Indicates the host name of the ECS.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_hostname")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrHypervisorHostname")
+    def os_ext_srv_attr_hypervisor_hostname(self) -> _builtins.str:
+        """
+        Indicates the name of the host on which the ECS is deployed.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_hypervisor_hostname")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrInstanceName")
+    def os_ext_srv_attr_instance_name(self) -> _builtins.str:
+        """
+        Indicates the ECS alias.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrKernelId")
+    def os_ext_srv_attr_kernel_id(self) -> _builtins.str:
+        """
+        Indicates the UUID of the kernel image if an AMI image is used.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_kernel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrLaunchIndex")
+    def os_ext_srv_attr_launch_index(self) -> _builtins.int:
+        """
+        Indicates the sequence in which ECSs start if the ECSs are created in a batch.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_launch_index")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrRamdiskId")
+    def os_ext_srv_attr_ramdisk_id(self) -> _builtins.str:
+        """
+        Indicates the UUID of the ramdisk image if an AMI image is used.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_ramdisk_id")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrReservationId")
+    def os_ext_srv_attr_reservation_id(self) -> _builtins.str:
+        """
+        Indicates the ID reserved for the ECSs to be created in a batch.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_reservation_id")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrRootDeviceName")
+    def os_ext_srv_attr_root_device_name(self) -> _builtins.str:
+        """
+        Indicates the device name of the ECS system disk.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_root_device_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtSrvAttrUserData")
+    def os_ext_srv_attr_user_data(self) -> _builtins.str:
+        """
+        Indicates the user data (encoded) configured during ECS creation.
+        """
+        return pulumi.get(self, "os_ext_srv_attr_user_data")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtStsPowerState")
+    def os_ext_sts_power_state(self) -> _builtins.int:
+        """
+        Indicates the power status of the ECS.
+        """
+        return pulumi.get(self, "os_ext_sts_power_state")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtStsTaskState")
+    def os_ext_sts_task_state(self) -> _builtins.str:
+        """
+        Indicates the ECS task status.
+        """
+        return pulumi.get(self, "os_ext_sts_task_state")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtStsVmState")
+    def os_ext_sts_vm_state(self) -> _builtins.str:
+        """
+        Indicates the ECS status.
+        """
+        return pulumi.get(self, "os_ext_sts_vm_state")
+
+    @_builtins.property
+    @pulumi.getter(name="osExtendedVolumesVolumesAttacheds")
+    def os_extended_volumes_volumes_attacheds(self) -> Sequence['outputs.GetRecycleBinServersServerOsExtendedVolumesVolumesAttachedResult']:
+        """
+        Indicates the disks attached to an ECS.
+        """
+        return pulumi.get(self, "os_extended_volumes_volumes_attacheds")
+
+    @_builtins.property
+    @pulumi.getter(name="osSchedulerHints")
+    def os_scheduler_hints(self) -> Sequence['outputs.GetRecycleBinServersServerOsSchedulerHintResult']:
+        """
+        Indicates the ECS scheduling information.
+        """
+        return pulumi.get(self, "os_scheduler_hints")
+
+    @_builtins.property
+    @pulumi.getter(name="osSrvUsgLaunchedAt")
+    def os_srv_usg_launched_at(self) -> _builtins.str:
+        """
+        Indicates the time when the ECS was started.
+        """
+        return pulumi.get(self, "os_srv_usg_launched_at")
+
+    @_builtins.property
+    @pulumi.getter(name="osSrvUsgTerminatedAt")
+    def os_srv_usg_terminated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the ECS was deleted.
+        """
+        return pulumi.get(self, "os_srv_usg_terminated_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def progress(self) -> _builtins.int:
+        """
+        Indicates the ECS progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Sequence['outputs.GetRecycleBinServersServerSecurityGroupResult']:
+        """
+        Indicates the security groups of the ECS.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="securityOptions")
+    def security_options(self) -> Sequence['outputs.GetRecycleBinServersServerSecurityOptionResult']:
+        """
+        Indicates the security options.
+        """
+        return pulumi.get(self, "security_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates  the ECS status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="sysTags")
+    def sys_tags(self) -> Sequence['outputs.GetRecycleBinServersServerSysTagResult']:
+        """
+        Indicates the ECS system tags.
+        """
+        return pulumi.get(self, "sys_tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the queries ECSs with tags containing the specified value.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> _builtins.str:
+        """
+        Indicates the last time when the ECS was updated.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the user for creating the ECS.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerCpuOptionResult(dict):
+    def __init__(__self__, *,
+                 hw_cpu_threads: _builtins.int):
+        """
+        :param _builtins.int hw_cpu_threads: Indicates whether to enable CPU hyper-threading.
+        """
+        pulumi.set(__self__, "hw_cpu_threads", hw_cpu_threads)
+
+    @_builtins.property
+    @pulumi.getter(name="hwCpuThreads")
+    def hw_cpu_threads(self) -> _builtins.int:
+        """
+        Indicates whether to enable CPU hyper-threading.
+        """
+        return pulumi.get(self, "hw_cpu_threads")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerFlavorResult(dict):
+    def __init__(__self__, *,
+                 asic_accelerators: Sequence['outputs.GetRecycleBinServersServerFlavorAsicAcceleratorResult'],
+                 disk: _builtins.str,
+                 gpuses: Sequence['outputs.GetRecycleBinServersServerFlavorGpusResult'],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 ram: _builtins.str,
+                 vcpus: _builtins.str):
+        """
+        :param Sequence['GetRecycleBinServersServerFlavorAsicAcceleratorArgs'] asic_accelerators: Indicates the ASIC information in the ECS flavor.
+        :param _builtins.str disk: Indicates the system disk size in the ECS flavor.
+               Value 0 indicates that the disk size is not limited.
+        :param Sequence['GetRecycleBinServersServerFlavorGpusArgs'] gpuses: Indicates the GPU information in the ECS flavor.
+        :param _builtins.str id: Indicates the image ID.
+        :param _builtins.str name: Specifies the ECS name, which is fuzzy-matched.
+        :param _builtins.str ram: Indicates the memory size (MiB) in the ECS flavor.
+        :param _builtins.str vcpus: Indicates the number of vCPUs in the ECS flavor.
+        """
+        pulumi.set(__self__, "asic_accelerators", asic_accelerators)
+        pulumi.set(__self__, "disk", disk)
+        pulumi.set(__self__, "gpuses", gpuses)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter(name="asicAccelerators")
+    def asic_accelerators(self) -> Sequence['outputs.GetRecycleBinServersServerFlavorAsicAcceleratorResult']:
+        """
+        Indicates the ASIC information in the ECS flavor.
+        """
+        return pulumi.get(self, "asic_accelerators")
+
+    @_builtins.property
+    @pulumi.getter
+    def disk(self) -> _builtins.str:
+        """
+        Indicates the system disk size in the ECS flavor.
+        Value 0 indicates that the disk size is not limited.
+        """
+        return pulumi.get(self, "disk")
+
+    @_builtins.property
+    @pulumi.getter
+    def gpuses(self) -> Sequence['outputs.GetRecycleBinServersServerFlavorGpusResult']:
+        """
+        Indicates the GPU information in the ECS flavor.
+        """
+        return pulumi.get(self, "gpuses")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the ECS name, which is fuzzy-matched.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.str:
+        """
+        Indicates the memory size (MiB) in the ECS flavor.
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> _builtins.str:
+        """
+        Indicates the number of vCPUs in the ECS flavor.
+        """
+        return pulumi.get(self, "vcpus")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerFlavorAsicAcceleratorResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 memory_mb: _builtins.int,
+                 name: _builtins.str):
+        """
+        :param _builtins.int count: Indicates the number of ASICs.
+        :param _builtins.int memory_mb: Indicates the ASIC memory size, in MB.
+        :param _builtins.str name: Specifies the ECS name, which is fuzzy-matched.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "memory_mb", memory_mb)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        Indicates the number of ASICs.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        Indicates the ASIC memory size, in MB.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the ECS name, which is fuzzy-matched.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerFlavorGpusResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 memory_mb: _builtins.int,
+                 name: _builtins.str):
+        """
+        :param _builtins.int count: Indicates the number of ASICs.
+        :param _builtins.int memory_mb: Indicates the ASIC memory size, in MB.
+        :param _builtins.str name: Specifies the ECS name, which is fuzzy-matched.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "memory_mb", memory_mb)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        Indicates the number of ASICs.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        Indicates the ASIC memory size, in MB.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the ECS name, which is fuzzy-matched.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerHypervisorResult(dict):
+    def __init__(__self__, *,
+                 csd_hypervisor: _builtins.str,
+                 hypervisor_type: _builtins.str):
+        """
+        :param _builtins.str csd_hypervisor: Indicates the hypervisor csd info.
+        :param _builtins.str hypervisor_type: Indicates the virtualization type.
+        """
+        pulumi.set(__self__, "csd_hypervisor", csd_hypervisor)
+        pulumi.set(__self__, "hypervisor_type", hypervisor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="csdHypervisor")
+    def csd_hypervisor(self) -> _builtins.str:
+        """
+        Indicates the hypervisor csd info.
+        """
+        return pulumi.get(self, "csd_hypervisor")
+
+    @_builtins.property
+    @pulumi.getter(name="hypervisorType")
+    def hypervisor_type(self) -> _builtins.str:
+        """
+        Indicates the virtualization type.
+        """
+        return pulumi.get(self, "hypervisor_type")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerImageResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the image ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerNetworkInterfaceResult(dict):
+    def __init__(__self__, *,
+                 associations: Sequence['outputs.GetRecycleBinServersServerNetworkInterfaceAssociationResult'],
+                 ip_addresses: Sequence[_builtins.str],
+                 ipv6_addresses: Sequence[_builtins.str],
+                 port_id: _builtins.str,
+                 primary: _builtins.bool,
+                 subnet_id: _builtins.str):
+        """
+        :param Sequence['GetRecycleBinServersServerNetworkInterfaceAssociationArgs'] associations: Indicates information about the associated EIP.
+        :param Sequence[_builtins.str] ip_addresses: Indicates private IPv4 addresses.
+        :param Sequence[_builtins.str] ipv6_addresses: Indicates private IPv6 addresses.
+        :param _builtins.str port_id: Indicates the port ID.
+        :param _builtins.bool primary: Indicates whether the network interface is a primary network interface.
+        :param _builtins.str subnet_id: Indicates the subnet ID.
+        """
+        pulumi.set(__self__, "associations", associations)
+        pulumi.set(__self__, "ip_addresses", ip_addresses)
+        pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        pulumi.set(__self__, "port_id", port_id)
+        pulumi.set(__self__, "primary", primary)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def associations(self) -> Sequence['outputs.GetRecycleBinServersServerNetworkInterfaceAssociationResult']:
+        """
+        Indicates information about the associated EIP.
+        """
+        return pulumi.get(self, "associations")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Sequence[_builtins.str]:
+        """
+        Indicates private IPv4 addresses.
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Sequence[_builtins.str]:
+        """
+        Indicates private IPv6 addresses.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> _builtins.str:
+        """
+        Indicates the port ID.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def primary(self) -> _builtins.bool:
+        """
+        Indicates whether the network interface is a primary network interface.
+        """
+        return pulumi.get(self, "primary")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        Indicates the subnet ID.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerNetworkInterfaceAssociationResult(dict):
+    def __init__(__self__, *,
+                 public_ip_address: _builtins.str):
+        """
+        :param _builtins.str public_ip_address: Indicates the IPv4 address of the EIP.
+        """
+        pulumi.set(__self__, "public_ip_address", public_ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpAddress")
+    def public_ip_address(self) -> _builtins.str:
+        """
+        Indicates the IPv4 address of the EIP.
+        """
+        return pulumi.get(self, "public_ip_address")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerOsExtendedVolumesVolumesAttachedResult(dict):
+    def __init__(__self__, *,
+                 boot_index: _builtins.str,
+                 delete_on_termination: _builtins.str,
+                 device: _builtins.str,
+                 id: _builtins.str):
+        """
+        :param _builtins.str boot_index: Indicates the EVS disk boot sequence.
+        :param _builtins.str delete_on_termination: Indicates whether the disk is deleted with the ECS.
+        :param _builtins.str device: Indicates the drive letter of the EVS disk.
+               Which is the device name of the EVS disk.
+        :param _builtins.str id: Indicates the image ID.
+        """
+        pulumi.set(__self__, "boot_index", boot_index)
+        pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> _builtins.str:
+        """
+        Indicates the EVS disk boot sequence.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> _builtins.str:
+        """
+        Indicates whether the disk is deleted with the ECS.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        Indicates the drive letter of the EVS disk.
+        Which is the device name of the EVS disk.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerOsSchedulerHintResult(dict):
+    def __init__(__self__, *,
+                 dedicated_host_ids: Sequence[_builtins.str],
+                 groups: Sequence[_builtins.str],
+                 tenancies: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] dedicated_host_ids: Indicates the dedicated host ID.
+        :param Sequence[_builtins.str] groups: Indicates the ECS group ID in UUID format.
+        :param Sequence[_builtins.str] tenancies: Indicates creates ECSs on a dedicated or shared host.
+        """
+        pulumi.set(__self__, "dedicated_host_ids", dedicated_host_ids)
+        pulumi.set(__self__, "groups", groups)
+        pulumi.set(__self__, "tenancies", tenancies)
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedHostIds")
+    def dedicated_host_ids(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the dedicated host ID.
+        """
+        return pulumi.get(self, "dedicated_host_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the ECS group ID in UUID format.
+        """
+        return pulumi.get(self, "groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def tenancies(self) -> Sequence[_builtins.str]:
+        """
+        Indicates creates ECSs on a dedicated or shared host.
+        """
+        return pulumi.get(self, "tenancies")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerSecurityGroupResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the image ID.
+        :param _builtins.str name: Specifies the ECS name, which is fuzzy-matched.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the ECS name, which is fuzzy-matched.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerSecurityOptionResult(dict):
+    def __init__(__self__, *,
+                 secure_boot_enabled: _builtins.bool,
+                 tpm_enabled: _builtins.bool):
+        """
+        :param _builtins.bool secure_boot_enabled: Indicates whether support secure boot.
+        :param _builtins.bool tpm_enabled: Indicates whether support vtpm start.
+        """
+        pulumi.set(__self__, "secure_boot_enabled", secure_boot_enabled)
+        pulumi.set(__self__, "tpm_enabled", tpm_enabled)
+
+    @_builtins.property
+    @pulumi.getter(name="secureBootEnabled")
+    def secure_boot_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether support secure boot.
+        """
+        return pulumi.get(self, "secure_boot_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="tpmEnabled")
+    def tpm_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether support vtpm start.
+        """
+        return pulumi.get(self, "tpm_enabled")
+
+
+@pulumi.output_type
+class GetRecycleBinServersServerSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the system tag key.
+        :param _builtins.str value: Indicates the system tag value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the system tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the system tag value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResizeFlavorsFlavorResult(dict):
+    def __init__(__self__, *,
+                 disk: _builtins.str,
+                 extra_specs: Sequence['outputs.GetResizeFlavorsFlavorExtraSpecResult'],
+                 id: _builtins.str,
+                 links: Sequence['outputs.GetResizeFlavorsFlavorLinkResult'],
+                 name: _builtins.str,
+                 os_flavor_access_is_public: _builtins.bool,
+                 os_flv_disabled_disabled: _builtins.bool,
+                 os_flv_ext_data_ephemeral: _builtins.int,
+                 ram: _builtins.int,
+                 rxtx_cap: _builtins.str,
+                 rxtx_factor: _builtins.float,
+                 rxtx_quota: _builtins.str,
+                 swap: _builtins.str,
+                 vcpus: _builtins.str):
+        """
+        :param _builtins.str disk: Indicates the system disk size in the ECS flavor.
+               This parameter has not been used. Its default value is **0**.
+        :param Sequence['GetResizeFlavorsFlavorExtraSpecArgs'] extra_specs: Indicates the extended field of the ECS flavor.
+        :param _builtins.str id: Indicates the ECS flavor ID.
+        :param Sequence['GetResizeFlavorsFlavorLinkArgs'] links: Indicates the shortcut link of the ECS flavor.
+        :param _builtins.str name: Indicates the ECS flavor name.
+        :param _builtins.bool os_flavor_access_is_public: Indicates whether a flavor is available to all tenants. This is an extended attribute.
+               Value options:
+               + **true**: indicates that a flavor is available to all tenants.
+               + **false**: indicates that a flavor is available only to certain tenants.
+        :param _builtins.bool os_flv_disabled_disabled: Indicates whether the ECS flavor has been disabled. This is an extended attribute.
+               This parameter has not been used. Its default value is **false**.
+        :param _builtins.int os_flv_ext_data_ephemeral: Indicates the temporary disk size. This is an extended attribute.
+               This parameter has not been used. Its default value is **0**.
+        :param _builtins.int ram: Indicates the memory size (MiB) in the ECS flavor.
+        :param _builtins.str rxtx_cap: Indicates the hardware constraints of the network bandwidth that can be used by the ECS.
+               This parameter has not been used. Its default value is **null**.
+        :param _builtins.float rxtx_factor: Indicates the ratio of the available network bandwidth to the network hardware bandwidth of the ECS.
+               This parameter has not been used. Its default value is **1**.
+        :param _builtins.str rxtx_quota: Indicates the software constraints of the network bandwidth that can be used by the ECS.
+               This parameter has not been used. Its default value is **null**.
+        :param _builtins.str swap: Indicates the swap partition size required by the ECS flavor.
+               This parameter has not been used. Its default value is "".
+        :param _builtins.str vcpus: Indicates the number of vCPUs in the ECS flavor.
+        """
+        pulumi.set(__self__, "disk", disk)
+        pulumi.set(__self__, "extra_specs", extra_specs)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "os_flavor_access_is_public", os_flavor_access_is_public)
+        pulumi.set(__self__, "os_flv_disabled_disabled", os_flv_disabled_disabled)
+        pulumi.set(__self__, "os_flv_ext_data_ephemeral", os_flv_ext_data_ephemeral)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "rxtx_cap", rxtx_cap)
+        pulumi.set(__self__, "rxtx_factor", rxtx_factor)
+        pulumi.set(__self__, "rxtx_quota", rxtx_quota)
+        pulumi.set(__self__, "swap", swap)
+        pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter
+    def disk(self) -> _builtins.str:
+        """
+        Indicates the system disk size in the ECS flavor.
+        This parameter has not been used. Its default value is **0**.
+        """
+        return pulumi.get(self, "disk")
+
+    @_builtins.property
+    @pulumi.getter(name="extraSpecs")
+    def extra_specs(self) -> Sequence['outputs.GetResizeFlavorsFlavorExtraSpecResult']:
+        """
+        Indicates the extended field of the ECS flavor.
+        """
+        return pulumi.get(self, "extra_specs")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ECS flavor ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetResizeFlavorsFlavorLinkResult']:
+        """
+        Indicates the shortcut link of the ECS flavor.
+        """
+        return pulumi.get(self, "links")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the ECS flavor name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="osFlavorAccessIsPublic")
+    def os_flavor_access_is_public(self) -> _builtins.bool:
+        """
+        Indicates whether a flavor is available to all tenants. This is an extended attribute.
+        Value options:
+        + **true**: indicates that a flavor is available to all tenants.
+        + **false**: indicates that a flavor is available only to certain tenants.
+        """
+        return pulumi.get(self, "os_flavor_access_is_public")
+
+    @_builtins.property
+    @pulumi.getter(name="osFlvDisabledDisabled")
+    def os_flv_disabled_disabled(self) -> _builtins.bool:
+        """
+        Indicates whether the ECS flavor has been disabled. This is an extended attribute.
+        This parameter has not been used. Its default value is **false**.
+        """
+        return pulumi.get(self, "os_flv_disabled_disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="osFlvExtDataEphemeral")
+    def os_flv_ext_data_ephemeral(self) -> _builtins.int:
+        """
+        Indicates the temporary disk size. This is an extended attribute.
+        This parameter has not been used. Its default value is **0**.
+        """
+        return pulumi.get(self, "os_flv_ext_data_ephemeral")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        Indicates the memory size (MiB) in the ECS flavor.
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="rxtxCap")
+    def rxtx_cap(self) -> _builtins.str:
+        """
+        Indicates the hardware constraints of the network bandwidth that can be used by the ECS.
+        This parameter has not been used. Its default value is **null**.
+        """
+        return pulumi.get(self, "rxtx_cap")
+
+    @_builtins.property
+    @pulumi.getter(name="rxtxFactor")
+    def rxtx_factor(self) -> _builtins.float:
+        """
+        Indicates the ratio of the available network bandwidth to the network hardware bandwidth of the ECS.
+        This parameter has not been used. Its default value is **1**.
+        """
+        return pulumi.get(self, "rxtx_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="rxtxQuota")
+    def rxtx_quota(self) -> _builtins.str:
+        """
+        Indicates the software constraints of the network bandwidth that can be used by the ECS.
+        This parameter has not been used. Its default value is **null**.
+        """
+        return pulumi.get(self, "rxtx_quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def swap(self) -> _builtins.str:
+        """
+        Indicates the swap partition size required by the ECS flavor.
+        This parameter has not been used. Its default value is "".
+        """
+        return pulumi.get(self, "swap")
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> _builtins.str:
+        """
+        Indicates the number of vCPUs in the ECS flavor.
+        """
+        return pulumi.get(self, "vcpus")
+
+
+@pulumi.output_type
+class GetResizeFlavorsFlavorExtraSpecResult(dict):
+    def __init__(__self__, *,
+                 cond_compute: _builtins.str,
+                 cond_compute_live_resizable: _builtins.str,
+                 cond_network: _builtins.str,
+                 cond_operation_az: _builtins.str,
+                 cond_operation_charge: _builtins.str,
+                 cond_operation_charge_stop: _builtins.str,
+                 cond_operation_roles: _builtins.str,
+                 cond_operation_status: _builtins.str,
+                 cond_spot_operation_az: _builtins.str,
+                 cond_spot_operation_status: _builtins.str,
+                 cond_storage: _builtins.str,
+                 cond_storage_type: _builtins.str,
+                 ecs_generation: _builtins.str,
+                 ecs_instance_architecture: _builtins.str,
+                 ecs_performancetype: _builtins.str,
+                 ecs_virtualization_env_types: _builtins.str,
+                 extra_spec_io_persistent_grant: _builtins.str,
+                 hpet_support: _builtins.str,
+                 hw_numa_nodes: _builtins.str,
+                 info_asic_accelerators: _builtins.str,
+                 info_cpu_name: _builtins.str,
+                 info_features: _builtins.str,
+                 info_gpu_name: _builtins.str,
+                 info_gpus: _builtins.str,
+                 instance_vnic_instance_bandwidth: _builtins.str,
+                 instance_vnic_max_count: _builtins.str,
+                 instance_vnic_type: _builtins.str,
+                 network_interface_traffic_mirroring_supported: _builtins.str,
+                 pci_passthrough_alias: _builtins.str,
+                 pci_passthrough_enable_gpu: _builtins.str,
+                 pci_passthrough_gpu_specs: _builtins.str,
+                 quota_gpu: _builtins.str,
+                 quota_local_disk: _builtins.str,
+                 quota_max_pps: _builtins.str,
+                 quota_max_rate: _builtins.str,
+                 quota_min_rate: _builtins.str,
+                 quota_nvme_ssd: _builtins.str,
+                 quota_sub_network_interface_max_num: _builtins.str,
+                 quota_vif_max_num: _builtins.str,
+                 resource_type: _builtins.str,
+                 security_enclave_supported: _builtins.str):
+        """
+        :param _builtins.str cond_compute: Indicates computing constraints.
+               + **autorecovery**: indicates that automatic recovery is supported.
+               + If this parameter does not exist, automatic recovery is not supported.
+        :param _builtins.str cond_compute_live_resizable: Indicates computing constraints.
+               + If the value of this parameter is true, online capacity expansion is supported.
+               + If this parameter does not exist or its value is set to false, online capacity expansion is not supported.
+        :param _builtins.str cond_network: Indicates network constraints.
+               Network features are supported. If this parameter is not set, the default configuration on the console is used.
+        :param _builtins.str cond_operation_az: Indicates if an AZ is not configured in the `cond_operation_status` parameter.
+               The value of this parameter is used by default. This parameter takes effect region-wide.
+               This parameter is in the format of **az(xx)**. The value in parentheses is the flavor status in an AZ.
+               If the parentheses are left blank, the configuration is invalid. The `cond_operation_az` options are the
+               same as the `cond_operation_status` options.
+        :param _builtins.str cond_operation_charge: Indicates the billing type.
+               + All the billing types are supported if this parameter is not set.
+               + **period**: The billing type is yearly or monthly.
+               + **demand**: The billing type is pay-per-use.
+        :param _builtins.str cond_operation_charge_stop: Indicates whether fees are billed for a stopped ECS.
+               + No fees by default
+               + **charge**
+               + **free**
+        :param _builtins.str cond_operation_roles: Indicates the allowed roles.
+               Matched user tag (roles op_gatexxx), which is available to all users if this parameter is not set
+        :param _builtins.str cond_operation_status: Indicates if an AZ is not configured in the `cond_operation_az` parameter.
+               The value of this parameter is used by default. This parameter takes effect region-wide.
+               If this parameter is not set or used, the meaning of normal applies. Options:
+               + **normal**: indicates normal commercial use of the flavor.
+               + **abandon**: indicates that the flavor has been taken offline (not displayed).
+               + **sellout**: indicates that the flavor has been sold out.
+               + **obt**: indicates that the flavor is under open beta testing (OBT).
+               + **obt_sellout**: indicates that the OBT resources are sold out.
+               + **promotion**: indicates that the flavor is recommended (for commercial use, which is similar to normal).
+        :param _builtins.str cond_spot_operation_az: Indicates  the AZ for the flavors in spot pricing billing mode.
+        :param _builtins.str cond_spot_operation_status: Indicates the status of a flavor in spot pricing billing mode.
+               + Equivalent to abandon if this parameter is not set.
+               + **normal**: indicates commercial use of the flavor.
+               + **abandon**: indicates that the flavor has been taken offline.
+               + **sellout**: indicates that the flavor has been sold out.
+               + **obt**: indicates that the flavor is under OBT (not supported currently).
+               + **private**: indicates that the flavor is private, which is available only to specified users (not supported currently).
+               + **test**: indicates that the flavor is at free trial phase (not supported currently).
+               + **promotion**: indicates that the flavor is recommended.
+        :param _builtins.str cond_storage: Indicates the storage constraints.
+               Disk features are supported. If this parameter is not set, the default configuration on the console is used.
+               + **scsi**: indicates that SCSI is supported.
+               + **localdisk**: indicates that local disks are supported.
+               + **ib**: indicates that IB is supported.
+        :param _builtins.str cond_storage_type: Indicates supported disk types.
+               If you do not specify this parameter, the configuration on the console is used.
+               + **SATA**: common I/O disks (sold out)
+               + **SAS**: high I/O disks
+               + **GPSSD**: General Purpose SSDs
+               + **SSD**: ultra-I/O disks
+               + **ESSD**: extreme SSDs
+               + **GPSSD2**: General Purpose SSD V2
+               + **ESSD2**: extreme SSD V2
+        :param _builtins.str ecs_generation: Indicates the generation of an ECS type.
+        :param _builtins.str ecs_instance_architecture: Indicates the CPU architecture corresponding to the flavor.
+               This parameter is returned only for Kunpeng ECSs. The value arm64 indicates that the CPU architecture is Kunpeng.
+        :param _builtins.str ecs_performancetype: Indicates the ECS flavor type.
+               + **normal**: general computing
+               + **computingv3**: general computing-plus
+               + **highmem**: memory-optimized
+               + **cpuv1**: computing I
+               + **cpuv2**: computing II
+               + **highcpu**: high-performance computing
+               + **diskintensive**: disk-intensive
+               + **saphana**: large-memory
+               + **kunpeng_highio**: Kunpeng ultra-high I/O
+               + **kunpeng_accelerator**: Kunpeng application-accelerated
+               + **advanced_smb**: general computing (providing resources for Huawei Cloud FlexusX)
+        :param _builtins.str ecs_virtualization_env_types: Indicates a virtualization type.
+               + If the parameter value is **FusionCompute**, the ECS uses Xen virtualization.
+               + If the parameter value is **CloudCompute**, the ECS uses KVM virtualization.
+        :param _builtins.str extra_spec_io_persistent_grant: Indicates whether persistence is supported.
+               The value of this parameter is true.
+               This parameter indicates that the ECS is persistently authorized to access the storage.
+        :param _builtins.str hpet_support: Indicates  whether to enable the high-precision clock on the ECS.
+               The ECS specifications determine whether to return the parameter value.
+               + **true** indicates to enable the function
+               + **false** indicates to disable the function
+        :param _builtins.str hw_numa_nodes: Indicates the number of physical CPUs of the host.
+               The ECS specifications determine whether to return the parameter value.
+        :param _builtins.str info_asic_accelerators: Indicates information about the accelerator.
+               + **name**: accelerator name
+               + **memory_mb**: accelerator memory
+               + **count**: the number of accelerators
+               + **alias_prefix**: internal alias of an accelerator
+        :param _builtins.str info_cpu_name: Indicates the CPU name.
+        :param _builtins.str info_features: Indicates the features supported by the flavor.
+        :param _builtins.str info_gpu_name: Indicates the number and names of GPUs.
+        :param _builtins.str info_gpus: Indicates information about the GPU.
+               + **name**: GPU name
+               + **memory_mb**: GPU memory
+               + **count**: the number of GPUs
+               + **alias_prefix**: internal alias of a GPU
+        :param _builtins.str instance_vnic_instance_bandwidth: Indicates the maximum bandwidth in the unit of **Mbit/s**.
+               The maximum value of this parameter is 10,000.
+        :param _builtins.str instance_vnic_max_count: Indicates the maximum number of NICs.
+               The maximum value of this parameter is 4.
+        :param _builtins.str instance_vnic_type: Indicates the NIC type.
+               The value of this parameter is consistently **enhanced**, indicating that network enhancement ECSs are to be created.
+        :param _builtins.str network_interface_traffic_mirroring_supported: Indicates whether the flavor supports traffic mirroring.
+        :param _builtins.str pci_passthrough_alias: Indicates PCI passthrough device information, in the format of PCI device name: quantity.
+               Multiple device information is separated by commas.
+        :param _builtins.str pci_passthrough_enable_gpu: Indicates whether the graphics card is passed through.
+        :param _builtins.str pci_passthrough_gpu_specs: Indicates  the technologies used by G1 and G2 cloud servers.
+               It includes GPU virtualization and GPU pass-through.
+        :param _builtins.str quota_gpu: Indicates the GPU name.
+        :param _builtins.str quota_local_disk: Indicates the value of this parameter is in format of **{type}:{count}:{size}:{safeFormat}**.
+               + **type**: indicates the disk type, which can only be HDD.
+               + **count**: indicates the number of local disks. The following types are supported:
+               - For D1 ECSs, the value can be 3, 6, 12, or 24.
+               - For D2 ECSs, the value can be 2, 4, 8, 12, 16, or 24.
+               - For D3 ECSs, the value can be 2, 4, 8, 12, 16, 24, or 28.
+               + **size**: indicates the capacity of a single disk, in GiB. Currently, only 1675 is supported.
+               The actual disk size is 1800, and the available size after formatting is 1675.
+               + **safeFormat**: indicates whether the local disks of the ECS are securely formatted. The following types are supported:
+               - For D1 ECSs, the value is FALSE.
+               - For D2 or D3 ECSs, the value is True.
+        :param _builtins.str quota_max_pps: Indicates the maximum intranet PPS.
+               Unit: number. If a value is in the unit of 10,000, it must be divided by 10,000.
+        :param _builtins.str quota_max_rate: Indicates the maximum bandwidth.
+               Unit: **Mbit/s**. If a bandwidth is in the unit of **Gbit/s**, it must be divided by **1,000**.
+        :param _builtins.str quota_min_rate: Indicates the assured bandwidth.
+               Unit: **Mbit/s**. If a bandwidth is in the unit of **Gbit/s**, it must be divided by **1,000**.
+        :param _builtins.str quota_nvme_ssd: Indicates the value of this parameter.
+               The format is **{type}:{spec}:{num}:{size}:{safeFormat}**.
+               + **type**: indicates the capacity of a single NVMe SSD disk attached to the ECS, which can only be 1.6 TB or 3.2 TB.
+               + **spec: indicates the specifications of the NVMe SSD disk, which can be large (large specifications) or
+               lvs (small specifications). If spec is set to large, only I series (for example, I3) is supported.
+               + **num**: indicates the number of local disks.
+               + **size**: indicates the capacity, in the unit of GiB, of the disk used by the guest user. If the spec value is large,
+               the value of this parameter is the size of a single disk attached to the ECS. If the value of spec is lvs, the value
+               of size is an integer multiple of 50.
+               + **safeFormat**: indicates whether the local disks of the ECS are securely formatted.
+               If safeFormat is set to True, only I series (for example, I3) is supported.
+        :param _builtins.str quota_sub_network_interface_max_num: Indicates the maximum number of auxiliary network interfaces that can be bound
+               to an ECS.
+        :param _builtins.str quota_vif_max_num: Indicates the maximum number of elastic network interfaces that can be bound to an ECS.
+        :param _builtins.str resource_type: Indicates the resource type.
+               It is used to differentiate between the types of the physical servers accommodating ECSs.
+        :param _builtins.str security_enclave_supported: Indicates whether the flavor supports QingTian Enclave.
+        """
+        pulumi.set(__self__, "cond_compute", cond_compute)
+        pulumi.set(__self__, "cond_compute_live_resizable", cond_compute_live_resizable)
+        pulumi.set(__self__, "cond_network", cond_network)
+        pulumi.set(__self__, "cond_operation_az", cond_operation_az)
+        pulumi.set(__self__, "cond_operation_charge", cond_operation_charge)
+        pulumi.set(__self__, "cond_operation_charge_stop", cond_operation_charge_stop)
+        pulumi.set(__self__, "cond_operation_roles", cond_operation_roles)
+        pulumi.set(__self__, "cond_operation_status", cond_operation_status)
+        pulumi.set(__self__, "cond_spot_operation_az", cond_spot_operation_az)
+        pulumi.set(__self__, "cond_spot_operation_status", cond_spot_operation_status)
+        pulumi.set(__self__, "cond_storage", cond_storage)
+        pulumi.set(__self__, "cond_storage_type", cond_storage_type)
+        pulumi.set(__self__, "ecs_generation", ecs_generation)
+        pulumi.set(__self__, "ecs_instance_architecture", ecs_instance_architecture)
+        pulumi.set(__self__, "ecs_performancetype", ecs_performancetype)
+        pulumi.set(__self__, "ecs_virtualization_env_types", ecs_virtualization_env_types)
+        pulumi.set(__self__, "extra_spec_io_persistent_grant", extra_spec_io_persistent_grant)
+        pulumi.set(__self__, "hpet_support", hpet_support)
+        pulumi.set(__self__, "hw_numa_nodes", hw_numa_nodes)
+        pulumi.set(__self__, "info_asic_accelerators", info_asic_accelerators)
+        pulumi.set(__self__, "info_cpu_name", info_cpu_name)
+        pulumi.set(__self__, "info_features", info_features)
+        pulumi.set(__self__, "info_gpu_name", info_gpu_name)
+        pulumi.set(__self__, "info_gpus", info_gpus)
+        pulumi.set(__self__, "instance_vnic_instance_bandwidth", instance_vnic_instance_bandwidth)
+        pulumi.set(__self__, "instance_vnic_max_count", instance_vnic_max_count)
+        pulumi.set(__self__, "instance_vnic_type", instance_vnic_type)
+        pulumi.set(__self__, "network_interface_traffic_mirroring_supported", network_interface_traffic_mirroring_supported)
+        pulumi.set(__self__, "pci_passthrough_alias", pci_passthrough_alias)
+        pulumi.set(__self__, "pci_passthrough_enable_gpu", pci_passthrough_enable_gpu)
+        pulumi.set(__self__, "pci_passthrough_gpu_specs", pci_passthrough_gpu_specs)
+        pulumi.set(__self__, "quota_gpu", quota_gpu)
+        pulumi.set(__self__, "quota_local_disk", quota_local_disk)
+        pulumi.set(__self__, "quota_max_pps", quota_max_pps)
+        pulumi.set(__self__, "quota_max_rate", quota_max_rate)
+        pulumi.set(__self__, "quota_min_rate", quota_min_rate)
+        pulumi.set(__self__, "quota_nvme_ssd", quota_nvme_ssd)
+        pulumi.set(__self__, "quota_sub_network_interface_max_num", quota_sub_network_interface_max_num)
+        pulumi.set(__self__, "quota_vif_max_num", quota_vif_max_num)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "security_enclave_supported", security_enclave_supported)
+
+    @_builtins.property
+    @pulumi.getter(name="condCompute")
+    def cond_compute(self) -> _builtins.str:
+        """
+        Indicates computing constraints.
+        + **autorecovery**: indicates that automatic recovery is supported.
+        + If this parameter does not exist, automatic recovery is not supported.
+        """
+        return pulumi.get(self, "cond_compute")
+
+    @_builtins.property
+    @pulumi.getter(name="condComputeLiveResizable")
+    def cond_compute_live_resizable(self) -> _builtins.str:
+        """
+        Indicates computing constraints.
+        + If the value of this parameter is true, online capacity expansion is supported.
+        + If this parameter does not exist or its value is set to false, online capacity expansion is not supported.
+        """
+        return pulumi.get(self, "cond_compute_live_resizable")
+
+    @_builtins.property
+    @pulumi.getter(name="condNetwork")
+    def cond_network(self) -> _builtins.str:
+        """
+        Indicates network constraints.
+        Network features are supported. If this parameter is not set, the default configuration on the console is used.
+        """
+        return pulumi.get(self, "cond_network")
+
+    @_builtins.property
+    @pulumi.getter(name="condOperationAz")
+    def cond_operation_az(self) -> _builtins.str:
+        """
+        Indicates if an AZ is not configured in the `cond_operation_status` parameter.
+        The value of this parameter is used by default. This parameter takes effect region-wide.
+        This parameter is in the format of **az(xx)**. The value in parentheses is the flavor status in an AZ.
+        If the parentheses are left blank, the configuration is invalid. The `cond_operation_az` options are the
+        same as the `cond_operation_status` options.
+        """
+        return pulumi.get(self, "cond_operation_az")
+
+    @_builtins.property
+    @pulumi.getter(name="condOperationCharge")
+    def cond_operation_charge(self) -> _builtins.str:
+        """
+        Indicates the billing type.
+        + All the billing types are supported if this parameter is not set.
+        + **period**: The billing type is yearly or monthly.
+        + **demand**: The billing type is pay-per-use.
+        """
+        return pulumi.get(self, "cond_operation_charge")
+
+    @_builtins.property
+    @pulumi.getter(name="condOperationChargeStop")
+    def cond_operation_charge_stop(self) -> _builtins.str:
+        """
+        Indicates whether fees are billed for a stopped ECS.
+        + No fees by default
+        + **charge**
+        + **free**
+        """
+        return pulumi.get(self, "cond_operation_charge_stop")
+
+    @_builtins.property
+    @pulumi.getter(name="condOperationRoles")
+    def cond_operation_roles(self) -> _builtins.str:
+        """
+        Indicates the allowed roles.
+        Matched user tag (roles op_gatexxx), which is available to all users if this parameter is not set
+        """
+        return pulumi.get(self, "cond_operation_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="condOperationStatus")
+    def cond_operation_status(self) -> _builtins.str:
+        """
+        Indicates if an AZ is not configured in the `cond_operation_az` parameter.
+        The value of this parameter is used by default. This parameter takes effect region-wide.
+        If this parameter is not set or used, the meaning of normal applies. Options:
+        + **normal**: indicates normal commercial use of the flavor.
+        + **abandon**: indicates that the flavor has been taken offline (not displayed).
+        + **sellout**: indicates that the flavor has been sold out.
+        + **obt**: indicates that the flavor is under open beta testing (OBT).
+        + **obt_sellout**: indicates that the OBT resources are sold out.
+        + **promotion**: indicates that the flavor is recommended (for commercial use, which is similar to normal).
+        """
+        return pulumi.get(self, "cond_operation_status")
+
+    @_builtins.property
+    @pulumi.getter(name="condSpotOperationAz")
+    def cond_spot_operation_az(self) -> _builtins.str:
+        """
+        Indicates  the AZ for the flavors in spot pricing billing mode.
+        """
+        return pulumi.get(self, "cond_spot_operation_az")
+
+    @_builtins.property
+    @pulumi.getter(name="condSpotOperationStatus")
+    def cond_spot_operation_status(self) -> _builtins.str:
+        """
+        Indicates the status of a flavor in spot pricing billing mode.
+        + Equivalent to abandon if this parameter is not set.
+        + **normal**: indicates commercial use of the flavor.
+        + **abandon**: indicates that the flavor has been taken offline.
+        + **sellout**: indicates that the flavor has been sold out.
+        + **obt**: indicates that the flavor is under OBT (not supported currently).
+        + **private**: indicates that the flavor is private, which is available only to specified users (not supported currently).
+        + **test**: indicates that the flavor is at free trial phase (not supported currently).
+        + **promotion**: indicates that the flavor is recommended.
+        """
+        return pulumi.get(self, "cond_spot_operation_status")
+
+    @_builtins.property
+    @pulumi.getter(name="condStorage")
+    def cond_storage(self) -> _builtins.str:
+        """
+        Indicates the storage constraints.
+        Disk features are supported. If this parameter is not set, the default configuration on the console is used.
+        + **scsi**: indicates that SCSI is supported.
+        + **localdisk**: indicates that local disks are supported.
+        + **ib**: indicates that IB is supported.
+        """
+        return pulumi.get(self, "cond_storage")
+
+    @_builtins.property
+    @pulumi.getter(name="condStorageType")
+    def cond_storage_type(self) -> _builtins.str:
+        """
+        Indicates supported disk types.
+        If you do not specify this parameter, the configuration on the console is used.
+        + **SATA**: common I/O disks (sold out)
+        + **SAS**: high I/O disks
+        + **GPSSD**: General Purpose SSDs
+        + **SSD**: ultra-I/O disks
+        + **ESSD**: extreme SSDs
+        + **GPSSD2**: General Purpose SSD V2
+        + **ESSD2**: extreme SSD V2
+        """
+        return pulumi.get(self, "cond_storage_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsGeneration")
+    def ecs_generation(self) -> _builtins.str:
+        """
+        Indicates the generation of an ECS type.
+        """
+        return pulumi.get(self, "ecs_generation")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsInstanceArchitecture")
+    def ecs_instance_architecture(self) -> _builtins.str:
+        """
+        Indicates the CPU architecture corresponding to the flavor.
+        This parameter is returned only for Kunpeng ECSs. The value arm64 indicates that the CPU architecture is Kunpeng.
+        """
+        return pulumi.get(self, "ecs_instance_architecture")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsPerformancetype")
+    def ecs_performancetype(self) -> _builtins.str:
+        """
+        Indicates the ECS flavor type.
+        + **normal**: general computing
+        + **computingv3**: general computing-plus
+        + **highmem**: memory-optimized
+        + **cpuv1**: computing I
+        + **cpuv2**: computing II
+        + **highcpu**: high-performance computing
+        + **diskintensive**: disk-intensive
+        + **saphana**: large-memory
+        + **kunpeng_highio**: Kunpeng ultra-high I/O
+        + **kunpeng_accelerator**: Kunpeng application-accelerated
+        + **advanced_smb**: general computing (providing resources for Huawei Cloud FlexusX)
+        """
+        return pulumi.get(self, "ecs_performancetype")
+
+    @_builtins.property
+    @pulumi.getter(name="ecsVirtualizationEnvTypes")
+    def ecs_virtualization_env_types(self) -> _builtins.str:
+        """
+        Indicates a virtualization type.
+        + If the parameter value is **FusionCompute**, the ECS uses Xen virtualization.
+        + If the parameter value is **CloudCompute**, the ECS uses KVM virtualization.
+        """
+        return pulumi.get(self, "ecs_virtualization_env_types")
+
+    @_builtins.property
+    @pulumi.getter(name="extraSpecIoPersistentGrant")
+    def extra_spec_io_persistent_grant(self) -> _builtins.str:
+        """
+        Indicates whether persistence is supported.
+        The value of this parameter is true.
+        This parameter indicates that the ECS is persistently authorized to access the storage.
+        """
+        return pulumi.get(self, "extra_spec_io_persistent_grant")
+
+    @_builtins.property
+    @pulumi.getter(name="hpetSupport")
+    def hpet_support(self) -> _builtins.str:
+        """
+        Indicates  whether to enable the high-precision clock on the ECS.
+        The ECS specifications determine whether to return the parameter value.
+        + **true** indicates to enable the function
+        + **false** indicates to disable the function
+        """
+        return pulumi.get(self, "hpet_support")
+
+    @_builtins.property
+    @pulumi.getter(name="hwNumaNodes")
+    def hw_numa_nodes(self) -> _builtins.str:
+        """
+        Indicates the number of physical CPUs of the host.
+        The ECS specifications determine whether to return the parameter value.
+        """
+        return pulumi.get(self, "hw_numa_nodes")
+
+    @_builtins.property
+    @pulumi.getter(name="infoAsicAccelerators")
+    def info_asic_accelerators(self) -> _builtins.str:
+        """
+        Indicates information about the accelerator.
+        + **name**: accelerator name
+        + **memory_mb**: accelerator memory
+        + **count**: the number of accelerators
+        + **alias_prefix**: internal alias of an accelerator
+        """
+        return pulumi.get(self, "info_asic_accelerators")
+
+    @_builtins.property
+    @pulumi.getter(name="infoCpuName")
+    def info_cpu_name(self) -> _builtins.str:
+        """
+        Indicates the CPU name.
+        """
+        return pulumi.get(self, "info_cpu_name")
+
+    @_builtins.property
+    @pulumi.getter(name="infoFeatures")
+    def info_features(self) -> _builtins.str:
+        """
+        Indicates the features supported by the flavor.
+        """
+        return pulumi.get(self, "info_features")
+
+    @_builtins.property
+    @pulumi.getter(name="infoGpuName")
+    def info_gpu_name(self) -> _builtins.str:
+        """
+        Indicates the number and names of GPUs.
+        """
+        return pulumi.get(self, "info_gpu_name")
+
+    @_builtins.property
+    @pulumi.getter(name="infoGpus")
+    def info_gpus(self) -> _builtins.str:
+        """
+        Indicates information about the GPU.
+        + **name**: GPU name
+        + **memory_mb**: GPU memory
+        + **count**: the number of GPUs
+        + **alias_prefix**: internal alias of a GPU
+        """
+        return pulumi.get(self, "info_gpus")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceVnicInstanceBandwidth")
+    def instance_vnic_instance_bandwidth(self) -> _builtins.str:
+        """
+        Indicates the maximum bandwidth in the unit of **Mbit/s**.
+        The maximum value of this parameter is 10,000.
+        """
+        return pulumi.get(self, "instance_vnic_instance_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceVnicMaxCount")
+    def instance_vnic_max_count(self) -> _builtins.str:
+        """
+        Indicates the maximum number of NICs.
+        The maximum value of this parameter is 4.
+        """
+        return pulumi.get(self, "instance_vnic_max_count")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceVnicType")
+    def instance_vnic_type(self) -> _builtins.str:
+        """
+        Indicates the NIC type.
+        The value of this parameter is consistently **enhanced**, indicating that network enhancement ECSs are to be created.
+        """
+        return pulumi.get(self, "instance_vnic_type")
+
+    @_builtins.property
+    @pulumi.getter(name="networkInterfaceTrafficMirroringSupported")
+    def network_interface_traffic_mirroring_supported(self) -> _builtins.str:
+        """
+        Indicates whether the flavor supports traffic mirroring.
+        """
+        return pulumi.get(self, "network_interface_traffic_mirroring_supported")
+
+    @_builtins.property
+    @pulumi.getter(name="pciPassthroughAlias")
+    def pci_passthrough_alias(self) -> _builtins.str:
+        """
+        Indicates PCI passthrough device information, in the format of PCI device name: quantity.
+        Multiple device information is separated by commas.
+        """
+        return pulumi.get(self, "pci_passthrough_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="pciPassthroughEnableGpu")
+    def pci_passthrough_enable_gpu(self) -> _builtins.str:
+        """
+        Indicates whether the graphics card is passed through.
+        """
+        return pulumi.get(self, "pci_passthrough_enable_gpu")
+
+    @_builtins.property
+    @pulumi.getter(name="pciPassthroughGpuSpecs")
+    def pci_passthrough_gpu_specs(self) -> _builtins.str:
+        """
+        Indicates  the technologies used by G1 and G2 cloud servers.
+        It includes GPU virtualization and GPU pass-through.
+        """
+        return pulumi.get(self, "pci_passthrough_gpu_specs")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaGpu")
+    def quota_gpu(self) -> _builtins.str:
+        """
+        Indicates the GPU name.
+        """
+        return pulumi.get(self, "quota_gpu")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaLocalDisk")
+    def quota_local_disk(self) -> _builtins.str:
+        """
+        Indicates the value of this parameter is in format of **{type}:{count}:{size}:{safeFormat}**.
+        + **type**: indicates the disk type, which can only be HDD.
+        + **count**: indicates the number of local disks. The following types are supported:
+        - For D1 ECSs, the value can be 3, 6, 12, or 24.
+        - For D2 ECSs, the value can be 2, 4, 8, 12, 16, or 24.
+        - For D3 ECSs, the value can be 2, 4, 8, 12, 16, 24, or 28.
+        + **size**: indicates the capacity of a single disk, in GiB. Currently, only 1675 is supported.
+        The actual disk size is 1800, and the available size after formatting is 1675.
+        + **safeFormat**: indicates whether the local disks of the ECS are securely formatted. The following types are supported:
+        - For D1 ECSs, the value is FALSE.
+        - For D2 or D3 ECSs, the value is True.
+        """
+        return pulumi.get(self, "quota_local_disk")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaMaxPps")
+    def quota_max_pps(self) -> _builtins.str:
+        """
+        Indicates the maximum intranet PPS.
+        Unit: number. If a value is in the unit of 10,000, it must be divided by 10,000.
+        """
+        return pulumi.get(self, "quota_max_pps")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaMaxRate")
+    def quota_max_rate(self) -> _builtins.str:
+        """
+        Indicates the maximum bandwidth.
+        Unit: **Mbit/s**. If a bandwidth is in the unit of **Gbit/s**, it must be divided by **1,000**.
+        """
+        return pulumi.get(self, "quota_max_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaMinRate")
+    def quota_min_rate(self) -> _builtins.str:
+        """
+        Indicates the assured bandwidth.
+        Unit: **Mbit/s**. If a bandwidth is in the unit of **Gbit/s**, it must be divided by **1,000**.
+        """
+        return pulumi.get(self, "quota_min_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaNvmeSsd")
+    def quota_nvme_ssd(self) -> _builtins.str:
+        """
+        Indicates the value of this parameter.
+        The format is **{type}:{spec}:{num}:{size}:{safeFormat}**.
+        + **type**: indicates the capacity of a single NVMe SSD disk attached to the ECS, which can only be 1.6 TB or 3.2 TB.
+        + **spec: indicates the specifications of the NVMe SSD disk, which can be large (large specifications) or
+        lvs (small specifications). If spec is set to large, only I series (for example, I3) is supported.
+        + **num**: indicates the number of local disks.
+        + **size**: indicates the capacity, in the unit of GiB, of the disk used by the guest user. If the spec value is large,
+        the value of this parameter is the size of a single disk attached to the ECS. If the value of spec is lvs, the value
+        of size is an integer multiple of 50.
+        + **safeFormat**: indicates whether the local disks of the ECS are securely formatted.
+        If safeFormat is set to True, only I series (for example, I3) is supported.
+        """
+        return pulumi.get(self, "quota_nvme_ssd")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaSubNetworkInterfaceMaxNum")
+    def quota_sub_network_interface_max_num(self) -> _builtins.str:
+        """
+        Indicates the maximum number of auxiliary network interfaces that can be bound
+        to an ECS.
+        """
+        return pulumi.get(self, "quota_sub_network_interface_max_num")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaVifMaxNum")
+    def quota_vif_max_num(self) -> _builtins.str:
+        """
+        Indicates the maximum number of elastic network interfaces that can be bound to an ECS.
+        """
+        return pulumi.get(self, "quota_vif_max_num")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Indicates the resource type.
+        It is used to differentiate between the types of the physical servers accommodating ECSs.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="securityEnclaveSupported")
+    def security_enclave_supported(self) -> _builtins.str:
+        """
+        Indicates whether the flavor supports QingTian Enclave.
+        """
+        return pulumi.get(self, "security_enclave_supported")
+
+
+@pulumi.output_type
+class GetResizeFlavorsFlavorLinkResult(dict):
+    def __init__(__self__, *,
+                 href: _builtins.str,
+                 rel: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str href: Indicates the provides the shortcut link.
+        :param _builtins.str rel: Indicates the shortcut link marker name.
+        :param _builtins.str type: Indicates the shortcut link type.
+               This parameter has not been used. Its default value is **null**.
+        """
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def href(self) -> _builtins.str:
+        """
+        Indicates the provides the shortcut link.
+        """
+        return pulumi.get(self, "href")
+
+    @_builtins.property
+    @pulumi.getter
+    def rel(self) -> _builtins.str:
+        """
+        Indicates the shortcut link marker name.
+        """
+        return pulumi.get(self, "rel")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the shortcut link type.
+        This parameter has not been used. Its default value is **null**.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetScheduledEventsEventResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 execute_options: Sequence['outputs.GetScheduledEventsEventExecuteOptionResult'],
+                 finish_time: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 not_after: _builtins.str,
+                 not_before: _builtins.str,
+                 not_before_deadline: _builtins.str,
+                 publish_time: _builtins.str,
+                 sources: Sequence['outputs.GetScheduledEventsEventSourceResult'],
+                 start_time: _builtins.str,
+                 state: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str description: Indicates the event description.
+        :param Sequence['GetScheduledEventsEventExecuteOptionArgs'] execute_options: Indicates the event execution option.
+        :param _builtins.str finish_time: Indicates the event completion time.
+        :param _builtins.str id: Indicates the event ID.
+        :param _builtins.str instance_id: Specifies the instance ID.
+        :param _builtins.str not_after: Indicates when the event is scheduled to end.
+        :param _builtins.str not_before: Indicates when the event is scheduled to start.
+        :param _builtins.str not_before_deadline: Indicates the deadline of starting a scheduled event.
+        :param _builtins.str publish_time: Indicates when the event is published.
+        :param Sequence['GetScheduledEventsEventSourceArgs'] sources: Indicates the event source.
+        :param _builtins.str start_time: Indicates the event start time.
+        :param _builtins.str state: Specifies the event status.
+               Value options:
+               + **inquiring**: An event is waiting to be authorized with the start time specified.
+               The system will complete operations within a specified time. For details, see the response event.
+               + **scheduled**: The event is waiting for the system to schedule resources.
+               + **executing**: The system has scheduled resources and is rectifying the fault.
+               + **completed**: The system has completed the event execution.
+               Check the impacts on services. If any problems occur, contact technical support.
+               + **failed**: The system fails to automatically rectify the fault.
+               + **canceled**: The event has been canceled by the system.
+        :param _builtins.str type: Specifies the event type.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "execute_options", execute_options)
+        pulumi.set(__self__, "finish_time", finish_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "not_before", not_before)
+        pulumi.set(__self__, "not_before_deadline", not_before_deadline)
+        pulumi.set(__self__, "publish_time", publish_time)
+        pulumi.set(__self__, "sources", sources)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the event description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="executeOptions")
+    def execute_options(self) -> Sequence['outputs.GetScheduledEventsEventExecuteOptionResult']:
+        """
+        Indicates the event execution option.
+        """
+        return pulumi.get(self, "execute_options")
+
+    @_builtins.property
+    @pulumi.getter(name="finishTime")
+    def finish_time(self) -> _builtins.str:
+        """
+        Indicates the event completion time.
+        """
+        return pulumi.get(self, "finish_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the event ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> _builtins.str:
+        """
+        Indicates when the event is scheduled to end.
+        """
+        return pulumi.get(self, "not_after")
+
+    @_builtins.property
+    @pulumi.getter(name="notBefore")
+    def not_before(self) -> _builtins.str:
+        """
+        Indicates when the event is scheduled to start.
+        """
+        return pulumi.get(self, "not_before")
+
+    @_builtins.property
+    @pulumi.getter(name="notBeforeDeadline")
+    def not_before_deadline(self) -> _builtins.str:
+        """
+        Indicates the deadline of starting a scheduled event.
+        """
+        return pulumi.get(self, "not_before_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.str:
+        """
+        Indicates when the event is published.
+        """
+        return pulumi.get(self, "publish_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def sources(self) -> Sequence['outputs.GetScheduledEventsEventSourceResult']:
+        """
+        Indicates the event source.
+        """
+        return pulumi.get(self, "sources")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Indicates the event start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Specifies the event status.
+        Value options:
+        + **inquiring**: An event is waiting to be authorized with the start time specified.
+        The system will complete operations within a specified time. For details, see the response event.
+        + **scheduled**: The event is waiting for the system to schedule resources.
+        + **executing**: The system has scheduled resources and is rectifying the fault.
+        + **completed**: The system has completed the event execution.
+        Check the impacts on services. If any problems occur, contact technical support.
+        + **failed**: The system fails to automatically rectify the fault.
+        + **canceled**: The event has been canceled by the system.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the event type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetScheduledEventsEventExecuteOptionResult(dict):
+    def __init__(__self__, *,
+                 device: _builtins.str,
+                 executor: _builtins.str,
+                 migrate_policy: _builtins.str,
+                 resize_target_flavor_id: _builtins.str,
+                 serial_number: _builtins.str,
+                 wwn: _builtins.str):
+        """
+        :param _builtins.str device: Indicates the device name of the local disk.
+        :param _builtins.str executor: Indicates the executor.
+        :param _builtins.str migrate_policy: Indicates the instance migration policy.
+        :param _builtins.str resize_target_flavor_id: Indicates the flavor ID.
+        :param _builtins.str serial_number: Indicates the SN of the local disk.
+        :param _builtins.str wwn: Indicates the unique ID used for attaching the local disk.
+        """
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "executor", executor)
+        pulumi.set(__self__, "migrate_policy", migrate_policy)
+        pulumi.set(__self__, "resize_target_flavor_id", resize_target_flavor_id)
+        pulumi.set(__self__, "serial_number", serial_number)
+        pulumi.set(__self__, "wwn", wwn)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        Indicates the device name of the local disk.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def executor(self) -> _builtins.str:
+        """
+        Indicates the executor.
+        """
+        return pulumi.get(self, "executor")
+
+    @_builtins.property
+    @pulumi.getter(name="migratePolicy")
+    def migrate_policy(self) -> _builtins.str:
+        """
+        Indicates the instance migration policy.
+        """
+        return pulumi.get(self, "migrate_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="resizeTargetFlavorId")
+    def resize_target_flavor_id(self) -> _builtins.str:
+        """
+        Indicates the flavor ID.
+        """
+        return pulumi.get(self, "resize_target_flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> _builtins.str:
+        """
+        Indicates the SN of the local disk.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def wwn(self) -> _builtins.str:
+        """
+        Indicates the unique ID used for attaching the local disk.
+        """
+        return pulumi.get(self, "wwn")
+
+
+@pulumi.output_type
+class GetScheduledEventsEventSourceResult(dict):
+    def __init__(__self__, *,
+                 host_scheduled_event_id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str host_scheduled_event_id: Indicates the ID of the scheduled event for the host.
+        :param _builtins.str type: Specifies the event type.
+        """
+        pulumi.set(__self__, "host_scheduled_event_id", host_scheduled_event_id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="hostScheduledEventId")
+    def host_scheduled_event_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the scheduled event for the host.
+        """
+        return pulumi.get(self, "host_scheduled_event_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the event type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetServergroupsServergroupResult(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
@@ -2074,5 +6644,1184 @@ class GetServergroupsServergroupResult(dict):
         The set of policies for the server group.
         """
         return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsFlavorConstraintResult(dict):
+    def __init__(__self__, *,
+                 architecture_types: Optional[Sequence[_builtins.str]] = None,
+                 flavor_requirements: Optional[Sequence['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementResult']] = None):
+        """
+        :param Sequence[_builtins.str] architecture_types: Specifies the architecture type.
+        :param Sequence['GetSupplyRecommendationsFlavorConstraintFlavorRequirementArgs'] flavor_requirements: Specifies the flavor requirements.
+               The flavor_requirements structure is documented below.
+               
+               <a name="flavor_requirements_struct"></a>
+               The `flavor_requirements` block supports:
+        """
+        if architecture_types is not None:
+            pulumi.set(__self__, "architecture_types", architecture_types)
+        if flavor_requirements is not None:
+            pulumi.set(__self__, "flavor_requirements", flavor_requirements)
+
+    @_builtins.property
+    @pulumi.getter(name="architectureTypes")
+    def architecture_types(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the architecture type.
+        """
+        return pulumi.get(self, "architecture_types")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorRequirements")
+    def flavor_requirements(self) -> Optional[Sequence['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementResult']]:
+        """
+        Specifies the flavor requirements.
+        The flavor_requirements structure is documented below.
+
+        <a name="flavor_requirements_struct"></a>
+        The `flavor_requirements` block supports:
+        """
+        return pulumi.get(self, "flavor_requirements")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementResult(dict):
+    def __init__(__self__, *,
+                 cpu_manufacturers: Optional[Sequence[_builtins.str]] = None,
+                 instance_generations: Optional[Sequence[_builtins.str]] = None,
+                 memory_gb_per_vcpu: Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuResult'] = None,
+                 memory_mb: Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbResult'] = None,
+                 vcpu_count: Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountResult'] = None):
+        """
+        :param Sequence[_builtins.str] cpu_manufacturers: Specifies the cpu manufacturers.
+        :param Sequence[_builtins.str] instance_generations: Specifies the instance generations.
+               
+               <a name="vcpu_count_struct"></a>
+               The `vcpu_count` block supports:
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuArgs' memory_gb_per_vcpu: Specifies the memory gb per vcpu.
+               The memory_gb_per_vcpu structure is documented below.
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbArgs' memory_mb: Specifies the memory in MByte (MB).
+               The memory_mb structure is documented below.
+        :param 'GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountArgs' vcpu_count: Specifies the vcpu count.
+               The vcpu_count structure is documented below.
+        """
+        if cpu_manufacturers is not None:
+            pulumi.set(__self__, "cpu_manufacturers", cpu_manufacturers)
+        if instance_generations is not None:
+            pulumi.set(__self__, "instance_generations", instance_generations)
+        if memory_gb_per_vcpu is not None:
+            pulumi.set(__self__, "memory_gb_per_vcpu", memory_gb_per_vcpu)
+        if memory_mb is not None:
+            pulumi.set(__self__, "memory_mb", memory_mb)
+        if vcpu_count is not None:
+            pulumi.set(__self__, "vcpu_count", vcpu_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuManufacturers")
+    def cpu_manufacturers(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the cpu manufacturers.
+        """
+        return pulumi.get(self, "cpu_manufacturers")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceGenerations")
+    def instance_generations(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the instance generations.
+
+        <a name="vcpu_count_struct"></a>
+        The `vcpu_count` block supports:
+        """
+        return pulumi.get(self, "instance_generations")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryGbPerVcpu")
+    def memory_gb_per_vcpu(self) -> Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuResult']:
+        """
+        Specifies the memory gb per vcpu.
+        The memory_gb_per_vcpu structure is documented below.
+        """
+        return pulumi.get(self, "memory_gb_per_vcpu")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbResult']:
+        """
+        Specifies the memory in MByte (MB).
+        The memory_mb structure is documented below.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @_builtins.property
+    @pulumi.getter(name="vcpuCount")
+    def vcpu_count(self) -> Optional['outputs.GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountResult']:
+        """
+        Specifies the vcpu count.
+        The vcpu_count structure is documented below.
+        """
+        return pulumi.get(self, "vcpu_count")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryGbPerVcpuResult(dict):
+    def __init__(__self__, *,
+                 max: Optional[_builtins.float] = None,
+                 min: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float max: Specifies the max value. **-1** means no limit.
+        :param _builtins.float min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.float]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.float]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementMemoryMbResult(dict):
+    def __init__(__self__, *,
+                 max: Optional[_builtins.int] = None,
+                 min: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max: Specifies the max value. **-1** means no limit.
+        :param _builtins.int min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.int]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.int]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsFlavorConstraintFlavorRequirementVcpuCountResult(dict):
+    def __init__(__self__, *,
+                 max: Optional[_builtins.int] = None,
+                 min: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max: Specifies the max value. **-1** means no limit.
+        :param _builtins.int min: Specifies the min value. **-1** means no limit.
+               
+               <a name="locations_struct"></a>
+               The `locations` block supports:
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> Optional[_builtins.int]:
+        """
+        Specifies the max value. **-1** means no limit.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> Optional[_builtins.int]:
+        """
+        Specifies the min value. **-1** means no limit.
+
+        <a name="locations_struct"></a>
+        The `locations` block supports:
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsLocationResult(dict):
+    def __init__(__self__, *,
+                 region_id: _builtins.str,
+                 availability_zone_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str availability_zone_id: Specifies the availability zone ID.
+               
+               <a name="option_struct"></a>
+               The `option` block supports:
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        if availability_zone_id is not None:
+            pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the availability zone ID.
+
+        <a name="option_struct"></a>
+        The `option` block supports:
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsOptionResult(dict):
+    def __init__(__self__, *,
+                 enable_spot: Optional[_builtins.str] = None,
+                 result_granularity: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str enable_spot: Specifies whether enable spot. Value options: **true**, **false**.
+        :param _builtins.str result_granularity: Specifies the result granularity. Value options: **BY_REGION**, **BY_AZ**,
+               **BY_FLAVOR**, **BY_FLAVOR_AND_REGION** and **BY_FLAVOR_AND_AZ**.
+        """
+        if enable_spot is not None:
+            pulumi.set(__self__, "enable_spot", enable_spot)
+        if result_granularity is not None:
+            pulumi.set(__self__, "result_granularity", result_granularity)
+
+    @_builtins.property
+    @pulumi.getter(name="enableSpot")
+    def enable_spot(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether enable spot. Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "enable_spot")
+
+    @_builtins.property
+    @pulumi.getter(name="resultGranularity")
+    def result_granularity(self) -> Optional[_builtins.str]:
+        """
+        Specifies the result granularity. Value options: **BY_REGION**, **BY_AZ**,
+        **BY_FLAVOR**, **BY_FLAVOR_AND_REGION** and **BY_FLAVOR_AND_AZ**.
+        """
+        return pulumi.get(self, "result_granularity")
+
+
+@pulumi.output_type
+class GetSupplyRecommendationsSupplyRecommendationResult(dict):
+    def __init__(__self__, *,
+                 availability_zone_id: _builtins.str,
+                 flavor_id: _builtins.str,
+                 region_id: _builtins.str,
+                 score: _builtins.int):
+        """
+        :param _builtins.str availability_zone_id: Specifies the availability zone ID.
+               
+               <a name="option_struct"></a>
+               The `option` block supports:
+        :param _builtins.str flavor_id: Indicates the flavor ID.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.int score: Indicates the score.
+        """
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "score", score)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> _builtins.str:
+        """
+        Specifies the availability zone ID.
+
+        <a name="option_struct"></a>
+        The `option` block supports:
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        Indicates the flavor ID.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.int:
+        """
+        Indicates the score.
+        """
+        return pulumi.get(self, "score")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 launch_template_id: _builtins.str,
+                 template_datas: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataResult'],
+                 version_description: _builtins.str,
+                 version_id: _builtins.str,
+                 version_number: _builtins.int):
+        """
+        :param _builtins.str created_at: Indicates the time when the template version was created.
+        :param _builtins.str launch_template_id: Specifies the template ID.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataArgs'] template_datas: Indicates the data info of the template.
+        :param _builtins.str version_description: Indicates the template version description.
+        :param _builtins.str version_id: Indicates the template version ID.
+        :param _builtins.int version_number: Indicates the template version.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "launch_template_id", launch_template_id)
+        pulumi.set(__self__, "template_datas", template_datas)
+        pulumi.set(__self__, "version_description", version_description)
+        pulumi.set(__self__, "version_id", version_id)
+        pulumi.set(__self__, "version_number", version_number)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the template version was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="launchTemplateId")
+    def launch_template_id(self) -> _builtins.str:
+        """
+        Specifies the template ID.
+        """
+        return pulumi.get(self, "launch_template_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateDatas")
+    def template_datas(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataResult']:
+        """
+        Indicates the data info of the template.
+        """
+        return pulumi.get(self, "template_datas")
+
+    @_builtins.property
+    @pulumi.getter(name="versionDescription")
+    def version_description(self) -> _builtins.str:
+        """
+        Indicates the template version description.
+        """
+        return pulumi.get(self, "version_description")
+
+    @_builtins.property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> _builtins.str:
+        """
+        Indicates the template version ID.
+        """
+        return pulumi.get(self, "version_id")
+
+    @_builtins.property
+    @pulumi.getter(name="versionNumber")
+    def version_number(self) -> _builtins.int:
+        """
+        Indicates the template version.
+        """
+        return pulumi.get(self, "version_number")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataResult(dict):
+    def __init__(__self__, *,
+                 auto_recovery: _builtins.bool,
+                 availability_zone_id: _builtins.str,
+                 block_device_mappings: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingResult'],
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 flavor_id: _builtins.str,
+                 internet_accesses: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessResult'],
+                 market_options: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionResult'],
+                 metadata: Mapping[str, _builtins.str],
+                 name: _builtins.str,
+                 network_interfaces: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceResult'],
+                 os_profiles: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataOsProfileResult'],
+                 security_group_ids: Sequence[_builtins.str],
+                 tag_options: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionResult']):
+        """
+        :param _builtins.bool auto_recovery: Indicates whether enable auto-recovery.
+        :param _builtins.str availability_zone_id: Indicates the AZ of the template.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingArgs'] block_device_mappings: Indicates the BDM mounting information.
+        :param _builtins.str description: Indicates the template description.
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID of the template.
+        :param _builtins.str flavor_id: Specifies the flavor ID of the template.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessArgs'] internet_accesses: Indicates the public network access.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionArgs'] market_options: Indicates the billing information.
+        :param Mapping[str, _builtins.str] metadata: Indicates the metadata.
+        :param _builtins.str name: Indicates the template name.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceArgs'] network_interfaces: Indicates the network interfaces.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataOsProfileArgs'] os_profiles: Indicates the OS attributes.
+        :param Sequence[_builtins.str] security_group_ids: Indicates the security group ID list.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionArgs'] tag_options: Indicates the VM tags.
+               Currently, only VMs can be tagged. In the future, associated resources such as volumes can be tagged, too.
+        """
+        pulumi.set(__self__, "auto_recovery", auto_recovery)
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        pulumi.set(__self__, "block_device_mappings", block_device_mappings)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "internet_accesses", internet_accesses)
+        pulumi.set(__self__, "market_options", market_options)
+        pulumi.set(__self__, "metadata", metadata)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "network_interfaces", network_interfaces)
+        pulumi.set(__self__, "os_profiles", os_profiles)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "tag_options", tag_options)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRecovery")
+    def auto_recovery(self) -> _builtins.bool:
+        """
+        Indicates whether enable auto-recovery.
+        """
+        return pulumi.get(self, "auto_recovery")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> _builtins.str:
+        """
+        Indicates the AZ of the template.
+        """
+        return pulumi.get(self, "availability_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="blockDeviceMappings")
+    def block_device_mappings(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingResult']:
+        """
+        Indicates the BDM mounting information.
+        """
+        return pulumi.get(self, "block_device_mappings")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the template description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID of the template.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        Specifies the flavor ID of the template.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="internetAccesses")
+    def internet_accesses(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessResult']:
+        """
+        Indicates the public network access.
+        """
+        return pulumi.get(self, "internet_accesses")
+
+    @_builtins.property
+    @pulumi.getter(name="marketOptions")
+    def market_options(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionResult']:
+        """
+        Indicates the billing information.
+        """
+        return pulumi.get(self, "market_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the metadata.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the template name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceResult']:
+        """
+        Indicates the network interfaces.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @_builtins.property
+    @pulumi.getter(name="osProfiles")
+    def os_profiles(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataOsProfileResult']:
+        """
+        Indicates the OS attributes.
+        """
+        return pulumi.get(self, "os_profiles")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the security group ID list.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="tagOptions")
+    def tag_options(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionResult']:
+        """
+        Indicates the VM tags.
+        Currently, only VMs can be tagged. In the future, associated resources such as volumes can be tagged, too.
+        """
+        return pulumi.get(self, "tag_options")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingResult(dict):
+    def __init__(__self__, *,
+                 attachments: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingAttachmentResult'],
+                 cmk_id: _builtins.str,
+                 encrypted: _builtins.bool,
+                 source_id: _builtins.str,
+                 source_type: _builtins.str,
+                 volume_size: _builtins.int,
+                 volume_type: _builtins.str):
+        """
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingAttachmentArgs'] attachments: Indicates the disk interface
+        :param _builtins.str cmk_id: Indicates the key ID.
+        :param _builtins.bool encrypted: Indicates the encrypted or not.
+        :param _builtins.str source_id: Indicates the data source type of the ECS volume.
+        :param _builtins.str source_type: Indicates the source type of the volume device.
+        :param _builtins.int volume_size: Indicates the volume size.
+        :param _builtins.str volume_type: Indicates the volume type.
+        """
+        pulumi.set(__self__, "attachments", attachments)
+        pulumi.set(__self__, "cmk_id", cmk_id)
+        pulumi.set(__self__, "encrypted", encrypted)
+        pulumi.set(__self__, "source_id", source_id)
+        pulumi.set(__self__, "source_type", source_type)
+        pulumi.set(__self__, "volume_size", volume_size)
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachments(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingAttachmentResult']:
+        """
+        Indicates the disk interface
+        """
+        return pulumi.get(self, "attachments")
+
+    @_builtins.property
+    @pulumi.getter(name="cmkId")
+    def cmk_id(self) -> _builtins.str:
+        """
+        Indicates the key ID.
+        """
+        return pulumi.get(self, "cmk_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypted(self) -> _builtins.bool:
+        """
+        Indicates the encrypted or not.
+        """
+        return pulumi.get(self, "encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> _builtins.str:
+        """
+        Indicates the data source type of the ECS volume.
+        """
+        return pulumi.get(self, "source_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> _builtins.str:
+        """
+        Indicates the source type of the volume device.
+        """
+        return pulumi.get(self, "source_type")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> _builtins.int:
+        """
+        Indicates the volume size.
+        """
+        return pulumi.get(self, "volume_size")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> _builtins.str:
+        """
+        Indicates the volume type.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataBlockDeviceMappingAttachmentResult(dict):
+    def __init__(__self__, *,
+                 boot_index: _builtins.int,
+                 delete_on_termination: _builtins.bool):
+        """
+        :param _builtins.int boot_index: Indicates the loading sequence.
+        :param _builtins.bool delete_on_termination: Indicates whether the EIP is released along with the instance.
+        """
+        pulumi.set(__self__, "boot_index", boot_index)
+        pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> _builtins.int:
+        """
+        Indicates the loading sequence.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> _builtins.bool:
+        """
+        Indicates whether the EIP is released along with the instance.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessResult(dict):
+    def __init__(__self__, *,
+                 publicips: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipResult']):
+        """
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipArgs'] publicips: Indicates the public network access.
+        """
+        pulumi.set(__self__, "publicips", publicips)
+
+    @_builtins.property
+    @pulumi.getter
+    def publicips(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipResult']:
+        """
+        Indicates the public network access.
+        """
+        return pulumi.get(self, "publicips")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipResult(dict):
+    def __init__(__self__, *,
+                 bandwidths: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipBandwidthResult'],
+                 charging_mode: _builtins.str,
+                 delete_on_termination: _builtins.bool,
+                 publicip_type: _builtins.str):
+        """
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipBandwidthArgs'] bandwidths: Indicates the EIP bandwidth.
+        :param _builtins.str charging_mode: Indicates the EIP billing mode.
+        :param _builtins.bool delete_on_termination: Indicates whether the EIP is released along with the instance.
+        :param _builtins.str publicip_type: Indicates the EIP type.
+        """
+        pulumi.set(__self__, "bandwidths", bandwidths)
+        pulumi.set(__self__, "charging_mode", charging_mode)
+        pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        pulumi.set(__self__, "publicip_type", publicip_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidths(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipBandwidthResult']:
+        """
+        Indicates the EIP bandwidth.
+        """
+        return pulumi.get(self, "bandwidths")
+
+    @_builtins.property
+    @pulumi.getter(name="chargingMode")
+    def charging_mode(self) -> _builtins.str:
+        """
+        Indicates the EIP billing mode.
+        """
+        return pulumi.get(self, "charging_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> _builtins.bool:
+        """
+        Indicates whether the EIP is released along with the instance.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipType")
+    def publicip_type(self) -> _builtins.str:
+        """
+        Indicates the EIP type.
+        """
+        return pulumi.get(self, "publicip_type")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataInternetAccessPublicipBandwidthResult(dict):
+    def __init__(__self__, *,
+                 charge_mode: _builtins.str,
+                 id: _builtins.str,
+                 share_type: _builtins.str,
+                 size: _builtins.int):
+        """
+        :param _builtins.str charge_mode: Indicates the billing mode.
+        :param _builtins.str id: Indicates the bandwidth ID.
+               You can use an existing shared bandwidth when applying for an EIP for the bandwidth of type **WHOLE**.
+        :param _builtins.str share_type: Indicates the bandwidth type.
+        :param _builtins.int size: Indicates the bandwidth size.
+        """
+        pulumi.set(__self__, "charge_mode", charge_mode)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "share_type", share_type)
+        pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> _builtins.str:
+        """
+        Indicates the billing mode.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the bandwidth ID.
+        You can use an existing shared bandwidth when applying for an EIP for the bandwidth of type **WHOLE**.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="shareType")
+    def share_type(self) -> _builtins.str:
+        """
+        Indicates the bandwidth type.
+        """
+        return pulumi.get(self, "share_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        Indicates the bandwidth size.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionResult(dict):
+    def __init__(__self__, *,
+                 market_type: _builtins.str,
+                 spot_options: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionSpotOptionResult']):
+        """
+        :param _builtins.str market_type: Indicates the billing mode.
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionSpotOptionArgs'] spot_options: Indicates spot instance parameters.
+        """
+        pulumi.set(__self__, "market_type", market_type)
+        pulumi.set(__self__, "spot_options", spot_options)
+
+    @_builtins.property
+    @pulumi.getter(name="marketType")
+    def market_type(self) -> _builtins.str:
+        """
+        Indicates the billing mode.
+        """
+        return pulumi.get(self, "market_type")
+
+    @_builtins.property
+    @pulumi.getter(name="spotOptions")
+    def spot_options(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionSpotOptionResult']:
+        """
+        Indicates spot instance parameters.
+        """
+        return pulumi.get(self, "spot_options")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataMarketOptionSpotOptionResult(dict):
+    def __init__(__self__, *,
+                 block_duration_minutes: _builtins.int,
+                 instance_interruption_behavior: _builtins.str,
+                 spot_price: _builtins.float):
+        """
+        :param _builtins.int block_duration_minutes: Indicates the predefined duration of the spot ECS.
+        :param _builtins.str instance_interruption_behavior: Indicates the spot ECS interruption policy, which can only be set to **immediate**
+               currently.
+        :param _builtins.float spot_price: Indicates  the highest price per hour you are willing to pay for a spot ECS.
+        """
+        pulumi.set(__self__, "block_duration_minutes", block_duration_minutes)
+        pulumi.set(__self__, "instance_interruption_behavior", instance_interruption_behavior)
+        pulumi.set(__self__, "spot_price", spot_price)
+
+    @_builtins.property
+    @pulumi.getter(name="blockDurationMinutes")
+    def block_duration_minutes(self) -> _builtins.int:
+        """
+        Indicates the predefined duration of the spot ECS.
+        """
+        return pulumi.get(self, "block_duration_minutes")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceInterruptionBehavior")
+    def instance_interruption_behavior(self) -> _builtins.str:
+        """
+        Indicates the spot ECS interruption policy, which can only be set to **immediate**
+        currently.
+        """
+        return pulumi.get(self, "instance_interruption_behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="spotPrice")
+    def spot_price(self) -> _builtins.float:
+        """
+        Indicates  the highest price per hour you are willing to pay for a spot ECS.
+        """
+        return pulumi.get(self, "spot_price")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceResult(dict):
+    def __init__(__self__, *,
+                 attachments: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceAttachmentResult'],
+                 virsubnet_id: _builtins.str):
+        """
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceAttachmentArgs'] attachments: Indicates the disk interface
+        :param _builtins.str virsubnet_id: Indicates the subnet ID.
+        """
+        pulumi.set(__self__, "attachments", attachments)
+        pulumi.set(__self__, "virsubnet_id", virsubnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attachments(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceAttachmentResult']:
+        """
+        Indicates the disk interface
+        """
+        return pulumi.get(self, "attachments")
+
+    @_builtins.property
+    @pulumi.getter(name="virsubnetId")
+    def virsubnet_id(self) -> _builtins.str:
+        """
+        Indicates the subnet ID.
+        """
+        return pulumi.get(self, "virsubnet_id")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataNetworkInterfaceAttachmentResult(dict):
+    def __init__(__self__, *,
+                 device_index: _builtins.int):
+        """
+        :param _builtins.int device_index: Indicates the loading sequence. The value 0 indicates the primary network interface.
+        """
+        pulumi.set(__self__, "device_index", device_index)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceIndex")
+    def device_index(self) -> _builtins.int:
+        """
+        Indicates the loading sequence. The value 0 indicates the primary network interface.
+        """
+        return pulumi.get(self, "device_index")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataOsProfileResult(dict):
+    def __init__(__self__, *,
+                 enable_monitoring_service: _builtins.bool,
+                 iam_agency_name: _builtins.str,
+                 key_name: _builtins.str,
+                 user_data: _builtins.str):
+        """
+        :param _builtins.bool enable_monitoring_service: Indicates whether enable HSS.
+        :param _builtins.str iam_agency_name: Indicates the agency name.
+        :param _builtins.str key_name: Indicates the key name.
+        :param _builtins.str user_data: Indicates the custom user data to be injected into the instance during instance creation.
+               Text and text files can be injected.
+        """
+        pulumi.set(__self__, "enable_monitoring_service", enable_monitoring_service)
+        pulumi.set(__self__, "iam_agency_name", iam_agency_name)
+        pulumi.set(__self__, "key_name", key_name)
+        pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMonitoringService")
+    def enable_monitoring_service(self) -> _builtins.bool:
+        """
+        Indicates whether enable HSS.
+        """
+        return pulumi.get(self, "enable_monitoring_service")
+
+    @_builtins.property
+    @pulumi.getter(name="iamAgencyName")
+    def iam_agency_name(self) -> _builtins.str:
+        """
+        Indicates the agency name.
+        """
+        return pulumi.get(self, "iam_agency_name")
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> _builtins.str:
+        """
+        Indicates the key name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> _builtins.str:
+        """
+        Indicates the custom user data to be injected into the instance during instance creation.
+        Text and text files can be injected.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionResult(dict):
+    def __init__(__self__, *,
+                 tags: Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionTagResult']):
+        """
+        :param Sequence['GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionTagArgs'] tags: Indicates the tags.
+        """
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionTagResult']:
+        """
+        Indicates the tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetTemplateVersionsLaunchTemplateVersionTemplateDataTagOptionTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the tag value.
+        :param _builtins.str value: Indicates the tag key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag value.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTemplatesLaunchTemplateResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 default_version: _builtins.int,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 latest_version: _builtins.int,
+                 name: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the time when the template was created.
+        :param _builtins.int default_version: Indicates the default version of the template.
+        :param _builtins.str description: Indicates the template description.
+        :param _builtins.str id: Indicates the template ID.
+        :param _builtins.int latest_version: Indicates the latest version of the template.
+        :param _builtins.str name: Specifies the template names.
+        :param _builtins.str updated_at: Indicates the time when the template was updated.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default_version", default_version)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "latest_version", latest_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the template was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultVersion")
+    def default_version(self) -> _builtins.int:
+        """
+        Indicates the default version of the template.
+        """
+        return pulumi.get(self, "default_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the template description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the template ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> _builtins.int:
+        """
+        Indicates the latest version of the template.
+        """
+        return pulumi.get(self, "latest_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the template names.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the template was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetVolumeAttachmentsVolumeAttachmentResult(dict):
+    def __init__(__self__, *,
+                 device: _builtins.str,
+                 id: _builtins.str,
+                 server_id: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str device: Indicates the drive letter of the EVS disk, displayed as the device name on the console.
+        :param _builtins.str id: Indicates the mount ID, which is the same as the EVS disk ID.
+        :param _builtins.str server_id: Specifies the ECS ID in UUID format.
+        :param _builtins.str volume_id: Indicates the EVS disk ID in UUID format.
+        """
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        Indicates the drive letter of the EVS disk, displayed as the device name on the console.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the mount ID, which is the same as the EVS disk ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> _builtins.str:
+        """
+        Specifies the ECS ID in UUID format.
+        """
+        return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        Indicates the EVS disk ID in UUID format.
+        """
+        return pulumi.get(self, "volume_id")
 
 

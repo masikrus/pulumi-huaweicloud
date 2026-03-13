@@ -27,6 +27,7 @@ class AccountAssignmentArgs:
                  target_type: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AccountAssignment resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Identity Center instance.
                
                Changing this parameter will create a new resource.
@@ -153,6 +154,7 @@ class _AccountAssignmentState:
                  target_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountAssignment resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Identity Center instance.
                
                Changing this parameter will create a new resource.
@@ -274,7 +276,7 @@ class _AccountAssignmentState:
         pulumi.set(self, "target_type", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/accountAssignment:AccountAssignment")
+@pulumi.type_token("huaweicloud:Identitycenter/accountAssignment:AccountAssignment")
 class AccountAssignment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -313,14 +315,12 @@ class AccountAssignment(pulumi.CustomResource):
         ## Import
 
         The Identity Center account permission can be imported using the `instance_id`, `permission_set_id`,`target_id`
-
         and `principal_id` separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/accountAssignment:AccountAssignment test <instance_id>/<permission_set_id>/<target_id>/<principal_id>
+        $ pulumi import huaweicloud:Identitycenter/accountAssignment:AccountAssignment test <instance_id>/<permission_set_id>/<target_id>/<principal_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -377,14 +377,12 @@ class AccountAssignment(pulumi.CustomResource):
         ## Import
 
         The Identity Center account permission can be imported using the `instance_id`, `permission_set_id`,`target_id`
-
         and `principal_id` separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/accountAssignment:AccountAssignment test <instance_id>/<permission_set_id>/<target_id>/<principal_id>
+        $ pulumi import huaweicloud:Identitycenter/accountAssignment:AccountAssignment test <instance_id>/<permission_set_id>/<target_id>/<principal_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountAssignmentArgs args: The arguments to use to populate this resource's properties.
@@ -435,7 +433,7 @@ class AccountAssignment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'target_type'")
             __props__.__dict__["target_type"] = target_type
         super(AccountAssignment, __self__).__init__(
-            'huaweicloud:identitycenter/accountAssignment:AccountAssignment',
+            'huaweicloud:Identitycenter/accountAssignment:AccountAssignment',
             resource_name,
             __props__,
             opts)

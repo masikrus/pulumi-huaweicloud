@@ -38,6 +38,7 @@ class OpengaussSqlThrottlingTaskArgs:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussSqlThrottlingTask resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -357,6 +358,7 @@ class _OpengaussSqlThrottlingTaskState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussSqlThrottlingTask resources.
+
         :param pulumi.Input[_builtins.int] cpu_utilization: Specifies the CPU usage threshold. The value is an integer ranging from **0** to
                **100**. It is mandatory when `limit_type` is set to **SESSION_ACTIVE_MAX_COUNT**. This parameter and `memory_utilization`
                cannot be both set to **0**. If you only need one of them for throttling, set the other threshold to **0**.
@@ -829,39 +831,16 @@ class OpengaussSqlThrottlingTask(pulumi.CustomResource):
 
         The GaussDB OpenGauss SQL throttling task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussSqlThrottlingTask:OpengaussSqlThrottlingTask test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `start_time` `end_time`. It is generally recommended running `pulumi preview`
-
         after importing a GaussDB OpenGauss SQL throttling task. You can then decide if changes should be applied to the GaussDB
-
         OpenGauss SQL throttling task, or the resource definition should be updated to align with the GaussDB OpenGauss SQL
-
         throttling task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_sql_throttling_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              start_time, end_time,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -998,39 +977,16 @@ class OpengaussSqlThrottlingTask(pulumi.CustomResource):
 
         The GaussDB OpenGauss SQL throttling task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussSqlThrottlingTask:OpengaussSqlThrottlingTask test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `start_time` `end_time`. It is generally recommended running `pulumi preview`
-
         after importing a GaussDB OpenGauss SQL throttling task. You can then decide if changes should be applied to the GaussDB
-
         OpenGauss SQL throttling task, or the resource definition should be updated to align with the GaussDB OpenGauss SQL
-
         throttling task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_sql_throttling_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              start_time, end_time,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OpengaussSqlThrottlingTaskArgs args: The arguments to use to populate this resource's properties.

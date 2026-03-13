@@ -49,6 +49,7 @@ class PodV2Args:
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeArgs']]]] = None):
         """
         The set of arguments for constructing a PodV2 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PodV2ContainerArgs']]] containers: Specifies the container of the CCI Pod.
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace of the CCI.
         :param pulumi.Input[_builtins.int] active_deadline_seconds: The active deadline seconds the pod.
@@ -458,6 +459,7 @@ class _PodV2State:
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeArgs']]]] = None):
         """
         Input properties used for looking up and filtering PodV2 resources.
+
         :param pulumi.Input[_builtins.int] active_deadline_seconds: The active deadline seconds the pod.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the annotations of the CCI Pod.
         :param pulumi.Input[_builtins.str] api_version: The API version of the CCI Pod.
@@ -971,6 +973,7 @@ class PodV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a PodV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] active_deadline_seconds: The active deadline seconds the pod.
@@ -1003,6 +1006,7 @@ class PodV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PodV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param PodV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

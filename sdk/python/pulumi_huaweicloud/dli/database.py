@@ -27,6 +27,7 @@ class DatabaseArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Database resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of a queue.
                Changing this parameter will create a new database resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
@@ -147,6 +148,7 @@ class _DatabaseState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of a queue.
                Changing this parameter will create a new database resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
@@ -289,39 +291,17 @@ class Database(pulumi.CustomResource):
 
         DLI SQL databases can be imported by their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/database:Database test terraform_test
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_factory_script" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -366,39 +346,17 @@ class Database(pulumi.CustomResource):
 
         DLI SQL databases can be imported by their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/database:Database test terraform_test
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `tags`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_factory_script" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DatabaseArgs args: The arguments to use to populate this resource's properties.

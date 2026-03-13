@@ -27,6 +27,7 @@ class DatasetVersionArgs:
                  split_ratio: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatasetVersion resource.
+
         :param pulumi.Input[_builtins.str] dataset_id: Specifies the ID of dataset.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of dataset version. It contains a maximum of
@@ -163,6 +164,7 @@ class _DatasetVersionState:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatasetVersion resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time, in UTC format.
         :param pulumi.Input[_builtins.str] dataset_id: Specifies the ID of dataset.
                Changing this parameter will create a new resource.
@@ -465,37 +467,15 @@ class DatasetVersion(pulumi.CustomResource):
 
         The dataset versions can be imported by dataset ID and version ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/datasetVersion:DatasetVersion test yiROKoTTjtwjvP71yLG/wieeeoTrtrtjvn67yLm
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `hard_example`. It is generally
-
         recommended running `pulumi preview` after importing a dataset. You can then decide if changes should be applied to the
-
         dataset, or the resource definition should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_dataset_version" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              hard_example,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,37 +525,15 @@ class DatasetVersion(pulumi.CustomResource):
 
         The dataset versions can be imported by dataset ID and version ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/datasetVersion:DatasetVersion test yiROKoTTjtwjvP71yLG/wieeeoTrtrtjvn67yLm
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `hard_example`. It is generally
-
         recommended running `pulumi preview` after importing a dataset. You can then decide if changes should be applied to the
-
         dataset, or the resource definition should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_dataset_version" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              hard_example,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DatasetVersionArgs args: The arguments to use to populate this resource's properties.

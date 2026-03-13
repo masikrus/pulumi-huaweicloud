@@ -115,7 +115,7 @@ def get_deploy_applications(group_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_applications(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_applications(project_id=project_id)
     ```
 
 
@@ -141,7 +141,7 @@ def get_deploy_applications(group_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['states'] = states
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployApplications:getDeployApplications', __args__, opts=opts, typ=GetDeployApplicationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployApplications:getDeployApplications', __args__, opts=opts, typ=GetDeployApplicationsResult).value
 
     return AwaitableGetDeployApplicationsResult(
         applications=pulumi.get(__ret__, 'applications'),
@@ -166,7 +166,7 @@ def get_deploy_applications_output(group_id: Optional[pulumi.Input[Optional[_bui
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_applications(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_applications(project_id=project_id)
     ```
 
 
@@ -192,7 +192,7 @@ def get_deploy_applications_output(group_id: Optional[pulumi.Input[Optional[_bui
     __args__['region'] = region
     __args__['states'] = states
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployApplications:getDeployApplications', __args__, opts=opts, typ=GetDeployApplicationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployApplications:getDeployApplications', __args__, opts=opts, typ=GetDeployApplicationsResult)
     return __ret__.apply(lambda __response__: GetDeployApplicationsResult(
         applications=pulumi.get(__response__, 'applications'),
         group_id=pulumi.get(__response__, 'group_id'),

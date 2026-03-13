@@ -27,6 +27,7 @@ class SqlserverDatabaseCopyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SqlserverDatabaseCopy resource.
+
         :param pulumi.Input[_builtins.str] db_name_source: Specifies the name of the source database.
         :param pulumi.Input[_builtins.str] db_name_target: Specifies the name of the target database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -125,6 +126,7 @@ class _SqlserverDatabaseCopyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SqlserverDatabaseCopy resources.
+
         :param pulumi.Input[_builtins.str] db_name_source: Specifies the name of the source database.
         :param pulumi.Input[_builtins.str] db_name_target: Specifies the name of the target database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
@@ -251,6 +253,7 @@ class SqlserverDatabaseCopy(pulumi.CustomResource):
             db_name_target="test_db_target")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] db_name_source: Specifies the name of the source database.
@@ -287,6 +290,7 @@ class SqlserverDatabaseCopy(pulumi.CustomResource):
             db_name_source="test_db_source",
             db_name_target="test_db_target")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqlserverDatabaseCopyArgs args: The arguments to use to populate this resource's properties.

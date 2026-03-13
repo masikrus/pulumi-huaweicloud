@@ -114,7 +114,7 @@ def get_account_provisioning_permission_sets(account_id: Optional[_builtins.str]
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
     account_id = config.require_object("accountId")
-    test = huaweicloud.identitycenter.get_account_provisioning_permission_sets(instance_id=instance_id,
+    test = huaweicloud.Identitycenter.get_account_provisioning_permission_sets(instance_id=instance_id,
         account_id=account_id)
     ```
 
@@ -134,7 +134,7 @@ def get_account_provisioning_permission_sets(account_id: Optional[_builtins.str]
     __args__['provisioningStatus'] = provisioning_status
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getAccountProvisioningPermissionSets:getAccountProvisioningPermissionSets', __args__, opts=opts, typ=GetAccountProvisioningPermissionSetsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getAccountProvisioningPermissionSets:getAccountProvisioningPermissionSets', __args__, opts=opts, typ=GetAccountProvisioningPermissionSetsResult).value
 
     return AwaitableGetAccountProvisioningPermissionSetsResult(
         account_id=pulumi.get(__ret__, 'account_id'),
@@ -160,7 +160,7 @@ def get_account_provisioning_permission_sets_output(account_id: Optional[pulumi.
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
     account_id = config.require_object("accountId")
-    test = huaweicloud.identitycenter.get_account_provisioning_permission_sets(instance_id=instance_id,
+    test = huaweicloud.Identitycenter.get_account_provisioning_permission_sets(instance_id=instance_id,
         account_id=account_id)
     ```
 
@@ -180,7 +180,7 @@ def get_account_provisioning_permission_sets_output(account_id: Optional[pulumi.
     __args__['provisioningStatus'] = provisioning_status
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getAccountProvisioningPermissionSets:getAccountProvisioningPermissionSets', __args__, opts=opts, typ=GetAccountProvisioningPermissionSetsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getAccountProvisioningPermissionSets:getAccountProvisioningPermissionSets', __args__, opts=opts, typ=GetAccountProvisioningPermissionSetsResult)
     return __ret__.apply(lambda __response__: GetAccountProvisioningPermissionSetsResult(
         account_id=pulumi.get(__response__, 'account_id'),
         id=pulumi.get(__response__, 'id'),

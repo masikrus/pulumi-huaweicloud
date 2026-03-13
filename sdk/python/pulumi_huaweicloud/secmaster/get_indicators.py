@@ -153,7 +153,7 @@ def get_indicators(condition: Optional[Union['GetIndicatorsConditionArgs', 'GetI
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_indicators(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_indicators(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -206,7 +206,7 @@ def get_indicators(condition: Optional[Union['GetIndicatorsConditionArgs', 'GetI
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getIndicators:getIndicators', __args__, opts=opts, typ=GetIndicatorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getIndicators:getIndicators', __args__, opts=opts, typ=GetIndicatorsResult).value
 
     return AwaitableGetIndicatorsResult(
         condition=pulumi.get(__ret__, 'condition'),
@@ -239,7 +239,7 @@ def get_indicators_output(condition: Optional[pulumi.Input[Optional[Union['GetIn
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_indicators(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_indicators(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -292,7 +292,7 @@ def get_indicators_output(condition: Optional[pulumi.Input[Optional[Union['GetIn
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getIndicators:getIndicators', __args__, opts=opts, typ=GetIndicatorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getIndicators:getIndicators', __args__, opts=opts, typ=GetIndicatorsResult)
     return __ret__.apply(lambda __response__: GetIndicatorsResult(
         condition=pulumi.get(__response__, 'condition'),
         data_class_id=pulumi.get(__response__, 'data_class_id'),

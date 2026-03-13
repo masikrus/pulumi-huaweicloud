@@ -25,6 +25,7 @@ class ExtendLogLinkArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExtendLogLink resource.
+
         :param pulumi.Input[_builtins.str] file_name: Specifies the name of the file to be downloaded.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -97,6 +98,7 @@ class _ExtendLogLinkState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExtendLogLink resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time.
         :param pulumi.Input[_builtins.str] file_link: Indicates the download link.
         :param pulumi.Input[_builtins.str] file_name: Specifies the name of the file to be downloaded.
@@ -246,6 +248,7 @@ class ExtendLogLink(pulumi.CustomResource):
             file_name=file_name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] file_name: Specifies the name of the file to be downloaded.
@@ -275,6 +278,7 @@ class ExtendLogLink(pulumi.CustomResource):
             instance_id=instance_id,
             file_name=file_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExtendLogLinkArgs args: The arguments to use to populate this resource's properties.

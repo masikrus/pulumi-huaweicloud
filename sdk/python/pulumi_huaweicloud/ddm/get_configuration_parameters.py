@@ -155,7 +155,7 @@ def get_configuration_parameters(config_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     config_id = config.require_object("configId")
-    test = huaweicloud.ddm.get_configuration_parameters(config_id=config_id)
+    test = huaweicloud.Ddm.get_configuration_parameters(config_id=config_id)
     ```
 
 
@@ -167,7 +167,7 @@ def get_configuration_parameters(config_id: Optional[_builtins.str] = None,
     __args__['configId'] = config_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getConfigurationParameters:getConfigurationParameters', __args__, opts=opts, typ=GetConfigurationParametersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getConfigurationParameters:getConfigurationParameters', __args__, opts=opts, typ=GetConfigurationParametersResult).value
 
     return AwaitableGetConfigurationParametersResult(
         config_id=pulumi.get(__ret__, 'config_id'),
@@ -193,7 +193,7 @@ def get_configuration_parameters_output(config_id: Optional[pulumi.Input[_builti
 
     config = pulumi.Config()
     config_id = config.require_object("configId")
-    test = huaweicloud.ddm.get_configuration_parameters(config_id=config_id)
+    test = huaweicloud.Ddm.get_configuration_parameters(config_id=config_id)
     ```
 
 
@@ -205,7 +205,7 @@ def get_configuration_parameters_output(config_id: Optional[pulumi.Input[_builti
     __args__['configId'] = config_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getConfigurationParameters:getConfigurationParameters', __args__, opts=opts, typ=GetConfigurationParametersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getConfigurationParameters:getConfigurationParameters', __args__, opts=opts, typ=GetConfigurationParametersResult)
     return __ret__.apply(lambda __response__: GetConfigurationParametersResult(
         config_id=pulumi.get(__response__, 'config_id'),
         configuration_parameters=pulumi.get(__response__, 'configuration_parameters'),

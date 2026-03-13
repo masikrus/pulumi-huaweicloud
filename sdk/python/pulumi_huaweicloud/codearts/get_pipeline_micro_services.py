@@ -118,7 +118,7 @@ def get_pipeline_micro_services(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_micro_services(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_micro_services(project_id=codearts_project_id)
     ```
 
 
@@ -134,7 +134,7 @@ def get_pipeline_micro_services(name: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['sortDir'] = sort_dir
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineMicroServices:getPipelineMicroServices', __args__, opts=opts, typ=GetPipelineMicroServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineMicroServices:getPipelineMicroServices', __args__, opts=opts, typ=GetPipelineMicroServicesResult).value
 
     return AwaitableGetPipelineMicroServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -159,7 +159,7 @@ def get_pipeline_micro_services_output(name: Optional[pulumi.Input[Optional[_bui
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_micro_services(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_micro_services(project_id=codearts_project_id)
     ```
 
 
@@ -175,7 +175,7 @@ def get_pipeline_micro_services_output(name: Optional[pulumi.Input[Optional[_bui
     __args__['region'] = region
     __args__['sortDir'] = sort_dir
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineMicroServices:getPipelineMicroServices', __args__, opts=opts, typ=GetPipelineMicroServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineMicroServices:getPipelineMicroServices', __args__, opts=opts, typ=GetPipelineMicroServicesResult)
     return __ret__.apply(lambda __response__: GetPipelineMicroServicesResult(
         id=pulumi.get(__response__, 'id'),
         micro_services=pulumi.get(__response__, 'micro_services'),

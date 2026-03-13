@@ -26,6 +26,7 @@ class EipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EipAssociate resource.
+
         :param pulumi.Input[_builtins.str] public_ip: Specifies the EIP address to associate. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] fixed_ip: Specifies a private IP address to associate with the EIP.
                Changing this creates a new resource.
@@ -124,6 +125,7 @@ class _EipAssociateState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EipAssociate resources.
+
         :param pulumi.Input[_builtins.str] fixed_ip: Specifies a private IP address to associate with the EIP.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the private IP.
@@ -316,11 +318,10 @@ class EipAssociate(pulumi.CustomResource):
 
         EIP associations can be imported using the `id` of the EIP, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eipAssociate:EipAssociate eip 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,11 +390,10 @@ class EipAssociate(pulumi.CustomResource):
 
         EIP associations can be imported using the `id` of the EIP, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eipAssociate:EipAssociate eip 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipAssociateArgs args: The arguments to use to populate this resource's properties.

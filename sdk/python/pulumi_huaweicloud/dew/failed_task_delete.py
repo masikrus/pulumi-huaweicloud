@@ -24,6 +24,7 @@ class FailedTaskDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FailedTaskDelete resource.
+
         :param pulumi.Input[_builtins.str] task_id: Specifies the task ID, which identifies the failed task to be deleted.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -77,6 +78,7 @@ class _FailedTaskDeleteState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FailedTaskDelete resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] task_id: Specifies the task ID, which identifies the failed task to be deleted.
@@ -150,6 +152,7 @@ class FailedTaskDelete(pulumi.CustomResource):
         test = huaweicloud.dew.FailedTaskDelete("test", task_id=task_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -178,6 +181,7 @@ class FailedTaskDelete(pulumi.CustomResource):
         task_id = config.require_object("taskId")
         test = huaweicloud.dew.FailedTaskDelete("test", task_id=task_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FailedTaskDeleteArgs args: The arguments to use to populate this resource's properties.

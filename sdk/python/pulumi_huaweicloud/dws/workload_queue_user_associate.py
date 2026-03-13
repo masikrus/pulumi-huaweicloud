@@ -25,6 +25,7 @@ class WorkloadQueueUserAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadQueueUserAssociate resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] queue_name: Specifies the workload queue name to associate with the users.
@@ -102,6 +103,7 @@ class _WorkloadQueueUserAssociateState:
                  user_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering WorkloadQueueUserAssociate resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] queue_name: Specifies the workload queue name to associate with the users.
@@ -209,11 +211,10 @@ class WorkloadQueueUserAssociate(pulumi.CustomResource):
 
         The resource can be imported using `cluster_id` and `queue_name` (also `id`), separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadQueueUserAssociate:WorkloadQueueUserAssociate test <cluster_id>/<queue_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,11 +258,10 @@ class WorkloadQueueUserAssociate(pulumi.CustomResource):
 
         The resource can be imported using `cluster_id` and `queue_name` (also `id`), separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadQueueUserAssociate:WorkloadQueueUserAssociate test <cluster_id>/<queue_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkloadQueueUserAssociateArgs args: The arguments to use to populate this resource's properties.

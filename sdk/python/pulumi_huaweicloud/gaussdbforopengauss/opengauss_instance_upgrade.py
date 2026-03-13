@@ -28,6 +28,7 @@ class OpengaussInstanceUpgradeArgs:
                  upgrade_shard_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a OpengaussInstanceUpgrade resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -206,6 +207,7 @@ class _OpengaussInstanceUpgradeState:
                  upgrade_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussInstanceUpgrade resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -404,6 +406,7 @@ class OpengaussInstanceUpgrade(pulumi.CustomResource):
             upgrade_type="inplace")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
@@ -465,6 +468,7 @@ class OpengaussInstanceUpgrade(pulumi.CustomResource):
             instance_id=instance_id,
             upgrade_type="inplace")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussInstanceUpgradeArgs args: The arguments to use to populate this resource's properties.

@@ -145,7 +145,7 @@ def get_build_task_records(branches: Optional[Sequence[_builtins.str]] = None,
 
     config = pulumi.Config()
     build_project_id = config.require_object("buildProjectId")
-    test = huaweicloud.codearts.get_build_task_records(build_project_id=build_project_id)
+    test = huaweicloud.Codearts.get_build_task_records(build_project_id=build_project_id)
     ```
 
 
@@ -167,7 +167,7 @@ def get_build_task_records(branches: Optional[Sequence[_builtins.str]] = None,
     __args__['toDate'] = to_date
     __args__['triggers'] = triggers
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getBuildTaskRecords:getBuildTaskRecords', __args__, opts=opts, typ=GetBuildTaskRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getBuildTaskRecords:getBuildTaskRecords', __args__, opts=opts, typ=GetBuildTaskRecordsResult).value
 
     return AwaitableGetBuildTaskRecordsResult(
         branches=pulumi.get(__ret__, 'branches'),
@@ -198,7 +198,7 @@ def get_build_task_records_output(branches: Optional[pulumi.Input[Optional[Seque
 
     config = pulumi.Config()
     build_project_id = config.require_object("buildProjectId")
-    test = huaweicloud.codearts.get_build_task_records(build_project_id=build_project_id)
+    test = huaweicloud.Codearts.get_build_task_records(build_project_id=build_project_id)
     ```
 
 
@@ -220,7 +220,7 @@ def get_build_task_records_output(branches: Optional[pulumi.Input[Optional[Seque
     __args__['toDate'] = to_date
     __args__['triggers'] = triggers
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getBuildTaskRecords:getBuildTaskRecords', __args__, opts=opts, typ=GetBuildTaskRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getBuildTaskRecords:getBuildTaskRecords', __args__, opts=opts, typ=GetBuildTaskRecordsResult)
     return __ret__.apply(lambda __response__: GetBuildTaskRecordsResult(
         branches=pulumi.get(__response__, 'branches'),
         build_project_id=pulumi.get(__response__, 'build_project_id'),

@@ -23,6 +23,7 @@ class AmqpArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Amqp resource.
+
         :param pulumi.Input[_builtins.str] name: Specifies the AMQP queue name, which contains `8` to `128` characters.
                Only letters, digits, hyphens (-), underscores (_), dots (.) and colons (:) are allowed.
                Changing this parameter will create a new resource.
@@ -71,6 +72,7 @@ class _AmqpState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Amqp resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the AMQP queue.
                The format is **yyyyMMdd'T'HHmmss'Z'**. e.g. **20151212T121212Z**.
         :param pulumi.Input[_builtins.str] name: Specifies the AMQP queue name, which contains `8` to `128` characters.
@@ -182,11 +184,10 @@ class Amqp(pulumi.CustomResource):
 
         The AMQP queue can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/amqp:Amqp test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,11 +232,10 @@ class Amqp(pulumi.CustomResource):
 
         The AMQP queue can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/amqp:Amqp test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AmqpArgs args: The arguments to use to populate this resource's properties.

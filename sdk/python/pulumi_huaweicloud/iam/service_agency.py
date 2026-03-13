@@ -28,6 +28,13 @@ class ServiceAgencyArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ServiceAgency resource.
+
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of delegated service name.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to the service agency.
+        :param pulumi.Input[_builtins.str] description: The description of the service agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a service agency.
+        :param pulumi.Input[_builtins.str] name: The name of service agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
         """
         pulumi.set(__self__, "delegated_service_name", delegated_service_name)
         pulumi.set(__self__, "policy_names", policy_names)
@@ -45,6 +52,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of delegated service name.
+        """
         return pulumi.get(self, "delegated_service_name")
 
     @delegated_service_name.setter
@@ -54,6 +64,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        The string list of one or more policy names that you would like to attach to the service agency.
+        """
         return pulumi.get(self, "policy_names")
 
     @policy_names.setter
@@ -63,6 +76,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the service agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -72,6 +88,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The validity period of a service agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -81,6 +100,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of service agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -90,6 +112,9 @@ class ServiceAgencyArgs:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -116,11 +141,21 @@ class _ServiceAgencyState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  policy_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 service_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 trust_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 trust_policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAgency resources.
+
+        :param pulumi.Input[_builtins.str] created_at: The time when the service agency was created.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of delegated service name.
+        :param pulumi.Input[_builtins.str] description: The description of the service agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a service agency.
+        :param pulumi.Input[_builtins.str] name: The name of service agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to the service agency.
+        :param pulumi.Input[_builtins.str] service_agency_urn: The uniform resource name of the service agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the service agency.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -136,16 +171,19 @@ class _ServiceAgencyState:
             pulumi.set(__self__, "path", path)
         if policy_names is not None:
             pulumi.set(__self__, "policy_names", policy_names)
+        if service_agency_urn is not None:
+            pulumi.set(__self__, "service_agency_urn", service_agency_urn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if trust_policy is not None:
             pulumi.set(__self__, "trust_policy", trust_policy)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The time when the service agency was created.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -155,6 +193,9 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of delegated service name.
+        """
         return pulumi.get(self, "delegated_service_name")
 
     @delegated_service_name.setter
@@ -164,6 +205,9 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the service agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -173,6 +217,9 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The validity period of a service agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -182,6 +229,9 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of service agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -191,6 +241,9 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -200,11 +253,26 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The string list of one or more policy names that you would like to attach to the service agency.
+        """
         return pulumi.get(self, "policy_names")
 
     @policy_names.setter
     def policy_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policy_names", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAgencyUrn")
+    def service_agency_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The uniform resource name of the service agency.
+        """
+        return pulumi.get(self, "service_agency_urn")
+
+    @service_agency_urn.setter
+    def service_agency_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_agency_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -218,20 +286,14 @@ class _ServiceAgencyState:
     @_builtins.property
     @pulumi.getter(name="trustPolicy")
     def trust_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The trust policy of the service agency.
+        """
         return pulumi.get(self, "trust_policy")
 
     @trust_policy.setter
     def trust_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "trust_policy", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "urn")
-
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
 
 
 @pulumi.type_token("huaweicloud:Iam/serviceAgency:ServiceAgency")
@@ -250,8 +312,15 @@ class ServiceAgency(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ServiceAgency resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of delegated service name.
+        :param pulumi.Input[_builtins.str] description: The description of the service agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a service agency.
+        :param pulumi.Input[_builtins.str] name: The name of service agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to the service agency.
         """
         ...
     @overload
@@ -261,6 +330,7 @@ class ServiceAgency(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ServiceAgency resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ServiceAgencyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,8 +374,8 @@ class ServiceAgency(pulumi.CustomResource):
             __props__.__dict__["policy_names"] = policy_names
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["service_agency_urn"] = None
             __props__.__dict__["trust_policy"] = None
-            __props__.__dict__["urn"] = None
         super(ServiceAgency, __self__).__init__(
             'huaweicloud:Iam/serviceAgency:ServiceAgency',
             resource_name,
@@ -323,9 +393,9 @@ class ServiceAgency(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             policy_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            service_agency_urn: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            trust_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceAgency':
+            trust_policy: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceAgency':
         """
         Get an existing ServiceAgency resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -333,6 +403,15 @@ class ServiceAgency(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] created_at: The time when the service agency was created.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of delegated service name.
+        :param pulumi.Input[_builtins.str] description: The description of the service agency.
+        :param pulumi.Input[_builtins.int] duration: The validity period of a service agency.
+        :param pulumi.Input[_builtins.str] name: The name of service agency.
+        :param pulumi.Input[_builtins.str] path: The resource path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_names: The string list of one or more policy names that you would like to attach to the service agency.
+        :param pulumi.Input[_builtins.str] service_agency_urn: The uniform resource name of the service agency.
+        :param pulumi.Input[_builtins.str] trust_policy: The trust policy of the service agency.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -345,45 +424,74 @@ class ServiceAgency(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
         __props__.__dict__["policy_names"] = policy_names
+        __props__.__dict__["service_agency_urn"] = service_agency_urn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["trust_policy"] = trust_policy
-        __props__.__dict__["urn"] = urn
         return ServiceAgency(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The time when the service agency was created.
+        """
         return pulumi.get(self, "created_at")
 
     @_builtins.property
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of delegated service name.
+        """
         return pulumi.get(self, "delegated_service_name")
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description of the service agency.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
     def duration(self) -> pulumi.Output[_builtins.int]:
+        """
+        The validity period of a service agency.
+        """
         return pulumi.get(self, "duration")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of service agency.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The resource path.
+        """
         return pulumi.get(self, "path")
 
     @_builtins.property
     @pulumi.getter(name="policyNames")
     def policy_names(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The string list of one or more policy names that you would like to attach to the service agency.
+        """
         return pulumi.get(self, "policy_names")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAgencyUrn")
+    def service_agency_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The uniform resource name of the service agency.
+        """
+        return pulumi.get(self, "service_agency_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -393,10 +501,8 @@ class ServiceAgency(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="trustPolicy")
     def trust_policy(self) -> pulumi.Output[_builtins.str]:
+        """
+        The trust policy of the service agency.
+        """
         return pulumi.get(self, "trust_policy")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "urn")
 

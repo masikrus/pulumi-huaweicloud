@@ -28,6 +28,7 @@ class InstanceFlavorUpdateArgs:
                  target_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceFlavorUpdate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
         :param pulumi.Input[_builtins.str] target_spec_code: Specifies the resource specification code of the new specification.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -192,6 +193,7 @@ class _InstanceFlavorUpdateState:
                  target_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceFlavorUpdate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
@@ -397,6 +399,7 @@ class InstanceFlavorUpdate(pulumi.CustomResource):
             target_id=group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
@@ -473,6 +476,7 @@ class InstanceFlavorUpdate(pulumi.CustomResource):
             target_type="shard",
             target_id=group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceFlavorUpdateArgs args: The arguments to use to populate this resource's properties.

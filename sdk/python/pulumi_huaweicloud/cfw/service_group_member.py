@@ -28,6 +28,7 @@ class ServiceGroupMemberArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceGroupMember resource.
+
         :param pulumi.Input[_builtins.str] dest_port: Specifies the destination port.
                
                Changing this parameter will create a new resource.
@@ -178,6 +179,7 @@ class _ServiceGroupMemberState:
                  source_port: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceGroupMember resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the service group member description.
                
                Changing this parameter will create a new resource.
@@ -359,11 +361,10 @@ class ServiceGroupMember(pulumi.CustomResource):
 
         The service group member can be imported using service group ID and member ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/serviceGroupMember:ServiceGroupMember test <group_id>/<member_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -423,11 +424,10 @@ class ServiceGroupMember(pulumi.CustomResource):
 
         The service group member can be imported using service group ID and member ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/serviceGroupMember:ServiceGroupMember test <group_id>/<member_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceGroupMemberArgs args: The arguments to use to populate this resource's properties.

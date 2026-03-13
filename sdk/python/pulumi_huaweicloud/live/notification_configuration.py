@@ -26,6 +26,7 @@ class NotificationConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationConfiguration resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name to which the notification configuration
                belongs.
                Changing this parameter will create a new resource.
@@ -130,6 +131,7 @@ class _NotificationConfigurationState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NotificationConfiguration resources.
+
         :param pulumi.Input[_builtins.str] auth_sign_key: Specifies the authentication key.
                The valid length is `32` to `128` characters.
         :param pulumi.Input[_builtins.str] call_back_area: Specifies the region where the server that receives callback notifications
@@ -259,11 +261,10 @@ class NotificationConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/notificationConfiguration:NotificationConfiguration test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,11 +310,10 @@ class NotificationConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/notificationConfiguration:NotificationConfiguration test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class ProvisionPermissionSetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProvisionPermissionSet resource.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the account ID.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of an IAM Identity Center instance.
         :param pulumi.Input[_builtins.str] permission_set_id: Specifies the ID of a permission set.
@@ -110,6 +111,7 @@ class _ProvisionPermissionSetState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProvisionPermissionSet resources.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the account ID.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of an IAM Identity Center instance.
         :param pulumi.Input[_builtins.str] permission_set_id: Specifies the ID of a permission set.
@@ -201,7 +203,7 @@ class _ProvisionPermissionSetState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/provisionPermissionSet:ProvisionPermissionSet")
+@pulumi.type_token("huaweicloud:Identitycenter/provisionPermissionSet:ProvisionPermissionSet")
 class ProvisionPermissionSet(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -235,14 +237,12 @@ class ProvisionPermissionSet(pulumi.CustomResource):
         ## Import
 
         The Identity Center provision permission set can be imported using the `instance_id` and `id`(request ID)
-
         separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/provisionPermissionSet:ProvisionPermissionSet test <instance_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/provisionPermissionSet:ProvisionPermissionSet test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,14 +280,12 @@ class ProvisionPermissionSet(pulumi.CustomResource):
         ## Import
 
         The Identity Center provision permission set can be imported using the `instance_id` and `id`(request ID)
-
         separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/provisionPermissionSet:ProvisionPermissionSet test <instance_id>/<id>
+        $ pulumi import huaweicloud:Identitycenter/provisionPermissionSet:ProvisionPermissionSet test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProvisionPermissionSetArgs args: The arguments to use to populate this resource's properties.
@@ -331,7 +329,7 @@ class ProvisionPermissionSet(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["status"] = None
         super(ProvisionPermissionSet, __self__).__init__(
-            'huaweicloud:identitycenter/provisionPermissionSet:ProvisionPermissionSet',
+            'huaweicloud:Identitycenter/provisionPermissionSet:ProvisionPermissionSet',
             resource_name,
             __props__,
             opts)

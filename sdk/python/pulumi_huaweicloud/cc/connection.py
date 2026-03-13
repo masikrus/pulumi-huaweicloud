@@ -26,6 +26,7 @@ class ConnectionArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Connection resource.
+
         :param pulumi.Input[_builtins.str] description: The Description about the cloud connection.  
                The description contain a maximum of `255` characters, and the angle brackets (< and >) are not allowed.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project id of the cloud connection.  
@@ -130,6 +131,7 @@ class _ConnectionState:
                  used_scene: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
+
         :param pulumi.Input[_builtins.int] bandwidth_package_number: The number of bandwidth packages associated with the cloud connection instance.
         :param pulumi.Input[_builtins.str] description: The Description about the cloud connection.  
                The description contain a maximum of `255` characters, and the angle brackets (< and >) are not allowed.
@@ -347,11 +349,10 @@ class Connection(pulumi.CustomResource):
 
         The cloud connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/connection:Connection test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -391,11 +392,10 @@ class Connection(pulumi.CustomResource):
 
         The cloud connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/connection:Connection test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionArgs args: The arguments to use to populate this resource's properties.

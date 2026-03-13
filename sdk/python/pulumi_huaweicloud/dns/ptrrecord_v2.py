@@ -28,6 +28,7 @@ class PtrrecordV2Args:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PtrrecordV2 resource.
+
         :param pulumi.Input[_builtins.str] floatingip_id: The ID of the FloatingIP/EIP.
         :param pulumi.Input[_builtins.str] description: The description of the PTR record.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the PTR record.
@@ -144,6 +145,7 @@ class _PtrrecordV2State:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PtrrecordV2 resources.
+
         :param pulumi.Input[_builtins.str] address: The address of the FloatingIP/EIP.
         :param pulumi.Input[_builtins.str] description: The description of the PTR record.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the PTR record.
@@ -279,6 +281,7 @@ class PtrrecordV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a PtrrecordV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the PTR record.
@@ -296,6 +299,7 @@ class PtrrecordV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PtrrecordV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param PtrrecordV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

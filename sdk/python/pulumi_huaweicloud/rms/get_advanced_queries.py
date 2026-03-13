@@ -97,7 +97,7 @@ def get_advanced_queries(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     advanced_query_name = config.require_object("advancedQueryName")
-    test = huaweicloud.rms.get_advanced_queries(name=advanced_query_name)
+    test = huaweicloud.Rms.get_advanced_queries(name=advanced_query_name)
     ```
 
 
@@ -108,7 +108,7 @@ def get_advanced_queries(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['queryId'] = query_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAdvancedQueries:getAdvancedQueries', __args__, opts=opts, typ=GetAdvancedQueriesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAdvancedQueries:getAdvancedQueries', __args__, opts=opts, typ=GetAdvancedQueriesResult).value
 
     return AwaitableGetAdvancedQueriesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -129,7 +129,7 @@ def get_advanced_queries_output(name: Optional[pulumi.Input[Optional[_builtins.s
 
     config = pulumi.Config()
     advanced_query_name = config.require_object("advancedQueryName")
-    test = huaweicloud.rms.get_advanced_queries(name=advanced_query_name)
+    test = huaweicloud.Rms.get_advanced_queries(name=advanced_query_name)
     ```
 
 
@@ -140,7 +140,7 @@ def get_advanced_queries_output(name: Optional[pulumi.Input[Optional[_builtins.s
     __args__['name'] = name
     __args__['queryId'] = query_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAdvancedQueries:getAdvancedQueries', __args__, opts=opts, typ=GetAdvancedQueriesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAdvancedQueries:getAdvancedQueries', __args__, opts=opts, typ=GetAdvancedQueriesResult)
     return __ret__.apply(lambda __response__: GetAdvancedQueriesResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

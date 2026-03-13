@@ -37,6 +37,7 @@ class ApplicationArgs:
                  uninstall_command: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input['ApplicationApplicationFileStoreArgs'] application_file_store: Specifies the file store configuration of the application.  
                The application_file_store structure is documented below.
         :param pulumi.Input[_builtins.str] authorization_type: Specifies the authorization type of the application.  
@@ -310,6 +311,7 @@ class _ApplicationState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input['ApplicationApplicationFileStoreArgs'] application_file_store: Specifies the file store configuration of the application.  
                The application_file_store structure is documented below.
         :param pulumi.Input[_builtins.str] application_icon_url: Specifies the icon URL of the application.
@@ -720,11 +722,10 @@ class Application(pulumi.CustomResource):
 
         Application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/application:Application test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -843,11 +844,10 @@ class Application(pulumi.CustomResource):
 
         Application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/application:Application test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.

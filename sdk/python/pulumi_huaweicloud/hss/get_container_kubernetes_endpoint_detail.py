@@ -205,7 +205,7 @@ def get_container_kubernetes_endpoint_detail(endpoint_id: Optional[_builtins.str
 
     config = pulumi.Config()
     endpoint_id = config.require_object("endpointId")
-    test = huaweicloud.hss.get_container_kubernetes_endpoint_detail(endpoint_id=endpoint_id)
+    test = huaweicloud.Hss.get_container_kubernetes_endpoint_detail(endpoint_id=endpoint_id)
     ```
 
 
@@ -224,7 +224,7 @@ def get_container_kubernetes_endpoint_detail(endpoint_id: Optional[_builtins.str
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerKubernetesEndpointDetail:getContainerKubernetesEndpointDetail', __args__, opts=opts, typ=GetContainerKubernetesEndpointDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerKubernetesEndpointDetail:getContainerKubernetesEndpointDetail', __args__, opts=opts, typ=GetContainerKubernetesEndpointDetailResult).value
 
     return AwaitableGetContainerKubernetesEndpointDetailResult(
         association_service=pulumi.get(__ret__, 'association_service'),
@@ -255,7 +255,7 @@ def get_container_kubernetes_endpoint_detail_output(endpoint_id: Optional[pulumi
 
     config = pulumi.Config()
     endpoint_id = config.require_object("endpointId")
-    test = huaweicloud.hss.get_container_kubernetes_endpoint_detail(endpoint_id=endpoint_id)
+    test = huaweicloud.Hss.get_container_kubernetes_endpoint_detail(endpoint_id=endpoint_id)
     ```
 
 
@@ -274,7 +274,7 @@ def get_container_kubernetes_endpoint_detail_output(endpoint_id: Optional[pulumi
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerKubernetesEndpointDetail:getContainerKubernetesEndpointDetail', __args__, opts=opts, typ=GetContainerKubernetesEndpointDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerKubernetesEndpointDetail:getContainerKubernetesEndpointDetail', __args__, opts=opts, typ=GetContainerKubernetesEndpointDetailResult)
     return __ret__.apply(lambda __response__: GetContainerKubernetesEndpointDetailResult(
         association_service=pulumi.get(__response__, 'association_service'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),

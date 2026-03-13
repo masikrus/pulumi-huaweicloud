@@ -30,6 +30,7 @@ class DisasterRecoveryTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DisasterRecoveryTask resource.
+
         :param pulumi.Input[_builtins.str] dr_sync_period: Specifies the synchronization period of the DR task. The valid
                value ranges from `1` to `3000`, the uint support `m` minute, `H` hour,`d` day. e.g. **20m**, means 20 minutes.
                When `status` is **unstart** or **stopped**, `dr_sync_period` can be change.
@@ -177,6 +178,7 @@ class _DisasterRecoveryTaskState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DisasterRecoveryTask resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action for the DR task. The valid values are:
                + **start**: Starting the DR task. You can start a DR task when `status` is **unstart**, **stopped**
                or **start_failed**.
@@ -431,39 +433,16 @@ class DisasterRecoveryTask(pulumi.CustomResource):
 
         The DR task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/disasterRecoveryTask:DisasterRecoveryTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `action`, `primary_cluster_id`, `standby_cluster_id`.
-
         It is generally recommended running `pulumi preview` after importing a DR task.
-
         You can then decide if changes should be applied to the DR task, or the resource definition
-
         should be updated to align with the DR task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_disaster_recovery" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              action, primary_cluster_id, standby_cluster_id
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -521,39 +500,16 @@ class DisasterRecoveryTask(pulumi.CustomResource):
 
         The DR task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/disasterRecoveryTask:DisasterRecoveryTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `action`, `primary_cluster_id`, `standby_cluster_id`.
-
         It is generally recommended running `pulumi preview` after importing a DR task.
-
         You can then decide if changes should be applied to the DR task, or the resource definition
-
         should be updated to align with the DR task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_disaster_recovery" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              action, primary_cluster_id, standby_cluster_id
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DisasterRecoveryTaskArgs args: The arguments to use to populate this resource's properties.

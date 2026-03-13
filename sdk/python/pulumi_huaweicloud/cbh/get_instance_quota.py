@@ -93,7 +93,7 @@ def get_instance_quota(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cbh.get_instance_quota()
+    test = huaweicloud.Cbh.get_instance_quota()
     ```
 
 
@@ -103,7 +103,7 @@ def get_instance_quota(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstanceQuota:getInstanceQuota', __args__, opts=opts, typ=GetInstanceQuotaResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstanceQuota:getInstanceQuota', __args__, opts=opts, typ=GetInstanceQuotaResult).value
 
     return AwaitableGetInstanceQuotaResult(
         id=pulumi.get(__ret__, 'id'),
@@ -121,7 +121,7 @@ def get_instance_quota_output(region: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cbh.get_instance_quota()
+    test = huaweicloud.Cbh.get_instance_quota()
     ```
 
 
@@ -131,7 +131,7 @@ def get_instance_quota_output(region: Optional[pulumi.Input[Optional[_builtins.s
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstanceQuota:getInstanceQuota', __args__, opts=opts, typ=GetInstanceQuotaResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstanceQuota:getInstanceQuota', __args__, opts=opts, typ=GetInstanceQuotaResult)
     return __ret__.apply(lambda __response__: GetInstanceQuotaResult(
         id=pulumi.get(__response__, 'id'),
         quota=pulumi.get(__response__, 'quota'),

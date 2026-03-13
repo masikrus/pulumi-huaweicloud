@@ -28,6 +28,7 @@ class DesktopNameRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DesktopNameRule resource.
+
         :param pulumi.Input[_builtins.int] digit_number: Specifies the number of valid digits in the desktop name suffix.
                The valid value is range from `1` to `5`.
         :param pulumi.Input[_builtins.str] name_prefix: Specifies the prefix of desktop name.
@@ -209,6 +210,7 @@ class _DesktopNameRuleState:
                  start_number: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DesktopNameRule resources.
+
         :param pulumi.Input[_builtins.int] digit_number: Specifies the number of valid digits in the desktop name suffix.
                The valid value is range from `1` to `5`.
         :param pulumi.Input[_builtins.bool] is_contain_user: Whether the desktop name contains the user name.
@@ -434,11 +436,10 @@ class DesktopNameRule(pulumi.CustomResource):
 
         The desktop name rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/desktopNameRule:DesktopNameRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,11 +513,10 @@ class DesktopNameRule(pulumi.CustomResource):
 
         The desktop name rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/desktopNameRule:DesktopNameRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DesktopNameRuleArgs args: The arguments to use to populate this resource's properties.

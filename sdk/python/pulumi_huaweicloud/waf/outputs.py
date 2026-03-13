@@ -17,9 +17,24 @@ from . import outputs
 
 __all__ = [
     'AddressGroupRule',
+    'BatchCreateAntileakageRulesAction',
+    'BatchCreateCcRulesAction',
+    'BatchCreateCcRulesActionDetail',
+    'BatchCreateCcRulesActionDetailResponse',
+    'BatchCreateCcRulesCondition',
+    'BatchCreateCcRulesTagCondition',
+    'BatchCreateCustomRulesAction',
+    'BatchCreateCustomRulesCondition',
+    'BatchCreateIgnoreRulesAdvanced',
+    'BatchCreateIgnoreRulesCondition',
+    'BatchCreateIpReputationRulesAction',
+    'BatchDeleteAlarmNotificationsAlertNoticeConfig',
+    'BatchUpdateWhiteblackipRulesPolicyRuleId',
+    'CcProtectionRuleBatchDeletePolicyRuleId',
     'CloudInstanceBandwidthExpackProduct',
     'CloudInstanceDomainExpackProduct',
     'CloudInstanceRuleExpackProduct',
+    'DedicatedAgencyRoleList',
     'DedicatedDomainBlockPage',
     'DedicatedDomainBlockPageCustomPage',
     'DedicatedDomainConnectionProtection',
@@ -28,10 +43,15 @@ __all__ = [
     'DedicatedDomainServer',
     'DedicatedDomainTimeoutSettings',
     'DedicatedDomainTrafficMark',
+    'DedicatedInstanceActionHost',
     'DomainCustomPage',
+    'DomainRouteUpdateRoute',
+    'DomainRouteUpdateRouteServer',
     'DomainServer',
     'DomainTimeoutSettings',
     'DomainTrafficMark',
+    'GeoIpRuleBatchUpdatePolicyRuleId',
+    'IpIntelligenceRuleAction',
     'PolicyBindHost',
     'PolicyOption',
     'RuleAntiCrawlerCondition',
@@ -41,22 +61,50 @@ __all__ = [
     'GetAddressGroupsGroupResult',
     'GetAddressGroupsGroupRuleResult',
     'GetAlarmNotificationsItemResult',
+    'GetAlarmOptionalEventTypesLocaleResult',
+    'GetAllAntileakageRulesItemResult',
+    'GetAllDataMaskingRulesItemResult',
     'GetAllDomainsItemResult',
     'GetAllDomainsItemAccessProgressResult',
     'GetAllDomainsItemFlagResult',
     'GetAllDomainsItemPremiumWafInstanceResult',
     'GetAllDomainsItemServerResult',
+    'GetAllGeoIpPolicyRulesItemResult',
+    'GetAllGlobalWhitelistRulesItemResult',
+    'GetAllGlobalWhitelistRulesItemAdvancedResult',
+    'GetAllGlobalWhitelistRulesItemConditionResult',
+    'GetAllIpReputationPolicyRulesItemResult',
+    'GetAllIpReputationPolicyRulesItemActionResult',
+    'GetAllPolicyCcRulesItemResult',
+    'GetAllPolicyCcRulesItemActionResult',
+    'GetAllPolicyCcRulesItemActionDetailResult',
+    'GetAllPolicyCcRulesItemActionDetailResponseResult',
+    'GetAllPolicyCcRulesItemConditionResult',
+    'GetAllPolicyCcRulesItemTagConditionResult',
+    'GetAllPreciseProtectionRulesItemResult',
+    'GetAllPreciseProtectionRulesItemActionResult',
+    'GetAllPreciseProtectionRulesItemConditionResult',
+    'GetAllWebAntitamperRulesItemResult',
+    'GetAllWhiteblackipRulesItemResult',
+    'GetAllWhiteblackipRulesItemIpGroupResult',
     'GetCertificatesCertificateResult',
     'GetCertificatesCertificateBindHostResult',
     'GetDedicatedDomainsDomainResult',
     'GetDedicatedInstanceTagsTagResult',
     'GetDedicatedInstancesInstanceResult',
+    'GetDnsDomainsItemResult',
+    'GetDnsDomainsItemServerResult',
     'GetDomainsDomainResult',
+    'GetEventLogsItemResult',
+    'GetEventsItemResult',
     'GetInstanceGroupsGroupResult',
     'GetInstanceGroupsGroupDedicatedInstanceResult',
     'GetInstanceGroupsGroupDomainNameResult',
     'GetOverviewsAbnormalItemResult',
+    'GetOverviewsAttackActionTypesItemResult',
+    'GetOverviewsAttackIpItemResult',
     'GetOverviewsAttackTopDomainsItemResult',
+    'GetOverviewsAttackUrlItemResult',
     'GetOverviewsBandwidthTimelineBandwidthResult',
     'GetOverviewsBandwidthTimelineBandwidthTimelineResult',
     'GetOverviewsClassificationAttackTypeResult',
@@ -73,10 +121,16 @@ __all__ = [
     'GetOverviewsQpsTimelineQpTimelineResult',
     'GetOverviewsRequestTimelineRequestResult',
     'GetOverviewsRequestTimelineRequestTimelineResult',
+    'GetOverviewsResponseCodeTimelineResponseCodeResult',
+    'GetOverviewsResponseCodeTimelineResponseCodeTimelineResult',
     'GetOverviewsStatisticsStatisticResult',
     'GetPoliciesPolicyResult',
     'GetPoliciesPolicyBindHostResult',
     'GetPoliciesPolicyOptionResult',
+    'GetPolicyIpReputationIpReputationMapResult',
+    'GetProtectableResourcesItemResult',
+    'GetProtectableResourcesItemEipResult',
+    'GetProtectableResourcesItemListenerResult',
     'GetReferenceTablesTableResult',
     'GetRulesAntiCrawlerRuleResult',
     'GetRulesAntiCrawlerRuleConditionResult',
@@ -94,9 +148,51 @@ __all__ = [
     'GetRulesKnownAttackSourceRuleResult',
     'GetRulesPreciseProtectionRuleResult',
     'GetRulesPreciseProtectionRuleConditionResult',
+    'GetRulesThreatIntelligenceItemResult',
+    'GetRulesThreatIntelligenceItemActionResult',
     'GetRulesWebTamperProtectionRuleResult',
+    'GetSecurityReportHistoryPeriodsItemResult',
+    'GetSecurityReportHistoryPeriodsItemStatPeriodResult',
+    'GetSecurityReportReportContentInfoResult',
+    'GetSecurityReportReportContentInfoAttackTypeDistributionInfoListResult',
+    'GetSecurityReportReportContentInfoBandwidthStatisticsInfoResult',
+    'GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListResult',
+    'GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListResult',
+    'GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoOverviewStatisticsListInfoResult',
+    'GetSecurityReportReportContentInfoOverviewStatisticsListInfoTopDomainResult',
+    'GetSecurityReportReportContentInfoQpsStatisticsInfoResult',
+    'GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListResult',
+    'GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListResult',
+    'GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoRequestStatisticsInfoListResult',
+    'GetSecurityReportReportContentInfoRequestStatisticsInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResult',
+    'GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListResult',
+    'GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListResult',
+    'GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListTimelineResult',
+    'GetSecurityReportReportContentInfoTopAbnormalUrlsInfoResult',
+    'GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal404InfoListResult',
+    'GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal500InfoListResult',
+    'GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal502InfoListResult',
+    'GetSecurityReportReportContentInfoTopAttackSourceIpsInfoListResult',
+    'GetSecurityReportReportContentInfoTopAttackSourceLocationsInfoListResult',
+    'GetSecurityReportReportContentInfoTopAttackedDomainsInfoListResult',
+    'GetSecurityReportReportContentInfoTopAttackedUrlsInfoListResult',
+    'GetSecurityReportSendingRecordsItemResult',
+    'GetSecurityReportSendingRecordsItemStatPeriodResult',
+    'GetSecurityReportStatPeriodResult',
+    'GetSecurityReportSubscriptionReportContentSubscriptionResult',
+    'GetSecurityReportSubscriptionStatPeriodResult',
     'GetSecurityReportSubscriptionsItemResult',
     'GetSourceIpsSourceIpResult',
+    'GetTagAntileakageMapLeakagemapResult',
+    'GetTagAntileakageMapLocaleResult',
+    'GetTagIpReputationMapIpReputationMapResult',
+    'GetWebBasicProtectionRulesItemResult',
 ]
 
 @pulumi.output_type
@@ -175,6 +271,793 @@ class AddressGroupRule(dict):
         The name of rule.
         """
         return pulumi.get(self, "rule_name")
+
+
+@pulumi.output_type
+class BatchCreateAntileakageRulesAction(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str):
+        """
+        :param _builtins.str category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **log**: Log the request only
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+
+@pulumi.output_type
+class BatchCreateCcRulesAction(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 detail: Optional['outputs.BatchCreateCcRulesActionDetail'] = None):
+        """
+        :param _builtins.str category: Specifies the field type to match against. The value can be **referer**.
+        :param 'BatchCreateCcRulesActionDetailArgs' detail: Specifies the detailed action configuration. The returned blocking page is
+               only required when the protection action (`category`) is selected as either `block` or `dynamic_block`.
+               + If you need the system's default blocking page to be returned, you do not need to pass this parameter.
+               + If users want to protect against a custom blocking page, they can configure this setting.
+               
+               The detail structure is documented below.
+               
+               <a name="Action_detail"></a>
+               The `detail` block supports:
+        """
+        pulumi.set(__self__, "category", category)
+        if detail is not None:
+            pulumi.set(__self__, "detail", detail)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def detail(self) -> Optional['outputs.BatchCreateCcRulesActionDetail']:
+        """
+        Specifies the detailed action configuration. The returned blocking page is
+        only required when the protection action (`category`) is selected as either `block` or `dynamic_block`.
+        + If you need the system's default blocking page to be returned, you do not need to pass this parameter.
+        + If users want to protect against a custom blocking page, they can configure this setting.
+
+        The detail structure is documented below.
+
+        <a name="Action_detail"></a>
+        The `detail` block supports:
+        """
+        return pulumi.get(self, "detail")
+
+
+@pulumi.output_type
+class BatchCreateCcRulesActionDetail(dict):
+    def __init__(__self__, *,
+                 response: Optional['outputs.BatchCreateCcRulesActionDetailResponse'] = None):
+        """
+        :param 'BatchCreateCcRulesActionDetailResponseArgs' response: Specifies the custom response configuration.
+               The response structure is documented below.
+               
+               <a name="Response"></a>
+               The `response` block supports:
+        """
+        if response is not None:
+            pulumi.set(__self__, "response", response)
+
+    @_builtins.property
+    @pulumi.getter
+    def response(self) -> Optional['outputs.BatchCreateCcRulesActionDetailResponse']:
+        """
+        Specifies the custom response configuration.
+        The response structure is documented below.
+
+        <a name="Response"></a>
+        The `response` block supports:
+        """
+        return pulumi.get(self, "response")
+
+
+@pulumi.output_type
+class BatchCreateCcRulesActionDetailResponse(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contentType":
+            suggest = "content_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchCreateCcRulesActionDetailResponse. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchCreateCcRulesActionDetailResponse.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchCreateCcRulesActionDetailResponse.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 content: Optional[_builtins.str] = None,
+                 content_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str content: Specifies the content of the response.
+               
+               <a name="Tag_condition"></a>
+               The `tag_condition` block supports:
+        :param _builtins.str content_type: Specifies the content type of the response.
+               The value can be **application/json**, **text/html**, or **text/xml**.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> Optional[_builtins.str]:
+        """
+        Specifies the content of the response.
+
+        <a name="Tag_condition"></a>
+        The `tag_condition` block supports:
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the content type of the response.
+        The value can be **application/json**, **text/html**, or **text/xml**.
+        """
+        return pulumi.get(self, "content_type")
+
+
+@pulumi.output_type
+class BatchCreateCcRulesCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logicOperation":
+            suggest = "logic_operation"
+        elif key == "valueListId":
+            suggest = "value_list_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchCreateCcRulesCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchCreateCcRulesCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchCreateCcRulesCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 logic_operation: _builtins.str,
+                 contents: Optional[Sequence[_builtins.str]] = None,
+                 index: Optional[_builtins.str] = None,
+                 value_list_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str category: Specifies the field type to match against. The value can be **referer**.
+        :param _builtins.str logic_operation: Specifies the matching logic operation.
+               The available values depend on the `category`:
+               + For **url**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**,
+               **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+               **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**
+               + For **ip** or **ipv6**: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+               + For **params**, **cookie**, or **header**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+               **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+               **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**
+        :param Sequence[_builtins.str] contents: Specifies the content to match against.
+        :param _builtins.str index: Specifies the subfield name when `category` is **params**, **cookie**,
+               or **header**.
+               For other categories, leave this empty.
+               
+               <a name="Rule_action"></a>
+               The `action` block supports:
+        :param _builtins.str value_list_id: Specifies the reference table ID.
+               Required when `logic_operation` ends with **any** or **all**.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if value_list_id is not None:
+            pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> _builtins.str:
+        """
+        Specifies the matching logic operation.
+        The available values depend on the `category`:
+        + For **url**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**,
+        **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+        **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**
+        + For **ip** or **ipv6**: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+        + For **params**, **cookie**, or **header**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+        **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+        **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the content to match against.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subfield name when `category` is **params**, **cookie**,
+        or **header**.
+        For other categories, leave this empty.
+
+        <a name="Rule_action"></a>
+        The `action` block supports:
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the reference table ID.
+        Required when `logic_operation` ends with **any** or **all**.
+        """
+        return pulumi.get(self, "value_list_id")
+
+
+@pulumi.output_type
+class BatchCreateCcRulesTagCondition(dict):
+    def __init__(__self__, *,
+                 category: Optional[_builtins.str] = None,
+                 contents: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str category: Specifies the field type to match against. The value can be **referer**.
+        :param Sequence[_builtins.str] contents: Specifies the content to match against.
+        """
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the content to match against.
+        """
+        return pulumi.get(self, "contents")
+
+
+@pulumi.output_type
+class BatchCreateCustomRulesAction(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "followedActionId":
+            suggest = "followed_action_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchCreateCustomRulesAction. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchCreateCustomRulesAction.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchCreateCustomRulesAction.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 followed_action_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **pass**: Allow the request
+               + **log**: Log the request only
+        :param _builtins.str followed_action_id: Specifies the ID of the attack penalty rule.
+               This parameter is valid only when `category` is set to **block**.
+        """
+        pulumi.set(__self__, "category", category)
+        if followed_action_id is not None:
+            pulumi.set(__self__, "followed_action_id", followed_action_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **pass**: Allow the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="followedActionId")
+    def followed_action_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the attack penalty rule.
+        This parameter is valid only when `category` is set to **block**.
+        """
+        return pulumi.get(self, "followed_action_id")
+
+
+@pulumi.output_type
+class BatchCreateCustomRulesCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logicOperation":
+            suggest = "logic_operation"
+        elif key == "valueListId":
+            suggest = "value_list_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchCreateCustomRulesCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchCreateCustomRulesCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchCreateCustomRulesCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 category: Optional[_builtins.str] = None,
+                 contents: Optional[Sequence[_builtins.str]] = None,
+                 index: Optional[_builtins.str] = None,
+                 logic_operation: Optional[_builtins.str] = None,
+                 value_list_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **pass**: Allow the request
+               + **log**: Log the request only
+        :param Sequence[_builtins.str] contents: Specifies the content to match against.
+               This parameter is required when `logic_operation` does not end with **any** or **all**.
+        :param _builtins.str index: Specifies the subfield name.
+               + When `category` is **params**, **header**, or **cookie**, the value of `index` is custom subfield.
+               + For other `category` values, leave this empty.
+        :param _builtins.str logic_operation: Specifies the matching logic operation.
+               + When `category` is **url**, **user-agent**, or **referer**, the value can be: **equal**, **not_equal**, **contain**,
+               **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+               **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+               **len_greater**, **len_less**, **len_equal**, **len_not_equal**
+               + When `category` is **ip**, the value can be: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+               + When `category` is **method**, the value can be: **equal**, **not_equal**
+               + When `category` is **request_line** or **request**, the value can be: **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**
+               + When `category` is **params**, **header**, or **cookie**, the value can be: **contain**, **not_contain**, **equal**,
+               **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+               **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+               **len_greater**, **len_less**, **len_equal**, **len_not_equal**, **num_greater**, **num_less**, **num_equal**,
+               **num_not_equal**, **exist**, **not_exist**
+        :param _builtins.str value_list_id: Specifies the reference table ID.
+               This parameter is required when `logic_operation` ends with **any** or **all**.
+               
+               <a name="Rule_action"></a>
+               The `action` block supports:
+        """
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if logic_operation is not None:
+            pulumi.set(__self__, "logic_operation", logic_operation)
+        if value_list_id is not None:
+            pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> Optional[_builtins.str]:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **pass**: Allow the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the content to match against.
+        This parameter is required when `logic_operation` does not end with **any** or **all**.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subfield name.
+        + When `category` is **params**, **header**, or **cookie**, the value of `index` is custom subfield.
+        + For other `category` values, leave this empty.
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> Optional[_builtins.str]:
+        """
+        Specifies the matching logic operation.
+        + When `category` is **url**, **user-agent**, or **referer**, the value can be: **equal**, **not_equal**, **contain**,
+        **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+        **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+        **len_greater**, **len_less**, **len_equal**, **len_not_equal**
+        + When `category` is **ip**, the value can be: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+        + When `category` is **method**, the value can be: **equal**, **not_equal**
+        + When `category` is **request_line** or **request**, the value can be: **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**
+        + When `category` is **params**, **header**, or **cookie**, the value can be: **contain**, **not_contain**, **equal**,
+        **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+        **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+        **len_greater**, **len_less**, **len_equal**, **len_not_equal**, **num_greater**, **num_less**, **num_equal**,
+        **num_not_equal**, **exist**, **not_exist**
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the reference table ID.
+        This parameter is required when `logic_operation` ends with **any** or **all**.
+
+        <a name="Rule_action"></a>
+        The `action` block supports:
+        """
+        return pulumi.get(self, "value_list_id")
+
+
+@pulumi.output_type
+class BatchCreateIgnoreRulesAdvanced(dict):
+    def __init__(__self__, *,
+                 contents: Optional[Sequence[_builtins.str]] = None,
+                 index: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] contents: Specifies the content of the condition.
+               The array length is limited to `1`. The content format varies depending on the field type.
+               For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+               when the `category` is **url**, the content format must be a standard URL;
+               when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        :param _builtins.str index: Specifies the subfield name.
+               When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+               When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+               when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+               custom subfield.
+        """
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the content of the condition.
+        The array length is limited to `1`. The content format varies depending on the field type.
+        For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+        when the `category` is **url**, the content format must be a standard URL;
+        when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subfield name.
+        When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+        When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+        when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+        custom subfield.
+        """
+        return pulumi.get(self, "index")
+
+
+@pulumi.output_type
+class BatchCreateIgnoreRulesCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logicOperation":
+            suggest = "logic_operation"
+        elif key == "checkAllIndexesLogic":
+            suggest = "check_all_indexes_logic"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchCreateIgnoreRulesCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchCreateIgnoreRulesCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchCreateIgnoreRulesCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 logic_operation: _builtins.str,
+                 check_all_indexes_logic: Optional[_builtins.int] = None,
+                 index: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str category: Specifies the field type.
+               The value can be: **ip**, **url**, **params**, **cookie**, or **header**.
+        :param Sequence[_builtins.str] contents: Specifies the content of the condition.
+               The array length is limited to `1`. The content format varies depending on the field type.
+               For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+               when the `category` is **url**, the content format must be a standard URL;
+               when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        :param _builtins.str logic_operation: Specifies the matching logic.
+               The matching logic varies depending on the field type.
+               When the `category` is **ip**, the matching logic supports **equal** and **not_equal**.
+               When the `category` is **url**, **header**, **params**, or **cookie**, the matching logic supports **equal**,
+               **not_equal**, **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **regular_match**,
+               and **regular_not_match**.
+        :param _builtins.int check_all_indexes_logic: Specifies how to check subfields.
+               When using custom subfields or `category` is **url** or **ip**, the `check_all_indexes_logic` parameter is not required.
+               In other cases, the value can be:
+        :param _builtins.str index: Specifies the subfield name.
+               When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+               When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+               when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+               custom subfield.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        if check_all_indexes_logic is not None:
+            pulumi.set(__self__, "check_all_indexes_logic", check_all_indexes_logic)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the field type.
+        The value can be: **ip**, **url**, **params**, **cookie**, or **header**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the content of the condition.
+        The array length is limited to `1`. The content format varies depending on the field type.
+        For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+        when the `category` is **url**, the content format must be a standard URL;
+        when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> _builtins.str:
+        """
+        Specifies the matching logic.
+        The matching logic varies depending on the field type.
+        When the `category` is **ip**, the matching logic supports **equal** and **not_equal**.
+        When the `category` is **url**, **header**, **params**, or **cookie**, the matching logic supports **equal**,
+        **not_equal**, **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **regular_match**,
+        and **regular_not_match**.
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="checkAllIndexesLogic")
+    def check_all_indexes_logic(self) -> Optional[_builtins.int]:
+        """
+        Specifies how to check subfields.
+        When using custom subfields or `category` is **url** or **ip**, the `check_all_indexes_logic` parameter is not required.
+        In other cases, the value can be:
+        """
+        return pulumi.get(self, "check_all_indexes_logic")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subfield name.
+        When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+        When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+        when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+        custom subfield.
+        """
+        return pulumi.get(self, "index")
+
+
+@pulumi.output_type
+class BatchCreateIpReputationRulesAction(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str):
+        """
+        :param _builtins.str category: Specifies the action to take when the IP reputation rule is triggered.
+               Valid values are **pass**, **log**, and **block**.
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the action to take when the IP reputation rule is triggered.
+        Valid values are **pass**, **log**, and **block**.
+        """
+        return pulumi.get(self, "category")
+
+
+@pulumi.output_type
+class BatchDeleteAlarmNotificationsAlertNoticeConfig(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Specifies the ID of the alarm notification.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Specifies the ID of the alarm notification.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class BatchUpdateWhiteblackipRulesPolicyRuleId(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyId":
+            suggest = "policy_id"
+        elif key == "ruleIds":
+            suggest = "rule_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchUpdateWhiteblackipRulesPolicyRuleId. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchUpdateWhiteblackipRulesPolicyRuleId.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchUpdateWhiteblackipRulesPolicyRuleId.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 policy_id: _builtins.str,
+                 rule_ids: Sequence[_builtins.str]):
+        """
+        :param _builtins.str policy_id: Specifies the policy ID.
+        :param Sequence[_builtins.str] rule_ids: Specifies the rule IDs.
+        """
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        Specifies the policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the rule IDs.
+        """
+        return pulumi.get(self, "rule_ids")
+
+
+@pulumi.output_type
+class CcProtectionRuleBatchDeletePolicyRuleId(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyId":
+            suggest = "policy_id"
+        elif key == "ruleIds":
+            suggest = "rule_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CcProtectionRuleBatchDeletePolicyRuleId. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CcProtectionRuleBatchDeletePolicyRuleId.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CcProtectionRuleBatchDeletePolicyRuleId.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 policy_id: _builtins.str,
+                 rule_ids: Sequence[_builtins.str]):
+        """
+        :param _builtins.str policy_id: Specifies the policy ID to which the CC protection rule belongs.
+        :param Sequence[_builtins.str] rule_ids: Specifies the ID list of the CC protection rule.
+        """
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        Specifies the policy ID to which the CC protection rule belongs.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the ID list of the CC protection rule.
+        """
+        return pulumi.get(self, "rule_ids")
 
 
 @pulumi.output_type
@@ -319,6 +1202,92 @@ class CloudInstanceRuleExpackProduct(dict):
         > The `resource_size` cannot be reduced below `1`.
         """
         return pulumi.get(self, "resource_size")
+
+
+@pulumi.output_type
+class DedicatedAgencyRoleList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayName":
+            suggest = "display_name"
+        elif key == "isGranted":
+            suggest = "is_granted"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DedicatedAgencyRoleList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DedicatedAgencyRoleList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DedicatedAgencyRoleList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 catalog: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 display_name: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 is_granted: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str catalog: The catalog.
+        :param _builtins.str description: The description.
+        :param _builtins.str display_name: The display name.
+        :param _builtins.str id: The role ID.
+        :param _builtins.bool is_granted: Whether it is granted.
+        """
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_granted is not None:
+            pulumi.set(__self__, "is_granted", is_granted)
+
+    @_builtins.property
+    @pulumi.getter
+    def catalog(self) -> Optional[_builtins.str]:
+        """
+        The catalog.
+        """
+        return pulumi.get(self, "catalog")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[_builtins.str]:
+        """
+        The display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The role ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isGranted")
+    def is_granted(self) -> Optional[_builtins.bool]:
+        """
+        Whether it is granted.
+        """
+        return pulumi.get(self, "is_granted")
 
 
 @pulumi.output_type
@@ -1045,6 +2014,37 @@ class DedicatedDomainTrafficMark(dict):
 
 
 @pulumi.output_type
+class DedicatedInstanceActionHost(dict):
+    def __init__(__self__, *,
+                 hostname: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str hostname: The protected domain name.
+        :param _builtins.str id: The ID of the protected domain.
+        """
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> Optional[_builtins.str]:
+        """
+        The protected domain name.
+        """
+        return pulumi.get(self, "hostname")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the protected domain.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class DomainCustomPage(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1117,6 +2117,121 @@ class DomainCustomPage(dict):
         The `timeout_settings` block supports:
         """
         return pulumi.get(self, "page_content")
+
+
+@pulumi.output_type
+class DomainRouteUpdateRoute(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 servers: Sequence['outputs.DomainRouteUpdateRouteServer'],
+                 cname: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the name of the WAF cluster.
+        :param Sequence['DomainRouteUpdateRouteServerArgs'] servers: Specifies the list of protected domain source site server information.
+               
+               The servers structure is documented below.
+        :param _builtins.str cname: Specifies the cname suffix of the WAF cluster.
+               
+               <a name="domain_route_update_servers"></a>
+               The `servers` block supports:
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "servers", servers)
+        if cname is not None:
+            pulumi.set(__self__, "cname", cname)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the WAF cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def servers(self) -> Sequence['outputs.DomainRouteUpdateRouteServer']:
+        """
+        Specifies the list of protected domain source site server information.
+
+        The servers structure is documented below.
+        """
+        return pulumi.get(self, "servers")
+
+    @_builtins.property
+    @pulumi.getter
+    def cname(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cname suffix of the WAF cluster.
+
+        <a name="domain_route_update_servers"></a>
+        The `servers` block supports:
+        """
+        return pulumi.get(self, "cname")
+
+
+@pulumi.output_type
+class DomainRouteUpdateRouteServer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backProtocol":
+            suggest = "back_protocol"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DomainRouteUpdateRouteServer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DomainRouteUpdateRouteServer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DomainRouteUpdateRouteServer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: Optional[_builtins.str] = None,
+                 back_protocol: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str address: Specifies the IP address of the source server for client access.
+        :param _builtins.str back_protocol: Specifies the protocol for WAF to forward client requests to the
+               protected domain origin server. The valid values are **HTTP** and **HTTPS**.
+        :param _builtins.int port: Specifies the business port for WAF to forward client requests to the source
+               service.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if back_protocol is not None:
+            pulumi.set(__self__, "back_protocol", back_protocol)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IP address of the source server for client access.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="backProtocol")
+    def back_protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the protocol for WAF to forward client requests to the
+        protected domain origin server. The valid values are **HTTP** and **HTTPS**.
+        """
+        return pulumi.get(self, "back_protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        Specifies the business port for WAF to forward client requests to the source
+        service.
+        """
+        return pulumi.get(self, "port")
 
 
 @pulumi.output_type
@@ -1391,6 +2506,76 @@ class DomainTrafficMark(dict):
         attacks based on params attributes. This parameter must be configured to block requests based on the params attributes.
         """
         return pulumi.get(self, "user_tag")
+
+
+@pulumi.output_type
+class GeoIpRuleBatchUpdatePolicyRuleId(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyId":
+            suggest = "policy_id"
+        elif key == "ruleIds":
+            suggest = "rule_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GeoIpRuleBatchUpdatePolicyRuleId. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GeoIpRuleBatchUpdatePolicyRuleId.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GeoIpRuleBatchUpdatePolicyRuleId.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 policy_id: Optional[_builtins.str] = None,
+                 rule_ids: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str policy_id: Specifies the policy ID to which the geo IP rule belongs.
+        :param Sequence[_builtins.str] rule_ids: Specifies the ID list of the geo IP rule.
+        """
+        if policy_id is not None:
+            pulumi.set(__self__, "policy_id", policy_id)
+        if rule_ids is not None:
+            pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the policy ID to which the geo IP rule belongs.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the ID list of the geo IP rule.
+        """
+        return pulumi.get(self, "rule_ids")
+
+
+@pulumi.output_type
+class IpIntelligenceRuleAction(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str):
+        """
+        :param _builtins.str category: Specifies the protective action type.
+               The value can be **log** **block** or **pass**.
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the protective action type.
+        The value can be **log** **block** or **pass**.
+        """
+        return pulumi.get(self, "category")
 
 
 @pulumi.output_type
@@ -2513,6 +3698,504 @@ class GetAlarmNotificationsItemResult(dict):
 
 
 @pulumi.output_type
+class GetAlarmOptionalEventTypesLocaleResult(dict):
+    def __init__(__self__, *,
+                 advanced_bot: _builtins.str,
+                 anticrawler: _builtins.str,
+                 antiscan_dir_traversal: _builtins.str,
+                 antiscan_high_freq_scan: _builtins.str,
+                 antitamper: _builtins.str,
+                 botm: _builtins.str,
+                 cc: _builtins.str,
+                 cmdi: _builtins.str,
+                 custom_custom: _builtins.str,
+                 custom_geoip: _builtins.str,
+                 custom_idc_ip: _builtins.str,
+                 custom_whiteblackip: _builtins.str,
+                 illegal: _builtins.str,
+                 leakage: _builtins.str,
+                 lfi: _builtins.str,
+                 llm_prompt_injection: _builtins.str,
+                 llm_prompt_sensitive: _builtins.str,
+                 llm_response_sensitive: _builtins.str,
+                 rfi: _builtins.str,
+                 robot: _builtins.str,
+                 sqli: _builtins.str,
+                 third_bot_river: _builtins.str,
+                 vuln: _builtins.str,
+                 webshell: _builtins.str,
+                 xss: _builtins.str):
+        """
+        :param _builtins.str advanced_bot: The advanced bot, which is an automated program with complex behavior patterns.
+        :param _builtins.str anticrawler: The website anti-crawler policy, which is used to prevent automated programs from illegally obtaining
+               website content.
+        :param _builtins.str antiscan_dir_traversal: The directory traversal protection, which prevents attackers from accessing system files
+               through directory traversal.
+        :param _builtins.str antiscan_high_freq_scan: The scanning blocking, which identifies and blocks abnormal high-frequency requests.
+        :param _builtins.str antitamper: The web Tamper Protection, Protecting Website Content from Unauthorized Modification.
+        :param _builtins.str botm: The BOT attacks, malicious attacks using automated programs.
+        :param _builtins.str cc: The CC attack, a challenge attack, exhausting server resources by sending a large number of requests.
+        :param _builtins.str cmdi: The command injection attack, in which an attacker injects malicious commands to perform unauthorized
+               operations.
+        :param _builtins.str custom_custom: The precise protection, which is a custom security protection policy based on specific rules.
+        :param _builtins.str custom_geoip: The geolocation access control: geographical location-based access control policy.
+        :param _builtins.str custom_idc_ip: The IDC intelligence, which is threat intelligence based on data center IP addresses.
+        :param _builtins.str custom_whiteblackip: The IP address blacklist and whitelist, IP address-based access control policy.
+        :param _builtins.str illegal: The invalid request, which violates security policies or service rules.
+        :param _builtins.str leakage: The website information leakage and accidental exposure of sensitive information.
+        :param _builtins.str lfi: The local file inclusion: Attackers exploit this vulnerability to include local files to obtain information.
+        :param _builtins.str llm_prompt_injection: The LLM prompt injection attack, in which an attacker constructs special inputs to tamper
+               with the prompts of an AI model.
+        :param _builtins.str llm_prompt_sensitive: The large model prompt word compliance detection, identifying sensitive information in
+               prompts.
+        :param _builtins.str llm_response_sensitive: The foundation model responds to compliance detection and identifies sensitive information
+               in the AI model output.
+        :param _builtins.str rfi: The remote file inclusion: Attackers exploit this vulnerability to execute malicious code using remote files.
+        :param _builtins.str robot: The malicious crawler, which is an automated program used to illegally obtain data or launch attacks.
+        :param _builtins.str sqli: The SQL injection: Attackers inject malicious SQL statements to obtain or tamper with data.
+        :param _builtins.str third_bot_river: The third-party bot, which is an automated interaction program from a third-party service.
+        :param _builtins.str vuln: The other types of attacks, unclassified security vulnerabilities or attacks.
+        :param _builtins.str webshell: The web shells, which are malicious programs uploaded by attackers to remotely control websites.
+        :param _builtins.str xss: The XSS attack, in which an attacker obtains user information by injecting malicious scripts.
+        """
+        pulumi.set(__self__, "advanced_bot", advanced_bot)
+        pulumi.set(__self__, "anticrawler", anticrawler)
+        pulumi.set(__self__, "antiscan_dir_traversal", antiscan_dir_traversal)
+        pulumi.set(__self__, "antiscan_high_freq_scan", antiscan_high_freq_scan)
+        pulumi.set(__self__, "antitamper", antitamper)
+        pulumi.set(__self__, "botm", botm)
+        pulumi.set(__self__, "cc", cc)
+        pulumi.set(__self__, "cmdi", cmdi)
+        pulumi.set(__self__, "custom_custom", custom_custom)
+        pulumi.set(__self__, "custom_geoip", custom_geoip)
+        pulumi.set(__self__, "custom_idc_ip", custom_idc_ip)
+        pulumi.set(__self__, "custom_whiteblackip", custom_whiteblackip)
+        pulumi.set(__self__, "illegal", illegal)
+        pulumi.set(__self__, "leakage", leakage)
+        pulumi.set(__self__, "lfi", lfi)
+        pulumi.set(__self__, "llm_prompt_injection", llm_prompt_injection)
+        pulumi.set(__self__, "llm_prompt_sensitive", llm_prompt_sensitive)
+        pulumi.set(__self__, "llm_response_sensitive", llm_response_sensitive)
+        pulumi.set(__self__, "rfi", rfi)
+        pulumi.set(__self__, "robot", robot)
+        pulumi.set(__self__, "sqli", sqli)
+        pulumi.set(__self__, "third_bot_river", third_bot_river)
+        pulumi.set(__self__, "vuln", vuln)
+        pulumi.set(__self__, "webshell", webshell)
+        pulumi.set(__self__, "xss", xss)
+
+    @_builtins.property
+    @pulumi.getter(name="advancedBot")
+    def advanced_bot(self) -> _builtins.str:
+        """
+        The advanced bot, which is an automated program with complex behavior patterns.
+        """
+        return pulumi.get(self, "advanced_bot")
+
+    @_builtins.property
+    @pulumi.getter
+    def anticrawler(self) -> _builtins.str:
+        """
+        The website anti-crawler policy, which is used to prevent automated programs from illegally obtaining
+        website content.
+        """
+        return pulumi.get(self, "anticrawler")
+
+    @_builtins.property
+    @pulumi.getter(name="antiscanDirTraversal")
+    def antiscan_dir_traversal(self) -> _builtins.str:
+        """
+        The directory traversal protection, which prevents attackers from accessing system files
+        through directory traversal.
+        """
+        return pulumi.get(self, "antiscan_dir_traversal")
+
+    @_builtins.property
+    @pulumi.getter(name="antiscanHighFreqScan")
+    def antiscan_high_freq_scan(self) -> _builtins.str:
+        """
+        The scanning blocking, which identifies and blocks abnormal high-frequency requests.
+        """
+        return pulumi.get(self, "antiscan_high_freq_scan")
+
+    @_builtins.property
+    @pulumi.getter
+    def antitamper(self) -> _builtins.str:
+        """
+        The web Tamper Protection, Protecting Website Content from Unauthorized Modification.
+        """
+        return pulumi.get(self, "antitamper")
+
+    @_builtins.property
+    @pulumi.getter
+    def botm(self) -> _builtins.str:
+        """
+        The BOT attacks, malicious attacks using automated programs.
+        """
+        return pulumi.get(self, "botm")
+
+    @_builtins.property
+    @pulumi.getter
+    def cc(self) -> _builtins.str:
+        """
+        The CC attack, a challenge attack, exhausting server resources by sending a large number of requests.
+        """
+        return pulumi.get(self, "cc")
+
+    @_builtins.property
+    @pulumi.getter
+    def cmdi(self) -> _builtins.str:
+        """
+        The command injection attack, in which an attacker injects malicious commands to perform unauthorized
+        operations.
+        """
+        return pulumi.get(self, "cmdi")
+
+    @_builtins.property
+    @pulumi.getter(name="customCustom")
+    def custom_custom(self) -> _builtins.str:
+        """
+        The precise protection, which is a custom security protection policy based on specific rules.
+        """
+        return pulumi.get(self, "custom_custom")
+
+    @_builtins.property
+    @pulumi.getter(name="customGeoip")
+    def custom_geoip(self) -> _builtins.str:
+        """
+        The geolocation access control: geographical location-based access control policy.
+        """
+        return pulumi.get(self, "custom_geoip")
+
+    @_builtins.property
+    @pulumi.getter(name="customIdcIp")
+    def custom_idc_ip(self) -> _builtins.str:
+        """
+        The IDC intelligence, which is threat intelligence based on data center IP addresses.
+        """
+        return pulumi.get(self, "custom_idc_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="customWhiteblackip")
+    def custom_whiteblackip(self) -> _builtins.str:
+        """
+        The IP address blacklist and whitelist, IP address-based access control policy.
+        """
+        return pulumi.get(self, "custom_whiteblackip")
+
+    @_builtins.property
+    @pulumi.getter
+    def illegal(self) -> _builtins.str:
+        """
+        The invalid request, which violates security policies or service rules.
+        """
+        return pulumi.get(self, "illegal")
+
+    @_builtins.property
+    @pulumi.getter
+    def leakage(self) -> _builtins.str:
+        """
+        The website information leakage and accidental exposure of sensitive information.
+        """
+        return pulumi.get(self, "leakage")
+
+    @_builtins.property
+    @pulumi.getter
+    def lfi(self) -> _builtins.str:
+        """
+        The local file inclusion: Attackers exploit this vulnerability to include local files to obtain information.
+        """
+        return pulumi.get(self, "lfi")
+
+    @_builtins.property
+    @pulumi.getter(name="llmPromptInjection")
+    def llm_prompt_injection(self) -> _builtins.str:
+        """
+        The LLM prompt injection attack, in which an attacker constructs special inputs to tamper
+        with the prompts of an AI model.
+        """
+        return pulumi.get(self, "llm_prompt_injection")
+
+    @_builtins.property
+    @pulumi.getter(name="llmPromptSensitive")
+    def llm_prompt_sensitive(self) -> _builtins.str:
+        """
+        The large model prompt word compliance detection, identifying sensitive information in
+        prompts.
+        """
+        return pulumi.get(self, "llm_prompt_sensitive")
+
+    @_builtins.property
+    @pulumi.getter(name="llmResponseSensitive")
+    def llm_response_sensitive(self) -> _builtins.str:
+        """
+        The foundation model responds to compliance detection and identifies sensitive information
+        in the AI model output.
+        """
+        return pulumi.get(self, "llm_response_sensitive")
+
+    @_builtins.property
+    @pulumi.getter
+    def rfi(self) -> _builtins.str:
+        """
+        The remote file inclusion: Attackers exploit this vulnerability to execute malicious code using remote files.
+        """
+        return pulumi.get(self, "rfi")
+
+    @_builtins.property
+    @pulumi.getter
+    def robot(self) -> _builtins.str:
+        """
+        The malicious crawler, which is an automated program used to illegally obtain data or launch attacks.
+        """
+        return pulumi.get(self, "robot")
+
+    @_builtins.property
+    @pulumi.getter
+    def sqli(self) -> _builtins.str:
+        """
+        The SQL injection: Attackers inject malicious SQL statements to obtain or tamper with data.
+        """
+        return pulumi.get(self, "sqli")
+
+    @_builtins.property
+    @pulumi.getter(name="thirdBotRiver")
+    def third_bot_river(self) -> _builtins.str:
+        """
+        The third-party bot, which is an automated interaction program from a third-party service.
+        """
+        return pulumi.get(self, "third_bot_river")
+
+    @_builtins.property
+    @pulumi.getter
+    def vuln(self) -> _builtins.str:
+        """
+        The other types of attacks, unclassified security vulnerabilities or attacks.
+        """
+        return pulumi.get(self, "vuln")
+
+    @_builtins.property
+    @pulumi.getter
+    def webshell(self) -> _builtins.str:
+        """
+        The web shells, which are malicious programs uploaded by attackers to remotely control websites.
+        """
+        return pulumi.get(self, "webshell")
+
+    @_builtins.property
+    @pulumi.getter
+    def xss(self) -> _builtins.str:
+        """
+        The XSS attack, in which an attacker obtains user information by injecting malicious scripts.
+        """
+        return pulumi.get(self, "xss")
+
+
+@pulumi.output_type
+class GetAllAntileakageRulesItemResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 timestamp: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str category: The rule category.
+        :param Sequence[_builtins.str] contents: The rule contents.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.str url: The URL for the rule application.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The rule category.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        The rule contents.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL for the rule application.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetAllDataMaskingRulesItemResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 index: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 timestamp: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str category: The blocked field
+               The valid values are as follows:
+               + **Params**: Indicates request parameters.
+               + **Cookie**: Indicates web visitors distinguished by cookies.
+               + **Header**: Indicates custom HTTP headers.
+               + **Form**: Indicates form parameters.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str index: The blocked field name.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.str url: The URL protected by the rule.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The blocked field
+        The valid values are as follows:
+        + **Params**: Indicates request parameters.
+        + **Cookie**: Indicates web visitors distinguished by cookies.
+        + **Header**: Indicates custom HTTP headers.
+        + **Form**: Indicates form parameters.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.str:
+        """
+        The blocked field name.
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL protected by the rule.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
 class GetAllDomainsItemResult(dict):
     def __init__(__self__, *,
                  access_code: _builtins.str,
@@ -2977,6 +4660,1332 @@ class GetAllDomainsItemServerResult(dict):
 
 
 @pulumi.output_type
+class GetAllGeoIpPolicyRulesItemResult(dict):
+    def __init__(__self__, *,
+                 geoip: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 timestamp: _builtins.int,
+                 white: _builtins.int):
+        """
+        :param _builtins.str geoip: The geo location code blocked by the rule.
+               The valid values are as follows:
+               + **CA**: Canada
+               + **US**: United States
+               + **AU**: Australia
+               + **IN**: India
+               + **JP**: Japan
+               + **UK**: United Kingdom
+               + **FR**: France
+               + **DE**: Germany
+               + **BR**: Brazil
+               + **Thailand**: Thailand
+               + **Singapore**: Singapore
+               + **South Africa**: South Africa
+               + **Mexico**: Mexico
+               + **Peru**: Peru
+               + **Indonesia**: Indonesia
+               + **GD**: Guangdong (China)
+               + **FJ**: Fujian (China)
+               + **JL**: Jilin (China)
+               + **LN**: Liaoning (China)
+               + **TW**: Taiwan (China)
+               + **GZ**: Guizhou (China)
+               + **AH**: Anhui (China)
+               + **HL**: Heilongjiang (China)
+               + **HA**: Henan (China)
+               + **SC**: Sichuan (China)
+               + **HE**: Hebei (China)
+               + **YN**: Yunnan (China)
+               + **HB**: Hubei (China)
+               + **HI**: Hainan (China)
+               + **QH**: Qinghai (China)
+               + **HN**: Hunan (China)
+               + **JX**: Jiangxi (China)
+               + **SX**: Shanxi (China)
+               + **SN**: Shaanxi (China)
+               + **ZJ**: Zhejiang (China)
+               + **GS**: Gansu (China)
+               + **JS**: Jiangsu (China)
+               + **SD**: Shandong (China)
+               + **BJ**: Beijing (China)
+               + **SH**: Shanghai (China)
+               + **TJ**: Tianjin (China)
+               + **CQ**: Chongqing (China)
+               + **MO**: Macao (China)
+               + **HK**: Hong Kong (China)
+               + **NX**: Ningxia (China)
+               + **GX**: Guangxi (China)
+               + **XJ**: Xinjiang (China)
+               + **XZ**: Tibet (China)
+               + **NM**: Inner Mongolia (China)
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str name: The name of the rule.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.int white: The protection action of the rule.
+               The valid values are as follows:
+        """
+        pulumi.set(__self__, "geoip", geoip)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "white", white)
+
+    @_builtins.property
+    @pulumi.getter
+    def geoip(self) -> _builtins.str:
+        """
+        The geo location code blocked by the rule.
+        The valid values are as follows:
+        + **CA**: Canada
+        + **US**: United States
+        + **AU**: Australia
+        + **IN**: India
+        + **JP**: Japan
+        + **UK**: United Kingdom
+        + **FR**: France
+        + **DE**: Germany
+        + **BR**: Brazil
+        + **Thailand**: Thailand
+        + **Singapore**: Singapore
+        + **South Africa**: South Africa
+        + **Mexico**: Mexico
+        + **Peru**: Peru
+        + **Indonesia**: Indonesia
+        + **GD**: Guangdong (China)
+        + **FJ**: Fujian (China)
+        + **JL**: Jilin (China)
+        + **LN**: Liaoning (China)
+        + **TW**: Taiwan (China)
+        + **GZ**: Guizhou (China)
+        + **AH**: Anhui (China)
+        + **HL**: Heilongjiang (China)
+        + **HA**: Henan (China)
+        + **SC**: Sichuan (China)
+        + **HE**: Hebei (China)
+        + **YN**: Yunnan (China)
+        + **HB**: Hubei (China)
+        + **HI**: Hainan (China)
+        + **QH**: Qinghai (China)
+        + **HN**: Hunan (China)
+        + **JX**: Jiangxi (China)
+        + **SX**: Shanxi (China)
+        + **SN**: Shaanxi (China)
+        + **ZJ**: Zhejiang (China)
+        + **GS**: Gansu (China)
+        + **JS**: Jiangsu (China)
+        + **SD**: Shandong (China)
+        + **BJ**: Beijing (China)
+        + **SH**: Shanghai (China)
+        + **TJ**: Tianjin (China)
+        + **CQ**: Chongqing (China)
+        + **MO**: Macao (China)
+        + **HK**: Hong Kong (China)
+        + **NX**: Ningxia (China)
+        + **GX**: Guangxi (China)
+        + **XJ**: Xinjiang (China)
+        + **XZ**: Tibet (China)
+        + **NM**: Inner Mongolia (China)
+        """
+        return pulumi.get(self, "geoip")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the rule.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def white(self) -> _builtins.int:
+        """
+        The protection action of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "white")
+
+
+@pulumi.output_type
+class GetAllGlobalWhitelistRulesItemResult(dict):
+    def __init__(__self__, *,
+                 advanceds: Sequence['outputs.GetAllGlobalWhitelistRulesItemAdvancedResult'],
+                 conditions: Sequence['outputs.GetAllGlobalWhitelistRulesItemConditionResult'],
+                 description: _builtins.str,
+                 domains: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 mode: _builtins.int,
+                 policyid: _builtins.str,
+                 rule: _builtins.str,
+                 status: _builtins.int,
+                 timestamp: _builtins.int,
+                 url: _builtins.str,
+                 url_logic: _builtins.str):
+        """
+        :param Sequence['GetAllGlobalWhitelistRulesItemAdvancedArgs'] advanceds: The condition list.
+        :param Sequence['GetAllGlobalWhitelistRulesItemConditionArgs'] conditions: The condition list.
+        :param _builtins.str description: The description of the rule.
+        :param Sequence[_builtins.str] domains: The protection domain name or website.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.int mode: The version.
+               The value `0` indicates old version v1, value `1` indicates new version v2.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.str rule: The rule that need to be blocked.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.str url: The false alarm rule blocks the path.
+               Only valid when `mode` value is `0`.
+        :param _builtins.str url_logic: The matching logic.
+        """
+        pulumi.set(__self__, "advanceds", advanceds)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domains", domains)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "rule", rule)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "url_logic", url_logic)
+
+    @_builtins.property
+    @pulumi.getter
+    def advanceds(self) -> Sequence['outputs.GetAllGlobalWhitelistRulesItemAdvancedResult']:
+        """
+        The condition list.
+        """
+        return pulumi.get(self, "advanceds")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.GetAllGlobalWhitelistRulesItemConditionResult']:
+        """
+        The condition list.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def domains(self) -> Sequence[_builtins.str]:
+        """
+        The protection domain name or website.
+        """
+        return pulumi.get(self, "domains")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.int:
+        """
+        The version.
+        The value `0` indicates old version v1, value `1` indicates new version v2.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def rule(self) -> _builtins.str:
+        """
+        The rule that need to be blocked.
+        """
+        return pulumi.get(self, "rule")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The false alarm rule blocks the path.
+        Only valid when `mode` value is `0`.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter(name="urlLogic")
+    def url_logic(self) -> _builtins.str:
+        """
+        The matching logic.
+        """
+        return pulumi.get(self, "url_logic")
+
+
+@pulumi.output_type
+class GetAllGlobalWhitelistRulesItemAdvancedResult(dict):
+    def __init__(__self__, *,
+                 contents: Sequence[_builtins.str],
+                 index: _builtins.str):
+        """
+        :param Sequence[_builtins.str] contents: The subfield of the field type.
+        :param _builtins.str index: The field type.
+               The value can be **params**, **cookie**, **header**, **body** or **multipart**.
+        """
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "index", index)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        The subfield of the field type.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.str:
+        """
+        The field type.
+        The value can be **params**, **cookie**, **header**, **body** or **multipart**.
+        """
+        return pulumi.get(self, "index")
+
+
+@pulumi.output_type
+class GetAllGlobalWhitelistRulesItemConditionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 index: _builtins.str,
+                 logic_operation: _builtins.str):
+        """
+        :param _builtins.str category: The field type.
+               The value can be **ip**, **url**, **params**, **cookie** or **header**.
+        :param Sequence[_builtins.str] contents: The subfield of the field type.
+        :param _builtins.str index: The field type.
+               The value can be **params**, **cookie**, **header**, **body** or **multipart**.
+        :param _builtins.str logic_operation: The matching logic.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The field type.
+        The value can be **ip**, **url**, **params**, **cookie** or **header**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        The subfield of the field type.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.str:
+        """
+        The field type.
+        The value can be **params**, **cookie**, **header**, **body** or **multipart**.
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> _builtins.str:
+        """
+        The matching logic.
+        """
+        return pulumi.get(self, "logic_operation")
+
+
+@pulumi.output_type
+class GetAllIpReputationPolicyRulesItemResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence['outputs.GetAllIpReputationPolicyRulesItemActionResult'],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 tags: Sequence[_builtins.str],
+                 type: _builtins.str):
+        """
+        :param Sequence['GetAllIpReputationPolicyRulesItemActionArgs'] actions: The protection action of the rule.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str name: The name of the rule.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param Sequence[_builtins.str] tags: The list of IDC data centers for the reputation type.
+        :param _builtins.str type: The reputation type of the rule.
+        """
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def actions(self) -> Sequence['outputs.GetAllIpReputationPolicyRulesItemActionResult']:
+        """
+        The protection action of the rule.
+        """
+        return pulumi.get(self, "actions")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the rule.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        The list of IDC data centers for the reputation type.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The reputation type of the rule.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAllIpReputationPolicyRulesItemActionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str):
+        """
+        :param _builtins.str category: The action type of the rule.
+               The valid values are as follows:
+               + **pass**: Allow
+               + **block**: Block
+               + **log**: Log only
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The action type of the rule.
+        The valid values are as follows:
+        + **pass**: Allow
+        + **block**: Block
+        + **log**: Log only
+        """
+        return pulumi.get(self, "category")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence['outputs.GetAllPolicyCcRulesItemActionResult'],
+                 conditions: Sequence['outputs.GetAllPolicyCcRulesItemConditionResult'],
+                 description: _builtins.str,
+                 domain_aggregation: _builtins.bool,
+                 id: _builtins.str,
+                 limit_num: _builtins.int,
+                 limit_period: _builtins.int,
+                 lock_time: _builtins.int,
+                 mode: _builtins.int,
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 prefix: _builtins.bool,
+                 region_aggregation: _builtins.bool,
+                 status: _builtins.int,
+                 tag_conditions: Sequence['outputs.GetAllPolicyCcRulesItemTagConditionResult'],
+                 tag_index: _builtins.str,
+                 tag_type: _builtins.str,
+                 timestamp: _builtins.int,
+                 unlock_num: _builtins.int,
+                 url: _builtins.str):
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_aggregation", domain_aggregation)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "limit_num", limit_num)
+        pulumi.set(__self__, "limit_period", limit_period)
+        pulumi.set(__self__, "lock_time", lock_time)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "region_aggregation", region_aggregation)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tag_conditions", tag_conditions)
+        pulumi.set(__self__, "tag_index", tag_index)
+        pulumi.set(__self__, "tag_type", tag_type)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "unlock_num", unlock_num)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def actions(self) -> Sequence['outputs.GetAllPolicyCcRulesItemActionResult']:
+        return pulumi.get(self, "actions")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.GetAllPolicyCcRulesItemConditionResult']:
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainAggregation")
+    def domain_aggregation(self) -> _builtins.bool:
+        return pulumi.get(self, "domain_aggregation")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="limitNum")
+    def limit_num(self) -> _builtins.int:
+        return pulumi.get(self, "limit_num")
+
+    @_builtins.property
+    @pulumi.getter(name="limitPeriod")
+    def limit_period(self) -> _builtins.int:
+        return pulumi.get(self, "limit_period")
+
+    @_builtins.property
+    @pulumi.getter(name="lockTime")
+    def lock_time(self) -> _builtins.int:
+        return pulumi.get(self, "lock_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.int:
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix(self) -> _builtins.bool:
+        return pulumi.get(self, "prefix")
+
+    @_builtins.property
+    @pulumi.getter(name="regionAggregation")
+    def region_aggregation(self) -> _builtins.bool:
+        return pulumi.get(self, "region_aggregation")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="tagConditions")
+    def tag_conditions(self) -> Sequence['outputs.GetAllPolicyCcRulesItemTagConditionResult']:
+        return pulumi.get(self, "tag_conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="tagIndex")
+    def tag_index(self) -> _builtins.str:
+        return pulumi.get(self, "tag_index")
+
+    @_builtins.property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> _builtins.str:
+        return pulumi.get(self, "tag_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter(name="unlockNum")
+    def unlock_num(self) -> _builtins.int:
+        return pulumi.get(self, "unlock_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemActionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 details: Sequence['outputs.GetAllPolicyCcRulesItemActionDetailResult']):
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "details", details)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def details(self) -> Sequence['outputs.GetAllPolicyCcRulesItemActionDetailResult']:
+        return pulumi.get(self, "details")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemActionDetailResult(dict):
+    def __init__(__self__, *,
+                 responses: Sequence['outputs.GetAllPolicyCcRulesItemActionDetailResponseResult']):
+        pulumi.set(__self__, "responses", responses)
+
+    @_builtins.property
+    @pulumi.getter
+    def responses(self) -> Sequence['outputs.GetAllPolicyCcRulesItemActionDetailResponseResult']:
+        return pulumi.get(self, "responses")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemActionDetailResponseResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 content_type: _builtins.str):
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "content_type", content_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> _builtins.str:
+        return pulumi.get(self, "content_type")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemConditionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 index: _builtins.str,
+                 logic_operation: _builtins.str,
+                 value_list_id: _builtins.str):
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.str:
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> _builtins.str:
+        return pulumi.get(self, "logic_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> _builtins.str:
+        return pulumi.get(self, "value_list_id")
+
+
+@pulumi.output_type
+class GetAllPolicyCcRulesItemTagConditionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str]):
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "contents")
+
+
+@pulumi.output_type
+class GetAllPreciseProtectionRulesItemResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence['outputs.GetAllPreciseProtectionRulesItemActionResult'],
+                 conditions: Sequence['outputs.GetAllPreciseProtectionRulesItemConditionResult'],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 priority: _builtins.int,
+                 start: _builtins.int,
+                 status: _builtins.int,
+                 terminal: _builtins.int,
+                 time: _builtins.bool,
+                 timestamp: _builtins.int):
+        """
+        :param Sequence['GetAllPreciseProtectionRulesItemActionArgs'] actions: The operation target after precise protection rule is triggered.
+        :param Sequence['GetAllPreciseProtectionRulesItemConditionArgs'] conditions: The matching condition list of the rule.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str name: The name of the rule.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int priority: The priority of executing the rule.
+        :param _builtins.int start: The start time when the rule takes effect.
+               This parameter is valid only when the `time` is set to **true**.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int terminal: The end time when the rule takes effect.
+               This parameter is valid only when the `time` is set to **true**.
+        :param _builtins.bool time: The effective time of the rule.
+               The valid values are as follows:
+               + **true**: Indicates the rule takes effect immediately.
+               + **false**: Indicates a custom effective time.
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        """
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "start", start)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "terminal", terminal)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @_builtins.property
+    @pulumi.getter
+    def actions(self) -> Sequence['outputs.GetAllPreciseProtectionRulesItemActionResult']:
+        """
+        The operation target after precise protection rule is triggered.
+        """
+        return pulumi.get(self, "actions")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.GetAllPreciseProtectionRulesItemConditionResult']:
+        """
+        The matching condition list of the rule.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the rule.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The priority of executing the rule.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.int:
+        """
+        The start time when the rule takes effect.
+        This parameter is valid only when the `time` is set to **true**.
+        """
+        return pulumi.get(self, "start")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def terminal(self) -> _builtins.int:
+        """
+        The end time when the rule takes effect.
+        This parameter is valid only when the `time` is set to **true**.
+        """
+        return pulumi.get(self, "terminal")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.bool:
+        """
+        The effective time of the rule.
+        The valid values are as follows:
+        + **true**: Indicates the rule takes effect immediately.
+        + **false**: Indicates a custom effective time.
+        """
+        return pulumi.get(self, "time")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class GetAllPreciseProtectionRulesItemActionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 followed_action_id: _builtins.str):
+        """
+        :param _builtins.str category: The operation type.
+               The value can be **block**, **pass** or **log**.
+        :param _builtins.str followed_action_id: The known attack source rule ID.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "followed_action_id", followed_action_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The operation type.
+        The value can be **block**, **pass** or **log**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="followedActionId")
+    def followed_action_id(self) -> _builtins.str:
+        """
+        The known attack source rule ID.
+        """
+        return pulumi.get(self, "followed_action_id")
+
+
+@pulumi.output_type
+class GetAllPreciseProtectionRulesItemConditionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 index: _builtins.str,
+                 logic_operation: _builtins.str,
+                 value_list_id: _builtins.str):
+        """
+        :param _builtins.str category: The operation type.
+               The value can be **block**, **pass** or **log**.
+        :param Sequence[_builtins.str] contents: The condition matching contents.
+        :param _builtins.str index: The subfield.
+        :param _builtins.str logic_operation: The condition matching logic.
+        :param _builtins.str value_list_id: The reference table ID.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The operation type.
+        The value can be **block**, **pass** or **log**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        The condition matching contents.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> _builtins.str:
+        """
+        The subfield.
+        """
+        return pulumi.get(self, "index")
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> _builtins.str:
+        """
+        The condition matching logic.
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> _builtins.str:
+        """
+        The reference table ID.
+        """
+        return pulumi.get(self, "value_list_id")
+
+
+@pulumi.output_type
+class GetAllWebAntitamperRulesItemResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 contents: Sequence[_builtins.str],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 timestamp: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str category: The rule category.
+        :param Sequence[_builtins.str] contents: The rule contents.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the rule.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.str url: The URL for the rule application.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The rule category.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Sequence[_builtins.str]:
+        """
+        The rule contents.
+        """
+        return pulumi.get(self, "contents")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL for the rule application.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetAllWhiteblackipRulesItemResult(dict):
+    def __init__(__self__, *,
+                 addr: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 ip_groups: Sequence['outputs.GetAllWhiteblackipRulesItemIpGroupResult'],
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 start: _builtins.int,
+                 status: _builtins.int,
+                 terminal: _builtins.int,
+                 time_mode: _builtins.str,
+                 timestamp: _builtins.int,
+                 white: _builtins.int):
+        """
+        :param _builtins.str addr: The IP address or IP segment.
+        :param _builtins.str description: The description of the rule.
+        :param _builtins.str id: The ID of the IP address group.
+        :param Sequence['GetAllWhiteblackipRulesItemIpGroupArgs'] ip_groups: The IP address group.
+        :param _builtins.str name: The name of the IP address group.
+        :param _builtins.str policyid: The ID of the policy.
+        :param _builtins.int start: The start time when the rule takes effect.
+               This parameter is valid only when the effective mode is customized.
+        :param _builtins.int status: The status of the rule.
+               The valid values are as follows:
+        :param _builtins.int terminal: The end time when the rule takes effect.
+               This parameter is valid only when the effective mode is customized.
+        :param _builtins.str time_mode: The effective mode. The default value is **permanent** (takes effect immediately).
+        :param _builtins.int timestamp: The creation time of the rule, in milliseconds.
+        :param _builtins.int white: The protection action.
+               The valid values are as follows:
+        """
+        pulumi.set(__self__, "addr", addr)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_groups", ip_groups)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "start", start)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "terminal", terminal)
+        pulumi.set(__self__, "time_mode", time_mode)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "white", white)
+
+    @_builtins.property
+    @pulumi.getter
+    def addr(self) -> _builtins.str:
+        """
+        The IP address or IP segment.
+        """
+        return pulumi.get(self, "addr")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the IP address group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipGroups")
+    def ip_groups(self) -> Sequence['outputs.GetAllWhiteblackipRulesItemIpGroupResult']:
+        """
+        The IP address group.
+        """
+        return pulumi.get(self, "ip_groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the IP address group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The ID of the policy.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.int:
+        """
+        The start time when the rule takes effect.
+        This parameter is valid only when the effective mode is customized.
+        """
+        return pulumi.get(self, "start")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the rule.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def terminal(self) -> _builtins.int:
+        """
+        The end time when the rule takes effect.
+        This parameter is valid only when the effective mode is customized.
+        """
+        return pulumi.get(self, "terminal")
+
+    @_builtins.property
+    @pulumi.getter(name="timeMode")
+    def time_mode(self) -> _builtins.str:
+        """
+        The effective mode. The default value is **permanent** (takes effect immediately).
+        """
+        return pulumi.get(self, "time_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The creation time of the rule, in milliseconds.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def white(self) -> _builtins.int:
+        """
+        The protection action.
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "white")
+
+
+@pulumi.output_type
+class GetAllWhiteblackipRulesItemIpGroupResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 size: _builtins.int):
+        """
+        :param _builtins.str id: The ID of the IP address group.
+        :param _builtins.str name: The name of the IP address group.
+        :param _builtins.int size: The number of IP addresses or IP segments contained in the IP address group.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the IP address group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the IP address group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The number of IP addresses or IP segments contained in the IP address group.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
 class GetCertificatesCertificateResult(dict):
     def __init__(__self__, *,
                  bind_hosts: Sequence['outputs.GetCertificatesCertificateBindHostResult'],
@@ -3436,6 +6445,86 @@ class GetDedicatedInstancesInstanceResult(dict):
 
 
 @pulumi.output_type
+class GetDnsDomainsItemResult(dict):
+    def __init__(__self__, *,
+                 domain: _builtins.str,
+                 id: _builtins.str,
+                 protect_port: _builtins.str,
+                 servers: Sequence['outputs.GetDnsDomainsItemServerResult']):
+        """
+        :param _builtins.str domain: The domain name of the DNS domain.
+        :param _builtins.str id: The ID of the DNS domain.
+        :param _builtins.str protect_port: The protected port of the DNS domain.
+        :param Sequence['GetDnsDomainsItemServerArgs'] servers: The list of servers.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "protect_port", protect_port)
+        pulumi.set(__self__, "servers", servers)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name of the DNS domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the DNS domain.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectPort")
+    def protect_port(self) -> _builtins.str:
+        """
+        The protected port of the DNS domain.
+        """
+        return pulumi.get(self, "protect_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def servers(self) -> Sequence['outputs.GetDnsDomainsItemServerResult']:
+        """
+        The list of servers.
+        """
+        return pulumi.get(self, "servers")
+
+
+@pulumi.output_type
+class GetDnsDomainsItemServerResult(dict):
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str address: The address of the server.
+        :param _builtins.str type: The type of the server.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        The address of the server.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the server.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetDomainsDomainResult(dict):
     def __init__(__self__, *,
                  access_code: _builtins.str,
@@ -3625,6 +6714,385 @@ class GetDomainsDomainResult(dict):
 
 
 @pulumi.output_type
+class GetEventLogsItemResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 end: _builtins.int,
+                 filename: _builtins.str,
+                 id: _builtins.str,
+                 obsname: _builtins.str,
+                 source: _builtins.str,
+                 start: _builtins.int,
+                 state: _builtins.str,
+                 timestamp: _builtins.int,
+                 url: _builtins.str,
+                 urltimestamp: _builtins.int):
+        """
+        :param _builtins.str description: The event description.
+        :param _builtins.int end: The statistics deadline.
+        :param _builtins.str filename: The filename.
+        :param _builtins.str id: The file ID.
+        :param _builtins.str obsname: The file OBS name.
+        :param _builtins.str source: The file source.
+        :param _builtins.int start: The statistics start time.
+        :param _builtins.str state: The file state.
+        :param _builtins.int timestamp: The file generation timestamp.
+        :param _builtins.str url: The URL.
+        :param _builtins.int urltimestamp: The update URL timestamp.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "filename", filename)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "obsname", obsname)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "start", start)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "timestamp", timestamp)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "urltimestamp", urltimestamp)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The event description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def end(self) -> _builtins.int:
+        """
+        The statistics deadline.
+        """
+        return pulumi.get(self, "end")
+
+    @_builtins.property
+    @pulumi.getter
+    def filename(self) -> _builtins.str:
+        """
+        The filename.
+        """
+        return pulumi.get(self, "filename")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The file ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def obsname(self) -> _builtins.str:
+        """
+        The file OBS name.
+        """
+        return pulumi.get(self, "obsname")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        The file source.
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.int:
+        """
+        The statistics start time.
+        """
+        return pulumi.get(self, "start")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The file state.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> _builtins.int:
+        """
+        The file generation timestamp.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def urltimestamp(self) -> _builtins.int:
+        """
+        The update URL timestamp.
+        """
+        return pulumi.get(self, "urltimestamp")
+
+
+@pulumi.output_type
+class GetEventsItemResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 attack: _builtins.str,
+                 cookie: _builtins.str,
+                 headers: Mapping[str, _builtins.str],
+                 host: _builtins.str,
+                 host_id: _builtins.str,
+                 id: _builtins.str,
+                 payload: _builtins.str,
+                 payload_location: _builtins.str,
+                 policyid: _builtins.str,
+                 process_time: _builtins.int,
+                 region: _builtins.str,
+                 request_body: _builtins.str,
+                 request_line: _builtins.str,
+                 response_body: _builtins.str,
+                 response_size: _builtins.int,
+                 response_time: _builtins.int,
+                 rule: _builtins.str,
+                 sip: _builtins.str,
+                 status: _builtins.str,
+                 time: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str action: The protection action.
+        :param _builtins.str attack: The attack type.
+        :param _builtins.str cookie: The request cookie.
+        :param Mapping[str, _builtins.str] headers: The HTTP request headers.
+        :param _builtins.str host: The domain name.
+        :param _builtins.str host_id: The domain ID.
+        :param _builtins.str id: The event ID.
+        :param _builtins.str payload: The hit payload.
+        :param _builtins.str payload_location: The hit payload location.
+        :param _builtins.str policyid: The policy ID.
+        :param _builtins.int process_time: The processing time.
+        :param _builtins.str region: Specifies the region in which to query the data source.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str request_body: The request body.
+        :param _builtins.str request_line: The request method and path.
+        :param _builtins.str response_body: The response body.
+        :param _builtins.int response_size: The response body size.
+        :param _builtins.int response_time: The response time.
+        :param _builtins.str rule: The hit rule ID.
+        :param _builtins.str sip: The source IP address.
+        :param _builtins.str status: The response code status.
+        :param _builtins.int time: The timestamp when the attack occurred, in milliseconds.
+        :param _builtins.str url: The attacked URL link.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "attack", attack)
+        pulumi.set(__self__, "cookie", cookie)
+        pulumi.set(__self__, "headers", headers)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "payload", payload)
+        pulumi.set(__self__, "payload_location", payload_location)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "process_time", process_time)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "request_body", request_body)
+        pulumi.set(__self__, "request_line", request_line)
+        pulumi.set(__self__, "response_body", response_body)
+        pulumi.set(__self__, "response_size", response_size)
+        pulumi.set(__self__, "response_time", response_time)
+        pulumi.set(__self__, "rule", rule)
+        pulumi.set(__self__, "sip", sip)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "time", time)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The protection action.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def attack(self) -> _builtins.str:
+        """
+        The attack type.
+        """
+        return pulumi.get(self, "attack")
+
+    @_builtins.property
+    @pulumi.getter
+    def cookie(self) -> _builtins.str:
+        """
+        The request cookie.
+        """
+        return pulumi.get(self, "cookie")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Mapping[str, _builtins.str]:
+        """
+        The HTTP request headers.
+        """
+        return pulumi.get(self, "headers")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The event ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def payload(self) -> _builtins.str:
+        """
+        The hit payload.
+        """
+        return pulumi.get(self, "payload")
+
+    @_builtins.property
+    @pulumi.getter(name="payloadLocation")
+    def payload_location(self) -> _builtins.str:
+        """
+        The hit payload location.
+        """
+        return pulumi.get(self, "payload_location")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter(name="processTime")
+    def process_time(self) -> _builtins.int:
+        """
+        The processing time.
+        """
+        return pulumi.get(self, "process_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the data source.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="requestBody")
+    def request_body(self) -> _builtins.str:
+        """
+        The request body.
+        """
+        return pulumi.get(self, "request_body")
+
+    @_builtins.property
+    @pulumi.getter(name="requestLine")
+    def request_line(self) -> _builtins.str:
+        """
+        The request method and path.
+        """
+        return pulumi.get(self, "request_line")
+
+    @_builtins.property
+    @pulumi.getter(name="responseBody")
+    def response_body(self) -> _builtins.str:
+        """
+        The response body.
+        """
+        return pulumi.get(self, "response_body")
+
+    @_builtins.property
+    @pulumi.getter(name="responseSize")
+    def response_size(self) -> _builtins.int:
+        """
+        The response body size.
+        """
+        return pulumi.get(self, "response_size")
+
+    @_builtins.property
+    @pulumi.getter(name="responseTime")
+    def response_time(self) -> _builtins.int:
+        """
+        The response time.
+        """
+        return pulumi.get(self, "response_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def rule(self) -> _builtins.str:
+        """
+        The hit rule ID.
+        """
+        return pulumi.get(self, "rule")
+
+    @_builtins.property
+    @pulumi.getter
+    def sip(self) -> _builtins.str:
+        """
+        The source IP address.
+        """
+        return pulumi.get(self, "sip")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The response code status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp when the attack occurred, in milliseconds.
+        """
+        return pulumi.get(self, "time")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The attacked URL link.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
 class GetInstanceGroupsGroupResult(dict):
     def __init__(__self__, *,
                  body_limit: _builtins.int,
@@ -3802,6 +7270,84 @@ class GetOverviewsAbnormalItemResult(dict):
 
 
 @pulumi.output_type
+class GetOverviewsAttackActionTypesItemResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str key: The protective action.
+               The valid values are as follows:
+               + **block**: WAF blocks requests that trigger the rate limit set in the rule.
+               + **log**: WAF logs requests that trigger the rate limit set in the rule but does not block them.
+               + **captcha**: If the request exceeds the rate limit you configure, a verification code is displayed for
+               human-machine verification. The request will not be allowed unless the verification is successful. Currently,
+               verification code supports English.
+               + **dynamic_block**: Requests that trigger the rule are blocked based on the allowable frequency you configure
+               after the first rate limit period is over.
+               + **advanced_captcha**: If your website visitor triggers the rate limit you set, CAPTCHA verification is required.
+        :param _builtins.int num: The quantity.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The protective action.
+        The valid values are as follows:
+        + **block**: WAF blocks requests that trigger the rate limit set in the rule.
+        + **log**: WAF logs requests that trigger the rate limit set in the rule but does not block them.
+        + **captcha**: If the request exceeds the rate limit you configure, a verification code is displayed for
+        human-machine verification. The request will not be allowed unless the verification is successful. Currently,
+        verification code supports English.
+        + **dynamic_block**: Requests that trigger the rule are blocked based on the allowable frequency you configure
+        after the first rate limit period is over.
+        + **advanced_captcha**: If your website visitor triggers the rate limit you set, CAPTCHA verification is required.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The quantity.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetOverviewsAttackIpItemResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str key: The type.
+               The value can be **ACCESS**, **CRAWLER**, **ATTACK**, **WEB_ATTACK**, **PRECISE** or **CC**.
+        :param _builtins.int num: The quantity.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The type.
+        The value can be **ACCESS**, **CRAWLER**, **ATTACK**, **WEB_ATTACK**, **PRECISE** or **CC**.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The quantity.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
 class GetOverviewsAttackTopDomainsItemResult(dict):
     def __init__(__self__, *,
                  key: _builtins.str,
@@ -3826,6 +7372,46 @@ class GetOverviewsAttackTopDomainsItemResult(dict):
     def num(self) -> _builtins.int:
         """
         The domain attacked count.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetOverviewsAttackUrlItemResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The protected domain name.
+        :param _builtins.str key: The attack type.
+        :param _builtins.int num: The quantity.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The protected domain name.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The attack type.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The quantity.
         """
         return pulumi.get(self, "num")
 
@@ -4244,6 +7830,78 @@ class GetOverviewsRequestTimelineRequestResult(dict):
 
 @pulumi.output_type
 class GetOverviewsRequestTimelineRequestTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The statistics data for the time range from the previous time point to the point specified by `time`.
+        :param _builtins.int time: The time point.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The statistics data for the time range from the previous time point to the point specified by `time`.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The time point.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetOverviewsResponseCodeTimelineResponseCodeResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetOverviewsResponseCodeTimelineResponseCodeTimelineResult']):
+        """
+        :param _builtins.str key: The response code.
+               The valid values are as follows:
+               + **ACCESS**: Total number of requests.
+               + **CRAWLER**: Bot attack protection.
+               + **ATTACK**: Total attack count.
+               + **WEB_ATTACK**: Web basic protection.
+               + **PRECISE**: Precision protection.
+               + **CC**: CC attack protection.
+        :param Sequence['GetOverviewsResponseCodeTimelineResponseCodeTimelineArgs'] timelines: The statistics data over time for the corresponding response code.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The response code.
+        The valid values are as follows:
+        + **ACCESS**: Total number of requests.
+        + **CRAWLER**: Bot attack protection.
+        + **ATTACK**: Total attack count.
+        + **WEB_ATTACK**: Web basic protection.
+        + **PRECISE**: Precision protection.
+        + **CC**: CC attack protection.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetOverviewsResponseCodeTimelineResponseCodeTimelineResult']:
+        """
+        The statistics data over time for the corresponding response code.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetOverviewsResponseCodeTimelineResponseCodeTimelineResult(dict):
     def __init__(__self__, *,
                  num: _builtins.int,
                  time: _builtins.int):
@@ -4729,6 +8387,188 @@ class GetPoliciesPolicyOptionResult(dict):
         Indicates whether the web shell detection in basic web protection is enabled.
         """
         return pulumi.get(self, "webshell")
+
+
+@pulumi.output_type
+class GetPolicyIpReputationIpReputationMapResult(dict):
+    def __init__(__self__, *,
+                 idcs: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] idcs: The content types of threat intelligence control.
+        """
+        pulumi.set(__self__, "idcs", idcs)
+
+    @_builtins.property
+    @pulumi.getter
+    def idcs(self) -> Sequence[_builtins.str]:
+        """
+        The content types of threat intelligence control.
+        """
+        return pulumi.get(self, "idcs")
+
+
+@pulumi.output_type
+class GetProtectableResourcesItemResult(dict):
+    def __init__(__self__, *,
+                 domain_id: _builtins.str,
+                 eips: Sequence['outputs.GetProtectableResourcesItemEipResult'],
+                 listeners: Sequence['outputs.GetProtectableResourcesItemListenerResult'],
+                 loadbalancer_id: _builtins.str,
+                 loadbalancer_name: _builtins.str,
+                 project_id: _builtins.str):
+        """
+        :param _builtins.str domain_id: The account ID to which the load balancer belongs.
+        :param Sequence['GetProtectableResourcesItemEipArgs'] eips: The EIP bound to the load balancer.
+        :param Sequence['GetProtectableResourcesItemListenerArgs'] listeners: The current list of listeners associated with ELB.
+        :param _builtins.str loadbalancer_id: The load balancer ID.
+        :param _builtins.str loadbalancer_name: The load balancer name.
+        :param _builtins.str project_id: The project ID.
+        """
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "eips", eips)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "loadbalancer_id", loadbalancer_id)
+        pulumi.set(__self__, "loadbalancer_name", loadbalancer_name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The account ID to which the load balancer belongs.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def eips(self) -> Sequence['outputs.GetProtectableResourcesItemEipResult']:
+        """
+        The EIP bound to the load balancer.
+        """
+        return pulumi.get(self, "eips")
+
+    @_builtins.property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetProtectableResourcesItemListenerResult']:
+        """
+        The current list of listeners associated with ELB.
+        """
+        return pulumi.get(self, "listeners")
+
+    @_builtins.property
+    @pulumi.getter(name="loadbalancerId")
+    def loadbalancer_id(self) -> _builtins.str:
+        """
+        The load balancer ID.
+        """
+        return pulumi.get(self, "loadbalancer_id")
+
+    @_builtins.property
+    @pulumi.getter(name="loadbalancerName")
+    def loadbalancer_name(self) -> _builtins.str:
+        """
+        The load balancer name.
+        """
+        return pulumi.get(self, "loadbalancer_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GetProtectableResourcesItemEipResult(dict):
+    def __init__(__self__, *,
+                 eip_address: _builtins.str,
+                 eip_id: _builtins.str,
+                 ip_version: _builtins.int):
+        """
+        :param _builtins.str eip_address: The elastic IP address.
+        :param _builtins.str eip_id: The elastic IP ID.
+        :param _builtins.int ip_version: The IP version.
+        """
+        pulumi.set(__self__, "eip_address", eip_address)
+        pulumi.set(__self__, "eip_id", eip_id)
+        pulumi.set(__self__, "ip_version", ip_version)
+
+    @_builtins.property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> _builtins.str:
+        """
+        The elastic IP address.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> _builtins.str:
+        """
+        The elastic IP ID.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> _builtins.int:
+        """
+        The IP version.
+        """
+        return pulumi.get(self, "ip_version")
+
+
+@pulumi.output_type
+class GetProtectableResourcesItemListenerResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 protocol: _builtins.str,
+                 protocol_port: _builtins.int):
+        """
+        :param _builtins.str id: The ID of the listener.
+        :param _builtins.str name: The name of the listener.
+        :param _builtins.str protocol: The listening protocol of the listener.
+        :param _builtins.int protocol_port: The listening port of the listener.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "protocol_port", protocol_port)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the listener.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the listener.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The listening protocol of the listener.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="protocolPort")
+    def protocol_port(self) -> _builtins.int:
+        """
+        The listening port of the listener.
+        """
+        return pulumi.get(self, "protocol_port")
 
 
 @pulumi.output_type
@@ -6240,6 +10080,127 @@ class GetRulesPreciseProtectionRuleConditionResult(dict):
 
 
 @pulumi.output_type
+class GetRulesThreatIntelligenceItemResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence['outputs.GetRulesThreatIntelligenceItemActionResult'],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 policyid: _builtins.str,
+                 status: _builtins.int,
+                 tags: Sequence[_builtins.str],
+                 type: _builtins.str):
+        """
+        :param Sequence['GetRulesThreatIntelligenceItemActionArgs'] actions: The protective action taken when the rule is triggered.
+        :param _builtins.str description: The description of the threat intelligence rule.
+        :param _builtins.str id: The ID of the threat intelligence rule.
+        :param _builtins.str name: The name of the threat intelligence rule.
+        :param _builtins.str policyid: The protection policy ID.
+        :param _builtins.int status: The status of the threat intelligence rule. The value can be `0` (disabled) or `1` (enabled).
+        :param Sequence[_builtins.str] tags: The list of IDC data center tags for the reputation type.
+        :param _builtins.str type: The reputation type.
+        """
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policyid", policyid)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def actions(self) -> Sequence['outputs.GetRulesThreatIntelligenceItemActionResult']:
+        """
+        The protective action taken when the rule is triggered.
+        """
+        return pulumi.get(self, "actions")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the threat intelligence rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the threat intelligence rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the threat intelligence rule.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policyid(self) -> _builtins.str:
+        """
+        The protection policy ID.
+        """
+        return pulumi.get(self, "policyid")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The status of the threat intelligence rule. The value can be `0` (disabled) or `1` (enabled).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        The list of IDC data center tags for the reputation type.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The reputation type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRulesThreatIntelligenceItemActionResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str):
+        """
+        :param _builtins.str category: The action category.  
+               The valid values are as follows:
+               + **pass**: Pass.
+               + **block**: Block.
+               + **log**: Only record.
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The action category.  
+        The valid values are as follows:
+        + **pass**: Pass.
+        + **block**: Block.
+        + **log**: Only record.
+        """
+        return pulumi.get(self, "category")
+
+
+@pulumi.output_type
 class GetRulesWebTamperProtectionRuleResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -6327,6 +10288,1429 @@ class GetRulesWebTamperProtectionRuleResult(dict):
         + **1**: The rule is enabled.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetSecurityReportHistoryPeriodsItemResult(dict):
+    def __init__(__self__, *,
+                 report_id: _builtins.str,
+                 stat_periods: Sequence['outputs.GetSecurityReportHistoryPeriodsItemStatPeriodResult'],
+                 subscription_id: _builtins.str):
+        """
+        :param _builtins.str report_id: The unique identifier for the security report.
+        :param Sequence['GetSecurityReportHistoryPeriodsItemStatPeriodArgs'] stat_periods: The statistical period of the historical report.
+        :param _builtins.str subscription_id: Specifies the subscription ID of the security report.
+               This value can be queried through the datasource `waf_get_security_report_subscriptions`.
+        """
+        pulumi.set(__self__, "report_id", report_id)
+        pulumi.set(__self__, "stat_periods", stat_periods)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @_builtins.property
+    @pulumi.getter(name="reportId")
+    def report_id(self) -> _builtins.str:
+        """
+        The unique identifier for the security report.
+        """
+        return pulumi.get(self, "report_id")
+
+    @_builtins.property
+    @pulumi.getter(name="statPeriods")
+    def stat_periods(self) -> Sequence['outputs.GetSecurityReportHistoryPeriodsItemStatPeriodResult']:
+        """
+        The statistical period of the historical report.
+        """
+        return pulumi.get(self, "stat_periods")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> _builtins.str:
+        """
+        Specifies the subscription ID of the security report.
+        This value can be queried through the datasource `waf_get_security_report_subscriptions`.
+        """
+        return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class GetSecurityReportHistoryPeriodsItemStatPeriodResult(dict):
+    def __init__(__self__, *,
+                 begin_time: _builtins.int,
+                 end_time: _builtins.int):
+        """
+        :param _builtins.int begin_time: The start time of the statistical period (in milliseconds since epoch).
+        :param _builtins.int end_time: The end time of the statistical period (in milliseconds since epoch).
+        """
+        pulumi.set(__self__, "begin_time", begin_time)
+        pulumi.set(__self__, "end_time", end_time)
+
+    @_builtins.property
+    @pulumi.getter(name="beginTime")
+    def begin_time(self) -> _builtins.int:
+        """
+        The start time of the statistical period (in milliseconds since epoch).
+        """
+        return pulumi.get(self, "begin_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The end time of the statistical period (in milliseconds since epoch).
+        """
+        return pulumi.get(self, "end_time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResult(dict):
+    def __init__(__self__, *,
+                 attack_type_distribution_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoAttackTypeDistributionInfoListResult'],
+                 bandwidth_statistics_infos: Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoResult'],
+                 overview_statistics_list_infos: Sequence['outputs.GetSecurityReportReportContentInfoOverviewStatisticsListInfoResult'],
+                 qps_statistics_infos: Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoResult'],
+                 request_statistics_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoRequestStatisticsInfoListResult'],
+                 response_code_statistics_infos: Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResult'],
+                 top_abnormal_urls_infos: Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoResult'],
+                 top_attack_source_ips_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAttackSourceIpsInfoListResult'],
+                 top_attack_source_locations_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAttackSourceLocationsInfoListResult'],
+                 top_attacked_domains_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAttackedDomainsInfoListResult'],
+                 top_attacked_urls_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAttackedUrlsInfoListResult']):
+        """
+        :param Sequence['GetSecurityReportReportContentInfoAttackTypeDistributionInfoListArgs'] attack_type_distribution_info_lists: The attack type distribution statistics list contains the number of attacks for
+               each attack type.
+        :param Sequence['GetSecurityReportReportContentInfoBandwidthStatisticsInfoArgs'] bandwidth_statistics_infos: The bandwidth statistics, including timeline statistics for average and peak bandwidth
+               across various dimensions.
+        :param Sequence['GetSecurityReportReportContentInfoOverviewStatisticsListInfoArgs'] overview_statistics_list_infos: The overview statistics list contains summary statistics for each dimension and the
+               top domain details.
+        :param Sequence['GetSecurityReportReportContentInfoQpsStatisticsInfoArgs'] qps_statistics_infos: QPS statistics information, containing the average QPS and peak QPS for each dimension of the
+               timeline.
+        :param Sequence['GetSecurityReportReportContentInfoRequestStatisticsInfoListArgs'] request_statistics_info_lists: The request count statistics, including request counts for various dimensions and
+               timelines.
+        :param Sequence['GetSecurityReportReportContentInfoResponseCodeStatisticsInfoArgs'] response_code_statistics_infos: The response code statistics, including timeline statistics for each response code
+               from the WAF and upstream servers.
+        :param Sequence['GetSecurityReportReportContentInfoTopAbnormalUrlsInfoArgs'] top_abnormal_urls_infos: The top abnormal URL list contains URLs that have returned 502, 500, 404, etc. errors.
+        :param Sequence['GetSecurityReportReportContentInfoTopAttackSourceIpsInfoListArgs'] top_attack_source_ips_info_lists: The top attack source IP list contains IP addresses that have been attacked the most
+               times, sorted by attack count.
+        :param Sequence['GetSecurityReportReportContentInfoTopAttackSourceLocationsInfoListArgs'] top_attack_source_locations_info_lists: The top attack source location list contains locations that have been
+               attacked the most times, sorted by attack count.
+        :param Sequence['GetSecurityReportReportContentInfoTopAttackedDomainsInfoListArgs'] top_attacked_domains_info_lists: The top attacked domain list contains domains that have been attacked the most times,
+               sorted by attack count.
+        :param Sequence['GetSecurityReportReportContentInfoTopAttackedUrlsInfoListArgs'] top_attacked_urls_info_lists: The top attacked URL list contains URLs that have been attacked the most times, sorted
+               by attack count.
+        """
+        pulumi.set(__self__, "attack_type_distribution_info_lists", attack_type_distribution_info_lists)
+        pulumi.set(__self__, "bandwidth_statistics_infos", bandwidth_statistics_infos)
+        pulumi.set(__self__, "overview_statistics_list_infos", overview_statistics_list_infos)
+        pulumi.set(__self__, "qps_statistics_infos", qps_statistics_infos)
+        pulumi.set(__self__, "request_statistics_info_lists", request_statistics_info_lists)
+        pulumi.set(__self__, "response_code_statistics_infos", response_code_statistics_infos)
+        pulumi.set(__self__, "top_abnormal_urls_infos", top_abnormal_urls_infos)
+        pulumi.set(__self__, "top_attack_source_ips_info_lists", top_attack_source_ips_info_lists)
+        pulumi.set(__self__, "top_attack_source_locations_info_lists", top_attack_source_locations_info_lists)
+        pulumi.set(__self__, "top_attacked_domains_info_lists", top_attacked_domains_info_lists)
+        pulumi.set(__self__, "top_attacked_urls_info_lists", top_attacked_urls_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="attackTypeDistributionInfoLists")
+    def attack_type_distribution_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoAttackTypeDistributionInfoListResult']:
+        """
+        The attack type distribution statistics list contains the number of attacks for
+        each attack type.
+        """
+        return pulumi.get(self, "attack_type_distribution_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthStatisticsInfos")
+    def bandwidth_statistics_infos(self) -> Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoResult']:
+        """
+        The bandwidth statistics, including timeline statistics for average and peak bandwidth
+        across various dimensions.
+        """
+        return pulumi.get(self, "bandwidth_statistics_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="overviewStatisticsListInfos")
+    def overview_statistics_list_infos(self) -> Sequence['outputs.GetSecurityReportReportContentInfoOverviewStatisticsListInfoResult']:
+        """
+        The overview statistics list contains summary statistics for each dimension and the
+        top domain details.
+        """
+        return pulumi.get(self, "overview_statistics_list_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="qpsStatisticsInfos")
+    def qps_statistics_infos(self) -> Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoResult']:
+        """
+        QPS statistics information, containing the average QPS and peak QPS for each dimension of the
+        timeline.
+        """
+        return pulumi.get(self, "qps_statistics_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="requestStatisticsInfoLists")
+    def request_statistics_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoRequestStatisticsInfoListResult']:
+        """
+        The request count statistics, including request counts for various dimensions and
+        timelines.
+        """
+        return pulumi.get(self, "request_statistics_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="responseCodeStatisticsInfos")
+    def response_code_statistics_infos(self) -> Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResult']:
+        """
+        The response code statistics, including timeline statistics for each response code
+        from the WAF and upstream servers.
+        """
+        return pulumi.get(self, "response_code_statistics_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="topAbnormalUrlsInfos")
+    def top_abnormal_urls_infos(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoResult']:
+        """
+        The top abnormal URL list contains URLs that have returned 502, 500, 404, etc. errors.
+        """
+        return pulumi.get(self, "top_abnormal_urls_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackSourceIpsInfoLists")
+    def top_attack_source_ips_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAttackSourceIpsInfoListResult']:
+        """
+        The top attack source IP list contains IP addresses that have been attacked the most
+        times, sorted by attack count.
+        """
+        return pulumi.get(self, "top_attack_source_ips_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackSourceLocationsInfoLists")
+    def top_attack_source_locations_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAttackSourceLocationsInfoListResult']:
+        """
+        The top attack source location list contains locations that have been
+        attacked the most times, sorted by attack count.
+        """
+        return pulumi.get(self, "top_attack_source_locations_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackedDomainsInfoLists")
+    def top_attacked_domains_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAttackedDomainsInfoListResult']:
+        """
+        The top attacked domain list contains domains that have been attacked the most times,
+        sorted by attack count.
+        """
+        return pulumi.get(self, "top_attacked_domains_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackedUrlsInfoLists")
+    def top_attacked_urls_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAttackedUrlsInfoListResult']:
+        """
+        The top attacked URL list contains URLs that have been attacked the most times, sorted
+        by attack count.
+        """
+        return pulumi.get(self, "top_attacked_urls_info_lists")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoAttackTypeDistributionInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoBandwidthStatisticsInfoResult(dict):
+    def __init__(__self__, *,
+                 average_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListResult'],
+                 peak_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListResult']):
+        """
+        :param Sequence['GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListArgs'] average_info_lists: The average QPS statistics list contains average QPS data for various dimensions over time.
+        :param Sequence['GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListArgs'] peak_info_lists: The peak QPS statistics list contains peak QPS data for various dimensions and timelines.
+        """
+        pulumi.set(__self__, "average_info_lists", average_info_lists)
+        pulumi.set(__self__, "peak_info_lists", peak_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="averageInfoLists")
+    def average_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListResult']:
+        """
+        The average QPS statistics list contains average QPS data for various dimensions over time.
+        """
+        return pulumi.get(self, "average_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="peakInfoLists")
+    def peak_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListResult']:
+        """
+        The peak QPS statistics list contains peak QPS data for various dimensions and timelines.
+        """
+        return pulumi.get(self, "peak_info_lists")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoBandwidthStatisticsInfoAverageInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoBandwidthStatisticsInfoPeakInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoOverviewStatisticsListInfoResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int,
+                 top_domains: Sequence['outputs.GetSecurityReportReportContentInfoOverviewStatisticsListInfoTopDomainResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        :param Sequence['GetSecurityReportReportContentInfoOverviewStatisticsListInfoTopDomainArgs'] top_domains: TOP domain list, sorted by attack count.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "top_domains", top_domains)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter(name="topDomains")
+    def top_domains(self) -> Sequence['outputs.GetSecurityReportReportContentInfoOverviewStatisticsListInfoTopDomainResult']:
+        """
+        TOP domain list, sorted by attack count.
+        """
+        return pulumi.get(self, "top_domains")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoOverviewStatisticsListInfoTopDomainResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The domain name identifier, containing the domain name and associated identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name identifier, containing the domain name and associated identifier.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoQpsStatisticsInfoResult(dict):
+    def __init__(__self__, *,
+                 average_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListResult'],
+                 peak_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListResult']):
+        """
+        :param Sequence['GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListArgs'] average_info_lists: The average QPS statistics list contains average QPS data for various dimensions over time.
+        :param Sequence['GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListArgs'] peak_info_lists: The peak QPS statistics list contains peak QPS data for various dimensions and timelines.
+        """
+        pulumi.set(__self__, "average_info_lists", average_info_lists)
+        pulumi.set(__self__, "peak_info_lists", peak_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="averageInfoLists")
+    def average_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListResult']:
+        """
+        The average QPS statistics list contains average QPS data for various dimensions over time.
+        """
+        return pulumi.get(self, "average_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="peakInfoLists")
+    def peak_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListResult']:
+        """
+        The peak QPS statistics list contains peak QPS data for various dimensions and timelines.
+        """
+        return pulumi.get(self, "peak_info_lists")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoQpsStatisticsInfoAverageInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoQpsStatisticsInfoPeakInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoRequestStatisticsInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoRequestStatisticsInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoRequestStatisticsInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoRequestStatisticsInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoRequestStatisticsInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResult(dict):
+    def __init__(__self__, *,
+                 response_source_upstream_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListResult'],
+                 response_source_waf_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListResult']):
+        """
+        :param Sequence['GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListArgs'] response_source_upstream_info_lists: The upstream response code statistics list, including the number of upstream
+               responses for each response code over time.
+        :param Sequence['GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListArgs'] response_source_waf_info_lists: The WAF response code statistics list, including the number of WAF responses for
+               each response code over time.
+        """
+        pulumi.set(__self__, "response_source_upstream_info_lists", response_source_upstream_info_lists)
+        pulumi.set(__self__, "response_source_waf_info_lists", response_source_waf_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="responseSourceUpstreamInfoLists")
+    def response_source_upstream_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListResult']:
+        """
+        The upstream response code statistics list, including the number of upstream
+        responses for each response code over time.
+        """
+        return pulumi.get(self, "response_source_upstream_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="responseSourceWafInfoLists")
+    def response_source_waf_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListResult']:
+        """
+        The WAF response code statistics list, including the number of WAF responses for
+        each response code over time.
+        """
+        return pulumi.get(self, "response_source_waf_info_lists")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceUpstreamInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 timelines: Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListTimelineResult']):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param Sequence['GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListTimelineArgs'] timelines: The timeline data, peak QPS values arranged in chronological order.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "timelines", timelines)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def timelines(self) -> Sequence['outputs.GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListTimelineResult']:
+        """
+        The timeline data, peak QPS values arranged in chronological order.
+        """
+        return pulumi.get(self, "timelines")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoResponseCodeStatisticsInfoResponseSourceWafInfoListTimelineResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 time: _builtins.int):
+        """
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.int time: The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) identifies the point in time corresponding to statistical data.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAbnormalUrlsInfoResult(dict):
+    def __init__(__self__, *,
+                 abnormal404_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal404InfoListResult'],
+                 abnormal500_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal500InfoListResult'],
+                 abnormal502_info_lists: Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal502InfoListResult']):
+        """
+        :param Sequence['GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal404InfoListArgs'] abnormal404_info_lists: The list of URLs that returned 404 errors, sorted by error count.
+        :param Sequence['GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal500InfoListArgs'] abnormal500_info_lists: The list of URLs that returned 500 errors, sorted by error count.
+        :param Sequence['GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal502InfoListArgs'] abnormal502_info_lists: The list of URLs that returned 502 errors, sorted by error count.
+        """
+        pulumi.set(__self__, "abnormal404_info_lists", abnormal404_info_lists)
+        pulumi.set(__self__, "abnormal500_info_lists", abnormal500_info_lists)
+        pulumi.set(__self__, "abnormal502_info_lists", abnormal502_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="abnormal404InfoLists")
+    def abnormal404_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal404InfoListResult']:
+        """
+        The list of URLs that returned 404 errors, sorted by error count.
+        """
+        return pulumi.get(self, "abnormal404_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="abnormal500InfoLists")
+    def abnormal500_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal500InfoListResult']:
+        """
+        The list of URLs that returned 500 errors, sorted by error count.
+        """
+        return pulumi.get(self, "abnormal500_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="abnormal502InfoLists")
+    def abnormal502_info_lists(self) -> Sequence['outputs.GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal502InfoListResult']:
+        """
+        The list of URLs that returned 502 errors, sorted by error count.
+        """
+        return pulumi.get(self, "abnormal502_info_lists")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal404InfoListResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The domain name identifier, containing the domain name and associated identifier.
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name identifier, containing the domain name and associated identifier.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal500InfoListResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The domain name identifier, containing the domain name and associated identifier.
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name identifier, containing the domain name and associated identifier.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAbnormalUrlsInfoAbnormal502InfoListResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The domain name identifier, containing the domain name and associated identifier.
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name identifier, containing the domain name and associated identifier.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAttackSourceIpsInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAttackSourceLocationsInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAttackedDomainsInfoListResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 num: _builtins.int,
+                 web_tag: _builtins.str):
+        """
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        :param _builtins.str web_tag: The Web tag of the domain, used to identify the business type of the domain.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "web_tag", web_tag)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter(name="webTag")
+    def web_tag(self) -> _builtins.str:
+        """
+        The Web tag of the domain, used to identify the business type of the domain.
+        """
+        return pulumi.get(self, "web_tag")
+
+
+@pulumi.output_type
+class GetSecurityReportReportContentInfoTopAttackedUrlsInfoListResult(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 key: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str host: The domain name identifier, containing the domain name and associated identifier.
+        :param _builtins.str key: The statistical dimension identifier.
+        :param _builtins.int num: The number of attacks for this domain.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The domain name identifier, containing the domain name and associated identifier.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The statistical dimension identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of attacks for this domain.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetSecurityReportSendingRecordsItemResult(dict):
+    def __init__(__self__, *,
+                 report_category: _builtins.str,
+                 report_id: _builtins.str,
+                 report_name: _builtins.str,
+                 sending_time: _builtins.int,
+                 stat_periods: Sequence['outputs.GetSecurityReportSendingRecordsItemStatPeriodResult'],
+                 subscription_id: _builtins.str):
+        """
+        :param _builtins.str report_category: Specifies the report category. Valid values are:
+               + **daily_report**
+               + **weekly_report**
+               + **monthly_report**
+               + **custom_report**
+        :param _builtins.str report_id: The report ID, uniquely identifies the security report corresponding to this sending record.
+        :param _builtins.str report_name: Specifies the report name.
+        :param _builtins.int sending_time: The sending time. The timestamp (in milliseconds) at which the report was actually sent.
+        :param Sequence['GetSecurityReportSendingRecordsItemStatPeriodArgs'] stat_periods: The statistical period refers to the statistical time range of the report corresponding to this sent
+               record.
+        :param _builtins.str subscription_id: The subscription ID is associated with the security report subscription to which the sending
+               record belongs.
+        """
+        pulumi.set(__self__, "report_category", report_category)
+        pulumi.set(__self__, "report_id", report_id)
+        pulumi.set(__self__, "report_name", report_name)
+        pulumi.set(__self__, "sending_time", sending_time)
+        pulumi.set(__self__, "stat_periods", stat_periods)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @_builtins.property
+    @pulumi.getter(name="reportCategory")
+    def report_category(self) -> _builtins.str:
+        """
+        Specifies the report category. Valid values are:
+        + **daily_report**
+        + **weekly_report**
+        + **monthly_report**
+        + **custom_report**
+        """
+        return pulumi.get(self, "report_category")
+
+    @_builtins.property
+    @pulumi.getter(name="reportId")
+    def report_id(self) -> _builtins.str:
+        """
+        The report ID, uniquely identifies the security report corresponding to this sending record.
+        """
+        return pulumi.get(self, "report_id")
+
+    @_builtins.property
+    @pulumi.getter(name="reportName")
+    def report_name(self) -> _builtins.str:
+        """
+        Specifies the report name.
+        """
+        return pulumi.get(self, "report_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sendingTime")
+    def sending_time(self) -> _builtins.int:
+        """
+        The sending time. The timestamp (in milliseconds) at which the report was actually sent.
+        """
+        return pulumi.get(self, "sending_time")
+
+    @_builtins.property
+    @pulumi.getter(name="statPeriods")
+    def stat_periods(self) -> Sequence['outputs.GetSecurityReportSendingRecordsItemStatPeriodResult']:
+        """
+        The statistical period refers to the statistical time range of the report corresponding to this sent
+        record.
+        """
+        return pulumi.get(self, "stat_periods")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> _builtins.str:
+        """
+        The subscription ID is associated with the security report subscription to which the sending
+        record belongs.
+        """
+        return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class GetSecurityReportSendingRecordsItemStatPeriodResult(dict):
+    def __init__(__self__, *,
+                 begin_time: _builtins.int,
+                 end_time: _builtins.int):
+        """
+        :param _builtins.int begin_time: The start time, the timestamp of the start of the statistical period (in milliseconds).
+        :param _builtins.int end_time: The end time, the end timestamp of the statistical period (in milliseconds).
+        """
+        pulumi.set(__self__, "begin_time", begin_time)
+        pulumi.set(__self__, "end_time", end_time)
+
+    @_builtins.property
+    @pulumi.getter(name="beginTime")
+    def begin_time(self) -> _builtins.int:
+        """
+        The start time, the timestamp of the start of the statistical period (in milliseconds).
+        """
+        return pulumi.get(self, "begin_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The end time, the end timestamp of the statistical period (in milliseconds).
+        """
+        return pulumi.get(self, "end_time")
+
+
+@pulumi.output_type
+class GetSecurityReportStatPeriodResult(dict):
+    def __init__(__self__, *,
+                 begin_time: _builtins.int,
+                 end_time: _builtins.int):
+        """
+        :param _builtins.int begin_time: The timestamp (in milliseconds) at the start of the statistical period.
+        :param _builtins.int end_time: The end timestamp (in milliseconds) of the statistical period.
+        """
+        pulumi.set(__self__, "begin_time", begin_time)
+        pulumi.set(__self__, "end_time", end_time)
+
+    @_builtins.property
+    @pulumi.getter(name="beginTime")
+    def begin_time(self) -> _builtins.int:
+        """
+        The timestamp (in milliseconds) at the start of the statistical period.
+        """
+        return pulumi.get(self, "begin_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The end timestamp (in milliseconds) of the statistical period.
+        """
+        return pulumi.get(self, "end_time")
+
+
+@pulumi.output_type
+class GetSecurityReportSubscriptionReportContentSubscriptionResult(dict):
+    def __init__(__self__, *,
+                 attack_type_distribution_enable: _builtins.bool,
+                 bandwidth_statistics_enable: _builtins.bool,
+                 group_by_day_enable: _builtins.bool,
+                 overview_statistics_enable: _builtins.bool,
+                 qps_statistics_enable: _builtins.bool,
+                 request_statistics_enable: _builtins.bool,
+                 response_code_statistics_enable: _builtins.bool,
+                 top_abnormal_urls_enable: _builtins.bool,
+                 top_attack_source_ips_enable: _builtins.bool,
+                 top_attack_source_locations_enable: _builtins.bool,
+                 top_attacked_domains_enable: _builtins.bool,
+                 top_attacked_urls_enable: _builtins.bool):
+        """
+        :param _builtins.bool attack_type_distribution_enable: Whether to enable attack type distribution statistics.
+        :param _builtins.bool bandwidth_statistics_enable: Whether to enable bandwidth statistics.
+        :param _builtins.bool group_by_day_enable: Whether to enable daily grouping statistics.
+        :param _builtins.bool overview_statistics_enable: Whether to enable overview statistics.
+        :param _builtins.bool qps_statistics_enable: Whether to enable QPS statistics.
+        :param _builtins.bool request_statistics_enable: Whether to enable request statistics.
+        :param _builtins.bool response_code_statistics_enable: Whether to enable response code statistics.
+        :param _builtins.bool top_abnormal_urls_enable: Whether to enable top abnormal URLs statistics.
+        :param _builtins.bool top_attack_source_ips_enable: Whether to enable top attack source IPs statistics.
+        :param _builtins.bool top_attack_source_locations_enable: Whether to enable top attack source locations statistics.
+        :param _builtins.bool top_attacked_domains_enable: Whether to enable top attacked domains statistics.
+        :param _builtins.bool top_attacked_urls_enable: Whether to enable top attacked URLs statistics.
+        """
+        pulumi.set(__self__, "attack_type_distribution_enable", attack_type_distribution_enable)
+        pulumi.set(__self__, "bandwidth_statistics_enable", bandwidth_statistics_enable)
+        pulumi.set(__self__, "group_by_day_enable", group_by_day_enable)
+        pulumi.set(__self__, "overview_statistics_enable", overview_statistics_enable)
+        pulumi.set(__self__, "qps_statistics_enable", qps_statistics_enable)
+        pulumi.set(__self__, "request_statistics_enable", request_statistics_enable)
+        pulumi.set(__self__, "response_code_statistics_enable", response_code_statistics_enable)
+        pulumi.set(__self__, "top_abnormal_urls_enable", top_abnormal_urls_enable)
+        pulumi.set(__self__, "top_attack_source_ips_enable", top_attack_source_ips_enable)
+        pulumi.set(__self__, "top_attack_source_locations_enable", top_attack_source_locations_enable)
+        pulumi.set(__self__, "top_attacked_domains_enable", top_attacked_domains_enable)
+        pulumi.set(__self__, "top_attacked_urls_enable", top_attacked_urls_enable)
+
+    @_builtins.property
+    @pulumi.getter(name="attackTypeDistributionEnable")
+    def attack_type_distribution_enable(self) -> _builtins.bool:
+        """
+        Whether to enable attack type distribution statistics.
+        """
+        return pulumi.get(self, "attack_type_distribution_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthStatisticsEnable")
+    def bandwidth_statistics_enable(self) -> _builtins.bool:
+        """
+        Whether to enable bandwidth statistics.
+        """
+        return pulumi.get(self, "bandwidth_statistics_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="groupByDayEnable")
+    def group_by_day_enable(self) -> _builtins.bool:
+        """
+        Whether to enable daily grouping statistics.
+        """
+        return pulumi.get(self, "group_by_day_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="overviewStatisticsEnable")
+    def overview_statistics_enable(self) -> _builtins.bool:
+        """
+        Whether to enable overview statistics.
+        """
+        return pulumi.get(self, "overview_statistics_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="qpsStatisticsEnable")
+    def qps_statistics_enable(self) -> _builtins.bool:
+        """
+        Whether to enable QPS statistics.
+        """
+        return pulumi.get(self, "qps_statistics_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="requestStatisticsEnable")
+    def request_statistics_enable(self) -> _builtins.bool:
+        """
+        Whether to enable request statistics.
+        """
+        return pulumi.get(self, "request_statistics_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="responseCodeStatisticsEnable")
+    def response_code_statistics_enable(self) -> _builtins.bool:
+        """
+        Whether to enable response code statistics.
+        """
+        return pulumi.get(self, "response_code_statistics_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="topAbnormalUrlsEnable")
+    def top_abnormal_urls_enable(self) -> _builtins.bool:
+        """
+        Whether to enable top abnormal URLs statistics.
+        """
+        return pulumi.get(self, "top_abnormal_urls_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackSourceIpsEnable")
+    def top_attack_source_ips_enable(self) -> _builtins.bool:
+        """
+        Whether to enable top attack source IPs statistics.
+        """
+        return pulumi.get(self, "top_attack_source_ips_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackSourceLocationsEnable")
+    def top_attack_source_locations_enable(self) -> _builtins.bool:
+        """
+        Whether to enable top attack source locations statistics.
+        """
+        return pulumi.get(self, "top_attack_source_locations_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackedDomainsEnable")
+    def top_attacked_domains_enable(self) -> _builtins.bool:
+        """
+        Whether to enable top attacked domains statistics.
+        """
+        return pulumi.get(self, "top_attacked_domains_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="topAttackedUrlsEnable")
+    def top_attacked_urls_enable(self) -> _builtins.bool:
+        """
+        Whether to enable top attacked URLs statistics.
+        """
+        return pulumi.get(self, "top_attacked_urls_enable")
+
+
+@pulumi.output_type
+class GetSecurityReportSubscriptionStatPeriodResult(dict):
+    def __init__(__self__, *,
+                 begin_time: _builtins.int,
+                 end_time: _builtins.int):
+        """
+        :param _builtins.int begin_time: The start time of the statistical period in milliseconds.
+        :param _builtins.int end_time: The end time of the statistical period in milliseconds.
+        """
+        pulumi.set(__self__, "begin_time", begin_time)
+        pulumi.set(__self__, "end_time", end_time)
+
+    @_builtins.property
+    @pulumi.getter(name="beginTime")
+    def begin_time(self) -> _builtins.int:
+        """
+        The start time of the statistical period in milliseconds.
+        """
+        return pulumi.get(self, "begin_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The end time of the statistical period in milliseconds.
+        """
+        return pulumi.get(self, "end_time")
 
 
 @pulumi.output_type
@@ -6514,6 +11898,232 @@ class GetSourceIpsSourceIpResult(dict):
     def update_time(self) -> _builtins.str:
         """
         Time the WAF IP addresses are updated, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetTagAntileakageMapLeakagemapResult(dict):
+    def __init__(__self__, *,
+                 codes: Sequence[_builtins.str],
+                 sensitives: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] codes: The response code interception, which is used to capture and process specific HTTP response codes.
+        :param Sequence[_builtins.str] sensitives: The sensitive information filtering, which is used to detect and process sensitive information.
+        """
+        pulumi.set(__self__, "codes", codes)
+        pulumi.set(__self__, "sensitives", sensitives)
+
+    @_builtins.property
+    @pulumi.getter
+    def codes(self) -> Sequence[_builtins.str]:
+        """
+        The response code interception, which is used to capture and process specific HTTP response codes.
+        """
+        return pulumi.get(self, "codes")
+
+    @_builtins.property
+    @pulumi.getter
+    def sensitives(self) -> Sequence[_builtins.str]:
+        """
+        The sensitive information filtering, which is used to detect and process sensitive information.
+        """
+        return pulumi.get(self, "sensitives")
+
+
+@pulumi.output_type
+class GetTagAntileakageMapLocaleResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.str,
+                 email: _builtins.str,
+                 id_card: _builtins.str,
+                 phone: _builtins.str,
+                 responsecode: _builtins.str,
+                 sensitive: _builtins.str):
+        """
+        :param _builtins.str code: The response code interception, which is used to capture and process specific HTTP response codes.
+        :param _builtins.str email: The Email address, which is used for electronic communication.
+        :param _builtins.str id_card: The ID card number, which is the unique code for identifying an individual.
+        :param _builtins.str phone: The phone number, which is used for contact.
+        :param _builtins.str responsecode: The various response codes involved in the options.
+        :param _builtins.str sensitive: The sensitive information filtering, which is used to detect and process sensitive information.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id_card", id_card)
+        pulumi.set(__self__, "phone", phone)
+        pulumi.set(__self__, "responsecode", responsecode)
+        pulumi.set(__self__, "sensitive", sensitive)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        The response code interception, which is used to capture and process specific HTTP response codes.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        The Email address, which is used for electronic communication.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="idCard")
+    def id_card(self) -> _builtins.str:
+        """
+        The ID card number, which is the unique code for identifying an individual.
+        """
+        return pulumi.get(self, "id_card")
+
+    @_builtins.property
+    @pulumi.getter
+    def phone(self) -> _builtins.str:
+        """
+        The phone number, which is used for contact.
+        """
+        return pulumi.get(self, "phone")
+
+    @_builtins.property
+    @pulumi.getter
+    def responsecode(self) -> _builtins.str:
+        """
+        The various response codes involved in the options.
+        """
+        return pulumi.get(self, "responsecode")
+
+    @_builtins.property
+    @pulumi.getter
+    def sensitive(self) -> _builtins.str:
+        """
+        The sensitive information filtering, which is used to detect and process sensitive information.
+        """
+        return pulumi.get(self, "sensitive")
+
+
+@pulumi.output_type
+class GetTagIpReputationMapIpReputationMapResult(dict):
+    def __init__(__self__, *,
+                 idcs: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] idcs: The types of content controlled by threat intelligence.
+        """
+        pulumi.set(__self__, "idcs", idcs)
+
+    @_builtins.property
+    @pulumi.getter
+    def idcs(self) -> Sequence[_builtins.str]:
+        """
+        The types of content controlled by threat intelligence.
+        """
+        return pulumi.get(self, "idcs")
+
+
+@pulumi.output_type
+class GetWebBasicProtectionRulesItemResult(dict):
+    def __init__(__self__, *,
+                 application_type: _builtins.str,
+                 create_time: _builtins.int,
+                 cve_number: _builtins.str,
+                 description: _builtins.str,
+                 effective_time: _builtins.int,
+                 id: _builtins.str,
+                 protection_type: _builtins.str,
+                 risk_level: _builtins.int,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str application_type: The application type.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str cve_number: Specifies the CVE ID.
+        :param _builtins.str description: Specifies the description.
+        :param _builtins.int effective_time: The effective time.
+        :param _builtins.str id: The rule ID. Each rule has a unique ID.
+        :param _builtins.str protection_type: The protection type.
+        :param _builtins.int risk_level: Specifies the risk severity. Valid values are:
+        :param _builtins.int update_time: The update time.
+        """
+        pulumi.set(__self__, "application_type", application_type)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "cve_number", cve_number)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "effective_time", effective_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "protection_type", protection_type)
+        pulumi.set(__self__, "risk_level", risk_level)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationType")
+    def application_type(self) -> _builtins.str:
+        """
+        The application type.
+        """
+        return pulumi.get(self, "application_type")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="cveNumber")
+    def cve_number(self) -> _builtins.str:
+        """
+        Specifies the CVE ID.
+        """
+        return pulumi.get(self, "cve_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveTime")
+    def effective_time(self) -> _builtins.int:
+        """
+        The effective time.
+        """
+        return pulumi.get(self, "effective_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The rule ID. Each rule has a unique ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectionType")
+    def protection_type(self) -> _builtins.str:
+        """
+        The protection type.
+        """
+        return pulumi.get(self, "protection_type")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> _builtins.int:
+        """
+        Specifies the risk severity. Valid values are:
+        """
+        return pulumi.get(self, "risk_level")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
         """
         return pulumi.get(self, "update_time")
 

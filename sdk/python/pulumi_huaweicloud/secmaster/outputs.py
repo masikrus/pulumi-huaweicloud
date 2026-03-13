@@ -16,19 +16,68 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AlertAlertTypeValue',
     'AlertConvertIncidentIncidentType',
     'AlertDataSource',
     'AlertRuleQueryPlan',
     'AlertRuleSimulationTrigger',
     'AlertRuleTrigger',
-    'AlertType',
+    'AssetDataObject',
+    'AssetDataObjectDepartment',
+    'AssetDataObjectEnvironment',
+    'AssetDataObjectGovernanceUser',
+    'AssetDataObjectProperties',
+    'AssetDataObjectPropertiesHwcDomain',
+    'AssetDataObjectPropertiesHwcDomainContact',
+    'AssetDataObjectPropertiesHwcEcs',
+    'AssetDataObjectPropertiesHwcEcsAddress',
+    'AssetDataObjectPropertiesHwcEcsFlavor',
+    'AssetDataObjectPropertiesHwcEcsHypervisor',
+    'AssetDataObjectPropertiesHwcEcsMetadata',
+    'AssetDataObjectPropertiesHwcEcsSchedulerHints',
+    'AssetDataObjectPropertiesHwcEcsSecurityGroup',
+    'AssetDataObjectPropertiesHwcEcsVolumesAttached',
+    'AssetDataObjectPropertiesHwcEip',
+    'AssetDataObjectPropertiesHwcEipBandwidth',
+    'AssetDataObjectPropertiesHwcEipVnic',
+    'AssetDataObjectPropertiesHwcRds',
+    'AssetDataObjectPropertiesHwcRdsBackupStrategy',
+    'AssetDataObjectPropertiesHwcRdsDatastore',
+    'AssetDataObjectPropertiesHwcRdsHa',
+    'AssetDataObjectPropertiesHwcRdsNode',
+    'AssetDataObjectPropertiesHwcRdsRelatedInstance',
+    'AssetDataObjectPropertiesHwcRdsTag',
+    'AssetDataObjectPropertiesHwcRdsVolume',
+    'AssetDataObjectPropertiesHwcSubnet',
+    'AssetDataObjectPropertiesHwcSubnetSecurityGroupRule',
+    'AssetDataObjectPropertiesHwcVpc',
+    'AssetDataObjectPropertiesHwcVpcCloudResource',
+    'AssetDataObjectPropertiesHwcVpcTag',
+    'AssetDataObjectPropertiesOcaIp',
+    'AssetDataObjectPropertiesOcaIpDataCenter',
+    'AssetDataObjectPropertiesOcaIpExtendPropertites',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDevice',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesService',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystem',
+    'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor',
+    'AssetDataObjectPropertiesOcaIpNetwork',
+    'AssetDataObjectPropertiesWebsite',
+    'AssetDataObjectPropertiesWebsiteExtendPropertites',
+    'CloudLogResourceResource',
     'IncidentDataSource',
-    'IncidentType',
+    'IncidentIncidentTypeValue',
     'IndicatorDataSource',
-    'IndicatorType',
+    'IndicatorIndicatorTypeValue',
     'PlaybookRuleCondition',
     'PostPaidOrderProductList',
     'WorkspaceWorkspaceAgencyList',
+    'GetAlertRuleTemplateDetailScheduleResult',
+    'GetAlertRuleTemplateDetailTriggerResult',
+    'GetAlertRuleTemplateDetailV2JobModeSettingResult',
+    'GetAlertRuleTemplateDetailV2JobOutputSettingResult',
+    'GetAlertRuleTemplateDetailV2TriggerResult',
     'GetAlertRuleTemplatesTemplateResult',
     'GetAlertRuleTemplatesTemplateQueryPlanResult',
     'GetAlertRuleTemplatesTemplateTriggerResult',
@@ -53,11 +102,36 @@ __all__ = [
     'GetAlertsAlertUserInfoResult',
     'GetAlertsConditionResult',
     'GetAlertsConditionConditionResult',
+    'GetBaselineCheckitemsCheckitemResult',
+    'GetBaselineCheckitemsCheckitemSpecCheckitemListResult',
+    'GetBaselineCheckitemsConditionResult',
+    'GetBaselineCheckitemsConditionConditionResult',
     'GetCataloguesDataResult',
     'GetCataloguesSearchDataResult',
+    'GetCloudLogResourcesDatasetResult',
+    'GetCollectorChannelGroupsGroupResult',
+    'GetCollectorChannelInstancesRecordResult',
+    'GetCollectorChannelInstancesRecordMonitorResult',
+    'GetCollectorChannelInstancesRecordReadWriteResult',
+    'GetCollectorConnectionsRecordResult',
+    'GetCollectorLogstashParsersRecordResult',
+    'GetCollectorModuleRestrictionsModuleRestrictionResult',
+    'GetCollectorModuleRestrictionsModuleRestrictionFieldResult',
+    'GetCollectorModuleRestrictionsModuleRestrictionFieldRestrictionResult',
+    'GetCollectorModuleTemplatesCommonResult',
+    'GetCollectorModuleTemplatesListResult',
+    'GetCollectorParserTemplatesRecordResult',
+    'GetComponentRunningNodesRecordResult',
+    'GetComponentRunningNodesRecordListResult',
+    'GetComponentRunningNodesRecordMonitorResult',
+    'GetComponentRunningNodesRecordNodeExpansionResult',
     'GetComponentTemplatesRecordResult',
+    'GetComponentsRecordResult',
+    'GetConfigurationDictionariesFailedListResult',
+    'GetConfigurationDictionariesSuccessListResult',
     'GetDataClassFieldsFieldResult',
     'GetDataClassesDataClassResult',
+    'GetDataspacesRecordResult',
     'GetIncidentsConditionResult',
     'GetIncidentsConditionConditionResult',
     'GetIncidentsIncidentResult',
@@ -70,18 +144,29 @@ __all__ = [
     'GetIndicatorsIndicatorEnvironmentResult',
     'GetIndicatorsIndicatorTypeResult',
     'GetInstallationScriptsRecordResult',
+    'GetLayoutFieldsFieldResult',
     'GetLayoutWizardDetailDataResult',
     'GetLayoutWizardDetailDataBindingButtonResult',
     'GetLayoutWizardsDataResult',
     'GetLayoutWizardsDataBindingButtonResult',
+    'GetLayoutsDataResult',
     'GetMetricResultsMetricResultResult',
     'GetMetricResultsMetricResultDataRowResult',
+    'GetModulesDataResult',
+    'GetNotesDataResult',
+    'GetNotesDataDataResult',
+    'GetNotesDataUserResult',
+    'GetOperationConnectionsDataResult',
+    'GetPipesRecordResult',
     'GetPlaybookActionInstancesActionInstanceResult',
     'GetPlaybookActionInstancesActionInstanceActionResult',
     'GetPlaybookActionInstancesActionInstanceInstanceLogResult',
     'GetPlaybookActionsDataResult',
     'GetPlaybookApprovalsDataResult',
     'GetPlaybookAuditLogsAuditLogResult',
+    'GetPlaybookInstanceDataclassResult',
+    'GetPlaybookInstanceDataobjectResult',
+    'GetPlaybookInstancePlaybookResult',
     'GetPlaybookInstancesInstanceResult',
     'GetPlaybookInstancesInstanceDataClassResult',
     'GetPlaybookInstancesInstanceDataObjectResult',
@@ -92,9 +177,13 @@ __all__ = [
     'GetPlaybookStatisticsDataResult',
     'GetPlaybookVersionsPlaybookVersionResult',
     'GetPlaybooksPlaybookResult',
+    'GetReportsEmailsEmailResult',
+    'GetRetrieveScriptsRecordResult',
+    'GetSearchConditionsRecordResult',
     'GetSecurityReportsReportResult',
     'GetSecurityReportsReportReportRangeResult',
     'GetSecurityReportsReportReportRuleInfoResult',
+    'GetSiemDirectoriesDirectoryI18nResult',
     'GetSocComponentActionDetailDataResult',
     'GetSocComponentActionsDataResult',
     'GetSocComponentDetailDataResult',
@@ -105,7 +194,39 @@ __all__ = [
     'GetSocComponentsDataComponentVersionResult',
     'GetSocComponentsDataComponentVersionConnectionConfigResult',
     'GetSocComponentsDataOperateHistoryResult',
+    'GetSocMappersDataResult',
+    'GetSocMappingsDataResult',
+    'GetSocPreprocessRulesDataResult',
+    'GetSubscriptionProductsBasicResult',
+    'GetSubscriptionProductsLargeScreenResult',
+    'GetSubscriptionProductsLogAnalysisResult',
+    'GetSubscriptionProductsLogCollectionResult',
+    'GetSubscriptionProductsLogRetentionResult',
+    'GetSubscriptionProductsProfessionalResult',
+    'GetSubscriptionProductsSoarResult',
+    'GetSubscriptionProductsStandardResult',
+    'GetTableHistogramsHistogramResult',
+    'GetTablesRecordResult',
+    'GetTablesRecordDisplaySettingResult',
+    'GetTablesRecordDisplaySettingColumnResult',
+    'GetTablesRecordSchemaResult',
+    'GetTablesRecordSchemaColumnResult',
+    'GetTablesRecordSchemaColumnColumnDisplaySettingResult',
+    'GetTablesRecordStorageSettingResult',
     'GetVpcEndpointServicesRecordResult',
+    'GetVulnerabilitiesConditionResult',
+    'GetVulnerabilitiesConditionConditionResult',
+    'GetVulnerabilitiesDataResult',
+    'GetVulnerabilitiesDataDataObjectResult',
+    'GetVulnerabilitiesDataDataObjectDataSourceResult',
+    'GetVulnerabilitiesDataDataObjectEnvironmentResult',
+    'GetVulnerabilitiesDataDataObjectExtendPropertyResult',
+    'GetVulnerabilitiesDataDataObjectExtendPropertyOperationResult',
+    'GetVulnerabilitiesDataDataObjectRemediationResult',
+    'GetVulnerabilitiesDataDataObjectResourceResult',
+    'GetVulnerabilitiesDataDataObjectVulnerabilityResult',
+    'GetVulnerabilitiesDataDataObjectVulnerabilityTypeResult',
+    'GetVulnerabilitiesDataDataclassRefResult',
     'GetWorkflowInstanceDataclassResult',
     'GetWorkflowInstancePlaybookResult',
     'GetWorkflowInstanceWorkflowResult',
@@ -117,6 +238,58 @@ __all__ = [
     'GetWorkflowsWorkflowResult',
     'GetWorkspacesWorkspaceResult',
 ]
+
+@pulumi.output_type
+class AlertAlertTypeValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "alertType":
+            suggest = "alert_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertAlertTypeValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertAlertTypeValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertAlertTypeValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alert_type: _builtins.str,
+                 category: _builtins.str):
+        """
+        :param _builtins.str alert_type: Specifies the alert type.
+               
+               <a name="Alert_DataSource"></a>
+               The `data_source` block supports:
+        :param _builtins.str category: Specifies the category.
+        """
+        pulumi.set(__self__, "alert_type", alert_type)
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter(name="alertType")
+    def alert_type(self) -> _builtins.str:
+        """
+        Specifies the alert type.
+
+        <a name="Alert_DataSource"></a>
+        The `data_source` block supports:
+        """
+        return pulumi.get(self, "alert_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the category.
+        """
+        return pulumi.get(self, "category")
+
 
 @pulumi.output_type
 class AlertConvertIncidentIncidentType(dict):
@@ -550,55 +723,5209 @@ class AlertRuleTrigger(dict):
 
 
 @pulumi.output_type
-class AlertType(dict):
+class AssetDataObject(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "alertType":
-            suggest = "alert_type"
+        if key == "governanceUser":
+            suggest = "governance_user"
+        elif key == "provisioningState":
+            suggest = "provisioning_state"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AlertType. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObject. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AlertType.__key_warning(key)
+        AssetDataObject.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AlertType.__key_warning(key)
+        AssetDataObject.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 alert_type: _builtins.str,
-                 category: _builtins.str):
+                 checksum: Optional[_builtins.str] = None,
+                 created: Optional[_builtins.str] = None,
+                 department: Optional['outputs.AssetDataObjectDepartment'] = None,
+                 environment: Optional['outputs.AssetDataObjectEnvironment'] = None,
+                 governance_user: Optional['outputs.AssetDataObjectGovernanceUser'] = None,
+                 id: Optional[_builtins.str] = None,
+                 level: Optional[_builtins.int] = None,
+                 name: Optional[_builtins.str] = None,
+                 properties: Optional['outputs.AssetDataObjectProperties'] = None,
+                 provider: Optional[_builtins.str] = None,
+                 provisioning_state: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str alert_type: Specifies the alert type.
+        :param _builtins.str checksum: Specifies the checksum of the asset.
+        :param _builtins.str created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param 'AssetDataObjectDepartmentArgs' department: Specifies the department of the asset.
+               The department structure is documented below.
+        :param 'AssetDataObjectEnvironmentArgs' environment: Specifies the environment of the asset.
+               The environment structure is documented below.
+        :param 'AssetDataObjectGovernanceUserArgs' governance_user: Specifies the governance user of the asset.
+               The governance_user structure is documented below.
+        :param _builtins.str id: Specifies the department ID of the asset.
                
-               <a name="Alert_DataSource"></a>
-               The `data_source` block supports:
-        :param _builtins.str category: Specifies the category.
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.int level: Specifies the level of the asset. Valid values are:
+               + **0**: Testing.
+               + **1**: Normal.
+               + **2**: Important.
+               
+               <a name="environment_struct"></a>
+               The `environment` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param 'AssetDataObjectPropertiesArgs' properties: Specifies the properties of the asset.
+               The properties structure is documented below.
+        :param _builtins.str provider: Specifies the provider of the asset.
+        :param _builtins.str provisioning_state: Specifies the provisioning state of the asset.
+        :param _builtins.str type: Specifies the governance user type of the asset.
         """
-        pulumi.set(__self__, "alert_type", alert_type)
-        pulumi.set(__self__, "category", category)
-
-    @_builtins.property
-    @pulumi.getter(name="alertType")
-    def alert_type(self) -> _builtins.str:
-        """
-        Specifies the alert type.
-
-        <a name="Alert_DataSource"></a>
-        The `data_source` block supports:
-        """
-        return pulumi.get(self, "alert_type")
+        if checksum is not None:
+            pulumi.set(__self__, "checksum", checksum)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if department is not None:
+            pulumi.set(__self__, "department", department)
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if governance_user is not None:
+            pulumi.set(__self__, "governance_user", governance_user)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if provisioning_state is not None:
+            pulumi.set(__self__, "provisioning_state", provisioning_state)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @_builtins.property
     @pulumi.getter
-    def category(self) -> _builtins.str:
+    def checksum(self) -> Optional[_builtins.str]:
         """
-        Specifies the category.
+        Specifies the checksum of the asset.
         """
-        return pulumi.get(self, "category")
+        return pulumi.get(self, "checksum")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[_builtins.str]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def department(self) -> Optional['outputs.AssetDataObjectDepartment']:
+        """
+        Specifies the department of the asset.
+        The department structure is documented below.
+        """
+        return pulumi.get(self, "department")
+
+    @_builtins.property
+    @pulumi.getter
+    def environment(self) -> Optional['outputs.AssetDataObjectEnvironment']:
+        """
+        Specifies the environment of the asset.
+        The environment structure is documented below.
+        """
+        return pulumi.get(self, "environment")
+
+    @_builtins.property
+    @pulumi.getter(name="governanceUser")
+    def governance_user(self) -> Optional['outputs.AssetDataObjectGovernanceUser']:
+        """
+        Specifies the governance user of the asset.
+        The governance_user structure is documented below.
+        """
+        return pulumi.get(self, "governance_user")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> Optional[_builtins.int]:
+        """
+        Specifies the level of the asset. Valid values are:
+        + **0**: Testing.
+        + **1**: Normal.
+        + **2**: Important.
+
+        <a name="environment_struct"></a>
+        The `environment` block supports:
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Optional['outputs.AssetDataObjectProperties']:
+        """
+        Specifies the properties of the asset.
+        The properties structure is documented below.
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> Optional[_builtins.str]:
+        """
+        Specifies the provider of the asset.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningState")
+    def provisioning_state(self) -> Optional[_builtins.str]:
+        """
+        Specifies the provisioning state of the asset.
+        """
+        return pulumi.get(self, "provisioning_state")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AssetDataObjectDepartment(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AssetDataObjectEnvironment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "domainId":
+            suggest = "domain_id"
+        elif key == "epId":
+            suggest = "ep_id"
+        elif key == "epName":
+            suggest = "ep_name"
+        elif key == "idcId":
+            suggest = "idc_id"
+        elif key == "idcName":
+            suggest = "idc_name"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "regionId":
+            suggest = "region_id"
+        elif key == "vendorName":
+            suggest = "vendor_name"
+        elif key == "vendorType":
+            suggest = "vendor_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectEnvironment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectEnvironment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectEnvironment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 domain_id: Optional[_builtins.str] = None,
+                 ep_id: Optional[_builtins.str] = None,
+                 ep_name: Optional[_builtins.str] = None,
+                 idc_id: Optional[_builtins.str] = None,
+                 idc_name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 region_id: Optional[_builtins.str] = None,
+                 vendor_name: Optional[_builtins.str] = None,
+                 vendor_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str domain_id: Specifies the domain ID.
+        :param _builtins.str ep_id: Specifies the enterprise project ID.
+        :param _builtins.str ep_name: Specifies the enterprise project name.
+        :param _builtins.str idc_id: Specifies the IDC ID.
+               
+               <a name="properties_struct"></a>
+               The `properties` block supports:
+        :param _builtins.str idc_name: Specifies the IDC name.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str vendor_name: Specifies the vendor name.
+        :param _builtins.str vendor_type: Specifies the environment vendor type.
+        """
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+        if ep_id is not None:
+            pulumi.set(__self__, "ep_id", ep_id)
+        if ep_name is not None:
+            pulumi.set(__self__, "ep_name", ep_name)
+        if idc_id is not None:
+            pulumi.set(__self__, "idc_id", idc_id)
+        if idc_name is not None:
+            pulumi.set(__self__, "idc_name", idc_name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if vendor_name is not None:
+            pulumi.set(__self__, "vendor_name", vendor_name)
+        if vendor_type is not None:
+            pulumi.set(__self__, "vendor_type", vendor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epId")
+    def ep_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "ep_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epName")
+    def ep_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project name.
+        """
+        return pulumi.get(self, "ep_name")
+
+    @_builtins.property
+    @pulumi.getter(name="idcId")
+    def idc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IDC ID.
+
+        <a name="properties_struct"></a>
+        The `properties` block supports:
+        """
+        return pulumi.get(self, "idc_id")
+
+    @_builtins.property
+    @pulumi.getter(name="idcName")
+    def idc_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IDC name.
+        """
+        return pulumi.get(self, "idc_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vendorName")
+    def vendor_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the vendor name.
+        """
+        return pulumi.get(self, "vendor_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vendorType")
+    def vendor_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the environment vendor type.
+        """
+        return pulumi.get(self, "vendor_type")
+
+
+@pulumi.output_type
+class AssetDataObjectGovernanceUser(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AssetDataObjectProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "hwcDomain":
+            suggest = "hwc_domain"
+        elif key == "hwcEcs":
+            suggest = "hwc_ecs"
+        elif key == "hwcEip":
+            suggest = "hwc_eip"
+        elif key == "hwcRds":
+            suggest = "hwc_rds"
+        elif key == "hwcSubnet":
+            suggest = "hwc_subnet"
+        elif key == "hwcVpc":
+            suggest = "hwc_vpc"
+        elif key == "ocaIp":
+            suggest = "oca_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hwc_domain: Optional['outputs.AssetDataObjectPropertiesHwcDomain'] = None,
+                 hwc_ecs: Optional['outputs.AssetDataObjectPropertiesHwcEcs'] = None,
+                 hwc_eip: Optional['outputs.AssetDataObjectPropertiesHwcEip'] = None,
+                 hwc_rds: Optional['outputs.AssetDataObjectPropertiesHwcRds'] = None,
+                 hwc_subnet: Optional['outputs.AssetDataObjectPropertiesHwcSubnet'] = None,
+                 hwc_vpc: Optional['outputs.AssetDataObjectPropertiesHwcVpc'] = None,
+                 oca_ip: Optional['outputs.AssetDataObjectPropertiesOcaIp'] = None,
+                 website: Optional['outputs.AssetDataObjectPropertiesWebsite'] = None):
+        """
+        :param 'AssetDataObjectPropertiesHwcDomainArgs' hwc_domain: Specifies the details of the domain.
+               The hwc_domain structure is documented below.
+        :param 'AssetDataObjectPropertiesHwcEcsArgs' hwc_ecs: Specifies the details of the ECS.
+               The hwc_ecs structure is documented below.
+        :param 'AssetDataObjectPropertiesHwcEipArgs' hwc_eip: Specifies the details of the EIP.
+               The hwc_eip structure is documented below.
+        :param 'AssetDataObjectPropertiesHwcRdsArgs' hwc_rds: Specifies the details of the RDS.
+               The hwc_rds structure is documented below.
+        :param 'AssetDataObjectPropertiesHwcSubnetArgs' hwc_subnet: Specifies the details of the subnet.
+               The hwc_subnet structure is documented below.
+        :param 'AssetDataObjectPropertiesHwcVpcArgs' hwc_vpc: Specifies the details of the VPC.
+               The hwc_vpc structure is documented below.
+        :param 'AssetDataObjectPropertiesOcaIpArgs' oca_ip: Specifies the details of the cloud asset IP.
+               The oca_ip structure is documented below.
+               
+               <a name="hwc_ecs_struct"></a>
+               The `hwc_ecs` block supports:
+        :param 'AssetDataObjectPropertiesWebsiteArgs' website: Specifies the details of the website.
+               The website structure is documented below.
+        """
+        if hwc_domain is not None:
+            pulumi.set(__self__, "hwc_domain", hwc_domain)
+        if hwc_ecs is not None:
+            pulumi.set(__self__, "hwc_ecs", hwc_ecs)
+        if hwc_eip is not None:
+            pulumi.set(__self__, "hwc_eip", hwc_eip)
+        if hwc_rds is not None:
+            pulumi.set(__self__, "hwc_rds", hwc_rds)
+        if hwc_subnet is not None:
+            pulumi.set(__self__, "hwc_subnet", hwc_subnet)
+        if hwc_vpc is not None:
+            pulumi.set(__self__, "hwc_vpc", hwc_vpc)
+        if oca_ip is not None:
+            pulumi.set(__self__, "oca_ip", oca_ip)
+        if website is not None:
+            pulumi.set(__self__, "website", website)
+
+    @_builtins.property
+    @pulumi.getter(name="hwcDomain")
+    def hwc_domain(self) -> Optional['outputs.AssetDataObjectPropertiesHwcDomain']:
+        """
+        Specifies the details of the domain.
+        The hwc_domain structure is documented below.
+        """
+        return pulumi.get(self, "hwc_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="hwcEcs")
+    def hwc_ecs(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEcs']:
+        """
+        Specifies the details of the ECS.
+        The hwc_ecs structure is documented below.
+        """
+        return pulumi.get(self, "hwc_ecs")
+
+    @_builtins.property
+    @pulumi.getter(name="hwcEip")
+    def hwc_eip(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEip']:
+        """
+        Specifies the details of the EIP.
+        The hwc_eip structure is documented below.
+        """
+        return pulumi.get(self, "hwc_eip")
+
+    @_builtins.property
+    @pulumi.getter(name="hwcRds")
+    def hwc_rds(self) -> Optional['outputs.AssetDataObjectPropertiesHwcRds']:
+        """
+        Specifies the details of the RDS.
+        The hwc_rds structure is documented below.
+        """
+        return pulumi.get(self, "hwc_rds")
+
+    @_builtins.property
+    @pulumi.getter(name="hwcSubnet")
+    def hwc_subnet(self) -> Optional['outputs.AssetDataObjectPropertiesHwcSubnet']:
+        """
+        Specifies the details of the subnet.
+        The hwc_subnet structure is documented below.
+        """
+        return pulumi.get(self, "hwc_subnet")
+
+    @_builtins.property
+    @pulumi.getter(name="hwcVpc")
+    def hwc_vpc(self) -> Optional['outputs.AssetDataObjectPropertiesHwcVpc']:
+        """
+        Specifies the details of the VPC.
+        The hwc_vpc structure is documented below.
+        """
+        return pulumi.get(self, "hwc_vpc")
+
+    @_builtins.property
+    @pulumi.getter(name="ocaIp")
+    def oca_ip(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIp']:
+        """
+        Specifies the details of the cloud asset IP.
+        The oca_ip structure is documented below.
+
+        <a name="hwc_ecs_struct"></a>
+        The `hwc_ecs` block supports:
+        """
+        return pulumi.get(self, "oca_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def website(self) -> Optional['outputs.AssetDataObjectPropertiesWebsite']:
+        """
+        Specifies the details of the website.
+        The website structure is documented below.
+        """
+        return pulumi.get(self, "website")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcDomain(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "auditStatus":
+            suggest = "audit_status"
+        elif key == "auditUnpassReason":
+            suggest = "audit_unpass_reason"
+        elif key == "credentialId":
+            suggest = "credential_id"
+        elif key == "credentialType":
+            suggest = "credential_type"
+        elif key == "domainName":
+            suggest = "domain_name"
+        elif key == "expireDate":
+            suggest = "expire_date"
+        elif key == "nameServers":
+            suggest = "name_servers"
+        elif key == "privacyProtection":
+            suggest = "privacy_protection"
+        elif key == "regType":
+            suggest = "reg_type"
+        elif key == "transferStatus":
+            suggest = "transfer_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcDomain. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcDomain.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcDomain.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 audit_status: Optional[_builtins.str] = None,
+                 audit_unpass_reason: Optional[_builtins.str] = None,
+                 contacts: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcDomainContact']] = None,
+                 credential_id: Optional[_builtins.str] = None,
+                 credential_type: Optional[_builtins.str] = None,
+                 domain_name: Optional[_builtins.str] = None,
+                 expire_date: Optional[_builtins.str] = None,
+                 name_servers: Optional[Sequence[_builtins.str]] = None,
+                 privacy_protection: Optional[_builtins.str] = None,
+                 reg_type: Optional[_builtins.str] = None,
+                 registrar: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None,
+                 transfer_status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str audit_status: Specifies the domain real-name authentication status. Valid values are:
+               + **NONAUDIT**：Unauthenticated.
+               + **SUCCEED**：Authenticated.
+               + **FAILED**：Authentication failed.
+               + **AUDITING**：Authentication in progress.
+        :param _builtins.str audit_unpass_reason: Specifies the reason for domain real-name authentication failure.
+        :param Sequence['AssetDataObjectPropertiesHwcDomainContactArgs'] contacts: Specifies the contact information.
+               The contact structure is documented below.
+        :param _builtins.str credential_id: Specifies the credential ID.
+        :param _builtins.str credential_type: Specifies the type of credential.
+        :param _builtins.str domain_name: Specifies the domain name.
+        :param _builtins.str expire_date: Specifies the domain expiration date. eg：**2023-01-10**.
+        :param Sequence[_builtins.str] name_servers: Specifies the website server list.
+        :param _builtins.str privacy_protection: Specifies whether privacy protection is enabled.
+        :param _builtins.str reg_type: Specifies the registration type. Valid values are:
+               + **PERSONAL**：Personal.
+               + **COMPANY**：Company.
+        :param _builtins.str registrar: Specifies the registrar of the domain.
+        :param _builtins.str status: Specifies the domain status.
+        :param _builtins.str transfer_status: Specifies the domain transfer status.
+               
+               <a name="hwc_domain_contact_struct"></a>
+               The `contact` block supports:
+        """
+        if audit_status is not None:
+            pulumi.set(__self__, "audit_status", audit_status)
+        if audit_unpass_reason is not None:
+            pulumi.set(__self__, "audit_unpass_reason", audit_unpass_reason)
+        if contacts is not None:
+            pulumi.set(__self__, "contacts", contacts)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+        if expire_date is not None:
+            pulumi.set(__self__, "expire_date", expire_date)
+        if name_servers is not None:
+            pulumi.set(__self__, "name_servers", name_servers)
+        if privacy_protection is not None:
+            pulumi.set(__self__, "privacy_protection", privacy_protection)
+        if reg_type is not None:
+            pulumi.set(__self__, "reg_type", reg_type)
+        if registrar is not None:
+            pulumi.set(__self__, "registrar", registrar)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if transfer_status is not None:
+            pulumi.set(__self__, "transfer_status", transfer_status)
+
+    @_builtins.property
+    @pulumi.getter(name="auditStatus")
+    def audit_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain real-name authentication status. Valid values are:
+        + **NONAUDIT**：Unauthenticated.
+        + **SUCCEED**：Authenticated.
+        + **FAILED**：Authentication failed.
+        + **AUDITING**：Authentication in progress.
+        """
+        return pulumi.get(self, "audit_status")
+
+    @_builtins.property
+    @pulumi.getter(name="auditUnpassReason")
+    def audit_unpass_reason(self) -> Optional[_builtins.str]:
+        """
+        Specifies the reason for domain real-name authentication failure.
+        """
+        return pulumi.get(self, "audit_unpass_reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def contacts(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcDomainContact']]:
+        """
+        Specifies the contact information.
+        The contact structure is documented below.
+        """
+        return pulumi.get(self, "contacts")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the credential ID.
+        """
+        return pulumi.get(self, "credential_id")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of credential.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="expireDate")
+    def expire_date(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain expiration date. eg：**2023-01-10**.
+        """
+        return pulumi.get(self, "expire_date")
+
+    @_builtins.property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the website server list.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @_builtins.property
+    @pulumi.getter(name="privacyProtection")
+    def privacy_protection(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether privacy protection is enabled.
+        """
+        return pulumi.get(self, "privacy_protection")
+
+    @_builtins.property
+    @pulumi.getter(name="regType")
+    def reg_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the registration type. Valid values are:
+        + **PERSONAL**：Personal.
+        + **COMPANY**：Company.
+        """
+        return pulumi.get(self, "reg_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def registrar(self) -> Optional[_builtins.str]:
+        """
+        Specifies the registrar of the domain.
+        """
+        return pulumi.get(self, "registrar")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="transferStatus")
+    def transfer_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain transfer status.
+
+        <a name="hwc_domain_contact_struct"></a>
+        The `contact` block supports:
+        """
+        return pulumi.get(self, "transfer_status")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcDomainContact(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "contactName":
+            suggest = "contact_name"
+        elif key == "phoneNum":
+            suggest = "phone_num"
+        elif key == "zipCode":
+            suggest = "zip_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcDomainContact. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcDomainContact.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcDomainContact.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: Optional[_builtins.str] = None,
+                 city: Optional[_builtins.str] = None,
+                 contact_name: Optional[_builtins.str] = None,
+                 email: Optional[_builtins.str] = None,
+                 phone_num: Optional[_builtins.str] = None,
+                 province: Optional[_builtins.str] = None,
+                 register: Optional[_builtins.str] = None,
+                 zip_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str address: Specifies the address of the contact.
+        :param _builtins.str city: Specifies the city of the contact.
+        :param _builtins.str contact_name: Specifies the contact name.
+        :param _builtins.str email: Specifies the email address of the domain contact.
+        :param _builtins.str phone_num: Specifies the contact phone number.
+        :param _builtins.str province: Specifies the province of the contact.
+        :param _builtins.str register: Specifies the registrant information.
+        :param _builtins.str zip_code: Specifies the zip code of the contact.
+               
+               <a name="website_struct"></a>
+               The `website` block supports:
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if contact_name is not None:
+            pulumi.set(__self__, "contact_name", contact_name)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if phone_num is not None:
+            pulumi.set(__self__, "phone_num", phone_num)
+        if province is not None:
+            pulumi.set(__self__, "province", province)
+        if register is not None:
+            pulumi.set(__self__, "register", register)
+        if zip_code is not None:
+            pulumi.set(__self__, "zip_code", zip_code)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[_builtins.str]:
+        """
+        Specifies the address of the contact.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        Specifies the city of the contact.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter(name="contactName")
+    def contact_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the contact name.
+        """
+        return pulumi.get(self, "contact_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> Optional[_builtins.str]:
+        """
+        Specifies the email address of the domain contact.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNum")
+    def phone_num(self) -> Optional[_builtins.str]:
+        """
+        Specifies the contact phone number.
+        """
+        return pulumi.get(self, "phone_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def province(self) -> Optional[_builtins.str]:
+        """
+        Specifies the province of the contact.
+        """
+        return pulumi.get(self, "province")
+
+    @_builtins.property
+    @pulumi.getter
+    def register(self) -> Optional[_builtins.str]:
+        """
+        Specifies the registrant information.
+        """
+        return pulumi.get(self, "register")
+
+    @_builtins.property
+    @pulumi.getter(name="zipCode")
+    def zip_code(self) -> Optional[_builtins.str]:
+        """
+        Specifies the zip code of the contact.
+
+        <a name="website_struct"></a>
+        The `website` block supports:
+        """
+        return pulumi.get(self, "zip_code")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "hostId":
+            suggest = "host_id"
+        elif key == "hostName":
+            suggest = "host_name"
+        elif key == "hostStatus":
+            suggest = "host_status"
+        elif key == "keyName":
+            suggest = "key_name"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "protectedStatus":
+            suggest = "protected_status"
+        elif key == "schedulerHints":
+            suggest = "scheduler_hints"
+        elif key == "securityGroups":
+            suggest = "security_groups"
+        elif key == "userId":
+            suggest = "user_id"
+        elif key == "volumesAttacheds":
+            suggest = "volumes_attacheds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addresses: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsAddress']] = None,
+                 availability_zone: Optional[_builtins.str] = None,
+                 created: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 flavor: Optional['outputs.AssetDataObjectPropertiesHwcEcsFlavor'] = None,
+                 host_id: Optional[_builtins.str] = None,
+                 host_name: Optional[_builtins.str] = None,
+                 host_status: Optional[_builtins.str] = None,
+                 hypervisor: Optional['outputs.AssetDataObjectPropertiesHwcEcsHypervisor'] = None,
+                 id: Optional[_builtins.str] = None,
+                 key_name: Optional[_builtins.str] = None,
+                 locked: Optional[_builtins.bool] = None,
+                 metadata: Optional['outputs.AssetDataObjectPropertiesHwcEcsMetadata'] = None,
+                 name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 protected_status: Optional[_builtins.str] = None,
+                 scheduler_hints: Optional['outputs.AssetDataObjectPropertiesHwcEcsSchedulerHints'] = None,
+                 security_groups: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsSecurityGroup']] = None,
+                 status: Optional[_builtins.str] = None,
+                 updated: Optional[_builtins.str] = None,
+                 user_id: Optional[_builtins.str] = None,
+                 volumes_attacheds: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsVolumesAttached']] = None):
+        """
+        :param Sequence['AssetDataObjectPropertiesHwcEcsAddressArgs'] addresses: Specifies the IP addresses of the ECS.
+               The addresses structure is documented below.
+        :param _builtins.str availability_zone: Specifies the AZ where the node resides.
+               
+               <a name="hwc_rds_related_instance_struct"></a>
+               The `related_instance` block supports:
+        :param _builtins.str created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str description: Specifies the security group rule description.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param 'AssetDataObjectPropertiesHwcEcsFlavorArgs' flavor: Specifies the flavor of the ECS.
+               The flavor structure is documented below.
+        :param _builtins.str host_id: Specifies the host ID of the ECS.
+        :param _builtins.str host_name: Specifies the host name of the ECS.
+        :param _builtins.str host_status: Specifies the host status of the ECS. Valid values are:
+               + **UP**: The host is normal.
+               + **UNKNOWN**: The host status is unknown.
+               + **DOWN**: The host is down.
+               + **MAINTENANCE**: The host is under maintenance.
+        :param 'AssetDataObjectPropertiesHwcEcsHypervisorArgs' hypervisor: Specifies the virtualization information of the ECS.
+               The hypervisor structure is documented below.
+               
+               <a name="hwc_ecs_volumes_attached_struct"></a>
+               The `volumes_attached` block supports:
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str key_name: Specifies the key name of the ECS.
+        :param _builtins.bool locked: Specifies whether the ECS is locked. Valid values are:
+               + **true**: The ECS is locked.
+               + **false**: The ECS is not locked.
+        :param 'AssetDataObjectPropertiesHwcEcsMetadataArgs' metadata: Specifies the metadata of the ECS.
+               The metadata structure is documented below.
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param 'AssetDataObjectPropertiesHwcEcsSchedulerHintsArgs' scheduler_hints: Specifies the scheduler hints of the ECS.
+               The scheduler_hints structure is documented below.
+        :param Sequence['AssetDataObjectPropertiesHwcEcsSecurityGroupArgs'] security_groups: Specifies the security groups of the ECS.
+               The security_groups structure is documented below.
+        :param _builtins.str status: Specifies the domain status.
+        :param _builtins.str updated: Specifies the update time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str user_id: Specifies the user ID of the ECS.
+        :param Sequence['AssetDataObjectPropertiesHwcEcsVolumesAttachedArgs'] volumes_attacheds: Specifies the volumes attached to the ECS.
+               The volumes_attached structure is documented below.
+        """
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if flavor is not None:
+            pulumi.set(__self__, "flavor", flavor)
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if host_name is not None:
+            pulumi.set(__self__, "host_name", host_name)
+        if host_status is not None:
+            pulumi.set(__self__, "host_status", host_status)
+        if hypervisor is not None:
+            pulumi.set(__self__, "hypervisor", hypervisor)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if locked is not None:
+            pulumi.set(__self__, "locked", locked)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if scheduler_hints is not None:
+            pulumi.set(__self__, "scheduler_hints", scheduler_hints)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if volumes_attacheds is not None:
+            pulumi.set(__self__, "volumes_attacheds", volumes_attacheds)
+
+    @_builtins.property
+    @pulumi.getter
+    def addresses(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsAddress']]:
+        """
+        Specifies the IP addresses of the ECS.
+        The addresses structure is documented below.
+        """
+        return pulumi.get(self, "addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the AZ where the node resides.
+
+        <a name="hwc_rds_related_instance_struct"></a>
+        The `related_instance` block supports:
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[_builtins.str]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavor(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEcsFlavor']:
+        """
+        Specifies the flavor of the ECS.
+        The flavor structure is documented below.
+        """
+        return pulumi.get(self, "flavor")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the host ID of the ECS.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the host name of the ECS.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the host status of the ECS. Valid values are:
+        + **UP**: The host is normal.
+        + **UNKNOWN**: The host status is unknown.
+        + **DOWN**: The host is down.
+        + **MAINTENANCE**: The host is under maintenance.
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def hypervisor(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEcsHypervisor']:
+        """
+        Specifies the virtualization information of the ECS.
+        The hypervisor structure is documented below.
+
+        <a name="hwc_ecs_volumes_attached_struct"></a>
+        The `volumes_attached` block supports:
+        """
+        return pulumi.get(self, "hypervisor")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the key name of the ECS.
+        """
+        return pulumi.get(self, "key_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def locked(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the ECS is locked. Valid values are:
+        + **true**: The ECS is locked.
+        + **false**: The ECS is not locked.
+        """
+        return pulumi.get(self, "locked")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEcsMetadata']:
+        """
+        Specifies the metadata of the ECS.
+        The metadata structure is documented below.
+        """
+        return pulumi.get(self, "metadata")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter(name="schedulerHints")
+    def scheduler_hints(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEcsSchedulerHints']:
+        """
+        Specifies the scheduler hints of the ECS.
+        The scheduler_hints structure is documented below.
+        """
+        return pulumi.get(self, "scheduler_hints")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsSecurityGroup']]:
+        """
+        Specifies the security groups of the ECS.
+        The security_groups structure is documented below.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> Optional[_builtins.str]:
+        """
+        Specifies the update time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the user ID of the ECS.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="volumesAttacheds")
+    def volumes_attacheds(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcEcsVolumesAttached']]:
+        """
+        Specifies the volumes attached to the ECS.
+        The volumes_attached structure is documented below.
+        """
+        return pulumi.get(self, "volumes_attacheds")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "macAddr":
+            suggest = "mac_addr"
+        elif key == "portId":
+            suggest = "port_id"
+        elif key == "vpcId":
+            suggest = "vpc_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcsAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcsAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcsAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addr: Optional[_builtins.str] = None,
+                 mac_addr: Optional[_builtins.str] = None,
+                 port_id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None,
+                 vpc_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str addr: Specifies the IP address.
+        :param _builtins.str mac_addr: Specifies the MAC address.
+        :param _builtins.str port_id: Specifies the port ID of the public IP.
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        :param _builtins.str version: Specifies the service version.
+        :param _builtins.str vpc_id: Specifies the VPC ID.
+        """
+        if addr is not None:
+            pulumi.set(__self__, "addr", addr)
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+        if port_id is not None:
+            pulumi.set(__self__, "port_id", port_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def addr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IP address.
+        """
+        return pulumi.get(self, "addr")
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the port ID of the public IP.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsFlavor(dict):
+    def __init__(__self__, *,
+                 disk: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 ram: Optional[_builtins.str] = None,
+                 vcpus: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str disk: Specifies the disk size of the flavor.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str ram: Specifies the memory size in MB.
+               
+               <a name="hwc_ecs_security_groups_struct"></a>
+               The `security_groups` block supports:
+        :param _builtins.str vcpus: Specifies the number of vCPUs.
+        """
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if ram is not None:
+            pulumi.set(__self__, "ram", ram)
+        if vcpus is not None:
+            pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter
+    def disk(self) -> Optional[_builtins.str]:
+        """
+        Specifies the disk size of the flavor.
+        """
+        return pulumi.get(self, "disk")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> Optional[_builtins.str]:
+        """
+        Specifies the memory size in MB.
+
+        <a name="hwc_ecs_security_groups_struct"></a>
+        The `security_groups` block supports:
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> Optional[_builtins.str]:
+        """
+        Specifies the number of vCPUs.
+        """
+        return pulumi.get(self, "vcpus")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsHypervisor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "csdHypervisor":
+            suggest = "csd_hypervisor"
+        elif key == "hypervisorType":
+            suggest = "hypervisor_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcsHypervisor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcsHypervisor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcsHypervisor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 csd_hypervisor: Optional[_builtins.str] = None,
+                 hypervisor_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str csd_hypervisor: Specifies the Reserved attribute.
+        :param _builtins.str hypervisor_type: Specifies the virtualization type.
+               
+               <a name="hwc_ecs_addresses_struct"></a>
+               The `addresses` block supports:
+        """
+        if csd_hypervisor is not None:
+            pulumi.set(__self__, "csd_hypervisor", csd_hypervisor)
+        if hypervisor_type is not None:
+            pulumi.set(__self__, "hypervisor_type", hypervisor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="csdHypervisor")
+    def csd_hypervisor(self) -> Optional[_builtins.str]:
+        """
+        Specifies the Reserved attribute.
+        """
+        return pulumi.get(self, "csd_hypervisor")
+
+    @_builtins.property
+    @pulumi.getter(name="hypervisorType")
+    def hypervisor_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the virtualization type.
+
+        <a name="hwc_ecs_addresses_struct"></a>
+        The `addresses` block supports:
+        """
+        return pulumi.get(self, "hypervisor_type")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsMetadata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "agencyName":
+            suggest = "agency_name"
+        elif key == "imageId":
+            suggest = "image_id"
+        elif key == "imageName":
+            suggest = "image_name"
+        elif key == "imageType":
+            suggest = "image_type"
+        elif key == "osBit":
+            suggest = "os_bit"
+        elif key == "osType":
+            suggest = "os_type"
+        elif key == "resourceSpecCode":
+            suggest = "resource_spec_code"
+        elif key == "resourceType":
+            suggest = "resource_type"
+        elif key == "vpcId":
+            suggest = "vpc_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcsMetadata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcsMetadata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcsMetadata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 agency_name: Optional[_builtins.str] = None,
+                 image_id: Optional[_builtins.str] = None,
+                 image_name: Optional[_builtins.str] = None,
+                 image_type: Optional[_builtins.str] = None,
+                 os_bit: Optional[_builtins.str] = None,
+                 os_type: Optional[_builtins.str] = None,
+                 resource_spec_code: Optional[_builtins.str] = None,
+                 resource_type: Optional[_builtins.str] = None,
+                 vpc_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str agency_name: Specifies the agency name of the ECS.
+               
+               <a name="hwc_ecs_scheduler_hints_struct"></a>
+               The `scheduler_hints` block supports:
+        :param _builtins.str image_id: Specifies the ID of the image.
+        :param _builtins.str image_name: Specifies the image name of the ECS.
+        :param _builtins.str image_type: Specifies the image type of the ECS. Valid values are:
+               + **gold**: The gold image.
+               + **private**: The private image.
+               + **shared**: The shared image.
+        :param _builtins.str os_bit: Specifies the OS bit of the ECS. Valid values are:
+               + **32**: The 32-bit OS.
+               + **64**: The 64-bit OS.
+        :param _builtins.str os_type: Specifies the OS type of the ECS. Valid values are:
+               + **Windows**: The Windows OS.
+               + **Linux**: The Linux OS.
+        :param _builtins.str resource_spec_code: Specifies the resource spec code of the ECS.
+        :param _builtins.str resource_type: Specifies the type of the cloud resources.
+        :param _builtins.str vpc_id: Specifies the VPC ID.
+        """
+        if agency_name is not None:
+            pulumi.set(__self__, "agency_name", agency_name)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if image_name is not None:
+            pulumi.set(__self__, "image_name", image_name)
+        if image_type is not None:
+            pulumi.set(__self__, "image_type", image_type)
+        if os_bit is not None:
+            pulumi.set(__self__, "os_bit", os_bit)
+        if os_type is not None:
+            pulumi.set(__self__, "os_type", os_type)
+        if resource_spec_code is not None:
+            pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the agency name of the ECS.
+
+        <a name="hwc_ecs_scheduler_hints_struct"></a>
+        The `scheduler_hints` block supports:
+        """
+        return pulumi.get(self, "agency_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the image.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the image name of the ECS.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the image type of the ECS. Valid values are:
+        + **gold**: The gold image.
+        + **private**: The private image.
+        + **shared**: The shared image.
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osBit")
+    def os_bit(self) -> Optional[_builtins.str]:
+        """
+        Specifies the OS bit of the ECS. Valid values are:
+        + **32**: The 32-bit OS.
+        + **64**: The 64-bit OS.
+        """
+        return pulumi.get(self, "os_bit")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the OS type of the ECS. Valid values are:
+        + **Windows**: The Windows OS.
+        + **Linux**: The Linux OS.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> Optional[_builtins.str]:
+        """
+        Specifies the resource spec code of the ECS.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the cloud resources.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsSchedulerHints(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dedicatedHostIds":
+            suggest = "dedicated_host_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcsSchedulerHints. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcsSchedulerHints.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcsSchedulerHints.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dedicated_host_ids: Optional[Sequence[_builtins.str]] = None,
+                 groups: Optional[Sequence[_builtins.str]] = None,
+                 tenancies: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] dedicated_host_ids: Specifies the dedicated host ID. This field is valid only when the ECS is
+               a dedicated host.
+               
+               <a name="hwc_ecs_hypervisor_struct"></a>
+               The `hypervisor` block supports:
+        :param Sequence[_builtins.str] groups: Specifies the cloud server group ID.
+        :param Sequence[_builtins.str] tenancies: Specifies the tenancy of the ECS. Valid values are:
+               + **dedicated**: The dedicated ECS.
+               + **shared**: The shared ECS.
+        """
+        if dedicated_host_ids is not None:
+            pulumi.set(__self__, "dedicated_host_ids", dedicated_host_ids)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if tenancies is not None:
+            pulumi.set(__self__, "tenancies", tenancies)
+
+    @_builtins.property
+    @pulumi.getter(name="dedicatedHostIds")
+    def dedicated_host_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the dedicated host ID. This field is valid only when the ECS is
+        a dedicated host.
+
+        <a name="hwc_ecs_hypervisor_struct"></a>
+        The `hypervisor` block supports:
+        """
+        return pulumi.get(self, "dedicated_host_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the cloud server group ID.
+        """
+        return pulumi.get(self, "groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def tenancies(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the tenancy of the ECS. Valid values are:
+        + **dedicated**: The dedicated ECS.
+        + **shared**: The shared ECS.
+        """
+        return pulumi.get(self, "tenancies")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsSecurityGroup(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEcsVolumesAttached(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bootIndex":
+            suggest = "boot_index"
+        elif key == "deleteOnTermination":
+            suggest = "delete_on_termination"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEcsVolumesAttached. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEcsVolumesAttached.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEcsVolumesAttached.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 boot_index: Optional[_builtins.str] = None,
+                 delete_on_termination: Optional[_builtins.str] = None,
+                 device: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str boot_index: Specifies the boot order of the disk. Valid values:
+               + **0**: The disk is system disk.
+               + **1**: The disk is data disk.
+        :param _builtins.str delete_on_termination: Specifies whether to delete the disk when deleting the ECS.
+        :param _builtins.str device: Specifies the device information.
+               The device structure is documented below.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        """
+        if boot_index is not None:
+            pulumi.set(__self__, "boot_index", boot_index)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device is not None:
+            pulumi.set(__self__, "device", device)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="bootIndex")
+    def boot_index(self) -> Optional[_builtins.str]:
+        """
+        Specifies the boot order of the disk. Valid values:
+        + **0**: The disk is system disk.
+        + **1**: The disk is data disk.
+        """
+        return pulumi.get(self, "boot_index")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether to delete the disk when deleting the ECS.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> Optional[_builtins.str]:
+        """
+        Specifies the device information.
+        The device structure is documented below.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEip(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowShareBandwidthTypes":
+            suggest = "allow_share_bandwidth_types"
+        elif key == "associateInstanceId":
+            suggest = "associate_instance_id"
+        elif key == "associateInstanceType":
+            suggest = "associate_instance_type"
+        elif key == "createdAt":
+            suggest = "created_at"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "ipVersion":
+            suggest = "ip_version"
+        elif key == "lockStatus":
+            suggest = "lock_status"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "protectedStatus":
+            suggest = "protected_status"
+        elif key == "publicBorderGroup":
+            suggest = "public_border_group"
+        elif key == "publicIpAddress":
+            suggest = "public_ip_address"
+        elif key == "publicIpv6Address":
+            suggest = "public_ipv6_address"
+        elif key == "publicipPoolId":
+            suggest = "publicip_pool_id"
+        elif key == "publicipPoolName":
+            suggest = "publicip_pool_name"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEip. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEip.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEip.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alias: Optional[_builtins.str] = None,
+                 allow_share_bandwidth_types: Optional[Sequence[_builtins.str]] = None,
+                 associate_instance_id: Optional[_builtins.str] = None,
+                 associate_instance_type: Optional[_builtins.str] = None,
+                 bandwidth: Optional['outputs.AssetDataObjectPropertiesHwcEipBandwidth'] = None,
+                 created_at: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 ip_version: Optional[_builtins.int] = None,
+                 lock_status: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 protected_status: Optional[_builtins.str] = None,
+                 public_border_group: Optional[_builtins.str] = None,
+                 public_ip_address: Optional[_builtins.str] = None,
+                 public_ipv6_address: Optional[_builtins.str] = None,
+                 publicip_pool_id: Optional[_builtins.str] = None,
+                 publicip_pool_name: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None,
+                 tags: Optional[Sequence[_builtins.str]] = None,
+                 type: Optional[_builtins.str] = None,
+                 updated_at: Optional[_builtins.str] = None,
+                 vnic: Optional['outputs.AssetDataObjectPropertiesHwcEipVnic'] = None):
+        """
+        :param _builtins.str alias: Specifies the alias of the RDS.
+        :param Sequence[_builtins.str] allow_share_bandwidth_types: Specifies the list of shared bandwidth types that the public IP can join.
+               If it is an empty list, it means that the public IP cannot join any shared bandwidth. Constraint: The public IP can
+               only join the shared bandwidth with the same bandwidth type.
+        :param _builtins.str associate_instance_id: Specifies the instance ID of the public IP.
+        :param _builtins.str associate_instance_type: Specifies the instance type of the public IP.
+               Valid values are **PORT**, **NATGW**, **ELB**, **ELBV1**, **VPN**, and **null**.
+        :param 'AssetDataObjectPropertiesHwcEipBandwidthArgs' bandwidth: Specifies the bandwidth information of the EIP.
+               The bandwidth structure is documented below.
+        :param _builtins.str created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str description: Specifies the security group rule description.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.int ip_version: Specifies the IP version information. Valid values are `4` and `6`.
+        :param _builtins.str lock_status: Specifies the freeze status of the public IP. Valid values are **police** and **locked**.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param _builtins.str public_border_group: Specifies the center site asset or edge site asset. Value range: center,
+               edge site name.
+               
+               <a name="hwc_eip_vnic_struct"></a>
+               The `vnic` block supports:
+        :param _builtins.str public_ip_address: Specifies the public IP address of the EIP.
+        :param _builtins.str public_ipv6_address: Specifies the public IPv6 address of the EIP.
+        :param _builtins.str publicip_pool_id: Specifies the public IP pool ID of the EIP.
+        :param _builtins.str publicip_pool_name: Specifies the public IP pool name of the EIP.
+        :param _builtins.str status: Specifies the domain status.
+        :param Sequence[_builtins.str] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        :param _builtins.str updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param 'AssetDataObjectPropertiesHwcEipVnicArgs' vnic: Specifies the VNIC information of the EIP.
+               The vnic structure is documented below.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if allow_share_bandwidth_types is not None:
+            pulumi.set(__self__, "allow_share_bandwidth_types", allow_share_bandwidth_types)
+        if associate_instance_id is not None:
+            pulumi.set(__self__, "associate_instance_id", associate_instance_id)
+        if associate_instance_type is not None:
+            pulumi.set(__self__, "associate_instance_type", associate_instance_type)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip_version is not None:
+            pulumi.set(__self__, "ip_version", ip_version)
+        if lock_status is not None:
+            pulumi.set(__self__, "lock_status", lock_status)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if public_border_group is not None:
+            pulumi.set(__self__, "public_border_group", public_border_group)
+        if public_ip_address is not None:
+            pulumi.set(__self__, "public_ip_address", public_ip_address)
+        if public_ipv6_address is not None:
+            pulumi.set(__self__, "public_ipv6_address", public_ipv6_address)
+        if publicip_pool_id is not None:
+            pulumi.set(__self__, "publicip_pool_id", publicip_pool_id)
+        if publicip_pool_name is not None:
+            pulumi.set(__self__, "publicip_pool_name", publicip_pool_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if vnic is not None:
+            pulumi.set(__self__, "vnic", vnic)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> Optional[_builtins.str]:
+        """
+        Specifies the alias of the RDS.
+        """
+        return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="allowShareBandwidthTypes")
+    def allow_share_bandwidth_types(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of shared bandwidth types that the public IP can join.
+        If it is an empty list, it means that the public IP cannot join any shared bandwidth. Constraint: The public IP can
+        only join the shared bandwidth with the same bandwidth type.
+        """
+        return pulumi.get(self, "allow_share_bandwidth_types")
+
+    @_builtins.property
+    @pulumi.getter(name="associateInstanceId")
+    def associate_instance_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance ID of the public IP.
+        """
+        return pulumi.get(self, "associate_instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="associateInstanceType")
+    def associate_instance_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance type of the public IP.
+        Valid values are **PORT**, **NATGW**, **ELB**, **ELBV1**, **VPN**, and **null**.
+        """
+        return pulumi.get(self, "associate_instance_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidth(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEipBandwidth']:
+        """
+        Specifies the bandwidth information of the EIP.
+        The bandwidth structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[_builtins.int]:
+        """
+        Specifies the IP version information. Valid values are `4` and `6`.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @_builtins.property
+    @pulumi.getter(name="lockStatus")
+    def lock_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the freeze status of the public IP. Valid values are **police** and **locked**.
+        """
+        return pulumi.get(self, "lock_status")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> Optional[_builtins.str]:
+        """
+        Specifies the center site asset or edge site asset. Value range: center,
+        edge site name.
+
+        <a name="hwc_eip_vnic_struct"></a>
+        The `vnic` block supports:
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpAddress")
+    def public_ip_address(self) -> Optional[_builtins.str]:
+        """
+        Specifies the public IP address of the EIP.
+        """
+        return pulumi.get(self, "public_ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpv6Address")
+    def public_ipv6_address(self) -> Optional[_builtins.str]:
+        """
+        Specifies the public IPv6 address of the EIP.
+        """
+        return pulumi.get(self, "public_ipv6_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipPoolId")
+    def publicip_pool_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the public IP pool ID of the EIP.
+        """
+        return pulumi.get(self, "publicip_pool_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipPoolName")
+    def publicip_pool_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the public IP pool name of the EIP.
+        """
+        return pulumi.get(self, "publicip_pool_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def vnic(self) -> Optional['outputs.AssetDataObjectPropertiesHwcEipVnic']:
+        """
+        Specifies the VNIC information of the EIP.
+        The vnic structure is documented below.
+        """
+        return pulumi.get(self, "vnic")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEipBandwidth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "shareType":
+            suggest = "share_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEipBandwidth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEipBandwidth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEipBandwidth.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 share_type: Optional[_builtins.str] = None,
+                 size: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str share_type: Specifies the bandwidth type. Valid values are **PER** and **WHOLE**.
+               
+               <a name="hwc_vpc_struct"></a>
+               The `hwc_vpc` block supports:
+        :param _builtins.int size: Specifies the volume size in GB.
+               
+               <a name="hwc_rds_backup_strategy_struct"></a>
+               The `backup_strategy` block supports:
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if share_type is not None:
+            pulumi.set(__self__, "share_type", share_type)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="shareType")
+    def share_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the bandwidth type. Valid values are **PER** and **WHOLE**.
+
+        <a name="hwc_vpc_struct"></a>
+        The `hwc_vpc` block supports:
+        """
+        return pulumi.get(self, "share_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        """
+        Specifies the volume size in GB.
+
+        <a name="hwc_rds_backup_strategy_struct"></a>
+        The `backup_strategy` block supports:
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcEipVnic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deviceId":
+            suggest = "device_id"
+        elif key == "deviceOwner":
+            suggest = "device_owner"
+        elif key == "instanceId":
+            suggest = "instance_id"
+        elif key == "instanceType":
+            suggest = "instance_type"
+        elif key == "portId":
+            suggest = "port_id"
+        elif key == "portProfile":
+            suggest = "port_profile"
+        elif key == "privateIpAddress":
+            suggest = "private_ip_address"
+        elif key == "vpcId":
+            suggest = "vpc_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcEipVnic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcEipVnic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcEipVnic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 device_id: Optional[_builtins.str] = None,
+                 device_owner: Optional[_builtins.str] = None,
+                 instance_id: Optional[_builtins.str] = None,
+                 instance_type: Optional[_builtins.str] = None,
+                 mac: Optional[_builtins.str] = None,
+                 port_id: Optional[_builtins.str] = None,
+                 port_profile: Optional[_builtins.str] = None,
+                 private_ip_address: Optional[_builtins.str] = None,
+                 vni: Optional[_builtins.str] = None,
+                 vpc_id: Optional[_builtins.str] = None,
+                 vtep: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str device_id: Specifies the device ID of the public IP.
+        :param _builtins.str device_owner: Specifies the device owner of the public IP. Valid values are **network:dhcp**,
+               **network:VIP_PORT**, **network:router_interface_distributed**, and **network:router_centralized_snat**.
+        :param _builtins.str instance_id: Specifies the instance ID of the public IP.
+        :param _builtins.str instance_type: Specifies the instance type of the public IP.
+               
+               <a name="hwc_eip_bandwidth_struct"></a>
+               The `bandwidth` block supports:
+        :param _builtins.str mac: Specifies the MAC address of the public IP.
+        :param _builtins.str port_id: Specifies the port ID of the public IP.
+        :param _builtins.str port_profile: Specifies the port profile information of the public IP.
+        :param _builtins.str private_ip_address: Specifies the private IP address of the public IP.
+        :param _builtins.str vni: Specifies the VXLAN ID of the public IP.
+        :param _builtins.str vpc_id: Specifies the VPC ID.
+        :param _builtins.str vtep: Specifies the VTEP IP of the public IP.
+        """
+        if device_id is not None:
+            pulumi.set(__self__, "device_id", device_id)
+        if device_owner is not None:
+            pulumi.set(__self__, "device_owner", device_owner)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if port_id is not None:
+            pulumi.set(__self__, "port_id", port_id)
+        if port_profile is not None:
+            pulumi.set(__self__, "port_profile", port_profile)
+        if private_ip_address is not None:
+            pulumi.set(__self__, "private_ip_address", private_ip_address)
+        if vni is not None:
+            pulumi.set(__self__, "vni", vni)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+        if vtep is not None:
+            pulumi.set(__self__, "vtep", vtep)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the device ID of the public IP.
+        """
+        return pulumi.get(self, "device_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceOwner")
+    def device_owner(self) -> Optional[_builtins.str]:
+        """
+        Specifies the device owner of the public IP. Valid values are **network:dhcp**,
+        **network:VIP_PORT**, **network:router_interface_distributed**, and **network:router_centralized_snat**.
+        """
+        return pulumi.get(self, "device_owner")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance ID of the public IP.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the instance type of the public IP.
+
+        <a name="hwc_eip_bandwidth_struct"></a>
+        The `bandwidth` block supports:
+        """
+        return pulumi.get(self, "instance_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def mac(self) -> Optional[_builtins.str]:
+        """
+        Specifies the MAC address of the public IP.
+        """
+        return pulumi.get(self, "mac")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the port ID of the public IP.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter(name="portProfile")
+    def port_profile(self) -> Optional[_builtins.str]:
+        """
+        Specifies the port profile information of the public IP.
+        """
+        return pulumi.get(self, "port_profile")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> Optional[_builtins.str]:
+        """
+        Specifies the private IP address of the public IP.
+        """
+        return pulumi.get(self, "private_ip_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def vni(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VXLAN ID of the public IP.
+        """
+        return pulumi.get(self, "vni")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def vtep(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VTEP IP of the public IP.
+        """
+        return pulumi.get(self, "vtep")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRds(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "associatedWithDdm":
+            suggest = "associated_with_ddm"
+        elif key == "backupStrategy":
+            suggest = "backup_strategy"
+        elif key == "backupUsedSpace":
+            suggest = "backup_used_space"
+        elif key == "dbUserName":
+            suggest = "db_user_name"
+        elif key == "diskEncryptionId":
+            suggest = "disk_encryption_id"
+        elif key == "enableSsl":
+            suggest = "enable_ssl"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "expirationTime":
+            suggest = "expiration_time"
+        elif key == "flavorRef":
+            suggest = "flavor_ref"
+        elif key == "maintenanceWindow":
+            suggest = "maintenance_window"
+        elif key == "maxIops":
+            suggest = "max_iops"
+        elif key == "privateDnsNames":
+            suggest = "private_dns_names"
+        elif key == "privateIps":
+            suggest = "private_ips"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "protectedStatus":
+            suggest = "protected_status"
+        elif key == "publicIps":
+            suggest = "public_ips"
+        elif key == "readOnlyByUser":
+            suggest = "read_only_by_user"
+        elif key == "relatedInstances":
+            suggest = "related_instances"
+        elif key == "securityGroupId":
+            suggest = "security_group_id"
+        elif key == "storageUsedSpace":
+            suggest = "storage_used_space"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+        elif key == "switchStrategy":
+            suggest = "switch_strategy"
+        elif key == "timeZone":
+            suggest = "time_zone"
+        elif key == "vpcId":
+            suggest = "vpc_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcRds. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcRds.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcRds.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alias: Optional[_builtins.str] = None,
+                 associated_with_ddm: Optional[_builtins.bool] = None,
+                 backup_strategy: Optional['outputs.AssetDataObjectPropertiesHwcRdsBackupStrategy'] = None,
+                 backup_used_space: Optional[_builtins.float] = None,
+                 cpu: Optional[_builtins.str] = None,
+                 created: Optional[_builtins.str] = None,
+                 datastore: Optional['outputs.AssetDataObjectPropertiesHwcRdsDatastore'] = None,
+                 db_user_name: Optional[_builtins.str] = None,
+                 disk_encryption_id: Optional[_builtins.str] = None,
+                 enable_ssl: Optional[_builtins.bool] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 expiration_time: Optional[_builtins.str] = None,
+                 flavor_ref: Optional[_builtins.str] = None,
+                 ha: Optional['outputs.AssetDataObjectPropertiesHwcRdsHa'] = None,
+                 id: Optional[_builtins.str] = None,
+                 maintenance_window: Optional[_builtins.str] = None,
+                 max_iops: Optional[_builtins.int] = None,
+                 mem: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 nodes: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsNode']] = None,
+                 port: Optional[_builtins.int] = None,
+                 private_dns_names: Optional[Sequence[_builtins.str]] = None,
+                 private_ips: Optional[Sequence[_builtins.str]] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 protected_status: Optional[_builtins.str] = None,
+                 public_ips: Optional[Sequence[_builtins.str]] = None,
+                 read_only_by_user: Optional[_builtins.bool] = None,
+                 region: Optional[_builtins.str] = None,
+                 related_instances: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsRelatedInstance']] = None,
+                 security_group_id: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None,
+                 storage_used_space: Optional[_builtins.float] = None,
+                 subnet_id: Optional[_builtins.str] = None,
+                 switch_strategy: Optional[_builtins.str] = None,
+                 tags: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsTag']] = None,
+                 time_zone: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 updated: Optional[_builtins.str] = None,
+                 volume: Optional['outputs.AssetDataObjectPropertiesHwcRdsVolume'] = None,
+                 vpc_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str alias: Specifies the alias of the RDS.
+        :param _builtins.bool associated_with_ddm: Specifies whether the instance is associated with DDM.
+        :param 'AssetDataObjectPropertiesHwcRdsBackupStrategyArgs' backup_strategy: Specifies the backup policy.
+               The backup_strategy structure is documented below.
+        :param _builtins.float backup_used_space: Specifies the backup space usage of the RDS. Only supports RDS for SQL Server
+               engine.
+               
+               <a name="hwc_rds_ha_struct"></a>
+               The `ha` block supports:
+        :param _builtins.str cpu: Specifies the CPU size of the RDS.
+        :param _builtins.str created: Specifies the creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param 'AssetDataObjectPropertiesHwcRdsDatastoreArgs' datastore: Specifies the database information.
+               The datastore structure is documented below.
+        :param _builtins.str db_user_name: Specifies the default username of the RDS.
+        :param _builtins.str disk_encryption_id: Specifies the disk encryption ID.
+        :param _builtins.bool enable_ssl: Specifies the SSL flag of the instance.
+               Valid values are **true** and **false**.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param _builtins.str expiration_time: Specifies the expiration time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str flavor_ref: Specifies the flavor of the RDS.
+        :param 'AssetDataObjectPropertiesHwcRdsHaArgs' ha: Specifies the HA configuration.
+               The ha structure is documented below.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str maintenance_window: Specifies the maintenance window of the RDS.
+        :param _builtins.int max_iops: Specifies the maximum IOPS of the disk.
+        :param _builtins.str mem: Specifies the memory size of the RDS.
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param Sequence['AssetDataObjectPropertiesHwcRdsNodeArgs'] nodes: Specifies the main and standby instance information.
+               The nodes structure is documented below.
+        :param _builtins.int port: Specifies the service port.
+        :param Sequence[_builtins.str] private_dns_names: Specifies the private DNS names of the RDS.
+        :param Sequence[_builtins.str] private_ips: Specifies the private IP addresses of the RDS.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param Sequence[_builtins.str] public_ips: Specifies the list of public IP addresses of the instance.
+        :param _builtins.bool read_only_by_user: Specifies the user set read-only status of the RDS. Only supports RDS for
+               MySQL engine.
+        :param _builtins.str region: Specifies the region where the RDS is located.
+        :param Sequence['AssetDataObjectPropertiesHwcRdsRelatedInstanceArgs'] related_instances: Specifies the list of associated database instances.
+               The related_instance structure is documented below.
+        :param _builtins.str security_group_id: Specifies the security group ID.
+        :param _builtins.str status: Specifies the domain status.
+        :param _builtins.float storage_used_space: Specifies the disk space usage, unit is GB.
+        :param _builtins.str subnet_id: Specifies the subnet ID of the RDS.
+        :param _builtins.str switch_strategy: Specifies the database switch strategy respectively.
+        :param Sequence['AssetDataObjectPropertiesHwcRdsTagArgs'] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param _builtins.str time_zone: Specifies the time zone of the RDS.
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        :param _builtins.str updated: Specifies the update time of the RDS.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param 'AssetDataObjectPropertiesHwcRdsVolumeArgs' volume: Specifies the volume information.
+               The volume structure is documented below.
+        :param _builtins.str vpc_id: Specifies the VPC ID.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if associated_with_ddm is not None:
+            pulumi.set(__self__, "associated_with_ddm", associated_with_ddm)
+        if backup_strategy is not None:
+            pulumi.set(__self__, "backup_strategy", backup_strategy)
+        if backup_used_space is not None:
+            pulumi.set(__self__, "backup_used_space", backup_used_space)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if datastore is not None:
+            pulumi.set(__self__, "datastore", datastore)
+        if db_user_name is not None:
+            pulumi.set(__self__, "db_user_name", db_user_name)
+        if disk_encryption_id is not None:
+            pulumi.set(__self__, "disk_encryption_id", disk_encryption_id)
+        if enable_ssl is not None:
+            pulumi.set(__self__, "enable_ssl", enable_ssl)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if expiration_time is not None:
+            pulumi.set(__self__, "expiration_time", expiration_time)
+        if flavor_ref is not None:
+            pulumi.set(__self__, "flavor_ref", flavor_ref)
+        if ha is not None:
+            pulumi.set(__self__, "ha", ha)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
+        if max_iops is not None:
+            pulumi.set(__self__, "max_iops", max_iops)
+        if mem is not None:
+            pulumi.set(__self__, "mem", mem)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nodes is not None:
+            pulumi.set(__self__, "nodes", nodes)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if private_dns_names is not None:
+            pulumi.set(__self__, "private_dns_names", private_dns_names)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if public_ips is not None:
+            pulumi.set(__self__, "public_ips", public_ips)
+        if read_only_by_user is not None:
+            pulumi.set(__self__, "read_only_by_user", read_only_by_user)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if related_instances is not None:
+            pulumi.set(__self__, "related_instances", related_instances)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if storage_used_space is not None:
+            pulumi.set(__self__, "storage_used_space", storage_used_space)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if switch_strategy is not None:
+            pulumi.set(__self__, "switch_strategy", switch_strategy)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> Optional[_builtins.str]:
+        """
+        Specifies the alias of the RDS.
+        """
+        return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedWithDdm")
+    def associated_with_ddm(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the instance is associated with DDM.
+        """
+        return pulumi.get(self, "associated_with_ddm")
+
+    @_builtins.property
+    @pulumi.getter(name="backupStrategy")
+    def backup_strategy(self) -> Optional['outputs.AssetDataObjectPropertiesHwcRdsBackupStrategy']:
+        """
+        Specifies the backup policy.
+        The backup_strategy structure is documented below.
+        """
+        return pulumi.get(self, "backup_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="backupUsedSpace")
+    def backup_used_space(self) -> Optional[_builtins.float]:
+        """
+        Specifies the backup space usage of the RDS. Only supports RDS for SQL Server
+        engine.
+
+        <a name="hwc_rds_ha_struct"></a>
+        The `ha` block supports:
+        """
+        return pulumi.get(self, "backup_used_space")
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[_builtins.str]:
+        """
+        Specifies the CPU size of the RDS.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[_builtins.str]:
+        """
+        Specifies the creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def datastore(self) -> Optional['outputs.AssetDataObjectPropertiesHwcRdsDatastore']:
+        """
+        Specifies the database information.
+        The datastore structure is documented below.
+        """
+        return pulumi.get(self, "datastore")
+
+    @_builtins.property
+    @pulumi.getter(name="dbUserName")
+    def db_user_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the default username of the RDS.
+        """
+        return pulumi.get(self, "db_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptionId")
+    def disk_encryption_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the disk encryption ID.
+        """
+        return pulumi.get(self, "disk_encryption_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enableSsl")
+    def enable_ssl(self) -> Optional[_builtins.bool]:
+        """
+        Specifies the SSL flag of the instance.
+        Valid values are **true** and **false**.
+        """
+        return pulumi.get(self, "enable_ssl")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="expirationTime")
+    def expiration_time(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expiration time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "expiration_time")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorRef")
+    def flavor_ref(self) -> Optional[_builtins.str]:
+        """
+        Specifies the flavor of the RDS.
+        """
+        return pulumi.get(self, "flavor_ref")
+
+    @_builtins.property
+    @pulumi.getter
+    def ha(self) -> Optional['outputs.AssetDataObjectPropertiesHwcRdsHa']:
+        """
+        Specifies the HA configuration.
+        The ha structure is documented below.
+        """
+        return pulumi.get(self, "ha")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[_builtins.str]:
+        """
+        Specifies the maintenance window of the RDS.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @_builtins.property
+    @pulumi.getter(name="maxIops")
+    def max_iops(self) -> Optional[_builtins.int]:
+        """
+        Specifies the maximum IOPS of the disk.
+        """
+        return pulumi.get(self, "max_iops")
+
+    @_builtins.property
+    @pulumi.getter
+    def mem(self) -> Optional[_builtins.str]:
+        """
+        Specifies the memory size of the RDS.
+        """
+        return pulumi.get(self, "mem")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def nodes(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsNode']]:
+        """
+        Specifies the main and standby instance information.
+        The nodes structure is documented below.
+        """
+        return pulumi.get(self, "nodes")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        Specifies the service port.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter(name="privateDnsNames")
+    def private_dns_names(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the private DNS names of the RDS.
+        """
+        return pulumi.get(self, "private_dns_names")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the private IP addresses of the RDS.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of public IP addresses of the instance.
+        """
+        return pulumi.get(self, "public_ips")
+
+    @_builtins.property
+    @pulumi.getter(name="readOnlyByUser")
+    def read_only_by_user(self) -> Optional[_builtins.bool]:
+        """
+        Specifies the user set read-only status of the RDS. Only supports RDS for
+        MySQL engine.
+        """
+        return pulumi.get(self, "read_only_by_user")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        Specifies the region where the RDS is located.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="relatedInstances")
+    def related_instances(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsRelatedInstance']]:
+        """
+        Specifies the list of associated database instances.
+        The related_instance structure is documented below.
+        """
+        return pulumi.get(self, "related_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="storageUsedSpace")
+    def storage_used_space(self) -> Optional[_builtins.float]:
+        """
+        Specifies the disk space usage, unit is GB.
+        """
+        return pulumi.get(self, "storage_used_space")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the subnet ID of the RDS.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter(name="switchStrategy")
+    def switch_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies the database switch strategy respectively.
+        """
+        return pulumi.get(self, "switch_strategy")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcRdsTag']]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the time zone of the RDS.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> Optional[_builtins.str]:
+        """
+        Specifies the update time of the RDS.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
+    @pulumi.getter
+    def volume(self) -> Optional['outputs.AssetDataObjectPropertiesHwcRdsVolume']:
+        """
+        Specifies the volume information.
+        The volume structure is documented below.
+        """
+        return pulumi.get(self, "volume")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsBackupStrategy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keepDays":
+            suggest = "keep_days"
+        elif key == "startTime":
+            suggest = "start_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcRdsBackupStrategy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcRdsBackupStrategy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcRdsBackupStrategy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keep_days: Optional[_builtins.int] = None,
+                 start_time: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int keep_days: Specifies the number of days that the generated backup files can be saved.
+               Valid values are `0` to `732`. When the value is `0`, it means that the automatic backup policy is not set or the
+               automatic backup policy is disabled. If you need to extend the retention period, contact the customer service for
+               application. The maximum retention period for automatic backup is `2,562` days.
+               
+               <a name="hwc_rds_node_struct"></a>
+               The `node` block supports:
+        :param _builtins.str start_time: Specifies the backup time period. Automatic backup will be triggered in this period.
+        """
+        if keep_days is not None:
+            pulumi.set(__self__, "keep_days", keep_days)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+
+    @_builtins.property
+    @pulumi.getter(name="keepDays")
+    def keep_days(self) -> Optional[_builtins.int]:
+        """
+        Specifies the number of days that the generated backup files can be saved.
+        Valid values are `0` to `732`. When the value is `0`, it means that the automatic backup policy is not set or the
+        automatic backup policy is disabled. If you need to extend the retention period, contact the customer service for
+        application. The maximum retention period for automatic backup is `2,562` days.
+
+        <a name="hwc_rds_node_struct"></a>
+        The `node` block supports:
+        """
+        return pulumi.get(self, "keep_days")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[_builtins.str]:
+        """
+        Specifies the backup time period. Automatic backup will be triggered in this period.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsDatastore(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "completeVersion":
+            suggest = "complete_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcRdsDatastore. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcRdsDatastore.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcRdsDatastore.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 complete_version: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str complete_version: Specifies the complete version number of the database.
+               Only returns when the database engine is **PostgreSQL**.
+               
+               <a name="hwc_rds_volume_struct"></a>
+               The `volume` block supports:
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        :param _builtins.str version: Specifies the service version.
+        """
+        if complete_version is not None:
+            pulumi.set(__self__, "complete_version", complete_version)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="completeVersion")
+    def complete_version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the complete version number of the database.
+        Only returns when the database engine is **PostgreSQL**.
+
+        <a name="hwc_rds_volume_struct"></a>
+        The `volume` block supports:
+        """
+        return pulumi.get(self, "complete_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsHa(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "replicationMode":
+            suggest = "replication_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcRdsHa. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcRdsHa.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcRdsHa.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 replication_mode: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str replication_mode: Specifies the replication mode.
+               Valid values are **async** and **semisync** for RDS for MySQL.
+               Valid values are **async** and **sync** for RDS for PostgreSQL.
+               Valid values are **sync** for RDS for Microsoft SQL Server.
+               
+               <a name="hwc_rds_datastore_struct"></a>
+               The `datastore` block supports:
+        """
+        if replication_mode is not None:
+            pulumi.set(__self__, "replication_mode", replication_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="replicationMode")
+    def replication_mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies the replication mode.
+        Valid values are **async** and **semisync** for RDS for MySQL.
+        Valid values are **async** and **sync** for RDS for PostgreSQL.
+        Valid values are **sync** for RDS for Microsoft SQL Server.
+
+        <a name="hwc_rds_datastore_struct"></a>
+        The `datastore` block supports:
+        """
+        return pulumi.get(self, "replication_mode")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsNode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcRdsNode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcRdsNode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcRdsNode.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 role: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str availability_zone: Specifies the AZ where the node resides.
+               
+               <a name="hwc_rds_related_instance_struct"></a>
+               The `related_instance` block supports:
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str role: Specifies the node role. Valid values are **master**, **slave**, and **readreplica**.
+        :param _builtins.str status: Specifies the domain status.
+        """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the AZ where the node resides.
+
+        <a name="hwc_rds_related_instance_struct"></a>
+        The `related_instance` block supports:
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> Optional[_builtins.str]:
+        """
+        Specifies the node role. Valid values are **master**, **slave**, and **readreplica**.
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsRelatedInstance(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsTag(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the tag key. The maximum length is `128` unicode characters.
+               Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+               cannot be a space, trim half-width spaces before and after the validation and usage.
+        :param Sequence[_builtins.str] values: Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+               If values is an empty list, it means any_value (query any value).
+               
+               <a name="hwc_domain_struct"></a>
+               The `hwc_domain` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the tag key. The maximum length is `128` unicode characters.
+        Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+        cannot be a space, trim half-width spaces before and after the validation and usage.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+        If values is an empty list, it means any_value (query any value).
+
+        <a name="hwc_domain_struct"></a>
+        The `hwc_domain` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcRdsVolume(dict):
+    def __init__(__self__, *,
+                 size: Optional[_builtins.int] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int size: Specifies the volume size in GB.
+               
+               <a name="hwc_rds_backup_strategy_struct"></a>
+               The `backup_strategy` block supports:
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        """
+        Specifies the volume size in GB.
+
+        <a name="hwc_rds_backup_strategy_struct"></a>
+        The `backup_strategy` block supports:
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcSubnet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "securityGroupRules":
+            suggest = "security_group_rules"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcSubnet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcSubnet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcSubnet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 security_group_rules: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcSubnetSecurityGroupRule']] = None,
+                 updated_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str description: Specifies the security group rule description.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param Sequence['AssetDataObjectPropertiesHwcSubnetSecurityGroupRuleArgs'] security_group_rules: Specifies the security group rules.
+               The security_group_rules structure is documented below.
+               
+               <a name="hwc_security_group_rules_struct"></a>
+               The `security_group_rules` block supports:
+        :param _builtins.str updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if security_group_rules is not None:
+            pulumi.set(__self__, "security_group_rules", security_group_rules)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupRules")
+    def security_group_rules(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcSubnetSecurityGroupRule']]:
+        """
+        Specifies the security group rules.
+        The security_group_rules structure is documented below.
+
+        <a name="hwc_security_group_rules_struct"></a>
+        The `security_group_rules` block supports:
+        """
+        return pulumi.get(self, "security_group_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcSubnetSecurityGroupRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "remoteAddressGroupId":
+            suggest = "remote_address_group_id"
+        elif key == "remoteGroupId":
+            suggest = "remote_group_id"
+        elif key == "remoteIpPrefix":
+            suggest = "remote_ip_prefix"
+        elif key == "securityGroupId":
+            suggest = "security_group_id"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcSubnetSecurityGroupRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcSubnetSecurityGroupRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcSubnetSecurityGroupRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: Optional[_builtins.str] = None,
+                 created_at: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 direction: Optional[_builtins.str] = None,
+                 ethertype: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 multiport: Optional[_builtins.str] = None,
+                 priority: Optional[_builtins.int] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 protocol: Optional[_builtins.str] = None,
+                 remote_address_group_id: Optional[_builtins.str] = None,
+                 remote_group_id: Optional[_builtins.str] = None,
+                 remote_ip_prefix: Optional[_builtins.str] = None,
+                 security_group_id: Optional[_builtins.str] = None,
+                 updated_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str action: Specifies the security group rule action. Valid values are **allow** and **deny**.
+        :param _builtins.str created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str description: Specifies the security group rule description.
+        :param _builtins.str direction: Specifies the direction of the security group rule.
+               Valid values are **ingress** and **egress**.
+        :param _builtins.str ethertype: Specifies the IP address protocol type.
+               Valid values are **IPv4** and **IPv6**.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str multiport: Specifies the port range.
+               Support single port (`80`), continuous ports (`1-30`), and non-continuous ports (`22, 3389, 80`).
+        :param _builtins.int priority: Specifies the priority of the security group rule.
+               Valid values are `1` to `100`, `1` represents the highest priority.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str protocol: Specifies the service protocol.
+        :param _builtins.str remote_address_group_id: Specifies the remote address group ID.
+               Valid values are the address group ID of the tenant.
+               It is mutually exclusive with `remote_group_id` and `remote_ip_prefix`.
+               
+               <a name="hwc_rds_struct"></a>
+               The `hwc_rds` block supports:
+        :param _builtins.str remote_group_id: Specifies the remote security group ID.
+               Valid values are the security group ID of the tenant.
+               It is mutually exclusive with `remote_ip_prefix` and `remote_address_group_id`.
+        :param _builtins.str remote_ip_prefix: Specifies the remote IP address.
+               When `direction` is **egress**, it is the IP address of the virtual machine.
+               When `direction` is **ingress**, it is the IP address of the virtual machine.
+               It is mutually exclusive with `remote_group_id` and `remote_address_group_id`.
+        :param _builtins.str security_group_id: Specifies the security group ID.
+        :param _builtins.str updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+        if ethertype is not None:
+            pulumi.set(__self__, "ethertype", ethertype)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if multiport is not None:
+            pulumi.set(__self__, "multiport", multiport)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if remote_address_group_id is not None:
+            pulumi.set(__self__, "remote_address_group_id", remote_address_group_id)
+        if remote_group_id is not None:
+            pulumi.set(__self__, "remote_group_id", remote_group_id)
+        if remote_ip_prefix is not None:
+            pulumi.set(__self__, "remote_ip_prefix", remote_ip_prefix)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule action. Valid values are **allow** and **deny**.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def direction(self) -> Optional[_builtins.str]:
+        """
+        Specifies the direction of the security group rule.
+        Valid values are **ingress** and **egress**.
+        """
+        return pulumi.get(self, "direction")
+
+    @_builtins.property
+    @pulumi.getter
+    def ethertype(self) -> Optional[_builtins.str]:
+        """
+        Specifies the IP address protocol type.
+        Valid values are **IPv4** and **IPv6**.
+        """
+        return pulumi.get(self, "ethertype")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def multiport(self) -> Optional[_builtins.str]:
+        """
+        Specifies the port range.
+        Support single port (`80`), continuous ports (`1-30`), and non-continuous ports (`22, 3389, 80`).
+        """
+        return pulumi.get(self, "multiport")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> Optional[_builtins.int]:
+        """
+        Specifies the priority of the security group rule.
+        Valid values are `1` to `100`, `1` represents the highest priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteAddressGroupId")
+    def remote_address_group_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the remote address group ID.
+        Valid values are the address group ID of the tenant.
+        It is mutually exclusive with `remote_group_id` and `remote_ip_prefix`.
+
+        <a name="hwc_rds_struct"></a>
+        The `hwc_rds` block supports:
+        """
+        return pulumi.get(self, "remote_address_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteGroupId")
+    def remote_group_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the remote security group ID.
+        Valid values are the security group ID of the tenant.
+        It is mutually exclusive with `remote_ip_prefix` and `remote_address_group_id`.
+        """
+        return pulumi.get(self, "remote_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteIpPrefix")
+    def remote_ip_prefix(self) -> Optional[_builtins.str]:
+        """
+        Specifies the remote IP address.
+        When `direction` is **egress**, it is the IP address of the virtual machine.
+        When `direction` is **ingress**, it is the IP address of the virtual machine.
+        It is mutually exclusive with `remote_group_id` and `remote_address_group_id`.
+        """
+        return pulumi.get(self, "remote_ip_prefix")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcVpc(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudResources":
+            suggest = "cloud_resources"
+        elif key == "createdAt":
+            suggest = "created_at"
+        elif key == "enterpriseProjectId":
+            suggest = "enterprise_project_id"
+        elif key == "extendCidrs":
+            suggest = "extend_cidrs"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "protectedStatus":
+            suggest = "protected_status"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcVpc. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcVpc.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcVpc.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cidr: Optional[_builtins.str] = None,
+                 cloud_resources: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcVpcCloudResource']] = None,
+                 created_at: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 enterprise_project_id: Optional[_builtins.str] = None,
+                 extend_cidrs: Optional[Sequence[_builtins.str]] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
+                 protected_status: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None,
+                 tags: Optional[Sequence['outputs.AssetDataObjectPropertiesHwcVpcTag']] = None,
+                 updated_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cidr: Specifies the cidr of the VPC. Values ranges are: **10.0.0.0/8~10.255.255.240/28**,
+               **172.16.0.0/12 ~ 172.31.255.240/28**, and **192.168.0.0/16 ~ 192.168.255.240/28**.
+               Constraint: Must be an ipv4 cidr format, for example: **192.168.0.0/16**.
+        :param Sequence['AssetDataObjectPropertiesHwcVpcCloudResourceArgs'] cloud_resources: Specifies the cloud resources of the VPC.
+               The cloud_resources structure is documented below.
+        :param _builtins.str created_at: Specifies the security group rule creation time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        :param _builtins.str description: Specifies the security group rule description.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which the RDS belongs.
+        :param Sequence[_builtins.str] extend_cidrs: Specifies the extend cidrs of the VPC. Currently only supports IPv4 cidr.
+        :param _builtins.str id: Specifies the department ID of the asset.
+               
+               <a name="governance_user_struct"></a>
+               The `governance_user` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param _builtins.str status: Specifies the domain status.
+        :param Sequence['AssetDataObjectPropertiesHwcVpcTagArgs'] tags: Specifies the tags.
+               The tag structure is documented below.
+        :param _builtins.str updated_at: Specifies the security group rule update time.
+               Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if cloud_resources is not None:
+            pulumi.set(__self__, "cloud_resources", cloud_resources)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if extend_cidrs is not None:
+            pulumi.set(__self__, "extend_cidrs", extend_cidrs)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cidr of the VPC. Values ranges are: **10.0.0.0/8~10.255.255.240/28**,
+        **172.16.0.0/12 ~ 172.31.255.240/28**, and **192.168.0.0/16 ~ 192.168.255.240/28**.
+        Constraint: Must be an ipv4 cidr format, for example: **192.168.0.0/16**.
+        """
+        return pulumi.get(self, "cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudResources")
+    def cloud_resources(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcVpcCloudResource']]:
+        """
+        Specifies the cloud resources of the VPC.
+        The cloud_resources structure is documented below.
+        """
+        return pulumi.get(self, "cloud_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule creation time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the enterprise project ID to which the RDS belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="extendCidrs")
+    def extend_cidrs(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the extend cidrs of the VPC. Currently only supports IPv4 cidr.
+        """
+        return pulumi.get(self, "extend_cidrs")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the department ID of the asset.
+
+        <a name="governance_user_struct"></a>
+        The `governance_user` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesHwcVpcTag']]:
+        """
+        Specifies the tags.
+        The tag structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[_builtins.str]:
+        """
+        Specifies the security group rule update time.
+        Format: **yyyy-MM-ddTHH:mm:ssZ**.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcVpcCloudResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceCount":
+            suggest = "resource_count"
+        elif key == "resourceType":
+            suggest = "resource_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesHwcVpcCloudResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesHwcVpcCloudResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesHwcVpcCloudResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 resource_count: Optional[_builtins.int] = None,
+                 resource_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int resource_count: Specifies the asset count of the cloud resources.
+               
+               <a name="hwc_vpc_tag_struct"></a>
+               The `tag` block supports:
+        :param _builtins.str resource_type: Specifies the type of the cloud resources.
+        """
+        if resource_count is not None:
+            pulumi.set(__self__, "resource_count", resource_count)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceCount")
+    def resource_count(self) -> Optional[_builtins.int]:
+        """
+        Specifies the asset count of the cloud resources.
+
+        <a name="hwc_vpc_tag_struct"></a>
+        The `tag` block supports:
+        """
+        return pulumi.get(self, "resource_count")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the cloud resources.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesHwcVpcTag(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the tag key. The maximum length is `128` unicode characters.
+               Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+               cannot be a space, trim half-width spaces before and after the validation and usage.
+        :param Sequence[_builtins.str] values: Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+               If values is an empty list, it means any_value (query any value).
+               
+               <a name="hwc_domain_struct"></a>
+               The `hwc_domain` block supports:
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the tag key. The maximum length is `128` unicode characters.
+        Key cannot be empty. (Search does not validate the character set of this parameter), key cannot be empty or an empty string,
+        cannot be a space, trim half-width spaces before and after the validation and usage.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the tag values. Each value has a maximum length of `255` unicode characters.
+        If values is an empty list, it means any_value (query any value).
+
+        <a name="hwc_domain_struct"></a>
+        The `hwc_domain` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dataCenter":
+            suggest = "data_center"
+        elif key == "extendPropertites":
+            suggest = "extend_propertites"
+        elif key == "macAddr":
+            suggest = "mac_addr"
+        elif key == "relativeValue":
+            suggest = "relative_value"
+        elif key == "serverRack":
+            suggest = "server_rack"
+        elif key == "serverRoom":
+            suggest = "server_room"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 data_center: Optional['outputs.AssetDataObjectPropertiesOcaIpDataCenter'] = None,
+                 extend_propertites: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertites'] = None,
+                 important: Optional[_builtins.int] = None,
+                 mac_addr: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 network: Optional['outputs.AssetDataObjectPropertiesOcaIpNetwork'] = None,
+                 relative_value: Optional[_builtins.str] = None,
+                 remark: Optional[_builtins.str] = None,
+                 server_rack: Optional[_builtins.str] = None,
+                 server_room: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param 'AssetDataObjectPropertiesOcaIpDataCenterArgs' data_center: Specifies the data center.
+               The data_center structure is documented below.
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesArgs' extend_propertites: Specifies the other third-party attributes.
+               The extend_propertites structure is documented below.
+               
+               <a name="oca_ip_network_struct"></a>
+               The `network` block supports:
+        :param _builtins.int important: Specifies the importance level, `0`: not important, `1`: important.
+        :param _builtins.str mac_addr: Specifies the MAC address.
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param 'AssetDataObjectPropertiesOcaIpNetworkArgs' network: Specifies the network information.
+               The network structure is documented below.
+        :param _builtins.str relative_value: Specifies the relative value, such as ipv6 if the asset is ipv4.
+        :param _builtins.str remark: Specifies the asset remark.
+        :param _builtins.str server_rack: Specifies the server rack.
+        :param _builtins.str server_room: Specifies the server room.
+        :param _builtins.str value: Specifies the asset value.
+        :param _builtins.str version: Specifies the service version.
+        """
+        if data_center is not None:
+            pulumi.set(__self__, "data_center", data_center)
+        if extend_propertites is not None:
+            pulumi.set(__self__, "extend_propertites", extend_propertites)
+        if important is not None:
+            pulumi.set(__self__, "important", important)
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if network is not None:
+            pulumi.set(__self__, "network", network)
+        if relative_value is not None:
+            pulumi.set(__self__, "relative_value", relative_value)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if server_rack is not None:
+            pulumi.set(__self__, "server_rack", server_rack)
+        if server_room is not None:
+            pulumi.set(__self__, "server_room", server_room)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="dataCenter")
+    def data_center(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpDataCenter']:
+        """
+        Specifies the data center.
+        The data_center structure is documented below.
+        """
+        return pulumi.get(self, "data_center")
+
+    @_builtins.property
+    @pulumi.getter(name="extendPropertites")
+    def extend_propertites(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertites']:
+        """
+        Specifies the other third-party attributes.
+        The extend_propertites structure is documented below.
+
+        <a name="oca_ip_network_struct"></a>
+        The `network` block supports:
+        """
+        return pulumi.get(self, "extend_propertites")
+
+    @_builtins.property
+    @pulumi.getter
+    def important(self) -> Optional[_builtins.int]:
+        """
+        Specifies the importance level, `0`: not important, `1`: important.
+        """
+        return pulumi.get(self, "important")
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def network(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpNetwork']:
+        """
+        Specifies the network information.
+        The network structure is documented below.
+        """
+        return pulumi.get(self, "network")
+
+    @_builtins.property
+    @pulumi.getter(name="relativeValue")
+    def relative_value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the relative value, such as ipv6 if the asset is ipv4.
+        """
+        return pulumi.get(self, "relative_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[_builtins.str]:
+        """
+        Specifies the asset remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @_builtins.property
+    @pulumi.getter(name="serverRack")
+    def server_rack(self) -> Optional[_builtins.str]:
+        """
+        Specifies the server rack.
+        """
+        return pulumi.get(self, "server_rack")
+
+    @_builtins.property
+    @pulumi.getter(name="serverRoom")
+    def server_room(self) -> Optional[_builtins.str]:
+        """
+        Specifies the server room.
+        """
+        return pulumi.get(self, "server_room")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the asset value.
+        """
+        return pulumi.get(self, "value")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpDataCenter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cityCode":
+            suggest = "city_code"
+        elif key == "countryCode":
+            suggest = "country_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIpDataCenter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIpDataCenter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIpDataCenter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city_code: Optional[_builtins.str] = None,
+                 country_code: Optional[_builtins.str] = None,
+                 latitude: Optional[_builtins.float] = None,
+                 longitude: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str city_code: Specifies the city code.
+        :param _builtins.str country_code: Specifies the country code.
+        :param _builtins.float latitude: Specifies the latitude.
+        :param _builtins.float longitude: Specifies the longitude.
+               
+               <a name="oca_ip_extend_propertites_struct"></a>
+               The `extend_propertites` block supports:
+        """
+        if city_code is not None:
+            pulumi.set(__self__, "city_code", city_code)
+        if country_code is not None:
+            pulumi.set(__self__, "country_code", country_code)
+        if latitude is not None:
+            pulumi.set(__self__, "latitude", latitude)
+        if longitude is not None:
+            pulumi.set(__self__, "longitude", longitude)
+
+    @_builtins.property
+    @pulumi.getter(name="cityCode")
+    def city_code(self) -> Optional[_builtins.str]:
+        """
+        Specifies the city code.
+        """
+        return pulumi.get(self, "city_code")
+
+    @_builtins.property
+    @pulumi.getter(name="countryCode")
+    def country_code(self) -> Optional[_builtins.str]:
+        """
+        Specifies the country code.
+        """
+        return pulumi.get(self, "country_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def latitude(self) -> Optional[_builtins.float]:
+        """
+        Specifies the latitude.
+        """
+        return pulumi.get(self, "latitude")
+
+    @_builtins.property
+    @pulumi.getter
+    def longitude(self) -> Optional[_builtins.float]:
+        """
+        Specifies the longitude.
+
+        <a name="oca_ip_extend_propertites_struct"></a>
+        The `extend_propertites` block supports:
+        """
+        return pulumi.get(self, "longitude")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertites(dict):
+    def __init__(__self__, *,
+                 device: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesDevice'] = None,
+                 services: Optional[Sequence['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesService']] = None,
+                 system: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesSystem'] = None):
+        """
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceArgs' device: Specifies the device information.
+               The device structure is documented below.
+        :param Sequence['AssetDataObjectPropertiesOcaIpExtendPropertitesServiceArgs'] services: Specifies the application information.
+               The service structure is documented below.
+               
+               <a name="oca_ip_device_struct"></a>
+               The `device` block supports:
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemArgs' system: Specifies the system information.
+               The system structure is documented below.
+        """
+        if device is not None:
+            pulumi.set(__self__, "device", device)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+        if system is not None:
+            pulumi.set(__self__, "system", system)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesDevice']:
+        """
+        Specifies the device information.
+        The device structure is documented below.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[Sequence['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesService']]:
+        """
+        Specifies the application information.
+        The service structure is documented below.
+
+        <a name="oca_ip_device_struct"></a>
+        The `device` block supports:
+        """
+        return pulumi.get(self, "services")
+
+    @_builtins.property
+    @pulumi.getter
+    def system(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesSystem']:
+        """
+        Specifies the system information.
+        The system structure is documented below.
+        """
+        return pulumi.get(self, "system")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDevice(dict):
+    def __init__(__self__, *,
+                 model: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 vendor: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor'] = None):
+        """
+        :param _builtins.str model: Specifies the device model.
+        :param _builtins.str type: Specifies the governance user type of the asset.
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendorArgs' vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        """
+        if model is not None:
+            pulumi.set(__self__, "model", model)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> Optional[_builtins.str]:
+        """
+        Specifies the device model.
+        """
+        return pulumi.get(self, "model")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user type of the asset.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor']:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isXc":
+            suggest = "is_xc"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesDeviceVendor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_xc: Optional[_builtins.bool] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesService(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None,
+                 protocol: Optional[_builtins.str] = None,
+                 vendor: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor'] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param _builtins.int port: Specifies the service port.
+        :param _builtins.str protocol: Specifies the service protocol.
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendorArgs' vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        :param _builtins.str version: Specifies the service version.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        Specifies the service port.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor']:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isXc":
+            suggest = "is_xc"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesServiceVendor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_xc: Optional[_builtins.bool] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystem(dict):
+    def __init__(__self__, *,
+                 family: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 vendor: Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor'] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str family: Specifies the type of the system.
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        :param 'AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendorArgs' vendor: Specifies the vendor information.
+               The vendor structure is documented below.
+               
+               <a name="oca_ip_service_vendor_struct"></a>
+               The `service.vendor` block supports:
+        :param _builtins.str version: Specifies the service version.
+        """
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vendor is not None:
+            pulumi.set(__self__, "vendor", vendor)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the system.
+        """
+        return pulumi.get(self, "family")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> Optional['outputs.AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor']:
+        """
+        Specifies the vendor information.
+        The vendor structure is documented below.
+
+        <a name="oca_ip_service_vendor_struct"></a>
+        The `service.vendor` block supports:
+        """
+        return pulumi.get(self, "vendor")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the service version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isXc":
+            suggest = "is_xc"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIpExtendPropertitesSystemVendor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_xc: Optional[_builtins.bool] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool is_xc: Specifies whether the supplier is domestic or not.
+               
+               <a name="department_struct"></a>
+               The `department` block supports:
+        :param _builtins.str name: Specifies the governance user name of the asset.
+        """
+        if is_xc is not None:
+            pulumi.set(__self__, "is_xc", is_xc)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="isXc")
+    def is_xc(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the supplier is domestic or not.
+
+        <a name="department_struct"></a>
+        The `department` block supports:
+        """
+        return pulumi.get(self, "is_xc")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the governance user name of the asset.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesOcaIpNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isPublic":
+            suggest = "is_public"
+        elif key == "vxlanId":
+            suggest = "vxlan_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesOcaIpNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesOcaIpNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesOcaIpNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 is_public: Optional[_builtins.bool] = None,
+                 partition: Optional[_builtins.str] = None,
+                 plane: Optional[_builtins.str] = None,
+                 vxlan_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool is_public: Specifies whether the IP is public or private. Valid values are:
+               + **true**：Public.
+               + **false**：Private.
+        :param _builtins.str partition: Specifies the network partition. Valid values are:
+               + **OM**：OM.
+               + **PSZ**：PSZ.
+               + **DMZ**：DMZ.
+        :param _builtins.str plane: Specifies the network plane (offline has its own code).
+        :param _builtins.str vxlan_id: Specifies the virtual network ID.
+               
+               <a name="oca_ip_data_center_struct"></a>
+               The `data_center` block supports:
+        """
+        if is_public is not None:
+            pulumi.set(__self__, "is_public", is_public)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
+        if plane is not None:
+            pulumi.set(__self__, "plane", plane)
+        if vxlan_id is not None:
+            pulumi.set(__self__, "vxlan_id", vxlan_id)
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the IP is public or private. Valid values are:
+        + **true**：Public.
+        + **false**：Private.
+        """
+        return pulumi.get(self, "is_public")
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> Optional[_builtins.str]:
+        """
+        Specifies the network partition. Valid values are:
+        + **OM**：OM.
+        + **PSZ**：PSZ.
+        + **DMZ**：DMZ.
+        """
+        return pulumi.get(self, "partition")
+
+    @_builtins.property
+    @pulumi.getter
+    def plane(self) -> Optional[_builtins.str]:
+        """
+        Specifies the network plane (offline has its own code).
+        """
+        return pulumi.get(self, "plane")
+
+    @_builtins.property
+    @pulumi.getter(name="vxlanId")
+    def vxlan_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the virtual network ID.
+
+        <a name="oca_ip_data_center_struct"></a>
+        The `data_center` block supports:
+        """
+        return pulumi.get(self, "vxlan_id")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesWebsite(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "extendPropertites":
+            suggest = "extend_propertites"
+        elif key == "isPublic":
+            suggest = "is_public"
+        elif key == "mainDomain":
+            suggest = "main_domain"
+        elif key == "nameServers":
+            suggest = "name_servers"
+        elif key == "protectedStatus":
+            suggest = "protected_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesWebsite. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesWebsite.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesWebsite.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 extend_propertites: Optional['outputs.AssetDataObjectPropertiesWebsiteExtendPropertites'] = None,
+                 is_public: Optional[_builtins.bool] = None,
+                 main_domain: Optional[_builtins.str] = None,
+                 name_servers: Optional[Sequence[_builtins.str]] = None,
+                 protected_status: Optional[_builtins.str] = None,
+                 remark: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param 'AssetDataObjectPropertiesWebsiteExtendPropertitesArgs' extend_propertites: Specifies the other third-party attributes.
+               The extend_propertites structure is documented below.
+               
+               <a name="oca_ip_network_struct"></a>
+               The `network` block supports:
+        :param _builtins.bool is_public: Specifies whether the IP is public or private. Valid values are:
+               + **true**：Public.
+               + **false**：Private.
+        :param _builtins.str main_domain: Specifies the main domain of the website.
+        :param Sequence[_builtins.str] name_servers: Specifies the website server list.
+        :param _builtins.str protected_status: Specifies the WAF status. Valid values are:
+               + **OPEN**：Enabled.
+               + **CLOSE**：Disabled.
+        :param _builtins.str remark: Specifies the asset remark.
+        :param _builtins.str value: Specifies the asset value.
+        """
+        if extend_propertites is not None:
+            pulumi.set(__self__, "extend_propertites", extend_propertites)
+        if is_public is not None:
+            pulumi.set(__self__, "is_public", is_public)
+        if main_domain is not None:
+            pulumi.set(__self__, "main_domain", main_domain)
+        if name_servers is not None:
+            pulumi.set(__self__, "name_servers", name_servers)
+        if protected_status is not None:
+            pulumi.set(__self__, "protected_status", protected_status)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extendPropertites")
+    def extend_propertites(self) -> Optional['outputs.AssetDataObjectPropertiesWebsiteExtendPropertites']:
+        """
+        Specifies the other third-party attributes.
+        The extend_propertites structure is documented below.
+
+        <a name="oca_ip_network_struct"></a>
+        The `network` block supports:
+        """
+        return pulumi.get(self, "extend_propertites")
+
+    @_builtins.property
+    @pulumi.getter(name="isPublic")
+    def is_public(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the IP is public or private. Valid values are:
+        + **true**：Public.
+        + **false**：Private.
+        """
+        return pulumi.get(self, "is_public")
+
+    @_builtins.property
+    @pulumi.getter(name="mainDomain")
+    def main_domain(self) -> Optional[_builtins.str]:
+        """
+        Specifies the main domain of the website.
+        """
+        return pulumi.get(self, "main_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the website server list.
+        """
+        return pulumi.get(self, "name_servers")
+
+    @_builtins.property
+    @pulumi.getter(name="protectedStatus")
+    def protected_status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the WAF status. Valid values are:
+        + **OPEN**：Enabled.
+        + **CLOSE**：Disabled.
+        """
+        return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[_builtins.str]:
+        """
+        Specifies the asset remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the asset value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AssetDataObjectPropertiesWebsiteExtendPropertites(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "macAddr":
+            suggest = "mac_addr"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AssetDataObjectPropertiesWebsiteExtendPropertites. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AssetDataObjectPropertiesWebsiteExtendPropertites.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AssetDataObjectPropertiesWebsiteExtendPropertites.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mac_addr: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str mac_addr: Specifies the MAC address.
+        """
+        if mac_addr is not None:
+            pulumi.set(__self__, "mac_addr", mac_addr)
+
+    @_builtins.property
+    @pulumi.getter(name="macAddr")
+    def mac_addr(self) -> Optional[_builtins.str]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac_addr")
+
+
+@pulumi.output_type
+class CloudLogResourceResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionId":
+            suggest = "region_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudLogResourceResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudLogResourceResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudLogResourceResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enable: _builtins.str,
+                 region_id: _builtins.str):
+        """
+        :param _builtins.str enable: Specifies Whether enabled.
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+        :param _builtins.str region_id: Specifies the region ID.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.str:
+        """
+        Specifies Whether enabled.
+        The valid values are as follows:
+        + **active**
+        + **inactive**
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
 
 
 @pulumi.output_type
@@ -675,7 +6002,7 @@ class IncidentDataSource(dict):
 
 
 @pulumi.output_type
-class IncidentType(dict):
+class IncidentIncidentTypeValue(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -683,14 +6010,14 @@ class IncidentType(dict):
             suggest = "incident_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in IncidentType. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in IncidentIncidentTypeValue. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        IncidentType.__key_warning(key)
+        IncidentIncidentTypeValue.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        IncidentType.__key_warning(key)
+        IncidentIncidentTypeValue.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -802,7 +6129,7 @@ class IndicatorDataSource(dict):
 
 
 @pulumi.output_type
-class IndicatorType(dict):
+class IndicatorIndicatorTypeValue(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -810,14 +6137,14 @@ class IndicatorType(dict):
             suggest = "indicator_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in IndicatorType. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in IndicatorIndicatorTypeValue. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        IndicatorType.__key_warning(key)
+        IndicatorIndicatorTypeValue.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        IndicatorType.__key_warning(key)
+        IndicatorIndicatorTypeValue.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -1212,6 +6539,571 @@ class WorkspaceWorkspaceAgencyList(dict):
     @pulumi.getter(name="workspaceAttribution")
     def workspace_attribution(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "workspace_attribution")
+
+
+@pulumi.output_type
+class GetAlertRuleTemplateDetailScheduleResult(dict):
+    def __init__(__self__, *,
+                 delay_interval: _builtins.int,
+                 frequency_interval: _builtins.int,
+                 frequency_unit: _builtins.str,
+                 overtime_interval: _builtins.int,
+                 period_interval: _builtins.int,
+                 period_unit: _builtins.str):
+        """
+        :param _builtins.int delay_interval: The delay interval.
+        :param _builtins.int frequency_interval: The scheduling interval.
+        :param _builtins.str frequency_unit: The scheduling interval time unit.
+               The value can be **MINUTE**, **HOUR** or **DAY**.
+        :param _builtins.int overtime_interval: The overtime interval.
+        :param _builtins.int period_interval: The time window interval.
+        :param _builtins.str period_unit: The time window unit.
+               The value can be **MINUTE**, **HOUR** or **DAY**.
+        """
+        pulumi.set(__self__, "delay_interval", delay_interval)
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_unit", frequency_unit)
+        pulumi.set(__self__, "overtime_interval", overtime_interval)
+        pulumi.set(__self__, "period_interval", period_interval)
+        pulumi.set(__self__, "period_unit", period_unit)
+
+    @_builtins.property
+    @pulumi.getter(name="delayInterval")
+    def delay_interval(self) -> _builtins.int:
+        """
+        The delay interval.
+        """
+        return pulumi.get(self, "delay_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> _builtins.int:
+        """
+        The scheduling interval.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="frequencyUnit")
+    def frequency_unit(self) -> _builtins.str:
+        """
+        The scheduling interval time unit.
+        The value can be **MINUTE**, **HOUR** or **DAY**.
+        """
+        return pulumi.get(self, "frequency_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="overtimeInterval")
+    def overtime_interval(self) -> _builtins.int:
+        """
+        The overtime interval.
+        """
+        return pulumi.get(self, "overtime_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="periodInterval")
+    def period_interval(self) -> _builtins.int:
+        """
+        The time window interval.
+        """
+        return pulumi.get(self, "period_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="periodUnit")
+    def period_unit(self) -> _builtins.str:
+        """
+        The time window unit.
+        The value can be **MINUTE**, **HOUR** or **DAY**.
+        """
+        return pulumi.get(self, "period_unit")
+
+
+@pulumi.output_type
+class GetAlertRuleTemplateDetailTriggerResult(dict):
+    def __init__(__self__, *,
+                 accumulated_times: _builtins.int,
+                 expression: _builtins.str,
+                 mode: _builtins.str,
+                 operator: _builtins.str,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int accumulated_times: The cumulative number of times.
+        :param _builtins.str expression: The expression.
+        :param _builtins.str mode: The mode.
+        :param _builtins.str operator: The operator.
+               The valid values are as follows:
+               + **EQ**: equal,
+               + **NE**: not equal,
+               + **GT**: greater than,
+               + **LT**: less than.
+        :param _builtins.str severity: The severity.
+        """
+        pulumi.set(__self__, "accumulated_times", accumulated_times)
+        pulumi.set(__self__, "expression", expression)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="accumulatedTimes")
+    def accumulated_times(self) -> _builtins.int:
+        """
+        The cumulative number of times.
+        """
+        return pulumi.get(self, "accumulated_times")
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> _builtins.str:
+        """
+        The expression.
+        """
+        return pulumi.get(self, "expression")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The mode.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        The operator.
+        The valid values are as follows:
+        + **EQ**: equal,
+        + **NE**: not equal,
+        + **GT**: greater than,
+        + **LT**: less than.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetAlertRuleTemplateDetailV2JobModeSettingResult(dict):
+    def __init__(__self__, *,
+                 batch_overtime_strategy_interval: _builtins.int,
+                 batch_overtime_strategy_unit: _builtins.str,
+                 search_delay_interval: _builtins.int,
+                 search_delay_unit: _builtins.str,
+                 search_frequency_interval: _builtins.int,
+                 search_frequency_unit: _builtins.str,
+                 search_overtime_interval: _builtins.int,
+                 search_overtime_unit: _builtins.str,
+                 search_period_interval: _builtins.int,
+                 search_period_unit: _builtins.str,
+                 search_table_id: _builtins.str,
+                 search_table_name: _builtins.int,
+                 streaming_checkpoint_ttl_interval: _builtins.int,
+                 streaming_checkpoint_ttl_unit: _builtins.str,
+                 streaming_startup_mode: _builtins.str,
+                 streaming_state_ttl_unit: _builtins.str):
+        """
+        :param _builtins.int batch_overtime_strategy_interval: The batch processing strategy overtime interval.
+        :param _builtins.str batch_overtime_strategy_unit: The batch processing strategy overtime time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.int search_delay_interval: The search delay interval.
+        :param _builtins.str search_delay_unit: The search delay time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.int search_frequency_interval: The search frequency interval.
+        :param _builtins.str search_frequency_unit: The search frequency interval time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.int search_overtime_interval: The search overtime interval.
+        :param _builtins.str search_overtime_unit: The search overtime interval time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.int search_period_interval: The search period interval.
+        :param _builtins.str search_period_unit: The search period interval time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.str search_table_id: The search table ID.
+        :param _builtins.int search_table_name: The search table name.
+        :param _builtins.int streaming_checkpoint_ttl_interval: The streaming checkpoint TTL interval.
+        :param _builtins.str streaming_checkpoint_ttl_unit: The streaming checkpoint TTL interval time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        :param _builtins.str streaming_startup_mode: The startup mode.including  () and  (REFRESH_NEW).
+               The valid values are as follows:
+               + **UPGRADE**: Upgrade startup.
+               + **REFRESH_NEW**: Refresh new startup.
+        :param _builtins.str streaming_state_ttl_unit: The streaming state TTL time unit.
+               The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        pulumi.set(__self__, "batch_overtime_strategy_interval", batch_overtime_strategy_interval)
+        pulumi.set(__self__, "batch_overtime_strategy_unit", batch_overtime_strategy_unit)
+        pulumi.set(__self__, "search_delay_interval", search_delay_interval)
+        pulumi.set(__self__, "search_delay_unit", search_delay_unit)
+        pulumi.set(__self__, "search_frequency_interval", search_frequency_interval)
+        pulumi.set(__self__, "search_frequency_unit", search_frequency_unit)
+        pulumi.set(__self__, "search_overtime_interval", search_overtime_interval)
+        pulumi.set(__self__, "search_overtime_unit", search_overtime_unit)
+        pulumi.set(__self__, "search_period_interval", search_period_interval)
+        pulumi.set(__self__, "search_period_unit", search_period_unit)
+        pulumi.set(__self__, "search_table_id", search_table_id)
+        pulumi.set(__self__, "search_table_name", search_table_name)
+        pulumi.set(__self__, "streaming_checkpoint_ttl_interval", streaming_checkpoint_ttl_interval)
+        pulumi.set(__self__, "streaming_checkpoint_ttl_unit", streaming_checkpoint_ttl_unit)
+        pulumi.set(__self__, "streaming_startup_mode", streaming_startup_mode)
+        pulumi.set(__self__, "streaming_state_ttl_unit", streaming_state_ttl_unit)
+
+    @_builtins.property
+    @pulumi.getter(name="batchOvertimeStrategyInterval")
+    def batch_overtime_strategy_interval(self) -> _builtins.int:
+        """
+        The batch processing strategy overtime interval.
+        """
+        return pulumi.get(self, "batch_overtime_strategy_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="batchOvertimeStrategyUnit")
+    def batch_overtime_strategy_unit(self) -> _builtins.str:
+        """
+        The batch processing strategy overtime time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "batch_overtime_strategy_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="searchDelayInterval")
+    def search_delay_interval(self) -> _builtins.int:
+        """
+        The search delay interval.
+        """
+        return pulumi.get(self, "search_delay_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="searchDelayUnit")
+    def search_delay_unit(self) -> _builtins.str:
+        """
+        The search delay time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "search_delay_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="searchFrequencyInterval")
+    def search_frequency_interval(self) -> _builtins.int:
+        """
+        The search frequency interval.
+        """
+        return pulumi.get(self, "search_frequency_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="searchFrequencyUnit")
+    def search_frequency_unit(self) -> _builtins.str:
+        """
+        The search frequency interval time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "search_frequency_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="searchOvertimeInterval")
+    def search_overtime_interval(self) -> _builtins.int:
+        """
+        The search overtime interval.
+        """
+        return pulumi.get(self, "search_overtime_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="searchOvertimeUnit")
+    def search_overtime_unit(self) -> _builtins.str:
+        """
+        The search overtime interval time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "search_overtime_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="searchPeriodInterval")
+    def search_period_interval(self) -> _builtins.int:
+        """
+        The search period interval.
+        """
+        return pulumi.get(self, "search_period_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="searchPeriodUnit")
+    def search_period_unit(self) -> _builtins.str:
+        """
+        The search period interval time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "search_period_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="searchTableId")
+    def search_table_id(self) -> _builtins.str:
+        """
+        The search table ID.
+        """
+        return pulumi.get(self, "search_table_id")
+
+    @_builtins.property
+    @pulumi.getter(name="searchTableName")
+    def search_table_name(self) -> _builtins.int:
+        """
+        The search table name.
+        """
+        return pulumi.get(self, "search_table_name")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingCheckpointTtlInterval")
+    def streaming_checkpoint_ttl_interval(self) -> _builtins.int:
+        """
+        The streaming checkpoint TTL interval.
+        """
+        return pulumi.get(self, "streaming_checkpoint_ttl_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingCheckpointTtlUnit")
+    def streaming_checkpoint_ttl_unit(self) -> _builtins.str:
+        """
+        The streaming checkpoint TTL interval time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "streaming_checkpoint_ttl_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingStartupMode")
+    def streaming_startup_mode(self) -> _builtins.str:
+        """
+        The startup mode.including  () and  (REFRESH_NEW).
+        The valid values are as follows:
+        + **UPGRADE**: Upgrade startup.
+        + **REFRESH_NEW**: Refresh new startup.
+        """
+        return pulumi.get(self, "streaming_startup_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingStateTtlUnit")
+    def streaming_state_ttl_unit(self) -> _builtins.str:
+        """
+        The streaming state TTL time unit.
+        The value can be **MINUTE**, **HOUR**, **DAY** or **MONTH**.
+        """
+        return pulumi.get(self, "streaming_state_ttl_unit")
+
+
+@pulumi.output_type
+class GetAlertRuleTemplateDetailV2JobOutputSettingResult(dict):
+    def __init__(__self__, *,
+                 alert_custom_properties: Mapping[str, _builtins.str],
+                 alert_description: _builtins.str,
+                 alert_grouping: _builtins.bool,
+                 alert_mapping: Mapping[str, _builtins.str],
+                 alert_name: _builtins.str,
+                 alert_remediation: _builtins.str,
+                 alert_severity: _builtins.str,
+                 alert_suppression: _builtins.bool,
+                 alert_type: Mapping[str, _builtins.str],
+                 entity_extraction: Mapping[str, _builtins.str],
+                 field_mapping: Mapping[str, _builtins.str]):
+        """
+        :param Mapping[str, _builtins.str] alert_custom_properties: The alert custom properties.
+        :param _builtins.str alert_description: The alert description.
+        :param _builtins.bool alert_grouping: The alert grouping flag.
+        :param Mapping[str, _builtins.str] alert_mapping: The alert mapping.
+        :param _builtins.str alert_name: The alert name.
+        :param _builtins.str alert_remediation: The alert remediation suggestion.
+        :param _builtins.str alert_severity: The alert severity.
+               The value can be **TIPS**, **LOW**, **MEDIUM**, **HIGH** or **FATAL**.
+        :param _builtins.bool alert_suppression: The alert suppression flag.
+        :param Mapping[str, _builtins.str] alert_type: The alert type.
+        :param Mapping[str, _builtins.str] entity_extraction: The entity extraction.
+        :param Mapping[str, _builtins.str] field_mapping: The field mapping.
+        """
+        pulumi.set(__self__, "alert_custom_properties", alert_custom_properties)
+        pulumi.set(__self__, "alert_description", alert_description)
+        pulumi.set(__self__, "alert_grouping", alert_grouping)
+        pulumi.set(__self__, "alert_mapping", alert_mapping)
+        pulumi.set(__self__, "alert_name", alert_name)
+        pulumi.set(__self__, "alert_remediation", alert_remediation)
+        pulumi.set(__self__, "alert_severity", alert_severity)
+        pulumi.set(__self__, "alert_suppression", alert_suppression)
+        pulumi.set(__self__, "alert_type", alert_type)
+        pulumi.set(__self__, "entity_extraction", entity_extraction)
+        pulumi.set(__self__, "field_mapping", field_mapping)
+
+    @_builtins.property
+    @pulumi.getter(name="alertCustomProperties")
+    def alert_custom_properties(self) -> Mapping[str, _builtins.str]:
+        """
+        The alert custom properties.
+        """
+        return pulumi.get(self, "alert_custom_properties")
+
+    @_builtins.property
+    @pulumi.getter(name="alertDescription")
+    def alert_description(self) -> _builtins.str:
+        """
+        The alert description.
+        """
+        return pulumi.get(self, "alert_description")
+
+    @_builtins.property
+    @pulumi.getter(name="alertGrouping")
+    def alert_grouping(self) -> _builtins.bool:
+        """
+        The alert grouping flag.
+        """
+        return pulumi.get(self, "alert_grouping")
+
+    @_builtins.property
+    @pulumi.getter(name="alertMapping")
+    def alert_mapping(self) -> Mapping[str, _builtins.str]:
+        """
+        The alert mapping.
+        """
+        return pulumi.get(self, "alert_mapping")
+
+    @_builtins.property
+    @pulumi.getter(name="alertName")
+    def alert_name(self) -> _builtins.str:
+        """
+        The alert name.
+        """
+        return pulumi.get(self, "alert_name")
+
+    @_builtins.property
+    @pulumi.getter(name="alertRemediation")
+    def alert_remediation(self) -> _builtins.str:
+        """
+        The alert remediation suggestion.
+        """
+        return pulumi.get(self, "alert_remediation")
+
+    @_builtins.property
+    @pulumi.getter(name="alertSeverity")
+    def alert_severity(self) -> _builtins.str:
+        """
+        The alert severity.
+        The value can be **TIPS**, **LOW**, **MEDIUM**, **HIGH** or **FATAL**.
+        """
+        return pulumi.get(self, "alert_severity")
+
+    @_builtins.property
+    @pulumi.getter(name="alertSuppression")
+    def alert_suppression(self) -> _builtins.bool:
+        """
+        The alert suppression flag.
+        """
+        return pulumi.get(self, "alert_suppression")
+
+    @_builtins.property
+    @pulumi.getter(name="alertType")
+    def alert_type(self) -> Mapping[str, _builtins.str]:
+        """
+        The alert type.
+        """
+        return pulumi.get(self, "alert_type")
+
+    @_builtins.property
+    @pulumi.getter(name="entityExtraction")
+    def entity_extraction(self) -> Mapping[str, _builtins.str]:
+        """
+        The entity extraction.
+        """
+        return pulumi.get(self, "entity_extraction")
+
+    @_builtins.property
+    @pulumi.getter(name="fieldMapping")
+    def field_mapping(self) -> Mapping[str, _builtins.str]:
+        """
+        The field mapping.
+        """
+        return pulumi.get(self, "field_mapping")
+
+
+@pulumi.output_type
+class GetAlertRuleTemplateDetailV2TriggerResult(dict):
+    def __init__(__self__, *,
+                 accumulated_times: _builtins.int,
+                 expression: _builtins.str,
+                 job_id: _builtins.str,
+                 mode: _builtins.str,
+                 operator: _builtins.str,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int accumulated_times: The cumulative number of times.
+        :param _builtins.str expression: The expression.
+        :param _builtins.str job_id: The job ID.
+        :param _builtins.str mode: The mode.
+        :param _builtins.str operator: The operator type.
+               The valid values are as follows:
+               + **EQ**: equal,
+               + **NE**: not equal,
+               + **GT**: greater than,
+               + **LT**: less than.
+        :param _builtins.str severity: The severity.
+        """
+        pulumi.set(__self__, "accumulated_times", accumulated_times)
+        pulumi.set(__self__, "expression", expression)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="accumulatedTimes")
+    def accumulated_times(self) -> _builtins.int:
+        """
+        The cumulative number of times.
+        """
+        return pulumi.get(self, "accumulated_times")
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> _builtins.str:
+        """
+        The expression.
+        """
+        return pulumi.get(self, "expression")
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> _builtins.str:
+        """
+        The job ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The mode.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        The operator type.
+        The valid values are as follows:
+        + **EQ**: equal,
+        + **NE**: not equal,
+        + **GT**: greater than,
+        + **LT**: less than.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The severity.
+        """
+        return pulumi.get(self, "severity")
 
 
 @pulumi.output_type
@@ -3644,6 +9536,308 @@ class GetAlertsConditionConditionResult(dict):
 
 
 @pulumi.output_type
+class GetBaselineCheckitemsCheckitemResult(dict):
+    def __init__(__self__, *,
+                 aggregation_handle_status: _builtins.str,
+                 audit_procedure: _builtins.str,
+                 cloud_server: _builtins.str,
+                 description: _builtins.str,
+                 impact: _builtins.str,
+                 level: _builtins.str,
+                 method: _builtins.int,
+                 name: _builtins.str,
+                 source: _builtins.int,
+                 spec_checkitem_lists: Sequence['outputs.GetBaselineCheckitemsCheckitemSpecCheckitemListResult'],
+                 workflow_id: _builtins.str):
+        """
+        :param _builtins.str aggregation_handle_status: The aggregation handle status.
+        :param _builtins.str audit_procedure: The audit procedure.
+        :param _builtins.str cloud_server: The cloud service.
+        :param _builtins.str description: The description.
+        :param _builtins.str impact: The impact.
+        :param _builtins.str level: The severity level. Valid values are:
+               + **informational**
+               + **low**
+               + **medium**
+               + **high**
+               + **fatal**
+        :param _builtins.int method: The check method. Valid values are:
+               + **0**: Automatic item.
+               + **3**: Script process/logic app.
+        :param _builtins.str name: Specifies the expression name.
+        :param _builtins.int source: The source. Valid values are:
+               + **0**: default.
+               + **3**: playbook.
+        :param Sequence['GetBaselineCheckitemsCheckitemSpecCheckitemListArgs'] spec_checkitem_lists: The specification checkitem list.
+        :param _builtins.str workflow_id: The workflow ID.
+        """
+        pulumi.set(__self__, "aggregation_handle_status", aggregation_handle_status)
+        pulumi.set(__self__, "audit_procedure", audit_procedure)
+        pulumi.set(__self__, "cloud_server", cloud_server)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "impact", impact)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "spec_checkitem_lists", spec_checkitem_lists)
+        pulumi.set(__self__, "workflow_id", workflow_id)
+
+    @_builtins.property
+    @pulumi.getter(name="aggregationHandleStatus")
+    def aggregation_handle_status(self) -> _builtins.str:
+        """
+        The aggregation handle status.
+        """
+        return pulumi.get(self, "aggregation_handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="auditProcedure")
+    def audit_procedure(self) -> _builtins.str:
+        """
+        The audit procedure.
+        """
+        return pulumi.get(self, "audit_procedure")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServer")
+    def cloud_server(self) -> _builtins.str:
+        """
+        The cloud service.
+        """
+        return pulumi.get(self, "cloud_server")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def impact(self) -> _builtins.str:
+        """
+        The impact.
+        """
+        return pulumi.get(self, "impact")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        The severity level. Valid values are:
+        + **informational**
+        + **low**
+        + **medium**
+        + **high**
+        + **fatal**
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.int:
+        """
+        The check method. Valid values are:
+        + **0**: Automatic item.
+        + **3**: Script process/logic app.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the expression name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.int:
+        """
+        The source. Valid values are:
+        + **0**: default.
+        + **3**: playbook.
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter(name="specCheckitemLists")
+    def spec_checkitem_lists(self) -> Sequence['outputs.GetBaselineCheckitemsCheckitemSpecCheckitemListResult']:
+        """
+        The specification checkitem list.
+        """
+        return pulumi.get(self, "spec_checkitem_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="workflowId")
+    def workflow_id(self) -> _builtins.str:
+        """
+        The workflow ID.
+        """
+        return pulumi.get(self, "workflow_id")
+
+
+@pulumi.output_type
+class GetBaselineCheckitemsCheckitemSpecCheckitemListResult(dict):
+    def __init__(__self__, *,
+                 checkitem_uuid: _builtins.str,
+                 create_time: _builtins.str,
+                 language: _builtins.str,
+                 name: _builtins.str,
+                 remove_time: _builtins.str,
+                 specification_uuid: _builtins.str,
+                 uuid: _builtins.str):
+        """
+        :param _builtins.str checkitem_uuid: The checkitem UUID.
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str language: The language.
+        :param _builtins.str name: Specifies the expression name.
+        :param _builtins.str remove_time: The removal time.
+        :param _builtins.str specification_uuid: The specification UUID.
+        :param _builtins.str uuid: The UUID.
+        """
+        pulumi.set(__self__, "checkitem_uuid", checkitem_uuid)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "remove_time", remove_time)
+        pulumi.set(__self__, "specification_uuid", specification_uuid)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="checkitemUuid")
+    def checkitem_uuid(self) -> _builtins.str:
+        """
+        The checkitem UUID.
+        """
+        return pulumi.get(self, "checkitem_uuid")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def language(self) -> _builtins.str:
+        """
+        The language.
+        """
+        return pulumi.get(self, "language")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the expression name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="removeTime")
+    def remove_time(self) -> _builtins.str:
+        """
+        The removal time.
+        """
+        return pulumi.get(self, "remove_time")
+
+    @_builtins.property
+    @pulumi.getter(name="specificationUuid")
+    def specification_uuid(self) -> _builtins.str:
+        """
+        The specification UUID.
+        """
+        return pulumi.get(self, "specification_uuid")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> _builtins.str:
+        """
+        The UUID.
+        """
+        return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class GetBaselineCheckitemsConditionResult(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.GetBaselineCheckitemsConditionConditionResult']] = None,
+                 logics: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence['GetBaselineCheckitemsConditionConditionArgs'] conditions: Specifies the list of expressions.
+               
+               The conditions structure is documented below.
+        :param Sequence[_builtins.str] logics: Specifies the list of expression names.
+               
+               <a name="conditions_struct"></a>
+               The `conditions` block supports:
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if logics is not None:
+            pulumi.set(__self__, "logics", logics)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.GetBaselineCheckitemsConditionConditionResult']]:
+        """
+        Specifies the list of expressions.
+
+        The conditions structure is documented below.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def logics(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of expression names.
+
+        <a name="conditions_struct"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "logics")
+
+
+@pulumi.output_type
+class GetBaselineCheckitemsConditionConditionResult(dict):
+    def __init__(__self__, *,
+                 datas: Optional[Sequence[_builtins.str]] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] datas: Specifies the list of expression contents.
+        :param _builtins.str name: Specifies the expression name.
+        """
+        if datas is not None:
+            pulumi.set(__self__, "datas", datas)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of expression contents.
+        """
+        return pulumi.get(self, "datas")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the expression name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetCataloguesDataResult(dict):
     def __init__(__self__, *,
                  catalogue_address: _builtins.str,
@@ -4010,6 +10204,1678 @@ class GetCataloguesSearchDataResult(dict):
 
 
 @pulumi.output_type
+class GetCloudLogResourcesDatasetResult(dict):
+    def __init__(__self__, *,
+                 alert: _builtins.bool,
+                 allow_alert: _builtins.bool,
+                 allow_lts: _builtins.bool,
+                 create_time: _builtins.int,
+                 domain_id: _builtins.str,
+                 enable: _builtins.str,
+                 project_id: _builtins.str,
+                 region: _builtins.bool,
+                 region_id: _builtins.str,
+                 success: _builtins.bool,
+                 total: _builtins.int,
+                 update_time: _builtins.int,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.bool alert: Whether the alarm is triggered.
+        :param _builtins.bool allow_alert: Whether to allow an alarm.
+        :param _builtins.bool allow_lts: Whether long-term storage is allowed.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str domain_id: The account ID.
+        :param _builtins.str enable: The enable status.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.bool region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.bool success: Whether the operation was successful.
+        :param _builtins.int total: The total numbers.
+        :param _builtins.int update_time: The update time.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "alert", alert)
+        pulumi.set(__self__, "allow_alert", allow_alert)
+        pulumi.set(__self__, "allow_lts", allow_lts)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "success", success)
+        pulumi.set(__self__, "total", total)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def alert(self) -> _builtins.bool:
+        """
+        Whether the alarm is triggered.
+        """
+        return pulumi.get(self, "alert")
+
+    @_builtins.property
+    @pulumi.getter(name="allowAlert")
+    def allow_alert(self) -> _builtins.bool:
+        """
+        Whether to allow an alarm.
+        """
+        return pulumi.get(self, "allow_alert")
+
+    @_builtins.property
+    @pulumi.getter(name="allowLts")
+    def allow_lts(self) -> _builtins.bool:
+        """
+        Whether long-term storage is allowed.
+        """
+        return pulumi.get(self, "allow_lts")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.str:
+        """
+        The enable status.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.bool:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def success(self) -> _builtins.bool:
+        """
+        Whether the operation was successful.
+        """
+        return pulumi.get(self, "success")
+
+    @_builtins.property
+    @pulumi.getter
+    def total(self) -> _builtins.int:
+        """
+        The total numbers.
+        """
+        return pulumi.get(self, "total")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetCollectorChannelGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 group_id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str group_id: The ID of the collector channel group.
+        :param _builtins.str name: Specifies the name of the collector channel group.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The ID of the collector channel group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the collector channel group.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetCollectorChannelInstancesRecordResult(dict):
+    def __init__(__self__, *,
+                 channel_name: _builtins.str,
+                 config_status: _builtins.str,
+                 create_by: _builtins.str,
+                 mini_on_online: _builtins.bool,
+                 monitors: Sequence['outputs.GetCollectorChannelInstancesRecordMonitorResult'],
+                 node_name: _builtins.str,
+                 private_ip_address: _builtins.str,
+                 public_ip_address: _builtins.str,
+                 read_writes: Sequence['outputs.GetCollectorChannelInstancesRecordReadWriteResult'],
+                 region: _builtins.str):
+        """
+        :param _builtins.str channel_name: The channel name.
+        :param _builtins.str config_status: The collector channel configuration status. Valid values are **OK**, **CHANGE**.
+        :param _builtins.str create_by: The IAM user ID.
+        :param _builtins.bool mini_on_online: Whether online.
+        :param Sequence['GetCollectorChannelInstancesRecordMonitorArgs'] monitors: The monitor information.
+        :param _builtins.str node_name: Specifies the node name.
+        :param _builtins.str private_ip_address: The private IP address.
+        :param _builtins.str public_ip_address: The public IP address.
+        :param Sequence['GetCollectorChannelInstancesRecordReadWriteArgs'] read_writes: The read write record information.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        """
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "config_status", config_status)
+        pulumi.set(__self__, "create_by", create_by)
+        pulumi.set(__self__, "mini_on_online", mini_on_online)
+        pulumi.set(__self__, "monitors", monitors)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "private_ip_address", private_ip_address)
+        pulumi.set(__self__, "public_ip_address", public_ip_address)
+        pulumi.set(__self__, "read_writes", read_writes)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="channelName")
+    def channel_name(self) -> _builtins.str:
+        """
+        The channel name.
+        """
+        return pulumi.get(self, "channel_name")
+
+    @_builtins.property
+    @pulumi.getter(name="configStatus")
+    def config_status(self) -> _builtins.str:
+        """
+        The collector channel configuration status. Valid values are **OK**, **CHANGE**.
+        """
+        return pulumi.get(self, "config_status")
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> _builtins.str:
+        """
+        The IAM user ID.
+        """
+        return pulumi.get(self, "create_by")
+
+    @_builtins.property
+    @pulumi.getter(name="miniOnOnline")
+    def mini_on_online(self) -> _builtins.bool:
+        """
+        Whether online.
+        """
+        return pulumi.get(self, "mini_on_online")
+
+    @_builtins.property
+    @pulumi.getter
+    def monitors(self) -> Sequence['outputs.GetCollectorChannelInstancesRecordMonitorResult']:
+        """
+        The monitor information.
+        """
+        return pulumi.get(self, "monitors")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> _builtins.str:
+        """
+        Specifies the node name.
+        """
+        return pulumi.get(self, "node_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> _builtins.str:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "private_ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIpAddress")
+    def public_ip_address(self) -> _builtins.str:
+        """
+        The public IP address.
+        """
+        return pulumi.get(self, "public_ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="readWrites")
+    def read_writes(self) -> Sequence['outputs.GetCollectorChannelInstancesRecordReadWriteResult']:
+        """
+        The read write record information.
+        """
+        return pulumi.get(self, "read_writes")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetCollectorChannelInstancesRecordMonitorResult(dict):
+    def __init__(__self__, *,
+                 cpu_idle: _builtins.str,
+                 cpu_usage: _builtins.str,
+                 disk_count: _builtins.str,
+                 disk_usage: _builtins.str,
+                 down_pps: _builtins.str,
+                 health_status: _builtins.str,
+                 heart_beat: _builtins.str,
+                 heart_beat_time: _builtins.str,
+                 memory_cache: _builtins.str,
+                 memory_count: _builtins.str,
+                 memory_free: _builtins.str,
+                 memory_shared: _builtins.str,
+                 memory_usage: _builtins.str,
+                 mini_on_online: _builtins.str,
+                 read_rate: _builtins.str,
+                 up_pps: _builtins.str,
+                 write_rate: _builtins.str):
+        """
+        :param _builtins.str cpu_idle: The percentage of CPU idle time.
+        :param _builtins.str cpu_usage: The current CPU usage rate.
+        :param _builtins.str disk_count: The number of disk devices in the system.
+        :param _builtins.str disk_usage: The current disk space usage.
+        :param _builtins.str down_pps: The number of download data packets per second.
+        :param _builtins.str health_status: The health status of the node. Valid values are **NORMAL**, **ANOMALIES**, **FAULTS**,
+               **LOST_CONTACT**.
+        :param _builtins.str heart_beat: Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        :param _builtins.str heart_beat_time: The time when the last heartbeat signal was received.
+        :param _builtins.str memory_cache: The memory size of cached data.
+        :param _builtins.str memory_count: The number of physical memory modules.
+        :param _builtins.str memory_free: The amount of currently free physical memory.
+        :param _builtins.str memory_shared: The total amount of memory shared by multiple processes.
+        :param _builtins.str memory_usage: The amount of physical memory used.
+        :param _builtins.str mini_on_online: Whether online.
+        :param _builtins.str read_rate: The disk read rate.
+        :param _builtins.str up_pps: The number of upload data packets per second.
+        :param _builtins.str write_rate: The disk write rate.
+        """
+        pulumi.set(__self__, "cpu_idle", cpu_idle)
+        pulumi.set(__self__, "cpu_usage", cpu_usage)
+        pulumi.set(__self__, "disk_count", disk_count)
+        pulumi.set(__self__, "disk_usage", disk_usage)
+        pulumi.set(__self__, "down_pps", down_pps)
+        pulumi.set(__self__, "health_status", health_status)
+        pulumi.set(__self__, "heart_beat", heart_beat)
+        pulumi.set(__self__, "heart_beat_time", heart_beat_time)
+        pulumi.set(__self__, "memory_cache", memory_cache)
+        pulumi.set(__self__, "memory_count", memory_count)
+        pulumi.set(__self__, "memory_free", memory_free)
+        pulumi.set(__self__, "memory_shared", memory_shared)
+        pulumi.set(__self__, "memory_usage", memory_usage)
+        pulumi.set(__self__, "mini_on_online", mini_on_online)
+        pulumi.set(__self__, "read_rate", read_rate)
+        pulumi.set(__self__, "up_pps", up_pps)
+        pulumi.set(__self__, "write_rate", write_rate)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuIdle")
+    def cpu_idle(self) -> _builtins.str:
+        """
+        The percentage of CPU idle time.
+        """
+        return pulumi.get(self, "cpu_idle")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuUsage")
+    def cpu_usage(self) -> _builtins.str:
+        """
+        The current CPU usage rate.
+        """
+        return pulumi.get(self, "cpu_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="diskCount")
+    def disk_count(self) -> _builtins.str:
+        """
+        The number of disk devices in the system.
+        """
+        return pulumi.get(self, "disk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="diskUsage")
+    def disk_usage(self) -> _builtins.str:
+        """
+        The current disk space usage.
+        """
+        return pulumi.get(self, "disk_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="downPps")
+    def down_pps(self) -> _builtins.str:
+        """
+        The number of download data packets per second.
+        """
+        return pulumi.get(self, "down_pps")
+
+    @_builtins.property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> _builtins.str:
+        """
+        The health status of the node. Valid values are **NORMAL**, **ANOMALIES**, **FAULTS**,
+        **LOST_CONTACT**.
+        """
+        return pulumi.get(self, "health_status")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeat")
+    def heart_beat(self) -> _builtins.str:
+        """
+        Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        """
+        return pulumi.get(self, "heart_beat")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeatTime")
+    def heart_beat_time(self) -> _builtins.str:
+        """
+        The time when the last heartbeat signal was received.
+        """
+        return pulumi.get(self, "heart_beat_time")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryCache")
+    def memory_cache(self) -> _builtins.str:
+        """
+        The memory size of cached data.
+        """
+        return pulumi.get(self, "memory_cache")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryCount")
+    def memory_count(self) -> _builtins.str:
+        """
+        The number of physical memory modules.
+        """
+        return pulumi.get(self, "memory_count")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryFree")
+    def memory_free(self) -> _builtins.str:
+        """
+        The amount of currently free physical memory.
+        """
+        return pulumi.get(self, "memory_free")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryShared")
+    def memory_shared(self) -> _builtins.str:
+        """
+        The total amount of memory shared by multiple processes.
+        """
+        return pulumi.get(self, "memory_shared")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryUsage")
+    def memory_usage(self) -> _builtins.str:
+        """
+        The amount of physical memory used.
+        """
+        return pulumi.get(self, "memory_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="miniOnOnline")
+    def mini_on_online(self) -> _builtins.str:
+        """
+        Whether online.
+        """
+        return pulumi.get(self, "mini_on_online")
+
+    @_builtins.property
+    @pulumi.getter(name="readRate")
+    def read_rate(self) -> _builtins.str:
+        """
+        The disk read rate.
+        """
+        return pulumi.get(self, "read_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="upPps")
+    def up_pps(self) -> _builtins.str:
+        """
+        The number of upload data packets per second.
+        """
+        return pulumi.get(self, "up_pps")
+
+    @_builtins.property
+    @pulumi.getter(name="writeRate")
+    def write_rate(self) -> _builtins.str:
+        """
+        The disk write rate.
+        """
+        return pulumi.get(self, "write_rate")
+
+
+@pulumi.output_type
+class GetCollectorChannelInstancesRecordReadWriteResult(dict):
+    def __init__(__self__, *,
+                 accept_count: _builtins.int,
+                 accept_rate: _builtins.int,
+                 channel_id: _builtins.str,
+                 channel_instance_count: _builtins.int,
+                 heart_beat: _builtins.str,
+                 heart_beat_time: _builtins.str,
+                 latest_transmission_time: _builtins.str,
+                 minion_id: _builtins.str,
+                 send_count: _builtins.int,
+                 send_rate: _builtins.int):
+        """
+        :param _builtins.int accept_count: The accept count.
+        :param _builtins.int accept_rate: The accept rate.
+        :param _builtins.str channel_id: Specifies the channel ID.
+        :param _builtins.int channel_instance_count: The number of collector channel instances.
+        :param _builtins.str heart_beat: Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        :param _builtins.str heart_beat_time: The time when the last heartbeat signal was received.
+        :param _builtins.str latest_transmission_time: The time of the last transmission.
+        :param _builtins.str minion_id: The minion ID (UUID).
+        :param _builtins.int send_count: The send count.
+        :param _builtins.int send_rate: The send rate.
+        """
+        pulumi.set(__self__, "accept_count", accept_count)
+        pulumi.set(__self__, "accept_rate", accept_rate)
+        pulumi.set(__self__, "channel_id", channel_id)
+        pulumi.set(__self__, "channel_instance_count", channel_instance_count)
+        pulumi.set(__self__, "heart_beat", heart_beat)
+        pulumi.set(__self__, "heart_beat_time", heart_beat_time)
+        pulumi.set(__self__, "latest_transmission_time", latest_transmission_time)
+        pulumi.set(__self__, "minion_id", minion_id)
+        pulumi.set(__self__, "send_count", send_count)
+        pulumi.set(__self__, "send_rate", send_rate)
+
+    @_builtins.property
+    @pulumi.getter(name="acceptCount")
+    def accept_count(self) -> _builtins.int:
+        """
+        The accept count.
+        """
+        return pulumi.get(self, "accept_count")
+
+    @_builtins.property
+    @pulumi.getter(name="acceptRate")
+    def accept_rate(self) -> _builtins.int:
+        """
+        The accept rate.
+        """
+        return pulumi.get(self, "accept_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="channelId")
+    def channel_id(self) -> _builtins.str:
+        """
+        Specifies the channel ID.
+        """
+        return pulumi.get(self, "channel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="channelInstanceCount")
+    def channel_instance_count(self) -> _builtins.int:
+        """
+        The number of collector channel instances.
+        """
+        return pulumi.get(self, "channel_instance_count")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeat")
+    def heart_beat(self) -> _builtins.str:
+        """
+        Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        """
+        return pulumi.get(self, "heart_beat")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeatTime")
+    def heart_beat_time(self) -> _builtins.str:
+        """
+        The time when the last heartbeat signal was received.
+        """
+        return pulumi.get(self, "heart_beat_time")
+
+    @_builtins.property
+    @pulumi.getter(name="latestTransmissionTime")
+    def latest_transmission_time(self) -> _builtins.str:
+        """
+        The time of the last transmission.
+        """
+        return pulumi.get(self, "latest_transmission_time")
+
+    @_builtins.property
+    @pulumi.getter(name="minionId")
+    def minion_id(self) -> _builtins.str:
+        """
+        The minion ID (UUID).
+        """
+        return pulumi.get(self, "minion_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sendCount")
+    def send_count(self) -> _builtins.int:
+        """
+        The send count.
+        """
+        return pulumi.get(self, "send_count")
+
+    @_builtins.property
+    @pulumi.getter(name="sendRate")
+    def send_rate(self) -> _builtins.int:
+        """
+        The send rate.
+        """
+        return pulumi.get(self, "send_rate")
+
+
+@pulumi.output_type
+class GetCollectorConnectionsRecordResult(dict):
+    def __init__(__self__, *,
+                 channel_refer_count: _builtins.int,
+                 connection_id: _builtins.str,
+                 connection_type: _builtins.str,
+                 description: _builtins.str,
+                 info: _builtins.str,
+                 module_id: _builtins.str,
+                 template_title: _builtins.str,
+                 title: _builtins.str):
+        """
+        :param _builtins.int channel_refer_count: The channel reference count of the collector connection.
+        :param _builtins.str connection_id: The ID of the collector connection.
+        :param _builtins.str connection_type: Specifies the connection type. Valid values are:
+               + **FILTER**
+               + **INPUT**
+               + **OUTPUT**
+        :param _builtins.str description: Specifies the description of the collector connection.
+        :param _builtins.str info: The info of the collector connection.
+        :param _builtins.str module_id: The module ID of the collector connection.
+        :param _builtins.str template_title: The template title of the collector connection.
+        :param _builtins.str title: Specifies the title of the collector connection.
+        """
+        pulumi.set(__self__, "channel_refer_count", channel_refer_count)
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "connection_type", connection_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "info", info)
+        pulumi.set(__self__, "module_id", module_id)
+        pulumi.set(__self__, "template_title", template_title)
+        pulumi.set(__self__, "title", title)
+
+    @_builtins.property
+    @pulumi.getter(name="channelReferCount")
+    def channel_refer_count(self) -> _builtins.int:
+        """
+        The channel reference count of the collector connection.
+        """
+        return pulumi.get(self, "channel_refer_count")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.str:
+        """
+        The ID of the collector connection.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionType")
+    def connection_type(self) -> _builtins.str:
+        """
+        Specifies the connection type. Valid values are:
+        + **FILTER**
+        + **INPUT**
+        + **OUTPUT**
+        """
+        return pulumi.get(self, "connection_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description of the collector connection.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def info(self) -> _builtins.str:
+        """
+        The info of the collector connection.
+        """
+        return pulumi.get(self, "info")
+
+    @_builtins.property
+    @pulumi.getter(name="moduleId")
+    def module_id(self) -> _builtins.str:
+        """
+        The module ID of the collector connection.
+        """
+        return pulumi.get(self, "module_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateTitle")
+    def template_title(self) -> _builtins.str:
+        """
+        The template title of the collector connection.
+        """
+        return pulumi.get(self, "template_title")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Specifies the title of the collector connection.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetCollectorLogstashParsersRecordResult(dict):
+    def __init__(__self__, *,
+                 channel_refer_count: _builtins.int,
+                 description: _builtins.str,
+                 parser_id: _builtins.str,
+                 title: _builtins.str):
+        """
+        :param _builtins.int channel_refer_count: The number of channels that reference this parser.
+        :param _builtins.str description: Specifies the description of the parser to query.
+        :param _builtins.str parser_id: The ID of the parser.
+        :param _builtins.str title: Specifies the title of the parser to query.
+        """
+        pulumi.set(__self__, "channel_refer_count", channel_refer_count)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "parser_id", parser_id)
+        pulumi.set(__self__, "title", title)
+
+    @_builtins.property
+    @pulumi.getter(name="channelReferCount")
+    def channel_refer_count(self) -> _builtins.int:
+        """
+        The number of channels that reference this parser.
+        """
+        return pulumi.get(self, "channel_refer_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description of the parser to query.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="parserId")
+    def parser_id(self) -> _builtins.str:
+        """
+        The ID of the parser.
+        """
+        return pulumi.get(self, "parser_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Specifies the title of the parser to query.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetCollectorModuleRestrictionsModuleRestrictionResult(dict):
+    def __init__(__self__, *,
+                 fields: Sequence['outputs.GetCollectorModuleRestrictionsModuleRestrictionFieldResult'],
+                 template_id: _builtins.str):
+        """
+        :param Sequence['GetCollectorModuleRestrictionsModuleRestrictionFieldArgs'] fields: The fields information.
+        :param _builtins.str template_id: The template ID.
+        """
+        pulumi.set(__self__, "fields", fields)
+        pulumi.set(__self__, "template_id", template_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def fields(self) -> Sequence['outputs.GetCollectorModuleRestrictionsModuleRestrictionFieldResult']:
+        """
+        The fields information.
+        """
+        return pulumi.get(self, "fields")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+
+@pulumi.output_type
+class GetCollectorModuleRestrictionsModuleRestrictionFieldResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.str,
+                 description: _builtins.str,
+                 example: _builtins.str,
+                 name: _builtins.str,
+                 required: _builtins.bool,
+                 restrictions: Sequence['outputs.GetCollectorModuleRestrictionsModuleRestrictionFieldRestrictionResult'],
+                 template_field_id: _builtins.str,
+                 title: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str default_value: The default value.
+        :param _builtins.str description: The description.
+        :param _builtins.str example: The example.
+        :param _builtins.str name: The rule name.
+        :param _builtins.bool required: Whether required.
+        :param Sequence['GetCollectorModuleRestrictionsModuleRestrictionFieldRestrictionArgs'] restrictions: The restrictions information.
+        :param _builtins.str template_field_id: The template field ID.
+        :param _builtins.str title: The title.
+        :param _builtins.str type: The rule type.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "example", example)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "required", required)
+        pulumi.set(__self__, "restrictions", restrictions)
+        pulumi.set(__self__, "template_field_id", template_field_id)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.str:
+        """
+        The default value.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def example(self) -> _builtins.str:
+        """
+        The example.
+        """
+        return pulumi.get(self, "example")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The rule name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def required(self) -> _builtins.bool:
+        """
+        Whether required.
+        """
+        return pulumi.get(self, "required")
+
+    @_builtins.property
+    @pulumi.getter
+    def restrictions(self) -> Sequence['outputs.GetCollectorModuleRestrictionsModuleRestrictionFieldRestrictionResult']:
+        """
+        The restrictions information.
+        """
+        return pulumi.get(self, "restrictions")
+
+    @_builtins.property
+    @pulumi.getter(name="templateFieldId")
+    def template_field_id(self) -> _builtins.str:
+        """
+        The template field ID.
+        """
+        return pulumi.get(self, "template_field_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The rule type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetCollectorModuleRestrictionsModuleRestrictionFieldRestrictionResult(dict):
+    def __init__(__self__, *,
+                 logic: _builtins.bool,
+                 title: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.bool logic: The logic condition.
+        :param _builtins.str title: The title.
+        :param _builtins.str type: The rule type.
+        :param _builtins.str value: The rule name.
+        """
+        pulumi.set(__self__, "logic", logic)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def logic(self) -> _builtins.bool:
+        """
+        The logic condition.
+        """
+        return pulumi.get(self, "logic")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The rule type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The rule name.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCollectorModuleTemplatesCommonResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 template_id: _builtins.str,
+                 title: _builtins.str):
+        """
+        :param _builtins.str description: The template description.
+        :param _builtins.str name: The template name.
+        :param _builtins.str template_id: The template ID.
+        :param _builtins.str title: The template title.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "title", title)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The template description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The template name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The template title.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetCollectorModuleTemplatesListResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 template_id: _builtins.str,
+                 title: _builtins.str):
+        """
+        :param _builtins.str description: The template description.
+        :param _builtins.str name: The template name.
+        :param _builtins.str template_id: The template ID.
+        :param _builtins.str title: The template title.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "title", title)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The template description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The template name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The template title.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetCollectorParserTemplatesRecordResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 parser_id: _builtins.str,
+                 title: _builtins.str):
+        """
+        :param _builtins.str description: Specifies the description to filter the parser templates.
+        :param _builtins.str parser_id: The unique identifier of the parser template.
+        :param _builtins.str title: Specifies the title of the parser template to filter the results.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "parser_id", parser_id)
+        pulumi.set(__self__, "title", title)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description to filter the parser templates.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="parserId")
+    def parser_id(self) -> _builtins.str:
+        """
+        The unique identifier of the parser template.
+        """
+        return pulumi.get(self, "parser_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Specifies the title of the parser template to filter the results.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetComponentRunningNodesRecordResult(dict):
+    def __init__(__self__, *,
+                 component_id: _builtins.str,
+                 component_name: _builtins.str,
+                 config_status: _builtins.str,
+                 create_time: _builtins.int,
+                 fail_deploy_message: _builtins.str,
+                 ip_address: _builtins.str,
+                 lists: Sequence['outputs.GetComponentRunningNodesRecordListResult'],
+                 monitors: Sequence['outputs.GetComponentRunningNodesRecordMonitorResult'],
+                 node_apply_fail_enum: _builtins.str,
+                 node_expansions: Sequence['outputs.GetComponentRunningNodesRecordNodeExpansionResult'],
+                 node_id: _builtins.str,
+                 node_name: _builtins.str,
+                 private_ip_address: _builtins.str,
+                 region: _builtins.str,
+                 specification: _builtins.str,
+                 vpc_endpoint_address: _builtins.str,
+                 vpc_endpoint_id: _builtins.str):
+        """
+        :param _builtins.str component_id: Specifies the component ID.
+        :param _builtins.str component_name: The component name.
+        :param _builtins.str config_status: The node configuration status. Valid values are **UN_SAVED**, **SAVE_AND_UN_APPLY**,
+               **MOVE_AND_UN_APPLY**, **APPLYING**, **FAIL_APPLY**, **APPLIED**.
+        :param _builtins.int create_time: The creation time (timestamp in milliseconds).
+        :param _builtins.str fail_deploy_message: The deployment failure message.
+        :param _builtins.str ip_address: The IP address.
+        :param Sequence['GetComponentRunningNodesRecordListArgs'] lists: The component configuration parameter list.
+        :param Sequence['GetComponentRunningNodesRecordMonitorArgs'] monitors: The monitor information.
+        :param _builtins.str node_apply_fail_enum: The node application success or failure status and reason.
+               The valid values are as follows:
+               + **COLLECTOR_USE**: The collector is in use and cannot be removed.
+               + **NODE_OFFLINE**: Node is in a disconnected state and cannot be applied.
+        :param Sequence['GetComponentRunningNodesRecordNodeExpansionArgs'] node_expansions: The node expansion information.
+        :param _builtins.str node_id: Specifies the node ID.
+        :param _builtins.str node_name: Specifies the node name.
+        :param _builtins.str private_ip_address: The private IP address.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str specification: The specification.
+        :param _builtins.str vpc_endpoint_address: The VPC endpoint address.
+        :param _builtins.str vpc_endpoint_id: The VPC endpoint ID.
+        """
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "component_name", component_name)
+        pulumi.set(__self__, "config_status", config_status)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "fail_deploy_message", fail_deploy_message)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "lists", lists)
+        pulumi.set(__self__, "monitors", monitors)
+        pulumi.set(__self__, "node_apply_fail_enum", node_apply_fail_enum)
+        pulumi.set(__self__, "node_expansions", node_expansions)
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "private_ip_address", private_ip_address)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "specification", specification)
+        pulumi.set(__self__, "vpc_endpoint_address", vpc_endpoint_address)
+        pulumi.set(__self__, "vpc_endpoint_id", vpc_endpoint_id)
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        Specifies the component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="componentName")
+    def component_name(self) -> _builtins.str:
+        """
+        The component name.
+        """
+        return pulumi.get(self, "component_name")
+
+    @_builtins.property
+    @pulumi.getter(name="configStatus")
+    def config_status(self) -> _builtins.str:
+        """
+        The node configuration status. Valid values are **UN_SAVED**, **SAVE_AND_UN_APPLY**,
+        **MOVE_AND_UN_APPLY**, **APPLYING**, **FAIL_APPLY**, **APPLIED**.
+        """
+        return pulumi.get(self, "config_status")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time (timestamp in milliseconds).
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="failDeployMessage")
+    def fail_deploy_message(self) -> _builtins.str:
+        """
+        The deployment failure message.
+        """
+        return pulumi.get(self, "fail_deploy_message")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        The IP address.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def lists(self) -> Sequence['outputs.GetComponentRunningNodesRecordListResult']:
+        """
+        The component configuration parameter list.
+        """
+        return pulumi.get(self, "lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def monitors(self) -> Sequence['outputs.GetComponentRunningNodesRecordMonitorResult']:
+        """
+        The monitor information.
+        """
+        return pulumi.get(self, "monitors")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeApplyFailEnum")
+    def node_apply_fail_enum(self) -> _builtins.str:
+        """
+        The node application success or failure status and reason.
+        The valid values are as follows:
+        + **COLLECTOR_USE**: The collector is in use and cannot be removed.
+        + **NODE_OFFLINE**: Node is in a disconnected state and cannot be applied.
+        """
+        return pulumi.get(self, "node_apply_fail_enum")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeExpansions")
+    def node_expansions(self) -> Sequence['outputs.GetComponentRunningNodesRecordNodeExpansionResult']:
+        """
+        The node expansion information.
+        """
+        return pulumi.get(self, "node_expansions")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> _builtins.str:
+        """
+        Specifies the node ID.
+        """
+        return pulumi.get(self, "node_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> _builtins.str:
+        """
+        Specifies the node name.
+        """
+        return pulumi.get(self, "node_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> _builtins.str:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "private_ip_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def specification(self) -> _builtins.str:
+        """
+        The specification.
+        """
+        return pulumi.get(self, "specification")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcEndpointAddress")
+    def vpc_endpoint_address(self) -> _builtins.str:
+        """
+        The VPC endpoint address.
+        """
+        return pulumi.get(self, "vpc_endpoint_address")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcEndpointId")
+    def vpc_endpoint_id(self) -> _builtins.str:
+        """
+        The VPC endpoint ID.
+        """
+        return pulumi.get(self, "vpc_endpoint_id")
+
+
+@pulumi.output_type
+class GetComponentRunningNodesRecordListResult(dict):
+    def __init__(__self__, *,
+                 component_id: _builtins.str,
+                 configuration_id: _builtins.str,
+                 file_name: _builtins.str,
+                 file_path: _builtins.str,
+                 file_type: _builtins.str,
+                 node_id: _builtins.str,
+                 param: _builtins.str,
+                 type: _builtins.str,
+                 version: _builtins.int):
+        """
+        :param _builtins.str component_id: Specifies the component ID.
+        :param _builtins.str configuration_id: The configuration ID.
+        :param _builtins.str file_name: The file name.
+        :param _builtins.str file_path: The file path.
+        :param _builtins.str file_type: The file type. Valid values are **JVM**, **LOG4J2**, **YML**.
+        :param _builtins.str node_id: Specifies the node ID.
+        :param _builtins.str param: The parameter.
+        :param _builtins.str type: The configuration type. Valid values are **HISTORY**, **CURRENT_SAVE**, **CURRENT_APPLY**.
+        :param _builtins.int version: The version.
+        """
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "configuration_id", configuration_id)
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "file_type", file_type)
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "param", param)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        Specifies the component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="configurationId")
+    def configuration_id(self) -> _builtins.str:
+        """
+        The configuration ID.
+        """
+        return pulumi.get(self, "configuration_id")
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        The file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> _builtins.str:
+        """
+        The file type. Valid values are **JVM**, **LOG4J2**, **YML**.
+        """
+        return pulumi.get(self, "file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> _builtins.str:
+        """
+        Specifies the node ID.
+        """
+        return pulumi.get(self, "node_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def param(self) -> _builtins.str:
+        """
+        The parameter.
+        """
+        return pulumi.get(self, "param")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The configuration type. Valid values are **HISTORY**, **CURRENT_SAVE**, **CURRENT_APPLY**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        The version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetComponentRunningNodesRecordMonitorResult(dict):
+    def __init__(__self__, *,
+                 cpu_idle: _builtins.str,
+                 cpu_usage: _builtins.str,
+                 disk_count: _builtins.str,
+                 disk_usage: _builtins.str,
+                 down_pps: _builtins.str,
+                 health_status: _builtins.str,
+                 heart_beat: _builtins.str,
+                 heart_beat_time: _builtins.str,
+                 memory_cache: _builtins.str,
+                 memory_count: _builtins.str,
+                 memory_free: _builtins.str,
+                 memory_shared: _builtins.str,
+                 memory_usage: _builtins.str,
+                 mini_on_online: _builtins.str,
+                 read_rate: _builtins.str,
+                 up_pps: _builtins.str,
+                 write_rate: _builtins.str):
+        """
+        :param _builtins.str cpu_idle: The percentage of CPU idle time.
+        :param _builtins.str cpu_usage: The current CPU usage rate.
+        :param _builtins.str disk_count: The number of disk devices in the system.
+        :param _builtins.str disk_usage: The current disk space usage.
+        :param _builtins.str down_pps: The number of download data packets per second.
+        :param _builtins.str health_status: The health status of the node. Valid values are **NORMAL**, **ANOMALIES**, **FAULTS**,
+               **LOST_CONTACT**.
+        :param _builtins.str heart_beat: Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        :param _builtins.str heart_beat_time: The time when the last heartbeat signal was received, in ISO 8601 format.
+        :param _builtins.str memory_cache: The memory size of cached data.
+        :param _builtins.str memory_count: The number of physical memory modules.
+        :param _builtins.str memory_free: The amount of currently free physical memory.
+        :param _builtins.str memory_shared: The total amount of memory shared by multiple processes.
+        :param _builtins.str memory_usage: The amount of physical memory used.
+        :param _builtins.str mini_on_online: Whether online.
+        :param _builtins.str read_rate: The disk read rate.
+        :param _builtins.str up_pps: The number of upload data packets per second.
+        :param _builtins.str write_rate: The disk write rate.
+        """
+        pulumi.set(__self__, "cpu_idle", cpu_idle)
+        pulumi.set(__self__, "cpu_usage", cpu_usage)
+        pulumi.set(__self__, "disk_count", disk_count)
+        pulumi.set(__self__, "disk_usage", disk_usage)
+        pulumi.set(__self__, "down_pps", down_pps)
+        pulumi.set(__self__, "health_status", health_status)
+        pulumi.set(__self__, "heart_beat", heart_beat)
+        pulumi.set(__self__, "heart_beat_time", heart_beat_time)
+        pulumi.set(__self__, "memory_cache", memory_cache)
+        pulumi.set(__self__, "memory_count", memory_count)
+        pulumi.set(__self__, "memory_free", memory_free)
+        pulumi.set(__self__, "memory_shared", memory_shared)
+        pulumi.set(__self__, "memory_usage", memory_usage)
+        pulumi.set(__self__, "mini_on_online", mini_on_online)
+        pulumi.set(__self__, "read_rate", read_rate)
+        pulumi.set(__self__, "up_pps", up_pps)
+        pulumi.set(__self__, "write_rate", write_rate)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuIdle")
+    def cpu_idle(self) -> _builtins.str:
+        """
+        The percentage of CPU idle time.
+        """
+        return pulumi.get(self, "cpu_idle")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuUsage")
+    def cpu_usage(self) -> _builtins.str:
+        """
+        The current CPU usage rate.
+        """
+        return pulumi.get(self, "cpu_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="diskCount")
+    def disk_count(self) -> _builtins.str:
+        """
+        The number of disk devices in the system.
+        """
+        return pulumi.get(self, "disk_count")
+
+    @_builtins.property
+    @pulumi.getter(name="diskUsage")
+    def disk_usage(self) -> _builtins.str:
+        """
+        The current disk space usage.
+        """
+        return pulumi.get(self, "disk_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="downPps")
+    def down_pps(self) -> _builtins.str:
+        """
+        The number of download data packets per second.
+        """
+        return pulumi.get(self, "down_pps")
+
+    @_builtins.property
+    @pulumi.getter(name="healthStatus")
+    def health_status(self) -> _builtins.str:
+        """
+        The health status of the node. Valid values are **NORMAL**, **ANOMALIES**, **FAULTS**,
+        **LOST_CONTACT**.
+        """
+        return pulumi.get(self, "health_status")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeat")
+    def heart_beat(self) -> _builtins.str:
+        """
+        Whether the node successfully received heartbeat signals. Valid values are **ONLINE**, **OFFLINE**.
+        """
+        return pulumi.get(self, "heart_beat")
+
+    @_builtins.property
+    @pulumi.getter(name="heartBeatTime")
+    def heart_beat_time(self) -> _builtins.str:
+        """
+        The time when the last heartbeat signal was received, in ISO 8601 format.
+        """
+        return pulumi.get(self, "heart_beat_time")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryCache")
+    def memory_cache(self) -> _builtins.str:
+        """
+        The memory size of cached data.
+        """
+        return pulumi.get(self, "memory_cache")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryCount")
+    def memory_count(self) -> _builtins.str:
+        """
+        The number of physical memory modules.
+        """
+        return pulumi.get(self, "memory_count")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryFree")
+    def memory_free(self) -> _builtins.str:
+        """
+        The amount of currently free physical memory.
+        """
+        return pulumi.get(self, "memory_free")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryShared")
+    def memory_shared(self) -> _builtins.str:
+        """
+        The total amount of memory shared by multiple processes.
+        """
+        return pulumi.get(self, "memory_shared")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryUsage")
+    def memory_usage(self) -> _builtins.str:
+        """
+        The amount of physical memory used.
+        """
+        return pulumi.get(self, "memory_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="miniOnOnline")
+    def mini_on_online(self) -> _builtins.str:
+        """
+        Whether online.
+        """
+        return pulumi.get(self, "mini_on_online")
+
+    @_builtins.property
+    @pulumi.getter(name="readRate")
+    def read_rate(self) -> _builtins.str:
+        """
+        The disk read rate.
+        """
+        return pulumi.get(self, "read_rate")
+
+    @_builtins.property
+    @pulumi.getter(name="upPps")
+    def up_pps(self) -> _builtins.str:
+        """
+        The number of upload data packets per second.
+        """
+        return pulumi.get(self, "up_pps")
+
+    @_builtins.property
+    @pulumi.getter(name="writeRate")
+    def write_rate(self) -> _builtins.str:
+        """
+        The disk write rate.
+        """
+        return pulumi.get(self, "write_rate")
+
+
+@pulumi.output_type
+class GetComponentRunningNodesRecordNodeExpansionResult(dict):
+    def __init__(__self__, *,
+                 custom_label: _builtins.str,
+                 data_center: _builtins.str,
+                 description: _builtins.str,
+                 maintainer: _builtins.str,
+                 network_plane: _builtins.str,
+                 node_id: _builtins.str):
+        """
+        :param _builtins.str custom_label: The custom label.
+        :param _builtins.str data_center: The data center.
+        :param _builtins.str description: The description information.
+        :param _builtins.str maintainer: The maintainer.
+        :param _builtins.str network_plane: The network plane.
+        :param _builtins.str node_id: Specifies the node ID.
+        """
+        pulumi.set(__self__, "custom_label", custom_label)
+        pulumi.set(__self__, "data_center", data_center)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "maintainer", maintainer)
+        pulumi.set(__self__, "network_plane", network_plane)
+        pulumi.set(__self__, "node_id", node_id)
+
+    @_builtins.property
+    @pulumi.getter(name="customLabel")
+    def custom_label(self) -> _builtins.str:
+        """
+        The custom label.
+        """
+        return pulumi.get(self, "custom_label")
+
+    @_builtins.property
+    @pulumi.getter(name="dataCenter")
+    def data_center(self) -> _builtins.str:
+        """
+        The data center.
+        """
+        return pulumi.get(self, "data_center")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description information.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def maintainer(self) -> _builtins.str:
+        """
+        The maintainer.
+        """
+        return pulumi.get(self, "maintainer")
+
+    @_builtins.property
+    @pulumi.getter(name="networkPlane")
+    def network_plane(self) -> _builtins.str:
+        """
+        The network plane.
+        """
+        return pulumi.get(self, "network_plane")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> _builtins.str:
+        """
+        Specifies the node ID.
+        """
+        return pulumi.get(self, "node_id")
+
+
+@pulumi.output_type
 class GetComponentTemplatesRecordResult(dict):
     def __init__(__self__, *,
                  component_id: _builtins.str,
@@ -4089,6 +11955,502 @@ class GetComponentTemplatesRecordResult(dict):
     def version(self) -> _builtins.str:
         """
         The version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetComponentsRecordResult(dict):
+    def __init__(__self__, *,
+                 component_id: _builtins.str,
+                 component_name: _builtins.str,
+                 create_time: _builtins.int,
+                 description: _builtins.str,
+                 history_version: _builtins.str,
+                 maintainer: _builtins.str,
+                 time_zone: _builtins.str,
+                 update_time: _builtins.int,
+                 upgrade: _builtins.str,
+                 upgrade_fail_message: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str component_id: The component ID.
+        :param _builtins.str component_name: The component name.
+        :param _builtins.int create_time: The creation time (timestamp in milliseconds).
+        :param _builtins.str description: The component description.
+        :param _builtins.str history_version: The history version.
+        :param _builtins.str maintainer: The maintainer.
+        :param _builtins.str time_zone: The time zone.
+        :param _builtins.int update_time: The update time (timestamp in milliseconds).
+        :param _builtins.str upgrade: The upgrade status. Valid values are **NEED_UPGRADE**, **UPGRADING**, **SUCCESS_UPGRADE**,
+               **FAIL_UPGRADE**.
+        :param _builtins.str upgrade_fail_message: The upgrade failure message.
+        :param _builtins.str version: The SecMaster version.
+        """
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "component_name", component_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "history_version", history_version)
+        pulumi.set(__self__, "maintainer", maintainer)
+        pulumi.set(__self__, "time_zone", time_zone)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "upgrade", upgrade)
+        pulumi.set(__self__, "upgrade_fail_message", upgrade_fail_message)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        The component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="componentName")
+    def component_name(self) -> _builtins.str:
+        """
+        The component name.
+        """
+        return pulumi.get(self, "component_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time (timestamp in milliseconds).
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The component description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="historyVersion")
+    def history_version(self) -> _builtins.str:
+        """
+        The history version.
+        """
+        return pulumi.get(self, "history_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def maintainer(self) -> _builtins.str:
+        """
+        The maintainer.
+        """
+        return pulumi.get(self, "maintainer")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> _builtins.str:
+        """
+        The time zone.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time (timestamp in milliseconds).
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def upgrade(self) -> _builtins.str:
+        """
+        The upgrade status. Valid values are **NEED_UPGRADE**, **UPGRADING**, **SUCCESS_UPGRADE**,
+        **FAIL_UPGRADE**.
+        """
+        return pulumi.get(self, "upgrade")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradeFailMessage")
+    def upgrade_fail_message(self) -> _builtins.str:
+        """
+        The upgrade failure message.
+        """
+        return pulumi.get(self, "upgrade_fail_message")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The SecMaster version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetConfigurationDictionariesFailedListResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 dict_code: _builtins.str,
+                 dict_id: _builtins.str,
+                 dict_key: _builtins.str,
+                 dict_pcode: _builtins.str,
+                 dict_pkey: _builtins.str,
+                 dict_val: _builtins.str,
+                 extension_field: _builtins.str,
+                 id: _builtins.str,
+                 language: _builtins.str,
+                 project_id: _builtins.str,
+                 publish_time: _builtins.str,
+                 scope: _builtins.str,
+                 update_time: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str description: The description of the dictionary.
+        :param _builtins.str dict_code: The dictionary code.
+        :param _builtins.str dict_id: The dictionary ID.
+        :param _builtins.str dict_key: The dictionary key.
+        :param _builtins.str dict_pcode: The parent code of the dictionary.
+        :param _builtins.str dict_pkey: The parent key of the dictionary.
+        :param _builtins.str dict_val: The dictionary value.
+        :param _builtins.str extension_field: The extension fields.
+        :param _builtins.str id: The UUID.
+        :param _builtins.str language: The current language environment.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str publish_time: The publish time.
+        :param _builtins.str scope: The scope to which the dictionary belongs.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str version: The version number.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dict_code", dict_code)
+        pulumi.set(__self__, "dict_id", dict_id)
+        pulumi.set(__self__, "dict_key", dict_key)
+        pulumi.set(__self__, "dict_pcode", dict_pcode)
+        pulumi.set(__self__, "dict_pkey", dict_pkey)
+        pulumi.set(__self__, "dict_val", dict_val)
+        pulumi.set(__self__, "extension_field", extension_field)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "publish_time", publish_time)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the dictionary.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dictCode")
+    def dict_code(self) -> _builtins.str:
+        """
+        The dictionary code.
+        """
+        return pulumi.get(self, "dict_code")
+
+    @_builtins.property
+    @pulumi.getter(name="dictId")
+    def dict_id(self) -> _builtins.str:
+        """
+        The dictionary ID.
+        """
+        return pulumi.get(self, "dict_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dictKey")
+    def dict_key(self) -> _builtins.str:
+        """
+        The dictionary key.
+        """
+        return pulumi.get(self, "dict_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dictPcode")
+    def dict_pcode(self) -> _builtins.str:
+        """
+        The parent code of the dictionary.
+        """
+        return pulumi.get(self, "dict_pcode")
+
+    @_builtins.property
+    @pulumi.getter(name="dictPkey")
+    def dict_pkey(self) -> _builtins.str:
+        """
+        The parent key of the dictionary.
+        """
+        return pulumi.get(self, "dict_pkey")
+
+    @_builtins.property
+    @pulumi.getter(name="dictVal")
+    def dict_val(self) -> _builtins.str:
+        """
+        The dictionary value.
+        """
+        return pulumi.get(self, "dict_val")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionField")
+    def extension_field(self) -> _builtins.str:
+        """
+        The extension fields.
+        """
+        return pulumi.get(self, "extension_field")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The UUID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def language(self) -> _builtins.str:
+        """
+        The current language environment.
+        """
+        return pulumi.get(self, "language")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.str:
+        """
+        The publish time.
+        """
+        return pulumi.get(self, "publish_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        The scope to which the dictionary belongs.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version number.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetConfigurationDictionariesSuccessListResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 dict_code: _builtins.str,
+                 dict_id: _builtins.str,
+                 dict_key: _builtins.str,
+                 dict_pcode: _builtins.str,
+                 dict_pkey: _builtins.str,
+                 dict_val: _builtins.str,
+                 extension_field: _builtins.str,
+                 id: _builtins.str,
+                 language: _builtins.str,
+                 project_id: _builtins.str,
+                 publish_time: _builtins.str,
+                 scope: _builtins.str,
+                 update_time: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str description: The description of the dictionary.
+        :param _builtins.str dict_code: The dictionary code.
+        :param _builtins.str dict_id: The dictionary ID.
+        :param _builtins.str dict_key: The dictionary key.
+        :param _builtins.str dict_pcode: The parent code of the dictionary.
+        :param _builtins.str dict_pkey: The parent key of the dictionary.
+        :param _builtins.str dict_val: The dictionary value.
+        :param _builtins.str extension_field: The extension fields.
+        :param _builtins.str id: The UUID.
+        :param _builtins.str language: The current language environment.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str publish_time: The publish time.
+        :param _builtins.str scope: The scope to which the dictionary belongs.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str version: The version number.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dict_code", dict_code)
+        pulumi.set(__self__, "dict_id", dict_id)
+        pulumi.set(__self__, "dict_key", dict_key)
+        pulumi.set(__self__, "dict_pcode", dict_pcode)
+        pulumi.set(__self__, "dict_pkey", dict_pkey)
+        pulumi.set(__self__, "dict_val", dict_val)
+        pulumi.set(__self__, "extension_field", extension_field)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "publish_time", publish_time)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the dictionary.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dictCode")
+    def dict_code(self) -> _builtins.str:
+        """
+        The dictionary code.
+        """
+        return pulumi.get(self, "dict_code")
+
+    @_builtins.property
+    @pulumi.getter(name="dictId")
+    def dict_id(self) -> _builtins.str:
+        """
+        The dictionary ID.
+        """
+        return pulumi.get(self, "dict_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dictKey")
+    def dict_key(self) -> _builtins.str:
+        """
+        The dictionary key.
+        """
+        return pulumi.get(self, "dict_key")
+
+    @_builtins.property
+    @pulumi.getter(name="dictPcode")
+    def dict_pcode(self) -> _builtins.str:
+        """
+        The parent code of the dictionary.
+        """
+        return pulumi.get(self, "dict_pcode")
+
+    @_builtins.property
+    @pulumi.getter(name="dictPkey")
+    def dict_pkey(self) -> _builtins.str:
+        """
+        The parent key of the dictionary.
+        """
+        return pulumi.get(self, "dict_pkey")
+
+    @_builtins.property
+    @pulumi.getter(name="dictVal")
+    def dict_val(self) -> _builtins.str:
+        """
+        The dictionary value.
+        """
+        return pulumi.get(self, "dict_val")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionField")
+    def extension_field(self) -> _builtins.str:
+        """
+        The extension fields.
+        """
+        return pulumi.get(self, "extension_field")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The UUID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def language(self) -> _builtins.str:
+        """
+        The current language environment.
+        """
+        return pulumi.get(self, "language")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.str:
+        """
+        The publish time.
+        """
+        return pulumi.get(self, "publish_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        The scope to which the dictionary belongs.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version number.
         """
         return pulumi.get(self, "version")
 
@@ -4679,6 +13041,134 @@ class GetDataClassesDataClassResult(dict):
         Specifies the workspace ID.
         """
         return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetDataspacesRecordResult(dict):
+    def __init__(__self__, *,
+                 create_by: _builtins.str,
+                 create_time: _builtins.int,
+                 dataspace_id: _builtins.str,
+                 dataspace_name: _builtins.str,
+                 dataspace_type: _builtins.str,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 update_by: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str create_by: The dataspace creator.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str dataspace_id: Specifies the dataspace ID.
+        :param _builtins.str dataspace_name: Specifies the dataspace name.
+        :param _builtins.str dataspace_type: The dataspace type.
+        :param _builtins.str description: The dataspace description.
+        :param _builtins.str domain_id: The account ID.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.str update_by: The dataspace updater.
+        :param _builtins.int update_time: The update time.
+        """
+        pulumi.set(__self__, "create_by", create_by)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "dataspace_id", dataspace_id)
+        pulumi.set(__self__, "dataspace_name", dataspace_name)
+        pulumi.set(__self__, "dataspace_type", dataspace_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "update_by", update_by)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> _builtins.str:
+        """
+        The dataspace creator.
+        """
+        return pulumi.get(self, "create_by")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceId")
+    def dataspace_id(self) -> _builtins.str:
+        """
+        Specifies the dataspace ID.
+        """
+        return pulumi.get(self, "dataspace_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceName")
+    def dataspace_name(self) -> _builtins.str:
+        """
+        Specifies the dataspace name.
+        """
+        return pulumi.get(self, "dataspace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceType")
+    def dataspace_type(self) -> _builtins.str:
+        """
+        The dataspace type.
+        """
+        return pulumi.get(self, "dataspace_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The dataspace description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> _builtins.str:
+        """
+        The dataspace updater.
+        """
+        return pulumi.get(self, "update_by")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -5626,6 +14116,422 @@ class GetInstallationScriptsRecordResult(dict):
 
 
 @pulumi.output_type
+class GetLayoutFieldsFieldResult(dict):
+    def __init__(__self__, *,
+                 aopworkflow_id: _builtins.str,
+                 aopworkflow_version_id: _builtins.str,
+                 boa_version: _builtins.str,
+                 cloud_pack_id: _builtins.str,
+                 cloud_pack_name: _builtins.str,
+                 cloud_pack_version: _builtins.str,
+                 creatable: _builtins.bool,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 creator_name: _builtins.str,
+                 dataclass_id: _builtins.str,
+                 default_value: _builtins.str,
+                 description: _builtins.str,
+                 editable: _builtins.bool,
+                 en_default_value: _builtins.str,
+                 en_description: _builtins.str,
+                 en_field_tooltip: _builtins.str,
+                 extra_json: _builtins.str,
+                 field_key: _builtins.str,
+                 field_tooltip: _builtins.str,
+                 field_type: _builtins.str,
+                 id: _builtins.str,
+                 is_built_in: _builtins.bool,
+                 json_schema: _builtins.str,
+                 maintainable: _builtins.bool,
+                 modifier_id: _builtins.str,
+                 modifier_name: _builtins.str,
+                 name: _builtins.str,
+                 playbook_id: _builtins.str,
+                 playbook_version_id: _builtins.str,
+                 read_only: _builtins.bool,
+                 required: _builtins.bool,
+                 searchable: _builtins.bool,
+                 update_time: _builtins.str,
+                 version: _builtins.str,
+                 visible: _builtins.bool,
+                 wizard_id: _builtins.str):
+        """
+        :param _builtins.str aopworkflow_id: The workflow ID bound to the field.
+        :param _builtins.str aopworkflow_version_id: The workflow version ID bound to the field.
+        :param _builtins.str boa_version: The BOA base version.
+        :param _builtins.str cloud_pack_id: The subscription package ID.
+        :param _builtins.str cloud_pack_name: The subscription package name.
+        :param _builtins.str cloud_pack_version: The subscription package version.
+        :param _builtins.bool creatable: Whether the field is creatable.
+        :param _builtins.str create_time: The create time.
+        :param _builtins.str creator_id: The creator ID.
+        :param _builtins.str creator_name: The creator name.
+        :param _builtins.str dataclass_id: The data class ID.
+        :param _builtins.str default_value: The default value.
+        :param _builtins.str description: The field description.
+        :param _builtins.bool editable: Whether the field is editable.
+        :param _builtins.str en_default_value: The field English default value.
+        :param _builtins.str en_description: The field English description.
+        :param _builtins.str en_field_tooltip: The English field tooltip.
+        :param _builtins.str extra_json: The additional JSON data.
+        :param _builtins.str field_key: The field key.
+        :param _builtins.str field_tooltip: The field tooltip.
+        :param _builtins.str field_type: The field type.
+        :param _builtins.str id: The field ID.
+        :param _builtins.bool is_built_in: Specifies whether the field is built-in.
+               The value can be **true** or **false**.
+        :param _builtins.str json_schema: The JSON mode.
+        :param _builtins.bool maintainable: Whether the field is maintainable.
+        :param _builtins.str modifier_id: The modifier ID.
+        :param _builtins.str modifier_name: The modifier name.
+        :param _builtins.str name: Specifies the field name
+        :param _builtins.str playbook_id: The playbook ID bound to the field.
+        :param _builtins.str playbook_version_id: The playbook version ID bound to the field.
+        :param _builtins.bool read_only: Whether the field is read-only.
+        :param _builtins.bool required: Whether the field is required.
+        :param _builtins.bool searchable: Whether the field is searchable.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str version: The SecMaster version.
+        :param _builtins.bool visible: Whether the field is visible.
+        :param _builtins.str wizard_id: The wizard ID bound to the field.
+        """
+        pulumi.set(__self__, "aopworkflow_id", aopworkflow_id)
+        pulumi.set(__self__, "aopworkflow_version_id", aopworkflow_version_id)
+        pulumi.set(__self__, "boa_version", boa_version)
+        pulumi.set(__self__, "cloud_pack_id", cloud_pack_id)
+        pulumi.set(__self__, "cloud_pack_name", cloud_pack_name)
+        pulumi.set(__self__, "cloud_pack_version", cloud_pack_version)
+        pulumi.set(__self__, "creatable", creatable)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "creator_name", creator_name)
+        pulumi.set(__self__, "dataclass_id", dataclass_id)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "editable", editable)
+        pulumi.set(__self__, "en_default_value", en_default_value)
+        pulumi.set(__self__, "en_description", en_description)
+        pulumi.set(__self__, "en_field_tooltip", en_field_tooltip)
+        pulumi.set(__self__, "extra_json", extra_json)
+        pulumi.set(__self__, "field_key", field_key)
+        pulumi.set(__self__, "field_tooltip", field_tooltip)
+        pulumi.set(__self__, "field_type", field_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_built_in", is_built_in)
+        pulumi.set(__self__, "json_schema", json_schema)
+        pulumi.set(__self__, "maintainable", maintainable)
+        pulumi.set(__self__, "modifier_id", modifier_id)
+        pulumi.set(__self__, "modifier_name", modifier_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "playbook_id", playbook_id)
+        pulumi.set(__self__, "playbook_version_id", playbook_version_id)
+        pulumi.set(__self__, "read_only", read_only)
+        pulumi.set(__self__, "required", required)
+        pulumi.set(__self__, "searchable", searchable)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "visible", visible)
+        pulumi.set(__self__, "wizard_id", wizard_id)
+
+    @_builtins.property
+    @pulumi.getter(name="aopworkflowId")
+    def aopworkflow_id(self) -> _builtins.str:
+        """
+        The workflow ID bound to the field.
+        """
+        return pulumi.get(self, "aopworkflow_id")
+
+    @_builtins.property
+    @pulumi.getter(name="aopworkflowVersionId")
+    def aopworkflow_version_id(self) -> _builtins.str:
+        """
+        The workflow version ID bound to the field.
+        """
+        return pulumi.get(self, "aopworkflow_version_id")
+
+    @_builtins.property
+    @pulumi.getter(name="boaVersion")
+    def boa_version(self) -> _builtins.str:
+        """
+        The BOA base version.
+        """
+        return pulumi.get(self, "boa_version")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackId")
+    def cloud_pack_id(self) -> _builtins.str:
+        """
+        The subscription package ID.
+        """
+        return pulumi.get(self, "cloud_pack_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackName")
+    def cloud_pack_name(self) -> _builtins.str:
+        """
+        The subscription package name.
+        """
+        return pulumi.get(self, "cloud_pack_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackVersion")
+    def cloud_pack_version(self) -> _builtins.str:
+        """
+        The subscription package version.
+        """
+        return pulumi.get(self, "cloud_pack_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def creatable(self) -> _builtins.bool:
+        """
+        Whether the field is creatable.
+        """
+        return pulumi.get(self, "creatable")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The create time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The creator ID.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorName")
+    def creator_name(self) -> _builtins.str:
+        """
+        The creator name.
+        """
+        return pulumi.get(self, "creator_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassId")
+    def dataclass_id(self) -> _builtins.str:
+        """
+        The data class ID.
+        """
+        return pulumi.get(self, "dataclass_id")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.str:
+        """
+        The default value.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The field description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def editable(self) -> _builtins.bool:
+        """
+        Whether the field is editable.
+        """
+        return pulumi.get(self, "editable")
+
+    @_builtins.property
+    @pulumi.getter(name="enDefaultValue")
+    def en_default_value(self) -> _builtins.str:
+        """
+        The field English default value.
+        """
+        return pulumi.get(self, "en_default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="enDescription")
+    def en_description(self) -> _builtins.str:
+        """
+        The field English description.
+        """
+        return pulumi.get(self, "en_description")
+
+    @_builtins.property
+    @pulumi.getter(name="enFieldTooltip")
+    def en_field_tooltip(self) -> _builtins.str:
+        """
+        The English field tooltip.
+        """
+        return pulumi.get(self, "en_field_tooltip")
+
+    @_builtins.property
+    @pulumi.getter(name="extraJson")
+    def extra_json(self) -> _builtins.str:
+        """
+        The additional JSON data.
+        """
+        return pulumi.get(self, "extra_json")
+
+    @_builtins.property
+    @pulumi.getter(name="fieldKey")
+    def field_key(self) -> _builtins.str:
+        """
+        The field key.
+        """
+        return pulumi.get(self, "field_key")
+
+    @_builtins.property
+    @pulumi.getter(name="fieldTooltip")
+    def field_tooltip(self) -> _builtins.str:
+        """
+        The field tooltip.
+        """
+        return pulumi.get(self, "field_tooltip")
+
+    @_builtins.property
+    @pulumi.getter(name="fieldType")
+    def field_type(self) -> _builtins.str:
+        """
+        The field type.
+        """
+        return pulumi.get(self, "field_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The field ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isBuiltIn")
+    def is_built_in(self) -> _builtins.bool:
+        """
+        Specifies whether the field is built-in.
+        The value can be **true** or **false**.
+        """
+        return pulumi.get(self, "is_built_in")
+
+    @_builtins.property
+    @pulumi.getter(name="jsonSchema")
+    def json_schema(self) -> _builtins.str:
+        """
+        The JSON mode.
+        """
+        return pulumi.get(self, "json_schema")
+
+    @_builtins.property
+    @pulumi.getter
+    def maintainable(self) -> _builtins.bool:
+        """
+        Whether the field is maintainable.
+        """
+        return pulumi.get(self, "maintainable")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierId")
+    def modifier_id(self) -> _builtins.str:
+        """
+        The modifier ID.
+        """
+        return pulumi.get(self, "modifier_id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierName")
+    def modifier_name(self) -> _builtins.str:
+        """
+        The modifier name.
+        """
+        return pulumi.get(self, "modifier_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the field name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="playbookId")
+    def playbook_id(self) -> _builtins.str:
+        """
+        The playbook ID bound to the field.
+        """
+        return pulumi.get(self, "playbook_id")
+
+    @_builtins.property
+    @pulumi.getter(name="playbookVersionId")
+    def playbook_version_id(self) -> _builtins.str:
+        """
+        The playbook version ID bound to the field.
+        """
+        return pulumi.get(self, "playbook_version_id")
+
+    @_builtins.property
+    @pulumi.getter(name="readOnly")
+    def read_only(self) -> _builtins.bool:
+        """
+        Whether the field is read-only.
+        """
+        return pulumi.get(self, "read_only")
+
+    @_builtins.property
+    @pulumi.getter
+    def required(self) -> _builtins.bool:
+        """
+        Whether the field is required.
+        """
+        return pulumi.get(self, "required")
+
+    @_builtins.property
+    @pulumi.getter
+    def searchable(self) -> _builtins.bool:
+        """
+        Whether the field is searchable.
+        """
+        return pulumi.get(self, "searchable")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The SecMaster version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter
+    def visible(self) -> _builtins.bool:
+        """
+        Whether the field is visible.
+        """
+        return pulumi.get(self, "visible")
+
+    @_builtins.property
+    @pulumi.getter(name="wizardId")
+    def wizard_id(self) -> _builtins.str:
+        """
+        The wizard ID bound to the field.
+        """
+        return pulumi.get(self, "wizard_id")
+
+
+@pulumi.output_type
 class GetLayoutWizardDetailDataResult(dict):
     def __init__(__self__, *,
                  binding_buttons: Sequence['outputs.GetLayoutWizardDetailDataBindingButtonResult'],
@@ -6054,6 +14960,395 @@ class GetLayoutWizardsDataBindingButtonResult(dict):
 
 
 @pulumi.output_type
+class GetLayoutsDataResult(dict):
+    def __init__(__self__, *,
+                 binding_code: _builtins.str,
+                 binding_id: _builtins.str,
+                 binding_name: _builtins.str,
+                 boa_version: _builtins.str,
+                 cloud_pack_id: _builtins.str,
+                 cloud_pack_name: _builtins.str,
+                 cloud_pack_version: _builtins.str,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 creator_name: _builtins.str,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 en_description: _builtins.str,
+                 en_name: _builtins.str,
+                 fields_sum: _builtins.int,
+                 id: _builtins.str,
+                 is_built_in: _builtins.bool,
+                 is_template: _builtins.bool,
+                 layout_cfg: _builtins.str,
+                 layout_json: _builtins.str,
+                 layout_type: _builtins.str,
+                 modules_sum: _builtins.int,
+                 name: _builtins.str,
+                 parent_id: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 sections_sum: _builtins.int,
+                 tabs_sum: _builtins.int,
+                 thumbnail: _builtins.str,
+                 update_time: _builtins.str,
+                 used_by: _builtins.str,
+                 version: _builtins.str,
+                 wizards_sum: _builtins.int,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str binding_code: Specifies the binding code of the layout.
+        :param _builtins.str binding_id: The data class ID or process ID.
+               This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        :param _builtins.str binding_name: The data class name or process name.
+               This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        :param _builtins.str boa_version: The BOA base version.
+        :param _builtins.str cloud_pack_id: The cloud pack ID.
+        :param _builtins.str cloud_pack_name: The cloud pack name.
+        :param _builtins.str cloud_pack_version: The cloud pack version.
+        :param _builtins.str create_time: The creation time of the layout.
+        :param _builtins.str creator_id: The ID of the user who created the layout.
+        :param _builtins.str creator_name: The name of the user who created the layout.
+        :param _builtins.str description: The description of the layout.
+        :param _builtins.str domain_id: The domain ID.
+        :param _builtins.str en_description: The English description of the layout.
+        :param _builtins.str en_name: The English name of the layout.
+        :param _builtins.int fields_sum: The number of fields in the layout.
+               This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        :param _builtins.str id: The ID of the layout.
+        :param _builtins.bool is_built_in: Specifies whether it is built into the system.
+        :param _builtins.bool is_template: Specifies whether it is a template.
+        :param _builtins.str layout_cfg: The front end binds an icon based on this value.
+        :param _builtins.str layout_json: The JSON configuration of the layout.
+        :param _builtins.str layout_type: Specifies the type of the layout.
+        :param _builtins.int modules_sum: The total number of system modules.
+        :param _builtins.str name: Specifies the name of the layout to query.
+        :param _builtins.str parent_id: The parent layout ID.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.int sections_sum: The total number of system blocks.
+        :param _builtins.int tabs_sum: The total number of custom indicators.
+        :param _builtins.str thumbnail: The template thumbnail, this field has a value when the layout is a template.
+        :param _builtins.str update_time: The last update time of the layout.
+        :param _builtins.str used_by: Specifies the layout type.
+        :param _builtins.str version: The version of the SecMaster.
+        :param _builtins.int wizards_sum: The number of wizards in the layout.
+               This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "binding_code", binding_code)
+        pulumi.set(__self__, "binding_id", binding_id)
+        pulumi.set(__self__, "binding_name", binding_name)
+        pulumi.set(__self__, "boa_version", boa_version)
+        pulumi.set(__self__, "cloud_pack_id", cloud_pack_id)
+        pulumi.set(__self__, "cloud_pack_name", cloud_pack_name)
+        pulumi.set(__self__, "cloud_pack_version", cloud_pack_version)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "creator_name", creator_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "en_description", en_description)
+        pulumi.set(__self__, "en_name", en_name)
+        pulumi.set(__self__, "fields_sum", fields_sum)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_built_in", is_built_in)
+        pulumi.set(__self__, "is_template", is_template)
+        pulumi.set(__self__, "layout_cfg", layout_cfg)
+        pulumi.set(__self__, "layout_json", layout_json)
+        pulumi.set(__self__, "layout_type", layout_type)
+        pulumi.set(__self__, "modules_sum", modules_sum)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parent_id", parent_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "sections_sum", sections_sum)
+        pulumi.set(__self__, "tabs_sum", tabs_sum)
+        pulumi.set(__self__, "thumbnail", thumbnail)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "used_by", used_by)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "wizards_sum", wizards_sum)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="bindingCode")
+    def binding_code(self) -> _builtins.str:
+        """
+        Specifies the binding code of the layout.
+        """
+        return pulumi.get(self, "binding_code")
+
+    @_builtins.property
+    @pulumi.getter(name="bindingId")
+    def binding_id(self) -> _builtins.str:
+        """
+        The data class ID or process ID.
+        This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        """
+        return pulumi.get(self, "binding_id")
+
+    @_builtins.property
+    @pulumi.getter(name="bindingName")
+    def binding_name(self) -> _builtins.str:
+        """
+        The data class name or process name.
+        This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        """
+        return pulumi.get(self, "binding_name")
+
+    @_builtins.property
+    @pulumi.getter(name="boaVersion")
+    def boa_version(self) -> _builtins.str:
+        """
+        The BOA base version.
+        """
+        return pulumi.get(self, "boa_version")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackId")
+    def cloud_pack_id(self) -> _builtins.str:
+        """
+        The cloud pack ID.
+        """
+        return pulumi.get(self, "cloud_pack_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackName")
+    def cloud_pack_name(self) -> _builtins.str:
+        """
+        The cloud pack name.
+        """
+        return pulumi.get(self, "cloud_pack_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackVersion")
+    def cloud_pack_version(self) -> _builtins.str:
+        """
+        The cloud pack version.
+        """
+        return pulumi.get(self, "cloud_pack_version")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the layout.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The ID of the user who created the layout.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorName")
+    def creator_name(self) -> _builtins.str:
+        """
+        The name of the user who created the layout.
+        """
+        return pulumi.get(self, "creator_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the layout.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enDescription")
+    def en_description(self) -> _builtins.str:
+        """
+        The English description of the layout.
+        """
+        return pulumi.get(self, "en_description")
+
+    @_builtins.property
+    @pulumi.getter(name="enName")
+    def en_name(self) -> _builtins.str:
+        """
+        The English name of the layout.
+        """
+        return pulumi.get(self, "en_name")
+
+    @_builtins.property
+    @pulumi.getter(name="fieldsSum")
+    def fields_sum(self) -> _builtins.int:
+        """
+        The number of fields in the layout.
+        This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        """
+        return pulumi.get(self, "fields_sum")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the layout.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isBuiltIn")
+    def is_built_in(self) -> _builtins.bool:
+        """
+        Specifies whether it is built into the system.
+        """
+        return pulumi.get(self, "is_built_in")
+
+    @_builtins.property
+    @pulumi.getter(name="isTemplate")
+    def is_template(self) -> _builtins.bool:
+        """
+        Specifies whether it is a template.
+        """
+        return pulumi.get(self, "is_template")
+
+    @_builtins.property
+    @pulumi.getter(name="layoutCfg")
+    def layout_cfg(self) -> _builtins.str:
+        """
+        The front end binds an icon based on this value.
+        """
+        return pulumi.get(self, "layout_cfg")
+
+    @_builtins.property
+    @pulumi.getter(name="layoutJson")
+    def layout_json(self) -> _builtins.str:
+        """
+        The JSON configuration of the layout.
+        """
+        return pulumi.get(self, "layout_json")
+
+    @_builtins.property
+    @pulumi.getter(name="layoutType")
+    def layout_type(self) -> _builtins.str:
+        """
+        Specifies the type of the layout.
+        """
+        return pulumi.get(self, "layout_type")
+
+    @_builtins.property
+    @pulumi.getter(name="modulesSum")
+    def modules_sum(self) -> _builtins.int:
+        """
+        The total number of system modules.
+        """
+        return pulumi.get(self, "modules_sum")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the layout to query.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> _builtins.str:
+        """
+        The parent layout ID.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sectionsSum")
+    def sections_sum(self) -> _builtins.int:
+        """
+        The total number of system blocks.
+        """
+        return pulumi.get(self, "sections_sum")
+
+    @_builtins.property
+    @pulumi.getter(name="tabsSum")
+    def tabs_sum(self) -> _builtins.int:
+        """
+        The total number of custom indicators.
+        """
+        return pulumi.get(self, "tabs_sum")
+
+    @_builtins.property
+    @pulumi.getter
+    def thumbnail(self) -> _builtins.str:
+        """
+        The template thumbnail, this field has a value when the layout is a template.
+        """
+        return pulumi.get(self, "thumbnail")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The last update time of the layout.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="usedBy")
+    def used_by(self) -> _builtins.str:
+        """
+        Specifies the layout type.
+        """
+        return pulumi.get(self, "used_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the SecMaster.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="wizardsSum")
+    def wizards_sum(self) -> _builtins.int:
+        """
+        The number of wizards in the layout.
+        This field is empty when `used_by` is **SECURITY_REPORT** or **DASHBOARD**.
+        """
+        return pulumi.get(self, "wizards_sum")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
 class GetMetricResultsMetricResultResult(dict):
     def __init__(__self__, *,
                  data_rows: Sequence['outputs.GetMetricResultsMetricResultDataRowResult'],
@@ -6113,6 +15408,890 @@ class GetMetricResultsMetricResultDataRowResult(dict):
         A piece of data in the metric results.
         """
         return pulumi.get(self, "data_rows")
+
+
+@pulumi.output_type
+class GetModulesDataResult(dict):
+    def __init__(__self__, *,
+                 boa_version: _builtins.str,
+                 cloud_pack_id: _builtins.str,
+                 cloud_pack_name: _builtins.str,
+                 cloud_pack_version: _builtins.str,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 data_query: _builtins.str,
+                 description: _builtins.str,
+                 en_description: _builtins.str,
+                 en_name: _builtins.str,
+                 id: _builtins.str,
+                 is_built_in: _builtins.bool,
+                 module_json: _builtins.str,
+                 module_type: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 tag: _builtins.str,
+                 thumbnail: _builtins.str,
+                 update_time: _builtins.str,
+                 version: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str boa_version: The BOA version.
+        :param _builtins.str cloud_pack_id: The subscription package ID.
+        :param _builtins.str cloud_pack_name: The subscription package name.
+        :param _builtins.str cloud_pack_version: The subscription package version.
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str creator_id: The creator ID.
+        :param _builtins.str data_query: The data query method.
+        :param _builtins.str description: The module description.
+        :param _builtins.str en_description: The module English description.
+        :param _builtins.str en_name: The module English name.
+        :param _builtins.str id: The module ID.
+        :param _builtins.bool is_built_in: Whether the module is a system module.
+        :param _builtins.str module_json: The module related information.
+        :param _builtins.str module_type: Specifies the module type.
+               The value can be **section** or **tab**.
+        :param _builtins.str name: The module name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str tag: The module tag.
+        :param _builtins.str thumbnail: The module thumbnail.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str version: The SecMaster version.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "boa_version", boa_version)
+        pulumi.set(__self__, "cloud_pack_id", cloud_pack_id)
+        pulumi.set(__self__, "cloud_pack_name", cloud_pack_name)
+        pulumi.set(__self__, "cloud_pack_version", cloud_pack_version)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "data_query", data_query)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "en_description", en_description)
+        pulumi.set(__self__, "en_name", en_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_built_in", is_built_in)
+        pulumi.set(__self__, "module_json", module_json)
+        pulumi.set(__self__, "module_type", module_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "tag", tag)
+        pulumi.set(__self__, "thumbnail", thumbnail)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="boaVersion")
+    def boa_version(self) -> _builtins.str:
+        """
+        The BOA version.
+        """
+        return pulumi.get(self, "boa_version")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackId")
+    def cloud_pack_id(self) -> _builtins.str:
+        """
+        The subscription package ID.
+        """
+        return pulumi.get(self, "cloud_pack_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackName")
+    def cloud_pack_name(self) -> _builtins.str:
+        """
+        The subscription package name.
+        """
+        return pulumi.get(self, "cloud_pack_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudPackVersion")
+    def cloud_pack_version(self) -> _builtins.str:
+        """
+        The subscription package version.
+        """
+        return pulumi.get(self, "cloud_pack_version")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The creator ID.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dataQuery")
+    def data_query(self) -> _builtins.str:
+        """
+        The data query method.
+        """
+        return pulumi.get(self, "data_query")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The module description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enDescription")
+    def en_description(self) -> _builtins.str:
+        """
+        The module English description.
+        """
+        return pulumi.get(self, "en_description")
+
+    @_builtins.property
+    @pulumi.getter(name="enName")
+    def en_name(self) -> _builtins.str:
+        """
+        The module English name.
+        """
+        return pulumi.get(self, "en_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The module ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isBuiltIn")
+    def is_built_in(self) -> _builtins.bool:
+        """
+        Whether the module is a system module.
+        """
+        return pulumi.get(self, "is_built_in")
+
+    @_builtins.property
+    @pulumi.getter(name="moduleJson")
+    def module_json(self) -> _builtins.str:
+        """
+        The module related information.
+        """
+        return pulumi.get(self, "module_json")
+
+    @_builtins.property
+    @pulumi.getter(name="moduleType")
+    def module_type(self) -> _builtins.str:
+        """
+        Specifies the module type.
+        The value can be **section** or **tab**.
+        """
+        return pulumi.get(self, "module_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The module name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The module tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @_builtins.property
+    @pulumi.getter
+    def thumbnail(self) -> _builtins.str:
+        """
+        The module thumbnail.
+        """
+        return pulumi.get(self, "thumbnail")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The SecMaster version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetNotesDataResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 create_time: _builtins.str,
+                 datas: Sequence['outputs.GetNotesDataDataResult'],
+                 id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 marked_note: _builtins.bool,
+                 note_type: _builtins.str,
+                 project_id: _builtins.str,
+                 type: _builtins.str,
+                 update_time: _builtins.str,
+                 users: Sequence['outputs.GetNotesDataUserResult'],
+                 war_room_id: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str content: The content of the note.
+        :param _builtins.str create_time: The create time of the note.
+        :param Sequence['GetNotesDataDataArgs'] datas: The comment content body.
+               The data structure is documented below.
+        :param _builtins.str id: The ID of the user.
+        :param _builtins.bool is_deleted: Whether the note is deleted.
+        :param _builtins.bool marked_note: Whether the note is marked.
+        :param _builtins.str note_type: The type of the note.
+        :param _builtins.str project_id: The project ID of the note.
+        :param _builtins.str type: The type of the note.
+        :param _builtins.str update_time: The update time of the note.
+        :param Sequence['GetNotesDataUserArgs'] users: The user information.
+               The user structure is documented below.
+        :param _builtins.str war_room_id: Specifies the war room ID to which the notes belong.
+        :param _builtins.str workspace_id: Specifies the workspace ID to which the notes belong.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "datas", datas)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "marked_note", marked_note)
+        pulumi.set(__self__, "note_type", note_type)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "users", users)
+        pulumi.set(__self__, "war_room_id", war_room_id)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The content of the note.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The create time of the note.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Sequence['outputs.GetNotesDataDataResult']:
+        """
+        The comment content body.
+        The data structure is documented below.
+        """
+        return pulumi.get(self, "datas")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Whether the note is deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="markedNote")
+    def marked_note(self) -> _builtins.bool:
+        """
+        Whether the note is marked.
+        """
+        return pulumi.get(self, "marked_note")
+
+    @_builtins.property
+    @pulumi.getter(name="noteType")
+    def note_type(self) -> _builtins.str:
+        """
+        The type of the note.
+        """
+        return pulumi.get(self, "note_type")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID of the note.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the note.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the note.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetNotesDataUserResult']:
+        """
+        The user information.
+        The user structure is documented below.
+        """
+        return pulumi.get(self, "users")
+
+    @_builtins.property
+    @pulumi.getter(name="warRoomId")
+    def war_room_id(self) -> _builtins.str:
+        """
+        Specifies the war room ID to which the notes belong.
+        """
+        return pulumi.get(self, "war_room_id")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID to which the notes belong.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetNotesDataDataResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str):
+        """
+        :param _builtins.str content: The content of the note.
+        """
+        pulumi.set(__self__, "content", content)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The content of the note.
+        """
+        return pulumi.get(self, "content")
+
+
+@pulumi.output_type
+class GetNotesDataUserResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the user.
+        :param _builtins.str name: The name of the user.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetOperationConnectionsDataResult(dict):
+    def __init__(__self__, *,
+                 component_id: _builtins.str,
+                 component_name: _builtins.str,
+                 component_version_id: _builtins.str,
+                 config: _builtins.str,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 creator_name: _builtins.str,
+                 defense_type: _builtins.str,
+                 description: _builtins.str,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 modifier_id: _builtins.str,
+                 modifier_name: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 region_name: _builtins.str,
+                 status: _builtins.str,
+                 target_enterprise_id: _builtins.str,
+                 target_enterprise_name: _builtins.str,
+                 target_project_id: _builtins.str,
+                 target_project_name: _builtins.str,
+                 type: _builtins.str,
+                 update_time: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str component_id: The component ID.
+        :param _builtins.str component_name: Specifies the component name.
+        :param _builtins.str component_version_id: The component version ID.
+        :param _builtins.str config: The configuration information.
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str creator_id: The creator ID.
+        :param _builtins.str creator_name: Specifies the creator name.
+        :param _builtins.str defense_type: The defense line classification when issuing emergency strategies.
+        :param _builtins.str description: Specifies the description.
+        :param _builtins.bool enabled: Whether the connection is enabled. **false** for disabled, **true** for enabled.
+        :param _builtins.str id: The operation connection ID.
+        :param _builtins.str modifier_id: The modifier ID.
+        :param _builtins.str modifier_name: Specifies the modifier name.
+        :param _builtins.str name: Specifies the connection name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID when issuing emergency strategies.
+        :param _builtins.str region_name: The region name when issuing emergency strategies.
+        :param _builtins.str status: The status of assets. Valid values are **SUCCESS** and **FAILED**.
+        :param _builtins.str target_enterprise_id: The enterprise project ID when issuing emergency strategies.
+        :param _builtins.str target_enterprise_name: The enterprise project name when issuing emergency strategies.
+        :param _builtins.str target_project_id: The IAM project ID when issuing emergency strategies.
+        :param _builtins.str target_project_name: The IAM project name when issuing emergency strategies.
+        :param _builtins.str type: The type of assets. Valid values are **datasource** and **action_target**.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "component_id", component_id)
+        pulumi.set(__self__, "component_name", component_name)
+        pulumi.set(__self__, "component_version_id", component_version_id)
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "creator_name", creator_name)
+        pulumi.set(__self__, "defense_type", defense_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "modifier_id", modifier_id)
+        pulumi.set(__self__, "modifier_name", modifier_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_enterprise_id", target_enterprise_id)
+        pulumi.set(__self__, "target_enterprise_name", target_enterprise_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "target_project_name", target_project_name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="componentId")
+    def component_id(self) -> _builtins.str:
+        """
+        The component ID.
+        """
+        return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="componentName")
+    def component_name(self) -> _builtins.str:
+        """
+        Specifies the component name.
+        """
+        return pulumi.get(self, "component_name")
+
+    @_builtins.property
+    @pulumi.getter(name="componentVersionId")
+    def component_version_id(self) -> _builtins.str:
+        """
+        The component version ID.
+        """
+        return pulumi.get(self, "component_version_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> _builtins.str:
+        """
+        The configuration information.
+        """
+        return pulumi.get(self, "config")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The creator ID.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorName")
+    def creator_name(self) -> _builtins.str:
+        """
+        Specifies the creator name.
+        """
+        return pulumi.get(self, "creator_name")
+
+    @_builtins.property
+    @pulumi.getter(name="defenseType")
+    def defense_type(self) -> _builtins.str:
+        """
+        The defense line classification when issuing emergency strategies.
+        """
+        return pulumi.get(self, "defense_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether the connection is enabled. **false** for disabled, **true** for enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The operation connection ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierId")
+    def modifier_id(self) -> _builtins.str:
+        """
+        The modifier ID.
+        """
+        return pulumi.get(self, "modifier_id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierName")
+    def modifier_name(self) -> _builtins.str:
+        """
+        Specifies the modifier name.
+        """
+        return pulumi.get(self, "modifier_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the connection name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID when issuing emergency strategies.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region name when issuing emergency strategies.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of assets. Valid values are **SUCCESS** and **FAILED**.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="targetEnterpriseId")
+    def target_enterprise_id(self) -> _builtins.str:
+        """
+        The enterprise project ID when issuing emergency strategies.
+        """
+        return pulumi.get(self, "target_enterprise_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetEnterpriseName")
+    def target_enterprise_name(self) -> _builtins.str:
+        """
+        The enterprise project name when issuing emergency strategies.
+        """
+        return pulumi.get(self, "target_enterprise_name")
+
+    @_builtins.property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> _builtins.str:
+        """
+        The IAM project ID when issuing emergency strategies.
+        """
+        return pulumi.get(self, "target_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetProjectName")
+    def target_project_name(self) -> _builtins.str:
+        """
+        The IAM project name when issuing emergency strategies.
+        """
+        return pulumi.get(self, "target_project_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of assets. Valid values are **datasource** and **action_target**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetPipesRecordResult(dict):
+    def __init__(__self__, *,
+                 create_by: _builtins.str,
+                 create_time: _builtins.int,
+                 dataspace_id: _builtins.str,
+                 dataspace_name: _builtins.str,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 pipe_id: _builtins.str,
+                 pipe_name: _builtins.str,
+                 pipe_type: _builtins.str,
+                 project_id: _builtins.str,
+                 shards: _builtins.int,
+                 storage_period: _builtins.int,
+                 update_by: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str create_by: The creator of the pipe.
+        :param _builtins.int create_time: The creation timestamp of the pipe.
+        :param _builtins.str dataspace_id: Specifies the dataspace ID to filter pipes.
+        :param _builtins.str dataspace_name: The name of the associated dataspace.
+        :param _builtins.str description: The description of the pipe.
+        :param _builtins.str domain_id: The domain ID of the pipe.
+        :param _builtins.str pipe_id: Specifies the pipe ID to filter pipes.
+        :param _builtins.str pipe_name: Specifies the pipe name to filter pipes.
+        :param _builtins.str pipe_type: The type of the pipe. Valid values are **system-defined** and **user-defined**.
+        :param _builtins.str project_id: The project ID of the pipe.
+        :param _builtins.int shards: The number of shards for the pipe.
+        :param _builtins.int storage_period: The storage period in days for the pipe. The unit is day.
+        :param _builtins.str update_by: The last updater of the pipe.
+        :param _builtins.int update_time: The last update timestamp of the pipe.
+        """
+        pulumi.set(__self__, "create_by", create_by)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "dataspace_id", dataspace_id)
+        pulumi.set(__self__, "dataspace_name", dataspace_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "pipe_id", pipe_id)
+        pulumi.set(__self__, "pipe_name", pipe_name)
+        pulumi.set(__self__, "pipe_type", pipe_type)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "shards", shards)
+        pulumi.set(__self__, "storage_period", storage_period)
+        pulumi.set(__self__, "update_by", update_by)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> _builtins.str:
+        """
+        The creator of the pipe.
+        """
+        return pulumi.get(self, "create_by")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation timestamp of the pipe.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceId")
+    def dataspace_id(self) -> _builtins.str:
+        """
+        Specifies the dataspace ID to filter pipes.
+        """
+        return pulumi.get(self, "dataspace_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dataspaceName")
+    def dataspace_name(self) -> _builtins.str:
+        """
+        The name of the associated dataspace.
+        """
+        return pulumi.get(self, "dataspace_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the pipe.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID of the pipe.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="pipeId")
+    def pipe_id(self) -> _builtins.str:
+        """
+        Specifies the pipe ID to filter pipes.
+        """
+        return pulumi.get(self, "pipe_id")
+
+    @_builtins.property
+    @pulumi.getter(name="pipeName")
+    def pipe_name(self) -> _builtins.str:
+        """
+        Specifies the pipe name to filter pipes.
+        """
+        return pulumi.get(self, "pipe_name")
+
+    @_builtins.property
+    @pulumi.getter(name="pipeType")
+    def pipe_type(self) -> _builtins.str:
+        """
+        The type of the pipe. Valid values are **system-defined** and **user-defined**.
+        """
+        return pulumi.get(self, "pipe_type")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID of the pipe.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def shards(self) -> _builtins.int:
+        """
+        The number of shards for the pipe.
+        """
+        return pulumi.get(self, "shards")
+
+    @_builtins.property
+    @pulumi.getter(name="storagePeriod")
+    def storage_period(self) -> _builtins.int:
+        """
+        The storage period in days for the pipe. The unit is day.
+        """
+        return pulumi.get(self, "storage_period")
+
+    @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> _builtins.str:
+        """
+        The last updater of the pipe.
+        """
+        return pulumi.get(self, "update_by")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The last update timestamp of the pipe.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -6734,6 +16913,115 @@ class GetPlaybookAuditLogsAuditLogResult(dict):
         + **EVENT**: indicates event triggering.
         """
         return pulumi.get(self, "trigger_type")
+
+
+@pulumi.output_type
+class GetPlaybookInstanceDataclassResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The unique identifier ID.
+        :param _builtins.str name: The name.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The unique identifier ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetPlaybookInstanceDataobjectResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The unique identifier ID.
+        :param _builtins.str name: The name.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The unique identifier ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetPlaybookInstancePlaybookResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 version: _builtins.str,
+                 version_id: _builtins.str):
+        """
+        :param _builtins.str id: The unique identifier ID.
+        :param _builtins.str name: The name.
+        :param _builtins.str version: The version.
+        :param _builtins.str version_id: The playbook version ID.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "version_id", version_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The unique identifier ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> _builtins.str:
+        """
+        The playbook version ID.
+        """
+        return pulumi.get(self, "version_id")
 
 
 @pulumi.output_type
@@ -7740,6 +18028,220 @@ class GetPlaybooksPlaybookResult(dict):
 
 
 @pulumi.output_type
+class GetReportsEmailsEmailResult(dict):
+    def __init__(__self__, *,
+                 email_status: _builtins.bool,
+                 report_address: _builtins.str):
+        """
+        :param _builtins.bool email_status: The email status.
+               The valid values are as follows:
+               + **true**: Indicates it can be sent directly.
+               + **false**: Indicates a confirmation email needs to be sent first.
+        :param _builtins.str report_address: The email address.
+        """
+        pulumi.set(__self__, "email_status", email_status)
+        pulumi.set(__self__, "report_address", report_address)
+
+    @_builtins.property
+    @pulumi.getter(name="emailStatus")
+    def email_status(self) -> _builtins.bool:
+        """
+        The email status.
+        The valid values are as follows:
+        + **true**: Indicates it can be sent directly.
+        + **false**: Indicates a confirmation email needs to be sent first.
+        """
+        return pulumi.get(self, "email_status")
+
+    @_builtins.property
+    @pulumi.getter(name="reportAddress")
+    def report_address(self) -> _builtins.str:
+        """
+        The email address.
+        """
+        return pulumi.get(self, "report_address")
+
+
+@pulumi.output_type
+class GetRetrieveScriptsRecordResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 create_by: _builtins.str,
+                 create_time: _builtins.int,
+                 description: _builtins.str,
+                 directory: _builtins.str,
+                 project_id: _builtins.str,
+                 script: _builtins.str,
+                 script_id: _builtins.str,
+                 script_name: _builtins.str,
+                 table_id: _builtins.str,
+                 update_by: _builtins.str,
+                 update_time: _builtins.int,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str category: The script classification. The value can be **RETRIEVE** or **ANALYSIS**.
+        :param _builtins.str create_by: The created by.
+        :param _builtins.int create_time: The creation time, millisecond timestamp.
+        :param _builtins.str description: The relevant description information of the script, the length is between `1` and `1,024` characters.
+        :param _builtins.str directory: The script directory group name, with a length between `1` and `256` characters.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str script: The script content, with a length between `1` and `10,240` characters.
+        :param _builtins.str script_id: The script ID.
+        :param _builtins.str script_name: Specifies the script name.
+        :param _builtins.str table_id: Specifies the table ID.
+        :param _builtins.str update_by: The last updated by.
+        :param _builtins.int update_time: The update time, millisecond timestamp.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "create_by", create_by)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "directory", directory)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "script", script)
+        pulumi.set(__self__, "script_id", script_id)
+        pulumi.set(__self__, "script_name", script_name)
+        pulumi.set(__self__, "table_id", table_id)
+        pulumi.set(__self__, "update_by", update_by)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The script classification. The value can be **RETRIEVE** or **ANALYSIS**.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="createBy")
+    def create_by(self) -> _builtins.str:
+        """
+        The created by.
+        """
+        return pulumi.get(self, "create_by")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time, millisecond timestamp.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The relevant description information of the script, the length is between `1` and `1,024` characters.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def directory(self) -> _builtins.str:
+        """
+        The script directory group name, with a length between `1` and `256` characters.
+        """
+        return pulumi.get(self, "directory")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def script(self) -> _builtins.str:
+        """
+        The script content, with a length between `1` and `10,240` characters.
+        """
+        return pulumi.get(self, "script")
+
+    @_builtins.property
+    @pulumi.getter(name="scriptId")
+    def script_id(self) -> _builtins.str:
+        """
+        The script ID.
+        """
+        return pulumi.get(self, "script_id")
+
+    @_builtins.property
+    @pulumi.getter(name="scriptName")
+    def script_name(self) -> _builtins.str:
+        """
+        Specifies the script name.
+        """
+        return pulumi.get(self, "script_name")
+
+    @_builtins.property
+    @pulumi.getter(name="tableId")
+    def table_id(self) -> _builtins.str:
+        """
+        Specifies the table ID.
+        """
+        return pulumi.get(self, "table_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateBy")
+    def update_by(self) -> _builtins.str:
+        """
+        The last updated by.
+        """
+        return pulumi.get(self, "update_by")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time, millisecond timestamp.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetSearchConditionsRecordResult(dict):
+    def __init__(__self__, *,
+                 condition_id: _builtins.str,
+                 condition_name: _builtins.str):
+        """
+        :param _builtins.str condition_id: The search condition ID.
+        :param _builtins.str condition_name: The search condition name.
+        """
+        pulumi.set(__self__, "condition_id", condition_id)
+        pulumi.set(__self__, "condition_name", condition_name)
+
+    @_builtins.property
+    @pulumi.getter(name="conditionId")
+    def condition_id(self) -> _builtins.str:
+        """
+        The search condition ID.
+        """
+        return pulumi.get(self, "condition_id")
+
+    @_builtins.property
+    @pulumi.getter(name="conditionName")
+    def condition_name(self) -> _builtins.str:
+        """
+        The search condition name.
+        """
+        return pulumi.get(self, "condition_name")
+
+
+@pulumi.output_type
 class GetSecurityReportsReportResult(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
@@ -8015,6 +18517,46 @@ class GetSecurityReportsReportReportRuleInfoResult(dict):
         Specifies the workspace ID to which the reports belong.
         """
         return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetSiemDirectoriesDirectoryI18nResult(dict):
+    def __init__(__self__, *,
+                 directory: _builtins.str,
+                 directory_en: _builtins.str,
+                 directory_fr: _builtins.str):
+        """
+        :param _builtins.str directory: The directory grouping.
+        :param _builtins.str directory_en: The en directory grouping.
+        :param _builtins.str directory_fr: The fr directory grouping.
+        """
+        pulumi.set(__self__, "directory", directory)
+        pulumi.set(__self__, "directory_en", directory_en)
+        pulumi.set(__self__, "directory_fr", directory_fr)
+
+    @_builtins.property
+    @pulumi.getter
+    def directory(self) -> _builtins.str:
+        """
+        The directory grouping.
+        """
+        return pulumi.get(self, "directory")
+
+    @_builtins.property
+    @pulumi.getter(name="directoryEn")
+    def directory_en(self) -> _builtins.str:
+        """
+        The en directory grouping.
+        """
+        return pulumi.get(self, "directory_en")
+
+    @_builtins.property
+    @pulumi.getter(name="directoryFr")
+    def directory_fr(self) -> _builtins.str:
+        """
+        The fr directory grouping.
+        """
+        return pulumi.get(self, "directory_fr")
 
 
 @pulumi.output_type
@@ -9072,6 +19614,2126 @@ class GetSocComponentsDataOperateHistoryResult(dict):
 
 
 @pulumi.output_type
+class GetSocMappersDataResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 creator_name: _builtins.str,
+                 dataclass_id: _builtins.str,
+                 dataclass_name: _builtins.str,
+                 id: _builtins.str,
+                 mapper_type_id: _builtins.str,
+                 mapping_id: _builtins.str,
+                 modifier_id: _builtins.str,
+                 modifier_name: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 update_time: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str creator_id: The creator ID.
+        :param _builtins.str creator_name: The creator name.
+        :param _builtins.str dataclass_id: The dataclass ID.
+        :param _builtins.str dataclass_name: The dataclass name.
+        :param _builtins.str id: The mapper ID.
+        :param _builtins.str mapper_type_id: The mapper type ID.
+        :param _builtins.str mapping_id: Specifies the mapping ID.
+        :param _builtins.str modifier_id: The modifier ID.
+        :param _builtins.str modifier_name: The modifier name.
+        :param _builtins.str name: Specifies the mapping name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "creator_name", creator_name)
+        pulumi.set(__self__, "dataclass_id", dataclass_id)
+        pulumi.set(__self__, "dataclass_name", dataclass_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mapper_type_id", mapper_type_id)
+        pulumi.set(__self__, "mapping_id", mapping_id)
+        pulumi.set(__self__, "modifier_id", modifier_id)
+        pulumi.set(__self__, "modifier_name", modifier_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The creator ID.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorName")
+    def creator_name(self) -> _builtins.str:
+        """
+        The creator name.
+        """
+        return pulumi.get(self, "creator_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassId")
+    def dataclass_id(self) -> _builtins.str:
+        """
+        The dataclass ID.
+        """
+        return pulumi.get(self, "dataclass_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassName")
+    def dataclass_name(self) -> _builtins.str:
+        """
+        The dataclass name.
+        """
+        return pulumi.get(self, "dataclass_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The mapper ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="mapperTypeId")
+    def mapper_type_id(self) -> _builtins.str:
+        """
+        The mapper type ID.
+        """
+        return pulumi.get(self, "mapper_type_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> _builtins.str:
+        """
+        Specifies the mapping ID.
+        """
+        return pulumi.get(self, "mapping_id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierId")
+    def modifier_id(self) -> _builtins.str:
+        """
+        The modifier ID.
+        """
+        return pulumi.get(self, "modifier_id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierName")
+    def modifier_name(self) -> _builtins.str:
+        """
+        The modifier name.
+        """
+        return pulumi.get(self, "modifier_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the mapping name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetSocMappingsDataResult(dict):
+    def __init__(__self__, *,
+                 classifier_id: _builtins.str,
+                 complete_degree: _builtins.str,
+                 create_time: _builtins.str,
+                 creator_id: _builtins.str,
+                 creator_name: _builtins.str,
+                 dataclass_id: _builtins.str,
+                 dataclass_name: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 instance_num: _builtins.str,
+                 modifier_id: _builtins.str,
+                 modifier_name: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 status: _builtins.str,
+                 update_time: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str classifier_id: The classifier ID.
+        :param _builtins.str complete_degree: The complete degree.
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str creator_id: The creator ID.
+        :param _builtins.str creator_name: The creator name.
+        :param _builtins.str dataclass_id: The dataclass ID.
+        :param _builtins.str dataclass_name: The dataclass name.
+        :param _builtins.str description: The mapping description.
+        :param _builtins.str id: The mapping ID.
+        :param _builtins.str instance_num: The number of the instances.
+        :param _builtins.str modifier_id: The modifier ID.
+        :param _builtins.str modifier_name: The modifier name.
+        :param _builtins.str name: Specifies the mapping name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str status: Specifies the mapping status.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "classifier_id", classifier_id)
+        pulumi.set(__self__, "complete_degree", complete_degree)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "creator_id", creator_id)
+        pulumi.set(__self__, "creator_name", creator_name)
+        pulumi.set(__self__, "dataclass_id", dataclass_id)
+        pulumi.set(__self__, "dataclass_name", dataclass_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_num", instance_num)
+        pulumi.set(__self__, "modifier_id", modifier_id)
+        pulumi.set(__self__, "modifier_name", modifier_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="classifierId")
+    def classifier_id(self) -> _builtins.str:
+        """
+        The classifier ID.
+        """
+        return pulumi.get(self, "classifier_id")
+
+    @_builtins.property
+    @pulumi.getter(name="completeDegree")
+    def complete_degree(self) -> _builtins.str:
+        """
+        The complete degree.
+        """
+        return pulumi.get(self, "complete_degree")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorId")
+    def creator_id(self) -> _builtins.str:
+        """
+        The creator ID.
+        """
+        return pulumi.get(self, "creator_id")
+
+    @_builtins.property
+    @pulumi.getter(name="creatorName")
+    def creator_name(self) -> _builtins.str:
+        """
+        The creator name.
+        """
+        return pulumi.get(self, "creator_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassId")
+    def dataclass_id(self) -> _builtins.str:
+        """
+        The dataclass ID.
+        """
+        return pulumi.get(self, "dataclass_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassName")
+    def dataclass_name(self) -> _builtins.str:
+        """
+        The dataclass name.
+        """
+        return pulumi.get(self, "dataclass_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The mapping description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The mapping ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceNum")
+    def instance_num(self) -> _builtins.str:
+        """
+        The number of the instances.
+        """
+        return pulumi.get(self, "instance_num")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierId")
+    def modifier_id(self) -> _builtins.str:
+        """
+        The modifier ID.
+        """
+        return pulumi.get(self, "modifier_id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifierName")
+    def modifier_name(self) -> _builtins.str:
+        """
+        The modifier name.
+        """
+        return pulumi.get(self, "modifier_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the mapping name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the mapping status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetSocPreprocessRulesDataResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 create_time: _builtins.str,
+                 expression: _builtins.str,
+                 id: _builtins.str,
+                 mapper_id: _builtins.str,
+                 mapper_type_id: _builtins.str,
+                 mapping_id: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 update_time: _builtins.str,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str action: The preprocessing options.
+        :param _builtins.str create_time: The creation time.
+        :param _builtins.str expression: The expression.
+        :param _builtins.str id: The preprocess rule ID.
+        :param _builtins.str mapper_id: The mapper ID.
+        :param _builtins.str mapper_type_id: The mapper type ID.
+        :param _builtins.str mapping_id: Specifies the mapping ID.
+        :param _builtins.str name: Specifies the preprocess rule name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str update_time: The update time.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "expression", expression)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mapper_id", mapper_id)
+        pulumi.set(__self__, "mapper_type_id", mapper_type_id)
+        pulumi.set(__self__, "mapping_id", mapping_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The preprocessing options.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> _builtins.str:
+        """
+        The expression.
+        """
+        return pulumi.get(self, "expression")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The preprocess rule ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="mapperId")
+    def mapper_id(self) -> _builtins.str:
+        """
+        The mapper ID.
+        """
+        return pulumi.get(self, "mapper_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mapperTypeId")
+    def mapper_type_id(self) -> _builtins.str:
+        """
+        The mapper type ID.
+        """
+        return pulumi.get(self, "mapper_type_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> _builtins.str:
+        """
+        Specifies the mapping ID.
+        """
+        return pulumi.get(self, "mapping_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the preprocess rule name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsBasicResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsLargeScreenResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsLogAnalysisResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsLogCollectionResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsLogRetentionResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsProfessionalResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsSoarResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetSubscriptionProductsStandardResult(dict):
+    def __init__(__self__, *,
+                 cloud_service_type: _builtins.str,
+                 region_id: _builtins.str,
+                 resource_size_measure_id: _builtins.int,
+                 resource_spec_code: _builtins.str,
+                 resource_type: _builtins.str,
+                 usage_factor: _builtins.str,
+                 usage_measure_id: _builtins.int):
+        """
+        :param _builtins.str cloud_service_type: The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        :param _builtins.str region_id: The region ID of the subscription product. Value **null** means the current region's encoding.
+        :param _builtins.int resource_size_measure_id: The resource size measurement unit ID of the subscription product.
+        :param _builtins.str resource_spec_code: The resource specification code of the subscription product.
+        :param _builtins.str resource_type: The resource type of the subscription product.
+        :param _builtins.str usage_factor: The usage factor of the subscription product. The value must match the usage factor in the call detail
+               record (CDR). The correspondence between cloud services and usage factors is as follows:
+               + **duration**: Time, primarily for major versions (basic, standard, professional)
+               + **count**: Number of times, primarily for security orchestration
+               + **flow**: Traffic, primarily for log analysis and collection
+               + **retention**: Retention, primarily for log retention
+        :param _builtins.int usage_measure_id: The usage measurement unit ID of the subscription product.
+               For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_size_measure_id", resource_size_measure_id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "usage_factor", usage_factor)
+        pulumi.set(__self__, "usage_measure_id", usage_measure_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The primary service type for cloud service products. The default value is: **hws.service.type.sa**.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID of the subscription product. Value **null** means the current region's encoding.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSizeMeasureId")
+    def resource_size_measure_id(self) -> _builtins.int:
+        """
+        The resource size measurement unit ID of the subscription product.
+        """
+        return pulumi.get(self, "resource_size_measure_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the subscription product.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type of the subscription product.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="usageFactor")
+    def usage_factor(self) -> _builtins.str:
+        """
+        The usage factor of the subscription product. The value must match the usage factor in the call detail
+        record (CDR). The correspondence between cloud services and usage factors is as follows:
+        + **duration**: Time, primarily for major versions (basic, standard, professional)
+        + **count**: Number of times, primarily for security orchestration
+        + **flow**: Traffic, primarily for log analysis and collection
+        + **retention**: Retention, primarily for log retention
+        """
+        return pulumi.get(self, "usage_factor")
+
+    @_builtins.property
+    @pulumi.getter(name="usageMeasureId")
+    def usage_measure_id(self) -> _builtins.int:
+        """
+        The usage measurement unit ID of the subscription product.
+        For example, for hourly pricing, the usage value is `1`, and the unit is hours. Enumerated values ​​are as follows:
+        """
+        return pulumi.get(self, "usage_measure_id")
+
+
+@pulumi.output_type
+class GetTableHistogramsHistogramResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 from_: _builtins.int,
+                 to: _builtins.int):
+        """
+        :param _builtins.int count: The count of logs in the time range.
+        :param _builtins.int from_: Specifies the start timestamp in milliseconds.
+        :param _builtins.int to: Specifies the end timestamp in milliseconds.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "from_", from_)
+        pulumi.set(__self__, "to", to)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The count of logs in the time range.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter(name="from")
+    def from_(self) -> _builtins.int:
+        """
+        Specifies the start timestamp in milliseconds.
+        """
+        return pulumi.get(self, "from_")
+
+    @_builtins.property
+    @pulumi.getter
+    def to(self) -> _builtins.int:
+        """
+        Specifies the end timestamp in milliseconds.
+        """
+        return pulumi.get(self, "to")
+
+
+@pulumi.output_type
+class GetTablesRecordResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 create_time: _builtins.int,
+                 data_classification: _builtins.str,
+                 data_layering: _builtins.str,
+                 delete_time: _builtins.int,
+                 description: _builtins.str,
+                 directory: _builtins.str,
+                 display_settings: Sequence['outputs.GetTablesRecordDisplaySettingResult'],
+                 format: _builtins.str,
+                 lock_status: _builtins.str,
+                 owner_type: _builtins.str,
+                 pipe_id: _builtins.str,
+                 process_error: _builtins.str,
+                 process_status: _builtins.str,
+                 project_id: _builtins.str,
+                 rw_type: _builtins.str,
+                 schemas: Sequence['outputs.GetTablesRecordSchemaResult'],
+                 storage_settings: Sequence['outputs.GetTablesRecordStorageSettingResult'],
+                 table_alias: _builtins.str,
+                 table_id: _builtins.str,
+                 table_name: _builtins.str,
+                 update_time: _builtins.int,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str category: Specifies the directory type.
+               The valid values are as follows:
+               + **STREAMING**: Real time streaming.
+               + **INDEX**: Index.
+               + **APPLICATION**: Application.
+               + **TENANT_BUCKET**: Tenant bucket.
+               + **LAKE**: Data lake.
+        :param _builtins.int create_time: The creation time, millisecond timestamp.
+        :param _builtins.str data_classification: The data classification. Valid values are **FACTUAL_DATA** and **DIMENSION_DATA**.
+        :param _builtins.str data_layering: The data layering. Valid values are **ODS**, **DWS**, **ADS**.
+        :param _builtins.int delete_time: The deletion time, millisecond timestamp.
+        :param _builtins.str description: The table description.
+        :param _builtins.str directory: The directory group.
+        :param Sequence['GetTablesRecordDisplaySettingArgs'] display_settings: The table display setting.
+        :param _builtins.str format: The table display settings. Supported values are **TABLE**, **RAW**.
+        :param _builtins.str lock_status: The table lock status. Valid values are **LOCKED** and **UNLOCKED**.
+        :param _builtins.str owner_type: The owner type. Valid values are **SYSTEM**, **USER**, **SYSTEM_ALLOWED_DELETE**,
+               **USER_ALLOWED_DELETE**.
+        :param _builtins.str pipe_id: The pipe ID.
+        :param _builtins.str process_error: The table processing error. Valid values are **NONE**, **MISSING_ASSOCIATIONS**,
+               **FAILED_INIT_STORAGE_RESOURCES_WHEN_CREATING**, **FAILED_INIT_FLINK_RESOURCES_WHEN_CREATING**,
+               **FAILED_DELETE_FLINK_RESOURCES_WHEN_DELETING**, **FAILED_DELETE_STORAGE_RESOURCES_WHEN_DELETING**,
+               **FAILED_DELETE_ALL_RESOURCES_WHEN_DELETING**, **FAILED_UPDATE_STORAGE_SETTING**, **FAILED_UPDATE_FLINK_SCHEMA**,
+               **FAILED_UPDATE_STORAGE_SCHEMA**, **FAILED_TO_APPLY_RESOURCE**, **FAILED_TO_UPGRADE_RESOURCE_MODEL**.
+        :param _builtins.str process_status: The processing status.
+               Valid values are **COMPLETED**, **CREATING**, **UPDATING**, **DELETING**, **TRUNCATING**, **UPGRADING**,
+               **CREATE_FAILED**, **UPDATE_FAILED**, **DELETE_FAILED**, **TRUNCATE_FAILED**, **UPGRADE_FAILED**.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str rw_type: The table read/write type. Valid values are **READ_ONLY**, **READ_WRITE**, **WRITE_ONLY**.
+        :param Sequence['GetTablesRecordSchemaArgs'] schemas: The table schema.
+        :param Sequence['GetTablesRecordStorageSettingArgs'] storage_settings: The table storage setting.
+        :param _builtins.str table_alias: Specifies the table alias.
+        :param _builtins.str table_id: Specifies the table ID.
+        :param _builtins.str table_name: Specifies the table name.
+        :param _builtins.int update_time: The update time, millisecond timestamp.
+        :param _builtins.str workspace_id: Specifies the workspace ID.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_classification", data_classification)
+        pulumi.set(__self__, "data_layering", data_layering)
+        pulumi.set(__self__, "delete_time", delete_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "directory", directory)
+        pulumi.set(__self__, "display_settings", display_settings)
+        pulumi.set(__self__, "format", format)
+        pulumi.set(__self__, "lock_status", lock_status)
+        pulumi.set(__self__, "owner_type", owner_type)
+        pulumi.set(__self__, "pipe_id", pipe_id)
+        pulumi.set(__self__, "process_error", process_error)
+        pulumi.set(__self__, "process_status", process_status)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "rw_type", rw_type)
+        pulumi.set(__self__, "schemas", schemas)
+        pulumi.set(__self__, "storage_settings", storage_settings)
+        pulumi.set(__self__, "table_alias", table_alias)
+        pulumi.set(__self__, "table_id", table_id)
+        pulumi.set(__self__, "table_name", table_name)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        Specifies the directory type.
+        The valid values are as follows:
+        + **STREAMING**: Real time streaming.
+        + **INDEX**: Index.
+        + **APPLICATION**: Application.
+        + **TENANT_BUCKET**: Tenant bucket.
+        + **LAKE**: Data lake.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time, millisecond timestamp.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="dataClassification")
+    def data_classification(self) -> _builtins.str:
+        """
+        The data classification. Valid values are **FACTUAL_DATA** and **DIMENSION_DATA**.
+        """
+        return pulumi.get(self, "data_classification")
+
+    @_builtins.property
+    @pulumi.getter(name="dataLayering")
+    def data_layering(self) -> _builtins.str:
+        """
+        The data layering. Valid values are **ODS**, **DWS**, **ADS**.
+        """
+        return pulumi.get(self, "data_layering")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteTime")
+    def delete_time(self) -> _builtins.int:
+        """
+        The deletion time, millisecond timestamp.
+        """
+        return pulumi.get(self, "delete_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The table description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def directory(self) -> _builtins.str:
+        """
+        The directory group.
+        """
+        return pulumi.get(self, "directory")
+
+    @_builtins.property
+    @pulumi.getter(name="displaySettings")
+    def display_settings(self) -> Sequence['outputs.GetTablesRecordDisplaySettingResult']:
+        """
+        The table display setting.
+        """
+        return pulumi.get(self, "display_settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def format(self) -> _builtins.str:
+        """
+        The table display settings. Supported values are **TABLE**, **RAW**.
+        """
+        return pulumi.get(self, "format")
+
+    @_builtins.property
+    @pulumi.getter(name="lockStatus")
+    def lock_status(self) -> _builtins.str:
+        """
+        The table lock status. Valid values are **LOCKED** and **UNLOCKED**.
+        """
+        return pulumi.get(self, "lock_status")
+
+    @_builtins.property
+    @pulumi.getter(name="ownerType")
+    def owner_type(self) -> _builtins.str:
+        """
+        The owner type. Valid values are **SYSTEM**, **USER**, **SYSTEM_ALLOWED_DELETE**,
+        **USER_ALLOWED_DELETE**.
+        """
+        return pulumi.get(self, "owner_type")
+
+    @_builtins.property
+    @pulumi.getter(name="pipeId")
+    def pipe_id(self) -> _builtins.str:
+        """
+        The pipe ID.
+        """
+        return pulumi.get(self, "pipe_id")
+
+    @_builtins.property
+    @pulumi.getter(name="processError")
+    def process_error(self) -> _builtins.str:
+        """
+        The table processing error. Valid values are **NONE**, **MISSING_ASSOCIATIONS**,
+        **FAILED_INIT_STORAGE_RESOURCES_WHEN_CREATING**, **FAILED_INIT_FLINK_RESOURCES_WHEN_CREATING**,
+        **FAILED_DELETE_FLINK_RESOURCES_WHEN_DELETING**, **FAILED_DELETE_STORAGE_RESOURCES_WHEN_DELETING**,
+        **FAILED_DELETE_ALL_RESOURCES_WHEN_DELETING**, **FAILED_UPDATE_STORAGE_SETTING**, **FAILED_UPDATE_FLINK_SCHEMA**,
+        **FAILED_UPDATE_STORAGE_SCHEMA**, **FAILED_TO_APPLY_RESOURCE**, **FAILED_TO_UPGRADE_RESOURCE_MODEL**.
+        """
+        return pulumi.get(self, "process_error")
+
+    @_builtins.property
+    @pulumi.getter(name="processStatus")
+    def process_status(self) -> _builtins.str:
+        """
+        The processing status.
+        Valid values are **COMPLETED**, **CREATING**, **UPDATING**, **DELETING**, **TRUNCATING**, **UPGRADING**,
+        **CREATE_FAILED**, **UPDATE_FAILED**, **DELETE_FAILED**, **TRUNCATE_FAILED**, **UPGRADE_FAILED**.
+        """
+        return pulumi.get(self, "process_status")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="rwType")
+    def rw_type(self) -> _builtins.str:
+        """
+        The table read/write type. Valid values are **READ_ONLY**, **READ_WRITE**, **WRITE_ONLY**.
+        """
+        return pulumi.get(self, "rw_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def schemas(self) -> Sequence['outputs.GetTablesRecordSchemaResult']:
+        """
+        The table schema.
+        """
+        return pulumi.get(self, "schemas")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSettings")
+    def storage_settings(self) -> Sequence['outputs.GetTablesRecordStorageSettingResult']:
+        """
+        The table storage setting.
+        """
+        return pulumi.get(self, "storage_settings")
+
+    @_builtins.property
+    @pulumi.getter(name="tableAlias")
+    def table_alias(self) -> _builtins.str:
+        """
+        Specifies the table alias.
+        """
+        return pulumi.get(self, "table_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="tableId")
+    def table_id(self) -> _builtins.str:
+        """
+        Specifies the table ID.
+        """
+        return pulumi.get(self, "table_id")
+
+    @_builtins.property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> _builtins.str:
+        """
+        Specifies the table name.
+        """
+        return pulumi.get(self, "table_name")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time, millisecond timestamp.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the workspace ID.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetTablesRecordDisplaySettingResult(dict):
+    def __init__(__self__, *,
+                 columns: Sequence['outputs.GetTablesRecordDisplaySettingColumnResult'],
+                 format: _builtins.str):
+        """
+        :param Sequence['GetTablesRecordDisplaySettingColumnArgs'] columns: The table column display list.
+        :param _builtins.str format: The table display settings. Supported values are **TABLE**, **RAW**.
+        """
+        pulumi.set(__self__, "columns", columns)
+        pulumi.set(__self__, "format", format)
+
+    @_builtins.property
+    @pulumi.getter
+    def columns(self) -> Sequence['outputs.GetTablesRecordDisplaySettingColumnResult']:
+        """
+        The table column display list.
+        """
+        return pulumi.get(self, "columns")
+
+    @_builtins.property
+    @pulumi.getter
+    def format(self) -> _builtins.str:
+        """
+        The table display settings. Supported values are **TABLE**, **RAW**.
+        """
+        return pulumi.get(self, "format")
+
+
+@pulumi.output_type
+class GetTablesRecordDisplaySettingColumnResult(dict):
+    def __init__(__self__, *,
+                 column_alias: _builtins.str,
+                 column_name: _builtins.str,
+                 display_by_default: _builtins.str):
+        """
+        :param _builtins.str column_alias: The table column alias.
+        :param _builtins.str column_name: The table column name.
+        :param _builtins.str display_by_default: Is it displayed by default.
+        """
+        pulumi.set(__self__, "column_alias", column_alias)
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "display_by_default", display_by_default)
+
+    @_builtins.property
+    @pulumi.getter(name="columnAlias")
+    def column_alias(self) -> _builtins.str:
+        """
+        The table column alias.
+        """
+        return pulumi.get(self, "column_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> _builtins.str:
+        """
+        The table column name.
+        """
+        return pulumi.get(self, "column_name")
+
+    @_builtins.property
+    @pulumi.getter(name="displayByDefault")
+    def display_by_default(self) -> _builtins.str:
+        """
+        Is it displayed by default.
+        """
+        return pulumi.get(self, "display_by_default")
+
+
+@pulumi.output_type
+class GetTablesRecordSchemaResult(dict):
+    def __init__(__self__, *,
+                 columns: Sequence['outputs.GetTablesRecordSchemaColumnResult'],
+                 partitions: Sequence[_builtins.str],
+                 primary_keys: Sequence[_builtins.str],
+                 time_filter: _builtins.str,
+                 watermark_column: _builtins.str,
+                 watermark_interval: _builtins.float):
+        """
+        :param Sequence['GetTablesRecordSchemaColumnArgs'] columns: The table column display list.
+        :param Sequence[_builtins.str] partitions: The table partition list.
+        :param Sequence[_builtins.str] primary_keys: The table primary key list.
+        :param _builtins.str time_filter: The table time filter column.
+        :param _builtins.str watermark_column: The table watermark column.
+        :param _builtins.float watermark_interval: The table watermark delay interval.
+        """
+        pulumi.set(__self__, "columns", columns)
+        pulumi.set(__self__, "partitions", partitions)
+        pulumi.set(__self__, "primary_keys", primary_keys)
+        pulumi.set(__self__, "time_filter", time_filter)
+        pulumi.set(__self__, "watermark_column", watermark_column)
+        pulumi.set(__self__, "watermark_interval", watermark_interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def columns(self) -> Sequence['outputs.GetTablesRecordSchemaColumnResult']:
+        """
+        The table column display list.
+        """
+        return pulumi.get(self, "columns")
+
+    @_builtins.property
+    @pulumi.getter
+    def partitions(self) -> Sequence[_builtins.str]:
+        """
+        The table partition list.
+        """
+        return pulumi.get(self, "partitions")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryKeys")
+    def primary_keys(self) -> Sequence[_builtins.str]:
+        """
+        The table primary key list.
+        """
+        return pulumi.get(self, "primary_keys")
+
+    @_builtins.property
+    @pulumi.getter(name="timeFilter")
+    def time_filter(self) -> _builtins.str:
+        """
+        The table time filter column.
+        """
+        return pulumi.get(self, "time_filter")
+
+    @_builtins.property
+    @pulumi.getter(name="watermarkColumn")
+    def watermark_column(self) -> _builtins.str:
+        """
+        The table watermark column.
+        """
+        return pulumi.get(self, "watermark_column")
+
+    @_builtins.property
+    @pulumi.getter(name="watermarkInterval")
+    def watermark_interval(self) -> _builtins.float:
+        """
+        The table watermark delay interval.
+        """
+        return pulumi.get(self, "watermark_interval")
+
+
+@pulumi.output_type
+class GetTablesRecordSchemaColumnResult(dict):
+    def __init__(__self__, *,
+                 array: _builtins.bool,
+                 column_data_type: _builtins.str,
+                 column_data_type_setting: _builtins.str,
+                 column_display_settings: Sequence['outputs.GetTablesRecordSchemaColumnColumnDisplaySettingResult'],
+                 column_name: _builtins.str,
+                 column_sequence_number: _builtins.int,
+                 column_type: _builtins.str,
+                 column_type_setting: _builtins.str,
+                 depth: _builtins.int,
+                 nullable: _builtins.bool,
+                 own_name: _builtins.str,
+                 parent_name: _builtins.str):
+        """
+        :param _builtins.bool array: Whether the column is an array.
+        :param _builtins.str column_data_type: The column field data type. Valid values are **ROW**, **MAP_STRING**, **MAP_DECIMAL**,
+               **TINYINT**, **SMALLINT**, **INT**, **BIGINT**, **DECIMAL**, **FLOAT**, **DOUBLE**, **CHAR**, **VARCHAR**, **STRING**,
+               **KEYWORD**, **BOOLEAN**, **DATE**, **TIME**, **TIMESTAMP**, **TIMESTAMP_LTZ**.
+        :param _builtins.str column_data_type_setting: The table column data type setting.
+        :param Sequence['GetTablesRecordSchemaColumnColumnDisplaySettingArgs'] column_display_settings: The table column display setting.
+        :param _builtins.str column_name: The table column name.
+        :param _builtins.int column_sequence_number: The column sequence number.
+        :param _builtins.str column_type: The column field type. Valid values are **PHYSICAL**, **METADATA**, **VIRTUAL_METADATA**,
+               **COMPUTED**.
+        :param _builtins.str column_type_setting: The table column type setting.
+        :param _builtins.int depth: The depth.
+        :param _builtins.bool nullable: Whether the column is nullable.
+        :param _builtins.str own_name: The own name.
+        :param _builtins.str parent_name: The parent name.
+        """
+        pulumi.set(__self__, "array", array)
+        pulumi.set(__self__, "column_data_type", column_data_type)
+        pulumi.set(__self__, "column_data_type_setting", column_data_type_setting)
+        pulumi.set(__self__, "column_display_settings", column_display_settings)
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "column_sequence_number", column_sequence_number)
+        pulumi.set(__self__, "column_type", column_type)
+        pulumi.set(__self__, "column_type_setting", column_type_setting)
+        pulumi.set(__self__, "depth", depth)
+        pulumi.set(__self__, "nullable", nullable)
+        pulumi.set(__self__, "own_name", own_name)
+        pulumi.set(__self__, "parent_name", parent_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def array(self) -> _builtins.bool:
+        """
+        Whether the column is an array.
+        """
+        return pulumi.get(self, "array")
+
+    @_builtins.property
+    @pulumi.getter(name="columnDataType")
+    def column_data_type(self) -> _builtins.str:
+        """
+        The column field data type. Valid values are **ROW**, **MAP_STRING**, **MAP_DECIMAL**,
+        **TINYINT**, **SMALLINT**, **INT**, **BIGINT**, **DECIMAL**, **FLOAT**, **DOUBLE**, **CHAR**, **VARCHAR**, **STRING**,
+        **KEYWORD**, **BOOLEAN**, **DATE**, **TIME**, **TIMESTAMP**, **TIMESTAMP_LTZ**.
+        """
+        return pulumi.get(self, "column_data_type")
+
+    @_builtins.property
+    @pulumi.getter(name="columnDataTypeSetting")
+    def column_data_type_setting(self) -> _builtins.str:
+        """
+        The table column data type setting.
+        """
+        return pulumi.get(self, "column_data_type_setting")
+
+    @_builtins.property
+    @pulumi.getter(name="columnDisplaySettings")
+    def column_display_settings(self) -> Sequence['outputs.GetTablesRecordSchemaColumnColumnDisplaySettingResult']:
+        """
+        The table column display setting.
+        """
+        return pulumi.get(self, "column_display_settings")
+
+    @_builtins.property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> _builtins.str:
+        """
+        The table column name.
+        """
+        return pulumi.get(self, "column_name")
+
+    @_builtins.property
+    @pulumi.getter(name="columnSequenceNumber")
+    def column_sequence_number(self) -> _builtins.int:
+        """
+        The column sequence number.
+        """
+        return pulumi.get(self, "column_sequence_number")
+
+    @_builtins.property
+    @pulumi.getter(name="columnType")
+    def column_type(self) -> _builtins.str:
+        """
+        The column field type. Valid values are **PHYSICAL**, **METADATA**, **VIRTUAL_METADATA**,
+        **COMPUTED**.
+        """
+        return pulumi.get(self, "column_type")
+
+    @_builtins.property
+    @pulumi.getter(name="columnTypeSetting")
+    def column_type_setting(self) -> _builtins.str:
+        """
+        The table column type setting.
+        """
+        return pulumi.get(self, "column_type_setting")
+
+    @_builtins.property
+    @pulumi.getter
+    def depth(self) -> _builtins.int:
+        """
+        The depth.
+        """
+        return pulumi.get(self, "depth")
+
+    @_builtins.property
+    @pulumi.getter
+    def nullable(self) -> _builtins.bool:
+        """
+        Whether the column is nullable.
+        """
+        return pulumi.get(self, "nullable")
+
+    @_builtins.property
+    @pulumi.getter(name="ownName")
+    def own_name(self) -> _builtins.str:
+        """
+        The own name.
+        """
+        return pulumi.get(self, "own_name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentName")
+    def parent_name(self) -> _builtins.str:
+        """
+        The parent name.
+        """
+        return pulumi.get(self, "parent_name")
+
+
+@pulumi.output_type
+class GetTablesRecordSchemaColumnColumnDisplaySettingResult(dict):
+    def __init__(__self__, *,
+                 display_description: _builtins.str,
+                 display_name: _builtins.str,
+                 group_name: _builtins.str,
+                 group_sequence_number: _builtins.int,
+                 intra_group_sequence_number: _builtins.int,
+                 mapping_required: _builtins.bool,
+                 value_qualified: _builtins.str,
+                 value_type: _builtins.str):
+        """
+        :param _builtins.str display_description: The display description.
+        :param _builtins.str display_name: The display name.
+        :param _builtins.str group_name: The group name.
+        :param _builtins.int group_sequence_number: The group sequence number.
+        :param _builtins.int intra_group_sequence_number: The intra-group sequence number.
+        :param _builtins.bool mapping_required: Whether mapping is required.
+        :param _builtins.str value_qualified: The qualified value.
+        :param _builtins.str value_type: The value type.
+        """
+        pulumi.set(__self__, "display_description", display_description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "group_sequence_number", group_sequence_number)
+        pulumi.set(__self__, "intra_group_sequence_number", intra_group_sequence_number)
+        pulumi.set(__self__, "mapping_required", mapping_required)
+        pulumi.set(__self__, "value_qualified", value_qualified)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @_builtins.property
+    @pulumi.getter(name="displayDescription")
+    def display_description(self) -> _builtins.str:
+        """
+        The display description.
+        """
+        return pulumi.get(self, "display_description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The group name.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupSequenceNumber")
+    def group_sequence_number(self) -> _builtins.int:
+        """
+        The group sequence number.
+        """
+        return pulumi.get(self, "group_sequence_number")
+
+    @_builtins.property
+    @pulumi.getter(name="intraGroupSequenceNumber")
+    def intra_group_sequence_number(self) -> _builtins.int:
+        """
+        The intra-group sequence number.
+        """
+        return pulumi.get(self, "intra_group_sequence_number")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingRequired")
+    def mapping_required(self) -> _builtins.bool:
+        """
+        Whether mapping is required.
+        """
+        return pulumi.get(self, "mapping_required")
+
+    @_builtins.property
+    @pulumi.getter(name="valueQualified")
+    def value_qualified(self) -> _builtins.str:
+        """
+        The qualified value.
+        """
+        return pulumi.get(self, "value_qualified")
+
+    @_builtins.property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> _builtins.str:
+        """
+        The value type.
+        """
+        return pulumi.get(self, "value_type")
+
+
+@pulumi.output_type
+class GetTablesRecordStorageSettingResult(dict):
+    def __init__(__self__, *,
+                 application_data_class_id: _builtins.str,
+                 application_index: _builtins.str,
+                 application_topic: _builtins.str,
+                 index_replicas: _builtins.int,
+                 index_shards: _builtins.int,
+                 index_storage_period: _builtins.int,
+                 index_storage_size: _builtins.int,
+                 lake_expiration_status: _builtins.str,
+                 lake_partition_setting: _builtins.str,
+                 lake_storage_period: _builtins.int,
+                 streaming_bandwidth: _builtins.int,
+                 streaming_dataspace_id: _builtins.str,
+                 streaming_partition: _builtins.int,
+                 streaming_retention_size: _builtins.int):
+        """
+        :param _builtins.str application_data_class_id: The application data class ID.
+        :param _builtins.str application_index: The application index.
+        :param _builtins.str application_topic: The application topic.
+        :param _builtins.int index_replicas: The index replicas number.
+        :param _builtins.int index_shards: The index shards number.
+        :param _builtins.int index_storage_period: The index storage period.
+        :param _builtins.int index_storage_size: The index storage size.
+        :param _builtins.str lake_expiration_status: The data lake partition status.
+        :param _builtins.str lake_partition_setting: The data lake partition setting.
+        :param _builtins.int lake_storage_period: The data lake storage period.
+        :param _builtins.int streaming_bandwidth: The streaming bandwidth (MB/s).
+        :param _builtins.str streaming_dataspace_id: The streaming dataspace ID.
+        :param _builtins.int streaming_partition: The streaming partition.
+        :param _builtins.int streaming_retention_size: The streaming retention size.
+        """
+        pulumi.set(__self__, "application_data_class_id", application_data_class_id)
+        pulumi.set(__self__, "application_index", application_index)
+        pulumi.set(__self__, "application_topic", application_topic)
+        pulumi.set(__self__, "index_replicas", index_replicas)
+        pulumi.set(__self__, "index_shards", index_shards)
+        pulumi.set(__self__, "index_storage_period", index_storage_period)
+        pulumi.set(__self__, "index_storage_size", index_storage_size)
+        pulumi.set(__self__, "lake_expiration_status", lake_expiration_status)
+        pulumi.set(__self__, "lake_partition_setting", lake_partition_setting)
+        pulumi.set(__self__, "lake_storage_period", lake_storage_period)
+        pulumi.set(__self__, "streaming_bandwidth", streaming_bandwidth)
+        pulumi.set(__self__, "streaming_dataspace_id", streaming_dataspace_id)
+        pulumi.set(__self__, "streaming_partition", streaming_partition)
+        pulumi.set(__self__, "streaming_retention_size", streaming_retention_size)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationDataClassId")
+    def application_data_class_id(self) -> _builtins.str:
+        """
+        The application data class ID.
+        """
+        return pulumi.get(self, "application_data_class_id")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationIndex")
+    def application_index(self) -> _builtins.str:
+        """
+        The application index.
+        """
+        return pulumi.get(self, "application_index")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationTopic")
+    def application_topic(self) -> _builtins.str:
+        """
+        The application topic.
+        """
+        return pulumi.get(self, "application_topic")
+
+    @_builtins.property
+    @pulumi.getter(name="indexReplicas")
+    def index_replicas(self) -> _builtins.int:
+        """
+        The index replicas number.
+        """
+        return pulumi.get(self, "index_replicas")
+
+    @_builtins.property
+    @pulumi.getter(name="indexShards")
+    def index_shards(self) -> _builtins.int:
+        """
+        The index shards number.
+        """
+        return pulumi.get(self, "index_shards")
+
+    @_builtins.property
+    @pulumi.getter(name="indexStoragePeriod")
+    def index_storage_period(self) -> _builtins.int:
+        """
+        The index storage period.
+        """
+        return pulumi.get(self, "index_storage_period")
+
+    @_builtins.property
+    @pulumi.getter(name="indexStorageSize")
+    def index_storage_size(self) -> _builtins.int:
+        """
+        The index storage size.
+        """
+        return pulumi.get(self, "index_storage_size")
+
+    @_builtins.property
+    @pulumi.getter(name="lakeExpirationStatus")
+    def lake_expiration_status(self) -> _builtins.str:
+        """
+        The data lake partition status.
+        """
+        return pulumi.get(self, "lake_expiration_status")
+
+    @_builtins.property
+    @pulumi.getter(name="lakePartitionSetting")
+    def lake_partition_setting(self) -> _builtins.str:
+        """
+        The data lake partition setting.
+        """
+        return pulumi.get(self, "lake_partition_setting")
+
+    @_builtins.property
+    @pulumi.getter(name="lakeStoragePeriod")
+    def lake_storage_period(self) -> _builtins.int:
+        """
+        The data lake storage period.
+        """
+        return pulumi.get(self, "lake_storage_period")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingBandwidth")
+    def streaming_bandwidth(self) -> _builtins.int:
+        """
+        The streaming bandwidth (MB/s).
+        """
+        return pulumi.get(self, "streaming_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingDataspaceId")
+    def streaming_dataspace_id(self) -> _builtins.str:
+        """
+        The streaming dataspace ID.
+        """
+        return pulumi.get(self, "streaming_dataspace_id")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingPartition")
+    def streaming_partition(self) -> _builtins.int:
+        """
+        The streaming partition.
+        """
+        return pulumi.get(self, "streaming_partition")
+
+    @_builtins.property
+    @pulumi.getter(name="streamingRetentionSize")
+    def streaming_retention_size(self) -> _builtins.int:
+        """
+        The streaming retention size.
+        """
+        return pulumi.get(self, "streaming_retention_size")
+
+
+@pulumi.output_type
 class GetVpcEndpointServicesRecordResult(dict):
     def __init__(__self__, *,
                  deprecated: _builtins.bool,
@@ -9124,6 +21786,1073 @@ class GetVpcEndpointServicesRecordResult(dict):
         + **DATA**: Data channel.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesConditionResult(dict):
+    def __init__(__self__, *,
+                 conditions: Optional[Sequence['outputs.GetVulnerabilitiesConditionConditionResult']] = None,
+                 logics: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence['GetVulnerabilitiesConditionConditionArgs'] conditions: Specifies the query conditions.
+               The conditions structure is documented below.
+        :param Sequence[_builtins.str] logics: Specifies the logic conditions.
+               
+               <a name="conditions_struct"></a>
+               The `conditions` block supports:
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if logics is not None:
+            pulumi.set(__self__, "logics", logics)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.GetVulnerabilitiesConditionConditionResult']]:
+        """
+        Specifies the query conditions.
+        The conditions structure is documented below.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def logics(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the logic conditions.
+
+        <a name="conditions_struct"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "logics")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesConditionConditionResult(dict):
+    def __init__(__self__, *,
+                 datas: Optional[Sequence[_builtins.str]] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] datas: Specifies the field value list for the condition.
+        :param _builtins.str name: Specifies the field name for the condition.
+        """
+        if datas is not None:
+            pulumi.set(__self__, "datas", datas)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the field value list for the condition.
+        """
+        return pulumi.get(self, "datas")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the field name for the condition.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 data_objects: Sequence['outputs.GetVulnerabilitiesDataDataObjectResult'],
+                 dataclass_reves: Sequence['outputs.GetVulnerabilitiesDataDataclassRefResult'],
+                 format_version: _builtins.int,
+                 id: _builtins.str,
+                 project_id: _builtins.str,
+                 update_time: _builtins.str,
+                 version: _builtins.int,
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str create_time: The creation time of the vulnerability.
+        :param Sequence['GetVulnerabilitiesDataDataObjectArgs'] data_objects: The vulnerability details.
+               The data_object structure is documented below.
+        :param Sequence['GetVulnerabilitiesDataDataclassRefArgs'] dataclass_reves: The data class reference.
+               The dataclass_ref structure is documented below.
+        :param _builtins.int format_version: The format version of the vulnerability.
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str update_time: The last update time of the vulnerability.
+        :param _builtins.int version: The version of the vulnerability.
+        :param _builtins.str workspace_id: Specifies the ID of the workspace to query vulnerabilities.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_objects", data_objects)
+        pulumi.set(__self__, "dataclass_reves", dataclass_reves)
+        pulumi.set(__self__, "format_version", format_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the vulnerability.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="dataObjects")
+    def data_objects(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectResult']:
+        """
+        The vulnerability details.
+        The data_object structure is documented below.
+        """
+        return pulumi.get(self, "data_objects")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassReves")
+    def dataclass_reves(self) -> Sequence['outputs.GetVulnerabilitiesDataDataclassRefResult']:
+        """
+        The data class reference.
+        The dataclass_ref structure is documented below.
+        """
+        return pulumi.get(self, "dataclass_reves")
+
+    @_builtins.property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> _builtins.int:
+        """
+        The format version of the vulnerability.
+        """
+        return pulumi.get(self, "format_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The last update time of the vulnerability.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        The version of the vulnerability.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the workspace to query vulnerabilities.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectResult(dict):
+    def __init__(__self__, *,
+                 arrive_time: _builtins.str,
+                 batch_number: _builtins.str,
+                 count: _builtins.int,
+                 create_time: _builtins.str,
+                 data_sources: Sequence['outputs.GetVulnerabilitiesDataDataObjectDataSourceResult'],
+                 dataclass_id: _builtins.str,
+                 description: _builtins.str,
+                 domain_id: _builtins.str,
+                 domain_name: _builtins.str,
+                 environments: Sequence['outputs.GetVulnerabilitiesDataDataObjectEnvironmentResult'],
+                 extend_properties: Sequence['outputs.GetVulnerabilitiesDataDataObjectExtendPropertyResult'],
+                 first_observed_time: _builtins.str,
+                 handled: _builtins.int,
+                 id: _builtins.str,
+                 is_deleted: _builtins.bool,
+                 last_observed_time: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 region_name: _builtins.str,
+                 remediations: Sequence['outputs.GetVulnerabilitiesDataDataObjectRemediationResult'],
+                 resource_num: _builtins.int,
+                 resources: Sequence['outputs.GetVulnerabilitiesDataDataObjectResourceResult'],
+                 trigger_flag: _builtins.bool,
+                 update_time: _builtins.str,
+                 version: _builtins.str,
+                 vul_name: _builtins.str,
+                 vulnerabilities: Sequence['outputs.GetVulnerabilitiesDataDataObjectVulnerabilityResult'],
+                 vulnerability_types: Sequence['outputs.GetVulnerabilitiesDataDataObjectVulnerabilityTypeResult'],
+                 workspace_id: _builtins.str):
+        """
+        :param _builtins.str arrive_time: The arrive time of the vulnerability.
+        :param _builtins.str batch_number: The batch number of the vulnerability.
+        :param _builtins.int count: The count of vulnerabilities.
+        :param _builtins.str create_time: The creation time of the vulnerability.
+        :param Sequence['GetVulnerabilitiesDataDataObjectDataSourceArgs'] data_sources: The data source.
+               The data_source structure is documented below.
+        :param _builtins.str dataclass_id: The data class ID.
+        :param _builtins.str description: The description of the vulnerability.
+        :param _builtins.str domain_id: The domain ID.
+        :param _builtins.str domain_name: The domain name.
+        :param Sequence['GetVulnerabilitiesDataDataObjectEnvironmentArgs'] environments: The environment information.
+               The environment structure is documented below.
+        :param Sequence['GetVulnerabilitiesDataDataObjectExtendPropertyArgs'] extend_properties: The extended properties.
+               The extend_properties structure is documented below.
+        :param _builtins.str first_observed_time: The first observed time of the vulnerability.
+        :param _builtins.int handled: The vulnerability handled status.
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.bool is_deleted: Whether the vulnerability is deleted.
+        :param _builtins.str last_observed_time: The last observed time of the vulnerability.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.str region_name: The region name.
+        :param Sequence['GetVulnerabilitiesDataDataObjectRemediationArgs'] remediations: The remediation of the vulnerability.
+               The remediation structure is documented below.
+        :param _builtins.int resource_num: The number of affected resources.
+        :param Sequence['GetVulnerabilitiesDataDataObjectResourceArgs'] resources: The affected resource.
+               The resource structure is documented below.
+        :param _builtins.bool trigger_flag: The trigger flag of the vulnerability.
+        :param _builtins.str update_time: The last update time of the vulnerability.
+        :param _builtins.str version: The version of the vulnerability.
+        :param _builtins.str vul_name: The vulnerability name.
+        :param Sequence['GetVulnerabilitiesDataDataObjectVulnerabilityArgs'] vulnerabilities: The vulnerability details.
+               The vulnerability structure is documented below.
+        :param Sequence['GetVulnerabilitiesDataDataObjectVulnerabilityTypeArgs'] vulnerability_types: The vulnerability type.
+        :param _builtins.str workspace_id: Specifies the ID of the workspace to query vulnerabilities.
+        """
+        pulumi.set(__self__, "arrive_time", arrive_time)
+        pulumi.set(__self__, "batch_number", batch_number)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "dataclass_id", dataclass_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "environments", environments)
+        pulumi.set(__self__, "extend_properties", extend_properties)
+        pulumi.set(__self__, "first_observed_time", first_observed_time)
+        pulumi.set(__self__, "handled", handled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_deleted", is_deleted)
+        pulumi.set(__self__, "last_observed_time", last_observed_time)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "remediations", remediations)
+        pulumi.set(__self__, "resource_num", resource_num)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "trigger_flag", trigger_flag)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vul_name", vul_name)
+        pulumi.set(__self__, "vulnerabilities", vulnerabilities)
+        pulumi.set(__self__, "vulnerability_types", vulnerability_types)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="arriveTime")
+    def arrive_time(self) -> _builtins.str:
+        """
+        The arrive time of the vulnerability.
+        """
+        return pulumi.get(self, "arrive_time")
+
+    @_builtins.property
+    @pulumi.getter(name="batchNumber")
+    def batch_number(self) -> _builtins.str:
+        """
+        The batch number of the vulnerability.
+        """
+        return pulumi.get(self, "batch_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The count of vulnerabilities.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the vulnerability.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectDataSourceResult']:
+        """
+        The data source.
+        The data_source structure is documented below.
+        """
+        return pulumi.get(self, "data_sources")
+
+    @_builtins.property
+    @pulumi.getter(name="dataclassId")
+    def dataclass_id(self) -> _builtins.str:
+        """
+        The data class ID.
+        """
+        return pulumi.get(self, "dataclass_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the vulnerability.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def environments(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectEnvironmentResult']:
+        """
+        The environment information.
+        The environment structure is documented below.
+        """
+        return pulumi.get(self, "environments")
+
+    @_builtins.property
+    @pulumi.getter(name="extendProperties")
+    def extend_properties(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectExtendPropertyResult']:
+        """
+        The extended properties.
+        The extend_properties structure is documented below.
+        """
+        return pulumi.get(self, "extend_properties")
+
+    @_builtins.property
+    @pulumi.getter(name="firstObservedTime")
+    def first_observed_time(self) -> _builtins.str:
+        """
+        The first observed time of the vulnerability.
+        """
+        return pulumi.get(self, "first_observed_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def handled(self) -> _builtins.int:
+        """
+        The vulnerability handled status.
+        """
+        return pulumi.get(self, "handled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isDeleted")
+    def is_deleted(self) -> _builtins.bool:
+        """
+        Whether the vulnerability is deleted.
+        """
+        return pulumi.get(self, "is_deleted")
+
+    @_builtins.property
+    @pulumi.getter(name="lastObservedTime")
+    def last_observed_time(self) -> _builtins.str:
+        """
+        The last observed time of the vulnerability.
+        """
+        return pulumi.get(self, "last_observed_time")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region name.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def remediations(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectRemediationResult']:
+        """
+        The remediation of the vulnerability.
+        The remediation structure is documented below.
+        """
+        return pulumi.get(self, "remediations")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceNum")
+    def resource_num(self) -> _builtins.int:
+        """
+        The number of affected resources.
+        """
+        return pulumi.get(self, "resource_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectResourceResult']:
+        """
+        The affected resource.
+        The resource structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter(name="triggerFlag")
+    def trigger_flag(self) -> _builtins.bool:
+        """
+        The trigger flag of the vulnerability.
+        """
+        return pulumi.get(self, "trigger_flag")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The last update time of the vulnerability.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the vulnerability.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        The vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def vulnerabilities(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectVulnerabilityResult']:
+        """
+        The vulnerability details.
+        The vulnerability structure is documented below.
+        """
+        return pulumi.get(self, "vulnerabilities")
+
+    @_builtins.property
+    @pulumi.getter(name="vulnerabilityTypes")
+    def vulnerability_types(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectVulnerabilityTypeResult']:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "vulnerability_types")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the workspace to query vulnerabilities.
+        """
+        return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectDataSourceResult(dict):
+    def __init__(__self__, *,
+                 company_name: _builtins.str,
+                 domain_id: _builtins.str,
+                 product_feature: _builtins.str,
+                 product_name: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 source_type: _builtins.int):
+        """
+        :param _builtins.str company_name: The company name.
+        :param _builtins.str domain_id: The domain ID.
+        :param _builtins.str product_feature: The product feature.
+        :param _builtins.str product_name: The product name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.int source_type: The source type.
+        """
+        pulumi.set(__self__, "company_name", company_name)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "product_feature", product_feature)
+        pulumi.set(__self__, "product_name", product_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "source_type", source_type)
+
+    @_builtins.property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> _builtins.str:
+        """
+        The company name.
+        """
+        return pulumi.get(self, "company_name")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="productFeature")
+    def product_feature(self) -> _builtins.str:
+        """
+        The product feature.
+        """
+        return pulumi.get(self, "product_feature")
+
+    @_builtins.property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> _builtins.str:
+        """
+        The product name.
+        """
+        return pulumi.get(self, "product_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> _builtins.int:
+        """
+        The source type.
+        """
+        return pulumi.get(self, "source_type")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectEnvironmentResult(dict):
+    def __init__(__self__, *,
+                 domain_id: _builtins.str,
+                 domain_name: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 region_name: _builtins.str,
+                 vendor_type: _builtins.str):
+        """
+        :param _builtins.str domain_id: The domain ID.
+        :param _builtins.str domain_name: The domain name.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.str region_name: The region name.
+        :param _builtins.str vendor_type: The vendor type.
+        """
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "vendor_type", vendor_type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region name.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vendorType")
+    def vendor_type(self) -> _builtins.str:
+        """
+        The vendor type.
+        """
+        return pulumi.get(self, "vendor_type")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectExtendPropertyResult(dict):
+    def __init__(__self__, *,
+                 operations: Sequence['outputs.GetVulnerabilitiesDataDataObjectExtendPropertyOperationResult']):
+        """
+        :param Sequence['GetVulnerabilitiesDataDataObjectExtendPropertyOperationArgs'] operations: The operations.
+               The operations structure is documented below.
+        """
+        pulumi.set(__self__, "operations", operations)
+
+    @_builtins.property
+    @pulumi.getter
+    def operations(self) -> Sequence['outputs.GetVulnerabilitiesDataDataObjectExtendPropertyOperationResult']:
+        """
+        The operations.
+        The operations structure is documented below.
+        """
+        return pulumi.get(self, "operations")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectExtendPropertyOperationResult(dict):
+    def __init__(__self__, *,
+                 is_build_in: _builtins.str):
+        """
+        :param _builtins.str is_build_in: Whether the operation is built-in. Valid values are **true** and **false**.
+        """
+        pulumi.set(__self__, "is_build_in", is_build_in)
+
+    @_builtins.property
+    @pulumi.getter(name="isBuildIn")
+    def is_build_in(self) -> _builtins.str:
+        """
+        Whether the operation is built-in. Valid values are **true** and **false**.
+        """
+        return pulumi.get(self, "is_build_in")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectRemediationResult(dict):
+    def __init__(__self__, *,
+                 recommendation: _builtins.str):
+        """
+        :param _builtins.str recommendation: The recommendation for the vulnerability type.
+        """
+        pulumi.set(__self__, "recommendation", recommendation)
+
+    @_builtins.property
+    @pulumi.getter
+    def recommendation(self) -> _builtins.str:
+        """
+        The recommendation for the vulnerability type.
+        """
+        return pulumi.get(self, "recommendation")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectResourceResult(dict):
+    def __init__(__self__, *,
+                 domain_id: _builtins.str,
+                 ep_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 provider: _builtins.str,
+                 region_id: _builtins.str,
+                 tags: Mapping[str, _builtins.str],
+                 type: _builtins.str):
+        """
+        :param _builtins.str domain_id: The domain ID.
+        :param _builtins.str ep_id: The resource enterprise project ID.
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.str name: Specifies the field name for the condition.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str provider: The resource provider.
+        :param _builtins.str region_id: The region ID.
+        :param Mapping[str, _builtins.str] tags: The tags of the vulnerability.
+        :param _builtins.str type: The vulnerability type.
+        """
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "ep_id", ep_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The domain ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="epId")
+    def ep_id(self) -> _builtins.str:
+        """
+        The resource enterprise project ID.
+        """
+        return pulumi.get(self, "ep_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the field name for the condition.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> _builtins.str:
+        """
+        The resource provider.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        The tags of the vulnerability.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectVulnerabilityResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 level: _builtins.str,
+                 reason: _builtins.str,
+                 relateds: Sequence[_builtins.str],
+                 repair_severity: _builtins.int,
+                 solution: _builtins.str,
+                 status: _builtins.int,
+                 tags: Sequence[_builtins.str],
+                 type: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.str level: The vulnerability level.
+        :param _builtins.str reason: The vulnerability reason.
+        :param Sequence[_builtins.str] relateds: The related vulnerabilities.
+        :param _builtins.int repair_severity: The vulnerability repair severity.
+        :param _builtins.str solution: The vulnerability solution.
+        :param _builtins.int status: The vulnerability status.
+        :param Sequence[_builtins.str] tags: The tags of the vulnerability.
+        :param _builtins.int type: The vulnerability type.
+        :param _builtins.str url: The vulnerability URL.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "reason", reason)
+        pulumi.set(__self__, "relateds", relateds)
+        pulumi.set(__self__, "repair_severity", repair_severity)
+        pulumi.set(__self__, "solution", solution)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        The vulnerability level.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> _builtins.str:
+        """
+        The vulnerability reason.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def relateds(self) -> Sequence[_builtins.str]:
+        """
+        The related vulnerabilities.
+        """
+        return pulumi.get(self, "relateds")
+
+    @_builtins.property
+    @pulumi.getter(name="repairSeverity")
+    def repair_severity(self) -> _builtins.int:
+        """
+        The vulnerability repair severity.
+        """
+        return pulumi.get(self, "repair_severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def solution(self) -> _builtins.str:
+        """
+        The vulnerability solution.
+        """
+        return pulumi.get(self, "solution")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        The vulnerability status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        The tags of the vulnerability.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.int:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The vulnerability URL.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataObjectVulnerabilityTypeResult(dict):
+    def __init__(__self__, *,
+                 category: _builtins.str,
+                 category_en: _builtins.str,
+                 category_zh: _builtins.str,
+                 id: _builtins.str,
+                 vulnerability_type: _builtins.str,
+                 vulnerability_type_en: _builtins.str,
+                 vulnerability_type_zh: _builtins.str):
+        """
+        :param _builtins.str category: The category of the vulnerability type.
+        :param _builtins.str category_en: The English category of the vulnerability type.
+        :param _builtins.str category_zh: The Chinese category of the vulnerability type.
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.str vulnerability_type: The vulnerability type.
+        :param _builtins.str vulnerability_type_en: The English vulnerability type.
+        :param _builtins.str vulnerability_type_zh: The Chinese vulnerability type.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "category_en", category_en)
+        pulumi.set(__self__, "category_zh", category_zh)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "vulnerability_type", vulnerability_type)
+        pulumi.set(__self__, "vulnerability_type_en", vulnerability_type_en)
+        pulumi.set(__self__, "vulnerability_type_zh", vulnerability_type_zh)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The category of the vulnerability type.
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter(name="categoryEn")
+    def category_en(self) -> _builtins.str:
+        """
+        The English category of the vulnerability type.
+        """
+        return pulumi.get(self, "category_en")
+
+    @_builtins.property
+    @pulumi.getter(name="categoryZh")
+    def category_zh(self) -> _builtins.str:
+        """
+        The Chinese category of the vulnerability type.
+        """
+        return pulumi.get(self, "category_zh")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulnerabilityType")
+    def vulnerability_type(self) -> _builtins.str:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "vulnerability_type")
+
+    @_builtins.property
+    @pulumi.getter(name="vulnerabilityTypeEn")
+    def vulnerability_type_en(self) -> _builtins.str:
+        """
+        The English vulnerability type.
+        """
+        return pulumi.get(self, "vulnerability_type_en")
+
+    @_builtins.property
+    @pulumi.getter(name="vulnerabilityTypeZh")
+    def vulnerability_type_zh(self) -> _builtins.str:
+        """
+        The Chinese vulnerability type.
+        """
+        return pulumi.get(self, "vulnerability_type_zh")
+
+
+@pulumi.output_type
+class GetVulnerabilitiesDataDataclassRefResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The vulnerability ID.
+        :param _builtins.str name: Specifies the field name for the condition.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the field name for the condition.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -9578,8 +23307,6 @@ class GetWorkflowVersionsDataResult(dict):
         :param _builtins.str project_id: The project ID.
         :param _builtins.str status: Specifies the workflow version status.
                The value can be **pending_submit**, **pending_approval**, **not_activated**, **activated** or **rejected**.
-               
-               activated,pending_approval,not_activated，pending_submit，rejected
         :param _builtins.str taskconfig: The workflow topology diagram parameter configuration.
         :param _builtins.str taskflow: The workflow topology diagram Base64 encoding.
         :param _builtins.str taskflow_type: The workflow topology diagram type.
@@ -9672,8 +23399,6 @@ class GetWorkflowVersionsDataResult(dict):
         """
         Specifies the workflow version status.
         The value can be **pending_submit**, **pending_approval**, **not_activated**, **activated** or **rejected**.
-
-        activated,pending_approval,not_activated，pending_submit，rejected
         """
         return pulumi.get(self, "status")
 

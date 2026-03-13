@@ -25,6 +25,7 @@ class DomainSecurityProtectionArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainSecurityProtection resource.
+
         :param pulumi.Input[_builtins.int] cc_switch: Specifies whether to enable CC protection. Valid values are:
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain ID.
         :param pulumi.Input[_builtins.int] waf_switch: Specifies whether to enable basic web protection. Valid values are:
@@ -90,6 +91,7 @@ class _DomainSecurityProtectionState:
                  waf_switch: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DomainSecurityProtection resources.
+
         :param pulumi.Input[_builtins.int] cc_switch: Specifies whether to enable CC protection. Valid values are:
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain ID.
         :param pulumi.Input[_builtins.int] waf_switch: Specifies whether to enable basic web protection. Valid values are:
@@ -182,6 +184,7 @@ class DomainSecurityProtection(pulumi.CustomResource):
             cc_switch=cc_switch)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cc_switch: Specifies whether to enable CC protection. Valid values are:
@@ -215,6 +218,7 @@ class DomainSecurityProtection(pulumi.CustomResource):
             waf_switch=waf_switch,
             cc_switch=cc_switch)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainSecurityProtectionArgs args: The arguments to use to populate this resource's properties.

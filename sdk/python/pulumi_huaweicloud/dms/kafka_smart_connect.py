@@ -26,6 +26,7 @@ class KafkaSmartConnectArgs:
                  storage_spec_code: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaSmartConnect resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the kafka instance.
                
                Changing this parameter will create a new resource.
@@ -131,6 +132,7 @@ class _KafkaSmartConnectState:
                  storage_spec_code: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaSmartConnect resources.
+
         :param pulumi.Input[_builtins.str] bandwidth: Specifies the bandwidth of the connector.
                
                Changing this parameter will create a new resource.
@@ -261,11 +263,10 @@ class KafkaSmartConnect(pulumi.CustomResource):
 
         The kafka smart connect can be imported using the kafka `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaSmartConnect:KafkaSmartConnect test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -312,11 +313,10 @@ class KafkaSmartConnect(pulumi.CustomResource):
 
         The kafka smart connect can be imported using the kafka `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaSmartConnect:KafkaSmartConnect test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaSmartConnectArgs args: The arguments to use to populate this resource's properties.

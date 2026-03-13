@@ -29,6 +29,7 @@ class AppPolicyGroupArgs:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['AppPolicyGroupTargetArgs']]]] = None):
         """
         The set of arguments for constructing a AppPolicyGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy group.  
                The maximum length is limited to `255` characters.
         :param pulumi.Input[_builtins.str] name: Specifies the object name.  
@@ -163,6 +164,7 @@ class _AppPolicyGroupState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['AppPolicyGroupTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering AppPolicyGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy group.  
                The maximum length is limited to `255` characters.
         :param pulumi.Input[_builtins.str] name: Specifies the object name.  
@@ -334,41 +336,17 @@ class AppPolicyGroup(pulumi.CustomResource):
 
         The APP policy group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appPolicyGroup:AppPolicyGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `priority`, `policies`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_policy_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              priority, policies,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -435,41 +413,17 @@ class AppPolicyGroup(pulumi.CustomResource):
 
         The APP policy group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appPolicyGroup:AppPolicyGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `priority`, `policies`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_policy_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              priority, policies,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AppPolicyGroupArgs args: The arguments to use to populate this resource's properties.

@@ -132,7 +132,7 @@ def get_resource_instances(region: Optional[_builtins.str] = None,
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
 
     return AwaitableGetResourceInstancesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -171,7 +171,7 @@ def get_resource_instances_output(region: Optional[pulumi.Input[Optional[_builti
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
     return __ret__.apply(lambda __response__: GetResourceInstancesResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

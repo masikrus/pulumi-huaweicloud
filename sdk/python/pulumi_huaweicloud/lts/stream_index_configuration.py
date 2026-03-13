@@ -28,6 +28,7 @@ class StreamIndexConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamIndexConfiguration resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the log group to which the index configuration belongs.
         :param pulumi.Input[_builtins.str] stream_id: Specifies the ID of the log stream to which the index configuration belongs.
         :param pulumi.Input[Sequence[pulumi.Input['StreamIndexConfigurationFieldArgs']]] fields: Specifies the list of the index fields.  
@@ -126,6 +127,7 @@ class _StreamIndexConfigurationState:
                  stream_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamIndexConfiguration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['StreamIndexConfigurationFieldArgs']]] fields: Specifies the list of the index fields.  
                The fields structure is documented below.
                
@@ -235,15 +237,51 @@ class StreamIndexConfiguration(pulumi.CustomResource):
         >       <br/>2. Deleting this resource will not initialize the currently configured index, but will only remove
         >       the resource information from the tfstate file.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        stream_id = config.require_object("streamId")
+        full_text_index_tokenizer = config.require_object("fullTextIndexTokenizer")
+        index_fields = config.get_object("indexFields")
+        if index_fields is None:
+            index_fields = []
+        test = huaweicloud.lts.StreamIndexConfiguration("test",
+            fields=[{
+                "lts_sub_fields_info_lists": [{
+                    "field_name": entry["value"]["field_name"],
+                    "field_type": entry["value"]["field_type"],
+                    "quick_analysis": entry["value"]["quick_analysis"],
+                } for entry in [{"key": k, "value": v} for k, v in entry["value"]["lts_sub_fields_info_list"] if entry["value"]["lts_sub_fields_info_list"] != None else [].items()]],
+                "field_name": entry["value"]["field_name"],
+                "field_type": entry["value"]["field_type"],
+                "tokenizer": entry["value"]["tokenizer"],
+                "case_sensitive": entry["value"]["case_sensitive"],
+                "include_chinese": entry["value"]["include_chinese"],
+                "quick_analysis": entry["value"]["quick_analysis"],
+                "asciis": entry["value"]["ascii"],
+            } for entry in [{"key": k, "value": v} for k, v in index_fields.items()]],
+            group_id=group_id,
+            stream_id=stream_id,
+            full_text_index={
+                "tokenizer": full_text_index_tokenizer,
+                "enable": True,
+                "include_chinese": True,
+            })
+        ```
+
         ## Import
 
         The resource can be imported using the `group_id` and `stream_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/streamIndexConfiguration:StreamIndexConfiguration test <group_id>/<stream_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -272,15 +310,51 @@ class StreamIndexConfiguration(pulumi.CustomResource):
         >       <br/>2. Deleting this resource will not initialize the currently configured index, but will only remove
         >       the resource information from the tfstate file.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        stream_id = config.require_object("streamId")
+        full_text_index_tokenizer = config.require_object("fullTextIndexTokenizer")
+        index_fields = config.get_object("indexFields")
+        if index_fields is None:
+            index_fields = []
+        test = huaweicloud.lts.StreamIndexConfiguration("test",
+            fields=[{
+                "lts_sub_fields_info_lists": [{
+                    "field_name": entry["value"]["field_name"],
+                    "field_type": entry["value"]["field_type"],
+                    "quick_analysis": entry["value"]["quick_analysis"],
+                } for entry in [{"key": k, "value": v} for k, v in entry["value"]["lts_sub_fields_info_list"] if entry["value"]["lts_sub_fields_info_list"] != None else [].items()]],
+                "field_name": entry["value"]["field_name"],
+                "field_type": entry["value"]["field_type"],
+                "tokenizer": entry["value"]["tokenizer"],
+                "case_sensitive": entry["value"]["case_sensitive"],
+                "include_chinese": entry["value"]["include_chinese"],
+                "quick_analysis": entry["value"]["quick_analysis"],
+                "asciis": entry["value"]["ascii"],
+            } for entry in [{"key": k, "value": v} for k, v in index_fields.items()]],
+            group_id=group_id,
+            stream_id=stream_id,
+            full_text_index={
+                "tokenizer": full_text_index_tokenizer,
+                "enable": True,
+                "include_chinese": True,
+            })
+        ```
+
         ## Import
 
         The resource can be imported using the `group_id` and `stream_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/streamIndexConfiguration:StreamIndexConfiguration test <group_id>/<stream_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StreamIndexConfigurationArgs args: The arguments to use to populate this resource's properties.

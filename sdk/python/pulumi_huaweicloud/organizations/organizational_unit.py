@@ -24,6 +24,7 @@ class OrganizationalUnitArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OrganizationalUnit resource.
+
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of the root or organizational unit in which
                you want to create a new organizational unit.
                
@@ -80,13 +81,15 @@ class OrganizationalUnitArgs:
 @pulumi.input_type
 class _OrganizationalUnitState:
     def __init__(__self__, *,
+                 organizational_unit_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OrganizationalUnit resources.
+
+        :param pulumi.Input[_builtins.str] organizational_unit_urn: Indicates the uniform resource name of the organizational unit.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the organizational unit was created.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the organizational unit.
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of the root or organizational unit in which
@@ -94,8 +97,9 @@ class _OrganizationalUnitState:
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value to attach to the organizational unit.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the organizational unit.
         """
+        if organizational_unit_urn is not None:
+            pulumi.set(__self__, "organizational_unit_urn", organizational_unit_urn)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if name is not None:
@@ -104,8 +108,18 @@ class _OrganizationalUnitState:
             pulumi.set(__self__, "parent_id", parent_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="OrganizationalUnitUrn")
+    def organizational_unit_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_urn")
+
+    @organizational_unit_urn.setter
+    def organizational_unit_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "organizational_unit_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -158,20 +172,8 @@ class _OrganizationalUnitState:
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the organizational unit.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/organizationalUnit:OrganizationalUnit")
+@pulumi.type_token("huaweicloud:Organizations/organizationalUnit:OrganizationalUnit")
 class OrganizationalUnit(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -201,39 +203,16 @@ class OrganizationalUnit(pulumi.CustomResource):
 
         The Organizations organizational unit can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/organizationalUnit:OrganizationalUnit test <id>
+        $ pulumi import huaweicloud:Organizations/organizationalUnit:OrganizationalUnit test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `parent_id`. It is generally recommended
-
         running `pulumi preview` after importing the organizational unit. You can then decide if changes should be applied to
-
         the organizational unit, or the resource definition should be updated to align with the organizational unit. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_organizational_unit" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parent_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -270,39 +249,16 @@ class OrganizationalUnit(pulumi.CustomResource):
 
         The Organizations organizational unit can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/organizationalUnit:OrganizationalUnit test <id>
+        $ pulumi import huaweicloud:Organizations/organizationalUnit:OrganizationalUnit test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `parent_id`. It is generally recommended
-
         running `pulumi preview` after importing the organizational unit. You can then decide if changes should be applied to
-
         the organizational unit, or the resource definition should be updated to align with the organizational unit. Also you
-
         can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_organizational_unit" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              parent_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OrganizationalUnitArgs args: The arguments to use to populate this resource's properties.
@@ -336,10 +292,10 @@ class OrganizationalUnit(pulumi.CustomResource):
                 raise TypeError("Missing required property 'parent_id'")
             __props__.__dict__["parent_id"] = parent_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["organizational_unit_urn"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["urn"] = None
         super(OrganizationalUnit, __self__).__init__(
-            'huaweicloud:organizations/organizationalUnit:OrganizationalUnit',
+            'huaweicloud:Organizations/organizationalUnit:OrganizationalUnit',
             resource_name,
             __props__,
             opts)
@@ -348,11 +304,11 @@ class OrganizationalUnit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            organizational_unit_urn: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'OrganizationalUnit':
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'OrganizationalUnit':
         """
         Get an existing OrganizationalUnit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -360,6 +316,7 @@ class OrganizationalUnit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] organizational_unit_urn: Indicates the uniform resource name of the organizational unit.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the organizational unit was created.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the organizational unit.
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of the root or organizational unit in which
@@ -367,18 +324,25 @@ class OrganizationalUnit(pulumi.CustomResource):
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value to attach to the organizational unit.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the organizational unit.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _OrganizationalUnitState.__new__(_OrganizationalUnitState)
 
+        __props__.__dict__["organizational_unit_urn"] = organizational_unit_urn
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["tags"] = tags
-        __props__.__dict__["urn"] = urn
         return OrganizationalUnit(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="OrganizationalUnitUrn")
+    def organizational_unit_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the organizational unit.
+        """
+        return pulumi.get(self, "organizational_unit_urn")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -414,12 +378,4 @@ class OrganizationalUnit(pulumi.CustomResource):
         Specifies the key/value to attach to the organizational unit.
         """
         return pulumi.get(self, "tags")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the organizational unit.
-        """
-        return pulumi.get(self, "urn")
 

@@ -31,6 +31,7 @@ class DeployEnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployEnvironment resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] deploy_type: Specifies the deployment type.
@@ -205,6 +206,7 @@ class _DeployEnvironmentState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployEnvironment resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] created_at: Indicates the create time.
@@ -462,7 +464,7 @@ class _DeployEnvironmentState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployEnvironment:DeployEnvironment")
+@pulumi.type_token("huaweicloud:Codearts/deployEnvironment:DeployEnvironment")
 class DeployEnvironment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -509,11 +511,10 @@ class DeployEnvironment(pulumi.CustomResource):
 
         The environment can be imported using `project_id`, `application_id`, and `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployEnvironment:DeployEnvironment test <project_id>/<application_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployEnvironment:DeployEnvironment test <project_id>/<application_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -582,11 +583,10 @@ class DeployEnvironment(pulumi.CustomResource):
 
         The environment can be imported using `project_id`, `application_id`, and `id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployEnvironment:DeployEnvironment test <project_id>/<application_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployEnvironment:DeployEnvironment test <project_id>/<application_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployEnvironmentArgs args: The arguments to use to populate this resource's properties.
@@ -643,7 +643,7 @@ class DeployEnvironment(pulumi.CustomResource):
             __props__.__dict__["permissions"] = None
             __props__.__dict__["proxies"] = None
         super(DeployEnvironment, __self__).__init__(
-            'huaweicloud:codearts/deployEnvironment:DeployEnvironment',
+            'huaweicloud:Codearts/deployEnvironment:DeployEnvironment',
             resource_name,
             __props__,
             opts)

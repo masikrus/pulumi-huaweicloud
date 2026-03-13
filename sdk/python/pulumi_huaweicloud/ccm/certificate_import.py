@@ -32,6 +32,7 @@ class CertificateImportArgs:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateImportTargetArgs']]]] = None):
         """
         The set of arguments for constructing a CertificateImport resource.
+
         :param pulumi.Input[_builtins.str] certificate: Specifies the content of the SSL certificate.
                The certificate content can include intermediate certificates and root certificates.
                If the certificate chain is passed in using the field `certificate_chain`, then the field `certificate` only takes
@@ -68,7 +69,8 @@ class CertificateImportArgs:
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the imported SSL certificate.
-               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+               allowed.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to import SSL certificate.
@@ -204,7 +206,8 @@ class CertificateImportArgs:
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the name of the imported SSL certificate.
-        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+        allowed.
 
         Changing this parameter will create a new resource.
         """
@@ -267,6 +270,7 @@ class _CertificateImportState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateImportTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering CertificateImport resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CertificateImportAuthentificationArgs']]] authentifications: The domain ownership verification information.
                The authentifications structure is documented below.
         :param pulumi.Input[_builtins.str] certificate: Specifies the content of the SSL certificate.
@@ -302,7 +306,8 @@ class _CertificateImportState:
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the imported SSL certificate.
-               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+               allowed.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] not_after: The time when the certificate becomes invalid. If no valid value is obtained, this parameter is left blank.
@@ -495,7 +500,8 @@ class _CertificateImportState:
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the name of the imported SSL certificate.
-        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+        allowed.
 
         Changing this parameter will create a new resource.
         """
@@ -612,7 +618,7 @@ class _CertificateImportState:
         pulumi.set(self, "targets", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/certificateImport:CertificateImport")
+@pulumi.type_token("huaweicloud:Ccm/certificateImport:CertificateImport")
 class CertificateImport(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -629,45 +635,104 @@ class CertificateImport(pulumi.CustomResource):
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CertificateImportTargetArgs', 'CertificateImportTargetArgsDict']]]]] = None,
                  __props__=None):
         """
+        Using this resource to import an existing SSL certificate to CCM service within HuaweiCloud, and support pushing the
+        SSL certificate to other HuaweiCloud services.
+
+        > Certificates encrypted with SM series cryptographic algorithms cannot be deployed to other cloud services.
+
+        ## Example Usage
+
+        ### Load the certificate contents from the local files with SM series cryptographic algorithm type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        enterprise_project_id = config.require_object("enterpriseProjectId")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            enc_certificate=std.index.file(input="your_directory/xxx_enc_ca.crt")["result"],
+            enc_private_key=std.index.file(input="your_directory/xxx_enc_server.key")["result"],
+            enterprise_project_id=enterprise_project_id)
+        ```
+
+        ### Load the certificate contents from the local files with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        enterprise_project_id = config.require_object("enterpriseProjectId")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            enterprise_project_id=enterprise_project_id)
+        ```
+
+        ### Write the contents of the certificate into the terraform script with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        certificate = config.require_object("certificate")
+        certificate_chain = config.require_object("certificateChain")
+        private_key = config.require_object("privateKey")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=certificate,
+            certificate_chain=certificate_chain,
+            private_key=private_key)
+        ```
+
+        ### Push the SSL certificate to another HuaweiCloud service with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            targets=[
+                {
+                    "projects": ["la-south-2"],
+                    "service": "ELB",
+                },
+                {
+                    "service": "CDN",
+                },
+            ])
+        ```
+
         ## Import
 
         The CCM certificate import resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/certificateImport:CertificateImport test <id>
+        $ pulumi import huaweicloud:Ccm/certificateImport:CertificateImport test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `certificate`, `certificate_chain`,
-
         `private_key`, `enc_certificate`, `enc_private_key` and `target`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_certificate_import" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              certificate, certificate_chain, private_key, enc_certificate, enc_private_key, target,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -702,7 +767,8 @@ class CertificateImport(pulumi.CustomResource):
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the imported SSL certificate.
-               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+               allowed.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] private_key: Specifies the private encrypted key of the SSL certificate.
@@ -727,45 +793,104 @@ class CertificateImport(pulumi.CustomResource):
                  args: CertificateImportArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Using this resource to import an existing SSL certificate to CCM service within HuaweiCloud, and support pushing the
+        SSL certificate to other HuaweiCloud services.
+
+        > Certificates encrypted with SM series cryptographic algorithms cannot be deployed to other cloud services.
+
+        ## Example Usage
+
+        ### Load the certificate contents from the local files with SM series cryptographic algorithm type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        enterprise_project_id = config.require_object("enterpriseProjectId")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            enc_certificate=std.index.file(input="your_directory/xxx_enc_ca.crt")["result"],
+            enc_private_key=std.index.file(input="your_directory/xxx_enc_server.key")["result"],
+            enterprise_project_id=enterprise_project_id)
+        ```
+
+        ### Load the certificate contents from the local files with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        enterprise_project_id = config.require_object("enterpriseProjectId")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            enterprise_project_id=enterprise_project_id)
+        ```
+
+        ### Write the contents of the certificate into the terraform script with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        certificate = config.require_object("certificate")
+        certificate_chain = config.require_object("certificateChain")
+        private_key = config.require_object("privateKey")
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=certificate,
+            certificate_chain=certificate_chain,
+            private_key=private_key)
+        ```
+
+        ### Push the SSL certificate to another HuaweiCloud service with international standard type
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        test = huaweicloud.ccm.CertificateImport("test",
+            name="certificate_name",
+            certificate=std.index.file(input="your_directory/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="your_directory/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="your_directory/xxx_server.key")["result"],
+            targets=[
+                {
+                    "projects": ["la-south-2"],
+                    "service": "ELB",
+                },
+                {
+                    "service": "CDN",
+                },
+            ])
+        ```
+
         ## Import
 
         The CCM certificate import resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/certificateImport:CertificateImport test <id>
+        $ pulumi import huaweicloud:Ccm/certificateImport:CertificateImport test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `certificate`, `certificate_chain`,
-
         `private_key`, `enc_certificate`, `enc_private_key` and `target`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_certificate_import" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              certificate, certificate_chain, private_key, enc_certificate, enc_private_key, target,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CertificateImportArgs args: The arguments to use to populate this resource's properties.
@@ -821,7 +946,7 @@ class CertificateImport(pulumi.CustomResource):
             __props__.__dict__["push_support"] = None
             __props__.__dict__["status"] = None
         super(CertificateImport, __self__).__init__(
-            'huaweicloud:ccm/certificateImport:CertificateImport',
+            'huaweicloud:Ccm/certificateImport:CertificateImport',
             resource_name,
             __props__,
             opts)
@@ -888,7 +1013,8 @@ class CertificateImport(pulumi.CustomResource):
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the imported SSL certificate.
-               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+               The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+               allowed.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] not_after: The time when the certificate becomes invalid. If no valid value is obtained, this parameter is left blank.
@@ -1038,7 +1164,8 @@ class CertificateImport(pulumi.CustomResource):
     def name(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the name of the imported SSL certificate.
-        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+        The valid length is limited from `3` to `63`. Only letters, digits, hyphens (-), underscores (_), and periods (.) are
+        allowed.
 
         Changing this parameter will create a new resource.
         """

@@ -26,6 +26,7 @@ class PolicyBlackWhiteRuleArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PolicyBlackWhiteRule resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.
         :param pulumi.Input[_builtins.str] ip: Specifies the IP address or IP segment.
         :param pulumi.Input[_builtins.int] overseas_type: Specifies the protection area. The value can be:
@@ -107,6 +108,7 @@ class _PolicyBlackWhiteRuleState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PolicyBlackWhiteRule resources.
+
         :param pulumi.Input[_builtins.str] domain_id: The domain ID.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name.
         :param pulumi.Input[_builtins.str] ip: Specifies the IP address or IP segment.
@@ -230,14 +232,12 @@ class PolicyBlackWhiteRule(pulumi.CustomResource):
         ## Import
 
         The AAD policy black white rule can be imported using the `domain_name`, `overseas_type`, `ip` and `type`,
-
         separated by slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/policyBlackWhiteRule:PolicyBlackWhiteRule test <domain_name>/<overseas_type>/<ip>/<type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,14 +274,12 @@ class PolicyBlackWhiteRule(pulumi.CustomResource):
         ## Import
 
         The AAD policy black white rule can be imported using the `domain_name`, `overseas_type`, `ip` and `type`,
-
         separated by slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/policyBlackWhiteRule:PolicyBlackWhiteRule test <domain_name>/<overseas_type>/<ip>/<type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyBlackWhiteRuleArgs args: The arguments to use to populate this resource's properties.

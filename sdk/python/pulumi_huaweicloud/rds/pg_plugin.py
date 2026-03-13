@@ -26,6 +26,7 @@ class PgPluginArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgPlugin resource.
+
         :param pulumi.Input[_builtins.str] database_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the PostgreSQL instance ID.
         :param pulumi.Input[_builtins.str] name: Specifies the plugin name.
@@ -113,6 +114,7 @@ class _PgPluginState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PgPlugin resources.
+
         :param pulumi.Input[_builtins.str] database_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] description: The plugin description.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the PostgreSQL instance ID.
@@ -268,11 +270,10 @@ class PgPlugin(pulumi.CustomResource):
 
         The RDS for PostgreSQL plugin can be imported using the `instance_id`, `database_name` and `name` separated by slashs, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgPlugin:PgPlugin test <instance_id>/<database_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -310,11 +311,10 @@ class PgPlugin(pulumi.CustomResource):
 
         The RDS for PostgreSQL plugin can be imported using the `instance_id`, `database_name` and `name` separated by slashs, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgPlugin:PgPlugin test <instance_id>/<database_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgPluginArgs args: The arguments to use to populate this resource's properties.

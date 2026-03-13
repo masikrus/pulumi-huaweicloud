@@ -26,6 +26,7 @@ class CentralNetworkConnectionBandwidthAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CentralNetworkConnectionBandwidthAssociate resource.
+
         :param pulumi.Input[_builtins.int] bandwidth_size: The bandwidth size of the connection.
         :param pulumi.Input[_builtins.str] central_network_id: The ID of the central network to which the connection belongs.
                Changing this creates a new resource.
@@ -118,6 +119,7 @@ class _CentralNetworkConnectionBandwidthAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CentralNetworkConnectionBandwidthAssociate resources.
+
         :param pulumi.Input[_builtins.int] bandwidth_size: The bandwidth size of the connection.
         :param pulumi.Input[_builtins.str] central_network_id: The ID of the central network to which the connection belongs.
                Changing this creates a new resource.
@@ -239,14 +241,12 @@ class CentralNetworkConnectionBandwidthAssociate(pulumi.CustomResource):
         ## Import
 
         The central network connection bandwidth associate resource can be imported using the `central_network_id`
-
         and `connection_id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkConnectionBandwidthAssociate:CentralNetworkConnectionBandwidthAssociate test <central_network_id>/<connection_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -289,14 +289,12 @@ class CentralNetworkConnectionBandwidthAssociate(pulumi.CustomResource):
         ## Import
 
         The central network connection bandwidth associate resource can be imported using the `central_network_id`
-
         and `connection_id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkConnectionBandwidthAssociate:CentralNetworkConnectionBandwidthAssociate test <central_network_id>/<connection_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CentralNetworkConnectionBandwidthAssociateArgs args: The arguments to use to populate this resource's properties.

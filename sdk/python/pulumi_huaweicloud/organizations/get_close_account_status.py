@@ -82,7 +82,7 @@ def get_close_account_status(states: Optional[Sequence[_builtins.str]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_close_account_status()
+    test = huaweicloud.Organizations.get_close_account_status()
     ```
 
 
@@ -91,7 +91,7 @@ def get_close_account_status(states: Optional[Sequence[_builtins.str]] = None,
     __args__ = dict()
     __args__['states'] = states
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getCloseAccountStatus:getCloseAccountStatus', __args__, opts=opts, typ=GetCloseAccountStatusResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getCloseAccountStatus:getCloseAccountStatus', __args__, opts=opts, typ=GetCloseAccountStatusResult).value
 
     return AwaitableGetCloseAccountStatusResult(
         close_account_statuses=pulumi.get(__ret__, 'close_account_statuses'),
@@ -108,7 +108,7 @@ def get_close_account_status_output(states: Optional[pulumi.Input[Optional[Seque
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_close_account_status()
+    test = huaweicloud.Organizations.get_close_account_status()
     ```
 
 
@@ -117,7 +117,7 @@ def get_close_account_status_output(states: Optional[pulumi.Input[Optional[Seque
     __args__ = dict()
     __args__['states'] = states
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getCloseAccountStatus:getCloseAccountStatus', __args__, opts=opts, typ=GetCloseAccountStatusResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getCloseAccountStatus:getCloseAccountStatus', __args__, opts=opts, typ=GetCloseAccountStatusResult)
     return __ret__.apply(lambda __response__: GetCloseAccountStatusResult(
         close_account_statuses=pulumi.get(__response__, 'close_account_statuses'),
         id=pulumi.get(__response__, 'id'),

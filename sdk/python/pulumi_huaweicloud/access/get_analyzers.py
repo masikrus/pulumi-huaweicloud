@@ -96,7 +96,7 @@ def get_analyzers(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.access.get_analyzers(type="account")
+    test = huaweicloud.Access.get_analyzers(type="account")
     ```
 
 
@@ -109,7 +109,7 @@ def get_analyzers(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:access/getAnalyzers:getAnalyzers', __args__, opts=opts, typ=GetAnalyzersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Access/getAnalyzers:getAnalyzers', __args__, opts=opts, typ=GetAnalyzersResult).value
 
     return AwaitableGetAnalyzersResult(
         analyzers=pulumi.get(__ret__, 'analyzers'),
@@ -128,7 +128,7 @@ def get_analyzers_output(region: Optional[pulumi.Input[Optional[_builtins.str]]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.access.get_analyzers(type="account")
+    test = huaweicloud.Access.get_analyzers(type="account")
     ```
 
 
@@ -141,7 +141,7 @@ def get_analyzers_output(region: Optional[pulumi.Input[Optional[_builtins.str]]]
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:access/getAnalyzers:getAnalyzers', __args__, opts=opts, typ=GetAnalyzersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Access/getAnalyzers:getAnalyzers', __args__, opts=opts, typ=GetAnalyzersResult)
     return __ret__.apply(lambda __response__: GetAnalyzersResult(
         analyzers=pulumi.get(__response__, 'analyzers'),
         id=pulumi.get(__response__, 'id'),

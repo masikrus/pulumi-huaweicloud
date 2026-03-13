@@ -25,6 +25,7 @@ class WorkloadPlanExecutionArgs:
                  stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadPlanExecution resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload plan to execute belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] plan_id: Specifies the ID of the workload plan to be executed.
@@ -103,6 +104,7 @@ class _WorkloadPlanExecutionState:
                  stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkloadPlanExecution resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload plan to execute belongs.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] plan_id: Specifies the ID of the workload plan to be executed.
@@ -207,6 +209,7 @@ class WorkloadPlanExecution(pulumi.CustomResource):
             stage_id=stage_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload plan to execute belongs.
@@ -245,6 +248,7 @@ class WorkloadPlanExecution(pulumi.CustomResource):
             plan_id=plan_id,
             stage_id=stage_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkloadPlanExecutionArgs args: The arguments to use to populate this resource's properties.

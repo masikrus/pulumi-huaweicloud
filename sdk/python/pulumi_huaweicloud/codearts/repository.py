@@ -31,6 +31,7 @@ class RepositoryArgs:
                  visibility_level: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Repository resource.
+
         :param pulumi.Input[_builtins.str] project_id: The project ID for CodeArts service.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: The repository description.
@@ -52,18 +53,17 @@ class RepositoryArgs:
         :param pulumi.Input[_builtins.str] import_url: The HTTPS address of the template repository encrypted using Base64.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] license_id: The license ID for public repository. The valid values are as follows:
-               + **1**: Apache License v2.0
-               + **2**: MIT License
-               + **3**: BSD 2-clause
-               + **4**: BSD 3-clause
-               + **5**: Eclipse Public License v1.0
-               + **6**: GNU General Public License v2.0
-               + **7**: GNU General Public License v3.0
-               + **8**: GNU Afferent General Public License v3.0
-               + **9**: GNU Lesser General Public License v2.1
-               + **10**: GNU Lesser General Public License v3.0
-               + **11**: Mozilla Public License v2.0
-               + **12**: The Unlicense
+               + **1**: Apache_License_v2.0
+               + **2**: MIT_License,,BSD_3Clause
+               + **3**: Eclipse_Public_License_v1.0
+               + **4**: BSD_2Clause
+               + **5**: GNU_General_Public_License_v2.0
+               + **6**: GNU_General_Public_License_v3.0
+               + **7**: GNU_Affero_General_Public_License_v3.0
+               + **8**: GNU_Lesser_General_Public_License_v2.1
+               + **9**: GNU_Lesser_General_Public_License_v3.0
+               + **10**: Mozilla_Public_License_v2.0
+               + **11**: The_Unlicense
                
                Defaults to `1`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: The repository name.
@@ -188,18 +188,17 @@ class RepositoryArgs:
     def license_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The license ID for public repository. The valid values are as follows:
-        + **1**: Apache License v2.0
-        + **2**: MIT License
-        + **3**: BSD 2-clause
-        + **4**: BSD 3-clause
-        + **5**: Eclipse Public License v1.0
-        + **6**: GNU General Public License v2.0
-        + **7**: GNU General Public License v3.0
-        + **8**: GNU Afferent General Public License v3.0
-        + **9**: GNU Lesser General Public License v2.1
-        + **10**: GNU Lesser General Public License v3.0
-        + **11**: Mozilla Public License v2.0
-        + **12**: The Unlicense
+        + **1**: Apache_License_v2.0
+        + **2**: MIT_License,,BSD_3Clause
+        + **3**: Eclipse_Public_License_v1.0
+        + **4**: BSD_2Clause
+        + **5**: GNU_General_Public_License_v2.0
+        + **6**: GNU_General_Public_License_v3.0
+        + **7**: GNU_Affero_General_Public_License_v3.0
+        + **8**: GNU_Lesser_General_Public_License_v2.1
+        + **9**: GNU_Lesser_General_Public_License_v3.0
+        + **10**: Mozilla_Public_License_v2.0
+        + **11**: The_Unlicense
 
         Defaults to `1`. Changing this parameter will create a new resource.
         """
@@ -277,6 +276,7 @@ class _RepositoryState:
                  web_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
+
         :param pulumi.Input[_builtins.str] capacity: The total size of the repository, in MB. If the capacity is greater than `1,024`M, the unit is GB.
         :param pulumi.Input[_builtins.str] create_at: The creation time.
         :param pulumi.Input[_builtins.str] description: The repository description.
@@ -300,18 +300,17 @@ class _RepositoryState:
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] lfs_size: The LFS capacity, in MB. If the capacity is greater than `1,024`M, the unit is GB.
         :param pulumi.Input[_builtins.int] license_id: The license ID for public repository. The valid values are as follows:
-               + **1**: Apache License v2.0
-               + **2**: MIT License
-               + **3**: BSD 2-clause
-               + **4**: BSD 3-clause
-               + **5**: Eclipse Public License v1.0
-               + **6**: GNU General Public License v2.0
-               + **7**: GNU General Public License v3.0
-               + **8**: GNU Afferent General Public License v3.0
-               + **9**: GNU Lesser General Public License v2.1
-               + **10**: GNU Lesser General Public License v3.0
-               + **11**: Mozilla Public License v2.0
-               + **12**: The Unlicense
+               + **1**: Apache_License_v2.0
+               + **2**: MIT_License,,BSD_3Clause
+               + **3**: Eclipse_Public_License_v1.0
+               + **4**: BSD_2Clause
+               + **5**: GNU_General_Public_License_v2.0
+               + **6**: GNU_General_Public_License_v3.0
+               + **7**: GNU_Affero_General_Public_License_v3.0
+               + **8**: GNU_Lesser_General_Public_License_v2.1
+               + **9**: GNU_Lesser_General_Public_License_v3.0
+               + **10**: Mozilla_Public_License_v2.0
+               + **11**: The_Unlicense
                
                Defaults to `1`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: The repository name.
@@ -501,18 +500,17 @@ class _RepositoryState:
     def license_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The license ID for public repository. The valid values are as follows:
-        + **1**: Apache License v2.0
-        + **2**: MIT License
-        + **3**: BSD 2-clause
-        + **4**: BSD 3-clause
-        + **5**: Eclipse Public License v1.0
-        + **6**: GNU General Public License v2.0
-        + **7**: GNU General Public License v3.0
-        + **8**: GNU Afferent General Public License v3.0
-        + **9**: GNU Lesser General Public License v2.1
-        + **10**: GNU Lesser General Public License v3.0
-        + **11**: Mozilla Public License v2.0
-        + **12**: The Unlicense
+        + **1**: Apache_License_v2.0
+        + **2**: MIT_License,,BSD_3Clause
+        + **3**: Eclipse_Public_License_v1.0
+        + **4**: BSD_2Clause
+        + **5**: GNU_General_Public_License_v2.0
+        + **6**: GNU_General_Public_License_v3.0
+        + **7**: GNU_Affero_General_Public_License_v3.0
+        + **8**: GNU_Lesser_General_Public_License_v2.1
+        + **9**: GNU_Lesser_General_Public_License_v3.0
+        + **10**: Mozilla_Public_License_v2.0
+        + **11**: The_Unlicense
 
         Defaults to `1`. Changing this parameter will create a new resource.
         """
@@ -643,7 +641,7 @@ class _RepositoryState:
         pulumi.set(self, "web_url", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/repository:Repository")
+@pulumi.type_token("huaweicloud:Codearts/repository:Repository")
 class Repository(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -688,39 +686,16 @@ class Repository(pulumi.CustomResource):
 
         The repository can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/repository:Repository test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Codearts/repository:Repository test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `name`, `description`, `gitignore_id`, `enable_readme`, `license_id` and
-
         `import_members`. It is generally recommended running `pulumi preview` after importing the repository.
-
         You can then decide if changes should be applied to the repository, or the resource definition should be updated to
-
         align with the repository. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_repository" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              name, license_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -743,18 +718,17 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] import_url: The HTTPS address of the template repository encrypted using Base64.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] license_id: The license ID for public repository. The valid values are as follows:
-               + **1**: Apache License v2.0
-               + **2**: MIT License
-               + **3**: BSD 2-clause
-               + **4**: BSD 3-clause
-               + **5**: Eclipse Public License v1.0
-               + **6**: GNU General Public License v2.0
-               + **7**: GNU General Public License v3.0
-               + **8**: GNU Afferent General Public License v3.0
-               + **9**: GNU Lesser General Public License v2.1
-               + **10**: GNU Lesser General Public License v3.0
-               + **11**: Mozilla Public License v2.0
-               + **12**: The Unlicense
+               + **1**: Apache_License_v2.0
+               + **2**: MIT_License,,BSD_3Clause
+               + **3**: Eclipse_Public_License_v1.0
+               + **4**: BSD_2Clause
+               + **5**: GNU_General_Public_License_v2.0
+               + **6**: GNU_General_Public_License_v3.0
+               + **7**: GNU_Affero_General_Public_License_v3.0
+               + **8**: GNU_Lesser_General_Public_License_v2.1
+               + **9**: GNU_Lesser_General_Public_License_v3.0
+               + **10**: Mozilla_Public_License_v2.0
+               + **11**: The_Unlicense
                
                Defaults to `1`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: The repository name.
@@ -804,39 +778,16 @@ class Repository(pulumi.CustomResource):
 
         The repository can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/repository:Repository test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Codearts/repository:Repository test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `name`, `description`, `gitignore_id`, `enable_readme`, `license_id` and
-
         `import_members`. It is generally recommended running `pulumi preview` after importing the repository.
-
         You can then decide if changes should be applied to the repository, or the resource definition should be updated to
-
         align with the repository. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_repository" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              name, license_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param RepositoryArgs args: The arguments to use to populate this resource's properties.
@@ -894,7 +845,7 @@ class Repository(pulumi.CustomResource):
             __props__.__dict__["update_at"] = None
             __props__.__dict__["web_url"] = None
         super(Repository, __self__).__init__(
-            'huaweicloud:codearts/repository:Repository',
+            'huaweicloud:Codearts/repository:Repository',
             resource_name,
             __props__,
             opts)
@@ -952,18 +903,17 @@ class Repository(pulumi.CustomResource):
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] lfs_size: The LFS capacity, in MB. If the capacity is greater than `1,024`M, the unit is GB.
         :param pulumi.Input[_builtins.int] license_id: The license ID for public repository. The valid values are as follows:
-               + **1**: Apache License v2.0
-               + **2**: MIT License
-               + **3**: BSD 2-clause
-               + **4**: BSD 3-clause
-               + **5**: Eclipse Public License v1.0
-               + **6**: GNU General Public License v2.0
-               + **7**: GNU General Public License v3.0
-               + **8**: GNU Afferent General Public License v3.0
-               + **9**: GNU Lesser General Public License v2.1
-               + **10**: GNU Lesser General Public License v3.0
-               + **11**: Mozilla Public License v2.0
-               + **12**: The Unlicense
+               + **1**: Apache_License_v2.0
+               + **2**: MIT_License,,BSD_3Clause
+               + **3**: Eclipse_Public_License_v1.0
+               + **4**: BSD_2Clause
+               + **5**: GNU_General_Public_License_v2.0
+               + **6**: GNU_General_Public_License_v3.0
+               + **7**: GNU_Affero_General_Public_License_v3.0
+               + **8**: GNU_Lesser_General_Public_License_v2.1
+               + **9**: GNU_Lesser_General_Public_License_v3.0
+               + **10**: Mozilla_Public_License_v2.0
+               + **11**: The_Unlicense
                
                Defaults to `1`. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: The repository name.
@@ -1103,18 +1053,17 @@ class Repository(pulumi.CustomResource):
     def license_id(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         The license ID for public repository. The valid values are as follows:
-        + **1**: Apache License v2.0
-        + **2**: MIT License
-        + **3**: BSD 2-clause
-        + **4**: BSD 3-clause
-        + **5**: Eclipse Public License v1.0
-        + **6**: GNU General Public License v2.0
-        + **7**: GNU General Public License v3.0
-        + **8**: GNU Afferent General Public License v3.0
-        + **9**: GNU Lesser General Public License v2.1
-        + **10**: GNU Lesser General Public License v3.0
-        + **11**: Mozilla Public License v2.0
-        + **12**: The Unlicense
+        + **1**: Apache_License_v2.0
+        + **2**: MIT_License,,BSD_3Clause
+        + **3**: Eclipse_Public_License_v1.0
+        + **4**: BSD_2Clause
+        + **5**: GNU_General_Public_License_v2.0
+        + **6**: GNU_General_Public_License_v3.0
+        + **7**: GNU_Affero_General_Public_License_v3.0
+        + **8**: GNU_Lesser_General_Public_License_v2.1
+        + **9**: GNU_Lesser_General_Public_License_v3.0
+        + **10**: Mozilla_Public_License_v2.0
+        + **11**: The_Unlicense
 
         Defaults to `1`. Changing this parameter will create a new resource.
         """

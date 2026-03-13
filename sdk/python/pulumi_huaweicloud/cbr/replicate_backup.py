@@ -27,6 +27,7 @@ class ReplicateBackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReplicateBackup resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be replicated.
         :param pulumi.Input['ReplicateBackupReplicateArgs'] replicate: Specifies the replication parameter.
                The replicate structure is documented below.
@@ -105,6 +106,7 @@ class _ReplicateBackupState:
                  replicate: Optional[pulumi.Input['ReplicateBackupReplicateArgs']] = None):
         """
         Input properties used for looking up and filtering ReplicateBackup resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be replicated.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -219,6 +221,7 @@ class ReplicateBackup(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be replicated.
@@ -268,6 +271,7 @@ class ReplicateBackup(pulumi.CustomResource):
                 "enable_acceleration": enable_acceleration,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ReplicateBackupArgs args: The arguments to use to populate this resource's properties.

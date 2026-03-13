@@ -185,7 +185,7 @@ def get_pipeline_run_records(end_time: Optional[_builtins.str] = None,
     __args__['startTime'] = start_time
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineRunRecords:getPipelineRunRecords', __args__, opts=opts, typ=GetPipelineRunRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineRunRecords:getPipelineRunRecords', __args__, opts=opts, typ=GetPipelineRunRecordsResult).value
 
     return AwaitableGetPipelineRunRecordsResult(
         end_time=pulumi.get(__ret__, 'end_time'),
@@ -239,7 +239,7 @@ def get_pipeline_run_records_output(end_time: Optional[pulumi.Input[Optional[_bu
     __args__['startTime'] = start_time
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineRunRecords:getPipelineRunRecords', __args__, opts=opts, typ=GetPipelineRunRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineRunRecords:getPipelineRunRecords', __args__, opts=opts, typ=GetPipelineRunRecordsResult)
     return __ret__.apply(lambda __response__: GetPipelineRunRecordsResult(
         end_time=pulumi.get(__response__, 'end_time'),
         id=pulumi.get(__response__, 'id'),

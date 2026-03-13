@@ -67,6 +67,7 @@ class ListenerArgs:
                  tls_ciphers_policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Listener resource.
+
         :param pulumi.Input[_builtins.str] loadbalancer_id: The load balancer on which to provision this listener. Changing this
                creates a new listener.
         :param pulumi.Input[_builtins.str] protocol: The protocol can either be **TCP**, **UDP**, **HTTP**, **HTTPS**, **QUIC**,
@@ -914,6 +915,7 @@ class _ListenerState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Listener resources.
+
         :param pulumi.Input[_builtins.str] access_policy: Specifies the access policy for the listener. Valid options are **white** and
                **black**.
         :param pulumi.Input[_builtins.bool] advanced_forwarding_enabled: Specifies whether to enable advanced forwarding.
@@ -1836,37 +1838,15 @@ class Listener(pulumi.CustomResource):
 
         ELB listener can be imported using the listener ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `force_delete`. It is generally recommended
-
         running `pulumi preview` after importing a listener. You can then decide if changes should be applied to the listener,
-
         or the resource definition should be updated to align with the listener. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_listener" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_delete,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2017,37 +1997,15 @@ class Listener(pulumi.CustomResource):
 
         ELB listener can be imported using the listener ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/listener:Listener test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `force_delete`. It is generally recommended
-
         running `pulumi preview` after importing a listener. You can then decide if changes should be applied to the listener,
-
         or the resource definition should be updated to align with the listener. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_listener" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_delete,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ListenerArgs args: The arguments to use to populate this resource's properties.

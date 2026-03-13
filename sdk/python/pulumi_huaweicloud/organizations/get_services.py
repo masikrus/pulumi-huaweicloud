@@ -81,7 +81,7 @@ def get_services(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_services()
+    test = huaweicloud.Organizations.get_services()
     ```
 
 
@@ -91,7 +91,7 @@ def get_services(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getServices:getServices', __args__, opts=opts, typ=GetServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getServices:getServices', __args__, opts=opts, typ=GetServicesResult).value
 
     return AwaitableGetServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -108,7 +108,7 @@ def get_services_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_services()
+    test = huaweicloud.Organizations.get_services()
     ```
 
 
@@ -118,7 +118,7 @@ def get_services_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] 
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getServices:getServices', __args__, opts=opts, typ=GetServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getServices:getServices', __args__, opts=opts, typ=GetServicesResult)
     return __ret__.apply(lambda __response__: GetServicesResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

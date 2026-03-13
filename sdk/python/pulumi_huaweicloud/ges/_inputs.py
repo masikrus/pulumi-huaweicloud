@@ -31,25 +31,20 @@ __all__ = [
     'MetadataGesMetadataLabelArgsDict',
 ]
 
-MYPY = False
+class GraphEncryptionArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable data encryption. The value can be true or false.
+    The default value is false.
+    """
+    master_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the customer master key created by DEW in the project corresponding
+    to the graph creation.
 
-if not MYPY:
-    class GraphEncryptionArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable data encryption. The value can be true or false.
-        The default value is false.
-        """
-        master_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the customer master key created by DEW in the project corresponding
-        to the graph creation.
-
-        <a name="GesGraph_LtsOperationTrace"></a>
-        The `LtsOperationTrace` block supports:
-        """
-elif False:
-    GraphEncryptionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="GesGraph_LtsOperationTrace"></a>
+    The `LtsOperationTrace` block supports:
+    """
 
 @pulumi.input_type
 class GraphEncryptionArgs:
@@ -100,21 +95,18 @@ class GraphEncryptionArgs:
         pulumi.set(self, "master_key_id", value)
 
 
-if not MYPY:
-    class GraphLtsOperationTraceArgsDict(TypedDict):
-        audit_log_group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        LTS log group name.  
+class GraphLtsOperationTraceArgsDict(TypedDict):
+    audit_log_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    LTS log group name.  
 
-        <a name="GesGraph_vertexIdType"></a>
-        The `vertexIdType` block supports:
-        """
-        enable_audit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable graph audit. The default value is false.
-        """
-elif False:
-    GraphLtsOperationTraceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="GesGraph_vertexIdType"></a>
+    The `vertexIdType` block supports:
+    """
+    enable_audit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable graph audit. The default value is false.
+    """
 
 @pulumi.input_type
 class GraphLtsOperationTraceArgs:
@@ -161,22 +153,19 @@ class GraphLtsOperationTraceArgs:
         pulumi.set(self, "enable_audit", value)
 
 
-if not MYPY:
-    class GraphPublicIpArgsDict(TypedDict):
-        eip_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP ID.  
+class GraphPublicIpArgsDict(TypedDict):
+    eip_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP ID.  
 
-        <a name="GesGraph_Encryption"></a>
-        The `Encryption` block supports:
-        """
-        public_bind_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bind type of public IP.  
-        The valid value are **auto_assign**, and **bind_existing**.
-        """
-elif False:
-    GraphPublicIpArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="GesGraph_Encryption"></a>
+    The `Encryption` block supports:
+    """
+    public_bind_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bind type of public IP.  
+    The valid value are **auto_assign**, and **bind_existing**.
+    """
 
 @pulumi.input_type
 class GraphPublicIpArgs:
@@ -225,27 +214,24 @@ class GraphPublicIpArgs:
         pulumi.set(self, "public_bind_type", value)
 
 
-if not MYPY:
-    class GraphVertexIdTypeArgsDict(TypedDict):
-        id_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of ID.  
-        This parameter is mandatory if **id_type** is **fixedLengthString**. The value ranges from 1 to 128.
-        """
-        id_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Vertex ID type.  
-        Value options are as follows:
-        + **fixedLengthString**: Vertex IDs are used for internal storage and compute.
-        Specify the length limit. If the IDs are too long, the query performance can be reduced.
-        Specify the length limit based on your dataset vertex IDs.
-        + **hash**: Vertex IDs are converted into hash code for storage and compute.
-        There is no limit on the ID length. However, there is an extremely low probability, approximately 10^(-43),
-        that the vertex IDs will conflict. If you cannot determine the maximum length of a vertex ID,
-        set this parameter to Hash.
-        """
-elif False:
-    GraphVertexIdTypeArgsDict: TypeAlias = Mapping[str, Any]
+class GraphVertexIdTypeArgsDict(TypedDict):
+    id_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of ID.  
+    This parameter is mandatory if **id_type** is **fixedLengthString**. The value ranges from 1 to 128.
+    """
+    id_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Vertex ID type.  
+    Value options are as follows:
+    + **fixedLengthString**: Vertex IDs are used for internal storage and compute.
+    Specify the length limit. If the IDs are too long, the query performance can be reduced.
+    Specify the length limit based on your dataset vertex IDs.
+    + **hash**: Vertex IDs are converted into hash code for storage and compute.
+    There is no limit on the ID length. However, there is an extremely low probability, approximately 10^(-43),
+    that the vertex IDs will conflict. If you cannot determine the maximum length of a vertex ID,
+    set this parameter to Hash.
+    """
 
 @pulumi.input_type
 class GraphVertexIdTypeArgs:
@@ -304,20 +290,17 @@ class GraphVertexIdTypeArgs:
         pulumi.set(self, "id_type", value)
 
 
-if not MYPY:
-    class MetadataEncryptionArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable data encryption The value can be true or false.
-        The default value is false.
-        """
-        master_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the customer master key created by DEW in the project where
-        the graph is created.
-        """
-elif False:
-    MetadataEncryptionArgsDict: TypeAlias = Mapping[str, Any]
+class MetadataEncryptionArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable data encryption The value can be true or false.
+    The default value is false.
+    """
+    master_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the customer master key created by DEW in the project where
+    the graph is created.
+    """
 
 @pulumi.input_type
 class MetadataEncryptionArgs:
@@ -362,19 +345,16 @@ class MetadataEncryptionArgs:
         pulumi.set(self, "master_key_id", value)
 
 
-if not MYPY:
-    class MetadataGesMetadataArgsDict(TypedDict):
-        labels: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetadataGesMetadataLabelArgsDict']]]]
-        """
-        Label list.  
-        For details, see [data formats](https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0153.html).
-        The Labels structure is documented below.
+class MetadataGesMetadataArgsDict(TypedDict):
+    labels: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetadataGesMetadataLabelArgsDict']]]]
+    """
+    Label list.  
+    For details, see [data formats](https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0153.html).
+    The Labels structure is documented below.
 
-        <a name="GesMetadata_MetadataLabels"></a>
-        The `MetadataLabels` block supports:
-        """
-elif False:
-    MetadataGesMetadataArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="GesMetadata_MetadataLabels"></a>
+    The `MetadataLabels` block supports:
+    """
 
 @pulumi.input_type
 class MetadataGesMetadataArgs:
@@ -409,23 +389,20 @@ class MetadataGesMetadataArgs:
         pulumi.set(self, "labels", value)
 
 
-if not MYPY:
-    class MetadataGesMetadataLabelArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of a label.
-        """
-        properties: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        """
-        The list of label properties. A property refers to the data format of a single
-        property and contains some fields.
-        For details, see [data formats](https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0153.html).
+class MetadataGesMetadataLabelArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of a label.
+    """
+    properties: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    """
+    The list of label properties. A property refers to the data format of a single
+    property and contains some fields.
+    For details, see [data formats](https://support.huaweicloud.com/intl/en-us/usermanual-ges/ges_01_0153.html).
 
-        <a name="GesMetadata_Encryption"></a>
-        The `Encryption` block supports:
-        """
-elif False:
-    MetadataGesMetadataLabelArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="GesMetadata_Encryption"></a>
+    The `Encryption` block supports:
+    """
 
 @pulumi.input_type
 class MetadataGesMetadataLabelArgs:

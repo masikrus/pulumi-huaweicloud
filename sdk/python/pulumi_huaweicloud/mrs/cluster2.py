@@ -45,6 +45,7 @@ class Cluster2Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Cluster2 resource.
+
         :param pulumi.Input[_builtins.str] available_zone_id: ID of an available zone. The value as follows:
                
                + CN North-Beijing1 AZ1 (cn-north-1a): ae04cf9d61544df3806a3feeb401b204
@@ -526,6 +527,7 @@ class _Cluster2State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['Cluster2AddJobArgs']]] add_jobs: Jobs can be submitted when a cluster is created. Currently, only one job can
                be created. Structure is documented below.
         :param pulumi.Input[_builtins.str] available_zone_id: ID of an available zone. The value as follows:
@@ -1420,6 +1422,7 @@ class Cluster2(pulumi.CustomResource):
             ])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['Cluster2AddJobArgs', 'Cluster2AddJobArgsDict']]]] add_jobs: Jobs can be submitted when a cluster is created. Currently, only one job can
@@ -1548,6 +1551,7 @@ class Cluster2(pulumi.CustomResource):
                 },
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param Cluster2Args args: The arguments to use to populate this resource's properties.
@@ -2277,7 +2281,7 @@ class Cluster2(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         The key/value pairs to associate with the cluster.
         """

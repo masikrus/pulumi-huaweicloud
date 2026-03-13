@@ -18,6 +18,8 @@ from . import outputs
 __all__ = [
     'Cluster2AddJob',
     'Cluster2ComponentList',
+    'ClusterComponentBatchAddComponentsInstallMode',
+    'ClusterComponentBatchAddComponentsInstallModeNodeGroup',
     'ClusterV1AddJob',
     'ClusterV1ComponentList',
     'DataConnectionSourceInfo',
@@ -97,8 +99,8 @@ class Cluster2AddJob(dict):
                s3a://. Files or programs encrypted by KMS are not supported. HDFS: The path starts with a slash (/).
                + Spark Script must end with .sql while MapReduce and Spark Jar must end with .jar. sql and jar are
                case-insensitive.
-        :param _builtins.str job_name: Job name. It contains `1` to `64` characters. Only letters, digits, hyphens (-),
-               and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
+        :param _builtins.str job_name: Job name. It contains `1` to `64` characters. Only letters, digits,
+               hyphens (-), and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
         :param _builtins.int job_type: Job type code.  
                + **1**: MapReduce
                + **2**: Spark
@@ -171,8 +173,8 @@ class Cluster2AddJob(dict):
     @pulumi.getter(name="jobName")
     def job_name(self) -> _builtins.str:
         """
-        Job name. It contains `1` to `64` characters. Only letters, digits, hyphens (-),
-        and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
+        Job name. It contains `1` to `64` characters. Only letters, digits,
+        hyphens (-), and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
         """
         return pulumi.get(self, "job_name")
 
@@ -365,6 +367,140 @@ class Cluster2ComponentList(dict):
         Indicates the component version.
         """
         return pulumi.get(self, "component_version")
+
+
+@pulumi.output_type
+class ClusterComponentBatchAddComponentsInstallMode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeGroups":
+            suggest = "node_groups"
+        elif key == "componentDefaultPassword":
+            suggest = "component_default_password"
+        elif key == "componentUserPassword":
+            suggest = "component_user_password"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterComponentBatchAddComponentsInstallMode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterComponentBatchAddComponentsInstallMode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterComponentBatchAddComponentsInstallMode.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 component: _builtins.str,
+                 node_groups: Sequence['outputs.ClusterComponentBatchAddComponentsInstallModeNodeGroup'],
+                 component_default_password: Optional[_builtins.str] = None,
+                 component_user_password: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str component: Specifies the name of the component.
+        :param Sequence['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs'] node_groups: Specifies the node groups where the component roles will be deployed.  
+               The node_groups structure is documented below.
+        :param _builtins.str component_default_password: Specifies the password for the component
+               default user.
+               This password is used for the ClickHouse component machine default user to connect.
+               
+               <a name="cluster_component_batch_add_node_groups"></a>
+               The `node_groups` block supports:
+        :param _builtins.str component_user_password: Specifies the password for the component user.  
+               This password is used for the ClickHouse component machine user to connect.
+        """
+        pulumi.set(__self__, "component", component)
+        pulumi.set(__self__, "node_groups", node_groups)
+        if component_default_password is not None:
+            pulumi.set(__self__, "component_default_password", component_default_password)
+        if component_user_password is not None:
+            pulumi.set(__self__, "component_user_password", component_user_password)
+
+    @_builtins.property
+    @pulumi.getter
+    def component(self) -> _builtins.str:
+        """
+        Specifies the name of the component.
+        """
+        return pulumi.get(self, "component")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeGroups")
+    def node_groups(self) -> Sequence['outputs.ClusterComponentBatchAddComponentsInstallModeNodeGroup']:
+        """
+        Specifies the node groups where the component roles will be deployed.  
+        The node_groups structure is documented below.
+        """
+        return pulumi.get(self, "node_groups")
+
+    @_builtins.property
+    @pulumi.getter(name="componentDefaultPassword")
+    def component_default_password(self) -> Optional[_builtins.str]:
+        """
+        Specifies the password for the component
+        default user.
+        This password is used for the ClickHouse component machine default user to connect.
+
+        <a name="cluster_component_batch_add_node_groups"></a>
+        The `node_groups` block supports:
+        """
+        return pulumi.get(self, "component_default_password")
+
+    @_builtins.property
+    @pulumi.getter(name="componentUserPassword")
+    def component_user_password(self) -> Optional[_builtins.str]:
+        """
+        Specifies the password for the component user.  
+        This password is used for the ClickHouse component machine user to connect.
+        """
+        return pulumi.get(self, "component_user_password")
+
+
+@pulumi.output_type
+class ClusterComponentBatchAddComponentsInstallModeNodeGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "assignedRoles":
+            suggest = "assigned_roles"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterComponentBatchAddComponentsInstallModeNodeGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterComponentBatchAddComponentsInstallModeNodeGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterComponentBatchAddComponentsInstallModeNodeGroup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 assigned_roles: Sequence[_builtins.str],
+                 name: _builtins.str):
+        """
+        :param Sequence[_builtins.str] assigned_roles: Specifies the list of roles to be assigned to this node group.
+        :param _builtins.str name: Specifies the name of the node group.
+        """
+        pulumi.set(__self__, "assigned_roles", assigned_roles)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="assignedRoles")
+    def assigned_roles(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of roles to be assigned to this node group.
+        """
+        return pulumi.get(self, "assigned_roles")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the node group.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -1149,6 +1285,12 @@ class ClusterAnalysisCoreNodes(dict):
             suggest = "host_ips"
         elif key == "periodUnit":
             suggest = "period_unit"
+        elif key == "resourceIds":
+            suggest = "resource_ids"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterAnalysisCoreNodes. Access the value via the '{suggest}' property getter instead.")
@@ -1174,15 +1316,17 @@ class ClusterAnalysisCoreNodes(dict):
                  data_volume_type: Optional[_builtins.str] = None,
                  host_ips: Optional[Sequence[_builtins.str]] = None,
                  period: Optional[_builtins.int] = None,
-                 period_unit: Optional[_builtins.str] = None):
+                 period_unit: Optional[_builtins.str] = None,
+                 resource_ids: Optional[Sequence[_builtins.str]] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1236,6 +1380,21 @@ class ClusterAnalysisCoreNodes(dict):
         :param _builtins.str period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param Sequence[_builtins.str] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -1258,6 +1417,12 @@ class ClusterAnalysisCoreNodes(dict):
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -1282,8 +1447,7 @@ class ClusterAnalysisCoreNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -1410,6 +1574,42 @@ class ClusterAnalysisCoreNodes(dict):
         """
         return pulumi.get(self, "period_unit")
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
 
 @pulumi.output_type
 class ClusterAnalysisTaskNodes(dict):
@@ -1432,6 +1632,12 @@ class ClusterAnalysisTaskNodes(dict):
             suggest = "data_volume_type"
         elif key == "hostIps":
             suggest = "host_ips"
+        elif key == "resourceIds":
+            suggest = "resource_ids"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterAnalysisTaskNodes. Access the value via the '{suggest}' property getter instead.")
@@ -1453,15 +1659,17 @@ class ClusterAnalysisTaskNodes(dict):
                  assigned_roles: Optional[Sequence[_builtins.str]] = None,
                  data_volume_size: Optional[_builtins.int] = None,
                  data_volume_type: Optional[_builtins.str] = None,
-                 host_ips: Optional[Sequence[_builtins.str]] = None):
+                 host_ips: Optional[Sequence[_builtins.str]] = None,
+                 resource_ids: Optional[Sequence[_builtins.str]] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1496,6 +1704,21 @@ class ClusterAnalysisTaskNodes(dict):
                * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
                * `bootstrap_scripts/state` - The status of one bootstrap action script.
                The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+        :param Sequence[_builtins.str] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -1510,6 +1733,12 @@ class ClusterAnalysisTaskNodes(dict):
             pulumi.set(__self__, "data_volume_type", data_volume_type)
         if host_ips is not None:
             pulumi.set(__self__, "host_ips", host_ips)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -1534,8 +1763,7 @@ class ClusterAnalysisTaskNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -1615,6 +1843,42 @@ class ClusterAnalysisTaskNodes(dict):
         """
         return pulumi.get(self, "host_ips")
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
 
 @pulumi.output_type
 class ClusterBootstrapScript(dict):
@@ -1655,7 +1919,8 @@ class ClusterBootstrapScript(dict):
                  start_time: Optional[_builtins.str] = None,
                  state: Optional[_builtins.str] = None):
         """
-        :param _builtins.str fail_action: Specifies the action after the bootstrap action script fails to be executed.
+        :param _builtins.str fail_action: Specifies the action after the bootstrap action script fails to be
+               executed.
                The options are as follows:
                + **continue**: Continue to execute subsequent scripts.
                + **errorout**: Stop the action.
@@ -1674,8 +1939,8 @@ class ClusterBootstrapScript(dict):
                + **Local VM path**: The script path must start with a slash (/) and end with *.sh*.
                
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.bool active_master: Specifies whether the bootstrap action script runs only on active master nodes.
-               The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
+        :param _builtins.bool active_master: Specifies whether the bootstrap action script runs only on active master
+               nodes. The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
         :param _builtins.bool before_component_start: Specifies whether the bootstrap action script is executed
                before component start.
                The options are as follows:
@@ -1714,7 +1979,8 @@ class ClusterBootstrapScript(dict):
     @pulumi.getter(name="failAction")
     def fail_action(self) -> _builtins.str:
         """
-        Specifies the action after the bootstrap action script fails to be executed.
+        Specifies the action after the bootstrap action script fails to be
+        executed.
         The options are as follows:
         + **continue**: Continue to execute subsequent scripts.
         + **errorout**: Stop the action.
@@ -1761,8 +2027,8 @@ class ClusterBootstrapScript(dict):
     @pulumi.getter(name="activeMaster")
     def active_master(self) -> Optional[_builtins.bool]:
         """
-        Specifies whether the bootstrap action script runs only on active master nodes.
-        The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
+        Specifies whether the bootstrap action script runs only on active master
+        nodes. The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
         """
         return pulumi.get(self, "active_master")
 
@@ -1955,6 +2221,12 @@ class ClusterCustomNode(dict):
             suggest = "host_ips"
         elif key == "periodUnit":
             suggest = "period_unit"
+        elif key == "resourceIds":
+            suggest = "resource_ids"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterCustomNode. Access the value via the '{suggest}' property getter instead.")
@@ -1981,7 +2253,10 @@ class ClusterCustomNode(dict):
                  data_volume_type: Optional[_builtins.str] = None,
                  host_ips: Optional[Sequence[_builtins.str]] = None,
                  period: Optional[_builtins.int] = None,
-                 period_unit: Optional[_builtins.str] = None):
+                 period_unit: Optional[_builtins.str] = None,
+                 resource_ids: Optional[Sequence[_builtins.str]] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
@@ -1990,8 +2265,7 @@ class ClusterCustomNode(dict):
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str group_name: Specifies the name of nodes for the node group.  
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -2045,6 +2319,21 @@ class ClusterCustomNode(dict):
         :param _builtins.str period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param Sequence[_builtins.str] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -2068,6 +2357,12 @@ class ClusterCustomNode(dict):
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -2101,8 +2396,7 @@ class ClusterCustomNode(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -2229,6 +2523,42 @@ class ClusterCustomNode(dict):
         """
         return pulumi.get(self, "period_unit")
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
 
 @pulumi.output_type
 class ClusterExternalDatasource(dict):
@@ -2261,7 +2591,8 @@ class ClusterExternalDatasource(dict):
                  source_type: _builtins.str,
                  data_connection_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str component_name: Specifies the component name. The valid values are `Hive` and `Ranger`.
+        :param _builtins.str component_name: Specifies the component name.  
+               The valid values are `Hive` and `Ranger`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str role_type: Specifies the component role type.
                The options are as follows:
@@ -2294,7 +2625,8 @@ class ClusterExternalDatasource(dict):
     @pulumi.getter(name="componentName")
     def component_name(self) -> _builtins.str:
         """
-        Specifies the component name. The valid values are `Hive` and `Ranger`.
+        Specifies the component name.  
+        The valid values are `Hive` and `Ranger`.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "component_name")
@@ -2368,6 +2700,10 @@ class ClusterMasterNodes(dict):
             suggest = "host_ips"
         elif key == "periodUnit":
             suggest = "period_unit"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterMasterNodes. Access the value via the '{suggest}' property getter instead.")
@@ -2393,15 +2729,16 @@ class ClusterMasterNodes(dict):
                  data_volume_type: Optional[_builtins.str] = None,
                  host_ips: Optional[Sequence[_builtins.str]] = None,
                  period: Optional[_builtins.int] = None,
-                 period_unit: Optional[_builtins.str] = None):
+                 period_unit: Optional[_builtins.str] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -2455,6 +2792,16 @@ class ClusterMasterNodes(dict):
         :param _builtins.str period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -2477,6 +2824,10 @@ class ClusterMasterNodes(dict):
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -2501,8 +2852,7 @@ class ClusterMasterNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -2628,6 +2978,30 @@ class ClusterMasterNodes(dict):
         Changing this parameter will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "period_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
 
 
 @pulumi.output_type
@@ -2709,6 +3083,12 @@ class ClusterStreamingCoreNodes(dict):
             suggest = "host_ips"
         elif key == "periodUnit":
             suggest = "period_unit"
+        elif key == "resourceIds":
+            suggest = "resource_ids"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterStreamingCoreNodes. Access the value via the '{suggest}' property getter instead.")
@@ -2734,15 +3114,17 @@ class ClusterStreamingCoreNodes(dict):
                  data_volume_type: Optional[_builtins.str] = None,
                  host_ips: Optional[Sequence[_builtins.str]] = None,
                  period: Optional[_builtins.int] = None,
-                 period_unit: Optional[_builtins.str] = None):
+                 period_unit: Optional[_builtins.str] = None,
+                 resource_ids: Optional[Sequence[_builtins.str]] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -2796,6 +3178,21 @@ class ClusterStreamingCoreNodes(dict):
         :param _builtins.str period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param Sequence[_builtins.str] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -2818,6 +3215,12 @@ class ClusterStreamingCoreNodes(dict):
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -2842,8 +3245,7 @@ class ClusterStreamingCoreNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -2970,6 +3372,42 @@ class ClusterStreamingCoreNodes(dict):
         """
         return pulumi.get(self, "period_unit")
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
 
 @pulumi.output_type
 class ClusterStreamingTaskNodes(dict):
@@ -2992,6 +3430,12 @@ class ClusterStreamingTaskNodes(dict):
             suggest = "data_volume_type"
         elif key == "hostIps":
             suggest = "host_ips"
+        elif key == "resourceIds":
+            suggest = "resource_ids"
+        elif key == "scaleWithoutStart":
+            suggest = "scale_without_start"
+        elif key == "skipBootstrapScripts":
+            suggest = "skip_bootstrap_scripts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterStreamingTaskNodes. Access the value via the '{suggest}' property getter instead.")
@@ -3013,15 +3457,17 @@ class ClusterStreamingTaskNodes(dict):
                  assigned_roles: Optional[Sequence[_builtins.str]] = None,
                  data_volume_size: Optional[_builtins.int] = None,
                  data_volume_type: Optional[_builtins.str] = None,
-                 host_ips: Optional[Sequence[_builtins.str]] = None):
+                 host_ips: Optional[Sequence[_builtins.str]] = None,
+                 resource_ids: Optional[Sequence[_builtins.str]] = None,
+                 scale_without_start: Optional[_builtins.bool] = None,
+                 skip_bootstrap_scripts: Optional[_builtins.bool] = None):
         """
         :param _builtins.int data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param _builtins.str flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param _builtins.int node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param _builtins.int node_number: Specifies the number of nodes for the node group.
         :param _builtins.int root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param _builtins.str root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -3056,6 +3502,21 @@ class ClusterStreamingTaskNodes(dict):
                * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
                * `bootstrap_scripts/state` - The status of one bootstrap action script.
                The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+        :param Sequence[_builtins.str] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param _builtins.bool scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param _builtins.bool skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -3070,6 +3531,12 @@ class ClusterStreamingTaskNodes(dict):
             pulumi.set(__self__, "data_volume_type", data_volume_type)
         if host_ips is not None:
             pulumi.set(__self__, "host_ips", host_ips)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -3094,8 +3561,7 @@ class ClusterStreamingTaskNodes(dict):
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> _builtins.int:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -3175,6 +3641,42 @@ class ClusterStreamingTaskNodes(dict):
         """
         return pulumi.get(self, "host_ips")
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
 
 @pulumi.output_type
 class GetClustersClusterResult(dict):
@@ -3211,6 +3713,7 @@ class GetClustersClusterResult(dict):
                  master_node_product_id: _builtins.str,
                  master_node_size: _builtins.str,
                  master_node_spec_id: _builtins.str,
+                 mrs_ecs_default_agency: _builtins.str,
                  name: _builtins.str,
                  node_groups: Sequence['outputs.GetClustersClusterNodeGroupResult'],
                  node_public_cert_name: _builtins.str,
@@ -3283,6 +3786,7 @@ class GetClustersClusterResult(dict):
         :param _builtins.str master_node_product_id: Product ID of a Master node.
         :param _builtins.str master_node_size: Instance specifications of a Master node.
         :param _builtins.str master_node_spec_id: Specification ID of a Master node.
+        :param _builtins.str mrs_ecs_default_agency: The default agency name bound to the cluster node.
         :param _builtins.str name: The name of cluster.
         :param Sequence['GetClustersClusterNodeGroupArgs'] node_groups: List of Master, Core and Task nodes.
                The NodeGroup structure is documented below.
@@ -3388,6 +3892,7 @@ class GetClustersClusterResult(dict):
         pulumi.set(__self__, "master_node_product_id", master_node_product_id)
         pulumi.set(__self__, "master_node_size", master_node_size)
         pulumi.set(__self__, "master_node_spec_id", master_node_spec_id)
+        pulumi.set(__self__, "mrs_ecs_default_agency", mrs_ecs_default_agency)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_groups", node_groups)
         pulumi.set(__self__, "node_public_cert_name", node_public_cert_name)
@@ -3683,6 +4188,14 @@ class GetClustersClusterResult(dict):
         Specification ID of a Master node.
         """
         return pulumi.get(self, "master_node_spec_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mrsEcsDefaultAgency")
+    def mrs_ecs_default_agency(self) -> _builtins.str:
+        """
+        The default agency name bound to the cluster node.
+        """
+        return pulumi.get(self, "mrs_ecs_default_agency")
 
     @_builtins.property
     @pulumi.getter

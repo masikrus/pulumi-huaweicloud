@@ -393,7 +393,7 @@ class _WorkspaceState:
         pulumi.set(self, "workspace_agency_lists", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/workspace:Workspace")
+@pulumi.type_token("huaweicloud:Secmaster/workspace:Workspace")
 class Workspace(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -412,6 +412,7 @@ class Workspace(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Workspace resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -423,6 +424,7 @@ class Workspace(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Workspace resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param WorkspaceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -480,7 +482,7 @@ class Workspace(pulumi.CustomResource):
             __props__.__dict__["view_bind_name"] = None
             __props__.__dict__["workspace_agency_lists"] = None
         super(Workspace, __self__).__init__(
-            'huaweicloud:secmaster/workspace:Workspace',
+            'huaweicloud:Secmaster/workspace:Workspace',
             resource_name,
             __props__,
             opts)

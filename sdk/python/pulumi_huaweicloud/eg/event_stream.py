@@ -31,6 +31,7 @@ class EventStreamArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventStream resource.
+
         :param pulumi.Input['EventStreamOptionArgs'] option: Specifies the runtime configuration of the event stream.
                The targets structure is documented below.
         :param pulumi.Input['EventStreamRuleConfigArgs'] rule_config: Specifies the rule configuration of the event stream.
@@ -204,6 +205,7 @@ class _EventStreamState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EventStream resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the desired running status of the event stream.
                + **START**
                + **PAUSE**
@@ -546,41 +548,17 @@ class EventStream(pulumi.CustomResource):
 
         Streams can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/eventStream:EventStream test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `source`, `sink`.
-
         It is generally recommended running `pulumi preview` after importing a stream.
-
         You can then decide if changes should be applied to the stream, or the resource definition should be updated to
-
         align with the stream. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_eg_event_stream" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source, sink,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -739,41 +717,17 @@ class EventStream(pulumi.CustomResource):
 
         Streams can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/eventStream:EventStream test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `source`, `sink`.
-
         It is generally recommended running `pulumi preview` after importing a stream.
-
         You can then decide if changes should be applied to the stream, or the resource definition should be updated to
-
         align with the stream. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_eg_event_stream" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source, sink,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param EventStreamArgs args: The arguments to use to populate this resource's properties.

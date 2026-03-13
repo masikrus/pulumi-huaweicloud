@@ -28,6 +28,7 @@ class TemplateSparkArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TemplateSpark resource.
+
         :param pulumi.Input['TemplateSparkBodyArgs'] body: The content of the spark template.
         :param pulumi.Input[_builtins.str] description: The description of the spark template.
         :param pulumi.Input[_builtins.str] group: The group of the spark template.
@@ -111,6 +112,7 @@ class _TemplateSparkState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TemplateSpark resources.
+
         :param pulumi.Input['TemplateSparkBodyArgs'] body: The content of the spark template.
         :param pulumi.Input[_builtins.str] description: The description of the spark template.
         :param pulumi.Input[_builtins.str] group: The group of the spark template.
@@ -199,6 +201,7 @@ class TemplateSpark(pulumi.CustomResource):
                  __props__=None):
         """
         Create a TemplateSpark resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['TemplateSparkBodyArgs', 'TemplateSparkBodyArgsDict']] body: The content of the spark template.
@@ -214,6 +217,7 @@ class TemplateSpark(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a TemplateSpark resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param TemplateSparkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -24,6 +24,7 @@ class VipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VipAssociate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] port_ids: An array of one or more IDs of the ports to attach the vip to.
         :param pulumi.Input[_builtins.str] vip_id: The ID of vip to attach the ports to.
         :param pulumi.Input[_builtins.str] region: The region in which to create the vip associate resource. If omitted, the
@@ -83,6 +84,7 @@ class _VipAssociateState:
                  vip_subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VipAssociate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_addresses: The IP addresses of ports to attach the vip to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] port_ids: An array of one or more IDs of the ports to attach the vip to.
         :param pulumi.Input[_builtins.str] region: The region in which to create the vip associate resource. If omitted, the
@@ -210,14 +212,12 @@ class VipAssociate(pulumi.CustomResource):
         ## Import
 
         Vip associate can be imported using the `vip_id` and port IDs separated by slashes (no limit on the number of
-
         port IDs), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/vipAssociate:VipAssociate vip_associated vip_id/port1_id/port2_id
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,14 +254,12 @@ class VipAssociate(pulumi.CustomResource):
         ## Import
 
         Vip associate can be imported using the `vip_id` and port IDs separated by slashes (no limit on the number of
-
         port IDs), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Vpc/vipAssociate:VipAssociate vip_associated vip_id/port1_id/port2_id
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VipAssociateArgs args: The arguments to use to populate this resource's properties.

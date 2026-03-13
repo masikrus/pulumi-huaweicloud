@@ -28,9 +28,11 @@ class ComponentArgs:
                  action: Optional[pulumi.Input[_builtins.str]] = None,
                  configurations: Optional[pulumi.Input[Sequence[pulumi.Input['ComponentConfigurationArgs']]]] = None,
                  deploy_after_create: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Component resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the ID of the application to which the component belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application and the
@@ -49,10 +51,14 @@ class ComponentArgs:
                The configurations structure is documented below.
                
                > This parameter must be used together with `action` parameter.
+        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
                
                <a name="component_metadata"></a>
                The `metadata` block supports:
-        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -67,6 +73,8 @@ class ComponentArgs:
             pulumi.set(__self__, "configurations", configurations)
         if deploy_after_create is not None:
             pulumi.set(__self__, "deploy_after_create", deploy_after_create)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -147,9 +155,6 @@ class ComponentArgs:
         The configurations structure is documented below.
 
         > This parameter must be used together with `action` parameter.
-
-        <a name="component_metadata"></a>
-        The `metadata` block supports:
         """
         return pulumi.get(self, "configurations")
 
@@ -168,6 +173,24 @@ class ComponentArgs:
     @deploy_after_create.setter
     def deploy_after_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "deploy_after_create", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -193,6 +216,7 @@ class _ComponentState:
                  configurations: Optional[pulumi.Input[Sequence[pulumi.Input['ComponentConfigurationArgs']]]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  deploy_after_create: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input['ComponentMetadataArgs']] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -201,6 +225,7 @@ class _ComponentState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Component resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies operation type of the component.  
                The valid values are as follows:
                + **deploy**: Deploy component. Only valid for undeployed component.
@@ -213,11 +238,15 @@ class _ComponentState:
                The configurations structure is documented below.
                
                > This parameter must be used together with `action` parameter.
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the component.
+        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
                
                <a name="component_metadata"></a>
                The `metadata` block supports:
-        :param pulumi.Input[_builtins.str] created_at: The creation time of the component.
-        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application and the
                component belongs.
                Changing this creates a new resource.
@@ -247,6 +276,8 @@ class _ComponentState:
             pulumi.set(__self__, "created_at", created_at)
         if deploy_after_create is not None:
             pulumi.set(__self__, "deploy_after_create", deploy_after_create)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if metadata is not None:
@@ -309,9 +340,6 @@ class _ComponentState:
         The configurations structure is documented below.
 
         > This parameter must be used together with `action` parameter.
-
-        <a name="component_metadata"></a>
-        The `metadata` block supports:
         """
         return pulumi.get(self, "configurations")
 
@@ -342,6 +370,24 @@ class _ComponentState:
     @deploy_after_create.setter
     def deploy_after_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "deploy_after_create", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -426,7 +472,7 @@ class _ComponentState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:cae/component:Component")
+@pulumi.type_token("huaweicloud:Cae/component:Component")
 class Component(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -436,6 +482,7 @@ class Component(pulumi.CustomResource):
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ComponentConfigurationArgs', 'ComponentConfigurationArgsDict']]]]] = None,
                  deploy_after_create: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentMetadataArgs', 'ComponentMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -521,43 +568,26 @@ class Component(pulumi.CustomResource):
 
         ## Import
 
-        The CAE component can be imported using `environment_id`, `application_id` and `id`, separated by slashes (/), e.g.
-
-        bash
+        The component can be imported using `environment_id`, `application_id` and `id`, separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/component:Component test <environment_id>/<application_id>/<id>
+        $ pulumi import huaweicloud:Cae/component:Component test <environment_id>/<application_id>/<id>
+        ```
+
+        For the component with the `enterprise_project_id`, its enterprise project ID need to be specified additionanlly when
+        importing. All fields are separated by slashes (/), e.g.
+
+        ```sh
+        $ pulumi import huaweicloud:Cae/component:Component test <environment_id>/<application_id>/<id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `metadata.0.annotations`, `spec.0.build.0.parameters`, `action`, `configurations`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metadata.0.annotations, spec.0.build.0.parameters, action, configurations,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -572,10 +602,14 @@ class Component(pulumi.CustomResource):
                The configurations structure is documented below.
                
                > This parameter must be used together with `action` parameter.
+        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
                
                <a name="component_metadata"></a>
                The `metadata` block supports:
-        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application and the
                component belongs.
                Changing this creates a new resource.
@@ -673,43 +707,26 @@ class Component(pulumi.CustomResource):
 
         ## Import
 
-        The CAE component can be imported using `environment_id`, `application_id` and `id`, separated by slashes (/), e.g.
-
-        bash
+        The component can be imported using `environment_id`, `application_id` and `id`, separated by slashes (/), e.g.
 
         ```sh
-        $ pulumi import huaweicloud:cae/component:Component test <environment_id>/<application_id>/<id>
+        $ pulumi import huaweicloud:Cae/component:Component test <environment_id>/<application_id>/<id>
+        ```
+
+        For the component with the `enterprise_project_id`, its enterprise project ID need to be specified additionanlly when
+        importing. All fields are separated by slashes (/), e.g.
+
+        ```sh
+        $ pulumi import huaweicloud:Cae/component:Component test <environment_id>/<application_id>/<id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `metadata.0.annotations`, `spec.0.build.0.parameters`, `action`, `configurations`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              metadata.0.annotations, spec.0.build.0.parameters, action, configurations,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ComponentArgs args: The arguments to use to populate this resource's properties.
@@ -730,6 +747,7 @@ class Component(pulumi.CustomResource):
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ComponentConfigurationArgs', 'ComponentConfigurationArgsDict']]]]] = None,
                  deploy_after_create: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentMetadataArgs', 'ComponentMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -749,6 +767,7 @@ class Component(pulumi.CustomResource):
             __props__.__dict__["application_id"] = application_id
             __props__.__dict__["configurations"] = configurations
             __props__.__dict__["deploy_after_create"] = deploy_after_create
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -764,7 +783,7 @@ class Component(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Component, __self__).__init__(
-            'huaweicloud:cae/component:Component',
+            'huaweicloud:Cae/component:Component',
             resource_name,
             __props__,
             opts)
@@ -779,6 +798,7 @@ class Component(pulumi.CustomResource):
             configurations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ComponentConfigurationArgs', 'ComponentConfigurationArgsDict']]]]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             deploy_after_create: Optional[pulumi.Input[_builtins.bool]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             metadata: Optional[pulumi.Input[Union['ComponentMetadataArgs', 'ComponentMetadataArgsDict']]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -804,11 +824,15 @@ class Component(pulumi.CustomResource):
                The configurations structure is documented below.
                
                > This parameter must be used together with `action` parameter.
+        :param pulumi.Input[_builtins.str] created_at: The creation time of the component.
+        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
+               component belongs.
+               If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+               for enterprise users.
                
                <a name="component_metadata"></a>
                The `metadata` block supports:
-        :param pulumi.Input[_builtins.str] created_at: The creation time of the component.
-        :param pulumi.Input[_builtins.bool] deploy_after_create: Whether to deploy the component after creating the resource.
         :param pulumi.Input[_builtins.str] environment_id: Specifies the ID of the environment to which the application and the
                component belongs.
                Changing this creates a new resource.
@@ -836,6 +860,7 @@ class Component(pulumi.CustomResource):
         __props__.__dict__["configurations"] = configurations
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deploy_after_create"] = deploy_after_create
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["region"] = region
@@ -881,9 +906,6 @@ class Component(pulumi.CustomResource):
         The configurations structure is documented below.
 
         > This parameter must be used together with `action` parameter.
-
-        <a name="component_metadata"></a>
-        The `metadata` block supports:
         """
         return pulumi.get(self, "configurations")
 
@@ -902,6 +924,20 @@ class Component(pulumi.CustomResource):
         Whether to deploy the component after creating the resource.
         """
         return pulumi.get(self, "deploy_after_create")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the enterprise project to which the
+        component belongs.
+        If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+        for enterprise users.
+
+        <a name="component_metadata"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

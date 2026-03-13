@@ -137,7 +137,7 @@ def get_health_checks(enabled: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     health_check_id = config.require_object("healthCheckId")
-    test = huaweicloud.ga.get_health_checks(health_check_id=health_check_id)
+    test = huaweicloud.Ga.get_health_checks(health_check_id=health_check_id)
     ```
 
 
@@ -159,7 +159,7 @@ def get_health_checks(enabled: Optional[_builtins.str] = None,
     __args__['protocol'] = protocol
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getHealthChecks:getHealthChecks', __args__, opts=opts, typ=GetHealthChecksResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getHealthChecks:getHealthChecks', __args__, opts=opts, typ=GetHealthChecksResult).value
 
     return AwaitableGetHealthChecksResult(
         enabled=pulumi.get(__ret__, 'enabled'),
@@ -186,7 +186,7 @@ def get_health_checks_output(enabled: Optional[pulumi.Input[Optional[_builtins.s
 
     config = pulumi.Config()
     health_check_id = config.require_object("healthCheckId")
-    test = huaweicloud.ga.get_health_checks(health_check_id=health_check_id)
+    test = huaweicloud.Ga.get_health_checks(health_check_id=health_check_id)
     ```
 
 
@@ -208,7 +208,7 @@ def get_health_checks_output(enabled: Optional[pulumi.Input[Optional[_builtins.s
     __args__['protocol'] = protocol
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getHealthChecks:getHealthChecks', __args__, opts=opts, typ=GetHealthChecksResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getHealthChecks:getHealthChecks', __args__, opts=opts, typ=GetHealthChecksResult)
     return __ret__.apply(lambda __response__: GetHealthChecksResult(
         enabled=pulumi.get(__response__, 'enabled'),
         endpoint_group_id=pulumi.get(__response__, 'endpoint_group_id'),

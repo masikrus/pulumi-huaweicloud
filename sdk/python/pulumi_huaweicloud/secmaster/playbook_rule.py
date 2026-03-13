@@ -37,6 +37,7 @@ class PlaybookRuleArgs:
                  start_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookRule resource.
+
         :param pulumi.Input[_builtins.str] version_id: Specifies playbook version ID of the rule.
                
                Changing this parameter will create a new resource.
@@ -309,6 +310,7 @@ class _PlaybookRuleState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PlaybookRuleConditionArgs']]] conditions: Specifies the conditions of the rule.
                Required for event triggered playbooks.
                The conditions structure is documented below.
@@ -592,7 +594,7 @@ class _PlaybookRuleState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookRule:PlaybookRule")
+@pulumi.type_token("huaweicloud:Secmaster/playbookRule:PlaybookRule")
 class PlaybookRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -650,14 +652,12 @@ class PlaybookRule(pulumi.CustomResource):
         ## Import
 
         The playbook rule can be imported using  workspace ID, the playbook version ID and the playbook rule ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookRule:PlaybookRule test <workspace_id>/<playbook_version_id>/<playbook_rule_id>
+        $ pulumi import huaweicloud:Secmaster/playbookRule:PlaybookRule test <workspace_id>/<playbook_version_id>/<playbook_rule_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -739,14 +739,12 @@ class PlaybookRule(pulumi.CustomResource):
         ## Import
 
         The playbook rule can be imported using  workspace ID, the playbook version ID and the playbook rule ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookRule:PlaybookRule test <workspace_id>/<playbook_version_id>/<playbook_rule_id>
+        $ pulumi import huaweicloud:Secmaster/playbookRule:PlaybookRule test <workspace_id>/<playbook_version_id>/<playbook_rule_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookRuleArgs args: The arguments to use to populate this resource's properties.
@@ -807,7 +805,7 @@ class PlaybookRule(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(PlaybookRule, __self__).__init__(
-            'huaweicloud:secmaster/playbookRule:PlaybookRule',
+            'huaweicloud:Secmaster/playbookRule:PlaybookRule',
             resource_name,
             __props__,
             opts)

@@ -36,6 +36,7 @@ class FactoryScriptArgs:
                  target_status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FactoryScript resource.
+
         :param pulumi.Input[_builtins.str] connection_name: Specifies the connection name of script.
         :param pulumi.Input[_builtins.str] content: Specifies the script content. A maximum of 4 MB is supported.
         :param pulumi.Input[_builtins.str] type: Specifies the script type. The valid values are: **FlinkSQL**, **DLISQL**,
@@ -272,6 +273,7 @@ class _FactoryScriptState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FactoryScript resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['FactoryScriptApproverArgs']]] approvers: Specifies the approvers of script.
                The approvers structure is documented below.
                
@@ -573,39 +575,17 @@ class FactoryScript(pulumi.CustomResource):
 
         DataArts factory script can be imported using `<workspace_id>/<name>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryScript:FactoryScript test b41a17b18a814b118730a867cecb9952/test
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `approvers`, `target_status`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_factory_script" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              approvers, target_status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -671,39 +651,17 @@ class FactoryScript(pulumi.CustomResource):
 
         DataArts factory script can be imported using `<workspace_id>/<name>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryScript:FactoryScript test b41a17b18a814b118730a867cecb9952/test
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `approvers`, `target_status`.
 
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dataarts_factory_script" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              approvers, target_status,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param FactoryScriptArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,8 @@ __all__ = [
     'ApiFuncGraphPolicyBackendParamArgsDict',
     'ApiFuncGraphPolicyConditionArgs',
     'ApiFuncGraphPolicyConditionArgsDict',
+    'ApiFuncGraphPolicyOrderArgs',
+    'ApiFuncGraphPolicyOrderArgsDict',
     'ApiMockArgs',
     'ApiMockArgsDict',
     'ApiMockPolicyArgs',
@@ -33,10 +35,14 @@ __all__ = [
     'ApiMockPolicyBackendParamArgsDict',
     'ApiMockPolicyConditionArgs',
     'ApiMockPolicyConditionArgsDict',
+    'ApiMockPolicyOrderArgs',
+    'ApiMockPolicyOrderArgsDict',
     'ApiPublishmentHistoryArgs',
     'ApiPublishmentHistoryArgsDict',
     'ApiRequestParamArgs',
     'ApiRequestParamArgsDict',
+    'ApiRequestParamsOrderArgs',
+    'ApiRequestParamsOrderArgsDict',
     'ApiWebArgs',
     'ApiWebArgsDict',
     'ApiWebPolicyArgs',
@@ -45,6 +51,8 @@ __all__ = [
     'ApiWebPolicyBackendParamArgsDict',
     'ApiWebPolicyConditionArgs',
     'ApiWebPolicyConditionArgsDict',
+    'ApiWebPolicyOrderArgs',
+    'ApiWebPolicyOrderArgsDict',
     'ApplicationQuotaAssociateApplicationArgs',
     'ApplicationQuotaAssociateApplicationArgsDict',
     'ChannelHealthCheckArgs',
@@ -53,6 +61,8 @@ __all__ = [
     'ChannelMemberArgsDict',
     'ChannelMemberGroupArgs',
     'ChannelMemberGroupArgsDict',
+    'ChannelMemberGroupMicroserviceLabelArgs',
+    'ChannelMemberGroupMicroserviceLabelArgsDict',
     'ChannelMicroserviceArgs',
     'ChannelMicroserviceArgsDict',
     'ChannelMicroserviceCceConfigArgs',
@@ -61,6 +71,8 @@ __all__ = [
     'ChannelMicroserviceCseConfigArgsDict',
     'CustomAuthorizerIdentityArgs',
     'CustomAuthorizerIdentityArgsDict',
+    'GlobalCertificateBatchDomainsAssociateDomainArgs',
+    'GlobalCertificateBatchDomainsAssociateDomainArgsDict',
     'GroupEnvironmentArgs',
     'GroupEnvironmentArgsDict',
     'GroupEnvironmentVariableArgs',
@@ -85,56 +97,51 @@ __all__ = [
     'GetInstancesFilterTagArgsDict',
 ]
 
-MYPY = False
+class ApiBackendParamArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the location of the backend parameter.  
+    The valid values are **PATH**, **QUERY** and **HEADER**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-if not MYPY:
-    class ApiBackendParamArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the location of the backend parameter.  
-        The valid values are **PATH**, **QUERY** and **HEADER**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant or system parameter.  
+    The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    system_param_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the system parameter.  
+    The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant or system parameter.  
-        The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        system_param_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the system parameter.  
-        The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
-
-        <a name="apig_api_mock"></a>
-        The `mock` block supports:
-        """
-elif False:
-    ApiBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_mock"></a>
+    The `mock` block supports:
+    """
 
 @pulumi.input_type
 class ApiBackendParamArgs:
@@ -275,57 +282,54 @@ class ApiBackendParamArgs:
         pulumi.set(self, "system_param_type", value)
 
 
-if not MYPY:
-    class ApiFuncGraphArgsDict(TypedDict):
-        function_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the URN of the FunctionGraph function.
-        """
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiFuncGraphArgsDict(TypedDict):
+    function_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the URN of the FunctionGraph function.
+    """
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
-        """
-        function_alias_urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alias URN of the FunctionGraph function.  
-        The format is `{function_urn}:!{alias}`.
-        """
-        invocation_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the invocation mode of the FunctionGraph function.  
-        The valid values are **async** and **sync**, defaults to **sync**.
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    function_alias_urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias URN of the FunctionGraph function.  
+    The format is `{function_urn}:!{alias}`.
+    """
+    invocation_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the invocation mode of the FunctionGraph function.  
+    The valid values are **async** and **sync**, defaults to **sync**.
 
-        > Only **sync** is allowed for the **GRPCS** protocol type FunctionGraph backend.
-        """
-        network_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network architecture (framework) type of the FunctionGraph function.
-        **V1**: Non-VPC network framework.
-        **V2**: VPC network framework.
+    > Only **sync** is allowed for the **GRPCS** protocol type FunctionGraph backend.
+    """
+    network_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network architecture (framework) type of the FunctionGraph function.
+    **V1**: Non-VPC network framework.
+    **V2**: VPC network framework.
 
-        Defaults to **V1** and **V2** is required if the `request_protocol` is **GRPCS**.
-        """
-        request_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend request protocol. The valid values are **HTTP** and
-        **HTTPS**, defaults to **HTTPS**.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
-        valid value is range from `1` to `600,000`, defaults to `5,000`.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the FunctionGraph function.  
-        Required if the parameter `function_alias_urn` is omitted and this parameter is useless if the parameter
-        `function_alias_urn` is set.
-        """
-elif False:
-    ApiFuncGraphArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to **V1** and **V2** is required if the `request_protocol` is **GRPCS**.
+    """
+    request_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend request protocol. The valid values are **HTTP** and
+    **HTTPS**, defaults to **HTTPS**.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
+    valid value is range from `1` to `600,000`, defaults to `5,000`.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the FunctionGraph function.  
+    Required if the parameter `function_alias_urn` is omitted and this parameter is useless if the parameter
+    `function_alias_urn` is set.
+    """
 
 @pulumi.input_type
 class ApiFuncGraphArgs:
@@ -491,83 +495,80 @@ class ApiFuncGraphArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ApiFuncGraphPolicyArgsDict(TypedDict):
-        conditions: pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyConditionArgsDict']]]
-        """
-        Specifies an array of one or more policy conditions.  
-        Up to five conditions can be set.
-        The object structure is documented below.
-        """
-        function_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the URN of the FunctionGraph function.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiFuncGraphPolicyArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyConditionArgsDict']]]
+    """
+    Specifies an array of one or more policy conditions.  
+    Up to five conditions can be set.
+    The object structure is documented below.
+    """
+    function_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the URN of the FunctionGraph function.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
-        """
-        backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyBackendParamArgsDict']]]]
-        """
-        Specifies an array of one or more backend parameters. The maximum of request
-        parameters is 50. The object structure is documented above.
-        """
-        effective_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the effective mode of the backend policy. The valid values are **ALL**
-        and **ANY**, defaults to **ANY**.
-        """
-        function_alias_urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alias URN of the FunctionGraph function.  
-        The format is `{function_urn}:!{alias}`.
-        """
-        invocation_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The invocation mode of the FunctionGraph function.
-        """
-        invocation_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the invocation mode of the FunctionGraph function.  
-        The valid values are **async** and **sync**, defaults to **sync**.
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiFuncGraphPolicyBackendParamArgsDict']]]]
+    """
+    Specifies an array of one or more backend parameters. The maximum of request
+    parameters is 50. The object structure is documented above.
+    """
+    effective_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the effective mode of the backend policy. The valid values are **ALL**
+    and **ANY**, defaults to **ANY**.
+    """
+    function_alias_urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias URN of the FunctionGraph function.  
+    The format is `{function_urn}:!{alias}`.
+    """
+    invocation_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The invocation mode of the FunctionGraph function.
+    """
+    invocation_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the invocation mode of the FunctionGraph function.  
+    The valid values are **async** and **sync**, defaults to **sync**.
 
-        > Only **sync** is allowed for the **GRPCS** protocol type FunctionGraph backend.
-        """
-        network_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network architecture (framework) type of the FunctionGraph function.
-        **V1**: Non-VPC network framework.
-        **V2**: VPC network framework.
+    > Only **sync** is allowed for the **GRPCS** protocol type FunctionGraph backend.
+    """
+    network_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network architecture (framework) type of the FunctionGraph function.
+    **V1**: Non-VPC network framework.
+    **V2**: VPC network framework.
 
-        Defaults to **V1** and **V2** is required if the `request_protocol` is **GRPCS**.
-        """
-        request_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend request protocol. The valid values are **HTTP** and
-        **HTTPS**, defaults to **HTTPS**.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
-        valid value is range from `1` to `600,000`, defaults to `5,000`.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the FunctionGraph function.  
-        Required if the parameter `function_alias_urn` is omitted and this parameter is useless if the parameter
-        `function_alias_urn` is set.
-        """
-elif False:
-    ApiFuncGraphPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to **V1** and **V2** is required if the `request_protocol` is **GRPCS**.
+    """
+    request_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend request protocol. The valid values are **HTTP** and
+    **HTTPS**, defaults to **HTTPS**.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
+    valid value is range from `1` to `600,000`, defaults to `5,000`.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the FunctionGraph function.  
+    Required if the parameter `function_alias_urn` is omitted and this parameter is useless if the parameter
+    `function_alias_urn` is set.
+    """
 
 @pulumi.input_type
 class ApiFuncGraphPolicyArgs:
@@ -823,54 +824,51 @@ class ApiFuncGraphPolicyArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ApiFuncGraphPolicyBackendParamArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the location of the backend parameter.  
-        The valid values are **PATH**, **QUERY** and **HEADER**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiFuncGraphPolicyBackendParamArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the location of the backend parameter.  
+    The valid values are **PATH**, **QUERY** and **HEADER**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant or system parameter.  
-        The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        system_param_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the system parameter.  
-        The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant or system parameter.  
+    The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    system_param_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the system parameter.  
+    The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
 
-        <a name="apig_api_mock"></a>
-        The `mock` block supports:
-        """
-elif False:
-    ApiFuncGraphPolicyBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_mock"></a>
+    The `mock` block supports:
+    """
 
 @pulumi.input_type
 class ApiFuncGraphPolicyBackendParamArgs:
@@ -1011,70 +1009,67 @@ class ApiFuncGraphPolicyBackendParamArgs:
         pulumi.set(self, "system_param_type", value)
 
 
-if not MYPY:
-    class ApiFuncGraphPolicyConditionArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiFuncGraphPolicyConditionArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cookie parameter name.
-        This parameter is required if the policy type is **cookie**.
-        """
-        frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the frontend authentication parameter name.
-        This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
-        the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
-        frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
-        """
-        mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the location of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter location must exist in the orchestration rule bound to the API.
-        """
-        mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter name must exist in the orchestration rule bound to the API.
-        """
-        param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request parameter name.
-        This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend policy type.  
-        The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
-        """
-        sys_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the gateway built-in parameter name.
-        This parameter is required if the policy type is **system**.
-        The valid values are **req_path** and **req_method**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-elif False:
-    ApiFuncGraphPolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cookie parameter name.
+    This parameter is required if the policy type is **cookie**.
+    """
+    frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the frontend authentication parameter name.
+    This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
+    the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
+    frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
+    """
+    mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the location of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter location must exist in the orchestration rule bound to the API.
+    """
+    mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter name must exist in the orchestration rule bound to the API.
+    """
+    param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request parameter name.
+    This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy type.  
+    The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
+    """
+    sys_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the gateway built-in parameter name.
+    This parameter is required if the policy type is **system**.
+    The valid values are **req_path** and **req_method**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
 
 @pulumi.input_type
 class ApiFuncGraphPolicyConditionArgs:
@@ -1274,26 +1269,58 @@ class ApiFuncGraphPolicyConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ApiMockArgsDict(TypedDict):
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiFuncGraphPolicyOrderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
+@pulumi.input_type
+class ApiFuncGraphPolicyOrderArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        response: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
         """
-        Specifies the response content of the mock.  
-        The description contains a maximum of `2,048` characters and the angle brackets (< and >) are not allowed.
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        status_code: NotRequired[pulumi.Input[_builtins.int]]
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
         """
-        Specifies the custom status code of the mock response.
-        """
-elif False:
-    ApiMockArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class ApiMockArgsDict(TypedDict):
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
+
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the response content of the mock.  
+    The description contains a maximum of `2,048` characters and the angle brackets (< and >) are not allowed.
+    """
+    status_code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the custom status code of the mock response.
+    """
 
 @pulumi.input_type
 class ApiMockArgs:
@@ -1358,48 +1385,45 @@ class ApiMockArgs:
         pulumi.set(self, "status_code", value)
 
 
-if not MYPY:
-    class ApiMockPolicyArgsDict(TypedDict):
-        conditions: pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyConditionArgsDict']]]
-        """
-        Specifies an array of one or more policy conditions.  
-        Up to five conditions can be set.
-        The object structure is documented below.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiMockPolicyArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyConditionArgsDict']]]
+    """
+    Specifies an array of one or more policy conditions.  
+    Up to five conditions can be set.
+    The object structure is documented below.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
-        """
-        backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyBackendParamArgsDict']]]]
-        """
-        Specifies an array of one or more backend parameters. The maximum of request
-        parameters is 50. The object structure is documented above.
-        """
-        effective_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the effective mode of the backend policy. The valid values are **ALL**
-        and **ANY**, defaults to **ANY**.
-        """
-        response: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the response content of the mock.  
-        The description contains a maximum of `2,048` characters and the angle brackets (< and >) are not allowed.
-        """
-        status_code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the custom status code of the mock response.
-        """
-elif False:
-    ApiMockPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiMockPolicyBackendParamArgsDict']]]]
+    """
+    Specifies an array of one or more backend parameters. The maximum of request
+    parameters is 50. The object structure is documented above.
+    """
+    effective_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the effective mode of the backend policy. The valid values are **ALL**
+    and **ANY**, defaults to **ANY**.
+    """
+    response: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the response content of the mock.  
+    The description contains a maximum of `2,048` characters and the angle brackets (< and >) are not allowed.
+    """
+    status_code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the custom status code of the mock response.
+    """
 
 @pulumi.input_type
 class ApiMockPolicyArgs:
@@ -1538,54 +1562,51 @@ class ApiMockPolicyArgs:
         pulumi.set(self, "status_code", value)
 
 
-if not MYPY:
-    class ApiMockPolicyBackendParamArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the location of the backend parameter.  
-        The valid values are **PATH**, **QUERY** and **HEADER**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiMockPolicyBackendParamArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the location of the backend parameter.  
+    The valid values are **PATH**, **QUERY** and **HEADER**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant or system parameter.  
-        The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        system_param_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the system parameter.  
-        The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant or system parameter.  
+    The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    system_param_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the system parameter.  
+    The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
 
-        <a name="apig_api_mock"></a>
-        The `mock` block supports:
-        """
-elif False:
-    ApiMockPolicyBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_mock"></a>
+    The `mock` block supports:
+    """
 
 @pulumi.input_type
 class ApiMockPolicyBackendParamArgs:
@@ -1726,70 +1747,67 @@ class ApiMockPolicyBackendParamArgs:
         pulumi.set(self, "system_param_type", value)
 
 
-if not MYPY:
-    class ApiMockPolicyConditionArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiMockPolicyConditionArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cookie parameter name.
-        This parameter is required if the policy type is **cookie**.
-        """
-        frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the frontend authentication parameter name.
-        This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
-        the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
-        frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
-        """
-        mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the location of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter location must exist in the orchestration rule bound to the API.
-        """
-        mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter name must exist in the orchestration rule bound to the API.
-        """
-        param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request parameter name.
-        This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend policy type.  
-        The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
-        """
-        sys_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the gateway built-in parameter name.
-        This parameter is required if the policy type is **system**.
-        The valid values are **req_path** and **req_method**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-elif False:
-    ApiMockPolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cookie parameter name.
+    This parameter is required if the policy type is **cookie**.
+    """
+    frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the frontend authentication parameter name.
+    This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
+    the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
+    frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
+    """
+    mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the location of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter location must exist in the orchestration rule bound to the API.
+    """
+    mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter name must exist in the orchestration rule bound to the API.
+    """
+    param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request parameter name.
+    This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy type.  
+    The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
+    """
+    sys_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the gateway built-in parameter name.
+    This parameter is required if the policy type is **system**.
+    The valid values are **req_path** and **req_method**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
 
 @pulumi.input_type
 class ApiMockPolicyConditionArgs:
@@ -1989,18 +2007,50 @@ class ApiMockPolicyConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ApiPublishmentHistoryArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
+class ApiMockPolicyOrderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+
+@pulumi.input_type
+class ApiMockPolicyOrderArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the description of the current publishment.
+        :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
         """
-        version_id: NotRequired[pulumi.Input[_builtins.str]]
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the version ID of the current publishment.
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
         """
-elif False:
-    ApiPublishmentHistoryArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class ApiPublishmentHistoryArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the current publishment.
+    """
+    version_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version ID of the current publishment.
+    """
 
 @pulumi.input_type
 class ApiPublishmentHistoryArgs:
@@ -2041,84 +2091,81 @@ class ApiPublishmentHistoryArgs:
         pulumi.set(self, "version_id", value)
 
 
-if not MYPY:
-    class ApiRequestParamArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        default: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value of the request parameter.
-        The value contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant or system parameter.  
-        The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        enumeration: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the enumerated value(s).
-        Use commas to separate multiple enumeration values, such as **VALUE_A,VALUE_B**.
-        """
-        example: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the example value of the request parameter.  
-        The example contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the location of the backend parameter.  
-        The valid values are **PATH**, **QUERY** and **HEADER**.
-        """
-        maximum: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum value or size of the request parameter.
-        """
-        minimum: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum value or size of the request parameter.
+class ApiRequestParamArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    default: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value of the request parameter.
+    The value contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant or system parameter.  
+    The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    enumeration: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the enumerated value(s).
+    Use commas to separate multiple enumeration values, such as **VALUE_A,VALUE_B**.
+    """
+    example: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the example value of the request parameter.  
+    The example contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the location of the backend parameter.  
+    The valid values are **PATH**, **QUERY** and **HEADER**.
+    """
+    maximum: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum value or size of the request parameter.
+    """
+    minimum: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum value or size of the request parameter.
 
-        > For string type, The `maximum` and `minimum` means size. For number type, they means value.
-        """
-        orchestrations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of orchestration rule IDs which parameter used.  
-        The order of the IDs determines the priority of the rules, and the priority decreases according to the order of the
-        list elements.
+    > For string type, The `maximum` and `minimum` means size. For number type, they means value.
+    """
+    orchestrations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of orchestration rule IDs which parameter used.  
+    The order of the IDs determines the priority of the rules, and the priority decreases according to the order of the
+    list elements.
 
-        > 1. The **none_value** rule has the highest priority, a maximum of one **none_value** rule can be bound.<br>2. The
-        **default** rule has the lowest priority, a maximum of one **default** rule can be bound.<br>3. Only one parameter
-        of each API can be bound with unique orchestration rules.
+    > 1. The **none_value** rule has the highest priority, a maximum of one **none_value** rule can be bound.<br>2. The
+    **default** rule has the lowest priority, a maximum of one **default** rule can be bound.<br>3. Only one parameter
+    of each API can be bound with unique orchestration rules.
 
-        <a name="apig_api_backend_params"></a>
-        The `backend_params` block supports:
-        """
-        passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to transparently transfer the parameter.
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the request parameter is required.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-        valid_enable: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies whether to enable the parameter validation.
-        + **1**: enable
-        + **2**: disable (by default)
-        """
-elif False:
-    ApiRequestParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_backend_params"></a>
+    The `backend_params` block supports:
+    """
+    passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to transparently transfer the parameter.
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the request parameter is required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
+    valid_enable: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies whether to enable the parameter validation.
+    + **1**: enable
+    + **2**: disable (by default)
+    """
 
 @pulumi.input_type
 class ApiRequestParamArgs:
@@ -2378,77 +2425,109 @@ class ApiRequestParamArgs:
         pulumi.set(self, "valid_enable", value)
 
 
-if not MYPY:
-    class ApiWebArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request address, which can contain a maximum of `512` characters and
-        must comply with URI specifications.
-        + The address can contain request parameters enclosed with brackets ({}).
-        + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-) and
-        underscores (_) and must comply with URI specifications.
-        + The address can contain environment variables, each starting with a letter and consisting of `3` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed in environment variables.
-        """
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiRequestParamsOrderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
+@pulumi.input_type
+class ApiRequestParamsOrderArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        backend_address: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
         """
-        Specifies the backend service address.  
-        The value which consists of a domain name or IP address, and a port number, with not more than `255` characters.
-        The backend service address must be in the format "{host name}:{Port number}", for example, `apig.example.com:7443`.
-        If the port number is not specified, the default HTTPS port `443`, or the default HTTP port `80` is used.
-        The backend service address can contain environment variables, each starting with a letter and consisting of `3` to
-        `32` characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the proxy host header.  
-        The host header can be customized for requests to be forwarded to cloud servers through the VPC channel.
-        By default, the original host header of the request is used.
-        """
-        request_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend request method of the API.  
-        The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
-        """
-        request_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend request protocol. The valid values are **HTTP** and
-        **HTTPS**, defaults to **HTTPS**.
-        """
-        retry_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of retry attempts to request the backend service.
-        The valid value ranges from `-1` to `10`, defaults to `-1`.
-        `-1` indicates that idempotent APIs will retry once and non-idempotent APIs will not retry.
-        **POST** and **PATCH** are not-idempotent.
-        **GET**, **HEAD**, **PUT**, **OPTIONS** and **DELETE** are idempotent.
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
-        > When the (web) backend uses the channel, the `retry_count` must be less than the number of available backend
-        servers in the channel.
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
         """
-        Specifies whether to enable two-way authentication, defaults to **false**.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
-        valid value is range from `1` to `600,000`, defaults to `5,000`.
-        """
-        vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the VPC channel ID.  
-        This parameter and `backend_address` are alternative.
-        """
-elif False:
-    ApiWebArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class ApiWebArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request address, which can contain a maximum of `512` characters and
+    must comply with URI specifications.
+    + The address can contain request parameters enclosed with brackets ({}).
+    + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-) and
+    underscores (_) and must comply with URI specifications.
+    + The address can contain environment variables, each starting with a letter and consisting of `3` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed in environment variables.
+    """
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
+
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    backend_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend service address.  
+    The value which consists of a domain name or IP address, and a port number, with not more than `255` characters.
+    The backend service address must be in the format "{host name}:{Port number}", for example, `apig.example.com:7443`.
+    If the port number is not specified, the default HTTPS port `443`, or the default HTTP port `80` is used.
+    The backend service address can contain environment variables, each starting with a letter and consisting of `3` to
+    `32` characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the proxy host header.  
+    The host header can be customized for requests to be forwarded to cloud servers through the VPC channel.
+    By default, the original host header of the request is used.
+    """
+    request_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend request method of the API.  
+    The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
+    """
+    request_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend request protocol. The valid values are **HTTP** and
+    **HTTPS**, defaults to **HTTPS**.
+    """
+    retry_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of retry attempts to request the backend service.
+    The valid value ranges from `-1` to `10`, defaults to `-1`.
+    `-1` indicates that idempotent APIs will retry once and non-idempotent APIs will not retry.
+    **POST** and **PATCH** are not-idempotent.
+    **GET**, **HEAD**, **PUT**, **OPTIONS** and **DELETE** are idempotent.
+
+    > When the (web) backend uses the channel, the `retry_count` must be less than the number of available backend
+    servers in the channel.
+    """
+    ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable two-way authentication, defaults to **false**.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
+    valid value is range from `1` to `600,000`, defaults to `5,000`.
+    """
+    vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC channel ID.  
+    This parameter and `backend_address` are alternative.
+    """
 
 @pulumi.input_type
 class ApiWebArgs:
@@ -2670,95 +2749,92 @@ class ApiWebArgs:
         pulumi.set(self, "vpc_channel_id", value)
 
 
-if not MYPY:
-    class ApiWebPolicyArgsDict(TypedDict):
-        conditions: pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyConditionArgsDict']]]
-        """
-        Specifies an array of one or more policy conditions.  
-        Up to five conditions can be set.
-        The object structure is documented below.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request address, which can contain a maximum of `512` characters and
-        must comply with URI specifications.
-        + The address can contain request parameters enclosed with brackets ({}).
-        + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-) and
-        underscores (_) and must comply with URI specifications.
-        + The address can contain environment variables, each starting with a letter and consisting of `3` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed in environment variables.
-        """
-        request_method: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request method of the API.  
-        The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
-        """
-        authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the backend custom authorization.
+class ApiWebPolicyArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyConditionArgsDict']]]
+    """
+    Specifies an array of one or more policy conditions.  
+    Up to five conditions can be set.
+    The object structure is documented below.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request address, which can contain a maximum of `512` characters and
+    must comply with URI specifications.
+    + The address can contain request parameters enclosed with brackets ({}).
+    + The address can contain special characters, such as asterisks (*), percent signs (%), hyphens (-) and
+    underscores (_) and must comply with URI specifications.
+    + The address can contain environment variables, each starting with a letter and consisting of `3` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed in environment variables.
+    """
+    request_method: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request method of the API.  
+    The valid types are **GET**, **POST**, **PUT**, **DELETE**, **HEAD**, **PATCH**, **OPTIONS** and **ANY**.
+    """
+    authorizer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the backend custom authorization.
 
-        <a name="apig_api_conditions"></a>
-        The `conditions` block supports:
-        """
-        backend_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend service address.  
-        The value which consists of a domain name or IP address, and a port number, with not more than `255` characters.
-        The backend service address must be in the format "{host name}:{Port number}", for example, `apig.example.com:7443`.
-        If the port number is not specified, the default HTTPS port `443`, or the default HTTP port `80` is used.
-        The backend service address can contain environment variables, each starting with a letter and consisting of `3` to
-        `32` characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
-        """
-        backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyBackendParamArgsDict']]]]
-        """
-        Specifies an array of one or more backend parameters. The maximum of request
-        parameters is 50. The object structure is documented above.
-        """
-        effective_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the effective mode of the backend policy. The valid values are **ALL**
-        and **ANY**, defaults to **ANY**.
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the proxy host header.  
-        The host header can be customized for requests to be forwarded to cloud servers through the VPC channel.
-        By default, the original host header of the request is used.
-        """
-        request_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend request protocol. The valid values are **HTTP** and
-        **HTTPS**, defaults to **HTTPS**.
-        """
-        retry_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of retry attempts to request the backend service.
-        The valid value ranges from `-1` to `10`, defaults to `-1`.
-        `-1` indicates that idempotent APIs will retry once and non-idempotent APIs will not retry.
-        **POST** and **PATCH** are not-idempotent.
-        **GET**, **HEAD**, **PUT**, **OPTIONS** and **DELETE** are idempotent.
+    <a name="apig_api_conditions"></a>
+    The `conditions` block supports:
+    """
+    backend_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend service address.  
+    The value which consists of a domain name or IP address, and a port number, with not more than `255` characters.
+    The backend service address must be in the format "{host name}:{Port number}", for example, `apig.example.com:7443`.
+    If the port number is not specified, the default HTTPS port `443`, or the default HTTP port `80` is used.
+    The backend service address can contain environment variables, each starting with a letter and consisting of `3` to
+    `32` characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
+    """
+    backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApiWebPolicyBackendParamArgsDict']]]]
+    """
+    Specifies an array of one or more backend parameters. The maximum of request
+    parameters is 50. The object structure is documented above.
+    """
+    effective_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the effective mode of the backend policy. The valid values are **ALL**
+    and **ANY**, defaults to **ANY**.
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the proxy host header.  
+    The host header can be customized for requests to be forwarded to cloud servers through the VPC channel.
+    By default, the original host header of the request is used.
+    """
+    request_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend request protocol. The valid values are **HTTP** and
+    **HTTPS**, defaults to **HTTPS**.
+    """
+    retry_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of retry attempts to request the backend service.
+    The valid value ranges from `-1` to `10`, defaults to `-1`.
+    `-1` indicates that idempotent APIs will retry once and non-idempotent APIs will not retry.
+    **POST** and **PATCH** are not-idempotent.
+    **GET**, **HEAD**, **PUT**, **OPTIONS** and **DELETE** are idempotent.
 
-        > When the (web) backend uses the channel, the `retry_count` must be less than the number of available backend
-        servers in the channel.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
-        valid value is range from `1` to `600,000`, defaults to `5,000`.
-        """
-        vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the VPC channel ID.  
-        This parameter and `backend_address` are alternative.
-        """
-elif False:
-    ApiWebPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    > When the (web) backend uses the channel, the `retry_count` must be less than the number of available backend
+    servers in the channel.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout, in ms, which allowed for APIG to request the backend service. The
+    valid value is range from `1` to `600,000`, defaults to `5,000`.
+    """
+    vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC channel ID.  
+    This parameter and `backend_address` are alternative.
+    """
 
 @pulumi.input_type
 class ApiWebPolicyArgs:
@@ -3037,54 +3113,51 @@ class ApiWebPolicyArgs:
         pulumi.set(self, "vpc_channel_id", value)
 
 
-if not MYPY:
-    class ApiWebPolicyBackendParamArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the location of the backend parameter.  
-        The valid values are **PATH**, **QUERY** and **HEADER**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend policy name.  
-        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
-        It must start with a letter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiWebPolicyBackendParamArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the location of the backend parameter.  
+    The valid values are **PATH**, **QUERY** and **HEADER**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant or system parameter.  
-        The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
-        """
-        system_param_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the system parameter.  
-        The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant or system parameter.  
+    The description contains a maximum of `255` characters and the angle brackets (< and >) are not allowed.
+    """
+    system_param_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the system parameter.  
+    The valid values are **frontend**, **backend** and **internal**, defaults to **internal**.
 
-        <a name="apig_api_mock"></a>
-        The `mock` block supports:
-        """
-elif False:
-    ApiWebPolicyBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="apig_api_mock"></a>
+    The `mock` block supports:
+    """
 
 @pulumi.input_type
 class ApiWebPolicyBackendParamArgs:
@@ -3225,70 +3298,67 @@ class ApiWebPolicyBackendParamArgs:
         pulumi.set(self, "system_param_type", value)
 
 
-if not MYPY:
-    class ApiWebPolicyConditionArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the backend policy.  
-        For a condition with the input parameter source:
-        + If the condition type is **Enumerated**, separate condition values with commas.
-        + If the condition type is **Matching**, enter a regular expression compatible with PERL.
+class ApiWebPolicyConditionArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the backend policy.  
+    For a condition with the input parameter source:
+    + If the condition type is **Enumerated**, separate condition values with commas.
+    + If the condition type is **Matching**, enter a regular expression compatible with PERL.
 
-        For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
-        address format is supported.
+    For a condition with the Source IP address source, enter IPv4 addresses and separate them with commas. The CIDR
+    address format is supported.
 
-        For a condition with the input parameter source:
-        When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
-        **HEAD** or **OPTIONS**.
-        """
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cookie parameter name.
-        This parameter is required if the policy type is **cookie**.
-        """
-        frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the frontend authentication parameter name.
-        This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
-        the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
-        frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
-        """
-        mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the location of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter location must exist in the orchestration rule bound to the API.
-        """
-        mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of a parameter generated after orchestration.
-        This parameter is required if the policy type is **orchestration**.
-        The generated parameter name must exist in the orchestration rule bound to the API.
-        """
-        param_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request parameter name.
-        This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend policy type.  
-        The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
-        """
-        sys_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the gateway built-in parameter name.
-        This parameter is required if the policy type is **system**.
-        The valid values are **req_path** and **req_method**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition type of the backend policy.  
-        The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
-        When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
-        """
-elif False:
-    ApiWebPolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+    For a condition with the input parameter source:
+    When the `sys_name` is **req_method**, the valid values are **GET**, **POST**, **DELETE**, **PUT**, **PATCH**,
+    **HEAD** or **OPTIONS**.
+    """
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cookie parameter name.
+    This parameter is required if the policy type is **cookie**.
+    """
+    frontend_authorizer_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the frontend authentication parameter name.
+    This parameter is required if the policy type is **frontend_authorizer**. It consists of two parts,
+    the first part is the fixed format **$context.authorizer.frontend.**, and the second part is the
+    frontend authentication parameter name. e.g. **$context.authorizer.frontend.user_name**.
+    """
+    mapped_param_location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the location of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter location must exist in the orchestration rule bound to the API.
+    """
+    mapped_param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of a parameter generated after orchestration.
+    This parameter is required if the policy type is **orchestration**.
+    The generated parameter name must exist in the orchestration rule bound to the API.
+    """
+    param_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request parameter name.
+    This parameter is required if the policy type is **param**. The valid values are **user_age** and **X-TEST-ENUM**.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy type.  
+    The valid values are **param**, **source**, **system**, **cookie** and **frontend_authorizer**, defaults to **source**.
+    """
+    sys_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the gateway built-in parameter name.
+    This parameter is required if the policy type is **system**.
+    The valid values are **req_path** and **req_method**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition type of the backend policy.  
+    The valid values are **Equal**, **Enumerated** and **Matching**, defaults to **Equal**.
+    When the `sys_name` is **req_method**, the valid values are **Equal** and **Enumerated**.
+    """
 
 @pulumi.input_type
 class ApiWebPolicyConditionArgs:
@@ -3488,18 +3558,50 @@ class ApiWebPolicyConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ApplicationQuotaAssociateApplicationArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
+class ApiWebPolicyOrderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend policy name.  
+    The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+    It must start with a letter.
+    """
+
+@pulumi.input_type
+class ApiWebPolicyOrderArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the application ID bound to the application quota.
+        :param pulumi.Input[_builtins.str] name: Specifies the backend policy name.  
+               The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+               It must start with a letter.
         """
-        bind_time: NotRequired[pulumi.Input[_builtins.str]]
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The binding time, in RFC3339 format.
+        Specifies the backend policy name.  
+        The valid length is limited from `3` to `64`, only letters, digits and underscores (_) are allowed.
+        It must start with a letter.
         """
-elif False:
-    ApplicationQuotaAssociateApplicationArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class ApplicationQuotaAssociateApplicationArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the application ID bound to the application quota.
+    """
+    bind_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The binding time, in RFC3339 format.
+    """
 
 @pulumi.input_type
 class ApplicationQuotaAssociateApplicationArgs:
@@ -3539,78 +3641,75 @@ class ApplicationQuotaAssociateApplicationArgs:
         pulumi.set(self, "bind_time", value)
 
 
-if not MYPY:
-    class ChannelHealthCheckArgsDict(TypedDict):
-        interval: pulumi.Input[_builtins.int]
-        """
-        Specifies the interval between consecutive checks, in second.  
-        The valid value ranges from `1` to `300`.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the microservice for performing health check on backend servers.  
-        The valid values are **TCP**, **HTTP** and **HTTPS**, defaults to **TCP**.
-        """
-        threshold_abnormal: pulumi.Input[_builtins.int]
-        """
-        Specifies the unhealthy threshold, which refers to the number of consecutive
-        failed checks required for a backend server to be considered unhealthy.
-        The valid value ranges from `1` to `10`.
-        """
-        threshold_normal: pulumi.Input[_builtins.int]
-        """
-        Specifies the the healthy threshold, which refers to the number of consecutive
-        successful checks required for a backend server to be considered healthy.
-        The valid value ranges from `1` to `10`.
-        """
-        timeout: pulumi.Input[_builtins.int]
-        """
-        Specifies the timeout for determining whether a health check fails, in second.  
-        The value must be less than the value of the time `interval`.
-        The valid value ranges from `1` to `30`.
-        """
-        enable_client_ssl: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable two-way authentication.  
-        Defaults to **false**.
-        """
-        http_codes: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the response codes for determining a successful HTTP response.  
-        The valid value ranges from `100` to `599` and the valid formats are as follows:
-        + The multiple values, for example, **200,201,202**.
-        + The range, for example, **200-299**.
-        + Both multiple values and ranges, for example, **201,202,210-299**.
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request method for health check.  
-        The valid values are **GET** and **HEAD**.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination path for health checks.  
-        Required if the `protocol` is **HTTP** or **HTTPS**.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the destination host port for health check.  
-        The valid value ranges from `0` to `65,535`.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the status of health check.  
-        The valid values are as follows:
-        + **1**: Normal.
-        + **2**: Abnormal.
+class ChannelHealthCheckArgsDict(TypedDict):
+    interval: pulumi.Input[_builtins.int]
+    """
+    Specifies the interval between consecutive checks, in second.  
+    The valid value ranges from `1` to `300`.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the microservice for performing health check on backend servers.  
+    The valid values are **TCP**, **HTTP** and **HTTPS**, defaults to **TCP**.
+    """
+    threshold_abnormal: pulumi.Input[_builtins.int]
+    """
+    Specifies the unhealthy threshold, which refers to the number of consecutive
+    failed checks required for a backend server to be considered unhealthy.
+    The valid value ranges from `1` to `10`.
+    """
+    threshold_normal: pulumi.Input[_builtins.int]
+    """
+    Specifies the the healthy threshold, which refers to the number of consecutive
+    successful checks required for a backend server to be considered healthy.
+    The valid value ranges from `1` to `10`.
+    """
+    timeout: pulumi.Input[_builtins.int]
+    """
+    Specifies the timeout for determining whether a health check fails, in second.  
+    The value must be less than the value of the time `interval`.
+    The valid value ranges from `1` to `30`.
+    """
+    enable_client_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable two-way authentication.  
+    Defaults to **false**.
+    """
+    http_codes: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the response codes for determining a successful HTTP response.  
+    The valid value ranges from `100` to `599` and the valid formats are as follows:
+    + The multiple values, for example, **200,201,202**.
+    + The range, for example, **200-299**.
+    + Both multiple values and ranges, for example, **201,202,210-299**.
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request method for health check.  
+    The valid values are **GET** and **HEAD**.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination path for health checks.  
+    Required if the `protocol` is **HTTP** or **HTTPS**.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the destination host port for health check.  
+    The valid value ranges from `0` to `65,535`.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the status of health check.  
+    The valid values are as follows:
+    + **1**: Normal.
+    + **2**: Abnormal.
 
-        Defaults to `1` (normal).
+    Defaults to `1` (normal).
 
-        <a name="channel_microservice"></a>
-        The `microservice` block supports:
-        """
-elif False:
-    ChannelHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="channel_microservice"></a>
+    The `microservice` block supports:
+    """
 
 @pulumi.input_type
 class ChannelHealthCheckArgs:
@@ -3838,58 +3937,55 @@ class ChannelHealthCheckArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ChannelMemberArgsDict(TypedDict):
-        group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address each backend servers.
-        If omitted, means that all backend servers are both in one group.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address each backend servers.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ECS ID for each backend servers.
+class ChannelMemberArgsDict(TypedDict):
+    group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address each backend servers.
+    If omitted, means that all backend servers are both in one group.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address each backend servers.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ECS ID for each backend servers.
 
-        > One of the parameter `member.host` and `member.id` must be set if `member_type` is **ecs**.
-        The parameter `member.host` and `member.id` are alternative.
-        """
-        is_backup: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this member is the backup member.  
-        Defaults to **false**.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the backend server.  
-        Required if the parameter `member.id` is set.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the destination host port for health check.  
-        The valid value ranges from `0` to `65,535`.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the status of health check.  
-        The valid values are as follows:
-        + **1**: Normal.
-        + **2**: Abnormal.
+    > One of the parameter `member.host` and `member.id` must be set if `member_type` is **ecs**.
+    The parameter `member.host` and `member.id` are alternative.
+    """
+    is_backup: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this member is the backup member.  
+    Defaults to **false**.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the backend server.  
+    Required if the parameter `member.id` is set.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the destination host port for health check.  
+    The valid value ranges from `0` to `65,535`.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the status of health check.  
+    The valid values are as follows:
+    + **1**: Normal.
+    + **2**: Abnormal.
 
-        Defaults to `1` (normal).
+    Defaults to `1` (normal).
 
-        <a name="channel_microservice"></a>
-        The `microservice` block supports:
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the weight of current backend server.  
-        The valid value ranges from `0` to `10,000`, defaults to `0`.
-        """
-elif False:
-    ChannelMemberArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="channel_microservice"></a>
+    The `microservice` block supports:
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the weight of current backend server.  
+    The valid value ranges from `0` to `10,000`, defaults to `0`.
+    """
 
 @pulumi.input_type
 class ChannelMemberArgs:
@@ -4058,45 +4154,42 @@ class ChannelMemberArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ChannelMemberGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the backend server.  
-        Required if the parameter `member.id` is set.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the member group.
-        """
-        microservice_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the microservice tags of the backend server group.
-        """
-        microservice_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the microservice port of the backend server group.  
-        The valid value ranges from `0` to `65,535`.
-        """
-        microservice_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the microservice version of the backend server group.
-        """
-        reference_vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the reference load balance channel.
-        This parameter is only available if the `type` is **reference**.
+class ChannelMemberGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the backend server.  
+    Required if the parameter `member.id` is set.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the member group.
+    """
+    microservice_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the microservice tags of the backend server group.
+    """
+    microservice_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the microservice port of the backend server group.  
+    The valid value ranges from `0` to `65,535`.
+    """
+    microservice_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the microservice version of the backend server group.
+    """
+    reference_vpc_channel_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the reference load balance channel.
+    This parameter is only available if the `type` is **reference**.
 
-        <a name="channel_members"></a>
-        The `member` block supports:
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the weight of current backend server.  
-        The valid value ranges from `0` to `10,000`, defaults to `0`.
-        """
-elif False:
-    ChannelMemberGroupArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="channel_members"></a>
+    The `member` block supports:
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the weight of current backend server.  
+    The valid value ranges from `0` to `10,000`, defaults to `0`.
+    """
 
 @pulumi.input_type
 class ChannelMemberGroupArgs:
@@ -4230,22 +4323,66 @@ class ChannelMemberGroupArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ChannelMicroserviceArgsDict(TypedDict):
-        cce_config: NotRequired[pulumi.Input['ChannelMicroserviceCceConfigArgsDict']]
-        """
-        Specifies the CCE microservice details.  
-        The object structure is documented below.
+class ChannelMemberGroupMicroserviceLabelArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the microservice label.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value of the microservice label.
+    """
 
-        <a name="microservice_cce_config"></a>
-        The `cce_config` block supports:
+@pulumi.input_type
+class ChannelMemberGroupMicroserviceLabelArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
         """
-        cse_config: NotRequired[pulumi.Input['ChannelMicroserviceCseConfigArgsDict']]
+        :param pulumi.Input[_builtins.str] name: The name of the microservice label.
+        :param pulumi.Input[_builtins.str] value: The value of the microservice label.
         """
-        schema:Internal; The CSE microservice details.
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
         """
-elif False:
-    ChannelMicroserviceArgsDict: TypeAlias = Mapping[str, Any]
+        The name of the microservice label.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value of the microservice label.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class ChannelMicroserviceArgsDict(TypedDict):
+    cce_config: NotRequired[pulumi.Input['ChannelMicroserviceCceConfigArgsDict']]
+    """
+    Specifies the CCE microservice details.  
+    The object structure is documented below.
+
+    <a name="microservice_cce_config"></a>
+    The `cce_config` block supports:
+    """
+    cse_config: NotRequired[pulumi.Input['ChannelMicroserviceCseConfigArgsDict']]
+    """
+    schema:Internal; The CSE microservice details.
+    """
 
 @pulumi.input_type
 class ChannelMicroserviceArgs:
@@ -4294,37 +4431,34 @@ class ChannelMicroserviceArgs:
         pulumi.set(self, "cse_config", value)
 
 
-if not MYPY:
-    class ChannelMicroserviceCceConfigArgsDict(TypedDict):
-        cluster_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the CCE cluster ID.
-        """
-        namespace: pulumi.Input[_builtins.str]
-        """
-        Specifies the namespace, such as the default namespace for CCE cluster: **default**.
-        """
-        workload_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the workload type.
-        + **deployment**: Stateless load.
-        + **statefulset**: Stateful load.
-        + **daemonset**: Daemons set.
-        """
-        label_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service label key.
-        """
-        label_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the service label value.
-        """
-        workload_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The workload name.
-        """
-elif False:
-    ChannelMicroserviceCceConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ChannelMicroserviceCceConfigArgsDict(TypedDict):
+    cluster_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the CCE cluster ID.
+    """
+    namespace: pulumi.Input[_builtins.str]
+    """
+    Specifies the namespace, such as the default namespace for CCE cluster: **default**.
+    """
+    workload_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the workload type.
+    + **deployment**: Stateless load.
+    + **statefulset**: Stateful load.
+    + **daemonset**: Daemons set.
+    """
+    label_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service label key.
+    """
+    label_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the service label value.
+    """
+    workload_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The workload name.
+    """
 
 @pulumi.input_type
 class ChannelMicroserviceCceConfigArgs:
@@ -4432,18 +4566,15 @@ class ChannelMicroserviceCceConfigArgs:
         pulumi.set(self, "workload_name", value)
 
 
-if not MYPY:
-    class ChannelMicroserviceCseConfigArgsDict(TypedDict):
-        engine_id: pulumi.Input[_builtins.str]
-        """
-        schema:Internal; The microservice engine ID.
-        """
-        service_id: pulumi.Input[_builtins.str]
-        """
-        schema:Internal; The microservice ID.
-        """
-elif False:
-    ChannelMicroserviceCseConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ChannelMicroserviceCseConfigArgsDict(TypedDict):
+    engine_id: pulumi.Input[_builtins.str]
+    """
+    schema:Internal; The microservice engine ID.
+    """
+    service_id: pulumi.Input[_builtins.str]
+    """
+    schema:Internal; The microservice ID.
+    """
 
 @pulumi.input_type
 class ChannelMicroserviceCseConfigArgs:
@@ -4482,25 +4613,22 @@ class ChannelMicroserviceCseConfigArgs:
         pulumi.set(self, "service_id", value)
 
 
-if not MYPY:
-    class CustomAuthorizerIdentityArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter location, which support **HEADER** and **QUERY**.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter to be verified.
-        The parameter includes front-end and back-end parameters.
-        """
-        validation: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter verification expression.
-        If omitted, the custom authorizer will not perform verification.
-        The valid value is range form `1` to `2,048`.
-        """
-elif False:
-    CustomAuthorizerIdentityArgsDict: TypeAlias = Mapping[str, Any]
+class CustomAuthorizerIdentityArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter location, which support **HEADER** and **QUERY**.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter to be verified.
+    The parameter includes front-end and back-end parameters.
+    """
+    validation: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter verification expression.
+    If omitted, the custom authorizer will not perform verification.
+    The valid value is range form `1` to `2,048`.
+    """
 
 @pulumi.input_type
 class CustomAuthorizerIdentityArgs:
@@ -4561,24 +4689,170 @@ class CustomAuthorizerIdentityArgs:
         pulumi.set(self, "validation", value)
 
 
-if not MYPY:
-    class GroupEnvironmentArgsDict(TypedDict):
-        environment_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the environment ID of the associated group.
+class GlobalCertificateBatchDomainsAssociateDomainArgsDict(TypedDict):
+    api_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the API group to which the domain belongs.
+    """
+    api_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the API group to which the domain belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the associated domain.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the dedicated instance to which the domain belongs.
+    """
+    min_ssl_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The minimum SSL protocol version of the domain.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The CNAME resolution status of the domain name.
+    """
+    url_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The associated domain name.
+    """
 
-        <a name="group_environment_variable"></a>
-        The `variable` block supports:
+@pulumi.input_type
+class GlobalCertificateBatchDomainsAssociateDomainArgs:
+    def __init__(__self__, *,
+                 api_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_group_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 min_ssl_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.int]] = None,
+                 url_domain: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        variables: pulumi.Input[Sequence[pulumi.Input['GroupEnvironmentVariableArgsDict']]]
+        :param pulumi.Input[_builtins.str] api_group_id: The ID of the API group to which the domain belongs.
+        :param pulumi.Input[_builtins.str] api_group_name: The name of the API group to which the domain belongs.
+        :param pulumi.Input[_builtins.str] id: The ID of the associated domain.
+        :param pulumi.Input[_builtins.str] instance_id: The ID of the dedicated instance to which the domain belongs.
+        :param pulumi.Input[_builtins.str] min_ssl_version: The minimum SSL protocol version of the domain.
+        :param pulumi.Input[_builtins.int] status: The CNAME resolution status of the domain name.
+        :param pulumi.Input[_builtins.str] url_domain: The associated domain name.
         """
-        Specifies an array of one or more environment variables.  
-        The object structure is documented below.
+        if api_group_id is not None:
+            pulumi.set(__self__, "api_group_id", api_group_id)
+        if api_group_name is not None:
+            pulumi.set(__self__, "api_group_name", api_group_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if min_ssl_version is not None:
+            pulumi.set(__self__, "min_ssl_version", min_ssl_version)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if url_domain is not None:
+            pulumi.set(__self__, "url_domain", url_domain)
 
-        > The environment variables of different groups are isolated in the same environment.
+    @_builtins.property
+    @pulumi.getter(name="apiGroupId")
+    def api_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    GroupEnvironmentArgsDict: TypeAlias = Mapping[str, Any]
+        The ID of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_id")
+
+    @api_group_id.setter
+    def api_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiGroupName")
+    def api_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the API group to which the domain belongs.
+        """
+        return pulumi.get(self, "api_group_name")
+
+    @api_group_name.setter
+    def api_group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_group_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the associated domain.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the dedicated instance to which the domain belongs.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minSslVersion")
+    def min_ssl_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The minimum SSL protocol version of the domain.
+        """
+        return pulumi.get(self, "min_ssl_version")
+
+    @min_ssl_version.setter
+    def min_ssl_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "min_ssl_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The CNAME resolution status of the domain name.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="urlDomain")
+    def url_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The associated domain name.
+        """
+        return pulumi.get(self, "url_domain")
+
+    @url_domain.setter
+    def url_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url_domain", value)
+
+
+class GroupEnvironmentArgsDict(TypedDict):
+    environment_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the environment ID of the associated group.
+
+    <a name="group_environment_variable"></a>
+    The `variable` block supports:
+    """
+    variables: pulumi.Input[Sequence[pulumi.Input['GroupEnvironmentVariableArgsDict']]]
+    """
+    Specifies an array of one or more environment variables.  
+    The object structure is documented below.
+
+    > The environment variables of different groups are isolated in the same environment.
+    """
 
 @pulumi.input_type
 class GroupEnvironmentArgs:
@@ -4629,35 +4903,32 @@ class GroupEnvironmentArgs:
         pulumi.set(self, "variables", value)
 
 
-if not MYPY:
-    class GroupEnvironmentVariableArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable name.  
-        The valid length is limited from `3` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
-        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
-        It is replaced by the actual value when the API is published in an environment.
-        The variable names are not allowed to be repeated for an API group.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable value.  
-        The valid length is limited from `1` to `255` characters.
-        Only letters, digits and special characters (_-/.:) are allowed.
+class GroupEnvironmentVariableArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable name.  
+    The valid length is limited from `3` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+    In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+    It is replaced by the actual value when the API is published in an environment.
+    The variable names are not allowed to be repeated for an API group.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable value.  
+    The valid length is limited from `1` to `255` characters.
+    Only letters, digits and special characters (_-/.:) are allowed.
 
-        > **NOTE:** The variable value will be displayed in plain text on the console.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The variable ID.
-        """
-        variable_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Deprecated; The ID of the variable that the group has.
-        """
-elif False:
-    GroupEnvironmentVariableArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** The variable value will be displayed in plain text on the console.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The variable ID.
+    """
+    variable_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Deprecated; The ID of the variable that the group has.
+    """
 
 @pulumi.input_type
 class GroupEnvironmentVariableArgs:
@@ -4750,29 +5021,26 @@ class GroupEnvironmentVariableArgs:
         pulumi.set(self, "variable_id", value)
 
 
-if not MYPY:
-    class GroupUrlDomainArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the variable name.  
-        The valid length is limited from `3` to `32` characters.
-        Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
-        In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
-        It is replaced by the actual value when the API is published in an environment.
-        The variable names are not allowed to be repeated for an API group.
-        """
-        is_http_redirect_to_https: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable redirection from `HTTP` to `HTTPS`.
-        """
-        min_ssl_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The minimum SSL protocol version.
-        + **TLSv1.1**
-        + **TLSv1.2**
-        """
-elif False:
-    GroupUrlDomainArgsDict: TypeAlias = Mapping[str, Any]
+class GroupUrlDomainArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the variable name.  
+    The valid length is limited from `3` to `32` characters.
+    Only letters, digits, hyphens (-), and underscores (_) are allowed, and must start with a letter.
+    In the definition of an API, `name` (case-sensitive) indicates a variable, such as #Name#.
+    It is replaced by the actual value when the API is published in an environment.
+    The variable names are not allowed to be repeated for an API group.
+    """
+    is_http_redirect_to_https: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable redirection from `HTTP` to `HTTPS`.
+    """
+    min_ssl_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The minimum SSL protocol version.
+    + **TLSv1.1**
+    + **TLSv1.2**
+    """
 
 @pulumi.input_type
 class GroupUrlDomainArgs:
@@ -4842,35 +5110,32 @@ class GroupUrlDomainArgs:
         pulumi.set(self, "min_ssl_version", value)
 
 
-if not MYPY:
-    class InstanceCustomIngressPortArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specified port of the custom ingress port.
-        The valid value is range form `1,024` to `49,151`.
+class InstanceCustomIngressPortArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specified port of the custom ingress port.
+    The valid value is range form `1,024` to `49,151`.
 
-        > Currently, in the same dedicated instance, a maximum of `40` custom ingress ports can be created,
-        and one port can only support one protocol.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specified protocol of the custom ingress port.  
-        The valid values are as follows:
-        + **HTTP**
-        + **HTTPS**
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the custom ingress port.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The current status of the custom ingress port.
-        + **normal**
-        + **abnormal**
-        """
-elif False:
-    InstanceCustomIngressPortArgsDict: TypeAlias = Mapping[str, Any]
+    > Currently, in the same dedicated instance, a maximum of `40` custom ingress ports can be created,
+    and one port can only support one protocol.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specified protocol of the custom ingress port.  
+    The valid values are as follows:
+    + **HTTP**
+    + **HTTPS**
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the custom ingress port.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The current status of the custom ingress port.
+    + **normal**
+    + **abnormal**
+    """
 
 @pulumi.input_type
 class InstanceCustomIngressPortArgs:
@@ -4959,50 +5224,47 @@ class InstanceCustomIngressPortArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ResponseRuleArgsDict(TypedDict):
-        body: pulumi.Input[_builtins.str]
-        """
-        Specifies the body template of the API response rule, e.g.
-        `{\\"code\\":\\"$context.authorizer.frontend.code\\",\\"message\\":\\"$context.authorizer.frontend.message\\"}`
-        """
-        error_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the error type of the API response rule.
-        The valid values and the related default status code are as follows:
-        + **ACCESS_DENIED**: (**403**) Access denied.
-        + **AUTH_FAILURE**: (**401**) Authentication failed.
-        + **AUTH_HEADER_MISSING**: (**401**) The identity source is missing.
-        + **AUTHORIZER_CONF_FAILURE**: (**500**) There has been a custom authorizer error.
-        + **AUTHORIZER_FAILURE**: (**500**) Custom authentication failed.
-        + **AUTHORIZER_IDENTITIES_FAILURE**: (**401**) The identity source of the custom authorizer is invalid.
-        + **BACKEND_TIMEOUT**: (**504**) Communication with the backend service timed out.
-        + **BACKEND_UNAVAILABLE**: (**502**) The backend service is unavailable.
-        + **NOT_FOUND**: (**404**) No API is found.
-        + **REQUEST_PARAMETERS_FAILURE**: (**400**) The request parameters are incorrect.
-        + **THROTTLED**: (**429**) The request was rejected due to request throttling.
-        + **UNAUTHORIZED**: (**401**) The app you are using has not been authorized to call the API.
-        + **DEFAULT_4XX**: (**NONE**) Another 4XX error occurred.
-        + **DEFAULT_5XX**: (**NONE**) Another 5XX error occurred.
-        + **THIRD_AUTH_CONF_FAILURE**: (**500**) Third-party authorizer configuration error.
-        + **THIRD_AUTH_FAILURE**: (**401**) Third-party authentication failed.
-        + **THIRD_AUTH_IDENTITIES_FAILURE**: (**401**) Identity source of the third-party authorizer is invalid.
-        """
-        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResponseRuleHeaderArgsDict']]]]
-        """
-        Specifies the configuration of the custom response headers.  
-        The headers structure is documented below.
+class ResponseRuleArgsDict(TypedDict):
+    body: pulumi.Input[_builtins.str]
+    """
+    Specifies the body template of the API response rule, e.g.
+    `{\\"code\\":\\"$context.authorizer.frontend.code\\",\\"message\\":\\"$context.authorizer.frontend.message\\"}`
+    """
+    error_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the error type of the API response rule.
+    The valid values and the related default status code are as follows:
+    + **ACCESS_DENIED**: (**403**) Access denied.
+    + **AUTH_FAILURE**: (**401**) Authentication failed.
+    + **AUTH_HEADER_MISSING**: (**401**) The identity source is missing.
+    + **AUTHORIZER_CONF_FAILURE**: (**500**) There has been a custom authorizer error.
+    + **AUTHORIZER_FAILURE**: (**500**) Custom authentication failed.
+    + **AUTHORIZER_IDENTITIES_FAILURE**: (**401**) The identity source of the custom authorizer is invalid.
+    + **BACKEND_TIMEOUT**: (**504**) Communication with the backend service timed out.
+    + **BACKEND_UNAVAILABLE**: (**502**) The backend service is unavailable.
+    + **NOT_FOUND**: (**404**) No API is found.
+    + **REQUEST_PARAMETERS_FAILURE**: (**400**) The request parameters are incorrect.
+    + **THROTTLED**: (**429**) The request was rejected due to request throttling.
+    + **UNAUTHORIZED**: (**401**) The app you are using has not been authorized to call the API.
+    + **DEFAULT_4XX**: (**NONE**) Another 4XX error occurred.
+    + **DEFAULT_5XX**: (**NONE**) Another 5XX error occurred.
+    + **THIRD_AUTH_CONF_FAILURE**: (**500**) Third-party authorizer configuration error.
+    + **THIRD_AUTH_FAILURE**: (**401**) Third-party authentication failed.
+    + **THIRD_AUTH_IDENTITIES_FAILURE**: (**401**) Identity source of the third-party authorizer is invalid.
+    """
+    headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ResponseRuleHeaderArgsDict']]]]
+    """
+    Specifies the configuration of the custom response headers.  
+    The headers structure is documented below.
 
-        <a name="custom_response_rule_headers"></a>
-        The `headers` block supports:
-        """
-        status_code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the HTTP status code of the API response rule.
-        The valid value is range from `200` to `599`.
-        """
-elif False:
-    ResponseRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="custom_response_rule_headers"></a>
+    The `headers` block supports:
+    """
+    status_code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the HTTP status code of the API response rule.
+    The valid value is range from `200` to `599`.
+    """
 
 @pulumi.input_type
 class ResponseRuleArgs:
@@ -5121,20 +5383,17 @@ class ResponseRuleArgs:
         pulumi.set(self, "status_code", value)
 
 
-if not MYPY:
-    class ResponseRuleHeaderArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key name of the response header.
-        The valid length is limited from `1` to `128`, only English letters, digits and hyphens (-) are allowed.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value for the specified response header key.
-        The valid length is limited from `1` to `1,024`.
-        """
-elif False:
-    ResponseRuleHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class ResponseRuleHeaderArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key name of the response header.
+    The valid length is limited from `1` to `128`, only English letters, digits and hyphens (-) are allowed.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value for the specified response header key.
+    The valid length is limited from `1` to `1,024`.
+    """
 
 @pulumi.input_type
 class ResponseRuleHeaderArgs:
@@ -5177,27 +5436,24 @@ class ResponseRuleHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ThrottlingPolicyAppThrottleArgsDict(TypedDict):
-        max_api_requests: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum number of times an API can be accessed within a specified
-        period.
-        """
-        throttling_object_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the object ID which the special throttling policy belongs.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the special user/application throttling policy.
-        """
-        throttling_object_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The object name which the special user/application throttling policy belongs.
-        """
-elif False:
-    ThrottlingPolicyAppThrottleArgsDict: TypeAlias = Mapping[str, Any]
+class ThrottlingPolicyAppThrottleArgsDict(TypedDict):
+    max_api_requests: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum number of times an API can be accessed within a specified
+    period.
+    """
+    throttling_object_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the object ID which the special throttling policy belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the special user/application throttling policy.
+    """
+    throttling_object_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The object name which the special user/application throttling policy belongs.
+    """
 
 @pulumi.input_type
 class ThrottlingPolicyAppThrottleArgs:
@@ -5270,27 +5526,24 @@ class ThrottlingPolicyAppThrottleArgs:
         pulumi.set(self, "throttling_object_name", value)
 
 
-if not MYPY:
-    class ThrottlingPolicyUserThrottleArgsDict(TypedDict):
-        max_api_requests: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum number of times an API can be accessed within a specified
-        period.
-        """
-        throttling_object_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the object ID which the special throttling policy belongs.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the special user/application throttling policy.
-        """
-        throttling_object_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The object name which the special user/application throttling policy belongs.
-        """
-elif False:
-    ThrottlingPolicyUserThrottleArgsDict: TypeAlias = Mapping[str, Any]
+class ThrottlingPolicyUserThrottleArgsDict(TypedDict):
+    max_api_requests: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum number of times an API can be accessed within a specified
+    period.
+    """
+    throttling_object_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the object ID which the special throttling policy belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the special user/application throttling policy.
+    """
+    throttling_object_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The object name which the special user/application throttling policy belongs.
+    """
 
 @pulumi.input_type
 class ThrottlingPolicyUserThrottleArgs:
@@ -5363,26 +5616,23 @@ class ThrottlingPolicyUserThrottleArgs:
         pulumi.set(self, "throttling_object_name", value)
 
 
-if not MYPY:
-    class VpcChannelMemberArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ECS ID for each backend servers.
-        Required if the `member_type` is **ECS**.
-        This parameter and `ip_address` are alternative.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address each backend servers.
-        Required if the `member_type` is **EIP**.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the backend server weight.
-        The valid value ranges from `1` to `100`, defaults to `1`.
-        """
-elif False:
-    VpcChannelMemberArgsDict: TypeAlias = Mapping[str, Any]
+class VpcChannelMemberArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ECS ID for each backend servers.
+    Required if the `member_type` is **ECS**.
+    This parameter and `ip_address` are alternative.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address each backend servers.
+    Required if the `member_type` is **EIP**.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the backend server weight.
+    The valid value ranges from `1` to `100`, defaults to `1`.
+    """
 
 @pulumi.input_type
 class VpcChannelMemberArgs:
@@ -5447,20 +5697,17 @@ class VpcChannelMemberArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class GetInstancesFilterMatchArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key to be matched.  
-        The valid values are as follows:
-        + **resource_name**
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the value of the matching field. Fuzzy match is supported.
-        """
-elif False:
-    GetInstancesFilterMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetInstancesFilterMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key to be matched.  
+    The valid values are as follows:
+    + **resource_name**
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the value of the matching field. Fuzzy match is supported.
+    """
 
 @pulumi.input_type
 class GetInstancesFilterMatchArgs:
@@ -5505,23 +5752,20 @@ class GetInstancesFilterMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetInstancesFilterTagArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key to be matched.  
-        The valid values are as follows:
-        + **resource_name**
-        """
-        values: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of values of the tag.
+class GetInstancesFilterTagArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key to be matched.  
+    The valid values are as follows:
+    + **resource_name**
+    """
+    values: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of values of the tag.
 
-        <a name="data_instances_filter_matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetInstancesFilterTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="data_instances_filter_matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetInstancesFilterTagArgs:

@@ -28,6 +28,7 @@ class AccountArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Account resource.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name of the account.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the account.
@@ -157,6 +158,7 @@ class AccountArgs:
 @pulumi.input_type
 class _AccountState:
     def __init__(__self__, *,
+                 account_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  agency_name: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  email: Optional[pulumi.Input[_builtins.str]] = None,
@@ -166,10 +168,11 @@ class _AccountState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None,
                  phone: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Account resources.
+
+        :param pulumi.Input[_builtins.str] account_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name of the account.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the account.
@@ -189,8 +192,9 @@ class _AccountState:
                
                > At least one of `email` and `phone` must be specified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value to attach to the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
+        if account_urn is not None:
+            pulumi.set(__self__, "account_urn", account_urn)
         if agency_name is not None:
             pulumi.set(__self__, "agency_name", agency_name)
         if description is not None:
@@ -211,8 +215,18 @@ class _AccountState:
             pulumi.set(__self__, "phone", phone)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountUrn")
+    def account_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_urn")
+
+    @account_urn.setter
+    def account_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="agencyName")
@@ -343,20 +357,8 @@ class _AccountState:
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/account:Account")
+@pulumi.type_token("huaweicloud:Organizations/account:Account")
 class Account(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -404,37 +406,15 @@ class Account(pulumi.CustomResource):
 
         The Organizations account can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/account:Account test <id>
+        $ pulumi import huaweicloud:Organizations/account:Account test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include `agency_name`. It is generally recommended
-
         running `pulumi preview` after importing an account. You can then decide if changes should be applied to the account,
-
         or the resource definition should be updated to align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -495,37 +475,15 @@ class Account(pulumi.CustomResource):
 
         The Organizations account can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/account:Account test <id>
+        $ pulumi import huaweicloud:Organizations/account:Account test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include `agency_name`. It is generally recommended
-
         running `pulumi preview` after importing an account. You can then decide if changes should be applied to the account,
-
         or the resource definition should be updated to align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AccountArgs args: The arguments to use to populate this resource's properties.
@@ -565,12 +523,12 @@ class Account(pulumi.CustomResource):
             __props__.__dict__["parent_id"] = parent_id
             __props__.__dict__["phone"] = phone
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["account_urn"] = None
             __props__.__dict__["intl_number_prefix"] = None
             __props__.__dict__["joined_at"] = None
             __props__.__dict__["joined_method"] = None
-            __props__.__dict__["urn"] = None
         super(Account, __self__).__init__(
-            'huaweicloud:organizations/account:Account',
+            'huaweicloud:Organizations/account:Account',
             resource_name,
             __props__,
             opts)
@@ -579,6 +537,7 @@ class Account(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_urn: Optional[pulumi.Input[_builtins.str]] = None,
             agency_name: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             email: Optional[pulumi.Input[_builtins.str]] = None,
@@ -588,8 +547,7 @@ class Account(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             parent_id: Optional[pulumi.Input[_builtins.str]] = None,
             phone: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Account':
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -597,6 +555,7 @@ class Account(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] account_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name of the account.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the account.
@@ -616,12 +575,12 @@ class Account(pulumi.CustomResource):
                
                > At least one of `email` and `phone` must be specified.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value to attach to the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountState.__new__(_AccountState)
 
+        __props__.__dict__["account_urn"] = account_urn
         __props__.__dict__["agency_name"] = agency_name
         __props__.__dict__["description"] = description
         __props__.__dict__["email"] = email
@@ -632,8 +591,15 @@ class Account(pulumi.CustomResource):
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["phone"] = phone
         __props__.__dict__["tags"] = tags
-        __props__.__dict__["urn"] = urn
         return Account(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountUrn")
+    def account_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_urn")
 
     @_builtins.property
     @pulumi.getter(name="agencyName")
@@ -723,12 +689,4 @@ class Account(pulumi.CustomResource):
         Specifies the key/value to attach to the account.
         """
         return pulumi.get(self, "tags")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 

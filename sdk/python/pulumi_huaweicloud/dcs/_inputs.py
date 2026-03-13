@@ -69,38 +69,33 @@ __all__ = [
     'GetTemplateDetailParamArgsDict',
 ]
 
-MYPY = False
+class BackupImportTaskBackupFilesArgsDict(TypedDict):
+    file_source: pulumi.Input[_builtins.str]
+    """
+    Specifies the data source, which can be an OBS bucket or a backup
+    record. Value options:
+    + **self_build_obs**: OBS bucket
+    + **backup_record**: backup record
+    """
+    backup_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backup record ID. It is mandatory when `file_source` is
+    **backup_record**.
 
-if not MYPY:
-    class BackupImportTaskBackupFilesArgsDict(TypedDict):
-        file_source: pulumi.Input[_builtins.str]
-        """
-        Specifies the data source, which can be an OBS bucket or a backup
-        record. Value options:
-        + **self_build_obs**: OBS bucket
-        + **backup_record**: backup record
-        """
-        backup_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backup record ID. It is mandatory when `file_source` is
-        **backup_record**.
-
-        <a name="files_struct"></a>
-        The `files` block supports:
-        """
-        bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket name. It is mandatory when `file_source`
-        is **self_build_obs**.
-        """
-        files: NotRequired[pulumi.Input[Sequence[pulumi.Input['BackupImportTaskBackupFilesFileArgsDict']]]]
-        """
-        Specifies the list of backup files to be imported. It is mandatory when
-        `file_source` is **self_build_obs**.
-        The files structure is documented below.
-        """
-elif False:
-    BackupImportTaskBackupFilesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="files_struct"></a>
+    The `files` block supports:
+    """
+    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket name. It is mandatory when `file_source`
+    is **self_build_obs**.
+    """
+    files: NotRequired[pulumi.Input[Sequence[pulumi.Input['BackupImportTaskBackupFilesFileArgsDict']]]]
+    """
+    Specifies the list of backup files to be imported. It is mandatory when
+    `file_source` is **self_build_obs**.
+    The files structure is documented below.
+    """
 
 @pulumi.input_type
 class BackupImportTaskBackupFilesArgs:
@@ -192,26 +187,23 @@ class BackupImportTaskBackupFilesArgs:
         pulumi.set(self, "files", value)
 
 
-if not MYPY:
-    class BackupImportTaskBackupFilesFileArgsDict(TypedDict):
-        file_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a backup file.
-        """
-        size: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the file size in bytes.
-        """
-        update_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time when the file was last modified. The format is
-        **YYYY-MM-DDTHH:MM:SS**.
+class BackupImportTaskBackupFilesFileArgsDict(TypedDict):
+    file_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a backup file.
+    """
+    size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file size in bytes.
+    """
+    update_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time when the file was last modified. The format is
+    **YYYY-MM-DDTHH:MM:SS**.
 
-        <a name="target_instance_struct"></a>
-        The `target_instance` block supports:
-        """
-elif False:
-    BackupImportTaskBackupFilesFileArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="target_instance_struct"></a>
+    The `target_instance` block supports:
+    """
 
 @pulumi.input_type
 class BackupImportTaskBackupFilesFileArgs:
@@ -275,23 +267,20 @@ class BackupImportTaskBackupFilesFileArgs:
         pulumi.set(self, "update_at", value)
 
 
-if not MYPY:
-    class BackupImportTaskTargetInstanceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the Redis instance ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the Redis name.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis password. If a password of the DCS instance is set,
-        it is mandatory.
-        """
-elif False:
-    BackupImportTaskTargetInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class BackupImportTaskTargetInstanceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the Redis instance ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Redis name.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis password. If a password of the DCS instance is set,
+    it is mandatory.
+    """
 
 @pulumi.input_type
 class BackupImportTaskTargetInstanceArgs:
@@ -349,37 +338,34 @@ class BackupImportTaskTargetInstanceArgs:
         pulumi.set(self, "password", value)
 
 
-if not MYPY:
-    class BigkeyAnalysisKeyArgsDict(TypedDict):
-        db: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the database where the big key is located.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of the big key.
-        """
-        shard: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the shard where the big key is located.
-        This parameter is supported only when the instance type is cluster. The format is **ip:port**.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the size of the key value.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the type of the big key. The value can be **string**, **list**, **set**, **zset**, **hash**.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the unit of the big key. The value can be:
-        + **count**: The number of keys.
-        + **byte**: The size of key.
-        """
-elif False:
-    BigkeyAnalysisKeyArgsDict: TypeAlias = Mapping[str, Any]
+class BigkeyAnalysisKeyArgsDict(TypedDict):
+    db: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the database where the big key is located.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of the big key.
+    """
+    shard: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the shard where the big key is located.
+    This parameter is supported only when the instance type is cluster. The format is **ip:port**.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the size of the key value.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the type of the big key. The value can be **string**, **list**, **set**, **zset**, **hash**.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the unit of the big key. The value can be:
+    + **count**: The number of keys.
+    + **byte**: The size of key.
+    """
 
 @pulumi.input_type
 class BigkeyAnalysisKeyArgs:
@@ -490,46 +476,43 @@ class BigkeyAnalysisKeyArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class CustomTemplateParamArgsDict(TypedDict):
-        param_name: pulumi.Input[_builtins.str]
-        """
-        Indicates the name of the param. You can find it through data source
-        `dcs_get_template_detail`.
-        """
-        param_value: pulumi.Input[_builtins.str]
-        """
-        Indicates the value of the param.
-        """
-        default_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional, String) Indicates the default value of the param.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the template.
+class CustomTemplateParamArgsDict(TypedDict):
+    param_name: pulumi.Input[_builtins.str]
+    """
+    Indicates the name of the param. You can find it through data source
+    `dcs_get_template_detail`.
+    """
+    param_value: pulumi.Input[_builtins.str]
+    """
+    Indicates the value of the param.
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional, String) Indicates the default value of the param.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the template.
 
-        <a name="CustomTemplate_Param"></a>
-        The `params` block supports:
-        """
-        need_restart: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        (Optional, Bool) Indicates whether the DCS instance need restart.
-        """
-        param_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional, String) Indicates the ID of the param.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional, String) Indicates the value range of the param.
-        """
-        value_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional, String) Indicates the value type of the param.
-        """
-elif False:
-    CustomTemplateParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="CustomTemplate_Param"></a>
+    The `params` block supports:
+    """
+    need_restart: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    (Optional, Bool) Indicates whether the DCS instance need restart.
+    """
+    param_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional, String) Indicates the ID of the param.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional, String) Indicates the value range of the param.
+    """
+    value_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional, String) Indicates the value type of the param.
+    """
 
 @pulumi.input_type
 class CustomTemplateParamArgs:
@@ -672,48 +655,45 @@ class CustomTemplateParamArgs:
         pulumi.set(self, "value_type", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListArgsDict(TypedDict):
-        abnormal_sum: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of abnormal diagnosis items.
-        """
-        az_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the code of the AZ where the node is.
-        """
-        command_time_taken_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgsDict']]]]
-        """
-        Indicates the command execution duration list.
-        The command_time_taken_list structure is documented below.
-        """
-        diagnosis_dimension_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgsDict']]]]
-        """
-        Indicates the diagnosis dimension list.
-        The diagnosis_dimension_list structure is documented below.
-        """
-        failed_sum: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of failed diagnosis items.
-        """
-        group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of the shard where the node is.
-        """
-        is_faulted: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the node is faulted.
-        """
-        node_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address of the node diagnosed.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role. The value can be **master** or **slave**.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListArgsDict(TypedDict):
+    abnormal_sum: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of abnormal diagnosis items.
+    """
+    az_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the code of the AZ where the node is.
+    """
+    command_time_taken_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgsDict']]]]
+    """
+    Indicates the command execution duration list.
+    The command_time_taken_list structure is documented below.
+    """
+    diagnosis_dimension_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgsDict']]]]
+    """
+    Indicates the diagnosis dimension list.
+    The diagnosis_dimension_list structure is documented below.
+    """
+    failed_sum: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of failed diagnosis items.
+    """
+    group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of the shard where the node is.
+    """
+    is_faulted: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the node is faulted.
+    """
+    node_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address of the node diagnosed.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role. The value can be **master** or **slave**.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListArgs:
@@ -870,31 +850,28 @@ class DiagnosisTaskDiagnosisNodeReportListArgs:
         pulumi.set(self, "role", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgsDict(TypedDict):
-        command_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgsDict']]]]
-        """
-        Indicates the command execution latency statistics.
-        The command_list structure is documented below.
-        """
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error code for the diagnosis item.
-        """
-        result: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis result. The value can be **failed**, **abnormal** or **normal**.
-        """
-        total_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of times that commands are executed.
-        """
-        total_usec_sum: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Indicates the total duration of command execution.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgsDict(TypedDict):
+    command_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgsDict']]]]
+    """
+    Indicates the command execution latency statistics.
+    The command_list structure is documented below.
+    """
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error code for the diagnosis item.
+    """
+    result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis result. The value can be **failed**, **abnormal** or **normal**.
+    """
+    total_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of times that commands are executed.
+    """
+    total_usec_sum: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Indicates the total duration of command execution.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgs:
@@ -985,30 +962,27 @@ class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListArgs:
         pulumi.set(self, "total_usec_sum", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgsDict(TypedDict):
-        average_usec: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Indicates the average duration of calls.
-        """
-        calls_sum: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of calls.
-        """
-        command_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the command name.
-        """
-        per_usec: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the duration percentage.
-        """
-        usec_sum: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Indicates the total time consumed.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgsDict(TypedDict):
+    average_usec: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Indicates the average duration of calls.
+    """
+    calls_sum: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of calls.
+    """
+    command_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the command name.
+    """
+    per_usec: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the duration percentage.
+    """
+    usec_sum: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Indicates the total time consumed.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgs:
@@ -1097,29 +1071,26 @@ class DiagnosisTaskDiagnosisNodeReportListCommandTimeTakenListCommandListArgs:
         pulumi.set(self, "usec_sum", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgsDict(TypedDict):
-        abnormal_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of abnormal diagnosis items.
-        """
-        diagnosis_item_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgsDict']]]]
-        """
-        Indicates the diagnosis items.
-        The diagnosis_item_list structure is documented below.
-        """
-        failed_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of failed diagnosis items.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis item name.
-        The value can be **connection_num**, **rx_controlled**, **persistence**, **centralized_expiration**,
-        **inner_memory_fragmentation**, **time_consuming_commands**, **hit_ratio**, **memory_usage** or **cpu_usage**.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgsDict(TypedDict):
+    abnormal_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of abnormal diagnosis items.
+    """
+    diagnosis_item_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgsDict']]]]
+    """
+    Indicates the diagnosis items.
+    The diagnosis_item_list structure is documented below.
+    """
+    failed_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of failed diagnosis items.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis item name.
+    The value can be **connection_num**, **rx_controlled**, **persistence**, **centralized_expiration**,
+    **inner_memory_fragmentation**, **time_consuming_commands**, **hit_ratio**, **memory_usage** or **cpu_usage**.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgs:
@@ -1198,39 +1169,36 @@ class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgsDict(TypedDict):
-        advice_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict']]]]
-        """
-        Indicates the list of suggestion IDs.
-        The advice_ids structure is documented below.
-        """
-        cause_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict']]]]
-        """
-        Indicates the list of cause IDs.
-        The cause_ids structure is documented below.
-        """
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error code for the diagnosis item.
-        """
-        impact_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgsDict']]]]
-        """
-        Indicates the list of impact IDs.
-        The impact_ids structure is documented below.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis item name.
-        The value can be **connection_num**, **rx_controlled**, **persistence**, **centralized_expiration**,
-        **inner_memory_fragmentation**, **time_consuming_commands**, **hit_ratio**, **memory_usage** or **cpu_usage**.
-        """
-        result: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis result. The value can be **failed**, **abnormal** or **normal**.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgsDict(TypedDict):
+    advice_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict']]]]
+    """
+    Indicates the list of suggestion IDs.
+    The advice_ids structure is documented below.
+    """
+    cause_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict']]]]
+    """
+    Indicates the list of cause IDs.
+    The cause_ids structure is documented below.
+    """
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error code for the diagnosis item.
+    """
+    impact_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgsDict']]]]
+    """
+    Indicates the list of impact IDs.
+    The impact_ids structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis item name.
+    The value can be **connection_num**, **rx_controlled**, **persistence**, **centralized_expiration**,
+    **inner_memory_fragmentation**, **time_consuming_commands**, **hit_ratio**, **memory_usage** or **cpu_usage**.
+    """
+    result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis result. The value can be **failed**, **abnormal** or **normal**.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListArgs:
@@ -1345,18 +1313,15 @@ class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemLis
         pulumi.set(self, "result", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the conclusion ID.
-        """
-        params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the conclusion parameters.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the conclusion ID.
+    """
+    params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the conclusion parameters.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListAdviceIdArgs:
@@ -1397,18 +1362,15 @@ class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemLis
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the conclusion ID.
-        """
-        params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the conclusion parameters.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the conclusion ID.
+    """
+    params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the conclusion parameters.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListCauseIdArgs:
@@ -1449,18 +1411,15 @@ class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemLis
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the conclusion ID.
-        """
-        params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the conclusion parameters.
-        """
-elif False:
-    DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgsDict: TypeAlias = Mapping[str, Any]
+class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the conclusion ID.
+    """
+    params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the conclusion parameters.
+    """
 
 @pulumi.input_type
 class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemListImpactIdArgs:
@@ -1501,44 +1460,41 @@ class DiagnosisTaskDiagnosisNodeReportListDiagnosisDimensionListDiagnosisItemLis
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class HotkeyAnalysisKeyArgsDict(TypedDict):
-        db: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the database where the hot key is located.
-        """
-        freq: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the access frequency of a key within a specific period of time.
-        The value is the logarithmic access frequency counter. The maximum value is 255, which indicates 1 million access requests.
-        After the frequency reaches 255, the value will no longer increase even if access requests continue to increase.
-        The value will decrease by 1 for every minute during which the key is not accessed.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of hot key.
-        """
-        shard: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the shard where the hot key is located.
-        This parameter is supported only when the instance type is cluster. The format is **ip:port**.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the size of the key value.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the type of hot key. The value can be **string**, **list**, **set**, **zset**, **hash**.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the unit of hot key. The value can be:
-        + **count**: The number of keys.
-        + **byte**: The size of key.
-        """
-elif False:
-    HotkeyAnalysisKeyArgsDict: TypeAlias = Mapping[str, Any]
+class HotkeyAnalysisKeyArgsDict(TypedDict):
+    db: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the database where the hot key is located.
+    """
+    freq: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the access frequency of a key within a specific period of time.
+    The value is the logarithmic access frequency counter. The maximum value is 255, which indicates 1 million access requests.
+    After the frequency reaches 255, the value will no longer increase even if access requests continue to increase.
+    The value will decrease by 1 for every minute during which the key is not accessed.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of hot key.
+    """
+    shard: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the shard where the hot key is located.
+    This parameter is supported only when the instance type is cluster. The format is **ip:port**.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the size of the key value.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the type of hot key. The value can be **string**, **list**, **set**, **zset**, **hash**.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the unit of hot key. The value can be:
+    + **count**: The number of keys.
+    + **byte**: The size of key.
+    """
 
 @pulumi.input_type
 class HotkeyAnalysisKeyArgs:
@@ -1671,37 +1627,34 @@ class HotkeyAnalysisKeyArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class InstanceBackupPolicyArgsDict(TypedDict):
-        backup_ats: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
-        """
-        Day in a week on which backup starts, the value ranges from `1` to `7`.
-        Where: 1 indicates Monday; 7 indicates Sunday.
-        """
-        begin_at: pulumi.Input[_builtins.str]
-        """
-        Time at which backup starts.
-        Format: `hh24:00-hh24:00`, "00:00-01:00" indicates that backup starts at 00:00:00.
+class InstanceBackupPolicyArgsDict(TypedDict):
+    backup_ats: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    Day in a week on which backup starts, the value ranges from `1` to `7`.
+    Where: 1 indicates Monday; 7 indicates Sunday.
+    """
+    begin_at: pulumi.Input[_builtins.str]
+    """
+    Time at which backup starts.
+    Format: `hh24:00-hh24:00`, "00:00-01:00" indicates that backup starts at 00:00:00.
 
-        <a name="DcsInstance_Parameters"></a>
-        The `parameters` block supports:
-        """
-        backup_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Backup type. Default value is `auto`. The valid values are as follows:
-        """
-        period_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Interval at which backup is performed. Default value is `weekly`.
-        Currently, only weekly backup is supported.
-        """
-        save_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Retention time. Unit: day, the value ranges from `1` to `7`.
-        This parameter is required if the backup_type is **auto**.
-        """
-elif False:
-    InstanceBackupPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DcsInstance_Parameters"></a>
+    The `parameters` block supports:
+    """
+    backup_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Backup type. Default value is `auto`. The valid values are as follows:
+    """
+    period_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Interval at which backup is performed. Default value is `weekly`.
+    Currently, only weekly backup is supported.
+    """
+    save_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Retention time. Unit: day, the value ranges from `1` to `7`.
+    This parameter is required if the backup_type is **auto**.
+    """
 
 @pulumi.input_type
 class InstanceBackupPolicyArgs:
@@ -1802,50 +1755,47 @@ class InstanceBackupPolicyArgs:
         pulumi.set(self, "save_days", value)
 
 
-if not MYPY:
-    class InstanceBandwidthInfoArgsDict(TypedDict):
-        bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the bandwidth size, the unit is **GB**.
-        """
-        begin_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the begin time of temporary increase.
-        """
-        current_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the current time.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the end time of temporary increase.
-        """
-        expand_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of increases.
-        """
-        expand_effect_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the interval between temporary increases, the unit is **ms**.
-        """
-        expand_interval_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the time interval to the next increase, the unit is **ms**.
-        """
-        max_expand_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the maximum number of increases.
-        """
-        next_expand_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the next increase time.
-        """
-        task_running: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the increase task is running.
-        """
-elif False:
-    InstanceBandwidthInfoArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceBandwidthInfoArgsDict(TypedDict):
+    bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the bandwidth size, the unit is **GB**.
+    """
+    begin_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the begin time of temporary increase.
+    """
+    current_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the current time.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the end time of temporary increase.
+    """
+    expand_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of increases.
+    """
+    expand_effect_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the interval between temporary increases, the unit is **ms**.
+    """
+    expand_interval_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the time interval to the next increase, the unit is **ms**.
+    """
+    max_expand_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the maximum number of increases.
+    """
+    next_expand_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the next increase time.
+    """
+    task_running: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the increase task is running.
+    """
 
 @pulumi.input_type
 class InstanceBandwidthInfoArgs:
@@ -2014,24 +1964,21 @@ class InstanceBandwidthInfoArgs:
         pulumi.set(self, "task_running", value)
 
 
-if not MYPY:
-    class InstanceParameterArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        A resource ID in UUID format.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of an instance.
-        The name must be 4 to 64 characters and start with a letter.
-        Only chinese, letters (case-insensitive), digits, underscores (_) ,and hyphens (-) are allowed.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the configuration item.
-        """
-elif False:
-    InstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceParameterArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    A resource ID in UUID format.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of an instance.
+    The name must be 4 to 64 characters and start with a letter.
+    Only chinese, letters (case-insensitive), digits, underscores (_) ,and hyphens (-) are allowed.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the configuration item.
+    """
 
 @pulumi.input_type
 class InstanceParameterArgs:
@@ -2089,22 +2036,19 @@ class InstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstancePublicAccessElbListenerArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the listener.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of the listener.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the port of the listener.
-        """
-elif False:
-    InstancePublicAccessElbListenerArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePublicAccessElbListenerArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the listener.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of the listener.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the port of the listener.
+    """
 
 @pulumi.input_type
 class InstancePublicAccessElbListenerArgs:
@@ -2161,15 +2105,12 @@ class InstancePublicAccessElbListenerArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class InstanceV1BackupPolicyArgsDict(TypedDict):
-        backup_ats: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
-        begin_at: pulumi.Input[_builtins.str]
-        backup_type: NotRequired[pulumi.Input[_builtins.str]]
-        period_type: NotRequired[pulumi.Input[_builtins.str]]
-        save_days: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    InstanceV1BackupPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1BackupPolicyArgsDict(TypedDict):
+    backup_ats: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    begin_at: pulumi.Input[_builtins.str]
+    backup_type: NotRequired[pulumi.Input[_builtins.str]]
+    period_type: NotRequired[pulumi.Input[_builtins.str]]
+    save_days: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class InstanceV1BackupPolicyArgs:
@@ -2234,20 +2175,17 @@ class InstanceV1BackupPolicyArgs:
         pulumi.set(self, "save_days", value)
 
 
-if not MYPY:
-    class InstanceV1BandwidthInfoArgsDict(TypedDict):
-        bandwidth: NotRequired[pulumi.Input[_builtins.int]]
-        begin_time: NotRequired[pulumi.Input[_builtins.str]]
-        current_time: NotRequired[pulumi.Input[_builtins.str]]
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        expand_count: NotRequired[pulumi.Input[_builtins.int]]
-        expand_effect_time: NotRequired[pulumi.Input[_builtins.int]]
-        expand_interval_time: NotRequired[pulumi.Input[_builtins.int]]
-        max_expand_count: NotRequired[pulumi.Input[_builtins.int]]
-        next_expand_time: NotRequired[pulumi.Input[_builtins.str]]
-        task_running: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    InstanceV1BandwidthInfoArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1BandwidthInfoArgsDict(TypedDict):
+    bandwidth: NotRequired[pulumi.Input[_builtins.int]]
+    begin_time: NotRequired[pulumi.Input[_builtins.str]]
+    current_time: NotRequired[pulumi.Input[_builtins.str]]
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    expand_count: NotRequired[pulumi.Input[_builtins.int]]
+    expand_effect_time: NotRequired[pulumi.Input[_builtins.int]]
+    expand_interval_time: NotRequired[pulumi.Input[_builtins.int]]
+    max_expand_count: NotRequired[pulumi.Input[_builtins.int]]
+    next_expand_time: NotRequired[pulumi.Input[_builtins.str]]
+    task_running: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class InstanceV1BandwidthInfoArgs:
@@ -2374,13 +2312,10 @@ class InstanceV1BandwidthInfoArgs:
         pulumi.set(self, "task_running", value)
 
 
-if not MYPY:
-    class InstanceV1ParameterArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    InstanceV1ParameterArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1ParameterArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class InstanceV1ParameterArgs:
@@ -2420,12 +2355,9 @@ class InstanceV1ParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstanceV1WhitelistArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        ip_addresses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-elif False:
-    InstanceV1WhitelistArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV1WhitelistArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    ip_addresses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
 
 @pulumi.input_type
 class InstanceV1WhitelistArgs:
@@ -2454,19 +2386,16 @@ class InstanceV1WhitelistArgs:
         pulumi.set(self, "ip_addresses", value)
 
 
-if not MYPY:
-    class InstanceWhitelistArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of IP address group.
-        """
-        ip_addresses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the list of IP address or CIDR which can be whitelisted for an instance.
-        The maximum is 20.
-        """
-elif False:
-    InstanceWhitelistArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceWhitelistArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of IP address group.
+    """
+    ip_addresses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of IP address or CIDR which can be whitelisted for an instance.
+    The maximum is 20.
+    """
 
 @pulumi.input_type
 class InstanceWhitelistArgs:
@@ -2507,26 +2436,23 @@ class InstanceWhitelistArgs:
         pulumi.set(self, "ip_addresses", value)
 
 
-if not MYPY:
-    class OnlineDataMigrationTaskSourceInstanceArgsDict(TypedDict):
-        addrs: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis address. It is mandatory if `id` is not specified.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis instance ID. It is mandatory if `addrs` is not specified.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the Redis name.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis password. If a password of the DCS instance is set, it is mandatory.
-        """
-elif False:
-    OnlineDataMigrationTaskSourceInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class OnlineDataMigrationTaskSourceInstanceArgsDict(TypedDict):
+    addrs: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis address. It is mandatory if `id` is not specified.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis instance ID. It is mandatory if `addrs` is not specified.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Redis name.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis password. If a password of the DCS instance is set, it is mandatory.
+    """
 
 @pulumi.input_type
 class OnlineDataMigrationTaskSourceInstanceArgs:
@@ -2599,26 +2525,23 @@ class OnlineDataMigrationTaskSourceInstanceArgs:
         pulumi.set(self, "password", value)
 
 
-if not MYPY:
-    class OnlineDataMigrationTaskTargetInstanceArgsDict(TypedDict):
-        addrs: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis address. It is mandatory if `id` is not specified.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis instance ID. It is mandatory if `addrs` is not specified.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the Redis name.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Redis password. If a password of the DCS instance is set, it is mandatory.
-        """
-elif False:
-    OnlineDataMigrationTaskTargetInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class OnlineDataMigrationTaskTargetInstanceArgsDict(TypedDict):
+    addrs: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis address. It is mandatory if `id` is not specified.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis instance ID. It is mandatory if `addrs` is not specified.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the Redis name.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Redis password. If a password of the DCS instance is set, it is mandatory.
+    """
 
 @pulumi.input_type
 class OnlineDataMigrationTaskTargetInstanceArgs:
@@ -2691,38 +2614,35 @@ class OnlineDataMigrationTaskTargetInstanceArgs:
         pulumi.set(self, "password", value)
 
 
-if not MYPY:
-    class GetTemplateDetailParamArgsDict(TypedDict):
-        default_value: _builtins.str
-        """
-        Indicates the default of the param.
-        """
-        description: _builtins.str
-        """
-        Indicates the description of the param.
-        """
-        need_restart: _builtins.bool
-        """
-        Indicates whether the DCS instance need restart.
-        """
-        param_id: _builtins.str
-        """
-        Indicates the ID of the param.
-        """
-        param_name: _builtins.str
-        """
-        Specifies the name of the param.
-        """
-        value_range: _builtins.str
-        """
-        Indicates the value range of the param.
-        """
-        value_type: _builtins.str
-        """
-        Indicates the value type of the param.
-        """
-elif False:
-    GetTemplateDetailParamArgsDict: TypeAlias = Mapping[str, Any]
+class GetTemplateDetailParamArgsDict(TypedDict):
+    default_value: _builtins.str
+    """
+    Indicates the default of the param.
+    """
+    description: _builtins.str
+    """
+    Indicates the description of the param.
+    """
+    need_restart: _builtins.bool
+    """
+    Indicates whether the DCS instance need restart.
+    """
+    param_id: _builtins.str
+    """
+    Indicates the ID of the param.
+    """
+    param_name: _builtins.str
+    """
+    Specifies the name of the param.
+    """
+    value_range: _builtins.str
+    """
+    Indicates the value range of the param.
+    """
+    value_type: _builtins.str
+    """
+    Indicates the value type of the param.
+    """
 
 @pulumi.input_type
 class GetTemplateDetailParamArgs:

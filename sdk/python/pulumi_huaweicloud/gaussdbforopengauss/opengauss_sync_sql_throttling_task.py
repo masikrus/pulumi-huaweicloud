@@ -23,6 +23,7 @@ class OpengaussSyncSqlThrottlingTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussSyncSqlThrottlingTask resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -68,6 +69,7 @@ class _OpengaussSyncSqlThrottlingTaskState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussSyncSqlThrottlingTask resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
                
                Changing this parameter will create a new resource.
@@ -134,6 +136,7 @@ class OpengaussSyncSqlThrottlingTask(pulumi.CustomResource):
         test = huaweicloud.gaussdbforopengauss.OpengaussSyncSqlThrottlingTask("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance.
@@ -165,6 +168,7 @@ class OpengaussSyncSqlThrottlingTask(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.gaussdbforopengauss.OpengaussSyncSqlThrottlingTask("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussSyncSqlThrottlingTaskArgs args: The arguments to use to populate this resource's properties.

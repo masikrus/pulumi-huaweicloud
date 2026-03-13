@@ -18,9 +18,21 @@ from . import outputs
 __all__ = [
     'InstanceHostProperty',
     'InstanceHostPropertyAvailableInstanceCapacity',
+    'GetInstanceServersServerResult',
+    'GetInstanceServersServerFlavorResult',
+    'GetInstanceServersServerImageResult',
+    'GetInstanceServersServerMetadataResult',
+    'GetInstanceTagsTagResult',
+    'GetInstancesByTagsMatchResult',
+    'GetInstancesByTagsNotTagResult',
+    'GetInstancesByTagsNotTagsAnyResult',
+    'GetInstancesByTagsResourceResult',
+    'GetInstancesByTagsTagResult',
+    'GetInstancesByTagsTagsAnyResult',
     'GetInstancesDedicatedHostResult',
     'GetInstancesDedicatedHostHostPropertyResult',
     'GetInstancesDedicatedHostHostPropertyAvailableInstanceCapacityResult',
+    'GetQuotasQuotaSetResult',
     'GetTypesDedicatedHostTypeResult',
 ]
 
@@ -155,6 +167,431 @@ class InstanceHostPropertyAvailableInstanceCapacity(dict):
         Indicates the specifications of ECSs that can be created.
         """
         return pulumi.get(self, "flavor")
+
+
+@pulumi.output_type
+class GetInstanceServersServerResult(dict):
+    def __init__(__self__, *,
+                 addresses: Mapping[str, _builtins.str],
+                 created: _builtins.str,
+                 flavors: Sequence['outputs.GetInstanceServersServerFlavorResult'],
+                 id: _builtins.str,
+                 images: Sequence['outputs.GetInstanceServersServerImageResult'],
+                 metadatas: Sequence['outputs.GetInstanceServersServerMetadataResult'],
+                 name: _builtins.str,
+                 status: _builtins.str,
+                 task_state: _builtins.str,
+                 updated: _builtins.str,
+                 user_id: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] addresses: Indicates the server network address infos.
+               Key is VPC ID and value is network infos.
+        :param _builtins.str created: Indicates the server create time.
+        :param Sequence['GetInstanceServersServerFlavorArgs'] flavors: Indicates the flavor infos.
+        :param _builtins.str id: Indicates the server image ID
+        :param Sequence['GetInstanceServersServerImageArgs'] images: Indicates the server image infos.
+        :param Sequence['GetInstanceServersServerMetadataArgs'] metadatas: Indicates the server metadata.
+        :param _builtins.str name: Indicates the server name.
+        :param _builtins.str status: Indicates the server status.
+        :param _builtins.str task_state: Indicates the task state.
+        :param _builtins.str updated: Indicates the server update time.
+        :param _builtins.str user_id: Indicates the server user ID.
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "flavors", flavors)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "images", images)
+        pulumi.set(__self__, "metadatas", metadatas)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "task_state", task_state)
+        pulumi.set(__self__, "updated", updated)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def addresses(self) -> Mapping[str, _builtins.str]:
+        """
+        Indicates the server network address infos.
+        Key is VPC ID and value is network infos.
+        """
+        return pulumi.get(self, "addresses")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> _builtins.str:
+        """
+        Indicates the server create time.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavors(self) -> Sequence['outputs.GetInstanceServersServerFlavorResult']:
+        """
+        Indicates the flavor infos.
+        """
+        return pulumi.get(self, "flavors")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the server image ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def images(self) -> Sequence['outputs.GetInstanceServersServerImageResult']:
+        """
+        Indicates the server image infos.
+        """
+        return pulumi.get(self, "images")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadatas(self) -> Sequence['outputs.GetInstanceServersServerMetadataResult']:
+        """
+        Indicates the server metadata.
+        """
+        return pulumi.get(self, "metadatas")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the server name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the server status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskState")
+    def task_state(self) -> _builtins.str:
+        """
+        Indicates the task state.
+        """
+        return pulumi.get(self, "task_state")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> _builtins.str:
+        """
+        Indicates the server update time.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Indicates the server user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetInstanceServersServerFlavorResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the server image ID
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the server image ID
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetInstanceServersServerImageResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the server image ID
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the server image ID
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetInstanceServersServerMetadataResult(dict):
+    def __init__(__self__, *,
+                 os_type: _builtins.str):
+        """
+        :param _builtins.str os_type: Indicates the server OS type.
+        """
+        pulumi.set(__self__, "os_type", os_type)
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Indicates the server OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+
+@pulumi.output_type
+class GetInstanceTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag.
+        :param Sequence[_builtins.str] values: All values corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        All values corresponding to the key.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the tag value.
+               
+               <a name="tags_struct"></a>
+               The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+
+        <a name="tags_struct"></a>
+        The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Mapping[str, _builtins.str]):
+        """
+        :param _builtins.str resource_detail: Indicates the provides details about the resource.
+        :param _builtins.str resource_id: Indicates the resource ID.
+        :param _builtins.str resource_name: Indicates the resource name.
+        :param Mapping[str, _builtins.str] tags: Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+               a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+               Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+               are in AND relationship, and values in one tag are in OR relationship. If no tag filtering criteria is specified, full
+               data is returned.
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        Indicates the provides details about the resource.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        Indicates the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+        a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+        Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+        are in AND relationship, and values in one tag are in OR relationship. If no tag filtering criteria is specified, full
+        data is returned.
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetInstancesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetInstancesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -411,6 +848,46 @@ class GetInstancesDedicatedHostHostPropertyAvailableInstanceCapacityResult(dict)
         Specifies the flavor ID.
         """
         return pulumi.get(self, "flavor")
+
+
+@pulumi.output_type
+class GetQuotasQuotaSetResult(dict):
+    def __init__(__self__, *,
+                 hard_limit: _builtins.int,
+                 resource: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int hard_limit: Indicates the existing quota.
+        :param _builtins.str resource: Indicates the quota resource type.
+        :param _builtins.int used: Indicates the number of the used instances.
+        """
+        pulumi.set(__self__, "hard_limit", hard_limit)
+        pulumi.set(__self__, "resource", resource)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter(name="hardLimit")
+    def hard_limit(self) -> _builtins.int:
+        """
+        Indicates the existing quota.
+        """
+        return pulumi.get(self, "hard_limit")
+
+    @_builtins.property
+    @pulumi.getter
+    def resource(self) -> _builtins.str:
+        """
+        Indicates the quota resource type.
+        """
+        return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        Indicates the number of the used instances.
+        """
+        return pulumi.get(self, "used")
 
 
 @pulumi.output_type

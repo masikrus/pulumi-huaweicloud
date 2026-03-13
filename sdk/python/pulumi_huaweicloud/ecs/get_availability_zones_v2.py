@@ -75,7 +75,7 @@ def get_availability_zones_v2(state: Optional[_builtins.str] = None,
     """
     Use this data source to get a list of availability zones from HuaweiCloud
 
-    !> **WARNING:** It has been deprecated, use `get_availability_zones` instead.
+    !> **WARNING:** It has been deprecated, use `index_get_availability_zones` instead.
 
     ## Example Usage
 
@@ -103,7 +103,7 @@ def get_availability_zones_v2_output(state: Optional[pulumi.Input[Optional[_buil
     """
     Use this data source to get a list of availability zones from HuaweiCloud
 
-    !> **WARNING:** It has been deprecated, use `get_availability_zones` instead.
+    !> **WARNING:** It has been deprecated, use `index_get_availability_zones` instead.
 
     ## Example Usage
 

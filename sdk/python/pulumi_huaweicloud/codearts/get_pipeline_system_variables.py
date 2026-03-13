@@ -108,7 +108,7 @@ def get_pipeline_system_variables(pipeline_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineSystemVariables:getPipelineSystemVariables', __args__, opts=opts, typ=GetPipelineSystemVariablesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineSystemVariables:getPipelineSystemVariables', __args__, opts=opts, typ=GetPipelineSystemVariablesResult).value
 
     return AwaitableGetPipelineSystemVariablesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -134,7 +134,7 @@ def get_pipeline_system_variables_output(pipeline_id: Optional[pulumi.Input[_bui
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineSystemVariables:getPipelineSystemVariables', __args__, opts=opts, typ=GetPipelineSystemVariablesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineSystemVariables:getPipelineSystemVariables', __args__, opts=opts, typ=GetPipelineSystemVariablesResult)
     return __ret__.apply(lambda __response__: GetPipelineSystemVariablesResult(
         id=pulumi.get(__response__, 'id'),
         pipeline_id=pulumi.get(__response__, 'pipeline_id'),

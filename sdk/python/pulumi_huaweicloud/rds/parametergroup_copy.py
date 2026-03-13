@@ -29,6 +29,7 @@ class ParametergroupCopyArgs:
                  values: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ParametergroupCopy resource.
+
         :param pulumi.Input[_builtins.str] config_id: Specifies the source parameter group ID.
         :param pulumi.Input[_builtins.str] description: Specifies the parameter group description. It contains a maximum of 256 characters
                and cannot contain the following special characters:>!<"&'= the value is left blank by default.
@@ -138,6 +139,7 @@ class _ParametergroupCopyState:
                  values: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ParametergroupCopy resources.
+
         :param pulumi.Input[_builtins.str] config_id: Specifies the source parameter group ID.
         :param pulumi.Input[Sequence[pulumi.Input['ParametergroupCopyConfigurationParameterArgs']]] configuration_parameters: Indicates the parameter configuration defined by users based on the default parameters groups.
                The configuration_parameters structure is documented below.
@@ -334,39 +336,16 @@ class ParametergroupCopy(pulumi.CustomResource):
 
         The RDS parameter group copy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/parametergroupCopy:ParametergroupCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `config_id` and`values`. It is generally
-
         recommended running `pulumi preview` after importing the RDS parameter group copy. You can then decide if changes should
-
         be applied to the RDS parameter group copy, or the resource definition should be updated to align with the RDS parameter
-
         group copy. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_parametergroup_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              config_id, values,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -409,39 +388,16 @@ class ParametergroupCopy(pulumi.CustomResource):
 
         The RDS parameter group copy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/parametergroupCopy:ParametergroupCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `config_id` and`values`. It is generally
-
         recommended running `pulumi preview` after importing the RDS parameter group copy. You can then decide if changes should
-
         be applied to the RDS parameter group copy, or the resource definition should be updated to align with the RDS parameter
-
         group copy. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_parametergroup_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              config_id, values,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ParametergroupCopyArgs args: The arguments to use to populate this resource's properties.

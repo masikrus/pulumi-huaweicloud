@@ -24,6 +24,7 @@ class LogCollectionSwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogCollectionSwitch resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type of the log collection switch.  
                The valid values are as follows:
                + **enable**
@@ -85,6 +86,7 @@ class _LogCollectionSwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogCollectionSwitch resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type of the log collection switch.  
                The valid values are as follows:
                + **enable**
@@ -165,6 +167,7 @@ class LogCollectionSwitch(pulumi.CustomResource):
         test = huaweicloud.lts.LogCollectionSwitch("test", action="enable")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the operation type of the log collection switch.  
@@ -196,6 +199,7 @@ class LogCollectionSwitch(pulumi.CustomResource):
 
         test = huaweicloud.lts.LogCollectionSwitch("test", action="enable")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogCollectionSwitchArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class TrafficMirrorSessionArgs:
                  virtual_network_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TrafficMirrorSession resource.
+
         :param pulumi.Input[_builtins.int] priority: Specifies the mirror session priority. The value range is **1-32766**.
                A smaller value indicates a higher priority.
         :param pulumi.Input[_builtins.str] traffic_mirror_filter_id: Specifies the traffic mirror filter ID used in the session.
@@ -246,6 +247,7 @@ class _TrafficMirrorSessionState:
                  virtual_network_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering TrafficMirrorSession resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the traffic mirror session.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the traffic mirror session.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the mirror session is enabled. Defaults to **true**.
@@ -501,11 +503,10 @@ class TrafficMirrorSession(pulumi.CustomResource):
 
         The traffic mirror session can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/trafficMirrorSession:TrafficMirrorSession test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -543,11 +544,10 @@ class TrafficMirrorSession(pulumi.CustomResource):
 
         The traffic mirror session can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/trafficMirrorSession:TrafficMirrorSession test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TrafficMirrorSessionArgs args: The arguments to use to populate this resource's properties.

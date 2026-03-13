@@ -27,6 +27,7 @@ class LifecycleHookCallbackArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LifecycleHookCallback resource.
+
         :param pulumi.Input[_builtins.str] lifecycle_action_result: Specifies the lifecycle hook callback operation.
                The valid values are as follows:
                + **ABANDON**
@@ -157,6 +158,7 @@ class _LifecycleHookCallbackState:
                  scaling_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LifecycleHookCallback resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID for the lifecycle callback.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] lifecycle_action_key: Specifies the lifecycle hook callback operation token.
@@ -316,6 +318,7 @@ class LifecycleHookCallback(pulumi.CustomResource):
             lifecycle_hook_name=hook_name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID for the lifecycle callback.
@@ -369,6 +372,7 @@ class LifecycleHookCallback(pulumi.CustomResource):
             instance_id=instance_id,
             lifecycle_hook_name=hook_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LifecycleHookCallbackArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class AppServiceActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppServiceAction resource.
+
         :param pulumi.Input[_builtins.str] service_status: Specifies the status of the Workspace APP service.  
                The valid values are as follows:
                + **active**: Activate the service.
@@ -83,6 +84,7 @@ class _AppServiceActionState:
                  service_status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppServiceAction resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the Workspace APP service is located.  
                If omitted, the provider-level region will be used. Changing this will create new resource.
         :param pulumi.Input[_builtins.str] service_status: Specifies the status of the Workspace APP service.  
@@ -162,6 +164,7 @@ class AppServiceAction(pulumi.CustomResource):
         test = huaweicloud.workspace.AppServiceAction("test", service_status="active")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the Workspace APP service is located.  
@@ -193,6 +196,7 @@ class AppServiceAction(pulumi.CustomResource):
 
         test = huaweicloud.workspace.AppServiceAction("test", service_status="active")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppServiceActionArgs args: The arguments to use to populate this resource's properties.

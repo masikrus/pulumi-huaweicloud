@@ -30,6 +30,7 @@ class PipelineServiceEndpointArgs:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineServiceEndpoint resource.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input['PipelineServiceEndpointAuthorizationArgs'] authorization: Specifies the permission information.
                The authorization structure is documented below.
@@ -158,6 +159,7 @@ class _PipelineServiceEndpointState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineServiceEndpoint resources.
+
         :param pulumi.Input['PipelineServiceEndpointAuthorizationArgs'] authorization: Specifies the permission information.
                The authorization structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineServiceEndpointCreatedByArgs']]] created_bies: Indicates the permission information.
@@ -291,7 +293,7 @@ class _PipelineServiceEndpointState:
         pulumi.set(self, "url", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineServiceEndpoint:PipelineServiceEndpoint")
+@pulumi.type_token("huaweicloud:Codearts/pipelineServiceEndpoint:PipelineServiceEndpoint")
 class PipelineServiceEndpoint(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -339,43 +341,19 @@ class PipelineServiceEndpoint(pulumi.CustomResource):
 
         The service endpoint can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineServiceEndpoint:PipelineServiceEndpoint test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineServiceEndpoint:PipelineServiceEndpoint test <project_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `authorization`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the service endpoint, or the resource definition should be updated to
-
         align with the service endpoint. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_service_endpoint" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              authorization,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -432,43 +410,19 @@ class PipelineServiceEndpoint(pulumi.CustomResource):
 
         The service endpoint can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineServiceEndpoint:PipelineServiceEndpoint test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineServiceEndpoint:PipelineServiceEndpoint test <project_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `authorization`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the service endpoint, or the resource definition should be updated to
-
         align with the service endpoint. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_service_endpoint" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              authorization,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PipelineServiceEndpointArgs args: The arguments to use to populate this resource's properties.
@@ -512,7 +466,7 @@ class PipelineServiceEndpoint(pulumi.CustomResource):
             __props__.__dict__["url"] = url
             __props__.__dict__["created_bies"] = None
         super(PipelineServiceEndpoint, __self__).__init__(
-            'huaweicloud:codearts/pipelineServiceEndpoint:PipelineServiceEndpoint',
+            'huaweicloud:Codearts/pipelineServiceEndpoint:PipelineServiceEndpoint',
             resource_name,
             __props__,
             opts)

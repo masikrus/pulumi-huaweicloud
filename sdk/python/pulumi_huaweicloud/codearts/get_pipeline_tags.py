@@ -95,7 +95,7 @@ def get_pipeline_tags(project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_tags(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_tags(project_id=codearts_project_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_pipeline_tags(project_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineTags:getPipelineTags', __args__, opts=opts, typ=GetPipelineTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineTags:getPipelineTags', __args__, opts=opts, typ=GetPipelineTagsResult).value
 
     return AwaitableGetPipelineTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -128,7 +128,7 @@ def get_pipeline_tags_output(project_id: Optional[pulumi.Input[_builtins.str]] =
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_tags(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_tags(project_id=codearts_project_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_pipeline_tags_output(project_id: Optional[pulumi.Input[_builtins.str]] =
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineTags:getPipelineTags', __args__, opts=opts, typ=GetPipelineTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineTags:getPipelineTags', __args__, opts=opts, typ=GetPipelineTagsResult)
     return __ret__.apply(lambda __response__: GetPipelineTagsResult(
         id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),

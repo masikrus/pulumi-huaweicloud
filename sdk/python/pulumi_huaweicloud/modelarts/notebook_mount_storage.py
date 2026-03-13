@@ -25,6 +25,7 @@ class NotebookMountStorageInitArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotebookMountStorage resource.
+
         :param pulumi.Input[_builtins.str] local_mount_directory: Specifies the local mount directory.
                Only the subdirectory of `/data/` can be mounted. The format is : `/data/dir1/`.
                Changing this parameter will create a new resource.
@@ -107,6 +108,7 @@ class _NotebookMountStorageState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NotebookMountStorage resources.
+
         :param pulumi.Input[_builtins.str] local_mount_directory: Specifies the local mount directory.
                Only the subdirectory of `/data/` can be mounted. The format is : `/data/dir1/`.
                Changing this parameter will create a new resource.
@@ -259,14 +261,12 @@ class NotebookMountStorage(pulumi.CustomResource):
         ## Import
 
         The mount storage can be imported by `id`, It is composed of the ID of notebook and mount ID, separated by a slash.
-
          For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:ModelArts/notebookMountStorage:NotebookMountStorage test b11b407c-e604-4e8d-8bc4-92398320b847/4e206d3c-6831-4267-b93d-e236105cda38
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,14 +307,12 @@ class NotebookMountStorage(pulumi.CustomResource):
         ## Import
 
         The mount storage can be imported by `id`, It is composed of the ID of notebook and mount ID, separated by a slash.
-
          For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:ModelArts/notebookMountStorage:NotebookMountStorage test b11b407c-e604-4e8d-8bc4-92398320b847/4e206d3c-6831-4267-b93d-e236105cda38
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotebookMountStorageInitArgs args: The arguments to use to populate this resource's properties.

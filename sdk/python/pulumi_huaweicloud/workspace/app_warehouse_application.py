@@ -30,6 +30,7 @@ class AppWarehouseApplicationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppWarehouseApplication resource.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the application.  
                The vaild values are as follows:
                + **GAME**
@@ -230,6 +231,7 @@ class _AppWarehouseApplicationState:
                  version_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppWarehouseApplication resources.
+
         :param pulumi.Input[_builtins.str] category: Specifies the category of the application.  
                The vaild values are as follows:
                + **GAME**
@@ -458,41 +460,17 @@ class AppWarehouseApplication(pulumi.CustomResource):
 
         The resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appWarehouseApplication:AppWarehouseApplication test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `icon`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_warehouse_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              icon,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,41 +523,17 @@ class AppWarehouseApplication(pulumi.CustomResource):
 
         The resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appWarehouseApplication:AppWarehouseApplication test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `icon`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_warehouse_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              icon,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AppWarehouseApplicationArgs args: The arguments to use to populate this resource's properties.

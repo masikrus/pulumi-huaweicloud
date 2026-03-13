@@ -31,6 +31,7 @@ class ApiCheckArgs:
                  req_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApiCheck resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the API belongs.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the API to be checked.  
                The valid values are as follows:
@@ -237,6 +238,7 @@ class _ApiCheckState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApiCheck resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be excluded from the check.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group to which the API belongs.  
                This parameter is required when verifying whether the API definition under the specified group exists.
@@ -472,6 +474,7 @@ class ApiCheck(pulumi.CustomResource):
             group_id=group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be excluded from the check.
@@ -536,6 +539,7 @@ class ApiCheck(pulumi.CustomResource):
             name=check_name,
             group_id=group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApiCheckArgs args: The arguments to use to populate this resource's properties.

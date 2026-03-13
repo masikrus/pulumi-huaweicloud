@@ -107,7 +107,7 @@ def get_policy_assignment_summary(policy_assignment_id: Optional[_builtins.str] 
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_policy_assignment_summary(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_policy_assignment_summary(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -118,7 +118,7 @@ def get_policy_assignment_summary(policy_assignment_id: Optional[_builtins.str] 
     __args__['policyAssignmentId'] = policy_assignment_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyAssignmentSummary:getPolicyAssignmentSummary', __args__, opts=opts, typ=GetPolicyAssignmentSummaryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyAssignmentSummary:getPolicyAssignmentSummary', __args__, opts=opts, typ=GetPolicyAssignmentSummaryResult).value
 
     return AwaitableGetPolicyAssignmentSummaryResult(
         compliance_state=pulumi.get(__ret__, 'compliance_state'),
@@ -140,7 +140,7 @@ def get_policy_assignment_summary_output(policy_assignment_id: Optional[pulumi.I
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_policy_assignment_summary(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_policy_assignment_summary(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -151,7 +151,7 @@ def get_policy_assignment_summary_output(policy_assignment_id: Optional[pulumi.I
     __args__['policyAssignmentId'] = policy_assignment_id
     __args__['resourceName'] = resource_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyAssignmentSummary:getPolicyAssignmentSummary', __args__, opts=opts, typ=GetPolicyAssignmentSummaryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyAssignmentSummary:getPolicyAssignmentSummary', __args__, opts=opts, typ=GetPolicyAssignmentSummaryResult)
     return __ret__.apply(lambda __response__: GetPolicyAssignmentSummaryResult(
         compliance_state=pulumi.get(__response__, 'compliance_state'),
         id=pulumi.get(__response__, 'id'),

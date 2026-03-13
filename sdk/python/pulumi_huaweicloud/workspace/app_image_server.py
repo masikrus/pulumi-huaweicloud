@@ -46,6 +46,7 @@ class AppImageServerArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AppImageServer resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AppImageServerAuthorizeAccountArgs']]] authorize_accounts: Specifies the list of the management accounts for creating the image.
                Changing this creates a new resource.
                The authorize_accounts structure is documented below.
@@ -544,6 +545,7 @@ class _AppImageServerState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppImageServer resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] attach_apps: The list of the warehouse apps.
         :param pulumi.Input[Sequence[pulumi.Input['AppImageServerAuthorizeAccountArgs']]] authorize_accounts: Specifies the list of the management accounts for creating the image.
                Changing this creates a new resource.
@@ -1108,47 +1110,19 @@ class AppImageServer(pulumi.CustomResource):
 
         The image server resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appImageServer:AppImageServer test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `flavor_id`, `vpc_id`, `subnet_id`, `root_volume`, `image_source_product_id`, `is_vdi`,
-
         `availability_zone`, `ou_name`, `extra_session_type`, `extra_session_size`, `route_policy`, `scheduler_hints`, `tags`,
-
         `enterprise_project_id`,  `is_delete_associated_resources`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_image_server" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              flavor_id, vpc_id, subnet_id, root_volume, image_source_product_id, is_vdi, availability_zone, ou_name, extra_session_type,
-            
-              extra_session_size, route_policy, scheduler_hints, tags, enterprise_project_id, is_delete_associated_resources,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1289,47 +1263,19 @@ class AppImageServer(pulumi.CustomResource):
 
         The image server resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appImageServer:AppImageServer test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `flavor_id`, `vpc_id`, `subnet_id`, `root_volume`, `image_source_product_id`, `is_vdi`,
-
         `availability_zone`, `ou_name`, `extra_session_type`, `extra_session_size`, `route_policy`, `scheduler_hints`, `tags`,
-
         `enterprise_project_id`,  `is_delete_associated_resources`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_app_image_server" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              flavor_id, vpc_id, subnet_id, root_volume, image_source_product_id, is_vdi, availability_zone, ou_name, extra_session_type,
-            
-              extra_session_size, route_policy, scheduler_hints, tags, enterprise_project_id, is_delete_associated_resources,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AppImageServerArgs args: The arguments to use to populate this resource's properties.

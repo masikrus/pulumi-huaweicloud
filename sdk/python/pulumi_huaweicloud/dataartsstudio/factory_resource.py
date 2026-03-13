@@ -31,6 +31,7 @@ class FactoryResourceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FactoryResource resource.
+
         :param pulumi.Input[_builtins.str] directory: Specifies the directory where the resource is located.
         :param pulumi.Input[_builtins.str] location: Specifies the path of the dependent file. Currently, only OBS paths is
                supported.
@@ -179,6 +180,7 @@ class _FactoryResourceState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FactoryResource resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['FactoryResourceDependPackageArgs']]] depend_packages: Specifies an array of dependent files.
                The depend_packages structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the resource description.
@@ -378,11 +380,10 @@ class FactoryResource(pulumi.CustomResource):
 
         DataArts Factory resource can be imported using `<workspace_id>/<id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryResource:FactoryResource test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -454,11 +455,10 @@ class FactoryResource(pulumi.CustomResource):
 
         DataArts Factory resource can be imported using `<workspace_id>/<id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/factoryResource:FactoryResource test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FactoryResourceArgs args: The arguments to use to populate this resource's properties.

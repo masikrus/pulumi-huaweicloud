@@ -21,34 +21,39 @@ __all__ = [
     'ServiceConnectionArgsDict',
     'ServicePortMappingArgs',
     'ServicePortMappingArgsDict',
+    'GetResourcesByTagsMatchArgs',
+    'GetResourcesByTagsMatchArgsDict',
+    'GetResourcesByTagsNotTagArgs',
+    'GetResourcesByTagsNotTagArgsDict',
+    'GetResourcesByTagsNotTagsAnyArgs',
+    'GetResourcesByTagsNotTagsAnyArgsDict',
+    'GetResourcesByTagsTagArgs',
+    'GetResourcesByTagsTagArgsDict',
+    'GetResourcesByTagsTagsAnyArgs',
+    'GetResourcesByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ApprovalConnectionArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The description of the VPC endpoint service connection.
-        """
-        domain_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user's domain ID.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The unique ID of the VPC endpoint.
-        """
-        packet_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The packet ID of the VPC endpoint.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The connection status of the VPC endpoint.
-        """
-elif False:
-    ApprovalConnectionArgsDict: TypeAlias = Mapping[str, Any]
+class ApprovalConnectionArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The description of the VPC endpoint service connection.
+    """
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user's domain ID.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The unique ID of the VPC endpoint.
+    """
+    packet_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The packet ID of the VPC endpoint.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The connection status of the VPC endpoint.
+    """
 
 @pulumi.input_type
 class ApprovalConnectionArgs:
@@ -137,30 +142,27 @@ class ApprovalConnectionArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ServiceConnectionArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the VPC endpoint service.
-        """
-        domain_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user's domain ID.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The unique ID of the VPC endpoint.
-        """
-        packet_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The packet ID of the VPC endpoint.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The connection status of the VPC endpoint.
-        """
-elif False:
-    ServiceConnectionArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceConnectionArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the VPC endpoint service.
+    """
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user's domain ID.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The unique ID of the VPC endpoint.
+    """
+    packet_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The packet ID of the VPC endpoint.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The connection status of the VPC endpoint.
+    """
 
 @pulumi.input_type
 class ServiceConnectionArgs:
@@ -249,24 +251,21 @@ class ServiceConnectionArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ServicePortMappingArgsDict(TypedDict):
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol used in port mappings. Only **TCP** is supported.
-        """
-        service_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port for accessing the VPC endpoint service. This port is provided by
-        the backend service to provide services. The value ranges from `1` to `65,535`.
-        """
-        terminal_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port for accessing the VPC endpoint. This port is provided by the VPC
-        endpoint, allowing you to access the VPC endpoint service. The value ranges from `1` to `65,535`.
-        """
-elif False:
-    ServicePortMappingArgsDict: TypeAlias = Mapping[str, Any]
+class ServicePortMappingArgsDict(TypedDict):
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol used in port mappings. Only **TCP** is supported.
+    """
+    service_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port for accessing the VPC endpoint service. This port is provided by
+    the backend service to provide services. The value ranges from `1` to `65,535`.
+    """
+    terminal_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port for accessing the VPC endpoint. This port is provided by the VPC
+    endpoint, allowing you to access the VPC endpoint service. The value ranges from `1` to `65,535`.
+    """
 
 @pulumi.input_type
 class ServicePortMappingArgs:
@@ -325,5 +324,339 @@ class ServicePortMappingArgs:
     @terminal_port.setter
     def terminal_port(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "terminal_port", value)
+
+
+class GetResourcesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matches key.
+    Only **resource_name** for key is supported.
+    """
+    value: _builtins.str
+    """
+    Specifies the matches value.
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the matches value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the matches value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetResourcesByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matches key.
+    Only **resource_name** for key is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    Each tag value contains a maximum of `255` characters.
+    The tag value can be an empty array but cannot be left blank. If values are left blank,
+    it indicates querying any value.
+    Values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matches key.
+    Only **resource_name** for key is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    Each tag value contains a maximum of `255` characters.
+    The tag value can be an empty array but cannot be left blank. If values are left blank,
+    it indicates querying any value.
+    Values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matches key.
+    Only **resource_name** for key is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    Each tag value contains a maximum of `255` characters.
+    The tag value can be an empty array but cannot be left blank. If values are left blank,
+    it indicates querying any value.
+    Values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matches key.
+    Only **resource_name** for key is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    Each tag value contains a maximum of `255` characters.
+    The tag value can be an empty array but cannot be left blank. If values are left blank,
+    it indicates querying any value.
+    Values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matches key.
+               Only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the tag values.
+               Each tag value contains a maximum of `255` characters.
+               The tag value can be an empty array but cannot be left blank. If values are left blank,
+               it indicates querying any value.
+               Values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matches key.
+        Only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the tag values.
+        Each tag value contains a maximum of `255` characters.
+        The tag value can be an empty array but cannot be left blank. If values are left blank,
+        it indicates querying any value.
+        Values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

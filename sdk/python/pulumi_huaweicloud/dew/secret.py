@@ -32,6 +32,7 @@ class SecretArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Secret resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of a secret.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the secret belongs.
                If omitted, the default enterprise project will be used.
@@ -273,6 +274,7 @@ class _SecretState:
                  version_stages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
+
         :param pulumi.Input[_builtins.str] create_time: Time when the CSMS secrets created, in UTC format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of a secret.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the secret belongs.
@@ -634,11 +636,10 @@ class Secret(pulumi.CustomResource):
 
         CSMS secret can be imported using the ID and the name of secret, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/secret:Secret test <id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -734,11 +735,10 @@ class Secret(pulumi.CustomResource):
 
         CSMS secret can be imported using the ID and the name of secret, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/secret:Secret test <id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretArgs args: The arguments to use to populate this resource's properties.

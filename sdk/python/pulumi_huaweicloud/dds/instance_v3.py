@@ -46,12 +46,14 @@ class InstanceV3Args:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input['InstanceV3PolicyArgs']] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
                  second_level_monitoring_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a InstanceV3 resource.
@@ -102,6 +104,8 @@ class InstanceV3Args:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if region is not None:
@@ -114,6 +118,8 @@ class InstanceV3Args:
             pulumi.set(__self__, "slow_log_desensitization", slow_log_desensitization)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
+        if switch_option is not None:
+            pulumi.set(__self__, "switch_option", switch_option)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -345,6 +351,15 @@ class InstanceV3Args:
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input['InstanceV3PolicyArgs']]:
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input['InstanceV3PolicyArgs']]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> Optional[pulumi.Input[_builtins.int]]:
         return pulumi.get(self, "port")
 
@@ -398,6 +413,15 @@ class InstanceV3Args:
         pulumi.set(self, "ssl", value)
 
     @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "switch_option")
+
+    @switch_option.setter
+    def switch_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "switch_option", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "tags")
@@ -436,6 +460,7 @@ class _InstanceV3State:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input['InstanceV3PolicyArgs']] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -445,12 +470,14 @@ class _InstanceV3State:
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceV3 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['InstanceV3NodeArgs']]] nodes: This field is deprecated.
         """
         if auto_pay is not None:
@@ -508,6 +535,8 @@ class _InstanceV3State:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if region is not None:
@@ -526,6 +555,8 @@ class _InstanceV3State:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if switch_option is not None:
+            pulumi.set(__self__, "switch_option", switch_option)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if time_zone is not None:
@@ -775,6 +806,15 @@ class _InstanceV3State:
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input['InstanceV3PolicyArgs']]:
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input['InstanceV3PolicyArgs']]):
+        pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> Optional[pulumi.Input[_builtins.int]]:
         return pulumi.get(self, "port")
 
@@ -855,6 +895,15 @@ class _InstanceV3State:
         pulumi.set(self, "subnet_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "switch_option")
+
+    @switch_option.setter
+    def switch_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "switch_option", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "tags")
@@ -919,6 +968,7 @@ class InstanceV3(pulumi.CustomResource):
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input[Union['InstanceV3PolicyArgs', 'InstanceV3PolicyArgsDict']]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -927,11 +977,13 @@ class InstanceV3(pulumi.CustomResource):
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Create a InstanceV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -943,6 +995,7 @@ class InstanceV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a InstanceV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param InstanceV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -980,6 +1033,7 @@ class InstanceV3(pulumi.CustomResource):
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
                  period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 policy: Optional[pulumi.Input[Union['InstanceV3PolicyArgs', 'InstanceV3PolicyArgsDict']]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -988,6 +1042,7 @@ class InstanceV3(pulumi.CustomResource):
                  slow_log_desensitization: Optional[pulumi.Input[_builtins.str]] = None,
                  ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 switch_option: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -1029,6 +1084,7 @@ class InstanceV3(pulumi.CustomResource):
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["period"] = period
             __props__.__dict__["period_unit"] = period_unit
+            __props__.__dict__["policy"] = policy
             __props__.__dict__["port"] = port
             __props__.__dict__["region"] = region
             __props__.__dict__["replica_set_name"] = replica_set_name
@@ -1041,6 +1097,7 @@ class InstanceV3(pulumi.CustomResource):
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["switch_option"] = switch_option
             __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
@@ -1090,6 +1147,7 @@ class InstanceV3(pulumi.CustomResource):
             password: Optional[pulumi.Input[_builtins.str]] = None,
             period: Optional[pulumi.Input[_builtins.int]] = None,
             period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+            policy: Optional[pulumi.Input[Union['InstanceV3PolicyArgs', 'InstanceV3PolicyArgsDict']]] = None,
             port: Optional[pulumi.Input[_builtins.int]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1099,6 +1157,7 @@ class InstanceV3(pulumi.CustomResource):
             ssl: Optional[pulumi.Input[_builtins.bool]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
+            switch_option: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             time_zone: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1142,6 +1201,7 @@ class InstanceV3(pulumi.CustomResource):
         __props__.__dict__["password"] = password
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
+        __props__.__dict__["policy"] = policy
         __props__.__dict__["port"] = port
         __props__.__dict__["region"] = region
         __props__.__dict__["replica_set_name"] = replica_set_name
@@ -1151,6 +1211,7 @@ class InstanceV3(pulumi.CustomResource):
         __props__.__dict__["ssl"] = ssl
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["switch_option"] = switch_option
         __props__.__dict__["tags"] = tags
         __props__.__dict__["time_zone"] = time_zone
         __props__.__dict__["updated_at"] = updated_at
@@ -1293,6 +1354,11 @@ class InstanceV3(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def policy(self) -> pulumi.Output[Optional['outputs.InstanceV3Policy']]:
+        return pulumi.get(self, "policy")
+
+    @_builtins.property
+    @pulumi.getter
     def port(self) -> pulumi.Output[_builtins.int]:
         return pulumi.get(self, "port")
 
@@ -1335,6 +1401,11 @@ class InstanceV3(pulumi.CustomResource):
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter(name="switchOption")
+    def switch_option(self) -> pulumi.Output[_builtins.str]:
+        return pulumi.get(self, "switch_option")
 
     @_builtins.property
     @pulumi.getter

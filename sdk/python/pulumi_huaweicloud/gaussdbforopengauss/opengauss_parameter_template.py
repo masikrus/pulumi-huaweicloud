@@ -30,6 +30,7 @@ class OpengaussParameterTemplateArgs:
                  source_configuration_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussParameterTemplate resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the Parameter template description. This parameter is left blank
                by default. Up to **256** characters are displayed. Carriage return characters or special characters (>!<"&'=) are not
                allowed.
@@ -210,6 +211,7 @@ class _OpengaussParameterTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussParameterTemplate resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time in the **yyyy-mm-ddThh:mm:ssZ** format.
         :param pulumi.Input[_builtins.str] description: Specifies the Parameter template description. This parameter is left blank
                by default. Up to **256** characters are displayed. Carriage return characters or special characters (>!<"&'=) are not
@@ -464,39 +466,16 @@ class OpengaussParameterTemplate(pulumi.CustomResource):
 
         The GaussDB OpenGauss parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussParameterTemplate:OpengaussParameterTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_configuration_id` and `parameters`.
-
         It is generally recommended running `pulumi preview` after importing a GaussDB OpenGauss parameter template. You can then
-
         decide if changes should be applied to the GaussDB OpenGauss parameter template, or the resource definition should be
-
         updated to align with the GaussDB OpenGauss parameter template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_parameter_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_configuration_id, parameters,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -587,39 +566,16 @@ class OpengaussParameterTemplate(pulumi.CustomResource):
 
         The GaussDB OpenGauss parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussParameterTemplate:OpengaussParameterTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_configuration_id` and `parameters`.
-
         It is generally recommended running `pulumi preview` after importing a GaussDB OpenGauss parameter template. You can then
-
         decide if changes should be applied to the GaussDB OpenGauss parameter template, or the resource definition should be
-
         updated to align with the GaussDB OpenGauss parameter template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_parameter_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_configuration_id, parameters,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OpengaussParameterTemplateArgs args: The arguments to use to populate this resource's properties.

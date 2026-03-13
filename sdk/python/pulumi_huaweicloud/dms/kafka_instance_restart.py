@@ -23,6 +23,7 @@ class KafkaInstanceRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaInstanceRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -68,6 +69,7 @@ class _KafkaInstanceRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaInstanceRestart resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -130,6 +132,7 @@ class KafkaInstanceRestart(pulumi.CustomResource):
         test = huaweicloud.dms.KafkaInstanceRestart("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance.
@@ -157,6 +160,7 @@ class KafkaInstanceRestart(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.dms.KafkaInstanceRestart("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaInstanceRestartArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class DomainAssociateCertificateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainAssociateCertificate resource.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the certificate.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_host_ids: Specifies the ID lsit of the domain in cloud mode.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
@@ -128,6 +129,7 @@ class _DomainAssociateCertificateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DomainAssociateCertificate resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the certificate.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_host_ids: Specifies the ID lsit of the domain in cloud mode.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
@@ -256,6 +258,7 @@ class DomainAssociateCertificate(pulumi.CustomResource):
             cloud_host_ids=cloud_host_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the certificate.
@@ -294,6 +297,7 @@ class DomainAssociateCertificate(pulumi.CustomResource):
             certificate_id=certificate_id,
             cloud_host_ids=cloud_host_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainAssociateCertificateArgs args: The arguments to use to populate this resource's properties.

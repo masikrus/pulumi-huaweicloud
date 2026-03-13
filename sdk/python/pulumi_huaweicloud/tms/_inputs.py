@@ -17,26 +17,21 @@ from .. import _utilities
 __all__ = [
     'ResourceTagsResourceArgs',
     'ResourceTagsResourceArgsDict',
-    'TagsTagArgs',
-    'TagsTagArgsDict',
+    'TagsTagsValueArgs',
+    'TagsTagsValueArgsDict',
     'GetResourceInstancesTagArgs',
     'GetResourceInstancesTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ResourceTagsResourceArgsDict(TypedDict):
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource ID.
-        """
-        resource_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource type.
-        """
-elif False:
-    ResourceTagsResourceArgsDict: TypeAlias = Mapping[str, Any]
+class ResourceTagsResourceArgsDict(TypedDict):
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource ID.
+    """
+    resource_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource type.
+    """
 
 @pulumi.input_type
 class ResourceTagsResourceArgs:
@@ -75,23 +70,20 @@ class ResourceTagsResourceArgs:
         pulumi.set(self, "resource_type", value)
 
 
-if not MYPY:
-    class TagsTagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag key. The value can contain up to `36` characters. Only English letters,
-        Chinese characters, digits, hyphens (-) and underscores (_) are allowed.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag value. The value can contain up to `43` characters. Only English letters,
-        Chinese characters, digits, periods (.), hyphens (-) and underscores (_) are allowed.
-        """
-elif False:
-    TagsTagArgsDict: TypeAlias = Mapping[str, Any]
+class TagsTagsValueArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag key. The value can contain up to `36` characters. Only English letters,
+    Chinese characters, digits, hyphens (-) and underscores (_) are allowed.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag value. The value can contain up to `43` characters. Only English letters,
+    Chinese characters, digits, periods (.), hyphens (-) and underscores (_) are allowed.
+    """
 
 @pulumi.input_type
-class TagsTagArgs:
+class TagsTagsValueArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str]):
@@ -131,18 +123,15 @@ class TagsTagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetResourceInstancesTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the tag key.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the tag values.
-        """
-elif False:
-    GetResourceInstancesTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceInstancesTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the tag values.
+    """
 
 @pulumi.input_type
 class GetResourceInstancesTagArgs:

@@ -31,6 +31,7 @@ class RepositoryArgs:
                  visibility_level: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Repository resource.
+
         :param pulumi.Input[_builtins.str] project_id: The project ID for CodeHub service.
         :param pulumi.Input[_builtins.str] description: The repository description.
         :param pulumi.Input[_builtins.int] enable_readme: Whether to generate the README.md file.
@@ -203,6 +204,7 @@ class _RepositoryState:
                  web_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
+
         :param pulumi.Input[_builtins.str] capacity: The total size of the repository, in MB. If the capacity is greater than 1024M, the unit is GB.
         :param pulumi.Input[_builtins.str] create_at: The creation time.
         :param pulumi.Input[_builtins.str] description: The repository description.
@@ -487,7 +489,7 @@ class _RepositoryState:
         pulumi.set(self, "web_url", value)
 
 
-@pulumi.type_token("huaweicloud:codehub/repository:Repository")
+@pulumi.type_token("huaweicloud:Codehub/repository:Repository")
 class Repository(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -506,6 +508,7 @@ class Repository(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Repository resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The repository description.
@@ -526,6 +529,7 @@ class Repository(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Repository resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RepositoryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -582,7 +586,7 @@ class Repository(pulumi.CustomResource):
             __props__.__dict__["update_at"] = None
             __props__.__dict__["web_url"] = None
         super(Repository, __self__).__init__(
-            'huaweicloud:codehub/repository:Repository',
+            'huaweicloud:Codehub/repository:Repository',
             resource_name,
             __props__,
             opts)

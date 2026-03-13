@@ -27,13 +27,16 @@ class GetComponentsResult:
     """
     A collection of values returned by getComponents.
     """
-    def __init__(__self__, application_id=None, components=None, environment_id=None, id=None, region=None):
+    def __init__(__self__, application_id=None, components=None, enterprise_project_id=None, environment_id=None, id=None, region=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
         if components and not isinstance(components, list):
             raise TypeError("Expected argument 'components' to be a list")
         pulumi.set(__self__, "components", components)
+        if enterprise_project_id and not isinstance(enterprise_project_id, str):
+            raise TypeError("Expected argument 'enterprise_project_id' to be a str")
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id and not isinstance(environment_id, str):
             raise TypeError("Expected argument 'environment_id' to be a str")
         pulumi.set(__self__, "environment_id", environment_id)
@@ -57,6 +60,11 @@ class GetComponentsResult:
         The components structure is documented below.
         """
         return pulumi.get(self, "components")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -88,12 +96,14 @@ class AwaitableGetComponentsResult(GetComponentsResult):
         return GetComponentsResult(
             application_id=self.application_id,
             components=self.components,
+            enterprise_project_id=self.enterprise_project_id,
             environment_id=self.environment_id,
             id=self.id,
             region=self.region)
 
 
 def get_components(application_id: Optional[_builtins.str] = None,
+                   enterprise_project_id: Optional[_builtins.str] = None,
                    environment_id: Optional[_builtins.str] = None,
                    region: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComponentsResult:
@@ -102,6 +112,8 @@ def get_components(application_id: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### Query all components under the default enterprise project or EPS service is not enable
+
     ```python
     import pulumi
     import pulumi_huaweicloud as huaweicloud
@@ -109,30 +121,52 @@ def get_components(application_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     environment_id = config.require_object("environmentId")
     application_id = config.require_object("applicationId")
-    test = huaweicloud.cae.get_components(environment_id=environment_id,
+    test = huaweicloud.Cae.get_components(environment_id=environment_id,
         application_id=application_id)
+    ```
+
+    ### Query all components under the specified enterprise project
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    environment_id = config.require_object("environmentId")
+    application_id = config.require_object("applicationId")
+    enterprise_project_id = config.require_object("enterpriseProjectId")
+    test = huaweicloud.Cae.get_components(environment_id=environment_id,
+        application_id=application_id,
+        enterprise_project_id=enterprise_project_id)
     ```
 
 
     :param _builtins.str application_id: Specifies the ID of the application to which the components belong.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the components
+           belong.
+           If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+           for enterprise users.
     :param _builtins.str environment_id: Specifies the ID of the environment to which the components belong.
     :param _builtins.str region: Specifies the region where the components are located.  
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()
     __args__['applicationId'] = application_id
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['environmentId'] = environment_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cae/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cae/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult).value
 
     return AwaitableGetComponentsResult(
         application_id=pulumi.get(__ret__, 'application_id'),
         components=pulumi.get(__ret__, 'components'),
+        enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
         environment_id=pulumi.get(__ret__, 'environment_id'),
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'))
 def get_components_output(application_id: Optional[pulumi.Input[_builtins.str]] = None,
+                          enterprise_project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                           region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetComponentsResult]:
@@ -141,6 +175,8 @@ def get_components_output(application_id: Optional[pulumi.Input[_builtins.str]] 
 
     ## Example Usage
 
+    ### Query all components under the default enterprise project or EPS service is not enable
+
     ```python
     import pulumi
     import pulumi_huaweicloud as huaweicloud
@@ -148,25 +184,46 @@ def get_components_output(application_id: Optional[pulumi.Input[_builtins.str]] 
     config = pulumi.Config()
     environment_id = config.require_object("environmentId")
     application_id = config.require_object("applicationId")
-    test = huaweicloud.cae.get_components(environment_id=environment_id,
+    test = huaweicloud.Cae.get_components(environment_id=environment_id,
         application_id=application_id)
+    ```
+
+    ### Query all components under the specified enterprise project
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    environment_id = config.require_object("environmentId")
+    application_id = config.require_object("applicationId")
+    enterprise_project_id = config.require_object("enterpriseProjectId")
+    test = huaweicloud.Cae.get_components(environment_id=environment_id,
+        application_id=application_id,
+        enterprise_project_id=enterprise_project_id)
     ```
 
 
     :param _builtins.str application_id: Specifies the ID of the application to which the components belong.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the components
+           belong.
+           If the `application_id` belongs to the non-default enterprise project, this parameter is required and is only valid
+           for enterprise users.
     :param _builtins.str environment_id: Specifies the ID of the environment to which the components belong.
     :param _builtins.str region: Specifies the region where the components are located.  
            If omitted, the provider-level region will be used.
     """
     __args__ = dict()
     __args__['applicationId'] = application_id
+    __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['environmentId'] = environment_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cae/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cae/getComponents:getComponents', __args__, opts=opts, typ=GetComponentsResult)
     return __ret__.apply(lambda __response__: GetComponentsResult(
         application_id=pulumi.get(__response__, 'application_id'),
         components=pulumi.get(__response__, 'components'),
+        enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         environment_id=pulumi.get(__response__, 'environment_id'),
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region')))

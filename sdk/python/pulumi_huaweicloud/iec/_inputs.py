@@ -29,20 +29,15 @@ __all__ = [
     'ServerVolumeAttachedArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class NetworkAclNetworkArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the id of the iec subnet.
-        """
-        vpc_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the id of the iec vpc.
-        """
-elif False:
-    NetworkAclNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkAclNetworkArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the id of the iec subnet.
+    """
+    vpc_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the id of the iec vpc.
+    """
 
 @pulumi.input_type
 class NetworkAclNetworkArgs:
@@ -81,52 +76,49 @@ class NetworkAclNetworkArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class SecurityGroupSecurityGroupRuleArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the iec security group. description must be
-        0 to 64 characters in length, and does not contain angle brackets (<) and (>). Changing this parameter will creates a
-        new iec security group resource.
-        """
-        direction: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The direction of the iec security group rules.
-        """
-        ethertype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The layer 3 protocol type.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The id of the iec security group rules.
-        """
-        port_range_max: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The higher part of the allowed port range.
-        """
-        port_range_min: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The lower part of the allowed port range.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The layer 4 protocol type.
-        """
-        remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The remote group id of the iec security group rules.
-        """
-        remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The remote CIDR of the iec security group rules.
-        """
-        security_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The id of the iec security group rules.
-        """
-elif False:
-    SecurityGroupSecurityGroupRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityGroupSecurityGroupRuleArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the iec security group. description must be
+    0 to 64 characters in length, and does not contain angle brackets (<) and (>). Changing this parameter will creates a
+    new iec security group resource.
+    """
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The direction of the iec security group rules.
+    """
+    ethertype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The layer 3 protocol type.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The id of the iec security group rules.
+    """
+    port_range_max: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The higher part of the allowed port range.
+    """
+    port_range_min: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The lower part of the allowed port range.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The layer 4 protocol type.
+    """
+    remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote group id of the iec security group rules.
+    """
+    remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote CIDR of the iec security group rules.
+    """
+    security_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The id of the iec security group rules.
+    """
 
 @pulumi.input_type
 class SecurityGroupSecurityGroupRuleArgs:
@@ -299,18 +291,15 @@ class SecurityGroupSecurityGroupRuleArgs:
         pulumi.set(self, "security_group_id", value)
 
 
-if not MYPY:
-    class ServerCoverageSiteArgsDict(TypedDict):
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the operator of the IEC site.
-        """
-        site_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of IEC site.
-        """
-elif False:
-    ServerCoverageSiteArgsDict: TypeAlias = Mapping[str, Any]
+class ServerCoverageSiteArgsDict(TypedDict):
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the operator of the IEC site.
+    """
+    site_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of IEC site.
+    """
 
 @pulumi.input_type
 class ServerCoverageSiteArgs:
@@ -349,20 +338,17 @@ class ServerCoverageSiteArgs:
         pulumi.set(self, "site_id", value)
 
 
-if not MYPY:
-    class ServerDataDiskArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of data disk for the IEC server binding. The value range is
-        10 to 500 in GB. Changing this parameter creates a new IEC server resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of data disk for the IEC server binding. Valid value is
-        *SAS*(high I/O disk type). Changing this parameter creates a new IEC server resource.
-        """
-elif False:
-    ServerDataDiskArgsDict: TypeAlias = Mapping[str, Any]
+class ServerDataDiskArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of data disk for the IEC server binding. The value range is
+    10 to 500 in GB. Changing this parameter creates a new IEC server resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of data disk for the IEC server binding. Valid value is
+    *SAS*(high I/O disk type). Changing this parameter creates a new IEC server resource.
+    """
 
 @pulumi.input_type
 class ServerDataDiskArgs:
@@ -405,22 +391,19 @@ class ServerDataDiskArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServerNicArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IPv4 address of the server on that network.
-        """
-        mac: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The MAC address of the NIC on that network.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port ID corresponding to the IP address on that network.
-        """
-elif False:
-    ServerNicArgsDict: TypeAlias = Mapping[str, Any]
+class ServerNicArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IPv4 address of the server on that network.
+    """
+    mac: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The MAC address of the NIC on that network.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID corresponding to the IP address on that network.
+    """
 
 @pulumi.input_type
 class ServerNicArgs:
@@ -477,30 +460,27 @@ class ServerNicArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ServerVolumeAttachedArgsDict(TypedDict):
-        boot_index: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume boot index on that attachment.
-        """
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The device name in the IEC server.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The volume size on that attachment.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume type on that attachment.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID on that attachment.
-        """
-elif False:
-    ServerVolumeAttachedArgsDict: TypeAlias = Mapping[str, Any]
+class ServerVolumeAttachedArgsDict(TypedDict):
+    boot_index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume boot index on that attachment.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The device name in the IEC server.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The volume size on that attachment.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume type on that attachment.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID on that attachment.
+    """
 
 @pulumi.input_type
 class ServerVolumeAttachedArgs:

@@ -39,6 +39,7 @@ class QueueV1Args:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a QueueV1 resource.
+
         :param pulumi.Input[_builtins.str] elastic_resource_pool_name: The name of the elastic resource pool to which the queue belongs.
         :param pulumi.Input[_builtins.int] resource_mode: The queue resource mode.
         :param pulumi.Input[_builtins.str] vpc_cidr: The CIDR block of the queue.
@@ -259,6 +260,7 @@ class _QueueV1State:
                  vpc_cidr: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering QueueV1 resources.
+
         :param pulumi.Input[_builtins.str] elastic_resource_pool_name: The name of the elastic resource pool to which the queue belongs.
         :param pulumi.Input[_builtins.int] resource_mode: The queue resource mode.
         :param pulumi.Input[_builtins.str] vpc_cidr: The CIDR block of the queue.
@@ -494,6 +496,7 @@ class QueueV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a QueueV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] elastic_resource_pool_name: The name of the elastic resource pool to which the queue belongs.
@@ -508,6 +511,7 @@ class QueueV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a QueueV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param QueueV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -27,6 +27,7 @@ class KeyMaterialArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KeyMaterial resource.
+
         :param pulumi.Input[_builtins.str] encrypted_key_material: Specifies the encrypted symmetric key material in Base64 format.
                The value contains `344` to `360` characters, including letters, digits, slashes(/) and equals(=).
                If an asymmetric key is imported, this parameter is a temporary intermediate key used to encrypt the private key.
@@ -164,6 +165,7 @@ class _KeyMaterialState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KeyMaterial resources.
+
         :param pulumi.Input[_builtins.str] encrypted_key_material: Specifies the encrypted symmetric key material in Base64 format.
                The value contains `344` to `360` characters, including letters, digits, slashes(/) and equals(=).
                If an asymmetric key is imported, this parameter is a temporary intermediate key used to encrypt the private key.
@@ -369,35 +371,16 @@ class KeyMaterial(pulumi.CustomResource):
 
         The KMS key material can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/keyMaterial:KeyMaterial test 7056d636-ac60-4663-8a6c-82d3c32c1c64
         ```
 
         Note that the imported state may not be identical to your resource definition,
-
         due to `import_token`, `encrypted_key_material` and `encrypted_privatekey` are missing from the API response.
-
         It is generally recommended running `pulumi preview` after importing a KMS key material.
-
         You can then decide if changes should be applied to the KMS key material, or the resource
-
         definition should be updated to align with the KMS key material. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_key_material" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [ import_token, encrypted_key_material, encrypted_privatekey ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -456,35 +439,16 @@ class KeyMaterial(pulumi.CustomResource):
 
         The KMS key material can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/keyMaterial:KeyMaterial test 7056d636-ac60-4663-8a6c-82d3c32c1c64
         ```
 
         Note that the imported state may not be identical to your resource definition,
-
         due to `import_token`, `encrypted_key_material` and `encrypted_privatekey` are missing from the API response.
-
         It is generally recommended running `pulumi preview` after importing a KMS key material.
-
         You can then decide if changes should be applied to the KMS key material, or the resource
-
         definition should be updated to align with the KMS key material. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_key_material" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [ import_token, encrypted_key_material, encrypted_privatekey ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param KeyMaterialArgs args: The arguments to use to populate this resource's properties.

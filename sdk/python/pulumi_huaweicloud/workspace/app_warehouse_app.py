@@ -30,6 +30,7 @@ class AppWarehouseAppArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppWarehouseApp resource.
+
         :param pulumi.Input[_builtins.str] category: The category of the application.
         :param pulumi.Input[_builtins.str] file_store_path: The storage path of the OBS bucket where the application is located.
         :param pulumi.Input[_builtins.str] os_type: The operating system type of the application.
@@ -174,6 +175,7 @@ class _AppWarehouseAppState:
                  version_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppWarehouseApp resources.
+
         :param pulumi.Input[_builtins.str] category: The category of the application.
         :param pulumi.Input[_builtins.str] description: The description of the application.
         :param pulumi.Input[_builtins.str] file_store_path: The storage path of the OBS bucket where the application is located.
@@ -341,6 +343,7 @@ class AppWarehouseApp(pulumi.CustomResource):
                  __props__=None):
         """
         Create a AppWarehouseApp resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] category: The category of the application.
@@ -360,6 +363,7 @@ class AppWarehouseApp(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AppWarehouseApp resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AppWarehouseAppArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

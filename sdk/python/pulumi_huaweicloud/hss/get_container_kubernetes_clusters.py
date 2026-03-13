@@ -150,7 +150,7 @@ def get_container_kubernetes_clusters(cluster_name: Optional[_builtins.str] = No
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes_clusters()
+    test = huaweicloud.Hss.get_container_kubernetes_clusters()
     ```
 
 
@@ -176,7 +176,7 @@ def get_container_kubernetes_clusters(cluster_name: Optional[_builtins.str] = No
     __args__['region'] = region
     __args__['scene'] = scene
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerKubernetesClusters:getContainerKubernetesClusters', __args__, opts=opts, typ=GetContainerKubernetesClustersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerKubernetesClusters:getContainerKubernetesClusters', __args__, opts=opts, typ=GetContainerKubernetesClustersResult).value
 
     return AwaitableGetContainerKubernetesClustersResult(
         cluster_info_lists=pulumi.get(__ret__, 'cluster_info_lists'),
@@ -203,7 +203,7 @@ def get_container_kubernetes_clusters_output(cluster_name: Optional[pulumi.Input
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes_clusters()
+    test = huaweicloud.Hss.get_container_kubernetes_clusters()
     ```
 
 
@@ -229,7 +229,7 @@ def get_container_kubernetes_clusters_output(cluster_name: Optional[pulumi.Input
     __args__['region'] = region
     __args__['scene'] = scene
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerKubernetesClusters:getContainerKubernetesClusters', __args__, opts=opts, typ=GetContainerKubernetesClustersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerKubernetesClusters:getContainerKubernetesClusters', __args__, opts=opts, typ=GetContainerKubernetesClustersResult)
     return __ret__.apply(lambda __response__: GetContainerKubernetesClustersResult(
         cluster_info_lists=pulumi.get(__response__, 'cluster_info_lists'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),

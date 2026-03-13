@@ -32,6 +32,7 @@ class NetworkAclArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a NetworkAcl resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['NetworkAclAssociatedSubnetArgs']]] associated_subnets: Specifies the associated subnets of the network ACL.
                The associated_subnets structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the network ACL rule description. The value can contain no more
@@ -207,6 +208,7 @@ class _NetworkAclState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkAcl resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['NetworkAclAssociatedSubnetArgs']]] associated_subnets: Specifies the associated subnets of the network ACL.
                The associated_subnets structure is documented below.
         :param pulumi.Input[_builtins.str] created_at: The created time of the ACL.
@@ -494,11 +496,10 @@ class NetworkAcl(pulumi.CustomResource):
 
         The network ACL can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/networkAcl:NetworkAcl test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -596,11 +597,10 @@ class NetworkAcl(pulumi.CustomResource):
 
         The network ACL can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/networkAcl:NetworkAcl test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkAclArgs args: The arguments to use to populate this resource's properties.

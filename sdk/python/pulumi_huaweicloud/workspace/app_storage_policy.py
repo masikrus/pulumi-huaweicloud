@@ -24,6 +24,7 @@ class AppStoragePolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppStoragePolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_actions: Specifies the collection of permissions that server can use to access storage.  
                The valid configuration combinations are as follows:
                + **GetObject**: Read-Only.
@@ -99,6 +100,7 @@ class _AppStoragePolicyState:
                  server_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AppStoragePolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_actions: Specifies the collection of permissions that client can use to access storage.  
                The valid values are as follows:
                + **GetObject**: Download permission only.
@@ -216,19 +218,16 @@ class AppStoragePolicy(pulumi.CustomResource):
 
         Custom storage permission policy can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appStoragePolicy:AppStoragePolicy test <id>
         ```
 
         'NA' or other characters can be used to instead of the `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appStoragePolicy:AppStoragePolicy test NA
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -291,19 +290,16 @@ class AppStoragePolicy(pulumi.CustomResource):
 
         Custom storage permission policy can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appStoragePolicy:AppStoragePolicy test <id>
         ```
 
         'NA' or other characters can be used to instead of the `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appStoragePolicy:AppStoragePolicy test NA
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppStoragePolicyArgs args: The arguments to use to populate this resource's properties.

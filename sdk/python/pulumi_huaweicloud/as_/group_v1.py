@@ -52,6 +52,7 @@ class GroupV1Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GroupV1 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] available_zones: schema: Deprecated; use availability_zones instead
         :param pulumi.Input[_builtins.int] cool_down_time: The cooling duration, in seconds.
         :param pulumi.Input[_builtins.str] delete_instances: Whether to delete instances when they are removed from the AS group.
@@ -449,6 +450,7 @@ class _GroupV1State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupV1 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] available_zones: schema: Deprecated; use availability_zones instead
         :param pulumi.Input[_builtins.int] cool_down_time: The cooling duration, in seconds.
         :param pulumi.Input[_builtins.str] delete_instances: Whether to delete instances when they are removed from the AS group.
@@ -937,6 +939,7 @@ class GroupV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a GroupV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] available_zones: schema: Deprecated; use availability_zones instead
@@ -956,6 +959,7 @@ class GroupV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a GroupV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param GroupV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1210,7 +1214,7 @@ class GroupV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="deletePublicip")
-    def delete_publicip(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def delete_publicip(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "delete_publicip")
 
     @_builtins.property

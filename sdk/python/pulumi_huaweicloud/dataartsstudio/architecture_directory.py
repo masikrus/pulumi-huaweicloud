@@ -27,6 +27,7 @@ class ArchitectureDirectoryArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureDirectory resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the directory type. The valid values are **STANDARD_ELEMENT** and **CODE**.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the workspace ID which the directory in.
                Changing this creates a new directory
@@ -142,6 +143,7 @@ class _ArchitectureDirectoryState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureDirectory resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] childrens: The name list of sub-directory.
         :param pulumi.Input[_builtins.str] created_at: The create time of the directory.
         :param pulumi.Input[_builtins.str] created_by: The person creating the directory.
@@ -391,6 +393,7 @@ class ArchitectureDirectory(pulumi.CustomResource):
         $ pulumi import huaweicloud:DataArtsStudio/architectureDirectory:ArchitectureDirectory test b606cd4a47b645108a122857204b360f/STANDARD_ELEMENT/root
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of directory.
@@ -440,6 +443,7 @@ class ArchitectureDirectory(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureDirectory:ArchitectureDirectory test b606cd4a47b645108a122857204b360f/STANDARD_ELEMENT/root
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureDirectoryArgs args: The arguments to use to populate this resource's properties.

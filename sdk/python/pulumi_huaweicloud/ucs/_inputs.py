@@ -21,21 +21,16 @@ __all__ = [
     'PolicyDetailArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class FleetPermissionArgsDict(TypedDict):
-        namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of namespaces.
-        The elements can be: **\\***, **default**, **kube-system** and **kube-public**.
-        """
-        policy_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of policy IDs.
-        """
-elif False:
-    FleetPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class FleetPermissionArgsDict(TypedDict):
+    namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of namespaces.
+    The elements can be: **\\***, **default**, **kube-system** and **kube-public**.
+    """
+    policy_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of policy IDs.
+    """
 
 @pulumi.input_type
 class FleetPermissionArgs:
@@ -78,18 +73,15 @@ class FleetPermissionArgs:
         pulumi.set(self, "policy_ids", value)
 
 
-if not MYPY:
-    class PolicyDetailArgsDict(TypedDict):
-        operations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of operations.
-        """
-        resources: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of resources.
-        """
-elif False:
-    PolicyDetailArgsDict: TypeAlias = Mapping[str, Any]
+class PolicyDetailArgsDict(TypedDict):
+    operations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of operations.
+    """
+    resources: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of resources.
+    """
 
 @pulumi.input_type
 class PolicyDetailArgs:

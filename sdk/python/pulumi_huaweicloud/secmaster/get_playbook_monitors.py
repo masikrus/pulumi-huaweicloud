@@ -138,7 +138,7 @@ def get_playbook_monitors(end_time: Optional[_builtins.str] = None,
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
     version_query_type = config.require_object("versionQueryType")
-    test = huaweicloud.secmaster.get_playbook_monitors(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_monitors(workspace_id=workspace_id,
         playbook_id=playbook_id,
         start_time=start_time,
         end_time=end_time,
@@ -165,7 +165,7 @@ def get_playbook_monitors(end_time: Optional[_builtins.str] = None,
     __args__['versionQueryType'] = version_query_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookMonitors:getPlaybookMonitors', __args__, opts=opts, typ=GetPlaybookMonitorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookMonitors:getPlaybookMonitors', __args__, opts=opts, typ=GetPlaybookMonitorsResult).value
 
     return AwaitableGetPlaybookMonitorsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -198,7 +198,7 @@ def get_playbook_monitors_output(end_time: Optional[pulumi.Input[_builtins.str]]
     start_time = config.require_object("startTime")
     end_time = config.require_object("endTime")
     version_query_type = config.require_object("versionQueryType")
-    test = huaweicloud.secmaster.get_playbook_monitors(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_monitors(workspace_id=workspace_id,
         playbook_id=playbook_id,
         start_time=start_time,
         end_time=end_time,
@@ -225,7 +225,7 @@ def get_playbook_monitors_output(end_time: Optional[pulumi.Input[_builtins.str]]
     __args__['versionQueryType'] = version_query_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookMonitors:getPlaybookMonitors', __args__, opts=opts, typ=GetPlaybookMonitorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookMonitors:getPlaybookMonitors', __args__, opts=opts, typ=GetPlaybookMonitorsResult)
     return __ret__.apply(lambda __response__: GetPlaybookMonitorsResult(
         datas=pulumi.get(__response__, 'datas'),
         end_time=pulumi.get(__response__, 'end_time'),

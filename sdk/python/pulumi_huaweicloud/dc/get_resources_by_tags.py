@@ -186,7 +186,7 @@ def get_resources_by_tags(action: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.dc.get_resources_by_tags(resource_type=resource_type,
+    test = huaweicloud.Dc.get_resources_by_tags(resource_type=resource_type,
         action="filter")
     ```
 
@@ -251,7 +251,7 @@ def get_resources_by_tags(action: Optional[_builtins.str] = None,
     __args__['tags'] = tags
     __args__['tagsAnies'] = tags_anies
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getResourcesByTags:getResourcesByTags', __args__, opts=opts, typ=GetResourcesByTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getResourcesByTags:getResourcesByTags', __args__, opts=opts, typ=GetResourcesByTagsResult).value
 
     return AwaitableGetResourcesByTagsResult(
         action=pulumi.get(__ret__, 'action'),
@@ -287,7 +287,7 @@ def get_resources_by_tags_output(action: Optional[pulumi.Input[_builtins.str]] =
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.dc.get_resources_by_tags(resource_type=resource_type,
+    test = huaweicloud.Dc.get_resources_by_tags(resource_type=resource_type,
         action="filter")
     ```
 
@@ -352,7 +352,7 @@ def get_resources_by_tags_output(action: Optional[pulumi.Input[_builtins.str]] =
     __args__['tags'] = tags
     __args__['tagsAnies'] = tags_anies
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getResourcesByTags:getResourcesByTags', __args__, opts=opts, typ=GetResourcesByTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getResourcesByTags:getResourcesByTags', __args__, opts=opts, typ=GetResourcesByTagsResult)
     return __ret__.apply(lambda __response__: GetResourcesByTagsResult(
         action=pulumi.get(__response__, 'action'),
         id=pulumi.get(__response__, 'id'),

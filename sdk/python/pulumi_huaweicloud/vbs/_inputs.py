@@ -29,22 +29,17 @@ __all__ = [
     'GetBackupPolicyV2FilterTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackupPolicyTagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag key. A tag key consists of up to 36 characters, chosen from letters,
-        digits, hyphens (-), and underscores (_).
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag value. A tag value consists of 0 to 43 characters, chosen from
-        letters, digits, hyphens (-), and underscores (_).
-        """
-elif False:
-    BackupPolicyTagArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyTagArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag key. A tag key consists of up to 36 characters, chosen from letters,
+    digits, hyphens (-), and underscores (_).
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag value. A tag value consists of 0 to 43 characters, chosen from
+    letters, digits, hyphens (-), and underscores (_).
+    """
 
 @pulumi.input_type
 class BackupPolicyTagArgs:
@@ -87,12 +82,9 @@ class BackupPolicyTagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BackupPolicyV2TagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    BackupPolicyV2TagArgsDict: TypeAlias = Mapping[str, Any]
+class BackupPolicyV2TagArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class BackupPolicyV2TagArgs:
@@ -121,18 +113,15 @@ class BackupPolicyV2TagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BackupTagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag key. Changing the parameter creates a new backup.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the tag value. Changing the parameter creates a new backup.
-        """
-elif False:
-    BackupTagArgsDict: TypeAlias = Mapping[str, Any]
+class BackupTagArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag key. Changing the parameter creates a new backup.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the tag value. Changing the parameter creates a new backup.
+    """
 
 @pulumi.input_type
 class BackupTagArgs:
@@ -171,12 +160,9 @@ class BackupTagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BackupV2TagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    BackupV2TagArgsDict: TypeAlias = Mapping[str, Any]
+class BackupV2TagArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class BackupV2TagArgs:
@@ -205,19 +191,16 @@ class BackupV2TagArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetBackupPolicyFilterTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the tag key. Tag keys must be unique.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the List of tag values. This list can have a maximum of 10 values and all be
-        unique.
-        """
-elif False:
-    GetBackupPolicyFilterTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetBackupPolicyFilterTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key. Tag keys must be unique.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the List of tag values. This list can have a maximum of 10 values and all be
+    unique.
+    """
 
 @pulumi.input_type
 class GetBackupPolicyFilterTagArgs:
@@ -258,12 +241,9 @@ class GetBackupPolicyFilterTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetBackupPolicyV2FilterTagArgsDict(TypedDict):
-        key: _builtins.str
-        values: Sequence[_builtins.str]
-elif False:
-    GetBackupPolicyV2FilterTagArgsDict: TypeAlias = Mapping[str, Any]
+class GetBackupPolicyV2FilterTagArgsDict(TypedDict):
+    key: _builtins.str
+    values: Sequence[_builtins.str]
 
 @pulumi.input_type
 class GetBackupPolicyV2FilterTagArgs:

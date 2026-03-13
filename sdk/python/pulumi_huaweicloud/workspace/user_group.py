@@ -28,6 +28,7 @@ class UserGroupArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['UserGroupUserArgs']]]] = None):
         """
         The set of arguments for constructing a UserGroup resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the type of user group.
                The valid values are as follows:
                + **LOCAL**: Local domain user group.
@@ -134,6 +135,7 @@ class _UserGroupState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['UserGroupUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering UserGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the user group.
         :param pulumi.Input[_builtins.str] description: Specifies the description of user group.
         :param pulumi.Input[_builtins.str] name: Specifies the user group name.  
@@ -280,11 +282,10 @@ class UserGroup(pulumi.CustomResource):
 
         The user group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/userGroup:UserGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -332,11 +333,10 @@ class UserGroup(pulumi.CustomResource):
 
         The user group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/userGroup:UserGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserGroupArgs args: The arguments to use to populate this resource's properties.

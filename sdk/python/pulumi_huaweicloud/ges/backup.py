@@ -23,6 +23,7 @@ class BackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Backup resource.
+
         :param pulumi.Input[_builtins.str] graph_id: The ID of the graph that created the backup.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -74,6 +75,7 @@ class _BackupState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+
         :param pulumi.Input[_builtins.str] backup_method: Backup method. The value can be **auto** or **manual**.
         :param pulumi.Input[_builtins.int] duration: Backup duration (seconds).
         :param pulumi.Input[_builtins.bool] encrypted: Whether the data is encrypted.
@@ -239,7 +241,7 @@ class _BackupState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:ges/backup:Backup")
+@pulumi.type_token("huaweicloud:Ges/backup:Backup")
 class Backup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -265,14 +267,12 @@ class Backup(pulumi.CustomResource):
         ## Import
 
         The GES backup can be imported using
-
         `graph_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/backup:Backup test <graph_id>/<id>
+        $ pulumi import huaweicloud:Ges/backup:Backup test <graph_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,14 +304,12 @@ class Backup(pulumi.CustomResource):
         ## Import
 
         The GES backup can be imported using
-
         `graph_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/backup:Backup test <graph_id>/<id>
+        $ pulumi import huaweicloud:Ges/backup:Backup test <graph_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupArgs args: The arguments to use to populate this resource's properties.
@@ -352,7 +350,7 @@ class Backup(pulumi.CustomResource):
             __props__.__dict__["start_time"] = None
             __props__.__dict__["status"] = None
         super(Backup, __self__).__init__(
-            'huaweicloud:ges/backup:Backup',
+            'huaweicloud:Ges/backup:Backup',
             resource_name,
             __props__,
             opts)

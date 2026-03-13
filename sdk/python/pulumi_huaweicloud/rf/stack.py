@@ -34,6 +34,7 @@ class StackArgs:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Stack resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['StackAgencyArgs']]] agencies: The configuration of the agencies authorized to IAC.
         :param pulumi.Input[_builtins.str] description: The description of the resource stack.
         :param pulumi.Input[_builtins.bool] enable_auto_rollback: Whether to enable automatic rollback.
@@ -42,11 +43,9 @@ class StackArgs:
         :param pulumi.Input[_builtins.str] region: The region where the RFS resource stack is located.
         :param pulumi.Input[_builtins.bool] retain_all_resources: Whether to reserve resources when deleting the resource stack.
         :param pulumi.Input[_builtins.str] template_body: The HCL/JSON template content for deployment resources.
-        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-               files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         :param pulumi.Input[_builtins.str] vars_body: The variable content for deployment resources.
-        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         if agencies is not None:
             pulumi.set(__self__, "agencies", agencies)
@@ -171,8 +170,7 @@ class StackArgs:
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-        files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "template_uri")
 
@@ -196,8 +194,7 @@ class StackArgs:
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-        the target status of the deployment resources.
+        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "vars_uri")
 
@@ -225,6 +222,7 @@ class _StackState:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Stack resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['StackAgencyArgs']]] agencies: The configuration of the agencies authorized to IAC.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: The description of the resource stack.
@@ -235,12 +233,10 @@ class _StackState:
         :param pulumi.Input[_builtins.bool] retain_all_resources: Whether to reserve resources when deleting the resource stack.
         :param pulumi.Input[_builtins.str] status: The current status of the resource stack.
         :param pulumi.Input[_builtins.str] template_body: The HCL/JSON template content for deployment resources.
-        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-               files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time.
         :param pulumi.Input[_builtins.str] vars_body: The variable content for deployment resources.
-        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         if agencies is not None:
             pulumi.set(__self__, "agencies", agencies)
@@ -395,8 +391,7 @@ class _StackState:
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-        files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "template_uri")
 
@@ -432,8 +427,7 @@ class _StackState:
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-        the target status of the deployment resources.
+        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "vars_uri")
 
@@ -442,7 +436,7 @@ class _StackState:
         pulumi.set(self, "vars_uri", value)
 
 
-@pulumi.type_token("huaweicloud:rf/stack:Stack")
+@pulumi.type_token("huaweicloud:Rf/stack:Stack")
 class Stack(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -462,6 +456,7 @@ class Stack(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Stack resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['StackAgencyArgs', 'StackAgencyArgsDict']]]] agencies: The configuration of the agencies authorized to IAC.
@@ -472,11 +467,9 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: The region where the RFS resource stack is located.
         :param pulumi.Input[_builtins.bool] retain_all_resources: Whether to reserve resources when deleting the resource stack.
         :param pulumi.Input[_builtins.str] template_body: The HCL/JSON template content for deployment resources.
-        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-               files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         :param pulumi.Input[_builtins.str] vars_body: The variable content for deployment resources.
-        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         ...
     @overload
@@ -486,6 +479,7 @@ class Stack(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Stack resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param StackArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -536,7 +530,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Stack, __self__).__init__(
-            'huaweicloud:rf/stack:Stack',
+            'huaweicloud:Rf/stack:Stack',
             resource_name,
             __props__,
             opts)
@@ -576,12 +570,10 @@ class Stack(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] retain_all_resources: Whether to reserve resources when deleting the resource stack.
         :param pulumi.Input[_builtins.str] status: The current status of the resource stack.
         :param pulumi.Input[_builtins.str] template_body: The HCL/JSON template content for deployment resources.
-        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-               files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] template_uri: The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time.
         :param pulumi.Input[_builtins.str] vars_body: The variable content for deployment resources.
-        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-               the target status of the deployment resources.
+        :param pulumi.Input[_builtins.str] vars_uri: The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -687,8 +679,7 @@ class Stack(pulumi.CustomResource):
     @pulumi.getter(name="templateUri")
     def template_uri(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script
-        files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
+        The OBS address where the HCL/JSON template archive (**.zip** file, which contains all resource **.tf.json** script files to be deployed) or **.tf.json** file is located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "template_uri")
 
@@ -712,8 +703,7 @@ class Stack(pulumi.CustomResource):
     @pulumi.getter(name="varsUri")
     def vars_uri(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes
-        the target status of the deployment resources.
+        The OBS address where the variable (**.tfvars**) file corresponding to the HCL/JSON template located, which describes the target status of the deployment resources.
         """
         return pulumi.get(self, "vars_uri")
 

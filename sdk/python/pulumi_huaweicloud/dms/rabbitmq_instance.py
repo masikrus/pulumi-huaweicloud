@@ -30,6 +30,8 @@ class RabbitmqInstanceArgs:
                  broker_num: Optional[pulumi.Input[_builtins.int]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 disk_encrypted_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encrypted_key: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_acl: Optional[pulumi.Input[_builtins.bool]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -48,6 +50,7 @@ class RabbitmqInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RabbitmqInstance resource.
+
         :param pulumi.Input[_builtins.str] network_id: Specifies the ID of a subnet. Changing this creates a new instance
                resource.
         :param pulumi.Input[_builtins.str] security_group_id: Specifies the ID of a security group.
@@ -72,6 +75,12 @@ class RabbitmqInstanceArgs:
                **prePaid** and **postPaid**, defaults to **postPaid**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DMS RabbitMQ instance.
                It is a character string containing not more than 1,024 characters.
+        :param pulumi.Input[_builtins.bool] disk_encrypted_enable: Specifies whether to enable disk encryption.  
+               Defaults to **false**.
+               Changing this creates a new instance resource.
+        :param pulumi.Input[_builtins.str] disk_encrypted_key: Specifies the key ID of the disk encryption.  
+               This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+               Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.bool] enable_acl: Whether to enable ACL. Only available when `engine_version` is **AMQP-0-9-1**.
                Default to **false**.
         :param pulumi.Input[_builtins.str] engine_version: Specifies the version of the RabbitMQ engine. Default to "3.7.17".
@@ -140,6 +149,10 @@ class RabbitmqInstanceArgs:
             pulumi.set(__self__, "charging_mode", charging_mode)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disk_encrypted_enable is not None:
+            pulumi.set(__self__, "disk_encrypted_enable", disk_encrypted_enable)
+        if disk_encrypted_key is not None:
+            pulumi.set(__self__, "disk_encrypted_key", disk_encrypted_key)
         if enable_acl is not None:
             pulumi.set(__self__, "enable_acl", enable_acl)
         if engine_version is not None:
@@ -319,6 +332,34 @@ class RabbitmqInstanceArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedEnable")
+    def disk_encrypted_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable disk encryption.  
+        Defaults to **false**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_enable")
+
+    @disk_encrypted_enable.setter
+    def disk_encrypted_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disk_encrypted_enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedKey")
+    def disk_encrypted_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key ID of the disk encryption.  
+        This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_key")
+
+    @disk_encrypted_key.setter
+    def disk_encrypted_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "disk_encrypted_key", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAcl")
@@ -554,6 +595,8 @@ class _RabbitmqInstanceState:
                  connect_address: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 disk_encrypted_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encrypted_key: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_acl: Optional[pulumi.Input[_builtins.bool]] = None,
                  enable_public_ip: Optional[pulumi.Input[_builtins.bool]] = None,
                  engine: Optional[pulumi.Input[_builtins.str]] = None,
@@ -591,6 +634,7 @@ class _RabbitmqInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqInstance resources.
+
         :param pulumi.Input[_builtins.str] access_user: Specifies a username. A username consists of 4 to 64 characters and
                supports only letters, digits, and hyphens (-). Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are **true** and **false**.
@@ -610,6 +654,12 @@ class _RabbitmqInstanceState:
         :param pulumi.Input[_builtins.str] created_at: Indicates the create time of the DMS RabbitMQ instance.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DMS RabbitMQ instance.
                It is a character string containing not more than 1,024 characters.
+        :param pulumi.Input[_builtins.bool] disk_encrypted_enable: Specifies whether to enable disk encryption.  
+               Defaults to **false**.
+               Changing this creates a new instance resource.
+        :param pulumi.Input[_builtins.str] disk_encrypted_key: Specifies the key ID of the disk encryption.  
+               This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+               Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.bool] enable_acl: Whether to enable ACL. Only available when `engine_version` is **AMQP-0-9-1**.
                Default to **false**.
         :param pulumi.Input[_builtins.bool] enable_public_ip: Indicates whether public access to the DMS RabbitMQ instance is enabled.
@@ -700,6 +750,10 @@ class _RabbitmqInstanceState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disk_encrypted_enable is not None:
+            pulumi.set(__self__, "disk_encrypted_enable", disk_encrypted_enable)
+        if disk_encrypted_key is not None:
+            pulumi.set(__self__, "disk_encrypted_key", disk_encrypted_key)
         if enable_acl is not None:
             pulumi.set(__self__, "enable_acl", enable_acl)
         if enable_public_ip is not None:
@@ -893,6 +947,34 @@ class _RabbitmqInstanceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedEnable")
+    def disk_encrypted_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable disk encryption.  
+        Defaults to **false**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_enable")
+
+    @disk_encrypted_enable.setter
+    def disk_encrypted_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disk_encrypted_enable", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedKey")
+    def disk_encrypted_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key ID of the disk encryption.  
+        This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_key")
+
+    @disk_encrypted_key.setter
+    def disk_encrypted_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "disk_encrypted_key", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAcl")
@@ -1359,6 +1441,8 @@ class RabbitmqInstance(pulumi.CustomResource):
                  broker_num: Optional[pulumi.Input[_builtins.int]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 disk_encrypted_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encrypted_key: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_acl: Optional[pulumi.Input[_builtins.bool]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1466,7 +1550,7 @@ class RabbitmqInstance(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_get_rabbitmq_flavors = huaweicloud.Dms.get_rabbitmq_flavors(type="cluster.professional")
         flavor = test_get_rabbitmq_flavors.flavors[0]
         test_rabbitmq_instance = huaweicloud.dms.RabbitmqInstance("test",
@@ -1492,7 +1576,7 @@ class RabbitmqInstance(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_get_rabbitmq_flavors = huaweicloud.Dms.get_rabbitmq_flavors(type="single.professional")
         flavor = test_get_rabbitmq_flavors.flavors[0]
         test_rabbitmq_instance = huaweicloud.dms.RabbitmqInstance("test",
@@ -1513,36 +1597,15 @@ class RabbitmqInstance(pulumi.CustomResource):
         DMS RabbitMQ instance can be imported using the instance id, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Dms/rabbitmqInstance:RabbitmqInstance  huaweicloud_dms_rabbitmq_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3
+         $ pulumi import huaweicloud:Dms/rabbitmqInstance:RabbitmqInstance instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `auto_renew`, `period` and `period_unit`. It is generally recommended running `pulumi preview` after
-
         importing a DMS RabbitMQ instance. You can then decide if changes should be applied to the instance, or the resource
-
         definition should be updated to align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_rabbitmq_instance" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, auto_renew, period, period_unit,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1563,6 +1626,12 @@ class RabbitmqInstance(pulumi.CustomResource):
                **prePaid** and **postPaid**, defaults to **postPaid**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DMS RabbitMQ instance.
                It is a character string containing not more than 1,024 characters.
+        :param pulumi.Input[_builtins.bool] disk_encrypted_enable: Specifies whether to enable disk encryption.  
+               Defaults to **false**.
+               Changing this creates a new instance resource.
+        :param pulumi.Input[_builtins.str] disk_encrypted_key: Specifies the key ID of the disk encryption.  
+               This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+               Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.bool] enable_acl: Whether to enable ACL. Only available when `engine_version` is **AMQP-0-9-1**.
                Default to **false**.
         :param pulumi.Input[_builtins.str] engine_version: Specifies the version of the RabbitMQ engine. Default to "3.7.17".
@@ -1709,7 +1778,7 @@ class RabbitmqInstance(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_get_rabbitmq_flavors = huaweicloud.Dms.get_rabbitmq_flavors(type="cluster.professional")
         flavor = test_get_rabbitmq_flavors.flavors[0]
         test_rabbitmq_instance = huaweicloud.dms.RabbitmqInstance("test",
@@ -1735,7 +1804,7 @@ class RabbitmqInstance(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         subnet_id = config.require_object("subnetId")
         security_group_id = config.require_object("securityGroupId")
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         test_get_rabbitmq_flavors = huaweicloud.Dms.get_rabbitmq_flavors(type="single.professional")
         flavor = test_get_rabbitmq_flavors.flavors[0]
         test_rabbitmq_instance = huaweicloud.dms.RabbitmqInstance("test",
@@ -1756,36 +1825,15 @@ class RabbitmqInstance(pulumi.CustomResource):
         DMS RabbitMQ instance can be imported using the instance id, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Dms/rabbitmqInstance:RabbitmqInstance  huaweicloud_dms_rabbitmq_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3
+         $ pulumi import huaweicloud:Dms/rabbitmqInstance:RabbitmqInstance instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `password`, `auto_renew`, `period` and `period_unit`. It is generally recommended running `pulumi preview` after
-
         importing a DMS RabbitMQ instance. You can then decide if changes should be applied to the instance, or the resource
-
         definition should be updated to align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dms_rabbitmq_instance" "instance_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, auto_renew, period, period_unit,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param RabbitmqInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1809,6 +1857,8 @@ class RabbitmqInstance(pulumi.CustomResource):
                  broker_num: Optional[pulumi.Input[_builtins.int]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 disk_encrypted_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encrypted_key: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_acl: Optional[pulumi.Input[_builtins.bool]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1845,6 +1895,8 @@ class RabbitmqInstance(pulumi.CustomResource):
             __props__.__dict__["broker_num"] = broker_num
             __props__.__dict__["charging_mode"] = charging_mode
             __props__.__dict__["description"] = description
+            __props__.__dict__["disk_encrypted_enable"] = disk_encrypted_enable
+            __props__.__dict__["disk_encrypted_key"] = disk_encrypted_key
             __props__.__dict__["enable_acl"] = enable_acl
             __props__.__dict__["engine_version"] = engine_version
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
@@ -1911,6 +1963,8 @@ class RabbitmqInstance(pulumi.CustomResource):
             connect_address: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            disk_encrypted_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+            disk_encrypted_key: Optional[pulumi.Input[_builtins.str]] = None,
             enable_acl: Optional[pulumi.Input[_builtins.bool]] = None,
             enable_public_ip: Optional[pulumi.Input[_builtins.bool]] = None,
             engine: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1972,6 +2026,12 @@ class RabbitmqInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: Indicates the create time of the DMS RabbitMQ instance.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DMS RabbitMQ instance.
                It is a character string containing not more than 1,024 characters.
+        :param pulumi.Input[_builtins.bool] disk_encrypted_enable: Specifies whether to enable disk encryption.  
+               Defaults to **false**.
+               Changing this creates a new instance resource.
+        :param pulumi.Input[_builtins.str] disk_encrypted_key: Specifies the key ID of the disk encryption.  
+               This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+               Changing this creates a new instance resource.
         :param pulumi.Input[_builtins.bool] enable_acl: Whether to enable ACL. Only available when `engine_version` is **AMQP-0-9-1**.
                Default to **false**.
         :param pulumi.Input[_builtins.bool] enable_public_ip: Indicates whether public access to the DMS RabbitMQ instance is enabled.
@@ -2054,6 +2114,8 @@ class RabbitmqInstance(pulumi.CustomResource):
         __props__.__dict__["connect_address"] = connect_address
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["disk_encrypted_enable"] = disk_encrypted_enable
+        __props__.__dict__["disk_encrypted_key"] = disk_encrypted_key
         __props__.__dict__["enable_acl"] = enable_acl
         __props__.__dict__["enable_public_ip"] = enable_public_ip
         __props__.__dict__["engine"] = engine
@@ -2171,6 +2233,26 @@ class RabbitmqInstance(pulumi.CustomResource):
         It is a character string containing not more than 1,024 characters.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedEnable")
+    def disk_encrypted_enable(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to enable disk encryption.  
+        Defaults to **false**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryptedKey")
+    def disk_encrypted_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the key ID of the disk encryption.  
+        This parameter is **required** when `disk_encrypted_enable` is set to **true**.
+        Changing this creates a new instance resource.
+        """
+        return pulumi.get(self, "disk_encrypted_key")
 
     @_builtins.property
     @pulumi.getter(name="enableAcl")

@@ -27,6 +27,7 @@ class EventUnblockIpArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventUnblockIp resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['EventUnblockIpDataListArgs']]] data_lists: Specifies the IP list that needs to be unblocked.  
                The data_list structure is documented below.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the hosts
@@ -116,6 +117,7 @@ class _EventUnblockIpState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EventUnblockIp resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['EventUnblockIpDataListArgs']]] data_lists: Specifies the IP list that needs to be unblocked.  
                The data_list structure is documented below.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the hosts
@@ -197,7 +199,7 @@ class _EventUnblockIpState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/eventUnblockIp:EventUnblockIp")
+@pulumi.type_token("huaweicloud:Hss/eventUnblockIp:EventUnblockIp")
 class EventUnblockIp(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -230,6 +232,7 @@ class EventUnblockIp(pulumi.CustomResource):
             "login_type": login_type,
         }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -277,6 +280,7 @@ class EventUnblockIp(pulumi.CustomResource):
         }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param EventUnblockIpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -312,7 +316,7 @@ class EventUnblockIp(pulumi.CustomResource):
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["region"] = region
         super(EventUnblockIp, __self__).__init__(
-            'huaweicloud:hss/eventUnblockIp:EventUnblockIp',
+            'huaweicloud:Hss/eventUnblockIp:EventUnblockIp',
             resource_name,
             __props__,
             opts)

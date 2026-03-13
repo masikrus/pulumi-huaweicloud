@@ -44,6 +44,7 @@ class DevserverArgs:
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Devserver resource.
+
         :param pulumi.Input[_builtins.str] flavor: Specifies the flavor of the DevServer.
                Changing this creates a new resource.
                For the flavor, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html)
@@ -506,6 +507,7 @@ class _DevserverState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Devserver resources.
+
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the login password for logging in to the server.
                Changing this creates a new resource.
                The password format must meet the following conditions:
@@ -1028,45 +1030,18 @@ class Devserver(pulumi.CustomResource):
 
         The DevServer resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/devserver:Devserver test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `subnet_id`, `security_group_id`, `availability_zone`, `admin_pass`,
-
         `enterprise_project_id`, `root_volume`, `ipv6_enable`, `roce_id`, `user_data`, `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_devserver" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              subnet_id, security_group_id, availability_zone, admin_pass, enterprise_project_id, root_volume, ipv6_enable,
-            
-              roce_id, user_data, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1198,45 +1173,18 @@ class Devserver(pulumi.CustomResource):
 
         The DevServer resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/devserver:Devserver test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `subnet_id`, `security_group_id`, `availability_zone`, `admin_pass`,
-
         `enterprise_project_id`, `root_volume`, `ipv6_enable`, `roce_id`, `user_data`, `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_devserver" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              subnet_id, security_group_id, availability_zone, admin_pass, enterprise_project_id, root_volume, ipv6_enable,
-            
-              roce_id, user_data, period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DevserverArgs args: The arguments to use to populate this resource's properties.

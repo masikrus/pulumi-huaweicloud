@@ -31,6 +31,7 @@ class MicroserviceArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Microservice resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the name of the dedicated microservice application.
                Changing this will create a new microservice.
         :param pulumi.Input[_builtins.str] connect_address: Specifies the address that used to access engine and manages
@@ -253,6 +254,7 @@ class _MicroserviceState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Microservice resources.
+
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the account password for **RBAC** login.
                The password format must meet the following conditions:
                + Must be `8` to `32` characters long.
@@ -568,20 +570,14 @@ class Microservice(pulumi.CustomResource):
         ## Import
 
         Microservices can be imported using related `auth_address`, `connect_address` and their `id`, separated by the
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test <auth_address>/<connect_address>/<id>
         ```
 
         If you enabled the **RBAC** authorization, you also need to provide the account name (`admin_user`) and password
-
         (`admin_pass`) of the microservice engine. All fields separated by the slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test <auth_address>/<connect_address>/<id>/<admin_user>/<admin_pass>
@@ -589,17 +585,14 @@ class Microservice(pulumi.CustomResource):
 
         The single quotes (') or backslashes (\\\\) can help you solve the problem of special characters reporting errors on bash.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test https://124.70.26.32:30100/https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/root/Test\\!123
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test 'https://124.70.26.32:30100/https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/root/Test!123'
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -722,20 +715,14 @@ class Microservice(pulumi.CustomResource):
         ## Import
 
         Microservices can be imported using related `auth_address`, `connect_address` and their `id`, separated by the
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test <auth_address>/<connect_address>/<id>
         ```
 
         If you enabled the **RBAC** authorization, you also need to provide the account name (`admin_user`) and password
-
         (`admin_pass`) of the microservice engine. All fields separated by the slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test <auth_address>/<connect_address>/<id>/<admin_user>/<admin_pass>
@@ -743,17 +730,14 @@ class Microservice(pulumi.CustomResource):
 
         The single quotes (') or backslashes (\\\\) can help you solve the problem of special characters reporting errors on bash.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test https://124.70.26.32:30100/https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/root/Test\\!123
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microservice:Microservice test 'https://124.70.26.32:30100/https://124.70.26.32:30100/f14960ba495e03f59f85aacaaafbdef3fbff3f0d/root/Test!123'
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MicroserviceArgs args: The arguments to use to populate this resource's properties.

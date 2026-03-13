@@ -28,6 +28,7 @@ class ResponseArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['ResponseRuleArgs']]]] = None):
         """
         The set of arguments for constructing a Response resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the API group to which the API custom response
                belongs.
                Changing this will create a new resource.
@@ -136,6 +137,7 @@ class _ResponseState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Response resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the API custom response.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the API group to which the API custom response
                belongs.
@@ -295,7 +297,7 @@ class Response(pulumi.CustomResource):
                 "headers": [{
                     "key": entry["value"]["key"],
                     "value": entry["value"]["value"],
-                } for entry in [{"key": k, "value": v} for k, v in response_headers]],
+                } for entry in [{"key": k, "value": v} for k, v in response_headers.items()]],
                 "error_type": "AUTHORIZER_FAILURE",
                 "body": "{\\"code\\":\\"$context.authorizer.frontend.code\\",\\"message\\":\\"$context.authorizer.frontend.message\\"}",
                 "status_code": 401,
@@ -308,12 +310,12 @@ class Response(pulumi.CustomResource):
         ## Import
 
         API Responses can be imported using their `name` and IDs of the APIG dedicated instances and API groups to which the API
-
         response belongs, separated by slashes, e.g.
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/response:Response test <instance_id>/<group_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -358,7 +360,7 @@ class Response(pulumi.CustomResource):
                 "headers": [{
                     "key": entry["value"]["key"],
                     "value": entry["value"]["value"],
-                } for entry in [{"key": k, "value": v} for k, v in response_headers]],
+                } for entry in [{"key": k, "value": v} for k, v in response_headers.items()]],
                 "error_type": "AUTHORIZER_FAILURE",
                 "body": "{\\"code\\":\\"$context.authorizer.frontend.code\\",\\"message\\":\\"$context.authorizer.frontend.message\\"}",
                 "status_code": 401,
@@ -371,12 +373,12 @@ class Response(pulumi.CustomResource):
         ## Import
 
         API Responses can be imported using their `name` and IDs of the APIG dedicated instances and API groups to which the API
-
         response belongs, separated by slashes, e.g.
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/response:Response test <instance_id>/<group_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResponseArgs args: The arguments to use to populate this resource's properties.

@@ -145,7 +145,7 @@ def get_deploy_groups(is_proxy_mode: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_groups(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_groups(project_id=project_id)
     ```
 
 
@@ -168,7 +168,7 @@ def get_deploy_groups(is_proxy_mode: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['resourcePoolId'] = resource_pool_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployGroups:getDeployGroups', __args__, opts=opts, typ=GetDeployGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployGroups:getDeployGroups', __args__, opts=opts, typ=GetDeployGroupsResult).value
 
     return AwaitableGetDeployGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
@@ -197,7 +197,7 @@ def get_deploy_groups_output(is_proxy_mode: Optional[pulumi.Input[Optional[_buil
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_groups(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_groups(project_id=project_id)
     ```
 
 
@@ -220,7 +220,7 @@ def get_deploy_groups_output(is_proxy_mode: Optional[pulumi.Input[Optional[_buil
     __args__['region'] = region
     __args__['resourcePoolId'] = resource_pool_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployGroups:getDeployGroups', __args__, opts=opts, typ=GetDeployGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployGroups:getDeployGroups', __args__, opts=opts, typ=GetDeployGroupsResult)
     return __ret__.apply(lambda __response__: GetDeployGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
         id=pulumi.get(__response__, 'id'),

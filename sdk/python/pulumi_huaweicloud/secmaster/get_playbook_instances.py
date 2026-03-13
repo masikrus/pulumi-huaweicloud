@@ -160,7 +160,7 @@ def get_playbook_instances(data_class_name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_playbook_instances(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_playbook_instances(workspace_id=workspace_id)
     ```
 
 
@@ -195,7 +195,7 @@ def get_playbook_instances(data_class_name: Optional[_builtins.str] = None,
     __args__['triggerType'] = trigger_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookInstances:getPlaybookInstances', __args__, opts=opts, typ=GetPlaybookInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookInstances:getPlaybookInstances', __args__, opts=opts, typ=GetPlaybookInstancesResult).value
 
     return AwaitableGetPlaybookInstancesResult(
         data_class_name=pulumi.get(__ret__, 'data_class_name'),
@@ -228,7 +228,7 @@ def get_playbook_instances_output(data_class_name: Optional[pulumi.Input[Optiona
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_playbook_instances(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_playbook_instances(workspace_id=workspace_id)
     ```
 
 
@@ -263,7 +263,7 @@ def get_playbook_instances_output(data_class_name: Optional[pulumi.Input[Optiona
     __args__['triggerType'] = trigger_type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookInstances:getPlaybookInstances', __args__, opts=opts, typ=GetPlaybookInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookInstances:getPlaybookInstances', __args__, opts=opts, typ=GetPlaybookInstancesResult)
     return __ret__.apply(lambda __response__: GetPlaybookInstancesResult(
         data_class_name=pulumi.get(__response__, 'data_class_name'),
         data_object_name=pulumi.get(__response__, 'data_object_name'),

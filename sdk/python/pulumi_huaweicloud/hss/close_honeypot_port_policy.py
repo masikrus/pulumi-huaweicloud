@@ -26,6 +26,7 @@ class CloseHoneypotPortPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloseHoneypotPortPolicy resource.
+
         :param pulumi.Input[_builtins.str] host_id: Specifies the host ID.
                Multiple host ID is supported, separated by commas (,).
         :param pulumi.Input[_builtins.str] policy_id: Specifies the dynamic port honeypot policy ID.
@@ -124,6 +125,7 @@ class _CloseHoneypotPortPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloseHoneypotPortPolicy resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -214,7 +216,7 @@ class _CloseHoneypotPortPolicyState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/closeHoneypotPortPolicy:CloseHoneypotPortPolicy")
+@pulumi.type_token("huaweicloud:Hss/closeHoneypotPortPolicy:CloseHoneypotPortPolicy")
 class CloseHoneypotPortPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -245,6 +247,7 @@ class CloseHoneypotPortPolicy(pulumi.CustomResource):
             policy_id=policy_id,
             host_id=host_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,6 +290,7 @@ class CloseHoneypotPortPolicy(pulumi.CustomResource):
             host_id=host_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param CloseHoneypotPortPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -326,7 +330,7 @@ class CloseHoneypotPortPolicy(pulumi.CustomResource):
             __props__.__dict__["policy_id"] = policy_id
             __props__.__dict__["region"] = region
         super(CloseHoneypotPortPolicy, __self__).__init__(
-            'huaweicloud:hss/closeHoneypotPortPolicy:CloseHoneypotPortPolicy',
+            'huaweicloud:Hss/closeHoneypotPortPolicy:CloseHoneypotPortPolicy',
             resource_name,
             __props__,
             opts)

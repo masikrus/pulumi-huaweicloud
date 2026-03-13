@@ -26,8 +26,9 @@ class FileDownloadArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FileDownload resource.
+
         :param pulumi.Input[_builtins.str] file_id: Specifies the file ID.  
-               You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+               You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the hosts
                belong.
                This parameter is valid only when the enterprise project is enabled.
@@ -55,7 +56,7 @@ class FileDownloadArgs:
     def file_id(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the file ID.  
-        You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+        You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         """
         return pulumi.get(self, "file_id")
 
@@ -127,6 +128,7 @@ class _FileDownloadState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FileDownload resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the hosts
                belong.
                This parameter is valid only when the enterprise project is enabled.
@@ -137,7 +139,7 @@ class _FileDownloadState:
         :param pulumi.Input[_builtins.str] export_file_name: Specifies the file name that can save data.
                Defaults to **hss-export-{{file_id}}.zip**.
         :param pulumi.Input[_builtins.str] file_id: Specifies the file ID.  
-               You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+               You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
@@ -197,7 +199,7 @@ class _FileDownloadState:
     def file_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the file ID.  
-        You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+        You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         """
         return pulumi.get(self, "file_id")
 
@@ -219,7 +221,7 @@ class _FileDownloadState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/fileDownload:FileDownload")
+@pulumi.type_token("huaweicloud:Hss/fileDownload:FileDownload")
 class FileDownload(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -248,6 +250,7 @@ class FileDownload(pulumi.CustomResource):
         test = huaweicloud.hss.FileDownload("test", file_id=file_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the hosts
@@ -260,7 +263,7 @@ class FileDownload(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] export_file_name: Specifies the file name that can save data.
                Defaults to **hss-export-{{file_id}}.zip**.
         :param pulumi.Input[_builtins.str] file_id: Specifies the file ID.  
-               You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+               You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
@@ -286,6 +289,7 @@ class FileDownload(pulumi.CustomResource):
         file_id = config.require_object("fileId")
         test = huaweicloud.hss.FileDownload("test", file_id=file_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FileDownloadArgs args: The arguments to use to populate this resource's properties.
@@ -324,7 +328,7 @@ class FileDownload(pulumi.CustomResource):
             __props__.__dict__["file_id"] = file_id
             __props__.__dict__["region"] = region
         super(FileDownload, __self__).__init__(
-            'huaweicloud:hss/fileDownload:FileDownload',
+            'huaweicloud:Hss/fileDownload:FileDownload',
             resource_name,
             __props__,
             opts)
@@ -355,7 +359,7 @@ class FileDownload(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] export_file_name: Specifies the file name that can save data.
                Defaults to **hss-export-{{file_id}}.zip**.
         :param pulumi.Input[_builtins.str] file_id: Specifies the file ID.  
-               You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+               You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
@@ -403,7 +407,7 @@ class FileDownload(pulumi.CustomResource):
     def file_id(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the file ID.  
-        You can obtain the `file_id` using the `hss.VulnerabilityInformationExport` resource.
+        You can obtain the `file_id` using the `Hss.VulnerabilityInformationExport` resource.
         """
         return pulumi.get(self, "file_id")
 

@@ -47,6 +47,7 @@ class GatewayArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Gateway resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: The list of availability zone IDs.
                
                Changing this parameter will create a new resource.
@@ -544,6 +545,7 @@ class _GatewayState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Gateway resources.
+
         :param pulumi.Input[_builtins.str] access_private_ip1: The private IP 1 in private network type VPN gateway.
                It is the master IP 1 in **active-active** HA mode, and the master IP in **active-standby** HA mode.
                Must declare the **access_private_ip_2** at the same time, and can not use the same IP value.
@@ -1097,7 +1099,7 @@ class _GatewayState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/gateway:Gateway")
+@pulumi.type_token("huaweicloud:Vpn/gateway:Gateway")
 class Gateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1145,7 +1147,7 @@ class Gateway(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         eip_id1 = config.require_object("eipId1")
         eip_id2 = config.require_object("eipId2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="vpc")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1179,7 +1181,7 @@ class Gateway(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         bandwidth_name1 = config.require_object("bandwidthName1")
         bandwidth_name2 = config.require_object("bandwidthName2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="vpc")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1220,7 +1222,7 @@ class Gateway(pulumi.CustomResource):
         access_subnet_id = config.require_object("accessSubnetId")
         access_private_ip1 = config.require_object("accessPrivateIp1")
         access_private_ip2 = config.require_object("accessPrivateIp2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="er")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1247,7 +1249,7 @@ class Gateway(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         cidr = config.require_object("cidr")
         subnet_id = config.require_object("subnetId")
-        test = huaweicloud.vpn.get_gateway_availability_zones(attachment_type="er",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(attachment_type="er",
             flavor="GM")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name="test",
@@ -1284,39 +1286,16 @@ class Gateway(pulumi.CustomResource):
 
         The gateway can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/gateway:Gateway test <id>
+        $ pulumi import huaweicloud:Vpn/gateway:Gateway test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `delete_eip_on_termination`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied
-
         to the gateway, or the resource definition should be updated to align with the gateway.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_gateway" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_eip_on_termination
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1420,7 +1399,7 @@ class Gateway(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         eip_id1 = config.require_object("eipId1")
         eip_id2 = config.require_object("eipId2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="vpc")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1454,7 +1433,7 @@ class Gateway(pulumi.CustomResource):
         subnet_id = config.require_object("subnetId")
         bandwidth_name1 = config.require_object("bandwidthName1")
         bandwidth_name2 = config.require_object("bandwidthName2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="vpc")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1495,7 +1474,7 @@ class Gateway(pulumi.CustomResource):
         access_subnet_id = config.require_object("accessSubnetId")
         access_private_ip1 = config.require_object("accessPrivateIp1")
         access_private_ip2 = config.require_object("accessPrivateIp2")
-        test = huaweicloud.vpn.get_gateway_availability_zones(flavor="professional1",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(flavor="professional1",
             attachment_type="er")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name=name,
@@ -1522,7 +1501,7 @@ class Gateway(pulumi.CustomResource):
         vpc_id = config.require_object("vpcId")
         cidr = config.require_object("cidr")
         subnet_id = config.require_object("subnetId")
-        test = huaweicloud.vpn.get_gateway_availability_zones(attachment_type="er",
+        test = huaweicloud.Vpn.get_gateway_availability_zones(attachment_type="er",
             flavor="GM")
         test_gateway = huaweicloud.vpn.Gateway("test",
             name="test",
@@ -1559,39 +1538,16 @@ class Gateway(pulumi.CustomResource):
 
         The gateway can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/gateway:Gateway test <id>
+        $ pulumi import huaweicloud:Vpn/gateway:Gateway test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attribute is `delete_eip_on_termination`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied
-
         to the gateway, or the resource definition should be updated to align with the gateway.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpn_gateway" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_eip_on_termination
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param GatewayArgs args: The arguments to use to populate this resource's properties.
@@ -1674,7 +1630,7 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["used_connection_group"] = None
             __props__.__dict__["used_connection_number"] = None
         super(Gateway, __self__).__init__(
-            'huaweicloud:vpn/gateway:Gateway',
+            'huaweicloud:Vpn/gateway:Gateway',
             resource_name,
             __props__,
             opts)

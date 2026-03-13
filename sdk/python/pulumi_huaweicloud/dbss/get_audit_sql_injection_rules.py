@@ -104,7 +104,7 @@ def get_audit_sql_injection_rules(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_sql_injection_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_sql_injection_rules(instance_id=instance_id)
     ```
 
 
@@ -125,7 +125,7 @@ def get_audit_sql_injection_rules(instance_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['riskLevels'] = risk_levels
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getAuditSqlInjectionRules:getAuditSqlInjectionRules', __args__, opts=opts, typ=GetAuditSqlInjectionRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getAuditSqlInjectionRules:getAuditSqlInjectionRules', __args__, opts=opts, typ=GetAuditSqlInjectionRulesResult).value
 
     return AwaitableGetAuditSqlInjectionRulesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -148,7 +148,7 @@ def get_audit_sql_injection_rules_output(instance_id: Optional[pulumi.Input[_bui
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_sql_injection_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_sql_injection_rules(instance_id=instance_id)
     ```
 
 
@@ -169,7 +169,7 @@ def get_audit_sql_injection_rules_output(instance_id: Optional[pulumi.Input[_bui
     __args__['region'] = region
     __args__['riskLevels'] = risk_levels
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getAuditSqlInjectionRules:getAuditSqlInjectionRules', __args__, opts=opts, typ=GetAuditSqlInjectionRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getAuditSqlInjectionRules:getAuditSqlInjectionRules', __args__, opts=opts, typ=GetAuditSqlInjectionRulesResult)
     return __ret__.apply(lambda __response__: GetAuditSqlInjectionRulesResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

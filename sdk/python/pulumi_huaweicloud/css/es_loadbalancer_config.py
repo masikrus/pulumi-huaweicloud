@@ -30,6 +30,7 @@ class EsLoadbalancerConfigArgs:
                  server_cert_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EsLoadbalancerConfig resource.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access ELB.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
@@ -165,6 +166,7 @@ class _EsLoadbalancerConfigState:
                  server_cert_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EsLoadbalancerConfig resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access ELB.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] authentication_type: The authentication type.
@@ -437,11 +439,10 @@ class EsLoadbalancerConfig(pulumi.CustomResource):
 
         The CSS ElasticSearch loadbalancer config can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/esLoadbalancerConfig:EsLoadbalancerConfig test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -492,11 +493,10 @@ class EsLoadbalancerConfig(pulumi.CustomResource):
 
         The CSS ElasticSearch loadbalancer config can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/esLoadbalancerConfig:EsLoadbalancerConfig test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EsLoadbalancerConfigArgs args: The arguments to use to populate this resource's properties.

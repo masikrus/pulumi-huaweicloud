@@ -105,7 +105,8 @@ def get_resource_tags(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     tracker_id = config.require_object("trackerId")
-    test = huaweicloud.Cts.get_resource_tags(resource_id=tracker_id)
+    test = huaweicloud.Cts.get_resource_tags(resource_type="cts-tracker",
+        resource_id=tracker_id)
     ```
 
 
@@ -143,7 +144,8 @@ def get_resource_tags_output(region: Optional[pulumi.Input[Optional[_builtins.st
 
     config = pulumi.Config()
     tracker_id = config.require_object("trackerId")
-    test = huaweicloud.Cts.get_resource_tags(resource_id=tracker_id)
+    test = huaweicloud.Cts.get_resource_tags(resource_type="cts-tracker",
+        resource_id=tracker_id)
     ```
 
 

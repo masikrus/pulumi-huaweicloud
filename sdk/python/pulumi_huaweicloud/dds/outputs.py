@@ -38,6 +38,7 @@ __all__ = [
     'InstanceNode',
     'InstanceNodeNumUpdateVolume',
     'InstanceParametersModifyParameter',
+    'InstancePolicy',
     'InstanceV3BackupStrategy',
     'InstanceV3Configuration',
     'InstanceV3Datastore',
@@ -45,6 +46,7 @@ __all__ = [
     'InstanceV3Group',
     'InstanceV3GroupNode',
     'InstanceV3Node',
+    'InstanceV3Policy',
     'ParameterTemplateCompareDifference',
     'ParameterTemplateCopyParameter',
     'ParameterTemplateParameter',
@@ -52,6 +54,8 @@ __all__ = [
     'GetBackupDownloadLinksFileResult',
     'GetBackupsBackupResult',
     'GetBackupsBackupDatastoreResult',
+    'GetConnectionStatisticsInnerConnectionResult',
+    'GetConnectionStatisticsOuterConnectionResult',
     'GetDatabaseRolesRoleResult',
     'GetDatabaseRolesRoleInheritedPrivilegeResult',
     'GetDatabaseRolesRoleInheritedPrivilegeResourceResult',
@@ -69,7 +73,12 @@ __all__ = [
     'GetErrorLogsErrorLogResult',
     'GetFlavorsFlavorResult',
     'GetFlavorsV3FlavorResult',
+    'GetInstanceDiskUsageVolumeResult',
     'GetInstanceParameterModificationRecordsHistoryResult',
+    'GetInstancesByTagsInstanceResult',
+    'GetInstancesByTagsInstanceTagResult',
+    'GetInstancesByTagsMatchResult',
+    'GetInstancesByTagsTagResult',
     'GetInstancesInstanceResult',
     'GetInstancesInstanceBackupStrategyResult',
     'GetInstancesInstanceDatastoreResult',
@@ -77,6 +86,8 @@ __all__ = [
     'GetInstancesInstanceGroupNodeResult',
     'GetInstancesInstanceNodeResult',
     'GetInstantTasksJobResult',
+    'GetKillOpRulesRuleResult',
+    'GetNodeSessionsSessionResult',
     'GetParameterTemplatesConfigurationResult',
     'GetPtApplicableInstancesInstanceResult',
     'GetPtApplicableInstancesInstanceEntityResult',
@@ -91,6 +102,7 @@ __all__ = [
     'GetSlowLogsSlowLogResult',
     'GetSslCertDownloadLinksCertResult',
     'GetStorageTypesStorageTypeResult',
+    'GetTagsTagResult',
 ]
 
 @pulumi.output_type
@@ -745,6 +757,9 @@ class InstanceBackupStrategy(dict):
                backed up on each day every week.
                + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
                For example: **1**, **3,5**.
+               
+               <a name="auto_scaling_policy"></a>
+               The `policy` block supports:
         """
         pulumi.set(__self__, "keep_days", keep_days)
         pulumi.set(__self__, "start_time", start_time)
@@ -783,6 +798,9 @@ class InstanceBackupStrategy(dict):
         backed up on each day every week.
         + If you set the `keep_days` between 7 and 732 days, set the parameter value to at least one day of every week.
         For example: **1**, **3,5**.
+
+        <a name="auto_scaling_policy"></a>
+        The `policy` block supports:
         """
         return pulumi.get(self, "period")
 
@@ -897,6 +915,8 @@ class InstanceFlavor(dict):
         suggest = None
         if key == "specCode":
             suggest = "spec_code"
+        elif key == "nodeLists":
+            suggest = "node_lists"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceFlavor. Access the value via the '{suggest}' property getter instead.")
@@ -913,6 +933,7 @@ class InstanceFlavor(dict):
                  num: _builtins.int,
                  spec_code: _builtins.str,
                  type: _builtins.str,
+                 node_lists: Optional[Sequence[_builtins.str]] = None,
                  size: Optional[_builtins.int] = None,
                  storage: Optional[_builtins.str] = None):
         """
@@ -935,6 +956,17 @@ class InstanceFlavor(dict):
         :param _builtins.str type: Specifies the node type. Valid value:
                + For a cluster instance, the value can be **mongos**, **shard**, or **config**.
                + For a replica set instance, the value is **replica**.
+        :param Sequence[_builtins.str] node_lists: Specifies the ID list of instance nodes to be deleted.  
+               
+               > 1. This parameter is available only when you delete a replica set instance nodes or a cluster instance
+               mongos nodes.
+               <br/>2. When you delete a replica set instance nodes, this parameter can be empty, but it is required when
+               you delete a cluster instance mongos nodes.
+               <br/>3. For a 7-node replica set instance, `2` or `4` standby nodes can be deleted.
+               <br/>4. For a 5-node replica set instance, `2` standby nodes can be deleted.
+               <br/>5. The standby node of a 3-node replica set instance cannot be deleted.
+               <br/>6. At least keep `2` mongos nodes of a cluster instance.
+               <br/>7. Nodes cannot be deleted from instances that have abnormal nodes.
         :param _builtins.int size: Specifies the disk size. The value must be a multiple of `10`. The unit is GB. This parameter
                is mandatory for nodes except mongos and invalid for mongos.For a cluster instance, the storage space of a shard node
                can be `10` to `2,000` GB, and the config storage space is `20` GB. For a replica set instance, the value ranges
@@ -948,6 +980,8 @@ class InstanceFlavor(dict):
         pulumi.set(__self__, "num", num)
         pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "type", type)
+        if node_lists is not None:
+            pulumi.set(__self__, "node_lists", node_lists)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if storage is not None:
@@ -992,6 +1026,24 @@ class InstanceFlavor(dict):
         + For a replica set instance, the value is **replica**.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeLists")
+    def node_lists(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the ID list of instance nodes to be deleted.  
+
+        > 1. This parameter is available only when you delete a replica set instance nodes or a cluster instance
+        mongos nodes.
+        <br/>2. When you delete a replica set instance nodes, this parameter can be empty, but it is required when
+        you delete a cluster instance mongos nodes.
+        <br/>3. For a 7-node replica set instance, `2` or `4` standby nodes can be deleted.
+        <br/>4. For a 5-node replica set instance, `2` standby nodes can be deleted.
+        <br/>5. The standby node of a 3-node replica set instance cannot be deleted.
+        <br/>6. At least keep `2` mongos nodes of a cluster instance.
+        <br/>7. Nodes cannot be deleted from instances that have abnormal nodes.
+        """
+        return pulumi.get(self, "node_lists")
 
     @_builtins.property
     @pulumi.getter
@@ -1117,10 +1169,14 @@ class InstanceGroupNode(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "privateIp":
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "privateIp":
             suggest = "private_ip"
         elif key == "publicIp":
             suggest = "public_ip"
+        elif key == "specCode":
+            suggest = "spec_code"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceGroupNode. Access the value via the '{suggest}' property getter instead.")
@@ -1134,14 +1190,17 @@ class InstanceGroupNode(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  private_ip: Optional[_builtins.str] = None,
                  public_ip: Optional[_builtins.str] = None,
                  role: Optional[_builtins.str] = None,
+                 spec_code: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
+        :param _builtins.str availability_zone: Specifies the availability zone names separated by commas.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Specifies the DB instance name. The DB instance name of the same type is unique in the
                same tenant.
@@ -1150,9 +1209,12 @@ class InstanceGroupNode(dict):
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
                cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
         :param _builtins.str type: Indicates the node type.
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1163,10 +1225,20 @@ class InstanceGroupNode(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the availability zone names separated by commas.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -1210,6 +1282,14 @@ class InstanceGroupNode(dict):
         Indicates the node role.
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[_builtins.str]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
 
     @_builtins.property
     @pulumi.getter
@@ -1233,10 +1313,14 @@ class InstanceNode(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "privateIp":
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "privateIp":
             suggest = "private_ip"
         elif key == "publicIp":
             suggest = "public_ip"
+        elif key == "specCode":
+            suggest = "spec_code"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceNode. Access the value via the '{suggest}' property getter instead.")
@@ -1250,14 +1334,17 @@ class InstanceNode(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  private_ip: Optional[_builtins.str] = None,
                  public_ip: Optional[_builtins.str] = None,
                  role: Optional[_builtins.str] = None,
+                 spec_code: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
+        :param _builtins.str availability_zone: Specifies the availability zone names separated by commas.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Specifies the DB instance name. The DB instance name of the same type is unique in the
                same tenant.
@@ -1266,9 +1353,12 @@ class InstanceNode(dict):
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of
                cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
         :param _builtins.str type: Indicates the node type.
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1279,10 +1369,20 @@ class InstanceNode(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Specifies the availability zone names separated by commas.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -1326,6 +1426,14 @@ class InstanceNode(dict):
         Indicates the node role.
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[_builtins.str]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
 
     @_builtins.property
     @pulumi.getter
@@ -1393,6 +1501,61 @@ class InstanceParametersModifyParameter(dict):
         Specifies the parameter value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InstancePolicy(dict):
+    def __init__(__self__, *,
+                 step: _builtins.int,
+                 threshold: _builtins.int,
+                 size: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int step: Specifies the autoscaling increment (s%).
+               The value only can be **10**, **15**, or **20**.
+               After autoscaling is triggered, your storage will automatically scale up by s% (in increments of 10 GB) of
+               your allocated storage.
+               If your account balance is insufficient, autoscaling will fail.
+        :param _builtins.int threshold: Specifies the threshold to trigger autoscaling.
+               The value only can be **80**, **85**, or **90**.
+               If the used storage exceeds this threshold, autoscaling is triggered.
+               This parameter of a cluster instance applies to each shard in the instance.
+        :param _builtins.int size: Indicates the disk size.
+        """
+        pulumi.set(__self__, "step", step)
+        pulumi.set(__self__, "threshold", threshold)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def step(self) -> _builtins.int:
+        """
+        Specifies the autoscaling increment (s%).
+        The value only can be **10**, **15**, or **20**.
+        After autoscaling is triggered, your storage will automatically scale up by s% (in increments of 10 GB) of
+        your allocated storage.
+        If your account balance is insufficient, autoscaling will fail.
+        """
+        return pulumi.get(self, "step")
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> _builtins.int:
+        """
+        Specifies the threshold to trigger autoscaling.
+        The value only can be **80**, **85**, or **90**.
+        If the used storage exceeds this threshold, autoscaling is triggered.
+        This parameter of a cluster instance applies to each shard in the instance.
+        """
+        return pulumi.get(self, "threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        """
+        Indicates the disk size.
+        """
+        return pulumi.get(self, "size")
 
 
 @pulumi.output_type
@@ -1511,6 +1674,8 @@ class InstanceV3Flavor(dict):
         suggest = None
         if key == "specCode":
             suggest = "spec_code"
+        elif key == "nodeLists":
+            suggest = "node_lists"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceV3Flavor. Access the value via the '{suggest}' property getter instead.")
@@ -1527,11 +1692,14 @@ class InstanceV3Flavor(dict):
                  num: _builtins.int,
                  spec_code: _builtins.str,
                  type: _builtins.str,
+                 node_lists: Optional[Sequence[_builtins.str]] = None,
                  size: Optional[_builtins.int] = None,
                  storage: Optional[_builtins.str] = None):
         pulumi.set(__self__, "num", num)
         pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "type", type)
+        if node_lists is not None:
+            pulumi.set(__self__, "node_lists", node_lists)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if storage is not None:
@@ -1551,6 +1719,11 @@ class InstanceV3Flavor(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeLists")
+    def node_lists(self) -> Optional[Sequence[_builtins.str]]:
+        return pulumi.get(self, "node_lists")
 
     @_builtins.property
     @pulumi.getter
@@ -1629,10 +1802,14 @@ class InstanceV3GroupNode(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "privateIp":
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "privateIp":
             suggest = "private_ip"
         elif key == "publicIp":
             suggest = "public_ip"
+        elif key == "specCode":
+            suggest = "spec_code"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceV3GroupNode. Access the value via the '{suggest}' property getter instead.")
@@ -1646,22 +1823,28 @@ class InstanceV3GroupNode(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  private_ip: Optional[_builtins.str] = None,
                  public_ip: Optional[_builtins.str] = None,
                  role: Optional[_builtins.str] = None,
+                 spec_code: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
+        :param _builtins.str availability_zone: Indicates the availability zone.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Indicates the node name.
         :param _builtins.str private_ip: Indicates the private IP address of a node.
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
-        :param _builtins.str type: Indicates the node type.
+        :param _builtins.str type: schema: Deprecated
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1672,10 +1855,20 @@ class InstanceV3GroupNode(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -1718,6 +1911,14 @@ class InstanceV3GroupNode(dict):
         return pulumi.get(self, "role")
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[_builtins.str]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
         """
@@ -1729,7 +1930,7 @@ class InstanceV3GroupNode(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        Indicates the node type.
+        schema: Deprecated
         """
         return pulumi.get(self, "type")
 
@@ -1739,10 +1940,14 @@ class InstanceV3Node(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "privateIp":
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "privateIp":
             suggest = "private_ip"
         elif key == "publicIp":
             suggest = "public_ip"
+        elif key == "specCode":
+            suggest = "spec_code"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceV3Node. Access the value via the '{suggest}' property getter instead.")
@@ -1756,22 +1961,28 @@ class InstanceV3Node(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  private_ip: Optional[_builtins.str] = None,
                  public_ip: Optional[_builtins.str] = None,
                  role: Optional[_builtins.str] = None,
+                 spec_code: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
+        :param _builtins.str availability_zone: Indicates the availability zone.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Indicates the node name.
         :param _builtins.str private_ip: Indicates the private IP address of a node.
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
-        :param _builtins.str type: Indicates the node type.
+        :param _builtins.str type: schema: Deprecated
         """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if name is not None:
@@ -1782,10 +1993,20 @@ class InstanceV3Node(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if spec_code is not None:
+            pulumi.set(__self__, "spec_code", spec_code)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -1828,6 +2049,14 @@ class InstanceV3Node(dict):
         return pulumi.get(self, "role")
 
     @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> Optional[_builtins.str]:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
         """
@@ -1839,9 +2068,36 @@ class InstanceV3Node(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        Indicates the node type.
+        schema: Deprecated
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class InstanceV3Policy(dict):
+    def __init__(__self__, *,
+                 step: _builtins.int,
+                 threshold: _builtins.int,
+                 size: Optional[_builtins.int] = None):
+        pulumi.set(__self__, "step", step)
+        pulumi.set(__self__, "threshold", threshold)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def step(self) -> _builtins.int:
+        return pulumi.get(self, "step")
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> _builtins.int:
+        return pulumi.get(self, "threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "size")
 
 
 @pulumi.output_type
@@ -2463,6 +2719,64 @@ class GetBackupsBackupDatastoreResult(dict):
         Indicates the database version.
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetConnectionStatisticsInnerConnectionResult(dict):
+    def __init__(__self__, *,
+                 client_ip: _builtins.str,
+                 count: _builtins.int):
+        """
+        :param _builtins.str client_ip: The IP address of the client connected to this instance or node.
+        :param _builtins.int count: The number of connections corresponding to this IP address.
+        """
+        pulumi.set(__self__, "client_ip", client_ip)
+        pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIp")
+    def client_ip(self) -> _builtins.str:
+        """
+        The IP address of the client connected to this instance or node.
+        """
+        return pulumi.get(self, "client_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The number of connections corresponding to this IP address.
+        """
+        return pulumi.get(self, "count")
+
+
+@pulumi.output_type
+class GetConnectionStatisticsOuterConnectionResult(dict):
+    def __init__(__self__, *,
+                 client_ip: _builtins.str,
+                 count: _builtins.int):
+        """
+        :param _builtins.str client_ip: The IP address of the client connected to this instance or node.
+        :param _builtins.int count: The number of connections corresponding to this IP address.
+        """
+        pulumi.set(__self__, "client_ip", client_ip)
+        pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIp")
+    def client_ip(self) -> _builtins.str:
+        """
+        The IP address of the client connected to this instance or node.
+        """
+        return pulumi.get(self, "client_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The number of connections corresponding to this IP address.
+        """
+        return pulumi.get(self, "count")
 
 
 @pulumi.output_type
@@ -3250,6 +3564,80 @@ class GetFlavorsV3FlavorResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceDiskUsageVolumeResult(dict):
+    def __init__(__self__, *,
+                 entity_id: _builtins.str,
+                 entity_name: _builtins.str,
+                 group_type: _builtins.str,
+                 size: _builtins.str,
+                 used: _builtins.str):
+        """
+        :param _builtins.str entity_id: Indicates the instance ID or group ID or node ID.
+        :param _builtins.str entity_name: Indicates the instance name or group name or node name.
+        :param _builtins.str group_type: Indicates the group type.
+               + **mongos**
+               + **shard**
+               + **config**
+               + **replica**
+               + **single**
+               + **readonly**
+        :param _builtins.str size: Indicates the instance disk capacity, in GB.
+        :param _builtins.str used: Indicates the instance disk capacity used, in GB.
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "entity_name", entity_name)
+        pulumi.set(__self__, "group_type", group_type)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        Indicates the instance ID or group ID or node ID.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @_builtins.property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> _builtins.str:
+        """
+        Indicates the instance name or group name or node name.
+        """
+        return pulumi.get(self, "entity_name")
+
+    @_builtins.property
+    @pulumi.getter(name="groupType")
+    def group_type(self) -> _builtins.str:
+        """
+        Indicates the group type.
+        + **mongos**
+        + **shard**
+        + **config**
+        + **replica**
+        + **single**
+        + **readonly**
+        """
+        return pulumi.get(self, "group_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.str:
+        """
+        Indicates the instance disk capacity, in GB.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.str:
+        """
+        Indicates the instance disk capacity used, in GB.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
 class GetInstanceParameterModificationRecordsHistoryResult(dict):
     def __init__(__self__, *,
                  applied: _builtins.bool,
@@ -3331,6 +3719,157 @@ class GetInstanceParameterModificationRecordsHistoryResult(dict):
         Indicates the update time, in the **yyyy-mm-ddThh:mm:ssZ** format.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetInstancesByTagsInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 tags: Sequence['outputs.GetInstancesByTagsInstanceTagResult']):
+        """
+        :param _builtins.str instance_id: The instance ID.
+        :param _builtins.str instance_name: The instance name.
+        :param Sequence['GetInstancesByTagsInstanceTagArgs'] tags: Specifies the list of the tags to be queried.
+               The tags structure is documented below.
+               
+               <a name="query_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        The instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        The instance name.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetInstancesByTagsInstanceTagResult']:
+        """
+        Specifies the list of the tags to be queried.
+        The tags structure is documented below.
+
+        <a name="query_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetInstancesByTagsInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the value of the matching field.
+               
+               <a name="query_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the matching field.
+
+        <a name="query_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the value of the matching field.
+               
+               <a name="query_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the matching field.
+
+        <a name="query_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetInstancesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the list of values of the tag.
+               The `values` can be empty.
+               If the values are an empty list, it indicates that any value is queried. The relationship between values is OR.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values of the tag.
+        The `values` can be empty.
+        If the values are an empty list, it indicates that any value is queried. The relationship between values is OR.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -3693,29 +4232,43 @@ class GetInstancesInstanceGroupResult(dict):
 @pulumi.output_type
 class GetInstancesInstanceGroupNodeResult(dict):
     def __init__(__self__, *,
+                 availability_zone: _builtins.str,
                  id: _builtins.str,
                  name: _builtins.str,
                  private_ip: _builtins.str,
                  public_ip: _builtins.str,
                  role: _builtins.str,
+                 spec_code: _builtins.str,
                  status: _builtins.str,
                  type: _builtins.str):
         """
+        :param _builtins.str availability_zone: Indicates the availability zone.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Specifies the DB instance name.
         :param _builtins.str private_ip: Indicates the private IP address of a node.
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
         :param _builtins.str type: Indicates the node type.
         """
+        pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "private_ip", private_ip)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -3756,6 +4309,14 @@ class GetInstancesInstanceGroupNodeResult(dict):
         Indicates the node role.
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
 
     @_builtins.property
     @pulumi.getter
@@ -3777,29 +4338,43 @@ class GetInstancesInstanceGroupNodeResult(dict):
 @pulumi.output_type
 class GetInstancesInstanceNodeResult(dict):
     def __init__(__self__, *,
+                 availability_zone: _builtins.str,
                  id: _builtins.str,
                  name: _builtins.str,
                  private_ip: _builtins.str,
                  public_ip: _builtins.str,
                  role: _builtins.str,
+                 spec_code: _builtins.str,
                  status: _builtins.str,
                  type: _builtins.str):
         """
+        :param _builtins.str availability_zone: Indicates the availability zone.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Specifies the DB instance name.
         :param _builtins.str private_ip: Indicates the private IP address of a node.
         :param _builtins.str public_ip: Indicates the EIP that has been bound on a node.
         :param _builtins.str role: Indicates the node role.
+        :param _builtins.str spec_code: Indicates the node spec code.
         :param _builtins.str status: Indicates the node status.
         :param _builtins.str type: Indicates the node type.
         """
+        pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "private_ip", private_ip)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "spec_code", spec_code)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        Indicates the availability zone.
+        """
+        return pulumi.get(self, "availability_zone")
 
     @_builtins.property
     @pulumi.getter
@@ -3840,6 +4415,14 @@ class GetInstancesInstanceNodeResult(dict):
         Indicates the node role.
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the node spec code.
+        """
+        return pulumi.get(self, "spec_code")
 
     @_builtins.property
     @pulumi.getter
@@ -4042,6 +4625,347 @@ class GetInstantTasksJobResult(dict):
         + **Failed**: Indicates that the task fails.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKillOpRulesRuleResult(dict):
+    def __init__(__self__, *,
+                 client_ips: _builtins.str,
+                 id: _builtins.str,
+                 max_concurrency: _builtins.int,
+                 namespaces: _builtins.str,
+                 node_type: _builtins.str,
+                 operation_types: _builtins.str,
+                 plan_summary: _builtins.str,
+                 secs_running: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.str client_ips: Indicates the client IP address.
+        :param _builtins.str id: Indicates the killOP rule ID.
+        :param _builtins.int max_concurrency: Indicates the maximum number of concurrent SQL statements.
+        :param _builtins.str namespaces: Specifies the namespace of a table.  
+               The value format is database_name or database_name.table_name.
+               This parameter can be left blank, indicating that this rule has no restrictions on table namespaces.
+               If this parameter is set to a database name, this rule applies to operations on all collections in the database.
+               If this parameter is set to a value in the format of database_name.collection_name, this rule only applies to
+               operations on the collection.
+        :param _builtins.str node_type: Indicates the node type.
+               + **mongos_shard**: Indicates that this rule applies to both mongos and shard nodes.
+               + **mongos**: Indicates that this rule only applies to the mongos node in a cluster.
+               + **shard**: Indicates that this rule only applies to the shard node in a cluster.
+               + **replica**: Indicates that this rule applies to replica sets.
+        :param _builtins.str operation_types: Specifies the SQL operation type.  
+               The valid values are as follows:
+               + **insert**: Indicates operation for inserting data.
+               + **update**: Indicates operation for updating data.
+               + **query**: Indicates operation for querying data.
+               + **command**: Indicates command operation.
+               + **remove**: Indicates operation for deleting data.
+               + **getmore**: Indicates operation for obtaining more data.
+        :param _builtins.str plan_summary: Specifies the execution plan.  
+               The valid values are as follows:
+               + **COLLSCAN**
+               + **SORT_KEY_GENERATOR**
+               + **SKIP**
+               + **LIMIT**
+               + **GEO_NEAR_2DSPHERE**
+               + **GEO_NEAR_2D**
+               + **AGGREGATE**
+               + **OR**
+        :param _builtins.int secs_running: Indicates the maximum execution duration of a single SQL statement.
+        :param _builtins.str status: Specifies the status of killOp rule.  
+               The valid values are as follows:
+               + **ENABLED**
+               + **DISABLED**
+        """
+        pulumi.set(__self__, "client_ips", client_ips)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_concurrency", max_concurrency)
+        pulumi.set(__self__, "namespaces", namespaces)
+        pulumi.set(__self__, "node_type", node_type)
+        pulumi.set(__self__, "operation_types", operation_types)
+        pulumi.set(__self__, "plan_summary", plan_summary)
+        pulumi.set(__self__, "secs_running", secs_running)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIps")
+    def client_ips(self) -> _builtins.str:
+        """
+        Indicates the client IP address.
+        """
+        return pulumi.get(self, "client_ips")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the killOP rule ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="maxConcurrency")
+    def max_concurrency(self) -> _builtins.int:
+        """
+        Indicates the maximum number of concurrent SQL statements.
+        """
+        return pulumi.get(self, "max_concurrency")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespaces(self) -> _builtins.str:
+        """
+        Specifies the namespace of a table.  
+        The value format is database_name or database_name.table_name.
+        This parameter can be left blank, indicating that this rule has no restrictions on table namespaces.
+        If this parameter is set to a database name, this rule applies to operations on all collections in the database.
+        If this parameter is set to a value in the format of database_name.collection_name, this rule only applies to
+        operations on the collection.
+        """
+        return pulumi.get(self, "namespaces")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> _builtins.str:
+        """
+        Indicates the node type.
+        + **mongos_shard**: Indicates that this rule applies to both mongos and shard nodes.
+        + **mongos**: Indicates that this rule only applies to the mongos node in a cluster.
+        + **shard**: Indicates that this rule only applies to the shard node in a cluster.
+        + **replica**: Indicates that this rule applies to replica sets.
+        """
+        return pulumi.get(self, "node_type")
+
+    @_builtins.property
+    @pulumi.getter(name="operationTypes")
+    def operation_types(self) -> _builtins.str:
+        """
+        Specifies the SQL operation type.  
+        The valid values are as follows:
+        + **insert**: Indicates operation for inserting data.
+        + **update**: Indicates operation for updating data.
+        + **query**: Indicates operation for querying data.
+        + **command**: Indicates command operation.
+        + **remove**: Indicates operation for deleting data.
+        + **getmore**: Indicates operation for obtaining more data.
+        """
+        return pulumi.get(self, "operation_types")
+
+    @_builtins.property
+    @pulumi.getter(name="planSummary")
+    def plan_summary(self) -> _builtins.str:
+        """
+        Specifies the execution plan.  
+        The valid values are as follows:
+        + **COLLSCAN**
+        + **SORT_KEY_GENERATOR**
+        + **SKIP**
+        + **LIMIT**
+        + **GEO_NEAR_2DSPHERE**
+        + **GEO_NEAR_2D**
+        + **AGGREGATE**
+        + **OR**
+        """
+        return pulumi.get(self, "plan_summary")
+
+    @_builtins.property
+    @pulumi.getter(name="secsRunning")
+    def secs_running(self) -> _builtins.int:
+        """
+        Indicates the maximum execution duration of a single SQL statement.
+        """
+        return pulumi.get(self, "secs_running")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the status of killOp rule.  
+        The valid values are as follows:
+        + **ENABLED**
+        + **DISABLED**
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetNodeSessionsSessionResult(dict):
+    def __init__(__self__, *,
+                 active: _builtins.bool,
+                 client: _builtins.str,
+                 cost_time: _builtins.str,
+                 db: _builtins.str,
+                 description: _builtins.str,
+                 host: _builtins.str,
+                 id: _builtins.str,
+                 namespace: _builtins.str,
+                 operation: _builtins.str,
+                 plan_summary: _builtins.str,
+                 type: _builtins.str,
+                 user: _builtins.str):
+        """
+        :param _builtins.bool active: Indicates whether the current session is active.
+        :param _builtins.str client: Indicates the client address.
+        :param _builtins.str cost_time: Specifies the running time, in μs.
+        :param _builtins.str db: Indicates the name of the database that is being operated.
+        :param _builtins.str description: Indicates the connection description.
+        :param _builtins.str host: Indicates the host.
+        :param _builtins.str id: Indicates the session ID.
+        :param _builtins.str namespace: Specifies the namespace.
+        :param _builtins.str operation: Indicates the operation.
+        :param _builtins.str plan_summary: Specifies the description of an execution plan.
+               The valid values are as follows:
+               + **COLLSCAN**
+               + **IXSCAN**
+               + **FETCH**
+               + **SORT**
+               + **LIMIT**
+               + **SKIP**
+               + **COUNT**
+               + **COUNT_SCAN**
+               + **TEXT**
+               + **PROJECTION**
+        :param _builtins.str type: Specifies the operation type.
+               The valid values are as follows:
+               + **none**
+               + **update**
+               + **insert**
+               + **query**
+               + **command**
+               + **getmore**
+               + **remove**
+               + **killcursors**
+        :param _builtins.str user: Indicates the user name.
+        """
+        pulumi.set(__self__, "active", active)
+        pulumi.set(__self__, "client", client)
+        pulumi.set(__self__, "cost_time", cost_time)
+        pulumi.set(__self__, "db", db)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "operation", operation)
+        pulumi.set(__self__, "plan_summary", plan_summary)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "user", user)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> _builtins.bool:
+        """
+        Indicates whether the current session is active.
+        """
+        return pulumi.get(self, "active")
+
+    @_builtins.property
+    @pulumi.getter
+    def client(self) -> _builtins.str:
+        """
+        Indicates the client address.
+        """
+        return pulumi.get(self, "client")
+
+    @_builtins.property
+    @pulumi.getter(name="costTime")
+    def cost_time(self) -> _builtins.str:
+        """
+        Specifies the running time, in μs.
+        """
+        return pulumi.get(self, "cost_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def db(self) -> _builtins.str:
+        """
+        Indicates the name of the database that is being operated.
+        """
+        return pulumi.get(self, "db")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the connection description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        Indicates the host.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the session ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def operation(self) -> _builtins.str:
+        """
+        Indicates the operation.
+        """
+        return pulumi.get(self, "operation")
+
+    @_builtins.property
+    @pulumi.getter(name="planSummary")
+    def plan_summary(self) -> _builtins.str:
+        """
+        Specifies the description of an execution plan.
+        The valid values are as follows:
+        + **COLLSCAN**
+        + **IXSCAN**
+        + **FETCH**
+        + **SORT**
+        + **LIMIT**
+        + **SKIP**
+        + **COUNT**
+        + **COUNT_SCAN**
+        + **TEXT**
+        + **PROJECTION**
+        """
+        return pulumi.get(self, "plan_summary")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the operation type.
+        The valid values are as follows:
+        + **none**
+        + **update**
+        + **insert**
+        + **query**
+        + **command**
+        + **getmore**
+        + **remove**
+        + **killcursors**
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> _builtins.str:
+        """
+        Indicates the user name.
+        """
+        return pulumi.get(self, "user")
 
 
 @pulumi.output_type
@@ -5003,5 +5927,34 @@ class GetStorageTypesStorageTypeResult(dict):
         + **EXTREMEHIGH**: extreme SSD storage.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the tag key.
+        :param Sequence[_builtins.str] values: Indicates the list of tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of tag values.
+        """
+        return pulumi.get(self, "values")
 
 

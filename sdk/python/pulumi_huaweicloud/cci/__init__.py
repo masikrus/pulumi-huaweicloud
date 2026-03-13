@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .agency import *
 from .config_map_v2 import *
 from .deployment_v2 import *
 from .get_config_maps_v2 import *
@@ -30,10 +31,12 @@ from .namespace import *
 from .namespace_v2 import *
 from .network import *
 from .network_v2 import *
+from .observability_configuration_v2 import *
 from .persistent_volume_claim_v2 import *
 from .persistent_volume_v2 import *
 from .pod_v2 import *
 from .pool_binding import *
+from .pool_binding_v2 import *
 from .pvc import *
 from .pvc_v2 import *
 from .secret_v2 import *

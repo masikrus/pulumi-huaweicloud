@@ -29,6 +29,7 @@ class ParameterTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ParameterTemplate resource.
+
         :param pulumi.Input[_builtins.str] node_type: Specifies the node type of parameter template. Valid value:
                + **mongos**: the mongos node type.
                + **shard**: the shard node type.
@@ -166,6 +167,7 @@ class _ParameterTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ParameterTemplate resources.
+
         :param pulumi.Input[_builtins.str] created_at: The create time of the parameter template.
         :param pulumi.Input[_builtins.str] description: Specifies the parameter template description.
                The description must consist of a maximum of 256 characters and cannot contain the carriage
@@ -376,11 +378,10 @@ class ParameterTemplate(pulumi.CustomResource):
 
         The DDS parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/parameterTemplate:ParameterTemplate test <tempalate_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -438,11 +439,10 @@ class ParameterTemplate(pulumi.CustomResource):
 
         The DDS parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/parameterTemplate:ParameterTemplate test <tempalate_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ParameterTemplateArgs args: The arguments to use to populate this resource's properties.

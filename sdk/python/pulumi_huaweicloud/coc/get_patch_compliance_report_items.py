@@ -169,7 +169,7 @@ def get_patch_compliance_report_items(classification: Optional[_builtins.str] = 
 
     config = pulumi.Config()
     instance_compliant_id = config.require_object("instanceCompliantId")
-    test = huaweicloud.coc.get_patch_compliance_report_items(instance_compliant_id=instance_compliant_id)
+    test = huaweicloud.Coc.get_patch_compliance_report_items(instance_compliant_id=instance_compliant_id)
     ```
 
 
@@ -203,7 +203,7 @@ def get_patch_compliance_report_items(classification: Optional[_builtins.str] = 
     __args__['sortKey'] = sort_key
     __args__['title'] = title
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getPatchComplianceReportItems:getPatchComplianceReportItems', __args__, opts=opts, typ=GetPatchComplianceReportItemsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getPatchComplianceReportItems:getPatchComplianceReportItems', __args__, opts=opts, typ=GetPatchComplianceReportItemsResult).value
 
     return AwaitableGetPatchComplianceReportItemsResult(
         classification=pulumi.get(__ret__, 'classification'),
@@ -236,7 +236,7 @@ def get_patch_compliance_report_items_output(classification: Optional[pulumi.Inp
 
     config = pulumi.Config()
     instance_compliant_id = config.require_object("instanceCompliantId")
-    test = huaweicloud.coc.get_patch_compliance_report_items(instance_compliant_id=instance_compliant_id)
+    test = huaweicloud.Coc.get_patch_compliance_report_items(instance_compliant_id=instance_compliant_id)
     ```
 
 
@@ -270,7 +270,7 @@ def get_patch_compliance_report_items_output(classification: Optional[pulumi.Inp
     __args__['sortKey'] = sort_key
     __args__['title'] = title
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getPatchComplianceReportItems:getPatchComplianceReportItems', __args__, opts=opts, typ=GetPatchComplianceReportItemsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getPatchComplianceReportItems:getPatchComplianceReportItems', __args__, opts=opts, typ=GetPatchComplianceReportItemsResult)
     return __ret__.apply(lambda __response__: GetPatchComplianceReportItemsResult(
         classification=pulumi.get(__response__, 'classification'),
         compliance_items=pulumi.get(__response__, 'compliance_items'),

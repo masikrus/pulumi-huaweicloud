@@ -25,38 +25,33 @@ __all__ = [
     'JobConfigArgsDict',
 ]
 
-MYPY = False
+class ClusterActionRestartArgsDict(TypedDict):
+    level: pulumi.Input[_builtins.str]
+    """
+    Restart level.  
+    Value options are as follows:
+    + **SERVICE**: service restart.
+    + **VM**: VM restart.
 
-if not MYPY:
-    class ClusterActionRestartArgsDict(TypedDict):
-        level: pulumi.Input[_builtins.str]
-        """
-        Restart level.  
-        Value options are as follows:
-        + **SERVICE**: service restart.
-        + **VM**: VM restart.
+    Changing this parameter will create a new resource.
+    """
+    mode: pulumi.Input[_builtins.str]
+    """
+    Restart mode.  
+    Value options are as follows:
+    + **IMMEDIATELY**: immediate restart.
+    + **FORCIBLY**: forcible restart.
+    Restarte the service process will interrupt the service process and restart the VMs in the cluster.
+    + **SOFTLY**: common restart.
 
-        Changing this parameter will create a new resource.
-        """
-        mode: pulumi.Input[_builtins.str]
-        """
-        Restart mode.  
-        Value options are as follows:
-        + **IMMEDIATELY**: immediate restart.
-        + **FORCIBLY**: forcible restart.
-        Restarte the service process will interrupt the service process and restart the VMs in the cluster.
-        + **SOFTLY**: common restart.
+    Changing this parameter will create a new resource.
+    """
+    delay_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Restart delay, in seconds.
 
-        Changing this parameter will create a new resource.
-        """
-        delay_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Restart delay, in seconds.
-
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ClusterActionRestartArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ClusterActionRestartArgs:
@@ -139,42 +134,39 @@ class ClusterActionRestartArgs:
         pulumi.set(self, "delay_time", value)
 
 
-if not MYPY:
-    class ClusterInstanceArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance ID.
-        """
-        manage_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Management IP address.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies cluster name. Changing this parameter will create a new resource.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private IP.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Public IP.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance role.
-        """
-        traffic_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Traffic IP.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Instance type.
-        """
-elif False:
-    ClusterInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterInstanceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance ID.
+    """
+    manage_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Management IP address.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies cluster name. Changing this parameter will create a new resource.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private IP.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Public IP.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance role.
+    """
+    traffic_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Traffic IP.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Instance type.
+    """
 
 @pulumi.input_type
 class ClusterInstanceArgs:
@@ -311,18 +303,15 @@ class ClusterInstanceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ClusterV1InstanceArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        manage_ip: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        traffic_ip: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1InstanceArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1InstanceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    manage_ip: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    traffic_ip: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1InstanceArgs:
@@ -425,102 +414,99 @@ class ClusterV1InstanceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class JobConfigArgsDict(TypedDict):
-        group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies group to which a job belongs. The default group is `DEFAULT`.
-        """
-        retry_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to automatically retry if a job fails to be executed.
-        The options are as follows:
-        + **NONE**: Do not retry.
-        + **RETRY_TRIPLE**: Retry three times.
+class JobConfigArgsDict(TypedDict):
+    group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies group to which a job belongs. The default group is `DEFAULT`.
+    """
+    retry_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to automatically retry if a job fails to be executed.
+    The options are as follows:
+    + **NONE**: Do not retry.
+    + **RETRY_TRIPLE**: Retry three times.
 
-        Default value is `NONE`.
-        """
-        scheduler_cycle: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies cycle of a scheduled task. If `scheduler_cycle_type` is set to minute
-        and `scheduler_cycle` is set to 10, the scheduled task is executed every 10 minutes.
-        """
-        scheduler_cycle_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies cycle type of a scheduled task. The options are as follows:
-        `minute`, `hour`, `day`, `week`, `month`.
-        """
-        scheduler_disposable_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to delete a job after the job is executed.
-        The options are as follows:
-        + **NONE**: The job will not be deleted after it is executed.
-        + **DELETE_AFTER_SUCCEED**: The job will be deleted only after it is successfully executed. It is applicable to
-        massive one-time jobs.
-        + **DELETE**: The job will be deleted after it is executed, regardless of the execution result.
-        """
-        scheduler_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable a scheduled task.  Default value is `false`.
-        """
-        scheduler_run_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies time when a scheduled task is triggered in a cycle. This parameter
-        is valid only when `scheduler_cycle_type` is set to `hour`, `week`, or `month`.
-        + If `scheduler_cycle_type` is set to month, cycle is set to 1, and runAt is set to 15, the scheduled task is executed
-        on the 15th day of each month. You can set runAt to multiple values and separate the values with commas (,).
-        For example, if runAt is set to 1,2,3,4,5, the scheduled task is executed on the first day, second day, third day,
-        fourth day, and fifth day of each month.
-        + If `scheduler_cycle_type` is set to week and runAt is set to mon,tue,wed,thu,fri, the scheduled task is executed on
-        Monday to Friday.
-        + If `scheduler_cycle_type` is set to hour and runAt is set to 27,57, the scheduled task is executed at the 27th and
-        57th minute in the cycle.
-        """
-        scheduler_start_date: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies start time of a scheduled task.
-        For example, `2018-01-24 19:56:19`
-        """
-        scheduler_stop_date: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies End time of a scheduled task. For example, `2018-01-27 23:59:00`.
-        If you do not set the end time, the scheduled task is always executed and will never stop.
-        """
-        throttling_dirty_write_to_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies name of the OBS bucket to which dirty data is
-        written. This parameter is valid only when dirty data is written to `OBS`.
-        """
-        throttling_dirty_write_to_directory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the directory in the OBS bucket or HDFS which
-        dirty data is written to. For example, `/data/dirtydata/`.
-        """
-        throttling_dirty_write_to_link: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the link name to which dirty data is written to.
-        The Dirty data can be written only to `OBS` or `HDFS`.
-        """
-        throttling_extractors_number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies maximum number of concurrent extraction jobs.
-        """
-        throttling_loader_number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies maximum number of loading jobs. This parameter is available
-        only when HBase or Hive serves as the destination data source.
-        """
-        throttling_max_error_records: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies maximum number of error records in a single
-        shard. When the number of error records of a map exceeds the upper limit, the task automatically ends.
-        """
-        throttling_record_dirty_data: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to write dirty data.
-        """
-elif False:
-    JobConfigArgsDict: TypeAlias = Mapping[str, Any]
+    Default value is `NONE`.
+    """
+    scheduler_cycle: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies cycle of a scheduled task. If `scheduler_cycle_type` is set to minute
+    and `scheduler_cycle` is set to 10, the scheduled task is executed every 10 minutes.
+    """
+    scheduler_cycle_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies cycle type of a scheduled task. The options are as follows:
+    `minute`, `hour`, `day`, `week`, `month`.
+    """
+    scheduler_disposable_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to delete a job after the job is executed.
+    The options are as follows:
+    + **NONE**: The job will not be deleted after it is executed.
+    + **DELETE_AFTER_SUCCEED**: The job will be deleted only after it is successfully executed. It is applicable to
+    massive one-time jobs.
+    + **DELETE**: The job will be deleted after it is executed, regardless of the execution result.
+    """
+    scheduler_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable a scheduled task.  Default value is `false`.
+    """
+    scheduler_run_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies time when a scheduled task is triggered in a cycle. This parameter
+    is valid only when `scheduler_cycle_type` is set to `hour`, `week`, or `month`.
+    + If `scheduler_cycle_type` is set to month, cycle is set to 1, and runAt is set to 15, the scheduled task is executed
+    on the 15th day of each month. You can set runAt to multiple values and separate the values with commas (,).
+    For example, if runAt is set to 1,2,3,4,5, the scheduled task is executed on the first day, second day, third day,
+    fourth day, and fifth day of each month.
+    + If `scheduler_cycle_type` is set to week and runAt is set to mon,tue,wed,thu,fri, the scheduled task is executed on
+    Monday to Friday.
+    + If `scheduler_cycle_type` is set to hour and runAt is set to 27,57, the scheduled task is executed at the 27th and
+    57th minute in the cycle.
+    """
+    scheduler_start_date: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies start time of a scheduled task.
+    For example, `2018-01-24 19:56:19`
+    """
+    scheduler_stop_date: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies End time of a scheduled task. For example, `2018-01-27 23:59:00`.
+    If you do not set the end time, the scheduled task is always executed and will never stop.
+    """
+    throttling_dirty_write_to_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies name of the OBS bucket to which dirty data is
+    written. This parameter is valid only when dirty data is written to `OBS`.
+    """
+    throttling_dirty_write_to_directory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the directory in the OBS bucket or HDFS which
+    dirty data is written to. For example, `/data/dirtydata/`.
+    """
+    throttling_dirty_write_to_link: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the link name to which dirty data is written to.
+    The Dirty data can be written only to `OBS` or `HDFS`.
+    """
+    throttling_extractors_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies maximum number of concurrent extraction jobs.
+    """
+    throttling_loader_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies maximum number of loading jobs. This parameter is available
+    only when HBase or Hive serves as the destination data source.
+    """
+    throttling_max_error_records: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies maximum number of error records in a single
+    shard. When the number of error records of a map exceeds the upper limit, the task automatically ends.
+    """
+    throttling_record_dirty_data: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to write dirty data.
+    """
 
 @pulumi.input_type
 class JobConfigArgs:

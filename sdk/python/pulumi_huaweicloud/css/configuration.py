@@ -32,6 +32,7 @@ class ConfigurationArgs:
                  thread_pool_force_merge_size: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Configuration resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: The CSS cluster ID.
                
                Changing this parameter will create a new resource.
@@ -247,6 +248,7 @@ class _ConfigurationState:
                  thread_pool_force_merge_size: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Configuration resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: The CSS cluster ID.
                
                Changing this parameter will create a new resource.
@@ -485,11 +487,10 @@ class Configuration(pulumi.CustomResource):
 
         The CSS configuration can be imported using the `id` which equals the `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/configuration:Configuration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -547,11 +548,10 @@ class Configuration(pulumi.CustomResource):
 
         The CSS configuration can be imported using the `id` which equals the `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/configuration:Configuration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConfigurationArgs args: The arguments to use to populate this resource's properties.

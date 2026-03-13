@@ -30,9 +30,12 @@ class CertificateArgs:
                  primary_domain_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  single_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  wildcard_domain_number: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Certificate resource.
+
         :param pulumi.Input[_builtins.str] cert_brand: Specifies the certificate authority. Valid values are **GEOTRUST**,
                **GLOBALSIGN**, **SYMANTEC**, **CFCA**, **TRUSTASIA**, and **VTRUS**.
                
@@ -68,6 +71,10 @@ class CertificateArgs:
                The value of this field ranges from `1` to `249`.
                
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'tags'.
         :param pulumi.Input[_builtins.int] wildcard_domain_number: Specifies the number of additional wildcard domain names.
                The value of this field ranges from `0` to `248`.
                
@@ -89,6 +96,10 @@ class CertificateArgs:
             pulumi.set(__self__, "region", region)
         if single_domain_number is not None:
             pulumi.set(__self__, "single_domain_number", single_domain_number)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if tags_origin is not None:
+            pulumi.set(__self__, "tags_origin", tags_origin)
         if wildcard_domain_number is not None:
             pulumi.set(__self__, "wildcard_domain_number", wildcard_domain_number)
 
@@ -227,6 +238,32 @@ class CertificateArgs:
         pulumi.set(self, "single_domain_number", value)
 
     @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tagsOrigin")
+    def tags_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'tags'.
+        """
+        return pulumi.get(self, "tags_origin")
+
+    @tags_origin.setter
+    def tags_origin(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags_origin", value)
+
+    @_builtins.property
     @pulumi.getter(name="wildcardDomainNumber")
     def wildcard_domain_number(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -270,11 +307,14 @@ class _CertificateState:
                  signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  single_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  validation_method: Optional[pulumi.Input[_builtins.str]] = None,
                  validity_period: Optional[pulumi.Input[_builtins.int]] = None,
                  wildcard_domain_number: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]] authentifications: The ownership certification information of domain name.
                The authentification structure is documented below.
         :param pulumi.Input[_builtins.str] cert_brand: Specifies the certificate authority. Valid values are **GEOTRUST**,
@@ -335,6 +375,10 @@ class _CertificateState:
                + **UPLOAD**: The certificate in custody.
                + **SUPPLEMENTCHECKING**: Additional domain names added to multi-domain certificates are under review.
                + **CANCELSUPPLEMENTING**: Cancel the addition of additional domain names under review.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'tags'.
         :param pulumi.Input[_builtins.str] validation_method: The authentication method of domain name.
         :param pulumi.Input[_builtins.int] validity_period: The validity period (month).
         :param pulumi.Input[_builtins.int] wildcard_domain_number: Specifies the number of additional wildcard domain names.
@@ -389,6 +433,10 @@ class _CertificateState:
             pulumi.set(__self__, "single_domain_number", single_domain_number)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if tags_origin is not None:
+            pulumi.set(__self__, "tags_origin", tags_origin)
         if validation_method is not None:
             pulumi.set(__self__, "validation_method", validation_method)
         if validity_period is not None:
@@ -699,6 +747,32 @@ class _CertificateState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tagsOrigin")
+    def tags_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'tags'.
+        """
+        return pulumi.get(self, "tags_origin")
+
+    @tags_origin.setter
+    def tags_origin(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags_origin", value)
+
+    @_builtins.property
     @pulumi.getter(name="validationMethod")
     def validation_method(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -741,7 +815,7 @@ class _CertificateState:
         pulumi.set(self, "wildcard_domain_number", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/certificate:Certificate")
+@pulumi.type_token("huaweicloud:Ccm/certificate:Certificate")
 class Certificate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -756,6 +830,8 @@ class Certificate(pulumi.CustomResource):
                  primary_domain_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  single_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  wildcard_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
@@ -824,39 +900,16 @@ class Certificate(pulumi.CustomResource):
 
         The CCM certificate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/certificate:Certificate test <id>
+        $ pulumi import huaweicloud:Ccm/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
-        API response, security or some other reason. The missing attributes include: `effective_time`, `single_domain_number`.
-
-        It is generally recommended running `pulumi preview` after importing a resource.
-
+        API response, security or some other reason. The missing attributes include: `effective_time`, `single_domain_number`,
+        `tags`. It is generally recommended running `pulumi preview` after importing a resource.
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              effective_time, single_domain_number,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -895,6 +948,10 @@ class Certificate(pulumi.CustomResource):
                The value of this field ranges from `1` to `249`.
                
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'tags'.
         :param pulumi.Input[_builtins.int] wildcard_domain_number: Specifies the number of additional wildcard domain names.
                The value of this field ranges from `0` to `248`.
                
@@ -975,39 +1032,16 @@ class Certificate(pulumi.CustomResource):
 
         The CCM certificate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ccm/certificate:Certificate test <id>
+        $ pulumi import huaweicloud:Ccm/certificate:Certificate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
-        API response, security or some other reason. The missing attributes include: `effective_time`, `single_domain_number`.
-
-        It is generally recommended running `pulumi preview` after importing a resource.
-
+        API response, security or some other reason. The missing attributes include: `effective_time`, `single_domain_number`,
+        `tags`. It is generally recommended running `pulumi preview` after importing a resource.
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ccm_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              effective_time, single_domain_number,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.
@@ -1033,6 +1067,8 @@ class Certificate(pulumi.CustomResource):
                  primary_domain_type: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  single_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  wildcard_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1062,6 +1098,8 @@ class Certificate(pulumi.CustomResource):
             __props__.__dict__["primary_domain_type"] = primary_domain_type
             __props__.__dict__["region"] = region
             __props__.__dict__["single_domain_number"] = single_domain_number
+            __props__.__dict__["tags"] = tags
+            __props__.__dict__["tags_origin"] = tags_origin
             __props__.__dict__["wildcard_domain_number"] = wildcard_domain_number
             __props__.__dict__["authentifications"] = None
             __props__.__dict__["domain"] = None
@@ -1079,7 +1117,7 @@ class Certificate(pulumi.CustomResource):
             __props__.__dict__["validation_method"] = None
             __props__.__dict__["validity_period"] = None
         super(Certificate, __self__).__init__(
-            'huaweicloud:ccm/certificate:Certificate',
+            'huaweicloud:Ccm/certificate:Certificate',
             resource_name,
             __props__,
             opts)
@@ -1110,6 +1148,8 @@ class Certificate(pulumi.CustomResource):
             signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
             single_domain_number: Optional[pulumi.Input[_builtins.int]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tags_origin: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             validation_method: Optional[pulumi.Input[_builtins.str]] = None,
             validity_period: Optional[pulumi.Input[_builtins.int]] = None,
             wildcard_domain_number: Optional[pulumi.Input[_builtins.int]] = None) -> 'Certificate':
@@ -1180,6 +1220,10 @@ class Certificate(pulumi.CustomResource):
                + **UPLOAD**: The certificate in custody.
                + **SUPPLEMENTCHECKING**: Additional domain names added to multi-domain certificates are under review.
                + **CANCELSUPPLEMENTING**: Cancel the addition of additional domain names under review.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags_origin: The script configuration value of this change is also the original value used for
+               					comparison with the new value next time the change is made. The corresponding parameter name is
+               					'tags'.
         :param pulumi.Input[_builtins.str] validation_method: The authentication method of domain name.
         :param pulumi.Input[_builtins.int] validity_period: The validity period (month).
         :param pulumi.Input[_builtins.int] wildcard_domain_number: Specifies the number of additional wildcard domain names.
@@ -1216,6 +1260,8 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["signature_algorithm"] = signature_algorithm
         __props__.__dict__["single_domain_number"] = single_domain_number
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["tags_origin"] = tags_origin
         __props__.__dict__["validation_method"] = validation_method
         __props__.__dict__["validity_period"] = validity_period
         __props__.__dict__["wildcard_domain_number"] = wildcard_domain_number
@@ -1434,6 +1480,24 @@ class Certificate(pulumi.CustomResource):
         + **CANCELSUPPLEMENTING**: Cancel the addition of additional domain names under review.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        Specifies the key/value pairs to associate with the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="tagsOrigin")
+    def tags_origin(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        The script configuration value of this change is also the original value used for
+        					comparison with the new value next time the change is made. The corresponding parameter name is
+        					'tags'.
+        """
+        return pulumi.get(self, "tags_origin")
 
     @_builtins.property
     @pulumi.getter(name="validationMethod")

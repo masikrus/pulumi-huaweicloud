@@ -34,6 +34,7 @@ class ObsIsoImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ObsIsoImage resource.
+
         :param pulumi.Input[_builtins.str] image_url: Specifies the URL of the external image file in the OBS bucket, the format
                is **OBS bucket name:image file name**. The storage category for OBS bucket and image file must be OBS standard
                storage, and the image file must be ISO format. Changing this parameter will create a new resource.
@@ -290,6 +291,7 @@ class _ObsIsoImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObsIsoImage resources.
+
         :param pulumi.Input[_builtins.str] active_at: The time when the image status changes to active, in RFC3339 format.
         :param pulumi.Input[_builtins.str] architecture: Specifies the schema type of the image. The value can be **x86** or
                **arm**. Defaults to **x86**. Changing this parameter will create a new resource.
@@ -706,37 +708,28 @@ class ObsIsoImage(pulumi.CustomResource):
 
         The IMS OBS ISO image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsIsoImage:ObsIsoImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_config`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_obs_iso_image" "test" {
-
           ...
 
           lifecycle {
-
             ignore_changes = [
-            
               is_config,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -804,37 +797,28 @@ class ObsIsoImage(pulumi.CustomResource):
 
         The IMS OBS ISO image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsIsoImage:ObsIsoImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_config`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_obs_iso_image" "test" {
-
           ...
 
           lifecycle {
-
             ignore_changes = [
-            
               is_config,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ObsIsoImageArgs args: The arguments to use to populate this resource's properties.

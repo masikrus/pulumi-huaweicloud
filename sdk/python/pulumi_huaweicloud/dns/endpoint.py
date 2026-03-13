@@ -27,6 +27,7 @@ class EndpointArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
+
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the endpoint.  
                Changing this parameter will create a new resource.
                The valid values are as follows:
@@ -126,6 +127,7 @@ class _EndpointState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the IP address.
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the endpoint.  
                Changing this parameter will create a new resource.
@@ -333,11 +335,10 @@ class Endpoint(pulumi.CustomResource):
 
         Endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/endpoint:Endpoint test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -398,11 +399,10 @@ class Endpoint(pulumi.CustomResource):
 
         Endpoint can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/endpoint:Endpoint test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class VaultSetResourceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VaultSetResource resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action to configure backup settings. Valid values:
                + **suspend**: Enable backup for the resources.
                + **unsuspend**: Disable backup for the resources.
@@ -113,6 +114,7 @@ class _VaultSetResourceState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VaultSetResource resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action to configure backup settings. Valid values:
                + **suspend**: Enable backup for the resources.
                + **unsuspend**: Disable backup for the resources.
@@ -227,6 +229,7 @@ class VaultSetResource(pulumi.CustomResource):
             action=action)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action to configure backup settings. Valid values:
@@ -264,6 +267,7 @@ class VaultSetResource(pulumi.CustomResource):
             resource_ids=resource_ids,
             action=action)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VaultSetResourceArgs args: The arguments to use to populate this resource's properties.

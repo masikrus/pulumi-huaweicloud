@@ -31,6 +31,7 @@ class EsCoreUpgradeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EsCoreUpgrade resource.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.bool] indices_backup_check: Specifies whether to perform backup verification.
@@ -165,6 +166,7 @@ class _EsCoreUpgradeState:
                  upgrade_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EsCoreUpgrade resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.bool] cluster_load_check: Whether to verify the load. Default is **true**.
@@ -348,6 +350,7 @@ class EsCoreUpgrade(pulumi.CustomResource):
             cluster_load_check=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
@@ -392,6 +395,7 @@ class EsCoreUpgrade(pulumi.CustomResource):
             indices_backup_check=True,
             cluster_load_check=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EsCoreUpgradeArgs args: The arguments to use to populate this resource's properties.

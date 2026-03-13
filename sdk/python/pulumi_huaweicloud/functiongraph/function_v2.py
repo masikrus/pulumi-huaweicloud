@@ -45,6 +45,7 @@ class FunctionV2Args:
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountArgs']]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -81,6 +82,7 @@ class FunctionV2Args:
                  xrole: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionV2 resource.
+
         :param pulumi.Input[_builtins.int] memory_size: The memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] runtime: The environment for executing the function.
         :param pulumi.Input[_builtins.int] timeout: The timeout interval of the function, in seconds.
@@ -105,6 +107,7 @@ class FunctionV2Args:
         :param pulumi.Input[_builtins.int] ephemeral_storage: The size of the function ephemeral storage.
         :param pulumi.Input[_builtins.str] func_code: The function code.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountArgs']]] func_mounts: The list of function mount configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: The description of the function.
         :param pulumi.Input[_builtins.int] gpu_memory: The GPU memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] gpu_type: The GPU type of the function.
@@ -118,16 +121,16 @@ class FunctionV2Args:
         :param pulumi.Input[_builtins.str] log_stream_id: The LTS stream ID for collecting logs.
         :param pulumi.Input[_builtins.str] log_stream_name: The LTS stream name for collecting logs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag: The custom tags configuration that used to filter the LTS logs.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: The maximum number of instances of the function.
         :param pulumi.Input[_builtins.int] mount_user_group_id: The mount user group ID.
         :param pulumi.Input[_builtins.int] mount_user_id: The mount user ID.
         :param pulumi.Input[_builtins.str] name: The name of the function.
         :param pulumi.Input['FunctionV2NetworkControllerArgs'] network_controller: The network configuration of the function.
         :param pulumi.Input[_builtins.str] network_id: The network ID of subnet.
-        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-               service.
+        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+               CIDR blocks used by the service.
         :param pulumi.Input[_builtins.str] pre_stop_handler: The pre-stop handler of a function.
         :param pulumi.Input[_builtins.int] pre_stop_timeout: The maximum duration that the function can be initialized.
         :param pulumi.Input[_builtins.str] region: The region where the function is located.
@@ -185,6 +188,8 @@ class FunctionV2Args:
             pulumi.set(__self__, "func_code", func_code)
         if func_mounts is not None:
             pulumi.set(__self__, "func_mounts", func_mounts)
+        if func_mounts_orders is not None:
+            pulumi.set(__self__, "func_mounts_orders", func_mounts_orders)
         if functiongraph_version is not None:
             pulumi.set(__self__, "functiongraph_version", functiongraph_version)
         if gpu_memory is not None:
@@ -549,6 +554,18 @@ class FunctionV2Args:
         pulumi.set(self, "func_mounts", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @func_mounts_orders.setter
+    def func_mounts_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]]):
+        pulumi.set(self, "func_mounts_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -708,8 +725,8 @@ class FunctionV2Args:
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -803,8 +820,8 @@ class FunctionV2Args:
     @pulumi.getter(name="peeringCidr")
     def peering_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-        service.
+        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+        CIDR blocks used by the service.
         """
         return pulumi.get(self, "peering_cidr")
 
@@ -958,6 +975,7 @@ class FunctionV2Args:
 @pulumi.input_type
 class _FunctionV2State:
     def __init__(__self__, *,
+                 function_v2_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  agency: Optional[pulumi.Input[_builtins.str]] = None,
                  app: Optional[pulumi.Input[_builtins.str]] = None,
                  app_agency: Optional[pulumi.Input[_builtins.str]] = None,
@@ -979,6 +997,7 @@ class _FunctionV2State:
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountArgs']]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1011,7 +1030,6 @@ class _FunctionV2State:
                  runtime: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None,
                  user_data: Optional[pulumi.Input[_builtins.str]] = None,
                  user_data_encrypt_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1020,6 +1038,8 @@ class _FunctionV2State:
                  xrole: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionV2 resources.
+
+        :param pulumi.Input[_builtins.str] function_v2_urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] agency: The agency configuration of the function.
         :param pulumi.Input[_builtins.str] app: The group to which the function belongs.
         :param pulumi.Input[_builtins.str] app_agency: The execution agency enables you to obtain a token or an AK/SK for accessing other cloud services.
@@ -1041,6 +1061,7 @@ class _FunctionV2State:
         :param pulumi.Input[_builtins.int] ephemeral_storage: The size of the function ephemeral storage.
         :param pulumi.Input[_builtins.str] func_code: The function code.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountArgs']]] func_mounts: The list of function mount configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: The description of the function.
         :param pulumi.Input[_builtins.int] gpu_memory: The GPU memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] gpu_type: The GPU type of the function.
@@ -1054,8 +1075,8 @@ class _FunctionV2State:
         :param pulumi.Input[_builtins.str] log_stream_id: The LTS stream ID for collecting logs.
         :param pulumi.Input[_builtins.str] log_stream_name: The LTS stream name for collecting logs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag: The custom tags configuration that used to filter the LTS logs.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: The maximum number of instances of the function.
         :param pulumi.Input[_builtins.int] memory_size: The memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.int] mount_user_group_id: The mount user group ID.
@@ -1063,8 +1084,8 @@ class _FunctionV2State:
         :param pulumi.Input[_builtins.str] name: The name of the function.
         :param pulumi.Input['FunctionV2NetworkControllerArgs'] network_controller: The network configuration of the function.
         :param pulumi.Input[_builtins.str] network_id: The network ID of subnet.
-        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-               service.
+        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+               CIDR blocks used by the service.
         :param pulumi.Input[_builtins.str] pre_stop_handler: The pre-stop handler of a function.
         :param pulumi.Input[_builtins.int] pre_stop_timeout: The maximum duration that the function can be initialized.
         :param pulumi.Input[_builtins.str] region: The region where the function is located.
@@ -1074,13 +1095,14 @@ class _FunctionV2State:
         :param pulumi.Input[_builtins.str] runtime: The environment for executing the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the function.
         :param pulumi.Input[_builtins.int] timeout: The timeout interval of the function, in seconds.
-        :param pulumi.Input[_builtins.str] urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: The KMS key ID for encrypting the user data.
         :param pulumi.Input[_builtins.str] version: The version of the function.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionV2VersionArgs']]] versions: The versions management of the function.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the VPC to which the function belongs.
         """
+        if function_v2_urn is not None:
+            pulumi.set(__self__, "function_v2_urn", function_v2_urn)
         if agency is not None:
             pulumi.set(__self__, "agency", agency)
         if app is not None:
@@ -1123,6 +1145,8 @@ class _FunctionV2State:
             pulumi.set(__self__, "func_code", func_code)
         if func_mounts is not None:
             pulumi.set(__self__, "func_mounts", func_mounts)
+        if func_mounts_orders is not None:
+            pulumi.set(__self__, "func_mounts_orders", func_mounts_orders)
         if functiongraph_version is not None:
             pulumi.set(__self__, "functiongraph_version", functiongraph_version)
         if gpu_memory is not None:
@@ -1190,8 +1214,6 @@ class _FunctionV2State:
             pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
         if user_data is not None:
             pulumi.set(__self__, "user_data", user_data)
         if user_data_encrypt_kms_key_id is not None:
@@ -1207,6 +1229,18 @@ class _FunctionV2State:
             pulumi.log.warn("""xrole is deprecated: use agency instead""")
         if xrole is not None:
             pulumi.set(__self__, "xrole", xrole)
+
+    @_builtins.property
+    @pulumi.getter(name="FunctionV2Urn")
+    def function_v2_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The URN (Uniform Resource Name) of the function.
+        """
+        return pulumi.get(self, "function_v2_urn")
+
+    @function_v2_urn.setter
+    def function_v2_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "function_v2_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1461,6 +1495,18 @@ class _FunctionV2State:
         pulumi.set(self, "func_mounts", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @func_mounts_orders.setter
+    def func_mounts_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionV2FuncMountsOrderArgs']]]]):
+        pulumi.set(self, "func_mounts_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1620,8 +1666,8 @@ class _FunctionV2State:
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -1727,8 +1773,8 @@ class _FunctionV2State:
     @pulumi.getter(name="peeringCidr")
     def peering_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-        service.
+        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+        CIDR blocks used by the service.
         """
         return pulumi.get(self, "peering_cidr")
 
@@ -1845,18 +1891,6 @@ class _FunctionV2State:
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The URN (Uniform Resource Name) of the function.
-        """
-        return pulumi.get(self, "urn")
-
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-    @_builtins.property
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1954,6 +1988,7 @@ class FunctionV2(pulumi.CustomResource):
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountArgs', 'FunctionV2FuncMountArgsDict']]]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountsOrderArgs', 'FunctionV2FuncMountsOrderArgsDict']]]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1994,6 +2029,7 @@ class FunctionV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a FunctionV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency: The agency configuration of the function.
@@ -2017,6 +2053,7 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ephemeral_storage: The size of the function ephemeral storage.
         :param pulumi.Input[_builtins.str] func_code: The function code.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountArgs', 'FunctionV2FuncMountArgsDict']]]] func_mounts: The list of function mount configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountsOrderArgs', 'FunctionV2FuncMountsOrderArgsDict']]]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: The description of the function.
         :param pulumi.Input[_builtins.int] gpu_memory: The GPU memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] gpu_type: The GPU type of the function.
@@ -2030,8 +2067,8 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] log_stream_id: The LTS stream ID for collecting logs.
         :param pulumi.Input[_builtins.str] log_stream_name: The LTS stream name for collecting logs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag: The custom tags configuration that used to filter the LTS logs.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: The maximum number of instances of the function.
         :param pulumi.Input[_builtins.int] memory_size: The memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.int] mount_user_group_id: The mount user group ID.
@@ -2039,8 +2076,8 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the function.
         :param pulumi.Input[Union['FunctionV2NetworkControllerArgs', 'FunctionV2NetworkControllerArgsDict']] network_controller: The network configuration of the function.
         :param pulumi.Input[_builtins.str] network_id: The network ID of subnet.
-        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-               service.
+        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+               CIDR blocks used by the service.
         :param pulumi.Input[_builtins.str] pre_stop_handler: The pre-stop handler of a function.
         :param pulumi.Input[_builtins.int] pre_stop_timeout: The maximum duration that the function can be initialized.
         :param pulumi.Input[_builtins.str] region: The region where the function is located.
@@ -2063,6 +2100,7 @@ class FunctionV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a FunctionV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param FunctionV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2099,6 +2137,7 @@ class FunctionV2(pulumi.CustomResource):
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountArgs', 'FunctionV2FuncMountArgsDict']]]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountsOrderArgs', 'FunctionV2FuncMountsOrderArgsDict']]]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2166,6 +2205,7 @@ class FunctionV2(pulumi.CustomResource):
             __props__.__dict__["ephemeral_storage"] = ephemeral_storage
             __props__.__dict__["func_code"] = func_code
             __props__.__dict__["func_mounts"] = func_mounts
+            __props__.__dict__["func_mounts_orders"] = func_mounts_orders
             __props__.__dict__["functiongraph_version"] = functiongraph_version
             __props__.__dict__["gpu_memory"] = gpu_memory
             __props__.__dict__["gpu_type"] = gpu_type
@@ -2209,7 +2249,7 @@ class FunctionV2(pulumi.CustomResource):
             __props__.__dict__["versions"] = versions
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["xrole"] = xrole
-            __props__.__dict__["urn"] = None
+            __props__.__dict__["function_v2_urn"] = None
             __props__.__dict__["version"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["encryptedUserData"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -2223,6 +2263,7 @@ class FunctionV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            function_v2_urn: Optional[pulumi.Input[_builtins.str]] = None,
             agency: Optional[pulumi.Input[_builtins.str]] = None,
             app: Optional[pulumi.Input[_builtins.str]] = None,
             app_agency: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2244,6 +2285,7 @@ class FunctionV2(pulumi.CustomResource):
             ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
             func_code: Optional[pulumi.Input[_builtins.str]] = None,
             func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountArgs', 'FunctionV2FuncMountArgsDict']]]]] = None,
+            func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountsOrderArgs', 'FunctionV2FuncMountsOrderArgsDict']]]]] = None,
             functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
             gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
             gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2276,7 +2318,6 @@ class FunctionV2(pulumi.CustomResource):
             runtime: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None,
             user_data: Optional[pulumi.Input[_builtins.str]] = None,
             user_data_encrypt_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2290,6 +2331,7 @@ class FunctionV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] function_v2_urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] agency: The agency configuration of the function.
         :param pulumi.Input[_builtins.str] app: The group to which the function belongs.
         :param pulumi.Input[_builtins.str] app_agency: The execution agency enables you to obtain a token or an AK/SK for accessing other cloud services.
@@ -2311,6 +2353,7 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ephemeral_storage: The size of the function ephemeral storage.
         :param pulumi.Input[_builtins.str] func_code: The function code.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountArgs', 'FunctionV2FuncMountArgsDict']]]] func_mounts: The list of function mount configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionV2FuncMountsOrderArgs', 'FunctionV2FuncMountsOrderArgsDict']]]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: The description of the function.
         :param pulumi.Input[_builtins.int] gpu_memory: The GPU memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] gpu_type: The GPU type of the function.
@@ -2324,8 +2367,8 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] log_stream_id: The LTS stream ID for collecting logs.
         :param pulumi.Input[_builtins.str] log_stream_name: The LTS stream name for collecting logs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag: The custom tags configuration that used to filter the LTS logs.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: The maximum number of instances of the function.
         :param pulumi.Input[_builtins.int] memory_size: The memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.int] mount_user_group_id: The mount user group ID.
@@ -2333,8 +2376,8 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the function.
         :param pulumi.Input[Union['FunctionV2NetworkControllerArgs', 'FunctionV2NetworkControllerArgsDict']] network_controller: The network configuration of the function.
         :param pulumi.Input[_builtins.str] network_id: The network ID of subnet.
-        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-               service.
+        :param pulumi.Input[_builtins.str] peering_cidr: The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+               CIDR blocks used by the service.
         :param pulumi.Input[_builtins.str] pre_stop_handler: The pre-stop handler of a function.
         :param pulumi.Input[_builtins.int] pre_stop_timeout: The maximum duration that the function can be initialized.
         :param pulumi.Input[_builtins.str] region: The region where the function is located.
@@ -2344,7 +2387,6 @@ class FunctionV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] runtime: The environment for executing the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the function.
         :param pulumi.Input[_builtins.int] timeout: The timeout interval of the function, in seconds.
-        :param pulumi.Input[_builtins.str] urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: The KMS key ID for encrypting the user data.
         :param pulumi.Input[_builtins.str] version: The version of the function.
@@ -2355,6 +2397,7 @@ class FunctionV2(pulumi.CustomResource):
 
         __props__ = _FunctionV2State.__new__(_FunctionV2State)
 
+        __props__.__dict__["function_v2_urn"] = function_v2_urn
         __props__.__dict__["agency"] = agency
         __props__.__dict__["app"] = app
         __props__.__dict__["app_agency"] = app_agency
@@ -2376,6 +2419,7 @@ class FunctionV2(pulumi.CustomResource):
         __props__.__dict__["ephemeral_storage"] = ephemeral_storage
         __props__.__dict__["func_code"] = func_code
         __props__.__dict__["func_mounts"] = func_mounts
+        __props__.__dict__["func_mounts_orders"] = func_mounts_orders
         __props__.__dict__["functiongraph_version"] = functiongraph_version
         __props__.__dict__["gpu_memory"] = gpu_memory
         __props__.__dict__["gpu_type"] = gpu_type
@@ -2408,7 +2452,6 @@ class FunctionV2(pulumi.CustomResource):
         __props__.__dict__["runtime"] = runtime
         __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
-        __props__.__dict__["urn"] = urn
         __props__.__dict__["user_data"] = user_data
         __props__.__dict__["user_data_encrypt_kms_key_id"] = user_data_encrypt_kms_key_id
         __props__.__dict__["version"] = version
@@ -2416,6 +2459,14 @@ class FunctionV2(pulumi.CustomResource):
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["xrole"] = xrole
         return FunctionV2(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="FunctionV2Urn")
+    def function_v2_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The URN (Uniform Resource Name) of the function.
+        """
+        return pulumi.get(self, "function_v2_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -2586,6 +2637,14 @@ class FunctionV2(pulumi.CustomResource):
         return pulumi.get(self, "func_mounts")
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> pulumi.Output[Sequence['outputs.FunctionV2FuncMountsOrder']]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> pulumi.Output[_builtins.str]:
         """
@@ -2693,8 +2752,8 @@ class FunctionV2(pulumi.CustomResource):
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -2764,8 +2823,8 @@ class FunctionV2(pulumi.CustomResource):
     @pulumi.getter(name="peeringCidr")
     def peering_cidr(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC CIDR blocks used by the
-        service.
+        The VPC CIDR blocks used in the function code to detect whether it conflicts with the VPC
+        CIDR blocks used by the service.
         """
         return pulumi.get(self, "peering_cidr")
 
@@ -2840,14 +2899,6 @@ class FunctionV2(pulumi.CustomResource):
         The timeout interval of the function, in seconds.
         """
         return pulumi.get(self, "timeout")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        The URN (Uniform Resource Name) of the function.
-        """
-        return pulumi.get(self, "urn")
 
     @_builtins.property
     @pulumi.getter(name="userData")

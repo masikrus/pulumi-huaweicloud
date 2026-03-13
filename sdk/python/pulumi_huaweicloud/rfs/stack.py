@@ -34,6 +34,7 @@ class StackArgs:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Stack resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['StackAgencyArgs']]] agencies: Specifies the configuration of the agencies authorized to IAC.  
                Change this parameter will create a new resource.
                The object structure is documented below.
@@ -261,6 +262,7 @@ class _StackState:
                  vars_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Stack resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['StackAgencyArgs']]] agencies: Specifies the configuration of the agencies authorized to IAC.  
                Change this parameter will create a new resource.
                The object structure is documented below.
@@ -514,7 +516,7 @@ class _StackState:
         pulumi.set(self, "vars_uri", value)
 
 
-@pulumi.type_token("huaweicloud:rfs/stack:Stack")
+@pulumi.type_token("huaweicloud:Rfs/stack:Stack")
 class Stack(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -559,49 +561,47 @@ class Stack(pulumi.CustomResource):
             retain_all_resources=True)
         ```
 
+        ### Create an RFS resource stack with VPC deployment (using template and variable files)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        stack_name = config.require_object("stackName")
+        agency_name = config.require_object("agencyName")
+        template_path = config.require_object("templatePath")
+        variable_path = config.require_object("variablePath")
+        test = huaweicloud.rfs.Stack("test",
+            name=stack_name,
+            agencies=[{
+                "name": agency_name,
+                "provider_name": "huaweicloud",
+            }],
+            template_body=std.index.file(input=template_path)["result"],
+            vars_body=std.index.file(input=variable_path)["result"])
+        ```
+
+        The content of the template file (in JSON format) is as follows:
+
+        The content of the `.vars` file is as follows:
+
         ## Import
 
         Stacks can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rfs/stack:Stack test edd2f099-e1ac-4bd0-be32-8b2185620a90
+        $ pulumi import huaweicloud:Rfs/stack:Stack test edd2f099-e1ac-4bd0-be32-8b2185620a90
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `agency`, `template_body`, `vars_body`, `template_uri`, `vars_uri`,
-
         `enable_auto_rollback`, `enable_deletion_protection` and `retain_all_resources`.
-
         It is generally recommended running `pulumi preview` after importing a stack.
-
         You can keep the resource the same with its definition bo choosing any of them to update.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rfs_stack" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency,
-            
-              template_body,
-            
-              ...
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -670,49 +670,47 @@ class Stack(pulumi.CustomResource):
             retain_all_resources=True)
         ```
 
+        ### Create an RFS resource stack with VPC deployment (using template and variable files)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        stack_name = config.require_object("stackName")
+        agency_name = config.require_object("agencyName")
+        template_path = config.require_object("templatePath")
+        variable_path = config.require_object("variablePath")
+        test = huaweicloud.rfs.Stack("test",
+            name=stack_name,
+            agencies=[{
+                "name": agency_name,
+                "provider_name": "huaweicloud",
+            }],
+            template_body=std.index.file(input=template_path)["result"],
+            vars_body=std.index.file(input=variable_path)["result"])
+        ```
+
+        The content of the template file (in JSON format) is as follows:
+
+        The content of the `.vars` file is as follows:
+
         ## Import
 
         Stacks can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rfs/stack:Stack test edd2f099-e1ac-4bd0-be32-8b2185620a90
+        $ pulumi import huaweicloud:Rfs/stack:Stack test edd2f099-e1ac-4bd0-be32-8b2185620a90
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `agency`, `template_body`, `vars_body`, `template_uri`, `vars_uri`,
-
         `enable_auto_rollback`, `enable_deletion_protection` and `retain_all_resources`.
-
         It is generally recommended running `pulumi preview` after importing a stack.
-
         You can keep the resource the same with its definition bo choosing any of them to update.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rfs_stack" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency,
-            
-              template_body,
-            
-              ...
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param StackArgs args: The arguments to use to populate this resource's properties.
@@ -764,7 +762,7 @@ class Stack(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Stack, __self__).__init__(
-            'huaweicloud:rfs/stack:Stack',
+            'huaweicloud:Rfs/stack:Stack',
             resource_name,
             __props__,
             opts)

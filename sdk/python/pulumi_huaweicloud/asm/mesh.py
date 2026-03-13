@@ -32,6 +32,7 @@ class MeshArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Mesh resource.
+
         :param pulumi.Input['MeshExtendParamsArgs'] extend_params: Specifies the extend parameters of the mesh.
                
                The extend_params structure is documented below.
@@ -197,6 +198,7 @@ class _MeshState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Mesh resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies the mesh annotations in key/value format.
         :param pulumi.Input[_builtins.str] created_at: The time when the mesh is created.
         :param pulumi.Input['MeshExtendParamsArgs'] extend_params: Specifies the extend parameters of the mesh.
@@ -379,7 +381,7 @@ class _MeshState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:asm/mesh:Mesh")
+@pulumi.type_token("huaweicloud:Asm/mesh:Mesh")
 class Mesh(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -436,41 +438,17 @@ class Mesh(pulumi.CustomResource):
 
         The ASM mesh can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:asm/mesh:Mesh test <id>
+        $ pulumi import huaweicloud:Asm/mesh:Mesh test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `extend_params`, `annotations`, `labels` and `tags`.
-
         It is generally recommended running `pulumi preview` after importing a mesh.
-
         You can then decide if changes should be applied to the mesh, or the resource definition should be updated to
-
         align with the mesh. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_asm_mesh" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              extend_params, annotations, labels, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -539,41 +517,17 @@ class Mesh(pulumi.CustomResource):
 
         The ASM mesh can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:asm/mesh:Mesh test <id>
+        $ pulumi import huaweicloud:Asm/mesh:Mesh test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `extend_params`, `annotations`, `labels` and `tags`.
-
         It is generally recommended running `pulumi preview` after importing a mesh.
-
         You can then decide if changes should be applied to the mesh, or the resource definition should be updated to
-
         align with the mesh. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_asm_mesh" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              extend_params, annotations, labels, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MeshArgs args: The arguments to use to populate this resource's properties.
@@ -626,7 +580,7 @@ class Mesh(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["status"] = None
         super(Mesh, __self__).__init__(
-            'huaweicloud:asm/mesh:Mesh',
+            'huaweicloud:Asm/mesh:Mesh',
             resource_name,
             __props__,
             opts)

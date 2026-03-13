@@ -30,6 +30,7 @@ class LtsLogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LtsLog resource.
+
         :param pulumi.Input[_builtins.str] fw_instance_id: Specifies the ID of the firewall.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] lts_access_log_stream_enable: Specifies whether to enable the access log stream.
@@ -189,6 +190,7 @@ class _LtsLogState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LtsLog resources.
+
         :param pulumi.Input[_builtins.str] fw_instance_id: Specifies the ID of the firewall.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] lts_access_log_stream_enable: Specifies whether to enable the access log stream.
@@ -385,11 +387,10 @@ class LtsLog(pulumi.CustomResource):
 
         The lts log resource can be imported using the firewall instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/ltsLog:LtsLog test <fw_instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -445,11 +446,10 @@ class LtsLog(pulumi.CustomResource):
 
         The lts log resource can be imported using the firewall instance ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/ltsLog:LtsLog test <fw_instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LtsLogArgs args: The arguments to use to populate this resource's properties.

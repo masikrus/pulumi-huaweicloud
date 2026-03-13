@@ -29,6 +29,7 @@ class PolicyGroupArgs:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyGroupTargetArgs']]]] = None):
         """
         The set of arguments for constructing a PolicyGroup resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy group.
         :param pulumi.Input[_builtins.str] name: Specifies the target name.  
                If the `targets` type is **INSTANCE**, the ID means the desktop name.
@@ -164,6 +165,7 @@ class _PolicyGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PolicyGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy group.
         :param pulumi.Input[_builtins.str] name: Specifies the target name.  
                If the `targets` type is **INSTANCE**, the ID means the desktop name.
@@ -349,11 +351,10 @@ class PolicyGroup(pulumi.CustomResource):
 
         Policy groups can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/policyGroup:PolicyGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -419,11 +420,10 @@ class PolicyGroup(pulumi.CustomResource):
 
         Policy groups can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/policyGroup:PolicyGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyGroupArgs args: The arguments to use to populate this resource's properties.

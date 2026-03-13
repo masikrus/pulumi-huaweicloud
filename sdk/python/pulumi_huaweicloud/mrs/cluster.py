@@ -39,6 +39,7 @@ class ClusterArgs:
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  external_datasources: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterExternalDatasourceArgs']]]] = None,
                  log_collection: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mrs_ecs_default_agency: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  node_key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -56,6 +57,7 @@ class ClusterArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the cluster.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?all)
                Changing this will create a new MapReduce cluster resource.
@@ -71,8 +73,9 @@ class ClusterArgs:
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the network ID of a subnet which bound to the MapReduce cluster.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-               , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version.  
+               Changing this will create a new MapReduce cluster resource.
+               For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC which bound to the MapReduce cluster. Changing
                this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterAnalysisCoreNodesArgs'] analysis_core_nodes: Specifies the informations about analysis core nodes in the
@@ -117,6 +120,8 @@ class ClusterArgs:
         :param pulumi.Input[_builtins.bool] log_collection: Specifies whether logs are collected when cluster installation fails.
                Defaults to true. If `log_collection` set true, the OBS buckets will be created and only used to collect logs that
                record MapReduce cluster creation failures. Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] mrs_ecs_default_agency: Specifies the default agency name bound to the cluster node.  
+               Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] node_admin_pass: Specifies the administrator password, which is used to log in to the
@@ -145,8 +150,8 @@ class ClusterArgs:
                + **false**: disable Kerberos authentication. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies an array of one or more security group ID to attach to the
                MapReduce cluster. If using the specified security group, the group need to open the specified port (9022) rules.
-        :param pulumi.Input['ClusterSmnNotifyArgs'] smn_notify: Specifies the alarm configuration of the cluster. The smn_notify
-               structure is documented below.
+        :param pulumi.Input['ClusterSmnNotifyArgs'] smn_notify: Specifies the alarm configuration of the cluster.  
+               The smn_notify block is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input['ClusterStreamingCoreNodesArgs'] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
@@ -200,6 +205,8 @@ class ClusterArgs:
             pulumi.set(__self__, "external_datasources", external_datasources)
         if log_collection is not None:
             pulumi.set(__self__, "log_collection", log_collection)
+        if mrs_ecs_default_agency is not None:
+            pulumi.set(__self__, "mrs_ecs_default_agency", mrs_ecs_default_agency)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_admin_pass is not None:
@@ -305,8 +312,9 @@ class ClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-        , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        Specifies the MapReduce cluster version.  
+        Changing this will create a new MapReduce cluster resource.
+        For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         """
         return pulumi.get(self, "version")
 
@@ -491,6 +499,19 @@ class ClusterArgs:
         pulumi.set(self, "log_collection", value)
 
     @_builtins.property
+    @pulumi.getter(name="mrsEcsDefaultAgency")
+    def mrs_ecs_default_agency(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the default agency name bound to the cluster node.  
+        Changing this will create a new MapReduce cluster resource.
+        """
+        return pulumi.get(self, "mrs_ecs_default_agency")
+
+    @mrs_ecs_default_agency.setter
+    def mrs_ecs_default_agency(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mrs_ecs_default_agency", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -621,8 +642,8 @@ class ClusterArgs:
     @pulumi.getter(name="smnNotify")
     def smn_notify(self) -> Optional[pulumi.Input['ClusterSmnNotifyArgs']]:
         """
-        Specifies the alarm configuration of the cluster. The smn_notify
-        structure is documented below.
+        Specifies the alarm configuration of the cluster.  
+        The smn_notify block is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "smn_notify")
@@ -730,6 +751,7 @@ class _ClusterState:
                  manager_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  master_node_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  master_nodes: Optional[pulumi.Input['ClusterMasterNodesArgs']] = None,
+                 mrs_ecs_default_agency: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  node_key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -754,6 +776,7 @@ class _ClusterState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input['ClusterAnalysisCoreNodesArgs'] analysis_core_nodes: Specifies the informations about analysis core nodes in the
                MapReduce cluster.
                The analysis_core_nodes structure is documented below.
@@ -812,6 +835,8 @@ class _ClusterState:
         :param pulumi.Input['ClusterMasterNodesArgs'] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
                The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] mrs_ecs_default_agency: Specifies the default agency name bound to the cluster node.  
+               Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] node_admin_pass: Specifies the administrator password, which is used to log in to the
@@ -841,8 +866,8 @@ class _ClusterState:
                + **false**: disable Kerberos authentication. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies an array of one or more security group ID to attach to the
                MapReduce cluster. If using the specified security group, the group need to open the specified port (9022) rules.
-        :param pulumi.Input['ClusterSmnNotifyArgs'] smn_notify: Specifies the alarm configuration of the cluster. The smn_notify
-               structure is documented below.
+        :param pulumi.Input['ClusterSmnNotifyArgs'] smn_notify: Specifies the alarm configuration of the cluster.  
+               The smn_notify block is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] status: The cluster state, which include: running, frozen, abnormal and failed.
         :param pulumi.Input['ClusterStreamingCoreNodesArgs'] streaming_core_nodes: Specifies the informations about streaming core nodes in the
@@ -871,8 +896,9 @@ class _ClusterState:
         :param pulumi.Input[_builtins.str] type: Specifies the type of the MapReduce cluster. The valid values are **ANALYSIS**,
                **STREAMING** and **MIXED**, defaults to **ANALYSIS**. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] update_time: The cluster update time, in RFC-3339 format.
-        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-               , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version.  
+               Changing this will create a new MapReduce cluster resource.
+               For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC which bound to the MapReduce cluster. Changing
                this will create a new MapReduce cluster resource.
         """
@@ -912,6 +938,8 @@ class _ClusterState:
             pulumi.set(__self__, "master_node_ip", master_node_ip)
         if master_nodes is not None:
             pulumi.set(__self__, "master_nodes", master_nodes)
+        if mrs_ecs_default_agency is not None:
+            pulumi.set(__self__, "mrs_ecs_default_agency", mrs_ecs_default_agency)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_admin_pass is not None:
@@ -1214,6 +1242,19 @@ class _ClusterState:
         pulumi.set(self, "master_nodes", value)
 
     @_builtins.property
+    @pulumi.getter(name="mrsEcsDefaultAgency")
+    def mrs_ecs_default_agency(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the default agency name bound to the cluster node.  
+        Changing this will create a new MapReduce cluster resource.
+        """
+        return pulumi.get(self, "mrs_ecs_default_agency")
+
+    @mrs_ecs_default_agency.setter
+    def mrs_ecs_default_agency(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mrs_ecs_default_agency", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1356,8 +1397,8 @@ class _ClusterState:
     @pulumi.getter(name="smnNotify")
     def smn_notify(self) -> Optional[pulumi.Input['ClusterSmnNotifyArgs']]:
         """
-        Specifies the alarm configuration of the cluster. The smn_notify
-        structure is documented below.
+        Specifies the alarm configuration of the cluster.  
+        The smn_notify block is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "smn_notify")
@@ -1496,8 +1537,9 @@ class _ClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-        , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        Specifies the MapReduce cluster version.  
+        Changing this will create a new MapReduce cluster resource.
+        For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         """
         return pulumi.get(self, "version")
 
@@ -1540,6 +1582,7 @@ class Cluster(pulumi.CustomResource):
                  log_collection: Optional[pulumi.Input[_builtins.bool]] = None,
                  manager_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  master_nodes: Optional[pulumi.Input[Union['ClusterMasterNodesArgs', 'ClusterMasterNodesArgsDict']]] = None,
+                 mrs_ecs_default_agency: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  node_key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1570,7 +1613,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1629,7 +1672,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1675,7 +1718,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1748,7 +1791,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1826,7 +1869,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1887,7 +1930,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -1932,57 +1975,30 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/cluster:cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `manager_admin_pass`, `node_admin_pass`,`template_id`, `assigned_roles`, `external_datasources`, `component_configs`,
-
-        `smn_notify`, `charging_mode`, `period`, `period_unit`, `auto_renew`, `streaming_core_nodes.0.charging_mode`,
-
-        `streaming_core_nodes.0.period`, `streaming_core_nodes.0.period_unit`, `streaming_core_nodes.0.auto_renew`,
-
+        `smn_notify`, `charging_mode`, `period`, `period_unit`, `auto_renew`, `master_nodes.0.charging_mode`,
+        `master_nodes.0.period`, `master_nodes.0.period_unit`, `master_nodes.0.auto_renew`,
+        `master_nodes.0.skip_bootstrap_scripts`, `master_nodes.0.scale_without_start`, `streaming_core_nodes.0.charging_mode`,
+        `streaming_core_nodes.0.resource_ids`, `streaming_core_nodes.0.skip_bootstrap_scripts`,
+        `streaming_core_nodes.0.scale_without_start`, `streaming_task_nodes.0.resource_ids`,
+        `streaming_task_nodes.0.skip_bootstrap_scripts`, `streaming_task_nodes.0.scale_without_start`,
         `analysis_core_nodes.0.charging_mode`, `analysis_core_nodes.0.period`, `analysis_core_nodes.0.period_unit`,
-
-        `analysis_core_nodes.0.auto_renew`, `custom_nodes.0.charging_mode`, `custom_nodes.0.period`, `custom_nodes.0.period_unit`
-
-        and `custom_nodes.0.auto_renew`. It is generally recommended running `pulumi preview` after importing a cluster.
-
+        `analysis_core_nodes.0.auto_renew`, `analysis_core_nodes.0.resource_ids`,
+        `analysis_core_nodes.0.skip_bootstrap_scripts`, `analysis_core_nodes.0.scale_without_start`,
+        `analysis_task_nodes.0.resource_ids`, `analysis_task_nodes.0.skip_bootstrap_scripts`,
+        `analysis_task_nodes.0.scale_without_start`, `custom_nodes.0.charging_mode`, `custom_nodes.0.period`,
+        `custom_nodes.0.period_unit`, `custom_nodes.0.auto_renew`, `custom_nodes.0.resource_ids`,
+        `custom_nodes.0.skip_bootstrap_scripts` and `custom_nodes.0.scale_without_start`,
+        It is generally recommended running `pulumi preview` after importing a cluster.
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              manager_admin_pass, node_admin_pass, template_id, assigned_roles, external_datasources, component_configs, smn_notify,
-            
-              charging_mode, period, period_unit, auto_renew, master_nodes.0.charging_mode, master_nodes.0.period, master_nodes.0.period_unit,
-            
-              master_nodes.0.auto_renew, streaming_core_nodes.0.charging_mode, streaming_core_nodes.0.period, streaming_core_nodes.0.period_unit,
-            
-              streaming_core_nodes.0.auto_renew, analysis_core_nodes.0.charging_mode, analysis_core_nodes.0.period, analysis_core_nodes.0.period_unit,
-            
-              analysis_core_nodes.0.auto_renew, custom_nodes.0.charging_mode, custom_nodes.0.period, custom_nodes.0.period_unit, custom_nodes.0.auto_renew
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2041,6 +2057,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Union['ClusterMasterNodesArgs', 'ClusterMasterNodesArgsDict']] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
                The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] mrs_ecs_default_agency: Specifies the default agency name bound to the cluster node.  
+               Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] node_admin_pass: Specifies the administrator password, which is used to log in to the
@@ -2069,8 +2087,8 @@ class Cluster(pulumi.CustomResource):
                + **false**: disable Kerberos authentication. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies an array of one or more security group ID to attach to the
                MapReduce cluster. If using the specified security group, the group need to open the specified port (9022) rules.
-        :param pulumi.Input[Union['ClusterSmnNotifyArgs', 'ClusterSmnNotifyArgsDict']] smn_notify: Specifies the alarm configuration of the cluster. The smn_notify
-               structure is documented below.
+        :param pulumi.Input[Union['ClusterSmnNotifyArgs', 'ClusterSmnNotifyArgsDict']] smn_notify: Specifies the alarm configuration of the cluster.  
+               The smn_notify block is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Union['ClusterStreamingCoreNodesArgs', 'ClusterStreamingCoreNodesArgsDict']] streaming_core_nodes: Specifies the informations about streaming core nodes in the
                MapReduce cluster.
@@ -2096,8 +2114,9 @@ class Cluster(pulumi.CustomResource):
                than 500 nodes. Components can be deployed separately, which can be used for a larger cluster scale.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the MapReduce cluster. The valid values are **ANALYSIS**,
                **STREAMING** and **MIXED**, defaults to **ANALYSIS**. Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-               , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version.  
+               Changing this will create a new MapReduce cluster resource.
+               For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC which bound to the MapReduce cluster. Changing
                this will create a new MapReduce cluster resource.
         """
@@ -2118,7 +2137,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2177,7 +2196,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2223,7 +2242,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2296,7 +2315,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2374,7 +2393,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2435,7 +2454,7 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.get_availability_zones()
+        test = huaweicloud.Index.get_availability_zones()
         config = pulumi.Config()
         cluster_name = config.require_object("clusterName")
         password = config.require_object("password")
@@ -2480,57 +2499,30 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/cluster:cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `manager_admin_pass`, `node_admin_pass`,`template_id`, `assigned_roles`, `external_datasources`, `component_configs`,
-
-        `smn_notify`, `charging_mode`, `period`, `period_unit`, `auto_renew`, `streaming_core_nodes.0.charging_mode`,
-
-        `streaming_core_nodes.0.period`, `streaming_core_nodes.0.period_unit`, `streaming_core_nodes.0.auto_renew`,
-
+        `smn_notify`, `charging_mode`, `period`, `period_unit`, `auto_renew`, `master_nodes.0.charging_mode`,
+        `master_nodes.0.period`, `master_nodes.0.period_unit`, `master_nodes.0.auto_renew`,
+        `master_nodes.0.skip_bootstrap_scripts`, `master_nodes.0.scale_without_start`, `streaming_core_nodes.0.charging_mode`,
+        `streaming_core_nodes.0.resource_ids`, `streaming_core_nodes.0.skip_bootstrap_scripts`,
+        `streaming_core_nodes.0.scale_without_start`, `streaming_task_nodes.0.resource_ids`,
+        `streaming_task_nodes.0.skip_bootstrap_scripts`, `streaming_task_nodes.0.scale_without_start`,
         `analysis_core_nodes.0.charging_mode`, `analysis_core_nodes.0.period`, `analysis_core_nodes.0.period_unit`,
-
-        `analysis_core_nodes.0.auto_renew`, `custom_nodes.0.charging_mode`, `custom_nodes.0.period`, `custom_nodes.0.period_unit`
-
-        and `custom_nodes.0.auto_renew`. It is generally recommended running `pulumi preview` after importing a cluster.
-
+        `analysis_core_nodes.0.auto_renew`, `analysis_core_nodes.0.resource_ids`,
+        `analysis_core_nodes.0.skip_bootstrap_scripts`, `analysis_core_nodes.0.scale_without_start`,
+        `analysis_task_nodes.0.resource_ids`, `analysis_task_nodes.0.skip_bootstrap_scripts`,
+        `analysis_task_nodes.0.scale_without_start`, `custom_nodes.0.charging_mode`, `custom_nodes.0.period`,
+        `custom_nodes.0.period_unit`, `custom_nodes.0.auto_renew`, `custom_nodes.0.resource_ids`,
+        `custom_nodes.0.skip_bootstrap_scripts` and `custom_nodes.0.scale_without_start`,
+        It is generally recommended running `pulumi preview` after importing a cluster.
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              manager_admin_pass, node_admin_pass, template_id, assigned_roles, external_datasources, component_configs, smn_notify,
-            
-              charging_mode, period, period_unit, auto_renew, master_nodes.0.charging_mode, master_nodes.0.period, master_nodes.0.period_unit,
-            
-              master_nodes.0.auto_renew, streaming_core_nodes.0.charging_mode, streaming_core_nodes.0.period, streaming_core_nodes.0.period_unit,
-            
-              streaming_core_nodes.0.auto_renew, analysis_core_nodes.0.charging_mode, analysis_core_nodes.0.period, analysis_core_nodes.0.period_unit,
-            
-              analysis_core_nodes.0.auto_renew, custom_nodes.0.charging_mode, custom_nodes.0.period, custom_nodes.0.period_unit, custom_nodes.0.auto_renew
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
@@ -2562,6 +2554,7 @@ class Cluster(pulumi.CustomResource):
                  log_collection: Optional[pulumi.Input[_builtins.bool]] = None,
                  manager_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  master_nodes: Optional[pulumi.Input[Union['ClusterMasterNodesArgs', 'ClusterMasterNodesArgsDict']]] = None,
+                 mrs_ecs_default_agency: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  node_key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2612,6 +2605,7 @@ class Cluster(pulumi.CustomResource):
             if master_nodes is None and not opts.urn:
                 raise TypeError("Missing required property 'master_nodes'")
             __props__.__dict__["master_nodes"] = master_nodes
+            __props__.__dict__["mrs_ecs_default_agency"] = mrs_ecs_default_agency
             __props__.__dict__["name"] = name
             __props__.__dict__["node_admin_pass"] = None if node_admin_pass is None else pulumi.Output.secret(node_admin_pass)
             __props__.__dict__["node_key_pair"] = node_key_pair
@@ -2673,6 +2667,7 @@ class Cluster(pulumi.CustomResource):
             manager_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
             master_node_ip: Optional[pulumi.Input[_builtins.str]] = None,
             master_nodes: Optional[pulumi.Input[Union['ClusterMasterNodesArgs', 'ClusterMasterNodesArgsDict']]] = None,
+            mrs_ecs_default_agency: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             node_admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
             node_key_pair: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2760,6 +2755,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Union['ClusterMasterNodesArgs', 'ClusterMasterNodesArgsDict']] master_nodes: Specifies the informations about master nodes in the MapReduce cluster.
                The master_nodes structure is documented below.
                Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] mrs_ecs_default_agency: Specifies the default agency name bound to the cluster node.  
+               Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of a bootstrap action script.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] node_admin_pass: Specifies the administrator password, which is used to log in to the
@@ -2789,8 +2786,8 @@ class Cluster(pulumi.CustomResource):
                + **false**: disable Kerberos authentication. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_group_ids: Specifies an array of one or more security group ID to attach to the
                MapReduce cluster. If using the specified security group, the group need to open the specified port (9022) rules.
-        :param pulumi.Input[Union['ClusterSmnNotifyArgs', 'ClusterSmnNotifyArgsDict']] smn_notify: Specifies the alarm configuration of the cluster. The smn_notify
-               structure is documented below.
+        :param pulumi.Input[Union['ClusterSmnNotifyArgs', 'ClusterSmnNotifyArgsDict']] smn_notify: Specifies the alarm configuration of the cluster.  
+               The smn_notify block is documented below.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] status: The cluster state, which include: running, frozen, abnormal and failed.
         :param pulumi.Input[Union['ClusterStreamingCoreNodesArgs', 'ClusterStreamingCoreNodesArgsDict']] streaming_core_nodes: Specifies the informations about streaming core nodes in the
@@ -2819,8 +2816,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] type: Specifies the type of the MapReduce cluster. The valid values are **ANALYSIS**,
                **STREAMING** and **MIXED**, defaults to **ANALYSIS**. Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] update_time: The cluster update time, in RFC-3339 format.
-        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-               , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.str] version: Specifies the MapReduce cluster version.  
+               Changing this will create a new MapReduce cluster resource.
+               For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC which bound to the MapReduce cluster. Changing
                this will create a new MapReduce cluster resource.
         """
@@ -2846,6 +2844,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["manager_admin_pass"] = manager_admin_pass
         __props__.__dict__["master_node_ip"] = master_node_ip
         __props__.__dict__["master_nodes"] = master_nodes
+        __props__.__dict__["mrs_ecs_default_agency"] = mrs_ecs_default_agency
         __props__.__dict__["name"] = name
         __props__.__dict__["node_admin_pass"] = node_admin_pass
         __props__.__dict__["node_key_pair"] = node_key_pair
@@ -3055,6 +3054,15 @@ class Cluster(pulumi.CustomResource):
         return pulumi.get(self, "master_nodes")
 
     @_builtins.property
+    @pulumi.getter(name="mrsEcsDefaultAgency")
+    def mrs_ecs_default_agency(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the default agency name bound to the cluster node.  
+        Changing this will create a new MapReduce cluster resource.
+        """
+        return pulumi.get(self, "mrs_ecs_default_agency")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
@@ -3157,8 +3165,8 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="smnNotify")
     def smn_notify(self) -> pulumi.Output[Optional['outputs.ClusterSmnNotify']]:
         """
-        Specifies the alarm configuration of the cluster. The smn_notify
-        structure is documented below.
+        Specifies the alarm configuration of the cluster.  
+        The smn_notify block is documented below.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "smn_notify")
@@ -3257,8 +3265,9 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the MapReduce cluster version. The valid values are `MRS 1.9.2`
-        , `MRS 3.0.5` and `MRS 3.1.0`. Changing this will create a new MapReduce cluster resource.
+        Specifies the MapReduce cluster version.  
+        Changing this will create a new MapReduce cluster resource.
+        For the versions supported by the cluster, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/bulletin-mrs/mrs_13_000014.html#section3).
         """
         return pulumi.get(self, "version")
 

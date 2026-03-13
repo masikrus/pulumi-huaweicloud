@@ -27,12 +27,23 @@ class AgencyV3Args:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_roles: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_roles: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]]] = None):
         """
         The set of arguments for constructing a AgencyV3 resource.
-        :param pulumi.Input[_builtins.str] delegated_domain_name: schema: Required
-        :param pulumi.Input[_builtins.str] delegated_service_name: schema: Internal
+
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_resources_roles: The roles assignment for the agency which the all resources are used to grant.
+        :param pulumi.Input[_builtins.str] delegated_domain_name: The name of the delegated user domain.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of the delegated service.
+        :param pulumi.Input[_builtins.str] description: The description (supplementary information) of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_roles: The roles assignment for the agency which the domain are used to grant.
+        :param pulumi.Input[_builtins.str] duration: The validity period of the agency.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]] enterprise_project_roles: The roles assignment for the agency which the enterprise projects are used to grant.
+        :param pulumi.Input[_builtins.str] name: The name of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]] project_roles: The roles assignment for the agency which the projects are used to grant.
         """
         if all_resources_roles is not None:
             pulumi.set(__self__, "all_resources_roles", all_resources_roles)
@@ -46,6 +57,10 @@ class AgencyV3Args:
             pulumi.set(__self__, "domain_roles", domain_roles)
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if enterprise_project_roles is not None:
+            pulumi.set(__self__, "enterprise_project_roles", enterprise_project_roles)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_roles is not None:
@@ -54,6 +69,9 @@ class AgencyV3Args:
     @_builtins.property
     @pulumi.getter(name="allResourcesRoles")
     def all_resources_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The roles assignment for the agency which the all resources are used to grant.
+        """
         return pulumi.get(self, "all_resources_roles")
 
     @all_resources_roles.setter
@@ -64,7 +82,7 @@ class AgencyV3Args:
     @pulumi.getter(name="delegatedDomainName")
     def delegated_domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Required
+        The name of the delegated user domain.
         """
         return pulumi.get(self, "delegated_domain_name")
 
@@ -76,7 +94,7 @@ class AgencyV3Args:
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Internal
+        The name of the delegated service.
         """
         return pulumi.get(self, "delegated_service_name")
 
@@ -87,6 +105,9 @@ class AgencyV3Args:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description (supplementary information) of the agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -96,6 +117,9 @@ class AgencyV3Args:
     @_builtins.property
     @pulumi.getter(name="domainRoles")
     def domain_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The roles assignment for the agency which the domain are used to grant.
+        """
         return pulumi.get(self, "domain_roles")
 
     @domain_roles.setter
@@ -105,6 +129,9 @@ class AgencyV3Args:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The validity period of the agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -112,8 +139,35 @@ class AgencyV3Args:
         pulumi.set(self, "duration", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectRoles")
+    def enterprise_project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]]:
+        """
+        The roles assignment for the agency which the enterprise projects are used to grant.
+        """
+        return pulumi.get(self, "enterprise_project_roles")
+
+    @enterprise_project_roles.setter
+    def enterprise_project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]]):
+        pulumi.set(self, "enterprise_project_roles", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -123,6 +177,9 @@ class AgencyV3Args:
     @_builtins.property
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]]]:
+        """
+        The roles assignment for the agency which the projects are used to grant.
+        """
         return pulumi.get(self, "project_roles")
 
     @project_roles.setter
@@ -140,13 +197,26 @@ class _AgencyV3State:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_roles: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]] = None,
                  expire_time: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_roles: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering AgencyV3 resources.
-        :param pulumi.Input[_builtins.str] delegated_domain_name: schema: Required
-        :param pulumi.Input[_builtins.str] delegated_service_name: schema: Internal
+
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_resources_roles: The roles assignment for the agency which the all resources are used to grant.
+        :param pulumi.Input[_builtins.str] create_time: The creation time of the agency.
+        :param pulumi.Input[_builtins.str] delegated_domain_name: The name of the delegated user domain.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of the delegated service.
+        :param pulumi.Input[_builtins.str] description: The description (supplementary information) of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_roles: The roles assignment for the agency which the domain are used to grant.
+        :param pulumi.Input[_builtins.str] duration: The validity period of the agency.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]] enterprise_project_roles: The roles assignment for the agency which the enterprise projects are used to grant.
+        :param pulumi.Input[_builtins.str] expire_time: The expiration time of the agency.
+        :param pulumi.Input[_builtins.str] name: The name of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]] project_roles: The roles assignment for the agency which the projects are used to grant.
         """
         if all_resources_roles is not None:
             pulumi.set(__self__, "all_resources_roles", all_resources_roles)
@@ -162,6 +232,10 @@ class _AgencyV3State:
             pulumi.set(__self__, "domain_roles", domain_roles)
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if enterprise_project_roles is not None:
+            pulumi.set(__self__, "enterprise_project_roles", enterprise_project_roles)
         if expire_time is not None:
             pulumi.set(__self__, "expire_time", expire_time)
         if name is not None:
@@ -172,6 +246,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter(name="allResourcesRoles")
     def all_resources_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The roles assignment for the agency which the all resources are used to grant.
+        """
         return pulumi.get(self, "all_resources_roles")
 
     @all_resources_roles.setter
@@ -181,6 +258,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter(name="createTime")
     def create_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The creation time of the agency.
+        """
         return pulumi.get(self, "create_time")
 
     @create_time.setter
@@ -191,7 +271,7 @@ class _AgencyV3State:
     @pulumi.getter(name="delegatedDomainName")
     def delegated_domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Required
+        The name of the delegated user domain.
         """
         return pulumi.get(self, "delegated_domain_name")
 
@@ -203,7 +283,7 @@ class _AgencyV3State:
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Internal
+        The name of the delegated service.
         """
         return pulumi.get(self, "delegated_service_name")
 
@@ -214,6 +294,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description (supplementary information) of the agency.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -223,6 +306,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter(name="domainRoles")
     def domain_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The roles assignment for the agency which the domain are used to grant.
+        """
         return pulumi.get(self, "domain_roles")
 
     @domain_roles.setter
@@ -232,6 +318,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The validity period of the agency.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -239,8 +328,35 @@ class _AgencyV3State:
         pulumi.set(self, "duration", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectRoles")
+    def enterprise_project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]]:
+        """
+        The roles assignment for the agency which the enterprise projects are used to grant.
+        """
+        return pulumi.get(self, "enterprise_project_roles")
+
+    @enterprise_project_roles.setter
+    def enterprise_project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3EnterpriseProjectRoleArgs']]]]):
+        pulumi.set(self, "enterprise_project_roles", value)
+
+    @_builtins.property
     @pulumi.getter(name="expireTime")
     def expire_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The expiration time of the agency.
+        """
         return pulumi.get(self, "expire_time")
 
     @expire_time.setter
@@ -250,6 +366,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the agency.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -259,6 +378,9 @@ class _AgencyV3State:
     @_builtins.property
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AgencyV3ProjectRoleArgs']]]]:
+        """
+        The roles assignment for the agency which the projects are used to grant.
+        """
         return pulumi.get(self, "project_roles")
 
     @project_roles.setter
@@ -278,15 +400,26 @@ class AgencyV3(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3EnterpriseProjectRoleArgs', 'AgencyV3EnterpriseProjectRoleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3ProjectRoleArgs', 'AgencyV3ProjectRoleArgsDict']]]]] = None,
                  __props__=None):
         """
         Create a AgencyV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] delegated_domain_name: schema: Required
-        :param pulumi.Input[_builtins.str] delegated_service_name: schema: Internal
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_resources_roles: The roles assignment for the agency which the all resources are used to grant.
+        :param pulumi.Input[_builtins.str] delegated_domain_name: The name of the delegated user domain.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of the delegated service.
+        :param pulumi.Input[_builtins.str] description: The description (supplementary information) of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_roles: The roles assignment for the agency which the domain are used to grant.
+        :param pulumi.Input[_builtins.str] duration: The validity period of the agency.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3EnterpriseProjectRoleArgs', 'AgencyV3EnterpriseProjectRoleArgsDict']]]] enterprise_project_roles: The roles assignment for the agency which the enterprise projects are used to grant.
+        :param pulumi.Input[_builtins.str] name: The name of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3ProjectRoleArgs', 'AgencyV3ProjectRoleArgsDict']]]] project_roles: The roles assignment for the agency which the projects are used to grant.
         """
         ...
     @overload
@@ -296,6 +429,7 @@ class AgencyV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AgencyV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AgencyV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -317,6 +451,8 @@ class AgencyV3(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3EnterpriseProjectRoleArgs', 'AgencyV3EnterpriseProjectRoleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3ProjectRoleArgs', 'AgencyV3ProjectRoleArgsDict']]]]] = None,
                  __props__=None):
@@ -334,6 +470,8 @@ class AgencyV3(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["domain_roles"] = domain_roles
             __props__.__dict__["duration"] = duration
+            __props__.__dict__["enable_force_new"] = enable_force_new
+            __props__.__dict__["enterprise_project_roles"] = enterprise_project_roles
             __props__.__dict__["name"] = name
             __props__.__dict__["project_roles"] = project_roles
             __props__.__dict__["create_time"] = None
@@ -355,6 +493,8 @@ class AgencyV3(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             domain_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             duration: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3EnterpriseProjectRoleArgs', 'AgencyV3EnterpriseProjectRoleArgsDict']]]]] = None,
             expire_time: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3ProjectRoleArgs', 'AgencyV3ProjectRoleArgsDict']]]]] = None) -> 'AgencyV3':
@@ -365,8 +505,18 @@ class AgencyV3(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] delegated_domain_name: schema: Required
-        :param pulumi.Input[_builtins.str] delegated_service_name: schema: Internal
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_resources_roles: The roles assignment for the agency which the all resources are used to grant.
+        :param pulumi.Input[_builtins.str] create_time: The creation time of the agency.
+        :param pulumi.Input[_builtins.str] delegated_domain_name: The name of the delegated user domain.
+        :param pulumi.Input[_builtins.str] delegated_service_name: The name of the delegated service.
+        :param pulumi.Input[_builtins.str] description: The description (supplementary information) of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_roles: The roles assignment for the agency which the domain are used to grant.
+        :param pulumi.Input[_builtins.str] duration: The validity period of the agency.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3EnterpriseProjectRoleArgs', 'AgencyV3EnterpriseProjectRoleArgsDict']]]] enterprise_project_roles: The roles assignment for the agency which the enterprise projects are used to grant.
+        :param pulumi.Input[_builtins.str] expire_time: The expiration time of the agency.
+        :param pulumi.Input[_builtins.str] name: The name of the agency.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AgencyV3ProjectRoleArgs', 'AgencyV3ProjectRoleArgsDict']]]] project_roles: The roles assignment for the agency which the projects are used to grant.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -379,6 +529,8 @@ class AgencyV3(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["domain_roles"] = domain_roles
         __props__.__dict__["duration"] = duration
+        __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["enterprise_project_roles"] = enterprise_project_roles
         __props__.__dict__["expire_time"] = expire_time
         __props__.__dict__["name"] = name
         __props__.__dict__["project_roles"] = project_roles
@@ -387,18 +539,24 @@ class AgencyV3(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="allResourcesRoles")
     def all_resources_roles(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The roles assignment for the agency which the all resources are used to grant.
+        """
         return pulumi.get(self, "all_resources_roles")
 
     @_builtins.property
     @pulumi.getter(name="createTime")
     def create_time(self) -> pulumi.Output[_builtins.str]:
+        """
+        The creation time of the agency.
+        """
         return pulumi.get(self, "create_time")
 
     @_builtins.property
     @pulumi.getter(name="delegatedDomainName")
     def delegated_domain_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        schema: Required
+        The name of the delegated user domain.
         """
         return pulumi.get(self, "delegated_domain_name")
 
@@ -406,37 +564,71 @@ class AgencyV3(pulumi.CustomResource):
     @pulumi.getter(name="delegatedServiceName")
     def delegated_service_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        schema: Internal
+        The name of the delegated service.
         """
         return pulumi.get(self, "delegated_service_name")
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[_builtins.str]:
+    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description (supplementary information) of the agency.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter(name="domainRoles")
     def domain_roles(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The roles assignment for the agency which the domain are used to grant.
+        """
         return pulumi.get(self, "domain_roles")
 
     @_builtins.property
     @pulumi.getter
     def duration(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The validity period of the agency.
+        """
         return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectRoles")
+    def enterprise_project_roles(self) -> pulumi.Output[Optional[Sequence['outputs.AgencyV3EnterpriseProjectRole']]]:
+        """
+        The roles assignment for the agency which the enterprise projects are used to grant.
+        """
+        return pulumi.get(self, "enterprise_project_roles")
 
     @_builtins.property
     @pulumi.getter(name="expireTime")
     def expire_time(self) -> pulumi.Output[_builtins.str]:
+        """
+        The expiration time of the agency.
+        """
         return pulumi.get(self, "expire_time")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the agency.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> pulumi.Output[Optional[Sequence['outputs.AgencyV3ProjectRole']]]:
+        """
+        The roles assignment for the agency which the projects are used to grant.
+        """
         return pulumi.get(self, "project_roles")
 

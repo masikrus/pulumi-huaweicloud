@@ -23,6 +23,7 @@ class DeleteAllGroupFailureJobsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeleteAllGroupFailureJobs resource.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -63,6 +64,7 @@ class _DeleteAllGroupFailureJobsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeleteAllGroupFailureJobs resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -96,7 +98,7 @@ class _DeleteAllGroupFailureJobsState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/deleteAllGroupFailureJobs:DeleteAllGroupFailureJobs")
+@pulumi.type_token("huaweicloud:Sdrs/deleteAllGroupFailureJobs:DeleteAllGroupFailureJobs")
 class DeleteAllGroupFailureJobs(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -119,6 +121,7 @@ class DeleteAllGroupFailureJobs(pulumi.CustomResource):
 
         test = huaweicloud.sdrs.DeleteAllGroupFailureJobs("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -146,6 +149,7 @@ class DeleteAllGroupFailureJobs(pulumi.CustomResource):
 
         test = huaweicloud.sdrs.DeleteAllGroupFailureJobs("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeleteAllGroupFailureJobsArgs args: The arguments to use to populate this resource's properties.
@@ -176,7 +180,7 @@ class DeleteAllGroupFailureJobs(pulumi.CustomResource):
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["region"] = region
         super(DeleteAllGroupFailureJobs, __self__).__init__(
-            'huaweicloud:sdrs/deleteAllGroupFailureJobs:DeleteAllGroupFailureJobs',
+            'huaweicloud:Sdrs/deleteAllGroupFailureJobs:DeleteAllGroupFailureJobs',
             resource_name,
             __props__,
             opts)

@@ -33,6 +33,7 @@ class CaptureTaskArgs:
                  stop_capture: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CaptureTask resource.
+
         :param pulumi.Input['CaptureTaskDestinationArgs'] destination: Specifies the destination configuration.
                The destination structure is documented below.
         :param pulumi.Input[_builtins.int] duration: Specifies the capture task duration.
@@ -213,6 +214,7 @@ class _CaptureTaskState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CaptureTask resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the capture task.
         :param pulumi.Input['CaptureTaskDestinationArgs'] destination: Specifies the destination configuration.
                The destination structure is documented below.
@@ -497,39 +499,16 @@ class CaptureTask(pulumi.CustomResource):
 
         The capture task can be imported using `fw_instance_id`, `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/captureTask:CaptureTask test <fw_instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes is `stop_capture`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the capture task, or the resource definition should be updated to
-
         align with the capture task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cfw_capture_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              stop_capture,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -598,39 +577,16 @@ class CaptureTask(pulumi.CustomResource):
 
         The capture task can be imported using `fw_instance_id`, `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/captureTask:CaptureTask test <fw_instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes is `stop_capture`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the capture task, or the resource definition should be updated to
-
         align with the capture task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cfw_capture_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              stop_capture,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CaptureTaskArgs args: The arguments to use to populate this resource's properties.

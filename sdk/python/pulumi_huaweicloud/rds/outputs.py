@@ -18,6 +18,7 @@ from . import outputs
 __all__ = [
     'BackupDatabase',
     'Database_privilegeUser',
+    'Database_privilegeUsersOrigin',
     'InstanceBackupStrategy',
     'InstanceDb',
     'InstanceMsdtcHost',
@@ -35,6 +36,7 @@ __all__ = [
     'InstanceV3Volume',
     'InstanceVolume',
     'MysqlDatabasePrivilegeUser',
+    'MysqlDatabasePrivilegeUsersOrigin',
     'MysqlDatabaseTableRestoreDatabase',
     'MysqlDatabaseTableRestoreRestoreTable',
     'MysqlDatabaseTableRestoreRestoreTableTable',
@@ -65,6 +67,9 @@ __all__ = [
     'GetBackupsBackupResult',
     'GetBackupsBackupDatabaseResult',
     'GetBackupsBackupDatastoreResult',
+    'GetBusinessPartnersBusinessPartnerResult',
+    'GetConfigurableDistributorInstancesInstanceResult',
+    'GetConfigurableSubscriberInstancesInstanceResult',
     'GetCrossRegionBackupInstancesBackupInstanceResult',
     'GetCrossRegionBackupInstancesBackupInstanceDatastoreResult',
     'GetCrossRegionBackupsBackupResult',
@@ -84,15 +89,19 @@ __all__ = [
     'GetFlavorsFlavorResult',
     'GetFlavorsV3FlavorResult',
     'GetInstanceConfigurationsConfigurationParameterResult',
+    'GetInstanceNoIndexTablesTableResult',
     'GetInstanceParametersHistoriesHistoryResult',
     'GetInstancesInstanceResult',
     'GetInstancesInstanceBackupStrategyResult',
     'GetInstancesInstanceDbResult',
     'GetInstancesInstanceNodeResult',
     'GetInstancesInstanceVolumeResult',
+    'GetInstantTasksTaskResult',
     'GetLtsConfigsInstanceLtsConfigResult',
     'GetLtsConfigsInstanceLtsConfigInstanceResult',
     'GetLtsConfigsInstanceLtsConfigLtsConfigResult',
+    'GetMarketplaceEngineProductsMarketplaceEngineProductResult',
+    'GetMarketplaceEngineProductsMarketplaceEngineProductAgreementResult',
     'GetMysqlAccountsUserResult',
     'GetMysqlAuthorizedDatabasesDatabaseResult',
     'GetMysqlDatabasePrivilegesUserResult',
@@ -116,6 +125,16 @@ __all__ = [
     'GetPgSchemasDatabaseSchemaResult',
     'GetPgSqlLimitsSqlLimitResult',
     'GetPredefinedTagsTagResult',
+    'GetPublicationsPublicationResult',
+    'GetPublicationsPublicationJobScheduleResult',
+    'GetPublicationsPublicationJobScheduleDailyFrequencyResult',
+    'GetPublicationsPublicationJobScheduleDurationResult',
+    'GetPublicationsPublicationJobScheduleFrequencyResult',
+    'GetPublicationsPublicationJobScheduleOneTimeOccurrenceResult',
+    'GetPublicationsPublicationSubscriptionOptionResult',
+    'GetPublicationsPublicationTableResult',
+    'GetPublicationsPublicationTableArticlePropertyResult',
+    'GetPublicationsPublicationTableFilterResult',
     'GetQuotasQuotaResult',
     'GetQuotasQuotaResourceResult',
     'GetReadReplicaRestorableDatabasesDatabaseResult',
@@ -129,10 +148,13 @@ __all__ = [
     'GetRestoredTablesInstanceDatabaseResult',
     'GetRestoredTablesInstanceDatabaseSchemaResult',
     'GetRestoredTablesInstanceDatabaseSchemaTableResult',
+    'GetScheduleTasksScheduleTaskResult',
+    'GetScheduleTasksScheduleTaskTargetConfigResult',
     'GetSlowLogFilesFileResult',
     'GetSlowLogsSlowLogResult',
     'GetSqlAuditLogsAuditLogResult',
     'GetSqlAuditOperationsOperationResult',
+    'GetSqlStatisticsListResult',
     'GetSqlserverAccountsUserResult',
     'GetSqlserverDatabasePrivilegesUserResult',
     'GetSqlserverDatabasesDatabaseResult',
@@ -141,6 +163,15 @@ __all__ = [
     'GetTagsTagResult',
     'GetTasksJobResult',
     'GetTasksJobInstanceResult',
+    'GetTopSqlsAvgCpuTimeTopValueResult',
+    'GetTopSqlsAvgDurationTimeTopValueResult',
+    'GetTopSqlsAvgLogicalTopValueResult',
+    'GetTopSqlsAvgRowsTopValueResult',
+    'GetTopSqlsListResult',
+    'GetTopSqlsTotalCpuTimeTopValueResult',
+    'GetTopSqlsTotalDurationTimeTopValueResult',
+    'GetTopSqlsTotalLogicalReadsTopValueResult',
+    'GetTopSqlsTotalRowsTopValueResult',
 ]
 
 @pulumi.output_type
@@ -167,8 +198,8 @@ class Database_privilegeUser(dict):
                  name: _builtins.str,
                  readonly: Optional[_builtins.bool] = None):
         """
-        :param _builtins.str name: Specifies the username of the database account.
-        :param _builtins.bool readonly: Specifies the read-only permission.
+        :param _builtins.str name: The username of the database account.
+        :param _builtins.bool readonly: Whether the user has read-only permission.
         """
         pulumi.set(__self__, "name", name)
         if readonly is not None:
@@ -177,6 +208,37 @@ class Database_privilegeUser(dict):
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The username of the database account.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def readonly(self) -> Optional[_builtins.bool]:
+        """
+        Whether the user has read-only permission.
+        """
+        return pulumi.get(self, "readonly")
+
+
+@pulumi.output_type
+class Database_privilegeUsersOrigin(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 readonly: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str name: Specifies the username of the database account.
+        :param _builtins.bool readonly: Specifies the read-only permission.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if readonly is not None:
+            pulumi.set(__self__, "readonly", readonly)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
         """
         Specifies the username of the database account.
         """
@@ -301,8 +363,7 @@ class InstanceDb(dict):
         :param _builtins.str type: Specifies the DB engine. Available value are **MySQL**, **PostgreSQL**,
                **SQLServer** and **MariaDB**. Changing this parameter will create a new resource.
         :param _builtins.str version: Specifies the database version. Changing this parameter will create a new
-               resource. Available values detailed in
-               [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
+               resource.
         :param _builtins.str password: Specifies the database password. The value should contain 8 to 32 characters,
                including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^*-_=+? You are advised
                to enter a strong password to improve security, preventing security risks such as brute force cracking.
@@ -338,8 +399,7 @@ class InstanceDb(dict):
     def version(self) -> _builtins.str:
         """
         Specifies the database version. Changing this parameter will create a new
-        resource. Available values detailed in
-        [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
+        resource.
         """
         return pulumi.get(self, "version")
 
@@ -1196,9 +1256,10 @@ class MysqlDatabasePrivilegeUser(dict):
                  readonly: Optional[_builtins.bool] = None):
         """
         :param _builtins.str name: Specifies the username of the database account.
-        :param _builtins.bool readonly: Specifies the read-only permission. The value can be:
-               + **true**: indicates the read-only permission.
-               + **false**: indicates the read and write permission.
+        :param _builtins.bool readonly: Specifies whether the user has read-only permission.  
+               The valid values are as follows:
+               + **true**: The database grants the current user **read-only** permission.
+               + **false**: The database grants the current user **read-and-write** permission.
                
                The default value is **false**.
         """
@@ -1218,9 +1279,51 @@ class MysqlDatabasePrivilegeUser(dict):
     @pulumi.getter
     def readonly(self) -> Optional[_builtins.bool]:
         """
-        Specifies the read-only permission. The value can be:
-        + **true**: indicates the read-only permission.
-        + **false**: indicates the read and write permission.
+        Specifies whether the user has read-only permission.  
+        The valid values are as follows:
+        + **true**: The database grants the current user **read-only** permission.
+        + **false**: The database grants the current user **read-and-write** permission.
+
+        The default value is **false**.
+        """
+        return pulumi.get(self, "readonly")
+
+
+@pulumi.output_type
+class MysqlDatabasePrivilegeUsersOrigin(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 readonly: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str name: Specifies the username of the database account.
+        :param _builtins.bool readonly: Specifies whether the user has read-only permission.  
+               The valid values are as follows:
+               + **true**: The database grants the current user **read-only** permission.
+               + **false**: The database grants the current user **read-and-write** permission.
+               
+               The default value is **false**.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if readonly is not None:
+            pulumi.set(__self__, "readonly", readonly)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the username of the database account.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def readonly(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether the user has read-only permission.  
+        The valid values are as follows:
+        + **true**: The database grants the current user **read-only** permission.
+        + **false**: The database grants the current user **read-and-write** permission.
 
         The default value is **false**.
         """
@@ -1591,8 +1694,9 @@ class ParametergroupConfigurationParameter(dict):
         :param _builtins.str name: Specifies the parameter group name. It contains a maximum of 64 characters.
         :param _builtins.bool readonly: Indicates whether the parameter is read-only.
         :param _builtins.bool restart_required: Indicates whether a restart is required.
-        :param _builtins.str type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-               MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        :param _builtins.str type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+               and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+               or **mariadb**.
         :param _builtins.str value: Indicates the parameter value.
         :param _builtins.str value_range: Indicates the parameter value range.
         """
@@ -1648,8 +1752,9 @@ class ParametergroupConfigurationParameter(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+        and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+        or **mariadb**.
         """
         return pulumi.get(self, "type")
 
@@ -1819,8 +1924,9 @@ class ParametergroupDatastore(dict):
                  type: _builtins.str,
                  version: _builtins.str):
         """
-        :param _builtins.str type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-               MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        :param _builtins.str type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+               and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+               or **mariadb**.
         :param _builtins.str version: Specifies the database version.
                + MySQL databases support MySQL 5.6 and 5.7. Example value: 5.7.
                + PostgreSQL databases support PostgreSQL 9.5 and 9.6. Example value: 9.5.
@@ -1834,8 +1940,9 @@ class ParametergroupDatastore(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+        and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+        or **mariadb**.
         """
         return pulumi.get(self, "type")
 
@@ -3195,6 +3302,137 @@ class GetBackupsBackupDatastoreResult(dict):
 
 
 @pulumi.output_type
+class GetBusinessPartnersBusinessPartnerResult(dict):
+    def __init__(__self__, *,
+                 bp_domain_id: _builtins.str,
+                 bp_name: _builtins.str,
+                 international: _builtins.bool,
+                 order: _builtins.int):
+        """
+        :param _builtins.str bp_domain_id: Indicates the service provider ID.
+        :param _builtins.str bp_name: Indicates the service provider name.
+        :param _builtins.bool international: Indicates whether it is an international site service provider.
+        :param _builtins.int order: Indicates the priority, integer value range **1-100**, the smaller the value, the higher the priority.
+        """
+        pulumi.set(__self__, "bp_domain_id", bp_domain_id)
+        pulumi.set(__self__, "bp_name", bp_name)
+        pulumi.set(__self__, "international", international)
+        pulumi.set(__self__, "order", order)
+
+    @_builtins.property
+    @pulumi.getter(name="bpDomainId")
+    def bp_domain_id(self) -> _builtins.str:
+        """
+        Indicates the service provider ID.
+        """
+        return pulumi.get(self, "bp_domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="bpName")
+    def bp_name(self) -> _builtins.str:
+        """
+        Indicates the service provider name.
+        """
+        return pulumi.get(self, "bp_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def international(self) -> _builtins.bool:
+        """
+        Indicates whether it is an international site service provider.
+        """
+        return pulumi.get(self, "international")
+
+    @_builtins.property
+    @pulumi.getter
+    def order(self) -> _builtins.int:
+        """
+        Indicates the priority, integer value range **1-100**, the smaller the value, the higher the priority.
+        """
+        return pulumi.get(self, "order")
+
+
+@pulumi.output_type
+class GetConfigurableDistributorInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 data_vip: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str):
+        """
+        :param _builtins.str data_vip: Indicates the internal IP of the instance.
+        :param _builtins.str instance_id: Specifies the ID of the RDS instance.
+        :param _builtins.str instance_name: Indicates the name of the instance.
+        """
+        pulumi.set(__self__, "data_vip", data_vip)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+
+    @_builtins.property
+    @pulumi.getter(name="dataVip")
+    def data_vip(self) -> _builtins.str:
+        """
+        Indicates the internal IP of the instance.
+        """
+        return pulumi.get(self, "data_vip")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the RDS instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Indicates the name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+
+@pulumi.output_type
+class GetConfigurableSubscriberInstancesInstanceResult(dict):
+    def __init__(__self__, *,
+                 data_vip: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str):
+        """
+        :param _builtins.str data_vip: Indicates the internal IP of the instance.
+        :param _builtins.str instance_id: Specifies the ID of the RDS instance.
+        :param _builtins.str instance_name: Indicates the name of the instance.
+        """
+        pulumi.set(__self__, "data_vip", data_vip)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+
+    @_builtins.property
+    @pulumi.getter(name="dataVip")
+    def data_vip(self) -> _builtins.str:
+        """
+        Indicates the internal IP of the instance.
+        """
+        return pulumi.get(self, "data_vip")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the RDS instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Indicates the name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+
+@pulumi.output_type
 class GetCrossRegionBackupInstancesBackupInstanceResult(dict):
     def __init__(__self__, *,
                  datastores: Sequence['outputs.GetCrossRegionBackupInstancesBackupInstanceDatastoreResult'],
@@ -4401,6 +4639,46 @@ class GetInstanceConfigurationsConfigurationParameterResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceNoIndexTablesTableResult(dict):
+    def __init__(__self__, *,
+                 db_name: _builtins.str,
+                 schema_name: _builtins.str,
+                 table_name: _builtins.str):
+        """
+        :param _builtins.str db_name: Indicates the database name.
+        :param _builtins.str schema_name: Indicates the schema name.
+        :param _builtins.str table_name: Indicates the table namee.
+        """
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "schema_name", schema_name)
+        pulumi.set(__self__, "table_name", table_name)
+
+    @_builtins.property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> _builtins.str:
+        """
+        Indicates the database name.
+        """
+        return pulumi.get(self, "db_name")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaName")
+    def schema_name(self) -> _builtins.str:
+        """
+        Indicates the schema name.
+        """
+        return pulumi.get(self, "schema_name")
+
+    @_builtins.property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> _builtins.str:
+        """
+        Indicates the table namee.
+        """
+        return pulumi.get(self, "table_name")
+
+
+@pulumi.output_type
 class GetInstanceParametersHistoriesHistoryResult(dict):
     def __init__(__self__, *,
                  applied: _builtins.bool,
@@ -4964,6 +5242,142 @@ class GetInstancesInstanceVolumeResult(dict):
 
 
 @pulumi.output_type
+class GetInstantTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 end_time: _builtins.str,
+                 fail_reason: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 instance_status: _builtins.str,
+                 name: _builtins.str,
+                 order_id: _builtins.str,
+                 process: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str create_time: Indicates the creation time. The value is in the **yyyy-mm-ddThh:mm:ssZ** format.
+        :param _builtins.str end_time: Specifies the end time in UTC timestamp format (milliseconds since epoch).
+               `start_time` is mandatory if it is not empty.
+        :param _builtins.str fail_reason: Indicates the error information displayed when a task failed.
+        :param _builtins.str id: Indicates the task ID.
+        :param _builtins.str instance_id: Specifies the ID of the instance.
+        :param _builtins.str instance_name: Indicates the instance name.
+        :param _builtins.str instance_status: Indicates the instance status. The value can be: **BUILD**, **CREATE FAIL**, **ACTIVE**, **FAILED**,
+               **FROZEN**, **MODIFYING**, **REBOOTING**, **RESTORING**, **MODIFYING INSTANCE TYPE**, **SWITCHOVER**, **MIGRATING**,
+               **BACKING UP**, **MODIFYING DATABASE PORT**.
+        :param _builtins.str name: Specifies the name of the task.
+        :param _builtins.str order_id: Specifies the ID of the order.
+        :param _builtins.str process: Indicates the task execution process. The execution progress (such as "60", indicating the task execution
+               progress is 60%) is displayed only when the task is being executed. Otherwise, "" is returned.
+        :param _builtins.str status: Specifies the status of the task. Value options: **Running**, **Completed**, **Failed**.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "fail_reason", fail_reason)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "order_id", order_id)
+        pulumi.set(__self__, "process", process)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time. The value is in the **yyyy-mm-ddThh:mm:ssZ** format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        Specifies the end time in UTC timestamp format (milliseconds since epoch).
+        `start_time` is mandatory if it is not empty.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="failReason")
+    def fail_reason(self) -> _builtins.str:
+        """
+        Indicates the error information displayed when a task failed.
+        """
+        return pulumi.get(self, "fail_reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Indicates the instance name.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> _builtins.str:
+        """
+        Indicates the instance status. The value can be: **BUILD**, **CREATE FAIL**, **ACTIVE**, **FAILED**,
+        **FROZEN**, **MODIFYING**, **REBOOTING**, **RESTORING**, **MODIFYING INSTANCE TYPE**, **SWITCHOVER**, **MIGRATING**,
+        **BACKING UP**, **MODIFYING DATABASE PORT**.
+        """
+        return pulumi.get(self, "instance_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the task.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="orderId")
+    def order_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the order.
+        """
+        return pulumi.get(self, "order_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def process(self) -> _builtins.str:
+        """
+        Indicates the task execution process. The execution progress (such as "60", indicating the task execution
+        progress is 60%) is displayed only when the task is being executed. Otherwise, "" is returned.
+        """
+        return pulumi.get(self, "process")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the status of the task. Value options: **Running**, **Completed**, **Failed**.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetLtsConfigsInstanceLtsConfigResult(dict):
     def __init__(__self__, *,
                  instances: Sequence['outputs.GetLtsConfigsInstanceLtsConfigInstanceResult'],
@@ -5136,6 +5550,195 @@ class GetLtsConfigsInstanceLtsConfigLtsConfigResult(dict):
         Indicates the log stream ID associated with LTS.
         """
         return pulumi.get(self, "lts_stream_id")
+
+
+@pulumi.output_type
+class GetMarketplaceEngineProductsMarketplaceEngineProductResult(dict):
+    def __init__(__self__, *,
+                 agreements: Sequence['outputs.GetMarketplaceEngineProductsMarketplaceEngineProductAgreementResult'],
+                 bp_domain_id: _builtins.str,
+                 bp_name: _builtins.str,
+                 engine_id: _builtins.str,
+                 engine_version: _builtins.str,
+                 image_id: _builtins.str,
+                 instance_mode: _builtins.str,
+                 product_id: _builtins.str,
+                 spec_code: _builtins.str,
+                 user_license_agreement: _builtins.str):
+        """
+        :param Sequence['GetMarketplaceEngineProductsMarketplaceEngineProductAgreementArgs'] agreements: Indicates the agreements.
+               The agreements structure is documented below.
+        :param _builtins.str bp_domain_id: Specifies the service provider ID.
+        :param _builtins.str bp_name: Indicates the service provider name.
+        :param _builtins.str engine_id: Specifies the engine ID.
+        :param _builtins.str engine_version: Indicates the engine version.
+        :param _builtins.str image_id: Indicates the image ID.
+        :param _builtins.str instance_mode: Indicates the instance mode. The value can be:
+               + **Single**: Single instance
+               + **Ha**: Ha instance
+               + **Replica**: Replica instance
+               + **All**: All of the above are supported
+        :param _builtins.str product_id: Indicates the product ID.
+        :param _builtins.str spec_code: Indicates the flavor ID.
+        :param _builtins.str user_license_agreement: Indicates the user license agreement.
+        """
+        pulumi.set(__self__, "agreements", agreements)
+        pulumi.set(__self__, "bp_domain_id", bp_domain_id)
+        pulumi.set(__self__, "bp_name", bp_name)
+        pulumi.set(__self__, "engine_id", engine_id)
+        pulumi.set(__self__, "engine_version", engine_version)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "instance_mode", instance_mode)
+        pulumi.set(__self__, "product_id", product_id)
+        pulumi.set(__self__, "spec_code", spec_code)
+        pulumi.set(__self__, "user_license_agreement", user_license_agreement)
+
+    @_builtins.property
+    @pulumi.getter
+    def agreements(self) -> Sequence['outputs.GetMarketplaceEngineProductsMarketplaceEngineProductAgreementResult']:
+        """
+        Indicates the agreements.
+        The agreements structure is documented below.
+        """
+        return pulumi.get(self, "agreements")
+
+    @_builtins.property
+    @pulumi.getter(name="bpDomainId")
+    def bp_domain_id(self) -> _builtins.str:
+        """
+        Specifies the service provider ID.
+        """
+        return pulumi.get(self, "bp_domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="bpName")
+    def bp_name(self) -> _builtins.str:
+        """
+        Indicates the service provider name.
+        """
+        return pulumi.get(self, "bp_name")
+
+    @_builtins.property
+    @pulumi.getter(name="engineId")
+    def engine_id(self) -> _builtins.str:
+        """
+        Specifies the engine ID.
+        """
+        return pulumi.get(self, "engine_id")
+
+    @_builtins.property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> _builtins.str:
+        """
+        Indicates the engine version.
+        """
+        return pulumi.get(self, "engine_version")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        Indicates the image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceMode")
+    def instance_mode(self) -> _builtins.str:
+        """
+        Indicates the instance mode. The value can be:
+        + **Single**: Single instance
+        + **Ha**: Ha instance
+        + **Replica**: Replica instance
+        + **All**: All of the above are supported
+        """
+        return pulumi.get(self, "instance_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="productId")
+    def product_id(self) -> _builtins.str:
+        """
+        Indicates the product ID.
+        """
+        return pulumi.get(self, "product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the flavor ID.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="userLicenseAgreement")
+    def user_license_agreement(self) -> _builtins.str:
+        """
+        Indicates the user license agreement.
+        """
+        return pulumi.get(self, "user_license_agreement")
+
+
+@pulumi.output_type
+class GetMarketplaceEngineProductsMarketplaceEngineProductAgreementResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 language: _builtins.str,
+                 name: _builtins.str,
+                 provision_url: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the agreement.
+        :param _builtins.str language: Indicates the language of the agreement.
+        :param _builtins.str name: Indicates the name of the agreement.
+        :param _builtins.str provision_url: Indicates the provision url of the agreement.
+        :param _builtins.str version: Indicates the version of the agreement.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provision_url", provision_url)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the agreement.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def language(self) -> _builtins.str:
+        """
+        Indicates the language of the agreement.
+        """
+        return pulumi.get(self, "language")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of the agreement.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="provisionUrl")
+    def provision_url(self) -> _builtins.str:
+        """
+        Indicates the provision url of the agreement.
+        """
+        return pulumi.get(self, "provision_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Indicates the version of the agreement.
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -6737,6 +7340,747 @@ class GetPredefinedTagsTagResult(dict):
 
 
 @pulumi.output_type
+class GetPublicationsPublicationResult(dict):
+    def __init__(__self__, *,
+                 extend_tables: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 is_select_all_table: _builtins.bool,
+                 job_schedules: Sequence['outputs.GetPublicationsPublicationJobScheduleResult'],
+                 publication_database: _builtins.str,
+                 publication_name: _builtins.str,
+                 status: _builtins.str,
+                 subscription_count: _builtins.int,
+                 subscription_options: Sequence['outputs.GetPublicationsPublicationSubscriptionOptionResult'],
+                 tables: Sequence['outputs.GetPublicationsPublicationTableResult']):
+        """
+        :param Sequence[_builtins.str] extend_tables: Indicates the extent tables when select all table.
+        :param _builtins.str id: Indicates the schedule ID.
+        :param _builtins.bool is_select_all_table: Indicates whether select all table.
+        :param Sequence['GetPublicationsPublicationJobScheduleArgs'] job_schedules: Indicates the schedule info.
+               The job_schedule structure is documented below.
+        :param _builtins.str publication_database: Indicates the name of publication database.
+        :param _builtins.str publication_name: Specifies the publication name. Fuzzy search is supported.
+        :param _builtins.str status: Indicates the status of publication. The value can be: **normal**, **abnormal**, **creating**, **modifying**,
+               **createfail**.
+        :param _builtins.int subscription_count: Indicates the count of subscription.
+        :param Sequence['GetPublicationsPublicationSubscriptionOptionArgs'] subscription_options: Indicates the options of subscription.
+               The subscription_options structure is documented below.
+        :param Sequence['GetPublicationsPublicationTableArgs'] tables: Indicates the tables of publication.
+               The tables structure is documented below.
+        """
+        pulumi.set(__self__, "extend_tables", extend_tables)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_select_all_table", is_select_all_table)
+        pulumi.set(__self__, "job_schedules", job_schedules)
+        pulumi.set(__self__, "publication_database", publication_database)
+        pulumi.set(__self__, "publication_name", publication_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subscription_count", subscription_count)
+        pulumi.set(__self__, "subscription_options", subscription_options)
+        pulumi.set(__self__, "tables", tables)
+
+    @_builtins.property
+    @pulumi.getter(name="extendTables")
+    def extend_tables(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the extent tables when select all table.
+        """
+        return pulumi.get(self, "extend_tables")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the schedule ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isSelectAllTable")
+    def is_select_all_table(self) -> _builtins.bool:
+        """
+        Indicates whether select all table.
+        """
+        return pulumi.get(self, "is_select_all_table")
+
+    @_builtins.property
+    @pulumi.getter(name="jobSchedules")
+    def job_schedules(self) -> Sequence['outputs.GetPublicationsPublicationJobScheduleResult']:
+        """
+        Indicates the schedule info.
+        The job_schedule structure is documented below.
+        """
+        return pulumi.get(self, "job_schedules")
+
+    @_builtins.property
+    @pulumi.getter(name="publicationDatabase")
+    def publication_database(self) -> _builtins.str:
+        """
+        Indicates the name of publication database.
+        """
+        return pulumi.get(self, "publication_database")
+
+    @_builtins.property
+    @pulumi.getter(name="publicationName")
+    def publication_name(self) -> _builtins.str:
+        """
+        Specifies the publication name. Fuzzy search is supported.
+        """
+        return pulumi.get(self, "publication_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of publication. The value can be: **normal**, **abnormal**, **creating**, **modifying**,
+        **createfail**.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionCount")
+    def subscription_count(self) -> _builtins.int:
+        """
+        Indicates the count of subscription.
+        """
+        return pulumi.get(self, "subscription_count")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionOptions")
+    def subscription_options(self) -> Sequence['outputs.GetPublicationsPublicationSubscriptionOptionResult']:
+        """
+        Indicates the options of subscription.
+        The subscription_options structure is documented below.
+        """
+        return pulumi.get(self, "subscription_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def tables(self) -> Sequence['outputs.GetPublicationsPublicationTableResult']:
+        """
+        Indicates the tables of publication.
+        The tables structure is documented below.
+        """
+        return pulumi.get(self, "tables")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationJobScheduleResult(dict):
+    def __init__(__self__, *,
+                 daily_frequencies: Sequence['outputs.GetPublicationsPublicationJobScheduleDailyFrequencyResult'],
+                 durations: Sequence['outputs.GetPublicationsPublicationJobScheduleDurationResult'],
+                 frequencies: Sequence['outputs.GetPublicationsPublicationJobScheduleFrequencyResult'],
+                 id: _builtins.str,
+                 job_schedule_type: _builtins.str,
+                 one_time_occurrences: Sequence['outputs.GetPublicationsPublicationJobScheduleOneTimeOccurrenceResult']):
+        """
+        :param Sequence['GetPublicationsPublicationJobScheduleDailyFrequencyArgs'] daily_frequencies: Indicates the daily frequency of the schedule.
+               The daily_frequency structure is documented below.
+        :param Sequence['GetPublicationsPublicationJobScheduleDurationArgs'] durations: Indicates the duration of the schedule.
+               The duration structure is documented below.
+        :param Sequence['GetPublicationsPublicationJobScheduleFrequencyArgs'] frequencies: Indicates the frequency of the schedule.
+               The frequency structure is documented below.
+        :param _builtins.str id: Indicates the schedule ID.
+        :param _builtins.str job_schedule_type: Indicates the schedule type.
+        :param Sequence['GetPublicationsPublicationJobScheduleOneTimeOccurrenceArgs'] one_time_occurrences: Indicates the occurrence time for one time.
+               The one_time_occurrence structure is documented below.
+        """
+        pulumi.set(__self__, "daily_frequencies", daily_frequencies)
+        pulumi.set(__self__, "durations", durations)
+        pulumi.set(__self__, "frequencies", frequencies)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_schedule_type", job_schedule_type)
+        pulumi.set(__self__, "one_time_occurrences", one_time_occurrences)
+
+    @_builtins.property
+    @pulumi.getter(name="dailyFrequencies")
+    def daily_frequencies(self) -> Sequence['outputs.GetPublicationsPublicationJobScheduleDailyFrequencyResult']:
+        """
+        Indicates the daily frequency of the schedule.
+        The daily_frequency structure is documented below.
+        """
+        return pulumi.get(self, "daily_frequencies")
+
+    @_builtins.property
+    @pulumi.getter
+    def durations(self) -> Sequence['outputs.GetPublicationsPublicationJobScheduleDurationResult']:
+        """
+        Indicates the duration of the schedule.
+        The duration structure is documented below.
+        """
+        return pulumi.get(self, "durations")
+
+    @_builtins.property
+    @pulumi.getter
+    def frequencies(self) -> Sequence['outputs.GetPublicationsPublicationJobScheduleFrequencyResult']:
+        """
+        Indicates the frequency of the schedule.
+        The frequency structure is documented below.
+        """
+        return pulumi.get(self, "frequencies")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the schedule ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobScheduleType")
+    def job_schedule_type(self) -> _builtins.str:
+        """
+        Indicates the schedule type.
+        """
+        return pulumi.get(self, "job_schedule_type")
+
+    @_builtins.property
+    @pulumi.getter(name="oneTimeOccurrences")
+    def one_time_occurrences(self) -> Sequence['outputs.GetPublicationsPublicationJobScheduleOneTimeOccurrenceResult']:
+        """
+        Indicates the occurrence time for one time.
+        The one_time_occurrence structure is documented below.
+        """
+        return pulumi.get(self, "one_time_occurrences")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationJobScheduleDailyFrequencyResult(dict):
+    def __init__(__self__, *,
+                 active_end_time: _builtins.str,
+                 active_start_time: _builtins.str,
+                 freq_interval_unit: _builtins.str,
+                 freq_subday_interval: _builtins.int,
+                 freq_subday_type: _builtins.str):
+        """
+        :param _builtins.str active_end_time: Indicates the daily frequency active end time.
+        :param _builtins.str active_start_time: Indicates the daily frequency active start time.
+        :param _builtins.str freq_interval_unit: Indicates the daily frequency interval unit. The value can be: **second**, **minute**, **hour**.
+        :param _builtins.int freq_subday_interval: Indicates the daily frequency interval.
+        :param _builtins.str freq_subday_type: Indicates the daily frequency type.
+        """
+        pulumi.set(__self__, "active_end_time", active_end_time)
+        pulumi.set(__self__, "active_start_time", active_start_time)
+        pulumi.set(__self__, "freq_interval_unit", freq_interval_unit)
+        pulumi.set(__self__, "freq_subday_interval", freq_subday_interval)
+        pulumi.set(__self__, "freq_subday_type", freq_subday_type)
+
+    @_builtins.property
+    @pulumi.getter(name="activeEndTime")
+    def active_end_time(self) -> _builtins.str:
+        """
+        Indicates the daily frequency active end time.
+        """
+        return pulumi.get(self, "active_end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="activeStartTime")
+    def active_start_time(self) -> _builtins.str:
+        """
+        Indicates the daily frequency active start time.
+        """
+        return pulumi.get(self, "active_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="freqIntervalUnit")
+    def freq_interval_unit(self) -> _builtins.str:
+        """
+        Indicates the daily frequency interval unit. The value can be: **second**, **minute**, **hour**.
+        """
+        return pulumi.get(self, "freq_interval_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="freqSubdayInterval")
+    def freq_subday_interval(self) -> _builtins.int:
+        """
+        Indicates the daily frequency interval.
+        """
+        return pulumi.get(self, "freq_subday_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="freqSubdayType")
+    def freq_subday_type(self) -> _builtins.str:
+        """
+        Indicates the daily frequency type.
+        """
+        return pulumi.get(self, "freq_subday_type")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationJobScheduleDurationResult(dict):
+    def __init__(__self__, *,
+                 active_end_date: _builtins.str,
+                 active_start_date: _builtins.str):
+        """
+        :param _builtins.str active_end_date: Indicates the active end date.
+        :param _builtins.str active_start_date: Indicates the active start date.
+        """
+        pulumi.set(__self__, "active_end_date", active_end_date)
+        pulumi.set(__self__, "active_start_date", active_start_date)
+
+    @_builtins.property
+    @pulumi.getter(name="activeEndDate")
+    def active_end_date(self) -> _builtins.str:
+        """
+        Indicates the active end date.
+        """
+        return pulumi.get(self, "active_end_date")
+
+    @_builtins.property
+    @pulumi.getter(name="activeStartDate")
+    def active_start_date(self) -> _builtins.str:
+        """
+        Indicates the active start date.
+        """
+        return pulumi.get(self, "active_start_date")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationJobScheduleFrequencyResult(dict):
+    def __init__(__self__, *,
+                 freq_interval: _builtins.int,
+                 freq_interval_day_monthly: _builtins.int,
+                 freq_interval_monthly: _builtins.str,
+                 freq_interval_weeklies: Sequence[_builtins.str],
+                 freq_relative_interval_monthly: _builtins.str,
+                 freq_type: _builtins.str):
+        """
+        :param _builtins.int freq_interval: Indicates the frequency interval.
+        :param _builtins.int freq_interval_day_monthly: Indicates the monthly execution date.
+        :param _builtins.str freq_interval_monthly: Indicates the days of the month are implemented on a weekly basis. The value can be:
+               **Sunday**, **Monday**, **Tuesday**, **Wednesday**, **Thursday**, **Friday**, **Saturday**, **day**, **weekday**,
+               **weekend**.
+        :param Sequence[_builtins.str] freq_interval_weeklies: Indicates the days of the week will be occurred. The value can be:**Monday**, **Tuesday**,
+               **Wednesday**, **Thursday**, **Friday**, **Saturday**, **Sunday**.
+        :param _builtins.str freq_relative_interval_monthly: Indicates the week of the month will it be occurred. The value can be: **first**,
+               **second**, **third**, **fourth**, **last**.
+        :param _builtins.str freq_type: Indicates the frequency type. The value can be: **daily**, **weekly**, **monthly_day**, **monthly_week**.
+        """
+        pulumi.set(__self__, "freq_interval", freq_interval)
+        pulumi.set(__self__, "freq_interval_day_monthly", freq_interval_day_monthly)
+        pulumi.set(__self__, "freq_interval_monthly", freq_interval_monthly)
+        pulumi.set(__self__, "freq_interval_weeklies", freq_interval_weeklies)
+        pulumi.set(__self__, "freq_relative_interval_monthly", freq_relative_interval_monthly)
+        pulumi.set(__self__, "freq_type", freq_type)
+
+    @_builtins.property
+    @pulumi.getter(name="freqInterval")
+    def freq_interval(self) -> _builtins.int:
+        """
+        Indicates the frequency interval.
+        """
+        return pulumi.get(self, "freq_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="freqIntervalDayMonthly")
+    def freq_interval_day_monthly(self) -> _builtins.int:
+        """
+        Indicates the monthly execution date.
+        """
+        return pulumi.get(self, "freq_interval_day_monthly")
+
+    @_builtins.property
+    @pulumi.getter(name="freqIntervalMonthly")
+    def freq_interval_monthly(self) -> _builtins.str:
+        """
+        Indicates the days of the month are implemented on a weekly basis. The value can be:
+        **Sunday**, **Monday**, **Tuesday**, **Wednesday**, **Thursday**, **Friday**, **Saturday**, **day**, **weekday**,
+        **weekend**.
+        """
+        return pulumi.get(self, "freq_interval_monthly")
+
+    @_builtins.property
+    @pulumi.getter(name="freqIntervalWeeklies")
+    def freq_interval_weeklies(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the days of the week will be occurred. The value can be:**Monday**, **Tuesday**,
+        **Wednesday**, **Thursday**, **Friday**, **Saturday**, **Sunday**.
+        """
+        return pulumi.get(self, "freq_interval_weeklies")
+
+    @_builtins.property
+    @pulumi.getter(name="freqRelativeIntervalMonthly")
+    def freq_relative_interval_monthly(self) -> _builtins.str:
+        """
+        Indicates the week of the month will it be occurred. The value can be: **first**,
+        **second**, **third**, **fourth**, **last**.
+        """
+        return pulumi.get(self, "freq_relative_interval_monthly")
+
+    @_builtins.property
+    @pulumi.getter(name="freqType")
+    def freq_type(self) -> _builtins.str:
+        """
+        Indicates the frequency type. The value can be: **daily**, **weekly**, **monthly_day**, **monthly_week**.
+        """
+        return pulumi.get(self, "freq_type")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationJobScheduleOneTimeOccurrenceResult(dict):
+    def __init__(__self__, *,
+                 active_start_date: _builtins.str,
+                 active_start_time: _builtins.str):
+        """
+        :param _builtins.str active_start_date: Indicates the active start date.
+        :param _builtins.str active_start_time: Indicates the daily frequency active start time.
+        """
+        pulumi.set(__self__, "active_start_date", active_start_date)
+        pulumi.set(__self__, "active_start_time", active_start_time)
+
+    @_builtins.property
+    @pulumi.getter(name="activeStartDate")
+    def active_start_date(self) -> _builtins.str:
+        """
+        Indicates the active start date.
+        """
+        return pulumi.get(self, "active_start_date")
+
+    @_builtins.property
+    @pulumi.getter(name="activeStartTime")
+    def active_start_time(self) -> _builtins.str:
+        """
+        Indicates the daily frequency active start time.
+        """
+        return pulumi.get(self, "active_start_time")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationSubscriptionOptionResult(dict):
+    def __init__(__self__, *,
+                 allow_initialize_from_backup: _builtins.bool,
+                 independent_agent: _builtins.bool,
+                 replicate_ddl: _builtins.bool,
+                 snapshot_always_available: _builtins.bool):
+        """
+        :param _builtins.bool allow_initialize_from_backup: Indicates whether allow to initialize from backup.
+        :param _builtins.bool independent_agent: Indicates whether is independent agent.
+        :param _builtins.bool replicate_ddl: Indicates whether the replicate ddl can be changed.
+        :param _builtins.bool snapshot_always_available: Indicates whether the snapshot is always available.
+        """
+        pulumi.set(__self__, "allow_initialize_from_backup", allow_initialize_from_backup)
+        pulumi.set(__self__, "independent_agent", independent_agent)
+        pulumi.set(__self__, "replicate_ddl", replicate_ddl)
+        pulumi.set(__self__, "snapshot_always_available", snapshot_always_available)
+
+    @_builtins.property
+    @pulumi.getter(name="allowInitializeFromBackup")
+    def allow_initialize_from_backup(self) -> _builtins.bool:
+        """
+        Indicates whether allow to initialize from backup.
+        """
+        return pulumi.get(self, "allow_initialize_from_backup")
+
+    @_builtins.property
+    @pulumi.getter(name="independentAgent")
+    def independent_agent(self) -> _builtins.bool:
+        """
+        Indicates whether is independent agent.
+        """
+        return pulumi.get(self, "independent_agent")
+
+    @_builtins.property
+    @pulumi.getter(name="replicateDdl")
+    def replicate_ddl(self) -> _builtins.bool:
+        """
+        Indicates whether the replicate ddl can be changed.
+        """
+        return pulumi.get(self, "replicate_ddl")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotAlwaysAvailable")
+    def snapshot_always_available(self) -> _builtins.bool:
+        """
+        Indicates whether the snapshot is always available.
+        """
+        return pulumi.get(self, "snapshot_always_available")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationTableResult(dict):
+    def __init__(__self__, *,
+                 article_properties: Sequence['outputs.GetPublicationsPublicationTableArticlePropertyResult'],
+                 columns: Sequence[_builtins.str],
+                 filter_statement: _builtins.str,
+                 filters: Sequence['outputs.GetPublicationsPublicationTableFilterResult'],
+                 primary_keys: Sequence[_builtins.str],
+                 schema: _builtins.str,
+                 table_name: _builtins.str):
+        """
+        :param Sequence['GetPublicationsPublicationTableArticlePropertyArgs'] article_properties: Indicates the article properties.
+               The article_properties structure is documented below.
+        :param Sequence[_builtins.str] columns: Indicates the publication columns.
+        :param _builtins.str filter_statement: Indicates the filter statement.
+        :param Sequence['GetPublicationsPublicationTableFilterArgs'] filters: Indicates the filter.
+               The filter structure is documented below.
+        :param Sequence[_builtins.str] primary_keys: Indicates the primary key of the table.
+        :param _builtins.str schema: Indicates the schema.
+        :param _builtins.str table_name: Indicates the table name.
+        """
+        pulumi.set(__self__, "article_properties", article_properties)
+        pulumi.set(__self__, "columns", columns)
+        pulumi.set(__self__, "filter_statement", filter_statement)
+        pulumi.set(__self__, "filters", filters)
+        pulumi.set(__self__, "primary_keys", primary_keys)
+        pulumi.set(__self__, "schema", schema)
+        pulumi.set(__self__, "table_name", table_name)
+
+    @_builtins.property
+    @pulumi.getter(name="articleProperties")
+    def article_properties(self) -> Sequence['outputs.GetPublicationsPublicationTableArticlePropertyResult']:
+        """
+        Indicates the article properties.
+        The article_properties structure is documented below.
+        """
+        return pulumi.get(self, "article_properties")
+
+    @_builtins.property
+    @pulumi.getter
+    def columns(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the publication columns.
+        """
+        return pulumi.get(self, "columns")
+
+    @_builtins.property
+    @pulumi.getter(name="filterStatement")
+    def filter_statement(self) -> _builtins.str:
+        """
+        Indicates the filter statement.
+        """
+        return pulumi.get(self, "filter_statement")
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Sequence['outputs.GetPublicationsPublicationTableFilterResult']:
+        """
+        Indicates the filter.
+        The filter structure is documented below.
+        """
+        return pulumi.get(self, "filters")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryKeys")
+    def primary_keys(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the primary key of the table.
+        """
+        return pulumi.get(self, "primary_keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def schema(self) -> _builtins.str:
+        """
+        Indicates the schema.
+        """
+        return pulumi.get(self, "schema")
+
+    @_builtins.property
+    @pulumi.getter(name="tableName")
+    def table_name(self) -> _builtins.str:
+        """
+        Indicates the table name.
+        """
+        return pulumi.get(self, "table_name")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationTableArticlePropertyResult(dict):
+    def __init__(__self__, *,
+                 delete_delivery_format: _builtins.str,
+                 delete_stored_procedure: _builtins.str,
+                 destination_object_name: _builtins.str,
+                 destination_object_owner: _builtins.str,
+                 insert_delivery_format: _builtins.str,
+                 insert_stored_procedure: _builtins.str,
+                 update_delivery_format: _builtins.str,
+                 update_stored_procedure: _builtins.str):
+        """
+        :param _builtins.str delete_delivery_format: Indicates the delete delivery format. The value can be:
+               + **do_not_delete**: do not execute the delete statement.
+               + **delete**: execute the call_procedure statement.
+               + **call_procedure**: execute the stored procedure to pass all values for all columns.
+               + **xcall_procedure**: execute the stored procedure, passing all columns (whether affected or not) along with the old
+               data values for each column.
+        :param _builtins.str delete_stored_procedure: Indicates the delete stored procedure.
+        :param _builtins.str destination_object_name: Indicates the destination object name.
+        :param _builtins.str destination_object_owner: Indicates the destination object owner.
+        :param _builtins.str insert_delivery_format: Indicates the insert delivery format. The value can be:
+               + **do_not_insert**: o not execute the insert statement.
+               + **insert**: execute the insert statement.
+               + **insert_without_column_list**: the fields in the insert statement remain in their original order.
+               + **call_procedure**: execute the stored procedure to pass all values for all columns.
+        :param _builtins.str insert_stored_procedure: Indicates the insert stored procedure.
+        :param _builtins.str update_delivery_format: Indicates the update delivery format. The value can be:
+               + **do_not_update**: do not execute the update statement.
+               + **update**: execute the update statement.
+               + **call_procedure**: execute the stored procedure to pass all values for all columns.
+               + **mcall_procedure**: execute the stored procedure, only the values of the affected columns are passed; it also
+               includes a bitmask representing the modified columns.
+               + **xcall_procedure**: execute the stored procedure, passing all columns (whether affected or not) along with the old
+               data values for each column.
+               + **scall_procedure**: execute a stored procedure only passes the values of the columns that are actually affected by
+               the update.
+        :param _builtins.str update_stored_procedure: Indicates the update stored procedure.
+        """
+        pulumi.set(__self__, "delete_delivery_format", delete_delivery_format)
+        pulumi.set(__self__, "delete_stored_procedure", delete_stored_procedure)
+        pulumi.set(__self__, "destination_object_name", destination_object_name)
+        pulumi.set(__self__, "destination_object_owner", destination_object_owner)
+        pulumi.set(__self__, "insert_delivery_format", insert_delivery_format)
+        pulumi.set(__self__, "insert_stored_procedure", insert_stored_procedure)
+        pulumi.set(__self__, "update_delivery_format", update_delivery_format)
+        pulumi.set(__self__, "update_stored_procedure", update_stored_procedure)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteDeliveryFormat")
+    def delete_delivery_format(self) -> _builtins.str:
+        """
+        Indicates the delete delivery format. The value can be:
+        + **do_not_delete**: do not execute the delete statement.
+        + **delete**: execute the call_procedure statement.
+        + **call_procedure**: execute the stored procedure to pass all values for all columns.
+        + **xcall_procedure**: execute the stored procedure, passing all columns (whether affected or not) along with the old
+        data values for each column.
+        """
+        return pulumi.get(self, "delete_delivery_format")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteStoredProcedure")
+    def delete_stored_procedure(self) -> _builtins.str:
+        """
+        Indicates the delete stored procedure.
+        """
+        return pulumi.get(self, "delete_stored_procedure")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationObjectName")
+    def destination_object_name(self) -> _builtins.str:
+        """
+        Indicates the destination object name.
+        """
+        return pulumi.get(self, "destination_object_name")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationObjectOwner")
+    def destination_object_owner(self) -> _builtins.str:
+        """
+        Indicates the destination object owner.
+        """
+        return pulumi.get(self, "destination_object_owner")
+
+    @_builtins.property
+    @pulumi.getter(name="insertDeliveryFormat")
+    def insert_delivery_format(self) -> _builtins.str:
+        """
+        Indicates the insert delivery format. The value can be:
+        + **do_not_insert**: o not execute the insert statement.
+        + **insert**: execute the insert statement.
+        + **insert_without_column_list**: the fields in the insert statement remain in their original order.
+        + **call_procedure**: execute the stored procedure to pass all values for all columns.
+        """
+        return pulumi.get(self, "insert_delivery_format")
+
+    @_builtins.property
+    @pulumi.getter(name="insertStoredProcedure")
+    def insert_stored_procedure(self) -> _builtins.str:
+        """
+        Indicates the insert stored procedure.
+        """
+        return pulumi.get(self, "insert_stored_procedure")
+
+    @_builtins.property
+    @pulumi.getter(name="updateDeliveryFormat")
+    def update_delivery_format(self) -> _builtins.str:
+        """
+        Indicates the update delivery format. The value can be:
+        + **do_not_update**: do not execute the update statement.
+        + **update**: execute the update statement.
+        + **call_procedure**: execute the stored procedure to pass all values for all columns.
+        + **mcall_procedure**: execute the stored procedure, only the values of the affected columns are passed; it also
+        includes a bitmask representing the modified columns.
+        + **xcall_procedure**: execute the stored procedure, passing all columns (whether affected or not) along with the old
+        data values for each column.
+        + **scall_procedure**: execute a stored procedure only passes the values of the columns that are actually affected by
+        the update.
+        """
+        return pulumi.get(self, "update_delivery_format")
+
+    @_builtins.property
+    @pulumi.getter(name="updateStoredProcedure")
+    def update_stored_procedure(self) -> _builtins.str:
+        """
+        Indicates the update stored procedure.
+        """
+        return pulumi.get(self, "update_stored_procedure")
+
+
+@pulumi.output_type
+class GetPublicationsPublicationTableFilterResult(dict):
+    def __init__(__self__, *,
+                 column: _builtins.str,
+                 condition: _builtins.str,
+                 filters: _builtins.str,
+                 relation: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str column: Indicates the column of the filter.
+        :param _builtins.str condition: Indicates the condition of the filter.
+        :param _builtins.str filters: Indicates the sub-filter of the filter. The value is a json string.
+        :param _builtins.str relation: Indicates the relation of the filter. An empty value indicates that the current filter is the lowest level
+               filter; a non-empty value indicates that the current item has lower level filters.
+        :param _builtins.str value: Indicates the value of the filter.
+        """
+        pulumi.set(__self__, "column", column)
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "filters", filters)
+        pulumi.set(__self__, "relation", relation)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def column(self) -> _builtins.str:
+        """
+        Indicates the column of the filter.
+        """
+        return pulumi.get(self, "column")
+
+    @_builtins.property
+    @pulumi.getter
+    def condition(self) -> _builtins.str:
+        """
+        Indicates the condition of the filter.
+        """
+        return pulumi.get(self, "condition")
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> _builtins.str:
+        """
+        Indicates the sub-filter of the filter. The value is a json string.
+        """
+        return pulumi.get(self, "filters")
+
+    @_builtins.property
+    @pulumi.getter
+    def relation(self) -> _builtins.str:
+        """
+        Indicates the relation of the filter. An empty value indicates that the current filter is the lowest level
+        filter; a non-empty value indicates that the current item has lower level filters.
+        """
+        return pulumi.get(self, "relation")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the value of the filter.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetQuotasQuotaResult(dict):
     def __init__(__self__, *,
                  resources: Sequence['outputs.GetQuotasQuotaResourceResult']):
@@ -7336,6 +8680,208 @@ class GetRestoredTablesInstanceDatabaseSchemaTableResult(dict):
 
 
 @pulumi.output_type
+class GetScheduleTasksScheduleTaskResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 datastore_type: _builtins.str,
+                 end_time: _builtins.str,
+                 id: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 instance_status: _builtins.str,
+                 name: _builtins.str,
+                 order: _builtins.str,
+                 start_time: _builtins.str,
+                 status: _builtins.str,
+                 target_configs: Sequence['outputs.GetScheduleTasksScheduleTaskTargetConfigResult'],
+                 volume_type: _builtins.str):
+        """
+        :param _builtins.str create_time: Indicates the creation time. The value is in the **yyyy-mm-ddThh:mm:ssZ** format.
+        :param _builtins.str datastore_type: Indicates the DB type.
+        :param _builtins.str end_time: Specifies the end time in UTC timestamp format (milliseconds since epoch).
+               `start_time` is mandatory if it is not empty.
+        :param _builtins.str id: Indicates the task ID.
+        :param _builtins.str instance_id: Specifies the ID of the instance.
+        :param _builtins.str instance_name: Specifies the name of the instance.
+        :param _builtins.str instance_status: Indicates the instance status. The value can be: **BUILD**, **CREATE FAIL**, **ACTIVE**, **FAILED**,
+               **FROZEN**, **MODIFYING**, **REBOOTING**, **RESTORING**, **MODIFYING INSTANCE TYPE**, **SWITCHOVER**, **MIGRATING**,
+               **BACKING UP**, **MODIFYING DATABASE PORT**, **STORAGE FULL**.
+        :param _builtins.str name: Indicates the task name.
+        :param _builtins.str order: Indicates the task order. Value ranges: **1-100**.
+        :param _builtins.str start_time: Specifies the start time in UTC timestamp format (milliseconds since epoch).
+               `end_time` is mandatory if it is not empty.
+        :param _builtins.str status: Specifies the status of the task. Value options: **Initing**, **Pending**, **Running**,
+               **Completed**, **Failed**, **Unauthorized**, **Canceled**.
+        :param Sequence['GetScheduleTasksScheduleTaskTargetConfigArgs'] target_configs: Indicates the target config.
+               The target_config structure is documented below.
+        :param _builtins.str volume_type: Indicates the volume type.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "datastore_type", datastore_type)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "order", order)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_configs", target_configs)
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        Indicates the creation time. The value is in the **yyyy-mm-ddThh:mm:ssZ** format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="datastoreType")
+    def datastore_type(self) -> _builtins.str:
+        """
+        Indicates the DB type.
+        """
+        return pulumi.get(self, "datastore_type")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        Specifies the end time in UTC timestamp format (milliseconds since epoch).
+        `start_time` is mandatory if it is not empty.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Specifies the name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> _builtins.str:
+        """
+        Indicates the instance status. The value can be: **BUILD**, **CREATE FAIL**, **ACTIVE**, **FAILED**,
+        **FROZEN**, **MODIFYING**, **REBOOTING**, **RESTORING**, **MODIFYING INSTANCE TYPE**, **SWITCHOVER**, **MIGRATING**,
+        **BACKING UP**, **MODIFYING DATABASE PORT**, **STORAGE FULL**.
+        """
+        return pulumi.get(self, "instance_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the task name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def order(self) -> _builtins.str:
+        """
+        Indicates the task order. Value ranges: **1-100**.
+        """
+        return pulumi.get(self, "order")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Specifies the start time in UTC timestamp format (milliseconds since epoch).
+        `end_time` is mandatory if it is not empty.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the status of the task. Value options: **Initing**, **Pending**, **Running**,
+        **Completed**, **Failed**, **Unauthorized**, **Canceled**.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="targetConfigs")
+    def target_configs(self) -> Sequence['outputs.GetScheduleTasksScheduleTaskTargetConfigResult']:
+        """
+        Indicates the target config.
+        The target_config structure is documented below.
+        """
+        return pulumi.get(self, "target_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> _builtins.str:
+        """
+        Indicates the volume type.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class GetScheduleTasksScheduleTaskTargetConfigResult(dict):
+    def __init__(__self__, *,
+                 cpu: _builtins.str,
+                 flavor: _builtins.str,
+                 mem: _builtins.str):
+        """
+        :param _builtins.str cpu: Indicates the target cpu for flavor update task when name is **RESIZE_FLAVOR**.
+        :param _builtins.str flavor: Indicates the target flavor for flavor update task when name is **RESIZE_FLAVOR**.
+        :param _builtins.str mem: Indicates the target mem for flavor update task when name is **RESIZE_FLAVOR**.
+        """
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "flavor", flavor)
+        pulumi.set(__self__, "mem", mem)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> _builtins.str:
+        """
+        Indicates the target cpu for flavor update task when name is **RESIZE_FLAVOR**.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavor(self) -> _builtins.str:
+        """
+        Indicates the target flavor for flavor update task when name is **RESIZE_FLAVOR**.
+        """
+        return pulumi.get(self, "flavor")
+
+    @_builtins.property
+    @pulumi.getter
+    def mem(self) -> _builtins.str:
+        """
+        Indicates the target mem for flavor update task when name is **RESIZE_FLAVOR**.
+        """
+        return pulumi.get(self, "mem")
+
+
+@pulumi.output_type
 class GetSlowLogFilesFileResult(dict):
     def __init__(__self__, *,
                  file_name: _builtins.str,
@@ -7585,6 +9131,90 @@ class GetSqlAuditOperationsOperationResult(dict):
         Indicates the type of the operation.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetSqlStatisticsListResult(dict):
+    def __init__(__self__, *,
+                 calls: _builtins.int,
+                 can_use: _builtins.float,
+                 database: _builtins.str,
+                 query: _builtins.str,
+                 query_id: _builtins.int,
+                 rows: _builtins.int,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.int calls: Indicates the number of calls.
+        :param _builtins.float can_use: Indicates whether SQL throttling can be applied.
+        :param _builtins.str database: Indicates the database name.
+        :param _builtins.str query: Indicates the text format of an SQL statement.
+        :param _builtins.int query_id: Indicates the internal hash code calculated by the SQL parse tree.
+        :param _builtins.int rows: Indicates the scanned rows.
+        :param _builtins.str user_name: Indicates the username.
+        """
+        pulumi.set(__self__, "calls", calls)
+        pulumi.set(__self__, "can_use", can_use)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "query_id", query_id)
+        pulumi.set(__self__, "rows", rows)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def calls(self) -> _builtins.int:
+        """
+        Indicates the number of calls.
+        """
+        return pulumi.get(self, "calls")
+
+    @_builtins.property
+    @pulumi.getter(name="canUse")
+    def can_use(self) -> _builtins.float:
+        """
+        Indicates whether SQL throttling can be applied.
+        """
+        return pulumi.get(self, "can_use")
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        Indicates the database name.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def query(self) -> _builtins.str:
+        """
+        Indicates the text format of an SQL statement.
+        """
+        return pulumi.get(self, "query")
+
+    @_builtins.property
+    @pulumi.getter(name="queryId")
+    def query_id(self) -> _builtins.int:
+        """
+        Indicates the internal hash code calculated by the SQL parse tree.
+        """
+        return pulumi.get(self, "query_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def rows(self) -> _builtins.int:
+        """
+        Indicates the scanned rows.
+        """
+        return pulumi.get(self, "rows")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        Indicates the username.
+        """
+        return pulumi.get(self, "user_name")
 
 
 @pulumi.output_type
@@ -8005,5 +9635,721 @@ class GetTasksJobInstanceResult(dict):
         Indicates the DB instance name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetTopSqlsAvgCpuTimeTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsAvgDurationTimeTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsAvgLogicalTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsAvgRowsTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsListResult(dict):
+    def __init__(__self__, *,
+                 avg_cpu_time: _builtins.str,
+                 avg_cpu_time_percent: _builtins.str,
+                 avg_duration_time: _builtins.str,
+                 avg_duration_time_percent: _builtins.str,
+                 avg_logical_reads: _builtins.str,
+                 avg_logical_reads_percent: _builtins.str,
+                 avg_logical_write: _builtins.str,
+                 avg_logical_write_percent: _builtins.str,
+                 avg_physical_reads: _builtins.str,
+                 avg_physical_reads_percent: _builtins.str,
+                 avg_rows: _builtins.str,
+                 avg_rows_percent: _builtins.str,
+                 db_name: _builtins.str,
+                 execution_count: _builtins.str,
+                 execution_count_percent: _builtins.str,
+                 id: _builtins.str,
+                 last_execution_time: _builtins.str,
+                 query: _builtins.str,
+                 statement: _builtins.str,
+                 total_cpu_time: _builtins.str,
+                 total_cpu_time_percent: _builtins.str,
+                 total_duration_time: _builtins.str,
+                 total_duration_time_percent: _builtins.str,
+                 total_logical_reads: _builtins.str,
+                 total_logical_reads_percent: _builtins.str,
+                 total_logical_write: _builtins.str,
+                 total_logical_write_percent: _builtins.str,
+                 total_physical_reads: _builtins.str,
+                 total_physical_reads_percent: _builtins.str,
+                 total_rows: _builtins.str,
+                 total_rows_percent: _builtins.str):
+        """
+        :param _builtins.str avg_cpu_time: Indicates the average cpu time, unit is **ms**.
+        :param _builtins.str avg_cpu_time_percent: Indicates the average cpu time percent.
+        :param _builtins.str avg_duration_time: Indicates the average duration time.
+        :param _builtins.str avg_duration_time_percent: Indicates the average duration time percent.
+        :param _builtins.str avg_logical_reads: Indicates the average logical reads.
+        :param _builtins.str avg_logical_reads_percent: Indicates the average logical reads percent.
+        :param _builtins.str avg_logical_write: Indicates the average logical write.
+        :param _builtins.str avg_logical_write_percent: Indicates the average logical write percent.
+        :param _builtins.str avg_physical_reads: Indicates the average physical reads.
+        :param _builtins.str avg_physical_reads_percent: Indicates the average physical reads percent.
+        :param _builtins.str avg_rows: Indicates the average row number.
+        :param _builtins.str avg_rows_percent: Indicates the average rows percent.
+        :param _builtins.str db_name: Indicates the database name.
+        :param _builtins.str execution_count: Indicates the execution count.
+        :param _builtins.str execution_count_percent: Indicates the execution count percent.
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str last_execution_time: Indicates the last execution time.
+        :param _builtins.str query: Indicates the SQL full text.
+        :param _builtins.str statement: Specifies the statement.
+        :param _builtins.str total_cpu_time: Indicates the total cpu time, unit is **ms**.
+        :param _builtins.str total_cpu_time_percent: Indicates the total cpu time percent.
+        :param _builtins.str total_duration_time: Indicates the total duration time.
+        :param _builtins.str total_duration_time_percent: Indicates the total duration time percent.
+        :param _builtins.str total_logical_reads: Indicates the total logical reads.
+        :param _builtins.str total_logical_reads_percent: Indicates the total logical reads percent.
+        :param _builtins.str total_logical_write: Indicates the total logical write.
+        :param _builtins.str total_logical_write_percent: Indicates the total logical write percent.
+        :param _builtins.str total_physical_reads: Indicates the total physical reads.
+        :param _builtins.str total_physical_reads_percent: Indicates the total physical reads percent.
+        :param _builtins.str total_rows: Indicates the total row number.
+        :param _builtins.str total_rows_percent: Indicates the total rows percent.
+        """
+        pulumi.set(__self__, "avg_cpu_time", avg_cpu_time)
+        pulumi.set(__self__, "avg_cpu_time_percent", avg_cpu_time_percent)
+        pulumi.set(__self__, "avg_duration_time", avg_duration_time)
+        pulumi.set(__self__, "avg_duration_time_percent", avg_duration_time_percent)
+        pulumi.set(__self__, "avg_logical_reads", avg_logical_reads)
+        pulumi.set(__self__, "avg_logical_reads_percent", avg_logical_reads_percent)
+        pulumi.set(__self__, "avg_logical_write", avg_logical_write)
+        pulumi.set(__self__, "avg_logical_write_percent", avg_logical_write_percent)
+        pulumi.set(__self__, "avg_physical_reads", avg_physical_reads)
+        pulumi.set(__self__, "avg_physical_reads_percent", avg_physical_reads_percent)
+        pulumi.set(__self__, "avg_rows", avg_rows)
+        pulumi.set(__self__, "avg_rows_percent", avg_rows_percent)
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "execution_count", execution_count)
+        pulumi.set(__self__, "execution_count_percent", execution_count_percent)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_execution_time", last_execution_time)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "statement", statement)
+        pulumi.set(__self__, "total_cpu_time", total_cpu_time)
+        pulumi.set(__self__, "total_cpu_time_percent", total_cpu_time_percent)
+        pulumi.set(__self__, "total_duration_time", total_duration_time)
+        pulumi.set(__self__, "total_duration_time_percent", total_duration_time_percent)
+        pulumi.set(__self__, "total_logical_reads", total_logical_reads)
+        pulumi.set(__self__, "total_logical_reads_percent", total_logical_reads_percent)
+        pulumi.set(__self__, "total_logical_write", total_logical_write)
+        pulumi.set(__self__, "total_logical_write_percent", total_logical_write_percent)
+        pulumi.set(__self__, "total_physical_reads", total_physical_reads)
+        pulumi.set(__self__, "total_physical_reads_percent", total_physical_reads_percent)
+        pulumi.set(__self__, "total_rows", total_rows)
+        pulumi.set(__self__, "total_rows_percent", total_rows_percent)
+
+    @_builtins.property
+    @pulumi.getter(name="avgCpuTime")
+    def avg_cpu_time(self) -> _builtins.str:
+        """
+        Indicates the average cpu time, unit is **ms**.
+        """
+        return pulumi.get(self, "avg_cpu_time")
+
+    @_builtins.property
+    @pulumi.getter(name="avgCpuTimePercent")
+    def avg_cpu_time_percent(self) -> _builtins.str:
+        """
+        Indicates the average cpu time percent.
+        """
+        return pulumi.get(self, "avg_cpu_time_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="avgDurationTime")
+    def avg_duration_time(self) -> _builtins.str:
+        """
+        Indicates the average duration time.
+        """
+        return pulumi.get(self, "avg_duration_time")
+
+    @_builtins.property
+    @pulumi.getter(name="avgDurationTimePercent")
+    def avg_duration_time_percent(self) -> _builtins.str:
+        """
+        Indicates the average duration time percent.
+        """
+        return pulumi.get(self, "avg_duration_time_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="avgLogicalReads")
+    def avg_logical_reads(self) -> _builtins.str:
+        """
+        Indicates the average logical reads.
+        """
+        return pulumi.get(self, "avg_logical_reads")
+
+    @_builtins.property
+    @pulumi.getter(name="avgLogicalReadsPercent")
+    def avg_logical_reads_percent(self) -> _builtins.str:
+        """
+        Indicates the average logical reads percent.
+        """
+        return pulumi.get(self, "avg_logical_reads_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="avgLogicalWrite")
+    def avg_logical_write(self) -> _builtins.str:
+        """
+        Indicates the average logical write.
+        """
+        return pulumi.get(self, "avg_logical_write")
+
+    @_builtins.property
+    @pulumi.getter(name="avgLogicalWritePercent")
+    def avg_logical_write_percent(self) -> _builtins.str:
+        """
+        Indicates the average logical write percent.
+        """
+        return pulumi.get(self, "avg_logical_write_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="avgPhysicalReads")
+    def avg_physical_reads(self) -> _builtins.str:
+        """
+        Indicates the average physical reads.
+        """
+        return pulumi.get(self, "avg_physical_reads")
+
+    @_builtins.property
+    @pulumi.getter(name="avgPhysicalReadsPercent")
+    def avg_physical_reads_percent(self) -> _builtins.str:
+        """
+        Indicates the average physical reads percent.
+        """
+        return pulumi.get(self, "avg_physical_reads_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="avgRows")
+    def avg_rows(self) -> _builtins.str:
+        """
+        Indicates the average row number.
+        """
+        return pulumi.get(self, "avg_rows")
+
+    @_builtins.property
+    @pulumi.getter(name="avgRowsPercent")
+    def avg_rows_percent(self) -> _builtins.str:
+        """
+        Indicates the average rows percent.
+        """
+        return pulumi.get(self, "avg_rows_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> _builtins.str:
+        """
+        Indicates the database name.
+        """
+        return pulumi.get(self, "db_name")
+
+    @_builtins.property
+    @pulumi.getter(name="executionCount")
+    def execution_count(self) -> _builtins.str:
+        """
+        Indicates the execution count.
+        """
+        return pulumi.get(self, "execution_count")
+
+    @_builtins.property
+    @pulumi.getter(name="executionCountPercent")
+    def execution_count_percent(self) -> _builtins.str:
+        """
+        Indicates the execution count percent.
+        """
+        return pulumi.get(self, "execution_count_percent")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastExecutionTime")
+    def last_execution_time(self) -> _builtins.str:
+        """
+        Indicates the last execution time.
+        """
+        return pulumi.get(self, "last_execution_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def query(self) -> _builtins.str:
+        """
+        Indicates the SQL full text.
+        """
+        return pulumi.get(self, "query")
+
+    @_builtins.property
+    @pulumi.getter
+    def statement(self) -> _builtins.str:
+        """
+        Specifies the statement.
+        """
+        return pulumi.get(self, "statement")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCpuTime")
+    def total_cpu_time(self) -> _builtins.str:
+        """
+        Indicates the total cpu time, unit is **ms**.
+        """
+        return pulumi.get(self, "total_cpu_time")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCpuTimePercent")
+    def total_cpu_time_percent(self) -> _builtins.str:
+        """
+        Indicates the total cpu time percent.
+        """
+        return pulumi.get(self, "total_cpu_time_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDurationTime")
+    def total_duration_time(self) -> _builtins.str:
+        """
+        Indicates the total duration time.
+        """
+        return pulumi.get(self, "total_duration_time")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDurationTimePercent")
+    def total_duration_time_percent(self) -> _builtins.str:
+        """
+        Indicates the total duration time percent.
+        """
+        return pulumi.get(self, "total_duration_time_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="totalLogicalReads")
+    def total_logical_reads(self) -> _builtins.str:
+        """
+        Indicates the total logical reads.
+        """
+        return pulumi.get(self, "total_logical_reads")
+
+    @_builtins.property
+    @pulumi.getter(name="totalLogicalReadsPercent")
+    def total_logical_reads_percent(self) -> _builtins.str:
+        """
+        Indicates the total logical reads percent.
+        """
+        return pulumi.get(self, "total_logical_reads_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="totalLogicalWrite")
+    def total_logical_write(self) -> _builtins.str:
+        """
+        Indicates the total logical write.
+        """
+        return pulumi.get(self, "total_logical_write")
+
+    @_builtins.property
+    @pulumi.getter(name="totalLogicalWritePercent")
+    def total_logical_write_percent(self) -> _builtins.str:
+        """
+        Indicates the total logical write percent.
+        """
+        return pulumi.get(self, "total_logical_write_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="totalPhysicalReads")
+    def total_physical_reads(self) -> _builtins.str:
+        """
+        Indicates the total physical reads.
+        """
+        return pulumi.get(self, "total_physical_reads")
+
+    @_builtins.property
+    @pulumi.getter(name="totalPhysicalReadsPercent")
+    def total_physical_reads_percent(self) -> _builtins.str:
+        """
+        Indicates the total physical reads percent.
+        """
+        return pulumi.get(self, "total_physical_reads_percent")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRows")
+    def total_rows(self) -> _builtins.str:
+        """
+        Indicates the total row number.
+        """
+        return pulumi.get(self, "total_rows")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRowsPercent")
+    def total_rows_percent(self) -> _builtins.str:
+        """
+        Indicates the total rows percent.
+        """
+        return pulumi.get(self, "total_rows_percent")
+
+
+@pulumi.output_type
+class GetTopSqlsTotalCpuTimeTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsTotalDurationTimeTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsTotalLogicalReadsTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopSqlsTotalRowsTopValueResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 id: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str data_type: Indicates the data type.
+               The value can be:
+               + **AvgReturnRows**: average return rows
+               + **TotalReturnRows**: total  return rows
+        :param _builtins.str id: Indicates the ID.
+        :param _builtins.str value: Indicates the row number.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Indicates the data type.
+        The value can be:
+        + **AvgReturnRows**: average return rows
+        + **TotalReturnRows**: total  return rows
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the row number.
+        """
+        return pulumi.get(self, "value")
 
 

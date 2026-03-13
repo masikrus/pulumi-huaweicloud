@@ -31,16 +31,17 @@ class GlobalGatewayArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a GlobalGateway resource.
+
         :param pulumi.Input[_builtins.str] address_family: Specifies the IP address family of the global DC gateway. Valid values are:
                + **ipv4**: Only IPv4 is supported.
                + **dual**: Both IPv4 and IPv6 are supported.
                
                Defaults to **ipv4**.
-        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-               to `4,294,967,295`. Defaults to `64,512`.
+        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+               `1` to `4,294,967,295`. Defaults to `64,512`.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the global DC gateway.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC gateway
-               belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC
+               gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the global DC gateway.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create new resource.
@@ -83,8 +84,8 @@ class GlobalGatewayArgs:
     @pulumi.getter(name="bgpAsn")
     def bgp_asn(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-        to `4,294,967,295`. Defaults to `64,512`.
+        Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+        `1` to `4,294,967,295`. Defaults to `64,512`.
         """
         return pulumi.get(self, "bgp_asn")
 
@@ -117,8 +118,8 @@ class GlobalGatewayArgs:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID that the global DC gateway
-        belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        Specifies the enterprise project ID that the global DC
+        gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -187,6 +188,7 @@ class _GlobalGatewayState:
                  updated_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalGateway resources.
+
         :param pulumi.Input[_builtins.str] address_family: Specifies the IP address family of the global DC gateway. Valid values are:
                + **ipv4**: Only IPv4 is supported.
                + **dual**: Both IPv4 and IPv6 are supported.
@@ -194,14 +196,14 @@ class _GlobalGatewayState:
                Defaults to **ipv4**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] all_tags: The all key/value pairs to associate with the DC global gateway.
         :param pulumi.Input[_builtins.int] available_peer_link_count: The number of peer links that can be created for a global DC gateway.
-        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-               to `4,294,967,295`. Defaults to `64,512`.
+        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+               `1` to `4,294,967,295`. Defaults to `64,512`.
         :param pulumi.Input[_builtins.str] created_time: The time when the global DC gateway was created.
         :param pulumi.Input[_builtins.int] current_peer_link_count: The number of peer links allowed on a global DC gateway, indicating the number of
                enterprise routers that the global DC gateway can be attached to.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the global DC gateway.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC gateway
-               belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC
+               gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         :param pulumi.Input[_builtins.str] global_center_network_id: The ID of the central network that the global DC gateway is added to.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalGatewayLocaleArgs']]] locales: The locale address description information.
                The locales structure is documented below.
@@ -295,8 +297,8 @@ class _GlobalGatewayState:
     @pulumi.getter(name="bgpAsn")
     def bgp_asn(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-        to `4,294,967,295`. Defaults to `64,512`.
+        Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+        `1` to `4,294,967,295`. Defaults to `64,512`.
         """
         return pulumi.get(self, "bgp_asn")
 
@@ -354,8 +356,8 @@ class _GlobalGatewayState:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the enterprise project ID that the global DC gateway
-        belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        Specifies the enterprise project ID that the global DC
+        gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -474,7 +476,7 @@ class _GlobalGatewayState:
         pulumi.set(self, "updated_time", value)
 
 
-@pulumi.type_token("huaweicloud:dc/globalGateway:GlobalGateway")
+@pulumi.type_token("huaweicloud:Dc/globalGateway:GlobalGateway")
 class GlobalGateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -515,11 +517,10 @@ class GlobalGateway(pulumi.CustomResource):
 
         The DC global gateway resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGateway:GlobalGateway test <id>
+        $ pulumi import huaweicloud:Dc/globalGateway:GlobalGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -528,11 +529,11 @@ class GlobalGateway(pulumi.CustomResource):
                + **dual**: Both IPv4 and IPv6 are supported.
                
                Defaults to **ipv4**.
-        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-               to `4,294,967,295`. Defaults to `64,512`.
+        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+               `1` to `4,294,967,295`. Defaults to `64,512`.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the global DC gateway.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC gateway
-               belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC
+               gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the global DC gateway.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create new resource.
@@ -570,11 +571,10 @@ class GlobalGateway(pulumi.CustomResource):
 
         The DC global gateway resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGateway:GlobalGateway test <id>
+        $ pulumi import huaweicloud:Dc/globalGateway:GlobalGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalGatewayArgs args: The arguments to use to populate this resource's properties.
@@ -627,7 +627,7 @@ class GlobalGateway(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_time"] = None
         super(GlobalGateway, __self__).__init__(
-            'huaweicloud:dc/globalGateway:GlobalGateway',
+            'huaweicloud:Dc/globalGateway:GlobalGateway',
             resource_name,
             __props__,
             opts)
@@ -668,14 +668,14 @@ class GlobalGateway(pulumi.CustomResource):
                Defaults to **ipv4**.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] all_tags: The all key/value pairs to associate with the DC global gateway.
         :param pulumi.Input[_builtins.int] available_peer_link_count: The number of peer links that can be created for a global DC gateway.
-        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-               to `4,294,967,295`. Defaults to `64,512`.
+        :param pulumi.Input[_builtins.int] bgp_asn: Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+               `1` to `4,294,967,295`. Defaults to `64,512`.
         :param pulumi.Input[_builtins.str] created_time: The time when the global DC gateway was created.
         :param pulumi.Input[_builtins.int] current_peer_link_count: The number of peer links allowed on a global DC gateway, indicating the number of
                enterprise routers that the global DC gateway can be attached to.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the global DC gateway.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC gateway
-               belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID that the global DC
+               gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         :param pulumi.Input[_builtins.str] global_center_network_id: The ID of the central network that the global DC gateway is added to.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalGatewayLocaleArgs', 'GlobalGatewayLocaleArgsDict']]]] locales: The locale address description information.
                The locales structure is documented below.
@@ -744,8 +744,8 @@ class GlobalGateway(pulumi.CustomResource):
     @pulumi.getter(name="bgpAsn")
     def bgp_asn(self) -> pulumi.Output[_builtins.int]:
         """
-        Specifies the BGP ASN of the global DC gateway. Valid value is limited from `1`
-        to `4,294,967,295`. Defaults to `64,512`.
+        Specifies the BGP ASN of the global DC gateway. Valid value is limited from
+        `1` to `4,294,967,295`. Defaults to `64,512`.
         """
         return pulumi.get(self, "bgp_asn")
 
@@ -783,8 +783,8 @@ class GlobalGateway(pulumi.CustomResource):
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the enterprise project ID that the global DC gateway
-        belongs to. For enterprise users, if omitted, default enterprise project will be used.
+        Specifies the enterprise project ID that the global DC
+        gateway belongs to. For enterprise users, if omitted, default enterprise project will be used.
         """
         return pulumi.get(self, "enterprise_project_id")
 

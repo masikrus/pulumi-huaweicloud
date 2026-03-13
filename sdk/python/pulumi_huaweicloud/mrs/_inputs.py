@@ -19,6 +19,10 @@ __all__ = [
     'Cluster2AddJobArgsDict',
     'Cluster2ComponentListArgs',
     'Cluster2ComponentListArgsDict',
+    'ClusterComponentBatchAddComponentsInstallModeArgs',
+    'ClusterComponentBatchAddComponentsInstallModeArgsDict',
+    'ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs',
+    'ClusterComponentBatchAddComponentsInstallModeNodeGroupArgsDict',
     'ClusterV1AddJobArgs',
     'ClusterV1AddJobArgsDict',
     'ClusterV1ComponentListArgs',
@@ -57,89 +61,84 @@ __all__ = [
     'ClusterStreamingTaskNodesArgsDict',
 ]
 
-MYPY = False
+class Cluster2AddJobArgsDict(TypedDict):
+    jar_path: pulumi.Input[_builtins.str]
+    """
+    Path of the **.jar** file or **.sql** file for program execution.  
+    The parameter must meet the following requirements:
+    + Contains a maximum of 1,023 characters, excluding special characters such as ;|&><'$. The parameter value cannot
+    be empty or full of spaces.
+    + Files can be stored in HDFS or OBS. The path varies depending on the file system. OBS: The path must start with
+    s3a://. Files or programs encrypted by KMS are not supported. HDFS: The path starts with a slash (/).
+    + Spark Script must end with .sql while MapReduce and Spark Jar must end with .jar. sql and jar are
+    case-insensitive.
+    """
+    job_name: pulumi.Input[_builtins.str]
+    """
+    Job name. It contains `1` to `64` characters. Only letters, digits,
+    hyphens (-), and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
+    """
+    job_type: pulumi.Input[_builtins.int]
+    """
+    Job type code.  
+    + **1**: MapReduce
+    + **2**: Spark
+    + **3**: Hive Script
+    + **4**: HiveQL (not supported currently)
+    + **5**: DistCp, importing and exporting data (not supported currently)
+    + **6**: Spark Script
+    + **7**: Spark SQL, submitting Spark SQL statements (not supported currently)
 
-if not MYPY:
-    class Cluster2AddJobArgsDict(TypedDict):
-        jar_path: pulumi.Input[_builtins.str]
-        """
-        Path of the **.jar** file or **.sql** file for program execution.  
-        The parameter must meet the following requirements:
-        + Contains a maximum of 1,023 characters, excluding special characters such as ;|&><'$. The parameter value cannot
-        be empty or full of spaces.
-        + Files can be stored in HDFS or OBS. The path varies depending on the file system. OBS: The path must start with
-        s3a://. Files or programs encrypted by KMS are not supported. HDFS: The path starts with a slash (/).
-        + Spark Script must end with .sql while MapReduce and Spark Jar must end with .jar. sql and jar are
-        case-insensitive.
-        """
-        job_name: pulumi.Input[_builtins.str]
-        """
-        Job name. It contains `1` to `64` characters. Only letters, digits, hyphens (-),
-        and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
-        """
-        job_type: pulumi.Input[_builtins.int]
-        """
-        Job type code.  
-        + **1**: MapReduce
-        + **2**: Spark
-        + **3**: Hive Script
-        + **4**: HiveQL (not supported currently)
-        + **5**: DistCp, importing and exporting data (not supported currently)
-        + **6**: Spark Script
-        + **7**: Spark SQL, submitting Spark SQL statements (not supported currently)
-
-        > NOTE: Spark and Hive jobs can be added to only clusters including Spark and Hive components.
-        """
-        submit_job_once_cluster_run: pulumi.Input[_builtins.bool]
-        """
-        Whether the job is submitted during the cluster creation or
-        after the cluster is created.
-        """
-        arguments: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Key parameter for program execution. The parameter is specified by the
-        function of the user's program. MRS is only responsible for loading the parameter. The parameter contains a maximum of
-        `2,047` characters, excluding special characters such as `;|&>'<$`, and can be empty.
-        """
-        file_action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Data import and export. Valid values include: import, export.
-        """
-        hive_script_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        SQL program path This parameter is needed by Spark Script and Hive
-        Script jobs only and must meet the following requirements:
-        Contains a maximum of 1023 characters, excluding special characters such as `;|&><'$`. The address cannot be empty or
-        full of spaces. Starts with / or s3a://. Ends with .sql. sql is case-insensitive.
-        """
-        hql: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        HiveQL statement.
-        """
-        input: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path for inputting data, which must start with / or s3a://. A correct OBS path
-        is required. The parameter contains a maximum of 1023 characters, excluding special characters such as `;|&>'<$`, and
-        can be empty.
-        """
-        job_log: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path for storing job logs that record job running status. This path must
-        start with / or s3a://. A correct OBS path is required. The parameter contains a maximum of 1023 characters, excluding
-        special characters such as `;|&>'<$`, and can be empty.
-        """
-        output: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path for outputting data, which must start with / or s3a://. A correct OBS
-        path is required. If the path does not exist, the system automatically creates it. The parameter contains a maximum of
-        1023 characters, excluding special characters such as `;|&>'<$`, and can be empty.
-        """
-        shutdown_cluster: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to delete the cluster after the jobs are complete.
-        """
-elif False:
-    Cluster2AddJobArgsDict: TypeAlias = Mapping[str, Any]
+    > NOTE: Spark and Hive jobs can be added to only clusters including Spark and Hive components.
+    """
+    submit_job_once_cluster_run: pulumi.Input[_builtins.bool]
+    """
+    Whether the job is submitted during the cluster creation or
+    after the cluster is created.
+    """
+    arguments: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Key parameter for program execution. The parameter is specified by the
+    function of the user's program. MRS is only responsible for loading the parameter. The parameter contains a maximum of
+    `2,047` characters, excluding special characters such as `;|&>'<$`, and can be empty.
+    """
+    file_action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Data import and export. Valid values include: import, export.
+    """
+    hive_script_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    SQL program path This parameter is needed by Spark Script and Hive
+    Script jobs only and must meet the following requirements:
+    Contains a maximum of 1023 characters, excluding special characters such as `;|&><'$`. The address cannot be empty or
+    full of spaces. Starts with / or s3a://. Ends with .sql. sql is case-insensitive.
+    """
+    hql: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    HiveQL statement.
+    """
+    input: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path for inputting data, which must start with / or s3a://. A correct OBS path
+    is required. The parameter contains a maximum of 1023 characters, excluding special characters such as `;|&>'<$`, and
+    can be empty.
+    """
+    job_log: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path for storing job logs that record job running status. This path must
+    start with / or s3a://. A correct OBS path is required. The parameter contains a maximum of 1023 characters, excluding
+    special characters such as `;|&>'<$`, and can be empty.
+    """
+    output: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path for outputting data, which must start with / or s3a://. A correct OBS
+    path is required. If the path does not exist, the system automatically creates it. The parameter contains a maximum of
+    1023 characters, excluding special characters such as `;|&>'<$`, and can be empty.
+    """
+    shutdown_cluster: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to delete the cluster after the jobs are complete.
+    """
 
 @pulumi.input_type
 class Cluster2AddJobArgs:
@@ -165,8 +164,8 @@ class Cluster2AddJobArgs:
                s3a://. Files or programs encrypted by KMS are not supported. HDFS: The path starts with a slash (/).
                + Spark Script must end with .sql while MapReduce and Spark Jar must end with .jar. sql and jar are
                case-insensitive.
-        :param pulumi.Input[_builtins.str] job_name: Job name. It contains `1` to `64` characters. Only letters, digits, hyphens (-),
-               and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
+        :param pulumi.Input[_builtins.str] job_name: Job name. It contains `1` to `64` characters. Only letters, digits,
+               hyphens (-), and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
         :param pulumi.Input[_builtins.int] job_type: Job type code.  
                + **1**: MapReduce
                + **2**: Spark
@@ -243,8 +242,8 @@ class Cluster2AddJobArgs:
     @pulumi.getter(name="jobName")
     def job_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Job name. It contains `1` to `64` characters. Only letters, digits, hyphens (-),
-        and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
+        Job name. It contains `1` to `64` characters. Only letters, digits,
+        hyphens (-), and underscores (_) are allowed. NOTE: Identical job names are allowed but not recommended.
         """
         return pulumi.get(self, "job_name")
 
@@ -394,32 +393,29 @@ class Cluster2AddJobArgs:
         pulumi.set(self, "shutdown_cluster", value)
 
 
-if not MYPY:
-    class Cluster2ComponentListArgsDict(TypedDict):
-        component_name: pulumi.Input[_builtins.str]
-        """
-        Component name.
-        + MRS 2.1.0 supports: Presto, Hadoop, Spark, HBase, Hive, Tez, Hue, Loader, Flink, Impala, Kudu, Flume, Kafka, and
-        Storm;
-        + MRS 1.9.2 supports: Presto, Hadoop, Spark, HBase, OpenTSDB, Hive, Hue, Loader, Tez, Flink, Alluxio, Ranger, Flume,
-        Kafka, KafkaManager, and Storm;
-        + MRS 1.8.10 supports: Presto, Hadoop, Spark, HBase, OpenTSDB, Hive, Hue, Loader, Flink, Flume, Kafka, KafkaManager,
-        and Storm;
-        """
-        component_desc: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the component description.
-        """
-        component_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the component ID.
-        """
-        component_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the component version.
-        """
-elif False:
-    Cluster2ComponentListArgsDict: TypeAlias = Mapping[str, Any]
+class Cluster2ComponentListArgsDict(TypedDict):
+    component_name: pulumi.Input[_builtins.str]
+    """
+    Component name.
+    + MRS 2.1.0 supports: Presto, Hadoop, Spark, HBase, Hive, Tez, Hue, Loader, Flink, Impala, Kudu, Flume, Kafka, and
+    Storm;
+    + MRS 1.9.2 supports: Presto, Hadoop, Spark, HBase, OpenTSDB, Hive, Hue, Loader, Tez, Flink, Alluxio, Ranger, Flume,
+    Kafka, KafkaManager, and Storm;
+    + MRS 1.8.10 supports: Presto, Hadoop, Spark, HBase, OpenTSDB, Hive, Hue, Loader, Flink, Flume, Kafka, KafkaManager,
+    and Storm;
+    """
+    component_desc: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the component description.
+    """
+    component_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the component ID.
+    """
+    component_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the component version.
+    """
 
 @pulumi.input_type
 class Cluster2ComponentListArgs:
@@ -503,22 +499,174 @@ class Cluster2ComponentListArgs:
         pulumi.set(self, "component_version", value)
 
 
-if not MYPY:
-    class ClusterV1AddJobArgsDict(TypedDict):
-        jar_path: pulumi.Input[_builtins.str]
-        job_name: pulumi.Input[_builtins.str]
-        job_type: pulumi.Input[_builtins.int]
-        submit_job_once_cluster_run: pulumi.Input[_builtins.bool]
-        arguments: NotRequired[pulumi.Input[_builtins.str]]
-        file_action: NotRequired[pulumi.Input[_builtins.str]]
-        hive_script_path: NotRequired[pulumi.Input[_builtins.str]]
-        hql: NotRequired[pulumi.Input[_builtins.str]]
-        input: NotRequired[pulumi.Input[_builtins.str]]
-        job_log: NotRequired[pulumi.Input[_builtins.str]]
-        output: NotRequired[pulumi.Input[_builtins.str]]
-        shutdown_cluster: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    ClusterV1AddJobArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterComponentBatchAddComponentsInstallModeArgsDict(TypedDict):
+    component: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the component.
+    """
+    node_groups: pulumi.Input[Sequence[pulumi.Input['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgsDict']]]
+    """
+    Specifies the node groups where the component roles will be deployed.  
+    The node_groups structure is documented below.
+    """
+    component_default_password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password for the component
+    default user.
+    This password is used for the ClickHouse component machine default user to connect.
+
+    <a name="cluster_component_batch_add_node_groups"></a>
+    The `node_groups` block supports:
+    """
+    component_user_password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password for the component user.  
+    This password is used for the ClickHouse component machine user to connect.
+    """
+
+@pulumi.input_type
+class ClusterComponentBatchAddComponentsInstallModeArgs:
+    def __init__(__self__, *,
+                 component: pulumi.Input[_builtins.str],
+                 node_groups: pulumi.Input[Sequence[pulumi.Input['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs']]],
+                 component_default_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 component_user_password: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] component: Specifies the name of the component.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs']]] node_groups: Specifies the node groups where the component roles will be deployed.  
+               The node_groups structure is documented below.
+        :param pulumi.Input[_builtins.str] component_default_password: Specifies the password for the component
+               default user.
+               This password is used for the ClickHouse component machine default user to connect.
+               
+               <a name="cluster_component_batch_add_node_groups"></a>
+               The `node_groups` block supports:
+        :param pulumi.Input[_builtins.str] component_user_password: Specifies the password for the component user.  
+               This password is used for the ClickHouse component machine user to connect.
+        """
+        pulumi.set(__self__, "component", component)
+        pulumi.set(__self__, "node_groups", node_groups)
+        if component_default_password is not None:
+            pulumi.set(__self__, "component_default_password", component_default_password)
+        if component_user_password is not None:
+            pulumi.set(__self__, "component_user_password", component_user_password)
+
+    @_builtins.property
+    @pulumi.getter
+    def component(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the component.
+        """
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "component", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeGroups")
+    def node_groups(self) -> pulumi.Input[Sequence[pulumi.Input['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs']]]:
+        """
+        Specifies the node groups where the component roles will be deployed.  
+        The node_groups structure is documented below.
+        """
+        return pulumi.get(self, "node_groups")
+
+    @node_groups.setter
+    def node_groups(self, value: pulumi.Input[Sequence[pulumi.Input['ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs']]]):
+        pulumi.set(self, "node_groups", value)
+
+    @_builtins.property
+    @pulumi.getter(name="componentDefaultPassword")
+    def component_default_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the password for the component
+        default user.
+        This password is used for the ClickHouse component machine default user to connect.
+
+        <a name="cluster_component_batch_add_node_groups"></a>
+        The `node_groups` block supports:
+        """
+        return pulumi.get(self, "component_default_password")
+
+    @component_default_password.setter
+    def component_default_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "component_default_password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="componentUserPassword")
+    def component_user_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the password for the component user.  
+        This password is used for the ClickHouse component machine user to connect.
+        """
+        return pulumi.get(self, "component_user_password")
+
+    @component_user_password.setter
+    def component_user_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "component_user_password", value)
+
+
+class ClusterComponentBatchAddComponentsInstallModeNodeGroupArgsDict(TypedDict):
+    assigned_roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of roles to be assigned to this node group.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the node group.
+    """
+
+@pulumi.input_type
+class ClusterComponentBatchAddComponentsInstallModeNodeGroupArgs:
+    def __init__(__self__, *,
+                 assigned_roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 name: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] assigned_roles: Specifies the list of roles to be assigned to this node group.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the node group.
+        """
+        pulumi.set(__self__, "assigned_roles", assigned_roles)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="assignedRoles")
+    def assigned_roles(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Specifies the list of roles to be assigned to this node group.
+        """
+        return pulumi.get(self, "assigned_roles")
+
+    @assigned_roles.setter
+    def assigned_roles(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "assigned_roles", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the node group.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+
+class ClusterV1AddJobArgsDict(TypedDict):
+    jar_path: pulumi.Input[_builtins.str]
+    job_name: pulumi.Input[_builtins.str]
+    job_type: pulumi.Input[_builtins.int]
+    submit_job_once_cluster_run: pulumi.Input[_builtins.bool]
+    arguments: NotRequired[pulumi.Input[_builtins.str]]
+    file_action: NotRequired[pulumi.Input[_builtins.str]]
+    hive_script_path: NotRequired[pulumi.Input[_builtins.str]]
+    hql: NotRequired[pulumi.Input[_builtins.str]]
+    input: NotRequired[pulumi.Input[_builtins.str]]
+    job_log: NotRequired[pulumi.Input[_builtins.str]]
+    output: NotRequired[pulumi.Input[_builtins.str]]
+    shutdown_cluster: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class ClusterV1AddJobArgs:
@@ -665,14 +813,11 @@ class ClusterV1AddJobArgs:
         pulumi.set(self, "shutdown_cluster", value)
 
 
-if not MYPY:
-    class ClusterV1ComponentListArgsDict(TypedDict):
-        component_name: pulumi.Input[_builtins.str]
-        component_desc: NotRequired[pulumi.Input[_builtins.str]]
-        component_id: NotRequired[pulumi.Input[_builtins.str]]
-        component_version: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV1ComponentListArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV1ComponentListArgsDict(TypedDict):
+    component_name: pulumi.Input[_builtins.str]
+    component_desc: NotRequired[pulumi.Input[_builtins.str]]
+    component_id: NotRequired[pulumi.Input[_builtins.str]]
+    component_version: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV1ComponentListArgs:
@@ -726,26 +871,23 @@ class ClusterV1ComponentListArgs:
         pulumi.set(self, "component_version", value)
 
 
-if not MYPY:
-    class DataConnectionSourceInfoArgsDict(TypedDict):
-        db_instance_id: pulumi.Input[_builtins.str]
-        """
-        The instance ID of database.
-        """
-        db_name: pulumi.Input[_builtins.str]
-        """
-        The name of database.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        The password for logging in to the database.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        The user name for logging in to the database.
-        """
-elif False:
-    DataConnectionSourceInfoArgsDict: TypeAlias = Mapping[str, Any]
+class DataConnectionSourceInfoArgsDict(TypedDict):
+    db_instance_id: pulumi.Input[_builtins.str]
+    """
+    The instance ID of database.
+    """
+    db_name: pulumi.Input[_builtins.str]
+    """
+    The name of database.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    The password for logging in to the database.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    The user name for logging in to the database.
+    """
 
 @pulumi.input_type
 class DataConnectionSourceInfoArgs:
@@ -814,68 +956,65 @@ class DataConnectionSourceInfoArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class ScalingPolicyExecScriptArgsDict(TypedDict):
-        action_stage: pulumi.Input[_builtins.str]
-        """
-        Time when a script is executed.  
-        The following options are supported:
-        + **before_scale_out**: before scale-out.
-        + **before_scale_in**: before scale-in.
-        + **after_scale_out**: after scale-out.
-        + **after_scale_in**: after scale-in.
-        """
-        fail_action: pulumi.Input[_builtins.str]
-        """
-        Whether to continue to execute subsequent scripts and create a cluster after
-        the custom automation script fails to be executed.
-        The following options are supported:
-        + **continue**: Continue to execute subsequent scripts.
-        + **errorout**: Stop the action.
+class ScalingPolicyExecScriptArgsDict(TypedDict):
+    action_stage: pulumi.Input[_builtins.str]
+    """
+    Time when a script is executed.  
+    The following options are supported:
+    + **before_scale_out**: before scale-out.
+    + **before_scale_in**: before scale-in.
+    + **after_scale_out**: after scale-out.
+    + **after_scale_in**: after scale-in.
+    """
+    fail_action: pulumi.Input[_builtins.str]
+    """
+    Whether to continue to execute subsequent scripts and create a cluster after
+    the custom automation script fails to be executed.
+    The following options are supported:
+    + **continue**: Continue to execute subsequent scripts.
+    + **errorout**: Stop the action.
 
-        > You are advised to set this parameter to **continue** in the commissioning phase so that the cluster
-        can continue to be installed and started no matter whether the custom automation script is executed successfully.
-        The scale-in operation cannot be undone. Therefore, `fail_action` must be set to **continue** for the
-        scripts that are executed after scale-in.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of a custom automation script.  
-        The name can contain only 1 to 64 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
-        Script names must be unique in a node group.
-        """
-        nodes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Type of a node where the custom automation script is executed.  
-        The node type can be **Master**, **Core**, or **Task**.
-        """
-        uri: pulumi.Input[_builtins.str]
-        """
-        Path of a custom automation script.  
-        Set this parameter to an OBS bucket path or a local VM path.
-        OBS bucket path: Enter a script path manually. for example, s3a://XXX/scale.sh.
-        Local VM path: Enter a script path. The script path must start with a slash (/) and end with .sh.
-        """
-        active_master: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the custom automation script runs only on the active Master node.  
-        The default value is **false**, indicating that the custom automation script can run on all Master nodes.
-        """
-        parameters: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Parameters of a custom automation script.  
-        Multiple parameters are separated by space.
-        The following predefined system parameters can be transferred:
-        + **${mrs_scale_node_num}**: Number of the nodes to be added or removed.
-        + **${mrs_scale_type}**: Scaling type. The value can be **scale_out** or **scale_in**.
-        + **${mrs_scale_node_hostnames}**: Host names of the nodes to be added or removed.
-        + **${mrs_scale_node_ips}**: IP addresses of the nodes to be added or removed.
-        + **${mrs_scale_rule_name}**: Name of the rule that triggers auto scaling.
+    > You are advised to set this parameter to **continue** in the commissioning phase so that the cluster
+    can continue to be installed and started no matter whether the custom automation script is executed successfully.
+    The scale-in operation cannot be undone. Therefore, `fail_action` must be set to **continue** for the
+    scripts that are executed after scale-in.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of a custom automation script.  
+    The name can contain only 1 to 64 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
+    Script names must be unique in a node group.
+    """
+    nodes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Type of a node where the custom automation script is executed.  
+    The node type can be **Master**, **Core**, or **Task**.
+    """
+    uri: pulumi.Input[_builtins.str]
+    """
+    Path of a custom automation script.  
+    Set this parameter to an OBS bucket path or a local VM path.
+    OBS bucket path: Enter a script path manually. for example, s3a://XXX/scale.sh.
+    Local VM path: Enter a script path. The script path must start with a slash (/) and end with .sh.
+    """
+    active_master: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the custom automation script runs only on the active Master node.  
+    The default value is **false**, indicating that the custom automation script can run on all Master nodes.
+    """
+    parameters: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Parameters of a custom automation script.  
+    Multiple parameters are separated by space.
+    The following predefined system parameters can be transferred:
+    + **${mrs_scale_node_num}**: Number of the nodes to be added or removed.
+    + **${mrs_scale_type}**: Scaling type. The value can be **scale_out** or **scale_in**.
+    + **${mrs_scale_node_hostnames}**: Host names of the nodes to be added or removed.
+    + **${mrs_scale_node_ips}**: IP addresses of the nodes to be added or removed.
+    + **${mrs_scale_rule_name}**: Name of the rule that triggers auto scaling.
 
-        Other user-defined parameters are used in the same way as those of common shell scripts. Parameters are separated by space.
-        """
-elif False:
-    ScalingPolicyExecScriptArgsDict: TypeAlias = Mapping[str, Any]
+    Other user-defined parameters are used in the same way as those of common shell scripts. Parameters are separated by space.
+    """
 
 @pulumi.input_type
 class ScalingPolicyExecScriptArgs:
@@ -1051,39 +1190,36 @@ class ScalingPolicyExecScriptArgs:
         pulumi.set(self, "parameters", value)
 
 
-if not MYPY:
-    class ScalingPolicyResourcesPlanArgsDict(TypedDict):
-        end_time: pulumi.Input[_builtins.str]
-        """
-        End time of a resource plan.  
-        The value is in the format of **hour:minute**.
-        The interval between end_time and start_time must be greater than or equal to 30 minutes.
-        """
-        max_capacity: pulumi.Input[_builtins.int]
-        """
-        Maximum number of the preserved nodes in a node group in a resource plan.
-        Value range: 0 to 500.
+class ScalingPolicyResourcesPlanArgsDict(TypedDict):
+    end_time: pulumi.Input[_builtins.str]
+    """
+    End time of a resource plan.  
+    The value is in the format of **hour:minute**.
+    The interval between end_time and start_time must be greater than or equal to 30 minutes.
+    """
+    max_capacity: pulumi.Input[_builtins.int]
+    """
+    Maximum number of the preserved nodes in a node group in a resource plan.
+    Value range: 0 to 500.
 
-        <a name="ScalingPolicy_Rule"></a>
-        The `rules` block supports:
-        """
-        min_capacity: pulumi.Input[_builtins.int]
-        """
-        Minimum number of the preserved nodes in a node group in a resource plan.
-        Value range: 0 to 500.
-        """
-        period_type: pulumi.Input[_builtins.str]
-        """
-        Cycle type of a resource plan.  
-        Currently, only the following cycle type is supported: **daily**.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        The start time of a resource plan.  
-        The value is in the format of **hour:minute**, indicating that the time ranges from 00:00 to 23:59.
-        """
-elif False:
-    ScalingPolicyResourcesPlanArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ScalingPolicy_Rule"></a>
+    The `rules` block supports:
+    """
+    min_capacity: pulumi.Input[_builtins.int]
+    """
+    Minimum number of the preserved nodes in a node group in a resource plan.
+    Value range: 0 to 500.
+    """
+    period_type: pulumi.Input[_builtins.str]
+    """
+    Cycle type of a resource plan.  
+    Currently, only the following cycle type is supported: **daily**.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    The start time of a resource plan.  
+    The value is in the format of **hour:minute**, indicating that the time ranges from 00:00 to 23:59.
+    """
 
 @pulumi.input_type
 class ScalingPolicyResourcesPlanArgs:
@@ -1185,46 +1321,43 @@ class ScalingPolicyResourcesPlanArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class ScalingPolicyRuleArgsDict(TypedDict):
-        adjustment_type: pulumi.Input[_builtins.str]
-        """
-        Auto scaling rule adjustment type.  
-        The following options are supported:
-        + **scale_out**: cluster scale-out.
-        + **scale_in**: cluster scale-in.
-        """
-        cool_down_minutes: pulumi.Input[_builtins.int]
-        """
-        Cluster cooling time after an auto scaling rule is triggered,
-        when no auto scaling operation is performed.
-        The unit is minute. Value range: 0 to 10,080. One week is equal to 10,080 minutes.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of a custom automation script.  
-        The name can contain only 1 to 64 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
-        Script names must be unique in a node group.
-        """
-        scaling_adjustment: pulumi.Input[_builtins.int]
-        """
-        Number of nodes that can be adjusted once. Value range: 1 to 100.
-        """
-        trigger: pulumi.Input['ScalingPolicyRuleTriggerArgsDict']
-        """
-        Condition for triggering a rule.  
-        The trigger structure is documented below.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description about an auto scaling rule.  
-        It contains a maximum of 1,024 characters.
+class ScalingPolicyRuleArgsDict(TypedDict):
+    adjustment_type: pulumi.Input[_builtins.str]
+    """
+    Auto scaling rule adjustment type.  
+    The following options are supported:
+    + **scale_out**: cluster scale-out.
+    + **scale_in**: cluster scale-in.
+    """
+    cool_down_minutes: pulumi.Input[_builtins.int]
+    """
+    Cluster cooling time after an auto scaling rule is triggered,
+    when no auto scaling operation is performed.
+    The unit is minute. Value range: 0 to 10,080. One week is equal to 10,080 minutes.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of a custom automation script.  
+    The name can contain only 1 to 64 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed.
+    Script names must be unique in a node group.
+    """
+    scaling_adjustment: pulumi.Input[_builtins.int]
+    """
+    Number of nodes that can be adjusted once. Value range: 1 to 100.
+    """
+    trigger: pulumi.Input['ScalingPolicyRuleTriggerArgsDict']
+    """
+    Condition for triggering a rule.  
+    The trigger structure is documented below.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description about an auto scaling rule.  
+    It contains a maximum of 1,024 characters.
 
-        <a name="ScalingPolicy_Trigger"></a>
-        The `trigger` block supports:
-        """
-elif False:
-    ScalingPolicyRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ScalingPolicy_Trigger"></a>
+    The `trigger` block supports:
+    """
 
 @pulumi.input_type
 class ScalingPolicyRuleArgs:
@@ -1348,41 +1481,38 @@ class ScalingPolicyRuleArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class ScalingPolicyRuleTriggerArgsDict(TypedDict):
-        evaluation_periods: pulumi.Input[_builtins.int]
-        """
-        Number of consecutive five-minute periods,
-        during which a metric threshold is reached.
-        Value range: 1 to 288.
+class ScalingPolicyRuleTriggerArgsDict(TypedDict):
+    evaluation_periods: pulumi.Input[_builtins.int]
+    """
+    Number of consecutive five-minute periods,
+    during which a metric threshold is reached.
+    Value range: 1 to 288.
 
-        <a name="ScalingPolicy_ExecScript"></a>
-        The `exec_scripts` block supports:
-        """
-        metric_name: pulumi.Input[_builtins.str]
-        """
-        Metric name.  
-        This triggering condition makes a judgment according to the value of the metric.
-        A metric name contains a maximum of 64 characters.
-        For details about metric names, see [Configuring Auto Scaling for an MRS Cluster](https://support.huaweicloud.com/intl/en-us/qs-mrs/mrs_09_0005.html).
-        """
-        metric_value: pulumi.Input[_builtins.str]
-        """
-        Metric threshold to trigger a rule.  
-        The parameter value can only be an integer or number with two decimal places.
-        The value type and range must correspond to the metric_name.
-        """
-        comparison_operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Metric judgment logic operator.  
-        The following options are supported:
-        + **LT**: less than.
-        + **GT**: greater than.
-        + **LTOE**: less than or equal to.
-        + **GTOE**: greater than or equal to.
-        """
-elif False:
-    ScalingPolicyRuleTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ScalingPolicy_ExecScript"></a>
+    The `exec_scripts` block supports:
+    """
+    metric_name: pulumi.Input[_builtins.str]
+    """
+    Metric name.  
+    This triggering condition makes a judgment according to the value of the metric.
+    A metric name contains a maximum of 64 characters.
+    For details about metric names, see [Configuring Auto Scaling for an MRS Cluster](https://support.huaweicloud.com/intl/en-us/qs-mrs/mrs_09_0005.html).
+    """
+    metric_value: pulumi.Input[_builtins.str]
+    """
+    Metric threshold to trigger a rule.  
+    The parameter value can only be an integer or number with two decimal places.
+    The value type and range must correspond to the metric_name.
+    """
+    comparison_operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Metric judgment logic operator.  
+    The following options are supported:
+    + **LT**: less than.
+    + **GT**: greater than.
+    + **LTOE**: less than or equal to.
+    + **GTOE**: greater than or equal to.
+    """
 
 @pulumi.input_type
 class ScalingPolicyRuleTriggerArgs:
@@ -1482,109 +1612,129 @@ class ScalingPolicyRuleTriggerArgs:
         pulumi.set(self, "comparison_operator", value)
 
 
-if not MYPY:
-    class ClusterAnalysisCoreNodesArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+class ClusterAnalysisCoreNodesArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
 
-        **Role expression definition:**
+    **Role expression definition:**
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        auto_renew: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether auto renew is enabled, defaults to **false**.  
-        This parameter is available if `charging_mode` is set to **prePaid**.
-        The valid values are **true** and **false**.
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    auto_renew: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether auto renew is enabled, defaults to **false**.  
+    This parameter is available if `charging_mode` is set to **prePaid**.
+    The valid values are **true** and **false**.
 
-        > The `period_unit` must be used together with the `period` parameter.
+    > The `period_unit` must be used together with the `period` parameter.
 
-        <a name="component_configurations"></a>
-        The `component_configs` block supports:
-        """
-        charging_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging mode of the cluster.  
-        Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the charging period of the cluster.  
-        If `period_unit` is set to **month**, the value ranges from `1` to `9`.
-        If `period_unit` is set to **year**, the value ranges from `1` to `3`.
-        This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        period_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging period unit of the cluster.  
-        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterAnalysisCoreNodesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configurations"></a>
+    The `component_configs` block supports:
+    """
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging mode of the cluster.  
+    Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the charging period of the cluster.  
+    If `period_unit` is set to **month**, the value ranges from `1` to `9`.
+    If `period_unit` is set to **year**, the value ranges from `1` to `3`.
+    This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    period_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging period unit of the cluster.  
+    Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    resource_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource node IDs to be shrunk.  
+    Only ECS nodes with abnormal status can be deleted.
+
+    > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+    each node group is invalid.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterAnalysisCoreNodesArgs:
@@ -1601,15 +1751,17 @@ class ClusterAnalysisCoreNodesArgs:
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
-                 period_unit: Optional[pulumi.Input[_builtins.str]] = None):
+                 period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -1663,6 +1815,21 @@ class ClusterAnalysisCoreNodesArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -1685,6 +1852,12 @@ class ClusterAnalysisCoreNodesArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -1717,8 +1890,7 @@ class ClusterAnalysisCoreNodesArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -1889,79 +2061,147 @@ class ClusterAnalysisCoreNodesArgs:
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
 
-if not MYPY:
-    class ClusterAnalysisTaskNodesArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
         """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+        return pulumi.get(self, "resource_ids")
 
-        **Role expression definition:**
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "resource_ids", value)
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-elif False:
-    ClusterAnalysisTaskNodesArgsDict: TypeAlias = Mapping[str, Any]
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
+
+
+class ClusterAnalysisTaskNodesArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
+
+    **Role expression definition:**
+
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
+
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    resource_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource node IDs to be shrunk.  
+    Only ECS nodes with abnormal status can be deleted.
+
+    > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+    each node group is invalid.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterAnalysisTaskNodesArgs:
@@ -1974,15 +2214,17 @@ class ClusterAnalysisTaskNodesArgs:
                  assigned_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  data_volume_size: Optional[pulumi.Input[_builtins.int]] = None,
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -2017,6 +2259,21 @@ class ClusterAnalysisTaskNodesArgs:
                * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
                * `bootstrap_scripts/state` - The status of one bootstrap action script.
                The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -2031,6 +2288,12 @@ class ClusterAnalysisTaskNodesArgs:
             pulumi.set(__self__, "data_volume_type", data_volume_type)
         if host_ips is not None:
             pulumi.set(__self__, "host_ips", host_ips)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -2063,8 +2326,7 @@ class ClusterAnalysisTaskNodesArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -2172,78 +2434,124 @@ class ClusterAnalysisTaskNodesArgs:
     def host_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "host_ips", value)
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
 
-if not MYPY:
-    class ClusterBootstrapScriptArgsDict(TypedDict):
-        fail_action: pulumi.Input[_builtins.str]
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
         """
-        Specifies the action after the bootstrap action script fails to be executed.
-        The options are as follows:
-        + **continue**: Continue to execute subsequent scripts.
-        + **errorout**: Stop the action.
+        return pulumi.get(self, "resource_ids")
 
-        The default value is **errorout**, indicating that the action is stopped.
-        Changing this will create a new MapReduce cluster resource.
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "resource_ids", value)
 
-        > You are advised to set this parameter to continue in the commissioning phase so that the cluster can
-        continue to be installed and started no matter whether the bootstrap action is successful.
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        name: pulumi.Input[_builtins.str]
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
         """
-        Specifies the name of a bootstrap action script.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        nodes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies names of the node group where the bootstrap action script is executed.
-        """
-        uri: pulumi.Input[_builtins.str]
-        """
-        Specifies the path of a bootstrap action script.
-        Set this parameter to an OBS bucket path or a local VM path.
-        + **OBS bucket path**: The path of an OBS file system starts with *s3a://* or *obs://* and end with *.sh*.
-        + **Local VM path**: The script path must start with a slash (/) and end with *.sh*.
+        return pulumi.get(self, "scale_without_start")
 
-        Changing this will create a new MapReduce cluster resource.
-        """
-        active_master: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the bootstrap action script runs only on active master nodes.
-        The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
-        """
-        before_component_start: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the bootstrap action script is executed
-        before component start.
-        The options are as follows:
-        + **false**: After component start. The default value is **false**.
-        + **true**: Before component start.
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
 
-        Changing this will create a new MapReduce cluster resource.
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        execute_need_sudo_root: NotRequired[pulumi.Input[_builtins.bool]]
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
         """
-        Specifies whether the bootstrap action script involves root user
-        operations.
-        Changing this will create a new MapReduce cluster resource.
+        return pulumi.get(self, "skip_bootstrap_scripts")
 
-        <a name="SMNNotify"></a>
-        The `smn_notify` block supports:
-        """
-        parameters: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies bootstrap action script parameters.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The execution time of one bootstrap action script, in RFC-3339 format.
-        """
-        state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of one bootstrap action script.
-        """
-elif False:
-    ClusterBootstrapScriptArgsDict: TypeAlias = Mapping[str, Any]
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
+
+
+class ClusterBootstrapScriptArgsDict(TypedDict):
+    fail_action: pulumi.Input[_builtins.str]
+    """
+    Specifies the action after the bootstrap action script fails to be
+    executed.
+    The options are as follows:
+    + **continue**: Continue to execute subsequent scripts.
+    + **errorout**: Stop the action.
+
+    The default value is **errorout**, indicating that the action is stopped.
+    Changing this will create a new MapReduce cluster resource.
+
+    > You are advised to set this parameter to continue in the commissioning phase so that the cluster can
+    continue to be installed and started no matter whether the bootstrap action is successful.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a bootstrap action script.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    nodes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies names of the node group where the bootstrap action script is executed.
+    """
+    uri: pulumi.Input[_builtins.str]
+    """
+    Specifies the path of a bootstrap action script.
+    Set this parameter to an OBS bucket path or a local VM path.
+    + **OBS bucket path**: The path of an OBS file system starts with *s3a://* or *obs://* and end with *.sh*.
+    + **Local VM path**: The script path must start with a slash (/) and end with *.sh*.
+
+    Changing this will create a new MapReduce cluster resource.
+    """
+    active_master: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the bootstrap action script runs only on active master
+    nodes. The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
+    """
+    before_component_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the bootstrap action script is executed
+    before component start.
+    The options are as follows:
+    + **false**: After component start. The default value is **false**.
+    + **true**: Before component start.
+
+    Changing this will create a new MapReduce cluster resource.
+    """
+    execute_need_sudo_root: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the bootstrap action script involves root user
+    operations.
+    Changing this will create a new MapReduce cluster resource.
+
+    <a name="SMNNotify"></a>
+    The `smn_notify` block supports:
+    """
+    parameters: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies bootstrap action script parameters.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The execution time of one bootstrap action script, in RFC-3339 format.
+    """
+    state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of one bootstrap action script.
+    """
 
 @pulumi.input_type
 class ClusterBootstrapScriptArgs:
@@ -2259,7 +2567,8 @@ class ClusterBootstrapScriptArgs:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] fail_action: Specifies the action after the bootstrap action script fails to be executed.
+        :param pulumi.Input[_builtins.str] fail_action: Specifies the action after the bootstrap action script fails to be
+               executed.
                The options are as follows:
                + **continue**: Continue to execute subsequent scripts.
                + **errorout**: Stop the action.
@@ -2278,8 +2587,8 @@ class ClusterBootstrapScriptArgs:
                + **Local VM path**: The script path must start with a slash (/) and end with *.sh*.
                
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.bool] active_master: Specifies whether the bootstrap action script runs only on active master nodes.
-               The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
+        :param pulumi.Input[_builtins.bool] active_master: Specifies whether the bootstrap action script runs only on active master
+               nodes. The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
         :param pulumi.Input[_builtins.bool] before_component_start: Specifies whether the bootstrap action script is executed
                before component start.
                The options are as follows:
@@ -2318,7 +2627,8 @@ class ClusterBootstrapScriptArgs:
     @pulumi.getter(name="failAction")
     def fail_action(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the action after the bootstrap action script fails to be executed.
+        Specifies the action after the bootstrap action script fails to be
+        executed.
         The options are as follows:
         + **continue**: Continue to execute subsequent scripts.
         + **errorout**: Stop the action.
@@ -2381,8 +2691,8 @@ class ClusterBootstrapScriptArgs:
     @pulumi.getter(name="activeMaster")
     def active_master(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether the bootstrap action script runs only on active master nodes.
-        The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
+        Specifies whether the bootstrap action script runs only on active master
+        nodes. The default value is **false**, indicating that the bootstrap action script can run on all master nodes.
         """
         return pulumi.get(self, "active_master")
 
@@ -2462,23 +2772,20 @@ class ClusterBootstrapScriptArgs:
         pulumi.set(self, "state", value)
 
 
-if not MYPY:
-    class ClusterComponentConfigArgsDict(TypedDict):
-        configs: pulumi.Input[Sequence[pulumi.Input['ClusterComponentConfigConfigArgsDict']]]
-        """
-        Specifies the configuration of component installed.
-        The object structure is documented below.
+class ClusterComponentConfigArgsDict(TypedDict):
+    configs: pulumi.Input[Sequence[pulumi.Input['ClusterComponentConfigConfigArgsDict']]]
+    """
+    Specifies the configuration of component installed.
+    The object structure is documented below.
 
-        <a name="component_configuration"></a>
-        The `configs` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a bootstrap action script.
-        Changing this will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterComponentConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configuration"></a>
+    The `configs` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a bootstrap action script.
+    Changing this will create a new MapReduce cluster resource.
+    """
 
 @pulumi.input_type
 class ClusterComponentConfigArgs:
@@ -2527,28 +2834,25 @@ class ClusterComponentConfigArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ClusterComponentConfigConfigArgsDict(TypedDict):
-        config_file_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration file name of component installed.
-        Changing this will create a new MapReduce cluster resource.
+class ClusterComponentConfigConfigArgsDict(TypedDict):
+    config_file_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration file name of component installed.
+    Changing this will create a new MapReduce cluster resource.
 
-        <a name="ExternalDatasources"></a>
-        The `external_datasources` block supports:
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration item key of component installed.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration item value of component installed.
-        Changing this will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterComponentConfigConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="ExternalDatasources"></a>
+    The `external_datasources` block supports:
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration item key of component installed.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration item value of component installed.
+    Changing this will create a new MapReduce cluster resource.
+    """
 
 @pulumi.input_type
 class ClusterComponentConfigConfigArgs:
@@ -2614,114 +2918,134 @@ class ClusterComponentConfigConfigArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ClusterCustomNodeArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+class ClusterCustomNodeArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of nodes for the node group.  
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
 
-        **Role expression definition:**
+    **Role expression definition:**
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        auto_renew: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether auto renew is enabled, defaults to **false**.  
-        This parameter is available if `charging_mode` is set to **prePaid**.
-        The valid values are **true** and **false**.
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    auto_renew: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether auto renew is enabled, defaults to **false**.  
+    This parameter is available if `charging_mode` is set to **prePaid**.
+    The valid values are **true** and **false**.
 
-        > The `period_unit` must be used together with the `period` parameter.
+    > The `period_unit` must be used together with the `period` parameter.
 
-        <a name="component_configurations"></a>
-        The `component_configs` block supports:
-        """
-        charging_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging mode of the cluster.  
-        Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the charging period of the cluster.  
-        If `period_unit` is set to **month**, the value ranges from `1` to `9`.
-        If `period_unit` is set to **year**, the value ranges from `1` to `3`.
-        This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        period_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging period unit of the cluster.  
-        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterCustomNodeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configurations"></a>
+    The `component_configs` block supports:
+    """
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging mode of the cluster.  
+    Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the charging period of the cluster.  
+    If `period_unit` is set to **month**, the value ranges from `1` to `9`.
+    If `period_unit` is set to **year**, the value ranges from `1` to `3`.
+    This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    period_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging period unit of the cluster.  
+    Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    resource_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource node IDs to be shrunk.  
+    Only ECS nodes with abnormal status can be deleted.
+
+    > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+    each node group is invalid.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterCustomNodeArgs:
@@ -2739,7 +3063,10 @@ class ClusterCustomNodeArgs:
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
-                 period_unit: Optional[pulumi.Input[_builtins.str]] = None):
+                 period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
@@ -2748,8 +3075,7 @@ class ClusterCustomNodeArgs:
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] group_name: Specifies the name of nodes for the node group.  
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -2803,6 +3129,21 @@ class ClusterCustomNodeArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -2826,6 +3167,12 @@ class ClusterCustomNodeArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -2871,8 +3218,7 @@ class ClusterCustomNodeArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -3043,45 +3389,91 @@ class ClusterCustomNodeArgs:
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
 
-if not MYPY:
-    class ClusterExternalDatasourceArgsDict(TypedDict):
-        component_name: pulumi.Input[_builtins.str]
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
         """
-        Specifies the component name. The valid values are `Hive` and `Ranger`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        role_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the component role type.
-        The options are as follows:
-        + **hive_metastore**: Hive Metastore role.
-        + **ranger_data**: Ranger role.
+        return pulumi.get(self, "resource_ids")
 
-        Changing this will create a new MapReduce cluster resource.
-        """
-        source_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the data connection type.
-        The options are as follows:
-        + **LOCAL_DB**: Local metadata.
-        + **RDS_POSTGRES**: RDS PostgreSQL database.
-        + **RDS_MYSQL**: RDS MySQL database.
-        + **gaussdb-mysql**: GaussDB(for MySQL).
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "resource_ids", value)
 
-        Changing this will create a new MapReduce cluster resource.
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        data_connection_id: NotRequired[pulumi.Input[_builtins.str]]
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
         """
-        Specifies the data connection ID.
-        This parameter is mandatory if `source_type` is not **LOCAL_DB**.
-        Changing this will create a new MapReduce cluster resource.
+        return pulumi.get(self, "scale_without_start")
 
-        <a name="BootstrapScripts"></a>
-        The `bootstrap_scripts` block supports:
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-elif False:
-    ClusterExternalDatasourceArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
+
+
+class ClusterExternalDatasourceArgsDict(TypedDict):
+    component_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the component name.  
+    The valid values are `Hive` and `Ranger`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    role_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the component role type.
+    The options are as follows:
+    + **hive_metastore**: Hive Metastore role.
+    + **ranger_data**: Ranger role.
+
+    Changing this will create a new MapReduce cluster resource.
+    """
+    source_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the data connection type.
+    The options are as follows:
+    + **LOCAL_DB**: Local metadata.
+    + **RDS_POSTGRES**: RDS PostgreSQL database.
+    + **RDS_MYSQL**: RDS MySQL database.
+    + **gaussdb-mysql**: GaussDB(for MySQL).
+
+    Changing this will create a new MapReduce cluster resource.
+    """
+    data_connection_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data connection ID.
+    This parameter is mandatory if `source_type` is not **LOCAL_DB**.
+    Changing this will create a new MapReduce cluster resource.
+
+    <a name="BootstrapScripts"></a>
+    The `bootstrap_scripts` block supports:
+    """
 
 @pulumi.input_type
 class ClusterExternalDatasourceArgs:
@@ -3091,7 +3483,8 @@ class ClusterExternalDatasourceArgs:
                  source_type: pulumi.Input[_builtins.str],
                  data_connection_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] component_name: Specifies the component name. The valid values are `Hive` and `Ranger`.
+        :param pulumi.Input[_builtins.str] component_name: Specifies the component name.  
+               The valid values are `Hive` and `Ranger`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] role_type: Specifies the component role type.
                The options are as follows:
@@ -3124,7 +3517,8 @@ class ClusterExternalDatasourceArgs:
     @pulumi.getter(name="componentName")
     def component_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the component name. The valid values are `Hive` and `Ranger`.
+        Specifies the component name.  
+        The valid values are `Hive` and `Ranger`.
         Changing this will create a new MapReduce cluster resource.
         """
         return pulumi.get(self, "component_name")
@@ -3187,109 +3581,121 @@ class ClusterExternalDatasourceArgs:
         pulumi.set(self, "data_connection_id", value)
 
 
-if not MYPY:
-    class ClusterMasterNodesArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+class ClusterMasterNodesArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
 
-        **Role expression definition:**
+    **Role expression definition:**
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        auto_renew: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether auto renew is enabled, defaults to **false**.  
-        This parameter is available if `charging_mode` is set to **prePaid**.
-        The valid values are **true** and **false**.
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    auto_renew: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether auto renew is enabled, defaults to **false**.  
+    This parameter is available if `charging_mode` is set to **prePaid**.
+    The valid values are **true** and **false**.
 
-        > The `period_unit` must be used together with the `period` parameter.
+    > The `period_unit` must be used together with the `period` parameter.
 
-        <a name="component_configurations"></a>
-        The `component_configs` block supports:
-        """
-        charging_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging mode of the cluster.  
-        Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the charging period of the cluster.  
-        If `period_unit` is set to **month**, the value ranges from `1` to `9`.
-        If `period_unit` is set to **year**, the value ranges from `1` to `3`.
-        This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        period_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging period unit of the cluster.  
-        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterMasterNodesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configurations"></a>
+    The `component_configs` block supports:
+    """
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging mode of the cluster.  
+    Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the charging period of the cluster.  
+    If `period_unit` is set to **month**, the value ranges from `1` to `9`.
+    If `period_unit` is set to **year**, the value ranges from `1` to `3`.
+    This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    period_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging period unit of the cluster.  
+    Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterMasterNodesArgs:
@@ -3306,15 +3712,16 @@ class ClusterMasterNodesArgs:
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
-                 period_unit: Optional[pulumi.Input[_builtins.str]] = None):
+                 period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -3368,6 +3775,16 @@ class ClusterMasterNodesArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -3390,6 +3807,10 @@ class ClusterMasterNodesArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -3422,8 +3843,7 @@ class ClusterMasterNodesArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -3594,21 +4014,50 @@ class ClusterMasterNodesArgs:
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
 
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
 
-if not MYPY:
-    class ClusterSmnNotifyArgsDict(TypedDict):
-        subscription_name: pulumi.Input[_builtins.str]
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies the subscription rule name.
-        Changing this will create a new MapReduce cluster resource.
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
         """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the Uniform Resource Name (URN) of the topic.
-        Changing this will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterSmnNotifyArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
+
+
+class ClusterSmnNotifyArgsDict(TypedDict):
+    subscription_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the subscription rule name.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the Uniform Resource Name (URN) of the topic.
+    Changing this will create a new MapReduce cluster resource.
+    """
 
 @pulumi.input_type
 class ClusterSmnNotifyArgs:
@@ -3651,109 +4100,129 @@ class ClusterSmnNotifyArgs:
         pulumi.set(self, "topic_urn", value)
 
 
-if not MYPY:
-    class ClusterStreamingCoreNodesArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+class ClusterStreamingCoreNodesArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
 
-        **Role expression definition:**
+    **Role expression definition:**
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        auto_renew: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether auto renew is enabled, defaults to **false**.  
-        This parameter is available if `charging_mode` is set to **prePaid**.
-        The valid values are **true** and **false**.
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    auto_renew: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether auto renew is enabled, defaults to **false**.  
+    This parameter is available if `charging_mode` is set to **prePaid**.
+    The valid values are **true** and **false**.
 
-        > The `period_unit` must be used together with the `period` parameter.
+    > The `period_unit` must be used together with the `period` parameter.
 
-        <a name="component_configurations"></a>
-        The `component_configs` block supports:
-        """
-        charging_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging mode of the cluster.  
-        Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the charging period of the cluster.  
-        If `period_unit` is set to **month**, the value ranges from `1` to `9`.
-        If `period_unit` is set to **year**, the value ranges from `1` to `3`.
-        This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-        period_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the charging period unit of the cluster.  
-        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
-        Changing this parameter will create a new MapReduce cluster resource.
-        """
-elif False:
-    ClusterStreamingCoreNodesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="component_configurations"></a>
+    The `component_configs` block supports:
+    """
+    charging_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging mode of the cluster.  
+    Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the charging period of the cluster.  
+    If `period_unit` is set to **month**, the value ranges from `1` to `9`.
+    If `period_unit` is set to **year**, the value ranges from `1` to `3`.
+    This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    period_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the charging period unit of the cluster.  
+    Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+    Changing this parameter will create a new MapReduce cluster resource.
+    """
+    resource_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource node IDs to be shrunk.  
+    Only ECS nodes with abnormal status can be deleted.
+
+    > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+    each node group is invalid.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterStreamingCoreNodesArgs:
@@ -3770,15 +4239,17 @@ class ClusterStreamingCoreNodesArgs:
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
-                 period_unit: Optional[pulumi.Input[_builtins.str]] = None):
+                 period_unit: Optional[pulumi.Input[_builtins.str]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -3832,6 +4303,21 @@ class ClusterStreamingCoreNodesArgs:
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the cluster.  
                Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
                Changing this parameter will create a new MapReduce cluster resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -3854,6 +4340,12 @@ class ClusterStreamingCoreNodesArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -3886,8 +4378,7 @@ class ClusterStreamingCoreNodesArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -4058,79 +4549,147 @@ class ClusterStreamingCoreNodesArgs:
     def period_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "period_unit", value)
 
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
 
-if not MYPY:
-    class ClusterStreamingTaskNodesArgsDict(TypedDict):
-        data_volume_count: pulumi.Input[_builtins.int]
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
         """
-        Specifies the data disk number of the nodes.  
-        The valid value is `1`.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        flavor: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance specifications for each nodes in node group.
-        Changing this will create a new MapReduce cluster resource.
-        """
-        node_number: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
-        """
-        root_volume_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the system disk size of the nodes. Changing this will create
-        a new MapReduce cluster resource.
-        """
-        root_volume_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the system disk flavor of the nodes. Changing this will
-        create a new MapReduce cluster resource.
-        """
-        assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the roles deployed in a node group.This argument is mandatory
-        when the cluster type is **CUSTOM**. Each character string represents a role expression.
+        return pulumi.get(self, "resource_ids")
 
-        **Role expression definition:**
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "resource_ids", value)
 
-        + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
-        + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
-        for example: `DataNode:1,2`. The subscript starts from 1.
-        + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
-        role_name[instance_count], for example: `EsNode[9]`.
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
 
-        [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
 
-        [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
 
-        > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
-        store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
-        """
-        data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the data disk size of the nodes,in GB. The value range is 10
-        to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
-        cluster resource.
-        """
-        data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data disk flavor of the nodes.
-        Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
-        The following disk types are supported:
-        + **SATA**: common I/O disk.
-        + **SAS**: high I/O disk.
-        + **SSD**: ultra-high I/O disk.
-        """
-        host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The host list of this nodes group in the cluster.
-        * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
-        * `bootstrap_scripts/state` - The status of one bootstrap action script.
-        The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
-        """
-elif False:
-    ClusterStreamingTaskNodesArgsDict: TypeAlias = Mapping[str, Any]
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
+
+
+class ClusterStreamingTaskNodesArgsDict(TypedDict):
+    data_volume_count: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk number of the nodes.  
+    The valid value is `1`.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    flavor: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance specifications for each nodes in node group.
+    Changing this will create a new MapReduce cluster resource.
+    """
+    node_number: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of nodes for the node group.
+    """
+    root_volume_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the system disk size of the nodes. Changing this will create
+    a new MapReduce cluster resource.
+    """
+    root_volume_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the system disk flavor of the nodes. Changing this will
+    create a new MapReduce cluster resource.
+    """
+    assigned_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the roles deployed in a node group.This argument is mandatory
+    when the cluster type is **CUSTOM**. Each character string represents a role expression.
+
+    **Role expression definition:**
+
+    + If the role is deployed on all nodes in the node group, set this parameter to role_name, for example: `DataNode`.
+    + If the role is deployed on a specified subscript node in the node group: role_name:index1,index2..., indexN,
+    for example: `DataNode:1,2`. The subscript starts from 1.
+    + Some roles support multi-instance deployment (that is, multiple instances of the same role are deployed on a node):
+    role_name[instance_count], for example: `EsNode[9]`.
+
+    [For details about components](https://support.huaweicloud.com/intl/en-us/productdesc-mrs/mrs_08_0005.html)
+
+    [Mapping between roles and components](https://support.huaweicloud.com/intl/en-us/api-mrs/mrs_02_0106.html)
+
+    > `DBService` is a basic component of a cluster. Components such as Hive, Hue, Oozie, Loader, and Redis, and Loader
+    store their metadata in DBService, and provide the metadata backup and restoration functions by using DBService.
+    """
+    data_volume_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the data disk size of the nodes,in GB. The value range is 10
+    to 32768. Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce
+    cluster resource.
+    """
+    data_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data disk flavor of the nodes.
+    Required if `data_volume_count` is greater than zero. Changing this will create a new MapReduce cluster resource.
+    The following disk types are supported:
+    + **SATA**: common I/O disk.
+    + **SAS**: high I/O disk.
+    + **SSD**: ultra-high I/O disk.
+    """
+    host_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The host list of this nodes group in the cluster.
+    * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
+    * `bootstrap_scripts/state` - The status of one bootstrap action script.
+    The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+    """
+    resource_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the resource node IDs to be shrunk.  
+    Only ECS nodes with abnormal status can be deleted.
+
+    > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+    each node group is invalid.
+    """
+    scale_without_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to start the components on the node after it has
+    been expanded.
+    Defaults to **false**.
+    + **true**: Do not start the components on the node after it has been expanded.
+    + **false**: Start the components on the node after it has been expanded.
+    """
+    skip_bootstrap_scripts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip bootstrap scripts when the cluster
+    is expanded.
+    Defaults to **true**.
+    + **true**: Skip bootstrap scripts.
+    + **false**: Do not skip bootstrap scripts.
+    """
 
 @pulumi.input_type
 class ClusterStreamingTaskNodesArgs:
@@ -4143,15 +4702,17 @@ class ClusterStreamingTaskNodesArgs:
                  assigned_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  data_volume_size: Optional[pulumi.Input[_builtins.int]] = None,
                  data_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 host_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 scale_without_start: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_bootstrap_scripts: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] data_volume_count: Specifies the data disk number of the nodes.  
                The valid value is `1`.
                Changing this will create a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications for each nodes in node group.
                Changing this will create a new MapReduce cluster resource.
-        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.  
-               Changing this will create a new MapReduce cluster resource.
+        :param pulumi.Input[_builtins.int] node_number: Specifies the number of nodes for the node group.
         :param pulumi.Input[_builtins.int] root_volume_size: Specifies the system disk size of the nodes. Changing this will create
                a new MapReduce cluster resource.
         :param pulumi.Input[_builtins.str] root_volume_type: Specifies the system disk flavor of the nodes. Changing this will
@@ -4186,6 +4747,21 @@ class ClusterStreamingTaskNodesArgs:
                * `bootstrap_scripts/start_time` - The execution time of one bootstrap action script, in RFC-3339 format.
                * `bootstrap_scripts/state` - The status of one bootstrap action script.
                The valid value are **PENDING**, **IN_PROGRESS**, **SUCCESS**, and **FAILURE**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the resource node IDs to be shrunk.  
+               Only ECS nodes with abnormal status can be deleted.
+               
+               > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+               each node group is invalid.
+        :param pulumi.Input[_builtins.bool] scale_without_start: Specifies whether to start the components on the node after it has
+               been expanded.
+               Defaults to **false**.
+               + **true**: Do not start the components on the node after it has been expanded.
+               + **false**: Start the components on the node after it has been expanded.
+        :param pulumi.Input[_builtins.bool] skip_bootstrap_scripts: Specifies whether to skip bootstrap scripts when the cluster
+               is expanded.
+               Defaults to **true**.
+               + **true**: Skip bootstrap scripts.
+               + **false**: Do not skip bootstrap scripts.
         """
         pulumi.set(__self__, "data_volume_count", data_volume_count)
         pulumi.set(__self__, "flavor", flavor)
@@ -4200,6 +4776,12 @@ class ClusterStreamingTaskNodesArgs:
             pulumi.set(__self__, "data_volume_type", data_volume_type)
         if host_ips is not None:
             pulumi.set(__self__, "host_ips", host_ips)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if scale_without_start is not None:
+            pulumi.set(__self__, "scale_without_start", scale_without_start)
+        if skip_bootstrap_scripts is not None:
+            pulumi.set(__self__, "skip_bootstrap_scripts", skip_bootstrap_scripts)
 
     @_builtins.property
     @pulumi.getter(name="dataVolumeCount")
@@ -4232,8 +4814,7 @@ class ClusterStreamingTaskNodesArgs:
     @pulumi.getter(name="nodeNumber")
     def node_number(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the number of nodes for the node group.  
-        Changing this will create a new MapReduce cluster resource.
+        Specifies the number of nodes for the node group.
         """
         return pulumi.get(self, "node_number")
 
@@ -4340,5 +4921,53 @@ class ClusterStreamingTaskNodesArgs:
     @host_ips.setter
     def host_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "host_ips", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the resource node IDs to be shrunk.  
+        Only ECS nodes with abnormal status can be deleted.
+
+        > When the `resource_ids` parameter is specified for shrinking, the `node_count` parameter in
+        each node group is invalid.
+        """
+        return pulumi.get(self, "resource_ids")
+
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "resource_ids", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scaleWithoutStart")
+    def scale_without_start(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to start the components on the node after it has
+        been expanded.
+        Defaults to **false**.
+        + **true**: Do not start the components on the node after it has been expanded.
+        + **false**: Start the components on the node after it has been expanded.
+        """
+        return pulumi.get(self, "scale_without_start")
+
+    @scale_without_start.setter
+    def scale_without_start(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "scale_without_start", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipBootstrapScripts")
+    def skip_bootstrap_scripts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to skip bootstrap scripts when the cluster
+        is expanded.
+        Defaults to **true**.
+        + **true**: Skip bootstrap scripts.
+        + **false**: Do not skip bootstrap scripts.
+        """
+        return pulumi.get(self, "skip_bootstrap_scripts")
+
+    @skip_bootstrap_scripts.setter
+    def skip_bootstrap_scripts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_bootstrap_scripts", value)
 
 

@@ -28,6 +28,7 @@ class ShareAppArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ShareApp resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket name.
         :param pulumi.Input[_builtins.str] object_path: Specifies the OBS object path.
                The naming format of tar file type is **<package_name>_<version_name>.tar**. For example, **com.cph.config_v1.1**.
@@ -150,6 +151,7 @@ class _ShareAppState:
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ShareApp resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket name.
         :param pulumi.Input[_builtins.str] object_path: Specifies the OBS object path.
                The naming format of tar file type is **<package_name>_<version_name>.tar**. For example, **com.cph.config_v1.1**.
@@ -264,7 +266,7 @@ class _ShareAppState:
         pulumi.set(self, "server_id", value)
 
 
-@pulumi.type_token("huaweicloud:cph/shareApp:ShareApp")
+@pulumi.type_token("huaweicloud:Cph/shareApp:ShareApp")
 class ShareApp(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -299,6 +301,7 @@ class ShareApp(pulumi.CustomResource):
             object_path=object_path,
             pre_install_app=0)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -341,6 +344,7 @@ class ShareApp(pulumi.CustomResource):
             object_path=object_path,
             pre_install_app=0)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ShareAppArgs args: The arguments to use to populate this resource's properties.
@@ -389,7 +393,7 @@ class ShareApp(pulumi.CustomResource):
                 raise TypeError("Missing required property 'server_id'")
             __props__.__dict__["server_id"] = server_id
         super(ShareApp, __self__).__init__(
-            'huaweicloud:cph/shareApp:ShareApp',
+            'huaweicloud:Cph/shareApp:ShareApp',
             resource_name,
             __props__,
             opts)

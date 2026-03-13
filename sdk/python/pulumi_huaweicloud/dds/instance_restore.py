@@ -26,6 +26,7 @@ class InstanceRestoreArgs:
                  restore_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceRestore resource.
+
         :param pulumi.Input[_builtins.str] source_id: Specifies the ID of the source DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] target_id: Specifies the ID of the target DDS instance.
@@ -126,6 +127,7 @@ class _InstanceRestoreState:
                  target_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceRestore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID of the source DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -267,6 +269,7 @@ class InstanceRestore(pulumi.CustomResource):
             target_id=target_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID of the source DDS instance.
@@ -324,6 +327,7 @@ class InstanceRestore(pulumi.CustomResource):
             restore_time=restore_time,
             target_id=target_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceRestoreArgs args: The arguments to use to populate this resource's properties.

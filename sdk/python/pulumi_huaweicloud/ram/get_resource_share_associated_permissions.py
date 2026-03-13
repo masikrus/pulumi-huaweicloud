@@ -110,7 +110,7 @@ def get_resource_share_associated_permissions(permission_name: Optional[_builtin
     __args__['region'] = region
     __args__['resourceShareId'] = resource_share_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getResourceShareAssociatedPermissions:getResourceShareAssociatedPermissions', __args__, opts=opts, typ=GetResourceShareAssociatedPermissionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getResourceShareAssociatedPermissions:getResourceShareAssociatedPermissions', __args__, opts=opts, typ=GetResourceShareAssociatedPermissionsResult).value
 
     return AwaitableGetResourceShareAssociatedPermissionsResult(
         associated_permissions=pulumi.get(__ret__, 'associated_permissions'),
@@ -136,7 +136,7 @@ def get_resource_share_associated_permissions_output(permission_name: Optional[p
     __args__['region'] = region
     __args__['resourceShareId'] = resource_share_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getResourceShareAssociatedPermissions:getResourceShareAssociatedPermissions', __args__, opts=opts, typ=GetResourceShareAssociatedPermissionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getResourceShareAssociatedPermissions:getResourceShareAssociatedPermissions', __args__, opts=opts, typ=GetResourceShareAssociatedPermissionsResult)
     return __ret__.apply(lambda __response__: GetResourceShareAssociatedPermissionsResult(
         associated_permissions=pulumi.get(__response__, 'associated_permissions'),
         id=pulumi.get(__response__, 'id'),

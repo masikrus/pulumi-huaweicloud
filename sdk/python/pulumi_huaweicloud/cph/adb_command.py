@@ -27,6 +27,7 @@ class AdbCommandArgs:
                  server_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AdbCommand resource.
+
         :param pulumi.Input[_builtins.str] command: Specifies the ADB command. The value can be **push**, **install**,
                **install-multiple**, **uninstall**, or **shell**.
         :param pulumi.Input[_builtins.str] content: Specifies the content.
@@ -137,6 +138,7 @@ class _AdbCommandState:
                  server_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AdbCommand resources.
+
         :param pulumi.Input[_builtins.str] command: Specifies the ADB command. The value can be **push**, **install**,
                **install-multiple**, **uninstall**, or **shell**.
         :param pulumi.Input[_builtins.str] content: Specifies the content.
@@ -238,7 +240,7 @@ class _AdbCommandState:
         pulumi.set(self, "server_ids", value)
 
 
-@pulumi.type_token("huaweicloud:cph/adbCommand:AdbCommand")
+@pulumi.type_token("huaweicloud:Cph/adbCommand:AdbCommand")
 class AdbCommand(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -271,6 +273,7 @@ class AdbCommand(pulumi.CustomResource):
             content=content,
             phone_ids=phone_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -313,6 +316,7 @@ class AdbCommand(pulumi.CustomResource):
             phone_ids=phone_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AdbCommandArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -354,7 +358,7 @@ class AdbCommand(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["server_ids"] = server_ids
         super(AdbCommand, __self__).__init__(
-            'huaweicloud:cph/adbCommand:AdbCommand',
+            'huaweicloud:Cph/adbCommand:AdbCommand',
             resource_name,
             __props__,
             opts)

@@ -26,6 +26,7 @@ class ResourceTagsArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourceTags resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ResourceTagsResourceArgs']]] resources: Specifies the managed resource configuration.  
                The resources structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies resource tags for batch management.
@@ -98,6 +99,7 @@ class _ResourceTagsState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ResourceTags resources.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies project ID to which the managed resources belong.  
                Required if the resources are project level. Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ResourceTagsResourceArgs']]] resources: Specifies the managed resource configuration.  
@@ -193,13 +195,14 @@ class ResourceTags(pulumi.CustomResource):
             resources=[{
                 "resource_type": entry["value"]["type"],
                 "resource_id": entry["value"]["id"],
-            } for entry in [{"key": k, "value": v} for k, v in resources_configuration]],
+            } for entry in [{"key": k, "value": v} for k, v in resources_configuration.items()]],
             project_id=resources_project_id,
             tags={
                 "foo": "bar",
                 "owner": "terraform",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -241,13 +244,14 @@ class ResourceTags(pulumi.CustomResource):
             resources=[{
                 "resource_type": entry["value"]["type"],
                 "resource_id": entry["value"]["id"],
-            } for entry in [{"key": k, "value": v} for k, v in resources_configuration]],
+            } for entry in [{"key": k, "value": v} for k, v in resources_configuration.items()]],
             project_id=resources_project_id,
             tags={
                 "foo": "bar",
                 "owner": "terraform",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceTagsArgs args: The arguments to use to populate this resource's properties.

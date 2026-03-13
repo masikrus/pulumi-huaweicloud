@@ -25,6 +25,7 @@ class SqlserverDatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SqlserverDatabase resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.str] name: Specifies the database name. The database name can contain 1 to 64 characters,
                and can include letters, digits, hyphens (-), underscores (_), and periods (.). It cannot start or end with an RDS for
@@ -102,6 +103,7 @@ class _SqlserverDatabaseState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SqlserverDatabase resources.
+
         :param pulumi.Input[_builtins.str] character_set: Indicates the character set used by the database.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.str] name: Specifies the database name. The database name can contain 1 to 64 characters,
@@ -238,11 +240,10 @@ class SqlserverDatabase(pulumi.CustomResource):
 
         The RDS sqlserver database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverDatabase:SqlserverDatabase test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,11 +281,10 @@ class SqlserverDatabase(pulumi.CustomResource):
 
         The RDS sqlserver database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverDatabase:SqlserverDatabase test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqlserverDatabaseArgs args: The arguments to use to populate this resource's properties.

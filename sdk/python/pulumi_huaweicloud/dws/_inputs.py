@@ -47,47 +47,42 @@ __all__ = [
     'WorkloadQueueConfigurationArgsDict',
 ]
 
-MYPY = False
+class ClusterElbArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the ELB load balancer.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Cluster name, which must be unique and contains 4 to 64 characters, which
+    consist of letters, digits, hyphens(-), or underscores(_) only and must start with a letter.
+    Changing this creates a new cluster resource.
+    """
+    private_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private endpoint of the ELB load balancer.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address of the ELB load balancer.
+    """
+    private_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IPv6 address of the ELB load balancer.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The information about public IP.  
 
-if not MYPY:
-    class ClusterElbArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the ELB load balancer.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Cluster name, which must be unique and contains 4 to 64 characters, which
-        consist of letters, digits, hyphens(-), or underscores(_) only and must start with a letter.
-        Changing this creates a new cluster resource.
-        """
-        private_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private endpoint of the ELB load balancer.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address of the ELB load balancer.
-        """
-        private_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IPv6 address of the ELB load balancer.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The information about public IP.  
+    Changing this parameter will create a new resource.
 
-        Changing this parameter will create a new resource.
-
-        The PublicIp structure is documented below.
-        """
-        vpc_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The VPC ID.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    ClusterElbArgsDict: TypeAlias = Mapping[str, Any]
+    The PublicIp structure is documented below.
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The VPC ID.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class ClusterElbArgs:
@@ -222,18 +217,15 @@ class ClusterElbArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class ClusterEndpointArgsDict(TypedDict):
-        connect_info: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private network connection information.
-        """
-        jdbc_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        JDBC URL. Format: jdbc:postgresql://<public_connect_info>/<YOUR_DATABASE_NAME>
-        """
-elif False:
-    ClusterEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterEndpointArgsDict(TypedDict):
+    connect_info: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private network connection information.
+    """
+    jdbc_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    JDBC URL. Format: jdbc:postgresql://<public_connect_info>/<YOUR_DATABASE_NAME>
+    """
 
 @pulumi.input_type
 class ClusterEndpointArgs:
@@ -274,24 +266,21 @@ class ClusterEndpointArgs:
         pulumi.set(self, "jdbc_url", value)
 
 
-if not MYPY:
-    class ClusterMaintainWindowArgsDict(TypedDict):
-        day: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Maintenance time in each week in the unit of day.  
-        The valid values are **Mon**, **Tue**, **Wed**, **Thu**, **Fri**,
-        **Sat**, and **Sun**.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Maintenance end time in HH:mm format. The time zone is GMT+0.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Maintenance start time in HH:mm format. The time zone is GMT+0.
-        """
-elif False:
-    ClusterMaintainWindowArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterMaintainWindowArgsDict(TypedDict):
+    day: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Maintenance time in each week in the unit of day.  
+    The valid values are **Mon**, **Tue**, **Wed**, **Thu**, **Fri**,
+    **Sat**, and **Sun**.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Maintenance end time in HH:mm format. The time zone is GMT+0.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Maintenance start time in HH:mm format. The time zone is GMT+0.
+    """
 
 @pulumi.input_type
 class ClusterMaintainWindowArgs:
@@ -352,18 +341,15 @@ class ClusterMaintainWindowArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class ClusterPublicEndpointArgsDict(TypedDict):
-        jdbc_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        JDBC URL. Format: jdbc:postgresql://<public_connect_info>/<YOUR_DATABASE_NAME>
-        """
-        public_connect_info: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Public network connection information.
-        """
-elif False:
-    ClusterPublicEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPublicEndpointArgsDict(TypedDict):
+    jdbc_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    JDBC URL. Format: jdbc:postgresql://<public_connect_info>/<YOUR_DATABASE_NAME>
+    """
+    public_connect_info: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Public network connection information.
+    """
 
 @pulumi.input_type
 class ClusterPublicEndpointArgs:
@@ -404,22 +390,19 @@ class ClusterPublicEndpointArgs:
         pulumi.set(self, "public_connect_info", value)
 
 
-if not MYPY:
-    class ClusterPublicIpArgsDict(TypedDict):
-        eip_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP ID.  
+class ClusterPublicIpArgsDict(TypedDict):
+    eip_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP ID.  
 
-        <a name="DwsCluster_Volume"></a>
-        The `Volume` block supports:
-        """
-        public_bind_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bind type of public IP.  
-        The valid value are **auto_assign**, **not_use**, and **bind_existing**. Defaults to **not_use**.
-        """
-elif False:
-    ClusterPublicIpArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DwsCluster_Volume"></a>
+    The `Volume` block supports:
+    """
+    public_bind_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bind type of public IP.  
+    The valid value are **auto_assign**, **not_use**, and **bind_existing**. Defaults to **not_use**.
+    """
 
 @pulumi.input_type
 class ClusterPublicIpArgs:
@@ -468,21 +451,18 @@ class ClusterPublicIpArgs:
         pulumi.set(self, "public_bind_type", value)
 
 
-if not MYPY:
-    class ClusterVolumeArgsDict(TypedDict):
-        capacity: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The capacity size, in GB.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume type. Value options are as follows:
-        + **SSD**: Ultra-high I/O. The solid-state drive (SSD) is used.
-        + **SAS**: High I/O. The SAS disk is used.
-        + **SATA**: Common I/O. The SATA disk is used.
-        """
-elif False:
-    ClusterVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterVolumeArgsDict(TypedDict):
+    capacity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The capacity size, in GB.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume type. Value options are as follows:
+    + **SSD**: Ultra-high I/O. The solid-state drive (SSD) is used.
+    + **SAS**: High I/O. The SAS disk is used.
+    + **SATA**: Common I/O. The SATA disk is used.
+    """
 
 @pulumi.input_type
 class ClusterVolumeArgs:
@@ -529,50 +509,47 @@ class ClusterVolumeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DisasterRecoveryTaskPrimaryClusterArgsDict(TypedDict):
-        cluster_az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The availability zone to which the cluster belongs.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster ID.
-        """
-        last_success_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The lasted success synchronized time, in UTC format.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the DR task. It must be unique and
-        contains `4` to `64` characters, which consist of letters, digits, hyphens(-), or underscores(_) only
-        and must start with a letter. Changing this creates a new resource.
-        """
-        obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster OBS name.
-        """
-        progress: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster progress.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used.
-        Changing this creates a new resource.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster status.
-        """
-elif False:
-    DisasterRecoveryTaskPrimaryClusterArgsDict: TypeAlias = Mapping[str, Any]
+class DisasterRecoveryTaskPrimaryClusterArgsDict(TypedDict):
+    cluster_az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The availability zone to which the cluster belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster ID.
+    """
+    last_success_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The lasted success synchronized time, in UTC format.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the DR task. It must be unique and
+    contains `4` to `64` characters, which consist of letters, digits, hyphens(-), or underscores(_) only
+    and must start with a letter. Changing this creates a new resource.
+    """
+    obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster OBS name.
+    """
+    progress: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster progress.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region in which to create the resource.
+    If omitted, the provider-level region will be used.
+    Changing this creates a new resource.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster role.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster status.
+    """
 
 @pulumi.input_type
 class DisasterRecoveryTaskPrimaryClusterArgs:
@@ -733,50 +710,47 @@ class DisasterRecoveryTaskPrimaryClusterArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class DisasterRecoveryTaskStandbyClusterArgsDict(TypedDict):
-        cluster_az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The availability zone to which the cluster belongs.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster ID.
-        """
-        last_success_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The lasted success synchronized time, in UTC format.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the DR task. It must be unique and
-        contains `4` to `64` characters, which consist of letters, digits, hyphens(-), or underscores(_) only
-        and must start with a letter. Changing this creates a new resource.
-        """
-        obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster OBS name.
-        """
-        progress: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster progress.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region in which to create the resource.
-        If omitted, the provider-level region will be used.
-        Changing this creates a new resource.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster role.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DR task cluster status.
-        """
-elif False:
-    DisasterRecoveryTaskStandbyClusterArgsDict: TypeAlias = Mapping[str, Any]
+class DisasterRecoveryTaskStandbyClusterArgsDict(TypedDict):
+    cluster_az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The availability zone to which the cluster belongs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster ID.
+    """
+    last_success_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The lasted success synchronized time, in UTC format.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the DR task. It must be unique and
+    contains `4` to `64` characters, which consist of letters, digits, hyphens(-), or underscores(_) only
+    and must start with a letter. Changing this creates a new resource.
+    """
+    obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster OBS name.
+    """
+    progress: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster progress.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region in which to create the resource.
+    If omitted, the provider-level region will be used.
+    Changing this creates a new resource.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster role.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DR task cluster status.
+    """
 
 @pulumi.input_type
 class DisasterRecoveryTaskStandbyClusterArgs:
@@ -937,19 +911,16 @@ class DisasterRecoveryTaskStandbyClusterArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class LogicalClusterClusterRingArgsDict(TypedDict):
-        ring_hosts: pulumi.Input[Sequence[pulumi.Input['LogicalClusterClusterRingRingHostArgsDict']]]
-        """
-        Specifies the cluster host ring information. All host information of a ring
-        must be specified. Changing this parameter will create a new resource.
-        The ring_hosts structure is documented below.
+class LogicalClusterClusterRingArgsDict(TypedDict):
+    ring_hosts: pulumi.Input[Sequence[pulumi.Input['LogicalClusterClusterRingRingHostArgsDict']]]
+    """
+    Specifies the cluster host ring information. All host information of a ring
+    must be specified. Changing this parameter will create a new resource.
+    The ring_hosts structure is documented below.
 
-        <a name="LogicalCluster_RingHosts"></a>
-        The `ring_hosts` block supports:
-        """
-elif False:
-    LogicalClusterClusterRingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LogicalCluster_RingHosts"></a>
+    The `ring_hosts` block supports:
+    """
 
 @pulumi.input_type
 class LogicalClusterClusterRingArgs:
@@ -983,30 +954,27 @@ class LogicalClusterClusterRingArgs:
         pulumi.set(self, "ring_hosts", value)
 
 
-if not MYPY:
-    class LogicalClusterClusterRingRingHostArgsDict(TypedDict):
-        back_ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend IP address. Changing this parameter will create a new resource.
-        """
-        cpu_cores: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of CPU cores. Changing this parameter will create a new resource.
-        """
-        disk_size: pulumi.Input[_builtins.float]
-        """
-        Specifies the host disk size. Changing this parameter will create a new resource.
-        """
-        host_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the host name. Changing this parameter will create a new resource.
-        """
-        memory: pulumi.Input[_builtins.float]
-        """
-        Specifies the host memory. Changing this parameter will create a new resource.
-        """
-elif False:
-    LogicalClusterClusterRingRingHostArgsDict: TypeAlias = Mapping[str, Any]
+class LogicalClusterClusterRingRingHostArgsDict(TypedDict):
+    back_ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend IP address. Changing this parameter will create a new resource.
+    """
+    cpu_cores: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of CPU cores. Changing this parameter will create a new resource.
+    """
+    disk_size: pulumi.Input[_builtins.float]
+    """
+    Specifies the host disk size. Changing this parameter will create a new resource.
+    """
+    host_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the host name. Changing this parameter will create a new resource.
+    """
+    memory: pulumi.Input[_builtins.float]
+    """
+    Specifies the host memory. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class LogicalClusterClusterRingRingHostArgs:
@@ -1090,25 +1058,22 @@ class LogicalClusterClusterRingRingHostArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class ParameterConfigurationsConfigurationArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the parameter.  
-        The valid values are as follows:
-        + **cn**
-        + **dn**
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the parameter.
-        """
-elif False:
-    ParameterConfigurationsConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class ParameterConfigurationsConfigurationArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the parameter.  
+    The valid values are as follows:
+    + **cn**
+    + **dn**
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the parameter.
+    """
 
 @pulumi.input_type
 class ParameterConfigurationsConfigurationArgs:
@@ -1168,20 +1133,17 @@ class ParameterConfigurationsConfigurationArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class WorkloadPlanStageArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The plan stage ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the workload plan, which must be unique and contains
-        `3` to `28` characters, composed only of lowercase letters, numbers, or underscores (_), and must start with a
-        lowercase letter. Changing this parameter will create a new resource.
-        """
-elif False:
-    WorkloadPlanStageArgsDict: TypeAlias = Mapping[str, Any]
+class WorkloadPlanStageArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The plan stage ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the workload plan, which must be unique and contains
+    `3` to `28` characters, composed only of lowercase letters, numbers, or underscores (_), and must start with a
+    lowercase letter. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class WorkloadPlanStageArgs:
@@ -1226,24 +1188,21 @@ class WorkloadPlanStageArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class WorkloadPlanStageQueueArgsDict(TypedDict):
-        configurations: pulumi.Input[Sequence[pulumi.Input['WorkloadPlanStageQueueConfigurationArgsDict']]]
-        """
-        Specifies the configuration information for workload queue.
-        Changing this creates a new resource.
-        The configuration structure is documented below.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of workload queue which the workload plan stage running.
-        Changing this creates a new resource.
+class WorkloadPlanStageQueueArgsDict(TypedDict):
+    configurations: pulumi.Input[Sequence[pulumi.Input['WorkloadPlanStageQueueConfigurationArgsDict']]]
+    """
+    Specifies the configuration information for workload queue.
+    Changing this creates a new resource.
+    The configuration structure is documented below.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of workload queue which the workload plan stage running.
+    Changing this creates a new resource.
 
-        <a name="block_queues_configuration"></a>
-        The `configuration` block supports:
-        """
-elif False:
-    WorkloadPlanStageQueueArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block_queues_configuration"></a>
+    The `configuration` block supports:
+    """
 
 @pulumi.input_type
 class WorkloadPlanStageQueueArgs:
@@ -1294,39 +1253,36 @@ class WorkloadPlanStageQueueArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class WorkloadPlanStageQueueConfigurationArgsDict(TypedDict):
-        resource_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource name to be configured for the workload queue.
-        Changing this creates a new resource. Value options:
-        + **cpu**: Percentage of CPU time that can be used by users associated with the current workload queue to execute jobs.
-        + **cpu_limit**: Maximum percentage of CPU cores used by a database user in a workload queue.
-        + **memory**: Percentage of the memory that can be used by a workload queue.
-        + **concurrency**: Maximum number of concurrent queries in a workload queue.
-        + **shortQueryConcurrencyNum**: Maximum number of concurrent short queries in a workload queue.
-        """
-        resource_value: pulumi.Input[_builtins.int]
-        """
-        Specifies the value of the resource attribute for the workload queue.
-        Changing this creates a new resource.
-        When `resource_name` is **cpu**, the value is an integer ranging from `1` to `99`.
-        When `resource_name` is **cpu_limit**, the value is an integer ranging from `0` to `100`. `0` indicates no limit.
-        When `resource_name` is **memory**, `0` indicates no limit.
-        When `resource_name` is **shortQueryConcurrencyNum**, `-1` indicates no limit.
-        """
-        resource_description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the resource attribute for
-        the workload queue. Changing this creates a new resource.
-        """
-        value_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value unit of the resource attribute for the workload queue.
-        Changing this creates a new resource.
-        """
-elif False:
-    WorkloadPlanStageQueueConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class WorkloadPlanStageQueueConfigurationArgsDict(TypedDict):
+    resource_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource name to be configured for the workload queue.
+    Changing this creates a new resource. Value options:
+    + **cpu**: Percentage of CPU time that can be used by users associated with the current workload queue to execute jobs.
+    + **cpu_limit**: Maximum percentage of CPU cores used by a database user in a workload queue.
+    + **memory**: Percentage of the memory that can be used by a workload queue.
+    + **concurrency**: Maximum number of concurrent queries in a workload queue.
+    + **shortQueryConcurrencyNum**: Maximum number of concurrent short queries in a workload queue.
+    """
+    resource_value: pulumi.Input[_builtins.int]
+    """
+    Specifies the value of the resource attribute for the workload queue.
+    Changing this creates a new resource.
+    When `resource_name` is **cpu**, the value is an integer ranging from `1` to `99`.
+    When `resource_name` is **cpu_limit**, the value is an integer ranging from `0` to `100`. `0` indicates no limit.
+    When `resource_name` is **memory**, `0` indicates no limit.
+    When `resource_name` is **shortQueryConcurrencyNum**, `-1` indicates no limit.
+    """
+    resource_description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the resource attribute for
+    the workload queue. Changing this creates a new resource.
+    """
+    value_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value unit of the resource attribute for the workload queue.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class WorkloadPlanStageQueueConfigurationArgs:
@@ -1423,36 +1379,33 @@ class WorkloadPlanStageQueueConfigurationArgs:
         pulumi.set(self, "value_unit", value)
 
 
-if not MYPY:
-    class WorkloadQueueConfigurationArgsDict(TypedDict):
-        resource_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the resource name to be configured for the workload queue.  
-        The valid value are as follows:
-        + **memory**: memory resources.
-        + **tablespace**: storage resources.
-        + **activestatements**: query concurrency.
-        + **cpu_limit**: exclusive quotas.
-        + **cpu_share**: shared quotas.
+class WorkloadQueueConfigurationArgsDict(TypedDict):
+    resource_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the resource name to be configured for the workload queue.  
+    The valid value are as follows:
+    + **memory**: memory resources.
+    + **tablespace**: storage resources.
+    + **activestatements**: query concurrency.
+    + **cpu_limit**: exclusive quotas.
+    + **cpu_share**: shared quotas.
 
-        > When creating a workload queue, **memory**, **tablespace** and **activestatements** must be set. The **cpu_limit**
-        and **cpu_share** are exclusive, one of them must be set, and the **cpu_limit** is only supported for clusters above
-        **8.1.3**.
-        """
-        resource_value: pulumi.Input[_builtins.int]
-        """
-        Specifies the value of the resource attribute for the workload queue.
-        + When the `resource name` is **memory**, the value range is from `0` to `100`, where `0` indicates no control,
-        unit: %.
-        + When the `resource name` is **tablespace**, the value range is from `-1` to `2,147,483,647`, where `-1` indicates
-        no restriction, unit: MB.
-        + When the `resource name` is **activestatements**, the value range is from `-1` to `2,147,483,647`, where `-1` and
-        `0` indicates no control.
-        + When the `resource name` is **cpu_limit**, the value range is from `0` to `99`, `0` means unlimited, unit: %.
-        + When the `resource name` is **cpu_share**, the value range is from `1` to `99`, the default value is `20`, unit: %.
-        """
-elif False:
-    WorkloadQueueConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    > When creating a workload queue, **memory**, **tablespace** and **activestatements** must be set. The **cpu_limit**
+    and **cpu_share** are exclusive, one of them must be set, and the **cpu_limit** is only supported for clusters above
+    **8.1.3**.
+    """
+    resource_value: pulumi.Input[_builtins.int]
+    """
+    Specifies the value of the resource attribute for the workload queue.
+    + When the `resource name` is **memory**, the value range is from `0` to `100`, where `0` indicates no control,
+    unit: %.
+    + When the `resource name` is **tablespace**, the value range is from `-1` to `2,147,483,647`, where `-1` indicates
+    no restriction, unit: MB.
+    + When the `resource name` is **activestatements**, the value range is from `-1` to `2,147,483,647`, where `-1` and
+    `0` indicates no control.
+    + When the `resource name` is **cpu_limit**, the value range is from `0` to `99`, `0` means unlimited, unit: %.
+    + When the `resource name` is **cpu_share**, the value range is from `1` to `99`, the default value is `20`, unit: %.
+    """
 
 @pulumi.input_type
 class WorkloadQueueConfigurationArgs:

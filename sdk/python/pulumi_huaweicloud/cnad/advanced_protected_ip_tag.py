@@ -24,6 +24,7 @@ class AdvancedProtectedIpTagArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedProtectedIpTag resource.
+
         :param pulumi.Input[_builtins.str] protected_ip_id: Specifies the ID of the protected IP.
         :param pulumi.Input[_builtins.str] tag: Specifies the tag to be set on the protected IP.
         """
@@ -74,6 +75,7 @@ class _AdvancedProtectedIpTagState:
                  tag: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedProtectedIpTag resources.
+
         :param pulumi.Input[_builtins.str] protected_ip_id: Specifies the ID of the protected IP.
         :param pulumi.Input[_builtins.str] tag: Specifies the tag to be set on the protected IP.
         """
@@ -118,7 +120,7 @@ class _AdvancedProtectedIpTagState:
         pulumi.set(self, "tag", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedProtectedIpTag:AdvancedProtectedIpTag")
+@pulumi.type_token("huaweicloud:Cnad/advancedProtectedIpTag:AdvancedProtectedIpTag")
 class AdvancedProtectedIpTag(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -147,6 +149,7 @@ class AdvancedProtectedIpTag(pulumi.CustomResource):
             protected_ip_id=protected_ip_id,
             tag=ip_tag)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +181,7 @@ class AdvancedProtectedIpTag(pulumi.CustomResource):
             protected_ip_id=protected_ip_id,
             tag=ip_tag)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedProtectedIpTagArgs args: The arguments to use to populate this resource's properties.
@@ -214,7 +218,7 @@ class AdvancedProtectedIpTag(pulumi.CustomResource):
                 raise TypeError("Missing required property 'tag'")
             __props__.__dict__["tag"] = tag
         super(AdvancedProtectedIpTag, __self__).__init__(
-            'huaweicloud:cnad/advancedProtectedIpTag:AdvancedProtectedIpTag',
+            'huaweicloud:Cnad/advancedProtectedIpTag:AdvancedProtectedIpTag',
             resource_name,
             __props__,
             opts)

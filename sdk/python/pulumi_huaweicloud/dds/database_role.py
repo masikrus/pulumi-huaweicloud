@@ -28,6 +28,7 @@ class DatabaseRoleArgs:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseRoleRoleArgs']]]] = None):
         """
         The set of arguments for constructing a DatabaseRole resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which this owned role belongs.
                Changing this parameter will create a new role.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DDS instance ID to which the role belongs.
@@ -136,6 +137,7 @@ class _DatabaseRoleState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseRoleRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering DatabaseRole resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which this owned role belongs.
                Changing this parameter will create a new role.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseRoleInheritedPrivilegeArgs']]] inherited_privileges: The list of database privileges owned by the current role, includes all privileges
@@ -309,11 +311,10 @@ class DatabaseRole(pulumi.CustomResource):
 
         DDS database roles can be imported using the `instance_id`, `db_name` and `name` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/databaseRole:DatabaseRole test <instance_id>/<db_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -368,11 +369,10 @@ class DatabaseRole(pulumi.CustomResource):
 
         DDS database roles can be imported using the `instance_id`, `db_name` and `name` separated by slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/databaseRole:DatabaseRole test <instance_id>/<db_name>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabaseRoleArgs args: The arguments to use to populate this resource's properties.

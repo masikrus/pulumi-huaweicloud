@@ -31,6 +31,7 @@ class SnapshotArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                
                Changing this parameter will create a new resource.
@@ -235,6 +236,7 @@ class _SnapshotState:
                  storage_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                
                Changing this parameter will create a new resource.
@@ -473,11 +475,10 @@ class Snapshot(pulumi.CustomResource):
 
         The live snapshot can be imported using the `domain_name` and `app_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/snapshot:Snapshot test <domain_name>/<app_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,11 +546,10 @@ class Snapshot(pulumi.CustomResource):
 
         The live snapshot can be imported using the `domain_name` and `app_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/snapshot:Snapshot test <domain_name>/<app_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.

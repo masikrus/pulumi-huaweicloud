@@ -15,6 +15,10 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AccessPolicyAccessScopeArgs',
+    'AccessPolicyAccessScopeArgsDict',
+    'AccessPolicyPrincipalArgs',
+    'AccessPolicyPrincipalArgsDict',
     'AddonValuesArgs',
     'AddonValuesArgsDict',
     'AutopilotClusterAuthenticationArgs',
@@ -39,6 +43,18 @@ __all__ = [
     'AutopilotClusterStatusArgsDict',
     'AutopilotClusterStatusEndpointArgs',
     'AutopilotClusterStatusEndpointArgsDict',
+    'AutopilotClusterUpgradeAddonArgs',
+    'AutopilotClusterUpgradeAddonArgsDict',
+    'AutopilotClusterUpgradeAddonValuesArgs',
+    'AutopilotClusterUpgradeAddonValuesArgsDict',
+    'AutopilotClusterUpgradeStrategyArgs',
+    'AutopilotClusterUpgradeStrategyArgsDict',
+    'AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs',
+    'AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgsDict',
+    'AutopilotReleaseParametersArgs',
+    'AutopilotReleaseParametersArgsDict',
+    'AutopilotReleaseValuesArgs',
+    'AutopilotReleaseValuesArgsDict',
     'ClusterCertificateClusterArgs',
     'ClusterCertificateClusterArgsDict',
     'ClusterCertificateUserArgs',
@@ -73,6 +89,8 @@ __all__ = [
     'ClusterV3ExtendParamArgsDict',
     'ClusterV3MasterArgs',
     'ClusterV3MasterArgsDict',
+    'ImageCacheBuildingConfigArgs',
+    'ImageCacheBuildingConfigArgsDict',
     'NodeAttachDataVolumeArgs',
     'NodeAttachDataVolumeArgsDict',
     'NodeAttachExtensionNicArgs',
@@ -163,44 +181,142 @@ __all__ = [
     'NodeV3TaintArgsDict',
     'NodesRemoveNodeArgs',
     'NodesRemoveNodeArgsDict',
+    'ReleaseParametersArgs',
+    'ReleaseParametersArgsDict',
+    'ReleaseValuesArgs',
+    'ReleaseValuesArgsDict',
 ]
 
-MYPY = False
+class AccessPolicyAccessScopeArgsDict(TypedDict):
+    namespaces: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of cluster namespaces.
+    Wildcards (*) are allowed to indicate all namespaces. If different clusters are selected,
+    the namespace list can be a collection of multiple clusters. When RBAC authorization is used,
+    CCE automatically checks whether the namespaces exist in the clusters.
 
-if not MYPY:
-    class AddonValuesArgsDict(TypedDict):
-        basic: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    <a name="cce_access_policy_principal"></a>
+    The `principal` block supports:
+    """
+
+@pulumi.input_type
+class AccessPolicyAccessScopeArgs:
+    def __init__(__self__, *,
+                 namespaces: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
-        Specifies the key/value pairs vary depending on the add-on.
-        Only supports non-nested structure and only supports string type elements.
-        This is an alternative to `basic_json`, but it is not recommended.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] namespaces: Specifies the list of cluster namespaces.
+               Wildcards (*) are allowed to indicate all namespaces. If different clusters are selected,
+               the namespace list can be a collection of multiple clusters. When RBAC authorization is used,
+               CCE automatically checks whether the namespaces exist in the clusters.
+               
+               <a name="cce_access_policy_principal"></a>
+               The `principal` block supports:
         """
-        basic_json: NotRequired[pulumi.Input[_builtins.str]]
+        pulumi.set(__self__, "namespaces", namespaces)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespaces(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Specifies the json string vary depending on the add-on.
+        Specifies the list of cluster namespaces.
+        Wildcards (*) are allowed to indicate all namespaces. If different clusters are selected,
+        the namespace list can be a collection of multiple clusters. When RBAC authorization is used,
+        CCE automatically checks whether the namespaces exist in the clusters.
+
+        <a name="cce_access_policy_principal"></a>
+        The `principal` block supports:
         """
-        custom: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        return pulumi.get(self, "namespaces")
+
+    @namespaces.setter
+    def namespaces(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "namespaces", value)
+
+
+class AccessPolicyPrincipalArgsDict(TypedDict):
+    ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of IDs of authorized objects.
+    Enter the IDs based on the object type, user, user group, and agency account.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the authorization object.
+    The value can be: **user**, **group**, **agency**.
+    """
+
+@pulumi.input_type
+class AccessPolicyPrincipalArgs:
+    def __init__(__self__, *,
+                 ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 type: pulumi.Input[_builtins.str]):
         """
-        Specifies the key/value pairs vary depending on the add-on.
-        Only supports non-nested structure and only supports string type elements.
-        This is an alternative to `custom_json`, but it is not recommended.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ids: Specifies the list of IDs of authorized objects.
+               Enter the IDs based on the object type, user, user group, and agency account.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the authorization object.
+               The value can be: **user**, **group**, **agency**.
         """
-        custom_json: NotRequired[pulumi.Input[_builtins.str]]
+        pulumi.set(__self__, "ids", ids)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def ids(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Specifies the json string vary depending on the add-on.
+        Specifies the list of IDs of authorized objects.
+        Enter the IDs based on the object type, user, user group, and agency account.
         """
-        flavor: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        return pulumi.get(self, "ids")
+
+    @ids.setter
+    def ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the key/value pairs vary depending on the add-on.
-        Only supports non-nested structure and only supports string type elements.
-        This is an alternative to `flavor_json`, but it is not recommended.
+        Specifies the type of the authorization object.
+        The value can be: **user**, **group**, **agency**.
         """
-        flavor_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the json string vary depending on the add-on.
-        """
-elif False:
-    AddonValuesArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
+class AddonValuesArgsDict(TypedDict):
+    basic: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the key/value pairs vary depending on the add-on.
+    Only supports non-nested structure and only supports string type elements.
+    This is an alternative to `basic_json`, but it is not recommended.
+    """
+    basic_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    custom: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the key/value pairs vary depending on the add-on.
+    Only supports non-nested structure and only supports string type elements.
+    This is an alternative to `custom_json`, but it is not recommended.
+    """
+    custom_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    flavor: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the key/value pairs vary depending on the add-on.
+    Only supports non-nested structure and only supports string type elements.
+    This is an alternative to `flavor_json`, but it is not recommended.
+    """
+    flavor_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
 
 @pulumi.input_type
 class AddonValuesArgs:
@@ -317,18 +433,15 @@ class AddonValuesArgs:
         pulumi.set(self, "flavor_json", value)
 
 
-if not MYPY:
-    class AutopilotClusterAuthenticationArgsDict(TypedDict):
-        mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster authentication mode.
-        The default value is **rbac**.
+class AutopilotClusterAuthenticationArgsDict(TypedDict):
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster authentication mode.
+    The default value is **rbac**.
 
-        <a name="autopilot_cluster_extend_param"></a>
-        The `extend_param` block supports:
-        """
-elif False:
-    AutopilotClusterAuthenticationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_extend_param"></a>
+    The `extend_param` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterAuthenticationArgs:
@@ -361,22 +474,19 @@ class AutopilotClusterAuthenticationArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class AutopilotClusterConfigurationsOverrideArgsDict(TypedDict):
-        configurations: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutopilotClusterConfigurationsOverrideConfigurationArgsDict']]]]
-        """
-        Specifies the component configuration items.
-        The configurations structure is documented below.
+class AutopilotClusterConfigurationsOverrideArgsDict(TypedDict):
+    configurations: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutopilotClusterConfigurationsOverrideConfigurationArgsDict']]]]
+    """
+    Specifies the component configuration items.
+    The configurations structure is documented below.
 
-        <a name="autopilot_cluster_configurations_override_configurations"></a>
-        The `configurations` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the component configuration item name.
-        """
-elif False:
-    AutopilotClusterConfigurationsOverrideArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_configurations_override_configurations"></a>
+    The `configurations` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the component configuration item name.
+    """
 
 @pulumi.input_type
 class AutopilotClusterConfigurationsOverrideArgs:
@@ -425,18 +535,15 @@ class AutopilotClusterConfigurationsOverrideArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class AutopilotClusterConfigurationsOverrideConfigurationArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the component configuration item name.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the component configuration item value.
-        """
-elif False:
-    AutopilotClusterConfigurationsOverrideConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class AutopilotClusterConfigurationsOverrideConfigurationArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the component configuration item name.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the component configuration item value.
+    """
 
 @pulumi.input_type
 class AutopilotClusterConfigurationsOverrideConfigurationArgs:
@@ -477,18 +584,15 @@ class AutopilotClusterConfigurationsOverrideConfigurationArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class AutopilotClusterContainerNetworkArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the cluster authentication mode.
-        The default value is **rbac**.
+class AutopilotClusterContainerNetworkArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the cluster authentication mode.
+    The default value is **rbac**.
 
-        <a name="autopilot_cluster_extend_param"></a>
-        The `extend_param` block supports:
-        """
-elif False:
-    AutopilotClusterContainerNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_extend_param"></a>
+    The `extend_param` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterContainerNetworkArgs:
@@ -520,18 +624,15 @@ class AutopilotClusterContainerNetworkArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class AutopilotClusterEniNetworkArgsDict(TypedDict):
-        subnets: pulumi.Input[Sequence[pulumi.Input['AutopilotClusterEniNetworkSubnetArgsDict']]]
-        """
-        Specifies the list of ENI subnets.
-        The subnets structure is documented below.
+class AutopilotClusterEniNetworkArgsDict(TypedDict):
+    subnets: pulumi.Input[Sequence[pulumi.Input['AutopilotClusterEniNetworkSubnetArgsDict']]]
+    """
+    Specifies the list of ENI subnets.
+    The subnets structure is documented below.
 
-        <a name="autopilot_cluster_eni_network_subnets"></a>
-        The `subnets` block supports:
-        """
-elif False:
-    AutopilotClusterEniNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_eni_network_subnets"></a>
+    The `subnets` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterEniNetworkArgs:
@@ -563,18 +664,15 @@ class AutopilotClusterEniNetworkArgs:
         pulumi.set(self, "subnets", value)
 
 
-if not MYPY:
-    class AutopilotClusterEniNetworkSubnetArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the IPv4 subnet ID of the subnet used to create control
-        nodes and containers.
+class AutopilotClusterEniNetworkSubnetArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the IPv4 subnet ID of the subnet used to create control
+    nodes and containers.
 
-        <a name="autopilot_cluster_service_network"></a>
-        The `service_network` block supports:
-        """
-elif False:
-    AutopilotClusterEniNetworkSubnetArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_service_network"></a>
+    The `service_network` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterEniNetworkSubnetArgs:
@@ -606,18 +704,15 @@ class AutopilotClusterEniNetworkSubnetArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class AutopilotClusterExtendParamArgsDict(TypedDict):
-        enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the enterprise project to which the
-        cluster belongs.
+class AutopilotClusterExtendParamArgsDict(TypedDict):
+    enterprise_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the enterprise project to which the
+    cluster belongs.
 
-        <a name="autopilot_cluster_configurations_override"></a>
-        The `configurations_override` block supports:
-        """
-elif False:
-    AutopilotClusterExtendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_configurations_override"></a>
+    The `configurations_override` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterExtendParamArgs:
@@ -650,21 +745,18 @@ class AutopilotClusterExtendParamArgs:
         pulumi.set(self, "enterprise_project_id", value)
 
 
-if not MYPY:
-    class AutopilotClusterHostNetworkArgsDict(TypedDict):
-        subnet: pulumi.Input[_builtins.str]
-        """
-        Specifies ID of the subnet used to create a master node.
+class AutopilotClusterHostNetworkArgsDict(TypedDict):
+    subnet: pulumi.Input[_builtins.str]
+    """
+    Specifies ID of the subnet used to create a master node.
 
-        <a name="autopilot_cluster_container_network"></a>
-        The `container_network` block supports:
-        """
-        vpc: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the VPC used to create a master node.
-        """
-elif False:
-    AutopilotClusterHostNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_container_network"></a>
+    The `container_network` block supports:
+    """
+    vpc: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the VPC used to create a master node.
+    """
 
 @pulumi.input_type
 class AutopilotClusterHostNetworkArgs:
@@ -709,18 +801,15 @@ class AutopilotClusterHostNetworkArgs:
         pulumi.set(self, "vpc", value)
 
 
-if not MYPY:
-    class AutopilotClusterServiceNetworkArgsDict(TypedDict):
-        ipv4_cidr: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IPv4 CIDR of the service network.
-        If not specified, the default value 10.247.0.0/16 will be used.
+class AutopilotClusterServiceNetworkArgsDict(TypedDict):
+    ipv4_cidr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IPv4 CIDR of the service network.
+    If not specified, the default value 10.247.0.0/16 will be used.
 
-        <a name="autopilot_cluster_authentication"></a>
-        The `authentication` block supports:
-        """
-elif False:
-    AutopilotClusterServiceNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autopilot_cluster_authentication"></a>
+    The `authentication` block supports:
+    """
 
 @pulumi.input_type
 class AutopilotClusterServiceNetworkArgs:
@@ -753,19 +842,16 @@ class AutopilotClusterServiceNetworkArgs:
         pulumi.set(self, "ipv4_cidr", value)
 
 
-if not MYPY:
-    class AutopilotClusterStatusArgsDict(TypedDict):
-        endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutopilotClusterStatusEndpointArgsDict']]]]
-        """
-        The access address of kube-apiserver in the cluster.
-        The endpoints structure is documented below.
-        """
-        phase: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The phase of the cluster.
-        """
-elif False:
-    AutopilotClusterStatusArgsDict: TypeAlias = Mapping[str, Any]
+class AutopilotClusterStatusArgsDict(TypedDict):
+    endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutopilotClusterStatusEndpointArgsDict']]]]
+    """
+    The access address of kube-apiserver in the cluster.
+    The endpoints structure is documented below.
+    """
+    phase: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The phase of the cluster.
+    """
 
 @pulumi.input_type
 class AutopilotClusterStatusArgs:
@@ -808,19 +894,16 @@ class AutopilotClusterStatusArgs:
         pulumi.set(self, "phase", value)
 
 
-if not MYPY:
-    class AutopilotClusterStatusEndpointArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the master node architecture. The value can be:
-        + **VirtualMachine**: Indicates the master node is an x86 server.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The phase of the cluster.
-        """
-elif False:
-    AutopilotClusterStatusEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class AutopilotClusterStatusEndpointArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the master node architecture. The value can be:
+    + **VirtualMachine**: Indicates the master node is an x86 server.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The phase of the cluster.
+    """
 
 @pulumi.input_type
 class AutopilotClusterStatusEndpointArgs:
@@ -863,22 +946,455 @@ class AutopilotClusterStatusEndpointArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class ClusterCertificateClusterArgsDict(TypedDict):
-        certificate_authority_data: NotRequired[pulumi.Input[_builtins.str]]
+class AutopilotClusterUpgradeAddonArgsDict(TypedDict):
+    addon_template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the add-on name.
+    """
+    operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the execution action.
+    For current upgrades, the value can be **patch**.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the target add-on version.
+    The target add-on version must match the target cluster version.
+    """
+    values: NotRequired[pulumi.Input['AutopilotClusterUpgradeAddonValuesArgsDict']]
+    """
+    Specifies the add-on template installation parameters.
+    These parameters vary depending on the add-on. The values is documented below.
+
+    <a name="values"></a>
+    The `values` block supports:
+    """
+
+@pulumi.input_type
+class AutopilotClusterUpgradeAddonArgs:
+    def __init__(__self__, *,
+                 addon_template_name: pulumi.Input[_builtins.str],
+                 operation: pulumi.Input[_builtins.str],
+                 version: pulumi.Input[_builtins.str],
+                 values: Optional[pulumi.Input['AutopilotClusterUpgradeAddonValuesArgs']] = None):
         """
-        The certificate data.
+        :param pulumi.Input[_builtins.str] addon_template_name: Specifies the add-on name.
+        :param pulumi.Input[_builtins.str] operation: Specifies the execution action.
+               For current upgrades, the value can be **patch**.
+        :param pulumi.Input[_builtins.str] version: Specifies the target add-on version.
+               The target add-on version must match the target cluster version.
+        :param pulumi.Input['AutopilotClusterUpgradeAddonValuesArgs'] values: Specifies the add-on template installation parameters.
+               These parameters vary depending on the add-on. The values is documented below.
+               
+               <a name="values"></a>
+               The `values` block supports:
         """
-        name: NotRequired[pulumi.Input[_builtins.str]]
+        pulumi.set(__self__, "addon_template_name", addon_template_name)
+        pulumi.set(__self__, "operation", operation)
+        pulumi.set(__self__, "version", version)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateName")
+    def addon_template_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the component name.
+        Specifies the add-on name.
         """
-        server: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "addon_template_name")
+
+    @addon_template_name.setter
+    def addon_template_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "addon_template_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operation(self) -> pulumi.Input[_builtins.str]:
         """
-        The server IP address.
+        Specifies the execution action.
+        For current upgrades, the value can be **patch**.
         """
-elif False:
-    ClusterCertificateClusterArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operation", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the target add-on version.
+        The target add-on version must match the target cluster version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input['AutopilotClusterUpgradeAddonValuesArgs']]:
+        """
+        Specifies the add-on template installation parameters.
+        These parameters vary depending on the add-on. The values is documented below.
+
+        <a name="values"></a>
+        The `values` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input['AutopilotClusterUpgradeAddonValuesArgs']]):
+        pulumi.set(self, "values", value)
+
+
+class AutopilotClusterUpgradeAddonValuesArgsDict(TypedDict):
+    basic_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    custom_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    flavor_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+
+    > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+    the add-on type and version. For more detailed description of add-ons
+    see add-ons description
+
+    <a name="strategy"></a>
+    The `strategy` block supports:
+    """
+
+@pulumi.input_type
+class AutopilotClusterUpgradeAddonValuesArgs:
+    def __init__(__self__, *,
+                 basic_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 custom_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 flavor_json: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] basic_json: Specifies the json string vary depending on the add-on.
+        :param pulumi.Input[_builtins.str] custom_json: Specifies the json string vary depending on the add-on.
+        :param pulumi.Input[_builtins.str] flavor_json: Specifies the json string vary depending on the add-on.
+               
+               > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+               the add-on type and version. For more detailed description of add-ons
+               see add-ons description
+               
+               <a name="strategy"></a>
+               The `strategy` block supports:
+        """
+        if basic_json is not None:
+            pulumi.set(__self__, "basic_json", basic_json)
+        if custom_json is not None:
+            pulumi.set(__self__, "custom_json", custom_json)
+        if flavor_json is not None:
+            pulumi.set(__self__, "flavor_json", flavor_json)
+
+    @_builtins.property
+    @pulumi.getter(name="basicJson")
+    def basic_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the json string vary depending on the add-on.
+        """
+        return pulumi.get(self, "basic_json")
+
+    @basic_json.setter
+    def basic_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "basic_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customJson")
+    def custom_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the json string vary depending on the add-on.
+        """
+        return pulumi.get(self, "custom_json")
+
+    @custom_json.setter
+    def custom_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "custom_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="flavorJson")
+    def flavor_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the json string vary depending on the add-on.
+
+        > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+        the add-on type and version. For more detailed description of add-ons
+        see add-ons description
+
+        <a name="strategy"></a>
+        The `strategy` block supports:
+        """
+        return pulumi.get(self, "flavor_json")
+
+    @flavor_json.setter
+    def flavor_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "flavor_json", value)
+
+
+class AutopilotClusterUpgradeStrategyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the upgrade strategy type.
+    The value can be **inPlaceRollingUpdate**.
+    """
+    in_place_rolling_update: NotRequired[pulumi.Input['AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgsDict']]
+    """
+    Specifies the in-place upgrade settings.
+    It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+    The in_place_rolling_update structure is documented below.
+
+    <a name="in_place_rolling_update"></a>
+    The `in_place_rolling_update` block supports:
+    """
+
+@pulumi.input_type
+class AutopilotClusterUpgradeStrategyArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 in_place_rolling_update: Optional[pulumi.Input['AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Specifies the upgrade strategy type.
+               The value can be **inPlaceRollingUpdate**.
+        :param pulumi.Input['AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs'] in_place_rolling_update: Specifies the in-place upgrade settings.
+               It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+               The in_place_rolling_update structure is documented below.
+               
+               <a name="in_place_rolling_update"></a>
+               The `in_place_rolling_update` block supports:
+        """
+        pulumi.set(__self__, "type", type)
+        if in_place_rolling_update is not None:
+            pulumi.set(__self__, "in_place_rolling_update", in_place_rolling_update)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the upgrade strategy type.
+        The value can be **inPlaceRollingUpdate**.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inPlaceRollingUpdate")
+    def in_place_rolling_update(self) -> Optional[pulumi.Input['AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs']]:
+        """
+        Specifies the in-place upgrade settings.
+        It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+        The in_place_rolling_update structure is documented below.
+
+        <a name="in_place_rolling_update"></a>
+        The `in_place_rolling_update` block supports:
+        """
+        return pulumi.get(self, "in_place_rolling_update")
+
+    @in_place_rolling_update.setter
+    def in_place_rolling_update(self, value: Optional[pulumi.Input['AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs']]):
+        pulumi.set(self, "in_place_rolling_update", value)
+
+
+class AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgsDict(TypedDict):
+    user_defined_step: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the node upgrade step.
+    The value ranges from **1** to **40**. The recommended value is **20**.
+    """
+
+@pulumi.input_type
+class AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs:
+    def __init__(__self__, *,
+                 user_defined_step: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] user_defined_step: Specifies the node upgrade step.
+               The value ranges from **1** to **40**. The recommended value is **20**.
+        """
+        if user_defined_step is not None:
+            pulumi.set(__self__, "user_defined_step", user_defined_step)
+
+    @_builtins.property
+    @pulumi.getter(name="userDefinedStep")
+    def user_defined_step(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the node upgrade step.
+        The value ranges from **1** to **40**. The recommended value is **20**.
+        """
+        return pulumi.get(self, "user_defined_step")
+
+    @user_defined_step.setter
+    def user_defined_step(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "user_defined_step", value)
+
+
+class AutopilotReleaseParametersArgsDict(TypedDict):
+    dry_run: NotRequired[pulumi.Input[_builtins.bool]]
+    include_hooks: NotRequired[pulumi.Input[_builtins.bool]]
+    name_template: NotRequired[pulumi.Input[_builtins.str]]
+    no_hooks: NotRequired[pulumi.Input[_builtins.bool]]
+    recreate: NotRequired[pulumi.Input[_builtins.bool]]
+    release_version: NotRequired[pulumi.Input[_builtins.int]]
+    replace: NotRequired[pulumi.Input[_builtins.bool]]
+    reset_values: NotRequired[pulumi.Input[_builtins.bool]]
+
+@pulumi.input_type
+class AutopilotReleaseParametersArgs:
+    def __init__(__self__, *,
+                 dry_run: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_hooks: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 no_hooks: Optional[pulumi.Input[_builtins.bool]] = None,
+                 recreate: Optional[pulumi.Input[_builtins.bool]] = None,
+                 release_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 replace: Optional[pulumi.Input[_builtins.bool]] = None,
+                 reset_values: Optional[pulumi.Input[_builtins.bool]] = None):
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if include_hooks is not None:
+            pulumi.set(__self__, "include_hooks", include_hooks)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+        if no_hooks is not None:
+            pulumi.set(__self__, "no_hooks", no_hooks)
+        if recreate is not None:
+            pulumi.set(__self__, "recreate", recreate)
+        if release_version is not None:
+            pulumi.set(__self__, "release_version", release_version)
+        if replace is not None:
+            pulumi.set(__self__, "replace", replace)
+        if reset_values is not None:
+            pulumi.set(__self__, "reset_values", reset_values)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includeHooks")
+    def include_hooks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "include_hooks")
+
+    @include_hooks.setter
+    def include_hooks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_hooks", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "name_template")
+
+    @name_template.setter
+    def name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="noHooks")
+    def no_hooks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "no_hooks")
+
+    @no_hooks.setter
+    def no_hooks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "no_hooks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recreate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "recreate")
+
+    @recreate.setter
+    def recreate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "recreate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="releaseVersion")
+    def release_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "release_version")
+
+    @release_version.setter
+    def release_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "release_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "replace")
+
+    @replace.setter
+    def replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "replace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resetValues")
+    def reset_values(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "reset_values")
+
+    @reset_values.setter
+    def reset_values(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "reset_values", value)
+
+
+class AutopilotReleaseValuesArgsDict(TypedDict):
+    image_pull_policy: NotRequired[pulumi.Input[_builtins.str]]
+    image_tag: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class AutopilotReleaseValuesArgs:
+    def __init__(__self__, *,
+                 image_pull_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 image_tag: Optional[pulumi.Input[_builtins.str]] = None):
+        if image_pull_policy is not None:
+            pulumi.set(__self__, "image_pull_policy", image_pull_policy)
+        if image_tag is not None:
+            pulumi.set(__self__, "image_tag", image_tag)
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullPolicy")
+    def image_pull_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "image_pull_policy")
+
+    @image_pull_policy.setter
+    def image_pull_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_pull_policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageTag")
+    def image_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "image_tag")
+
+    @image_tag.setter
+    def image_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_tag", value)
+
+
+class ClusterCertificateClusterArgsDict(TypedDict):
+    certificate_authority_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The certificate data.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the component name.
+    """
+    server: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The server IP address.
+    """
 
 @pulumi.input_type
 class ClusterCertificateClusterArgs:
@@ -935,22 +1451,19 @@ class ClusterCertificateClusterArgs:
         pulumi.set(self, "server", value)
 
 
-if not MYPY:
-    class ClusterCertificateUserArgsDict(TypedDict):
-        client_certificate_data: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The client certificate data.
-        """
-        client_key_data: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The client key data.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the component name.
-        """
-elif False:
-    ClusterCertificateUserArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterCertificateUserArgsDict(TypedDict):
+    client_certificate_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The client certificate data.
+    """
+    client_key_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The client key data.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the component name.
+    """
 
 @pulumi.input_type
 class ClusterCertificateUserArgs:
@@ -1007,21 +1520,18 @@ class ClusterCertificateUserArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ClusterComponentConfigurationArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the component name.
-        """
-        configurations: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies JSON string of the component configurations.
+class ClusterComponentConfigurationArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the component name.
+    """
+    configurations: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies JSON string of the component configurations.
 
-        <a name="cce_cluster_encryption_config"></a>
-        The `encryption_config` block supports:
-        """
-elif False:
-    ClusterComponentConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cce_cluster_encryption_config"></a>
+    The `encryption_config` block supports:
+    """
 
 @pulumi.input_type
 class ClusterComponentConfigurationArgs:
@@ -1067,18 +1577,15 @@ class ClusterComponentConfigurationArgs:
         pulumi.set(self, "configurations", value)
 
 
-if not MYPY:
-    class ClusterEncryptionConfigArgsDict(TypedDict):
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies KMS key ID, required if `mode` is set to **KMS**.
-        """
-        mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the encryption mode. The value can be: **Default** and **KMS**.
-        """
-elif False:
-    ClusterEncryptionConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterEncryptionConfigArgsDict(TypedDict):
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies KMS key ID, required if `mode` is set to **KMS**.
+    """
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption mode. The value can be: **Default** and **KMS**.
+    """
 
 @pulumi.input_type
 class ClusterEncryptionConfigArgs:
@@ -1119,66 +1626,63 @@ class ClusterEncryptionConfigArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class ClusterExtendParamArgsDict(TypedDict):
-        cluster_az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the AZ of master nodes in the cluster. The value can be:
-        + **multi_az**: The cluster will span across AZs. This field is configurable only for high-availability clusters.
-        + **AZ of the dedicated cloud computing pool**: The cluster will be deployed in the AZ of Dedicated Cloud (DeC).
-        This parameter is mandatory for dedicated CCE clusters.
+class ClusterExtendParamArgsDict(TypedDict):
+    cluster_az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the AZ of master nodes in the cluster. The value can be:
+    + **multi_az**: The cluster will span across AZs. This field is configurable only for high-availability clusters.
+    + **AZ of the dedicated cloud computing pool**: The cluster will be deployed in the AZ of Dedicated Cloud (DeC).
+    This parameter is mandatory for dedicated CCE clusters.
 
-        Changing this parameter will create a new cluster resource.
-        """
-        cpu_manager_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster CPU management policy.
-        The value can be:
-        + **none**: CPU cores will not be exclusively allocated to workload pods.
-        Select this value if you want a large pool of shareable CPU cores.
-        + **static**: CPU cores can be exclusively allocated to workload pods.
-        Select this value if your workload is sensitive to latency in CPU cache and scheduling.In a CCE Turbo cluster,
-        this setting is valid only for nodes where common containers, not Kata containers, run.
+    Changing this parameter will create a new cluster resource.
+    """
+    cpu_manager_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster CPU management policy.
+    The value can be:
+    + **none**: CPU cores will not be exclusively allocated to workload pods.
+    Select this value if you want a large pool of shareable CPU cores.
+    + **static**: CPU cores can be exclusively allocated to workload pods.
+    Select this value if your workload is sensitive to latency in CPU cache and scheduling.In a CCE Turbo cluster,
+    this setting is valid only for nodes where common containers, not Kata containers, run.
 
-        Defaults to none.
-        Changing this parameter will create a new cluster resource.
+    Defaults to none.
+    Changing this parameter will create a new cluster resource.
 
-        <a name="cce_cluster_component_configurations"></a>
-        The `component_configurations` block supports:
-        """
-        dec_master_flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the specifications of the master node
-        in the dedicated hybrid cluster.
-        Changing this parameter will create a new cluster resource.
-        """
-        docker_umask_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default UmaskMode configuration of Docker in a
-        cluster. The value can be **secure** or **normal**, defaults to normal.
-        Changing this parameter will create a new cluster resource.
-        """
-        dss_master_volumes: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether the system and data disks of a master node
-        use dedicated distributed storage. If left unspecified, EVS disks are used by default.
-        This parameter is mandatory for dedicated CCE clusters.
-        It is in the following format:
+    <a name="cce_cluster_component_configurations"></a>
+    The `component_configurations` block supports:
+    """
+    dec_master_flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the specifications of the master node
+    in the dedicated hybrid cluster.
+    Changing this parameter will create a new cluster resource.
+    """
+    docker_umask_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default UmaskMode configuration of Docker in a
+    cluster. The value can be **secure** or **normal**, defaults to normal.
+    Changing this parameter will create a new cluster resource.
+    """
+    dss_master_volumes: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the system and data disks of a master node
+    use dedicated distributed storage. If left unspecified, EVS disks are used by default.
+    This parameter is mandatory for dedicated CCE clusters.
+    It is in the following format:
 
-        ```bash
-        <rootVol.dssPoolID>.<rootVol.volType>;<dataVol.dssPoolID>.<dataVol.volType>
-        ```
+    ```bash
+    <rootVol.dssPoolID>.<rootVol.volType>;<dataVol.dssPoolID>.<dataVol.volType>
+    ```
 
-        Changing this parameter will create a new cluster resource.
-        """
-        fix_pool_mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of mask bits of the fixed IP address pool
-        of the container network model. This field can only be used when `container_network_type` is set to **vpc-router**.
-        Changing this parameter will create a new cluster resource.
-        """
-elif False:
-    ClusterExtendParamArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new cluster resource.
+    """
+    fix_pool_mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of mask bits of the fixed IP address pool
+    of the container network model. This field can only be used when `container_network_type` is set to **vpc-router**.
+    Changing this parameter will create a new cluster resource.
+    """
 
 @pulumi.input_type
 class ClusterExtendParamArgs:
@@ -1347,18 +1851,15 @@ class ClusterExtendParamArgs:
         pulumi.set(self, "fix_pool_mask", value)
 
 
-if not MYPY:
-    class ClusterLogConfigLogConfigArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to collect the log.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the log type.
-        """
-elif False:
-    ClusterLogConfigLogConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterLogConfigLogConfigArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to collect the log.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the log type.
+    """
 
 @pulumi.input_type
 class ClusterLogConfigLogConfigArgs:
@@ -1399,18 +1900,15 @@ class ClusterLogConfigLogConfigArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ClusterMasterArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone of the master node.
-        Changing this parameter will create a new cluster resource.
+class ClusterMasterArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone of the master node.
+    Changing this parameter will create a new cluster resource.
 
-        <a name="cce_cluster_extend_params"></a>
-        The `extend_params` block supports:
-        """
-elif False:
-    ClusterMasterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cce_cluster_extend_params"></a>
+    The `extend_params` block supports:
+    """
 
 @pulumi.input_type
 class ClusterMasterArgs:
@@ -1443,32 +1941,29 @@ class ClusterMasterArgs:
         pulumi.set(self, "availability_zone", value)
 
 
-if not MYPY:
-    class ClusterUpgradeAddonArgsDict(TypedDict):
-        addon_template_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the add-on name.
-        """
-        operation: pulumi.Input[_builtins.str]
-        """
-        Specifies the execution action.
-        For current upgrades, the value can be **patch**.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the target add-on version.
-        The target add-on version must match the target cluster version.
-        """
-        values: NotRequired[pulumi.Input['ClusterUpgradeAddonValuesArgsDict']]
-        """
-        Specifies the add-on template installation parameters.
-        These parameters vary depending on the add-on. The values is documented below.
+class ClusterUpgradeAddonArgsDict(TypedDict):
+    addon_template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the add-on name.
+    """
+    operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the execution action.
+    For current upgrades, the value can be **patch**.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the target add-on version.
+    The target add-on version must match the target cluster version.
+    """
+    values: NotRequired[pulumi.Input['ClusterUpgradeAddonValuesArgsDict']]
+    """
+    Specifies the add-on template installation parameters.
+    These parameters vary depending on the add-on. The values is documented below.
 
-        <a name="values"></a>
-        The `values` block supports:
-        """
-elif False:
-    ClusterUpgradeAddonArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="values"></a>
+    The `values` block supports:
+    """
 
 @pulumi.input_type
 class ClusterUpgradeAddonArgs:
@@ -1550,29 +2045,26 @@ class ClusterUpgradeAddonArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class ClusterUpgradeAddonValuesArgsDict(TypedDict):
-        basic_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the json string vary depending on the add-on.
-        """
-        custom_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the json string vary depending on the add-on.
-        """
-        flavor_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the json string vary depending on the add-on.
+class ClusterUpgradeAddonValuesArgsDict(TypedDict):
+    basic_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    custom_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
+    """
+    flavor_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the json string vary depending on the add-on.
 
-        > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
-        the add-on type and version. For more detailed description of add-ons
-        see add-ons description
+    > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+    the add-on type and version. For more detailed description of add-ons
+    see add-ons description
 
-        <a name="strategy"></a>
-        The `strategy` block supports:
-        """
-elif False:
-    ClusterUpgradeAddonValuesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="strategy"></a>
+    The `strategy` block supports:
+    """
 
 @pulumi.input_type
 class ClusterUpgradeAddonValuesArgs:
@@ -1643,24 +2135,21 @@ class ClusterUpgradeAddonValuesArgs:
         pulumi.set(self, "flavor_json", value)
 
 
-if not MYPY:
-    class ClusterUpgradeStrategyArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the upgrade strategy type.
-        The value can be **inPlaceRollingUpdate**.
-        """
-        in_place_rolling_update: NotRequired[pulumi.Input['ClusterUpgradeStrategyInPlaceRollingUpdateArgsDict']]
-        """
-        Specifies the in-place upgrade settings.
-        It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
-        The in_place_rolling_update structure is documented below.
+class ClusterUpgradeStrategyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the upgrade strategy type.
+    The value can be **inPlaceRollingUpdate**.
+    """
+    in_place_rolling_update: NotRequired[pulumi.Input['ClusterUpgradeStrategyInPlaceRollingUpdateArgsDict']]
+    """
+    Specifies the in-place upgrade settings.
+    It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+    The in_place_rolling_update structure is documented below.
 
-        <a name="in_place_rolling_update"></a>
-        The `in_place_rolling_update` block supports:
-        """
-elif False:
-    ClusterUpgradeStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="in_place_rolling_update"></a>
+    The `in_place_rolling_update` block supports:
+    """
 
 @pulumi.input_type
 class ClusterUpgradeStrategyArgs:
@@ -1712,15 +2201,12 @@ class ClusterUpgradeStrategyArgs:
         pulumi.set(self, "in_place_rolling_update", value)
 
 
-if not MYPY:
-    class ClusterUpgradeStrategyInPlaceRollingUpdateArgsDict(TypedDict):
-        user_defined_step: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the node upgrade step.
-        The value ranges from **1** to **40**. The recommended value is **20**.
-        """
-elif False:
-    ClusterUpgradeStrategyInPlaceRollingUpdateArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterUpgradeStrategyInPlaceRollingUpdateArgsDict(TypedDict):
+    user_defined_step: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the node upgrade step.
+    The value ranges from **1** to **40**. The recommended value is **20**.
+    """
 
 @pulumi.input_type
 class ClusterUpgradeStrategyInPlaceRollingUpdateArgs:
@@ -1747,13 +2233,10 @@ class ClusterUpgradeStrategyInPlaceRollingUpdateArgs:
         pulumi.set(self, "user_defined_step", value)
 
 
-if not MYPY:
-    class ClusterV3CertificateClusterArgsDict(TypedDict):
-        certificate_authority_data: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        server: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3CertificateClusterArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3CertificateClusterArgsDict(TypedDict):
+    certificate_authority_data: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    server: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3CertificateClusterArgs:
@@ -1796,13 +2279,10 @@ class ClusterV3CertificateClusterArgs:
         pulumi.set(self, "server", value)
 
 
-if not MYPY:
-    class ClusterV3CertificateUserArgsDict(TypedDict):
-        client_certificate_data: NotRequired[pulumi.Input[_builtins.str]]
-        client_key_data: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3CertificateUserArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3CertificateUserArgsDict(TypedDict):
+    client_certificate_data: NotRequired[pulumi.Input[_builtins.str]]
+    client_key_data: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3CertificateUserArgs:
@@ -1845,12 +2325,9 @@ class ClusterV3CertificateUserArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ClusterV3ComponentConfigurationArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        configurations: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3ComponentConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3ComponentConfigurationArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    configurations: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3ComponentConfigurationArgs:
@@ -1880,12 +2357,9 @@ class ClusterV3ComponentConfigurationArgs:
         pulumi.set(self, "configurations", value)
 
 
-if not MYPY:
-    class ClusterV3EncryptionConfigArgsDict(TypedDict):
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        mode: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3EncryptionConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3EncryptionConfigArgsDict(TypedDict):
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    mode: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3EncryptionConfigArgs:
@@ -1916,16 +2390,13 @@ class ClusterV3EncryptionConfigArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class ClusterV3ExtendParamArgsDict(TypedDict):
-        cluster_az: NotRequired[pulumi.Input[_builtins.str]]
-        cpu_manager_policy: NotRequired[pulumi.Input[_builtins.str]]
-        dec_master_flavor: NotRequired[pulumi.Input[_builtins.str]]
-        docker_umask_mode: NotRequired[pulumi.Input[_builtins.str]]
-        dss_master_volumes: NotRequired[pulumi.Input[_builtins.str]]
-        fix_pool_mask: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3ExtendParamArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3ExtendParamArgsDict(TypedDict):
+    cluster_az: NotRequired[pulumi.Input[_builtins.str]]
+    cpu_manager_policy: NotRequired[pulumi.Input[_builtins.str]]
+    dec_master_flavor: NotRequired[pulumi.Input[_builtins.str]]
+    docker_umask_mode: NotRequired[pulumi.Input[_builtins.str]]
+    dss_master_volumes: NotRequired[pulumi.Input[_builtins.str]]
+    fix_pool_mask: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3ExtendParamArgs:
@@ -2004,11 +2475,8 @@ class ClusterV3ExtendParamArgs:
         pulumi.set(self, "fix_pool_mask", value)
 
 
-if not MYPY:
-    class ClusterV3MasterArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ClusterV3MasterArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterV3MasterArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ClusterV3MasterArgs:
@@ -2027,43 +2495,97 @@ class ClusterV3MasterArgs:
         pulumi.set(self, "availability_zone", value)
 
 
-if not MYPY:
-    class NodeAttachDataVolumeArgsDict(TypedDict):
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+class ImageCacheBuildingConfigArgsDict(TypedDict):
+    cluster: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of a CCE Autopilot cluster where a temporary pod
+    is started for creating an image cache.
+    """
+    image_pull_secrets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of access credentials for downloading
+    the images to be cached. If no access credential is specified or no valid credential is available,
+    only public images can be downloaded.
+    """
+
+@pulumi.input_type
+class ImageCacheBuildingConfigArgs:
+    def __init__(__self__, *,
+                 cluster: pulumi.Input[_builtins.str],
+                 image_pull_secrets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
-        The DSS pool ID. This field is used only for dedicated storage.
+        :param pulumi.Input[_builtins.str] cluster: Specifies the ID of a CCE Autopilot cluster where a temporary pod
+               is started for creating an image cache.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] image_pull_secrets: Specifies the list of access credentials for downloading
+               the images to be cached. If no access credential is specified or no valid credential is available,
+               only public images can be downloaded.
         """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        pulumi.set(__self__, "cluster", cluster)
+        if image_pull_secrets is not None:
+            pulumi.set(__self__, "image_pull_secrets", image_pull_secrets)
+
+    @_builtins.property
+    @pulumi.getter
+    def cluster(self) -> pulumi.Input[_builtins.str]:
         """
-        The disk expansion parameters.
+        Specifies the ID of a CCE Autopilot cluster where a temporary pod
+        is started for creating an image cache.
         """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+        return pulumi.get(self, "cluster")
+
+    @cluster.setter
+    def cluster(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "cluster", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullSecrets")
+    def image_pull_secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        schema: Internal
+        Specifies the list of access credentials for downloading
+        the images to be cached. If no access credential is specified or no valid credential is available,
+        only public images can be downloaded.
         """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The iops of the disk.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of a KMS key. This is used to encrypt the volume.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The disk size in GB.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput of the disk.
-        """
-        volumetype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk type.
-        """
-elif False:
-    NodeAttachDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "image_pull_secrets")
+
+    @image_pull_secrets.setter
+    def image_pull_secrets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "image_pull_secrets", value)
+
+
+class NodeAttachDataVolumeArgsDict(TypedDict):
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DSS pool ID. This field is used only for dedicated storage.
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The iops of the disk.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of a KMS key. This is used to encrypt the volume.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The disk size in GB.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput of the disk.
+    """
+    volumetype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk type.
+    """
 
 @pulumi.input_type
 class NodeAttachDataVolumeArgs:
@@ -2216,14 +2738,11 @@ class NodeAttachDataVolumeArgs:
         pulumi.set(self, "volumetype", value)
 
 
-if not MYPY:
-    class NodeAttachExtensionNicArgsDict(TypedDict):
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the subnet to which the NIC belongs.
-        """
-elif False:
-    NodeAttachExtensionNicArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachExtensionNicArgsDict(TypedDict):
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the subnet to which the NIC belongs.
+    """
 
 @pulumi.input_type
 class NodeAttachExtensionNicArgs:
@@ -2248,11 +2767,8 @@ class NodeAttachExtensionNicArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class NodeAttachHostnameConfigArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-elif False:
-    NodeAttachHostnameConfigArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachHostnameConfigArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class NodeAttachHostnameConfigArgs:
@@ -2270,43 +2786,40 @@ class NodeAttachHostnameConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodeAttachRootVolumeArgsDict(TypedDict):
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DSS pool ID. This field is used only for dedicated storage.
-        """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The disk expansion parameters.
-        """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The iops of the disk.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of a KMS key. This is used to encrypt the volume.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The disk size in GB.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput of the disk.
-        """
-        volumetype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk type.
-        """
-elif False:
-    NodeAttachRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachRootVolumeArgsDict(TypedDict):
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DSS pool ID. This field is used only for dedicated storage.
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The iops of the disk.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of a KMS key. This is used to encrypt the volume.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The disk size in GB.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput of the disk.
+    """
+    volumetype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk type.
+    """
 
 @pulumi.input_type
 class NodeAttachRootVolumeArgs:
@@ -2459,22 +2972,19 @@ class NodeAttachRootVolumeArgs:
         pulumi.set(self, "volumetype", value)
 
 
-if not MYPY:
-    class NodeAttachStorageArgsDict(TypedDict):
-        groups: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageGroupArgsDict']]]
-        """
-        Specifies the storage group consists of multiple storage devices.
-        This is used to divide storage space. Structure is documented below.
-        Changing this parameter will reset the node.
-        """
-        selectors: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageSelectorArgsDict']]]
-        """
-        Specifies the disk selection.
-        Matched disks are managed according to match labels and storage type. Structure is documented below.
-        Changing this parameter will reset the node.
-        """
-elif False:
-    NodeAttachStorageArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachStorageArgsDict(TypedDict):
+    groups: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageGroupArgsDict']]]
+    """
+    Specifies the storage group consists of multiple storage devices.
+    This is used to divide storage space. Structure is documented below.
+    Changing this parameter will reset the node.
+    """
+    selectors: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageSelectorArgsDict']]]
+    """
+    Specifies the disk selection.
+    Matched disks are managed according to match labels and storage type. Structure is documented below.
+    Changing this parameter will reset the node.
+    """
 
 @pulumi.input_type
 class NodeAttachStorageArgs:
@@ -2521,32 +3031,29 @@ class NodeAttachStorageArgs:
         pulumi.set(self, "selectors", value)
 
 
-if not MYPY:
-    class NodeAttachStorageGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a virtual storage group. Each group name must be unique.
-        Changing this parameter will reset the node.
-        """
-        selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the list of names of selectors to match.
-        This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group. Changing this parameter will reset the node.
-        """
-        virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageGroupVirtualSpaceArgsDict']]]
-        """
-        Specifies the detailed management of space configuration in a group.
-        Changing this parameter will reset the node.
-        """
-        cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the whether the storage space is for **kubernetes** and
-        **runtime** components. Only one group can be set to true. The default value is **false**.
-        Changing this parameter will reset the node.
-        """
-elif False:
-    NodeAttachStorageGroupArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachStorageGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a virtual storage group. Each group name must be unique.
+    Changing this parameter will reset the node.
+    """
+    selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of names of selectors to match.
+    This parameter corresponds to name in `selectors`. A group can match multiple selectors,
+    but a selector can match only one group. Changing this parameter will reset the node.
+    """
+    virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeAttachStorageGroupVirtualSpaceArgsDict']]]
+    """
+    Specifies the detailed management of space configuration in a group.
+    Changing this parameter will reset the node.
+    """
+    cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the whether the storage space is for **kubernetes** and
+    **runtime** components. Only one group can be set to true. The default value is **false**.
+    Changing this parameter will reset the node.
+    """
 
 @pulumi.input_type
 class NodeAttachStorageGroupArgs:
@@ -2628,40 +3135,37 @@ class NodeAttachStorageGroupArgs:
         pulumi.set(self, "cce_managed", value)
 
 
-if not MYPY:
-    class NodeAttachStorageGroupVirtualSpaceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported. Changing this parameter will reset the node.
-        """
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the size of a virtual space. Only an integer percentage is supported.
-        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        Changing this parameter will reset the node.
-        """
-        lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
-        a new resource.
-        """
-        lvm_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the absolute path to which the disk is attached.
-        This parameter takes effect only in **user** configuration. Changing this parameter will reset the node.
-        """
-        runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **runtime** configuration. Changing this parameter will reset the node.
+class NodeAttachStorageGroupVirtualSpaceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
+    and **user** are supported. Changing this parameter will reset the node.
+    """
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+    Changing this parameter will reset the node.
+    """
+    lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
+    a new resource.
+    """
+    lvm_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the absolute path to which the disk is attached.
+    This parameter takes effect only in **user** configuration. Changing this parameter will reset the node.
+    """
+    runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **runtime** configuration. Changing this parameter will reset the node.
 
-        <a name="hostname_config"></a>
-        The `hostname_config` block supports:
-        """
-elif False:
-    NodeAttachStorageGroupVirtualSpaceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="hostname_config"></a>
+    The `hostname_config` block supports:
+    """
 
 @pulumi.input_type
 class NodeAttachStorageGroupVirtualSpaceArgs:
@@ -2768,47 +3272,44 @@ class NodeAttachStorageGroupVirtualSpaceArgs:
         pulumi.set(self, "runtime_lv_type", value)
 
 
-if not MYPY:
-    class NodeAttachStorageSelectorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the selector name, used as the index of `selector_names` in storage group.
-        The name of each selector must be unique. Changing this parameter will reset the node.
-        """
-        match_label_count: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected. Changing this parameter will reset the node.
-        """
-        match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the customer master key ID of an encrypted
-        disk. Changing this parameter will reset the node.
-        """
-        match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the disk encryption identifier.
-        Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-        If omitted, whether the disk is encrypted is not limited. Changing this parameter will reset the node.
-        """
-        match_label_size: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100. Changing this parameter will reset the node.
-        """
-        match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EVS disk type. Currently,
-        **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        Changing this parameter will reset the node.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-        The default value is **evs**. Changing this parameter will reset the node.
-        """
-elif False:
-    NodeAttachStorageSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachStorageSelectorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the selector name, used as the index of `selector_names` in storage group.
+    The name of each selector must be unique. Changing this parameter will reset the node.
+    """
+    match_label_count: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of disks to be selected. If omitted,
+    all disks of this type are selected. Changing this parameter will reset the node.
+    """
+    match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the customer master key ID of an encrypted
+    disk. Changing this parameter will reset the node.
+    """
+    match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk encryption identifier.
+    Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
+    If omitted, whether the disk is encrypted is not limited. Changing this parameter will reset the node.
+    """
+    match_label_size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the matched disk size. If omitted,
+    the disk size is not limited. Example: 100. Changing this parameter will reset the node.
+    """
+    match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EVS disk type. Currently,
+    **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+    Changing this parameter will reset the node.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
+    The default value is **evs**. Changing this parameter will reset the node.
+    """
 
 @pulumi.input_type
 class NodeAttachStorageSelectorArgs:
@@ -2946,27 +3447,24 @@ class NodeAttachStorageSelectorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodeAttachTaintArgsDict(TypedDict):
-        effect: pulumi.Input[_builtins.str]
-        """
-        Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-        Changing this parameter will reset the node.
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        A key must contain 1 to 63 characters starting with a letter or digit.
-        Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-        as the prefix of a key. Changing this parameter will reset the node.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        A value must start with a letter or digit and can contain a maximum of 63
-        characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-        reset the node.
-        """
-elif False:
-    NodeAttachTaintArgsDict: TypeAlias = Mapping[str, Any]
+class NodeAttachTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Available options are NoSchedule, PreferNoSchedule, and NoExecute.
+    Changing this parameter will reset the node.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    A key must contain 1 to 63 characters starting with a letter or digit.
+    Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
+    as the prefix of a key. Changing this parameter will reset the node.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    A value must start with a letter or digit and can contain a maximum of 63
+    characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
+    reset the node.
+    """
 
 @pulumi.input_type
 class NodeAttachTaintArgs:
@@ -3030,48 +3528,45 @@ class NodeAttachTaintArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class NodeDataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size in GB.
-        """
-        volumetype: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type.
-        """
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DSS pool ID. This field is used only for
-        """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the disk expansion parameters.
-        """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the iops of the disk,
-        required when `volumetype` is **GPSSD2** or **ESSD2**.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of a KMS key. This is used to encrypt the volume.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the throughput of the disk in MiB/s,
-        required when `volumetype` is **GPSSD2**.
+class NodeDataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the disk size in GB.
+    """
+    volumetype: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type.
+    """
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DSS pool ID. This field is used only for
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the iops of the disk,
+    required when `volumetype` is **GPSSD2** or **ESSD2**.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of a KMS key. This is used to encrypt the volume.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the disk in MiB/s,
+    required when `volumetype` is **GPSSD2**.
 
-        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first
-        time ever.
-        """
-elif False:
-    NodeDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first
+    time ever.
+    """
 
 @pulumi.input_type
 class NodeDataVolumeArgs:
@@ -3232,64 +3727,68 @@ class NodeDataVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodeExtendParamsArgsDict(TypedDict):
-        agency_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the agency name.
-        """
-        docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the available disk space of a single container on a node,
-        in GB.
-        """
-        kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the reserved node memory, which is reserved for
-        Kubernetes-related components.
-        """
-        market_type: NotRequired[pulumi.Input[_builtins.str]]
-        max_pods: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of instances a node is allowed to create.
-        """
-        nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ENI pre-binding thresholds.
-        Example setting: **"0.3:0.6"**.
-        """
-        node_image_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID to create the node.
-        """
-        node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of ENI queues.
-        Example setting: **"[{\\"queue\\":4}]"**.
-        """
-        postinstall: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not.
-        """
-        preinstall: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not.
-        """
-        security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the security reinforcement type.
-        The value can be: **null** or **cybersecurity**.
-        """
-        spot_price: NotRequired[pulumi.Input[_builtins.str]]
-        system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the reserved node memory, which is reserved
-        value for system components.
-        """
-elif False:
-    NodeExtendParamsArgsDict: TypeAlias = Mapping[str, Any]
+class NodeExtendParamsArgsDict(TypedDict):
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the agency name.
+    """
+    docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the available disk space of a single container on a node,
+    in GB.
+    """
+    kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the reserved node memory, which is reserved for
+    Kubernetes-related components.
+    """
+    market_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the market type. When creating a spot node,
+    this parameter should be set to **spot**.
+    """
+    max_pods: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of instances a node is allowed to create.
+    """
+    nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ENI pre-binding thresholds.
+    Example setting: **"0.3:0.6"**.
+    """
+    node_image_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID to create the node.
+    """
+    node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of ENI queues.
+    Example setting: **"[{\\"queue\\":4}]"**.
+    """
+    postinstall: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the script to be executed after installation.
+    The input value can be a Base64 encoded string or not.
+    """
+    preinstall: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the script to be executed before installation.
+    The input value can be a Base64 encoded string or not.
+    """
+    security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security reinforcement type.
+    The value can be: **null** or **cybersecurity**.
+    """
+    spot_price: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the highest price per hour a user accepts for a spot node.
+    """
+    system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the reserved node memory, which is reserved
+    value for system components.
+    """
 
 @pulumi.input_type
 class NodeExtendParamsArgs:
@@ -3313,6 +3812,8 @@ class NodeExtendParamsArgs:
                in GB.
         :param pulumi.Input[_builtins.int] kube_reserved_mem: Specifies the reserved node memory, which is reserved for
                Kubernetes-related components.
+        :param pulumi.Input[_builtins.str] market_type: Specifies the market type. When creating a spot node,
+               this parameter should be set to **spot**.
         :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
         :param pulumi.Input[_builtins.str] nic_threshold: Specifies the ENI pre-binding thresholds.
                Example setting: **"0.3:0.6"**.
@@ -3325,6 +3826,7 @@ class NodeExtendParamsArgs:
                The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.str] security_reinforcement_type: Specifies the security reinforcement type.
                The value can be: **null** or **cybersecurity**.
+        :param pulumi.Input[_builtins.str] spot_price: Specifies the highest price per hour a user accepts for a spot node.
         :param pulumi.Input[_builtins.int] system_reserved_mem: Specifies the reserved node memory, which is reserved
                value for system components.
         """
@@ -3396,6 +3898,10 @@ class NodeExtendParamsArgs:
     @_builtins.property
     @pulumi.getter(name="marketType")
     def market_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the market type. When creating a spot node,
+        this parameter should be set to **spot**.
+        """
         return pulumi.get(self, "market_type")
 
     @market_type.setter
@@ -3494,6 +4000,9 @@ class NodeExtendParamsArgs:
     @_builtins.property
     @pulumi.getter(name="spotPrice")
     def spot_price(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the highest price per hour a user accepts for a spot node.
+        """
         return pulumi.get(self, "spot_price")
 
     @spot_price.setter
@@ -3514,17 +4023,14 @@ class NodeExtendParamsArgs:
         pulumi.set(self, "system_reserved_mem", value)
 
 
-if not MYPY:
-    class NodeExtensionNicArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the subnet to which the NIC belongs.
+class NodeExtensionNicArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the subnet to which the NIC belongs.
 
-        <a name="extend_params"></a>
-        The `extend_params` block supports:
-        """
-elif False:
-    NodeExtensionNicArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="extend_params"></a>
+    The `extend_params` block supports:
+    """
 
 @pulumi.input_type
 class NodeExtensionNicArgs:
@@ -3554,11 +4060,8 @@ class NodeExtensionNicArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class NodeHostnameConfigArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-elif False:
-    NodeHostnameConfigArgsDict: TypeAlias = Mapping[str, Any]
+class NodeHostnameConfigArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class NodeHostnameConfigArgs:
@@ -3576,47 +4079,49 @@ class NodeHostnameConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodePoolDataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size in GB.
-        """
-        volumetype: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type.
-        """
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DSS pool ID. This field is used only for dedicated storage.
-        """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the disk expansion parameters.
-        """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the iops of the disk,
-        required when `volumetype` is **GPSSD2** or **ESSD2**.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the KMS key ID. This is used to encrypt the volume.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the throughput of the disk in MiB/s,
-        required when `volumetype` is **GPSSD2**.
+class NodePoolDataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+    """
+    volumetype: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type.
+    """
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DSS pool ID. This field is used only for dedicated storage.
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the iops of the disk,
+    required when `volumetype` is **GPSSD2** or **ESSD2**.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key ID. This is used to encrypt the volume.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the disk in MiB/s,
+    required when `volumetype` is **GPSSD2**.
 
-        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever.
-        """
-elif False:
-    NodePoolDataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+    ever.
+
+    <a name="taints_struct"></a>
+    The `taints` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolDataVolumeArgs:
@@ -3631,7 +4136,8 @@ class NodePoolDataVolumeArgs:
                  kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  throughput: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] size: Specifies the disk size in GB.
+        :param pulumi.Input[_builtins.int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
+               Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param pulumi.Input[_builtins.str] volumetype: Specifies the disk type.
         :param pulumi.Input[_builtins.str] dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_params: Specifies the disk expansion parameters.
@@ -3642,7 +4148,11 @@ class NodePoolDataVolumeArgs:
         :param pulumi.Input[_builtins.int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
                
-               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever.
+               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+               ever.
+               
+               <a name="taints_struct"></a>
+               The `taints` block supports:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "volumetype", volumetype)
@@ -3668,7 +4178,8 @@ class NodePoolDataVolumeArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the disk size in GB.
+        Specifies the size of a virtual space. Only an integer percentage is supported.
+        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         """
         return pulumi.get(self, "size")
 
@@ -3766,7 +4277,11 @@ class NodePoolDataVolumeArgs:
         Specifies the throughput of the disk in MiB/s,
         required when `volumetype` is **GPSSD2**.
 
-        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever.
+        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+        ever.
+
+        <a name="taints_struct"></a>
+        The `taints` block supports:
         """
         return pulumi.get(self, "throughput")
 
@@ -3775,64 +4290,71 @@ class NodePoolDataVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodePoolExtendParamsArgsDict(TypedDict):
-        agency_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the agency name.
-        """
-        docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the available disk space of a single container on a node,
-        in GB.
-        """
-        kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the reserved node memory, which is reserved for
-        Kubernetes-related components.
-        """
-        market_type: NotRequired[pulumi.Input[_builtins.str]]
-        max_pods: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of instances a node is allowed to create.
-        """
-        nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ENI pre-binding thresholds.
-        Example setting: **"0.3:0.6"**.
-        """
-        node_image_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image ID to create the node.
-        """
-        node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of ENI queues.
-        Example setting: **"[{\\"queue\\":4}]"**.
-        """
-        postinstall: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the script to be executed after installation.
-        The input value can be a Base64 encoded string or not.
-        """
-        preinstall: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the script to be executed before installation.
-        The input value can be a Base64 encoded string or not.
-        """
-        security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the security reinforcement type.
-        The value can be: **null** or **cybersecurity**.
-        """
-        spot_price: NotRequired[pulumi.Input[_builtins.str]]
-        system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the reserved node memory, which is reserved
-        value for system components.
-        """
-elif False:
-    NodePoolExtendParamsArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolExtendParamsArgsDict(TypedDict):
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the agency name.
+    """
+    docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the available disk space of a single container on a node,
+    in GB.
+    """
+    kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the reserved node memory, which is reserved for
+    Kubernetes-related components.
+    """
+    market_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the market type. When creating a spot node pool,
+    this parameter should be set to **spot**.
+    """
+    max_pods: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of instances a node is allowed to create.
+    """
+    nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ENI pre-binding thresholds.
+    Example setting: **"0.3:0.6"**.
+    """
+    node_image_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image ID to create the node.
+    """
+    node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of ENI queues.
+    Example setting: **"[{\\"queue\\":4}]"**.
+    """
+    postinstall: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the script to be executed after installation.
+    The input value can be a Base64 encoded string or not.
+    """
+    preinstall: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the script to be executed before installation.
+    The input value can be a Base64 encoded string or not.
+    """
+    security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security reinforcement type.
+    The value can be: **null** or **cybersecurity**.
+    """
+    spot_price: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the highest price per hour a user accepts for a spot node.
+
+    <a name="storage_struct"></a>
+    The `storage` block supports:
+    """
+    system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the reserved node memory, which is reserved
+    value for system components.
+    """
 
 @pulumi.input_type
 class NodePoolExtendParamsArgs:
@@ -3856,6 +4378,8 @@ class NodePoolExtendParamsArgs:
                in GB.
         :param pulumi.Input[_builtins.int] kube_reserved_mem: Specifies the reserved node memory, which is reserved for
                Kubernetes-related components.
+        :param pulumi.Input[_builtins.str] market_type: Specifies the market type. When creating a spot node pool,
+               this parameter should be set to **spot**.
         :param pulumi.Input[_builtins.int] max_pods: Specifies the maximum number of instances a node is allowed to create.
         :param pulumi.Input[_builtins.str] nic_threshold: Specifies the ENI pre-binding thresholds.
                Example setting: **"0.3:0.6"**.
@@ -3868,6 +4392,10 @@ class NodePoolExtendParamsArgs:
                The input value can be a Base64 encoded string or not.
         :param pulumi.Input[_builtins.str] security_reinforcement_type: Specifies the security reinforcement type.
                The value can be: **null** or **cybersecurity**.
+        :param pulumi.Input[_builtins.str] spot_price: Specifies the highest price per hour a user accepts for a spot node.
+               
+               <a name="storage_struct"></a>
+               The `storage` block supports:
         :param pulumi.Input[_builtins.int] system_reserved_mem: Specifies the reserved node memory, which is reserved
                value for system components.
         """
@@ -3939,6 +4467,10 @@ class NodePoolExtendParamsArgs:
     @_builtins.property
     @pulumi.getter(name="marketType")
     def market_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the market type. When creating a spot node pool,
+        this parameter should be set to **spot**.
+        """
         return pulumi.get(self, "market_type")
 
     @market_type.setter
@@ -4037,6 +4569,12 @@ class NodePoolExtendParamsArgs:
     @_builtins.property
     @pulumi.getter(name="spotPrice")
     def spot_price(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the highest price per hour a user accepts for a spot node.
+
+        <a name="storage_struct"></a>
+        The `storage` block supports:
+        """
         return pulumi.get(self, "spot_price")
 
     @spot_price.setter
@@ -4057,24 +4595,21 @@ class NodePoolExtendParamsArgs:
         pulumi.set(self, "system_reserved_mem", value)
 
 
-if not MYPY:
-    class NodePoolExtensionScaleGroupArgsDict(TypedDict):
-        metadata: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupMetadataArgsDict']]
-        """
-        The basic information about the extended scaling group.
-        The object structure is documented below.
-        """
-        spec: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecArgsDict']]
-        """
-        Specifies the configurations of the extended scaling group,
-        which carry different configurations from those of the default scaling group.
-        The object structure is documented below.
+class NodePoolExtensionScaleGroupArgsDict(TypedDict):
+    metadata: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupMetadataArgsDict']]
+    """
+    Specifies the basic information about the extended scaling group.
+    The metadata structure is documented below.
+    """
+    spec: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecArgsDict']]
+    """
+    Specifies the configurations of the extended scaling group,
+    which carry different configurations from those of the default scaling group.
+    The spec structure is documented below.
 
-        <a name="metadata"></a>
-        The `metadata` block supports:
-        """
-elif False:
-    NodePoolExtensionScaleGroupArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metadata_struct"></a>
+    The `metadata` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolExtensionScaleGroupArgs:
@@ -4082,13 +4617,13 @@ class NodePoolExtensionScaleGroupArgs:
                  metadata: Optional[pulumi.Input['NodePoolExtensionScaleGroupMetadataArgs']] = None,
                  spec: Optional[pulumi.Input['NodePoolExtensionScaleGroupSpecArgs']] = None):
         """
-        :param pulumi.Input['NodePoolExtensionScaleGroupMetadataArgs'] metadata: The basic information about the extended scaling group.
-               The object structure is documented below.
+        :param pulumi.Input['NodePoolExtensionScaleGroupMetadataArgs'] metadata: Specifies the basic information about the extended scaling group.
+               The metadata structure is documented below.
         :param pulumi.Input['NodePoolExtensionScaleGroupSpecArgs'] spec: Specifies the configurations of the extended scaling group,
                which carry different configurations from those of the default scaling group.
-               The object structure is documented below.
+               The spec structure is documented below.
                
-               <a name="metadata"></a>
+               <a name="metadata_struct"></a>
                The `metadata` block supports:
         """
         if metadata is not None:
@@ -4100,8 +4635,8 @@ class NodePoolExtensionScaleGroupArgs:
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['NodePoolExtensionScaleGroupMetadataArgs']]:
         """
-        The basic information about the extended scaling group.
-        The object structure is documented below.
+        Specifies the basic information about the extended scaling group.
+        The metadata structure is documented below.
         """
         return pulumi.get(self, "metadata")
 
@@ -4115,9 +4650,9 @@ class NodePoolExtensionScaleGroupArgs:
         """
         Specifies the configurations of the extended scaling group,
         which carry different configurations from those of the default scaling group.
-        The object structure is documented below.
+        The spec structure is documented below.
 
-        <a name="metadata"></a>
+        <a name="metadata_struct"></a>
         The `metadata` block supports:
         """
         return pulumi.get(self, "spec")
@@ -4127,18 +4662,20 @@ class NodePoolExtensionScaleGroupArgs:
         pulumi.set(self, "spec", value)
 
 
-if not MYPY:
-    class NodePoolExtensionScaleGroupMetadataArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the node pool name.
-        """
-        uid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the extended scaling group.
-        """
-elif False:
-    NodePoolExtensionScaleGroupMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolExtensionScaleGroupMetadataArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of an extended scaling group.
+    The value cannot be default and can contain a maximum of 55 characters.
+    Only digits, lowercase letters, and hyphens (-) are allowed.
+
+    <a name="spec_struct"></a>
+    The `spec` block supports:
+    """
+    uid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the extended scaling group.
+    """
 
 @pulumi.input_type
 class NodePoolExtensionScaleGroupMetadataArgs:
@@ -4146,7 +4683,12 @@ class NodePoolExtensionScaleGroupMetadataArgs:
                  name: pulumi.Input[_builtins.str],
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] name: Specifies the node pool name.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] uid: The ID of the extended scaling group.
         """
         pulumi.set(__self__, "name", name)
@@ -4157,7 +4699,12 @@ class NodePoolExtensionScaleGroupMetadataArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the node pool name.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -4178,33 +4725,30 @@ class NodePoolExtensionScaleGroupMetadataArgs:
         pulumi.set(self, "uid", value)
 
 
-if not MYPY:
-    class NodePoolExtensionScaleGroupSpecArgsDict(TypedDict):
-        autoscaling: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecAutoscalingArgsDict']]
-        """
-        Specifies the auto scaling configurations of the extended scaling group.
-        The object structure is documented below.
+class NodePoolExtensionScaleGroupSpecArgsDict(TypedDict):
+    autoscaling: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecAutoscalingArgsDict']]
+    """
+    Specifies the auto scaling configurations of the extended scaling group.
+    The autoscaling structure is documented below.
 
-        <a name="capacity_reservation_specification"></a>
-        The `capacity_reservation_specification` block supports:
-        """
-        az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone of a node.
-        If this parameter is not specified or left blank, the default scaling group configurations take effect.
-        """
-        capacity_reservation_specification: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgsDict']]
-        """
-        Specifies the capacity reservation
-        configurations of the extended scaling group.
-        The object structure is documented below.
-        """
-        flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the node flavor.
-        """
-elif False:
-    NodePoolExtensionScaleGroupSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="capacity_reservation_specification_struct"></a>
+    The `capacity_reservation_specification` block supports:
+    """
+    az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone of a node.
+    If this parameter is not specified or left blank, the default scaling group configurations take effect.
+    """
+    capacity_reservation_specification: NotRequired[pulumi.Input['NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgsDict']]
+    """
+    Specifies the capacity reservation
+    configurations of the extended scaling group.
+    The capacity_reservation_specification structure is documented below.
+    """
+    flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the node flavor.
+    """
 
 @pulumi.input_type
 class NodePoolExtensionScaleGroupSpecArgs:
@@ -4215,15 +4759,15 @@ class NodePoolExtensionScaleGroupSpecArgs:
                  flavor: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input['NodePoolExtensionScaleGroupSpecAutoscalingArgs'] autoscaling: Specifies the auto scaling configurations of the extended scaling group.
-               The object structure is documented below.
+               The autoscaling structure is documented below.
                
-               <a name="capacity_reservation_specification"></a>
+               <a name="capacity_reservation_specification_struct"></a>
                The `capacity_reservation_specification` block supports:
         :param pulumi.Input[_builtins.str] az: Specifies the availability zone of a node.
                If this parameter is not specified or left blank, the default scaling group configurations take effect.
         :param pulumi.Input['NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs'] capacity_reservation_specification: Specifies the capacity reservation
                configurations of the extended scaling group.
-               The object structure is documented below.
+               The capacity_reservation_specification structure is documented below.
         :param pulumi.Input[_builtins.str] flavor: Specifies the node flavor.
         """
         if autoscaling is not None:
@@ -4240,9 +4784,9 @@ class NodePoolExtensionScaleGroupSpecArgs:
     def autoscaling(self) -> Optional[pulumi.Input['NodePoolExtensionScaleGroupSpecAutoscalingArgs']]:
         """
         Specifies the auto scaling configurations of the extended scaling group.
-        The object structure is documented below.
+        The autoscaling structure is documented below.
 
-        <a name="capacity_reservation_specification"></a>
+        <a name="capacity_reservation_specification_struct"></a>
         The `capacity_reservation_specification` block supports:
         """
         return pulumi.get(self, "autoscaling")
@@ -4270,7 +4814,7 @@ class NodePoolExtensionScaleGroupSpecArgs:
         """
         Specifies the capacity reservation
         configurations of the extended scaling group.
-        The object structure is documented below.
+        The capacity_reservation_specification structure is documented below.
         """
         return pulumi.get(self, "capacity_reservation_specification")
 
@@ -4291,27 +4835,27 @@ class NodePoolExtensionScaleGroupSpecArgs:
         pulumi.set(self, "flavor", value)
 
 
-if not MYPY:
-    class NodePoolExtensionScaleGroupSpecAutoscalingArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable auto scaling for the scaling group, defaults to **false**.
-        """
-        extension_priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the priority of the scaling group, defaults to **0**.
-        A higher value indicates a greater priority.
-        """
-        max_node_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        """
-        min_node_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
-        """
-elif False:
-    NodePoolExtensionScaleGroupSpecAutoscalingArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolExtensionScaleGroupSpecAutoscalingArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable auto scaling for the scaling group, defaults to **false**.
+    """
+    extension_priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the priority of the scaling group, defaults to **0**.
+    A higher value indicates a greater priority.
+    """
+    max_node_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of nodes that can be retained in the scaling group
+    during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+    than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+    """
+    min_node_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum number of nodes in the scaling group during auto scaling.
+    The value must be greater than **0**.
+    """
 
 @pulumi.input_type
 class NodePoolExtensionScaleGroupSpecAutoscalingArgs:
@@ -4324,8 +4868,11 @@ class NodePoolExtensionScaleGroupSpecAutoscalingArgs:
         :param pulumi.Input[_builtins.bool] enable: Specifies whether to enable auto scaling for the scaling group, defaults to **false**.
         :param pulumi.Input[_builtins.int] extension_priority: Specifies the priority of the scaling group, defaults to **0**.
                A higher value indicates a greater priority.
-        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        :param pulumi.Input[_builtins.int] max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param pulumi.Input[_builtins.int] min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
         """
         if enable is not None:
             pulumi.set(__self__, "enable", enable)
@@ -4365,7 +4912,9 @@ class NodePoolExtensionScaleGroupSpecAutoscalingArgs:
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
+        Specifies the maximum number of nodes that can be retained in the scaling group
+        during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+        than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -4377,7 +4926,8 @@ class NodePoolExtensionScaleGroupSpecAutoscalingArgs:
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        Specifies the minimum number of nodes in the scaling group during auto scaling.
+        The value must be greater than **0**.
         """
         return pulumi.get(self, "min_node_count")
 
@@ -4386,23 +4936,21 @@ class NodePoolExtensionScaleGroupSpecAutoscalingArgs:
         pulumi.set(self, "min_node_count", value)
 
 
-if not MYPY:
-    class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource ID in UUID format.
-        """
-        preference: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the capacity of a private storage pool. If the value is none,
-        the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
-        In this case, the `id` cannot be left blank.
+class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the private pool ID.
+    The parameter value can be ignored when preference is set to none.
+    """
+    preference: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the capacity of a private storage pool. If the value is none,
+    the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
+    In this case, the `id` cannot be left blank.
 
-        <a name="autoscaling"></a>
-        The `autoscaling` block supports:
-        """
-elif False:
-    NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="autoscaling_struct"></a>
+    The `autoscaling` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs:
@@ -4410,12 +4958,13 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs:
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  preference: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] id: The resource ID in UUID format.
+        :param pulumi.Input[_builtins.str] id: Specifies the private pool ID.
+               The parameter value can be ignored when preference is set to none.
         :param pulumi.Input[_builtins.str] preference: Specifies the capacity of a private storage pool. If the value is none,
                the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
                In this case, the `id` cannot be left blank.
                
-               <a name="autoscaling"></a>
+               <a name="autoscaling_struct"></a>
                The `autoscaling` block supports:
         """
         if id is not None:
@@ -4427,7 +4976,8 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The resource ID in UUID format.
+        Specifies the private pool ID.
+        The parameter value can be ignored when preference is set to none.
         """
         return pulumi.get(self, "id")
 
@@ -4443,7 +4993,7 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs:
         the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
         In this case, the `id` cannot be left blank.
 
-        <a name="autoscaling"></a>
+        <a name="autoscaling_struct"></a>
         The `autoscaling` block supports:
         """
         return pulumi.get(self, "preference")
@@ -4453,21 +5003,46 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs:
         pulumi.set(self, "preference", value)
 
 
-if not MYPY:
-    class NodePoolHostnameConfigArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
-        """
-elif False:
-    NodePoolHostnameConfigArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolHostnameConfigArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the hostname type of the kubernetes node.
+    The value can be:
+    + **privateIp**: The Kubernetes node is named after its IP address.
+    + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+    If `hostname_config` not specified, the default value is **privateIp**.
+
+    ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+    The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+    after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+    each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+    characters is a lowercase letter or a digit ranging from 0 to 9.
+
+    <a name="extension_scale_groups_struct"></a>
+    The `extension_scale_groups` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolHostnameConfigArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         pulumi.set(__self__, "type", type)
 
@@ -4475,7 +5050,21 @@ class NodePoolHostnameConfigArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -4484,14 +5073,11 @@ class NodePoolHostnameConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodePoolNodesAddNodeListArgsDict(TypedDict):
-        server_id: pulumi.Input[_builtins.str]
-        """
-        Specifies server ID.
-        """
-elif False:
-    NodePoolNodesAddNodeListArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolNodesAddNodeListArgsDict(TypedDict):
+    server_id: pulumi.Input[_builtins.str]
+    """
+    Specifies server ID.
+    """
 
 @pulumi.input_type
 class NodePoolNodesAddNodeListArgs:
@@ -4515,45 +5101,49 @@ class NodePoolNodesAddNodeListArgs:
         pulumi.set(self, "server_id", value)
 
 
-if not MYPY:
-    class NodePoolRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size in GB.
-        """
-        volumetype: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type.
-        """
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DSS pool ID. This field is used only for dedicated storage.
-        """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the disk expansion parameters.
-        """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the iops of the disk,
-        required when `volumetype` is **GPSSD2** or **ESSD2**.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the KMS key ID. This is used to encrypt the volume.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the throughput of the disk in MiB/s,
-        required when `volumetype` is **GPSSD2**.
-        """
-elif False:
-    NodePoolRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+    """
+    volumetype: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type.
+    """
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DSS pool ID. This field is used only for dedicated storage.
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the iops of the disk,
+    required when `volumetype` is **GPSSD2** or **ESSD2**.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the KMS key ID. This is used to encrypt the volume.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the disk in MiB/s,
+    required when `volumetype` is **GPSSD2**.
+
+    > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+    ever.
+
+    <a name="taints_struct"></a>
+    The `taints` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolRootVolumeArgs:
@@ -4568,7 +5158,8 @@ class NodePoolRootVolumeArgs:
                  kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  throughput: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] size: Specifies the disk size in GB.
+        :param pulumi.Input[_builtins.int] size: Specifies the size of a virtual space. Only an integer percentage is supported.
+               Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param pulumi.Input[_builtins.str] volumetype: Specifies the disk type.
         :param pulumi.Input[_builtins.str] dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extend_params: Specifies the disk expansion parameters.
@@ -4578,6 +5169,12 @@ class NodePoolRootVolumeArgs:
         :param pulumi.Input[_builtins.str] kms_key_id: Specifies the KMS key ID. This is used to encrypt the volume.
         :param pulumi.Input[_builtins.int] throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
+               
+               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+               ever.
+               
+               <a name="taints_struct"></a>
+               The `taints` block supports:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "volumetype", volumetype)
@@ -4603,7 +5200,8 @@ class NodePoolRootVolumeArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[_builtins.int]:
         """
-        Specifies the disk size in GB.
+        Specifies the size of a virtual space. Only an integer percentage is supported.
+        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         """
         return pulumi.get(self, "size")
 
@@ -4700,6 +5298,12 @@ class NodePoolRootVolumeArgs:
         """
         Specifies the throughput of the disk in MiB/s,
         required when `volumetype` is **GPSSD2**.
+
+        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+        ever.
+
+        <a name="taints_struct"></a>
+        The `taints` block supports:
         """
         return pulumi.get(self, "throughput")
 
@@ -4708,20 +5312,22 @@ class NodePoolRootVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodePoolStorageArgsDict(TypedDict):
-        groups: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgsDict']]]
-        """
-        Specifies the storage group consists of multiple storage devices.
-        This is used to divide storage space. Structure is documented below.
-        """
-        selectors: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgsDict']]]
-        """
-        Specifies the disk selection.
-        Matched disks are managed according to match labels and storage type. Structure is documented below.
-        """
-elif False:
-    NodePoolStorageArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolStorageArgsDict(TypedDict):
+    groups: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgsDict']]]
+    """
+    Specifies the storage group consists of multiple storage devices. This is used to divide
+    storage space.
+    The groups structure is documented below.
+
+    <a name="selectors_struct"></a>
+    The `selectors` block supports:
+    """
+    selectors: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgsDict']]]
+    """
+    Specifies the disk selection. Matched disks are managed according to match labels and
+    storage type.
+    The selectors structure is documented below.
+    """
 
 @pulumi.input_type
 class NodePoolStorageArgs:
@@ -4729,10 +5335,15 @@ class NodePoolStorageArgs:
                  groups: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgs']]],
                  selectors: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgs']]]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgs']]] groups: Specifies the storage group consists of multiple storage devices.
-               This is used to divide storage space. Structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgs']]] selectors: Specifies the disk selection.
-               Matched disks are managed according to match labels and storage type. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgs']]] groups: Specifies the storage group consists of multiple storage devices. This is used to divide
+               storage space.
+               The groups structure is documented below.
+               
+               <a name="selectors_struct"></a>
+               The `selectors` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgs']]] selectors: Specifies the disk selection. Matched disks are managed according to match labels and
+               storage type.
+               The selectors structure is documented below.
         """
         pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "selectors", selectors)
@@ -4741,8 +5352,12 @@ class NodePoolStorageArgs:
     @pulumi.getter
     def groups(self) -> pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupArgs']]]:
         """
-        Specifies the storage group consists of multiple storage devices.
-        This is used to divide storage space. Structure is documented below.
+        Specifies the storage group consists of multiple storage devices. This is used to divide
+        storage space.
+        The groups structure is documented below.
+
+        <a name="selectors_struct"></a>
+        The `selectors` block supports:
         """
         return pulumi.get(self, "groups")
 
@@ -4754,8 +5369,9 @@ class NodePoolStorageArgs:
     @pulumi.getter
     def selectors(self) -> pulumi.Input[Sequence[pulumi.Input['NodePoolStorageSelectorArgs']]]:
         """
-        Specifies the disk selection.
-        Matched disks are managed according to match labels and storage type. Structure is documented below.
+        Specifies the disk selection. Matched disks are managed according to match labels and
+        storage type.
+        The selectors structure is documented below.
         """
         return pulumi.get(self, "selectors")
 
@@ -4764,34 +5380,34 @@ class NodePoolStorageArgs:
         pulumi.set(self, "selectors", value)
 
 
-if not MYPY:
-    class NodePoolStorageGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of an extended scaling group.
-        The value cannot be default and can contain a maximum of 55 characters.
-        Only digits, lowercase letters, and hyphens (-) are allowed.
+class NodePoolStorageGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of an extended scaling group.
+    The value cannot be default and can contain a maximum of 55 characters.
+    Only digits, lowercase letters, and hyphens (-) are allowed.
 
-        <a name="spec"></a>
-        The `spec` block supports:
-        """
-        selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the list of names of selectors to match.
-        This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group.
-        """
-        virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgsDict']]]
-        """
-        Specifies the detailed management of space configuration in a group.
-        """
-        cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the whether the storage space is for **kubernetes** and
-        **runtime** components. Only one group can be set to true. The default value is **false**.
-        """
-elif False:
-    NodePoolStorageGroupArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="spec_struct"></a>
+    The `spec` block supports:
+    """
+    selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of names of selectors to match. This parameter corresponds to
+    name in `selectors`. A group can match multiple selectors, but a selector can match only one group.
+    """
+    virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgsDict']]]
+    """
+    Specifies the detailed management of space configuration in a group.
+    The virtual_spaces structure is documented below.
+
+    <a name="virtual_spaces_struct"></a>
+    The `virtual_spaces` block supports:
+    """
+    cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the whether the storage space is for **kubernetes** and **runtime**
+    components. Only one group can be set to true. The default value is **false**.
+    """
 
 @pulumi.input_type
 class NodePoolStorageGroupArgs:
@@ -4805,14 +5421,17 @@ class NodePoolStorageGroupArgs:
                The value cannot be default and can contain a maximum of 55 characters.
                Only digits, lowercase letters, and hyphens (-) are allowed.
                
-               <a name="spec"></a>
+               <a name="spec_struct"></a>
                The `spec` block supports:
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] selector_names: Specifies the list of names of selectors to match.
-               This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-               but a selector can match only one group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] selector_names: Specifies the list of names of selectors to match. This parameter corresponds to
+               name in `selectors`. A group can match multiple selectors, but a selector can match only one group.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgs']]] virtual_spaces: Specifies the detailed management of space configuration in a group.
-        :param pulumi.Input[_builtins.bool] cce_managed: Specifies the whether the storage space is for **kubernetes** and
-               **runtime** components. Only one group can be set to true. The default value is **false**.
+               The virtual_spaces structure is documented below.
+               
+               <a name="virtual_spaces_struct"></a>
+               The `virtual_spaces` block supports:
+        :param pulumi.Input[_builtins.bool] cce_managed: Specifies the whether the storage space is for **kubernetes** and **runtime**
+               components. Only one group can be set to true. The default value is **false**.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "selector_names", selector_names)
@@ -4828,7 +5447,7 @@ class NodePoolStorageGroupArgs:
         The value cannot be default and can contain a maximum of 55 characters.
         Only digits, lowercase letters, and hyphens (-) are allowed.
 
-        <a name="spec"></a>
+        <a name="spec_struct"></a>
         The `spec` block supports:
         """
         return pulumi.get(self, "name")
@@ -4841,9 +5460,8 @@ class NodePoolStorageGroupArgs:
     @pulumi.getter(name="selectorNames")
     def selector_names(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Specifies the list of names of selectors to match.
-        This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group.
+        Specifies the list of names of selectors to match. This parameter corresponds to
+        name in `selectors`. A group can match multiple selectors, but a selector can match only one group.
         """
         return pulumi.get(self, "selector_names")
 
@@ -4856,6 +5474,10 @@ class NodePoolStorageGroupArgs:
     def virtual_spaces(self) -> pulumi.Input[Sequence[pulumi.Input['NodePoolStorageGroupVirtualSpaceArgs']]]:
         """
         Specifies the detailed management of space configuration in a group.
+        The virtual_spaces structure is documented below.
+
+        <a name="virtual_spaces_struct"></a>
+        The `virtual_spaces` block supports:
         """
         return pulumi.get(self, "virtual_spaces")
 
@@ -4867,8 +5489,8 @@ class NodePoolStorageGroupArgs:
     @pulumi.getter(name="cceManaged")
     def cce_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies the whether the storage space is for **kubernetes** and
-        **runtime** components. Only one group can be set to true. The default value is **false**.
+        Specifies the whether the storage space is for **kubernetes** and **runtime**
+        components. Only one group can be set to true. The default value is **false**.
         """
         return pulumi.get(self, "cce_managed")
 
@@ -4877,38 +5499,39 @@ class NodePoolStorageGroupArgs:
         pulumi.set(self, "cce_managed", value)
 
 
-if not MYPY:
-    class NodePoolStorageGroupVirtualSpaceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported.
-        """
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the size of a virtual space. Only an integer percentage is supported.
-        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        """
-        lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **kubernetes** and **user** configuration.
-        """
-        lvm_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the absolute path to which the disk is attached.
-        This parameter takes effect only in **user** configuration.
-        """
-        runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **runtime** configuration.
+class NodePoolStorageGroupVirtualSpaceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of an extended scaling group.
+    The value cannot be default and can contain a maximum of 55 characters.
+    Only digits, lowercase letters, and hyphens (-) are allowed.
 
-        <a name="hostname_config"></a>
-        The `hostname_config` block supports:
-        """
-elif False:
-    NodePoolStorageGroupVirtualSpaceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="spec_struct"></a>
+    The `spec` block supports:
+    """
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+    """
+    lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **kubernetes** and **user** configuration.
+    """
+    lvm_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the absolute path to which the disk is attached.
+    This parameter takes effect only in **user** configuration.
+    """
+    runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **runtime** configuration.
+
+    <a name="hostname_config_struct"></a>
+    The `hostname_config` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolStorageGroupVirtualSpaceArgs:
@@ -4919,8 +5542,12 @@ class NodePoolStorageGroupVirtualSpaceArgs:
                  lvm_path: Optional[pulumi.Input[_builtins.str]] = None,
                  runtime_lv_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] name: Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-               and **user** are supported.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param pulumi.Input[_builtins.str] size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param pulumi.Input[_builtins.str] lvm_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
@@ -4930,7 +5557,7 @@ class NodePoolStorageGroupVirtualSpaceArgs:
         :param pulumi.Input[_builtins.str] runtime_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
                This parameter takes effect only in **runtime** configuration.
                
-               <a name="hostname_config"></a>
+               <a name="hostname_config_struct"></a>
                The `hostname_config` block supports:
         """
         pulumi.set(__self__, "name", name)
@@ -4946,8 +5573,12 @@ class NodePoolStorageGroupVirtualSpaceArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -5001,7 +5632,7 @@ class NodePoolStorageGroupVirtualSpaceArgs:
         Specifies the LVM write mode, values can be **linear** and **striped**.
         This parameter takes effect only in **runtime** configuration.
 
-        <a name="hostname_config"></a>
+        <a name="hostname_config_struct"></a>
         The `hostname_config` block supports:
         """
         return pulumi.get(self, "runtime_lv_type")
@@ -5011,46 +5642,62 @@ class NodePoolStorageGroupVirtualSpaceArgs:
         pulumi.set(self, "runtime_lv_type", value)
 
 
-if not MYPY:
-    class NodePoolStorageSelectorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the selector name, used as the index of `selector_names`
-        in storage group. The name of each selector must be unique.
-        """
-        match_label_count: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected.
-        """
-        match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the customer master key ID of an encrypted
-        disk.
-        """
-        match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the disk encryption identifier.
-        Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-        If omitted, whether the disk is encrypted is not limited.
-        """
-        match_label_size: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100.
-        """
-        match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EVS disk type. Currently,
-        **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-        The default value is **evs**.
-        """
-elif False:
-    NodePoolStorageSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class NodePoolStorageSelectorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of an extended scaling group.
+    The value cannot be default and can contain a maximum of 55 characters.
+    Only digits, lowercase letters, and hyphens (-) are allowed.
+
+    <a name="spec_struct"></a>
+    The `spec` block supports:
+    """
+    match_label_count: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of disks to be selected. If omitted, all disks of this
+    type are selected.
+
+    <a name="groups_struct"></a>
+    The `groups` block supports:
+    """
+    match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the customer master key ID of an encrypted disk.
+    """
+    match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk encryption identifier.
+    Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
+    If omitted, whether the disk is encrypted is not limited.
+    """
+    match_label_size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the matched disk size. If omitted, the disk size is not limited.
+    Example: 100.
+    """
+    match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EVS disk type. Currently, **SSD**, **GPSSD**, and **SAS**
+    are supported. If omitted, the disk type is not limited.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the hostname type of the kubernetes node.
+    The value can be:
+    + **privateIp**: The Kubernetes node is named after its IP address.
+    + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+    If `hostname_config` not specified, the default value is **privateIp**.
+
+    ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+    The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+    after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+    each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+    characters is a lowercase letter or a digit ranging from 0 to 9.
+
+    <a name="extension_scale_groups_struct"></a>
+    The `extension_scale_groups` block supports:
+    """
 
 @pulumi.input_type
 class NodePoolStorageSelectorArgs:
@@ -5063,21 +5710,40 @@ class NodePoolStorageSelectorArgs:
                  match_label_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] name: Specifies the selector name, used as the index of `selector_names`
-               in storage group. The name of each selector must be unique.
-        :param pulumi.Input[_builtins.str] match_label_count: Specifies the number of disks to be selected. If omitted,
-               all disks of this type are selected.
-        :param pulumi.Input[_builtins.str] match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted
-               disk.
+        :param pulumi.Input[_builtins.str] name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
+        :param pulumi.Input[_builtins.str] match_label_count: Specifies the number of disks to be selected. If omitted, all disks of this
+               type are selected.
+               
+               <a name="groups_struct"></a>
+               The `groups` block supports:
+        :param pulumi.Input[_builtins.str] match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted disk.
         :param pulumi.Input[_builtins.str] match_label_metadata_encrypted: Specifies the disk encryption identifier.
                Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
                If omitted, whether the disk is encrypted is not limited.
-        :param pulumi.Input[_builtins.str] match_label_size: Specifies the matched disk size. If omitted,
-               the disk size is not limited. Example: 100.
-        :param pulumi.Input[_builtins.str] match_label_volume_type: Specifies the EVS disk type. Currently,
-               **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        :param pulumi.Input[_builtins.str] type: Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-               The default value is **evs**.
+        :param pulumi.Input[_builtins.str] match_label_size: Specifies the matched disk size. If omitted, the disk size is not limited.
+               Example: 100.
+        :param pulumi.Input[_builtins.str] match_label_volume_type: Specifies the EVS disk type. Currently, **SSD**, **GPSSD**, and **SAS**
+               are supported. If omitted, the disk type is not limited.
+        :param pulumi.Input[_builtins.str] type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         pulumi.set(__self__, "name", name)
         if match_label_count is not None:
@@ -5097,8 +5763,12 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the selector name, used as the index of `selector_names`
-        in storage group. The name of each selector must be unique.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -5110,8 +5780,11 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter(name="matchLabelCount")
     def match_label_count(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected.
+        Specifies the number of disks to be selected. If omitted, all disks of this
+        type are selected.
+
+        <a name="groups_struct"></a>
+        The `groups` block supports:
         """
         return pulumi.get(self, "match_label_count")
 
@@ -5123,8 +5796,7 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter(name="matchLabelMetadataCmkid")
     def match_label_metadata_cmkid(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the customer master key ID of an encrypted
-        disk.
+        Specifies the customer master key ID of an encrypted disk.
         """
         return pulumi.get(self, "match_label_metadata_cmkid")
 
@@ -5150,8 +5822,8 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter(name="matchLabelSize")
     def match_label_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100.
+        Specifies the matched disk size. If omitted, the disk size is not limited.
+        Example: 100.
         """
         return pulumi.get(self, "match_label_size")
 
@@ -5163,8 +5835,8 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter(name="matchLabelVolumeType")
     def match_label_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the EVS disk type. Currently,
-        **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+        Specifies the EVS disk type. Currently, **SSD**, **GPSSD**, and **SAS**
+        are supported. If omitted, the disk type is not limited.
         """
         return pulumi.get(self, "match_label_volume_type")
 
@@ -5176,8 +5848,21 @@ class NodePoolStorageSelectorArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-        The default value is **evs**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -5186,28 +5871,25 @@ class NodePoolStorageSelectorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodePoolTaintArgsDict(TypedDict):
-        effect: pulumi.Input[_builtins.str]
-        """
-        Available options are NoSchedule, PreferNoSchedule, and NoExecute.
+class NodePoolTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Available options are NoSchedule, PreferNoSchedule, and NoExecute.
 
-        <a name="extend_params"></a>
-        The `extend_params` block supports:
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        A key must contain 1 to 63 characters starting with a letter or digit. Only letters,
-        digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the
-        prefix of a key.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        A value must start with a letter or digit and can contain a maximum of 63 characters,
-        including letters, digits, hyphens (-), underscores (_), and periods (.).
-        """
-elif False:
-    NodePoolTaintArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="extend_params_struct"></a>
+    The `extend_params` block supports:
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    A key must contain 1 to 63 characters starting with a letter or digit. Only letters,
+    digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the
+    prefix of a key.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    A value must start with a letter or digit and can contain a maximum of 63 characters,
+    including letters, digits, hyphens (-), underscores (_), and periods (.).
+    """
 
 @pulumi.input_type
 class NodePoolTaintArgs:
@@ -5218,7 +5900,7 @@ class NodePoolTaintArgs:
         """
         :param pulumi.Input[_builtins.str] effect: Available options are NoSchedule, PreferNoSchedule, and NoExecute.
                
-               <a name="extend_params"></a>
+               <a name="extend_params_struct"></a>
                The `extend_params` block supports:
         :param pulumi.Input[_builtins.str] key: A key must contain 1 to 63 characters starting with a letter or digit. Only letters,
                digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the
@@ -5236,7 +5918,7 @@ class NodePoolTaintArgs:
         """
         Available options are NoSchedule, PreferNoSchedule, and NoExecute.
 
-        <a name="extend_params"></a>
+        <a name="extend_params_struct"></a>
         The `extend_params` block supports:
         """
         return pulumi.get(self, "effect")
@@ -5273,45 +5955,42 @@ class NodePoolTaintArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class NodeRootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the disk size in GB.
-        """
-        volumetype: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk type.
-        """
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DSS pool ID. This field is used only for
-        """
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the disk expansion parameters.
-        """
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the iops of the disk,
-        required when `volumetype` is **GPSSD2** or **ESSD2**.
-        """
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of a KMS key. This is used to encrypt the volume.
-        """
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the throughput of the disk in MiB/s,
-        required when `volumetype` is **GPSSD2**.
-        """
-elif False:
-    NodeRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class NodeRootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the disk size in GB.
+    """
+    volumetype: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk type.
+    """
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DSS pool ID. This field is used only for
+    """
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the disk expansion parameters.
+    """
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the iops of the disk,
+    required when `volumetype` is **GPSSD2** or **ESSD2**.
+    """
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of a KMS key. This is used to encrypt the volume.
+    """
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the throughput of the disk in MiB/s,
+    required when `volumetype` is **GPSSD2**.
+    """
 
 @pulumi.input_type
 class NodeRootVolumeArgs:
@@ -5466,20 +6145,17 @@ class NodeRootVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodeStorageArgsDict(TypedDict):
-        groups: pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupArgsDict']]]
-        """
-        Specifies the storage group consists of multiple storage devices.
-        This is used to divide storage space. Structure is documented below.
-        """
-        selectors: pulumi.Input[Sequence[pulumi.Input['NodeStorageSelectorArgsDict']]]
-        """
-        Specifies the disk selection.
-        Matched disks are managed according to match labels and storage type. Structure is documented below.
-        """
-elif False:
-    NodeStorageArgsDict: TypeAlias = Mapping[str, Any]
+class NodeStorageArgsDict(TypedDict):
+    groups: pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupArgsDict']]]
+    """
+    Specifies the storage group consists of multiple storage devices.
+    This is used to divide storage space. Structure is documented below.
+    """
+    selectors: pulumi.Input[Sequence[pulumi.Input['NodeStorageSelectorArgsDict']]]
+    """
+    Specifies the disk selection.
+    Matched disks are managed according to match labels and storage type. Structure is documented below.
+    """
 
 @pulumi.input_type
 class NodeStorageArgs:
@@ -5522,29 +6198,26 @@ class NodeStorageArgs:
         pulumi.set(self, "selectors", value)
 
 
-if not MYPY:
-    class NodeStorageGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a virtual storage group. Each group name must be unique.
-        """
-        selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the list of names of selectors to match.
-        This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group.
-        """
-        virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupVirtualSpaceArgsDict']]]
-        """
-        Specifies the detailed management of space configuration in a group.
-        """
-        cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the whether the storage space is for **kubernetes** and
-        **runtime** components. Only one group can be set to true. The default value is **false**.
-        """
-elif False:
-    NodeStorageGroupArgsDict: TypeAlias = Mapping[str, Any]
+class NodeStorageGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a virtual storage group. Each group name must be unique.
+    """
+    selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of names of selectors to match.
+    This parameter corresponds to name in `selectors`. A group can match multiple selectors,
+    but a selector can match only one group.
+    """
+    virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeStorageGroupVirtualSpaceArgsDict']]]
+    """
+    Specifies the detailed management of space configuration in a group.
+    """
+    cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the whether the storage space is for **kubernetes** and
+    **runtime** components. Only one group can be set to true. The default value is **false**.
+    """
 
 @pulumi.input_type
 class NodeStorageGroupArgs:
@@ -5620,38 +6293,35 @@ class NodeStorageGroupArgs:
         pulumi.set(self, "cce_managed", value)
 
 
-if not MYPY:
-    class NodeStorageGroupVirtualSpaceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported.
-        """
-        size: pulumi.Input[_builtins.str]
-        """
-        Specifies the size of a virtual space. Only an integer percentage is supported.
-        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
-        """
-        lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **kubernetes** and **user** configuration.
-        """
-        lvm_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the absolute path to which the disk is attached.
-        This parameter takes effect only in **user** configuration.
-        """
-        runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the LVM write mode, values can be **linear** and **striped**.
-        This parameter takes effect only in **runtime** configuration.
+class NodeStorageGroupVirtualSpaceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
+    and **user** are supported.
+    """
+    size: pulumi.Input[_builtins.str]
+    """
+    Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+    """
+    lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **kubernetes** and **user** configuration.
+    """
+    lvm_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the absolute path to which the disk is attached.
+    This parameter takes effect only in **user** configuration.
+    """
+    runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **runtime** configuration.
 
-        <a name="hostname_config"></a>
-        The `hostname_config` block supports:
-        """
-elif False:
-    NodeStorageGroupVirtualSpaceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="hostname_config"></a>
+    The `hostname_config` block supports:
+    """
 
 @pulumi.input_type
 class NodeStorageGroupVirtualSpaceArgs:
@@ -5754,46 +6424,43 @@ class NodeStorageGroupVirtualSpaceArgs:
         pulumi.set(self, "runtime_lv_type", value)
 
 
-if not MYPY:
-    class NodeStorageSelectorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the selector name, used as the index of `selector_names`
-        in storage group. The name of each selector must be unique.
-        """
-        match_label_count: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected.
-        """
-        match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the customer master key ID of an encrypted
-        disk.
-        """
-        match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the disk encryption identifier.
-        Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
-        If omitted, whether the disk is encrypted is not limited.
-        """
-        match_label_size: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100.
-        """
-        match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EVS disk type. Currently,
-        **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-        The default value is **evs**.
-        """
-elif False:
-    NodeStorageSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class NodeStorageSelectorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the selector name, used as the index of `selector_names`
+    in storage group. The name of each selector must be unique.
+    """
+    match_label_count: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of disks to be selected. If omitted,
+    all disks of this type are selected.
+    """
+    match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the customer master key ID of an encrypted
+    disk.
+    """
+    match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk encryption identifier.
+    Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
+    If omitted, whether the disk is encrypted is not limited.
+    """
+    match_label_size: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the matched disk size. If omitted,
+    the disk size is not limited. Example: 100.
+    """
+    match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EVS disk type. Currently,
+    **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
+    The default value is **evs**.
+    """
 
 @pulumi.input_type
 class NodeStorageSelectorArgs:
@@ -5929,25 +6596,22 @@ class NodeStorageSelectorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodeTaintArgsDict(TypedDict):
-        effect: pulumi.Input[_builtins.str]
-        """
-        Available options are NoSchedule, PreferNoSchedule, and NoExecute.
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        A key must contain 1 to 63 characters starting with a letter or digit.
-        Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-        as the prefix of a key.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A value must start with a letter or digit and can contain a maximum of 63
-        characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
-        """
-elif False:
-    NodeTaintArgsDict: TypeAlias = Mapping[str, Any]
+class NodeTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Available options are NoSchedule, PreferNoSchedule, and NoExecute.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    A key must contain 1 to 63 characters starting with a letter or digit.
+    Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
+    as the prefix of a key.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A value must start with a letter or digit and can contain a maximum of 63
+    characters, including letters, digits, hyphens (-), underscores (_), and periods (.).
+    """
 
 @pulumi.input_type
 class NodeTaintArgs:
@@ -6008,22 +6672,19 @@ class NodeTaintArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class NodeV3DataVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volumetype: pulumi.Input[_builtins.str]
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    NodeV3DataVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3DataVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volumetype: pulumi.Input[_builtins.str]
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class NodeV3DataVolumeArgs:
@@ -6146,23 +6807,20 @@ class NodeV3DataVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodeV3ExtendParamsArgsDict(TypedDict):
-        agency_name: NotRequired[pulumi.Input[_builtins.str]]
-        docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
-        kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-        market_type: NotRequired[pulumi.Input[_builtins.str]]
-        max_pods: NotRequired[pulumi.Input[_builtins.int]]
-        nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
-        node_image_id: NotRequired[pulumi.Input[_builtins.str]]
-        node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
-        postinstall: NotRequired[pulumi.Input[_builtins.str]]
-        preinstall: NotRequired[pulumi.Input[_builtins.str]]
-        security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
-        spot_price: NotRequired[pulumi.Input[_builtins.str]]
-        system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    NodeV3ExtendParamsArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3ExtendParamsArgsDict(TypedDict):
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    docker_base_size: NotRequired[pulumi.Input[_builtins.int]]
+    kube_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
+    market_type: NotRequired[pulumi.Input[_builtins.str]]
+    max_pods: NotRequired[pulumi.Input[_builtins.int]]
+    nic_threshold: NotRequired[pulumi.Input[_builtins.str]]
+    node_image_id: NotRequired[pulumi.Input[_builtins.str]]
+    node_multi_queue: NotRequired[pulumi.Input[_builtins.str]]
+    postinstall: NotRequired[pulumi.Input[_builtins.str]]
+    preinstall: NotRequired[pulumi.Input[_builtins.str]]
+    security_reinforcement_type: NotRequired[pulumi.Input[_builtins.str]]
+    spot_price: NotRequired[pulumi.Input[_builtins.str]]
+    system_reserved_mem: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class NodeV3ExtendParamsArgs:
@@ -6325,11 +6983,8 @@ class NodeV3ExtendParamsArgs:
         pulumi.set(self, "system_reserved_mem", value)
 
 
-if not MYPY:
-    class NodeV3ExtensionNicArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-elif False:
-    NodeV3ExtensionNicArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3ExtensionNicArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class NodeV3ExtensionNicArgs:
@@ -6347,11 +7002,8 @@ class NodeV3ExtensionNicArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class NodeV3HostnameConfigArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-elif False:
-    NodeV3HostnameConfigArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3HostnameConfigArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class NodeV3HostnameConfigArgs:
@@ -6369,22 +7021,19 @@ class NodeV3HostnameConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodeV3RootVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        volumetype: pulumi.Input[_builtins.str]
-        dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
-        extend_param: NotRequired[pulumi.Input[_builtins.str]]
-        extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Internal
-        """
-        iops: NotRequired[pulumi.Input[_builtins.int]]
-        kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        throughput: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    NodeV3RootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3RootVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    volumetype: pulumi.Input[_builtins.str]
+    dss_pool_id: NotRequired[pulumi.Input[_builtins.str]]
+    extend_param: NotRequired[pulumi.Input[_builtins.str]]
+    extend_params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    hw_passthrough: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Internal
+    """
+    iops: NotRequired[pulumi.Input[_builtins.int]]
+    kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    throughput: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class NodeV3RootVolumeArgs:
@@ -6507,12 +7156,9 @@ class NodeV3RootVolumeArgs:
         pulumi.set(self, "throughput", value)
 
 
-if not MYPY:
-    class NodeV3StorageArgsDict(TypedDict):
-        groups: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageGroupArgsDict']]]
-        selectors: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageSelectorArgsDict']]]
-elif False:
-    NodeV3StorageArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3StorageArgsDict(TypedDict):
+    groups: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageGroupArgsDict']]]
+    selectors: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageSelectorArgsDict']]]
 
 @pulumi.input_type
 class NodeV3StorageArgs:
@@ -6541,14 +7187,11 @@ class NodeV3StorageArgs:
         pulumi.set(self, "selectors", value)
 
 
-if not MYPY:
-    class NodeV3StorageGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageGroupVirtualSpaceArgsDict']]]
-        cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    NodeV3StorageGroupArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3StorageGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    virtual_spaces: pulumi.Input[Sequence[pulumi.Input['NodeV3StorageGroupVirtualSpaceArgsDict']]]
+    cce_managed: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class NodeV3StorageGroupArgs:
@@ -6600,15 +7243,12 @@ class NodeV3StorageGroupArgs:
         pulumi.set(self, "cce_managed", value)
 
 
-if not MYPY:
-    class NodeV3StorageGroupVirtualSpaceArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        size: pulumi.Input[_builtins.str]
-        lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-        lvm_path: NotRequired[pulumi.Input[_builtins.str]]
-        runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    NodeV3StorageGroupVirtualSpaceArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3StorageGroupVirtualSpaceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    size: pulumi.Input[_builtins.str]
+    lvm_lv_type: NotRequired[pulumi.Input[_builtins.str]]
+    lvm_path: NotRequired[pulumi.Input[_builtins.str]]
+    runtime_lv_type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class NodeV3StorageGroupVirtualSpaceArgs:
@@ -6673,17 +7313,14 @@ class NodeV3StorageGroupVirtualSpaceArgs:
         pulumi.set(self, "runtime_lv_type", value)
 
 
-if not MYPY:
-    class NodeV3StorageSelectorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        match_label_count: NotRequired[pulumi.Input[_builtins.str]]
-        match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
-        match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
-        match_label_size: NotRequired[pulumi.Input[_builtins.str]]
-        match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    NodeV3StorageSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3StorageSelectorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    match_label_count: NotRequired[pulumi.Input[_builtins.str]]
+    match_label_metadata_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    match_label_metadata_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    match_label_size: NotRequired[pulumi.Input[_builtins.str]]
+    match_label_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class NodeV3StorageSelectorArgs:
@@ -6773,13 +7410,10 @@ class NodeV3StorageSelectorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NodeV3TaintArgsDict(TypedDict):
-        effect: pulumi.Input[_builtins.str]
-        key: pulumi.Input[_builtins.str]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    NodeV3TaintArgsDict: TypeAlias = Mapping[str, Any]
+class NodeV3TaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    key: pulumi.Input[_builtins.str]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class NodeV3TaintArgs:
@@ -6820,14 +7454,11 @@ class NodeV3TaintArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class NodesRemoveNodeArgsDict(TypedDict):
-        uid: pulumi.Input[_builtins.str]
-        """
-        Specifies the node ID.
-        """
-elif False:
-    NodesRemoveNodeArgsDict: TypeAlias = Mapping[str, Any]
+class NodesRemoveNodeArgsDict(TypedDict):
+    uid: pulumi.Input[_builtins.str]
+    """
+    Specifies the node ID.
+    """
 
 @pulumi.input_type
 class NodesRemoveNodeArgs:
@@ -6849,5 +7480,210 @@ class NodesRemoveNodeArgs:
     @uid.setter
     def uid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "uid", value)
+
+
+class ReleaseParametersArgsDict(TypedDict):
+    dry_run: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to dry run. IF set to **true**,
+    only chart parameters are verified, and installation is not performed.
+    """
+    include_hooks: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable hooks during an update or deletion.
+    """
+    name_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the release name template.
+    """
+    no_hooks: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to disable hooks during installation.
+    """
+    recreate: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to rebuild the release.
+    """
+    release_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the version of the rollback release.
+    """
+    replace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to replace the release with the same name.
+    """
+    reset_values: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to reset values during an update.
+    """
+
+@pulumi.input_type
+class ReleaseParametersArgs:
+    def __init__(__self__, *,
+                 dry_run: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_hooks: Optional[pulumi.Input[_builtins.bool]] = None,
+                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 no_hooks: Optional[pulumi.Input[_builtins.bool]] = None,
+                 recreate: Optional[pulumi.Input[_builtins.bool]] = None,
+                 release_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 replace: Optional[pulumi.Input[_builtins.bool]] = None,
+                 reset_values: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] dry_run: Specifies whether to dry run. IF set to **true**,
+               only chart parameters are verified, and installation is not performed.
+        :param pulumi.Input[_builtins.bool] include_hooks: Specifies whether to enable hooks during an update or deletion.
+        :param pulumi.Input[_builtins.str] name_template: Specifies the release name template.
+        :param pulumi.Input[_builtins.bool] no_hooks: Specifies whether to disable hooks during installation.
+        :param pulumi.Input[_builtins.bool] recreate: Specifies whether to rebuild the release.
+        :param pulumi.Input[_builtins.int] release_version: Specifies the version of the rollback release.
+        :param pulumi.Input[_builtins.bool] replace: Specifies whether to replace the release with the same name.
+        :param pulumi.Input[_builtins.bool] reset_values: Specifies whether to reset values during an update.
+        """
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if include_hooks is not None:
+            pulumi.set(__self__, "include_hooks", include_hooks)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+        if no_hooks is not None:
+            pulumi.set(__self__, "no_hooks", no_hooks)
+        if recreate is not None:
+            pulumi.set(__self__, "recreate", recreate)
+        if release_version is not None:
+            pulumi.set(__self__, "release_version", release_version)
+        if replace is not None:
+            pulumi.set(__self__, "replace", replace)
+        if reset_values is not None:
+            pulumi.set(__self__, "reset_values", reset_values)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to dry run. IF set to **true**,
+        only chart parameters are verified, and installation is not performed.
+        """
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includeHooks")
+    def include_hooks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to enable hooks during an update or deletion.
+        """
+        return pulumi.get(self, "include_hooks")
+
+    @include_hooks.setter
+    def include_hooks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_hooks", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the release name template.
+        """
+        return pulumi.get(self, "name_template")
+
+    @name_template.setter
+    def name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="noHooks")
+    def no_hooks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to disable hooks during installation.
+        """
+        return pulumi.get(self, "no_hooks")
+
+    @no_hooks.setter
+    def no_hooks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "no_hooks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def recreate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to rebuild the release.
+        """
+        return pulumi.get(self, "recreate")
+
+    @recreate.setter
+    def recreate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "recreate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="releaseVersion")
+    def release_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the version of the rollback release.
+        """
+        return pulumi.get(self, "release_version")
+
+    @release_version.setter
+    def release_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "release_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to replace the release with the same name.
+        """
+        return pulumi.get(self, "replace")
+
+    @replace.setter
+    def replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "replace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resetValues")
+    def reset_values(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to reset values during an update.
+        """
+        return pulumi.get(self, "reset_values")
+
+    @reset_values.setter
+    def reset_values(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "reset_values", value)
+
+
+class ReleaseValuesArgsDict(TypedDict):
+    image_pull_policy: NotRequired[pulumi.Input[_builtins.str]]
+    image_tag: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class ReleaseValuesArgs:
+    def __init__(__self__, *,
+                 image_pull_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 image_tag: Optional[pulumi.Input[_builtins.str]] = None):
+        if image_pull_policy is not None:
+            pulumi.set(__self__, "image_pull_policy", image_pull_policy)
+        if image_tag is not None:
+            pulumi.set(__self__, "image_tag", image_tag)
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullPolicy")
+    def image_pull_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "image_pull_policy")
+
+    @image_pull_policy.setter
+    def image_pull_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_pull_policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageTag")
+    def image_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "image_tag")
+
+    @image_tag.setter
+    def image_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "image_tag", value)
 
 

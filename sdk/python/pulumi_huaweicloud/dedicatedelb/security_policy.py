@@ -29,6 +29,7 @@ class SecurityPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityPolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ciphers: Specifies the cipher suite list of the security policy.
                The protocol and cipher suite must match. That is to say, there must be at least one cipher suite in
                ciphers that matches the protocol. The following cipher suites are supported:
@@ -170,6 +171,7 @@ class _SecurityPolicyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityPolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ciphers: Specifies the cipher suite list of the security policy.
                The protocol and cipher suite must match. That is to say, there must be at least one cipher suite in
                ciphers that matches the protocol. The following cipher suites are supported:
@@ -387,11 +389,10 @@ class SecurityPolicy(pulumi.CustomResource):
 
         The elb security policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/securityPolicy:SecurityPolicy test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -454,11 +455,10 @@ class SecurityPolicy(pulumi.CustomResource):
 
         The elb security policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/securityPolicy:SecurityPolicy test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityPolicyArgs args: The arguments to use to populate this resource's properties.

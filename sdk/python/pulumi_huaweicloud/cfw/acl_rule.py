@@ -57,6 +57,7 @@ class AclRuleArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AclRule resource.
+
         :param pulumi.Input[_builtins.int] action_type: The action type.
                The value can be `0` (allow), `1` (deny).
         :param pulumi.Input[_builtins.int] address_type: The address type.
@@ -650,6 +651,7 @@ class _AclRuleState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AclRule resources.
+
         :param pulumi.Input[_builtins.int] action_type: The action type.
                The value can be `0` (allow), `1` (deny).
         :param pulumi.Input[_builtins.int] address_type: The address type.
@@ -1435,41 +1437,17 @@ class AclRule(pulumi.CustomResource):
 
         The ACL rule can be imported using `object_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/aclRule:AclRule test <object_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `sequence`, `type`, `predefined_service_groups` and `source_predefined_groups`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cfw_acl_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              sequence, type, predefined_service_groups, source_predefined_groups,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1722,41 +1700,17 @@ class AclRule(pulumi.CustomResource):
 
         The ACL rule can be imported using `object_id`, `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/aclRule:AclRule test <object_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `sequence`, `type`, `predefined_service_groups` and `source_predefined_groups`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cfw_acl_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              sequence, type, predefined_service_groups, source_predefined_groups,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AclRuleArgs args: The arguments to use to populate this resource's properties.

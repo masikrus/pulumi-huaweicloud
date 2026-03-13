@@ -27,6 +27,7 @@ class MessageDetectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MessageDetection resource.
+
         :param pulumi.Input[_builtins.str] endpoint: Specifies the endpoint address to be detected.
                The address must start with **http://** or **https://** and cannot be left blank.
         :param pulumi.Input[_builtins.str] protocol: Specifies the protocol type. The value can be **http** or **https**.
@@ -147,6 +148,7 @@ class _MessageDetectionState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MessageDetection resources.
+
         :param pulumi.Input[_builtins.str] endpoint: Specifies the endpoint address to be detected.
                The address must start with **http://** or **https://** and cannot be left blank.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extension: Specifies the extended key/value for subscriptions over HTTP or HTTPS.
@@ -303,6 +305,7 @@ class MessageDetection(pulumi.CustomResource):
             endpoint="https://example.com/notification/action")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] endpoint: Specifies the endpoint address to be detected.
@@ -344,6 +347,7 @@ class MessageDetection(pulumi.CustomResource):
             protocol="https",
             endpoint="https://example.com/notification/action")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MessageDetectionArgs args: The arguments to use to populate this resource's properties.

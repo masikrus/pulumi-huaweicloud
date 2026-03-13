@@ -28,6 +28,7 @@ class RabbitmqUserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqUser resource.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the user name. It starts with a letter, consists of 7 to 64
                characters, and contains only letters, digits, hyphens (-), and underscores (_).
                Changing this creates a new resource.
@@ -144,6 +145,7 @@ class _RabbitmqUserState:
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['RabbitmqUserVhostArgs']]]] = None):
         """
         Input properties used for looking up and filtering RabbitmqUser resources.
+
         :param pulumi.Input[_builtins.str] access_key: Specifies the user name. It starts with a letter, consists of 7 to 64
                characters, and contains only letters, digits, hyphens (-), and underscores (_).
                Changing this creates a new resource.
@@ -294,11 +296,10 @@ class RabbitmqUser(pulumi.CustomResource):
 
         The RabbitMQ user can be imported using `instance_id` and `access_key` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqUser:RabbitmqUser test <instance_id>/<access_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -358,11 +359,10 @@ class RabbitmqUser(pulumi.CustomResource):
 
         The RabbitMQ user can be imported using `instance_id` and `access_key` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqUser:RabbitmqUser test <instance_id>/<access_key>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqUserArgs args: The arguments to use to populate this resource's properties.

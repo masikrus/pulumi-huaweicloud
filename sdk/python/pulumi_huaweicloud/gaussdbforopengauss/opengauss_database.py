@@ -29,6 +29,7 @@ class OpengaussDatabaseArgs:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussDatabase resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB instance.
                
                Changing this parameter will create a new resource.
@@ -206,6 +207,7 @@ class _OpengaussDatabaseState:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussDatabase resources.
+
         :param pulumi.Input[_builtins.str] character_set: Specifies the database character set. Defaults to **UTF8**.
                
                Changing this parameter will create a new resource.
@@ -434,39 +436,16 @@ class OpengaussDatabase(pulumi.CustomResource):
 
         The GaussDB database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussDatabase:OpengaussDatabase test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template` and `lc_ctype`. It is generally
-
         recommended running `pulumi preview` after importing a GaussDB database. You can then decide if changes should be applied
-
         to the GaussDB database, or the resource definition should be updated to align with the GaussDB database. Also, you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_database" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template, lc_ctype,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -525,39 +504,16 @@ class OpengaussDatabase(pulumi.CustomResource):
 
         The GaussDB database can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussDatabase:OpengaussDatabase test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `template` and `lc_ctype`. It is generally
-
         recommended running `pulumi preview` after importing a GaussDB database. You can then decide if changes should be applied
-
         to the GaussDB database, or the resource definition should be updated to align with the GaussDB database. Also, you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_opengauss_database" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              template, lc_ctype,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param OpengaussDatabaseArgs args: The arguments to use to populate this resource's properties.

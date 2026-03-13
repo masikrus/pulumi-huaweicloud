@@ -143,7 +143,7 @@ def get_agent_install_script(batch_install: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_agent_install_script()
+    test = huaweicloud.Hss.get_agent_install_script()
     ```
 
 
@@ -171,7 +171,7 @@ def get_agent_install_script(batch_install: Optional[_builtins.bool] = None,
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAgentInstallScript:getAgentInstallScript', __args__, opts=opts, typ=GetAgentInstallScriptResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAgentInstallScript:getAgentInstallScript', __args__, opts=opts, typ=GetAgentInstallScriptResult).value
 
     return AwaitableGetAgentInstallScriptResult(
         batch_install=pulumi.get(__ret__, 'batch_install'),
@@ -200,7 +200,7 @@ def get_agent_install_script_output(batch_install: Optional[pulumi.Input[Optiona
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_agent_install_script()
+    test = huaweicloud.Hss.get_agent_install_script()
     ```
 
 
@@ -228,7 +228,7 @@ def get_agent_install_script_output(batch_install: Optional[pulumi.Input[Optiona
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAgentInstallScript:getAgentInstallScript', __args__, opts=opts, typ=GetAgentInstallScriptResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAgentInstallScript:getAgentInstallScript', __args__, opts=opts, typ=GetAgentInstallScriptResult)
     return __ret__.apply(lambda __response__: GetAgentInstallScriptResult(
         batch_install=pulumi.get(__response__, 'batch_install'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

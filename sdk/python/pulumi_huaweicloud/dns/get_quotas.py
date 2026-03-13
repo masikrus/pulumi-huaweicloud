@@ -112,8 +112,6 @@ def get_quotas(domain_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str domain_id: Specifies the account ID of IAM user.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str type: Specifies the resource type.  
            The valid values are as follows:
            + **zone**
@@ -156,8 +154,6 @@ def get_quotas_output(domain_id: Optional[pulumi.Input[_builtins.str]] = None,
 
 
     :param _builtins.str domain_id: Specifies the account ID of IAM user.
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str type: Specifies the resource type.  
            The valid values are as follows:
            + **zone**

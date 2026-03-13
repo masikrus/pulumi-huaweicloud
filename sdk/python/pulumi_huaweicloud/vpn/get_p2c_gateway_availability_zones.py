@@ -91,7 +91,7 @@ def get_p2c_gateway_availability_zones(flavor: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_p2c_gateway_availability_zones()
+    test = huaweicloud.Vpn.get_p2c_gateway_availability_zones()
     ```
 
 
@@ -103,7 +103,7 @@ def get_p2c_gateway_availability_zones(flavor: Optional[_builtins.str] = None,
     __args__['flavor'] = flavor
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getP2cGatewayAvailabilityZones:getP2cGatewayAvailabilityZones', __args__, opts=opts, typ=GetP2cGatewayAvailabilityZonesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getP2cGatewayAvailabilityZones:getP2cGatewayAvailabilityZones', __args__, opts=opts, typ=GetP2cGatewayAvailabilityZonesResult).value
 
     return AwaitableGetP2cGatewayAvailabilityZonesResult(
         availability_zones=pulumi.get(__ret__, 'availability_zones'),
@@ -122,7 +122,7 @@ def get_p2c_gateway_availability_zones_output(flavor: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.vpn.get_p2c_gateway_availability_zones()
+    test = huaweicloud.Vpn.get_p2c_gateway_availability_zones()
     ```
 
 
@@ -134,7 +134,7 @@ def get_p2c_gateway_availability_zones_output(flavor: Optional[pulumi.Input[Opti
     __args__['flavor'] = flavor
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getP2cGatewayAvailabilityZones:getP2cGatewayAvailabilityZones', __args__, opts=opts, typ=GetP2cGatewayAvailabilityZonesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getP2cGatewayAvailabilityZones:getP2cGatewayAvailabilityZones', __args__, opts=opts, typ=GetP2cGatewayAvailabilityZonesResult)
     return __ret__.apply(lambda __response__: GetP2cGatewayAvailabilityZonesResult(
         availability_zones=pulumi.get(__response__, 'availability_zones'),
         flavor=pulumi.get(__response__, 'flavor'),

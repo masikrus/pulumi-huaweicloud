@@ -118,7 +118,8 @@ def get_resource_tags_filter(matches: Optional[Sequence[Union['GetResourceTagsFi
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.Cts.get_resource_tags_filter(tags=[
+    test = huaweicloud.Cts.get_resource_tags_filter(resource_type="cts-tracker",
+        tags=[
             {
                 "key": "foo",
                 "values": [
@@ -183,7 +184,8 @@ def get_resource_tags_filter_output(matches: Optional[pulumi.Input[Optional[Sequ
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.Cts.get_resource_tags_filter(tags=[
+    test = huaweicloud.Cts.get_resource_tags_filter(resource_type="cts-tracker",
+        tags=[
             {
                 "key": "foo",
                 "values": [

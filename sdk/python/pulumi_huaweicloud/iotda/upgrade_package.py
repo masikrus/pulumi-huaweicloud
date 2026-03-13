@@ -32,6 +32,7 @@ class UpgradePackageArgs:
                  support_source_versions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a UpgradePackage resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['UpgradePackageFileLocationArgs']]] file_locations: Specifies the location of the upgrade package.
                Changing this parameter will create a new resource.
                The file_location structure is documented below.
@@ -226,6 +227,7 @@ class _UpgradePackageState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UpgradePackage resources.
+
         :param pulumi.Input[_builtins.str] created_at: The time for uploading the upgrade package to the IoT platform.
                The format is **yyyyMMdd'T'HHmmss'Z**. e.g. **20190528T153000Z**.
         :param pulumi.Input[_builtins.str] custom_info: Specifies the custom information to be pushed to the device.
@@ -461,11 +463,10 @@ class UpgradePackage(pulumi.CustomResource):
 
         The OTA upgrade package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/upgradePackage:UpgradePackage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -526,11 +527,10 @@ class UpgradePackage(pulumi.CustomResource):
 
         The OTA upgrade package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/upgradePackage:UpgradePackage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UpgradePackageArgs args: The arguments to use to populate this resource's properties.

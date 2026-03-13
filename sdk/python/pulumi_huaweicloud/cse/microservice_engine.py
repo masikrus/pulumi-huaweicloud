@@ -35,6 +35,7 @@ class MicroserviceEngineArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MicroserviceEngine resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the authentication method for the dedicated microservice engine.
                Changing this will create a new engine.
                + **RBAC**: Enable security authentication.
@@ -318,6 +319,7 @@ class _MicroserviceEngineState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MicroserviceEngine resources.
+
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the account password. The corresponding account name is **root**.
                Required if `auth_type` is **RBAC**. Changing this will create a new engine.
                The password format must meet the following conditions:
@@ -714,51 +716,16 @@ class MicroserviceEngine(pulumi.CustomResource):
 
         Engines can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngine:MicroserviceEngine test eddc5d42-f9d5-4f8e-984b-d6f3e088561c
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes are `admin_pass` and `extend_params`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cse_microservice_engine" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              admin_pass,
-            
-              extend_params,
-            
-            ]
-
-          }
-
-        }
-
-        For the engine created with the `enterprise_project_id`, its enterprise project ID needs to be specified additionally
-
-        when importing, the format is `<id>/<enterprise_project_id>`, e.g.
-
-        bash
-
-        ```sh
-        $ pulumi import huaweicloud:Cse/microserviceEngine:MicroserviceEngine test eddc5d42-f9d5-4f8e-984b-d6f3e088561c/ef101e1a-990c-42cd-bb99-a4474e41e461
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -870,51 +837,16 @@ class MicroserviceEngine(pulumi.CustomResource):
 
         Engines can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cse/microserviceEngine:MicroserviceEngine test eddc5d42-f9d5-4f8e-984b-d6f3e088561c
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes are `admin_pass` and `extend_params`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cse_microservice_engine" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              admin_pass,
-            
-              extend_params,
-            
-            ]
-
-          }
-
-        }
-
-        For the engine created with the `enterprise_project_id`, its enterprise project ID needs to be specified additionally
-
-        when importing, the format is `<id>/<enterprise_project_id>`, e.g.
-
-        bash
-
-        ```sh
-        $ pulumi import huaweicloud:Cse/microserviceEngine:MicroserviceEngine test eddc5d42-f9d5-4f8e-984b-d6f3e088561c/ef101e1a-990c-42cd-bb99-a4474e41e461
-        ```
 
         :param str resource_name: The name of the resource.
         :param MicroserviceEngineArgs args: The arguments to use to populate this resource's properties.

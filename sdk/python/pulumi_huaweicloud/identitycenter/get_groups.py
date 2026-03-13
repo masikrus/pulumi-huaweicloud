@@ -106,8 +106,8 @@ def get_groups(identity_store_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
-    test = huaweicloud.identitycenter.get_groups(identity_store_id=system.identity_store_id)
+    system = huaweicloud.Identitycenter.get_instance()
+    test = huaweicloud.Identitycenter.get_groups(identity_store_id=system.identity_store_id)
     ```
 
 
@@ -122,7 +122,7 @@ def get_groups(identity_store_id: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult).value
 
     return AwaitableGetGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
@@ -143,8 +143,8 @@ def get_groups_output(identity_store_id: Optional[pulumi.Input[_builtins.str]] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
-    test = huaweicloud.identitycenter.get_groups(identity_store_id=system.identity_store_id)
+    system = huaweicloud.Identitycenter.get_instance()
+    test = huaweicloud.Identitycenter.get_groups(identity_store_id=system.identity_store_id)
     ```
 
 
@@ -159,7 +159,7 @@ def get_groups_output(identity_store_id: Optional[pulumi.Input[_builtins.str]] =
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult)
     return __ret__.apply(lambda __response__: GetGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
         id=pulumi.get(__response__, 'id'),

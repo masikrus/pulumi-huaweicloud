@@ -21,17 +21,31 @@ class VolumeAttachArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
                  volume_id: pulumi.Input[_builtins.str],
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeAttach resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Instance to attach the Volume to.
         :param pulumi.Input[_builtins.str] volume_id: Specifies the ID of the Volume to attach to an Instance.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Specifies whether the disk attached to the ECS is deleted when the ECS is
+               deleted. Value options:
+               + **true**: The disk is deleted when the ECS is deleted.
+               + **false**: The disk is not deleted when the ECS is deleted.
+        :param pulumi.Input[_builtins.str] device: Specifies the device of the volume attachment (ex: `/dev/vdc`).
+               
+               > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+               specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+               update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+               Please use with caution.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the volume resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "volume_id", volume_id)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if region is not None:
@@ -62,8 +76,31 @@ class VolumeAttachArgs:
         pulumi.set(self, "volume_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether the disk attached to the ECS is deleted when the ECS is
+        deleted. Value options:
+        + **true**: The disk is deleted when the ECS is deleted.
+        + **false**: The disk is not deleted when the ECS is deleted.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device of the volume attachment (ex: `/dev/vdc`).
+
+        > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+        specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+        update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+        Please use with caution.
+        """
         return pulumi.get(self, "device")
 
     @device.setter
@@ -87,6 +124,7 @@ class VolumeAttachArgs:
 @pulumi.input_type
 class _VolumeAttachState:
     def __init__(__self__, *,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  pci_address: Optional[pulumi.Input[_builtins.str]] = None,
@@ -94,12 +132,25 @@ class _VolumeAttachState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeAttach resources.
+
+        :param pulumi.Input[_builtins.str] delete_on_termination: Specifies whether the disk attached to the ECS is deleted when the ECS is
+               deleted. Value options:
+               + **true**: The disk is deleted when the ECS is deleted.
+               + **false**: The disk is not deleted when the ECS is deleted.
+        :param pulumi.Input[_builtins.str] device: Specifies the device of the volume attachment (ex: `/dev/vdc`).
+               
+               > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+               specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+               update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+               Please use with caution.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Instance to attach the Volume to.
         :param pulumi.Input[_builtins.str] pci_address: PCI address of the block device.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the volume resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] volume_id: Specifies the ID of the Volume to attach to an Instance.
         """
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if instance_id is not None:
@@ -112,8 +163,31 @@ class _VolumeAttachState:
             pulumi.set(__self__, "volume_id", volume_id)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether the disk attached to the ECS is deleted when the ECS is
+        deleted. Value options:
+        + **true**: The disk is deleted when the ECS is deleted.
+        + **false**: The disk is not deleted when the ECS is deleted.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the device of the volume attachment (ex: `/dev/vdc`).
+
+        > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+        specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+        update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+        Please use with caution.
+        """
         return pulumi.get(self, "device")
 
     @device.setter
@@ -176,6 +250,7 @@ class VolumeAttach(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -222,8 +297,19 @@ class VolumeAttach(pulumi.CustomResource):
         $ pulumi import huaweicloud:Ecs/volumeAttach:VolumeAttach va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Specifies whether the disk attached to the ECS is deleted when the ECS is
+               deleted. Value options:
+               + **true**: The disk is deleted when the ECS is deleted.
+               + **false**: The disk is not deleted when the ECS is deleted.
+        :param pulumi.Input[_builtins.str] device: Specifies the device of the volume attachment (ex: `/dev/vdc`).
+               
+               > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+               specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+               update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+               Please use with caution.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Instance to attach the Volume to.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the volume resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
@@ -276,6 +362,7 @@ class VolumeAttach(pulumi.CustomResource):
         $ pulumi import huaweicloud:Ecs/volumeAttach:VolumeAttach va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
         ```
 
+
         :param str resource_name: The name of the resource.
         :param VolumeAttachArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -291,6 +378,7 @@ class VolumeAttach(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  device: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -304,6 +392,7 @@ class VolumeAttach(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VolumeAttachArgs.__new__(VolumeAttachArgs)
 
+            __props__.__dict__["delete_on_termination"] = delete_on_termination
             __props__.__dict__["device"] = device
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -323,6 +412,7 @@ class VolumeAttach(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
             device: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             pci_address: Optional[pulumi.Input[_builtins.str]] = None,
@@ -335,6 +425,16 @@ class VolumeAttach(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] delete_on_termination: Specifies whether the disk attached to the ECS is deleted when the ECS is
+               deleted. Value options:
+               + **true**: The disk is deleted when the ECS is deleted.
+               + **false**: The disk is not deleted when the ECS is deleted.
+        :param pulumi.Input[_builtins.str] device: Specifies the device of the volume attachment (ex: `/dev/vdc`).
+               
+               > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+               specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+               update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+               Please use with caution.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Instance to attach the Volume to.
         :param pulumi.Input[_builtins.str] pci_address: PCI address of the block device.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the volume resource. If omitted, the
@@ -345,6 +445,7 @@ class VolumeAttach(pulumi.CustomResource):
 
         __props__ = _VolumeAttachState.__new__(_VolumeAttachState)
 
+        __props__.__dict__["delete_on_termination"] = delete_on_termination
         __props__.__dict__["device"] = device
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["pci_address"] = pci_address
@@ -353,8 +454,27 @@ class VolumeAttach(pulumi.CustomResource):
         return VolumeAttach(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies whether the disk attached to the ECS is deleted when the ECS is
+        deleted. Value options:
+        + **true**: The disk is deleted when the ECS is deleted.
+        + **false**: The disk is not deleted when the ECS is deleted.
+        """
+        return pulumi.get(self, "delete_on_termination")
+
+    @_builtins.property
     @pulumi.getter
     def device(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the device of the volume attachment (ex: `/dev/vdc`).
+
+        > Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+        specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+        update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+        Please use with caution.
+        """
         return pulumi.get(self, "device")
 
     @_builtins.property

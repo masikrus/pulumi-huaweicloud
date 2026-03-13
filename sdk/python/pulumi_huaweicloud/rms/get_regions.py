@@ -98,7 +98,7 @@ def get_regions(display_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    regions = huaweicloud.rms.get_regions()
+    regions = huaweicloud.Rms.get_regions()
     ```
 
 
@@ -109,7 +109,7 @@ def get_regions(display_name: Optional[_builtins.str] = None,
     __args__['displayName'] = display_name
     __args__['regionId'] = region_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
         display_name=pulumi.get(__ret__, 'display_name'),
@@ -128,7 +128,7 @@ def get_regions_output(display_name: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    regions = huaweicloud.rms.get_regions()
+    regions = huaweicloud.Rms.get_regions()
     ```
 
 
@@ -139,7 +139,7 @@ def get_regions_output(display_name: Optional[pulumi.Input[Optional[_builtins.st
     __args__['displayName'] = display_name
     __args__['regionId'] = region_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult)
     return __ret__.apply(lambda __response__: GetRegionsResult(
         display_name=pulumi.get(__response__, 'display_name'),
         id=pulumi.get(__response__, 'id'),

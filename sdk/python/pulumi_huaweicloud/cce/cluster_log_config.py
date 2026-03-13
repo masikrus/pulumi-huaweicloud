@@ -27,6 +27,7 @@ class ClusterLogConfigArgs:
                  ttl_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ClusterLogConfig resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterLogConfigLogConfigArgs']]] log_configs: Specifies the list of log configs.
                The log_configs structure is documented below.
@@ -108,6 +109,7 @@ class _ClusterLogConfigState:
                  ttl_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ClusterLogConfig resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterLogConfigLogConfigArgs']]] log_configs: Specifies the list of log configs.
                The log_configs structure is documented below.
@@ -232,11 +234,10 @@ class ClusterLogConfig(pulumi.CustomResource):
 
         The cluster log config can be imported using the cluster ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/clusterLogConfig:ClusterLogConfig test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -296,11 +297,10 @@ class ClusterLogConfig(pulumi.CustomResource):
 
         The cluster log config can be imported using the cluster ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/clusterLogConfig:ClusterLogConfig test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterLogConfigArgs args: The arguments to use to populate this resource's properties.

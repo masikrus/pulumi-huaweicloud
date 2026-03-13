@@ -29,6 +29,7 @@ class RouteTableArgs:
                  subnets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RouteTable resource.
+
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID for which a route table is to be added.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the route.
@@ -154,6 +155,7 @@ class _RouteTableState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouteTable resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the route.
                The value is a string of no more than 255 characters and cannot contain angle brackets (< or >).
         :param pulumi.Input[_builtins.str] name: Specifies the route table name. The value is a string of no more than
@@ -341,11 +343,10 @@ class RouteTable(pulumi.CustomResource):
 
         vpc route tables can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/routeTable:RouteTable demo e1b3208a-544b-42a7-84e6-5d70371dd982
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -432,11 +433,10 @@ class RouteTable(pulumi.CustomResource):
 
         vpc route tables can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/routeTable:RouteTable demo e1b3208a-544b-42a7-84e6-5d70371dd982
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteTableArgs args: The arguments to use to populate this resource's properties.

@@ -105,7 +105,7 @@ def get_remediation_execution_statuses(policy_assignment_id: Optional[_builtins.
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_remediation_execution_statuses(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_remediation_execution_statuses(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -124,7 +124,7 @@ def get_remediation_execution_statuses(policy_assignment_id: Optional[_builtins.
     __args__['region'] = region
     __args__['resourceKeys'] = resource_keys
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getRemediationExecutionStatuses:getRemediationExecutionStatuses', __args__, opts=opts, typ=GetRemediationExecutionStatusesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getRemediationExecutionStatuses:getRemediationExecutionStatuses', __args__, opts=opts, typ=GetRemediationExecutionStatusesResult).value
 
     return AwaitableGetRemediationExecutionStatusesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -147,7 +147,7 @@ def get_remediation_execution_statuses_output(policy_assignment_id: Optional[pul
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_remediation_execution_statuses(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_remediation_execution_statuses(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -166,7 +166,7 @@ def get_remediation_execution_statuses_output(policy_assignment_id: Optional[pul
     __args__['region'] = region
     __args__['resourceKeys'] = resource_keys
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getRemediationExecutionStatuses:getRemediationExecutionStatuses', __args__, opts=opts, typ=GetRemediationExecutionStatusesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getRemediationExecutionStatuses:getRemediationExecutionStatuses', __args__, opts=opts, typ=GetRemediationExecutionStatusesResult)
     return __ret__.apply(lambda __response__: GetRemediationExecutionStatusesResult(
         id=pulumi.get(__response__, 'id'),
         policy_assignment_id=pulumi.get(__response__, 'policy_assignment_id'),

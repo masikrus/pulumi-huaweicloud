@@ -33,6 +33,7 @@ class InstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.int] asn: The BGP AS number of the ER instance.  
                The valid value is range from `64,512` to `65534` or range from `4,200,000,000` to `4,294,967,294`.
                
@@ -274,6 +275,7 @@ class _InstanceState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.int] asn: The BGP AS number of the ER instance.  
                The valid value is range from `64,512` to `65534` or range from `4,200,000,000` to `4,294,967,294`.
                
@@ -584,11 +586,10 @@ class Instance(pulumi.CustomResource):
 
         The router instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/instance:Instance test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -654,11 +655,10 @@ class Instance(pulumi.CustomResource):
 
         The router instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/instance:Instance test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

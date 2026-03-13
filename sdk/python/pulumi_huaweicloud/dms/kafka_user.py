@@ -26,6 +26,7 @@ class KafkaUserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaUser resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DMS kafka instance to which the user belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] password: Specifies the password of the user. The parameter must be 8 to 32 characters
@@ -123,6 +124,7 @@ class _KafkaUserState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaUser resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the create time.
         :param pulumi.Input[_builtins.bool] default_app: Indicates whether the application is the default application.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the user.
@@ -289,11 +291,10 @@ class KafkaUser(pulumi.CustomResource):
 
         DMS kafka users can be imported using the kafka instance ID and user name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaUser:KafkaUser user c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/user_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -336,11 +337,10 @@ class KafkaUser(pulumi.CustomResource):
 
         DMS kafka users can be imported using the kafka instance ID and user name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaUser:KafkaUser user c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/user_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaUserArgs args: The arguments to use to populate this resource's properties.

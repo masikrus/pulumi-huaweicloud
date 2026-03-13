@@ -24,6 +24,7 @@ class InstanceRestartArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceRestart resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -87,6 +88,7 @@ class _InstanceRestartState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceRestart resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -143,7 +145,7 @@ class _InstanceRestartState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/instanceRestart:InstanceRestart")
+@pulumi.type_token("huaweicloud:Ddm/instanceRestart:InstanceRestart")
 class InstanceRestart(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -166,6 +168,7 @@ class InstanceRestart(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.ddm.InstanceRestart("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -196,6 +199,7 @@ class InstanceRestart(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.ddm.InstanceRestart("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceRestartArgs args: The arguments to use to populate this resource's properties.
@@ -230,7 +234,7 @@ class InstanceRestart(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["type"] = type
         super(InstanceRestart, __self__).__init__(
-            'huaweicloud:ddm/instanceRestart:InstanceRestart',
+            'huaweicloud:Ddm/instanceRestart:InstanceRestart',
             resource_name,
             __props__,
             opts)

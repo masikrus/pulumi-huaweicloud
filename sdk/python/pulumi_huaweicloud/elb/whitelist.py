@@ -20,21 +20,24 @@ __all__ = ['WhitelistArgs', 'Whitelist']
 class WhitelistArgs:
     def __init__(__self__, *,
                  listener_id: pulumi.Input[_builtins.str],
+                 whitelist_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_whitelist: Optional[pulumi.Input[_builtins.bool]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 whitelist: Optional[pulumi.Input[_builtins.str]] = None):
+                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Whitelist resource.
+
         :param pulumi.Input[_builtins.str] listener_id: The Listener ID that the whitelist will be associated with. Changing this
                creates a new whitelist.
+        :param pulumi.Input[_builtins.str] whitelist_value: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+               IP addresses.
         :param pulumi.Input[_builtins.bool] enable_whitelist: Specify whether to enable access control.
         :param pulumi.Input[_builtins.str] region: The region in which to create the ELB whitelist resource. If omitted, the
                provider-level region will be used. Changing this creates a new whitelist.
-        :param pulumi.Input[_builtins.str] whitelist: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-               IP addresses.
         """
         pulumi.set(__self__, "listener_id", listener_id)
+        if whitelist_value is not None:
+            pulumi.set(__self__, "whitelist_value", whitelist_value)
         if enable_whitelist is not None:
             pulumi.set(__self__, "enable_whitelist", enable_whitelist)
         if region is not None:
@@ -44,8 +47,6 @@ class WhitelistArgs:
             pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
-        if whitelist is not None:
-            pulumi.set(__self__, "whitelist", whitelist)
 
     @_builtins.property
     @pulumi.getter(name="listenerId")
@@ -59,6 +60,19 @@ class WhitelistArgs:
     @listener_id.setter
     def listener_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "listener_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="WhitelistValue")
+    def whitelist_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+        IP addresses.
+        """
+        return pulumi.get(self, "whitelist_value")
+
+    @whitelist_value.setter
+    def whitelist_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "whitelist_value", value)
 
     @_builtins.property
     @pulumi.getter(name="enableWhitelist")
@@ -95,38 +109,28 @@ class WhitelistArgs:
     def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-        IP addresses.
-        """
-        return pulumi.get(self, "whitelist")
-
-    @whitelist.setter
-    def whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "whitelist", value)
-
 
 @pulumi.input_type
 class _WhitelistState:
     def __init__(__self__, *,
+                 whitelist_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_whitelist: Optional[pulumi.Input[_builtins.bool]] = None,
                  listener_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 whitelist: Optional[pulumi.Input[_builtins.str]] = None):
+                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Whitelist resources.
+
+        :param pulumi.Input[_builtins.str] whitelist_value: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+               IP addresses.
         :param pulumi.Input[_builtins.bool] enable_whitelist: Specify whether to enable access control.
         :param pulumi.Input[_builtins.str] listener_id: The Listener ID that the whitelist will be associated with. Changing this
                creates a new whitelist.
         :param pulumi.Input[_builtins.str] region: The region in which to create the ELB whitelist resource. If omitted, the
                provider-level region will be used. Changing this creates a new whitelist.
-        :param pulumi.Input[_builtins.str] whitelist: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-               IP addresses.
         """
+        if whitelist_value is not None:
+            pulumi.set(__self__, "whitelist_value", whitelist_value)
         if enable_whitelist is not None:
             pulumi.set(__self__, "enable_whitelist", enable_whitelist)
         if listener_id is not None:
@@ -138,8 +142,19 @@ class _WhitelistState:
             pulumi.log.warn("""tenant_id is deprecated: tenant_id is deprecated""")
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
-        if whitelist is not None:
-            pulumi.set(__self__, "whitelist", whitelist)
+
+    @_builtins.property
+    @pulumi.getter(name="WhitelistValue")
+    def whitelist_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+        IP addresses.
+        """
+        return pulumi.get(self, "whitelist_value")
+
+    @whitelist_value.setter
+    def whitelist_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "whitelist_value", value)
 
     @_builtins.property
     @pulumi.getter(name="enableWhitelist")
@@ -189,19 +204,6 @@ class _WhitelistState:
     def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def whitelist(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-        IP addresses.
-        """
-        return pulumi.get(self, "whitelist")
-
-    @whitelist.setter
-    def whitelist(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "whitelist", value)
-
 
 @pulumi.type_token("huaweicloud:Elb/whitelist:Whitelist")
 class Whitelist(pulumi.CustomResource):
@@ -209,11 +211,11 @@ class Whitelist(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 whitelist_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_whitelist: Optional[pulumi.Input[_builtins.bool]] = None,
                  listener_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an ELB whitelist resource within HuaweiCloud.
@@ -231,7 +233,7 @@ class Whitelist(pulumi.CustomResource):
             loadbalancer_id=loadbalancer_id)
         whitelist1 = huaweicloud.elb.Whitelist("whitelist_1",
             enable_whitelist=True,
-            whitelist="192.168.11.1,192.168.0.1/24,192.168.201.18/8",
+            whitelist_value="192.168.11.1,192.168.0.1/24,192.168.201.18/8",
             listener_id=listener1.id)
         ```
 
@@ -239,21 +241,20 @@ class Whitelist(pulumi.CustomResource):
 
         ELB whitelist can be imported using the whitelist ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/whitelist:Whitelist whitelist_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] whitelist_value: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+               IP addresses.
         :param pulumi.Input[_builtins.bool] enable_whitelist: Specify whether to enable access control.
         :param pulumi.Input[_builtins.str] listener_id: The Listener ID that the whitelist will be associated with. Changing this
                creates a new whitelist.
         :param pulumi.Input[_builtins.str] region: The region in which to create the ELB whitelist resource. If omitted, the
                provider-level region will be used. Changing this creates a new whitelist.
-        :param pulumi.Input[_builtins.str] whitelist: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-               IP addresses.
         """
         ...
     @overload
@@ -277,7 +278,7 @@ class Whitelist(pulumi.CustomResource):
             loadbalancer_id=loadbalancer_id)
         whitelist1 = huaweicloud.elb.Whitelist("whitelist_1",
             enable_whitelist=True,
-            whitelist="192.168.11.1,192.168.0.1/24,192.168.201.18/8",
+            whitelist_value="192.168.11.1,192.168.0.1/24,192.168.201.18/8",
             listener_id=listener1.id)
         ```
 
@@ -285,11 +286,10 @@ class Whitelist(pulumi.CustomResource):
 
         ELB whitelist can be imported using the whitelist ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/whitelist:Whitelist whitelist_1 5c20fdad-7288-11eb-b817-0255ac10158b
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WhitelistArgs args: The arguments to use to populate this resource's properties.
@@ -306,11 +306,11 @@ class Whitelist(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 whitelist_value: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_whitelist: Optional[pulumi.Input[_builtins.bool]] = None,
                  listener_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 whitelist: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -320,13 +320,13 @@ class Whitelist(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WhitelistArgs.__new__(WhitelistArgs)
 
+            __props__.__dict__["whitelist_value"] = whitelist_value
             __props__.__dict__["enable_whitelist"] = enable_whitelist
             if listener_id is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_id'")
             __props__.__dict__["listener_id"] = listener_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tenant_id"] = tenant_id
-            __props__.__dict__["whitelist"] = whitelist
         super(Whitelist, __self__).__init__(
             'huaweicloud:Elb/whitelist:Whitelist',
             resource_name,
@@ -337,11 +337,11 @@ class Whitelist(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            whitelist_value: Optional[pulumi.Input[_builtins.str]] = None,
             enable_whitelist: Optional[pulumi.Input[_builtins.bool]] = None,
             listener_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-            whitelist: Optional[pulumi.Input[_builtins.str]] = None) -> 'Whitelist':
+            tenant_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Whitelist':
         """
         Get an existing Whitelist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -349,24 +349,33 @@ class Whitelist(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] whitelist_value: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+               IP addresses.
         :param pulumi.Input[_builtins.bool] enable_whitelist: Specify whether to enable access control.
         :param pulumi.Input[_builtins.str] listener_id: The Listener ID that the whitelist will be associated with. Changing this
                creates a new whitelist.
         :param pulumi.Input[_builtins.str] region: The region in which to create the ELB whitelist resource. If omitted, the
                provider-level region will be used. Changing this creates a new whitelist.
-        :param pulumi.Input[_builtins.str] whitelist: Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-               IP addresses.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _WhitelistState.__new__(_WhitelistState)
 
+        __props__.__dict__["whitelist_value"] = whitelist_value
         __props__.__dict__["enable_whitelist"] = enable_whitelist
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["region"] = region
         __props__.__dict__["tenant_id"] = tenant_id
-        __props__.__dict__["whitelist"] = whitelist
         return Whitelist(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="WhitelistValue")
+    def whitelist_value(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
+        IP addresses.
+        """
+        return pulumi.get(self, "whitelist_value")
 
     @_builtins.property
     @pulumi.getter(name="enableWhitelist")
@@ -399,13 +408,4 @@ class Whitelist(pulumi.CustomResource):
     @_utilities.deprecated("""tenant_id is deprecated""")
     def tenant_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "tenant_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def whitelist(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple
-        IP addresses.
-        """
-        return pulumi.get(self, "whitelist")
 

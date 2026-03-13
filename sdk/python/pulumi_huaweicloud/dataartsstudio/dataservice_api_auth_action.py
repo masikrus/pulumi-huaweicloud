@@ -28,6 +28,7 @@ class DataserviceApiAuthActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApiAuthAction resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the published API that to be operated.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] app_id: Specifies the ID of the APP to be operated.  
@@ -173,6 +174,7 @@ class _DataserviceApiAuthActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApiAuthAction resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the published API that to be operated.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] app_id: Specifies the ID of the APP to be operated.  
@@ -352,6 +354,7 @@ class DataserviceApiAuthAction(pulumi.CustomResource):
             type="APPLY_TYPE_APP_CANCEL_AUTHORIZE")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the published API that to be operated.  
@@ -409,6 +412,7 @@ class DataserviceApiAuthAction(pulumi.CustomResource):
             app_id=operate_app_id,
             type="APPLY_TYPE_APP_CANCEL_AUTHORIZE")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiAuthActionArgs args: The arguments to use to populate this resource's properties.

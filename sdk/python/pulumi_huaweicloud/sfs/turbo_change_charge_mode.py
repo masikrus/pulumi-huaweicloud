@@ -27,6 +27,7 @@ class TurboChangeChargeModeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboChangeChargeMode resource.
+
         :param pulumi.Input[_builtins.int] period_num: Specifies the charging period of the SFS Turbo.
         :param pulumi.Input[_builtins.int] period_type: Specifies the charging period unit of the SFS Turbo.
                + **2**: paid monthly.
@@ -134,6 +135,7 @@ class _TurboChangeChargeModeState:
                  share_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboChangeChargeMode resources.
+
         :param pulumi.Input[_builtins.int] is_auto_renew: Specifies whether auto renew is enabled. Defaults to **0**.
                + **0**: no automatic renewal.
                + **1**: automatic renewal.
@@ -270,6 +272,7 @@ class TurboChangeChargeMode(pulumi.CustomResource):
             is_auto_renew=is_auto_renew)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] is_auto_renew: Specifies whether auto renew is enabled. Defaults to **0**.
@@ -312,6 +315,7 @@ class TurboChangeChargeMode(pulumi.CustomResource):
             period_type=period_type,
             is_auto_renew=is_auto_renew)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboChangeChargeModeArgs args: The arguments to use to populate this resource's properties.

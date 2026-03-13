@@ -29,6 +29,7 @@ class ArchitectureBatchUnpublishArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureBatchUnpublish resource.
+
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] approver_user_name: Specifies the user name of the architecture reviewer.
@@ -161,6 +162,7 @@ class _ArchitectureBatchUnpublishState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureBatchUnpublish resources.
+
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] approver_user_name: Specifies the user name of the architecture reviewer.
@@ -307,6 +309,29 @@ class ArchitectureBatchUnpublish(pulumi.CustomResource):
         >       <br>3. This resource is only a one-time action resource for unpublishing objects. Deleting this resource will not clear
         >       the corresponding request record, but will only remove the resource information from the tfstate file.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        workspace_id = config.require_object("workspaceId")
+        approver_user_id = config.require_object("approverUserId")
+        approver_user_name = config.require_object("approverUserName")
+        batch_publish_objects = config.require_object("batchPublishObjects")
+        test = huaweicloud.dataartsstudio.ArchitectureBatchUnpublish("test",
+            biz_infos=[{
+                "biz_id": entry["value"]["object_id"],
+                "biz_type": entry["value"]["object_type"],
+            } for entry in [{"key": k, "value": v} for k, v in batch_publish_objects.items()]],
+            workspace_id=workspace_id,
+            approver_user_id=approver_user_id,
+            approver_user_name=approver_user_name,
+            fast_approval=True)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
@@ -345,6 +370,29 @@ class ArchitectureBatchUnpublish(pulumi.CustomResource):
         >       <br>2. Repeated unpublishing is not supported when the objects has been unpublished or in the pending approval status.
         >       <br>3. This resource is only a one-time action resource for unpublishing objects. Deleting this resource will not clear
         >       the corresponding request record, but will only remove the resource information from the tfstate file.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        workspace_id = config.require_object("workspaceId")
+        approver_user_id = config.require_object("approverUserId")
+        approver_user_name = config.require_object("approverUserName")
+        batch_publish_objects = config.require_object("batchPublishObjects")
+        test = huaweicloud.dataartsstudio.ArchitectureBatchUnpublish("test",
+            biz_infos=[{
+                "biz_id": entry["value"]["object_id"],
+                "biz_type": entry["value"]["object_type"],
+            } for entry in [{"key": k, "value": v} for k, v in batch_publish_objects.items()]],
+            workspace_id=workspace_id,
+            approver_user_id=approver_user_id,
+            approver_user_name=approver_user_name,
+            fast_approval=True)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureBatchUnpublishArgs args: The arguments to use to populate this resource's properties.

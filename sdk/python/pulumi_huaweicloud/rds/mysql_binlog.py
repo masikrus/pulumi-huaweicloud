@@ -25,6 +25,7 @@ class MysqlBinlogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlBinlog resource.
+
         :param pulumi.Input[_builtins.int] binlog_retention_hours: Specifies the binlog retention period. Value range: `1` to `168` (7x24).
         :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS MySQL instance ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the RDS binlog resource. If omitted, the
@@ -93,6 +94,7 @@ class _MysqlBinlogState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlBinlog resources.
+
         :param pulumi.Input[_builtins.int] binlog_retention_hours: Specifies the binlog retention period. Value range: `1` to `168` (7x24).
         :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS MySQL instance ID.
         :param pulumi.Input[_builtins.str] region: The region in which to create the RDS binlog resource. If omitted, the
@@ -185,11 +187,10 @@ class MysqlBinlog(pulumi.CustomResource):
 
         RDS MySQL binlog can be imported using the `instance id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlBinlog:MysqlBinlog test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,11 +225,10 @@ class MysqlBinlog(pulumi.CustomResource):
 
         RDS MySQL binlog can be imported using the `instance id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlBinlog:MysqlBinlog test <instance_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlBinlogArgs args: The arguments to use to populate this resource's properties.

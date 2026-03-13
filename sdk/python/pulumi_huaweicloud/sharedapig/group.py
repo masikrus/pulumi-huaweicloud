@@ -24,6 +24,7 @@ class GroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the API group. The description cannot exceed 255
                characters.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the API group. An API group name consists of 3–64 characters,
@@ -87,6 +88,7 @@ class _GroupState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the API group. The description cannot exceed 255
                characters.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the API group. An API group name consists of 3–64 characters,
@@ -180,6 +182,7 @@ class Group(pulumi.CustomResource):
             description="your descpiption")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the API group. The description cannot exceed 255
@@ -208,6 +211,7 @@ class Group(pulumi.CustomResource):
             name="apigw_group",
             description="your descpiption")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

@@ -32,6 +32,7 @@ class DeviceLinkageRuleArgs:
                  trigger_logic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeviceLinkageRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['DeviceLinkageRuleActionArgs']]] actions: Specifies the list of the actions, at most 10 actions.
                The actions structure is documented below.
         :param pulumi.Input[_builtins.str] space_id: Specifies the resource space ID to which the device linkage rule belongs.
@@ -213,6 +214,7 @@ class _DeviceLinkageRuleState:
                  triggers: Optional[pulumi.Input[Sequence[pulumi.Input['DeviceLinkageRuleTriggerArgs']]]] = None):
         """
         Input properties used for looking up and filtering DeviceLinkageRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DeviceLinkageRuleActionArgs']]] actions: Specifies the list of the actions, at most 10 actions.
                The actions structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the alarm.  
@@ -486,11 +488,10 @@ class DeviceLinkageRule(pulumi.CustomResource):
 
         Device linkage rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceLinkageRule:DeviceLinkageRule test 62b6cc5aa367f403fea86127
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -613,11 +614,10 @@ class DeviceLinkageRule(pulumi.CustomResource):
 
         Device linkage rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/deviceLinkageRule:DeviceLinkageRule test 62b6cc5aa367f403fea86127
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceLinkageRuleArgs args: The arguments to use to populate this resource's properties.

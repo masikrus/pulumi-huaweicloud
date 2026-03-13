@@ -31,6 +31,7 @@ class L7policyArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a L7policy resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies whether requests are forwarded to another backend server group
                or redirected to an HTTPS listener. Changing this creates a new L7 Policy. The value ranges:
                + **REDIRECT_TO_POOL**: Requests are forwarded to the backend server group specified by `redirect_pool_id`.
@@ -223,6 +224,7 @@ class _L7policyState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering L7policy resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies whether requests are forwarded to another backend server group
                or redirected to an HTTPS listener. Changing this creates a new L7 Policy. The value ranges:
                + **REDIRECT_TO_POOL**: Requests are forwarded to the backend server group specified by `redirect_pool_id`.
@@ -454,11 +456,10 @@ class L7policy(pulumi.CustomResource):
 
         Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/l7policy:L7policy l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -527,11 +528,10 @@ class L7policy(pulumi.CustomResource):
 
         Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Elb/l7policy:L7policy l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74
         ```
+
 
         :param str resource_name: The name of the resource.
         :param L7policyArgs args: The arguments to use to populate this resource's properties.

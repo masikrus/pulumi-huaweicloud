@@ -33,6 +33,7 @@ class UserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] account_expires: Specifies the user's valid period configuration.
                Defaults to "0".
                + Never expires: **0**.
@@ -281,6 +282,7 @@ class _UserState:
                  total_desktops: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] account_expires: Specifies the user's valid period configuration.
                Defaults to "0".
                + Never expires: **0**.
@@ -587,41 +589,17 @@ class User(pulumi.CustomResource):
 
         Users can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/user:User test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the user, or the resource definition should be updated to
-
         align with the user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -695,41 +673,17 @@ class User(pulumi.CustomResource):
 
         Users can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/user:User test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `password`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the user, or the resource definition should be updated to
-
         align with the user. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

@@ -156,7 +156,7 @@ def get_host_groups(enterprise_project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     group_id = config.require_object("groupId")
-    test = huaweicloud.hss.get_host_groups(group_id=group_id)
+    test = huaweicloud.Hss.get_host_groups(group_id=group_id)
     ```
 
 
@@ -180,7 +180,7 @@ def get_host_groups(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['riskHostNum'] = risk_host_num
     __args__['unprotectHostNum'] = unprotect_host_num
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getHostGroups:getHostGroups', __args__, opts=opts, typ=GetHostGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getHostGroups:getHostGroups', __args__, opts=opts, typ=GetHostGroupsResult).value
 
     return AwaitableGetHostGroupsResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -211,7 +211,7 @@ def get_host_groups_output(enterprise_project_id: Optional[pulumi.Input[Optional
 
     config = pulumi.Config()
     group_id = config.require_object("groupId")
-    test = huaweicloud.hss.get_host_groups(group_id=group_id)
+    test = huaweicloud.Hss.get_host_groups(group_id=group_id)
     ```
 
 
@@ -235,7 +235,7 @@ def get_host_groups_output(enterprise_project_id: Optional[pulumi.Input[Optional
     __args__['riskHostNum'] = risk_host_num
     __args__['unprotectHostNum'] = unprotect_host_num
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getHostGroups:getHostGroups', __args__, opts=opts, typ=GetHostGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getHostGroups:getHostGroups', __args__, opts=opts, typ=GetHostGroupsResult)
     return __ret__.apply(lambda __response__: GetHostGroupsResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         group_id=pulumi.get(__response__, 'group_id'),

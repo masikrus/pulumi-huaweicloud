@@ -125,14 +125,9 @@ __all__ = [
     'GetHostsFilterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccessRuleFileArgsDict(TypedDict):
-        file_name: pulumi.Input[_builtins.str]
-        log_stream_infos: pulumi.Input[Sequence[pulumi.Input['AccessRuleFileLogStreamInfoArgsDict']]]
-elif False:
-    AccessRuleFileArgsDict: TypeAlias = Mapping[str, Any]
+class AccessRuleFileArgsDict(TypedDict):
+    file_name: pulumi.Input[_builtins.str]
+    log_stream_infos: pulumi.Input[Sequence[pulumi.Input['AccessRuleFileLogStreamInfoArgsDict']]]
 
 @pulumi.input_type
 class AccessRuleFileArgs:
@@ -161,14 +156,11 @@ class AccessRuleFileArgs:
         pulumi.set(self, "log_stream_infos", value)
 
 
-if not MYPY:
-    class AccessRuleFileLogStreamInfoArgsDict(TypedDict):
-        target_log_group_id: pulumi.Input[_builtins.str]
-        target_log_group_name: pulumi.Input[_builtins.str]
-        target_log_stream_id: pulumi.Input[_builtins.str]
-        target_log_stream_name: pulumi.Input[_builtins.str]
-elif False:
-    AccessRuleFileLogStreamInfoArgsDict: TypeAlias = Mapping[str, Any]
+class AccessRuleFileLogStreamInfoArgsDict(TypedDict):
+    target_log_group_id: pulumi.Input[_builtins.str]
+    target_log_group_name: pulumi.Input[_builtins.str]
+    target_log_stream_id: pulumi.Input[_builtins.str]
+    target_log_stream_name: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class AccessRuleFileLogStreamInfoArgs:
@@ -219,33 +211,30 @@ class AccessRuleFileLogStreamInfoArgs:
         pulumi.set(self, "target_log_stream_name", value)
 
 
-if not MYPY:
-    class AomAccessAccessRuleArgsDict(TypedDict):
-        file_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the path name.
-        + When collecting access all logs, set this field to `__ALL_FILES__`.
-        + When collecting specify log paths, the matching rule should be `^\\/[A-Za-z0-9.*_\\/-]+|stdout\\.log|`, such as
-        `/test/*` or `/test/demo.log`. Up to two asterisks (*) are allowed.
-        """
-        log_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log group ID.
-        """
-        log_group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the log group name.
-        """
-        log_stream_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log stream ID.
-        """
-        log_stream_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the log stream name.
-        """
-elif False:
-    AomAccessAccessRuleArgsDict: TypeAlias = Mapping[str, Any]
+class AomAccessAccessRuleArgsDict(TypedDict):
+    file_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the path name.
+    + When collecting access all logs, set this field to `__ALL_FILES__`.
+    + When collecting specify log paths, the matching rule should be `^\\/[A-Za-z0-9.*_\\/-]+|stdout\\.log|`, such as
+    `/test/*` or `/test/demo.log`. Up to two asterisks (*) are allowed.
+    """
+    log_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log group ID.
+    """
+    log_group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the log group name.
+    """
+    log_stream_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log stream ID.
+    """
+    log_stream_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the log stream name.
+    """
 
 @pulumi.input_type
 class AomAccessAccessRuleArgs:
@@ -335,244 +324,241 @@ class AomAccessAccessRuleArgs:
         pulumi.set(self, "log_stream_name", value)
 
 
-if not MYPY:
-    class CceAccessAccessConfigArgsDict(TypedDict):
-        path_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the CCE access. The options are as follows:
-        + **container_stdout**
-        + **container_file**
-        + **host_file**
-        """
-        black_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the collection path blacklist.
-        """
-        container_name_regex: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the regular expression matching of kubernetes container names.
-        LTS will collect logs of the containers with names matching this expression. To collect logs of all containers,
-        leave this field empty.
-        """
-        custom_key_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the custom key/value pairs of the CCE access.  
-        Changing this creates a new resource.
-        """
-        exclude_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the environment variable blacklist. A maximum of `30` tags can be
-        created. The key names must be unique. LTS will exclude all containers with environment variables containing either
-        an environment variable key with an empty corresponding environment variable value, or an environment variable key
-        with its corresponding environment variable value. LabelKey must be fully matched, and labelValue supports regular
-        expression matching.
-        """
-        exclude_envs_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple environment variable
-        blacklists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        exclude_k8s_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the kubernetes label blacklist. A maximum of `30` tags can be
-        created. The key names must be unique. If labelValue is empty, all containers whose K8s label contains labelKey are
-        excluded. If labelValue is not empty, only containers whose K8s label contains `LabelKey=LabelValue` are excluded.
-        LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple blacklists are in the
-        OR relationship. That is, a K8s Label can be excluded as long as it meets any of the blacklists.
-        """
-        exclude_k8s_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple kubernetes label
-        blacklists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        exclude_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the container label blacklist. A maximum of `30` tags can be created.
-        The key names must be unique. If labelValue is empty, all containers whose container label contains labelKey are
-        excluded. If labelValue is not empty, only containers whose container label contains `LabelKey=LabelValue` are
-        excluded. LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple blacklists
-        are in the OR relationship. That is, a container label can be excluded as long as it meets any of the blacklists.
-        """
-        exclude_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple container label
-        blacklists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        include_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the environment variable whitelist. A maximum of `30` tags can be
-        created. The key names must be unique. LTS will match all containers with environment variables containing either
-        an environment variable key with an empty corresponding environment variable value, or an environment variable key
-        with its corresponding environment variable value. LabelKey must be fully matched, and labelValue supports regular
-        expression matching.
-        """
-        include_envs_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple environment variable
-        whitelists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        include_k8s_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the kubernetes label whitelist. A maximum of `30` tags can be
-        created. The key names must be unique. If labelValue is empty, all containers whose K8s label contains labelKey are
-        matched. If labelValue is not empty, only containers whose K8s Label contains `LabelKey=LabelValue` are matched.
-        LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple whitelists are in the
-        OR relationship. That is, a K8s label can be matched as long as it meets any of the whitelists.
-        """
-        include_k8s_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple kubernetes label
-        whitelists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        include_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the container label whitelist. A maximum of `30` tags can be created.
-        The key names must be unique. If labelValue is empty, all containers whose container label contains labelKey are
-        matched. If labelValue is not empty, only containers whose container label contains `LabelKey=LabelValue` are
-        matched. LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple whitelists
-        are in the OR relationship. That is, a container label can be matched as long as it meets any of the whitelists.
-        """
-        include_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the logical relationship between multiple container label
-        whitelists.
-        Defaults to **or**.
-        The valid values are as follows:
-        + **and**
-        + **or**
-        """
-        log_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the environment variable tag. A maximum of `30` tags can be created.
-        The key names must be unique. LTS adds the specified fields to the log when each environment variable key has a
-        corresponding environment variable value. For example, if you enter `app` as the key and `app_alias` as the value,
-        when the kubernetes environment variable contains `app=lts`, `{app_alias: lts}` will be added to the log.
-        """
-        log_k8s: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the kubernetes label log tag. A maximum of `30` tags can be created.
-        The key names must be unique. LTS adds the specified fields to the log when each label key has a corresponding label
-        value. For example, if you enter `app` as the key and `app_alias` as the value, when the K8s label contains
-        `app=lts`, `{app_alias: lts}` will be added to the log.
-        """
-        log_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the container label log tag. A maximum of `30` tags can be created.
-        The key names must be unique. LTS adds the specified fields to the log when each label key has a corresponding
-        label value. For example, if you enter `app` as the key and `app_alias` as the value, when the Container label
-        contains `app=lts`, `{app_alias: lts}` will be added to the log.
-        """
-        multi_log_format: NotRequired[pulumi.Input['CceAccessAccessConfigMultiLogFormatArgsDict']]
-        """
-        Specifies the configuration multi-line logs. Multiple lines of exception log
-        events can be displayed as a single log event. This is helpful when you check logs to locate problems.
-        The multi_log_format structure is documented below.
+class CceAccessAccessConfigArgsDict(TypedDict):
+    path_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the CCE access. The options are as follows:
+    + **container_stdout**
+    + **container_file**
+    + **host_file**
+    """
+    black_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the collection path blacklist.
+    """
+    container_name_regex: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the regular expression matching of kubernetes container names.
+    LTS will collect logs of the containers with names matching this expression. To collect logs of all containers,
+    leave this field empty.
+    """
+    custom_key_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the custom key/value pairs of the CCE access.  
+    Changing this creates a new resource.
+    """
+    exclude_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the environment variable blacklist. A maximum of `30` tags can be
+    created. The key names must be unique. LTS will exclude all containers with environment variables containing either
+    an environment variable key with an empty corresponding environment variable value, or an environment variable key
+    with its corresponding environment variable value. LabelKey must be fully matched, and labelValue supports regular
+    expression matching.
+    """
+    exclude_envs_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple environment variable
+    blacklists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    exclude_k8s_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the kubernetes label blacklist. A maximum of `30` tags can be
+    created. The key names must be unique. If labelValue is empty, all containers whose K8s label contains labelKey are
+    excluded. If labelValue is not empty, only containers whose K8s label contains `LabelKey=LabelValue` are excluded.
+    LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple blacklists are in the
+    OR relationship. That is, a K8s Label can be excluded as long as it meets any of the blacklists.
+    """
+    exclude_k8s_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple kubernetes label
+    blacklists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    exclude_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the container label blacklist. A maximum of `30` tags can be created.
+    The key names must be unique. If labelValue is empty, all containers whose container label contains labelKey are
+    excluded. If labelValue is not empty, only containers whose container label contains `LabelKey=LabelValue` are
+    excluded. LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple blacklists
+    are in the OR relationship. That is, a container label can be excluded as long as it meets any of the blacklists.
+    """
+    exclude_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple container label
+    blacklists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    include_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the environment variable whitelist. A maximum of `30` tags can be
+    created. The key names must be unique. LTS will match all containers with environment variables containing either
+    an environment variable key with an empty corresponding environment variable value, or an environment variable key
+    with its corresponding environment variable value. LabelKey must be fully matched, and labelValue supports regular
+    expression matching.
+    """
+    include_envs_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple environment variable
+    whitelists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    include_k8s_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the kubernetes label whitelist. A maximum of `30` tags can be
+    created. The key names must be unique. If labelValue is empty, all containers whose K8s label contains labelKey are
+    matched. If labelValue is not empty, only containers whose K8s Label contains `LabelKey=LabelValue` are matched.
+    LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple whitelists are in the
+    OR relationship. That is, a K8s label can be matched as long as it meets any of the whitelists.
+    """
+    include_k8s_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple kubernetes label
+    whitelists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    include_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the container label whitelist. A maximum of `30` tags can be created.
+    The key names must be unique. If labelValue is empty, all containers whose container label contains labelKey are
+    matched. If labelValue is not empty, only containers whose container label contains `LabelKey=LabelValue` are
+    matched. LabelKey must be fully matched, and labelValue supports regular expression matching. Multiple whitelists
+    are in the OR relationship. That is, a container label can be matched as long as it meets any of the whitelists.
+    """
+    include_labels_logical: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical relationship between multiple container label
+    whitelists.
+    Defaults to **or**.
+    The valid values are as follows:
+    + **and**
+    + **or**
+    """
+    log_envs: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the environment variable tag. A maximum of `30` tags can be created.
+    The key names must be unique. LTS adds the specified fields to the log when each environment variable key has a
+    corresponding environment variable value. For example, if you enter `app` as the key and `app_alias` as the value,
+    when the kubernetes environment variable contains `app=lts`, `{app_alias: lts}` will be added to the log.
+    """
+    log_k8s: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the kubernetes label log tag. A maximum of `30` tags can be created.
+    The key names must be unique. LTS adds the specified fields to the log when each label key has a corresponding label
+    value. For example, if you enter `app` as the key and `app_alias` as the value, when the K8s label contains
+    `app=lts`, `{app_alias: lts}` will be added to the log.
+    """
+    log_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the container label log tag. A maximum of `30` tags can be created.
+    The key names must be unique. LTS adds the specified fields to the log when each label key has a corresponding
+    label value. For example, if you enter `app` as the key and `app_alias` as the value, when the Container label
+    contains `app=lts`, `{app_alias: lts}` will be added to the log.
+    """
+    multi_log_format: NotRequired[pulumi.Input['CceAccessAccessConfigMultiLogFormatArgsDict']]
+    """
+    Specifies the configuration multi-line logs. Multiple lines of exception log
+    events can be displayed as a single log event. This is helpful when you check logs to locate problems.
+    The multi_log_format structure is documented below.
 
-        > `single_log_format` or `multi_log_format` must be specified.
-        """
-        name_space_regex: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the regular expression matching of kubernetes namespaces.
-        LTS will collect logs of the namespaces with names matching this expression. To collect logs of all namespaces,
-        leave this field empty.
-        """
-        paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the collection paths. Required when `path_type` is **container_file**
-        or **host_file**.
-        """
-        pod_name_regex: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the regular expression matching of kubernetes pods.
-        LTS will collect logs of the Pods with names matching this expression. To collect logs of all Pods,
-        leave this field empty.
-        """
-        repeat_collect: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to allow repeated file collection.  
-        Defaults to **false**.
-        + If this parameter is set to **true**, one host log file can be collected to multiple log streams.
-        This function is available only to certain ICAgent versions, please refer to the documentation.
-        + If this parameter is set to **false**, the same log file in the same host cannot be collected to different log streams.
-        """
-        single_log_format: NotRequired[pulumi.Input['CceAccessAccessConfigSingleLogFormatArgsDict']]
-        """
-        Specifies the configuration single-line logs. Each log line is displayed
-        as a single log event.
-        The single_log_format structure is documented below.
-        """
-        stderr: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether error output is standard. Default is **false**.
+    > `single_log_format` or `multi_log_format` must be specified.
+    """
+    name_space_regex: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the regular expression matching of kubernetes namespaces.
+    LTS will collect logs of the namespaces with names matching this expression. To collect logs of all namespaces,
+    leave this field empty.
+    """
+    paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the collection paths. Required when `path_type` is **container_file**
+    or **host_file**.
+    """
+    pod_name_regex: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the regular expression matching of kubernetes pods.
+    LTS will collect logs of the Pods with names matching this expression. To collect logs of all Pods,
+    leave this field empty.
+    """
+    repeat_collect: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to allow repeated file collection.  
+    Defaults to **false**.
+    + If this parameter is set to **true**, one host log file can be collected to multiple log streams.
+    This function is available only to certain ICAgent versions, please refer to the documentation.
+    + If this parameter is set to **false**, the same log file in the same host cannot be collected to different log streams.
+    """
+    single_log_format: NotRequired[pulumi.Input['CceAccessAccessConfigSingleLogFormatArgsDict']]
+    """
+    Specifies the configuration single-line logs. Each log line is displayed
+    as a single log event.
+    The single_log_format structure is documented below.
+    """
+    stderr: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether error output is standard. Default is **false**.
 
-        >  If the value of `path_type` is **container_stdout**, `stdout` or `stderr` must be **true**.
-        """
-        stdout: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether output is standard. Default is false.
-        """
-        system_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of system built-in fields of the CCE access.  
-        Changing this creates a new resource.
-        If `custom_key_value` is specified, the value of `system_fields` will be automatically assigned by
-        the system as **pathfile**.
-        If `system_fields` is specified, **pathFile** must be included.
-        The valid values are as follows:
-        + **pathFile**
-        + **hostName**
-        + **hostId**
-        + **hostIP**
-        + **hostIPv6**
-        + **clusterId**
-        + **podName**
-        + **appName**
-        + **containerName**
-        + **nameSpace**
-        + **category**
-        + **serviceID**
-        + **podIp**
-        + **clusterName**
-        + **workloadType**
-        + **image_name**
+    >  If the value of `path_type` is **container_stdout**, `stdout` or `stderr` must be **true**.
+    """
+    stdout: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether output is standard. Default is false.
+    """
+    system_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of system built-in fields of the CCE access.  
+    Changing this creates a new resource.
+    If `custom_key_value` is specified, the value of `system_fields` will be automatically assigned by
+    the system as **pathfile**.
+    If `system_fields` is specified, **pathFile** must be included.
+    The valid values are as follows:
+    + **pathFile**
+    + **hostName**
+    + **hostId**
+    + **hostIP**
+    + **hostIPv6**
+    + **clusterId**
+    + **podName**
+    + **appName**
+    + **containerName**
+    + **nameSpace**
+    + **category**
+    + **serviceID**
+    + **podIp**
+    + **clusterName**
+    + **workloadType**
+    + **image_name**
 
-        > These parameters include `name_space_regex`, `pod_name_regex`, `container_name_regex`, `log_labels`,
-        `include_labels_logical`, `include_labels`, `exclude_labels_logical`, `exclude_labels`, `log_envs`,
-        `include_envs_logical`, `include_envs`, `exclude_envs_logical`, `exclude_envs`, `log_k8s`,
-        `include_k8s_labels_logical`, `include_k8s_labels`, `exclude_k8s_labels_logical` and
-        `exclude_k8s_labels` are available, only `path_type` is not **host_file**.
+    > These parameters include `name_space_regex`, `pod_name_regex`, `container_name_regex`, `log_labels`,
+    `include_labels_logical`, `include_labels`, `exclude_labels_logical`, `exclude_labels`, `log_envs`,
+    `include_envs_logical`, `include_envs`, `exclude_envs_logical`, `exclude_envs`, `log_k8s`,
+    `include_k8s_labels_logical`, `include_k8s_labels`, `exclude_k8s_labels_logical` and
+    `exclude_k8s_labels` are available, only `path_type` is not **host_file**.
 
-        <a name="block_access_config_single_log_format"></a>
-        The `single_log_format` block supports:
-        """
-        windows_log_info: NotRequired[pulumi.Input['CceAccessAccessConfigWindowsLogInfoArgsDict']]
-        """
-        Specifies the configuration of Windows event logs. Required when
-        `path_type` is **container_file** or **container_stdout**.
-        The windows_log_info structure is documented below.
-        """
-elif False:
-    CceAccessAccessConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block_access_config_single_log_format"></a>
+    The `single_log_format` block supports:
+    """
+    windows_log_info: NotRequired[pulumi.Input['CceAccessAccessConfigWindowsLogInfoArgsDict']]
+    """
+    Specifies the configuration of Windows event logs. Required when
+    `path_type` is **container_file** or **container_stdout**.
+    The windows_log_info structure is documented below.
+    """
 
 @pulumi.input_type
 class CceAccessAccessConfigArgs:
@@ -1280,32 +1266,29 @@ class CceAccessAccessConfigArgs:
         pulumi.set(self, "windows_log_info", value)
 
 
-if not MYPY:
-    class CceAccessAccessConfigMultiLogFormatArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies mode of multi-line log format. The options are as follows:
-        + **time**: the time wildcard.
-        + **regular**: the regular expression.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies value of multi-line log format.
-        + If mode is **regular**, the value is a regular expression.
-        + If mode is **time**, the value is a time wildcard, which is used to look for the log printing time
-        as the beginning of a log event. If the time format in a log event is `2019-01-01 23:59:59`, the time
-        wildcard is **YYYY-MM-DD hh:mm:ss**. If the time format in a log event is `19-1-1 23:59:59`, the time
-        wildcard is **YY-M-D hh:mm:ss**.
+class CceAccessAccessConfigMultiLogFormatArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies mode of multi-line log format. The options are as follows:
+    + **time**: the time wildcard.
+    + **regular**: the regular expression.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies value of multi-line log format.
+    + If mode is **regular**, the value is a regular expression.
+    + If mode is **time**, the value is a time wildcard, which is used to look for the log printing time
+    as the beginning of a log event. If the time format in a log event is `2019-01-01 23:59:59`, the time
+    wildcard is **YYYY-MM-DD hh:mm:ss**. If the time format in a log event is `19-1-1 23:59:59`, the time
+    wildcard is **YY-M-D hh:mm:ss**.
 
-        > The time wildcard and regular expression will look for the specified pattern right from the beginning of each
-        log line. If no match is found, the system time, which may be different from the time in the log event, is used.
-        In general cases, you are advised to select **Single-line** for Log Format and **system** time for Log Time.
+    > The time wildcard and regular expression will look for the specified pattern right from the beginning of each
+    log line. If no match is found, the system time, which may be different from the time in the log event, is used.
+    In general cases, you are advised to select **Single-line** for Log Format and **system** time for Log Time.
 
-        <a name="block_access_config_windows_log_info"></a>
-        The `windows_log_info` block supports:
-        """
-elif False:
-    CceAccessAccessConfigMultiLogFormatArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block_access_config_windows_log_info"></a>
+    The `windows_log_info` block supports:
+    """
 
 @pulumi.input_type
 class CceAccessAccessConfigMultiLogFormatArgs:
@@ -1372,32 +1355,29 @@ class CceAccessAccessConfigMultiLogFormatArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class CceAccessAccessConfigSingleLogFormatArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies mode of multi-line log format. The options are as follows:
-        + **time**: the time wildcard.
-        + **regular**: the regular expression.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies value of multi-line log format.
-        + If mode is **regular**, the value is a regular expression.
-        + If mode is **time**, the value is a time wildcard, which is used to look for the log printing time
-        as the beginning of a log event. If the time format in a log event is `2019-01-01 23:59:59`, the time
-        wildcard is **YYYY-MM-DD hh:mm:ss**. If the time format in a log event is `19-1-1 23:59:59`, the time
-        wildcard is **YY-M-D hh:mm:ss**.
+class CceAccessAccessConfigSingleLogFormatArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies mode of multi-line log format. The options are as follows:
+    + **time**: the time wildcard.
+    + **regular**: the regular expression.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies value of multi-line log format.
+    + If mode is **regular**, the value is a regular expression.
+    + If mode is **time**, the value is a time wildcard, which is used to look for the log printing time
+    as the beginning of a log event. If the time format in a log event is `2019-01-01 23:59:59`, the time
+    wildcard is **YYYY-MM-DD hh:mm:ss**. If the time format in a log event is `19-1-1 23:59:59`, the time
+    wildcard is **YY-M-D hh:mm:ss**.
 
-        > The time wildcard and regular expression will look for the specified pattern right from the beginning of each
-        log line. If no match is found, the system time, which may be different from the time in the log event, is used.
-        In general cases, you are advised to select **Single-line** for Log Format and **system** time for Log Time.
+    > The time wildcard and regular expression will look for the specified pattern right from the beginning of each
+    log line. If no match is found, the system time, which may be different from the time in the log event, is used.
+    In general cases, you are advised to select **Single-line** for Log Format and **system** time for Log Time.
 
-        <a name="block_access_config_windows_log_info"></a>
-        The `windows_log_info` block supports:
-        """
-elif False:
-    CceAccessAccessConfigSingleLogFormatArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block_access_config_windows_log_info"></a>
+    The `windows_log_info` block supports:
+    """
 
 @pulumi.input_type
 class CceAccessAccessConfigSingleLogFormatArgs:
@@ -1465,37 +1445,34 @@ class CceAccessAccessConfigSingleLogFormatArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class CceAccessAccessConfigWindowsLogInfoArgsDict(TypedDict):
-        categorys: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the types of Windows event logs to collect. The valid values are
-        **Application**, **System**, **Security** and **Setup**.
-        """
-        event_levels: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the Windows event severity. The valid values are **information**,
-        **warning**, **error**, **critical** and **verbose**. Only Windows Vista or later is supported.
-        """
-        time_offset: pulumi.Input[_builtins.int]
-        """
-        Specifies the collection time offset. This time takes effect only for the first
-        time to ensure that the logs are not collected repeatedly.
+class CceAccessAccessConfigWindowsLogInfoArgsDict(TypedDict):
+    categorys: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the types of Windows event logs to collect. The valid values are
+    **Application**, **System**, **Security** and **Setup**.
+    """
+    event_levels: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the Windows event severity. The valid values are **information**,
+    **warning**, **error**, **critical** and **verbose**. Only Windows Vista or later is supported.
+    """
+    time_offset: pulumi.Input[_builtins.int]
+    """
+    Specifies the collection time offset. This time takes effect only for the first
+    time to ensure that the logs are not collected repeatedly.
 
-        + When `time_offset_unit` is set to **day**, the value ranges from `1` to `7` days.
-        + When `time_offset_unit` is set to **hour**, the value ranges from `1` to `168` hours.
-        + When `time_offset_unit` is set to **sec**, the value ranges from `1` to `604,800` seconds.
+    + When `time_offset_unit` is set to **day**, the value ranges from `1` to `7` days.
+    + When `time_offset_unit` is set to **hour**, the value ranges from `1` to `168` hours.
+    + When `time_offset_unit` is set to **sec**, the value ranges from `1` to `604,800` seconds.
 
-        <a name="cce_access_processors"></a>
-        The `processors` block supports:
-        """
-        time_offset_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the collection time offset unit. The valid values are
-        **day**, **hour** and **sec**.
-        """
-elif False:
-    CceAccessAccessConfigWindowsLogInfoArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cce_access_processors"></a>
+    The `processors` block supports:
+    """
+    time_offset_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the collection time offset unit. The valid values are
+    **day**, **hour** and **sec**.
+    """
 
 @pulumi.input_type
 class CceAccessAccessConfigWindowsLogInfoArgs:
@@ -1586,18 +1563,15 @@ class CceAccessAccessConfigWindowsLogInfoArgs:
         pulumi.set(self, "time_offset_unit", value)
 
 
-if not MYPY:
-    class CceAccessDemoFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parsed field.
-        """
-        field_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the parsed field.
-        """
-elif False:
-    CceAccessDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class CceAccessDemoFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parsed field.
+    """
+    field_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the parsed field.
+    """
 
 @pulumi.input_type
 class CceAccessDemoFieldArgs:
@@ -1637,30 +1611,27 @@ class CceAccessDemoFieldArgs:
         pulumi.set(self, "field_value", value)
 
 
-if not MYPY:
-    class CceAccessProcessorArgsDict(TypedDict):
-        detail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the configuration of the parser, in JSON format.  
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-lts/CreateAccessConfig.html#CreateAccessConfig__request_Detail).
+class CceAccessProcessorArgsDict(TypedDict):
+    detail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration of the parser, in JSON format.  
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-lts/CreateAccessConfig.html#CreateAccessConfig__request_Detail).
 
-        <a name="cce_access_demoFields"></a>
-        The `demo_fields` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the parser.  
-        The valid values are as follows:
-        + **processor_regex**
-        + **processor_split_string**
-        + **processor_json**
-        + **processor_gotime**
-        + **processor_filter_regex**
-        + **processor_drop**
-        + **processor_rename**
-        """
-elif False:
-    CceAccessProcessorArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cce_access_demoFields"></a>
+    The `demo_fields` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the parser.  
+    The valid values are as follows:
+    + **processor_regex**
+    + **processor_split_string**
+    + **processor_json**
+    + **processor_gotime**
+    + **processor_filter_regex**
+    + **processor_drop**
+    + **processor_rename**
+    """
 
 @pulumi.input_type
 class CceAccessProcessorArgs:
@@ -1725,79 +1696,76 @@ class CceAccessProcessorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class HostAccessAccessConfigArgsDict(TypedDict):
-        paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the collection paths.
+class HostAccessAccessConfigArgsDict(TypedDict):
+    paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the collection paths.
 
-        + A path must start with `/` or `Letter:\\`.
-        + A path cannot contain only slashes (/). The following special characters are not allowed: <>'|"
-        + A path cannot start with `/**` or `/*`.
-        + Only one double asterisk (**) can be contained in a path.
-        + Up to 10 paths can be specified.
-        """
-        black_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the collection path blacklist.
+    + A path must start with `/` or `Letter:\\`.
+    + A path cannot contain only slashes (/). The following special characters are not allowed: <>'|"
+    + A path cannot start with `/**` or `/*`.
+    + Only one double asterisk (**) can be contained in a path.
+    + Up to 10 paths can be specified.
+    """
+    black_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the collection path blacklist.
 
-        + A path must start with `/` or `Letter:\\`.
-        + A path cannot contain only slashes (/). The following special characters are not allowed: <>'|"
-        + A path cannot start with `/**` or `/*`.
-        + Only one double asterisk (**) can be contained in a path.
-        + Up to 10 paths can be specified.
+    + A path must start with `/` or `Letter:\\`.
+    + A path cannot contain only slashes (/). The following special characters are not allowed: <>'|"
+    + A path cannot start with `/**` or `/*`.
+    + Only one double asterisk (**) can be contained in a path.
+    + Up to 10 paths can be specified.
 
-        > If you blacklist a file or directory that has been set as a collection path, the blacklist settings
-        will be used and the file or files in the directory will be filtered out.
-        """
-        custom_key_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the custom key/value pairs of the host access.  
-        Changing this parameter will create a new resource.
-        """
-        multi_log_format: NotRequired[pulumi.Input['HostAccessAccessConfigMultiLogFormatArgsDict']]
-        """
-        Specifies the configuration multi-line logs. Multiple lines of exception log events
-        can be displayed as a single log event. This is helpful when you check logs to locate problems.
-        The multi_log_format structure is documented below.
-        """
-        repeat_collect: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to allow repeated flie collection.  
-        Defaults to **false**.
-        + If this parameter is set to **true**, one host log file can be collected to multiple log streams.
-        This function is available only to certain ICAgent versions, please refer to the documentation.
-        + If this parameter is set to **false**, the same log file in the same host cannot be collected to different log streams.
+    > If you blacklist a file or directory that has been set as a collection path, the blacklist settings
+    will be used and the file or files in the directory will be filtered out.
+    """
+    custom_key_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the custom key/value pairs of the host access.  
+    Changing this parameter will create a new resource.
+    """
+    multi_log_format: NotRequired[pulumi.Input['HostAccessAccessConfigMultiLogFormatArgsDict']]
+    """
+    Specifies the configuration multi-line logs. Multiple lines of exception log events
+    can be displayed as a single log event. This is helpful when you check logs to locate problems.
+    The multi_log_format structure is documented below.
+    """
+    repeat_collect: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to allow repeated flie collection.  
+    Defaults to **false**.
+    + If this parameter is set to **true**, one host log file can be collected to multiple log streams.
+    This function is available only to certain ICAgent versions, please refer to the documentation.
+    + If this parameter is set to **false**, the same log file in the same host cannot be collected to different log streams.
 
-        <a name="HostAccessConfigSingleLogFormat"></a>
-        The `single_log_format` blocks supports:
-        """
-        single_log_format: NotRequired[pulumi.Input['HostAccessAccessConfigSingleLogFormatArgsDict']]
-        """
-        Specifies the configuration single-line logs. Each log line is displayed as a
-        single log event. The single_log_format structure is documented below.
-        """
-        system_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of system built-in fields of the host access.  
-        Changing this parameter will create a new resource.
-        If `custom_key_value` is specified, the value of `system_fields` will be automatically assigned by
-        the system as **pathfile**.
-        If `system_fields` is specified, **pathFile** must be included.
-        The valid values are as follows:
-        + **pathFile**
-        + **hostName**
-        + **hostId**
-        + **hostIP**
-        + **hostIPv6**
-        """
-        windows_log_info: NotRequired[pulumi.Input['HostAccessAccessConfigWindowsLogInfoArgsDict']]
-        """
-        Specifies the configuration of Windows event logs.
-        The windows_log_info structure is documented below.
-        """
-elif False:
-    HostAccessAccessConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="HostAccessConfigSingleLogFormat"></a>
+    The `single_log_format` blocks supports:
+    """
+    single_log_format: NotRequired[pulumi.Input['HostAccessAccessConfigSingleLogFormatArgsDict']]
+    """
+    Specifies the configuration single-line logs. Each log line is displayed as a
+    single log event. The single_log_format structure is documented below.
+    """
+    system_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of system built-in fields of the host access.  
+    Changing this parameter will create a new resource.
+    If `custom_key_value` is specified, the value of `system_fields` will be automatically assigned by
+    the system as **pathfile**.
+    If `system_fields` is specified, **pathFile** must be included.
+    The valid values are as follows:
+    + **pathFile**
+    + **hostName**
+    + **hostId**
+    + **hostIP**
+    + **hostIPv6**
+    """
+    windows_log_info: NotRequired[pulumi.Input['HostAccessAccessConfigWindowsLogInfoArgsDict']]
+    """
+    Specifies the configuration of Windows event logs.
+    The windows_log_info structure is documented below.
+    """
 
 @pulumi.input_type
 class HostAccessAccessConfigArgs:
@@ -2007,20 +1975,17 @@ class HostAccessAccessConfigArgs:
         pulumi.set(self, "windows_log_info", value)
 
 
-if not MYPY:
-    class HostAccessAccessConfigMultiLogFormatArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies mode of multi-line log format. The options are as follows:
-        + **time**: the time wildcard.
-        + **regular**: the regular expression.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the parsed field.
-        """
-elif False:
-    HostAccessAccessConfigMultiLogFormatArgsDict: TypeAlias = Mapping[str, Any]
+class HostAccessAccessConfigMultiLogFormatArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies mode of multi-line log format. The options are as follows:
+    + **time**: the time wildcard.
+    + **regular**: the regular expression.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the parsed field.
+    """
 
 @pulumi.input_type
 class HostAccessAccessConfigMultiLogFormatArgs:
@@ -2063,20 +2028,17 @@ class HostAccessAccessConfigMultiLogFormatArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HostAccessAccessConfigSingleLogFormatArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies mode of multi-line log format. The options are as follows:
-        + **time**: the time wildcard.
-        + **regular**: the regular expression.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the parsed field.
-        """
-elif False:
-    HostAccessAccessConfigSingleLogFormatArgsDict: TypeAlias = Mapping[str, Any]
+class HostAccessAccessConfigSingleLogFormatArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies mode of multi-line log format. The options are as follows:
+    + **time**: the time wildcard.
+    + **regular**: the regular expression.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the parsed field.
+    """
 
 @pulumi.input_type
 class HostAccessAccessConfigSingleLogFormatArgs:
@@ -2120,37 +2082,34 @@ class HostAccessAccessConfigSingleLogFormatArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HostAccessAccessConfigWindowsLogInfoArgsDict(TypedDict):
-        categorys: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the types of Windows event logs to collect. The valid values are
-        **Application**, **System**, **Security** and **Setup**.
-        """
-        event_levels: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the Windows event severity. The valid values are **information**, **warning**,
-        **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
-        """
-        time_offset: pulumi.Input[_builtins.int]
-        """
-        Specifies the collection time offset. This time takes effect only for the first
-        time to ensure that the logs are not collected repeatedly.
+class HostAccessAccessConfigWindowsLogInfoArgsDict(TypedDict):
+    categorys: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the types of Windows event logs to collect. The valid values are
+    **Application**, **System**, **Security** and **Setup**.
+    """
+    event_levels: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the Windows event severity. The valid values are **information**,
+    **warning**, **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
+    """
+    time_offset: pulumi.Input[_builtins.int]
+    """
+    Specifies the collection time offset. This time takes effect only for the first
+    time to ensure that the logs are not collected repeatedly.
 
-        + When `time_offset_unit` is set to **day**, the value ranges from `1` to `7` days.
-        + When `time_offset_unit` is set to **hour**, the value ranges from `1` to `168` hours.
-        + When `time_offset_unit` is set to **sec**, the value ranges from `1` to `604,800` seconds.
+    + When `time_offset_unit` is set to **day**, the value ranges from `1` to `7` days.
+    + When `time_offset_unit` is set to **hour**, the value ranges from `1` to `168` hours.
+    + When `time_offset_unit` is set to **sec**, the value ranges from `1` to `604,800` seconds.
 
-        <a name="HostAccessProcessors"></a>
-        The `processors` block supports:
-        """
-        time_offset_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the collection time offset unit. The valid values are
-        **day**, **hour** and **sec**.
-        """
-elif False:
-    HostAccessAccessConfigWindowsLogInfoArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="HostAccessProcessors"></a>
+    The `processors` block supports:
+    """
+    time_offset_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the collection time offset unit. The valid values are
+    **day**, **hour** and **sec**.
+    """
 
 @pulumi.input_type
 class HostAccessAccessConfigWindowsLogInfoArgs:
@@ -2162,8 +2121,8 @@ class HostAccessAccessConfigWindowsLogInfoArgs:
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] categorys: Specifies the types of Windows event logs to collect. The valid values are
                **Application**, **System**, **Security** and **Setup**.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_levels: Specifies the Windows event severity. The valid values are **information**, **warning**,
-               **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_levels: Specifies the Windows event severity. The valid values are **information**,
+               **warning**, **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
         :param pulumi.Input[_builtins.int] time_offset: Specifies the collection time offset. This time takes effect only for the first
                time to ensure that the logs are not collected repeatedly.
                
@@ -2198,8 +2157,8 @@ class HostAccessAccessConfigWindowsLogInfoArgs:
     @pulumi.getter(name="eventLevels")
     def event_levels(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Specifies the Windows event severity. The valid values are **information**, **warning**,
-        **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
+        Specifies the Windows event severity. The valid values are **information**,
+        **warning**, **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
         """
         return pulumi.get(self, "event_levels")
 
@@ -2241,18 +2200,15 @@ class HostAccessAccessConfigWindowsLogInfoArgs:
         pulumi.set(self, "time_offset_unit", value)
 
 
-if not MYPY:
-    class HostAccessDemoFieldArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parsed field.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the parsed field.
-        """
-elif False:
-    HostAccessDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class HostAccessDemoFieldArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parsed field.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the parsed field.
+    """
 
 @pulumi.input_type
 class HostAccessDemoFieldArgs:
@@ -2292,30 +2248,27 @@ class HostAccessDemoFieldArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HostAccessProcessorArgsDict(TypedDict):
-        detail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the configuration of the parser, in JSON format.  
-        For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-lts/CreateAccessConfig.html#CreateAccessConfig__request_Detail).
+class HostAccessProcessorArgsDict(TypedDict):
+    detail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the configuration of the parser, in JSON format.  
+    For the keys, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/api-lts/CreateAccessConfig.html#CreateAccessConfig__request_Detail).
 
-        <a name="HostAccessDemoFields"></a>
-        The `demo_fields` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the parser.  
-        The valid values are as follows:
-        + **processor_regex**
-        + **processor_split_string**
-        + **processor_json**
-        + **processor_gotime**
-        + **processor_filter_regex**
-        + **processor_drop**
-        + **processor_rename**
-        """
-elif False:
-    HostAccessProcessorArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="HostAccessDemoFields"></a>
+    The `demo_fields` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the parser.  
+    The valid values are as follows:
+    + **processor_regex**
+    + **processor_split_string**
+    + **processor_json**
+    + **processor_gotime**
+    + **processor_filter_regex**
+    + **processor_drop**
+    + **processor_rename**
+    """
 
 @pulumi.input_type
 class HostAccessProcessorArgs:
@@ -2380,47 +2333,44 @@ class HostAccessProcessorArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleFrequencyArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the frequency type.  
-        The value can be: **CRON**, **HOURLY**, **DAILY**, **WEEKLY** and **FIXED_RATE**.
-        """
-        cron_expression: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cron expression.  
-        This parameter is used when `type` is set to **CRON**.
-        """
-        day_of_week: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the day of week.  
-        This parameter is used when `type` is set to **WEEKLY**.
-        The value ranges from `1` to `7`. `1` means Sunday.
-        """
-        fixed_rate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the unit fixed rate.  
-        This parameter is used when `type` is set to **FIXED_RATE**.
-        + When the `fixed_rate_unit` is **minute**, the value ranges from `1` to `60`.
-        + When the `fixed_rate_unit` is **hour**, the value ranges from `1` to `24`
+class KeywordsAlarmRuleFrequencyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the frequency type.  
+    The value can be: **CRON**, **HOURLY**, **DAILY**, **WEEKLY** and **FIXED_RATE**.
+    """
+    cron_expression: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cron expression.  
+    This parameter is used when `type` is set to **CRON**.
+    """
+    day_of_week: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the day of week.  
+    This parameter is used when `type` is set to **WEEKLY**.
+    The value ranges from `1` to `7`. `1` means Sunday.
+    """
+    fixed_rate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the unit fixed rate.  
+    This parameter is used when `type` is set to **FIXED_RATE**.
+    + When the `fixed_rate_unit` is **minute**, the value ranges from `1` to `60`.
+    + When the `fixed_rate_unit` is **hour**, the value ranges from `1` to `24`
 
-        <a name="KeywordsAlarmRule_NotificationRule"></a>
-        The `NotificationRule` block supports:
-        """
-        fixed_rate_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit of fixed rate.  
-        The value can be: **minute** and **hour**.
-        """
-        hour_of_day: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the hour of day.  
-        This parameter is used when `type` is set to **DAILY** or **WEEKLY**.
-        The value ranges from `0` to `23`.
-        """
-elif False:
-    KeywordsAlarmRuleFrequencyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="KeywordsAlarmRule_NotificationRule"></a>
+    The `NotificationRule` block supports:
+    """
+    fixed_rate_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit of fixed rate.  
+    The value can be: **minute** and **hour**.
+    """
+    hour_of_day: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the hour of day.  
+    This parameter is used when `type` is set to **DAILY** or **WEEKLY**.
+    The value ranges from `0` to `23`.
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleFrequencyArgs:
@@ -2550,53 +2500,50 @@ class KeywordsAlarmRuleFrequencyArgs:
         pulumi.set(self, "hour_of_day", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleKeywordsRequestArgsDict(TypedDict):
-        condition: pulumi.Input[_builtins.str]
-        """
-        Specifies the keywords request condition.  
-        The value can be: **>=**, **<=**, **<** and **>**.
-        """
-        keywords: pulumi.Input[_builtins.str]
-        """
-        Specifies the keywords.
-        """
-        log_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the log group.
-        """
-        log_stream_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the log stream.
-        """
-        number: pulumi.Input[_builtins.int]
-        """
-        Specifies the line number.
-        """
-        search_time_range: pulumi.Input[_builtins.int]
-        """
-        Specifies the search time range.
-        + When the `search_time_range_unit` is **minute**, the value ranges from `1` to `60`.
-        + When the `search_time_range_unit` is **hour**, the value ranges from `1` to `24`.
-        """
-        search_time_range_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the unit of search time range.  
-        The value can be: **minute** and **hour**.
-        """
-        log_group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the log group.
-        """
-        log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the log stream.
+class KeywordsAlarmRuleKeywordsRequestArgsDict(TypedDict):
+    condition: pulumi.Input[_builtins.str]
+    """
+    Specifies the keywords request condition.  
+    The value can be: **>=**, **<=**, **<** and **>**.
+    """
+    keywords: pulumi.Input[_builtins.str]
+    """
+    Specifies the keywords.
+    """
+    log_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the log group.
+    """
+    log_stream_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the log stream.
+    """
+    number: pulumi.Input[_builtins.int]
+    """
+    Specifies the line number.
+    """
+    search_time_range: pulumi.Input[_builtins.int]
+    """
+    Specifies the search time range.
+    + When the `search_time_range_unit` is **minute**, the value ranges from `1` to `60`.
+    + When the `search_time_range_unit` is **hour**, the value ranges from `1` to `24`.
+    """
+    search_time_range_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the unit of search time range.  
+    The value can be: **minute** and **hour**.
+    """
+    log_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the log group.
+    """
+    log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the log stream.
 
-        <a name="KeywordsAlarmRule_Frequency"></a>
-        The `Frequency` block supports:
-        """
-elif False:
-    KeywordsAlarmRuleKeywordsRequestArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="KeywordsAlarmRule_Frequency"></a>
+    The `Frequency` block supports:
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleKeywordsRequestArgs:
@@ -2756,35 +2703,32 @@ class KeywordsAlarmRuleKeywordsRequestArgs:
         pulumi.set(self, "log_stream_name", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleNotificationRuleArgsDict(TypedDict):
-        template_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification template name.
-        """
-        topics: pulumi.Input[Sequence[pulumi.Input['KeywordsAlarmRuleNotificationRuleTopicArgsDict']]]
-        """
-        Specifies the SMN topics.
-        The Topic structure is documented below.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user name.
-        """
-        language: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the notification language.  
-        The value can be **zh-cn** and **en-us**, defaults to **zh-cn**.
+class KeywordsAlarmRuleNotificationRuleArgsDict(TypedDict):
+    template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification template name.
+    """
+    topics: pulumi.Input[Sequence[pulumi.Input['KeywordsAlarmRuleNotificationRuleTopicArgsDict']]]
+    """
+    Specifies the SMN topics.
+    The Topic structure is documented below.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user name.
+    """
+    language: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification language.  
+    The value can be **zh-cn** and **en-us**, defaults to **zh-cn**.
 
-        <a name="KeywordsAlarmRule_Topic"></a>
-        The `NotificationRuleTopic` block supports:
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the timezone.
-        """
-elif False:
-    KeywordsAlarmRuleNotificationRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="KeywordsAlarmRule_Topic"></a>
+    The `NotificationRuleTopic` block supports:
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the timezone.
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleNotificationRuleArgs:
@@ -2880,27 +2824,24 @@ class KeywordsAlarmRuleNotificationRuleArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleNotificationRuleTopicArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name.
-        """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic URN.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the display name.
-        This will be shown as the sender of the message.
-        """
-        push_policy: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the push policy.
-        """
-elif False:
-    KeywordsAlarmRuleNotificationRuleTopicArgsDict: TypeAlias = Mapping[str, Any]
+class KeywordsAlarmRuleNotificationRuleTopicArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic URN.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the display name.
+    This will be shown as the sender of the message.
+    """
+    push_policy: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the push policy.
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleNotificationRuleTopicArgs:
@@ -2973,35 +2914,32 @@ class KeywordsAlarmRuleNotificationRuleTopicArgs:
         pulumi.set(self, "push_policy", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleNotificationSaveRuleArgsDict(TypedDict):
-        template_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification template name.
-        """
-        topics: pulumi.Input[Sequence[pulumi.Input['KeywordsAlarmRuleNotificationSaveRuleTopicArgsDict']]]
-        """
-        Specifies the SMN topics.
-        The Topic structure is documented below.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user name.
-        """
-        language: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the notification language.  
-        The value can be **zh-cn** and **en-us**, defaults to **zh-cn**.
+class KeywordsAlarmRuleNotificationSaveRuleArgsDict(TypedDict):
+    template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification template name.
+    """
+    topics: pulumi.Input[Sequence[pulumi.Input['KeywordsAlarmRuleNotificationSaveRuleTopicArgsDict']]]
+    """
+    Specifies the SMN topics.
+    The Topic structure is documented below.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user name.
+    """
+    language: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification language.  
+    The value can be **zh-cn** and **en-us**, defaults to **zh-cn**.
 
-        <a name="KeywordsAlarmRule_Topic"></a>
-        The `NotificationRuleTopic` block supports:
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the timezone.
-        """
-elif False:
-    KeywordsAlarmRuleNotificationSaveRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="KeywordsAlarmRule_Topic"></a>
+    The `NotificationRuleTopic` block supports:
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the timezone.
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleNotificationSaveRuleArgs:
@@ -3097,27 +3035,24 @@ class KeywordsAlarmRuleNotificationSaveRuleArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class KeywordsAlarmRuleNotificationSaveRuleTopicArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name.
-        """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic URN.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the display name.
-        This will be shown as the sender of the message.
-        """
-        push_policy: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the push policy.
-        """
-elif False:
-    KeywordsAlarmRuleNotificationSaveRuleTopicArgsDict: TypeAlias = Mapping[str, Any]
+class KeywordsAlarmRuleNotificationSaveRuleTopicArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic URN.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the display name.
+    This will be shown as the sender of the message.
+    """
+    push_policy: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the push policy.
+    """
 
 @pulumi.input_type
 class KeywordsAlarmRuleNotificationSaveRuleTopicArgs:
@@ -3190,32 +3125,29 @@ class KeywordsAlarmRuleNotificationSaveRuleTopicArgs:
         pulumi.set(self, "push_policy", value)
 
 
-if not MYPY:
-    class LogConvergeLogMappingConfigArgsDict(TypedDict):
-        source_log_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the log group for source side.
-        """
-        target_log_group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the log group for target side.
-        """
-        log_stream_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['LogConvergeLogMappingConfigLogStreamConfigArgsDict']]]]
-        """
-        Specifies the log streams converged under the current log group.  
-        The log_stream_config structure is documented below.
+class LogConvergeLogMappingConfigArgsDict(TypedDict):
+    source_log_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the log group for source side.
+    """
+    target_log_group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the log group for target side.
+    """
+    log_stream_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['LogConvergeLogMappingConfigLogStreamConfigArgsDict']]]]
+    """
+    Specifies the log streams converged under the current log group.  
+    The log_stream_config structure is documented below.
 
-        <a name="converge_log_streams_config"></a>
-        The `log_stream_config` block supports:
-        """
-        target_log_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the log group for target side.
+    <a name="converge_log_streams_config"></a>
+    The `log_stream_config` block supports:
+    """
+    target_log_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the log group for target side.
 
-        > If you want to use an existing log group, this parameter (`target_log_group_id`) is required.
-        """
-elif False:
-    LogConvergeLogMappingConfigArgsDict: TypeAlias = Mapping[str, Any]
+    > If you want to use an existing log group, this parameter (`target_log_group_id`) is required.
+    """
 
 @pulumi.input_type
 class LogConvergeLogMappingConfigArgs:
@@ -3298,32 +3230,29 @@ class LogConvergeLogMappingConfigArgs:
         pulumi.set(self, "target_log_group_id", value)
 
 
-if not MYPY:
-    class LogConvergeLogMappingConfigLogStreamConfigArgsDict(TypedDict):
-        source_log_stream_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the log stream for source side.
-        """
-        target_log_stream_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the log stream for source side.
-        """
-        target_log_stream_ttl: pulumi.Input[_builtins.int]
-        """
-        Specifies the ID of the log stream for source side.
-        """
-        target_log_stream_eps_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The enterprise project ID of the log stream for target side.
-        """
-        target_log_stream_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the log stream for source side.
+class LogConvergeLogMappingConfigLogStreamConfigArgsDict(TypedDict):
+    source_log_stream_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the log stream for source side.
+    """
+    target_log_stream_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the log stream for source side.
+    """
+    target_log_stream_ttl: pulumi.Input[_builtins.int]
+    """
+    Specifies the ID of the log stream for source side.
+    """
+    target_log_stream_eps_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The enterprise project ID of the log stream for target side.
+    """
+    target_log_stream_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the log stream for source side.
 
-        > If you want to use an existing log stream, this parameter (`target_log_stream_id`) is required.
-        """
-elif False:
-    LogConvergeLogMappingConfigLogStreamConfigArgsDict: TypeAlias = Mapping[str, Any]
+    > If you want to use an existing log stream, this parameter (`target_log_stream_id`) is required.
+    """
 
 @pulumi.input_type
 class LogConvergeLogMappingConfigLogStreamConfigArgs:
@@ -3413,43 +3342,40 @@ class LogConvergeLogMappingConfigLogStreamConfigArgs:
         pulumi.set(self, "target_log_stream_id", value)
 
 
-if not MYPY:
-    class MetricRuleAggregatorArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the field of the log statistics.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-        group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the group fields of the log statistics.
-        """
-        keyword: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the keyword of the log statistics. The keyword is case sensitive.  
-        This parameter is required and available only when the `aggregator.type` parameter is set to **countKeyword**.
+class MetricRuleAggregatorArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the field of the log statistics.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
+    group_bies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the group fields of the log statistics.
+    """
+    keyword: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the keyword of the log statistics. The keyword is case sensitive.  
+    This parameter is required and available only when the `aggregator.type` parameter is set to **countKeyword**.
 
-        <a name="metric_rule_filter"></a>
-        The `filter` block supports:
-        """
-elif False:
-    MetricRuleAggregatorArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metric_rule_filter"></a>
+    The `filter` block supports:
+    """
 
 @pulumi.input_type
 class MetricRuleAggregatorArgs:
@@ -3554,35 +3480,32 @@ class MetricRuleAggregatorArgs:
         pulumi.set(self, "keyword", value)
 
 
-if not MYPY:
-    class MetricRuleFilterArgsDict(TypedDict):
-        filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetricRuleFilterFilterArgsDict']]]]
-        """
-        Specifies the list of the log filter rule associations.
-        The filters structure is documented below.
+class MetricRuleFilterArgsDict(TypedDict):
+    filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetricRuleFilterFilterArgsDict']]]]
+    """
+    Specifies the list of the log filter rule associations.
+    The filters structure is documented below.
 
-        <a name="metric_rule_associated_filters"></a>
-        The `filters` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-elif False:
-    MetricRuleFilterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metric_rule_associated_filters"></a>
+    The `filters` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
 
 @pulumi.input_type
 class MetricRuleFilterArgs:
@@ -3657,35 +3580,32 @@ class MetricRuleFilterArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class MetricRuleFilterFilterArgsDict(TypedDict):
-        filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetricRuleFilterFilterFilterArgsDict']]]]
-        """
-        Specifies the list of the log filter rule associations.
-        The filters structure is documented below.
+class MetricRuleFilterFilterArgsDict(TypedDict):
+    filters: NotRequired[pulumi.Input[Sequence[pulumi.Input['MetricRuleFilterFilterFilterArgsDict']]]]
+    """
+    Specifies the list of the log filter rule associations.
+    The filters structure is documented below.
 
-        <a name="metric_rule_associated_filters"></a>
-        The `filters` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-elif False:
-    MetricRuleFilterFilterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metric_rule_associated_filters"></a>
+    The `filters` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
 
 @pulumi.input_type
 class MetricRuleFilterFilterArgs:
@@ -3760,49 +3680,46 @@ class MetricRuleFilterFilterArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class MetricRuleFilterFilterFilterArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter field of the log.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-        lower: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the minimum value corresponding to the log filter field.  
-        This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **range**
-        or **outRange**.
-        """
-        upper: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum value corresponding to the log filter field.  
-        This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **range**
-        or **outRange**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value corresponding to the log filter field.
-        This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **contains**,
-        **notContains**, **equal**, **notEqual**, **gt**, **gte**, **lt** or **lte**.
-        """
-elif False:
-    MetricRuleFilterFilterFilterArgsDict: TypeAlias = Mapping[str, Any]
+class MetricRuleFilterFilterFilterArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter field of the log.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
+    lower: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the minimum value corresponding to the log filter field.  
+    This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **range**
+    or **outRange**.
+    """
+    upper: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum value corresponding to the log filter field.  
+    This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **range**
+    or **outRange**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value corresponding to the log filter field.
+    This parameter is required and available only when the `filters.filters.filters.type` parameter is set to **contains**,
+    **notContains**, **equal**, **notEqual**, **gt**, **gte**, **lt** or **lte**.
+    """
 
 @pulumi.input_type
 class MetricRuleFilterFilterFilterArgs:
@@ -3927,36 +3844,33 @@ class MetricRuleFilterFilterFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class MetricRuleSamplerArgsDict(TypedDict):
-        ratio: pulumi.Input[_builtins.str]
-        """
-        Specifies the sampling rate of the log.
-        + If `sampler.type` is set to **random**, the valid value ranges from `0.1` to `1`.
-        + If `sampler.type` is set to **none**, the value is set to `1`.
+class MetricRuleSamplerArgsDict(TypedDict):
+    ratio: pulumi.Input[_builtins.str]
+    """
+    Specifies the sampling rate of the log.
+    + If `sampler.type` is set to **random**, the valid value ranges from `0.1` to `1`.
+    + If `sampler.type` is set to **none**, the value is set to `1`.
 
-        <a name="metric_rule_sinks"></a>
-        The `sinks` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-elif False:
-    MetricRuleSamplerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metric_rule_sinks"></a>
+    The `sinks` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
 
 @pulumi.input_type
 class MetricRuleSamplerArgs:
@@ -4031,45 +3945,42 @@ class MetricRuleSamplerArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class MetricRuleSinkArgsDict(TypedDict):
-        metric_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the generated log metric. The name must be unique.
-        The name only English letters, digits, hyphens (-) and colon(:) are allowed, and must start with an English letter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the filter conditions of the log.  
-        The valid values are as follows:
-        + **contains**: Applicable to `string` data type.
-        + **notContains**: Applicable to `string` data type.
-        + **fieldExist**: Applicable to `string` data type.
-        + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
-        + **equal**: Applicable to `string`, `float` and `long` data types.
-        + **notEqual**: Applicable to `string`, `float` and `long` data types.
-        + **gt**: Applicable to `float` and `long` data types.
-        + **gte**: Applicable to `float` and `long` data types.
-        + **lt**: Applicable to `float` and `long` data types.
-        + **lte**: Applicable to `float` and `long` data types.
-        + **range**: Applicable to `float` and `long` data types.
-        + **outRange**: Applicable to `float` and `long` data types.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the AOM Prometheus common instance.  
-        This parameter is required and available only when the `sinks.type` parameter is set to **aom**.
+class MetricRuleSinkArgsDict(TypedDict):
+    metric_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the generated log metric. The name must be unique.
+    The name only English letters, digits, hyphens (-) and colon(:) are allowed, and must start with an English letter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the filter conditions of the log.  
+    The valid values are as follows:
+    + **contains**: Applicable to `string` data type.
+    + **notContains**: Applicable to `string` data type.
+    + **fieldExist**: Applicable to `string` data type.
+    + **fieldNotExist**: Applicable to `string`, `float` and `long` data types.
+    + **equal**: Applicable to `string`, `float` and `long` data types.
+    + **notEqual**: Applicable to `string`, `float` and `long` data types.
+    + **gt**: Applicable to `float` and `long` data types.
+    + **gte**: Applicable to `float` and `long` data types.
+    + **lt**: Applicable to `float` and `long` data types.
+    + **lte**: Applicable to `float` and `long` data types.
+    + **range**: Applicable to `float` and `long` data types.
+    + **outRange**: Applicable to `float` and `long` data types.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the AOM Prometheus common instance.  
+    This parameter is required and available only when the `sinks.type` parameter is set to **aom**.
 
-        <a name="metric_rule_aggregator"></a>
-        The `aggregator` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the AOM Prometheus common instance.  
-        This parameter is required and available only when the `sinks.type` parameter is set to **aom**.
-        """
-elif False:
-    MetricRuleSinkArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="metric_rule_aggregator"></a>
+    The `aggregator` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the AOM Prometheus common instance.  
+    This parameter is required and available only when the `sinks.type` parameter is set to **aom**.
+    """
 
 @pulumi.input_type
 class MetricRuleSinkArgs:
@@ -4178,44 +4089,41 @@ class MetricRuleSinkArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class NotificationTemplateTemplateArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
-        """
-        The content of the sub-template..  
-        In the sub-template body, only the following variables are supported for the variables following the **$** symbol.
-        The supported variables vary according to the alarm type (keyword alarm and SQL alarm).
+class NotificationTemplateTemplateArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    """
+    The content of the sub-template..  
+    In the sub-template body, only the following variables are supported for the variables following the **$** symbol.
+    The supported variables vary according to the alarm type (keyword alarm and SQL alarm).
 
-        + Common variables:
-        * Alarm severity: **${event_severity}**.
-        * Occurrence time: **${starts_at}**.
-        * Alarm source: **$event.metadata.resource_provider**.
-        * Resource type: **$event.metadata.resource_type**.
-        * Resource ID: **${resources}**.
-        * Expression: **$event.annotations.condition_expression**.
-        * current value: **$event.annotations.current_value**.
-        * Statistical period: **$event.annotations.frequency**.
+    + Common variables:
+    * Alarm severity: **${event_severity}**.
+    * Occurrence time: **${starts_at}**.
+    * Alarm source: **$event.metadata.resource_provider**.
+    * Resource type: **$event.metadata.resource_type**.
+    * Resource ID: **${resources}**.
+    * Expression: **$event.annotations.condition_expression**.
+    * current value: **$event.annotations.current_value**.
+    * Statistical period: **$event.annotations.frequency**.
 
-        + Keywords alarm specific variable:
-        * query time: **$event.annotations.results[0].time**.
-        * Run the **$event.annotations.results[0].raw_results** command to query LTSs.
+    + Keywords alarm specific variable:
+    * query time: **$event.annotations.results[0].time**.
+    * Run the **$event.annotations.results[0].raw_results** command to query LTSs.
 
-        + SQL alarm specific variable:
-        * LTS group/stream name: **$event.annotations.results[0].resource_id**.
-        * Query statement: **$event.annotations.results[0].sql**.
-        * Query time: **$event.annotations.results[0].time**.
-        * Query URL: **$event.annotations.results[0].url**.
-        * Run the **$event.annotations.results[0].raw_results** command to query LTSs.
+    + SQL alarm specific variable:
+    * LTS group/stream name: **$event.annotations.results[0].resource_id**.
+    * Query statement: **$event.annotations.results[0].sql**.
+    * Query time: **$event.annotations.results[0].time**.
+    * Query URL: **$event.annotations.results[0].url**.
+    * Run the **$event.annotations.results[0].raw_results** command to query LTSs.
 
-        > semicolon(;) after variable is an English symbol and must be added. Otherwise, the template will fail to be replaced.
-        """
-        sub_type: pulumi.Input[_builtins.str]
-        """
-        The type of the sub-template.  
-        Only the following five types are supported: **sms**, **dingding**, **wechat**, **webhook**, **email**.
-        """
-elif False:
-    NotificationTemplateTemplateArgsDict: TypeAlias = Mapping[str, Any]
+    > semicolon(;) after variable is an English symbol and must be added. Otherwise, the template will fail to be replaced.
+    """
+    sub_type: pulumi.Input[_builtins.str]
+    """
+    The type of the sub-template.  
+    Only the following five types are supported: **sms**, **dingding**, **wechat**, **webhook**, **email**.
+    """
 
 @pulumi.input_type
 class NotificationTemplateTemplateArgs:
@@ -4306,22 +4214,19 @@ class NotificationTemplateTemplateArgs:
         pulumi.set(self, "sub_type", value)
 
 
-if not MYPY:
-    class RegisterKafkaInstanceConnectInfoArgsDict(TypedDict):
-        encrypted_pwd: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The encrypted password of the SASL_SSL user of the Kafka instance.
-        """
-        pwd: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password of the SASL_SSL user of the Kafka instance.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the SASL_SSL user of the Kafka instance.
-        """
-elif False:
-    RegisterKafkaInstanceConnectInfoArgsDict: TypeAlias = Mapping[str, Any]
+class RegisterKafkaInstanceConnectInfoArgsDict(TypedDict):
+    encrypted_pwd: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The encrypted password of the SASL_SSL user of the Kafka instance.
+    """
+    pwd: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password of the SASL_SSL user of the Kafka instance.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the SASL_SSL user of the Kafka instance.
+    """
 
 @pulumi.input_type
 class RegisterKafkaInstanceConnectInfoArgs:
@@ -4378,47 +4283,44 @@ class RegisterKafkaInstanceConnectInfoArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleFrequencyArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the frequency type.
-        The value can be: **CRON**, **HOURLY**, **DAILY**, **WEEKLY** and **FIXED_RATE**.
-        """
-        cron_expression: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cron expression.
-        This parameter is used when `type` is set to **CRON**.
-        """
-        day_of_week: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the day of week.
-        This parameter is used when `type` is set to **WEEKLY**.
-        The value ranges from `1` to `7`. `1` means Sunday.
-        """
-        fixed_rate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the unit fixed rate.
-        This parameter is used when `type` is set to **FIXED_RATE**.
-        + When the `fixed_rate_unit` is **minute**, the value ranges from `1` to `60`.
-        + When the `fixed_rate_unit` is **hour**, the value ranges from `1` to `24`.
+class SqlAlarmRuleFrequencyArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the frequency type.
+    The value can be: **CRON**, **HOURLY**, **DAILY**, **WEEKLY** and **FIXED_RATE**.
+    """
+    cron_expression: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cron expression.
+    This parameter is used when `type` is set to **CRON**.
+    """
+    day_of_week: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the day of week.
+    This parameter is used when `type` is set to **WEEKLY**.
+    The value ranges from `1` to `7`. `1` means Sunday.
+    """
+    fixed_rate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the unit fixed rate.
+    This parameter is used when `type` is set to **FIXED_RATE**.
+    + When the `fixed_rate_unit` is **minute**, the value ranges from `1` to `60`.
+    + When the `fixed_rate_unit` is **hour**, the value ranges from `1` to `24`.
 
-        <a name="SQLAlarmRule_NotificationRule"></a>
-        The `NotificationRule` block supports:
-        """
-        fixed_rate_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit of fixed rate.
-        The value can be: **minute** and **hour**.
-        """
-        hour_of_day: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the hour of day.
-        This parameter is used when `type` is set to **DAILY** or **WEEKLY**.
-        The value ranges from `0` to `23`.
-        """
-elif False:
-    SqlAlarmRuleFrequencyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SQLAlarmRule_NotificationRule"></a>
+    The `NotificationRule` block supports:
+    """
+    fixed_rate_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit of fixed rate.
+    The value can be: **minute** and **hour**.
+    """
+    hour_of_day: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the hour of day.
+    This parameter is used when `type` is set to **DAILY** or **WEEKLY**.
+    The value ranges from `0` to `23`.
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleFrequencyArgs:
@@ -4548,35 +4450,32 @@ class SqlAlarmRuleFrequencyArgs:
         pulumi.set(self, "hour_of_day", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleNotificationRuleArgsDict(TypedDict):
-        language: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification language.
-        The value can be **zh-cn** and **en-us**.
-        """
-        template_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification template name.
-        """
-        topics: pulumi.Input[Sequence[pulumi.Input['SqlAlarmRuleNotificationRuleTopicArgsDict']]]
-        """
-        Specifies the SMN topics.
-        The Topic structure is documented below.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user name.
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the timezone.
+class SqlAlarmRuleNotificationRuleArgsDict(TypedDict):
+    language: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification language.
+    The value can be **zh-cn** and **en-us**.
+    """
+    template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification template name.
+    """
+    topics: pulumi.Input[Sequence[pulumi.Input['SqlAlarmRuleNotificationRuleTopicArgsDict']]]
+    """
+    Specifies the SMN topics.
+    The Topic structure is documented below.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user name.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the timezone.
 
-        <a name="SQLAlarmRule_Topic"></a>
-        The `NotificationRuleTopic` block supports:
-        """
-elif False:
-    SqlAlarmRuleNotificationRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SQLAlarmRule_Topic"></a>
+    The `NotificationRuleTopic` block supports:
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleNotificationRuleArgs:
@@ -4671,27 +4570,24 @@ class SqlAlarmRuleNotificationRuleArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleNotificationRuleTopicArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name.
-        """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic URN.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the display name.
-        This will be shown as the sender of the message.
-        """
-        push_policy: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the push policy.
-        """
-elif False:
-    SqlAlarmRuleNotificationRuleTopicArgsDict: TypeAlias = Mapping[str, Any]
+class SqlAlarmRuleNotificationRuleTopicArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic URN.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the display name.
+    This will be shown as the sender of the message.
+    """
+    push_policy: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the push policy.
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleNotificationRuleTopicArgs:
@@ -4764,35 +4660,32 @@ class SqlAlarmRuleNotificationRuleTopicArgs:
         pulumi.set(self, "push_policy", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleNotificationSaveRuleArgsDict(TypedDict):
-        language: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification language.
-        The value can be **zh-cn** and **en-us**.
-        """
-        template_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification template name.
-        """
-        topics: pulumi.Input[Sequence[pulumi.Input['SqlAlarmRuleNotificationSaveRuleTopicArgsDict']]]
-        """
-        Specifies the SMN topics.
-        The Topic structure is documented below.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the user name.
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the timezone.
+class SqlAlarmRuleNotificationSaveRuleArgsDict(TypedDict):
+    language: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification language.
+    The value can be **zh-cn** and **en-us**.
+    """
+    template_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification template name.
+    """
+    topics: pulumi.Input[Sequence[pulumi.Input['SqlAlarmRuleNotificationSaveRuleTopicArgsDict']]]
+    """
+    Specifies the SMN topics.
+    The Topic structure is documented below.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the user name.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the timezone.
 
-        <a name="SQLAlarmRule_Topic"></a>
-        The `NotificationRuleTopic` block supports:
-        """
-elif False:
-    SqlAlarmRuleNotificationSaveRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SQLAlarmRule_Topic"></a>
+    The `NotificationRuleTopic` block supports:
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleNotificationSaveRuleArgs:
@@ -4887,27 +4780,24 @@ class SqlAlarmRuleNotificationSaveRuleArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleNotificationSaveRuleTopicArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name.
-        """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic URN.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the display name.
-        This will be shown as the sender of the message.
-        """
-        push_policy: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the push policy.
-        """
-elif False:
-    SqlAlarmRuleNotificationSaveRuleTopicArgsDict: TypeAlias = Mapping[str, Any]
+class SqlAlarmRuleNotificationSaveRuleTopicArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic URN.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the display name.
+    This will be shown as the sender of the message.
+    """
+    push_policy: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the push policy.
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleNotificationSaveRuleTopicArgs:
@@ -4980,53 +4870,50 @@ class SqlAlarmRuleNotificationSaveRuleTopicArgs:
         pulumi.set(self, "push_policy", value)
 
 
-if not MYPY:
-    class SqlAlarmRuleSqlRequestArgsDict(TypedDict):
-        log_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log group id.
-        """
-        log_stream_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log stream id.
-        """
-        search_time_range: pulumi.Input[_builtins.int]
-        """
-        Specifies the search time range.
-        + When the `search_time_range_unit` is **minute**, the value ranges from `1` to `60`;
-        + When the `search_time_range_unit` is **hour**, the value ranges from `1` to `24`;
-        """
-        search_time_range_unit: pulumi.Input[_builtins.str]
-        """
-        Specifies the unit of search time range.
-        The value can be: **minute** and **hour**.
-        """
-        sql: pulumi.Input[_builtins.str]
-        """
-        Specifies the SQL.
-        """
-        title: pulumi.Input[_builtins.str]
-        """
-        Specifies the SQL request title.
-        """
-        is_time_range_relative: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the SQL request is relative to time range.  
-        Defaults to **false**.
-        """
-        log_group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the log group.
-        """
-        log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the log stream.
+class SqlAlarmRuleSqlRequestArgsDict(TypedDict):
+    log_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log group id.
+    """
+    log_stream_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log stream id.
+    """
+    search_time_range: pulumi.Input[_builtins.int]
+    """
+    Specifies the search time range.
+    + When the `search_time_range_unit` is **minute**, the value ranges from `1` to `60`;
+    + When the `search_time_range_unit` is **hour**, the value ranges from `1` to `24`;
+    """
+    search_time_range_unit: pulumi.Input[_builtins.str]
+    """
+    Specifies the unit of search time range.
+    The value can be: **minute** and **hour**.
+    """
+    sql: pulumi.Input[_builtins.str]
+    """
+    Specifies the SQL.
+    """
+    title: pulumi.Input[_builtins.str]
+    """
+    Specifies the SQL request title.
+    """
+    is_time_range_relative: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the SQL request is relative to time range.  
+    Defaults to **false**.
+    """
+    log_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the log group.
+    """
+    log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the log stream.
 
-        <a name="SQLAlarmRule_Frequency"></a>
-        The `Frequency` block supports:
-        """
-elif False:
-    SqlAlarmRuleSqlRequestArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="SQLAlarmRule_Frequency"></a>
+    The `Frequency` block supports:
+    """
 
 @pulumi.input_type
 class SqlAlarmRuleSqlRequestArgs:
@@ -5187,66 +5074,63 @@ class SqlAlarmRuleSqlRequestArgs:
         pulumi.set(self, "log_stream_name", value)
 
 
-if not MYPY:
-    class StreamIndexConfigurationFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the field.  
-        The field name only letters, digits, hyphens (-), underscores (_) and dots (.) are allowed.
-        The name cannot start with a dot and end with a double underscores (__) or a dot.
-        """
-        field_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the field.  
-        The valid values are as follows:
-        + **string**
-        + **long**
-        + **float**
-        """
-        asciis: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the ASCII delimiters.  
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        For more ASCII delimiters, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-lts/lts_05_0008.html#lts_05_0008__section15661144724914).
-        """
-        case_sensitive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether letters are case sensitive.  
-        Defaults to **false**.
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-        field_analysis_alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alias name of the field.  
-        Currently, only available in `cn-north-9`, `ap-southeast-1`, `ap-southeast-3` and `cn-east-3` regions.
-        """
-        include_chinese: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to include Chinese.  
-        Defaults to **false**.
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-        lts_sub_fields_info_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['StreamIndexConfigurationFieldLtsSubFieldsInfoListArgsDict']]]]
-        """
-        Specifies the list of of the JSON fields.  
-        The lts_sub_fields_info_list structure is documented below.
-        The parameter is available only when the `fields.field_type` parameter set to **json**.
+class StreamIndexConfigurationFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the field.  
+    The field name only letters, digits, hyphens (-), underscores (_) and dots (.) are allowed.
+    The name cannot start with a dot and end with a double underscores (__) or a dot.
+    """
+    field_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the field.  
+    The valid values are as follows:
+    + **string**
+    + **long**
+    + **float**
+    """
+    asciis: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the ASCII delimiters.  
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    For more ASCII delimiters, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-lts/lts_05_0008.html#lts_05_0008__section15661144724914).
+    """
+    case_sensitive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether letters are case sensitive.  
+    Defaults to **false**.
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
+    field_analysis_alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias name of the field.  
+    Currently, only available in `cn-north-9`, `ap-southeast-1`, `ap-southeast-3` and `cn-east-3` regions.
+    """
+    include_chinese: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to include Chinese.  
+    Defaults to **false**.
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
+    lts_sub_fields_info_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['StreamIndexConfigurationFieldLtsSubFieldsInfoListArgsDict']]]]
+    """
+    Specifies the list of of the JSON fields.  
+    The lts_sub_fields_info_list structure is documented below.
+    The parameter is available only when the `fields.field_type` parameter set to **json**.
 
-        <a name="stream_index_config_fields_lts_sub_fields_info_list"></a>
-        The `lts_sub_fields_info_list` block supports:
-        """
-        quick_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable quick analysis.  
-        Defaults to **false**.
-        """
-        tokenizer: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom delimiter.  
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-elif False:
-    StreamIndexConfigurationFieldArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="stream_index_config_fields_lts_sub_fields_info_list"></a>
+    The `lts_sub_fields_info_list` block supports:
+    """
+    quick_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable quick analysis.  
+    Defaults to **false**.
+    """
+    tokenizer: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom delimiter.  
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
 
 @pulumi.input_type
 class StreamIndexConfigurationFieldArgs:
@@ -5437,34 +5321,31 @@ class StreamIndexConfigurationFieldArgs:
         pulumi.set(self, "tokenizer", value)
 
 
-if not MYPY:
-    class StreamIndexConfigurationFieldLtsSubFieldsInfoListArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the field.  
-        The field name only letters, digits, hyphens (-), underscores (_) and dots (.) are allowed.
-        The name cannot start with a dot and end with a double underscores (__) or a dot.
-        """
-        field_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the field.  
-        The valid values are as follows:
-        + **string**
-        + **long**
-        + **float**
-        """
-        field_analysis_alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alias name of the field.  
-        Currently, only available in `cn-north-9`, `ap-southeast-1`, `ap-southeast-3` and `cn-east-3` regions.
-        """
-        quick_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable quick analysis.  
-        Defaults to **false**.
-        """
-elif False:
-    StreamIndexConfigurationFieldLtsSubFieldsInfoListArgsDict: TypeAlias = Mapping[str, Any]
+class StreamIndexConfigurationFieldLtsSubFieldsInfoListArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the field.  
+    The field name only letters, digits, hyphens (-), underscores (_) and dots (.) are allowed.
+    The name cannot start with a dot and end with a double underscores (__) or a dot.
+    """
+    field_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the field.  
+    The valid values are as follows:
+    + **string**
+    + **long**
+    + **float**
+    """
+    field_analysis_alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias name of the field.  
+    Currently, only available in `cn-north-9`, `ap-southeast-1`, `ap-southeast-3` and `cn-east-3` regions.
+    """
+    quick_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable quick analysis.  
+    Defaults to **false**.
+    """
 
 @pulumi.input_type
 class StreamIndexConfigurationFieldLtsSubFieldsInfoListArgs:
@@ -5551,38 +5432,35 @@ class StreamIndexConfigurationFieldLtsSubFieldsInfoListArgs:
         pulumi.set(self, "quick_analysis", value)
 
 
-if not MYPY:
-    class StreamIndexConfigurationFullTextIndexArgsDict(TypedDict):
-        asciis: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of the ASCII delimiters.  
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        For more ASCII delimiters, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-lts/lts_05_0008.html#lts_05_0008__section15661144724914).
-        """
-        case_sensitive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether letters are case sensitive.  
-        Defaults to **false**.
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the full-text index.  
-        Defaults to **true**.
-        """
-        include_chinese: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to include Chinese.  
-        Defaults to **false**.
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-        tokenizer: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom delimiter.  
-        The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
-        """
-elif False:
-    StreamIndexConfigurationFullTextIndexArgsDict: TypeAlias = Mapping[str, Any]
+class StreamIndexConfigurationFullTextIndexArgsDict(TypedDict):
+    asciis: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of the ASCII delimiters.  
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    For more ASCII delimiters, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-lts/lts_05_0008.html#lts_05_0008__section15661144724914).
+    """
+    case_sensitive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether letters are case sensitive.  
+    Defaults to **false**.
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the full-text index.  
+    Defaults to **true**.
+    """
+    include_chinese: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to include Chinese.  
+    Defaults to **false**.
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
+    tokenizer: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom delimiter.  
+    The parameter is available only when the `fields.field_type` parameter set to **string** or **json**.
+    """
 
 @pulumi.input_type
 class StreamIndexConfigurationFullTextIndexArgs:
@@ -5687,16 +5565,13 @@ class StreamIndexConfigurationFullTextIndexArgs:
         pulumi.set(self, "tokenizer", value)
 
 
-if not MYPY:
-    class StructTemplateDemoFieldArgsDict(TypedDict):
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        field_name: NotRequired[pulumi.Input[_builtins.str]]
-        index: NotRequired[pulumi.Input[_builtins.int]]
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        user_defined_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    StructTemplateDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructTemplateDemoFieldArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    field_name: NotRequired[pulumi.Input[_builtins.str]]
+    index: NotRequired[pulumi.Input[_builtins.int]]
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    user_defined_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class StructTemplateDemoFieldArgs:
@@ -5775,14 +5650,11 @@ class StructTemplateDemoFieldArgs:
         pulumi.set(self, "user_defined_name", value)
 
 
-if not MYPY:
-    class StructTemplateTagFieldArgsDict(TypedDict):
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        field_name: NotRequired[pulumi.Input[_builtins.str]]
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    StructTemplateTagFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructTemplateTagFieldArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    field_name: NotRequired[pulumi.Input[_builtins.str]]
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class StructTemplateTagFieldArgs:
@@ -5837,18 +5709,15 @@ class StructTemplateTagFieldArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class StructingTemplateDemoFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name. The valid length is limited from `1` to `64`.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled. Defaults to **false**.
-        """
-elif False:
-    StructingTemplateDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructingTemplateDemoFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name. The valid length is limited from `1` to `64`.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled. Defaults to **false**.
+    """
 
 @pulumi.input_type
 class StructingTemplateDemoFieldArgs:
@@ -5888,18 +5757,15 @@ class StructingTemplateDemoFieldArgs:
         pulumi.set(self, "is_analysis", value)
 
 
-if not MYPY:
-    class StructingTemplateTagFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name. The valid length is limited from `1` to `64`.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled. Defaults to **false**.
-        """
-elif False:
-    StructingTemplateTagFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructingTemplateTagFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name. The valid length is limited from `1` to `64`.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled. Defaults to **false**.
+    """
 
 @pulumi.input_type
 class StructingTemplateTagFieldArgs:
@@ -5939,18 +5805,15 @@ class StructingTemplateTagFieldArgs:
         pulumi.set(self, "is_analysis", value)
 
 
-if not MYPY:
-    class StructuringConfigurationDemoFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled.
-        """
-elif False:
-    StructuringConfigurationDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructuringConfigurationDemoFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled.
+    """
 
 @pulumi.input_type
 class StructuringConfigurationDemoFieldArgs:
@@ -5990,18 +5853,15 @@ class StructuringConfigurationDemoFieldArgs:
         pulumi.set(self, "is_analysis", value)
 
 
-if not MYPY:
-    class StructuringConfigurationTagFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled.
-        """
-elif False:
-    StructuringConfigurationTagFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructuringConfigurationTagFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled.
+    """
 
 @pulumi.input_type
 class StructuringConfigurationTagFieldArgs:
@@ -6041,26 +5901,23 @@ class StructuringConfigurationTagFieldArgs:
         pulumi.set(self, "is_analysis", value)
 
 
-if not MYPY:
-    class StructuringCustomConfigurationDemoFieldArgsDict(TypedDict):
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the field content.
-        """
-        field_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the field name. The value ranges from `1` to `50`.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled. Defaults to **false**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the field data type. Valid values are **string**, **long** and **float**.
-        """
-elif False:
-    StructuringCustomConfigurationDemoFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructuringCustomConfigurationDemoFieldArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the field content.
+    """
+    field_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the field name. The value ranges from `1` to `50`.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled. Defaults to **false**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the field data type. Valid values are **string**, **long** and **float**.
+    """
 
 @pulumi.input_type
 class StructuringCustomConfigurationDemoFieldArgs:
@@ -6133,26 +5990,23 @@ class StructuringCustomConfigurationDemoFieldArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class StructuringCustomConfigurationTagFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the field name. The value ranges from `1` to `50`.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the field data type. Valid values are **string**, **long** and **float**.
-        """
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the field content.
-        """
-        is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether quick analysis is enabled. Defaults to **false**.
-        """
-elif False:
-    StructuringCustomConfigurationTagFieldArgsDict: TypeAlias = Mapping[str, Any]
+class StructuringCustomConfigurationTagFieldArgsDict(TypedDict):
+    field_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the field name. The value ranges from `1` to `50`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the field data type. Valid values are **string**, **long** and **float**.
+    """
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the field content.
+    """
+    is_analysis: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether quick analysis is enabled. Defaults to **false**.
+    """
 
 @pulumi.input_type
 class StructuringCustomConfigurationTagFieldArgs:
@@ -6223,25 +6077,22 @@ class StructuringCustomConfigurationTagFieldArgs:
         pulumi.set(self, "is_analysis", value)
 
 
-if not MYPY:
-    class TransferLogStreamArgsDict(TypedDict):
-        log_stream_id: pulumi.Input[_builtins.str]
-        """
-        Log stream ID.
+class TransferLogStreamArgsDict(TypedDict):
+    log_stream_id: pulumi.Input[_builtins.str]
+    """
+    Log stream ID.
 
-        Changing this parameter will create a new resource.
-        """
-        log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Log stream name.
+    Changing this parameter will create a new resource.
+    """
+    log_stream_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Log stream name.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        <a name="LtsTransfer_LogTransferInfo"></a>
-        The `log_transfer_info` block supports:
-        """
-elif False:
-    TransferLogStreamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LtsTransfer_LogTransferInfo"></a>
+    The `log_transfer_info` block supports:
+    """
 
 @pulumi.input_type
 class TransferLogStreamArgs:
@@ -6295,57 +6146,54 @@ class TransferLogStreamArgs:
         pulumi.set(self, "log_stream_name", value)
 
 
-if not MYPY:
-    class TransferLogTransferInfoArgsDict(TypedDict):
-        log_storage_format: pulumi.Input[_builtins.str]
-        """
-        Log transfer format.  
-        Value options are as follows:
-        + **JSON**: JSON format, which is available to OBS and DIS transfer tasks.
-        + **RAW**: Raw log format, which is available to OBS, DIS and DMS transfer tasks.
-        """
-        log_transfer_detail: pulumi.Input['TransferLogTransferInfoLogTransferDetailArgsDict']
-        """
-        Log transfer details.  
-        The log_transfer_detail structure is documented below.
+class TransferLogTransferInfoArgsDict(TypedDict):
+    log_storage_format: pulumi.Input[_builtins.str]
+    """
+    Log transfer format.  
+    Value options are as follows:
+    + **JSON**: JSON format, which is available to OBS and DIS transfer tasks.
+    + **RAW**: Raw log format, which is available to OBS, DIS and DMS transfer tasks.
+    """
+    log_transfer_detail: pulumi.Input['TransferLogTransferInfoLogTransferDetailArgsDict']
+    """
+    Log transfer details.  
+    The log_transfer_detail structure is documented below.
 
-        <a name="LtsTransfer_LogAgency"></a>
-        The `log_agency_transfer` block supports:
-        """
-        log_transfer_mode: pulumi.Input[_builtins.str]
-        """
-        Log transfer mode.  
-        Value options are as follows:
-        + **cycle**: Periodical transfer, which is available to OBS transfer tasks.
-        + **realTime**: Real-time transfer, which is available to DIS and DMS transfer tasks.
+    <a name="LtsTransfer_LogAgency"></a>
+    The `log_agency_transfer` block supports:
+    """
+    log_transfer_mode: pulumi.Input[_builtins.str]
+    """
+    Log transfer mode.  
+    Value options are as follows:
+    + **cycle**: Periodical transfer, which is available to OBS transfer tasks.
+    + **realTime**: Real-time transfer, which is available to DIS and DMS transfer tasks.
 
-        Changing this parameter will create a new resource.
-        """
-        log_transfer_status: pulumi.Input[_builtins.str]
-        """
-        Log transfer status.  
-        Value options are as follows:
-        + **ENABLE**: Log transfer is enabled.
-        + **DISABLE**: Log transfer is disabled
-        """
-        log_transfer_type: pulumi.Input[_builtins.str]
-        """
-        Log transfer type.  
-        The valid values are **OBS**, **DIS**, and **DMS**.
+    Changing this parameter will create a new resource.
+    """
+    log_transfer_status: pulumi.Input[_builtins.str]
+    """
+    Log transfer status.  
+    Value options are as follows:
+    + **ENABLE**: Log transfer is enabled.
+    + **DISABLE**: Log transfer is disabled
+    """
+    log_transfer_type: pulumi.Input[_builtins.str]
+    """
+    Log transfer type.  
+    The valid values are **OBS**, **DIS**, and **DMS**.
 
-        Changing this parameter will create a new resource.
-        """
-        log_agency_transfer: NotRequired[pulumi.Input['TransferLogTransferInfoLogAgencyTransferArgsDict']]
-        """
-        Information about agency which lets an account delegate resource management
-        to other accounts.
-        This parameter is mandatory if you transfer logs for another account.
-        The log_agency_transfer structure is documented below.
+    Changing this parameter will create a new resource.
+    """
+    log_agency_transfer: NotRequired[pulumi.Input['TransferLogTransferInfoLogAgencyTransferArgsDict']]
+    """
+    Information about agency which lets an account delegate resource management
+    to other accounts.
+    This parameter is mandatory if you transfer logs for another account.
+    The log_agency_transfer structure is documented below.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    TransferLogTransferInfoArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class TransferLogTransferInfoArgs:
@@ -6491,37 +6339,34 @@ class TransferLogTransferInfoArgs:
         pulumi.set(self, "log_agency_transfer", value)
 
 
-if not MYPY:
-    class TransferLogTransferInfoLogAgencyTransferArgsDict(TypedDict):
-        agency_domain_id: pulumi.Input[_builtins.str]
-        """
-        Delegator account ID.
+class TransferLogTransferInfoLogAgencyTransferArgsDict(TypedDict):
+    agency_domain_id: pulumi.Input[_builtins.str]
+    """
+    Delegator account ID.
 
-        Changing this parameter will create a new resource.
-        """
-        agency_domain_name: pulumi.Input[_builtins.str]
-        """
-        Delegator account name.
+    Changing this parameter will create a new resource.
+    """
+    agency_domain_name: pulumi.Input[_builtins.str]
+    """
+    Delegator account name.
 
-        Changing this parameter will create a new resource.
-        """
-        agency_name: pulumi.Input[_builtins.str]
-        """
-        The agency name created by the delegator.
+    Changing this parameter will create a new resource.
+    """
+    agency_name: pulumi.Input[_builtins.str]
+    """
+    The agency name created by the delegator.
 
-        Changing this parameter will create a new resource.
-        """
-        agency_project_id: pulumi.Input[_builtins.str]
-        """
-        Project ID of the delegator.
+    Changing this parameter will create a new resource.
+    """
+    agency_project_id: pulumi.Input[_builtins.str]
+    """
+    Project ID of the delegator.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        <a name="LtsTransfer_LogTransferDetail"></a>
-        The `log_transfer_detail` block supports:
-        """
-elif False:
-    TransferLogTransferInfoLogAgencyTransferArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="LtsTransfer_LogTransferDetail"></a>
+    The `log_transfer_detail` block supports:
+    """
 
 @pulumi.input_type
 class TransferLogTransferInfoLogAgencyTransferArgs:
@@ -6612,133 +6457,130 @@ class TransferLogTransferInfoLogAgencyTransferArgs:
         pulumi.set(self, "agency_project_id", value)
 
 
-if not MYPY:
-    class TransferLogTransferInfoLogTransferDetailArgsDict(TypedDict):
-        cloud_project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cloud project ID.
-        """
-        delivery_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of tag fields will be delivered when transferring.  
-        This field must contain the following host information: **hostIP**, **hostId**, **hostName**, **pathFile**, and **collectTime**.
-        The common fields include **logStreamName**, **regionName**, **logGroupName**, and **projectId**, which are optional.
-        The transfer tag: **streamTag**, which is optional.
-        This parameter is valid only for OBS or DIS transfer in JSON format.
-        """
-        dis_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        DIS stream ID.  
-        This parameter is mandatory when you create a DIS transfer task.
-        """
-        dis_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        DIS stream name.  
-        This parameter is mandatory when you create a DIS transfer task.
-        """
-        invalid_field_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the invalid field fill.
-        """
-        kafka_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Kafka ID.  
-        This parameter is mandatory when you create a DMS transfer task.
-        """
-        kafka_topic: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Kafka topic.  
-        This parameter is mandatory when you create a DMS transfer task.
+class TransferLogTransferInfoLogTransferDetailArgsDict(TypedDict):
+    cloud_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cloud project ID.
+    """
+    delivery_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of tag fields will be delivered when transferring.  
+    This field must contain the following host information: **hostIP**, **hostId**, **hostName**, **pathFile**, and **collectTime**.
+    The common fields include **logStreamName**, **regionName**, **logGroupName**, and **projectId**, which are optional.
+    The transfer tag: **streamTag**, which is optional.
+    This parameter is valid only for OBS or DIS transfer in JSON format.
+    """
+    dis_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    DIS stream ID.  
+    This parameter is mandatory when you create a DIS transfer task.
+    """
+    dis_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    DIS stream name.  
+    This parameter is mandatory when you create a DIS transfer task.
+    """
+    invalid_field_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the invalid field fill.
+    """
+    kafka_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Kafka ID.  
+    This parameter is mandatory when you create a DMS transfer task.
+    """
+    kafka_topic: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Kafka topic.  
+    This parameter is mandatory when you create a DMS transfer task.
 
-        > Before creating a DMS transfer task, register your Kafka instance with Kafka ID and Kafka topic first.
-        """
-        lts_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of built-in fields and custom tags to be transferred.  
-        If you want to transfer all built-in and specified fields in the log, you need to set it to **all**.
-        """
-        obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS bucket name.  
-        This parameter is mandatory when you create an OBS transfer task.
-        """
-        obs_dir_prefix_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Custom transfer path of an OBS transfer task.
-        """
-        obs_encrypted_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether OBS bucket encryption is enabled.
-        """
-        obs_encrypted_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        KMS key ID for an OBS transfer task.  
-        This parameter is mandatory if encryption is enabled for the target OBS bucket.
-        """
-        obs_eps_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Enterprise project ID of an OBS transfer task.
-        """
-        obs_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Length of the transfer interval for an OBS transfer task.  
-        This parameter is mandatory when you create an OBS transfer task.
-        The log transfer interval is specified by the combination of the values of **obs_period** and **obs_period_unit**,
-        and must be set to one of the following: 2 min, 5 min, 30 min, 1 hour, 3 hours, 6 hours, and 12 hours.
-        Value options are as follows:
-        + **2**: 2 minutes, the **obs_period_unit** must be **min**.
-        + **5**: 5 minutes, the **obs_period_unit** must be **min**.
-        + **30**: 30 minutes, the **obs_period_unit** must be **min**.
-        + **1**: 1 hour, the **obs_period_unit** must be **hour**.
-        + **3**: 3 hours, the **obs_period_unit** must be **hour**.
-        + **6**: 6 hours, the **obs_period_unit** must be **hour**.
-        + **12**: 12 hours, the **obs_period_unit** must be **hour**.
-        """
-        obs_period_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unit of the transfer interval for an OBS transfer task.  
-        This parameter is mandatory when you create an OBS transfer task.
-        The log transfer interval is specified by the combination of the values of **obs_period** and **obs_period_unit**,
-        and must be set to one of the following: 2 min, 5 min, 30 min, 1 hour, 3 hours, 6 hours, and 12 hours.
-        Value options are as follows:
-        + **min**: minute.
-        + **hour**: hour.
-        """
-        obs_prefix_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Transfer file prefix of an OBS transfer task.
-        """
-        obs_time_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Time zone for an OBS transfer task.  
-        For details, see [Time Zone List for OBS Transfer](https://support.huaweicloud.com/intl/en-us/api-lts/lts_api_0111.html).
-        If this parameter is specified, **obs_time_zone_id** must also be specified.
-        """
-        obs_time_zone_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the time zone for an OBS transfer task.  
-        For details, see [Time Zone List for OBS Transfer](https://support.huaweicloud.com/intl/en-us/api-lts/lts_api_0111.html).
-        If this parameter is specified, **obs_time_zone** must also be specified.
-        """
-        obs_transfer_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OBS bucket path, which is the log transfer destination.
-        """
-        stream_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of stream tag fields to be transferred.  
-        If you want to transfer all stream tag fields in the log, you need to set it to **all**.
-        """
-        struct_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of structured fields to be transferred.  
-        If you want to transfer all fields in a log in the log, you need to set it to **all**.
+    > Before creating a DMS transfer task, register your Kafka instance with Kafka ID and Kafka topic first.
+    """
+    lts_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of built-in fields and custom tags to be transferred.  
+    If you want to transfer all built-in and specified fields in the log, you need to set it to **all**.
+    """
+    obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS bucket name.  
+    This parameter is mandatory when you create an OBS transfer task.
+    """
+    obs_dir_prefix_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Custom transfer path of an OBS transfer task.
+    """
+    obs_encrypted_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether OBS bucket encryption is enabled.
+    """
+    obs_encrypted_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    KMS key ID for an OBS transfer task.  
+    This parameter is mandatory if encryption is enabled for the target OBS bucket.
+    """
+    obs_eps_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Enterprise project ID of an OBS transfer task.
+    """
+    obs_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Length of the transfer interval for an OBS transfer task.  
+    This parameter is mandatory when you create an OBS transfer task.
+    The log transfer interval is specified by the combination of the values of **obs_period** and **obs_period_unit**,
+    and must be set to one of the following: 2 min, 5 min, 30 min, 1 hour, 3 hours, 6 hours, and 12 hours.
+    Value options are as follows:
+    + **2**: 2 minutes, the **obs_period_unit** must be **min**.
+    + **5**: 5 minutes, the **obs_period_unit** must be **min**.
+    + **30**: 30 minutes, the **obs_period_unit** must be **min**.
+    + **1**: 1 hour, the **obs_period_unit** must be **hour**.
+    + **3**: 3 hours, the **obs_period_unit** must be **hour**.
+    + **6**: 6 hours, the **obs_period_unit** must be **hour**.
+    + **12**: 12 hours, the **obs_period_unit** must be **hour**.
+    """
+    obs_period_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Unit of the transfer interval for an OBS transfer task.  
+    This parameter is mandatory when you create an OBS transfer task.
+    The log transfer interval is specified by the combination of the values of **obs_period** and **obs_period_unit**,
+    and must be set to one of the following: 2 min, 5 min, 30 min, 1 hour, 3 hours, 6 hours, and 12 hours.
+    Value options are as follows:
+    + **min**: minute.
+    + **hour**: hour.
+    """
+    obs_prefix_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Transfer file prefix of an OBS transfer task.
+    """
+    obs_time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Time zone for an OBS transfer task.  
+    For details, see [Time Zone List for OBS Transfer](https://support.huaweicloud.com/intl/en-us/api-lts/lts_api_0111.html).
+    If this parameter is specified, **obs_time_zone_id** must also be specified.
+    """
+    obs_time_zone_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the time zone for an OBS transfer task.  
+    For details, see [Time Zone List for OBS Transfer](https://support.huaweicloud.com/intl/en-us/api-lts/lts_api_0111.html).
+    If this parameter is specified, **obs_time_zone** must also be specified.
+    """
+    obs_transfer_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OBS bucket path, which is the log transfer destination.
+    """
+    stream_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of stream tag fields to be transferred.  
+    If you want to transfer all stream tag fields in the log, you need to set it to **all**.
+    """
+    struct_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of structured fields to be transferred.  
+    If you want to transfer all fields in a log in the log, you need to set it to **all**.
 
-        > 1. The `lts_tags`, `stream_tags` and `struct_fields` parameters are valid only for DMS transfer in JSON format.
-        At least one of them must be set.
-        """
-elif False:
-    TransferLogTransferInfoLogTransferDetailArgsDict: TypeAlias = Mapping[str, Any]
+    > 1. The `lts_tags`, `stream_tags` and `struct_fields` parameters are valid only for DMS transfer in JSON format.
+    At least one of them must be set.
+    """
 
 @pulumi.input_type
 class TransferLogTransferInfoLogTransferDetailArgs:
@@ -7161,21 +7003,18 @@ class TransferLogTransferInfoLogTransferDetailArgs:
         pulumi.set(self, "struct_fields", value)
 
 
-if not MYPY:
-    class GetAlarmsSortArgsDict(TypedDict):
-        order: _builtins.str
-        """
-        Specifies the sort mode of the alarm.  
-        The valid values are as follows:
-        + **asc**
-        + **desc**
-        """
-        order_bies: Sequence[_builtins.str]
-        """
-        Specifies the fields to be sorted.
-        """
-elif False:
-    GetAlarmsSortArgsDict: TypeAlias = Mapping[str, Any]
+class GetAlarmsSortArgsDict(TypedDict):
+    order: _builtins.str
+    """
+    Specifies the sort mode of the alarm.  
+    The valid values are as follows:
+    + **asc**
+    + **desc**
+    """
+    order_bies: Sequence[_builtins.str]
+    """
+    Specifies the fields to be sorted.
+    """
 
 @pulumi.input_type
 class GetAlarmsSortArgs:
@@ -7220,36 +7059,33 @@ class GetAlarmsSortArgs:
         pulumi.set(self, "order_bies", value)
 
 
-if not MYPY:
-    class GetHostsFilterArgsDict(TypedDict):
-        host_ip_lists: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of the host IPs.
-        """
-        host_name_lists: NotRequired[Sequence[_builtins.str]]
-        """
-        Specifies the list of the host names.
-        """
-        host_status: NotRequired[_builtins.str]
-        """
-        Specifies the status of the host.  
-        The valid values are as follows:
-        + **uninstall**
-        + **running**
-        + **offline**
-        + **error**
-        + **plugin error**
-        + **install-fail**
-        + **upgrade failed**
-        + **upgrade-fail**
-        + **authentication error**
-        """
-        host_version: NotRequired[_builtins.str]
-        """
-        Specifies the version of the host.
-        """
-elif False:
-    GetHostsFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetHostsFilterArgsDict(TypedDict):
+    host_ip_lists: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of the host IPs.
+    """
+    host_name_lists: NotRequired[Sequence[_builtins.str]]
+    """
+    Specifies the list of the host names.
+    """
+    host_status: NotRequired[_builtins.str]
+    """
+    Specifies the status of the host.  
+    The valid values are as follows:
+    + **uninstall**
+    + **running**
+    + **offline**
+    + **error**
+    + **plugin error**
+    + **install-fail**
+    + **upgrade failed**
+    + **upgrade-fail**
+    + **authentication error**
+    """
+    host_version: NotRequired[_builtins.str]
+    """
+    Specifies the version of the host.
+    """
 
 @pulumi.input_type
 class GetHostsFilterArgs:

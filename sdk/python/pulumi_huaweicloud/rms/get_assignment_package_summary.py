@@ -82,7 +82,7 @@ def get_assignment_package_summary(conformance_pack_name: Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_summary()
+    test = huaweicloud.Rms.get_assignment_package_summary()
     ```
 
 
@@ -91,7 +91,7 @@ def get_assignment_package_summary(conformance_pack_name: Optional[_builtins.str
     __args__ = dict()
     __args__['conformancePackName'] = conformance_pack_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAssignmentPackageSummary:getAssignmentPackageSummary', __args__, opts=opts, typ=GetAssignmentPackageSummaryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAssignmentPackageSummary:getAssignmentPackageSummary', __args__, opts=opts, typ=GetAssignmentPackageSummaryResult).value
 
     return AwaitableGetAssignmentPackageSummaryResult(
         conformance_pack_name=pulumi.get(__ret__, 'conformance_pack_name'),
@@ -108,7 +108,7 @@ def get_assignment_package_summary_output(conformance_pack_name: Optional[pulumi
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_summary()
+    test = huaweicloud.Rms.get_assignment_package_summary()
     ```
 
 
@@ -117,7 +117,7 @@ def get_assignment_package_summary_output(conformance_pack_name: Optional[pulumi
     __args__ = dict()
     __args__['conformancePackName'] = conformance_pack_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAssignmentPackageSummary:getAssignmentPackageSummary', __args__, opts=opts, typ=GetAssignmentPackageSummaryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAssignmentPackageSummary:getAssignmentPackageSummary', __args__, opts=opts, typ=GetAssignmentPackageSummaryResult)
     return __ret__.apply(lambda __response__: GetAssignmentPackageSummaryResult(
         conformance_pack_name=pulumi.get(__response__, 'conformance_pack_name'),
         id=pulumi.get(__response__, 'id'),

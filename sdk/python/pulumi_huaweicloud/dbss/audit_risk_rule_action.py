@@ -25,6 +25,7 @@ class AuditRiskRuleActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuditRiskRuleAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                The value can be **ON** or **OFF**.
                Changing this parameter will create a new resource.
@@ -109,6 +110,7 @@ class _AuditRiskRuleActionState:
                  risk_ids: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuditRiskRuleAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type.
                The value can be **ON** or **OFF**.
                Changing this parameter will create a new resource.
@@ -201,7 +203,7 @@ class _AuditRiskRuleActionState:
         pulumi.set(self, "risk_ids", value)
 
 
-@pulumi.type_token("huaweicloud:dbss/auditRiskRuleAction:AuditRiskRuleAction")
+@pulumi.type_token("huaweicloud:Dbss/auditRiskRuleAction:AuditRiskRuleAction")
 class AuditRiskRuleAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -233,6 +235,7 @@ class AuditRiskRuleAction(pulumi.CustomResource):
             risk_ids=risk_ids,
             action=action)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -276,6 +279,7 @@ class AuditRiskRuleAction(pulumi.CustomResource):
             action=action)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AuditRiskRuleActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,7 +320,7 @@ class AuditRiskRuleAction(pulumi.CustomResource):
             __props__.__dict__["risk_ids"] = risk_ids
             __props__.__dict__["result"] = None
         super(AuditRiskRuleAction, __self__).__init__(
-            'huaweicloud:dbss/auditRiskRuleAction:AuditRiskRuleAction',
+            'huaweicloud:Dbss/auditRiskRuleAction:AuditRiskRuleAction',
             resource_name,
             __props__,
             opts)

@@ -20,14 +20,19 @@ __all__ = ['ProviderMappingArgs', 'ProviderMapping']
 class ProviderMappingArgs:
     def __init__(__self__, *,
                  mapping_rules: pulumi.Input[_builtins.str],
-                 provider_id: pulumi.Input[_builtins.str]):
+                 provider_id: pulumi.Input[_builtins.str],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProviderMapping resource.
+
         :param pulumi.Input[_builtins.str] mapping_rules: Specifies the identity mapping rules in json string format.
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping
+               rules.
         """
         pulumi.set(__self__, "mapping_rules", mapping_rules)
         pulumi.set(__self__, "provider_id", provider_id)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
 
     @_builtins.property
     @pulumi.getter(name="mappingRules")
@@ -45,7 +50,8 @@ class ProviderMappingArgs:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ID of the identity provider used to manage the mapping rules.
+        Specifies the ID of the identity provider used to manage the mapping
+        rules.
         """
         return pulumi.get(self, "provider_id")
 
@@ -53,21 +59,44 @@ class ProviderMappingArgs:
     def provider_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "provider_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
 
 @pulumi.input_type
 class _ProviderMappingState:
     def __init__(__self__, *,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  mapping_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProviderMapping resources.
+
         :param pulumi.Input[_builtins.str] mapping_rules: Specifies the identity mapping rules in json string format.
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping
+               rules.
         """
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if mapping_rules is not None:
             pulumi.set(__self__, "mapping_rules", mapping_rules)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingRules")
@@ -85,7 +114,8 @@ class _ProviderMappingState:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the identity provider used to manage the mapping rules.
+        Specifies the ID of the identity provider used to manage the mapping
+        rules.
         """
         return pulumi.get(self, "provider_id")
 
@@ -100,6 +130,7 @@ class ProviderMapping(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  mapping_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -114,7 +145,7 @@ class ProviderMapping(pulumi.CustomResource):
 
         config = pulumi.Config()
         provider_id = config.require_object("providerId")
-        mapping = huaweicloud.iam.ProviderMapping("mapping",
+        test = huaweicloud.iam.ProviderMapping("test",
             provider_id=provider_id,
             mapping_rules=\"\"\"    [
               {
@@ -151,16 +182,16 @@ class ProviderMapping(pulumi.CustomResource):
 
         Identity provider mapping rules are imported using the `provider_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/providerMapping:ProviderMapping mapping <provider_id>
+        $ pulumi import huaweicloud:Iam/providerMapping:ProviderMapping test <provider_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] mapping_rules: Specifies the identity mapping rules in json string format.
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping
+               rules.
         """
         ...
     @overload
@@ -179,7 +210,7 @@ class ProviderMapping(pulumi.CustomResource):
 
         config = pulumi.Config()
         provider_id = config.require_object("providerId")
-        mapping = huaweicloud.iam.ProviderMapping("mapping",
+        test = huaweicloud.iam.ProviderMapping("test",
             provider_id=provider_id,
             mapping_rules=\"\"\"    [
               {
@@ -216,11 +247,10 @@ class ProviderMapping(pulumi.CustomResource):
 
         Identity provider mapping rules are imported using the `provider_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/providerMapping:ProviderMapping mapping <provider_id>
+        $ pulumi import huaweicloud:Iam/providerMapping:ProviderMapping test <provider_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProviderMappingArgs args: The arguments to use to populate this resource's properties.
@@ -237,6 +267,7 @@ class ProviderMapping(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  mapping_rules: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -248,6 +279,7 @@ class ProviderMapping(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderMappingArgs.__new__(ProviderMappingArgs)
 
+            __props__.__dict__["enable_force_new"] = enable_force_new
             if mapping_rules is None and not opts.urn:
                 raise TypeError("Missing required property 'mapping_rules'")
             __props__.__dict__["mapping_rules"] = mapping_rules
@@ -264,6 +296,7 @@ class ProviderMapping(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             mapping_rules: Optional[pulumi.Input[_builtins.str]] = None,
             provider_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ProviderMapping':
         """
@@ -274,15 +307,22 @@ class ProviderMapping(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] mapping_rules: Specifies the identity mapping rules in json string format.
-        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping rules.
+        :param pulumi.Input[_builtins.str] provider_id: Specifies the ID of the identity provider used to manage the mapping
+               rules.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ProviderMappingState.__new__(_ProviderMappingState)
 
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["mapping_rules"] = mapping_rules
         __props__.__dict__["provider_id"] = provider_id
         return ProviderMapping(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="mappingRules")
@@ -296,7 +336,8 @@ class ProviderMapping(pulumi.CustomResource):
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the identity provider used to manage the mapping rules.
+        Specifies the ID of the identity provider used to manage the mapping
+        rules.
         """
         return pulumi.get(self, "provider_id")
 

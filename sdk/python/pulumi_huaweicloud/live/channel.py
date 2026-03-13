@@ -34,6 +34,7 @@ class ChannelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Channel resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the group name or application name. Currently, only supports **live**.
                
                Changing this parameter will create a new resource.
@@ -256,6 +257,7 @@ class _ChannelState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Channel resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the group name or application name. Currently, only supports **live**.
                
                Changing this parameter will create a new resource.
@@ -1069,11 +1071,10 @@ class Channel(pulumi.CustomResource):
 
         The live channel can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/channel:Channel test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1700,11 +1701,10 @@ class Channel(pulumi.CustomResource):
 
         The live channel can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/channel:Channel test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ChannelArgs args: The arguments to use to populate this resource's properties.

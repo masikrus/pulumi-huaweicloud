@@ -29,6 +29,7 @@ class VirtualGatewayArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a VirtualGateway resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] local_ep_groups: Specifies the list of IPv4 subnets from the virtual gateway to access cloud
                services, which is usually the CIDR block of the VPC.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC connected to the virtual gateway.
@@ -188,6 +189,7 @@ class _VirtualGatewayState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VirtualGateway resources.
+
         :param pulumi.Input[_builtins.int] asn: Specifies the local BGP ASN of the virtual gateway.
                The valid value is range from `1` to `4,294,967,295`.
                Changing this will create a new resource.
@@ -350,7 +352,7 @@ class _VirtualGatewayState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:dc/virtualGateway:VirtualGateway")
+@pulumi.type_token("huaweicloud:Dc/virtualGateway:VirtualGateway")
 class VirtualGateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -389,8 +391,9 @@ class VirtualGateway(pulumi.CustomResource):
         Virtual gateways can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:dc/virtualGateway:VirtualGateway test f6f36e69-d980-4b0a-a33d-b9b125b3896c
+        $ pulumi import huaweicloud:Dc/virtualGateway:VirtualGateway test f6f36e69-d980-4b0a-a33d-b9b125b3896c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -445,8 +448,9 @@ class VirtualGateway(pulumi.CustomResource):
         Virtual gateways can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:dc/virtualGateway:VirtualGateway test f6f36e69-d980-4b0a-a33d-b9b125b3896c
+        $ pulumi import huaweicloud:Dc/virtualGateway:VirtualGateway test f6f36e69-d980-4b0a-a33d-b9b125b3896c
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VirtualGatewayArgs args: The arguments to use to populate this resource's properties.
@@ -494,7 +498,7 @@ class VirtualGateway(pulumi.CustomResource):
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["status"] = None
         super(VirtualGateway, __self__).__init__(
-            'huaweicloud:dc/virtualGateway:VirtualGateway',
+            'huaweicloud:Dc/virtualGateway:VirtualGateway',
             resource_name,
             __props__,
             opts)

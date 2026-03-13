@@ -25,6 +25,7 @@ class IsntanceRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IsntanceRestore resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance to be restored.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DCS instance restoration.
@@ -94,6 +95,7 @@ class _IsntanceRestoreState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IsntanceRestore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the restoration record created.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DCS instance restoration.
@@ -211,6 +213,7 @@ class IsntanceRestore(pulumi.CustomResource):
                  __props__=None):
         """
         Create a IsntanceRestore resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID used to restore the DCS instance.
@@ -225,6 +228,7 @@ class IsntanceRestore(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a IsntanceRestore resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param IsntanceRestoreArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

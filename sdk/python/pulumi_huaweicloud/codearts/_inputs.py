@@ -105,6 +105,10 @@ __all__ = [
     'PipelineParameterGroupRelatedPipelineArgsDict',
     'PipelineParameterGroupVariableArgs',
     'PipelineParameterGroupVariableArgsDict',
+    'PipelinePluginVersionExecutionInfoArgs',
+    'PipelinePluginVersionExecutionInfoArgsDict',
+    'PipelinePluginVersionInputInfoArgs',
+    'PipelinePluginVersionInputInfoArgsDict',
     'PipelineRolePermissionArgs',
     'PipelineRolePermissionArgsDict',
     'PipelineRuleContentArgs',
@@ -131,23 +135,18 @@ __all__ = [
     'PipelineVariableArgsDict',
 ]
 
-MYPY = False
+class BuildTaskActionParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
 
-if not MYPY:
-    class BuildTaskActionParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-
-        <a name="block--scm"></a>
-        The `scm` block supports:
-        """
-elif False:
-    BuildTaskActionParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--scm"></a>
+    The `scm` block supports:
+    """
 
 @pulumi.input_type
 class BuildTaskActionParameterArgs:
@@ -192,18 +191,15 @@ class BuildTaskActionParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BuildTaskActionScmArgsDict(TypedDict):
-        build_commit_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build commit ID.
-        """
-        build_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build tag.
-        """
-elif False:
-    BuildTaskActionScmArgsDict: TypeAlias = Mapping[str, Any]
+class BuildTaskActionScmArgsDict(TypedDict):
+    build_commit_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build commit ID.
+    """
+    build_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build tag.
+    """
 
 @pulumi.input_type
 class BuildTaskActionScmArgs:
@@ -244,22 +240,19 @@ class BuildTaskActionScmArgs:
         pulumi.set(self, "build_tag", value)
 
 
-if not MYPY:
-    class BuildTaskParameterArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-        params: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTaskParameterParamArgsDict']]]]
-        """
-        Specifies the build execution sub-parameters.
-        The params structure is documented below.
+class BuildTaskParameterArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
+    params: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTaskParameterParamArgsDict']]]]
+    """
+    Specifies the build execution sub-parameters.
+    The params structure is documented below.
 
-        <a name="block--parameters--params"></a>
-        The `params` block supports:
-        """
-elif False:
-    BuildTaskParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--parameters--params"></a>
+    The `params` block supports:
+    """
 
 @pulumi.input_type
 class BuildTaskParameterArgs:
@@ -308,23 +301,20 @@ class BuildTaskParameterArgs:
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class BuildTaskParameterParamArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTaskParameterParamLimitArgsDict']]]]
-        """
-        Specifies the enumeration parameter restrictions.
-        The limits structure is documented below.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    BuildTaskParameterParamArgsDict: TypeAlias = Mapping[str, Any]
+class BuildTaskParameterParamArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTaskParameterParamLimitArgsDict']]]]
+    """
+    Specifies the enumeration parameter restrictions.
+    The limits structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class BuildTaskParameterParamArgs:
@@ -383,22 +373,19 @@ class BuildTaskParameterParamArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BuildTaskParameterParamLimitArgsDict(TypedDict):
-        disable: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether it is effective. Defaults to **0**, which is effective.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the displayed name of the parameter.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-elif False:
-    BuildTaskParameterParamLimitArgsDict: TypeAlias = Mapping[str, Any]
+class BuildTaskParameterParamLimitArgsDict(TypedDict):
+    disable: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether it is effective. Defaults to **0**, which is effective.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the displayed name of the parameter.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
 
 @pulumi.input_type
 class BuildTaskParameterParamLimitArgs:
@@ -455,73 +442,68 @@ class BuildTaskParameterParamLimitArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class BuildTaskScmArgsDict(TypedDict):
-        repo_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the repository ID.
-        """
-        scm_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the source code management type.
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the repository URL.
-        """
-        web_url: pulumi.Input[_builtins.str]
-        """
-        Specifies the web URL of the repository.
-        """
-        branch: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the branch name.
-        """
-        build_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build type.
-        """
-        depth: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the depth.
-        """
-        enable_git_lfs: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable Git LFS. Defaults to **false**.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the endpoint ID.
-        """
-        group_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the group name.
-        """
-        is_auto_build: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to automatically build. Defaults to **false**.
-        """
-        repo_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the repository name.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source type.
+class BuildTaskScmArgsDict(TypedDict):
+    scm_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the source code management type.
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the repository URL.
+    """
+    branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the branch name.
+    """
+    build_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build type.
+    """
+    depth: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the depth.
+    """
+    enable_git_lfs: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable Git LFS. Defaults to **false**.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the endpoint ID.
+    """
+    group_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the group name.
+    """
+    is_auto_build: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to automatically build. Defaults to **false**.
+    """
+    repo_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the repository ID.
+    """
+    repo_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the repository name.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source type.
 
-        <a name="block--steps"></a>
-        The `steps` block supports:
-        """
-elif False:
-    BuildTaskScmArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--steps"></a>
+    The `steps` block supports:
+    """
+    web_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the web URL of the repository.
+    """
 
 @pulumi.input_type
 class BuildTaskScmArgs:
     def __init__(__self__, *,
-                 repo_id: pulumi.Input[_builtins.str],
                  scm_type: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 web_url: pulumi.Input[_builtins.str],
                  branch: Optional[pulumi.Input[_builtins.str]] = None,
                  build_type: Optional[pulumi.Input[_builtins.str]] = None,
                  depth: Optional[pulumi.Input[_builtins.str]] = None,
@@ -529,13 +511,13 @@ class BuildTaskScmArgs:
                  endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  group_name: Optional[pulumi.Input[_builtins.str]] = None,
                  is_auto_build: Optional[pulumi.Input[_builtins.bool]] = None,
+                 repo_id: Optional[pulumi.Input[_builtins.str]] = None,
                  repo_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None):
+                 source: Optional[pulumi.Input[_builtins.str]] = None,
+                 web_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] repo_id: Specifies the repository ID.
         :param pulumi.Input[_builtins.str] scm_type: Specifies the source code management type.
         :param pulumi.Input[_builtins.str] url: Specifies the repository URL.
-        :param pulumi.Input[_builtins.str] web_url: Specifies the web URL of the repository.
         :param pulumi.Input[_builtins.str] branch: Specifies the branch name.
         :param pulumi.Input[_builtins.str] build_type: Specifies the build type.
         :param pulumi.Input[_builtins.str] depth: Specifies the depth.
@@ -543,16 +525,16 @@ class BuildTaskScmArgs:
         :param pulumi.Input[_builtins.str] endpoint_id: Specifies the endpoint ID.
         :param pulumi.Input[_builtins.str] group_name: Specifies the group name.
         :param pulumi.Input[_builtins.bool] is_auto_build: Specifies whether to automatically build. Defaults to **false**.
+        :param pulumi.Input[_builtins.str] repo_id: Specifies the repository ID.
         :param pulumi.Input[_builtins.str] repo_name: Specifies the repository name.
         :param pulumi.Input[_builtins.str] source: Specifies the source type.
                
                <a name="block--steps"></a>
                The `steps` block supports:
+        :param pulumi.Input[_builtins.str] web_url: Specifies the web URL of the repository.
         """
-        pulumi.set(__self__, "repo_id", repo_id)
         pulumi.set(__self__, "scm_type", scm_type)
         pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "web_url", web_url)
         if branch is not None:
             pulumi.set(__self__, "branch", branch)
         if build_type is not None:
@@ -567,22 +549,14 @@ class BuildTaskScmArgs:
             pulumi.set(__self__, "group_name", group_name)
         if is_auto_build is not None:
             pulumi.set(__self__, "is_auto_build", is_auto_build)
+        if repo_id is not None:
+            pulumi.set(__self__, "repo_id", repo_id)
         if repo_name is not None:
             pulumi.set(__self__, "repo_name", repo_name)
         if source is not None:
             pulumi.set(__self__, "source", source)
-
-    @_builtins.property
-    @pulumi.getter(name="repoId")
-    def repo_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the repository ID.
-        """
-        return pulumi.get(self, "repo_id")
-
-    @repo_id.setter
-    def repo_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "repo_id", value)
+        if web_url is not None:
+            pulumi.set(__self__, "web_url", web_url)
 
     @_builtins.property
     @pulumi.getter(name="scmType")
@@ -607,18 +581,6 @@ class BuildTaskScmArgs:
     @url.setter
     def url(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "url", value)
-
-    @_builtins.property
-    @pulumi.getter(name="webUrl")
-    def web_url(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the web URL of the repository.
-        """
-        return pulumi.get(self, "web_url")
-
-    @web_url.setter
-    def web_url(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "web_url", value)
 
     @_builtins.property
     @pulumi.getter
@@ -705,6 +667,18 @@ class BuildTaskScmArgs:
         pulumi.set(self, "is_auto_build", value)
 
     @_builtins.property
+    @pulumi.getter(name="repoId")
+    def repo_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the repository ID.
+        """
+        return pulumi.get(self, "repo_id")
+
+    @repo_id.setter
+    def repo_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "repo_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="repoName")
     def repo_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -731,38 +705,47 @@ class BuildTaskScmArgs:
     def source(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "source", value)
 
+    @_builtins.property
+    @pulumi.getter(name="webUrl")
+    def web_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the web URL of the repository.
+        """
+        return pulumi.get(self, "web_url")
 
-if not MYPY:
-    class BuildTaskStepArgsDict(TypedDict):
-        module_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the build step module ID.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the step. Defaults to **false**.
-        """
-        properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the build step properties. Value is JSON format string.
-        """
-        properties_all: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the build step properties.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build step version.
+    @web_url.setter
+    def web_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "web_url", value)
 
-        <a name="block--triggers"></a>
-        The `triggers` block supports:
-        """
-elif False:
-    BuildTaskStepArgsDict: TypeAlias = Mapping[str, Any]
+
+class BuildTaskStepArgsDict(TypedDict):
+    module_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the build step module ID.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the step. Defaults to **false**.
+    """
+    properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the build step properties. Value is JSON format string.
+    """
+    properties_all: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the build step properties.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build step version.
+
+    <a name="block--triggers"></a>
+    The `triggers` block supports:
+    """
 
 @pulumi.input_type
 class BuildTaskStepArgs:
@@ -871,22 +854,19 @@ class BuildTaskStepArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class BuildTaskTriggerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        parameters: pulumi.Input[Sequence[pulumi.Input['BuildTaskTriggerParameterArgsDict']]]
-        """
-        Specifies the custom parameters.
-        The parameters structure is documented below.
+class BuildTaskTriggerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    parameters: pulumi.Input[Sequence[pulumi.Input['BuildTaskTriggerParameterArgsDict']]]
+    """
+    Specifies the custom parameters.
+    The parameters structure is documented below.
 
-        <a name="block--triggers--parameters"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    BuildTaskTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--triggers--parameters"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class BuildTaskTriggerArgs:
@@ -933,18 +913,15 @@ class BuildTaskTriggerArgs:
         pulumi.set(self, "parameters", value)
 
 
-if not MYPY:
-    class BuildTaskTriggerParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    BuildTaskTriggerParameterArgsDict: TypeAlias = Mapping[str, Any]
+class BuildTaskTriggerParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class BuildTaskTriggerParameterArgs:
@@ -983,22 +960,19 @@ class BuildTaskTriggerParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BuildTemplateParameterArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-        params: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTemplateParameterParamArgsDict']]]]
-        """
-        Specifies the build execution sub-parameters.
-        The params structure is documented below.
+class BuildTemplateParameterArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
+    params: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTemplateParameterParamArgsDict']]]]
+    """
+    Specifies the build execution sub-parameters.
+    The params structure is documented below.
 
-        <a name="block--parameters--params"></a>
-        The `params` block supports:
-        """
-elif False:
-    BuildTemplateParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--parameters--params"></a>
+    The `params` block supports:
+    """
 
 @pulumi.input_type
 class BuildTemplateParameterArgs:
@@ -1047,26 +1021,23 @@ class BuildTemplateParameterArgs:
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class BuildTemplateParameterParamArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTemplateParameterParamLimitArgsDict']]]]
-        """
-        Specifies the enumeration parameter restrictions.
-        The limits structure is documented below.
+class BuildTemplateParameterParamArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Sequence[pulumi.Input['BuildTemplateParameterParamLimitArgsDict']]]]
+    """
+    Specifies the enumeration parameter restrictions.
+    The limits structure is documented below.
 
-        <a name="block--parameters--params--limits"></a>
-        The `limits` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter field value.
-        """
-elif False:
-    BuildTemplateParameterParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--parameters--params--limits"></a>
+    The `limits` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter field value.
+    """
 
 @pulumi.input_type
 class BuildTemplateParameterParamArgs:
@@ -1131,22 +1102,19 @@ class BuildTemplateParameterParamArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class BuildTemplateParameterParamLimitArgsDict(TypedDict):
-        disable: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether it is effective.
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the displayed name of the parameter.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name.
-        """
-elif False:
-    BuildTemplateParameterParamLimitArgsDict: TypeAlias = Mapping[str, Any]
+class BuildTemplateParameterParamLimitArgsDict(TypedDict):
+    disable: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether it is effective.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the displayed name of the parameter.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name.
+    """
 
 @pulumi.input_type
 class BuildTemplateParameterParamLimitArgs:
@@ -1203,37 +1171,34 @@ class BuildTemplateParameterParamLimitArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class BuildTemplateStepArgsDict(TypedDict):
-        module_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the build step module ID.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the step. Defaults to **false**.
-        """
-        properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the build step properties. Value is JSON format string.
-        """
-        properties_all: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the build step properties.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the build step version.
+class BuildTemplateStepArgsDict(TypedDict):
+    module_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the build step module ID.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the step. Defaults to **false**.
+    """
+    properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the build step properties. Value is JSON format string.
+    """
+    properties_all: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the build step properties.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the build step version.
 
-        <a name="block--parameters"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    BuildTemplateStepArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--parameters"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class BuildTemplateStepArgs:
@@ -1342,38 +1307,35 @@ class BuildTemplateStepArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class DeployApplicationCopyOperationListArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the download URL.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the step description.
-        """
-        entrance: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the entry function.
-        """
-        module_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the module ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the step name.
-        """
-        params: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version.
-        """
-elif False:
-    DeployApplicationCopyOperationListArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationCopyOperationListArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the download URL.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the step description.
+    """
+    entrance: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the entry function.
+    """
+    module_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the module ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the step name.
+    """
+    params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version.
+    """
 
 @pulumi.input_type
 class DeployApplicationCopyOperationListArgs:
@@ -1494,55 +1456,52 @@ class DeployApplicationCopyOperationListArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class DeployApplicationCopyPermissionMatrixArgsDict(TypedDict):
-        can_copy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the copy permission.
-        """
-        can_create_env: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to create an environment.
-        """
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deletion permission.
-        """
-        can_disable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to disable the application.
-        """
-        can_execute: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deployment permission.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Check whether the role has the management permission, including adding, deleting, modifying,
-        querying deployment and permission modification.
-        """
-        can_modify: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the editing permission.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view permission.
-        """
-        role_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role ID.
-        """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role name.
-        """
-        role_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role type.
-        """
-elif False:
-    DeployApplicationCopyPermissionMatrixArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationCopyPermissionMatrixArgsDict(TypedDict):
+    can_copy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the copy permission.
+    """
+    can_create_env: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to create an environment.
+    """
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deletion permission.
+    """
+    can_disable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to disable the application.
+    """
+    can_execute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deployment permission.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Check whether the role has the management permission, including adding, deleting, modifying,
+    querying deployment and permission modification.
+    """
+    can_modify: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the editing permission.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view permission.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
+    role_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role type.
+    """
 
 @pulumi.input_type
 class DeployApplicationCopyPermissionMatrixArgs:
@@ -1729,25 +1688,22 @@ class DeployApplicationCopyPermissionMatrixArgs:
         pulumi.set(self, "role_type", value)
 
 
-if not MYPY:
-    class DeployApplicationDeployParamArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter name transferred when deploying application.
-        Changing this creates a new resource.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter type. If a dynamic parameter is set, the type is mandatory.
-        Changing this creates a new resource.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter value transferred during application deployment.
-        Changing this creates a new resource.
-        """
-elif False:
-    DeployApplicationDeployParamArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationDeployParamArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter name transferred when deploying application.
+    Changing this creates a new resource.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter type. If a dynamic parameter is set, the type is mandatory.
+    Changing this creates a new resource.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter value transferred during application deployment.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class DeployApplicationDeployParamArgs:
@@ -1810,38 +1766,35 @@ class DeployApplicationDeployParamArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeployApplicationOperationListArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the download URL.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the step description.
-        """
-        entrance: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the entry function.
-        """
-        module_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the module ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the step name.
-        """
-        params: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version.
-        """
-elif False:
-    DeployApplicationOperationListArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationOperationListArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the download URL.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the step description.
+    """
+    entrance: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the entry function.
+    """
+    module_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the module ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the step name.
+    """
+    params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version.
+    """
 
 @pulumi.input_type
 class DeployApplicationOperationListArgs:
@@ -1962,55 +1915,52 @@ class DeployApplicationOperationListArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class DeployApplicationPermissionMatrixArgsDict(TypedDict):
-        can_copy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the copy permission.
-        """
-        can_create_env: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to create an environment.
-        """
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deletion permission.
-        """
-        can_disable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to disable the application.
-        """
-        can_execute: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deployment permission.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Check whether the role has the management permission, including adding, deleting, modifying,
-        querying deployment and permission modification.
-        """
-        can_modify: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the editing permission.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view permission.
-        """
-        role_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role ID.
-        """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role name.
-        """
-        role_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role type.
-        """
-elif False:
-    DeployApplicationPermissionMatrixArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationPermissionMatrixArgsDict(TypedDict):
+    can_copy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the copy permission.
+    """
+    can_create_env: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to create an environment.
+    """
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deletion permission.
+    """
+    can_disable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to disable the application.
+    """
+    can_execute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deployment permission.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Check whether the role has the management permission, including adding, deleting, modifying,
+    querying deployment and permission modification.
+    """
+    can_modify: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the editing permission.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view permission.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
+    role_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role type.
+    """
 
 @pulumi.input_type
 class DeployApplicationPermissionMatrixArgs:
@@ -2197,47 +2147,44 @@ class DeployApplicationPermissionMatrixArgs:
         pulumi.set(self, "role_type", value)
 
 
-if not MYPY:
-    class DeployApplicationPermissionRoleArgsDict(TypedDict):
-        can_copy: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the copy permission.
-        """
-        can_create_env: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the permission to create an environment.
-        """
-        can_delete: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the deletion permission.
-        """
-        can_disable: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the permission to disable application.
-        """
-        can_execute: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the deployment permission.
-        """
-        can_manage: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the management permission, including adding, deleting,
-        modifying, querying deployment and permission modification.
-        """
-        can_modify: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the editing permission.
-        """
-        can_view: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the role has the view permission.
-        """
-        role_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the role ID.
-        """
-elif False:
-    DeployApplicationPermissionRoleArgsDict: TypeAlias = Mapping[str, Any]
+class DeployApplicationPermissionRoleArgsDict(TypedDict):
+    can_copy: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the copy permission.
+    """
+    can_create_env: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the permission to create an environment.
+    """
+    can_delete: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the deletion permission.
+    """
+    can_disable: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the permission to disable application.
+    """
+    can_execute: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the deployment permission.
+    """
+    can_manage: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the management permission, including adding, deleting,
+    modifying, querying deployment and permission modification.
+    """
+    can_modify: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the editing permission.
+    """
+    can_view: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the role has the view permission.
+    """
+    role_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the role ID.
+    """
 
 @pulumi.input_type
 class DeployApplicationPermissionRoleArgs:
@@ -2383,18 +2330,15 @@ class DeployApplicationPermissionRoleArgs:
         pulumi.set(self, "role_id", value)
 
 
-if not MYPY:
-    class DeployEnvironmentCreatedByArgsDict(TypedDict):
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the user ID.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the user name.
-        """
-elif False:
-    DeployEnvironmentCreatedByArgsDict: TypeAlias = Mapping[str, Any]
+class DeployEnvironmentCreatedByArgsDict(TypedDict):
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the user ID.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the user name.
+    """
 
 @pulumi.input_type
 class DeployEnvironmentCreatedByArgs:
@@ -2435,30 +2379,27 @@ class DeployEnvironmentCreatedByArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class DeployEnvironmentHostArgsDict(TypedDict):
-        group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the cluster group ID.
-        """
-        host_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the host ID to be imported.
-        """
-        connection_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the connection status.
-        """
-        host_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the host name.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address.
-        """
-elif False:
-    DeployEnvironmentHostArgsDict: TypeAlias = Mapping[str, Any]
+class DeployEnvironmentHostArgsDict(TypedDict):
+    group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the cluster group ID.
+    """
+    host_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the host ID to be imported.
+    """
+    connection_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the connection status.
+    """
+    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the host name.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address.
+    """
 
 @pulumi.input_type
 class DeployEnvironmentHostArgs:
@@ -2545,30 +2486,27 @@ class DeployEnvironmentHostArgs:
         pulumi.set(self, "ip_address", value)
 
 
-if not MYPY:
-    class DeployEnvironmentPermissionArgsDict(TypedDict):
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to delete environments.
-        """
-        can_deploy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deploy permission.
-        """
-        can_edit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to edit environments.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to edit the environment permission matrix.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view environment.
-        """
-elif False:
-    DeployEnvironmentPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class DeployEnvironmentPermissionArgsDict(TypedDict):
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to delete environments.
+    """
+    can_deploy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deploy permission.
+    """
+    can_edit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to edit environments.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to edit the environment permission matrix.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view environment.
+    """
 
 @pulumi.input_type
 class DeployEnvironmentPermissionArgs:
@@ -2657,54 +2595,51 @@ class DeployEnvironmentPermissionArgs:
         pulumi.set(self, "can_view", value)
 
 
-if not MYPY:
-    class DeployEnvironmentPermissionMatrixArgsDict(TypedDict):
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to delete environments.
-        """
-        can_deploy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deploy permission.
-        """
-        can_edit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to edit environments.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to edit the environment permission matrix.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view environment.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the create time.
-        """
-        permission_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the permission ID.
-        """
-        role_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role ID.
-        """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role name.
-        """
-        role_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role type.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the update time.
-        """
-elif False:
-    DeployEnvironmentPermissionMatrixArgsDict: TypeAlias = Mapping[str, Any]
+class DeployEnvironmentPermissionMatrixArgsDict(TypedDict):
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to delete environments.
+    """
+    can_deploy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deploy permission.
+    """
+    can_edit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to edit environments.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to edit the environment permission matrix.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view environment.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the create time.
+    """
+    permission_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the permission ID.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
+    role_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role type.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the update time.
+    """
 
 @pulumi.input_type
 class DeployEnvironmentPermissionMatrixArgs:
@@ -2889,30 +2824,27 @@ class DeployEnvironmentPermissionMatrixArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class DeployEnvironmentProxyArgsDict(TypedDict):
-        connection_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the connection status.
-        """
-        group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the cluster group ID.
-        """
-        host_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the host ID to be imported.
-        """
-        host_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the host name.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address.
-        """
-elif False:
-    DeployEnvironmentProxyArgsDict: TypeAlias = Mapping[str, Any]
+class DeployEnvironmentProxyArgsDict(TypedDict):
+    connection_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the connection status.
+    """
+    group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cluster group ID.
+    """
+    host_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the host ID to be imported.
+    """
+    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the host name.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address.
+    """
 
 @pulumi.input_type
 class DeployEnvironmentProxyArgs:
@@ -3001,18 +2933,15 @@ class DeployEnvironmentProxyArgs:
         pulumi.set(self, "ip_address", value)
 
 
-if not MYPY:
-    class DeployGroupCreatedByArgsDict(TypedDict):
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user ID.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user name.
-        """
-elif False:
-    DeployGroupCreatedByArgsDict: TypeAlias = Mapping[str, Any]
+class DeployGroupCreatedByArgsDict(TypedDict):
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user ID.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user name.
+    """
 
 @pulumi.input_type
 class DeployGroupCreatedByArgs:
@@ -3053,34 +2982,31 @@ class DeployGroupCreatedByArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class DeployGroupPermissionArgsDict(TypedDict):
-        can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to add hosts.
-        """
-        can_copy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to copy.
-        """
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deletion permission.
-        """
-        can_edit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the edit permission.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the management permission.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view permission.
-        """
-elif False:
-    DeployGroupPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class DeployGroupPermissionArgsDict(TypedDict):
+    can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to add hosts.
+    """
+    can_copy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to copy.
+    """
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deletion permission.
+    """
+    can_edit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the edit permission.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the management permission.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view permission.
+    """
 
 @pulumi.input_type
 class DeployGroupPermissionArgs:
@@ -3185,54 +3111,51 @@ class DeployGroupPermissionArgs:
         pulumi.set(self, "can_view", value)
 
 
-if not MYPY:
-    class DeployGroupPermissionMatrixArgsDict(TypedDict):
-        can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to add hosts.
-        """
-        can_copy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to copy.
-        """
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the deletion permission.
-        """
-        can_edit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the edit permission.
-        """
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the management permission.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the view permission.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The permission create time.
-        """
-        role_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role ID.
-        """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role name.
-        """
-        role_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role type.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The permission update time.
-        """
-elif False:
-    DeployGroupPermissionMatrixArgsDict: TypeAlias = Mapping[str, Any]
+class DeployGroupPermissionMatrixArgsDict(TypedDict):
+    can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to add hosts.
+    """
+    can_copy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to copy.
+    """
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the deletion permission.
+    """
+    can_edit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the edit permission.
+    """
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the management permission.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the view permission.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The permission create time.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
+    role_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role type.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The permission update time.
+    """
 
 @pulumi.input_type
 class DeployGroupPermissionMatrixArgs:
@@ -3417,30 +3340,27 @@ class DeployGroupPermissionMatrixArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class DeployHostPermissionArgsDict(TypedDict):
-        can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user has the permission to add hosts.
-        """
-        can_copy: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user has the permission to copy hosts.
-        """
-        can_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user has the deletion permission.
-        """
-        can_edit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user has the edit permission.
-        """
-        can_view: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user has the view permission.
-        """
-elif False:
-    DeployHostPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class DeployHostPermissionArgsDict(TypedDict):
+    can_add_host: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user has the permission to add hosts.
+    """
+    can_copy: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user has the permission to copy hosts.
+    """
+    can_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user has the deletion permission.
+    """
+    can_edit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user has the edit permission.
+    """
+    can_view: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user has the view permission.
+    """
 
 @pulumi.input_type
 class DeployHostPermissionArgs:
@@ -3529,41 +3449,38 @@ class DeployHostPermissionArgs:
         pulumi.set(self, "can_view", value)
 
 
-if not MYPY:
-    class InspectorHostLastScanInfoArgsDict(TypedDict):
-        create_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the scan task create time.
-        """
-        enable_weak_passwd: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether weak password check enabled.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the scan task end time.
-        """
-        progress: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the task progress.
-        """
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the task description.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the task status.
-        Value can be as follows:
-        + **0**: running
-        + **1**: completed
-        + **2**: cancel
-        + **3**: waiting
-        + **4**: failed
-        + **5**: scheduled
-        """
-elif False:
-    InspectorHostLastScanInfoArgsDict: TypeAlias = Mapping[str, Any]
+class InspectorHostLastScanInfoArgsDict(TypedDict):
+    create_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the scan task create time.
+    """
+    enable_weak_passwd: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether weak password check enabled.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the scan task end time.
+    """
+    progress: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the task progress.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the task description.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the task status.
+    Value can be as follows:
+    + **0**: running
+    + **1**: completed
+    + **2**: cancel
+    + **3**: waiting
+    + **4**: failed
+    + **5**: scheduled
+    """
 
 @pulumi.input_type
 class InspectorHostLastScanInfoArgs:
@@ -3682,22 +3599,19 @@ class InspectorHostLastScanInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class PipelineActionSourceArgsDict(TypedDict):
-        params: pulumi.Input['PipelineActionSourceParamsArgsDict']
-        """
-        Specifies the source parameters.
-        The params structure is documented below.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the pipeline source type.
+class PipelineActionSourceArgsDict(TypedDict):
+    params: pulumi.Input['PipelineActionSourceParamsArgsDict']
+    """
+    Specifies the source parameters.
+    The params structure is documented below.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the pipeline source type.
 
-        <a name="block--sources--params"></a>
-        The `params` block supports:
-        """
-elif False:
-    PipelineActionSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--sources--params"></a>
+    The `params` block supports:
+    """
 
 @pulumi.input_type
 class PipelineActionSourceArgs:
@@ -3744,47 +3658,44 @@ class PipelineActionSourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PipelineActionSourceParamsArgsDict(TypedDict):
-        git_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the code repository type.
-        """
-        git_url: pulumi.Input[_builtins.str]
-        """
-        Specifies the HTTPS address of the Git repository.
-        """
-        alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code repository alias.
-        """
-        build_params: NotRequired[pulumi.Input['PipelineActionSourceParamsBuildParamsArgsDict']]
-        """
-        Specifies the detailed build parameters.
-        The build_params structure is documented below.
-        """
-        change_request_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the change IDs of the change-triggered pipeline.
-        """
-        codehub_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CodeArts Repo code repository ID.
-        """
-        default_branch: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default branch of the code repository for pipeline
-        execution.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the code source endpoint.
+class PipelineActionSourceParamsArgsDict(TypedDict):
+    git_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the code repository type.
+    """
+    git_url: pulumi.Input[_builtins.str]
+    """
+    Specifies the HTTPS address of the Git repository.
+    """
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code repository alias.
+    """
+    build_params: NotRequired[pulumi.Input['PipelineActionSourceParamsBuildParamsArgsDict']]
+    """
+    Specifies the detailed build parameters.
+    The build_params structure is documented below.
+    """
+    change_request_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the change IDs of the change-triggered pipeline.
+    """
+    codehub_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CodeArts Repo code repository ID.
+    """
+    default_branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default branch of the code repository for pipeline
+    execution.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the code source endpoint.
 
-        <a name="block--sources--params--build_params"></a>
-        The `build_params` block supports:
-        """
-elif False:
-    PipelineActionSourceParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--sources--params--build_params"></a>
+    The `build_params` block supports:
+    """
 
 @pulumi.input_type
 class PipelineActionSourceParamsArgs:
@@ -3929,29 +3840,26 @@ class PipelineActionSourceParamsArgs:
         pulumi.set(self, "endpoint_id", value)
 
 
-if not MYPY:
-    class PipelineActionSourceParamsBuildParamsArgsDict(TypedDict):
-        build_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the code repository trigger type.
-        """
-        event_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event type that triggers the pipeline execution.
-        """
-        tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the tag that triggers the pipeline execution.
-        """
-        target_branch: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the branch that triggers the pipeline execution.
+class PipelineActionSourceParamsBuildParamsArgsDict(TypedDict):
+    build_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the code repository trigger type.
+    """
+    event_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event type that triggers the pipeline execution.
+    """
+    tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the tag that triggers the pipeline execution.
+    """
+    target_branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the branch that triggers the pipeline execution.
 
-        <a name="block--variables"></a>
-        The `variables` block supports:
-        """
-elif False:
-    PipelineActionSourceParamsBuildParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--variables"></a>
+    The `variables` block supports:
+    """
 
 @pulumi.input_type
 class PipelineActionSourceParamsBuildParamsArgs:
@@ -4029,18 +3937,15 @@ class PipelineActionSourceParamsBuildParamsArgs:
         pulumi.set(self, "target_branch", value)
 
 
-if not MYPY:
-    class PipelineActionVariableArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    PipelineActionVariableArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineActionVariableArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class PipelineActionVariableArgs:
@@ -4079,25 +3984,22 @@ class PipelineActionVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PipelineByTemplateConcurrencyControlArgsDict(TypedDict):
-        concurrency_number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of concurrent instances.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available.
-        """
-        exceed_action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the policy when the threshold is exceeded.
+class PipelineByTemplateConcurrencyControlArgsDict(TypedDict):
+    concurrency_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of concurrent instances.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available.
+    """
+    exceed_action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the policy when the threshold is exceeded.
 
-        <a name="block--schedules"></a>
-        The `schedules` block supports:
-        """
-elif False:
-    PipelineByTemplateConcurrencyControlArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--schedules"></a>
+    The `schedules` block supports:
+    """
 
 @pulumi.input_type
 class PipelineByTemplateConcurrencyControlArgs:
@@ -4160,38 +4062,35 @@ class PipelineByTemplateConcurrencyControlArgs:
         pulumi.set(self, "exceed_action", value)
 
 
-if not MYPY:
-    class PipelineByTemplateRolePermissionArgsDict(TypedDict):
-        operation_authorize: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to authorize.
-        """
-        operation_delete: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to delete.
-        """
-        operation_execute: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to execute.
-        """
-        operation_query: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to query.
-        """
-        operation_update: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the role has the permission to update.
-        """
-        role_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the role ID.
-        """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role name.
-        """
-elif False:
-    PipelineByTemplateRolePermissionArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineByTemplateRolePermissionArgsDict(TypedDict):
+    operation_authorize: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to authorize.
+    """
+    operation_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to delete.
+    """
+    operation_execute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to execute.
+    """
+    operation_query: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to query.
+    """
+    operation_update: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to update.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
 
 @pulumi.input_type
 class PipelineByTemplateRolePermissionArgs:
@@ -4312,50 +4211,47 @@ class PipelineByTemplateRolePermissionArgs:
         pulumi.set(self, "role_name", value)
 
 
-if not MYPY:
-    class PipelineByTemplateScheduleArgsDict(TypedDict):
-        days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the execution day in a week.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the end time.
-        """
-        interval_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the interval time.
-        """
-        interval_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the interval unit.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time.
-        """
-        time_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time zone.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of a scheduled task.
-        """
-elif False:
-    PipelineByTemplateScheduleArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineByTemplateScheduleArgsDict(TypedDict):
+    days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the execution day in a week.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the end time.
+    """
+    interval_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the interval time.
+    """
+    interval_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the interval unit.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time.
+    """
+    time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time zone.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of a scheduled task.
+    """
 
 @pulumi.input_type
 class PipelineByTemplateScheduleArgs:
@@ -4524,19 +4420,16 @@ class PipelineByTemplateScheduleArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class PipelineByTemplateSourceArgsDict(TypedDict):
-        params: NotRequired[pulumi.Input['PipelineByTemplateSourceParamsArgsDict']]
-        """
-        Specifies the pipeline source parameters.
-        The params structure is documented below.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        """
-elif False:
-    PipelineByTemplateSourceArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineByTemplateSourceArgsDict(TypedDict):
+    params: NotRequired[pulumi.Input['PipelineByTemplateSourceParamsArgsDict']]
+    """
+    Specifies the pipeline source parameters.
+    The params structure is documented below.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    """
 
 @pulumi.input_type
 class PipelineByTemplateSourceArgs:
@@ -4579,49 +4472,46 @@ class PipelineByTemplateSourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PipelineByTemplateSourceParamsArgsDict(TypedDict):
-        alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code repository alias.
-        """
-        codehub_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CodeArts Repo code repository ID.
-        """
-        default_branch: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default branch.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code source endpoint ID.
-        """
-        git_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git repository type.
-        """
-        git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git URL.
-        """
-        repo_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the pipeline source name.
-        """
-        ssh_git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SSH Git address,
-        """
-        web_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the web page URL.
+class PipelineByTemplateSourceParamsArgsDict(TypedDict):
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code repository alias.
+    """
+    codehub_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CodeArts Repo code repository ID.
+    """
+    default_branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default branch.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code source endpoint ID.
+    """
+    git_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git repository type.
+    """
+    git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git URL.
+    """
+    repo_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the pipeline source name.
+    """
+    ssh_git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SSH Git address,
+    """
+    web_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the web page URL.
 
-        <a name="block--concurrency_control"></a>
-        The `concurrency_control` block supports:
-        """
-elif False:
-    PipelineByTemplateSourceParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--concurrency_control"></a>
+    The `concurrency_control` block supports:
+    """
 
 @pulumi.input_type
 class PipelineByTemplateSourceParamsArgs:
@@ -4780,50 +4670,47 @@ class PipelineByTemplateSourceParamsArgs:
         pulumi.set(self, "web_url", value)
 
 
-if not MYPY:
-    class PipelineByTemplateTriggerArgsDict(TypedDict):
-        callback_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the callback URL.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code source endpoint ID.
-        """
-        events: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineByTemplateTriggerEventArgsDict']]]]
-        """
-        Specifies the trigger event list.
-        The events structure is documented below.
-        """
-        git_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git repository type.
-        """
-        git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git URL.
-        """
-        hook_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the callback ID.
-        """
-        is_auto_commit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to automatically commit code.
-        """
-        repo_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the repository ID.
-        """
-        security_token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the User token.
+class PipelineByTemplateTriggerArgsDict(TypedDict):
+    callback_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the callback URL.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code source endpoint ID.
+    """
+    events: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineByTemplateTriggerEventArgsDict']]]]
+    """
+    Specifies the trigger event list.
+    The events structure is documented below.
+    """
+    git_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git repository type.
+    """
+    git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git URL.
+    """
+    hook_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the callback ID.
+    """
+    is_auto_commit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to automatically commit code.
+    """
+    repo_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the repository ID.
+    """
+    security_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the User token.
 
-        <a name="block--triggers--events"></a>
-        The `events` block supports:
-        """
-elif False:
-    PipelineByTemplateTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--triggers--events"></a>
+    The `events` block supports:
+    """
 
 @pulumi.input_type
 class PipelineByTemplateTriggerArgs:
@@ -4984,18 +4871,15 @@ class PipelineByTemplateTriggerArgs:
         pulumi.set(self, "security_token", value)
 
 
-if not MYPY:
-    class PipelineByTemplateTriggerEventArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        """
-elif False:
-    PipelineByTemplateTriggerEventArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineByTemplateTriggerEventArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    """
 
 @pulumi.input_type
 class PipelineByTemplateTriggerEventArgs:
@@ -5036,54 +4920,51 @@ class PipelineByTemplateTriggerEventArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PipelineByTemplateVariableArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter description.
-        """
-        is_reset: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to reset.
-        """
-        is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to set parameters at runtime.
-        """
-        is_secret: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is a private parameter.
-        """
-        latest_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the last parameter value.
-        """
-        limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name.
-        """
-        runtime_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value passed in at runtime.
-        """
-        sequence: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the parameter sequence, starting from 1.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter default value.
-        """
-elif False:
-    PipelineByTemplateVariableArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineByTemplateVariableArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter description.
+    """
+    is_reset: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to reset.
+    """
+    is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to set parameters at runtime.
+    """
+    is_secret: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is a private parameter.
+    """
+    latest_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the last parameter value.
+    """
+    limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name.
+    """
+    runtime_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value passed in at runtime.
+    """
+    sequence: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the parameter sequence, starting from 1.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter default value.
+    """
 
 @pulumi.input_type
 class PipelineByTemplateVariableArgs:
@@ -5268,28 +5149,25 @@ class PipelineByTemplateVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PipelineConcurrencyControlArgsDict(TypedDict):
-        concurrency_number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of concurrent instances.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available. Defaults to **false**.
-        """
-        exceed_action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the policy when the threshold is exceeded.
-        Value can be as follows:
-        + **ABORT**: ignore
-        + **QUEUE**: wait in queue
+class PipelineConcurrencyControlArgsDict(TypedDict):
+    concurrency_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of concurrent instances.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available. Defaults to **false**.
+    """
+    exceed_action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the policy when the threshold is exceeded.
+    Value can be as follows:
+    + **ABORT**: ignore
+    + **QUEUE**: wait in queue
 
-        <a name="block--schedules"></a>
-        The `schedules` block supports:
-        """
-elif False:
-    PipelineConcurrencyControlArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--schedules"></a>
+    The `schedules` block supports:
+    """
 
 @pulumi.input_type
 class PipelineConcurrencyControlArgs:
@@ -5358,38 +5236,35 @@ class PipelineConcurrencyControlArgs:
         pulumi.set(self, "exceed_action", value)
 
 
-if not MYPY:
-    class PipelineMicroServiceRepoArgsDict(TypedDict):
-        branch: pulumi.Input[_builtins.str]
-        """
-        Specifies the branch.
-        """
-        git_url: pulumi.Input[_builtins.str]
-        """
-        Specifies the Git address of the Git repository.
-        """
-        http_url: pulumi.Input[_builtins.str]
-        """
-        Specifies the HTTP address of the Git repository.
-        """
-        language: pulumi.Input[_builtins.str]
-        """
-        Specifies the language.
-        """
-        repo_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the repository ID.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the repository type.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the endpoint ID.
-        """
-elif False:
-    PipelineMicroServiceRepoArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineMicroServiceRepoArgsDict(TypedDict):
+    branch: pulumi.Input[_builtins.str]
+    """
+    Specifies the branch.
+    """
+    git_url: pulumi.Input[_builtins.str]
+    """
+    Specifies the Git address of the Git repository.
+    """
+    http_url: pulumi.Input[_builtins.str]
+    """
+    Specifies the HTTP address of the Git repository.
+    """
+    language: pulumi.Input[_builtins.str]
+    """
+    Specifies the language.
+    """
+    repo_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the repository ID.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the repository type.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the endpoint ID.
+    """
 
 @pulumi.input_type
 class PipelineMicroServiceRepoArgs:
@@ -5504,18 +5379,15 @@ class PipelineMicroServiceRepoArgs:
         pulumi.set(self, "endpoint_id", value)
 
 
-if not MYPY:
-    class PipelineParameterGroupRelatedPipelineArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the pipeline ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name.
-        """
-elif False:
-    PipelineParameterGroupRelatedPipelineArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineParameterGroupRelatedPipelineArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the pipeline ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name.
+    """
 
 @pulumi.input_type
 class PipelineParameterGroupRelatedPipelineArgs:
@@ -5556,34 +5428,31 @@ class PipelineParameterGroupRelatedPipelineArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class PipelineParameterGroupVariableArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter description.
-        """
-        is_secret: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is a private parameter.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name.
-        """
-        sequence: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the parameter sequence, starting from 1.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter default value.
-        """
-elif False:
-    PipelineParameterGroupVariableArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineParameterGroupVariableArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter description.
+    """
+    is_secret: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is a private parameter.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name.
+    """
+    sequence: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the parameter sequence, starting from 1.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter default value.
+    """
 
 @pulumi.input_type
 class PipelineParameterGroupVariableArgs:
@@ -5688,38 +5557,161 @@ class PipelineParameterGroupVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PipelineRolePermissionArgsDict(TypedDict):
-        operation_authorize: NotRequired[pulumi.Input[_builtins.bool]]
+class PipelinePluginVersionExecutionInfoArgsDict(TypedDict):
+    inner_execution_info: pulumi.Input[_builtins.str]
+    """
+    Specifies the inner execution information in json format.
+
+    <a name="block--input_info"></a>
+    The `input_info` block supports:
+    """
+
+@pulumi.input_type
+class PipelinePluginVersionExecutionInfoArgs:
+    def __init__(__self__, *,
+                 inner_execution_info: pulumi.Input[_builtins.str]):
         """
-        Indicates whether the role has the permission to authorize.
+        :param pulumi.Input[_builtins.str] inner_execution_info: Specifies the inner execution information in json format.
+               
+               <a name="block--input_info"></a>
+               The `input_info` block supports:
         """
-        operation_delete: NotRequired[pulumi.Input[_builtins.bool]]
+        pulumi.set(__self__, "inner_execution_info", inner_execution_info)
+
+    @_builtins.property
+    @pulumi.getter(name="innerExecutionInfo")
+    def inner_execution_info(self) -> pulumi.Input[_builtins.str]:
         """
-        Indicates whether the role has the permission to delete.
+        Specifies the inner execution information in json format.
+
+        <a name="block--input_info"></a>
+        The `input_info` block supports:
         """
-        operation_execute: NotRequired[pulumi.Input[_builtins.bool]]
+        return pulumi.get(self, "inner_execution_info")
+
+    @inner_execution_info.setter
+    def inner_execution_info(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "inner_execution_info", value)
+
+
+class PipelinePluginVersionInputInfoArgsDict(TypedDict):
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value.
+    """
+    layout_content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the style information..
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type.
+    """
+
+@pulumi.input_type
+class PipelinePluginVersionInputInfoArgs:
+    def __init__(__self__, *,
+                 default_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 layout_content: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Indicates whether the role has the permission to execute.
+        :param pulumi.Input[_builtins.str] default_value: Specifies the default value.
+        :param pulumi.Input[_builtins.str] layout_content: Specifies the style information..
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.str] type: Specifies the type.
         """
-        operation_query: NotRequired[pulumi.Input[_builtins.bool]]
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if layout_content is not None:
+            pulumi.set(__self__, "layout_content", layout_content)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates whether the role has the permission to query.
+        Specifies the default value.
         """
-        operation_update: NotRequired[pulumi.Input[_builtins.bool]]
+        return pulumi.get(self, "default_value")
+
+    @default_value.setter
+    def default_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="layoutContent")
+    def layout_content(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates whether the role has the permission to update.
+        Specifies the style information..
         """
-        role_id: NotRequired[pulumi.Input[_builtins.int]]
+        return pulumi.get(self, "layout_content")
+
+    @layout_content.setter
+    def layout_content(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "layout_content", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the role ID.
+        Specifies the name.
         """
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the role name.
+        Specifies the type.
         """
-elif False:
-    PipelineRolePermissionArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class PipelineRolePermissionArgsDict(TypedDict):
+    operation_authorize: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to authorize.
+    """
+    operation_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to delete.
+    """
+    operation_execute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to execute.
+    """
+    operation_query: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to query.
+    """
+    operation_update: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the role has the permission to update.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the role ID.
+    """
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role name.
+    """
 
 @pulumi.input_type
 class PipelineRolePermissionArgs:
@@ -5840,27 +5832,24 @@ class PipelineRolePermissionArgs:
         pulumi.set(self, "role_name", value)
 
 
-if not MYPY:
-    class PipelineRuleContentArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the group name.
-        """
-        properties: pulumi.Input[Sequence[pulumi.Input['PipelineRuleContentPropertyArgsDict']]]
-        """
-        Specifies the rule attribute list.
-        The properties structure is documented below.
-        """
-        can_modify_when_inherit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether thresholds of an inherited policy can be modified.
-        Default to **false**.
+class PipelineRuleContentArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the group name.
+    """
+    properties: pulumi.Input[Sequence[pulumi.Input['PipelineRuleContentPropertyArgsDict']]]
+    """
+    Specifies the rule attribute list.
+    The properties structure is documented below.
+    """
+    can_modify_when_inherit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether thresholds of an inherited policy can be modified.
+    Default to **false**.
 
-        <a name="block--content--properties"></a>
-        The `properties` block supports:
-        """
-elif False:
-    PipelineRuleContentArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--content--properties"></a>
+    The `properties` block supports:
+    """
 
 @pulumi.input_type
 class PipelineRuleContentArgs:
@@ -5925,38 +5914,35 @@ class PipelineRuleContentArgs:
         pulumi.set(self, "can_modify_when_inherit", value)
 
 
-if not MYPY:
-    class PipelineRuleContentPropertyArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the attribute key.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the display name.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the attribute value.
-        """
-        value_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the value type.
-        """
-        is_valid: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies wether the property is valid. Default to **false**.
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the comparison operators.
-        """
-elif False:
-    PipelineRuleContentPropertyArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineRuleContentPropertyArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the attribute key.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the display name.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the attribute value.
+    """
+    value_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the value type.
+    """
+    is_valid: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies wether the property is valid. Default to **false**.
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the comparison operators.
+    """
 
 @pulumi.input_type
 class PipelineRuleContentPropertyArgs:
@@ -6072,57 +6058,54 @@ class PipelineRuleContentPropertyArgs:
         pulumi.set(self, "operator", value)
 
 
-if not MYPY:
-    class PipelineScheduleArgsDict(TypedDict):
-        days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the execution day in a week. Sunday to Saturday: **1** to **7**.
-        """
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available. Defaults to **false**.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the end time.
-        """
-        interval_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the interval time.
-        """
-        interval_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the interval unit.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name. The value can contain a maximum of **32** characters.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the start time.
-        """
-        time_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time zone. Value can be **China Standard Time**, **GMT Standard Time**,
-        **South Africa Standard Time**, **Russian Standard Time**,**SE Asia Standard Time**, **Singapore Standard Time**,
-        **Pacific SA Standard Time**, **E. South America Standard Time**, **Central Standard Time (Mexico)**,
-        **Egypt Standard Time**, **Saudi Arabia Standard Time**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        Value can be as follows:
-        + **autoIncrement**: auto-increment parameter
-        + **enum**: enumeration parameter
-        + **string**: character string parameter
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of a scheduled task.
-        """
-elif False:
-    PipelineScheduleArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineScheduleArgsDict(TypedDict):
+    days_of_weeks: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the execution day in a week. Sunday to Saturday: **1** to **7**.
+    """
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available. Defaults to **false**.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the end time.
+    """
+    interval_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the interval time.
+    """
+    interval_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the interval unit.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name. The value can contain a maximum of **32** characters.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the start time.
+    """
+    time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time zone. Value can be **China Standard Time**, **GMT Standard Time**,
+    **South Africa Standard Time**, **Russian Standard Time**,**SE Asia Standard Time**, **Singapore Standard Time**,
+    **Pacific SA Standard Time**, **E. South America Standard Time**, **Central Standard Time (Mexico)**,
+    **Egypt Standard Time**, **Saudi Arabia Standard Time**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    Value can be as follows:
+    + **autoIncrement**: auto-increment parameter
+    + **enum**: enumeration parameter
+    + **string**: character string parameter
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of a scheduled task.
+    """
 
 @pulumi.input_type
 class PipelineScheduleArgs:
@@ -6305,18 +6288,15 @@ class PipelineScheduleArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class PipelineServiceEndpointAuthorizationArgsDict(TypedDict):
-        parameters: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication parameter.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication mode.
-        """
-elif False:
-    PipelineServiceEndpointAuthorizationArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineServiceEndpointAuthorizationArgsDict(TypedDict):
+    parameters: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication parameter.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication mode.
+    """
 
 @pulumi.input_type
 class PipelineServiceEndpointAuthorizationArgs:
@@ -6357,18 +6337,15 @@ class PipelineServiceEndpointAuthorizationArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PipelineServiceEndpointCreatedByArgsDict(TypedDict):
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the user ID.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the user name.
-        """
-elif False:
-    PipelineServiceEndpointCreatedByArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineServiceEndpointCreatedByArgsDict(TypedDict):
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the user ID.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the user name.
+    """
 
 @pulumi.input_type
 class PipelineServiceEndpointCreatedByArgs:
@@ -6409,26 +6386,23 @@ class PipelineServiceEndpointCreatedByArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class PipelineSourceArgsDict(TypedDict):
-        params: NotRequired[pulumi.Input['PipelineSourceParamsArgsDict']]
-        """
-        Specifies the pipeline source parameters.
-        The params structure is documented below.
+class PipelineSourceArgsDict(TypedDict):
+    params: NotRequired[pulumi.Input['PipelineSourceParamsArgsDict']]
+    """
+    Specifies the pipeline source parameters.
+    The params structure is documented below.
 
-        <a name="block--sources--params"></a>
-        The `params` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        Value can be as follows:
-        + **autoIncrement**: auto-increment parameter
-        + **enum**: enumeration parameter
-        + **string**: character string parameter
-        """
-elif False:
-    PipelineSourceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--sources--params"></a>
+    The `params` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    Value can be as follows:
+    + **autoIncrement**: auto-increment parameter
+    + **enum**: enumeration parameter
+    + **string**: character string parameter
+    """
 
 @pulumi.input_type
 class PipelineSourceArgs:
@@ -6485,51 +6459,48 @@ class PipelineSourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PipelineSourceParamsArgsDict(TypedDict):
-        alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code repository alias. The value can contain a maximum of **128** characters,
-        including letters, digits, and underscores (_).
-        """
-        codehub_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CodeArts Repo code repository ID.
-        """
-        default_branch: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default branch.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code source endpoint ID.
-        """
-        git_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git repository type. The options include **CodeHub**, **Gitee**,
-        **GitHub**, **GitCode**, and **GitLab**.
-        """
-        git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git URL.
-        """
-        repo_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the pipeline source name.
-        """
-        ssh_git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SSH Git address,
-        """
-        web_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the web page URL.
+class PipelineSourceParamsArgsDict(TypedDict):
+    alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code repository alias. The value can contain a maximum of **128** characters,
+    including letters, digits, and underscores (_).
+    """
+    codehub_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CodeArts Repo code repository ID.
+    """
+    default_branch: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default branch.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code source endpoint ID.
+    """
+    git_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git repository type. The options include **CodeHub**, **Gitee**,
+    **GitHub**, **GitCode**, and **GitLab**.
+    """
+    git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git URL.
+    """
+    repo_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the pipeline source name.
+    """
+    ssh_git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SSH Git address,
+    """
+    web_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the web page URL.
 
-        <a name="block--concurrency_control"></a>
-        The `concurrency_control` block supports:
-        """
-elif False:
-    PipelineSourceParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--concurrency_control"></a>
+    The `concurrency_control` block supports:
+    """
 
 @pulumi.input_type
 class PipelineSourceParamsArgs:
@@ -6692,62 +6663,59 @@ class PipelineSourceParamsArgs:
         pulumi.set(self, "web_url", value)
 
 
-if not MYPY:
-    class PipelineTemplateVariableArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter description.
-        """
-        is_reset: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to reset.
-        + **true**: Uses the edited parameter value.
-        + **false**: Uses the auto-increment parameter.
+class PipelineTemplateVariableArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter description.
+    """
+    is_reset: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to reset.
+    + **true**: Uses the edited parameter value.
+    + **false**: Uses the auto-increment parameter.
 
-        Defaults to `false`.
-        """
-        is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the parameters can be set during runtime. Defaults to `false`.
-        """
-        is_secret: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is a private parameter. Defaults to `false`.
-        """
-        latest_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the last parameter value.
-        """
-        limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name.
-        """
-        runtime_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value passed in at runtime.
-        """
-        sequence: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the parameter sequence, starting from **1**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        Valid values are:
-        + **autoIncrement**: Auto-increment parameter.
-        + **enum**: Enumeration parameter.
-        + **string**: String parameter.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter default value.
-        """
-elif False:
-    PipelineTemplateVariableArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to `false`.
+    """
+    is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the parameters can be set during runtime. Defaults to `false`.
+    """
+    is_secret: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is a private parameter. Defaults to `false`.
+    """
+    latest_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the last parameter value.
+    """
+    limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name.
+    """
+    runtime_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value passed in at runtime.
+    """
+    sequence: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the parameter sequence, starting from **1**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    Valid values are:
+    + **autoIncrement**: Auto-increment parameter.
+    + **enum**: Enumeration parameter.
+    + **string**: String parameter.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter default value.
+    """
 
 @pulumi.input_type
 class PipelineTemplateVariableArgs:
@@ -6948,51 +6916,48 @@ class PipelineTemplateVariableArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PipelineTriggerArgsDict(TypedDict):
-        callback_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the callback URL.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code source endpoint ID.
-        """
-        events: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineTriggerEventArgsDict']]]]
-        """
-        Specifies the trigger event list.
-        The events structure is documented below.
-        """
-        git_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git repository type. The options include **CodeHub**, **Gitee**,
-        **GitHub**, **GitCode**, and **GitLab**.
-        """
-        git_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Git URL.
-        """
-        hook_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the callback ID.
-        """
-        is_auto_commit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to automatically commit code. Defaults to **false**.
-        """
-        repo_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the repository ID.
-        """
-        security_token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the User token.
+class PipelineTriggerArgsDict(TypedDict):
+    callback_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the callback URL.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code source endpoint ID.
+    """
+    events: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineTriggerEventArgsDict']]]]
+    """
+    Specifies the trigger event list.
+    The events structure is documented below.
+    """
+    git_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git repository type. The options include **CodeHub**, **Gitee**,
+    **GitHub**, **GitCode**, and **GitLab**.
+    """
+    git_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Git URL.
+    """
+    hook_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the callback ID.
+    """
+    is_auto_commit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to automatically commit code. Defaults to **false**.
+    """
+    repo_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the repository ID.
+    """
+    security_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the User token.
 
-        <a name="block--triggers--events"></a>
-        The `events` block supports:
-        """
-elif False:
-    PipelineTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--triggers--events"></a>
+    The `events` block supports:
+    """
 
 @pulumi.input_type
 class PipelineTriggerArgs:
@@ -7155,22 +7120,19 @@ class PipelineTriggerArgs:
         pulumi.set(self, "security_token", value)
 
 
-if not MYPY:
-    class PipelineTriggerEventArgsDict(TypedDict):
-        enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is available. Defaults to **false**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        Value can be as follows:
-        + **autoIncrement**: auto-increment parameter
-        + **enum**: enumeration parameter
-        + **string**: character string parameter
-        """
-elif False:
-    PipelineTriggerEventArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineTriggerEventArgsDict(TypedDict):
+    enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is available. Defaults to **false**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    Value can be as follows:
+    + **autoIncrement**: auto-increment parameter
+    + **enum**: enumeration parameter
+    + **string**: character string parameter
+    """
 
 @pulumi.input_type
 class PipelineTriggerEventArgs:
@@ -7219,58 +7181,55 @@ class PipelineTriggerEventArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PipelineVariableArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter description.
-        """
-        is_reset: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to reset. Defaults to **false**.
-        """
-        is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to set parameters at runtime. Defaults to **false**.
-        """
-        is_secret: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether it is a private parameter. Defaults to **false**.
-        """
-        latest_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the last parameter value.
-        """
-        limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom variable name. The value can contain a maximum of **32** characters.
-        """
-        runtime_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value passed in at runtime.
-        """
-        sequence: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the parameter sequence, starting from **1**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter type.
-        Value can be as follows:
-        + **autoIncrement**: auto-increment parameter
-        + **enum**: enumeration parameter
-        + **string**: character string parameter
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom parameter default value.
-        """
-elif False:
-    PipelineVariableArgsDict: TypeAlias = Mapping[str, Any]
+class PipelineVariableArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter description.
+    """
+    is_reset: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to reset. Defaults to **false**.
+    """
+    is_runtime: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to set parameters at runtime. Defaults to **false**.
+    """
+    is_secret: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether it is a private parameter. Defaults to **false**.
+    """
+    latest_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the last parameter value.
+    """
+    limits: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom variable name. The value can contain a maximum of **32** characters.
+    """
+    runtime_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value passed in at runtime.
+    """
+    sequence: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the parameter sequence, starting from **1**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter type.
+    Value can be as follows:
+    + **autoIncrement**: auto-increment parameter
+    + **enum**: enumeration parameter
+    + **string**: character string parameter
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom parameter default value.
+    """
 
 @pulumi.input_type
 class PipelineVariableArgs:

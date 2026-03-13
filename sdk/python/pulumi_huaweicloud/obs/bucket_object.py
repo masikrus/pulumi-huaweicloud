@@ -32,6 +32,7 @@ class BucketObjectArgs:
                  storage_class: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketObject resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket to put the file in.
         :param pulumi.Input[_builtins.str] key: The name of the object once it is in the bucket.
         :param pulumi.Input[_builtins.str] acl: The ACL policy to apply. Defaults to `private`.
@@ -226,6 +227,7 @@ class _BucketObjectState:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketObject resources.
+
         :param pulumi.Input[_builtins.str] acl: The ACL policy to apply. Defaults to `private`.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket to put the file in.
         :param pulumi.Input[_builtins.str] content: The literal content being uploaded to the bucket.
@@ -477,10 +479,10 @@ class BucketObject(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         examplebucket = huaweicloud.obs.Bucket("examplebucket",
-            bucket="examplebuckettftest",
+            bucket_value="examplebuckettftest",
             acl="private")
         object = huaweicloud.obs.BucketObject("object",
-            bucket=examplebucket.bucket,
+            bucket=examplebucket.bucket_value,
             key="new_key_from_file",
             source="index.html")
         ```
@@ -502,39 +504,16 @@ class BucketObject(pulumi.CustomResource):
 
         OBS bucket object can be imported using the bucket and key separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketObject:BucketObject object bucket/key
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `encryption`, `source`, `acl` and
-
         `kms_key_id`. It is generally recommended running `pulumi preview` after importing an object.
-
         You can then decide if changes should be applied to the object, or the resource
-
         definition should be updated to align with the object. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_obs_bucket_object" "object" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              encryption, source, acl, kms_key_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -586,10 +565,10 @@ class BucketObject(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         examplebucket = huaweicloud.obs.Bucket("examplebucket",
-            bucket="examplebuckettftest",
+            bucket_value="examplebuckettftest",
             acl="private")
         object = huaweicloud.obs.BucketObject("object",
-            bucket=examplebucket.bucket,
+            bucket=examplebucket.bucket_value,
             key="new_key_from_file",
             source="index.html")
         ```
@@ -611,39 +590,16 @@ class BucketObject(pulumi.CustomResource):
 
         OBS bucket object can be imported using the bucket and key separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketObject:BucketObject object bucket/key
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `encryption`, `source`, `acl` and
-
         `kms_key_id`. It is generally recommended running `pulumi preview` after importing an object.
-
         You can then decide if changes should be applied to the object, or the resource
-
         definition should be updated to align with the object. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_obs_bucket_object" "object" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              encryption, source, acl, kms_key_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param BucketObjectArgs args: The arguments to use to populate this resource's properties.

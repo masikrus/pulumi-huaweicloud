@@ -30,6 +30,7 @@ class DocumentArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Document resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the document content, it is DSL statements.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[_builtins.str] risk_level: Specifies the risk level.
@@ -151,6 +152,7 @@ class _DocumentState:
                  versions: Optional[pulumi.Input[Sequence[pulumi.Input['DocumentVersionArgs']]]] = None):
         """
         Input properties used for looking up and filtering Document resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the document content, it is DSL statements.
         :param pulumi.Input[_builtins.int] create_time: Indicates the version creation time.
         :param pulumi.Input[_builtins.str] creator: Indicates the creator.
@@ -347,7 +349,7 @@ class _DocumentState:
         pulumi.set(self, "versions", value)
 
 
-@pulumi.type_token("huaweicloud:coc/document:Document")
+@pulumi.type_token("huaweicloud:Coc/document:Document")
 class Document(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -384,41 +386,17 @@ class Document(pulumi.CustomResource):
 
         The COC document can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/document:Document test <id>
+        $ pulumi import huaweicloud:Coc/document:Document test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `tags`.
-
         It is generally recommended running `pulumi preview` after importing a document.
-
         You can then decide if changes should be applied to the document, or the resource definition should be updated to
-
         align with the document. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_document" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -459,41 +437,17 @@ class Document(pulumi.CustomResource):
 
         The COC document can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/document:Document test <id>
+        $ pulumi import huaweicloud:Coc/document:Document test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `tags`.
-
         It is generally recommended running `pulumi preview` after importing a document.
-
         You can then decide if changes should be applied to the document, or the resource definition should be updated to
-
         align with the document. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_coc_document" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DocumentArgs args: The arguments to use to populate this resource's properties.
@@ -546,7 +500,7 @@ class Document(pulumi.CustomResource):
             __props__.__dict__["version"] = None
             __props__.__dict__["versions"] = None
         super(Document, __self__).__init__(
-            'huaweicloud:coc/document:Document',
+            'huaweicloud:Coc/document:Document',
             resource_name,
             __props__,
             opts)

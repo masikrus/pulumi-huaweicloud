@@ -147,7 +147,7 @@ def get_gateways(attachment_type: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     gateway_name = config.require_object("gatewayName")
-    test = huaweicloud.vpn.get_gateways(name=gateway_name)
+    test = huaweicloud.Vpn.get_gateways(name=gateway_name)
     ```
 
 
@@ -169,7 +169,7 @@ def get_gateways(attachment_type: Optional[_builtins.str] = None,
     __args__['networkType'] = network_type
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getGateways:getGateways', __args__, opts=opts, typ=GetGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getGateways:getGateways', __args__, opts=opts, typ=GetGatewaysResult).value
 
     return AwaitableGetGatewaysResult(
         attachment_type=pulumi.get(__ret__, 'attachment_type'),
@@ -198,7 +198,7 @@ def get_gateways_output(attachment_type: Optional[pulumi.Input[Optional[_builtin
 
     config = pulumi.Config()
     gateway_name = config.require_object("gatewayName")
-    test = huaweicloud.vpn.get_gateways(name=gateway_name)
+    test = huaweicloud.Vpn.get_gateways(name=gateway_name)
     ```
 
 
@@ -220,7 +220,7 @@ def get_gateways_output(attachment_type: Optional[pulumi.Input[Optional[_builtin
     __args__['networkType'] = network_type
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getGateways:getGateways', __args__, opts=opts, typ=GetGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getGateways:getGateways', __args__, opts=opts, typ=GetGatewaysResult)
     return __ret__.apply(lambda __response__: GetGatewaysResult(
         attachment_type=pulumi.get(__response__, 'attachment_type'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

@@ -24,6 +24,7 @@ class ServerRestartArgs:
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServerRestart resource.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -80,6 +81,7 @@ class _ServerRestartState:
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServerRestart resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -128,7 +130,7 @@ class _ServerRestartState:
         pulumi.set(self, "server_id", value)
 
 
-@pulumi.type_token("huaweicloud:cph/serverRestart:ServerRestart")
+@pulumi.type_token("huaweicloud:Cph/serverRestart:ServerRestart")
 class ServerRestart(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -153,6 +155,7 @@ class ServerRestart(pulumi.CustomResource):
         server_id = config.require_object("serverId")
         test = huaweicloud.cph.ServerRestart("test", server_id=server_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -182,6 +185,7 @@ class ServerRestart(pulumi.CustomResource):
         server_id = config.require_object("serverId")
         test = huaweicloud.cph.ServerRestart("test", server_id=server_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerRestartArgs args: The arguments to use to populate this resource's properties.
@@ -214,7 +218,7 @@ class ServerRestart(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["server_id"] = server_id
         super(ServerRestart, __self__).__init__(
-            'huaweicloud:cph/serverRestart:ServerRestart',
+            'huaweicloud:Cph/serverRestart:ServerRestart',
             resource_name,
             __props__,
             opts)

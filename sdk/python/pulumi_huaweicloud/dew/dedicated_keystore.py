@@ -25,6 +25,7 @@ class DedicatedKeystoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DedicatedKeystore resource.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the alias of a dedicated keystore. The valid length is limited from
                `1` to `255`. Only digits, uppercase letters, lowercase letters, underscores (_), hyphens (-), colons (:) and
                forward slashes (/) are allowed.
@@ -118,6 +119,7 @@ class _DedicatedKeystoreState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DedicatedKeystore resources.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the alias of a dedicated keystore. The valid length is limited from
                `1` to `255`. Only digits, uppercase letters, lowercase letters, underscores (_), hyphens (-), colons (:) and
                forward slashes (/) are allowed.
@@ -238,39 +240,16 @@ class DedicatedKeystore(pulumi.CustomResource):
 
         The KMS dedicated keystore can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/dedicatedKeystore:DedicatedKeystore test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `hsm_ca_cert`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_dedicated_keystore" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              hsm_ca_cert,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -319,39 +298,16 @@ class DedicatedKeystore(pulumi.CustomResource):
 
         The KMS dedicated keystore can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/dedicatedKeystore:DedicatedKeystore test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `hsm_ca_cert`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_kms_dedicated_keystore" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              hsm_ca_cert,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DedicatedKeystoreArgs args: The arguments to use to populate this resource's properties.

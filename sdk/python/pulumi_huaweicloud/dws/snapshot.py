@@ -25,6 +25,7 @@ class SnapshotArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the snapshot belongs.
                
                Changing this parameter will create a new resource.
@@ -113,6 +114,7 @@ class _SnapshotState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the snapshot belongs.
                
                Changing this parameter will create a new resource.
@@ -305,11 +307,10 @@ class Snapshot(pulumi.CustomResource):
 
         The dws snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshot:Snapshot test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -353,11 +354,10 @@ class Snapshot(pulumi.CustomResource):
 
         The dws snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshot:Snapshot test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.

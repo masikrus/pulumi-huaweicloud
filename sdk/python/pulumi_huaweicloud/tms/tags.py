@@ -21,20 +21,21 @@ __all__ = ['TagsArgs', 'Tags']
 @pulumi.input_type
 class TagsArgs:
     def __init__(__self__, *,
-                 tags: pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]):
+                 tags_value: pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]):
         """
         The set of arguments for constructing a Tags resource.
-        :param pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]] tags: Specifies an array of one or more predefined tags.
+
+        :param pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]] tags_value: Specifies an array of one or more predefined tags.
                The tags structure is documented below.
                
                <a name="tags_struct"></a>
                The `tags` block supports:
         """
-        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tags_value", tags_value)
 
     @_builtins.property
-    @pulumi.getter
-    def tags(self) -> pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]:
+    @pulumi.getter(name="TagsValue")
+    def tags_value(self) -> pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]:
         """
         Specifies an array of one or more predefined tags.
         The tags structure is documented below.
@@ -42,31 +43,32 @@ class TagsArgs:
         <a name="tags_struct"></a>
         The `tags` block supports:
         """
-        return pulumi.get(self, "tags")
+        return pulumi.get(self, "tags_value")
 
-    @tags.setter
-    def tags(self, value: pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]):
-        pulumi.set(self, "tags", value)
+    @tags_value.setter
+    def tags_value(self, value: pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]):
+        pulumi.set(self, "tags_value", value)
 
 
 @pulumi.input_type
 class _TagsState:
     def __init__(__self__, *,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]] = None):
+                 tags_value: Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]] = None):
         """
         Input properties used for looking up and filtering Tags resources.
-        :param pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]] tags: Specifies an array of one or more predefined tags.
+
+        :param pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]] tags_value: Specifies an array of one or more predefined tags.
                The tags structure is documented below.
                
                <a name="tags_struct"></a>
                The `tags` block supports:
         """
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+        if tags_value is not None:
+            pulumi.set(__self__, "tags_value", tags_value)
 
     @_builtins.property
-    @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]]:
+    @pulumi.getter(name="TagsValue")
+    def tags_value(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]]:
         """
         Specifies an array of one or more predefined tags.
         The tags structure is documented below.
@@ -74,11 +76,11 @@ class _TagsState:
         <a name="tags_struct"></a>
         The `tags` block supports:
         """
-        return pulumi.get(self, "tags")
+        return pulumi.get(self, "tags_value")
 
-    @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagArgs']]]]):
-        pulumi.set(self, "tags", value)
+    @tags_value.setter
+    def tags_value(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TagsTagsValueArgs']]]]):
+        pulumi.set(self, "tags_value", value)
 
 
 @pulumi.type_token("huaweicloud:Tms/tags:Tags")
@@ -87,7 +89,7 @@ class Tags(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagArgs', 'TagsTagArgsDict']]]]] = None,
+                 tags_value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagsValueArgs', 'TagsTagsValueArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages TMS tags resource within HuaweiCloud.
@@ -98,15 +100,16 @@ class Tags(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.tms.Tags("test", tags=[{
+        test = huaweicloud.tms.Tags("test", tags_value=[{
             "key": "foo",
             "value": "bar",
         }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TagsTagArgs', 'TagsTagArgsDict']]]] tags: Specifies an array of one or more predefined tags.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TagsTagsValueArgs', 'TagsTagsValueArgsDict']]]] tags_value: Specifies an array of one or more predefined tags.
                The tags structure is documented below.
                
                <a name="tags_struct"></a>
@@ -127,11 +130,12 @@ class Tags(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        test = huaweicloud.tms.Tags("test", tags=[{
+        test = huaweicloud.tms.Tags("test", tags_value=[{
             "key": "foo",
             "value": "bar",
         }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TagsArgs args: The arguments to use to populate this resource's properties.
@@ -148,7 +152,7 @@ class Tags(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagArgs', 'TagsTagArgsDict']]]]] = None,
+                 tags_value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagsValueArgs', 'TagsTagsValueArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -158,9 +162,9 @@ class Tags(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TagsArgs.__new__(TagsArgs)
 
-            if tags is None and not opts.urn:
-                raise TypeError("Missing required property 'tags'")
-            __props__.__dict__["tags"] = tags
+            if tags_value is None and not opts.urn:
+                raise TypeError("Missing required property 'tags_value'")
+            __props__.__dict__["tags_value"] = tags_value
         super(Tags, __self__).__init__(
             'huaweicloud:Tms/tags:Tags',
             resource_name,
@@ -171,7 +175,7 @@ class Tags(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagArgs', 'TagsTagArgsDict']]]]] = None) -> 'Tags':
+            tags_value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TagsTagsValueArgs', 'TagsTagsValueArgsDict']]]]] = None) -> 'Tags':
         """
         Get an existing Tags resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -179,7 +183,7 @@ class Tags(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TagsTagArgs', 'TagsTagArgsDict']]]] tags: Specifies an array of one or more predefined tags.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TagsTagsValueArgs', 'TagsTagsValueArgsDict']]]] tags_value: Specifies an array of one or more predefined tags.
                The tags structure is documented below.
                
                <a name="tags_struct"></a>
@@ -189,12 +193,12 @@ class Tags(pulumi.CustomResource):
 
         __props__ = _TagsState.__new__(_TagsState)
 
-        __props__.__dict__["tags"] = tags
+        __props__.__dict__["tags_value"] = tags_value
         return Tags(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter
-    def tags(self) -> pulumi.Output[Sequence['outputs.TagsTag']]:
+    @pulumi.getter(name="TagsValue")
+    def tags_value(self) -> pulumi.Output[Sequence['outputs.TagsTagsValue']]:
         """
         Specifies an array of one or more predefined tags.
         The tags structure is documented below.
@@ -202,5 +206,5 @@ class Tags(pulumi.CustomResource):
         <a name="tags_struct"></a>
         The `tags` block supports:
         """
-        return pulumi.get(self, "tags")
+        return pulumi.get(self, "tags_value")
 

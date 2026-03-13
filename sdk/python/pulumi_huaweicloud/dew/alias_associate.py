@@ -25,6 +25,7 @@ class AliasAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AliasAssociate resource.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
                
                > And the alias must be an alias already used by other keys.
@@ -100,6 +101,7 @@ class _AliasAssociateState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AliasAssociate resources.
+
         :param pulumi.Input[_builtins.str] alias: Specifies the alias of the key, it can only be prefixed with **alias/**.
                
                > And the alias must be an alias already used by other keys.
@@ -246,11 +248,10 @@ class AliasAssociate(pulumi.CustomResource):
 
         The KMS alias can be imported using `target_key_id` and `alias`, separated by a question mark (?), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/aliasAssociate:AliasAssociate test <target_key_id>?<alias>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,11 +293,10 @@ class AliasAssociate(pulumi.CustomResource):
 
         The KMS alias can be imported using `target_key_id` and `alias`, separated by a question mark (?), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/aliasAssociate:AliasAssociate test <target_key_id>?<alias>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AliasAssociateArgs args: The arguments to use to populate this resource's properties.

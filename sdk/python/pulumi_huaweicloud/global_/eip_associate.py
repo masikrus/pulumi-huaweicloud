@@ -27,6 +27,7 @@ class EipAssociateArgs:
                  gc_bandwidth: Optional[pulumi.Input['EipAssociateGcBandwidthArgs']] = None):
         """
         The set of arguments for constructing a EipAssociate resource.
+
         :param pulumi.Input['EipAssociateAssociateInstanceArgs'] associate_instance: Specifies the information of instance which the GEIP associates to.
                Changing this creates a new resource.
                The associate_instance structure is documented below.
@@ -112,6 +113,7 @@ class _EipAssociateState:
                  is_reserve_gcb: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering EipAssociate resources.
+
         :param pulumi.Input['EipAssociateAssociateInstanceArgs'] associate_instance: Specifies the information of instance which the GEIP associates to.
                Changing this creates a new resource.
                The associate_instance structure is documented below.
@@ -191,7 +193,7 @@ class _EipAssociateState:
         pulumi.set(self, "is_reserve_gcb", value)
 
 
-@pulumi.type_token("huaweicloud:global/eipAssociate:EipAssociate")
+@pulumi.type_token("huaweicloud:Global/eipAssociate:EipAssociate")
 class EipAssociate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -237,43 +239,19 @@ class EipAssociate(pulumi.CustomResource):
 
         The global EIP association can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/eipAssociate:EipAssociate test <id>
+        $ pulumi import huaweicloud:Global/eipAssociate:EipAssociate test <id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `is_reserve_gcb`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_global_eip_associate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_reserve_gcb,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,43 +309,19 @@ class EipAssociate(pulumi.CustomResource):
 
         The global EIP association can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/eipAssociate:EipAssociate test <id>
+        $ pulumi import huaweicloud:Global/eipAssociate:EipAssociate test <id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `is_reserve_gcb`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_global_eip_associate" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_reserve_gcb,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param EipAssociateArgs args: The arguments to use to populate this resource's properties.
@@ -408,7 +362,7 @@ class EipAssociate(pulumi.CustomResource):
                 raise TypeError("Missing required property 'is_reserve_gcb'")
             __props__.__dict__["is_reserve_gcb"] = is_reserve_gcb
         super(EipAssociate, __self__).__init__(
-            'huaweicloud:global/eipAssociate:EipAssociate',
+            'huaweicloud:Global/eipAssociate:EipAssociate',
             resource_name,
             __props__,
             opts)

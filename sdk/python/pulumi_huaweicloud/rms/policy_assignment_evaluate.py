@@ -22,6 +22,7 @@ class PolicyAssignmentEvaluateArgs:
                  policy_assignment_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a PolicyAssignmentEvaluate resource.
+
         :param pulumi.Input[_builtins.str] policy_assignment_id: Specifies the ID of the policy assignment to evaluate.
         """
         pulumi.set(__self__, "policy_assignment_id", policy_assignment_id)
@@ -45,6 +46,7 @@ class _PolicyAssignmentEvaluateState:
                  policy_assignment_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PolicyAssignmentEvaluate resources.
+
         :param pulumi.Input[_builtins.str] policy_assignment_id: Specifies the ID of the policy assignment to evaluate.
         """
         if policy_assignment_id is not None:
@@ -63,7 +65,7 @@ class _PolicyAssignmentEvaluateState:
         pulumi.set(self, "policy_assignment_id", value)
 
 
-@pulumi.type_token("huaweicloud:rms/policyAssignmentEvaluate:PolicyAssignmentEvaluate")
+@pulumi.type_token("huaweicloud:Rms/policyAssignmentEvaluate:PolicyAssignmentEvaluate")
 class PolicyAssignmentEvaluate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -84,6 +86,7 @@ class PolicyAssignmentEvaluate(pulumi.CustomResource):
         policy_assignment_id = config.require_object("policyAssignmentId")
         test = huaweicloud.index.RmsPolicyAssignmentEnvaluate("test", policy_assignment_id=policy_assignment_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -108,6 +111,7 @@ class PolicyAssignmentEvaluate(pulumi.CustomResource):
         policy_assignment_id = config.require_object("policyAssignmentId")
         test = huaweicloud.index.RmsPolicyAssignmentEnvaluate("test", policy_assignment_id=policy_assignment_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyAssignmentEvaluateArgs args: The arguments to use to populate this resource's properties.
@@ -138,7 +142,7 @@ class PolicyAssignmentEvaluate(pulumi.CustomResource):
                 raise TypeError("Missing required property 'policy_assignment_id'")
             __props__.__dict__["policy_assignment_id"] = policy_assignment_id
         super(PolicyAssignmentEvaluate, __self__).__init__(
-            'huaweicloud:rms/policyAssignmentEvaluate:PolicyAssignmentEvaluate',
+            'huaweicloud:Rms/policyAssignmentEvaluate:PolicyAssignmentEvaluate',
             resource_name,
             __props__,
             opts)

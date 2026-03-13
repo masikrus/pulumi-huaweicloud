@@ -25,6 +25,7 @@ class BlackWhiteListArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BlackWhiteList resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AAD instance ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: Specifies the IP address list.
         :param pulumi.Input[_builtins.str] type: Specifies the rule type. Valid values are **black** and **white**.
@@ -90,6 +91,7 @@ class _BlackWhiteListState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BlackWhiteList resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AAD instance ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: Specifies the IP address list.
         :param pulumi.Input[_builtins.str] type: Specifies the rule type. Valid values are **black** and **white**.
@@ -203,11 +205,10 @@ class BlackWhiteList(pulumi.CustomResource):
 
         The AAD black white list resource can be imported using the `instance_id` and `type`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/blackWhiteList:BlackWhiteList test <instance_id>/<type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -264,11 +265,10 @@ class BlackWhiteList(pulumi.CustomResource):
 
         The AAD black white list resource can be imported using the `instance_id` and `type`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/blackWhiteList:BlackWhiteList test <instance_id>/<type>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BlackWhiteListArgs args: The arguments to use to populate this resource's properties.

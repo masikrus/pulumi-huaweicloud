@@ -24,6 +24,7 @@ class MysqlParameterTemplateApplyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlParameterTemplateApply resource.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -80,6 +81,7 @@ class _MysqlParameterTemplateApplyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlParameterTemplateApply resources.
+
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -157,6 +159,7 @@ class MysqlParameterTemplateApply(pulumi.CustomResource):
             instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] configuration_id: Specifies the parameter template ID.
@@ -186,6 +189,7 @@ class MysqlParameterTemplateApply(pulumi.CustomResource):
             configuration_id=configuration_id,
             instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlParameterTemplateApplyArgs args: The arguments to use to populate this resource's properties.

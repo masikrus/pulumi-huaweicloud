@@ -24,6 +24,7 @@ class AdvancedUpdatePackageNameArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedUpdatePackageName resource.
+
         :param pulumi.Input[_builtins.str] package_id: Specifies the ID of the CNAD package.
         :param pulumi.Input[_builtins.str] name: Specifies the new name for the CNAD package.
         """
@@ -75,6 +76,7 @@ class _AdvancedUpdatePackageNameState:
                  package_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedUpdatePackageName resources.
+
         :param pulumi.Input[_builtins.str] name: Specifies the new name for the CNAD package.
         :param pulumi.Input[_builtins.str] package_id: Specifies the ID of the CNAD package.
         """
@@ -119,7 +121,7 @@ class _AdvancedUpdatePackageNameState:
         pulumi.set(self, "package_id", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedUpdatePackageName:AdvancedUpdatePackageName")
+@pulumi.type_token("huaweicloud:Cnad/advancedUpdatePackageName:AdvancedUpdatePackageName")
 class AdvancedUpdatePackageName(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -148,6 +150,7 @@ class AdvancedUpdatePackageName(pulumi.CustomResource):
             package_id=package_id,
             name=package_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -179,6 +182,7 @@ class AdvancedUpdatePackageName(pulumi.CustomResource):
             package_id=package_id,
             name=package_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedUpdatePackageNameArgs args: The arguments to use to populate this resource's properties.
@@ -213,7 +217,7 @@ class AdvancedUpdatePackageName(pulumi.CustomResource):
                 raise TypeError("Missing required property 'package_id'")
             __props__.__dict__["package_id"] = package_id
         super(AdvancedUpdatePackageName, __self__).__init__(
-            'huaweicloud:cnad/advancedUpdatePackageName:AdvancedUpdatePackageName',
+            'huaweicloud:Cnad/advancedUpdatePackageName:AdvancedUpdatePackageName',
             resource_name,
             __props__,
             opts)

@@ -6,7 +6,11 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_instance_servers import *
+from .get_instance_tags import *
 from .get_instances import *
+from .get_instances_by_tags import *
+from .get_quotas import *
 from .get_types import *
 from .instance import *
 from ._inputs import *

@@ -19,6 +19,7 @@ __all__ = ['ProjectArgs', 'Project']
 @pulumi.input_type
 class ProjectArgs:
     def __init__(__self__, *,
+                 delete_flag: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -26,8 +27,13 @@ class ProjectArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
+
+        :param pulumi.Input[_builtins.bool] delete_flag: Specifies whether to delete enterprise project on destroy.
+               Defaults to **false**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the enterprise project.
         :param pulumi.Input[_builtins.bool] enable: Specifies whether to enable the enterprise project. Defaults to **true**.
+               
+               > The **poc** type enterprise project does not support disabling operation.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the enterprise project.
                This parameter can contain `1` to `64` characters. Only English letters, Chinese characters, digits, underscores (_),
                and hyphens (-) are allowed.
@@ -37,6 +43,8 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.str] type: Specifies the type of the enterprise project.
                The valid values are **poc** and **prod**, defaults to **prod**.
         """
+        if delete_flag is not None:
+            pulumi.set(__self__, "delete_flag", delete_flag)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enable is not None:
@@ -47,6 +55,19 @@ class ProjectArgs:
             pulumi.set(__self__, "skip_disable_on_destroy", skip_disable_on_destroy)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteFlag")
+    def delete_flag(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to delete enterprise project on destroy.
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "delete_flag")
+
+    @delete_flag.setter
+    def delete_flag(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_flag", value)
 
     @_builtins.property
     @pulumi.getter
@@ -65,6 +86,8 @@ class ProjectArgs:
     def enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether to enable the enterprise project. Defaults to **true**.
+
+        > The **poc** type enterprise project does not support disabling operation.
         """
         return pulumi.get(self, "enable")
 
@@ -118,6 +141,7 @@ class ProjectArgs:
 class _ProjectState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_flag: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -127,9 +151,14 @@ class _ProjectState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the time (UTC) when the enterprise project was created. Example: **2018-05-18T06:49:06Z**.
+        :param pulumi.Input[_builtins.bool] delete_flag: Specifies whether to delete enterprise project on destroy.
+               Defaults to **false**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the enterprise project.
         :param pulumi.Input[_builtins.bool] enable: Specifies whether to enable the enterprise project. Defaults to **true**.
+               
+               > The **poc** type enterprise project does not support disabling operation.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the enterprise project.
                This parameter can contain `1` to `64` characters. Only English letters, Chinese characters, digits, underscores (_),
                and hyphens (-) are allowed.
@@ -145,6 +174,8 @@ class _ProjectState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if delete_flag is not None:
+            pulumi.set(__self__, "delete_flag", delete_flag)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enable is not None:
@@ -173,6 +204,19 @@ class _ProjectState:
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteFlag")
+    def delete_flag(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to delete enterprise project on destroy.
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "delete_flag")
+
+    @delete_flag.setter
+    def delete_flag(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_flag", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -189,6 +233,8 @@ class _ProjectState:
     def enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether to enable the enterprise project. Defaults to **true**.
+
+        > The **poc** type enterprise project does not support disabling operation.
         """
         return pulumi.get(self, "enable")
 
@@ -270,6 +316,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_flag: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -279,34 +326,82 @@ class Project(pulumi.CustomResource):
         """
         Use this resource to manage an enterprise project within HuaweiCloud.
 
-        > **NOTE:** Deleting enterprise projects is not support. If you destroy a resource of enterprise project,
-          the project is only disabled and removed from the state, but it remains in the cloud
+        > **NOTE:** This resource can be used in three ways during the destroy operation, please read the examples and field
+          descriptions in the documentation carefully before use. As follows:
+          <br/> 1. No operations are performed on the project during deletion.
+          <br/> 2. Disable the project during deletion.
+          <br/> 3. Delete the project during deletion.
 
         ## Example Usage
+
+        ### No operations are performed on the project during deletion
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
         test = huaweicloud.eps.Project("test",
-            name="test",
-            description="example project")
+            name=name,
+            description=description,
+            skip_disable_on_destroy=True)
+        ```
+
+        ### Disable the project during deletion
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.eps.Project("test",
+            name=name,
+            description=description)
+        ```
+
+        ### Delete the project during deletion
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.eps.Project("test",
+            name=name,
+            description=description,
+            delete_flag=True)
         ```
 
         ## Import
 
         Enterprise projects can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Eps/project:Project test <id>
         ```
 
+        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+        API response, security or some other reason. The missing attributes include: `delete_flag`, `skip_disable_on_destroy`.
+        It is generally recommended running **pulumi preview** after importing an enterprise project. You can then decide if
+        changes should be applied to the enterprise project, or the resource definition should be updated to align with the
+        enterprise project.
+        Also you can ignore changes as below.
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_flag: Specifies whether to delete enterprise project on destroy.
+               Defaults to **false**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the enterprise project.
         :param pulumi.Input[_builtins.bool] enable: Specifies whether to enable the enterprise project. Defaults to **true**.
+               
+               > The **poc** type enterprise project does not support disabling operation.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the enterprise project.
                This parameter can contain `1` to `64` characters. Only English letters, Chinese characters, digits, underscores (_),
                and hyphens (-) are allowed.
@@ -325,29 +420,73 @@ class Project(pulumi.CustomResource):
         """
         Use this resource to manage an enterprise project within HuaweiCloud.
 
-        > **NOTE:** Deleting enterprise projects is not support. If you destroy a resource of enterprise project,
-          the project is only disabled and removed from the state, but it remains in the cloud
+        > **NOTE:** This resource can be used in three ways during the destroy operation, please read the examples and field
+          descriptions in the documentation carefully before use. As follows:
+          <br/> 1. No operations are performed on the project during deletion.
+          <br/> 2. Disable the project during deletion.
+          <br/> 3. Delete the project during deletion.
 
         ## Example Usage
+
+        ### No operations are performed on the project during deletion
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
         test = huaweicloud.eps.Project("test",
-            name="test",
-            description="example project")
+            name=name,
+            description=description,
+            skip_disable_on_destroy=True)
+        ```
+
+        ### Disable the project during deletion
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.eps.Project("test",
+            name=name,
+            description=description)
+        ```
+
+        ### Delete the project during deletion
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.eps.Project("test",
+            name=name,
+            description=description,
+            delete_flag=True)
         ```
 
         ## Import
 
         Enterprise projects can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Eps/project:Project test <id>
         ```
+
+        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+        API response, security or some other reason. The missing attributes include: `delete_flag`, `skip_disable_on_destroy`.
+        It is generally recommended running **pulumi preview** after importing an enterprise project. You can then decide if
+        changes should be applied to the enterprise project, or the resource definition should be updated to align with the
+        enterprise project.
+        Also you can ignore changes as below.
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.
@@ -364,6 +503,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_flag: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -378,6 +518,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["delete_flag"] = delete_flag
             __props__.__dict__["description"] = description
             __props__.__dict__["enable"] = enable
             __props__.__dict__["name"] = name
@@ -397,6 +538,7 @@ class Project(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_flag: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             enable: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -412,8 +554,12 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time (UTC) when the enterprise project was created. Example: **2018-05-18T06:49:06Z**.
+        :param pulumi.Input[_builtins.bool] delete_flag: Specifies whether to delete enterprise project on destroy.
+               Defaults to **false**.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the enterprise project.
         :param pulumi.Input[_builtins.bool] enable: Specifies whether to enable the enterprise project. Defaults to **true**.
+               
+               > The **poc** type enterprise project does not support disabling operation.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the enterprise project.
                This parameter can contain `1` to `64` characters. Only English letters, Chinese characters, digits, underscores (_),
                and hyphens (-) are allowed.
@@ -432,6 +578,7 @@ class Project(pulumi.CustomResource):
         __props__ = _ProjectState.__new__(_ProjectState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["delete_flag"] = delete_flag
         __props__.__dict__["description"] = description
         __props__.__dict__["enable"] = enable
         __props__.__dict__["name"] = name
@@ -450,6 +597,15 @@ class Project(pulumi.CustomResource):
         return pulumi.get(self, "created_at")
 
     @_builtins.property
+    @pulumi.getter(name="deleteFlag")
+    def delete_flag(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to delete enterprise project on destroy.
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "delete_flag")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -462,6 +618,8 @@ class Project(pulumi.CustomResource):
     def enable(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Specifies whether to enable the enterprise project. Defaults to **true**.
+
+        > The **poc** type enterprise project does not support disabling operation.
         """
         return pulumi.get(self, "enable")
 

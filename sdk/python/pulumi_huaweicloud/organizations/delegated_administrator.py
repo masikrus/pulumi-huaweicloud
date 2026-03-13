@@ -23,6 +23,7 @@ class DelegatedAdministratorArgs:
                  service_principal: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DelegatedAdministrator resource.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the unique ID of an account.
                
                Changing this parameter will create a new resource.
@@ -69,6 +70,7 @@ class _DelegatedAdministratorState:
                  service_principal: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DelegatedAdministrator resources.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the unique ID of an account.
                
                Changing this parameter will create a new resource.
@@ -110,7 +112,7 @@ class _DelegatedAdministratorState:
         pulumi.set(self, "service_principal", value)
 
 
-@pulumi.type_token("huaweicloud:organizations/delegatedAdministrator:DelegatedAdministrator")
+@pulumi.type_token("huaweicloud:Organizations/delegatedAdministrator:DelegatedAdministrator")
 class DelegatedAdministrator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -139,14 +141,12 @@ class DelegatedAdministrator(pulumi.CustomResource):
         ## Import
 
         The Organizations delegated administrator can be imported using the `account_id` and `service_principal` separated by
-
         a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/delegatedAdministrator:DelegatedAdministrator test <account_id>/<service_principal>
+        $ pulumi import huaweicloud:Organizations/delegatedAdministrator:DelegatedAdministrator test <account_id>/<service_principal>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -183,14 +183,12 @@ class DelegatedAdministrator(pulumi.CustomResource):
         ## Import
 
         The Organizations delegated administrator can be imported using the `account_id` and `service_principal` separated by
-
         a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/delegatedAdministrator:DelegatedAdministrator test <account_id>/<service_principal>
+        $ pulumi import huaweicloud:Organizations/delegatedAdministrator:DelegatedAdministrator test <account_id>/<service_principal>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DelegatedAdministratorArgs args: The arguments to use to populate this resource's properties.
@@ -225,7 +223,7 @@ class DelegatedAdministrator(pulumi.CustomResource):
                 raise TypeError("Missing required property 'service_principal'")
             __props__.__dict__["service_principal"] = service_principal
         super(DelegatedAdministrator, __self__).__init__(
-            'huaweicloud:organizations/delegatedAdministrator:DelegatedAdministrator',
+            'huaweicloud:Organizations/delegatedAdministrator:DelegatedAdministrator',
             resource_name,
             __props__,
             opts)

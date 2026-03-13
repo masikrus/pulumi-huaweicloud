@@ -28,6 +28,7 @@ class SignatureArgs:
                  secret: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Signature resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the signature
                belongs.
                Changing this will create a new resource.
@@ -220,6 +221,7 @@ class _SignatureState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Signature resources.
+
         :param pulumi.Input[_builtins.str] algorithm: Specifies the signature algorithm.  
                This parameter is required and only available when signature `type` is `aes`.
                The valid values are as follows:
@@ -507,11 +509,10 @@ class Signature(pulumi.CustomResource):
 
         Signatures can be imported using their `id` and related dedicated instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/signature:Signature test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -628,11 +629,10 @@ class Signature(pulumi.CustomResource):
 
         Signatures can be imported using their `id` and related dedicated instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/signature:Signature test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SignatureArgs args: The arguments to use to populate this resource's properties.

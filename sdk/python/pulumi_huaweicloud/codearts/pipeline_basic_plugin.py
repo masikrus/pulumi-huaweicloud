@@ -31,6 +31,7 @@ class PipelineBasicPluginArgs:
                  runtime_attribution: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineBasicPlugin resource.
+
         :param pulumi.Input[_builtins.str] business_type: Specifies the service type.
         :param pulumi.Input[_builtins.str] display_name: Specifies the display name.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the basic plugin name.
@@ -198,6 +199,7 @@ class _PipelineBasicPluginState:
                  unique_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineBasicPlugin resources.
+
         :param pulumi.Input[_builtins.str] business_type: Specifies the service type.
         :param pulumi.Input[_builtins.str] business_type_display_name: Specifies the display name of service type.
         :param pulumi.Input[_builtins.str] description: Specifies the basic plugin description.
@@ -381,7 +383,7 @@ class _PipelineBasicPluginState:
         pulumi.set(self, "unique_id", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineBasicPlugin:PipelineBasicPlugin")
+@pulumi.type_token("huaweicloud:Codearts/pipelineBasicPlugin:PipelineBasicPlugin")
 class PipelineBasicPlugin(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -421,11 +423,10 @@ class PipelineBasicPlugin(pulumi.CustomResource):
 
         The basic plugin can be imported using `plugin_name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineBasicPlugin:PipelineBasicPlugin test <plugin_name>
+        $ pulumi import huaweicloud:Codearts/pipelineBasicPlugin:PipelineBasicPlugin test <plugin_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -470,11 +471,10 @@ class PipelineBasicPlugin(pulumi.CustomResource):
 
         The basic plugin can be imported using `plugin_name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineBasicPlugin:PipelineBasicPlugin test <plugin_name>
+        $ pulumi import huaweicloud:Codearts/pipelineBasicPlugin:PipelineBasicPlugin test <plugin_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineBasicPluginArgs args: The arguments to use to populate this resource's properties.
@@ -529,7 +529,7 @@ class PipelineBasicPlugin(pulumi.CustomResource):
             __props__.__dict__["maintainers"] = None
             __props__.__dict__["unique_id"] = None
         super(PipelineBasicPlugin, __self__).__init__(
-            'huaweicloud:codearts/pipelineBasicPlugin:PipelineBasicPlugin',
+            'huaweicloud:Codearts/pipelineBasicPlugin:PipelineBasicPlugin',
             resource_name,
             __props__,
             opts)

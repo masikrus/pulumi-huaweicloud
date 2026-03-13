@@ -29,6 +29,7 @@ class BackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Backup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Instance ID.
         :param pulumi.Input[Sequence[pulumi.Input['BackupDatabaseArgs']]] databases: List of self-built Microsoft SQL Server databases that are partially
                backed up.
@@ -151,6 +152,7 @@ class _BackupState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+
         :param pulumi.Input[_builtins.bool] associated_with_ddm: Whether a DDM instance has been associated.
         :param pulumi.Input[_builtins.str] begin_time: Backup start time in the "yyyy-mm-ddThh:mm:ssZ" format.
         :param pulumi.Input[Sequence[pulumi.Input['BackupDatabaseArgs']]] databases: List of self-built Microsoft SQL Server databases that are partially
@@ -377,11 +379,10 @@ class Backup(pulumi.CustomResource):
 
         The rds manual backup can be imported using the instance ID and the backup ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/backup:Backup test 1ce123456a00f2591fabc00385ff1235/0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -427,11 +428,10 @@ class Backup(pulumi.CustomResource):
 
         The rds manual backup can be imported using the instance ID and the backup ID separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/backup:Backup test 1ce123456a00f2591fabc00385ff1235/0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupArgs args: The arguments to use to populate this resource's properties.

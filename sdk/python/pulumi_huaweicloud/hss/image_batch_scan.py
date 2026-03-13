@@ -39,6 +39,7 @@ class ImageBatchScanArgs:
                  start_latest_update_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ImageBatchScan resource.
+
         :param pulumi.Input[_builtins.str] image_type: Specifies the image type.  
                The valid values are as follows:
                + **private_image**: Private image repository.
@@ -356,6 +357,7 @@ class _ImageBatchScanState:
                  start_latest_update_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ImageBatchScan resources.
+
         :param pulumi.Input[_builtins.int] end_latest_scan_time: Specifies the end time of the last scan completion date
                in milliseconds.
         :param pulumi.Input[_builtins.int] end_latest_update_time: Specifies the end time of the creation date in milliseconds.
@@ -653,7 +655,7 @@ class _ImageBatchScanState:
         pulumi.set(self, "start_latest_update_time", value)
 
 
-@pulumi.type_token("huaweicloud:hss/imageBatchScan:ImageBatchScan")
+@pulumi.type_token("huaweicloud:Hss/imageBatchScan:ImageBatchScan")
 class ImageBatchScan(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -696,6 +698,7 @@ class ImageBatchScan(pulumi.CustomResource):
             repo_type=repo_type,
             operate_all=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -770,6 +773,7 @@ class ImageBatchScan(pulumi.CustomResource):
             operate_all=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ImageBatchScanArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -829,7 +833,7 @@ class ImageBatchScan(pulumi.CustomResource):
             __props__.__dict__["start_latest_scan_time"] = start_latest_scan_time
             __props__.__dict__["start_latest_update_time"] = start_latest_update_time
         super(ImageBatchScan, __self__).__init__(
-            'huaweicloud:hss/imageBatchScan:ImageBatchScan',
+            'huaweicloud:Hss/imageBatchScan:ImageBatchScan',
             resource_name,
             __props__,
             opts)

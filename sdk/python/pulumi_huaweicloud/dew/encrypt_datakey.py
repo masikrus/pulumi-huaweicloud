@@ -27,6 +27,7 @@ class EncryptDatakeyArgs:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EncryptDatakey resource.
+
         :param pulumi.Input[_builtins.str] datakey_plain_length: Specifies the byte length of the DEK plaintext.
                The vaild value ranges from `1` to `1024`, with a commonly used value of `64`.
         :param pulumi.Input[_builtins.str] key_id: Specifies the key ID.
@@ -141,6 +142,7 @@ class _EncryptDatakeyState:
                  sequence: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EncryptDatakey resources.
+
         :param pulumi.Input[_builtins.str] cipher_text: The DEK ciphertext in hexadecimal, two characters represent `1` byte.
         :param pulumi.Input[_builtins.str] datakey_plain_length: Specifies the byte length of the DEK plaintext.
                The vaild value ranges from `1` to `1024`, with a commonly used value of `64`.
@@ -296,6 +298,7 @@ class EncryptDatakey(pulumi.CustomResource):
             datakey_plain_length=datakey_plain_length)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datakey_plain_length: Specifies the byte length of the DEK plaintext.
@@ -339,6 +342,7 @@ class EncryptDatakey(pulumi.CustomResource):
             plain_text=plain_text,
             datakey_plain_length=datakey_plain_length)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EncryptDatakeyArgs args: The arguments to use to populate this resource's properties.

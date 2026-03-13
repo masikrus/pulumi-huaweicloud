@@ -25,6 +25,7 @@ class BackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Backup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
                
                Changing this parameter will create a new resource.
@@ -120,6 +121,7 @@ class _BackupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+
         :param pulumi.Input[_builtins.str] backup_format: Specifies the format of the DCS instance backup.
                Value options: **aof**, **rdb**. Default to rdb.
                
@@ -368,11 +370,10 @@ class Backup(pulumi.CustomResource):
 
         The DCS backup can be imported using the `instance_id` and `backup_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/backup:Backup test <instance_id>/<backup_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -413,11 +414,10 @@ class Backup(pulumi.CustomResource):
 
         The DCS backup can be imported using the `instance_id` and `backup_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/backup:Backup test <instance_id>/<backup_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupArgs args: The arguments to use to populate this resource's properties.

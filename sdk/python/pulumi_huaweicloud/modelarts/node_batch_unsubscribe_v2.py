@@ -25,6 +25,7 @@ class NodeBatchUnsubscribeV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodeBatchUnsubscribeV2 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_ids: Specifies the ID list of resource nodes to be unsubscribed.
         :param pulumi.Input[_builtins.str] resource_pool_name: Specifies the resource pool name to which the resource nodes
                belong.
@@ -95,6 +96,7 @@ class _NodeBatchUnsubscribeV2State:
                  resource_pool_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodeBatchUnsubscribeV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_ids: Specifies the ID list of resource nodes to be unsubscribed.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the resource nodes are located.  
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -191,6 +193,7 @@ class NodeBatchUnsubscribeV2(pulumi.CustomResource):
             node_ids=node_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] node_ids: Specifies the ID list of resource nodes to be unsubscribed.
@@ -226,6 +229,7 @@ class NodeBatchUnsubscribeV2(pulumi.CustomResource):
             resource_pool_name=resource_pool_name,
             node_ids=node_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NodeBatchUnsubscribeV2Args args: The arguments to use to populate this resource's properties.

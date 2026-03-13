@@ -24,7 +24,16 @@ __all__ = [
     'GlobalConnectionBandwidthAssociateGcbBindingResource',
     'GlobalConnectionBandwidthInstance',
     'InterRegionBandwidthInterRegion',
+    'GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationResult',
+    'GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationSpecCodeResult',
+    'GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationResult',
+    'GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationSpecCodeResult',
     'GetAuthorizationsAuthorizationResult',
+    'GetBandwidthPackageClassesBandwidthPackageLevelResult',
+    'GetBandwidthPackageLinesBandwidthPackageLineResult',
+    'GetBandwidthPackageLinesBandwidthPackageLineSpecCodeResult',
+    'GetBandwidthPackageSitesBandwidthPackageSiteResult',
+    'GetBandwidthPackageTagsTagResult',
     'GetBandwidthPackagesBandwidthPackageResult',
     'GetCentralNetworkAttachmentsCentralNetworkAttachmentResult',
     'GetCentralNetworkAttachmentsCentralNetworkAttachmentSpecificationValueResult',
@@ -40,20 +49,40 @@ __all__ = [
     'GetCentralNetworkPoliciesCentralNetworkPolicyDocumentPlaneExcludeErConnectionExcludeErInstanceResult',
     'GetCentralNetworkPoliciesChangeSetCentralNetworkPolicyChangeSetResult',
     'GetCentralNetworkQuotasQuotaResult',
+    'GetCentralNetworksByTagsCentralNetworkResult',
+    'GetCentralNetworksByTagsCentralNetworkErInstanceResult',
+    'GetCentralNetworksByTagsCentralNetworkPlaneResult',
+    'GetCentralNetworksByTagsCentralNetworkPlaneAssociateErTableResult',
+    'GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionResult',
+    'GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionExcludeErInstanceResult',
+    'GetCentralNetworksByTagsCentralNetworkTagResult',
+    'GetCentralNetworksByTagsTagResult',
     'GetCentralNetworksCentralNetworkResult',
+    'GetCloudConnectionCapabilitiesCapabilityResult',
+    'GetCloudConnectionCapabilitiesCapabilityBandwidthResult',
+    'GetCloudConnectionQuotasQuotaResult',
     'GetConnectionRoutesCloudConnectionRouteResult',
     'GetConnectionsConnectionResult',
+    'GetGlobalConnectionBandwidthConfigsConfigResult',
+    'GetGlobalConnectionBandwidthConfigsConfigQuotaResult',
+    'GetGlobalConnectionBandwidthConfigsConfigSizeRangeResult',
     'GetGlobalConnectionBandwidthLineLevelsLineLevelResult',
     'GetGlobalConnectionBandwidthSitesSiteInfoResult',
     'GetGlobalConnectionBandwidthSitesSiteInfoGroupListResult',
     'GetGlobalConnectionBandwidthSpecCodesSpecCodeResult',
+    'GetGlobalConnectionBandwidthTagsTagResult',
     'GetGlobalConnectionBandwidthsGlobalconnectionBandwidthResult',
     'GetGlobalConnectionBandwidthsGlobalconnectionBandwidthInstanceResult',
     'GetInterRegionBandwidthsInterRegionBandwidthResult',
     'GetInterRegionBandwidthsInterRegionBandwidthInterRegionResult',
     'GetNetworkInstancesNetworkInstanceResult',
     'GetPermissionsPermissionResult',
+    'GetSiteNetworkCapabilitiesCapabilityResult',
+    'GetSiteNetworkCapabilitiesCapabilitySizeRangeResult',
+    'GetSiteNetworkQuotasQuotaResult',
     'GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult',
+    'GetSupportedAreasAreaResult',
+    'GetSupportedRegionsRegionResult',
 ]
 
 @pulumi.output_type
@@ -598,6 +627,266 @@ class InterRegionBandwidthInterRegion(dict):
 
 
 @pulumi.output_type
+class GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 local_area_id: _builtins.str,
+                 remote_area_id: _builtins.str,
+                 spec_codes: Sequence['outputs.GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationSpecCodeResult']):
+        """
+        :param _builtins.str id: Indicates the bandwidth package specification ID.
+        :param _builtins.str local_area_id: Specifies the IDs of a geographic region for querying the list of bandwidth package
+               specifications.
+        :param _builtins.str remote_area_id: Specifies the IDs of another geographic region for querying the list of bandwidth
+               package specifications.
+        :param Sequence['GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationSpecCodeArgs'] spec_codes: Indicates the bandwidth package specifications.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "local_area_id", local_area_id)
+        pulumi.set(__self__, "remote_area_id", remote_area_id)
+        pulumi.set(__self__, "spec_codes", spec_codes)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the bandwidth package specification ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="localAreaId")
+    def local_area_id(self) -> _builtins.str:
+        """
+        Specifies the IDs of a geographic region for querying the list of bandwidth package
+        specifications.
+        """
+        return pulumi.get(self, "local_area_id")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteAreaId")
+    def remote_area_id(self) -> _builtins.str:
+        """
+        Specifies the IDs of another geographic region for querying the list of bandwidth
+        package specifications.
+        """
+        return pulumi.get(self, "remote_area_id")
+
+    @_builtins.property
+    @pulumi.getter(name="specCodes")
+    def spec_codes(self) -> Sequence['outputs.GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationSpecCodeResult']:
+        """
+        Indicates the bandwidth package specifications.
+        """
+        return pulumi.get(self, "spec_codes")
+
+
+@pulumi.output_type
+class GetAcrossAreaBandwidthPackageFlavorsAreaSpecificationSpecCodeResult(dict):
+    def __init__(__self__, *,
+                 billing_mode: _builtins.str,
+                 max_bandwidth: _builtins.int,
+                 mim_bandwidth: _builtins.int,
+                 spec_code: _builtins.str):
+        """
+        :param _builtins.str billing_mode: Indicates the bandwidth package billing option.
+        :param _builtins.int max_bandwidth: Indicates the maximum bandwidth.
+        :param _builtins.int mim_bandwidth: Indicates the minimum bandwidth.
+        :param _builtins.str spec_code: Indicates the specification code of the bandwidth package.
+        """
+        pulumi.set(__self__, "billing_mode", billing_mode)
+        pulumi.set(__self__, "max_bandwidth", max_bandwidth)
+        pulumi.set(__self__, "mim_bandwidth", mim_bandwidth)
+        pulumi.set(__self__, "spec_code", spec_code)
+
+    @_builtins.property
+    @pulumi.getter(name="billingMode")
+    def billing_mode(self) -> _builtins.str:
+        """
+        Indicates the bandwidth package billing option.
+        """
+        return pulumi.get(self, "billing_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBandwidth")
+    def max_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the maximum bandwidth.
+        """
+        return pulumi.get(self, "max_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="mimBandwidth")
+    def mim_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the minimum bandwidth.
+        """
+        return pulumi.get(self, "mim_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the specification code of the bandwidth package.
+        """
+        return pulumi.get(self, "spec_code")
+
+
+@pulumi.output_type
+class GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationResult(dict):
+    def __init__(__self__, *,
+                 en_name: _builtins.str,
+                 es_name: _builtins.str,
+                 id: _builtins.str,
+                 local_region_id: _builtins.str,
+                 name: _builtins.str,
+                 pt_name: _builtins.str,
+                 remote_region_id: _builtins.str,
+                 spec_codes: Sequence['outputs.GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationSpecCodeResult']):
+        """
+        :param _builtins.str en_name: Indicates the name of the bandwidth package for communications between regions.
+        :param _builtins.str es_name: Indicates the specification name in Spanish of the bandwidth package for communications between
+               regions.
+        :param _builtins.str id: Indicates the specification ID of the bandwidth package for communications between regions.
+        :param _builtins.str local_region_id: Specifies the ID of a region for querying the list of multi-city bandwidth package
+               configurations.
+        :param _builtins.str name: Indicates the specification name of the bandwidth package for communications between regions.
+        :param _builtins.str pt_name: Indicates the specification name in Portuguese of the bandwidth package for communications between
+               regions.
+        :param _builtins.str remote_region_id: Specifies the ID of another region for querying the list of multi-city bandwidth
+               package configurations.
+        :param Sequence['GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationSpecCodeArgs'] spec_codes: Indicates the list of the bandwidth package specifications.
+        """
+        pulumi.set(__self__, "en_name", en_name)
+        pulumi.set(__self__, "es_name", es_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "local_region_id", local_region_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pt_name", pt_name)
+        pulumi.set(__self__, "remote_region_id", remote_region_id)
+        pulumi.set(__self__, "spec_codes", spec_codes)
+
+    @_builtins.property
+    @pulumi.getter(name="enName")
+    def en_name(self) -> _builtins.str:
+        """
+        Indicates the name of the bandwidth package for communications between regions.
+        """
+        return pulumi.get(self, "en_name")
+
+    @_builtins.property
+    @pulumi.getter(name="esName")
+    def es_name(self) -> _builtins.str:
+        """
+        Indicates the specification name in Spanish of the bandwidth package for communications between
+        regions.
+        """
+        return pulumi.get(self, "es_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the specification ID of the bandwidth package for communications between regions.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="localRegionId")
+    def local_region_id(self) -> _builtins.str:
+        """
+        Specifies the ID of a region for querying the list of multi-city bandwidth package
+        configurations.
+        """
+        return pulumi.get(self, "local_region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the specification name of the bandwidth package for communications between regions.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ptName")
+    def pt_name(self) -> _builtins.str:
+        """
+        Indicates the specification name in Portuguese of the bandwidth package for communications between
+        regions.
+        """
+        return pulumi.get(self, "pt_name")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteRegionId")
+    def remote_region_id(self) -> _builtins.str:
+        """
+        Specifies the ID of another region for querying the list of multi-city bandwidth
+        package configurations.
+        """
+        return pulumi.get(self, "remote_region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="specCodes")
+    def spec_codes(self) -> Sequence['outputs.GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationSpecCodeResult']:
+        """
+        Indicates the list of the bandwidth package specifications.
+        """
+        return pulumi.get(self, "spec_codes")
+
+
+@pulumi.output_type
+class GetAcrossRegionsBandwidthPackageFlavorsRegionSpecificationSpecCodeResult(dict):
+    def __init__(__self__, *,
+                 billing_mode: _builtins.str,
+                 max_bandwidth: _builtins.int,
+                 mim_bandwidth: _builtins.int,
+                 spec_code: _builtins.str):
+        """
+        :param _builtins.str billing_mode: Indicates the bandwidth package billing option.
+        :param _builtins.int max_bandwidth: Indicates the maximum bandwidth.
+        :param _builtins.int mim_bandwidth: Indicates the minimum bandwidth.
+        :param _builtins.str spec_code: Indicates the specification code of the bandwidth package.
+        """
+        pulumi.set(__self__, "billing_mode", billing_mode)
+        pulumi.set(__self__, "max_bandwidth", max_bandwidth)
+        pulumi.set(__self__, "mim_bandwidth", mim_bandwidth)
+        pulumi.set(__self__, "spec_code", spec_code)
+
+    @_builtins.property
+    @pulumi.getter(name="billingMode")
+    def billing_mode(self) -> _builtins.str:
+        """
+        Indicates the bandwidth package billing option.
+        """
+        return pulumi.get(self, "billing_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBandwidth")
+    def max_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the maximum bandwidth.
+        """
+        return pulumi.get(self, "max_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="mimBandwidth")
+    def mim_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the minimum bandwidth.
+        """
+        return pulumi.get(self, "mim_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the specification code of the bandwidth package.
+        """
+        return pulumi.get(self, "spec_code")
+
+
+@pulumi.output_type
 class GetAuthorizationsAuthorizationResult(dict):
     def __init__(__self__, *,
                  cloud_connection_domain_id: _builtins.str,
@@ -745,6 +1034,411 @@ class GetAuthorizationsAuthorizationResult(dict):
         Time when the resource was updated.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetBandwidthPackageClassesBandwidthPackageLevelResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 display_priority: _builtins.int,
+                 id: _builtins.str,
+                 level: _builtins.str,
+                 name_cn: _builtins.str,
+                 name_en: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+               The UTC time is in the **yyy-MM-ddTHH:mm:ss** format.
+        :param _builtins.str description: Indicates the description.
+        :param _builtins.int display_priority: Indicates the priority of the bandwidth package. A smaller value indicates a higher priority.
+               The value can be:
+               + **Platinum**: 1 to 50
+               + **Gold**: 51 to 100
+               + **Silver**: 101 to 150
+               + **Other**: greater than 151
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.str level: Indicates the bandwidth package class.
+        :param _builtins.str name_cn: Indicates the instance Chinese name.
+        :param _builtins.str name_en: Indicates the instance English name.
+        :param _builtins.str updated_at: Indicates the update time.
+               The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_priority", display_priority)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "name_cn", name_cn)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        The UTC time is in the **yyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayPriority")
+    def display_priority(self) -> _builtins.int:
+        """
+        Indicates the priority of the bandwidth package. A smaller value indicates a higher priority.
+        The value can be:
+        + **Platinum**: 1 to 50
+        + **Gold**: 51 to 100
+        + **Silver**: 101 to 150
+        + **Other**: greater than 151
+        """
+        return pulumi.get(self, "display_priority")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        Indicates the bandwidth package class.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter(name="nameCn")
+    def name_cn(self) -> _builtins.str:
+        """
+        Indicates the instance Chinese name.
+        """
+        return pulumi.get(self, "name_cn")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the instance English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetBandwidthPackageLinesBandwidthPackageLineResult(dict):
+    def __init__(__self__, *,
+                 local_region_id: _builtins.str,
+                 local_site_code: _builtins.str,
+                 remote_region_id: _builtins.str,
+                 remote_site_code: _builtins.str,
+                 spec_codes: Sequence['outputs.GetBandwidthPackageLinesBandwidthPackageLineSpecCodeResult'],
+                 support_levels: Sequence[_builtins.str]):
+        """
+        :param _builtins.str local_region_id: Indicates the local region ID.
+        :param _builtins.str local_site_code: Indicates the local site code.
+        :param _builtins.str remote_region_id: Indicates the remote region ID.
+        :param _builtins.str remote_site_code: Indicates the remote site code.
+        :param Sequence['GetBandwidthPackageLinesBandwidthPackageLineSpecCodeArgs'] spec_codes: Indicates the offering code list.
+        :param Sequence[_builtins.str] support_levels: Indicates the list of supported classes.
+        """
+        pulumi.set(__self__, "local_region_id", local_region_id)
+        pulumi.set(__self__, "local_site_code", local_site_code)
+        pulumi.set(__self__, "remote_region_id", remote_region_id)
+        pulumi.set(__self__, "remote_site_code", remote_site_code)
+        pulumi.set(__self__, "spec_codes", spec_codes)
+        pulumi.set(__self__, "support_levels", support_levels)
+
+    @_builtins.property
+    @pulumi.getter(name="localRegionId")
+    def local_region_id(self) -> _builtins.str:
+        """
+        Indicates the local region ID.
+        """
+        return pulumi.get(self, "local_region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="localSiteCode")
+    def local_site_code(self) -> _builtins.str:
+        """
+        Indicates the local site code.
+        """
+        return pulumi.get(self, "local_site_code")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteRegionId")
+    def remote_region_id(self) -> _builtins.str:
+        """
+        Indicates the remote region ID.
+        """
+        return pulumi.get(self, "remote_region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteSiteCode")
+    def remote_site_code(self) -> _builtins.str:
+        """
+        Indicates the remote site code.
+        """
+        return pulumi.get(self, "remote_site_code")
+
+    @_builtins.property
+    @pulumi.getter(name="specCodes")
+    def spec_codes(self) -> Sequence['outputs.GetBandwidthPackageLinesBandwidthPackageLineSpecCodeResult']:
+        """
+        Indicates the offering code list.
+        """
+        return pulumi.get(self, "spec_codes")
+
+    @_builtins.property
+    @pulumi.getter(name="supportLevels")
+    def support_levels(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of supported classes.
+        """
+        return pulumi.get(self, "support_levels")
+
+
+@pulumi.output_type
+class GetBandwidthPackageLinesBandwidthPackageLineSpecCodeResult(dict):
+    def __init__(__self__, *,
+                 level: _builtins.str,
+                 max_bandwidth: _builtins.int,
+                 min_bandwidth: _builtins.int,
+                 name_cn: _builtins.str,
+                 name_en: _builtins.str,
+                 spec_code: _builtins.str,
+                 support_billing_modes: Sequence[_builtins.int]):
+        """
+        :param _builtins.str level: Indicates the bandwidth package class.
+        :param _builtins.int max_bandwidth: Indicates the maximum bandwidth.
+        :param _builtins.int min_bandwidth: Indicates the minimum bandwidth.
+        :param _builtins.str name_cn: Indicates the Chinese instance name.
+        :param _builtins.str name_en: Indicates the English instance name.
+        :param _builtins.str spec_code: Indicates the specification code of the bandwidth package.
+        :param Sequence[_builtins.int] support_billing_modes: Indicates the billing mode.
+        """
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "max_bandwidth", max_bandwidth)
+        pulumi.set(__self__, "min_bandwidth", min_bandwidth)
+        pulumi.set(__self__, "name_cn", name_cn)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "spec_code", spec_code)
+        pulumi.set(__self__, "support_billing_modes", support_billing_modes)
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        Indicates the bandwidth package class.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBandwidth")
+    def max_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the maximum bandwidth.
+        """
+        return pulumi.get(self, "max_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="minBandwidth")
+    def min_bandwidth(self) -> _builtins.int:
+        """
+        Indicates the minimum bandwidth.
+        """
+        return pulumi.get(self, "min_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="nameCn")
+    def name_cn(self) -> _builtins.str:
+        """
+        Indicates the Chinese instance name.
+        """
+        return pulumi.get(self, "name_cn")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the English instance name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="specCode")
+    def spec_code(self) -> _builtins.str:
+        """
+        Indicates the specification code of the bandwidth package.
+        """
+        return pulumi.get(self, "spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="supportBillingModes")
+    def support_billing_modes(self) -> Sequence[_builtins.int]:
+        """
+        Indicates the billing mode.
+        """
+        return pulumi.get(self, "support_billing_modes")
+
+
+@pulumi.output_type
+class GetBandwidthPackageSitesBandwidthPackageSiteResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name_cn: _builtins.str,
+                 name_en: _builtins.str,
+                 region_id: _builtins.str,
+                 site_code: _builtins.str,
+                 site_type: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+               The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        :param _builtins.str description: Indicates the description.
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.str name_cn: Indicates the instance Chinese name.
+        :param _builtins.str name_en: Indicates the  instance English name.
+        :param _builtins.str region_id: Specifies the region ID.
+        :param _builtins.str site_code: Specifies the site code.
+        :param _builtins.str site_type: Indicates the site type. The default type is **region**.
+        :param _builtins.str updated_at: Indicates the update time.
+               The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name_cn", name_cn)
+        pulumi.set(__self__, "name_en", name_en)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "site_code", site_code)
+        pulumi.set(__self__, "site_type", site_type)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="nameCn")
+    def name_cn(self) -> _builtins.str:
+        """
+        Indicates the instance Chinese name.
+        """
+        return pulumi.get(self, "name_cn")
+
+    @_builtins.property
+    @pulumi.getter(name="nameEn")
+    def name_en(self) -> _builtins.str:
+        """
+        Indicates the  instance English name.
+        """
+        return pulumi.get(self, "name_en")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="siteCode")
+    def site_code(self) -> _builtins.str:
+        """
+        Specifies the site code.
+        """
+        return pulumi.get(self, "site_code")
+
+    @_builtins.property
+    @pulumi.getter(name="siteType")
+    def site_type(self) -> _builtins.str:
+        """
+        Indicates the site type. The default type is **region**.
+        """
+        return pulumi.get(self, "site_type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetBandwidthPackageTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the tag key.
+        :param Sequence[_builtins.str] values: Indicates the list of values with the same key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of values with the same key.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -2112,6 +2806,483 @@ class GetCentralNetworkQuotasQuotaResult(dict):
 
 
 @pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkResult(dict):
+    def __init__(__self__, *,
+                 auto_associate_route_enabled: _builtins.bool,
+                 auto_propagate_route_enabled: _builtins.bool,
+                 created_at: _builtins.str,
+                 default_plane_id: _builtins.str,
+                 description: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 er_instances: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkErInstanceResult'],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 planes: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneResult'],
+                 state: _builtins.str,
+                 tags: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkTagResult'],
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.bool auto_associate_route_enabled: Indicates whether the auto associate route is enabled.
+        :param _builtins.bool auto_propagate_route_enabled: Indicates whether the auto propagate route is enabled.
+        :param _builtins.str created_at: Indicates the time when the resource was created. The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        :param _builtins.str default_plane_id: Indicates the ID of the default central network plane.
+        :param _builtins.str description: Indicates the resource description.
+        :param _builtins.str enterprise_project_id: Indicates the ID of the enterprise project that the resource belongs to.
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkErInstanceArgs'] er_instances: Indicates the list of enterprise routers on a central network.
+               The er_instances structure is documented below.
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.str name: Indicates the instance name.
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkPlaneArgs'] planes: Indicates the list of central network planes.
+               The planes structure is documented below.
+        :param _builtins.str state: Indicates the central network status. The value can be:
+               + **AVAILABLE**: The central network is available.
+               + **UPDATING**: The central network is being updated.
+               + **FAILED**: The operation on the central network failed.
+               + **CREATING**: The central network is being created.
+               + **DELETING**: The central network is being deleted.
+               + **DELETED**: The central network is deleted.
+               + **RESTORING**: The central network is being restored.
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkTagArgs'] tags: Specifies the included tags.
+               The tags structure is documented below.
+               
+               <a name="tags_struct"></a>
+               The `tags` block supports:
+        :param _builtins.str updated_at: Indicates the time when the resource was updated. The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        pulumi.set(__self__, "auto_associate_route_enabled", auto_associate_route_enabled)
+        pulumi.set(__self__, "auto_propagate_route_enabled", auto_propagate_route_enabled)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default_plane_id", default_plane_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "er_instances", er_instances)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "planes", planes)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="autoAssociateRouteEnabled")
+    def auto_associate_route_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the auto associate route is enabled.
+        """
+        return pulumi.get(self, "auto_associate_route_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="autoPropagateRouteEnabled")
+    def auto_propagate_route_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether the auto propagate route is enabled.
+        """
+        return pulumi.get(self, "auto_propagate_route_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the resource was created. The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPlaneId")
+    def default_plane_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the default central network plane.
+        """
+        return pulumi.get(self, "default_plane_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the resource description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the enterprise project that the resource belongs to.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="erInstances")
+    def er_instances(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkErInstanceResult']:
+        """
+        Indicates the list of enterprise routers on a central network.
+        The er_instances structure is documented below.
+        """
+        return pulumi.get(self, "er_instances")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the instance name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def planes(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneResult']:
+        """
+        Indicates the list of central network planes.
+        The planes structure is documented below.
+        """
+        return pulumi.get(self, "planes")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Indicates the central network status. The value can be:
+        + **AVAILABLE**: The central network is available.
+        + **UPDATING**: The central network is being updated.
+        + **FAILED**: The operation on the central network failed.
+        + **CREATING**: The central network is being created.
+        + **DELETING**: The central network is being deleted.
+        + **DELETED**: The central network is deleted.
+        + **RESTORING**: The central network is being restored.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkTagResult']:
+        """
+        Specifies the included tags.
+        The tags structure is documented below.
+
+        <a name="tags_struct"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the resource was updated. The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkErInstanceResult(dict):
+    def __init__(__self__, *,
+                 asn: _builtins.int,
+                 enterprise_router_id: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str,
+                 site_code: _builtins.str):
+        """
+        :param _builtins.int asn: Indicates the ASN of the network instance when BGP is used for routing.
+        :param _builtins.str enterprise_router_id: Indicates the enterprise router ID.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str region_id: Indicates the region ID.
+        :param _builtins.str site_code: Indicates the site code.
+        """
+        pulumi.set(__self__, "asn", asn)
+        pulumi.set(__self__, "enterprise_router_id", enterprise_router_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "site_code", site_code)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> _builtins.int:
+        """
+        Indicates the ASN of the network instance when BGP is used for routing.
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseRouterId")
+    def enterprise_router_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise router ID.
+        """
+        return pulumi.get(self, "enterprise_router_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="siteCode")
+    def site_code(self) -> _builtins.str:
+        """
+        Indicates the site code.
+        """
+        return pulumi.get(self, "site_code")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkPlaneResult(dict):
+    def __init__(__self__, *,
+                 associate_er_tables: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneAssociateErTableResult'],
+                 exclude_er_connections: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionResult'],
+                 id: _builtins.str,
+                 is_full_mesh: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkPlaneAssociateErTableArgs'] associate_er_tables: Indicates the List of the enterprise routers on a central network.
+               The associate_er_tables structure is documented below.
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionArgs'] exclude_er_connections: Indicates whether to exclude the connections to enterprise routers on the central network.
+               The exclude_er_connections structure is documented below.
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.bool is_full_mesh: Indicates whether is full mesh.
+        :param _builtins.str name: Indicates the instance name.
+        """
+        pulumi.set(__self__, "associate_er_tables", associate_er_tables)
+        pulumi.set(__self__, "exclude_er_connections", exclude_er_connections)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_full_mesh", is_full_mesh)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="associateErTables")
+    def associate_er_tables(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneAssociateErTableResult']:
+        """
+        Indicates the List of the enterprise routers on a central network.
+        The associate_er_tables structure is documented below.
+        """
+        return pulumi.get(self, "associate_er_tables")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeErConnections")
+    def exclude_er_connections(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionResult']:
+        """
+        Indicates whether to exclude the connections to enterprise routers on the central network.
+        The exclude_er_connections structure is documented below.
+        """
+        return pulumi.get(self, "exclude_er_connections")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isFullMesh")
+    def is_full_mesh(self) -> _builtins.bool:
+        """
+        Indicates whether is full mesh.
+        """
+        return pulumi.get(self, "is_full_mesh")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the instance name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkPlaneAssociateErTableResult(dict):
+    def __init__(__self__, *,
+                 enterprise_router_id: _builtins.str,
+                 enterprise_router_table_id: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str):
+        """
+        :param _builtins.str enterprise_router_id: Indicates the enterprise router ID.
+        :param _builtins.str enterprise_router_table_id: Indicates the ID of the enterprise router route table.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str region_id: Indicates the region ID.
+        """
+        pulumi.set(__self__, "enterprise_router_id", enterprise_router_id)
+        pulumi.set(__self__, "enterprise_router_table_id", enterprise_router_table_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseRouterId")
+    def enterprise_router_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise router ID.
+        """
+        return pulumi.get(self, "enterprise_router_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseRouterTableId")
+    def enterprise_router_table_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the enterprise router route table.
+        """
+        return pulumi.get(self, "enterprise_router_table_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionResult(dict):
+    def __init__(__self__, *,
+                 exclude_er_instances: Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionExcludeErInstanceResult']):
+        """
+        :param Sequence['GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionExcludeErInstanceArgs'] exclude_er_instances: Indicates the connections between enterprise routers managed by the central network plane.
+               The exclude_er_instances structure is documented below.
+        """
+        pulumi.set(__self__, "exclude_er_instances", exclude_er_instances)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeErInstances")
+    def exclude_er_instances(self) -> Sequence['outputs.GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionExcludeErInstanceResult']:
+        """
+        Indicates the connections between enterprise routers managed by the central network plane.
+        The exclude_er_instances structure is documented below.
+        """
+        return pulumi.get(self, "exclude_er_instances")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkPlaneExcludeErConnectionExcludeErInstanceResult(dict):
+    def __init__(__self__, *,
+                 enterprise_router_id: _builtins.str,
+                 project_id: _builtins.str,
+                 region_id: _builtins.str):
+        """
+        :param _builtins.str enterprise_router_id: Indicates the enterprise router ID.
+        :param _builtins.str project_id: Indicates the project ID.
+        :param _builtins.str region_id: Indicates the region ID.
+        """
+        pulumi.set(__self__, "enterprise_router_id", enterprise_router_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseRouterId")
+    def enterprise_router_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise router ID.
+        """
+        return pulumi.get(self, "enterprise_router_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsCentralNetworkTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+               letters, digits, hyphens (-), and underscores (_).
+        :param _builtins.str value: Indicates the tag value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+        letters, digits, hyphens (-), and underscores (_).
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the tag value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCentralNetworksByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+               letters, digits, hyphens (-), and underscores (_).
+        :param Sequence[_builtins.str] values: Specifies the list of values with the same key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+        letters, digits, hyphens (-), and underscores (_).
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values with the same key.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetCentralNetworksCentralNetworkResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -2215,6 +3386,201 @@ class GetCentralNetworksCentralNetworkResult(dict):
         The update time of central network.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetCloudConnectionCapabilitiesCapabilityResult(dict):
+    def __init__(__self__, *,
+                 bandwidths: Sequence['outputs.GetCloudConnectionCapabilitiesCapabilityBandwidthResult'],
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 resource_type: _builtins.str,
+                 support_regions: Sequence[_builtins.str],
+                 updated_at: _builtins.str):
+        """
+        :param Sequence['GetCloudConnectionCapabilitiesCapabilityBandwidthArgs'] bandwidths: Indicates the bandwidth.
+        :param _builtins.str created_at: Indicates the time when the resource was created.
+               The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        :param _builtins.str description: Indicates the resource description.
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.str resource_type: Specifies the resource type.
+        :param Sequence[_builtins.str] support_regions: Indicates the list of regions available to a tenant.
+        :param _builtins.str updated_at: Indicates the time when the resource was updated.
+               The UTC time must be in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        pulumi.set(__self__, "bandwidths", bandwidths)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "support_regions", support_regions)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def bandwidths(self) -> Sequence['outputs.GetCloudConnectionCapabilitiesCapabilityBandwidthResult']:
+        """
+        Indicates the bandwidth.
+        """
+        return pulumi.get(self, "bandwidths")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the resource was created.
+        The UTC time is in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the resource description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="supportRegions")
+    def support_regions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of regions available to a tenant.
+        """
+        return pulumi.get(self, "support_regions")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the resource was updated.
+        The UTC time must be in the **yyyy-MM-ddTHH:mm:ss** format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetCloudConnectionCapabilitiesCapabilityBandwidthResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int):
+        """
+        :param _builtins.int max: Indicates the maximum bandwidth.
+        :param _builtins.int min: Indicates the minimum bandwidth.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        Indicates the maximum bandwidth.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        Indicates the minimum bandwidth.
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class GetCloudConnectionQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 cloud_connection_id: _builtins.str,
+                 quota_number: _builtins.int,
+                 quota_type: _builtins.str,
+                 quota_used: _builtins.int,
+                 region_id: _builtins.str):
+        """
+        :param _builtins.str cloud_connection_id: Specifies the cloud connection ID.
+               This parameter is mandatory when you query the value of each of the three parameters:
+               **cloud_connection_region**, **cloud_connection_route**, **and region_network_instance**.
+        :param _builtins.int quota_number: Indicates the total quotas.
+        :param _builtins.str quota_type: Specifies the quota type.
+               Value options:
+               + **cloud_connection**: the maximum number of cloud connections that can be created in an account
+               + **cloud_connection_region**: the maximum number of regions where a cloud connection can be used
+               + **cloud_connection_route**: the maximum number of routes that can be added to a cloud connection
+               + **region_network_instance**: the maximum number of network instances that can be loaded to a cloud connection in a region
+        :param _builtins.int quota_used: Indicates the used quotas.
+        :param _builtins.str region_id: Specifies the region ID.
+               This parameter is mandatory when you query the value of **region_network_instance**.
+        """
+        pulumi.set(__self__, "cloud_connection_id", cloud_connection_id)
+        pulumi.set(__self__, "quota_number", quota_number)
+        pulumi.set(__self__, "quota_type", quota_type)
+        pulumi.set(__self__, "quota_used", quota_used)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudConnectionId")
+    def cloud_connection_id(self) -> _builtins.str:
+        """
+        Specifies the cloud connection ID.
+        This parameter is mandatory when you query the value of each of the three parameters:
+        **cloud_connection_region**, **cloud_connection_route**, **and region_network_instance**.
+        """
+        return pulumi.get(self, "cloud_connection_id")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaNumber")
+    def quota_number(self) -> _builtins.int:
+        """
+        Indicates the total quotas.
+        """
+        return pulumi.get(self, "quota_number")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaType")
+    def quota_type(self) -> _builtins.str:
+        """
+        Specifies the quota type.
+        Value options:
+        + **cloud_connection**: the maximum number of cloud connections that can be created in an account
+        + **cloud_connection_region**: the maximum number of regions where a cloud connection can be used
+        + **cloud_connection_route**: the maximum number of routes that can be added to a cloud connection
+        + **region_network_instance**: the maximum number of network instances that can be loaded to a cloud connection in a region
+        """
+        return pulumi.get(self, "quota_type")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaUsed")
+    def quota_used(self) -> _builtins.int:
+        """
+        Indicates the used quotas.
+        """
+        return pulumi.get(self, "quota_used")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        Specifies the region ID.
+        This parameter is mandatory when you query the value of **region_network_instance**.
+        """
+        return pulumi.get(self, "region_id")
 
 
 @pulumi.output_type
@@ -2449,6 +3815,250 @@ class GetConnectionsConnectionResult(dict):
         Specifies the application scenario.
         """
         return pulumi.get(self, "used_scene")
+
+
+@pulumi.output_type
+class GetGlobalConnectionBandwidthConfigsConfigResult(dict):
+    def __init__(__self__, *,
+                 bind_limit: _builtins.int,
+                 charge_modes: Sequence[_builtins.str],
+                 crossborder: _builtins.bool,
+                 enable_area_bandwidth: _builtins.bool,
+                 enable_change95: _builtins.bool,
+                 enable_spec_code: _builtins.bool,
+                 gcb_types: Sequence[_builtins.str],
+                 quotas: Sequence['outputs.GetGlobalConnectionBandwidthConfigsConfigQuotaResult'],
+                 ratio95peak_guar: _builtins.int,
+                 ratio95peak_plus: _builtins.int,
+                 services: Sequence[_builtins.str],
+                 size_ranges: Sequence['outputs.GetGlobalConnectionBandwidthConfigsConfigSizeRangeResult'],
+                 sla_levels: Sequence[_builtins.str]):
+        """
+        :param _builtins.int bind_limit: Indicates the maximum number of instances that are allowed to use a shared bandwidth.
+        :param Sequence[_builtins.str] charge_modes: Indicates the list of supported billing options.
+        :param _builtins.bool crossborder: Indicates whether a cross-border permit is approved.
+        :param _builtins.bool enable_area_bandwidth: Indicates whether to enable the geographic region bandwidth.
+        :param _builtins.bool enable_change95: Indicates whether standard 95th percentile bandwidth billing can be changed to billing by
+               bandwidth capacity.
+        :param _builtins.bool enable_spec_code: Indicates whether multiple line specifications are supported.
+        :param Sequence[_builtins.str] gcb_types: Indicates the bandwidth type.
+        :param Sequence['GetGlobalConnectionBandwidthConfigsConfigQuotaArgs'] quotas: Indicates the quota information.
+        :param _builtins.int ratio95peak_guar: Indicates the percentage of the minimum bandwidth in standard 95th percentile bandwidth billing.
+        :param _builtins.int ratio95peak_plus: Indicates the percentage of the minimum bandwidth in enhanced 95th percentile bandwidth billing.
+        :param Sequence[_builtins.str] services: Indicates the instance type.
+        :param Sequence['GetGlobalConnectionBandwidthConfigsConfigSizeRangeArgs'] size_ranges: Indicates the capacity of global connection bandwidths by billing option.
+        :param Sequence[_builtins.str] sla_levels: Indicates the line grade.
+        """
+        pulumi.set(__self__, "bind_limit", bind_limit)
+        pulumi.set(__self__, "charge_modes", charge_modes)
+        pulumi.set(__self__, "crossborder", crossborder)
+        pulumi.set(__self__, "enable_area_bandwidth", enable_area_bandwidth)
+        pulumi.set(__self__, "enable_change95", enable_change95)
+        pulumi.set(__self__, "enable_spec_code", enable_spec_code)
+        pulumi.set(__self__, "gcb_types", gcb_types)
+        pulumi.set(__self__, "quotas", quotas)
+        pulumi.set(__self__, "ratio95peak_guar", ratio95peak_guar)
+        pulumi.set(__self__, "ratio95peak_plus", ratio95peak_plus)
+        pulumi.set(__self__, "services", services)
+        pulumi.set(__self__, "size_ranges", size_ranges)
+        pulumi.set(__self__, "sla_levels", sla_levels)
+
+    @_builtins.property
+    @pulumi.getter(name="bindLimit")
+    def bind_limit(self) -> _builtins.int:
+        """
+        Indicates the maximum number of instances that are allowed to use a shared bandwidth.
+        """
+        return pulumi.get(self, "bind_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="chargeModes")
+    def charge_modes(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of supported billing options.
+        """
+        return pulumi.get(self, "charge_modes")
+
+    @_builtins.property
+    @pulumi.getter
+    def crossborder(self) -> _builtins.bool:
+        """
+        Indicates whether a cross-border permit is approved.
+        """
+        return pulumi.get(self, "crossborder")
+
+    @_builtins.property
+    @pulumi.getter(name="enableAreaBandwidth")
+    def enable_area_bandwidth(self) -> _builtins.bool:
+        """
+        Indicates whether to enable the geographic region bandwidth.
+        """
+        return pulumi.get(self, "enable_area_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="enableChange95")
+    def enable_change95(self) -> _builtins.bool:
+        """
+        Indicates whether standard 95th percentile bandwidth billing can be changed to billing by
+        bandwidth capacity.
+        """
+        return pulumi.get(self, "enable_change95")
+
+    @_builtins.property
+    @pulumi.getter(name="enableSpecCode")
+    def enable_spec_code(self) -> _builtins.bool:
+        """
+        Indicates whether multiple line specifications are supported.
+        """
+        return pulumi.get(self, "enable_spec_code")
+
+    @_builtins.property
+    @pulumi.getter(name="gcbTypes")
+    def gcb_types(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the bandwidth type.
+        """
+        return pulumi.get(self, "gcb_types")
+
+    @_builtins.property
+    @pulumi.getter
+    def quotas(self) -> Sequence['outputs.GetGlobalConnectionBandwidthConfigsConfigQuotaResult']:
+        """
+        Indicates the quota information.
+        """
+        return pulumi.get(self, "quotas")
+
+    @_builtins.property
+    @pulumi.getter(name="ratio95peakGuar")
+    def ratio95peak_guar(self) -> _builtins.int:
+        """
+        Indicates the percentage of the minimum bandwidth in standard 95th percentile bandwidth billing.
+        """
+        return pulumi.get(self, "ratio95peak_guar")
+
+    @_builtins.property
+    @pulumi.getter(name="ratio95peakPlus")
+    def ratio95peak_plus(self) -> _builtins.int:
+        """
+        Indicates the percentage of the minimum bandwidth in enhanced 95th percentile bandwidth billing.
+        """
+        return pulumi.get(self, "ratio95peak_plus")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the instance type.
+        """
+        return pulumi.get(self, "services")
+
+    @_builtins.property
+    @pulumi.getter(name="sizeRanges")
+    def size_ranges(self) -> Sequence['outputs.GetGlobalConnectionBandwidthConfigsConfigSizeRangeResult']:
+        """
+        Indicates the capacity of global connection bandwidths by billing option.
+        """
+        return pulumi.get(self, "size_ranges")
+
+    @_builtins.property
+    @pulumi.getter(name="slaLevels")
+    def sla_levels(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the line grade.
+        """
+        return pulumi.get(self, "sla_levels")
+
+
+@pulumi.output_type
+class GetGlobalConnectionBandwidthConfigsConfigQuotaResult(dict):
+    def __init__(__self__, *,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int quota: Indicates the quotas.
+        :param _builtins.str type: Indicates the quota type.
+               The value can be:
+               + **gcb.size**: global connection bandwidth capacity
+               + **gcb.count**: number of global connection bandwidths
+        :param _builtins.int used: Indicates the used quotas.
+        """
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        Indicates the quotas.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the quota type.
+        The value can be:
+        + **gcb.size**: global connection bandwidth capacity
+        + **gcb.count**: number of global connection bandwidths
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        Indicates the used quotas.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetGlobalConnectionBandwidthConfigsConfigSizeRangeResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int max: Indicates the maximum global connection bandwidth, in Mbit/s.
+        :param _builtins.int min: Indicates the minimum global connection bandwidth, in Mbit/s.
+        :param _builtins.str type: Indicates the quota type.
+               The value can be:
+               + **gcb.size**: global connection bandwidth capacity
+               + **gcb.count**: number of global connection bandwidths
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        Indicates the maximum global connection bandwidth, in Mbit/s.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        Indicates the minimum global connection bandwidth, in Mbit/s.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the quota type.
+        The value can be:
+        + **gcb.size**: global connection bandwidth capacity
+        + **gcb.count**: number of global connection bandwidths
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -2847,6 +4457,35 @@ class GetGlobalConnectionBandwidthSpecCodesSpecCodeResult(dict):
         Time when the resource was updated.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetGlobalConnectionBandwidthTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the tag key.
+        :param Sequence[_builtins.str] values: Indicates the list of tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the list of tag values.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -3678,6 +5317,236 @@ class GetPermissionsPermissionResult(dict):
 
 
 @pulumi.output_type
+class GetSiteNetworkCapabilitiesCapabilityResult(dict):
+    def __init__(__self__, *,
+                 charge_modes: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 is_support: _builtins.bool,
+                 is_support_enterprise_project: _builtins.bool,
+                 is_support_intra_region: _builtins.bool,
+                 is_support_tag: _builtins.bool,
+                 size_ranges: Sequence['outputs.GetSiteNetworkCapabilitiesCapabilitySizeRangeResult'],
+                 specification: _builtins.str,
+                 support_dscp_regions: Sequence[_builtins.str],
+                 support_freeze_regions: Sequence[_builtins.str],
+                 support_locations: Sequence[_builtins.str],
+                 support_regions: Sequence[_builtins.str],
+                 support_topologies: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] charge_modes: Indicates the charge mode list of a site network.
+        :param _builtins.str id: Indicates the instance ID.
+        :param _builtins.bool is_support: Indicates whether site networks are supported.
+        :param _builtins.bool is_support_enterprise_project: Indicates whether enterprise projects are supported for site networks.
+        :param _builtins.bool is_support_intra_region: Indicates whether site networks in the same region can be created.
+        :param _builtins.bool is_support_tag: Indicates whether site network tagging is supported.
+        :param Sequence['GetSiteNetworkCapabilitiesCapabilitySizeRangeArgs'] size_ranges: Indicates the size_range.
+        :param _builtins.str specification: Specifies the site network capabilities. Multiple capabilities can be queried.
+        :param Sequence[_builtins.str] support_dscp_regions: Indicates the dscp regions list of a site network.
+        :param Sequence[_builtins.str] support_freeze_regions: Indicates the freeze regions list of a site network.
+        :param Sequence[_builtins.str] support_locations: Indicates the support locations list of a site network.
+        :param Sequence[_builtins.str] support_regions: Indicates the region list of a site network.
+        :param Sequence[_builtins.str] support_topologies: Indicates the topology list of a site network.
+        """
+        pulumi.set(__self__, "charge_modes", charge_modes)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_support", is_support)
+        pulumi.set(__self__, "is_support_enterprise_project", is_support_enterprise_project)
+        pulumi.set(__self__, "is_support_intra_region", is_support_intra_region)
+        pulumi.set(__self__, "is_support_tag", is_support_tag)
+        pulumi.set(__self__, "size_ranges", size_ranges)
+        pulumi.set(__self__, "specification", specification)
+        pulumi.set(__self__, "support_dscp_regions", support_dscp_regions)
+        pulumi.set(__self__, "support_freeze_regions", support_freeze_regions)
+        pulumi.set(__self__, "support_locations", support_locations)
+        pulumi.set(__self__, "support_regions", support_regions)
+        pulumi.set(__self__, "support_topologies", support_topologies)
+
+    @_builtins.property
+    @pulumi.getter(name="chargeModes")
+    def charge_modes(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the charge mode list of a site network.
+        """
+        return pulumi.get(self, "charge_modes")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the instance ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupport")
+    def is_support(self) -> _builtins.bool:
+        """
+        Indicates whether site networks are supported.
+        """
+        return pulumi.get(self, "is_support")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupportEnterpriseProject")
+    def is_support_enterprise_project(self) -> _builtins.bool:
+        """
+        Indicates whether enterprise projects are supported for site networks.
+        """
+        return pulumi.get(self, "is_support_enterprise_project")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupportIntraRegion")
+    def is_support_intra_region(self) -> _builtins.bool:
+        """
+        Indicates whether site networks in the same region can be created.
+        """
+        return pulumi.get(self, "is_support_intra_region")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupportTag")
+    def is_support_tag(self) -> _builtins.bool:
+        """
+        Indicates whether site network tagging is supported.
+        """
+        return pulumi.get(self, "is_support_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="sizeRanges")
+    def size_ranges(self) -> Sequence['outputs.GetSiteNetworkCapabilitiesCapabilitySizeRangeResult']:
+        """
+        Indicates the size_range.
+        """
+        return pulumi.get(self, "size_ranges")
+
+    @_builtins.property
+    @pulumi.getter
+    def specification(self) -> _builtins.str:
+        """
+        Specifies the site network capabilities. Multiple capabilities can be queried.
+        """
+        return pulumi.get(self, "specification")
+
+    @_builtins.property
+    @pulumi.getter(name="supportDscpRegions")
+    def support_dscp_regions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the dscp regions list of a site network.
+        """
+        return pulumi.get(self, "support_dscp_regions")
+
+    @_builtins.property
+    @pulumi.getter(name="supportFreezeRegions")
+    def support_freeze_regions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the freeze regions list of a site network.
+        """
+        return pulumi.get(self, "support_freeze_regions")
+
+    @_builtins.property
+    @pulumi.getter(name="supportLocations")
+    def support_locations(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the support locations list of a site network.
+        """
+        return pulumi.get(self, "support_locations")
+
+    @_builtins.property
+    @pulumi.getter(name="supportRegions")
+    def support_regions(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the region list of a site network.
+        """
+        return pulumi.get(self, "support_regions")
+
+    @_builtins.property
+    @pulumi.getter(name="supportTopologies")
+    def support_topologies(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the topology list of a site network.
+        """
+        return pulumi.get(self, "support_topologies")
+
+
+@pulumi.output_type
+class GetSiteNetworkCapabilitiesCapabilitySizeRangeResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int):
+        """
+        :param _builtins.int max: Indicates the maximum value.
+        :param _builtins.int min: Indicates the minimum value.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        Indicates the maximum value.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        Indicates the minimum value.
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class GetSiteNetworkQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 quota_key: _builtins.str,
+                 quota_limit: _builtins.int,
+                 unit: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.str quota_key: Indicates the quota type of a site network.
+        :param _builtins.int quota_limit: Indicates the quotas.
+        :param _builtins.str unit: Indicates the unit of the quota value.
+        :param _builtins.int used: Indicates the used quotas.
+        """
+        pulumi.set(__self__, "quota_key", quota_key)
+        pulumi.set(__self__, "quota_limit", quota_limit)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter(name="quotaKey")
+    def quota_key(self) -> _builtins.str:
+        """
+        Indicates the quota type of a site network.
+        """
+        return pulumi.get(self, "quota_key")
+
+    @_builtins.property
+    @pulumi.getter(name="quotaLimit")
+    def quota_limit(self) -> _builtins.int:
+        """
+        Indicates the quotas.
+        """
+        return pulumi.get(self, "quota_limit")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        Indicates the unit of the quota value.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        Indicates the used quotas.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
 class GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult(dict):
     def __init__(__self__, *,
                  admin_state: _builtins.str,
@@ -3726,12 +5595,14 @@ class GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult
         :param _builtins.str id: The global connection bandwidth ID.
         :param _builtins.str local_area: Specifies the local access point.
                If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-               This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone bandwidth.
+               This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone
+               bandwidth.
         :param _builtins.str local_site_code: The code of the local access point.
         :param _builtins.str name: Specifies the global connection bandwidth name.
         :param _builtins.str remote_area: Specifies the remote access point.
                If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-               This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone bandwidth.
+               This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone
+               bandwidth.
         :param _builtins.str remote_site_code: The code of the remote access point.
         :param _builtins.int size: Specifies the global connection bandwidth size.
         :param _builtins.str sla_level: Specifies the class of a global connection bandwidth.
@@ -3875,7 +5746,8 @@ class GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult
         """
         Specifies the local access point.
         If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-        This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone bandwidth.
+        This field is not matched for filtering. For other types, this field is used to match **local_area** of the backbone
+        bandwidth.
         """
         return pulumi.get(self, "local_area")
 
@@ -3901,7 +5773,8 @@ class GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult
         """
         Specifies the remote access point.
         If the bandwidth type is set to **region**, all multi-city bandwidths that meet the filtering criteria are returned.
-        This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone bandwidth.
+        This field is not matched for filtering. For other types, this field is used to match **remote_area** of the backbone
+        bandwidth.
         """
         return pulumi.get(self, "remote_area")
 
@@ -3961,5 +5834,162 @@ class GetSupportBindingGlobalConnectionBandwidthsGlobalconnectionBandwidthResult
         Time when the resource was updated.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetSupportedAreasAreaResult(dict):
+    def __init__(__self__, *,
+                 en_name: _builtins.str,
+                 es_name: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 pt_name: _builtins.str,
+                 station: _builtins.str):
+        """
+        :param _builtins.str en_name: Indicates the geographic region name in English.
+        :param _builtins.str es_name: Indicates the geographic region name in Spanish.
+        :param _builtins.str id: Indicates the geographic region ID.
+        :param _builtins.str name: Indicates the geographic region name.
+        :param _builtins.str pt_name: Indicates the geographic region name in Portuguese.
+        :param _builtins.str station: Indicates the site.
+        """
+        pulumi.set(__self__, "en_name", en_name)
+        pulumi.set(__self__, "es_name", es_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pt_name", pt_name)
+        pulumi.set(__self__, "station", station)
+
+    @_builtins.property
+    @pulumi.getter(name="enName")
+    def en_name(self) -> _builtins.str:
+        """
+        Indicates the geographic region name in English.
+        """
+        return pulumi.get(self, "en_name")
+
+    @_builtins.property
+    @pulumi.getter(name="esName")
+    def es_name(self) -> _builtins.str:
+        """
+        Indicates the geographic region name in Spanish.
+        """
+        return pulumi.get(self, "es_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the geographic region ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the geographic region name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ptName")
+    def pt_name(self) -> _builtins.str:
+        """
+        Indicates the geographic region name in Portuguese.
+        """
+        return pulumi.get(self, "pt_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def station(self) -> _builtins.str:
+        """
+        Indicates the site.
+        """
+        return pulumi.get(self, "station")
+
+
+@pulumi.output_type
+class GetSupportedRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 area_id: _builtins.str,
+                 area_name: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 used_scenes: Sequence[_builtins.str]):
+        """
+        :param _builtins.str area_id: Indicates the geographic region.
+               Cloud Connect is available in the following geographic regions:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param _builtins.str area_name: Indicates the geographic region name.
+        :param _builtins.str id: Indicates the region ID。
+        :param _builtins.str name: Indicates the region name.
+        :param Sequence[_builtins.str] used_scenes: Indicates the cloud Connect application scenarios.
+               The value can be:
+               + **er**: enterprise router
+               + **vpc**: VPC
+               + **vgw**: virtual gateway
+        """
+        pulumi.set(__self__, "area_id", area_id)
+        pulumi.set(__self__, "area_name", area_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "used_scenes", used_scenes)
+
+    @_builtins.property
+    @pulumi.getter(name="areaId")
+    def area_id(self) -> _builtins.str:
+        """
+        Indicates the geographic region.
+        Cloud Connect is available in the following geographic regions:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
+        """
+        return pulumi.get(self, "area_id")
+
+    @_builtins.property
+    @pulumi.getter(name="areaName")
+    def area_name(self) -> _builtins.str:
+        """
+        Indicates the geographic region name.
+        """
+        return pulumi.get(self, "area_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the region ID。
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the region name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="usedScenes")
+    def used_scenes(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the cloud Connect application scenarios.
+        The value can be:
+        + **er**: enterprise router
+        + **vpc**: VPC
+        + **vgw**: virtual gateway
+        """
+        return pulumi.get(self, "used_scenes")
 
 

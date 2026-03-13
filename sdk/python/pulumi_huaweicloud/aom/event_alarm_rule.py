@@ -34,6 +34,7 @@ class EventAlarmRuleArgs:
                  trigger_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a EventAlarmRule resource.
+
         :param pulumi.Input[_builtins.str] alarm_source: Specifies the alarm source of the rule.
         :param pulumi.Input[_builtins.str] alarm_type: Specifies the alarm type of the rule.
                The value can be **notification** and **denoising**.
@@ -260,6 +261,7 @@ class _EventAlarmRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering EventAlarmRule resources.
+
         :param pulumi.Input[_builtins.str] action_rule: Specifies the action rule name.
         :param pulumi.Input[_builtins.str] alarm_source: Specifies the alarm source of the rule.
         :param pulumi.Input[_builtins.str] alarm_type: Specifies the alarm type of the rule.
@@ -552,11 +554,10 @@ class EventAlarmRule(pulumi.CustomResource):
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/eventAlarmRule:EventAlarmRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -618,11 +619,10 @@ class EventAlarmRule(pulumi.CustomResource):
 
         The application operations management can be imported using the `id` (name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/eventAlarmRule:EventAlarmRule test test_rule
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventAlarmRuleArgs args: The arguments to use to populate this resource's properties.

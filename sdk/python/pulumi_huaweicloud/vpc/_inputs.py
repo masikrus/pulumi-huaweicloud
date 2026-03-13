@@ -73,6 +73,10 @@ __all__ = [
     'GetNetworkAclsByTagsMatchArgsDict',
     'GetNetworkAclsByTagsTagArgs',
     'GetNetworkAclsByTagsTagArgsDict',
+    'GetNetworkInterfacesByTagsMatchArgs',
+    'GetNetworkInterfacesByTagsMatchArgsDict',
+    'GetNetworkInterfacesByTagsTagArgs',
+    'GetNetworkInterfacesByTagsTagArgsDict',
     'GetSecgroupsByTagsMatchArgs',
     'GetSecgroupsByTagsMatchArgsDict',
     'GetSecgroupsByTagsTagArgs',
@@ -83,21 +87,16 @@ __all__ = [
     'GetSubnetsByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AddressGroupIpExtraSetArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address, IP address range, or CIDR block.
-        """
-        remarks: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the supplementary information about the IP address,
-        IP address range, or CIDR block.
-        """
-elif False:
-    AddressGroupIpExtraSetArgsDict: TypeAlias = Mapping[str, Any]
+class AddressGroupIpExtraSetArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address, IP address range, or CIDR block.
+    """
+    remarks: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the supplementary information about the IP address,
+    IP address range, or CIDR block.
+    """
 
 @pulumi.input_type
 class AddressGroupIpExtraSetArgs:
@@ -139,26 +138,23 @@ class AddressGroupIpExtraSetArgs:
         pulumi.set(self, "remarks", value)
 
 
-if not MYPY:
-    class BandwidthPublicipArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the EIP or IPv6 port that uses the bandwidth.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IPv4 or IPv6 address.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The IP version, either 4 or 6.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type. Possible values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP).
-        """
-elif False:
-    BandwidthPublicipArgsDict: TypeAlias = Mapping[str, Any]
+class BandwidthPublicipArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the EIP or IPv6 port that uses the bandwidth.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IPv4 or IPv6 address.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The IP version, either 4 or 6.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type. Possible values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP).
+    """
 
 @pulumi.input_type
 class BandwidthPublicipArgs:
@@ -231,14 +227,11 @@ class BandwidthPublicipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class BandwidthV2PublicipArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    BandwidthV2PublicipArgsDict: TypeAlias = Mapping[str, Any]
+class BandwidthV2PublicipArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class BandwidthV2PublicipArgs:
@@ -293,38 +286,35 @@ class BandwidthV2PublicipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class EipBandwidthArgsDict(TypedDict):
-        share_type: pulumi.Input[_builtins.str]
-        """
-        Specifies whether the bandwidth is dedicated or shared.  
-        Changing this will create a new resource. Possible values are as follows:
-        + **PER**: Dedicated bandwidth
-        + **WHOLE**: Shared bandwidth
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether the bandwidth is billed by traffic or by bandwidth
-        size. The value can be **traffic** or **bandwidth**. If the `charging_mode` is **prePaid**, only **bandwidth** is valid.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shared bandwidth ID.  
-        This parameter is mandatory when `share_type` is set to **WHOLE**. Changing this will create a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the bandwidth name.  
-        The name can contain `1` to `64` characters, including letters, digits, underscores (_), hyphens (-), and periods (.).
-        This parameter is mandatory when `share_type` is set to **PER**.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The bandwidth size.  
-        The value ranges from `1` to `300` Mbit/s. This parameter is mandatory when `share_type` is set to **PER**.
-        """
-elif False:
-    EipBandwidthArgsDict: TypeAlias = Mapping[str, Any]
+class EipBandwidthArgsDict(TypedDict):
+    share_type: pulumi.Input[_builtins.str]
+    """
+    Specifies whether the bandwidth is dedicated or shared.  
+    Changing this will create a new resource. Possible values are as follows:
+    + **PER**: Dedicated bandwidth
+    + **WHOLE**: Shared bandwidth
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the bandwidth is billed by traffic or by bandwidth
+    size. The value can be **traffic** or **bandwidth**. If the `charging_mode` is **prePaid**, only **bandwidth** is valid.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shared bandwidth ID.  
+    This parameter is mandatory when `share_type` is set to **WHOLE**. Changing this will create a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the bandwidth name.  
+    The name can contain `1` to `64` characters, including letters, digits, underscores (_), hyphens (-), and periods (.).
+    This parameter is mandatory when `share_type` is set to **PER**.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The bandwidth size.  
+    The value ranges from `1` to `300` Mbit/s. This parameter is mandatory when `share_type` is set to **PER**.
+    """
 
 @pulumi.input_type
 class EipBandwidthArgs:
@@ -428,32 +418,29 @@ class EipBandwidthArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class EipPublicipArgsDict(TypedDict):
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EIP address to be assigned.  
-        The value must be a valid **IPv4** address in the available IP address range.
-        The system automatically assigns an EIP if you do not specify it. Changing this will create a new resource.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the IP version, either `4` (default) or `6`.
+class EipPublicipArgsDict(TypedDict):
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EIP address to be assigned.  
+    The value must be a valid **IPv4** address in the available IP address range.
+    The system automatically assigns an EIP if you do not specify it. Changing this will create a new resource.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the IP version, either `4` (default) or `6`.
 
-        <a name="vpc_eip_bandwidth"></a>
-        The `bandwidth` block supports:
-        """
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port ID which the EIP associated with.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the EIP type. Possible values are **5_bgp** (dynamic BGP)
-        and **5_sbgp** (static BGP), the default value is **5_bgp**. Changing this will create a new resource.
-        """
-elif False:
-    EipPublicipArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="vpc_eip_bandwidth"></a>
+    The `bandwidth` block supports:
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID which the EIP associated with.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the EIP type. Possible values are **5_bgp** (dynamic BGP)
+    and **5_sbgp** (static BGP), the default value is **5_bgp**. Changing this will create a new resource.
+    """
 
 @pulumi.input_type
 class EipPublicipArgs:
@@ -538,30 +525,27 @@ class EipPublicipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class EipV1BandwidthArgsDict(TypedDict):
-        share_type: pulumi.Input[_builtins.str]
-        """
-        Whether the bandwidth is dedicated or shared.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Whether the bandwidth is billed by traffic or by bandwidth size.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shared bandwidth ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The dedicated bandwidth name.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The dedicated bandwidth size.
-        """
-elif False:
-    EipV1BandwidthArgsDict: TypeAlias = Mapping[str, Any]
+class EipV1BandwidthArgsDict(TypedDict):
+    share_type: pulumi.Input[_builtins.str]
+    """
+    Whether the bandwidth is dedicated or shared.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Whether the bandwidth is billed by traffic or by bandwidth size.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shared bandwidth ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The dedicated bandwidth name.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The dedicated bandwidth size.
+    """
 
 @pulumi.input_type
 class EipV1BandwidthArgs:
@@ -649,26 +633,23 @@ class EipV1BandwidthArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class EipV1PublicipArgsDict(TypedDict):
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP address to be assigned.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The IP version.
-        """
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Deprecated
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type.
-        """
-elif False:
-    EipV1PublicipArgsDict: TypeAlias = Mapping[str, Any]
+class EipV1PublicipArgsDict(TypedDict):
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP address to be assigned.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The IP version.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Deprecated
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type.
+    """
 
 @pulumi.input_type
 class EipV1PublicipArgs:
@@ -741,14 +722,11 @@ class EipV1PublicipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NetworkAclAssociatedSubnetArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the subnet to associate with the network ACL.
-        """
-elif False:
-    NetworkAclAssociatedSubnetArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkAclAssociatedSubnetArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the subnet to associate with the network ACL.
+    """
 
 @pulumi.input_type
 class NetworkAclAssociatedSubnetArgs:
@@ -772,71 +750,68 @@ class NetworkAclAssociatedSubnetArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class NetworkAclEgressRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Specifies the rule action. The value can be: **allow** and **deny**.
-        """
-        ip_version: pulumi.Input[_builtins.int]
-        """
-        Specifies the IP version of a network ACL rule.
-        The value can be **4** (IPv4) and **6** (IPv6).
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the rule protocol The value can be **tcp**, **udp**, **icmp**, **icmpv6**,
-        or an IP protocol number (0–255). The value **any** indicates all protocols.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network ACL rule description. The value can contain no more
-        than 255 characters. The value cannot contain angle brackets (< or >).
-        """
-        destination_ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        """
-        destination_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        """
-        destination_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination ports of a network ACL rule.
-        You can specify a single port or a port range. Separate every two entries with a comma.
+class NetworkAclEgressRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Specifies the rule action. The value can be: **allow** and **deny**.
+    """
+    ip_version: pulumi.Input[_builtins.int]
+    """
+    Specifies the IP version of a network ACL rule.
+    The value can be **4** (IPv4) and **6** (IPv6).
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the rule protocol The value can be **tcp**, **udp**, **icmp**, **icmpv6**,
+    or an IP protocol number (0–255). The value **any** indicates all protocols.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network ACL rule description. The value can contain no more
+    than 255 characters. The value cannot contain angle brackets (< or >).
+    """
+    destination_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination IP address or CIDR block of a network ACL
+    rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+    """
+    destination_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination IP address group ID of a network ACL
+    rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+    """
+    destination_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination ports of a network ACL rule.
+    You can specify a single port or a port range. Separate every two entries with a comma.
 
-        <a name="subnets"></a>
-        The `associated_subnets` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network ACL rule name. The value can contain no more than 64 characters,
-        including letters, digits, underscores (_), hyphens (-), and periods (.).
-        """
-        rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the rule.
-        """
-        source_ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source IP address or CIDR block of a network ACL rule.
-        The `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
-        """
-        source_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source IP address group ID of a network ACL rule.
-        `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
-        """
-        source_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source ports of a network ACL rule.
-        You can specify a single port or a port range. Separate every two entries with a comma.
-        """
-elif False:
-    NetworkAclEgressRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="subnets"></a>
+    The `associated_subnets` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network ACL rule name. The value can contain no more than 64 characters,
+    including letters, digits, underscores (_), hyphens (-), and periods (.).
+    """
+    rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the rule.
+    """
+    source_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source IP address or CIDR block of a network ACL rule.
+    The `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
+    """
+    source_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source IP address group ID of a network ACL rule.
+    `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
+    """
+    source_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source ports of a network ACL rule.
+    You can specify a single port or a port range. Separate every two entries with a comma.
+    """
 
 @pulumi.input_type
 class NetworkAclEgressRuleArgs:
@@ -861,10 +836,10 @@ class NetworkAclEgressRuleArgs:
                or an IP protocol number (0–255). The value **any** indicates all protocols.
         :param pulumi.Input[_builtins.str] description: Specifies the network ACL rule description. The value can contain no more
                than 255 characters. The value cannot contain angle brackets (< or >).
-        :param pulumi.Input[_builtins.str] destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        :param pulumi.Input[_builtins.str] destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param pulumi.Input[_builtins.str] destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param pulumi.Input[_builtins.str] destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         :param pulumi.Input[_builtins.str] destination_port: Specifies the destination ports of a network ACL rule.
                You can specify a single port or a port range. Separate every two entries with a comma.
                
@@ -957,8 +932,8 @@ class NetworkAclEgressRuleArgs:
     @pulumi.getter(name="destinationIpAddress")
     def destination_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address or CIDR block of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address")
 
@@ -970,8 +945,8 @@ class NetworkAclEgressRuleArgs:
     @pulumi.getter(name="destinationIpAddressGroupId")
     def destination_ip_address_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address group ID of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address_group_id")
 
@@ -1060,71 +1035,68 @@ class NetworkAclEgressRuleArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class NetworkAclIngressRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Specifies the rule action. The value can be: **allow** and **deny**.
-        """
-        ip_version: pulumi.Input[_builtins.int]
-        """
-        Specifies the IP version of a network ACL rule.
-        The value can be **4** (IPv4) and **6** (IPv6).
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the rule protocol The value can be **tcp**, **udp**, **icmp**, **icmpv6**,
-        or an IP protocol number (0–255). The value **any** indicates all protocols.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network ACL rule description. The value can contain no more
-        than 255 characters. The value cannot contain angle brackets (< or >).
-        """
-        destination_ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        """
-        destination_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        """
-        destination_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination ports of a network ACL rule.
-        You can specify a single port or a port range. Separate every two entries with a comma.
+class NetworkAclIngressRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Specifies the rule action. The value can be: **allow** and **deny**.
+    """
+    ip_version: pulumi.Input[_builtins.int]
+    """
+    Specifies the IP version of a network ACL rule.
+    The value can be **4** (IPv4) and **6** (IPv6).
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the rule protocol The value can be **tcp**, **udp**, **icmp**, **icmpv6**,
+    or an IP protocol number (0–255). The value **any** indicates all protocols.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network ACL rule description. The value can contain no more
+    than 255 characters. The value cannot contain angle brackets (< or >).
+    """
+    destination_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination IP address or CIDR block of a network ACL
+    rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+    """
+    destination_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination IP address group ID of a network ACL
+    rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+    """
+    destination_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination ports of a network ACL rule.
+    You can specify a single port or a port range. Separate every two entries with a comma.
 
-        <a name="subnets"></a>
-        The `associated_subnets` block supports:
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the network ACL rule name. The value can contain no more than 64 characters,
-        including letters, digits, underscores (_), hyphens (-), and periods (.).
-        """
-        rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the rule.
-        """
-        source_ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source IP address or CIDR block of a network ACL rule.
-        The `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
-        """
-        source_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source IP address group ID of a network ACL rule.
-        `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
-        """
-        source_port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source ports of a network ACL rule.
-        You can specify a single port or a port range. Separate every two entries with a comma.
-        """
-elif False:
-    NetworkAclIngressRuleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="subnets"></a>
+    The `associated_subnets` block supports:
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the network ACL rule name. The value can contain no more than 64 characters,
+    including letters, digits, underscores (_), hyphens (-), and periods (.).
+    """
+    rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the rule.
+    """
+    source_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source IP address or CIDR block of a network ACL rule.
+    The `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
+    """
+    source_ip_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source IP address group ID of a network ACL rule.
+    `source_ip_address` and `source_address_group_id` cannot be configured at the same time.
+    """
+    source_port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source ports of a network ACL rule.
+    You can specify a single port or a port range. Separate every two entries with a comma.
+    """
 
 @pulumi.input_type
 class NetworkAclIngressRuleArgs:
@@ -1149,10 +1121,10 @@ class NetworkAclIngressRuleArgs:
                or an IP protocol number (0–255). The value **any** indicates all protocols.
         :param pulumi.Input[_builtins.str] description: Specifies the network ACL rule description. The value can contain no more
                than 255 characters. The value cannot contain angle brackets (< or >).
-        :param pulumi.Input[_builtins.str] destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
-        :param pulumi.Input[_builtins.str] destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL rule.
-               The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param pulumi.Input[_builtins.str] destination_ip_address: Specifies the destination IP address or CIDR block of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        :param pulumi.Input[_builtins.str] destination_ip_address_group_id: Specifies the destination IP address group ID of a network ACL
+               rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         :param pulumi.Input[_builtins.str] destination_port: Specifies the destination ports of a network ACL rule.
                You can specify a single port or a port range. Separate every two entries with a comma.
                
@@ -1245,8 +1217,8 @@ class NetworkAclIngressRuleArgs:
     @pulumi.getter(name="destinationIpAddress")
     def destination_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the destination IP address or CIDR block of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address or CIDR block of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address")
 
@@ -1258,8 +1230,8 @@ class NetworkAclIngressRuleArgs:
     @pulumi.getter(name="destinationIpAddressGroupId")
     def destination_ip_address_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the destination IP address group ID of a network ACL rule.
-        The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
+        Specifies the destination IP address group ID of a network ACL
+        rule. The `destination_ip_address` and `destination_address_group_id` cannot be configured at the same time.
         """
         return pulumi.get(self, "destination_ip_address_group_id")
 
@@ -1348,22 +1320,19 @@ class NetworkAclIngressRuleArgs:
         pulumi.set(self, "source_port", value)
 
 
-if not MYPY:
-    class NetworkV2SegmentArgsDict(TypedDict):
-        network_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of physical network.
-        """
-        physical_network: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The physical network where this network is implemented.
-        """
-        segmentation_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        An isolated segment on the physical network.
-        """
-elif False:
-    NetworkV2SegmentArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkV2SegmentArgsDict(TypedDict):
+    network_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of physical network.
+    """
+    physical_network: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The physical network where this network is implemented.
+    """
+    segmentation_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    An isolated segment on the physical network.
+    """
 
 @pulumi.input_type
 class NetworkV2SegmentArgs:
@@ -1420,12 +1389,9 @@ class NetworkV2SegmentArgs:
         pulumi.set(self, "segmentation_id", value)
 
 
-if not MYPY:
-    class PortAllowedAddressPairArgsDict(TypedDict):
-        ip_address: pulumi.Input[_builtins.str]
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PortAllowedAddressPairArgsDict: TypeAlias = Mapping[str, Any]
+class PortAllowedAddressPairArgsDict(TypedDict):
+    ip_address: pulumi.Input[_builtins.str]
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PortAllowedAddressPairArgs:
@@ -1455,13 +1421,10 @@ class PortAllowedAddressPairArgs:
         pulumi.set(self, "mac_address", value)
 
 
-if not MYPY:
-    class PortExtraDhcpOptionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PortExtraDhcpOptionArgsDict: TypeAlias = Mapping[str, Any]
+class PortExtraDhcpOptionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PortExtraDhcpOptionArgs:
@@ -1502,12 +1465,9 @@ class PortExtraDhcpOptionArgs:
         pulumi.set(self, "ip_version", value)
 
 
-if not MYPY:
-    class PortFixedIpArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PortFixedIpArgsDict: TypeAlias = Mapping[str, Any]
+class PortFixedIpArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PortFixedIpArgs:
@@ -1537,18 +1497,15 @@ class PortFixedIpArgs:
         pulumi.set(self, "ip_address", value)
 
 
-if not MYPY:
-    class PortV2AllowedAddressPairArgsDict(TypedDict):
-        ip_address: pulumi.Input[_builtins.str]
-        """
-        The additional IP address.
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The additional MAC address.
-        """
-elif False:
-    PortV2AllowedAddressPairArgsDict: TypeAlias = Mapping[str, Any]
+class PortV2AllowedAddressPairArgsDict(TypedDict):
+    ip_address: pulumi.Input[_builtins.str]
+    """
+    The additional IP address.
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The additional MAC address.
+    """
 
 @pulumi.input_type
 class PortV2AllowedAddressPairArgs:
@@ -1588,22 +1545,19 @@ class PortV2AllowedAddressPairArgs:
         pulumi.set(self, "mac_address", value)
 
 
-if not MYPY:
-    class PortV2ExtraDhcpOptionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the DHCP option.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Value of the DHCP option.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        IP protocol version. Defaults to 4.
-        """
-elif False:
-    PortV2ExtraDhcpOptionArgsDict: TypeAlias = Mapping[str, Any]
+class PortV2ExtraDhcpOptionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the DHCP option.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Value of the DHCP option.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    IP protocol version. Defaults to 4.
+    """
 
 @pulumi.input_type
 class PortV2ExtraDhcpOptionArgs:
@@ -1658,21 +1612,18 @@ class PortV2ExtraDhcpOptionArgs:
         pulumi.set(self, "ip_version", value)
 
 
-if not MYPY:
-    class PortV2FixedIpArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Subnet in which to allocate IP address for this port.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IP address desired in the subnet for this port. If you don't specify `ip_address`,
-        an available IP address from the specified subnet will be allocated to this port. This field will not be populated if
-        it is left blank. To retrieve the assigned IP address, use the `all_fixed_ips`
-        attribute.
-        """
-elif False:
-    PortV2FixedIpArgsDict: TypeAlias = Mapping[str, Any]
+class PortV2FixedIpArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Subnet in which to allocate IP address for this port.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IP address desired in the subnet for this port. If you don't specify `ip_address`,
+    an available IP address from the specified subnet will be allocated to this port. This field will not be populated if
+    it is left blank. To retrieve the assigned IP address, use the `all_fixed_ips`
+    attribute.
+    """
 
 @pulumi.input_type
 class PortV2FixedIpArgs:
@@ -1718,40 +1669,37 @@ class PortV2FixedIpArgs:
         pulumi.set(self, "ip_address", value)
 
 
-if not MYPY:
-    class RouteTableRouteArgsDict(TypedDict):
-        destination: pulumi.Input[_builtins.str]
-        """
-        Specifies the destination address in the CIDR notation format,
-        for example, 192.168.200.0/24. The destination of each route must be unique and cannot overlap
-        with any subnet in the VPC.
-        """
-        nexthop: pulumi.Input[_builtins.str]
-        """
-        Specifies the next hop.
-        + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
-        + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
-        + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
-        + If the route type is **peering**, the value is a VPC peering connection ID.
-        + If the route type is **vpn**, the value is a VPN gateway ID.
-        + If the route type is **dc**, the value is a Direct Connect gateway ID.
-        + If the route type is **cc**, the value is a Cloud Connection ID.
-        + If the route type is **egw**, the value is a VPCEP endpoint ID.
-        + If the route type is **er**, the value is a ER instance ID.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the route type. Currently, the value can be:
-        **ecs**, **eni**, **vip**, **nat**, **peering**, **vpn**, **dc**, **cc**, **egw** and **er**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the supplementary information about the route.
-        The value is a string of no more than 255 characters and cannot contain angle brackets (< or >).
-        """
-elif False:
-    RouteTableRouteArgsDict: TypeAlias = Mapping[str, Any]
+class RouteTableRouteArgsDict(TypedDict):
+    destination: pulumi.Input[_builtins.str]
+    """
+    Specifies the destination address in the CIDR notation format,
+    for example, 192.168.200.0/24. The destination of each route must be unique and cannot overlap
+    with any subnet in the VPC.
+    """
+    nexthop: pulumi.Input[_builtins.str]
+    """
+    Specifies the next hop.
+    + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
+    + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
+    + If the route type is **vip**, the value is a virtual IP address.
+    + If the route type is **nat**, the value is a NAT gateway ID.
+    + If the route type is **peering**, the value is a VPC peering connection ID.
+    + If the route type is **vpn**, the value is a VPN gateway ID.
+    + If the route type is **dc**, the value is a Direct Connect gateway ID.
+    + If the route type is **cc**, the value is a Cloud Connection ID.
+    + If the route type is **egw**, the value is a VPCEP endpoint ID.
+    + If the route type is **er**, the value is a ER instance ID.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the route type. Currently, the value can be:
+    **ecs**, **eni**, **vip**, **nat**, **peering**, **vpn**, **dc**, **cc**, **egw** and **er**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the supplementary information about the route.
+    The value is a string of no more than 255 characters and cannot contain angle brackets (< or >).
+    """
 
 @pulumi.input_type
 class RouteTableRouteArgs:
@@ -1768,7 +1716,7 @@ class RouteTableRouteArgs:
                + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
                + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
                + If the route type is **vip**, the value is a virtual IP address.
-               + If the route type is **nat**, the value is a VPN gateway ID.
+               + If the route type is **nat**, the value is a NAT gateway ID.
                + If the route type is **peering**, the value is a VPC peering connection ID.
                + If the route type is **vpn**, the value is a VPN gateway ID.
                + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -1808,7 +1756,7 @@ class RouteTableRouteArgs:
         + If the route type is **ecs**, the value is an ECS instance ID in the VPC.
         + If the route type is **eni**, the value is the extension NIC of an ECS in the VPC.
         + If the route type is **vip**, the value is a virtual IP address.
-        + If the route type is **nat**, the value is a VPN gateway ID.
+        + If the route type is **nat**, the value is a NAT gateway ID.
         + If the route type is **peering**, the value is a VPC peering connection ID.
         + If the route type is **vpn**, the value is a VPN gateway ID.
         + If the route type is **dc**, the value is a Direct Connect gateway ID.
@@ -1849,18 +1797,15 @@ class RouteTableRouteArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class RouterV2ExternalFixedIpArgsDict(TypedDict):
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address to set on the router.
-        """
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Subnet in which the fixed IP belongs to.
-        """
-elif False:
-    RouterV2ExternalFixedIpArgsDict: TypeAlias = Mapping[str, Any]
+class RouterV2ExternalFixedIpArgsDict(TypedDict):
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address to set on the router.
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Subnet in which the fixed IP belongs to.
+    """
 
 @pulumi.input_type
 class RouterV2ExternalFixedIpArgs:
@@ -1901,62 +1846,59 @@ class RouterV2ExternalFixedIpArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class SecgroupRuleArgsDict(TypedDict):
-        action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The effective policy.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description for the security group.
-        """
-        direction: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The direction of the rule. The value can be *egress* or *ingress*.
-        """
-        ethertype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP protocol version. The value can be *IPv4* or *IPv6*.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The security group rule ID.
-        """
-        port_range_max: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Deprecated
-        """
-        port_range_min: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Deprecated
-        """
-        ports: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port value range.
-        """
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The priority number.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol type.
-        """
-        remote_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the remote address group.
-        """
-        remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the peer security group.
-        """
-        remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The remote IP address. The value can be in the CIDR format or IP addresses.
-        """
-elif False:
-    SecgroupRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecgroupRuleArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The effective policy.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description for the security group.
+    """
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The direction of the rule. The value can be *egress* or *ingress*.
+    """
+    ethertype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP protocol version. The value can be *IPv4* or *IPv6*.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The security group rule ID.
+    """
+    port_range_max: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Deprecated
+    """
+    port_range_min: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Deprecated
+    """
+    ports: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port value range.
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The priority number.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol type.
+    """
+    remote_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the remote address group.
+    """
+    remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the peer security group.
+    """
+    remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The remote IP address. The value can be in the CIDR format or IP addresses.
+    """
 
 @pulumi.input_type
 class SecgroupRuleArgs:
@@ -2173,29 +2115,26 @@ class SecgroupRuleArgs:
         pulumi.set(self, "remote_ip_prefix", value)
 
 
-if not MYPY:
-    class SecgroupV2RuleArgsDict(TypedDict):
-        action: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        direction: NotRequired[pulumi.Input[_builtins.str]]
-        ethertype: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        port_range_max: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Deprecated
-        """
-        port_range_min: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Deprecated
-        """
-        ports: NotRequired[pulumi.Input[_builtins.str]]
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        remote_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    SecgroupV2RuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecgroupV2RuleArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    ethertype: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    port_range_max: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Deprecated
+    """
+    port_range_min: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Deprecated
+    """
+    ports: NotRequired[pulumi.Input[_builtins.str]]
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    remote_address_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    remote_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    remote_ip_prefix: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class SecgroupV2RuleArgs:
@@ -2368,18 +2307,15 @@ class SecgroupV2RuleArgs:
         pulumi.set(self, "remote_ip_prefix", value)
 
 
-if not MYPY:
-    class SubnetV2AllocationPoolArgsDict(TypedDict):
-        end: pulumi.Input[_builtins.str]
-        """
-        The ending address.
-        """
-        start: pulumi.Input[_builtins.str]
-        """
-        The starting address.
-        """
-elif False:
-    SubnetV2AllocationPoolArgsDict: TypeAlias = Mapping[str, Any]
+class SubnetV2AllocationPoolArgsDict(TypedDict):
+    end: pulumi.Input[_builtins.str]
+    """
+    The ending address.
+    """
+    start: pulumi.Input[_builtins.str]
+    """
+    The starting address.
+    """
 
 @pulumi.input_type
 class SubnetV2AllocationPoolArgs:
@@ -2418,18 +2354,15 @@ class SubnetV2AllocationPoolArgs:
         pulumi.set(self, "start", value)
 
 
-if not MYPY:
-    class SubnetV2HostRouteArgsDict(TypedDict):
-        destination_cidr: pulumi.Input[_builtins.str]
-        """
-        The destination CIDR.
-        """
-        next_hop: pulumi.Input[_builtins.str]
-        """
-        The next hop in the route.
-        """
-elif False:
-    SubnetV2HostRouteArgsDict: TypeAlias = Mapping[str, Any]
+class SubnetV2HostRouteArgsDict(TypedDict):
+    destination_cidr: pulumi.Input[_builtins.str]
+    """
+    The destination CIDR.
+    """
+    next_hop: pulumi.Input[_builtins.str]
+    """
+    The next hop in the route.
+    """
 
 @pulumi.input_type
 class SubnetV2HostRouteArgs:
@@ -2468,12 +2401,9 @@ class SubnetV2HostRouteArgs:
         pulumi.set(self, "next_hop", value)
 
 
-if not MYPY:
-    class V1RouteArgsDict(TypedDict):
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        nexthop: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    V1RouteArgsDict: TypeAlias = Mapping[str, Any]
+class V1RouteArgsDict(TypedDict):
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    nexthop: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class V1RouteArgs:
@@ -2504,12 +2434,9 @@ class V1RouteArgs:
         pulumi.set(self, "nexthop", value)
 
 
-if not MYPY:
-    class VpcRouteArgsDict(TypedDict):
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        nexthop: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    VpcRouteArgsDict: TypeAlias = Mapping[str, Any]
+class VpcRouteArgsDict(TypedDict):
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    nexthop: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class VpcRouteArgs:
@@ -2540,18 +2467,15 @@ class VpcRouteArgs:
         pulumi.set(self, "nexthop", value)
 
 
-if not MYPY:
-    class GetByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of the match.
-        """
-elif False:
-    GetByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the match.
+    """
 
 @pulumi.input_type
 class GetByTagsMatchArgs:
@@ -2590,21 +2514,18 @@ class GetByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
+class GetByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
 
-        <a name="matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetByTagsTagArgs:
@@ -2649,18 +2570,15 @@ class GetByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetNetworkAclsByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of the match.
-        """
-elif False:
-    GetNetworkAclsByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetNetworkAclsByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the match.
+    """
 
 @pulumi.input_type
 class GetNetworkAclsByTagsMatchArgs:
@@ -2699,21 +2617,18 @@ class GetNetworkAclsByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetNetworkAclsByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
+class GetNetworkAclsByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
 
-        <a name="matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetNetworkAclsByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetNetworkAclsByTagsTagArgs:
@@ -2758,18 +2673,118 @@ class GetNetworkAclsByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetSecgroupsByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
+class GetNetworkInterfacesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the match.
+    """
+
+@pulumi.input_type
+class GetNetworkInterfacesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the match. The value can be: **resource_name**.
+        :param _builtins.str value: Specifies the value of the match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
         """
         Specifies the key of the match. The value can be: **resource_name**.
         """
-        value: _builtins.str
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
         """
         Specifies the value of the match.
         """
-elif False:
-    GetSecgroupsByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetNetworkInterfacesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+
+    <a name="matches"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetNetworkInterfacesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the match. The value can be: **resource_name**.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               
+               <a name="matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the match. The value can be: **resource_name**.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+
+        <a name="matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetSecgroupsByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the match.
+    """
 
 @pulumi.input_type
 class GetSecgroupsByTagsMatchArgs:
@@ -2808,21 +2823,18 @@ class GetSecgroupsByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetSecgroupsByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
+class GetSecgroupsByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
 
-        <a name="matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetSecgroupsByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetSecgroupsByTagsTagArgs:
@@ -2867,18 +2879,15 @@ class GetSecgroupsByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetSubnetsByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of the match.
-        """
-elif False:
-    GetSubnetsByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetSubnetsByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the match.
+    """
 
 @pulumi.input_type
 class GetSubnetsByTagsMatchArgs:
@@ -2917,21 +2926,18 @@ class GetSubnetsByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetSubnetsByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the match. The value can be: **resource_name**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the values of the tag.
+class GetSubnetsByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the match. The value can be: **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
 
-        <a name="matches"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetSubnetsByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetSubnetsByTagsTagArgs:

@@ -30,6 +30,7 @@ class BuildTemplateArgs:
                  tool_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BuildTemplate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['BuildTemplateStepArgs']]] steps: Specifies the build execution steps.
                The steps structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the template description.
@@ -167,6 +168,7 @@ class _BuildTemplateState:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering BuildTemplate resources.
+
         :param pulumi.Input[_builtins.str] create_time: Indicates the template creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the template description.
         :param pulumi.Input[_builtins.bool] favorite: Indicates whether the template is favorite.
@@ -405,7 +407,7 @@ class _BuildTemplateState:
         pulumi.set(self, "weight", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/buildTemplate:BuildTemplate")
+@pulumi.type_token("huaweicloud:Codearts/buildTemplate:BuildTemplate")
 class BuildTemplate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -457,11 +459,10 @@ class BuildTemplate(pulumi.CustomResource):
 
         The template can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/buildTemplate:BuildTemplate test <id>
+        $ pulumi import huaweicloud:Codearts/buildTemplate:BuildTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -523,11 +524,10 @@ class BuildTemplate(pulumi.CustomResource):
 
         The template can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/buildTemplate:BuildTemplate test <id>
+        $ pulumi import huaweicloud:Codearts/buildTemplate:BuildTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BuildTemplateArgs args: The arguments to use to populate this resource's properties.
@@ -578,7 +578,7 @@ class BuildTemplate(pulumi.CustomResource):
             __props__.__dict__["type"] = None
             __props__.__dict__["weight"] = None
         super(BuildTemplate, __self__).__init__(
-            'huaweicloud:codearts/buildTemplate:BuildTemplate',
+            'huaweicloud:Codearts/buildTemplate:BuildTemplate',
             resource_name,
             __props__,
             opts)

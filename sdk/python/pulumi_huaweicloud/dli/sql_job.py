@@ -29,6 +29,7 @@ class SqlJobArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SqlJob resource.
+
         :param pulumi.Input[_builtins.str] sql: Specifies SQL statement that you want to execute.
                Changing this parameter will create a new resource.
         :param pulumi.Input['SqlJobConfArgs'] conf: Specifies the configuration parameters for the SQL job. Changing this parameter
@@ -149,6 +150,7 @@ class _SqlJobState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SqlJob resources.
+
         :param pulumi.Input['SqlJobConfArgs'] conf: Specifies the configuration parameters for the SQL job. Changing this parameter
                will create a new resource. Structure is documented below.
         :param pulumi.Input[_builtins.str] database_name: Specifies the database where the SQL is executed. This argument does
@@ -399,39 +401,16 @@ class SqlJob(pulumi.CustomResource):
 
         DLI SQL job can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sqlJob:SqlJob example 7f803d70-c533-469f-8431-e378f3e97123
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `conf`, `rows` and `schema`.
-
         It is generally recommended running `pulumi preview` after importing a resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the resource. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_sql_job" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              conf, rows, schema
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -478,39 +457,16 @@ class SqlJob(pulumi.CustomResource):
 
         DLI SQL job can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sqlJob:SqlJob example 7f803d70-c533-469f-8431-e378f3e97123
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `conf`, `rows` and `schema`.
-
         It is generally recommended running `pulumi preview` after importing a resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the resource. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dli_sql_job" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              conf, rows, schema
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SqlJobArgs args: The arguments to use to populate this resource's properties.

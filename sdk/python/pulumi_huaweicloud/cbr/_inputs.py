@@ -41,6 +41,8 @@ __all__ = [
     'VaultPolicyArgsDict',
     'VaultResourceArgs',
     'VaultResourceArgsDict',
+    'VaultResourcesOriginArgs',
+    'VaultResourcesOriginArgsDict',
     'GetAgentChecksAgentStatusArgs',
     'GetAgentChecksAgentStatusArgsDict',
     'GetVaultsByTagsMatchArgs',
@@ -57,40 +59,35 @@ __all__ = [
     'GetVaultsByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackupShareMemberArgsDict(TypedDict):
-        dest_project_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the project with which the backup is shared.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creation time of the backup shared member.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the backup shared member record.
-        """
-        image_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the image registered with the shared backup copy.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The backup sharing status.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The latest update time of the backup shared member.
-        """
-        vault_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the vault where the shared backup is stored.
-        """
-elif False:
-    BackupShareMemberArgsDict: TypeAlias = Mapping[str, Any]
+class BackupShareMemberArgsDict(TypedDict):
+    dest_project_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the project with which the backup is shared.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creation time of the backup shared member.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the backup shared member record.
+    """
+    image_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the image registered with the shared backup copy.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The backup sharing status.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The latest update time of the backup shared member.
+    """
+    vault_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the vault where the shared backup is stored.
+    """
 
 @pulumi.input_type
 class BackupShareMemberArgs:
@@ -210,32 +207,29 @@ class BackupShareMemberArgs:
         pulumi.set(self, "vault_id", value)
 
 
-if not MYPY:
-    class ChangeOrderProductInfoArgsDict(TypedDict):
-        product_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the product ID, which is obtained through the price query API.
-        The value consists of `1` to `64` characters and can contain only letters, digits, underscores (_), and hyphens (-).
-        """
-        resource_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the size of the resource. Value range: `10`-`10,485,760`.
-        The size value required must be greater than the existing size value.
-        """
-        resource_size_measure_id: pulumi.Input[_builtins.int]
-        """
-        Specifies the measurement unit of the resource size.
-        Currently, only `17` (GB) is supported.
-        """
-        resource_spec_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the spec code of the resource.
-        Valid values are: **vault.backup.server.normal**, **vault.backup.turbo.normal**, **vault.backup.database.normal**,
-        **vault.backup.volume.normal**, **vault.backup.rds.normal**, **vault.replication.server.normal**, and
-        **vault.hybrid.server.normal**.
-        """
-elif False:
-    ChangeOrderProductInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ChangeOrderProductInfoArgsDict(TypedDict):
+    product_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the product ID, which is obtained through the price query API.
+    The value consists of `1` to `64` characters and can contain only letters, digits, underscores (_), and hyphens (-).
+    """
+    resource_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size of the resource. Value range: `10`-`10,485,760`.
+    The size value required must be greater than the existing size value.
+    """
+    resource_size_measure_id: pulumi.Input[_builtins.int]
+    """
+    Specifies the measurement unit of the resource size.
+    Currently, only `17` (GB) is supported.
+    """
+    resource_spec_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the spec code of the resource.
+    Valid values are: **vault.backup.server.normal**, **vault.backup.turbo.normal**, **vault.backup.database.normal**,
+    **vault.backup.volume.normal**, **vault.backup.rds.normal**, **vault.replication.server.normal**, and
+    **vault.hybrid.server.normal**.
+    """
 
 @pulumi.input_type
 class ChangeOrderProductInfoArgs:
@@ -316,48 +310,45 @@ class ChangeOrderProductInfoArgs:
         pulumi.set(self, "resource_spec_code", value)
 
 
-if not MYPY:
-    class CheckpointBackupArgsDict(TypedDict):
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of backup resource.  
-        Changing this will create a new resource.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the backup resource.  
-        The valid values are as follows:
-        + **OS::Nova::Server**
-        + **OS::Cinder::Volume**
-        + **OS::Ironic::BareMetalServer**
-        + **OS::Native::Server**
-        + **OS::Sfs::Turbo**
-        + **OS::Workspace::DesktopV2**
+class CheckpointBackupArgsDict(TypedDict):
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of backup resource.  
+    Changing this will create a new resource.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the backup resource.  
+    The valid values are as follows:
+    + **OS::Nova::Server**
+    + **OS::Cinder::Volume**
+    + **OS::Ironic::BareMetalServer**
+    + **OS::Native::Server**
+    + **OS::Sfs::Turbo**
+    + **OS::Workspace::DesktopV2**
 
-        Changing this will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The backup ID.
-        """
-        protected_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The backup time.
-        """
-        resource_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The backup resource size.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The backup status.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The latest update time of the backup.
-        """
-elif False:
-    CheckpointBackupArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this will create a new resource.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The backup ID.
+    """
+    protected_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The backup time.
+    """
+    resource_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The backup resource size.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The backup status.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The latest update time of the backup.
+    """
 
 @pulumi.input_type
 class CheckpointBackupArgs:
@@ -496,71 +487,68 @@ class CheckpointBackupArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class OrganizationPolicyPolicyOperationDefinitionArgsDict(TypedDict):
-        day_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of daily backups that can be retained.
-        The latest backup of each day is saved in the long term. The value ranges from **0** to **100**.
-        """
-        destination_project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination project ID for replication.
-        This parameter is **mandatory** for cross-region replication.
-        """
-        destination_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination region for replication.
-        This parameter is **mandatory** for cross-region replication.
-        """
-        enable_acceleration: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to enable acceleration to shorten replication time for
-        cross-region replication.
-        The valid values are as follows:
-        + **true**
-        + **false**
-        """
-        full_backup_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Defines how often a full backup is performed after incremental backups.
-        If **-1** is specified, full backup will not be performed. The value ranges from **-1** to **100**.
+class OrganizationPolicyPolicyOperationDefinitionArgsDict(TypedDict):
+    day_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of daily backups that can be retained.
+    The latest backup of each day is saved in the long term. The value ranges from **0** to **100**.
+    """
+    destination_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination project ID for replication.
+    This parameter is **mandatory** for cross-region replication.
+    """
+    destination_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination region for replication.
+    This parameter is **mandatory** for cross-region replication.
+    """
+    enable_acceleration: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to enable acceleration to shorten replication time for
+    cross-region replication.
+    The valid values are as follows:
+    + **true**
+    + **false**
+    """
+    full_backup_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Defines how often a full backup is performed after incremental backups.
+    If **-1** is specified, full backup will not be performed. The value ranges from **-1** to **100**.
 
-        <a name="cbr_organization_policy_trigger"></a>
-        The `policy_trigger` block supports:
-        """
-        max_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of backups that can be automatically created for a
-        backup object. The value can be **-1** or ranges from **0** to **99999**. If the value is set to **-1**, backups
-        will not be cleared by quantity limit.
-        """
-        month_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of monthly backups that can be retained.
-        The latest backup of each month is saved in the long term. The value ranges from **0** to **100**.
-        """
-        retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration of retaining a backup, in days.
-        The maximum value is **99999**. If the value is set to **-1**, backups will not be cleared by retention duration.
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time zone where the user is located, for example, **UTC+08:00**.
-        """
-        week_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of weekly backups that can be retained.
-        The latest backup of each week is saved in the long term. The value ranges from **0** to **100**.
-        """
-        year_backups: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of yearly backups that can be retained.
-        The latest backup of each year is saved in the long term. The value ranges from **0** to **100**.
-        """
-elif False:
-    OrganizationPolicyPolicyOperationDefinitionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cbr_organization_policy_trigger"></a>
+    The `policy_trigger` block supports:
+    """
+    max_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of backups that can be automatically created for a
+    backup object. The value can be **-1** or ranges from **0** to **99999**. If the value is set to **-1**, backups
+    will not be cleared by quantity limit.
+    """
+    month_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of monthly backups that can be retained.
+    The latest backup of each month is saved in the long term. The value ranges from **0** to **100**.
+    """
+    retention_duration_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration of retaining a backup, in days.
+    The maximum value is **99999**. If the value is set to **-1**, backups will not be cleared by retention duration.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time zone where the user is located, for example, **UTC+08:00**.
+    """
+    week_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of weekly backups that can be retained.
+    The latest backup of each week is saved in the long term. The value ranges from **0** to **100**.
+    """
+    year_backups: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of yearly backups that can be retained.
+    The latest backup of each year is saved in the long term. The value ranges from **0** to **100**.
+    """
 
 @pulumi.input_type
 class OrganizationPolicyPolicyOperationDefinitionArgs:
@@ -779,18 +767,15 @@ class OrganizationPolicyPolicyOperationDefinitionArgs:
         pulumi.set(self, "year_backups", value)
 
 
-if not MYPY:
-    class OrganizationPolicyPolicyTriggerArgsDict(TypedDict):
-        properties: pulumi.Input['OrganizationPolicyPolicyTriggerPropertiesArgsDict']
-        """
-        Specifies the properties of policy trigger.
-        The properties structure is documented below.
+class OrganizationPolicyPolicyTriggerArgsDict(TypedDict):
+    properties: pulumi.Input['OrganizationPolicyPolicyTriggerPropertiesArgsDict']
+    """
+    Specifies the properties of policy trigger.
+    The properties structure is documented below.
 
-        <a name="cbr_organization_policy_trigger_properties"></a>
-        The `properties` block supports:
-        """
-elif False:
-    OrganizationPolicyPolicyTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cbr_organization_policy_trigger_properties"></a>
+    The `properties` block supports:
+    """
 
 @pulumi.input_type
 class OrganizationPolicyPolicyTriggerArgs:
@@ -822,16 +807,13 @@ class OrganizationPolicyPolicyTriggerArgs:
         pulumi.set(self, "properties", value)
 
 
-if not MYPY:
-    class OrganizationPolicyPolicyTriggerPropertiesArgsDict(TypedDict):
-        patterns: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the scheduling rules for policy execution. Up to 24 rules are supported.
-        The scheduling rules follow the iCalendar RFC 2445 specification, supporting parameters like **FREQ**, **BYDAY**,
-        **BYHOUR**, **BYMINUTE**, and **INTERVAL**. For example: **FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=14;BYMINUTE=00**.
-        """
-elif False:
-    OrganizationPolicyPolicyTriggerPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationPolicyPolicyTriggerPropertiesArgsDict(TypedDict):
+    patterns: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the scheduling rules for policy execution. Up to 24 rules are supported.
+    The scheduling rules follow the iCalendar RFC 2445 specification, supporting parameters like **FREQ**, **BYDAY**,
+    **BYHOUR**, **BYMINUTE**, and **INTERVAL**. For example: **FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=14;BYMINUTE=00**.
+    """
 
 @pulumi.input_type
 class OrganizationPolicyPolicyTriggerPropertiesArgs:
@@ -859,32 +841,29 @@ class OrganizationPolicyPolicyTriggerPropertiesArgs:
         pulumi.set(self, "patterns", value)
 
 
-if not MYPY:
-    class PolicyBackupCycleArgsDict(TypedDict):
-        execution_times: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the backup time. Automated backups will be triggered at the backup
-        time. The current time is in the UTC format (HH:MM). The minutes in the list must be set to **00** and the hours
-        cannot be repeated. In the replication policy, you are advised to set one time point for one day.
+class PolicyBackupCycleArgsDict(TypedDict):
+    execution_times: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the backup time. Automated backups will be triggered at the backup
+    time. The current time is in the UTC format (HH:MM). The minutes in the list must be set to **00** and the hours
+    cannot be repeated. In the replication policy, you are advised to set one time point for one day.
 
-        <a name="cbr_policy_long_term_retention"></a>
-        The `long_term_retention` block supports:
-        """
-        days: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the weekly backup day of backup schedule.  
-        It supports seven days a week (MO, TU, WE, TH, FR, SA, SU) and this parameter is separated by a comma (,) without
-        spaces, between date and date during the configuration.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval (in days) of backup schedule.  
-        The valid value ranges from `1` to `30`.
+    <a name="cbr_policy_long_term_retention"></a>
+    The `long_term_retention` block supports:
+    """
+    days: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the weekly backup day of backup schedule.  
+    It supports seven days a week (MO, TU, WE, TH, FR, SA, SU) and this parameter is separated by a comma (,) without
+    spaces, between date and date during the configuration.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval (in days) of backup schedule.  
+    The valid value ranges from `1` to `30`.
 
-        > Parameter `backup_cycle.days` and `backup_cycle.interval` are alternative.
-        """
-elif False:
-    PolicyBackupCycleArgsDict: TypeAlias = Mapping[str, Any]
+    > Parameter `backup_cycle.days` and `backup_cycle.interval` are alternative.
+    """
 
 @pulumi.input_type
 class PolicyBackupCycleArgs:
@@ -960,35 +939,32 @@ class PolicyBackupCycleArgs:
         pulumi.set(self, "interval", value)
 
 
-if not MYPY:
-    class PolicyLongTermRetentionArgsDict(TypedDict):
-        daily: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the latest backup of each day is saved in the long term.
-        """
-        full_backup_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often (after how many incremental backups) a full backup is
-        performed. The valid value ranges from `-1` to `100`.
-        If `-1` is specified, full backup will not be performed.
-        """
-        monthly: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the latest backup of each month is saved in the long term.
-        """
-        weekly: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the latest backup of each week is saved in the long term.
-        """
-        yearly: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the latest backup of each year is saved in the long term.
+class PolicyLongTermRetentionArgsDict(TypedDict):
+    daily: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the latest backup of each day is saved in the long term.
+    """
+    full_backup_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often (after how many incremental backups) a full backup is
+    performed. The valid value ranges from `-1` to `100`.
+    If `-1` is specified, full backup will not be performed.
+    """
+    monthly: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the latest backup of each month is saved in the long term.
+    """
+    weekly: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the latest backup of each week is saved in the long term.
+    """
+    yearly: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the latest backup of each year is saved in the long term.
 
-        > A maximum of 10 backups are retained for failed periodic backup tasks. They are retained for one month and can be
-        manually deleted on the web console.
-        """
-elif False:
-    PolicyLongTermRetentionArgsDict: TypeAlias = Mapping[str, Any]
+    > A maximum of 10 backups are retained for failed periodic backup tasks. They are retained for one month and can be
+    manually deleted on the web console.
+    """
 
 @pulumi.input_type
 class PolicyLongTermRetentionArgs:
@@ -1087,37 +1063,34 @@ class PolicyLongTermRetentionArgs:
         pulumi.set(self, "yearly", value)
 
 
-if not MYPY:
-    class ReplicateBackupReplicateArgsDict(TypedDict):
-        destination_project_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the replication destination project.
-        """
-        destination_region: pulumi.Input[_builtins.str]
-        """
-        Specifies the replication destination region.
-        """
-        destination_vault_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the vault in the replication
-        destination region.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the replica description.
-        """
-        enable_acceleration: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the acceleration function to
-        shorten the replication time for cross-region replication. If this parameter is not set, the acceleration function
-        is disabled.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the replica name.
-        """
-elif False:
-    ReplicateBackupReplicateArgsDict: TypeAlias = Mapping[str, Any]
+class ReplicateBackupReplicateArgsDict(TypedDict):
+    destination_project_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the replication destination project.
+    """
+    destination_region: pulumi.Input[_builtins.str]
+    """
+    Specifies the replication destination region.
+    """
+    destination_vault_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the vault in the replication
+    destination region.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the replica description.
+    """
+    enable_acceleration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the acceleration function to
+    shorten the replication time for cross-region replication. If this parameter is not set, the acceleration function
+    is disabled.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the replica name.
+    """
 
 @pulumi.input_type
 class ReplicateBackupReplicateArgs:
@@ -1225,17 +1198,14 @@ class ReplicateBackupReplicateArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class RestoreDetailsArgsDict(TypedDict):
-        destination_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the destination path.
+class RestoreDetailsArgsDict(TypedDict):
+    destination_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the destination path.
 
-        <a name="restore_mappings_struct"></a>
-        The `mappings` block supports:
-        """
-elif False:
-    RestoreDetailsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="restore_mappings_struct"></a>
+    The `mappings` block supports:
+    """
 
 @pulumi.input_type
 class RestoreDetailsArgs:
@@ -1265,18 +1235,15 @@ class RestoreDetailsArgs:
         pulumi.set(self, "destination_path", value)
 
 
-if not MYPY:
-    class RestoreMappingArgsDict(TypedDict):
-        backup_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the disk backup ID.
-        """
-        volume_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the disk to which data is restored.
-        """
-elif False:
-    RestoreMappingArgsDict: TypeAlias = Mapping[str, Any]
+class RestoreMappingArgsDict(TypedDict):
+    backup_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the disk backup ID.
+    """
+    volume_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the disk to which data is restored.
+    """
 
 @pulumi.input_type
 class RestoreMappingArgs:
@@ -1315,24 +1282,21 @@ class RestoreMappingArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VaultPolicyArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the policy ID.
-        """
-        destination_vault_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of destination vault to which the replication policy
-        will associated.
+class VaultPolicyArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the policy ID.
+    """
+    destination_vault_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of destination vault to which the replication policy
+    will associated.
 
-        > Only one policy of each type (backup and replication) can be associated.
+    > Only one policy of each type (backup and replication) can be associated.
 
-        <a name="cbr_vault_resources"></a>
-        The `resources` block supports:
-        """
-elif False:
-    VaultPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="cbr_vault_resources"></a>
+    The `resources` block supports:
+    """
 
 @pulumi.input_type
 class VaultPolicyArgs:
@@ -1384,24 +1348,21 @@ class VaultPolicyArgs:
         pulumi.set(self, "destination_vault_id", value)
 
 
-if not MYPY:
-    class VaultResourceArgsDict(TypedDict):
-        excludes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the array of disk IDs which will be excluded in the backup.
-        Only **server** vault support this parameter.
-        """
-        includes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the array of disk or SFS file system IDs which will be included in the backup.
-        Only **disk** and **turbo** vault support this parameter.
-        """
-        server_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the ECS instance to be backed up.
-        """
-elif False:
-    VaultResourceArgsDict: TypeAlias = Mapping[str, Any]
+class VaultResourceArgsDict(TypedDict):
+    excludes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the array of disk IDs which will be excluded in the backup.
+    Only **server** vault support this parameter.
+    """
+    includes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the array of disk or SFS file system IDs which will be included in the backup.
+    Only **disk** and **turbo** vault support this parameter.
+    """
+    server_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the ECS instance to be backed up.
+    """
 
 @pulumi.input_type
 class VaultResourceArgs:
@@ -1462,25 +1423,97 @@ class VaultResourceArgs:
         pulumi.set(self, "server_id", value)
 
 
-if not MYPY:
-    class GetAgentChecksAgentStatusArgsDict(TypedDict):
-        resource_id: _builtins.str
+class VaultResourcesOriginArgsDict(TypedDict):
+    excludes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the array of disk IDs which will be excluded in the backup.
+    Only **server** vault support this parameter.
+    """
+    includes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the array of disk or SFS file system IDs which will be included in the backup.
+    Only **disk** and **turbo** vault support this parameter.
+    """
+    server_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the ECS instance to be backed up.
+    """
+
+@pulumi.input_type
+class VaultResourcesOriginArgs:
+    def __init__(__self__, *,
+                 excludes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 includes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Specifies the resource ID.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excludes: Specifies the array of disk IDs which will be excluded in the backup.
+               Only **server** vault support this parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: Specifies the array of disk or SFS file system IDs which will be included in the backup.
+               Only **disk** and **turbo** vault support this parameter.
+        :param pulumi.Input[_builtins.str] server_id: Specifies the ID of the ECS instance to be backed up.
         """
-        resource_type: _builtins.str
+        if excludes is not None:
+            pulumi.set(__self__, "excludes", excludes)
+        if includes is not None:
+            pulumi.set(__self__, "includes", includes)
+        if server_id is not None:
+            pulumi.set(__self__, "server_id", server_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def excludes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the resource type.
-        The valid values are as follows:
-        + **OS::Nova::Server**：Indicates ECS.
-        + **OS::Ironic::BareMetalServer**：Indicates BMS.
+        Specifies the array of disk IDs which will be excluded in the backup.
+        Only **server** vault support this parameter.
         """
-        resource_name: NotRequired[_builtins.str]
+        return pulumi.get(self, "excludes")
+
+    @excludes.setter
+    def excludes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "excludes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def includes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the resource name.
+        Specifies the array of disk or SFS file system IDs which will be included in the backup.
+        Only **disk** and **turbo** vault support this parameter.
         """
-elif False:
-    GetAgentChecksAgentStatusArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "includes")
+
+    @includes.setter
+    def includes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "includes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the ECS instance to be backed up.
+        """
+        return pulumi.get(self, "server_id")
+
+    @server_id.setter
+    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_id", value)
+
+
+class GetAgentChecksAgentStatusArgsDict(TypedDict):
+    resource_id: _builtins.str
+    """
+    Specifies the resource ID.
+    """
+    resource_type: _builtins.str
+    """
+    Specifies the resource type.
+    The valid values are as follows:
+    + **OS::Nova::Server**：Indicates ECS.
+    + **OS::Ironic::BareMetalServer**：Indicates BMS.
+    """
+    resource_name: NotRequired[_builtins.str]
+    """
+    Specifies the resource name.
+    """
 
 @pulumi.input_type
 class GetAgentChecksAgentStatusArgs:
@@ -1541,21 +1574,18 @@ class GetAgentChecksAgentStatusArgs:
         pulumi.set(self, "resource_name", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        value: _builtins.str
-        """
-        Specifies the value of the resource tag.
-        A value consists of up to `255` characters.
-        If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
-        """
-elif False:
-    GetVaultsByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetVaultsByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the resource tag.
+    A value consists of up to `255` characters.
+    If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsMatchArgs:
@@ -1600,23 +1630,20 @@ class GetVaultsByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsNotTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values. Currently, only the enterprise project ID is used.
-        The default enterprise project ID is `0`.
+class GetVaultsByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values. Currently, only the enterprise project ID is used.
+    The default enterprise project ID is `0`.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVaultsByTagsNotTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsNotTagArgs:
@@ -1665,23 +1692,20 @@ class GetVaultsByTagsNotTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsNotTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values. Currently, only the enterprise project ID is used.
-        The default enterprise project ID is `0`.
+class GetVaultsByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values. Currently, only the enterprise project ID is used.
+    The default enterprise project ID is `0`.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVaultsByTagsNotTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsNotTagsAnyArgs:
@@ -1730,23 +1754,20 @@ class GetVaultsByTagsNotTagsAnyArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsSysTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values. Currently, only the enterprise project ID is used.
-        The default enterprise project ID is `0`.
+class GetVaultsByTagsSysTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values. Currently, only the enterprise project ID is used.
+    The default enterprise project ID is `0`.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVaultsByTagsSysTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsSysTagArgs:
@@ -1795,23 +1816,20 @@ class GetVaultsByTagsSysTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values. Currently, only the enterprise project ID is used.
-        The default enterprise project ID is `0`.
+class GetVaultsByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values. Currently, only the enterprise project ID is used.
+    The default enterprise project ID is `0`.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVaultsByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsTagArgs:
@@ -1860,23 +1878,20 @@ class GetVaultsByTagsTagArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetVaultsByTagsTagsAnyArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource tag.
-        A key can only be set to **resource_name**, indicating the resource name.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values. Currently, only the enterprise project ID is used.
-        The default enterprise project ID is `0`.
+class GetVaultsByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values. Currently, only the enterprise project ID is used.
+    The default enterprise project ID is `0`.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVaultsByTagsTagsAnyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVaultsByTagsTagsAnyArgs:

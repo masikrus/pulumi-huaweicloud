@@ -27,6 +27,7 @@ class RecordCallbackArgs:
                  sign_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RecordCallback resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] types: Specifies the types of recording notifications.
@@ -158,6 +159,7 @@ class _RecordCallbackState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RecordCallback resources.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] key: Specifies the callback key, which is used for authentication. This parameter is configured
@@ -305,39 +307,16 @@ class RecordCallback(pulumi.CustomResource):
 
         The record callback resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/recordCallback:RecordCallback test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `key`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_record_callback" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,39 +359,16 @@ class RecordCallback(pulumi.CustomResource):
 
         The record callback resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/recordCallback:RecordCallback test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `key`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_live_record_callback" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              key,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param RecordCallbackArgs args: The arguments to use to populate this resource's properties.

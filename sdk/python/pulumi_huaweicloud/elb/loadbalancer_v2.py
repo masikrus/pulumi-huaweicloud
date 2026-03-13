@@ -39,6 +39,7 @@ class LoadbalancerV2Args:
                  vip_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerV2 resource.
+
         :param pulumi.Input[_builtins.str] vip_subnet_id: the IPv4 subnet ID of the subnet where the load balancer works
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
         :param pulumi.Input[_builtins.str] flavor: schema: Deprecated
@@ -292,6 +293,7 @@ class _LoadbalancerV2State:
                  vip_subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
         :param pulumi.Input[_builtins.str] flavor: schema: Deprecated
         :param pulumi.Input[_builtins.str] loadbalancer_provider: schema: Deprecated
@@ -610,6 +612,7 @@ class LoadbalancerV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a LoadbalancerV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] admin_state_up: schema: Deprecated
@@ -626,6 +629,7 @@ class LoadbalancerV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a LoadbalancerV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

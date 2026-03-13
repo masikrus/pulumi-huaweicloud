@@ -30,6 +30,7 @@ class TopicArgs:
                  users_publish_allowed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Topic resource.
+
         :param pulumi.Input[_builtins.str] access_policy: schema: Internal
         :param pulumi.Input[_builtins.str] display_name: Specifies the topic display name, which is presented as the name of the email
                sender in an email message. The name can contains of 0 to 192 characters.
@@ -206,6 +207,7 @@ class _TopicState:
                  users_publish_allowed: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Topic resources.
+
         :param pulumi.Input[_builtins.str] access_policy: schema: Internal
         :param pulumi.Input[_builtins.str] create_time: Time when the topic was created.
         :param pulumi.Input[_builtins.str] display_name: Specifies the topic display name, which is presented as the name of the email
@@ -478,11 +480,10 @@ class Topic(pulumi.CustomResource):
 
         SMN topic can be imported using the `id` (topic urn), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/topic:Topic topic_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -546,11 +547,10 @@ class Topic(pulumi.CustomResource):
 
         SMN topic can be imported using the `id` (topic urn), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/topic:Topic topic_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TopicArgs args: The arguments to use to populate this resource's properties.

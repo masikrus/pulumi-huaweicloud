@@ -103,7 +103,7 @@ def get_product_infos(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_product_infos(site_code="HWC_CN")
+    test = huaweicloud.Hss.get_product_infos(site_code="HWC_CN")
     ```
 
 
@@ -122,7 +122,7 @@ def get_product_infos(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['siteCode'] = site_code
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getProductInfos:getProductInfos', __args__, opts=opts, typ=GetProductInfosResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getProductInfos:getProductInfos', __args__, opts=opts, typ=GetProductInfosResult).value
 
     return AwaitableGetProductInfosResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -143,7 +143,7 @@ def get_product_infos_output(enterprise_project_id: Optional[pulumi.Input[Option
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_product_infos(site_code="HWC_CN")
+    test = huaweicloud.Hss.get_product_infos(site_code="HWC_CN")
     ```
 
 
@@ -162,7 +162,7 @@ def get_product_infos_output(enterprise_project_id: Optional[pulumi.Input[Option
     __args__['region'] = region
     __args__['siteCode'] = site_code
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getProductInfos:getProductInfos', __args__, opts=opts, typ=GetProductInfosResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getProductInfos:getProductInfos', __args__, opts=opts, typ=GetProductInfosResult)
     return __ret__.apply(lambda __response__: GetProductInfosResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

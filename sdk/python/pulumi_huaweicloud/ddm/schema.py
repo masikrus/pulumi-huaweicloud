@@ -30,6 +30,7 @@ class SchemaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Schema resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['SchemaDataNodeArgs']]] data_nodes: Specifies the RDS instances associated with the schema.
                
                Changing this parameter will create a new resource.
@@ -191,6 +192,7 @@ class _SchemaState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Schema resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SchemaDataNodeArgs']]] data_nodes: Specifies the RDS instances associated with the schema.
                
                Changing this parameter will create a new resource.
@@ -388,7 +390,7 @@ class _SchemaState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/schema:Schema")
+@pulumi.type_token("huaweicloud:Ddm/schema:Schema")
 class Schema(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -431,39 +433,16 @@ class Schema(pulumi.CustomResource):
 
         The DDM schema can be imported using the `<instance_id>/<name>`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/schema:Schema test <instance_id>/<name>
+        $ pulumi import huaweicloud:Ddm/schema:Schema test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `data_nodes/admin_user`,
-
         `data_nodes/admin_password`. It is generally recommended running `pulumi preview` after importing a DDM schema. You can
-
         then decide if changes should be applied to the DDM schema, or the resource definition should be updated to align with
-
         the DDM schema. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ddm_schema" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              data_nodes.0.admin_user, data_nodes.0.admin_password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -531,39 +510,16 @@ class Schema(pulumi.CustomResource):
 
         The DDM schema can be imported using the `<instance_id>/<name>`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ddm/schema:Schema test <instance_id>/<name>
+        $ pulumi import huaweicloud:Ddm/schema:Schema test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `data_nodes/admin_user`,
-
         `data_nodes/admin_password`. It is generally recommended running `pulumi preview` after importing a DDM schema. You can
-
         then decide if changes should be applied to the DDM schema, or the resource definition should be updated to align with
-
         the DDM schema. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ddm_schema" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              data_nodes.0.admin_user, data_nodes.0.admin_password
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SchemaArgs args: The arguments to use to populate this resource's properties.
@@ -615,7 +571,7 @@ class Schema(pulumi.CustomResource):
             __props__.__dict__["shards"] = None
             __props__.__dict__["status"] = None
         super(Schema, __self__).__init__(
-            'huaweicloud:ddm/schema:Schema',
+            'huaweicloud:Ddm/schema:Schema',
             resource_name,
             __props__,
             opts)

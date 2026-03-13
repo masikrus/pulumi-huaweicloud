@@ -38,6 +38,7 @@ class DeployApplicationArgs:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplication resource.
+
         :param pulumi.Input[_builtins.str] create_type: Specifies the creation type. Only **template** is supported.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] is_draft: Specifies whether the application is in draft status.
@@ -364,6 +365,7 @@ class _DeployApplicationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployApplication resources.
+
         :param pulumi.Input[_builtins.str] artifact_source_system: Specifies the source information transferred by the pipeline.
                This field is only valid when `trigger_source` is set to **1**. Only **CloudArtifact** is supported.
         :param pulumi.Input[_builtins.str] artifact_type: Specifies the artifact type for the pipeline source.
@@ -902,7 +904,7 @@ class _DeployApplicationState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplication:DeployApplication")
+@pulumi.type_token("huaweicloud:Codearts/deployApplication:DeployApplication")
 class DeployApplication(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -964,49 +966,17 @@ class DeployApplication(pulumi.CustomResource):
 
         The CodeArts deploy application resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplication:DeployApplication test <id>
+        $ pulumi import huaweicloud:Codearts/deployApplication:DeployApplication test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_draft`, `trigger_source`,
-
         `artifact_source_system`, `artifact_type`, `operation_list` and `group_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_draft,
-            
-              trigger_source,
-            
-              artifact_source_system,
-            
-              artifact_type,
-            
-              operation_list,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1105,49 +1075,17 @@ class DeployApplication(pulumi.CustomResource):
 
         The CodeArts deploy application resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplication:DeployApplication test <id>
+        $ pulumi import huaweicloud:Codearts/deployApplication:DeployApplication test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_draft`, `trigger_source`,
-
         `artifact_source_system`, `artifact_type`, `operation_list` and `group_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_draft,
-            
-              trigger_source,
-            
-              artifact_source_system,
-            
-              artifact_type,
-            
-              operation_list,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationArgs args: The arguments to use to populate this resource's properties.
@@ -1228,7 +1166,7 @@ class DeployApplication(pulumi.CustomResource):
             __props__.__dict__["task_name"] = None
             __props__.__dict__["updated_at"] = None
         super(DeployApplication, __self__).__init__(
-            'huaweicloud:codearts/deployApplication:DeployApplication',
+            'huaweicloud:Codearts/deployApplication:DeployApplication',
             resource_name,
             __props__,
             opts)

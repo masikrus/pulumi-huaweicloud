@@ -29,6 +29,7 @@ class LifecycleHookArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a LifecycleHook resource.
+
         :param pulumi.Input[_builtins.str] notification_topic_urn: Specifies a unique topic in SMN.
         :param pulumi.Input[_builtins.str] scaling_group_id: Specifies the ID of the AS group in UUID format.
                Changing this creates a new AS lifecycle hook.
@@ -182,6 +183,7 @@ class _LifecycleHookState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LifecycleHook resources.
+
         :param pulumi.Input[_builtins.str] create_time: The server time in UTC format when the lifecycle hook is created.
         :param pulumi.Input[_builtins.str] default_result: Specifies the default lifecycle hook callback operation. This operation is
                performed when the timeout duration expires. The valid values are *ABANDON* and *CONTINUE*, default to *ABANDON*.
@@ -394,11 +396,10 @@ class LifecycleHook(pulumi.CustomResource):
 
         Lifecycle hooks can be imported using the AS group ID and hook ID separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:As/lifecycleHook:LifecycleHook test <AS group ID>/<Lifecycle hook ID>
+        $ terraform import huaweicloud_as_lifecycle_hook.test <AS group ID>/<Lifecycle hook ID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -452,11 +453,10 @@ class LifecycleHook(pulumi.CustomResource):
 
         Lifecycle hooks can be imported using the AS group ID and hook ID separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:As/lifecycleHook:LifecycleHook test <AS group ID>/<Lifecycle hook ID>
+        $ terraform import huaweicloud_as_lifecycle_hook.test <AS group ID>/<Lifecycle hook ID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LifecycleHookArgs args: The arguments to use to populate this resource's properties.

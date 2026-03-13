@@ -31,6 +31,7 @@ class HttpsCertificateArgs:
                  tls_certificate: Optional[pulumi.Input['HttpsCertificateTlsCertificateArgs']] = None):
         """
         The set of arguments for constructing a HttpsCertificate resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the streaming domain name
         :param pulumi.Input[_builtins.str] certificate: Specifies the certificate body.
         :param pulumi.Input[_builtins.str] certificate_format: Specifies the certificate format.
@@ -166,6 +167,7 @@ class _HttpsCertificateState:
                  tls_certificate: Optional[pulumi.Input['HttpsCertificateTlsCertificateArgs']] = None):
         """
         Input properties used for looking up and filtering HttpsCertificate resources.
+
         :param pulumi.Input[_builtins.str] certificate: Specifies the certificate body.
         :param pulumi.Input[_builtins.str] certificate_format: Specifies the certificate format.
         :param pulumi.Input[_builtins.str] certificate_key: Specifies the private key
@@ -306,6 +308,7 @@ class HttpsCertificate(pulumi.CustomResource):
                  __props__=None):
         """
         Create a HttpsCertificate resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate: Specifies the certificate body.
@@ -325,6 +328,7 @@ class HttpsCertificate(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a HttpsCertificate resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param HttpsCertificateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

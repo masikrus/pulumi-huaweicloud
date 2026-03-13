@@ -27,6 +27,7 @@ class AclPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclPolicy resource.
+
         :param pulumi.Input[_builtins.str] entity_type: Specifies the entity type of the ACL policy.
                The valid values are as follows:
                + **IP**: This rule is specified to control access to the API for specific IPs.
@@ -158,6 +159,7 @@ class _AclPolicyState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclPolicy resources.
+
         :param pulumi.Input[_builtins.str] entity_type: Specifies the entity type of the ACL policy.
                The valid values are as follows:
                + **IP**: This rule is specified to control access to the API for specific IPs.
@@ -314,15 +316,74 @@ class AclPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an ACL policy with IP control
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        ip_addresses = config.require_object("ipAddresses")
+        ip_rule = huaweicloud.dedicatedapig.AclPolicy("ip_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="IP",
+            value=std.index.join(separator=",",
+                input=ip_addresses)["result"])
+        ```
+
+        ### Create an ACL policy with account control (via domain names)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        domain_names = config.require_object("domainNames")
+        domain_rule = huaweicloud.dedicatedapig.AclPolicy("domain_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="DOMAIN",
+            value=std.index.join(separator=",",
+                input=domain_names)["result"])
+        ```
+
+        ### Create an ACL policy with account control (via domain IDs)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        domain_ids = config.require_object("domainIds")
+        domain_id_rule = huaweicloud.dedicatedapig.AclPolicy("domain_id_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="DOMAIN_ID",
+            value=std.index.join(separator=",",
+                input=domain_ids)["result"])
+        ```
+
         ## Import
 
         ACL Policies can be imported using their `id` and related dedicated instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/aclPolicy:AclPolicy test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -359,15 +420,74 @@ class AclPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an ACL policy with IP control
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        ip_addresses = config.require_object("ipAddresses")
+        ip_rule = huaweicloud.dedicatedapig.AclPolicy("ip_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="IP",
+            value=std.index.join(separator=",",
+                input=ip_addresses)["result"])
+        ```
+
+        ### Create an ACL policy with account control (via domain names)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        domain_names = config.require_object("domainNames")
+        domain_rule = huaweicloud.dedicatedapig.AclPolicy("domain_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="DOMAIN",
+            value=std.index.join(separator=",",
+                input=domain_names)["result"])
+        ```
+
+        ### Create an ACL policy with account control (via domain IDs)
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        policy_name = config.require_object("policyName")
+        domain_ids = config.require_object("domainIds")
+        domain_id_rule = huaweicloud.dedicatedapig.AclPolicy("domain_id_rule",
+            instance_id=instance_id,
+            name=policy_name,
+            type="PERMIT",
+            entity_type="DOMAIN_ID",
+            value=std.index.join(separator=",",
+                input=domain_ids)["result"])
+        ```
+
         ## Import
 
         ACL Policies can be imported using their `id` and related dedicated instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/aclPolicy:AclPolicy test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclPolicyArgs args: The arguments to use to populate this resource's properties.

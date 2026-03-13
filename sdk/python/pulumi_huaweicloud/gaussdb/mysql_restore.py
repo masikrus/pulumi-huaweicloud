@@ -27,6 +27,7 @@ class MysqlRestoreArgs:
                  restore_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MysqlRestore resource.
+
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID. Changing this creates a new
                resource.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the target instance ID. Changing this creates a new
@@ -146,6 +147,7 @@ class _MysqlRestoreState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlRestore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
                specified when the backup file is used for restoration. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: The region in which to create the GaussDB mysql restore resource. If omitted,
@@ -312,6 +314,7 @@ class MysqlRestore(pulumi.CustomResource):
             restore_time=1673852043000)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
@@ -377,6 +380,7 @@ class MysqlRestore(pulumi.CustomResource):
             type="timestamp",
             restore_time=1673852043000)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlRestoreArgs args: The arguments to use to populate this resource's properties.

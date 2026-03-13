@@ -112,7 +112,7 @@ def get_policies(build_type: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_policies()
+    test = huaweicloud.Organizations.get_policies()
     ```
 
 
@@ -129,7 +129,7 @@ def get_policies(build_type: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult).value
 
     return AwaitableGetPoliciesResult(
         build_type=pulumi.get(__ret__, 'build_type'),
@@ -150,7 +150,7 @@ def get_policies_output(build_type: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_policies()
+    test = huaweicloud.Organizations.get_policies()
     ```
 
 
@@ -167,7 +167,7 @@ def get_policies_output(build_type: Optional[pulumi.Input[Optional[_builtins.str
     __args__['name'] = name
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getPolicies:getPolicies', __args__, opts=opts, typ=GetPoliciesResult)
     return __ret__.apply(lambda __response__: GetPoliciesResult(
         build_type=pulumi.get(__response__, 'build_type'),
         id=pulumi.get(__response__, 'id'),

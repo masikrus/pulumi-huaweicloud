@@ -21,8 +21,9 @@ __all__ = ['DomainArgs', 'Domain']
 @pulumi.input_type
 class DomainArgs:
     def __init__(__self__, *,
-                 domain: pulumi.Input[_builtins.str],
+                 domain_value: pulumi.Input[_builtins.str],
                  servers: pulumi.Input[Sequence[pulumi.Input['DomainServerArgs']]],
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_name: Optional[pulumi.Input[_builtins.str]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -48,10 +49,13 @@ class DomainArgs:
                  website_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Domain resource.
-        :param pulumi.Input[_builtins.str] domain: Specifies the domain name to be protected. For example, `www.example.com` or
+
+        :param pulumi.Input[_builtins.str] domain_value: Specifies the domain name to be protected. For example, `www.example.com` or
                `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[Sequence[pulumi.Input['DomainServerArgs']]] servers: Specifies an array of origin web servers.
                The server structure is documented below.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF.  
+               `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] certificate_name: Specifies the certificate name. This parameter is mandatory
@@ -154,8 +158,10 @@ class DomainArgs:
                The value contains `1` to `128` characters.
                The website name must be unique within this account.
         """
-        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_value", domain_value)
         pulumi.set(__self__, "servers", servers)
+        if access_status is not None:
+            pulumi.set(__self__, "access_status", access_status)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
         if certificate_name is not None:
@@ -204,17 +210,17 @@ class DomainArgs:
             pulumi.set(__self__, "website_name", website_name)
 
     @_builtins.property
-    @pulumi.getter
-    def domain(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="DomainValue")
+    def domain_value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the domain name to be protected. For example, `www.example.com` or
         `*.example.com`. Changing this creates a new domain.
         """
-        return pulumi.get(self, "domain")
+        return pulumi.get(self, "domain_value")
 
-    @domain.setter
-    def domain(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "domain", value)
+    @domain_value.setter
+    def domain_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "domain_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -228,6 +234,19 @@ class DomainArgs:
     @servers.setter
     def servers(self, value: pulumi.Input[Sequence[pulumi.Input['DomainServerArgs']]]):
         pulumi.set(self, "servers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accessStatus")
+    def access_status(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies whether a domain name is connected to WAF.  
+        `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
+        """
+        return pulumi.get(self, "access_status")
+
+    @access_status.setter
+    def access_status(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "access_status", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
@@ -587,6 +606,7 @@ class DomainArgs:
 @pulumi.input_type
 class _DomainState:
     def __init__(__self__, *,
+                 domain_value: Optional[pulumi.Input[_builtins.str]] = None,
                  access_code: Optional[pulumi.Input[_builtins.str]] = None,
                  access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -595,7 +615,6 @@ class _DomainState:
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_page: Optional[pulumi.Input['DomainCustomPageArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  forward_header_map: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -617,9 +636,12 @@ class _DomainState:
                  website_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
+        :param pulumi.Input[_builtins.str] domain_value: Specifies the domain name to be protected. For example, `www.example.com` or
+               `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[_builtins.str] access_code: The CNAME prefix. The CNAME suffix is `.vip1.huaweicloudwaf.com`.
-        :param pulumi.Input[_builtins.int] access_status: Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain
-               name is connected to WAF.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF.  
+               `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] certificate_name: Specifies the certificate name. This parameter is mandatory
@@ -631,8 +653,6 @@ class _DomainState:
         :param pulumi.Input['DomainCustomPageArgs'] custom_page: Specifies the custom page. Only supports one custom alarm page.
                The custom_page structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the WAF domain.
-        :param pulumi.Input[_builtins.str] domain: Specifies the domain name to be protected. For example, `www.example.com` or
-               `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF domain.
                For enterprise users, if omitted, default enterprise project will be used.
                Changing this parameter will create a new resource.
@@ -727,6 +747,8 @@ class _DomainState:
                The value contains `1` to `128` characters.
                The website name must be unique within this account.
         """
+        if domain_value is not None:
+            pulumi.set(__self__, "domain_value", domain_value)
         if access_code is not None:
             pulumi.set(__self__, "access_code", access_code)
         if access_status is not None:
@@ -743,8 +765,6 @@ class _DomainState:
             pulumi.set(__self__, "custom_page", custom_page)
         if description is not None:
             pulumi.set(__self__, "description", description)
-        if domain is not None:
-            pulumi.set(__self__, "domain", domain)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if forward_header_map is not None:
@@ -785,6 +805,19 @@ class _DomainState:
             pulumi.set(__self__, "website_name", website_name)
 
     @_builtins.property
+    @pulumi.getter(name="DomainValue")
+    def domain_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the domain name to be protected. For example, `www.example.com` or
+        `*.example.com`. Changing this creates a new domain.
+        """
+        return pulumi.get(self, "domain_value")
+
+    @domain_value.setter
+    def domain_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "domain_value", value)
+
+    @_builtins.property
     @pulumi.getter(name="accessCode")
     def access_code(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -800,8 +833,8 @@ class _DomainState:
     @pulumi.getter(name="accessStatus")
     def access_status(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain
-        name is connected to WAF.
+        Specifies whether a domain name is connected to WAF.  
+        `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         """
         return pulumi.get(self, "access_status")
 
@@ -885,19 +918,6 @@ class _DomainState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the domain name to be protected. For example, `www.example.com` or
-        `*.example.com`. Changing this creates a new domain.
-        """
-        return pulumi.get(self, "domain")
-
-    @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -1208,13 +1228,14 @@ class Domain(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 domain_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_name: Optional[pulumi.Input[_builtins.str]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_page: Optional[pulumi.Input[Union['DomainCustomPageArgs', 'DomainCustomPageArgsDict']]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  forward_header_map: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1251,7 +1272,7 @@ class Domain(pulumi.CustomResource):
         certificate_id = config.require_object("certificateId")
         certificate_name = config.require_object("certificateName")
         test = huaweicloud.waf.Domain("test",
-            domain="www.example.com",
+            domain_value="www.example.com",
             certificate_id=certificate_id,
             certificate_name=certificate_name,
             proxy=True,
@@ -1297,54 +1318,29 @@ class Domain(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/domain:Domain test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/domain:Domain test <id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `keep_policy`, `charging_mode`, `ipv6_enable`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              keep_policy,
-            
-              charging_mode,
-            
-              ipv6_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] domain_value: Specifies the domain name to be protected. For example, `www.example.com` or
+               `*.example.com`. Changing this creates a new domain.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF.  
+               `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] certificate_name: Specifies the certificate name. This parameter is mandatory
@@ -1356,8 +1352,6 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[Union['DomainCustomPageArgs', 'DomainCustomPageArgsDict']] custom_page: Specifies the custom page. Only supports one custom alarm page.
                The custom_page structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the WAF domain.
-        :param pulumi.Input[_builtins.str] domain: Specifies the domain name to be protected. For example, `www.example.com` or
-               `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF domain.
                For enterprise users, if omitted, default enterprise project will be used.
                Changing this parameter will create a new resource.
@@ -1474,7 +1468,7 @@ class Domain(pulumi.CustomResource):
         certificate_id = config.require_object("certificateId")
         certificate_name = config.require_object("certificateName")
         test = huaweicloud.waf.Domain("test",
-            domain="www.example.com",
+            domain_value="www.example.com",
             certificate_id=certificate_id,
             certificate_name=certificate_name,
             proxy=True,
@@ -1520,51 +1514,22 @@ class Domain(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/domain:Domain test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/domain:Domain test <id>/<enterprise_project_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `keep_policy`, `charging_mode`, `ipv6_enable`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              keep_policy,
-            
-              charging_mode,
-            
-              ipv6_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.
@@ -1581,13 +1546,14 @@ class Domain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 domain_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_status: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_name: Optional[pulumi.Input[_builtins.str]] = None,
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  cipher: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_page: Optional[pulumi.Input[Union['DomainCustomPageArgs', 'DomainCustomPageArgsDict']]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  forward_header_map: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1615,15 +1581,16 @@ class Domain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DomainArgs.__new__(DomainArgs)
 
+            if domain_value is None and not opts.urn:
+                raise TypeError("Missing required property 'domain_value'")
+            __props__.__dict__["domain_value"] = domain_value
+            __props__.__dict__["access_status"] = access_status
             __props__.__dict__["certificate_id"] = certificate_id
             __props__.__dict__["certificate_name"] = certificate_name
             __props__.__dict__["charging_mode"] = charging_mode
             __props__.__dict__["cipher"] = cipher
             __props__.__dict__["custom_page"] = custom_page
             __props__.__dict__["description"] = description
-            if domain is None and not opts.urn:
-                raise TypeError("Missing required property 'domain'")
-            __props__.__dict__["domain"] = domain
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["forward_header_map"] = forward_header_map
             __props__.__dict__["http2_enable"] = http2_enable
@@ -1645,7 +1612,6 @@ class Domain(pulumi.CustomResource):
             __props__.__dict__["traffic_mark"] = traffic_mark
             __props__.__dict__["website_name"] = website_name
             __props__.__dict__["access_code"] = None
-            __props__.__dict__["access_status"] = None
             __props__.__dict__["protocol"] = None
         super(Domain, __self__).__init__(
             'huaweicloud:Waf/domain:Domain',
@@ -1657,6 +1623,7 @@ class Domain(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            domain_value: Optional[pulumi.Input[_builtins.str]] = None,
             access_code: Optional[pulumi.Input[_builtins.str]] = None,
             access_status: Optional[pulumi.Input[_builtins.int]] = None,
             certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1665,7 +1632,6 @@ class Domain(pulumi.CustomResource):
             cipher: Optional[pulumi.Input[_builtins.str]] = None,
             custom_page: Optional[pulumi.Input[Union['DomainCustomPageArgs', 'DomainCustomPageArgsDict']]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             forward_header_map: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             http2_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1692,9 +1658,11 @@ class Domain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] domain_value: Specifies the domain name to be protected. For example, `www.example.com` or
+               `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[_builtins.str] access_code: The CNAME prefix. The CNAME suffix is `.vip1.huaweicloudwaf.com`.
-        :param pulumi.Input[_builtins.int] access_status: Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain
-               name is connected to WAF.
+        :param pulumi.Input[_builtins.int] access_status: Specifies whether a domain name is connected to WAF.  
+               `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the certificate ID. This parameter is mandatory when `client_protocol`
                is set to **HTTPS**.
         :param pulumi.Input[_builtins.str] certificate_name: Specifies the certificate name. This parameter is mandatory
@@ -1706,8 +1674,6 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[Union['DomainCustomPageArgs', 'DomainCustomPageArgsDict']] custom_page: Specifies the custom page. Only supports one custom alarm page.
                The custom_page structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the WAF domain.
-        :param pulumi.Input[_builtins.str] domain: Specifies the domain name to be protected. For example, `www.example.com` or
-               `*.example.com`. Changing this creates a new domain.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF domain.
                For enterprise users, if omitted, default enterprise project will be used.
                Changing this parameter will create a new resource.
@@ -1806,6 +1772,7 @@ class Domain(pulumi.CustomResource):
 
         __props__ = _DomainState.__new__(_DomainState)
 
+        __props__.__dict__["domain_value"] = domain_value
         __props__.__dict__["access_code"] = access_code
         __props__.__dict__["access_status"] = access_status
         __props__.__dict__["certificate_id"] = certificate_id
@@ -1814,7 +1781,6 @@ class Domain(pulumi.CustomResource):
         __props__.__dict__["cipher"] = cipher
         __props__.__dict__["custom_page"] = custom_page
         __props__.__dict__["description"] = description
-        __props__.__dict__["domain"] = domain
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["forward_header_map"] = forward_header_map
         __props__.__dict__["http2_enable"] = http2_enable
@@ -1837,6 +1803,15 @@ class Domain(pulumi.CustomResource):
         return Domain(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="DomainValue")
+    def domain_value(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the domain name to be protected. For example, `www.example.com` or
+        `*.example.com`. Changing this creates a new domain.
+        """
+        return pulumi.get(self, "domain_value")
+
+    @_builtins.property
     @pulumi.getter(name="accessCode")
     def access_code(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1848,8 +1823,8 @@ class Domain(pulumi.CustomResource):
     @pulumi.getter(name="accessStatus")
     def access_status(self) -> pulumi.Output[_builtins.int]:
         """
-        Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain
-        name is connected to WAF.
+        Specifies whether a domain name is connected to WAF.  
+        `0`: The domain name is not connected to WAF, `1`: The domain name is connected to WAF, `2`: Skip access.
         """
         return pulumi.get(self, "access_status")
 
@@ -1905,15 +1880,6 @@ class Domain(pulumi.CustomResource):
         Specifies the description of the WAF domain.
         """
         return pulumi.get(self, "description")
-
-    @_builtins.property
-    @pulumi.getter
-    def domain(self) -> pulumi.Output[_builtins.str]:
-        """
-        Specifies the domain name to be protected. For example, `www.example.com` or
-        `*.example.com`. Changing this creates a new domain.
-        """
-        return pulumi.get(self, "domain")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")

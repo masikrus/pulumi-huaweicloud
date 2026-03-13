@@ -26,6 +26,7 @@ class UrlValidationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UrlValidation resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the signing method of the URL validation.
                The valid values are as follows:
                + **d_sha256**: Indicates signing method D, which uses the HMAC-SHA256 algorithm. This method is recommended.
@@ -142,6 +143,7 @@ class _UrlValidationState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering UrlValidation resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the signing method of the URL validation.
                The valid values are as follows:
                + **d_sha256**: Indicates signing method D, which uses the HMAC-SHA256 algorithm. This method is recommended.
@@ -289,11 +291,10 @@ class UrlValidation(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/urlValidation:UrlValidation test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -350,11 +351,10 @@ class UrlValidation(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/urlValidation:UrlValidation test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UrlValidationArgs args: The arguments to use to populate this resource's properties.

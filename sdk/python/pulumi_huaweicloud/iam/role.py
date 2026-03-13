@@ -25,10 +25,12 @@ class RoleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Role resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom policy.
-        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy in JSON format. For more details,
+        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy, in JSON format. For more details,
                please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
-        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy. Valid options are as follows:
+        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy.  
+               The valid values are as follows:
                + **AX**: the global service project.
                + **XA**: region-specific projects.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom policy.
@@ -55,7 +57,7 @@ class RoleArgs:
     @pulumi.getter
     def policy(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the content of the custom policy in JSON format. For more details,
+        Specifies the content of the custom policy, in JSON format. For more details,
         please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
         """
         return pulumi.get(self, "policy")
@@ -68,7 +70,8 @@ class RoleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the display mode of the custom policy. Valid options are as follows:
+        Specifies the display mode of the custom policy.  
+        The valid values are as follows:
         + **AX**: the global service project.
         + **XA**: region-specific projects.
         """
@@ -101,12 +104,14 @@ class _RoleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Role resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom policy.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom policy.
-        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy in JSON format. For more details,
+        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy, in JSON format. For more details,
                please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
         :param pulumi.Input[_builtins.int] references: The number of references.
-        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy. Valid options are as follows:
+        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy.  
+               The valid values are as follows:
                + **AX**: the global service project.
                + **XA**: region-specific projects.
         """
@@ -149,7 +154,7 @@ class _RoleState:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the content of the custom policy in JSON format. For more details,
+        Specifies the content of the custom policy, in JSON format. For more details,
         please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
         """
         return pulumi.get(self, "policy")
@@ -174,7 +179,8 @@ class _RoleState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the display mode of the custom policy. Valid options are as follows:
+        Specifies the display mode of the custom policy.  
+        The valid values are as follows:
         + **AX**: the global service project.
         + **XA**: region-specific projects.
         """
@@ -197,7 +203,7 @@ class Role(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Custom Policy** resource within HuaweiCloud IAM service.
+        Manages an IAM role resource within HuaweiCloud.
 
         ->**Note** You *must* have admin privileges to use this resource.
 
@@ -207,9 +213,12 @@ class Role(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        role1 = huaweicloud.iam.Role("role1",
-            name="test",
-            description="created by terraform",
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.iam.Role("test",
+            name=name,
+            description=description,
             type="AX",
             policy=\"\"\"{
           "Version": "1.1",
@@ -239,19 +248,19 @@ class Role(pulumi.CustomResource):
 
         IAM custom policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/role:Role role1 89c60255-9bd6-460c-822a-e2b959ede9d2
+        $ pulumi import huaweicloud:Iam/role:Role test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom policy.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom policy.
-        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy in JSON format. For more details,
+        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy, in JSON format. For more details,
                please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
-        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy. Valid options are as follows:
+        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy.  
+               The valid values are as follows:
                + **AX**: the global service project.
                + **XA**: region-specific projects.
         """
@@ -262,7 +271,7 @@ class Role(pulumi.CustomResource):
                  args: RoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Custom Policy** resource within HuaweiCloud IAM service.
+        Manages an IAM role resource within HuaweiCloud.
 
         ->**Note** You *must* have admin privileges to use this resource.
 
@@ -272,9 +281,12 @@ class Role(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        role1 = huaweicloud.iam.Role("role1",
-            name="test",
-            description="created by terraform",
+        config = pulumi.Config()
+        name = config.require_object("name")
+        description = config.require_object("description")
+        test = huaweicloud.iam.Role("test",
+            name=name,
+            description=description,
             type="AX",
             policy=\"\"\"{
           "Version": "1.1",
@@ -304,11 +316,10 @@ class Role(pulumi.CustomResource):
 
         IAM custom policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/role:Role role1 89c60255-9bd6-460c-822a-e2b959ede9d2
+        $ pulumi import huaweicloud:Iam/role:Role test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.
@@ -373,10 +384,11 @@ class Role(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the custom policy.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the custom policy.
-        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy in JSON format. For more details,
+        :param pulumi.Input[_builtins.str] policy: Specifies the content of the custom policy, in JSON format. For more details,
                please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
         :param pulumi.Input[_builtins.int] references: The number of references.
-        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy. Valid options are as follows:
+        :param pulumi.Input[_builtins.str] type: Specifies the display mode of the custom policy.  
+               The valid values are as follows:
                + **AX**: the global service project.
                + **XA**: region-specific projects.
         """
@@ -411,7 +423,7 @@ class Role(pulumi.CustomResource):
     @pulumi.getter
     def policy(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the content of the custom policy in JSON format. For more details,
+        Specifies the content of the custom policy, in JSON format. For more details,
         please refer to the [official document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
         """
         return pulumi.get(self, "policy")
@@ -428,7 +440,8 @@ class Role(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the display mode of the custom policy. Valid options are as follows:
+        Specifies the display mode of the custom policy.  
+        The valid values are as follows:
         + **AX**: the global service project.
         + **XA**: region-specific projects.
         """

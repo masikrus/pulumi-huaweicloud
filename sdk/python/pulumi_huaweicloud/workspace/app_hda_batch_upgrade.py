@@ -24,6 +24,7 @@ class AppHdaBatchUpgradeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppHdaBatchUpgrade resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_ids: Specifies the list of server IDs to be upgraded HDA in batches.  
                The server SIDs must exist and be valid. This parameter cannot be updated after creation.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the servers to be upgraded are located.  
@@ -79,6 +80,7 @@ class _AppHdaBatchUpgradeState:
                  server_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AppHdaBatchUpgrade resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the servers to be upgraded are located.  
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_ids: Specifies the list of server IDs to be upgraded HDA in batches.  
@@ -156,6 +158,7 @@ class AppHdaBatchUpgrade(pulumi.CustomResource):
         test = huaweicloud.workspace.AppHdaBatchUpgrade("test", server_ids=server_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the servers to be upgraded are located.  
@@ -187,6 +190,7 @@ class AppHdaBatchUpgrade(pulumi.CustomResource):
         server_ids = config.require_object("serverIds")
         test = huaweicloud.workspace.AppHdaBatchUpgrade("test", server_ids=server_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppHdaBatchUpgradeArgs args: The arguments to use to populate this resource's properties.

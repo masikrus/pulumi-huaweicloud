@@ -24,6 +24,7 @@ class ProjectActionArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProjectAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **enable**
@@ -80,6 +81,7 @@ class _ProjectActionState:
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProjectAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **enable**
@@ -159,6 +161,7 @@ class ProjectAction(pulumi.CustomResource):
             action="disable")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
@@ -191,6 +194,7 @@ class ProjectAction(pulumi.CustomResource):
             enterprise_project_id=enterprise_project_id,
             action="disable")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectActionArgs args: The arguments to use to populate this resource's properties.

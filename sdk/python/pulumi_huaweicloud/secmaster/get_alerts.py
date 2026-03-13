@@ -131,7 +131,7 @@ def get_alerts(condition: Optional[Union['GetAlertsConditionArgs', 'GetAlertsCon
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_alerts(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alerts(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -166,7 +166,7 @@ def get_alerts(condition: Optional[Union['GetAlertsConditionArgs', 'GetAlertsCon
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlerts:getAlerts', __args__, opts=opts, typ=GetAlertsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlerts:getAlerts', __args__, opts=opts, typ=GetAlertsResult).value
 
     return AwaitableGetAlertsResult(
         alerts=pulumi.get(__ret__, 'alerts'),
@@ -195,7 +195,7 @@ def get_alerts_output(condition: Optional[pulumi.Input[Optional[Union['GetAlerts
     workspace_id = config.require_object("workspaceId")
     from_date = config.require_object("fromDate")
     to_date = config.require_object("toDate")
-    test = huaweicloud.secmaster.get_alerts(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_alerts(workspace_id=workspace_id,
         from_date=from_date,
         to_date=to_date,
         condition={
@@ -230,7 +230,7 @@ def get_alerts_output(condition: Optional[pulumi.Input[Optional[Union['GetAlerts
     __args__['toDate'] = to_date
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlerts:getAlerts', __args__, opts=opts, typ=GetAlertsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlerts:getAlerts', __args__, opts=opts, typ=GetAlertsResult)
     return __ret__.apply(lambda __response__: GetAlertsResult(
         alerts=pulumi.get(__response__, 'alerts'),
         condition=pulumi.get(__response__, 'condition'),

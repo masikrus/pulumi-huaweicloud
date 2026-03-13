@@ -29,6 +29,7 @@ class MysqlDatabaseTableRestoreArgs:
                  restore_tables: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabaseTableRestoreRestoreTableArgs']]]] = None):
         """
         The set of arguments for constructing a MysqlDatabaseTableRestore resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS MySQL instance.
                
                Changing this creates a new resource.
@@ -167,6 +168,7 @@ class _MysqlDatabaseTableRestoreState:
                  restore_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MysqlDatabaseTableRestore resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabaseTableRestoreDatabaseArgs']]] databases: Specifies the databases that will be restored.
                The databases structure is documented below.
                
@@ -351,6 +353,7 @@ class MysqlDatabaseTableRestore(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabaseTableRestoreDatabaseArgs', 'MysqlDatabaseTableRestoreDatabaseArgsDict']]]] databases: Specifies the databases that will be restored.
@@ -425,6 +428,7 @@ class MysqlDatabaseTableRestore(pulumi.CustomResource):
                 }],
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlDatabaseTableRestoreArgs args: The arguments to use to populate this resource's properties.

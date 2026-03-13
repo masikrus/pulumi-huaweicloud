@@ -43,6 +43,7 @@ class ApiArgs:
                  visibility: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Api resource.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the security authentication mode. The value can be 'APP', 'IAM', and '
                NONE'.
         :param pulumi.Input[_builtins.str] backend_type: Specifies the service backend type. The value can be:
@@ -390,6 +391,7 @@ class _ApiState:
                  visibility: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Api resources.
+
         :param pulumi.Input[_builtins.str] auth_type: Specifies the security authentication mode. The value can be 'APP', 'IAM', and '
                NONE'.
         :param pulumi.Input[Sequence[pulumi.Input['ApiBackendParameterArgs']]] backend_parameters: the backend parameter list (documented below).
@@ -799,11 +801,10 @@ class Api(pulumi.CustomResource):
 
         API can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:SharedApig/api:Api api "774438a28a574ac8a496325d1bf51807"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -886,11 +887,10 @@ class Api(pulumi.CustomResource):
 
         API can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:SharedApig/api:Api api "774438a28a574ac8a496325d1bf51807"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApiArgs args: The arguments to use to populate this resource's properties.

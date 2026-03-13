@@ -24,6 +24,7 @@ class ComponentArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Component resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
         :param pulumi.Input[_builtins.str] name: Specifies the component name.
         """
@@ -77,6 +78,7 @@ class _ComponentState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Component resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID.
         :param pulumi.Input[_builtins.str] code: Indicates the component code.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Indicates the enterprise project ID.
@@ -151,7 +153,7 @@ class _ComponentState:
         pulumi.set(self, "name", value)
 
 
-@pulumi.type_token("huaweicloud:coc/component:Component")
+@pulumi.type_token("huaweicloud:Coc/component:Component")
 class Component(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -182,11 +184,10 @@ class Component(pulumi.CustomResource):
 
         The COC component can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/component:Component test <id>
+        $ pulumi import huaweicloud:Coc/component:Component test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,11 +221,10 @@ class Component(pulumi.CustomResource):
 
         The COC component can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/component:Component test <id>
+        $ pulumi import huaweicloud:Coc/component:Component test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentArgs args: The arguments to use to populate this resource's properties.
@@ -261,7 +261,7 @@ class Component(pulumi.CustomResource):
             __props__.__dict__["code"] = None
             __props__.__dict__["enterprise_project_id"] = None
         super(Component, __self__).__init__(
-            'huaweicloud:coc/component:Component',
+            'huaweicloud:Coc/component:Component',
             resource_name,
             __props__,
             opts)

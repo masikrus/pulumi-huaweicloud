@@ -25,6 +25,7 @@ class DesktopPoolNotificationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DesktopPoolNotification resource.
+
         :param pulumi.Input[_builtins.str] notifications: Specifies the message want to dispatch.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] pool_id: Specifies the ID of the desktop pool.
@@ -100,6 +101,7 @@ class _DesktopPoolNotificationState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DesktopPoolNotification resources.
+
         :param pulumi.Input[_builtins.str] notifications: Specifies the message want to dispatch.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] pool_id: Specifies the ID of the desktop pool.
@@ -219,6 +221,7 @@ class DesktopPoolNotification(pulumi.CustomResource):
             notifications=notifications)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] notifications: Specifies the message want to dispatch.
@@ -254,6 +257,7 @@ class DesktopPoolNotification(pulumi.CustomResource):
             pool_id=pool_id,
             notifications=notifications)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DesktopPoolNotificationArgs args: The arguments to use to populate this resource's properties.

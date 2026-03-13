@@ -33,6 +33,7 @@ class VpcArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vpc resource.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to
                10.255.255.0/24, 172.16.0.0/12 to 172.31.255.0/24, or 192.168.0.0/16 to 192.168.255.0/24.
         :param pulumi.Input[_builtins.str] description: Specifies supplementary information about the VPC. The value is a string of
@@ -216,6 +217,7 @@ class _VpcState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Vpc resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to
                10.255.255.0/24, 172.16.0.0/12 to 172.31.255.0/24, or 192.168.0.0/16 to 192.168.255.0/24.
         :param pulumi.Input[_builtins.str] description: Specifies supplementary information about the VPC. The value is a string of
@@ -462,29 +464,13 @@ class Vpc(pulumi.CustomResource):
 
         VPCs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/vpc:Vpc vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
 
         Note that the imported state may not be identical to your resource definition when `secondary_cidr` was set.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc" "vpc_v1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [ secondary_cidr ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,29 +531,13 @@ class Vpc(pulumi.CustomResource):
 
         VPCs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/vpc:Vpc vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c
         ```
 
         Note that the imported state may not be identical to your resource definition when `secondary_cidr` was set.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc" "vpc_v1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [ secondary_cidr ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

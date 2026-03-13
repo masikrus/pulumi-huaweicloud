@@ -24,6 +24,7 @@ class ServiceActionV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceActionV2 resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **start**
@@ -90,6 +91,7 @@ class _ServiceActionV2State:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceActionV2 resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
                The valid values are as follows:
                + **start**
@@ -179,6 +181,7 @@ class ServiceActionV2(pulumi.CustomResource):
             action="stop")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action type.  
@@ -215,6 +218,7 @@ class ServiceActionV2(pulumi.CustomResource):
             service_id=service_id,
             action="stop")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceActionV2Args args: The arguments to use to populate this resource's properties.

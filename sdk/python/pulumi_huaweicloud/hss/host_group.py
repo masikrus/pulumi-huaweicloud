@@ -25,6 +25,7 @@ class HostGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HostGroup resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the host
                group belongs.
                Changing this parameter will create a new resource.
@@ -113,6 +114,7 @@ class _HostGroupState:
                  unprotect_host_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering HostGroup resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the host
                group belongs.
                Changing this parameter will create a new resource.
@@ -248,7 +250,7 @@ class _HostGroupState:
         pulumi.set(self, "unprotect_host_num", value)
 
 
-@pulumi.type_token("huaweicloud:hss/hostGroup:HostGroup")
+@pulumi.type_token("huaweicloud:Hss/hostGroup:HostGroup")
 class HostGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -280,13 +282,20 @@ class HostGroup(pulumi.CustomResource):
 
         ## Import
 
-        ### Import resource from non default enterprise project
+        The host group resource can be imported using `enterprise_project_id` and `id`, separated by a slash, e.g.
 
-        bash
+        ### Import resource under the default enterprise project
 
         ```sh
-        $ pulumi import huaweicloud:hss/hostGroup:HostGroup test <enterprise_project_id>/<id>
+        $ pulumi import huaweicloud:Hss/hostGroup:HostGroup test 0/<id>
         ```
+
+        ### Import resource from non default enterprise project
+
+        ```sh
+        $ pulumi import huaweicloud:Hss/hostGroup:HostGroup test <enterprise_project_id>/<id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,13 +337,20 @@ class HostGroup(pulumi.CustomResource):
 
         ## Import
 
-        ### Import resource from non default enterprise project
+        The host group resource can be imported using `enterprise_project_id` and `id`, separated by a slash, e.g.
 
-        bash
+        ### Import resource under the default enterprise project
 
         ```sh
-        $ pulumi import huaweicloud:hss/hostGroup:HostGroup test <enterprise_project_id>/<id>
+        $ pulumi import huaweicloud:Hss/hostGroup:HostGroup test 0/<id>
         ```
+
+        ### Import resource from non default enterprise project
+
+        ```sh
+        $ pulumi import huaweicloud:Hss/hostGroup:HostGroup test <enterprise_project_id>/<id>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param HostGroupArgs args: The arguments to use to populate this resource's properties.
@@ -373,7 +389,7 @@ class HostGroup(pulumi.CustomResource):
             __props__.__dict__["unprotect_host_ids"] = None
             __props__.__dict__["unprotect_host_num"] = None
         super(HostGroup, __self__).__init__(
-            'huaweicloud:hss/hostGroup:HostGroup',
+            'huaweicloud:Hss/hostGroup:HostGroup',
             resource_name,
             __props__,
             opts)

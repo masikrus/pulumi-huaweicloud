@@ -33,8 +33,11 @@ class ImageV2Args:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageV2 resource.
+
         :param pulumi.Input[_builtins.str] container_format: The container format. Must be "bare".
         :param pulumi.Input[_builtins.str] disk_format: The disk format. Must be one of "qcow2", "vhd".
+        :param pulumi.Input[_builtins.str] image_cache_path: This is the directory where the images will be downloaded. Images will be stored with
+               a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
         :param pulumi.Input[_builtins.str] image_source_url: This is the url of the raw image that will be downloaded in the `image_cache_path`
                before being uploaded to Glance. Glance is able to download image from internet but the `golangsdk` library does not
                yet provide a way to do so. Conflicts with `local_file_path`.
@@ -105,6 +108,10 @@ class ImageV2Args:
     @_builtins.property
     @pulumi.getter(name="imageCachePath")
     def image_cache_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        This is the directory where the images will be downloaded. Images will be stored with
+        a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
+        """
         return pulumi.get(self, "image_cache_path")
 
     @image_cache_path.setter
@@ -256,12 +263,15 @@ class _ImageV2State:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageV2 resources.
+
         :param pulumi.Input[_builtins.str] checksum: The checksum of the data associated with the image.
         :param pulumi.Input[_builtins.str] container_format: The container format. Must be "bare".
         :param pulumi.Input[_builtins.str] created_at: The date the image was created.
         :param pulumi.Input[_builtins.str] disk_format: The disk format. Must be one of "qcow2", "vhd".
         :param pulumi.Input[_builtins.str] file: the trailing path after the glance endpoint that represent the location of the image or the path to retrieve
                it.
+        :param pulumi.Input[_builtins.str] image_cache_path: This is the directory where the images will be downloaded. Images will be stored with
+               a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
         :param pulumi.Input[_builtins.str] image_source_url: This is the url of the raw image that will be downloaded in the `image_cache_path`
                before being uploaded to Glance. Glance is able to download image from internet but the `golangsdk` library does not
                yet provide a way to do so. Conflicts with `local_file_path`.
@@ -398,6 +408,10 @@ class _ImageV2State:
     @_builtins.property
     @pulumi.getter(name="imageCachePath")
     def image_cache_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        This is the directory where the images will be downloaded. Images will be stored with
+        a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
+        """
         return pulumi.get(self, "image_cache_path")
 
     @image_cache_path.setter
@@ -643,16 +657,17 @@ class ImageV2(pulumi.CustomResource):
 
         Images can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/imageV2:ImageV2 rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] container_format: The container format. Must be "bare".
         :param pulumi.Input[_builtins.str] disk_format: The disk format. Must be one of "qcow2", "vhd".
+        :param pulumi.Input[_builtins.str] image_cache_path: This is the directory where the images will be downloaded. Images will be stored with
+               a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
         :param pulumi.Input[_builtins.str] image_source_url: This is the url of the raw image that will be downloaded in the `image_cache_path`
                before being uploaded to Glance. Glance is able to download image from internet but the `golangsdk` library does not
                yet provide a way to do so. Conflicts with `local_file_path`.
@@ -705,11 +720,10 @@ class ImageV2(pulumi.CustomResource):
 
         Images can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/imageV2:ImageV2 rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageV2Args args: The arguments to use to populate this resource's properties.
@@ -816,6 +830,8 @@ class ImageV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] disk_format: The disk format. Must be one of "qcow2", "vhd".
         :param pulumi.Input[_builtins.str] file: the trailing path after the glance endpoint that represent the location of the image or the path to retrieve
                it.
+        :param pulumi.Input[_builtins.str] image_cache_path: This is the directory where the images will be downloaded. Images will be stored with
+               a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
         :param pulumi.Input[_builtins.str] image_source_url: This is the url of the raw image that will be downloaded in the `image_cache_path`
                before being uploaded to Glance. Glance is able to download image from internet but the `golangsdk` library does not
                yet provide a way to do so. Conflicts with `local_file_path`.
@@ -916,6 +932,10 @@ class ImageV2(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="imageCachePath")
     def image_cache_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        This is the directory where the images will be downloaded. Images will be stored with
+        a filename corresponding to the md5 hash of URL. Defaults to "$HOME/.terraform/image_cache"
+        """
         return pulumi.get(self, "image_cache_path")
 
     @_builtins.property

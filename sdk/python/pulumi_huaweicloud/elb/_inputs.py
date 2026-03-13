@@ -19,33 +19,46 @@ __all__ = [
     'ListenerInsertHeadersArgsDict',
     'ListenerV2InsertHeadersArgs',
     'ListenerV2InsertHeadersArgsDict',
+    'MemberCheckTaskResultArgs',
+    'MemberCheckTaskResultArgsDict',
+    'MemberCheckTaskResultAclArgs',
+    'MemberCheckTaskResultAclArgsDict',
+    'MemberCheckTaskResultAclCheckItemArgs',
+    'MemberCheckTaskResultAclCheckItemArgsDict',
+    'MemberCheckTaskResultConfigArgs',
+    'MemberCheckTaskResultConfigArgsDict',
+    'MemberCheckTaskResultConfigCheckItemArgs',
+    'MemberCheckTaskResultConfigCheckItemArgsDict',
+    'MemberCheckTaskResultSecurityGroupArgs',
+    'MemberCheckTaskResultSecurityGroupArgsDict',
+    'MemberCheckTaskResultSecurityGroupCheckItemArgs',
+    'MemberCheckTaskResultSecurityGroupCheckItemArgsDict',
     'PoolPersistenceArgs',
     'PoolPersistenceArgsDict',
     'PoolV2PersistenceArgs',
     'PoolV2PersistenceArgsDict',
+    'GetLoadbalancersByTagsMatchArgs',
+    'GetLoadbalancersByTagsMatchArgsDict',
+    'GetLoadbalancersByTagsTagArgs',
+    'GetLoadbalancersByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ListenerInsertHeadersArgsDict(TypedDict):
-        x_forwarded_elb_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to transparently transmit the load balancer EIP to backend
-        servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
-        Value options:
-        + **true**: This function is enabled.
-        + **false (default)**: The function is disabled.
-        """
-        x_forwarded_host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to rewrite the X-Forwarded-Host header. If this function is
-        enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
-        + **true (default)**: This function is enabled.
-        + **false**: The function is disabled.
-        """
-elif False:
-    ListenerInsertHeadersArgsDict: TypeAlias = Mapping[str, Any]
+class ListenerInsertHeadersArgsDict(TypedDict):
+    x_forwarded_elb_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to transparently transmit the load balancer EIP to backend
+    servers. After this function is enabled, the load balancer EIP is stored in the HTTP header and passes to backend servers.
+    Value options:
+    + **true**: This function is enabled.
+    + **false (default)**: The function is disabled.
+    """
+    x_forwarded_host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to rewrite the X-Forwarded-Host header. If this function is
+    enabled, **X-Forwarded-Host** is rewritten based on Host in the request and sent to backend servers. Value options:
+    + **true (default)**: This function is enabled.
+    + **false**: The function is disabled.
+    """
 
 @pulumi.input_type
 class ListenerInsertHeadersArgs:
@@ -100,12 +113,9 @@ class ListenerInsertHeadersArgs:
         pulumi.set(self, "x_forwarded_host", value)
 
 
-if not MYPY:
-    class ListenerV2InsertHeadersArgsDict(TypedDict):
-        x_forwarded_elb_ip: NotRequired[pulumi.Input[_builtins.str]]
-        x_forwarded_host: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ListenerV2InsertHeadersArgsDict: TypeAlias = Mapping[str, Any]
+class ListenerV2InsertHeadersArgsDict(TypedDict):
+    x_forwarded_elb_ip: NotRequired[pulumi.Input[_builtins.str]]
+    x_forwarded_host: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ListenerV2InsertHeadersArgs:
@@ -136,27 +146,828 @@ class ListenerV2InsertHeadersArgs:
         pulumi.set(self, "x_forwarded_host", value)
 
 
-if not MYPY:
-    class PoolPersistenceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
+class MemberCheckTaskResultArgsDict(TypedDict):
+    acls: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclArgsDict']]]]
+    """
+    Indicates the network ACL rule check.
+    The acl structure is documented below.
+    """
+    configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigArgsDict']]]]
+    """
+    Indicates the configuration check.
+    The config structure is documented below.
+    """
+    security_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupArgsDict']]]]
+    """
+    Indicates the security group rule check.
+    The security_group structure is documented below.
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultArgs:
+    def __init__(__self__, *,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclArgs']]]] = None,
+                 configs: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigArgs']]]] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupArgs']]]] = None):
         """
-        The type of persistence mode. The current specification supports SOURCE_IP,
-        HTTP_COOKIE, and APP_COOKIE.
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclArgs']]] acls: Indicates the network ACL rule check.
+               The acl structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigArgs']]] configs: Indicates the configuration check.
+               The config structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupArgs']]] security_groups: Indicates the security group rule check.
+               The security_group structure is documented below.
         """
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+        if acls is not None:
+            pulumi.set(__self__, "acls", acls)
+        if configs is not None:
+            pulumi.set(__self__, "configs", configs)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclArgs']]]]:
         """
-        The name of the cookie if persistence mode is set appropriately. Required
-        if `type = APP_COOKIE`.
+        Indicates the network ACL rule check.
+        The acl structure is documented below.
         """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
+        return pulumi.get(self, "acls")
+
+    @acls.setter
+    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclArgs']]]]):
+        pulumi.set(self, "acls", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigArgs']]]]:
         """
-        Specifies the sticky session timeout duration in minutes. This parameter is
-        invalid when type is set to APP_COOKIE. The value range varies depending on the protocol of the backend server group:
-        + When the protocol of the backend server group is TCP or UDP, the value ranges from 1 to 60.
-        + When the protocol of the backend server group is HTTP or HTTPS, the value ranges from 1 to 1440.
+        Indicates the configuration check.
+        The config structure is documented below.
         """
-elif False:
-    PoolPersistenceArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "configs")
+
+    @configs.setter
+    def configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigArgs']]]]):
+        pulumi.set(self, "configs", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupArgs']]]]:
+        """
+        Indicates the security group rule check.
+        The security_group structure is documented below.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupArgs']]]]):
+        pulumi.set(self, "security_groups", value)
+
+
+class MemberCheckTaskResultAclArgsDict(TypedDict):
+    check_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclCheckItemArgsDict']]]]
+    """
+    Indicates the summary of grouped check items.
+    The check_items structure is documented below.
+    """
+    check_result: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+    the check is not passed.
+    """
+    check_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of a backend server check task. The value can be **processed**, **processing**
+    or **failed**.
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultAclArgs:
+    def __init__(__self__, *,
+                 check_items: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclCheckItemArgs']]]] = None,
+                 check_result: Optional[pulumi.Input[_builtins.bool]] = None,
+                 check_status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclCheckItemArgs']]] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param pulumi.Input[_builtins.bool] check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param pulumi.Input[_builtins.str] check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclCheckItemArgs']]]]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @check_items.setter
+    def check_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultAclCheckItemArgs']]]]):
+        pulumi.set(self, "check_items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @check_result.setter
+    def check_result(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "check_result", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+    @check_status.setter
+    def check_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "check_status", value)
+
+
+class MemberCheckTaskResultAclCheckItemArgsDict(TypedDict):
+    job_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the task ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the check item name.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception cause.
+    """
+    reason_params: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the exception variables, which is used to dynamically generate exception causes based on
+    the exception cause template.
+    """
+    reason_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception reason template.
+    """
+    severity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the check items. Value options:
+    + **securityGroup**: security group checks
+    + **networkAcl**: network ACL checks
+    + **config**: health check port checks
+    + **all**: all check items
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultAclCheckItemArgs:
+    def __init__(__self__, *,
+                 job_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason_params: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 reason_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] job_id: Indicates the task ID.
+        :param pulumi.Input[_builtins.str] name: Indicates the check item name.
+        :param pulumi.Input[_builtins.str] reason: Indicates the exception cause.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param pulumi.Input[_builtins.str] reason_template: Indicates the exception reason template.
+        :param pulumi.Input[_builtins.str] severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param pulumi.Input[_builtins.str] subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "job_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @reason.setter
+    def reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @reason_params.setter
+    def reason_params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "reason_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @reason_template.setter
+    def reason_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason_template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
+
+    @subject.setter
+    def subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject", value)
+
+
+class MemberCheckTaskResultConfigArgsDict(TypedDict):
+    check_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigCheckItemArgsDict']]]]
+    """
+    Indicates the summary of grouped check items.
+    The check_items structure is documented below.
+    """
+    check_result: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+    the check is not passed.
+    """
+    check_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of a backend server check task. The value can be **processed**, **processing**
+    or **failed**.
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultConfigArgs:
+    def __init__(__self__, *,
+                 check_items: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigCheckItemArgs']]]] = None,
+                 check_result: Optional[pulumi.Input[_builtins.bool]] = None,
+                 check_status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigCheckItemArgs']]] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param pulumi.Input[_builtins.bool] check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param pulumi.Input[_builtins.str] check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigCheckItemArgs']]]]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @check_items.setter
+    def check_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultConfigCheckItemArgs']]]]):
+        pulumi.set(self, "check_items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @check_result.setter
+    def check_result(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "check_result", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+    @check_status.setter
+    def check_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "check_status", value)
+
+
+class MemberCheckTaskResultConfigCheckItemArgsDict(TypedDict):
+    job_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the task ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the check item name.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception cause.
+    """
+    reason_params: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the exception variables, which is used to dynamically generate exception causes based on
+    the exception cause template.
+    """
+    reason_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception reason template.
+    """
+    severity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the check items. Value options:
+    + **securityGroup**: security group checks
+    + **networkAcl**: network ACL checks
+    + **config**: health check port checks
+    + **all**: all check items
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultConfigCheckItemArgs:
+    def __init__(__self__, *,
+                 job_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason_params: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 reason_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] job_id: Indicates the task ID.
+        :param pulumi.Input[_builtins.str] name: Indicates the check item name.
+        :param pulumi.Input[_builtins.str] reason: Indicates the exception cause.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param pulumi.Input[_builtins.str] reason_template: Indicates the exception reason template.
+        :param pulumi.Input[_builtins.str] severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param pulumi.Input[_builtins.str] subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "job_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @reason.setter
+    def reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @reason_params.setter
+    def reason_params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "reason_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @reason_template.setter
+    def reason_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason_template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
+
+    @subject.setter
+    def subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject", value)
+
+
+class MemberCheckTaskResultSecurityGroupArgsDict(TypedDict):
+    check_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupCheckItemArgsDict']]]]
+    """
+    Indicates the summary of grouped check items.
+    The check_items structure is documented below.
+    """
+    check_result: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+    the check is not passed.
+    """
+    check_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of a backend server check task. The value can be **processed**, **processing**
+    or **failed**.
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultSecurityGroupArgs:
+    def __init__(__self__, *,
+                 check_items: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupCheckItemArgs']]]] = None,
+                 check_result: Optional[pulumi.Input[_builtins.bool]] = None,
+                 check_status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupCheckItemArgs']]] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param pulumi.Input[_builtins.bool] check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param pulumi.Input[_builtins.str] check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupCheckItemArgs']]]]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @check_items.setter
+    def check_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MemberCheckTaskResultSecurityGroupCheckItemArgs']]]]):
+        pulumi.set(self, "check_items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @check_result.setter
+    def check_result(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "check_result", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+    @check_status.setter
+    def check_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "check_status", value)
+
+
+class MemberCheckTaskResultSecurityGroupCheckItemArgsDict(TypedDict):
+    job_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the task ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the check item name.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception cause.
+    """
+    reason_params: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the exception variables, which is used to dynamically generate exception causes based on
+    the exception cause template.
+    """
+    reason_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception reason template.
+    """
+    severity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the check items. Value options:
+    + **securityGroup**: security group checks
+    + **networkAcl**: network ACL checks
+    + **config**: health check port checks
+    + **all**: all check items
+    """
+
+@pulumi.input_type
+class MemberCheckTaskResultSecurityGroupCheckItemArgs:
+    def __init__(__self__, *,
+                 job_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason: Optional[pulumi.Input[_builtins.str]] = None,
+                 reason_params: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 reason_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity: Optional[pulumi.Input[_builtins.str]] = None,
+                 subject: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] job_id: Indicates the task ID.
+        :param pulumi.Input[_builtins.str] name: Indicates the check item name.
+        :param pulumi.Input[_builtins.str] reason: Indicates the exception cause.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param pulumi.Input[_builtins.str] reason_template: Indicates the exception reason template.
+        :param pulumi.Input[_builtins.str] severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param pulumi.Input[_builtins.str] subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "job_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @reason.setter
+    def reason(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @reason_params.setter
+    def reason_params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "reason_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @reason_template.setter
+    def reason_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "reason_template", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
+
+    @subject.setter
+    def subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "subject", value)
+
+
+class PoolPersistenceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of persistence mode. The current specification supports SOURCE_IP,
+    HTTP_COOKIE, and APP_COOKIE.
+    """
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the cookie if persistence mode is set appropriately. Required
+    if `type = APP_COOKIE`.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the sticky session timeout duration in minutes. This parameter is
+    invalid when type is set to APP_COOKIE. The value range varies depending on the protocol of the backend server group:
+    + When the protocol of the backend server group is TCP or UDP, the value ranges from 1 to 60.
+    + When the protocol of the backend server group is HTTP or HTTPS, the value ranges from 1 to 1440.
+    """
 
 @pulumi.input_type
 class PoolPersistenceArgs:
@@ -222,13 +1033,10 @@ class PoolPersistenceArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class PoolV2PersistenceArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        cookie_name: NotRequired[pulumi.Input[_builtins.str]]
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PoolV2PersistenceArgsDict: TypeAlias = Mapping[str, Any]
+class PoolV2PersistenceArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    cookie_name: NotRequired[pulumi.Input[_builtins.str]]
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PoolV2PersistenceArgs:
@@ -268,5 +1076,129 @@ class PoolV2PersistenceArgs:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "timeout", value)
+
+
+class GetLoadbalancersByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matchs key.
+    Currently, only **resource_name** for key is supported.
+    """
+    value: _builtins.str
+    """
+    Specifies the value corresponding to the key.
+    """
+
+@pulumi.input_type
+class GetLoadbalancersByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matchs key.
+               Currently, only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the value corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matchs key.
+        Currently, only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value corresponding to the key.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetLoadbalancersByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the matchs key.
+    Currently, only **resource_name** for key is supported.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > 1. The tag value contains up to `255` unicode characters.
+    <br/>2. The values in this list are in an OR relationship.
+    <br/>3. If this list is left blank, it indicates that all values are included.
+    <br/>4. If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetLoadbalancersByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matchs key.
+               Currently, only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > 1. The tag value contains up to `255` unicode characters.
+               <br/>2. The values in this list are in an OR relationship.
+               <br/>3. If this list is left blank, it indicates that all values are included.
+               <br/>4. If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matchs key.
+        Currently, only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > 1. The tag value contains up to `255` unicode characters.
+        <br/>2. The values in this list are in an OR relationship.
+        <br/>3. If this list is left blank, it indicates that all values are included.
+        <br/>4. If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

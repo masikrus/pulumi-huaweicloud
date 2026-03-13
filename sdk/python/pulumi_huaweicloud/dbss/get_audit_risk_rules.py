@@ -120,7 +120,7 @@ def get_audit_risk_rules(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_risk_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_risk_rules(instance_id=instance_id)
     ```
 
 
@@ -141,7 +141,7 @@ def get_audit_risk_rules(instance_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['riskLevel'] = risk_level
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getAuditRiskRules:getAuditRiskRules', __args__, opts=opts, typ=GetAuditRiskRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getAuditRiskRules:getAuditRiskRules', __args__, opts=opts, typ=GetAuditRiskRulesResult).value
 
     return AwaitableGetAuditRiskRulesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -166,7 +166,7 @@ def get_audit_risk_rules_output(instance_id: Optional[pulumi.Input[_builtins.str
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_audit_risk_rules(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_audit_risk_rules(instance_id=instance_id)
     ```
 
 
@@ -187,7 +187,7 @@ def get_audit_risk_rules_output(instance_id: Optional[pulumi.Input[_builtins.str
     __args__['region'] = region
     __args__['riskLevel'] = risk_level
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getAuditRiskRules:getAuditRiskRules', __args__, opts=opts, typ=GetAuditRiskRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getAuditRiskRules:getAuditRiskRules', __args__, opts=opts, typ=GetAuditRiskRulesResult)
     return __ret__.apply(lambda __response__: GetAuditRiskRulesResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

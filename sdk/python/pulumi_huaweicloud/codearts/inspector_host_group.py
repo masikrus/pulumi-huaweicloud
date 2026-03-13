@@ -22,6 +22,7 @@ class InspectorHostGroupArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InspectorHostGroup resource.
+
         :param pulumi.Input[_builtins.str] name: Specifies the host group name.
                Changing this creates a new resource.
         """
@@ -48,6 +49,7 @@ class _InspectorHostGroupState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InspectorHostGroup resources.
+
         :param pulumi.Input[_builtins.str] name: Specifies the host group name.
                Changing this creates a new resource.
         """
@@ -68,7 +70,7 @@ class _InspectorHostGroupState:
         pulumi.set(self, "name", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/inspectorHostGroup:InspectorHostGroup")
+@pulumi.type_token("huaweicloud:Codearts/inspectorHostGroup:InspectorHostGroup")
 class InspectorHostGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -94,11 +96,10 @@ class InspectorHostGroup(pulumi.CustomResource):
 
         The host group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorHostGroup:InspectorHostGroup test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorHostGroup:InspectorHostGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,11 +130,10 @@ class InspectorHostGroup(pulumi.CustomResource):
 
         The host group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorHostGroup:InspectorHostGroup test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorHostGroup:InspectorHostGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InspectorHostGroupArgs args: The arguments to use to populate this resource's properties.
@@ -162,7 +162,7 @@ class InspectorHostGroup(pulumi.CustomResource):
 
             __props__.__dict__["name"] = name
         super(InspectorHostGroup, __self__).__init__(
-            'huaweicloud:codearts/inspectorHostGroup:InspectorHostGroup',
+            'huaweicloud:Codearts/inspectorHostGroup:InspectorHostGroup',
             resource_name,
             __props__,
             opts)

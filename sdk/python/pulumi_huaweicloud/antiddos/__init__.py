@@ -14,6 +14,7 @@ from .get_eip_defense_statuses import *
 from .get_eip_defense_statuses_v2 import *
 from .get_eip_exception_events import *
 from .get_eip_protection_traffic import *
+from .get_quota import *
 from .get_v1 import *
 from .get_weekly_protection_statistics import *
 from .lts_config import *

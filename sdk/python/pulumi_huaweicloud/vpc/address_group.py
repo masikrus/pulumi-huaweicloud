@@ -32,6 +32,7 @@ class AddressGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AddressGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] addresses: Specifies an array of one or more IP addresses. The address can be a single IP
                address, IP address range or IP address CIDR. Only one of `addresses` and `ip_extra_set` can be specified.
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the IP address group.
@@ -214,6 +215,7 @@ class _AddressGroupState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AddressGroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] addresses: Specifies an array of one or more IP addresses. The address can be a single IP
                address, IP address range or IP address CIDR. Only one of `addresses` and `ip_extra_set` can be specified.
         :param pulumi.Input[_builtins.str] description: Specifies the supplementary information about the IP address group.
@@ -457,37 +459,15 @@ class AddressGroup(pulumi.CustomResource):
 
         IP address groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/addressGroup:AddressGroup test bc96f6b0-ca2c-42ee-b719-0f26bc9c8661
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `force_destroy`. It is generally recommended running `pulumi preview` after
-
         importing the image. You can then decide if changes should be applied to the image, or the resource
-
         definition should be updated to align with the image. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc_address_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -581,37 +561,15 @@ class AddressGroup(pulumi.CustomResource):
 
         IP address groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/addressGroup:AddressGroup test bc96f6b0-ca2c-42ee-b719-0f26bc9c8661
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `force_destroy`. It is generally recommended running `pulumi preview` after
-
         importing the image. You can then decide if changes should be applied to the image, or the resource
-
         definition should be updated to align with the image. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_vpc_address_group" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              force_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AddressGroupArgs args: The arguments to use to populate this resource's properties.

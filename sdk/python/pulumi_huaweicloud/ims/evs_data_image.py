@@ -27,6 +27,7 @@ class EvsDataImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EvsDataImage resource.
+
         :param pulumi.Input[_builtins.str] volume_id: Specifies the EVS volume ID used to create the image.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
@@ -196,6 +197,7 @@ class _EvsDataImageState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EvsDataImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1231,11 +1233,10 @@ class EvsDataImage(pulumi.CustomResource):
 
         The IMS EVS data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/evsDataImage:EvsDataImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1283,11 +1284,10 @@ class EvsDataImage(pulumi.CustomResource):
 
         The IMS EVS data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/evsDataImage:EvsDataImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EvsDataImageArgs args: The arguments to use to populate this resource's properties.

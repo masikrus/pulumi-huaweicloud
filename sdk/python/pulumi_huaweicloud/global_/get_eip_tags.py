@@ -94,7 +94,7 @@ def get_eip_tags(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_tags()
+    test = huaweicloud.Global.get_eip_tags()
     ```
 
 
@@ -104,7 +104,7 @@ def get_eip_tags(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getEipTags:getEipTags', __args__, opts=opts, typ=GetEipTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getEipTags:getEipTags', __args__, opts=opts, typ=GetEipTagsResult).value
 
     return AwaitableGetEipTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -122,7 +122,7 @@ def get_eip_tags_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_tags()
+    test = huaweicloud.Global.get_eip_tags()
     ```
 
 
@@ -132,7 +132,7 @@ def get_eip_tags_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] 
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getEipTags:getEipTags', __args__, opts=opts, typ=GetEipTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getEipTags:getEipTags', __args__, opts=opts, typ=GetEipTagsResult)
     return __ret__.apply(lambda __response__: GetEipTagsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

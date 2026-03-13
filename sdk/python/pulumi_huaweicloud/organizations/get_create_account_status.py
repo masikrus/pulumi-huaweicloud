@@ -82,7 +82,7 @@ def get_create_account_status(states: Optional[Sequence[_builtins.str]] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_create_account_status()
+    test = huaweicloud.Organizations.get_create_account_status()
     ```
 
 
@@ -91,7 +91,7 @@ def get_create_account_status(states: Optional[Sequence[_builtins.str]] = None,
     __args__ = dict()
     __args__['states'] = states
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getCreateAccountStatus:getCreateAccountStatus', __args__, opts=opts, typ=GetCreateAccountStatusResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getCreateAccountStatus:getCreateAccountStatus', __args__, opts=opts, typ=GetCreateAccountStatusResult).value
 
     return AwaitableGetCreateAccountStatusResult(
         create_account_statuses=pulumi.get(__ret__, 'create_account_statuses'),
@@ -108,7 +108,7 @@ def get_create_account_status_output(states: Optional[pulumi.Input[Optional[Sequ
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_create_account_status()
+    test = huaweicloud.Organizations.get_create_account_status()
     ```
 
 
@@ -117,7 +117,7 @@ def get_create_account_status_output(states: Optional[pulumi.Input[Optional[Sequ
     __args__ = dict()
     __args__['states'] = states
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getCreateAccountStatus:getCreateAccountStatus', __args__, opts=opts, typ=GetCreateAccountStatusResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getCreateAccountStatus:getCreateAccountStatus', __args__, opts=opts, typ=GetCreateAccountStatusResult)
     return __ret__.apply(lambda __response__: GetCreateAccountStatusResult(
         create_account_statuses=pulumi.get(__response__, 'create_account_statuses'),
         id=pulumi.get(__response__, 'id'),

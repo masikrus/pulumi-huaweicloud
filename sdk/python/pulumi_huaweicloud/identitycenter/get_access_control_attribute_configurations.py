@@ -95,7 +95,7 @@ def get_access_control_attribute_configurations(instance_id: Optional[_builtins.
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getAccessControlAttributeConfigurations:getAccessControlAttributeConfigurations', __args__, opts=opts, typ=GetAccessControlAttributeConfigurationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getAccessControlAttributeConfigurations:getAccessControlAttributeConfigurations', __args__, opts=opts, typ=GetAccessControlAttributeConfigurationsResult).value
 
     return AwaitableGetAccessControlAttributeConfigurationsResult(
         access_control_attributes=pulumi.get(__ret__, 'access_control_attributes'),
@@ -117,7 +117,7 @@ def get_access_control_attribute_configurations_output(instance_id: Optional[pul
     __args__['instanceId'] = instance_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getAccessControlAttributeConfigurations:getAccessControlAttributeConfigurations', __args__, opts=opts, typ=GetAccessControlAttributeConfigurationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getAccessControlAttributeConfigurations:getAccessControlAttributeConfigurations', __args__, opts=opts, typ=GetAccessControlAttributeConfigurationsResult)
     return __ret__.apply(lambda __response__: GetAccessControlAttributeConfigurationsResult(
         access_control_attributes=pulumi.get(__response__, 'access_control_attributes'),
         id=pulumi.get(__response__, 'id'),

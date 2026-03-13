@@ -118,7 +118,7 @@ def get_access_logs(log_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ga.get_access_logs()
+    test = huaweicloud.Ga.get_access_logs()
     ```
 
 
@@ -139,7 +139,7 @@ def get_access_logs(log_id: Optional[_builtins.str] = None,
     __args__['resourceType'] = resource_type
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getAccessLogs:getAccessLogs', __args__, opts=opts, typ=GetAccessLogsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getAccessLogs:getAccessLogs', __args__, opts=opts, typ=GetAccessLogsResult).value
 
     return AwaitableGetAccessLogsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -162,7 +162,7 @@ def get_access_logs_output(log_id: Optional[pulumi.Input[Optional[_builtins.str]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ga.get_access_logs()
+    test = huaweicloud.Ga.get_access_logs()
     ```
 
 
@@ -183,7 +183,7 @@ def get_access_logs_output(log_id: Optional[pulumi.Input[Optional[_builtins.str]
     __args__['resourceType'] = resource_type
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getAccessLogs:getAccessLogs', __args__, opts=opts, typ=GetAccessLogsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getAccessLogs:getAccessLogs', __args__, opts=opts, typ=GetAccessLogsResult)
     return __ret__.apply(lambda __response__: GetAccessLogsResult(
         id=pulumi.get(__response__, 'id'),
         log_id=pulumi.get(__response__, 'log_id'),

@@ -23,6 +23,7 @@ class ExecutePolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExecutePolicy resource.
+
         :param pulumi.Input[_builtins.str] scaling_policy_id: Specifies the AS group policy ID or AS bandwidth policy ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
@@ -64,6 +65,7 @@ class _ExecutePolicyState:
                  scaling_policy_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExecutePolicy resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] scaling_policy_id: Specifies the AS group policy ID or AS bandwidth policy ID.
@@ -130,6 +132,7 @@ class ExecutePolicy(pulumi.CustomResource):
         test = huaweicloud.as_.ExecutePolicy("test", scaling_policy_id=scaling_policy_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -163,6 +166,7 @@ class ExecutePolicy(pulumi.CustomResource):
         scaling_policy_id = config.require_object("scalingPolicyId")
         test = huaweicloud.as_.ExecutePolicy("test", scaling_policy_id=scaling_policy_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExecutePolicyArgs args: The arguments to use to populate this resource's properties.

@@ -26,10 +26,16 @@ class ScriptArgs:
                  risk_level: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]]] = None):
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 reviewers: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Script resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of the script.
                The value can consist of up to 4096 characters.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the parameter.
@@ -37,22 +43,46 @@ class ScriptArgs:
         :param pulumi.Input[_builtins.str] type: Specifies the content type of the script.
                The valid values are **SHELL**, **PYTHON** and **BAT**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] version: Specifies the version of the script. For example, **1.0.0** or **1.1.0**.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. The default value is **0**.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the parameter.
         :param pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]] parameters: Specifies the input parameters of the script.
                Up to 20 script parameters can be added. The parameters structure is documented below.
+        :param pulumi.Input[_builtins.str] protocol: Specifies the approval message notification protocol, used to notify reviewers.
+               Values can be as follows:
+               + **DEFAULT**: Default.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DING_TALK**: DingTalk.
+               + **WE_LINK**: WeLink.
+               + **WECHAT**: WeChat.
+               + **CALLNOTIFY**: Language.
+               + **NOT_TO_NOTIFY**: Do not notify.
+        :param pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]] reviewers: Specifies the reviewers of the script.
+               If left blank, no approval is required. The reviewers structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the script.
                
-               <a name="block--parameters"></a>
-               The `parameters` block supports:
+               <a name="block--reviewers"></a>
+               The `reviewers` block supports:
         """
         pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "risk_level", risk_level)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "version", version)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if reviewers is not None:
+            pulumi.set(__self__, "reviewers", reviewers)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter
@@ -117,6 +147,27 @@ class ScriptArgs:
         pulumi.set(self, "version", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID. The default value is **0**.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -134,15 +185,61 @@ class ScriptArgs:
         """
         Specifies the input parameters of the script.
         Up to 20 script parameters can be added. The parameters structure is documented below.
-
-        <a name="block--parameters"></a>
-        The `parameters` block supports:
         """
         return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]]]):
         pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the approval message notification protocol, used to notify reviewers.
+        Values can be as follows:
+        + **DEFAULT**: Default.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DING_TALK**: DingTalk.
+        + **WE_LINK**: WeLink.
+        + **WECHAT**: WeChat.
+        + **CALLNOTIFY**: Language.
+        + **NOT_TO_NOTIFY**: Do not notify.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reviewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]]:
+        """
+        Specifies the reviewers of the script.
+        If left blank, no approval is required. The reviewers structure is documented below.
+        """
+        return pulumi.get(self, "reviewers")
+
+    @reviewers.setter
+    def reviewers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]]):
+        pulumi.set(self, "reviewers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the script.
+
+        <a name="block--reviewers"></a>
+        The `reviewers` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -151,27 +248,47 @@ class _ScriptState:
                  content: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 reviewers: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]] = None,
                  risk_level: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Script resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of the script.
                The value can consist of up to 4096 characters.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the script.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the parameter.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. The default value is **0**.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the parameter.
         :param pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]] parameters: Specifies the input parameters of the script.
                Up to 20 script parameters can be added. The parameters structure is documented below.
-               
-               <a name="block--parameters"></a>
-               The `parameters` block supports:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the approval message notification protocol, used to notify reviewers.
+               Values can be as follows:
+               + **DEFAULT**: Default.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DING_TALK**: DingTalk.
+               + **WE_LINK**: WeLink.
+               + **WECHAT**: WeChat.
+               + **CALLNOTIFY**: Language.
+               + **NOT_TO_NOTIFY**: Do not notify.
+        :param pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]] reviewers: Specifies the reviewers of the script.
+               If left blank, no approval is required. The reviewers structure is documented below.
         :param pulumi.Input[_builtins.str] risk_level: Specifies the risk level. The valid values are **LOW**, **MEDIUM** and **HIGH**.
         :param pulumi.Input[_builtins.str] status: The status of the script.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the script.
+               
+               <a name="block--reviewers"></a>
+               The `reviewers` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the content type of the script.
                The valid values are **SHELL**, **PYTHON** and **BAT**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the script.
@@ -183,14 +300,24 @@ class _ScriptState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if reviewers is not None:
+            pulumi.set(__self__, "reviewers", reviewers)
         if risk_level is not None:
             pulumi.set(__self__, "risk_level", risk_level)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
@@ -236,6 +363,27 @@ class _ScriptState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the enterprise project ID. The default value is **0**.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -253,15 +401,46 @@ class _ScriptState:
         """
         Specifies the input parameters of the script.
         Up to 20 script parameters can be added. The parameters structure is documented below.
-
-        <a name="block--parameters"></a>
-        The `parameters` block supports:
         """
         return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptParameterArgs']]]]):
         pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the approval message notification protocol, used to notify reviewers.
+        Values can be as follows:
+        + **DEFAULT**: Default.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DING_TALK**: DingTalk.
+        + **WE_LINK**: WeLink.
+        + **WECHAT**: WeChat.
+        + **CALLNOTIFY**: Language.
+        + **NOT_TO_NOTIFY**: Do not notify.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reviewers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]]:
+        """
+        Specifies the reviewers of the script.
+        If left blank, no approval is required. The reviewers structure is documented below.
+        """
+        return pulumi.get(self, "reviewers")
+
+    @reviewers.setter
+    def reviewers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScriptReviewerArgs']]]]):
+        pulumi.set(self, "reviewers", value)
 
     @_builtins.property
     @pulumi.getter(name="riskLevel")
@@ -286,6 +465,21 @@ class _ScriptState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the script.
+
+        <a name="block--reviewers"></a>
+        The `reviewers` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
@@ -325,7 +519,7 @@ class _ScriptState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:coc/script:Script")
+@pulumi.type_token("huaweicloud:Coc/script:Script")
 class Script(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -333,9 +527,14 @@ class Script(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptParameterArgs', 'ScriptParameterArgsDict']]]]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 reviewers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptReviewerArgs', 'ScriptReviewerArgsDict']]]]] = None,
                  risk_level: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -368,24 +567,44 @@ class Script(pulumi.CustomResource):
 
         The COC script can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/script:Script test <id>
+        $ pulumi import huaweicloud:Coc/script:Script test <id>
         ```
+
+        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+        API response, security or some other reason.
+        The missing attributes include: `protocol`.
+        It is generally recommended running `pulumi preview` after importing a script.
+        You can then decide if changes should be applied to the script, or the resource definition should be updated to align
+        with the script. Also you can ignore changes as below.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: Specifies the content of the script.
                The value can consist of up to 4096 characters.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the parameter.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. The default value is **0**.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the parameter.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ScriptParameterArgs', 'ScriptParameterArgsDict']]]] parameters: Specifies the input parameters of the script.
                Up to 20 script parameters can be added. The parameters structure is documented below.
-               
-               <a name="block--parameters"></a>
-               The `parameters` block supports:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the approval message notification protocol, used to notify reviewers.
+               Values can be as follows:
+               + **DEFAULT**: Default.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DING_TALK**: DingTalk.
+               + **WE_LINK**: WeLink.
+               + **WECHAT**: WeChat.
+               + **CALLNOTIFY**: Language.
+               + **NOT_TO_NOTIFY**: Do not notify.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScriptReviewerArgs', 'ScriptReviewerArgsDict']]]] reviewers: Specifies the reviewers of the script.
+               If left blank, no approval is required. The reviewers structure is documented below.
         :param pulumi.Input[_builtins.str] risk_level: Specifies the risk level. The valid values are **LOW**, **MEDIUM** and **HIGH**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the script.
+               
+               <a name="block--reviewers"></a>
+               The `reviewers` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the content type of the script.
                The valid values are **SHELL**, **PYTHON** and **BAT**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] version: Specifies the version of the script. For example, **1.0.0** or **1.1.0**.
@@ -425,11 +644,17 @@ class Script(pulumi.CustomResource):
 
         The COC script can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:coc/script:Script test <id>
+        $ pulumi import huaweicloud:Coc/script:Script test <id>
         ```
+
+        Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+        API response, security or some other reason.
+        The missing attributes include: `protocol`.
+        It is generally recommended running `pulumi preview` after importing a script.
+        You can then decide if changes should be applied to the script, or the resource definition should be updated to align
+        with the script. Also you can ignore changes as below.
+
 
         :param str resource_name: The name of the resource.
         :param ScriptArgs args: The arguments to use to populate this resource's properties.
@@ -448,9 +673,14 @@ class Script(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptParameterArgs', 'ScriptParameterArgsDict']]]]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 reviewers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptReviewerArgs', 'ScriptReviewerArgsDict']]]]] = None,
                  risk_level: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -468,11 +698,16 @@ class Script(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["name"] = name
             __props__.__dict__["parameters"] = parameters
+            __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["reviewers"] = reviewers
             if risk_level is None and not opts.urn:
                 raise TypeError("Missing required property 'risk_level'")
             __props__.__dict__["risk_level"] = risk_level
+            __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -483,7 +718,7 @@ class Script(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Script, __self__).__init__(
-            'huaweicloud:coc/script:Script',
+            'huaweicloud:Coc/script:Script',
             resource_name,
             __props__,
             opts)
@@ -495,10 +730,15 @@ class Script(pulumi.CustomResource):
             content: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             parameters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptParameterArgs', 'ScriptParameterArgsDict']]]]] = None,
+            protocol: Optional[pulumi.Input[_builtins.str]] = None,
+            reviewers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScriptReviewerArgs', 'ScriptReviewerArgsDict']]]]] = None,
             risk_level: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Script':
@@ -513,14 +753,28 @@ class Script(pulumi.CustomResource):
                The value can consist of up to 4096 characters.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the script.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the parameter.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. The default value is **0**.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the parameter.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ScriptParameterArgs', 'ScriptParameterArgsDict']]]] parameters: Specifies the input parameters of the script.
                Up to 20 script parameters can be added. The parameters structure is documented below.
-               
-               <a name="block--parameters"></a>
-               The `parameters` block supports:
+        :param pulumi.Input[_builtins.str] protocol: Specifies the approval message notification protocol, used to notify reviewers.
+               Values can be as follows:
+               + **DEFAULT**: Default.
+               + **SMS**: SMS.
+               + **EMAIL**: Email.
+               + **DING_TALK**: DingTalk.
+               + **WE_LINK**: WeLink.
+               + **WECHAT**: WeChat.
+               + **CALLNOTIFY**: Language.
+               + **NOT_TO_NOTIFY**: Do not notify.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScriptReviewerArgs', 'ScriptReviewerArgsDict']]]] reviewers: Specifies the reviewers of the script.
+               If left blank, no approval is required. The reviewers structure is documented below.
         :param pulumi.Input[_builtins.str] risk_level: Specifies the risk level. The valid values are **LOW**, **MEDIUM** and **HIGH**.
         :param pulumi.Input[_builtins.str] status: The status of the script.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the script.
+               
+               <a name="block--reviewers"></a>
+               The `reviewers` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the content type of the script.
                The valid values are **SHELL**, **PYTHON** and **BAT**. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the script.
@@ -533,10 +787,15 @@ class Script(pulumi.CustomResource):
         __props__.__dict__["content"] = content
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["name"] = name
         __props__.__dict__["parameters"] = parameters
+        __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["reviewers"] = reviewers
         __props__.__dict__["risk_level"] = risk_level
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version"] = version
@@ -568,6 +827,19 @@ class Script(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the enterprise project ID. The default value is **0**.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
@@ -581,11 +853,34 @@ class Script(pulumi.CustomResource):
         """
         Specifies the input parameters of the script.
         Up to 20 script parameters can be added. The parameters structure is documented below.
-
-        <a name="block--parameters"></a>
-        The `parameters` block supports:
         """
         return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the approval message notification protocol, used to notify reviewers.
+        Values can be as follows:
+        + **DEFAULT**: Default.
+        + **SMS**: SMS.
+        + **EMAIL**: Email.
+        + **DING_TALK**: DingTalk.
+        + **WE_LINK**: WeLink.
+        + **WECHAT**: WeChat.
+        + **CALLNOTIFY**: Language.
+        + **NOT_TO_NOTIFY**: Do not notify.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def reviewers(self) -> pulumi.Output[Optional[Sequence['outputs.ScriptReviewer']]]:
+        """
+        Specifies the reviewers of the script.
+        If left blank, no approval is required. The reviewers structure is documented below.
+        """
+        return pulumi.get(self, "reviewers")
 
     @_builtins.property
     @pulumi.getter(name="riskLevel")
@@ -602,6 +897,17 @@ class Script(pulumi.CustomResource):
         The status of the script.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        Specifies the key/value pairs to associate with the script.
+
+        <a name="block--reviewers"></a>
+        The `reviewers` block supports:
+        """
+        return pulumi.get(self, "tags")
 
     @_builtins.property
     @pulumi.getter

@@ -31,6 +31,7 @@ class ComponentArgs:
                  source: Optional[pulumi.Input['ComponentSourceArgs']] = None):
         """
         The set of arguments for constructing a Component resource.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the component belongs.
                Changing this parameter will create a new component.
         :param pulumi.Input[_builtins.str] runtime: Specifies the component runtime, such as **Docker**, **Java8**, etc.
@@ -202,6 +203,7 @@ class _ComponentState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Component resources.
+
         :param pulumi.Input[_builtins.str] application_id: Specifies the application ID to which the component belongs.
                Changing this parameter will create a new component.
         :param pulumi.Input['ComponentBuilderArgs'] builder: Specifies the component builder.
@@ -387,11 +389,10 @@ class Component(pulumi.CustomResource):
 
         Components can be imported using their `application_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/component:Component test dd7a1ce2-c48c-4f41-85bb-d0d09969eec9/9ab8ef79-d318-4de5-acf9-e1e1e25a0395
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -438,11 +439,10 @@ class Component(pulumi.CustomResource):
 
         Components can be imported using their `application_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/component:Component test dd7a1ce2-c48c-4f41-85bb-d0d09969eec9/9ab8ef79-d318-4de5-acf9-e1e1e25a0395
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentArgs args: The arguments to use to populate this resource's properties.

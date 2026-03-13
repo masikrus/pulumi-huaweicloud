@@ -27,6 +27,7 @@ class AccessPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessPolicy resource.
+
         :param pulumi.Input[_builtins.str] blacklist_type: Specifies the type of access policy blacklist.  
                The valid values are as follows:
                + **INTERNET**
@@ -127,6 +128,7 @@ class _AccessPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessPolicy resources.
+
         :param pulumi.Input[_builtins.str] blacklist_type: Specifies the type of access policy blacklist.  
                The valid values are as follows:
                + **INTERNET**
@@ -270,11 +272,10 @@ class AccessPolicy(pulumi.CustomResource):
 
         Access policies can be imported using their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/accessPolicy:AccessPolicy test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -329,11 +330,10 @@ class AccessPolicy(pulumi.CustomResource):
 
         Access policies can be imported using their `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/accessPolicy:AccessPolicy test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessPolicyArgs args: The arguments to use to populate this resource's properties.

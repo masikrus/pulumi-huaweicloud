@@ -110,8 +110,8 @@ def get_organizational_assignment_packages(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     assignment_package_name = config.require_object("assignmentPackageName")
-    test = huaweicloud.organizations.get_organization()
-    test_get_organizational_assignment_packages = huaweicloud.rms.get_organizational_assignment_packages(organization_id=test.id,
+    test = huaweicloud.Organizations.get_organization()
+    test_get_organizational_assignment_packages = huaweicloud.Rms.get_organizational_assignment_packages(organization_id=test.id,
         name=assignment_package_name)
     ```
 
@@ -125,7 +125,7 @@ def get_organizational_assignment_packages(name: Optional[_builtins.str] = None,
     __args__['organizationId'] = organization_id
     __args__['packageId'] = package_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getOrganizationalAssignmentPackages:getOrganizationalAssignmentPackages', __args__, opts=opts, typ=GetOrganizationalAssignmentPackagesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getOrganizationalAssignmentPackages:getOrganizationalAssignmentPackages', __args__, opts=opts, typ=GetOrganizationalAssignmentPackagesResult).value
 
     return AwaitableGetOrganizationalAssignmentPackagesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -148,8 +148,8 @@ def get_organizational_assignment_packages_output(name: Optional[pulumi.Input[Op
 
     config = pulumi.Config()
     assignment_package_name = config.require_object("assignmentPackageName")
-    test = huaweicloud.organizations.get_organization()
-    test_get_organizational_assignment_packages = huaweicloud.rms.get_organizational_assignment_packages(organization_id=test.id,
+    test = huaweicloud.Organizations.get_organization()
+    test_get_organizational_assignment_packages = huaweicloud.Rms.get_organizational_assignment_packages(organization_id=test.id,
         name=assignment_package_name)
     ```
 
@@ -163,7 +163,7 @@ def get_organizational_assignment_packages_output(name: Optional[pulumi.Input[Op
     __args__['organizationId'] = organization_id
     __args__['packageId'] = package_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getOrganizationalAssignmentPackages:getOrganizationalAssignmentPackages', __args__, opts=opts, typ=GetOrganizationalAssignmentPackagesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getOrganizationalAssignmentPackages:getOrganizationalAssignmentPackages', __args__, opts=opts, typ=GetOrganizationalAssignmentPackagesResult)
     return __ret__.apply(lambda __response__: GetOrganizationalAssignmentPackagesResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

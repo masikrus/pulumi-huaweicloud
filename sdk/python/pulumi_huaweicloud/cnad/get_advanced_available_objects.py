@@ -121,7 +121,7 @@ def get_advanced_available_objects(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.cnad.get_advanced_available_objects(instance_id=instance_id)
+    test = huaweicloud.Cnad.get_advanced_available_objects(instance_id=instance_id)
     ```
 
 
@@ -141,7 +141,7 @@ def get_advanced_available_objects(instance_id: Optional[_builtins.str] = None,
     __args__['protectedObjectId'] = protected_object_id
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cnad/getAdvancedAvailableObjects:getAdvancedAvailableObjects', __args__, opts=opts, typ=GetAdvancedAvailableObjectsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cnad/getAdvancedAvailableObjects:getAdvancedAvailableObjects', __args__, opts=opts, typ=GetAdvancedAvailableObjectsResult).value
 
     return AwaitableGetAdvancedAvailableObjectsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -166,7 +166,7 @@ def get_advanced_available_objects_output(instance_id: Optional[pulumi.Input[_bu
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.cnad.get_advanced_available_objects(instance_id=instance_id)
+    test = huaweicloud.Cnad.get_advanced_available_objects(instance_id=instance_id)
     ```
 
 
@@ -186,7 +186,7 @@ def get_advanced_available_objects_output(instance_id: Optional[pulumi.Input[_bu
     __args__['protectedObjectId'] = protected_object_id
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cnad/getAdvancedAvailableObjects:getAdvancedAvailableObjects', __args__, opts=opts, typ=GetAdvancedAvailableObjectsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cnad/getAdvancedAvailableObjects:getAdvancedAvailableObjects', __args__, opts=opts, typ=GetAdvancedAvailableObjectsResult)
     return __ret__.apply(lambda __response__: GetAdvancedAvailableObjectsResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

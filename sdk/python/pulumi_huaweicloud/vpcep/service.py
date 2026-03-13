@@ -41,6 +41,7 @@ class ServiceArgs:
                  tcp_proxy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Service resource.
+
         :param pulumi.Input[_builtins.str] port_id: Specifies the ID for identifying the backend resource of the VPC endpoint service.
                + If the `server_type` is **VM**, the value is the NIC ID of the ECS where the VPC endpoint service is deployed.
                + If the `server_type` is **LB**, the value is the ID of the port bound to the private IP address of the load
@@ -412,6 +413,7 @@ class _ServiceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Service resources.
+
         :param pulumi.Input[_builtins.bool] approval: Specifies whether connection approval is required. The default value is false.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceConnectionArgs']]] connections: An array of VPC endpoints connect to the VPC endpoint service. Structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the VPC endpoint service.
@@ -859,11 +861,10 @@ class Service(pulumi.CustomResource):
 
         VPC endpoint services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpcep/service:Service test_service <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -958,11 +959,10 @@ class Service(pulumi.CustomResource):
 
         VPC endpoint services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpcep/service:Service test_service <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceArgs args: The arguments to use to populate this resource's properties.

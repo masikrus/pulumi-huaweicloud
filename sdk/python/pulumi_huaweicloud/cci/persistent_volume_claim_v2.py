@@ -35,6 +35,7 @@ class PersistentVolumeClaimV2Args:
                  volume_mode: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PersistentVolumeClaimV2 resource.
+
         :param pulumi.Input[_builtins.str] namespace: The name of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: The access modes of the persistent volume claim.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: The annotations of the persistent volume claim.
@@ -213,6 +214,7 @@ class _PersistentVolumeClaimV2State:
                  volume_mode: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PersistentVolumeClaimV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: The access modes of the persistent volume claim.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: The annotations of the persistent volume claim.
         :param pulumi.Input[_builtins.str] api_version: The API version of the persistent volume claim.
@@ -494,6 +496,7 @@ class PersistentVolumeClaimV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a PersistentVolumeClaimV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] access_modes: The access modes of the persistent volume claim.
@@ -510,6 +513,7 @@ class PersistentVolumeClaimV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PersistentVolumeClaimV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param PersistentVolumeClaimV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

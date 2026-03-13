@@ -37,36 +37,31 @@ __all__ = [
     'ListenerPortRangeArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AcceleratorFrozenInfoArgsDict(TypedDict):
-        effect: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the status of the resource after being frozen. The value can be one of the following:
-        + **1** (default): The resource is frozen and can be released.
-        + **2**: The resource is frozen and cannot be released.
-        + **3**: The resource is frozen and cannot be renewed.
-        """
-        scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the service scenario. The value can be one of the following:
-        + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
-        failure of pay-per-use  resources.
-        + **POLICE**: The cloud service is frozen for public security.
-        + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
-        + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
-        + **PARTNER**: A partner freezes their customer's resources.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the status of a cloud service or resource. The value can be one of the following:
-        + **0**: unfrozen/normal (The cloud service will recover after being unfrozen.)
-        + **1**: frozen (Resources and data will be retained, but the cloud service cannot be used.)
-        + **2**: deleted/terminated (Both resources and data will be cleared.)
-        """
-elif False:
-    AcceleratorFrozenInfoArgsDict: TypeAlias = Mapping[str, Any]
+class AcceleratorFrozenInfoArgsDict(TypedDict):
+    effect: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the status of the resource after being frozen. The value can be one of the following:
+    + **1** (default): The resource is frozen and can be released.
+    + **2**: The resource is frozen and cannot be released.
+    + **3**: The resource is frozen and cannot be renewed.
+    """
+    scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the service scenario. The value can be one of the following:
+    + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
+    failure of pay-per-use  resources.
+    + **POLICE**: The cloud service is frozen for public security.
+    + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
+    + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
+    + **PARTNER**: A partner freezes their customer's resources.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the status of a cloud service or resource. The value can be one of the following:
+    + **0**: unfrozen/normal (The cloud service will recover after being unfrozen.)
+    + **1**: frozen (Resources and data will be retained, but the cloud service cannot be used.)
+    + **2**: deleted/terminated (Both resources and data will be cleared.)
+    """
 
 @pulumi.input_type
 class AcceleratorFrozenInfoArgs:
@@ -147,33 +142,30 @@ class AcceleratorFrozenInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class AcceleratorIpSetArgsDict(TypedDict):
-        area: pulumi.Input[_builtins.str]
-        """
-        Specifies the acceleration area. The value can be one of the following:
-        + **OUTOFCM**: Outside the Chinese mainland
-        + **CM**: Chinese mainland
+class AcceleratorIpSetArgsDict(TypedDict):
+    area: pulumi.Input[_builtins.str]
+    """
+    Specifies the acceleration area. The value can be one of the following:
+    + **OUTOFCM**: Outside the Chinese mainland
+    + **CM**: Chinese mainland
 
-        Changing this parameter will create a new resource.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address.
-        """
-        ip_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP address version. Defaults to **IPV4**.
-        Changing this parameter will create a new resource.
-        The valid values are as follows:
-        + **IPV4**
-        + **IPV6**
+    Changing this parameter will create a new resource.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address.
+    """
+    ip_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address version. Defaults to **IPV4**.
+    Changing this parameter will create a new resource.
+    The valid values are as follows:
+    + **IPV4**
+    + **IPV6**
 
-        > If you want to set this parameter to **IPV6**, you must set **IPV4** at the same time.
-        Please refer to the document sample.
-        """
-elif False:
-    AcceleratorIpSetArgsDict: TypeAlias = Mapping[str, Any]
+    > If you want to set this parameter to **IPV6**, you must set **IPV4** at the same time.
+    Please refer to the document sample.
+    """
 
 @pulumi.input_type
 class AcceleratorIpSetArgs:
@@ -251,25 +243,22 @@ class AcceleratorIpSetArgs:
         pulumi.set(self, "ip_type", value)
 
 
-if not MYPY:
-    class AddressGroupIpAddressArgsDict(TypedDict):
-        cidr: pulumi.Input[_builtins.str]
-        """
-        Specifies the CIDR block associated with the IP address group.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creation time of the CIDR block associated with the IP address group.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the associated CIDR block.
+class AddressGroupIpAddressArgsDict(TypedDict):
+    cidr: pulumi.Input[_builtins.str]
+    """
+    Specifies the CIDR block associated with the IP address group.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creation time of the CIDR block associated with the IP address group.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the associated CIDR block.
 
-        <a name="address_group_associated_listeners"></a>
-        The `listeners` block supports:
-        """
-elif False:
-    AddressGroupIpAddressArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="address_group_associated_listeners"></a>
+    The `listeners` block supports:
+    """
 
 @pulumi.input_type
 class AddressGroupIpAddressArgs:
@@ -331,21 +320,18 @@ class AddressGroupIpAddressArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class AddressGroupListenerArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the listener associated with the IP address group.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the listener type associated with the IP address group.
-        The value can be one of the following:
-        + **BLACK**: The blacklsit.
-        + **WHITE**: The whitelist.
-        """
-elif False:
-    AddressGroupListenerArgsDict: TypeAlias = Mapping[str, Any]
+class AddressGroupListenerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the listener associated with the IP address group.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the listener type associated with the IP address group.
+    The value can be one of the following:
+    + **BLACK**: The blacklsit.
+    + **WHITE**: The whitelist.
+    """
 
 @pulumi.input_type
 class AddressGroupListenerArgs:
@@ -390,31 +376,28 @@ class AddressGroupListenerArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class EndpointFrozenInfoArgsDict(TypedDict):
-        effect: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of the resource after being forzen.
-        The valid values are as follows:
-        """
-        scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The service scenario.
-        The valid values are as follows:
-        + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
-        failure of pay-per-use resources.
-        + **POLICE**: The cloud service is frozen for public security.
-        + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
-        + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
-        + **PARTNER**: A partner freezes their customer's resources.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of a cloud service or resource.
-        The valid values are as follows:
-        """
-elif False:
-    EndpointFrozenInfoArgsDict: TypeAlias = Mapping[str, Any]
+class EndpointFrozenInfoArgsDict(TypedDict):
+    effect: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of the resource after being forzen.
+    The valid values are as follows:
+    """
+    scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The service scenario.
+    The valid values are as follows:
+    + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
+    failure of pay-per-use resources.
+    + **POLICE**: The cloud service is frozen for public security.
+    + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
+    + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
+    + **PARTNER**: A partner freezes their customer's resources.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of a cloud service or resource.
+    The valid values are as follows:
+    """
 
 @pulumi.input_type
 class EndpointFrozenInfoArgs:
@@ -489,31 +472,28 @@ class EndpointFrozenInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class EndpointGroupFrozenInfoArgsDict(TypedDict):
-        effect: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of the resource after being forzen.
-        The valid values are as follows:
-        """
-        scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The service scenario.
-        The valid values are as follows:
-        + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
-        failure of pay-per-use resources.
-        + **POLICE**: The cloud service is frozen for public security.
-        + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
-        + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
-        + **PARTNER**: A partner freezes their customer's resources.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of a cloud service or resource.
-        The valid values are as follows:
-        """
-elif False:
-    EndpointGroupFrozenInfoArgsDict: TypeAlias = Mapping[str, Any]
+class EndpointGroupFrozenInfoArgsDict(TypedDict):
+    effect: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of the resource after being forzen.
+    The valid values are as follows:
+    """
+    scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The service scenario.
+    The valid values are as follows:
+    + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
+    failure of pay-per-use resources.
+    + **POLICE**: The cloud service is frozen for public security.
+    + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
+    + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
+    + **PARTNER**: A partner freezes their customer's resources.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of a cloud service or resource.
+    The valid values are as follows:
+    """
 
 @pulumi.input_type
 class EndpointGroupFrozenInfoArgs:
@@ -588,14 +568,11 @@ class EndpointGroupFrozenInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class EndpointGroupListenersArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the associated listener.
-        """
-elif False:
-    EndpointGroupListenersArgsDict: TypeAlias = Mapping[str, Any]
+class EndpointGroupListenersArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the associated listener.
+    """
 
 @pulumi.input_type
 class EndpointGroupListenersArgs:
@@ -619,31 +596,28 @@ class EndpointGroupListenersArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class HealthCheckFrozenInfoArgsDict(TypedDict):
-        effect: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of the resource after being forzen.
-        The valid values are as follows:
-        """
-        scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The service scenario.
-        The valid values are as follows:
-        + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
-        failure of pay-per-use resources.
-        + **POLICE**: The cloud service is frozen for public security.
-        + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
-        + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
-        + **PARTNER**: A partner freezes their customer's resources.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of a cloud service or resource.
-        The valid values are as follows:
-        """
-elif False:
-    HealthCheckFrozenInfoArgsDict: TypeAlias = Mapping[str, Any]
+class HealthCheckFrozenInfoArgsDict(TypedDict):
+    effect: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of the resource after being forzen.
+    The valid values are as follows:
+    """
+    scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The service scenario.
+    The valid values are as follows:
+    + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
+    failure of pay-per-use resources.
+    + **POLICE**: The cloud service is frozen for public security.
+    + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
+    + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
+    + **PARTNER**: A partner freezes their customer's resources.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of a cloud service or resource.
+    The valid values are as follows:
+    """
 
 @pulumi.input_type
 class HealthCheckFrozenInfoArgs:
@@ -718,31 +692,28 @@ class HealthCheckFrozenInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ListenerFrozenInfoArgsDict(TypedDict):
-        effect: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of the resource after being forzen.
-        The valid values are as follows:
-        """
-        scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The service scenario.
-        The valid values are as follows:
-        + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
-        failure of pay-per-use resources.
-        + **POLICE**: The cloud service is frozen for public security.
-        + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
-        + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
-        + **PARTNER**: A partner freezes their customer's resources.
-        """
-        status: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The status of a cloud service or resource.
-        The valid values are as follows:
-        """
-elif False:
-    ListenerFrozenInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ListenerFrozenInfoArgsDict(TypedDict):
+    effect: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of the resource after being forzen.
+    The valid values are as follows:
+    """
+    scenes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The service scenario.
+    The valid values are as follows:
+    + **ARREAR**: The cloud service is in arrears, including expiration of yearly/monthly resources and fee deduction
+    failure of pay-per-use resources.
+    + **POLICE**: The cloud service is frozen for public security.
+    + **ILLEGAL**: The cloud service is frozen due to violation of laws and regulations.
+    + **VERIFY**: The cloud service is frozen because the user fails to pass the real-name authentication.
+    + **PARTNER**: A partner freezes their customer's resources.
+    """
+    status: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The status of a cloud service or resource.
+    The valid values are as follows:
+    """
 
 @pulumi.input_type
 class ListenerFrozenInfoArgs:
@@ -817,20 +788,17 @@ class ListenerFrozenInfoArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ListenerPortRangeArgsDict(TypedDict):
-        from_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the start port number.
-        The valid value is range from `1` to `65,535`.
-        """
-        to_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the end port number.
-        The valid value is range from `1` to `65,535`.
-        """
-elif False:
-    ListenerPortRangeArgsDict: TypeAlias = Mapping[str, Any]
+class ListenerPortRangeArgsDict(TypedDict):
+    from_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the start port number.
+    The valid value is range from `1` to `65,535`.
+    """
+    to_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the end port number.
+    The valid value is range from `1` to `65,535`.
+    """
 
 @pulumi.input_type
 class ListenerPortRangeArgs:

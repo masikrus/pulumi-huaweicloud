@@ -39,6 +39,7 @@ class ServerArgs:
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ServerCoverageSiteArgs']]] coverage_sites: Specifies an array of site ID and operator for the IEC server. The
                object structure is documented below. Changing this parameter creates a new IEC server resource.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the desired flavor for the IEC server. Changing
@@ -347,6 +348,7 @@ class _ServerState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the administrative password to assign to the IEC server. This
                parameter can contain a maximum of 26 characters, which may consist of letters, digits and Special characters(~!?,.:
                ;-_'"(){}[]/<>@#$%^&*+|\\\\=) and space. This parameter and `key_pair` are alternative. Changing this changes the root
@@ -888,6 +890,7 @@ class Server(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the administrative password to assign to the IEC server. This
@@ -1014,6 +1017,7 @@ class Server(pulumi.CustomResource):
                 "operator": iec_site_operator,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class RocketmqTopicArgs:
                  total_write_queue_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RocketmqTopic resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the rocketMQ instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['RocketmqTopicBrokerArgs']]] brokers: Specifies the list of associated brokers of the topic.
@@ -246,6 +247,7 @@ class _RocketmqTopicState:
                  total_write_queue_num: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RocketmqTopic resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RocketmqTopicBrokerArgs']]] brokers: Specifies the list of associated brokers of the topic.
                It's only valid when RocketMQ instance version is **4.8.0**.
                Changing this parameter will create a new resource.
@@ -521,11 +523,10 @@ class RocketmqTopic(pulumi.CustomResource):
 
         The rocketmq topic can be imported using the rocketMQ instance ID and topic name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqTopic:RocketmqTopic test c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/topic_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -628,11 +629,10 @@ class RocketmqTopic(pulumi.CustomResource):
 
         The rocketmq topic can be imported using the rocketMQ instance ID and topic name separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqTopic:RocketmqTopic test c8057fe5-23a8-46ef-ad83-c0055b4e0c5c/topic_1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqTopicArgs args: The arguments to use to populate this resource's properties.

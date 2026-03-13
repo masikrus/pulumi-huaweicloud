@@ -94,7 +94,7 @@ def get_vpc_endpoint_services(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_vpc_endpoint_services(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_vpc_endpoint_services(workspace_id=workspace_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_vpc_endpoint_services(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getVpcEndpointServices:getVpcEndpointServices', __args__, opts=opts, typ=GetVpcEndpointServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getVpcEndpointServices:getVpcEndpointServices', __args__, opts=opts, typ=GetVpcEndpointServicesResult).value
 
     return AwaitableGetVpcEndpointServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_vpc_endpoint_services_output(region: Optional[pulumi.Input[Optional[_bui
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_vpc_endpoint_services(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_vpc_endpoint_services(workspace_id=workspace_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_vpc_endpoint_services_output(region: Optional[pulumi.Input[Optional[_bui
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getVpcEndpointServices:getVpcEndpointServices', __args__, opts=opts, typ=GetVpcEndpointServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getVpcEndpointServices:getVpcEndpointServices', __args__, opts=opts, typ=GetVpcEndpointServicesResult)
     return __ret__.apply(lambda __response__: GetVpcEndpointServicesResult(
         id=pulumi.get(__response__, 'id'),
         records=pulumi.get(__response__, 'records'),

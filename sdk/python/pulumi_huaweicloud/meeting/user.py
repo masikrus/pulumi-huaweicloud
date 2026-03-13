@@ -44,6 +44,7 @@ class UserArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] password: Specifies the user password.
                The following conditions must be met:
         :param pulumi.Input[_builtins.str] account: Specifies the user account. The value can contain `1` to `64` characters.
@@ -475,6 +476,7 @@ class _UserState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] account: Specifies the user account. The value can contain `1` to `64` characters.
                If omitted, the service will automatically generate a value.
                Changing this parameter will create a new resource.
@@ -1216,15 +1218,11 @@ class User(pulumi.CustomResource):
 
         Import a user and authenticated by account.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/user:User test <id>/<account_name>/<account_password>
         ```
 
         Import a user and authenticated by `APP ID`/`APP Key`.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/user:User test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
@@ -1233,26 +1231,8 @@ class User(pulumi.CustomResource):
         The slashes cannot be missing even corporation ID and user ID are empty.
 
         Note that some parameters do not support import due to missing API responses or privacy, such as `password`,
-
         `is_send_notify` and `is_admin`. You can ignore this change as below.
 
-        hcl
-
-        resource "huaweicloud_meeting_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, is_send_notify,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1561,15 +1541,11 @@ class User(pulumi.CustomResource):
 
         Import a user and authenticated by account.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Meeting/user:User test <id>/<account_name>/<account_password>
         ```
 
         Import a user and authenticated by `APP ID`/`APP Key`.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/user:User test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
@@ -1578,26 +1554,8 @@ class User(pulumi.CustomResource):
         The slashes cannot be missing even corporation ID and user ID are empty.
 
         Note that some parameters do not support import due to missing API responses or privacy, such as `password`,
-
         `is_send_notify` and `is_admin`. You can ignore this change as below.
 
-        hcl
-
-        resource "huaweicloud_meeting_user" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password, is_send_notify,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

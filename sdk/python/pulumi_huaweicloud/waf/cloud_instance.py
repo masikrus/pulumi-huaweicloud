@@ -34,6 +34,7 @@ class CloudInstanceArgs:
                  website: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudInstance resource.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the cloud WAF.
                The valid values are **postPaid** and **prePaid** (the yearly/monthly billing mode).
                
@@ -314,6 +315,7 @@ class _CloudInstanceState:
                  website: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
                Valid values are **true** and **false**.
                
@@ -662,15 +664,11 @@ class CloudInstance(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/cloudInstance:CloudInstance test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Waf/cloudInstance:CloudInstance test <id>/<enterprise_project_id>
@@ -679,56 +677,8 @@ class CloudInstance(pulumi.CustomResource):
         Note that the imported state is not identical to your resource definition, due to API response reason.
 
         For prepaid cloud WAF, the missing attributes include `enterprise_project_id`, `period_unit`, `period` and `auto_renew`.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_cloud_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id,
-            
-              period_unit,
-            
-              period,
-            
-              auto_renew,
-            
-            ]
-
-          }
-
-        }
-
-        For postPaid cloud WAF, the missing attributes include `enterprise_project_id` and `website`.
-
-        You can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_waf_cloud_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id,
-            
-              website,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -849,15 +799,11 @@ class CloudInstance(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/cloudInstance:CloudInstance test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Waf/cloudInstance:CloudInstance test <id>/<enterprise_project_id>
@@ -866,56 +812,8 @@ class CloudInstance(pulumi.CustomResource):
         Note that the imported state is not identical to your resource definition, due to API response reason.
 
         For prepaid cloud WAF, the missing attributes include `enterprise_project_id`, `period_unit`, `period` and `auto_renew`.
-
         You can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_waf_cloud_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id,
-            
-              period_unit,
-            
-              period,
-            
-              auto_renew,
-            
-            ]
-
-          }
-
-        }
-
-        For postPaid cloud WAF, the missing attributes include `enterprise_project_id` and `website`.
-
-        You can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_waf_cloud_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id,
-            
-              website,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CloudInstanceArgs args: The arguments to use to populate this resource's properties.

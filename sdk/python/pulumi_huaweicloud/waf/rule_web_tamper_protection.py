@@ -28,6 +28,7 @@ class RuleWebTamperProtectionArgs:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RuleWebTamperProtection resource.
+
         :param pulumi.Input[_builtins.str] domain: Specifies the domain name. Changing this creates a new rule.
         :param pulumi.Input[_builtins.str] path: Specifies the URL protected by the web tamper protection rule, excluding a
                domain name. Changing this creates a new rule.
@@ -157,6 +158,7 @@ class _RuleWebTamperProtectionState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RuleWebTamperProtection resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of WAF web tamper protection rule.
                Changing this creates a new rule.
         :param pulumi.Input[_builtins.str] domain: Specifies the domain name. Changing this creates a new rule.
@@ -320,19 +322,16 @@ class RuleWebTamperProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleWebTamperProtection:RuleWebTamperProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleWebTamperProtection:RuleWebTamperProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -385,19 +384,16 @@ class RuleWebTamperProtection(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleWebTamperProtection:RuleWebTamperProtection test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleWebTamperProtection:RuleWebTamperProtection test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleWebTamperProtectionArgs args: The arguments to use to populate this resource's properties.

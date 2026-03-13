@@ -25,51 +25,46 @@ __all__ = [
     'TranscodingTemplateGroupQualityInfoVideoArgsDict',
 ]
 
-MYPY = False
+class MediaAssetThumbnailArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the screenshot type. Valid values are: **time** and **dots**.
+    Changing this creates a new resource.
+    """
+    aspect_ratio: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the screenshot aspect ratio. The value can be:
+    + **0**: adaptive (maintain the original aspect ratio).
+    + **1**: 16:9.
 
-if not MYPY:
-    class MediaAssetThumbnailArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the screenshot type. Valid values are: **time** and **dots**.
-        Changing this creates a new resource.
-        """
-        aspect_ratio: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the screenshot aspect ratio. The value can be:
-        + **0**: adaptive (maintain the original aspect ratio).
-        + **1**: 16:9.
-
-        Defaults to `1`. Changing this creates a new resource.
-        """
-        cover_position: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of screenshots as the cover. Defaults to `1`.
-        Changing this creates a new resource.
-        """
-        dots: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies an array of time points of screenshot. Required when `type` is **dots**.
-        Changing this creates a new resource.
-        """
-        format: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the screenshot file format. Currently, only `1` (jpg) is supported.
-        Defaults to: `1`. Changing this creates a new resource.
-        """
-        max_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the size of the longest side of the screenshot. Unit: pixel.
-        The width dimension is calculated by scaling the dimension proportional to the original video pixels.
-        Changing this creates a new resource.
-        """
-        time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the screenshot time interval (unit: second). The value range is `1` to `12`.
-        Required when `type` is **time**. Changing this creates a new resource.
-        """
-elif False:
-    MediaAssetThumbnailArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to `1`. Changing this creates a new resource.
+    """
+    cover_position: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of screenshots as the cover. Defaults to `1`.
+    Changing this creates a new resource.
+    """
+    dots: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies an array of time points of screenshot. Required when `type` is **dots**.
+    Changing this creates a new resource.
+    """
+    format: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the screenshot file format. Currently, only `1` (jpg) is supported.
+    Defaults to: `1`. Changing this creates a new resource.
+    """
+    max_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size of the longest side of the screenshot. Unit: pixel.
+    The width dimension is calculated by scaling the dimension proportional to the original video pixels.
+    Changing this creates a new resource.
+    """
+    time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the screenshot time interval (unit: second). The value range is `1` to
+    `12`. Required when `type` is **time**. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MediaAssetThumbnailArgs:
@@ -98,8 +93,8 @@ class MediaAssetThumbnailArgs:
         :param pulumi.Input[_builtins.int] max_length: Specifies the size of the longest side of the screenshot. Unit: pixel.
                The width dimension is calculated by scaling the dimension proportional to the original video pixels.
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.int] time: Specifies the screenshot time interval (unit: second). The value range is `1` to `12`.
-               Required when `type` is **time**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.int] time: Specifies the screenshot time interval (unit: second). The value range is `1` to
+               `12`. Required when `type` is **time**. Changing this creates a new resource.
         """
         pulumi.set(__self__, "type", type)
         if aspect_ratio is not None:
@@ -201,8 +196,8 @@ class MediaAssetThumbnailArgs:
     @pulumi.getter
     def time(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the screenshot time interval (unit: second). The value range is `1` to `12`.
-        Required when `type` is **time**. Changing this creates a new resource.
+        Specifies the screenshot time interval (unit: second). The value range is `1` to
+        `12`. Required when `type` is **time**. Changing this creates a new resource.
         """
         return pulumi.get(self, "time")
 
@@ -211,28 +206,25 @@ class MediaAssetThumbnailArgs:
         pulumi.set(self, "time", value)
 
 
-if not MYPY:
-    class TranscodingTemplateGroupQualityInfoArgsDict(TypedDict):
-        output_format: pulumi.Input[_builtins.str]
-        """
-        Specifies the output format. The value can be: **HLS**, **MP4**, **DASH**,
-        **DASH_HLS**, **MP3** and **ADTS**.
-        """
-        audio: NotRequired[pulumi.Input['TranscodingTemplateGroupQualityInfoAudioArgsDict']]
-        """
-        Specifies the audio configurations.
-        The object structure is documented below.
+class TranscodingTemplateGroupQualityInfoArgsDict(TypedDict):
+    output_format: pulumi.Input[_builtins.str]
+    """
+    Specifies the output format. The value can be: **HLS**, **MP4**, **DASH**,
+    **DASH_HLS**, **MP3** and **ADTS**.
+    """
+    audio: NotRequired[pulumi.Input['TranscodingTemplateGroupQualityInfoAudioArgsDict']]
+    """
+    Specifies the audio configurations.
+    The object structure is documented below.
 
-        <a name="video_object"></a>
-        The `video` block supports:
-        """
-        video: NotRequired[pulumi.Input['TranscodingTemplateGroupQualityInfoVideoArgsDict']]
-        """
-        Specifies the video configurations.
-        The object structure is documented below.
-        """
-elif False:
-    TranscodingTemplateGroupQualityInfoArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="video_object"></a>
+    The `video` block supports:
+    """
+    video: NotRequired[pulumi.Input['TranscodingTemplateGroupQualityInfoVideoArgsDict']]
+    """
+    Specifies the video configurations.
+    The object structure is documented below.
+    """
 
 @pulumi.input_type
 class TranscodingTemplateGroupQualityInfoArgs:
@@ -300,31 +292,28 @@ class TranscodingTemplateGroupQualityInfoArgs:
         pulumi.set(self, "video", value)
 
 
-if not MYPY:
-    class TranscodingTemplateGroupQualityInfoAudioArgsDict(TypedDict):
-        channels: pulumi.Input[_builtins.int]
-        """
-        Specifies the audio channels. The value can be:
-        + **1**: Mono
-        + **2**: Stereo
-        """
-        sample_rate: pulumi.Input[_builtins.int]
-        """
-        Specifies the audio sample rate. The value can be:
-        + **1**: AUTO
-        + **2**: 22,050 Hz
-        + **3**: 32,000 Hz
-        + **4**: 44,100 Hz
-        + **5**: 48,000 Hz
-        + **6**: 96,000 Hz
-        """
-        bitrate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the audio bitrate. The value can be `0` or range from
-        `8` to `1,000`. Defaults to `0`. If set to `0`, the output audio will be produced at the recommended bitrate.
-        """
-elif False:
-    TranscodingTemplateGroupQualityInfoAudioArgsDict: TypeAlias = Mapping[str, Any]
+class TranscodingTemplateGroupQualityInfoAudioArgsDict(TypedDict):
+    channels: pulumi.Input[_builtins.int]
+    """
+    Specifies the audio channels. The value can be:
+    + **1**: Mono
+    + **2**: Stereo
+    """
+    sample_rate: pulumi.Input[_builtins.int]
+    """
+    Specifies the audio sample rate. The value can be:
+    + **1**: AUTO
+    + **2**: 22,050 Hz
+    + **3**: 32,000 Hz
+    + **4**: 44,100 Hz
+    + **5**: 48,000 Hz
+    + **6**: 96,000 Hz
+    """
+    bitrate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the audio bitrate. The value can be `0` or range from
+    `8` to `1,000`. Defaults to `0`. If set to `0`, the output audio will be produced at the recommended bitrate.
+    """
 
 @pulumi.input_type
 class TranscodingTemplateGroupQualityInfoAudioArgs:
@@ -397,41 +386,38 @@ class TranscodingTemplateGroupQualityInfoAudioArgs:
         pulumi.set(self, "bitrate", value)
 
 
-if not MYPY:
-    class TranscodingTemplateGroupQualityInfoVideoArgsDict(TypedDict):
-        quality: pulumi.Input[_builtins.str]
-        """
-        Specifies the video quality.
-        The value can be: **4K**, **2K**, **FHD**, **SD**, **LD** and **HD**.
-        """
-        bitrate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the audio bitrate. The value can be `0` or range from
-        `8` to `1,000`. Defaults to `0`. If set to `0`, the output audio will be produced at the recommended bitrate.
-        """
-        frame_rate: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the video frame rate. The value ranges from `1` to `75`.
-        Defaults to `1`. If set to `1`, the frame rate of the transcoded video is the same as that of the untransocded video.
+class TranscodingTemplateGroupQualityInfoVideoArgsDict(TypedDict):
+    quality: pulumi.Input[_builtins.str]
+    """
+    Specifies the video quality.
+    The value can be: **4K**, **2K**, **FHD**, **SD**, **LD** and **HD**.
+    """
+    bitrate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the audio bitrate. The value can be `0` or range from
+    `8` to `1,000`. Defaults to `0`. If set to `0`, the output audio will be produced at the recommended bitrate.
+    """
+    frame_rate: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the video frame rate. The value ranges from `1` to `75`.
+    Defaults to `1`. If set to `1`, the frame rate of the transcoded video is the same as that of the untransocded video.
 
-        <a name="audio_object"></a>
-        The `audio` block supports:
-        """
-        height: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the video height. The value can be `0` or range from `128` to `2,160`.
-        Defaults to `0`. If set to `0`, the system will automatically adjust the `height` according to the `width`.
+    <a name="audio_object"></a>
+    The `audio` block supports:
+    """
+    height: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the video height. The value can be `0` or range from `128` to `2,160`.
+    Defaults to `0`. If set to `0`, the system will automatically adjust the `height` according to the `width`.
 
-        > If the quality of the original file is **2K** or **4K**, and the `video_codec` is **H264**, the `width` and
-        `height` of the cannot be set to `0`, otherwise the transcoding will fail.
-        """
-        width: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the video width. The value can be `0` or range from `128` to `3,840`.
-        Defaults to `0`. If set to `0`, the system will automatically adjust the `width` according to the `height`.
-        """
-elif False:
-    TranscodingTemplateGroupQualityInfoVideoArgsDict: TypeAlias = Mapping[str, Any]
+    > If the quality of the original file is **2K** or **4K**, and the `video_codec` is **H264**, the `width` and
+    `height` of the cannot be set to `0`, otherwise the transcoding will fail.
+    """
+    width: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the video width. The value can be `0` or range from `128` to `3,840`.
+    Defaults to `0`. If set to `0`, the system will automatically adjust the `width` according to the `height`.
+    """
 
 @pulumi.input_type
 class TranscodingTemplateGroupQualityInfoVideoArgs:

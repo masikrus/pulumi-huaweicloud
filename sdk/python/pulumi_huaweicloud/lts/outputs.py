@@ -81,6 +81,7 @@ __all__ = [
     'GetCceAccessesAccessAccessConfigWindowsLogInfoResult',
     'GetCceAccessesAccessDemoFieldResult',
     'GetCceAccessesAccessProcessorResult',
+    'GetContextLogsLogResult',
     'GetGroupsGroupResult',
     'GetHostAccessesAccessResult',
     'GetHostAccessesAccessAccessConfigResult',
@@ -96,6 +97,9 @@ __all__ = [
     'GetKeywordAlarmRulesKeywordAlarmRuleFrequencyResult',
     'GetKeywordAlarmRulesKeywordAlarmRuleKeywordsRequestResult',
     'GetKeywordAlarmRulesKeywordAlarmRuleTopicResult',
+    'GetLogsLogResult',
+    'GetMemberGroupStreamsGroupResult',
+    'GetMemberGroupStreamsGroupLogStreamResult',
     'GetNotificationTemplatesTemplateResult',
     'GetNotificationTemplatesTemplateTemplateResult',
     'GetSearchCriteriaSearchCriteriaResult',
@@ -104,6 +108,8 @@ __all__ = [
     'GetSqlAlarmRulesSqlAlarmRuleFrequencyResult',
     'GetSqlAlarmRulesSqlAlarmRuleSqlRequestResult',
     'GetSqlAlarmRulesSqlAlarmRuleTopicResult',
+    'GetStreamChartsChartResult',
+    'GetStreamChartsChartConfigResult',
     'GetStreamsStreamResult',
     'GetStructuringCustomTemplatesTemplateResult',
     'GetTransfersTransferResult',
@@ -1573,8 +1579,8 @@ class HostAccessAccessConfigWindowsLogInfo(dict):
         """
         :param Sequence[_builtins.str] categorys: Specifies the types of Windows event logs to collect. The valid values are
                **Application**, **System**, **Security** and **Setup**.
-        :param Sequence[_builtins.str] event_levels: Specifies the Windows event severity. The valid values are **information**, **warning**,
-               **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
+        :param Sequence[_builtins.str] event_levels: Specifies the Windows event severity. The valid values are **information**,
+               **warning**, **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
         :param _builtins.int time_offset: Specifies the collection time offset. This time takes effect only for the first
                time to ensure that the logs are not collected repeatedly.
                
@@ -1605,8 +1611,8 @@ class HostAccessAccessConfigWindowsLogInfo(dict):
     @pulumi.getter(name="eventLevels")
     def event_levels(self) -> Sequence[_builtins.str]:
         """
-        Specifies the Windows event severity. The valid values are **information**, **warning**,
-        **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
+        Specifies the Windows event severity. The valid values are **information**,
+        **warning**, **error**, **critical** and **verbose**.  Only Windows Vista or later is supported.
         """
         return pulumi.get(self, "event_levels")
 
@@ -6784,6 +6790,46 @@ class GetCceAccessesAccessProcessorResult(dict):
 
 
 @pulumi.output_type
+class GetContextLogsLogResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 labels: Mapping[str, _builtins.str],
+                 line_num: _builtins.str):
+        """
+        :param _builtins.str content: The original log data.
+        :param Mapping[str, _builtins.str] labels: The labels contained in this log entry.
+        :param _builtins.str line_num: Specifies the sequence number of a log line.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "line_num", line_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The original log data.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, _builtins.str]:
+        """
+        The labels contained in this log entry.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter(name="lineNum")
+    def line_num(self) -> _builtins.str:
+        """
+        Specifies the sequence number of a log line.
+        """
+        return pulumi.get(self, "line_num")
+
+
+@pulumi.output_type
 class GetGroupsGroupResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -8173,6 +8219,117 @@ class GetKeywordAlarmRulesKeywordAlarmRuleTopicResult(dict):
 
 
 @pulumi.output_type
+class GetLogsLogResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 labels: Mapping[str, _builtins.str],
+                 line_num: _builtins.str):
+        """
+        :param _builtins.str content: The content of the log.
+        :param Mapping[str, _builtins.str] labels: Specifies the labels in key/value format to be queried.
+        :param _builtins.str line_num: The line number of the log.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "line_num", line_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The content of the log.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies the labels in key/value format to be queried.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter(name="lineNum")
+    def line_num(self) -> _builtins.str:
+        """
+        The line number of the log.
+        """
+        return pulumi.get(self, "line_num")
+
+
+@pulumi.output_type
+class GetMemberGroupStreamsGroupResult(dict):
+    def __init__(__self__, *,
+                 log_group_id: _builtins.str,
+                 log_group_name: _builtins.str,
+                 log_streams: Sequence['outputs.GetMemberGroupStreamsGroupLogStreamResult']):
+        """
+        :param _builtins.str log_group_id: The ID of the log group.
+        :param _builtins.str log_group_name: The name of the log group.
+        :param Sequence['GetMemberGroupStreamsGroupLogStreamArgs'] log_streams: The list of log streams.  
+               The log_streams structure is documented below.
+        """
+        pulumi.set(__self__, "log_group_id", log_group_id)
+        pulumi.set(__self__, "log_group_name", log_group_name)
+        pulumi.set(__self__, "log_streams", log_streams)
+
+    @_builtins.property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> _builtins.str:
+        """
+        The ID of the log group.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logGroupName")
+    def log_group_name(self) -> _builtins.str:
+        """
+        The name of the log group.
+        """
+        return pulumi.get(self, "log_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="logStreams")
+    def log_streams(self) -> Sequence['outputs.GetMemberGroupStreamsGroupLogStreamResult']:
+        """
+        The list of log streams.  
+        The log_streams structure is documented below.
+        """
+        return pulumi.get(self, "log_streams")
+
+
+@pulumi.output_type
+class GetMemberGroupStreamsGroupLogStreamResult(dict):
+    def __init__(__self__, *,
+                 log_stream_id: _builtins.str,
+                 log_stream_name: _builtins.str):
+        """
+        :param _builtins.str log_stream_id: The ID of the log stream.
+        :param _builtins.str log_stream_name: The name of the log stream.
+        """
+        pulumi.set(__self__, "log_stream_id", log_stream_id)
+        pulumi.set(__self__, "log_stream_name", log_stream_name)
+
+    @_builtins.property
+    @pulumi.getter(name="logStreamId")
+    def log_stream_id(self) -> _builtins.str:
+        """
+        The ID of the log stream.
+        """
+        return pulumi.get(self, "log_stream_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logStreamName")
+    def log_stream_name(self) -> _builtins.str:
+        """
+        The name of the log stream.
+        """
+        return pulumi.get(self, "log_stream_name")
+
+
+@pulumi.output_type
 class GetNotificationTemplatesTemplateResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -8877,6 +9034,154 @@ class GetSqlAlarmRulesSqlAlarmRuleTopicResult(dict):
         The URN of the topic.
         """
         return pulumi.get(self, "topic_urn")
+
+
+@pulumi.output_type
+class GetStreamChartsChartResult(dict):
+    def __init__(__self__, *,
+                 configs: Sequence['outputs.GetStreamChartsChartConfigResult'],
+                 id: _builtins.str,
+                 log_group_id: _builtins.str,
+                 log_group_name: _builtins.str,
+                 log_stream_id: _builtins.str,
+                 log_stream_name: _builtins.str,
+                 name: _builtins.str,
+                 sql: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param Sequence['GetStreamChartsChartConfigArgs'] configs: The configuration of the chart.  
+               The config structure is documented below.
+        :param _builtins.str id: The ID of the chart.
+        :param _builtins.str log_group_id: Specifies the ID of the log group.
+        :param _builtins.str log_group_name: The name of the log group.
+        :param _builtins.str log_stream_id: Specifies the ID of the log stream.
+        :param _builtins.str log_stream_name: The name of the log stream.
+        :param _builtins.str name: The name of the chart.
+        :param _builtins.str sql: The SQL statement of the chart.
+        :param _builtins.str type: The type of the chart.
+        """
+        pulumi.set(__self__, "configs", configs)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "log_group_id", log_group_id)
+        pulumi.set(__self__, "log_group_name", log_group_name)
+        pulumi.set(__self__, "log_stream_id", log_stream_id)
+        pulumi.set(__self__, "log_stream_name", log_stream_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sql", sql)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetStreamChartsChartConfigResult']:
+        """
+        The configuration of the chart.  
+        The config structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the chart.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the log group.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logGroupName")
+    def log_group_name(self) -> _builtins.str:
+        """
+        The name of the log group.
+        """
+        return pulumi.get(self, "log_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="logStreamId")
+    def log_stream_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the log stream.
+        """
+        return pulumi.get(self, "log_stream_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logStreamName")
+    def log_stream_name(self) -> _builtins.str:
+        """
+        The name of the log stream.
+        """
+        return pulumi.get(self, "log_stream_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the chart.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def sql(self) -> _builtins.str:
+        """
+        The SQL statement of the chart.
+        """
+        return pulumi.get(self, "sql")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the chart.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamChartsChartConfigResult(dict):
+    def __init__(__self__, *,
+                 can_search: _builtins.bool,
+                 can_sort: _builtins.bool,
+                 page_size: _builtins.int):
+        """
+        :param _builtins.bool can_search: Whether to enable search.
+        :param _builtins.bool can_sort: Whether to enable sorting.
+        :param _builtins.int page_size: The page size of the chart.
+        """
+        pulumi.set(__self__, "can_search", can_search)
+        pulumi.set(__self__, "can_sort", can_sort)
+        pulumi.set(__self__, "page_size", page_size)
+
+    @_builtins.property
+    @pulumi.getter(name="canSearch")
+    def can_search(self) -> _builtins.bool:
+        """
+        Whether to enable search.
+        """
+        return pulumi.get(self, "can_search")
+
+    @_builtins.property
+    @pulumi.getter(name="canSort")
+    def can_sort(self) -> _builtins.bool:
+        """
+        Whether to enable sorting.
+        """
+        return pulumi.get(self, "can_sort")
+
+    @_builtins.property
+    @pulumi.getter(name="pageSize")
+    def page_size(self) -> _builtins.int:
+        """
+        The page size of the chart.
+        """
+        return pulumi.get(self, "page_size")
 
 
 @pulumi.output_type

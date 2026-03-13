@@ -17,16 +17,52 @@ from . import outputs
 
 __all__ = [
     'AccessControlAttributeConfigurationAccessControlAttribute',
+    'ApplicationInstanceActiveCertificate',
+    'ApplicationInstanceIdentityProviderConfig',
+    'ApplicationInstanceSecurityConfig',
+    'ApplicationInstanceServiceProviderConfig',
+    'ApplicationInstanceServiceProviderConfigConsumer',
+    'IdentityProviderIdpCertificateId',
     'SystemIdentityPolicyAttachmentAttachedPolicy',
     'SystemPolicyAttachmentAttachedPolicy',
     'UserAddresses',
     'UserEnterprise',
     'GetAccessControlAttributeConfigurationsAccessControlAttributeResult',
+    'GetAccountAssignmentsAccountAssignmentResult',
+    'GetApplicationAssignmentsApplicationAssignmentResult',
+    'GetApplicationInstancesApplicationInstanceResult',
+    'GetApplicationInstancesApplicationInstanceActiveCertificateResult',
+    'GetApplicationInstancesApplicationInstanceIdentityProviderConfigResult',
+    'GetApplicationInstancesApplicationInstanceSecurityConfigResult',
+    'GetApplicationInstancesApplicationInstanceServiceProviderConfigResult',
+    'GetApplicationInstancesApplicationInstanceServiceProviderConfigConsumerResult',
+    'GetApplicationProvidersApplicationProviderResult',
+    'GetApplicationProvidersApplicationProviderDisplayDataResult',
+    'GetApplicationTemplatesApplicationTemplateResult',
+    'GetApplicationTemplatesApplicationTemplateSecurityConfigResult',
+    'GetApplicationTemplatesApplicationTemplateServiceProviderConfigResult',
+    'GetApplicationTemplatesApplicationTemplateServiceProviderConfigConsumerResult',
+    'GetApplicationsApplicationResult',
+    'GetApplicationsApplicationAssignmentConfigResult',
+    'GetApplicationsApplicationPortalOptionResult',
+    'GetApplicationsApplicationPortalOptionSignInOptionResult',
+    'GetBatchQueryGroupsGroupResult',
+    'GetBatchQueryUsersUserResult',
+    'GetBatchQueryUsersUserAddressResult',
+    'GetBatchQueryUsersUserEnterpriseResult',
+    'GetCatalogApplicationsApplicationResult',
+    'GetCatalogApplicationsApplicationDisplayResult',
+    'GetGroupMembershipsGroupMembershipResult',
+    'GetGroupMembershipsGroupMembershipMemberIdResult',
     'GetGroupsGroupResult',
+    'GetMfaDevicesMfaDeviceResult',
     'GetPermissionSetProvisioningsProvisioningResult',
     'GetPermissionSetsPermissionSetResult',
+    'GetServiceProviderConfigurationSpOidcConfigResult',
+    'GetServiceProviderConfigurationSpSamlConfigResult',
     'GetSystemIdentityPolicyAttachmentsPolicyResult',
     'GetSystemPolicyAttachmentsPolicyResult',
+    'GetUserSessionsSessionListResult',
     'GetUsersUserResult',
     'GetUsersUserAddressResult',
     'GetUsersUserEnterpriseResult',
@@ -59,6 +95,413 @@ class AccessControlAttributeConfigurationAccessControlAttribute(dict):
         Specifies the value used to map the specified attribute to the identity source.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class ApplicationInstanceActiveCertificate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certificateId":
+            suggest = "certificate_id"
+        elif key == "expiryDate":
+            suggest = "expiry_date"
+        elif key == "issueDate":
+            suggest = "issue_date"
+        elif key == "keySize":
+            suggest = "key_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationInstanceActiveCertificate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationInstanceActiveCertificate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationInstanceActiveCertificate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 algorithm: Optional[_builtins.str] = None,
+                 certificate: Optional[_builtins.str] = None,
+                 certificate_id: Optional[_builtins.str] = None,
+                 expiry_date: Optional[_builtins.str] = None,
+                 issue_date: Optional[_builtins.str] = None,
+                 key_size: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str algorithm: The algorithm of the application instance certificate.
+        :param _builtins.str certificate: The certificate of the application instance.
+        :param _builtins.str certificate_id: The ID of the application instance certificate.
+        :param _builtins.str expiry_date: The expiry date of the application instance certificate.
+        :param _builtins.str issue_date: The issue date of the application instance certificate.
+        :param _builtins.str key_size: The key size of the application instance certificate.
+        :param _builtins.str status: Specifies the status of the application instance.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if expiry_date is not None:
+            pulumi.set(__self__, "expiry_date", expiry_date)
+        if issue_date is not None:
+            pulumi.set(__self__, "issue_date", issue_date)
+        if key_size is not None:
+            pulumi.set(__self__, "key_size", key_size)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> Optional[_builtins.str]:
+        """
+        The algorithm of the application instance certificate.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def certificate(self) -> Optional[_builtins.str]:
+        """
+        The certificate of the application instance.
+        """
+        return pulumi.get(self, "certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the application instance certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @_builtins.property
+    @pulumi.getter(name="expiryDate")
+    def expiry_date(self) -> Optional[_builtins.str]:
+        """
+        The expiry date of the application instance certificate.
+        """
+        return pulumi.get(self, "expiry_date")
+
+    @_builtins.property
+    @pulumi.getter(name="issueDate")
+    def issue_date(self) -> Optional[_builtins.str]:
+        """
+        The issue date of the application instance certificate.
+        """
+        return pulumi.get(self, "issue_date")
+
+    @_builtins.property
+    @pulumi.getter(name="keySize")
+    def key_size(self) -> Optional[_builtins.str]:
+        """
+        The key size of the application instance certificate.
+        """
+        return pulumi.get(self, "key_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the application instance.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ApplicationInstanceIdentityProviderConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "issuerUrl":
+            suggest = "issuer_url"
+        elif key == "metadataUrl":
+            suggest = "metadata_url"
+        elif key == "remoteLoginUrl":
+            suggest = "remote_login_url"
+        elif key == "remoteLogoutUrl":
+            suggest = "remote_logout_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationInstanceIdentityProviderConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationInstanceIdentityProviderConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationInstanceIdentityProviderConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 issuer_url: Optional[_builtins.str] = None,
+                 metadata_url: Optional[_builtins.str] = None,
+                 remote_login_url: Optional[_builtins.str] = None,
+                 remote_logout_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str issuer_url: The issuer url of the application instance.
+        :param _builtins.str metadata_url: The metadata url of the application instance.
+        :param _builtins.str remote_login_url: The remote login url of the application instance.
+        :param _builtins.str remote_logout_url: The remote logout url of the application instance.
+        """
+        if issuer_url is not None:
+            pulumi.set(__self__, "issuer_url", issuer_url)
+        if metadata_url is not None:
+            pulumi.set(__self__, "metadata_url", metadata_url)
+        if remote_login_url is not None:
+            pulumi.set(__self__, "remote_login_url", remote_login_url)
+        if remote_logout_url is not None:
+            pulumi.set(__self__, "remote_logout_url", remote_logout_url)
+
+    @_builtins.property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> Optional[_builtins.str]:
+        """
+        The issuer url of the application instance.
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @_builtins.property
+    @pulumi.getter(name="metadataUrl")
+    def metadata_url(self) -> Optional[_builtins.str]:
+        """
+        The metadata url of the application instance.
+        """
+        return pulumi.get(self, "metadata_url")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLoginUrl")
+    def remote_login_url(self) -> Optional[_builtins.str]:
+        """
+        The remote login url of the application instance.
+        """
+        return pulumi.get(self, "remote_login_url")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLogoutUrl")
+    def remote_logout_url(self) -> Optional[_builtins.str]:
+        """
+        The remote logout url of the application instance.
+        """
+        return pulumi.get(self, "remote_logout_url")
+
+
+@pulumi.output_type
+class ApplicationInstanceSecurityConfig(dict):
+    def __init__(__self__, *,
+                 ttl: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str ttl: Specifies the time to alive of the application instance certificate.
+               
+               <a name="service_provider_config_struct"></a>
+               The `service_provider_config` block supports:
+        """
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> Optional[_builtins.str]:
+        """
+        Specifies the time to alive of the application instance certificate.
+
+        <a name="service_provider_config_struct"></a>
+        The `service_provider_config` block supports:
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class ApplicationInstanceServiceProviderConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "requireRequestSignature":
+            suggest = "require_request_signature"
+        elif key == "startUrl":
+            suggest = "start_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationInstanceServiceProviderConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationInstanceServiceProviderConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationInstanceServiceProviderConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 audience: Optional[_builtins.str] = None,
+                 consumers: Optional[Sequence['outputs.ApplicationInstanceServiceProviderConfigConsumer']] = None,
+                 require_request_signature: Optional[_builtins.bool] = None,
+                 start_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str audience: Specifies the audience of the application instance.
+        :param Sequence['ApplicationInstanceServiceProviderConfigConsumerArgs'] consumers: Specifies the consumers of the application instance.
+               The consumers structure is documented below.
+        :param _builtins.bool require_request_signature: Whether the application instance requires request signature.
+        :param _builtins.str start_url: Specifies the start url of the application instance.
+               
+               <a name="consumers_struct"></a>
+               The `consumers` block supports:
+        """
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if consumers is not None:
+            pulumi.set(__self__, "consumers", consumers)
+        if require_request_signature is not None:
+            pulumi.set(__self__, "require_request_signature", require_request_signature)
+        if start_url is not None:
+            pulumi.set(__self__, "start_url", start_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def audience(self) -> Optional[_builtins.str]:
+        """
+        Specifies the audience of the application instance.
+        """
+        return pulumi.get(self, "audience")
+
+    @_builtins.property
+    @pulumi.getter
+    def consumers(self) -> Optional[Sequence['outputs.ApplicationInstanceServiceProviderConfigConsumer']]:
+        """
+        Specifies the consumers of the application instance.
+        The consumers structure is documented below.
+        """
+        return pulumi.get(self, "consumers")
+
+    @_builtins.property
+    @pulumi.getter(name="requireRequestSignature")
+    def require_request_signature(self) -> Optional[_builtins.bool]:
+        """
+        Whether the application instance requires request signature.
+        """
+        return pulumi.get(self, "require_request_signature")
+
+    @_builtins.property
+    @pulumi.getter(name="startUrl")
+    def start_url(self) -> Optional[_builtins.str]:
+        """
+        Specifies the start url of the application instance.
+
+        <a name="consumers_struct"></a>
+        The `consumers` block supports:
+        """
+        return pulumi.get(self, "start_url")
+
+
+@pulumi.output_type
+class ApplicationInstanceServiceProviderConfigConsumer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationInstanceServiceProviderConfigConsumer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationInstanceServiceProviderConfigConsumer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationInstanceServiceProviderConfigConsumer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 binding: Optional[_builtins.str] = None,
+                 default_value: Optional[_builtins.bool] = None,
+                 location: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str binding: Specifies the bind method of the application instance.
+        :param _builtins.bool default_value: Whether this consumer is a default one.
+        :param _builtins.str location: Specifies the location url of the application instance.
+        """
+        if binding is not None:
+            pulumi.set(__self__, "binding", binding)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def binding(self) -> Optional[_builtins.str]:
+        """
+        Specifies the bind method of the application instance.
+        """
+        return pulumi.get(self, "binding")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[_builtins.bool]:
+        """
+        Whether this consumer is a default one.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        Specifies the location url of the application instance.
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class IdentityProviderIdpCertificateId(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certificateId":
+            suggest = "certificate_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IdentityProviderIdpCertificateId. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IdentityProviderIdpCertificateId.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IdentityProviderIdpCertificateId.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 certificate_id: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str certificate_id: The ID of the identity provider certificate.
+        :param _builtins.str status: The status of the identity provider.
+        """
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the identity provider certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        The status of the identity provider.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -355,6 +798,1614 @@ class GetAccessControlAttributeConfigurationsAccessControlAttributeResult(dict):
 
 
 @pulumi.output_type
+class GetAccountAssignmentsAccountAssignmentResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 permission_set_id: _builtins.str,
+                 principal_id: _builtins.str,
+                 principal_type: _builtins.str):
+        """
+        :param _builtins.str account_id: The ID of the account.
+        :param _builtins.str permission_set_id: The ID of the permission set.
+        :param _builtins.str principal_id: Specifies the ID of the principal.
+        :param _builtins.str principal_type: Specifies the type of the principal.
+               The valid values are as follows:
+               + **USER**
+               + **GROUP**
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "permission_set_id", permission_set_id)
+        pulumi.set(__self__, "principal_id", principal_id)
+        pulumi.set(__self__, "principal_type", principal_type)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The ID of the account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSetId")
+    def permission_set_id(self) -> _builtins.str:
+        """
+        The ID of the permission set.
+        """
+        return pulumi.get(self, "permission_set_id")
+
+    @_builtins.property
+    @pulumi.getter(name="principalId")
+    def principal_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the principal.
+        """
+        return pulumi.get(self, "principal_id")
+
+    @_builtins.property
+    @pulumi.getter(name="principalType")
+    def principal_type(self) -> _builtins.str:
+        """
+        Specifies the type of the principal.
+        The valid values are as follows:
+        + **USER**
+        + **GROUP**
+        """
+        return pulumi.get(self, "principal_type")
+
+
+@pulumi.output_type
+class GetApplicationAssignmentsApplicationAssignmentResult(dict):
+    def __init__(__self__, *,
+                 application_urn: _builtins.str,
+                 principal_id: _builtins.str,
+                 principal_type: _builtins.str):
+        """
+        :param _builtins.str application_urn: The urn of the application.
+        :param _builtins.str principal_id: Specifies the ID of the principal.
+        :param _builtins.str principal_type: Specifies the type of the principal. Value options: **USER**, **GROUP**.
+        """
+        pulumi.set(__self__, "application_urn", application_urn)
+        pulumi.set(__self__, "principal_id", principal_id)
+        pulumi.set(__self__, "principal_type", principal_type)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationUrn")
+    def application_urn(self) -> _builtins.str:
+        """
+        The urn of the application.
+        """
+        return pulumi.get(self, "application_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="principalId")
+    def principal_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the principal.
+        """
+        return pulumi.get(self, "principal_id")
+
+    @_builtins.property
+    @pulumi.getter(name="principalType")
+    def principal_type(self) -> _builtins.str:
+        """
+        Specifies the type of the principal. Value options: **USER**, **GROUP**.
+        """
+        return pulumi.get(self, "principal_type")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceResult(dict):
+    def __init__(__self__, *,
+                 active_certificates: Sequence['outputs.GetApplicationInstancesApplicationInstanceActiveCertificateResult'],
+                 client_id: _builtins.str,
+                 description: _builtins.str,
+                 display_name: _builtins.str,
+                 end_user_visible: _builtins.bool,
+                 identity_provider_configs: Sequence['outputs.GetApplicationInstancesApplicationInstanceIdentityProviderConfigResult'],
+                 managed_account: _builtins.str,
+                 name: _builtins.str,
+                 response_config: _builtins.str,
+                 response_schema_config: _builtins.str,
+                 security_configs: Sequence['outputs.GetApplicationInstancesApplicationInstanceSecurityConfigResult'],
+                 service_provider_configs: Sequence['outputs.GetApplicationInstancesApplicationInstanceServiceProviderConfigResult'],
+                 status: _builtins.str,
+                 visible: _builtins.bool):
+        """
+        :param Sequence['GetApplicationInstancesApplicationInstanceActiveCertificateArgs'] active_certificates: The active certificate of the application instance.
+               The active_certificate structure is documented below.
+        :param _builtins.str client_id: The client ID of the application instance.
+        :param _builtins.str description: The description of the application instance.
+        :param _builtins.str display_name: The display name of the application instance.
+        :param _builtins.bool end_user_visible: Whether the application instance is visible for end user.
+        :param Sequence['GetApplicationInstancesApplicationInstanceIdentityProviderConfigArgs'] identity_provider_configs: The identity provider configuration of the application instance.
+               The identity_provider_config structure is documented below.
+        :param _builtins.str managed_account: The managed account of the application instance.
+        :param _builtins.str name: The name of the application instance.
+        :param _builtins.str response_config: The response configuration of the application instance.
+        :param _builtins.str response_schema_config: The response schema configuration of the application instance.
+        :param Sequence['GetApplicationInstancesApplicationInstanceSecurityConfigArgs'] security_configs: The security configuration of the application instance.
+               The security_config structure is documented below.
+        :param Sequence['GetApplicationInstancesApplicationInstanceServiceProviderConfigArgs'] service_provider_configs: The service provider configuration of the application instance.
+               The service_provider_config structure is documented below.
+        :param _builtins.str status: The status of the application instance certificate.
+        :param _builtins.bool visible: Whether the application instance is visible.
+        """
+        pulumi.set(__self__, "active_certificates", active_certificates)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "end_user_visible", end_user_visible)
+        pulumi.set(__self__, "identity_provider_configs", identity_provider_configs)
+        pulumi.set(__self__, "managed_account", managed_account)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "response_config", response_config)
+        pulumi.set(__self__, "response_schema_config", response_schema_config)
+        pulumi.set(__self__, "security_configs", security_configs)
+        pulumi.set(__self__, "service_provider_configs", service_provider_configs)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "visible", visible)
+
+    @_builtins.property
+    @pulumi.getter(name="activeCertificates")
+    def active_certificates(self) -> Sequence['outputs.GetApplicationInstancesApplicationInstanceActiveCertificateResult']:
+        """
+        The active certificate of the application instance.
+        The active_certificate structure is documented below.
+        """
+        return pulumi.get(self, "active_certificates")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The client ID of the application instance.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the application instance.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the application instance.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="endUserVisible")
+    def end_user_visible(self) -> _builtins.bool:
+        """
+        Whether the application instance is visible for end user.
+        """
+        return pulumi.get(self, "end_user_visible")
+
+    @_builtins.property
+    @pulumi.getter(name="identityProviderConfigs")
+    def identity_provider_configs(self) -> Sequence['outputs.GetApplicationInstancesApplicationInstanceIdentityProviderConfigResult']:
+        """
+        The identity provider configuration of the application instance.
+        The identity_provider_config structure is documented below.
+        """
+        return pulumi.get(self, "identity_provider_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="managedAccount")
+    def managed_account(self) -> _builtins.str:
+        """
+        The managed account of the application instance.
+        """
+        return pulumi.get(self, "managed_account")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the application instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="responseConfig")
+    def response_config(self) -> _builtins.str:
+        """
+        The response configuration of the application instance.
+        """
+        return pulumi.get(self, "response_config")
+
+    @_builtins.property
+    @pulumi.getter(name="responseSchemaConfig")
+    def response_schema_config(self) -> _builtins.str:
+        """
+        The response schema configuration of the application instance.
+        """
+        return pulumi.get(self, "response_schema_config")
+
+    @_builtins.property
+    @pulumi.getter(name="securityConfigs")
+    def security_configs(self) -> Sequence['outputs.GetApplicationInstancesApplicationInstanceSecurityConfigResult']:
+        """
+        The security configuration of the application instance.
+        The security_config structure is documented below.
+        """
+        return pulumi.get(self, "security_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceProviderConfigs")
+    def service_provider_configs(self) -> Sequence['outputs.GetApplicationInstancesApplicationInstanceServiceProviderConfigResult']:
+        """
+        The service provider configuration of the application instance.
+        The service_provider_config structure is documented below.
+        """
+        return pulumi.get(self, "service_provider_configs")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the application instance certificate.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def visible(self) -> _builtins.bool:
+        """
+        Whether the application instance is visible.
+        """
+        return pulumi.get(self, "visible")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceActiveCertificateResult(dict):
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 certificate: _builtins.str,
+                 certificate_id: _builtins.str,
+                 expiry_date: _builtins.str,
+                 issue_date: _builtins.str,
+                 key_size: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str algorithm: The algorithm of the application instance certificate.
+        :param _builtins.str certificate: The certificate of the application instance.
+        :param _builtins.str certificate_id: The ID of the application instance certificate.
+        :param _builtins.str expiry_date: The expiry date of the application instance certificate.
+        :param _builtins.str issue_date: The issue date of the application instance certificate.
+        :param _builtins.str key_size: The key size of the application instance certificate.
+        :param _builtins.str status: The status of the application instance certificate.
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "certificate", certificate)
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "expiry_date", expiry_date)
+        pulumi.set(__self__, "issue_date", issue_date)
+        pulumi.set(__self__, "key_size", key_size)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        The algorithm of the application instance certificate.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def certificate(self) -> _builtins.str:
+        """
+        The certificate of the application instance.
+        """
+        return pulumi.get(self, "certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> _builtins.str:
+        """
+        The ID of the application instance certificate.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @_builtins.property
+    @pulumi.getter(name="expiryDate")
+    def expiry_date(self) -> _builtins.str:
+        """
+        The expiry date of the application instance certificate.
+        """
+        return pulumi.get(self, "expiry_date")
+
+    @_builtins.property
+    @pulumi.getter(name="issueDate")
+    def issue_date(self) -> _builtins.str:
+        """
+        The issue date of the application instance certificate.
+        """
+        return pulumi.get(self, "issue_date")
+
+    @_builtins.property
+    @pulumi.getter(name="keySize")
+    def key_size(self) -> _builtins.str:
+        """
+        The key size of the application instance certificate.
+        """
+        return pulumi.get(self, "key_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the application instance certificate.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceIdentityProviderConfigResult(dict):
+    def __init__(__self__, *,
+                 issuer_url: _builtins.str,
+                 metadata_url: _builtins.str,
+                 remote_login_url: _builtins.str,
+                 remote_logout_url: _builtins.str):
+        """
+        :param _builtins.str issuer_url: The issuer url of the application instance.
+        :param _builtins.str metadata_url: The metadata url of the application instance.
+        :param _builtins.str remote_login_url: The remote login url of the application instance.
+        :param _builtins.str remote_logout_url: The remote logout url of the application instance.
+        """
+        pulumi.set(__self__, "issuer_url", issuer_url)
+        pulumi.set(__self__, "metadata_url", metadata_url)
+        pulumi.set(__self__, "remote_login_url", remote_login_url)
+        pulumi.set(__self__, "remote_logout_url", remote_logout_url)
+
+    @_builtins.property
+    @pulumi.getter(name="issuerUrl")
+    def issuer_url(self) -> _builtins.str:
+        """
+        The issuer url of the application instance.
+        """
+        return pulumi.get(self, "issuer_url")
+
+    @_builtins.property
+    @pulumi.getter(name="metadataUrl")
+    def metadata_url(self) -> _builtins.str:
+        """
+        The metadata url of the application instance.
+        """
+        return pulumi.get(self, "metadata_url")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLoginUrl")
+    def remote_login_url(self) -> _builtins.str:
+        """
+        The remote login url of the application instance.
+        """
+        return pulumi.get(self, "remote_login_url")
+
+    @_builtins.property
+    @pulumi.getter(name="remoteLogoutUrl")
+    def remote_logout_url(self) -> _builtins.str:
+        """
+        The remote logout url of the application instance.
+        """
+        return pulumi.get(self, "remote_logout_url")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceSecurityConfigResult(dict):
+    def __init__(__self__, *,
+                 ttl: _builtins.str):
+        """
+        :param _builtins.str ttl: The time to alive of the application instance certificate.
+        """
+        pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.str:
+        """
+        The time to alive of the application instance certificate.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceServiceProviderConfigResult(dict):
+    def __init__(__self__, *,
+                 audience: _builtins.str,
+                 consumers: Sequence['outputs.GetApplicationInstancesApplicationInstanceServiceProviderConfigConsumerResult'],
+                 require_request_signature: _builtins.bool,
+                 start_url: _builtins.str):
+        """
+        :param _builtins.str audience: The audience of the application instance.
+        :param Sequence['GetApplicationInstancesApplicationInstanceServiceProviderConfigConsumerArgs'] consumers: The consumers of the application instance.
+               The consumers structure is documented below.
+        :param _builtins.bool require_request_signature: Whether the application instance requires request signature.
+        :param _builtins.str start_url: The start url of the application instance.
+        """
+        pulumi.set(__self__, "audience", audience)
+        pulumi.set(__self__, "consumers", consumers)
+        pulumi.set(__self__, "require_request_signature", require_request_signature)
+        pulumi.set(__self__, "start_url", start_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def audience(self) -> _builtins.str:
+        """
+        The audience of the application instance.
+        """
+        return pulumi.get(self, "audience")
+
+    @_builtins.property
+    @pulumi.getter
+    def consumers(self) -> Sequence['outputs.GetApplicationInstancesApplicationInstanceServiceProviderConfigConsumerResult']:
+        """
+        The consumers of the application instance.
+        The consumers structure is documented below.
+        """
+        return pulumi.get(self, "consumers")
+
+    @_builtins.property
+    @pulumi.getter(name="requireRequestSignature")
+    def require_request_signature(self) -> _builtins.bool:
+        """
+        Whether the application instance requires request signature.
+        """
+        return pulumi.get(self, "require_request_signature")
+
+    @_builtins.property
+    @pulumi.getter(name="startUrl")
+    def start_url(self) -> _builtins.str:
+        """
+        The start url of the application instance.
+        """
+        return pulumi.get(self, "start_url")
+
+
+@pulumi.output_type
+class GetApplicationInstancesApplicationInstanceServiceProviderConfigConsumerResult(dict):
+    def __init__(__self__, *,
+                 binding: _builtins.str,
+                 default_value: _builtins.bool,
+                 location: _builtins.str):
+        """
+        :param _builtins.str binding: The bind method of the application instance.
+        :param _builtins.bool default_value: Whether this consumer is a default one.
+        :param _builtins.str location: The location url of the application instance.
+        """
+        pulumi.set(__self__, "binding", binding)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def binding(self) -> _builtins.str:
+        """
+        The bind method of the application instance.
+        """
+        return pulumi.get(self, "binding")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.bool:
+        """
+        Whether this consumer is a default one.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        The location url of the application instance.
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class GetApplicationProvidersApplicationProviderResult(dict):
+    def __init__(__self__, *,
+                 application_provider_id: _builtins.str,
+                 application_provider_urn: _builtins.str,
+                 display_datas: Sequence['outputs.GetApplicationProvidersApplicationProviderDisplayDataResult'],
+                 federation_protocol: _builtins.str):
+        """
+        :param _builtins.str application_provider_id: The ID of the application provider.
+        :param _builtins.str application_provider_urn: The urn of the application provider.
+        :param Sequence['GetApplicationProvidersApplicationProviderDisplayDataArgs'] display_datas: The display data of the application provider.
+               The display_data structure is documented below.
+        :param _builtins.str federation_protocol: The federation protocol of the application provider.
+        """
+        pulumi.set(__self__, "application_provider_id", application_provider_id)
+        pulumi.set(__self__, "application_provider_urn", application_provider_urn)
+        pulumi.set(__self__, "display_datas", display_datas)
+        pulumi.set(__self__, "federation_protocol", federation_protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationProviderId")
+    def application_provider_id(self) -> _builtins.str:
+        """
+        The ID of the application provider.
+        """
+        return pulumi.get(self, "application_provider_id")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationProviderUrn")
+    def application_provider_urn(self) -> _builtins.str:
+        """
+        The urn of the application provider.
+        """
+        return pulumi.get(self, "application_provider_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="displayDatas")
+    def display_datas(self) -> Sequence['outputs.GetApplicationProvidersApplicationProviderDisplayDataResult']:
+        """
+        The display data of the application provider.
+        The display_data structure is documented below.
+        """
+        return pulumi.get(self, "display_datas")
+
+    @_builtins.property
+    @pulumi.getter(name="federationProtocol")
+    def federation_protocol(self) -> _builtins.str:
+        """
+        The federation protocol of the application provider.
+        """
+        return pulumi.get(self, "federation_protocol")
+
+
+@pulumi.output_type
+class GetApplicationProvidersApplicationProviderDisplayDataResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 display_name: _builtins.str,
+                 icon_url: _builtins.str):
+        """
+        :param _builtins.str description: The description of the application provider.
+        :param _builtins.str display_name: The display name of the application provider.
+        :param _builtins.str icon_url: The icon url of the application provider.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "icon_url", icon_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the application provider.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the application provider.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="iconUrl")
+    def icon_url(self) -> _builtins.str:
+        """
+        The icon url of the application provider.
+        """
+        return pulumi.get(self, "icon_url")
+
+
+@pulumi.output_type
+class GetApplicationTemplatesApplicationTemplateResult(dict):
+    def __init__(__self__, *,
+                 application_type: _builtins.str,
+                 description: _builtins.str,
+                 display_name: _builtins.str,
+                 response_config: _builtins.str,
+                 response_schema_config: _builtins.str,
+                 security_configs: Sequence['outputs.GetApplicationTemplatesApplicationTemplateSecurityConfigResult'],
+                 service_provider_configs: Sequence['outputs.GetApplicationTemplatesApplicationTemplateServiceProviderConfigResult'],
+                 sso_protocol: _builtins.str,
+                 template_id: _builtins.str,
+                 template_version: _builtins.str):
+        """
+        :param _builtins.str application_type: The type of the application.
+        :param _builtins.str description: The description of the application.
+        :param _builtins.str display_name: The display name of the application.
+        :param _builtins.str response_config: The response configuration of the application.
+        :param _builtins.str response_schema_config: The response schema configuration of the application.
+        :param Sequence['GetApplicationTemplatesApplicationTemplateSecurityConfigArgs'] security_configs: The security configuration of the application.
+               The security_config structure is documented below.
+        :param Sequence['GetApplicationTemplatesApplicationTemplateServiceProviderConfigArgs'] service_provider_configs: The service provider configuration of the application.
+               The service_provider_config structure is documented below.
+        :param _builtins.str sso_protocol: The sso protocol supported by application.
+        :param _builtins.str template_id: The ID of the application template.
+        :param _builtins.str template_version: The version of the application template.
+        """
+        pulumi.set(__self__, "application_type", application_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "response_config", response_config)
+        pulumi.set(__self__, "response_schema_config", response_schema_config)
+        pulumi.set(__self__, "security_configs", security_configs)
+        pulumi.set(__self__, "service_provider_configs", service_provider_configs)
+        pulumi.set(__self__, "sso_protocol", sso_protocol)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_version", template_version)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationType")
+    def application_type(self) -> _builtins.str:
+        """
+        The type of the application.
+        """
+        return pulumi.get(self, "application_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the application.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="responseConfig")
+    def response_config(self) -> _builtins.str:
+        """
+        The response configuration of the application.
+        """
+        return pulumi.get(self, "response_config")
+
+    @_builtins.property
+    @pulumi.getter(name="responseSchemaConfig")
+    def response_schema_config(self) -> _builtins.str:
+        """
+        The response schema configuration of the application.
+        """
+        return pulumi.get(self, "response_schema_config")
+
+    @_builtins.property
+    @pulumi.getter(name="securityConfigs")
+    def security_configs(self) -> Sequence['outputs.GetApplicationTemplatesApplicationTemplateSecurityConfigResult']:
+        """
+        The security configuration of the application.
+        The security_config structure is documented below.
+        """
+        return pulumi.get(self, "security_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceProviderConfigs")
+    def service_provider_configs(self) -> Sequence['outputs.GetApplicationTemplatesApplicationTemplateServiceProviderConfigResult']:
+        """
+        The service provider configuration of the application.
+        The service_provider_config structure is documented below.
+        """
+        return pulumi.get(self, "service_provider_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="ssoProtocol")
+    def sso_protocol(self) -> _builtins.str:
+        """
+        The sso protocol supported by application.
+        """
+        return pulumi.get(self, "sso_protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The ID of the application template.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateVersion")
+    def template_version(self) -> _builtins.str:
+        """
+        The version of the application template.
+        """
+        return pulumi.get(self, "template_version")
+
+
+@pulumi.output_type
+class GetApplicationTemplatesApplicationTemplateSecurityConfigResult(dict):
+    def __init__(__self__, *,
+                 ttl: _builtins.str):
+        """
+        :param _builtins.str ttl: The time to alive of the application instance certificate.
+        """
+        pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.str:
+        """
+        The time to alive of the application instance certificate.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetApplicationTemplatesApplicationTemplateServiceProviderConfigResult(dict):
+    def __init__(__self__, *,
+                 audience: _builtins.str,
+                 consumers: Sequence['outputs.GetApplicationTemplatesApplicationTemplateServiceProviderConfigConsumerResult'],
+                 require_request_signature: _builtins.bool,
+                 start_url: _builtins.str):
+        """
+        :param _builtins.str audience: The audience of the application.
+        :param Sequence['GetApplicationTemplatesApplicationTemplateServiceProviderConfigConsumerArgs'] consumers: The consumers of the application instance.
+               The consumers structure is documented below.
+        :param _builtins.bool require_request_signature: Whether the application instance requires request signature.
+        :param _builtins.str start_url: The start url of the application instance.
+        """
+        pulumi.set(__self__, "audience", audience)
+        pulumi.set(__self__, "consumers", consumers)
+        pulumi.set(__self__, "require_request_signature", require_request_signature)
+        pulumi.set(__self__, "start_url", start_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def audience(self) -> _builtins.str:
+        """
+        The audience of the application.
+        """
+        return pulumi.get(self, "audience")
+
+    @_builtins.property
+    @pulumi.getter
+    def consumers(self) -> Sequence['outputs.GetApplicationTemplatesApplicationTemplateServiceProviderConfigConsumerResult']:
+        """
+        The consumers of the application instance.
+        The consumers structure is documented below.
+        """
+        return pulumi.get(self, "consumers")
+
+    @_builtins.property
+    @pulumi.getter(name="requireRequestSignature")
+    def require_request_signature(self) -> _builtins.bool:
+        """
+        Whether the application instance requires request signature.
+        """
+        return pulumi.get(self, "require_request_signature")
+
+    @_builtins.property
+    @pulumi.getter(name="startUrl")
+    def start_url(self) -> _builtins.str:
+        """
+        The start url of the application instance.
+        """
+        return pulumi.get(self, "start_url")
+
+
+@pulumi.output_type
+class GetApplicationTemplatesApplicationTemplateServiceProviderConfigConsumerResult(dict):
+    def __init__(__self__, *,
+                 binding: _builtins.str,
+                 default_value: _builtins.bool,
+                 location: _builtins.str):
+        """
+        :param _builtins.str binding: The bind method of the application instance.
+        :param _builtins.bool default_value: Whether this consumer is a default one.
+        :param _builtins.str location: The location url of the application instance.
+        """
+        pulumi.set(__self__, "binding", binding)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def binding(self) -> _builtins.str:
+        """
+        The bind method of the application instance.
+        """
+        return pulumi.get(self, "binding")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.bool:
+        """
+        Whether this consumer is a default one.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        The location url of the application instance.
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class GetApplicationsApplicationResult(dict):
+    def __init__(__self__, *,
+                 application_account: _builtins.str,
+                 application_provider_urn: _builtins.str,
+                 application_urn: _builtins.str,
+                 assignment_configs: Sequence['outputs.GetApplicationsApplicationAssignmentConfigResult'],
+                 created_date: _builtins.str,
+                 description: _builtins.str,
+                 instance_urn: _builtins.str,
+                 name: _builtins.str,
+                 portal_options: Sequence['outputs.GetApplicationsApplicationPortalOptionResult'],
+                 status: _builtins.str):
+        """
+        :param _builtins.str application_account: The account of the application.
+        :param _builtins.str application_provider_urn: The urn of the application provider.
+        :param _builtins.str application_urn: The urn of the application.
+        :param Sequence['GetApplicationsApplicationAssignmentConfigArgs'] assignment_configs: The assignment configuration of the application.
+               The assignment_config structure is documented below.
+        :param _builtins.str created_date: The created date of the application.
+        :param _builtins.str description: The description of the application.
+        :param _builtins.str instance_urn: The urn of the Identity Center instance.
+        :param _builtins.str name: The name of the application.
+        :param Sequence['GetApplicationsApplicationPortalOptionArgs'] portal_options: The portal options of the application.
+               The portal_options structure is documented below.
+        :param _builtins.str status: The status of the application.
+        """
+        pulumi.set(__self__, "application_account", application_account)
+        pulumi.set(__self__, "application_provider_urn", application_provider_urn)
+        pulumi.set(__self__, "application_urn", application_urn)
+        pulumi.set(__self__, "assignment_configs", assignment_configs)
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "instance_urn", instance_urn)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "portal_options", portal_options)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationAccount")
+    def application_account(self) -> _builtins.str:
+        """
+        The account of the application.
+        """
+        return pulumi.get(self, "application_account")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationProviderUrn")
+    def application_provider_urn(self) -> _builtins.str:
+        """
+        The urn of the application provider.
+        """
+        return pulumi.get(self, "application_provider_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationUrn")
+    def application_urn(self) -> _builtins.str:
+        """
+        The urn of the application.
+        """
+        return pulumi.get(self, "application_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="assignmentConfigs")
+    def assignment_configs(self) -> Sequence['outputs.GetApplicationsApplicationAssignmentConfigResult']:
+        """
+        The assignment configuration of the application.
+        The assignment_config structure is documented below.
+        """
+        return pulumi.get(self, "assignment_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> _builtins.str:
+        """
+        The created date of the application.
+        """
+        return pulumi.get(self, "created_date")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceUrn")
+    def instance_urn(self) -> _builtins.str:
+        """
+        The urn of the Identity Center instance.
+        """
+        return pulumi.get(self, "instance_urn")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the application.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="portalOptions")
+    def portal_options(self) -> Sequence['outputs.GetApplicationsApplicationPortalOptionResult']:
+        """
+        The portal options of the application.
+        The portal_options structure is documented below.
+        """
+        return pulumi.get(self, "portal_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the application.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetApplicationsApplicationAssignmentConfigResult(dict):
+    def __init__(__self__, *,
+                 assignment_required: _builtins.bool):
+        """
+        :param _builtins.bool assignment_required: Whether the application requires assignment.
+        """
+        pulumi.set(__self__, "assignment_required", assignment_required)
+
+    @_builtins.property
+    @pulumi.getter(name="assignmentRequired")
+    def assignment_required(self) -> _builtins.bool:
+        """
+        Whether the application requires assignment.
+        """
+        return pulumi.get(self, "assignment_required")
+
+
+@pulumi.output_type
+class GetApplicationsApplicationPortalOptionResult(dict):
+    def __init__(__self__, *,
+                 sign_in_options: Sequence['outputs.GetApplicationsApplicationPortalOptionSignInOptionResult'],
+                 visibility: _builtins.str,
+                 visible: _builtins.bool):
+        """
+        :param Sequence['GetApplicationsApplicationPortalOptionSignInOptionArgs'] sign_in_options: The sign in options of the application.
+               The sign_in_options structure is documented below.
+        :param _builtins.str visibility: Whether the application instance is visible.
+        :param _builtins.bool visible: Whether the application instance is visible.
+        """
+        pulumi.set(__self__, "sign_in_options", sign_in_options)
+        pulumi.set(__self__, "visibility", visibility)
+        pulumi.set(__self__, "visible", visible)
+
+    @_builtins.property
+    @pulumi.getter(name="signInOptions")
+    def sign_in_options(self) -> Sequence['outputs.GetApplicationsApplicationPortalOptionSignInOptionResult']:
+        """
+        The sign in options of the application.
+        The sign_in_options structure is documented below.
+        """
+        return pulumi.get(self, "sign_in_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def visibility(self) -> _builtins.str:
+        """
+        Whether the application instance is visible.
+        """
+        return pulumi.get(self, "visibility")
+
+    @_builtins.property
+    @pulumi.getter
+    def visible(self) -> _builtins.bool:
+        """
+        Whether the application instance is visible.
+        """
+        return pulumi.get(self, "visible")
+
+
+@pulumi.output_type
+class GetApplicationsApplicationPortalOptionSignInOptionResult(dict):
+    def __init__(__self__, *,
+                 application_url: _builtins.str,
+                 origin: _builtins.str):
+        """
+        :param _builtins.str application_url: The URL that accepts authentication requests for an application.
+        :param _builtins.str origin: This determines how IAM Identity Center navigates the user to the target application.
+        """
+        pulumi.set(__self__, "application_url", application_url)
+        pulumi.set(__self__, "origin", origin)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationUrl")
+    def application_url(self) -> _builtins.str:
+        """
+        The URL that accepts authentication requests for an application.
+        """
+        return pulumi.get(self, "application_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def origin(self) -> _builtins.str:
+        """
+        This determines how IAM Identity Center navigates the user to the target application.
+        """
+        return pulumi.get(self, "origin")
+
+
+@pulumi.output_type
+class GetBatchQueryGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+        :param _builtins.str description: Indicates the description of the group.
+        :param _builtins.str id: Indicates the ID of the group.
+        :param _builtins.str name: Indicates the name of the group.
+        :param _builtins.str updated_at: Indicates the last update time.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Indicates the description of the group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of the group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the last update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetBatchQueryUsersUserResult(dict):
+    def __init__(__self__, *,
+                 addresses: Sequence['outputs.GetBatchQueryUsersUserAddressResult'],
+                 created_at: _builtins.str,
+                 created_by: _builtins.str,
+                 display_name: _builtins.str,
+                 email: _builtins.str,
+                 email_verified: _builtins.bool,
+                 enabled: _builtins.bool,
+                 enterprises: Sequence['outputs.GetBatchQueryUsersUserEnterpriseResult'],
+                 family_name: _builtins.str,
+                 given_name: _builtins.str,
+                 id: _builtins.str,
+                 phone_number: _builtins.str,
+                 title: _builtins.str,
+                 updated_at: _builtins.str,
+                 updated_by: _builtins.str,
+                 user_name: _builtins.str,
+                 user_type: _builtins.str):
+        """
+        :param Sequence['GetBatchQueryUsersUserAddressArgs'] addresses: The addresses information of the user.
+               The addresses structure is documented below.
+        :param _builtins.str created_at: The creation time of the user.
+        :param _builtins.str created_by: The creator of the user.
+        :param _builtins.str display_name: Indicates the display name of the user.
+        :param _builtins.str email: Indicates the email of the user.
+        :param _builtins.bool email_verified: Whether the email is verified.
+        :param _builtins.bool enabled: Whether the user is enabled.
+        :param Sequence['GetBatchQueryUsersUserEnterpriseArgs'] enterprises: The enterprise information of the user.
+               The enterprise structure is documented below.
+        :param _builtins.str family_name: Indicates the family name of the user.
+        :param _builtins.str given_name: Indicates the given name of the user.
+        :param _builtins.str id: Indicates the ID of the user.
+        :param _builtins.str phone_number: The phone number of the user.
+        :param _builtins.str title: The title of the user.
+        :param _builtins.str updated_at: The update time of the user.
+        :param _builtins.str updated_by: The updater of the user.
+        :param _builtins.str user_name: Indicates the name of the user.
+        :param _builtins.str user_type: The type of the user.
+        """
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "email_verified", email_verified)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "enterprises", enterprises)
+        pulumi.set(__self__, "family_name", family_name)
+        pulumi.set(__self__, "given_name", given_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "updated_by", updated_by)
+        pulumi.set(__self__, "user_name", user_name)
+        pulumi.set(__self__, "user_type", user_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def addresses(self) -> Sequence['outputs.GetBatchQueryUsersUserAddressResult']:
+        """
+        The addresses information of the user.
+        The addresses structure is documented below.
+        """
+        return pulumi.get(self, "addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the user.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        The creator of the user.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        Indicates the email of the user.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="emailVerified")
+    def email_verified(self) -> _builtins.bool:
+        """
+        Whether the email is verified.
+        """
+        return pulumi.get(self, "email_verified")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether the user is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def enterprises(self) -> Sequence['outputs.GetBatchQueryUsersUserEnterpriseResult']:
+        """
+        The enterprise information of the user.
+        The enterprise structure is documented below.
+        """
+        return pulumi.get(self, "enterprises")
+
+    @_builtins.property
+    @pulumi.getter(name="familyName")
+    def family_name(self) -> _builtins.str:
+        """
+        Indicates the family name of the user.
+        """
+        return pulumi.get(self, "family_name")
+
+    @_builtins.property
+    @pulumi.getter(name="givenName")
+    def given_name(self) -> _builtins.str:
+        """
+        Indicates the given name of the user.
+        """
+        return pulumi.get(self, "given_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> _builtins.str:
+        """
+        The phone number of the user.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title of the user.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The update time of the user.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBy")
+    def updated_by(self) -> _builtins.str:
+        """
+        The updater of the user.
+        """
+        return pulumi.get(self, "updated_by")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        Indicates the name of the user.
+        """
+        return pulumi.get(self, "user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userType")
+    def user_type(self) -> _builtins.str:
+        """
+        The type of the user.
+        """
+        return pulumi.get(self, "user_type")
+
+
+@pulumi.output_type
+class GetBatchQueryUsersUserAddressResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 formatted: _builtins.str,
+                 locality: _builtins.str,
+                 postal_code: _builtins.str,
+                 region: _builtins.str,
+                 street_address: _builtins.str):
+        """
+        :param _builtins.str country: The country of the user.
+        :param _builtins.str formatted: A string containing a formatted version of the address to be displayed.
+        :param _builtins.str locality: The locality of the user.
+        :param _builtins.str postal_code: The postal code of the user.
+        :param _builtins.str region: Specifies the region in which to query the data source.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str street_address: The street address of the user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "formatted", formatted)
+        pulumi.set(__self__, "locality", locality)
+        pulumi.set(__self__, "postal_code", postal_code)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "street_address", street_address)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        The country of the user.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def formatted(self) -> _builtins.str:
+        """
+        A string containing a formatted version of the address to be displayed.
+        """
+        return pulumi.get(self, "formatted")
+
+    @_builtins.property
+    @pulumi.getter
+    def locality(self) -> _builtins.str:
+        """
+        The locality of the user.
+        """
+        return pulumi.get(self, "locality")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> _builtins.str:
+        """
+        The postal code of the user.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the data source.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="streetAddress")
+    def street_address(self) -> _builtins.str:
+        """
+        The street address of the user.
+        """
+        return pulumi.get(self, "street_address")
+
+
+@pulumi.output_type
+class GetBatchQueryUsersUserEnterpriseResult(dict):
+    def __init__(__self__, *,
+                 cost_center: _builtins.str,
+                 department: _builtins.str,
+                 division: _builtins.str,
+                 employee_number: _builtins.str,
+                 manager: _builtins.str,
+                 organization: _builtins.str):
+        """
+        :param _builtins.str cost_center: The cost center of the enterprise.
+        :param _builtins.str department: The department of the enterprise.
+        :param _builtins.str division: The division of the enterprise.
+        :param _builtins.str employee_number: The employee number of the enterprise.
+        :param _builtins.str manager: The manager of the enterprise.
+        :param _builtins.str organization: The organization of the enterprise.
+        """
+        pulumi.set(__self__, "cost_center", cost_center)
+        pulumi.set(__self__, "department", department)
+        pulumi.set(__self__, "division", division)
+        pulumi.set(__self__, "employee_number", employee_number)
+        pulumi.set(__self__, "manager", manager)
+        pulumi.set(__self__, "organization", organization)
+
+    @_builtins.property
+    @pulumi.getter(name="costCenter")
+    def cost_center(self) -> _builtins.str:
+        """
+        The cost center of the enterprise.
+        """
+        return pulumi.get(self, "cost_center")
+
+    @_builtins.property
+    @pulumi.getter
+    def department(self) -> _builtins.str:
+        """
+        The department of the enterprise.
+        """
+        return pulumi.get(self, "department")
+
+    @_builtins.property
+    @pulumi.getter
+    def division(self) -> _builtins.str:
+        """
+        The division of the enterprise.
+        """
+        return pulumi.get(self, "division")
+
+    @_builtins.property
+    @pulumi.getter(name="employeeNumber")
+    def employee_number(self) -> _builtins.str:
+        """
+        The employee number of the enterprise.
+        """
+        return pulumi.get(self, "employee_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def manager(self) -> _builtins.str:
+        """
+        The manager of the enterprise.
+        """
+        return pulumi.get(self, "manager")
+
+    @_builtins.property
+    @pulumi.getter
+    def organization(self) -> _builtins.str:
+        """
+        The organization of the enterprise.
+        """
+        return pulumi.get(self, "organization")
+
+
+@pulumi.output_type
+class GetCatalogApplicationsApplicationResult(dict):
+    def __init__(__self__, *,
+                 application_id: _builtins.str,
+                 application_type: _builtins.str,
+                 displays: Sequence['outputs.GetCatalogApplicationsApplicationDisplayResult']):
+        """
+        :param _builtins.str application_id: The ID of the application.
+        :param _builtins.str application_type: The type of the application.
+        :param Sequence['GetCatalogApplicationsApplicationDisplayArgs'] displays: The display information of the application.The display structure is documented below.
+        """
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "application_type", application_type)
+        pulumi.set(__self__, "displays", displays)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> _builtins.str:
+        """
+        The ID of the application.
+        """
+        return pulumi.get(self, "application_id")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationType")
+    def application_type(self) -> _builtins.str:
+        """
+        The type of the application.
+        """
+        return pulumi.get(self, "application_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def displays(self) -> Sequence['outputs.GetCatalogApplicationsApplicationDisplayResult']:
+        """
+        The display information of the application.The display structure is documented below.
+        """
+        return pulumi.get(self, "displays")
+
+
+@pulumi.output_type
+class GetCatalogApplicationsApplicationDisplayResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 display_name: _builtins.str,
+                 icon: _builtins.str):
+        """
+        :param _builtins.str description: The description of the application.
+        :param _builtins.str display_name: The display name of the application.
+        :param _builtins.str icon: The icon of the application.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "icon", icon)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the application.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def icon(self) -> _builtins.str:
+        """
+        The icon of the application.
+        """
+        return pulumi.get(self, "icon")
+
+
+@pulumi.output_type
+class GetGroupMembershipsGroupMembershipResult(dict):
+    def __init__(__self__, *,
+                 group_id: _builtins.str,
+                 identity_store_id: _builtins.str,
+                 member_ids: Sequence['outputs.GetGroupMembershipsGroupMembershipMemberIdResult'],
+                 membership_id: _builtins.str):
+        """
+        :param _builtins.str group_id: Specifies the ID of the group.
+        :param _builtins.str identity_store_id: Specifies the ID of the identity store that associated with IAM Identity
+               Center.
+        :param Sequence['GetGroupMembershipsGroupMembershipMemberIdArgs'] member_ids: The ID of the member.
+               The member_id structure is documented below.
+        :param _builtins.str membership_id: The ID of the membership.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "identity_store_id", identity_store_id)
+        pulumi.set(__self__, "member_ids", member_ids)
+        pulumi.set(__self__, "membership_id", membership_id)
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="identityStoreId")
+    def identity_store_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the identity store that associated with IAM Identity
+        Center.
+        """
+        return pulumi.get(self, "identity_store_id")
+
+    @_builtins.property
+    @pulumi.getter(name="memberIds")
+    def member_ids(self) -> Sequence['outputs.GetGroupMembershipsGroupMembershipMemberIdResult']:
+        """
+        The ID of the member.
+        The member_id structure is documented below.
+        """
+        return pulumi.get(self, "member_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="membershipId")
+    def membership_id(self) -> _builtins.str:
+        """
+        The ID of the membership.
+        """
+        return pulumi.get(self, "membership_id")
+
+
+@pulumi.output_type
+class GetGroupMembershipsGroupMembershipMemberIdResult(dict):
+    def __init__(__self__, *,
+                 user_id: _builtins.str):
+        """
+        :param _builtins.str user_id: Specifies the ID of the user.
+        """
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
 class GetGroupsGroupResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -414,6 +2465,68 @@ class GetGroupsGroupResult(dict):
         Indicates the last update time.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetMfaDevicesMfaDeviceResult(dict):
+    def __init__(__self__, *,
+                 device_id: _builtins.str,
+                 device_name: _builtins.str,
+                 display_name: _builtins.str,
+                 mfa_type: _builtins.str,
+                 registered_date: _builtins.str):
+        """
+        :param _builtins.str device_id: The ID of the mfa device.
+        :param _builtins.str device_name: The name of the mfa device.
+        :param _builtins.str display_name: The display name of the mfa device.
+        :param _builtins.str mfa_type: The type of the mfa device.
+        :param _builtins.str registered_date: The registered date of the mfa device.
+        """
+        pulumi.set(__self__, "device_id", device_id)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "mfa_type", mfa_type)
+        pulumi.set(__self__, "registered_date", registered_date)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> _builtins.str:
+        """
+        The ID of the mfa device.
+        """
+        return pulumi.get(self, "device_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceName")
+    def device_name(self) -> _builtins.str:
+        """
+        The name of the mfa device.
+        """
+        return pulumi.get(self, "device_name")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the mfa device.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mfaType")
+    def mfa_type(self) -> _builtins.str:
+        """
+        The type of the mfa device.
+        """
+        return pulumi.get(self, "mfa_type")
+
+    @_builtins.property
+    @pulumi.getter(name="registeredDate")
+    def registered_date(self) -> _builtins.str:
+        """
+        The registered date of the mfa device.
+        """
+        return pulumi.get(self, "registered_date")
 
 
 @pulumi.output_type
@@ -549,6 +2662,64 @@ class GetPermissionSetsPermissionSetResult(dict):
 
 
 @pulumi.output_type
+class GetServiceProviderConfigurationSpOidcConfigResult(dict):
+    def __init__(__self__, *,
+                 redirect_url: _builtins.str):
+        """
+        :param _builtins.str redirect_url: The redirect url.
+        """
+        pulumi.set(__self__, "redirect_url", redirect_url)
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> _builtins.str:
+        """
+        The redirect url.
+        """
+        return pulumi.get(self, "redirect_url")
+
+
+@pulumi.output_type
+class GetServiceProviderConfigurationSpSamlConfigResult(dict):
+    def __init__(__self__, *,
+                 acs_url: _builtins.str,
+                 issuer: _builtins.str,
+                 metadata: _builtins.str):
+        """
+        :param _builtins.str acs_url: The acs url.
+        :param _builtins.str issuer: The issuer.
+        :param _builtins.str metadata: The metadata.
+        """
+        pulumi.set(__self__, "acs_url", acs_url)
+        pulumi.set(__self__, "issuer", issuer)
+        pulumi.set(__self__, "metadata", metadata)
+
+    @_builtins.property
+    @pulumi.getter(name="acsUrl")
+    def acs_url(self) -> _builtins.str:
+        """
+        The acs url.
+        """
+        return pulumi.get(self, "acs_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def issuer(self) -> _builtins.str:
+        """
+        The issuer.
+        """
+        return pulumi.get(self, "issuer")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> _builtins.str:
+        """
+        The metadata.
+        """
+        return pulumi.get(self, "metadata")
+
+
+@pulumi.output_type
 class GetSystemIdentityPolicyAttachmentsPolicyResult(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
@@ -604,6 +2775,68 @@ class GetSystemPolicyAttachmentsPolicyResult(dict):
         The name of the IAM system-defined policy.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetUserSessionsSessionListResult(dict):
+    def __init__(__self__, *,
+                 creation_time: _builtins.str,
+                 ip_address: _builtins.str,
+                 session_id: _builtins.str,
+                 session_not_valid_after: _builtins.str,
+                 user_agent: _builtins.str):
+        """
+        :param _builtins.str creation_time: The creation time of the user session.
+        :param _builtins.str ip_address: The ip address of the user session.
+        :param _builtins.str session_id: The ID of the user session.
+        :param _builtins.str session_not_valid_after: The validity period of the user session.
+        :param _builtins.str user_agent: The user agent of the user session.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "session_id", session_id)
+        pulumi.set(__self__, "session_not_valid_after", session_not_valid_after)
+        pulumi.set(__self__, "user_agent", user_agent)
+
+    @_builtins.property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> _builtins.str:
+        """
+        The creation time of the user session.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        The ip address of the user session.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="sessionId")
+    def session_id(self) -> _builtins.str:
+        """
+        The ID of the user session.
+        """
+        return pulumi.get(self, "session_id")
+
+    @_builtins.property
+    @pulumi.getter(name="sessionNotValidAfter")
+    def session_not_valid_after(self) -> _builtins.str:
+        """
+        The validity period of the user session.
+        """
+        return pulumi.get(self, "session_not_valid_after")
+
+    @_builtins.property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> _builtins.str:
+        """
+        The user agent of the user session.
+        """
+        return pulumi.get(self, "user_agent")
 
 
 @pulumi.output_type

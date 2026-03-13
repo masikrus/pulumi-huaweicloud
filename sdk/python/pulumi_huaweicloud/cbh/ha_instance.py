@@ -43,6 +43,7 @@ class HaInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a HaInstance resource.
+
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the CBH HA instance.
                The options are as follows:
                + **prePaid**: the yearly/monthly billing mode.
@@ -509,6 +510,7 @@ class _HaInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HaInstance resources.
+
         :param pulumi.Input[_builtins.int] attach_disk_size: Specifies the size of the additional data disk for the CBH HA instance.
                The unit is TB. It refers to the additional disk size added on top of the existing disk. And the sum of the built-in
                disk of the instance flavor and the additional disk cannot exceed **300TB**.
@@ -1044,7 +1046,7 @@ class _HaInstanceState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:cbh/haInstance:HaInstance")
+@pulumi.type_token("huaweicloud:Cbh/haInstance:HaInstance")
 class HaInstance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1109,41 +1111,17 @@ class HaInstance(pulumi.CustomResource):
 
         The CBH HA instance can be imported using the master instance ID and the slave instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cbh/haInstance:HaInstance test <master_id>/<slave_id>
+        $ pulumi import huaweicloud:Cbh/haInstance:HaInstance test <master_id>/<slave_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period`, `period_unit`,
-
         `auto_renew`, `password`, `ipv6_enable`, `attach_disk_size`, `power_action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated
-
         to align with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbh_ha_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period, period_unit, auto_renew, password, ipv6_enable, attach_disk_size, power_action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1267,41 +1245,17 @@ class HaInstance(pulumi.CustomResource):
 
         The CBH HA instance can be imported using the master instance ID and the slave instance ID, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cbh/haInstance:HaInstance test <master_id>/<slave_id>
+        $ pulumi import huaweicloud:Cbh/haInstance:HaInstance test <master_id>/<slave_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `charging_mode`, `period`, `period_unit`,
-
         `auto_renew`, `password`, `ipv6_enable`, `attach_disk_size`, `power_action`.
-
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated
-
         to align with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cbh_ha_instance" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              charging_mode, period, period_unit, auto_renew, password, ipv6_enable, attach_disk_size, power_action,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param HaInstanceArgs args: The arguments to use to populate this resource's properties.
@@ -1400,7 +1354,7 @@ class HaInstance(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(HaInstance, __self__).__init__(
-            'huaweicloud:cbh/haInstance:HaInstance',
+            'huaweicloud:Cbh/haInstance:HaInstance',
             resource_name,
             __props__,
             opts)

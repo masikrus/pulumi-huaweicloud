@@ -21,6 +21,14 @@ __all__ = [
     'AlarmGroupRuleDetailArgsDict',
     'AlarmGroupRuleDetailMatchArgs',
     'AlarmGroupRuleDetailMatchArgsDict',
+    'AlarmInhibitRuleSourceMatchArgs',
+    'AlarmInhibitRuleSourceMatchArgsDict',
+    'AlarmInhibitRuleSourceMatchConditionArgs',
+    'AlarmInhibitRuleSourceMatchConditionArgsDict',
+    'AlarmInhibitRuleTargetMatchArgs',
+    'AlarmInhibitRuleTargetMatchArgsDict',
+    'AlarmInhibitRuleTargetMatchConditionArgs',
+    'AlarmInhibitRuleTargetMatchConditionArgsDict',
     'AlarmPolicyAlarmNotificationArgs',
     'AlarmPolicyAlarmNotificationArgsDict',
     'AlarmPolicyEventAlarmSpecArgs',
@@ -87,12 +95,16 @@ __all__ = [
     'AlarmSilenceRuleSilenceTimeArgsDict',
     'EnvironmentEnvTagArgs',
     'EnvironmentEnvTagArgsDict',
+    'EventReportEventArgs',
+    'EventReportEventArgsDict',
     'MessageTemplateTemplateArgs',
     'MessageTemplateTemplateArgsDict',
     'MultiAccountAggregationRuleAccountArgs',
     'MultiAccountAggregationRuleAccountArgsDict',
     'MultiAccountAggregationRuleServiceArgs',
     'MultiAccountAggregationRuleServiceArgsDict',
+    'PromInstancePromLimitsArgs',
+    'PromInstancePromLimitsArgsDict',
     'PrometheusInstancePromForCloudServiceArgs',
     'PrometheusInstancePromForCloudServiceArgsDict',
     'ServiceDiscoveryRuleDiscoveryRuleArgs',
@@ -105,22 +117,23 @@ __all__ = [
     'ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict',
     'ServiceDiscoveryRuleNameRulesServiceNameRuleArgs',
     'ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict',
+    'UniagentBatchInstallAgentImportParamListArgs',
+    'UniagentBatchInstallAgentImportParamListArgsDict',
+    'UniagentBatchInstallPluginInstallBaseParamArgs',
+    'UniagentBatchInstallPluginInstallBaseParamArgsDict',
+    'UniagentBatchUpgradeAgentListArgs',
+    'UniagentBatchUpgradeAgentListArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AlarmActionRuleSmnTopicArgsDict(TypedDict):
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the SMN topic URN.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SMN topic name.
-        """
-elif False:
-    AlarmActionRuleSmnTopicArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmActionRuleSmnTopicArgsDict(TypedDict):
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the SMN topic URN.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SMN topic name.
+    """
 
 @pulumi.input_type
 class AlarmActionRuleSmnTopicArgs:
@@ -160,22 +173,19 @@ class AlarmActionRuleSmnTopicArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class AlarmGroupRuleDetailArgsDict(TypedDict):
-        bind_notification_rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the action rule IDs.
-        """
-        matches: pulumi.Input[Sequence[pulumi.Input['AlarmGroupRuleDetailMatchArgsDict']]]
-        """
-        Specifies the matching conditions list.
-        The match structure is documented below.
+class AlarmGroupRuleDetailArgsDict(TypedDict):
+    bind_notification_rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the action rule IDs.
+    """
+    matches: pulumi.Input[Sequence[pulumi.Input['AlarmGroupRuleDetailMatchArgsDict']]]
+    """
+    Specifies the matching conditions list.
+    The match structure is documented below.
 
-        <a name="block--detail--match"></a>
-        The `match` block supports:
-        """
-elif False:
-    AlarmGroupRuleDetailArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--detail--match"></a>
+    The `match` block supports:
+    """
 
 @pulumi.input_type
 class AlarmGroupRuleDetailArgs:
@@ -222,37 +232,34 @@ class AlarmGroupRuleDetailArgs:
         pulumi.set(self, "matches", value)
 
 
-if not MYPY:
-    class AlarmGroupRuleDetailMatchArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the matching condition key.
-        Valid value are as follows, or using specific key means taking tag as condition:
-        + **event_severity**: event severity
-        + **notification_scene**: notification scene
-        + **resource_provider**: alarm source
-        + **resource_type**: resource type
-        """
-        operate: pulumi.Input[_builtins.str]
-        """
-        Specifies the matching condition operator. Valid values are **EQUALS**, **REGEX**, **EXIST**.
-        """
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the matching condition value.
-        + If `operate` is **EXIST**, it should be empty.
-        + If `operate` is **REGEX**, it should be a regex expression.
-        + If `operate` is **EQUALS**, it depends on `key`, can be as follows:
-        - If `key` is **event_severity**, it can be **Critical**, **Major**, **Minor**, **Info**.
-        - If `key` is **notification_scene**, it can be **notify_resolved**, **notify_triggered**.
-        - If `key` is **resource_provider**, it can be specific alarm source.
-        - If `key` is **resource_type**, it can be **cce-cluster**, **cluster**, **clusters-clustercert**, **clusters-nodepools**,
-        **clusters-nodes**, **configmaps**, **deployments**, **ingresses**, **jobs**, **node**, **pods**,
-        **podsecuritypolicies**, **releases**, **rolebindings**, **roles**, **routes**, **secrets**, **service**.
-        - If `key` is specific key, it can be specific values.
-        """
-elif False:
-    AlarmGroupRuleDetailMatchArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmGroupRuleDetailMatchArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the matching condition key.
+    Valid value are as follows, or using specific key means taking tag as condition:
+    + **event_severity**: event severity
+    + **notification_scene**: notification scene
+    + **resource_provider**: alarm source
+    + **resource_type**: resource type
+    """
+    operate: pulumi.Input[_builtins.str]
+    """
+    Specifies the matching condition operator. Valid values are **EQUALS**, **REGEX**, **EXIST**.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the matching condition value.
+    + If `operate` is **EXIST**, it should be empty.
+    + If `operate` is **REGEX**, it should be a regex expression.
+    + If `operate` is **EQUALS**, it depends on `key`, can be as follows:
+    - If `key` is **event_severity**, it can be **Critical**, **Major**, **Minor**, **Info**.
+    - If `key` is **notification_scene**, it can be **notify_resolved**, **notify_triggered**.
+    - If `key` is **resource_provider**, it can be specific alarm source.
+    - If `key` is **resource_type**, it can be **cce-cluster**, **cluster**, **clusters-clustercert**, **clusters-nodepools**,
+    **clusters-nodes**, **configmaps**, **deployments**, **ingresses**, **jobs**, **node**, **pods**,
+    **podsecuritypolicies**, **releases**, **rolebindings**, **roles**, **routes**, **secrets**, **service**.
+    - If `key` is specific key, it can be specific values.
+    """
 
 @pulumi.input_type
 class AlarmGroupRuleDetailMatchArgs:
@@ -337,18 +344,343 @@ class AlarmGroupRuleDetailMatchArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class AlarmPolicyAlarmNotificationArgsDict(TypedDict):
-        bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        inhibit_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        inhibit_rule: NotRequired[pulumi.Input[_builtins.str]]
-        notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        notification_type: NotRequired[pulumi.Input[_builtins.str]]
-        notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
-        route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    AlarmPolicyAlarmNotificationArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmInhibitRuleSourceMatchArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleSourceMatchConditionArgsDict']]]
+    """
+    Specifies the serial conditions within a parallel condition group.  
+    The conditions structure is documented below.
+    The maximum number of elements is `10`.
+
+    <a name="alarm_inhibit_rule_matches_conditions"></a>
+    The `conditions` block supports:
+    """
+
+@pulumi.input_type
+class AlarmInhibitRuleSourceMatchArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleSourceMatchConditionArgs']]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleSourceMatchConditionArgs']]] conditions: Specifies the serial conditions within a parallel condition group.  
+               The conditions structure is documented below.
+               The maximum number of elements is `10`.
+               
+               <a name="alarm_inhibit_rule_matches_conditions"></a>
+               The `conditions` block supports:
+        """
+        pulumi.set(__self__, "conditions", conditions)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleSourceMatchConditionArgs']]]:
+        """
+        Specifies the serial conditions within a parallel condition group.  
+        The conditions structure is documented below.
+        The maximum number of elements is `10`.
+
+        <a name="alarm_inhibit_rule_matches_conditions"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleSourceMatchConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+
+class AlarmInhibitRuleSourceMatchConditionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the alarm.  
+    The valid values are as follows:
+    + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+    + **event_severity**: Event severity.
+    + **resource_provider**: Alarm source.
+    + **resource_type**: Resource type.
+    """
+    operate: pulumi.Input[_builtins.str]
+    """
+    Specifies the match operator for the alarm key.  
+    The valid values are as follows:
+    + **EQUALS**
+    + **EXIST**
+    + **REGEX**
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the value list corresponding to the key of the alarm.  
+    Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+    + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+    **Minor** and **Info**.
+    + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+    or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+    + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+    The service names can include **AOM**, **LTS**, **CCE**, etc.
+    + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+    only contain Chinese characters, letters, numbers, and underscores (_).
+    """
+
+@pulumi.input_type
+class AlarmInhibitRuleSourceMatchConditionArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 operate: pulumi.Input[_builtins.str],
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the key of the alarm.  
+               The valid values are as follows:
+               + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+               + **event_severity**: Event severity.
+               + **resource_provider**: Alarm source.
+               + **resource_type**: Resource type.
+        :param pulumi.Input[_builtins.str] operate: Specifies the match operator for the alarm key.  
+               The valid values are as follows:
+               + **EQUALS**
+               + **EXIST**
+               + **REGEX**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Specifies the value list corresponding to the key of the alarm.  
+               Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+               + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+               **Minor** and **Info**.
+               + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+               or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+               + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+               The service names can include **AOM**, **LTS**, **CCE**, etc.
+               + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+               only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "operate", operate)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the key of the alarm.  
+        The valid values are as follows:
+        + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+        + **event_severity**: Event severity.
+        + **resource_provider**: Alarm source.
+        + **resource_type**: Resource type.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operate(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the match operator for the alarm key.  
+        The valid values are as follows:
+        + **EQUALS**
+        + **EXIST**
+        + **REGEX**
+        """
+        return pulumi.get(self, "operate")
+
+    @operate.setter
+    def operate(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operate", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the value list corresponding to the key of the alarm.  
+        Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+        + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+        **Minor** and **Info**.
+        + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+        or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+        + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+        The service names can include **AOM**, **LTS**, **CCE**, etc.
+        + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+        only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "values", value)
+
+
+class AlarmInhibitRuleTargetMatchArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleTargetMatchConditionArgsDict']]]
+    """
+    Specifies the serial conditions within a parallel condition group.  
+    The conditions structure is documented below.
+    The maximum number of elements is `10`.
+
+    <a name="alarm_inhibit_rule_matches_conditions"></a>
+    The `conditions` block supports:
+    """
+
+@pulumi.input_type
+class AlarmInhibitRuleTargetMatchArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleTargetMatchConditionArgs']]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleTargetMatchConditionArgs']]] conditions: Specifies the serial conditions within a parallel condition group.  
+               The conditions structure is documented below.
+               The maximum number of elements is `10`.
+               
+               <a name="alarm_inhibit_rule_matches_conditions"></a>
+               The `conditions` block supports:
+        """
+        pulumi.set(__self__, "conditions", conditions)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleTargetMatchConditionArgs']]]:
+        """
+        Specifies the serial conditions within a parallel condition group.  
+        The conditions structure is documented below.
+        The maximum number of elements is `10`.
+
+        <a name="alarm_inhibit_rule_matches_conditions"></a>
+        The `conditions` block supports:
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['AlarmInhibitRuleTargetMatchConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+
+class AlarmInhibitRuleTargetMatchConditionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the alarm.  
+    The valid values are as follows:
+    + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+    + **event_severity**: Event severity.
+    + **resource_provider**: Alarm source.
+    + **resource_type**: Resource type.
+    """
+    operate: pulumi.Input[_builtins.str]
+    """
+    Specifies the match operator for the alarm key.  
+    The valid values are as follows:
+    + **EQUALS**
+    + **EXIST**
+    + **REGEX**
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the value list corresponding to the key of the alarm.  
+    Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+    + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+    **Minor** and **Info**.
+    + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+    or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+    + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+    The service names can include **AOM**, **LTS**, **CCE**, etc.
+    + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+    only contain Chinese characters, letters, numbers, and underscores (_).
+    """
+
+@pulumi.input_type
+class AlarmInhibitRuleTargetMatchConditionArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[_builtins.str],
+                 operate: pulumi.Input[_builtins.str],
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] key: Specifies the key of the alarm.  
+               The valid values are as follows:
+               + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+               + **event_severity**: Event severity.
+               + **resource_provider**: Alarm source.
+               + **resource_type**: Resource type.
+        :param pulumi.Input[_builtins.str] operate: Specifies the match operator for the alarm key.  
+               The valid values are as follows:
+               + **EQUALS**
+               + **EXIST**
+               + **REGEX**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Specifies the value list corresponding to the key of the alarm.  
+               Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+               + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+               **Minor** and **Info**.
+               + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+               or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+               + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+               The service names can include **AOM**, **LTS**, **CCE**, etc.
+               + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+               only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "operate", operate)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the key of the alarm.  
+        The valid values are as follows:
+        + Specified tag name: The tag name can only contain Chinese characters, letters, numbers and underscores (_).
+        + **event_severity**: Event severity.
+        + **resource_provider**: Alarm source.
+        + **resource_type**: Resource type.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operate(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the match operator for the alarm key.  
+        The valid values are as follows:
+        + **EQUALS**
+        + **EXIST**
+        + **REGEX**
+        """
+        return pulumi.get(self, "operate")
+
+    @operate.setter
+    def operate(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operate", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the value list corresponding to the key of the alarm.  
+        Each value cannot exceed `256` characters when the `operate` is **REGEX**.
+        + If `key` is **event_severity** and the `operate` is **EQUALS**, the valid values are **Critical**, **Major**,
+        **Minor** and **Info**.
+        + If `key` is **resource_provider**, the value can be any of the resource types specified when creating an alarm rule
+        or customizing an alarm report. Types can include **host**, **container**, **process**, etc.
+        + If `key` is **resource_type**, the value can be any of the service names that triggered the alarm or event.
+        The service names can include **AOM**, **LTS**, **CCE**, etc.
+        + If `key` is a tag, the value can be any of the tag values ​​corresponding to the tag name. Tag values ​​can
+        only contain Chinese characters, letters, numbers, and underscores (_).
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "values", value)
+
+
+class AlarmPolicyAlarmNotificationArgsDict(TypedDict):
+    bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    inhibit_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    inhibit_rule: NotRequired[pulumi.Input[_builtins.str]]
+    notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    notification_type: NotRequired[pulumi.Input[_builtins.str]]
+    notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
+    route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class AlarmPolicyAlarmNotificationArgs:
@@ -451,14 +783,11 @@ class AlarmPolicyAlarmNotificationArgs:
         pulumi.set(self, "route_group_rule", value)
 
 
-if not MYPY:
-    class AlarmPolicyEventAlarmSpecArgsDict(TypedDict):
-        alarm_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyEventAlarmSpecAlarmTagArgsDict']]]]
-        event_source: NotRequired[pulumi.Input[_builtins.str]]
-        monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        no_data_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyEventAlarmSpecNoDataConditionArgsDict']]]]
-elif False:
-    AlarmPolicyEventAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyEventAlarmSpecArgsDict(TypedDict):
+    alarm_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyEventAlarmSpecAlarmTagArgsDict']]]]
+    event_source: NotRequired[pulumi.Input[_builtins.str]]
+    monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    no_data_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyEventAlarmSpecNoDataConditionArgsDict']]]]
 
 @pulumi.input_type
 class AlarmPolicyEventAlarmSpecArgs:
@@ -513,13 +842,10 @@ class AlarmPolicyEventAlarmSpecArgs:
         pulumi.set(self, "no_data_conditions", value)
 
 
-if not MYPY:
-    class AlarmPolicyEventAlarmSpecAlarmTagArgsDict(TypedDict):
-        auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    AlarmPolicyEventAlarmSpecAlarmTagArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyEventAlarmSpecAlarmTagArgsDict(TypedDict):
+    auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class AlarmPolicyEventAlarmSpecAlarmTagArgs:
@@ -562,13 +888,10 @@ class AlarmPolicyEventAlarmSpecAlarmTagArgs:
         pulumi.set(self, "custom_tags", value)
 
 
-if not MYPY:
-    class AlarmPolicyEventAlarmSpecNoDataConditionArgsDict(TypedDict):
-        no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
-        no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    AlarmPolicyEventAlarmSpecNoDataConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyEventAlarmSpecNoDataConditionArgsDict(TypedDict):
+    no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
+    no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class AlarmPolicyEventAlarmSpecNoDataConditionArgs:
@@ -611,20 +934,17 @@ class AlarmPolicyEventAlarmSpecNoDataConditionArgs:
         pulumi.set(self, "notify_no_data", value)
 
 
-if not MYPY:
-    class AlarmPolicyMetricAlarmSpecArgsDict(TypedDict):
-        monitor_type: pulumi.Input[_builtins.str]
-        alarm_rule_template_bind_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        alarm_rule_template_id: NotRequired[pulumi.Input[_builtins.str]]
-        alarm_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecAlarmTagArgsDict']]]]
-        metric_kind: NotRequired[pulumi.Input[_builtins.str]]
-        monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        no_data_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecNoDataConditionArgsDict']]]]
-        recovery_conditions: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
-        resource_kind: NotRequired[pulumi.Input[_builtins.str]]
-        trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecTriggerConditionArgsDict']]]]
-elif False:
-    AlarmPolicyMetricAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyMetricAlarmSpecArgsDict(TypedDict):
+    monitor_type: pulumi.Input[_builtins.str]
+    alarm_rule_template_bind_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    alarm_rule_template_id: NotRequired[pulumi.Input[_builtins.str]]
+    alarm_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecAlarmTagArgsDict']]]]
+    metric_kind: NotRequired[pulumi.Input[_builtins.str]]
+    monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    no_data_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecNoDataConditionArgsDict']]]]
+    recovery_conditions: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
+    resource_kind: NotRequired[pulumi.Input[_builtins.str]]
+    trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmPolicyMetricAlarmSpecTriggerConditionArgsDict']]]]
 
 @pulumi.input_type
 class AlarmPolicyMetricAlarmSpecArgs:
@@ -750,13 +1070,10 @@ class AlarmPolicyMetricAlarmSpecArgs:
         pulumi.set(self, "trigger_conditions", value)
 
 
-if not MYPY:
-    class AlarmPolicyMetricAlarmSpecAlarmTagArgsDict(TypedDict):
-        auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    AlarmPolicyMetricAlarmSpecAlarmTagArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyMetricAlarmSpecAlarmTagArgsDict(TypedDict):
+    auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class AlarmPolicyMetricAlarmSpecAlarmTagArgs:
@@ -799,13 +1116,10 @@ class AlarmPolicyMetricAlarmSpecAlarmTagArgs:
         pulumi.set(self, "custom_tags", value)
 
 
-if not MYPY:
-    class AlarmPolicyMetricAlarmSpecNoDataConditionArgsDict(TypedDict):
-        no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
-        no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    AlarmPolicyMetricAlarmSpecNoDataConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyMetricAlarmSpecNoDataConditionArgsDict(TypedDict):
+    no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
+    no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class AlarmPolicyMetricAlarmSpecNoDataConditionArgs:
@@ -848,23 +1162,20 @@ class AlarmPolicyMetricAlarmSpecNoDataConditionArgs:
         pulumi.set(self, "notify_no_data", value)
 
 
-if not MYPY:
-    class AlarmPolicyMetricAlarmSpecTriggerConditionArgsDict(TypedDict):
-        aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
-        aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
-        metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        metric_name: NotRequired[pulumi.Input[_builtins.str]]
-        metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
-        metric_query_mode: NotRequired[pulumi.Input[_builtins.str]]
-        metric_unit: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        promql: NotRequired[pulumi.Input[_builtins.str]]
-        thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
-        trigger_times: NotRequired[pulumi.Input[_builtins.int]]
-        trigger_type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    AlarmPolicyMetricAlarmSpecTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmPolicyMetricAlarmSpecTriggerConditionArgsDict(TypedDict):
+    aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
+    aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
+    metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    metric_name: NotRequired[pulumi.Input[_builtins.str]]
+    metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
+    metric_query_mode: NotRequired[pulumi.Input[_builtins.str]]
+    metric_unit: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    promql: NotRequired[pulumi.Input[_builtins.str]]
+    thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
+    trigger_times: NotRequired[pulumi.Input[_builtins.int]]
+    trigger_type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class AlarmPolicyMetricAlarmSpecTriggerConditionArgs:
@@ -1027,21 +1338,18 @@ class AlarmPolicyMetricAlarmSpecTriggerConditionArgs:
         pulumi.set(self, "trigger_type", value)
 
 
-if not MYPY:
-    class AlarmRuleDimensionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the dimension name. Changing this creates a new resource.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the dimension value. Changing this creates a new resource.
+class AlarmRuleDimensionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the dimension name. Changing this creates a new resource.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the dimension value. Changing this creates a new resource.
 
-        > **NOTE:** You can get more information about `metric_name`, `namespace`, `unit` and `dimensions`
-        from [Metric Overview](https://support.huaweicloud.com/intl/en-us/productdesc-aom/aom_06_0014.html).
-        """
-elif False:
-    AlarmRuleDimensionArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** You can get more information about `metric_name`, `namespace`, `unit` and `dimensions`
+    from [Metric Overview](https://support.huaweicloud.com/intl/en-us/productdesc-aom/aom_06_0014.html).
+    """
 
 @pulumi.input_type
 class AlarmRuleDimensionArgs:
@@ -1086,66 +1394,63 @@ class AlarmRuleDimensionArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class AlarmRuleV4AlarmNotificationsArgsDict(TypedDict):
-        notification_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification type.
-        Valid values are as follows:
-        + **direct**: Direct alarm reporting.
-        + **alarm_policy**: Alarm reporting after noise reduction.
-        """
-        bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm action rule ID.
-        It's required if `notification_enable` is **true**.
-        """
-        notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable an alarm action rule. Defaults to **false**.
-        If the `notification_type` is **direct**, set this parameter to **true**.
-        """
-        notify_frequency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the notification frequency.
-        If the `notification_type` is **alarm_policy**, set this parameter to **-1**.
-        If the `notification_type` is **direct**, set this parameter to any of the following:
-        + **0**: alarm sent only once
-        + **300**: every 5 minutes
-        + **600**: every 10 minutes
-        + **900**: every 15 minutes
-        + **1800**: every 30 minutes
-        + **3600**: every hour
-        + **10800**: every 3 hours
-        + **21600**: every 6 hours
-        + **43200**: every 12 hours
-        + **86400**: every day
+class AlarmRuleV4AlarmNotificationsArgsDict(TypedDict):
+    notification_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification type.
+    Valid values are as follows:
+    + **direct**: Direct alarm reporting.
+    + **alarm_policy**: Alarm reporting after noise reduction.
+    """
+    bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm action rule ID.
+    It's required if `notification_enable` is **true**.
+    """
+    notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable an alarm action rule. Defaults to **false**.
+    If the `notification_type` is **direct**, set this parameter to **true**.
+    """
+    notify_frequency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification frequency.
+    If the `notification_type` is **alarm_policy**, set this parameter to **-1**.
+    If the `notification_type` is **direct**, set this parameter to any of the following:
+    + **0**: alarm sent only once
+    + **300**: every 5 minutes
+    + **600**: every 10 minutes
+    + **900**: every 15 minutes
+    + **1800**: every 30 minutes
+    + **3600**: every hour
+    + **10800**: every 3 hours
+    + **21600**: every 6 hours
+    + **43200**: every 12 hours
+    + **86400**: every day
 
-        <a name="block--event_alarm_spec"></a>
-        The `event_alarm_spec` block supports:
-        """
-        notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when an alarm is cleared.
-        Defaults to **false**.
-        """
-        notify_triggered: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when an alarm is triggered.
-        Defaults to **false**.
-        """
-        route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the grouping rule. Defaults to **false**.
-        If the `notification_type` is **alarm_policy**, set this parameter to **true**.
-        """
-        route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the grouping rule name.
-        It's required if `route_group_enable` is **true**.
-        """
-elif False:
-    AlarmRuleV4AlarmNotificationsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--event_alarm_spec"></a>
+    The `event_alarm_spec` block supports:
+    """
+    notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when an alarm is cleared.
+    Defaults to **false**.
+    """
+    notify_triggered: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when an alarm is triggered.
+    Defaults to **false**.
+    """
+    route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the grouping rule. Defaults to **false**.
+    If the `notification_type` is **alarm_policy**, set this parameter to **true**.
+    """
+    route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the grouping rule name.
+    It's required if `route_group_enable` is **true**.
+    """
 
 @pulumi.input_type
 class AlarmRuleV4AlarmNotificationsArgs:
@@ -1329,33 +1634,30 @@ class AlarmRuleV4AlarmNotificationsArgs:
         pulumi.set(self, "route_group_rule", value)
 
 
-if not MYPY:
-    class AlarmRuleV4EventAlarmSpecArgsDict(TypedDict):
-        alarm_source: pulumi.Input[_builtins.str]
-        """
-        Specifies the alarm rule source.
-        Valid values are **systemEvent** and **customEvent**.
-        Changing this creates a new resource.
-        """
-        event_source: pulumi.Input[_builtins.str]
-        """
-        Specifies the alarm source.
-        Valid values are **RDS**, **EVS**, **CCE**, **LTS** and **AOM**.
-        """
-        monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        """
-        Specifies the monitored objects. It's an array of Map objects.
+class AlarmRuleV4EventAlarmSpecArgsDict(TypedDict):
+    alarm_source: pulumi.Input[_builtins.str]
+    """
+    Specifies the alarm rule source.
+    Valid values are **systemEvent** and **customEvent**.
+    Changing this creates a new resource.
+    """
+    event_source: pulumi.Input[_builtins.str]
+    """
+    Specifies the alarm source.
+    Valid values are **RDS**, **EVS**, **CCE**, **LTS** and **AOM**.
+    """
+    monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    """
+    Specifies the monitored objects. It's an array of Map objects.
 
-        <a name="block--metric_alarm_spec--recovery_conditions"></a>
-        The `recovery_conditions` block supports:
-        """
-        trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRuleV4EventAlarmSpecTriggerConditionArgsDict']]]]
-        """
-        Specifies the trigger conditions.
-        The trigger_conditions structure is documented below.
-        """
-elif False:
-    AlarmRuleV4EventAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--metric_alarm_spec--recovery_conditions"></a>
+    The `recovery_conditions` block supports:
+    """
+    trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRuleV4EventAlarmSpecTriggerConditionArgsDict']]]]
+    """
+    Specifies the trigger conditions.
+    The trigger_conditions structure is documented below.
+    """
 
 @pulumi.input_type
 class AlarmRuleV4EventAlarmSpecArgs:
@@ -1440,53 +1742,50 @@ class AlarmRuleV4EventAlarmSpecArgs:
         pulumi.set(self, "trigger_conditions", value)
 
 
-if not MYPY:
-    class AlarmRuleV4EventAlarmSpecTriggerConditionArgsDict(TypedDict):
-        trigger_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the trigger type.
-        Valid values are as follows:
-        + **FIXED_RATE**: fixed interval
-        + **HOURLY**: every hour
-        + **DAILY**: every day
-        + **WEEKLY**: every week
-        + **CRON**: Cron expression
-        """
-        aggregation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the statistical period.
-        Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
-        """
-        event_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event name.
-        """
-        frequency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event alarm notification frequency. Leave this parameter empty if
-        `trigger_type` is set to **immediately**. Valid values are as follows:
-        + **0**: alarm sent only once
-        + **300**: every 5 minutes
-        + **600**: every 10 minutes
-        + **900**: every 15 minutes
-        + **1800**: every 30 minutes
-        + **3600**: every hour
-        + **10800**: every 3 hours
-        + **21600**: every 6 hours
-        + **43200**: every 12 hours
-        + **86400**: every day
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the operator. Options: >, <, =, >=, and <=.
-        """
-        thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
-        the value indicates the alarm threshold.
-        """
-elif False:
-    AlarmRuleV4EventAlarmSpecTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmRuleV4EventAlarmSpecTriggerConditionArgsDict(TypedDict):
+    trigger_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the trigger type.
+    Valid values are as follows:
+    + **FIXED_RATE**: fixed interval
+    + **HOURLY**: every hour
+    + **DAILY**: every day
+    + **WEEKLY**: every week
+    + **CRON**: Cron expression
+    """
+    aggregation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the statistical period.
+    Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
+    """
+    event_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event name.
+    """
+    frequency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event alarm notification frequency. Leave this parameter empty if
+    `trigger_type` is set to **immediately**. Valid values are as follows:
+    + **0**: alarm sent only once
+    + **300**: every 5 minutes
+    + **600**: every 10 minutes
+    + **900**: every 15 minutes
+    + **1800**: every 30 minutes
+    + **3600**: every hour
+    + **10800**: every 3 hours
+    + **21600**: every 6 hours
+    + **43200**: every 12 hours
+    + **86400**: every day
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the operator. Options: >, <, =, >=, and <=.
+    """
+    thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
+    the value indicates the alarm threshold.
+    """
 
 @pulumi.input_type
 class AlarmRuleV4EventAlarmSpecTriggerConditionArgs:
@@ -1628,46 +1927,43 @@ class AlarmRuleV4EventAlarmSpecTriggerConditionArgs:
         pulumi.set(self, "thresholds", value)
 
 
-if not MYPY:
-    class AlarmRuleV4MetricAlarmSpecArgsDict(TypedDict):
-        monitor_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the monitoring type.
-        Valid values are as follows:
-        + **all_metric**: Select metrics from all metrics.
-        + **promql**: Select metrics using PromQL.
+class AlarmRuleV4MetricAlarmSpecArgsDict(TypedDict):
+    monitor_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the monitoring type.
+    Valid values are as follows:
+    + **all_metric**: Select metrics from all metrics.
+    + **promql**: Select metrics using PromQL.
 
-        Changing this creates a new resource.
-        """
-        recovery_conditions: pulumi.Input['AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgsDict']
-        """
-        Specifies the alarm clearance condition.
-        The recovery_conditions structure is documented below.
-        """
-        alarm_tags: NotRequired[pulumi.Input['AlarmRuleV4MetricAlarmSpecAlarmTagsArgsDict']]
-        """
-        Specifies the alarm tags.
-        The alarm_tags structure is documented below.
-        """
-        monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        """
-        Specifies the monitored objects. It's an array of Map objects.
+    Changing this creates a new resource.
+    """
+    recovery_conditions: pulumi.Input['AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgsDict']
+    """
+    Specifies the alarm clearance condition.
+    The recovery_conditions structure is documented below.
+    """
+    alarm_tags: NotRequired[pulumi.Input['AlarmRuleV4MetricAlarmSpecAlarmTagsArgsDict']]
+    """
+    Specifies the alarm tags.
+    The alarm_tags structure is documented below.
+    """
+    monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    """
+    Specifies the monitored objects. It's an array of Map objects.
 
-        <a name="block--metric_alarm_spec--recovery_conditions"></a>
-        The `recovery_conditions` block supports:
-        """
-        no_data_conditions: NotRequired[pulumi.Input['AlarmRuleV4MetricAlarmSpecNoDataConditionsArgsDict']]
-        """
-        Specifies the action taken for insufficient data.
-        The no_data_conditions structure is documented below.
-        """
-        trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRuleV4MetricAlarmSpecTriggerConditionArgsDict']]]]
-        """
-        Specifies the trigger conditions.
-        The trigger_conditions structure is documented below.
-        """
-elif False:
-    AlarmRuleV4MetricAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--metric_alarm_spec--recovery_conditions"></a>
+    The `recovery_conditions` block supports:
+    """
+    no_data_conditions: NotRequired[pulumi.Input['AlarmRuleV4MetricAlarmSpecNoDataConditionsArgsDict']]
+    """
+    Specifies the action taken for insufficient data.
+    The no_data_conditions structure is documented below.
+    """
+    trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRuleV4MetricAlarmSpecTriggerConditionArgsDict']]]]
+    """
+    Specifies the trigger conditions.
+    The trigger_conditions structure is documented below.
+    """
 
 @pulumi.input_type
 class AlarmRuleV4MetricAlarmSpecArgs:
@@ -1794,25 +2090,22 @@ class AlarmRuleV4MetricAlarmSpecArgs:
         pulumi.set(self, "trigger_conditions", value)
 
 
-if not MYPY:
-    class AlarmRuleV4MetricAlarmSpecAlarmTagsArgsDict(TypedDict):
-        auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the automatic tag.
-        """
-        custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the custom tag.
-        """
-        custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the alarm annotation.
+class AlarmRuleV4MetricAlarmSpecAlarmTagsArgsDict(TypedDict):
+    auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the automatic tag.
+    """
+    custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the custom tag.
+    """
+    custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the alarm annotation.
 
-        <a name="block--metric_alarm_spec--no_data_conditions"></a>
-        The `no_data_conditions` block supports:
-        """
-elif False:
-    AlarmRuleV4MetricAlarmSpecAlarmTagsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--metric_alarm_spec--no_data_conditions"></a>
+    The `no_data_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRuleV4MetricAlarmSpecAlarmTagsArgs:
@@ -1875,28 +2168,25 @@ class AlarmRuleV4MetricAlarmSpecAlarmTagsArgs:
         pulumi.set(self, "custom_tags", value)
 
 
-if not MYPY:
-    class AlarmRuleV4MetricAlarmSpecNoDataConditionsArgsDict(TypedDict):
-        no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the status of the threshold rule when the data is insufficient.
-        Valid values are as follows:
-        + **no_data**: A notification indicating insufficient data is sent.
-        + **alerting**: An alarm is triggered.
-        + **ok**: No exception occurs.
-        + **pre_state**: Retain the previous state.
-        """
-        no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of periods without data.
-        """
-        notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when data is insufficient.
-        Defaults to **false**.
-        """
-elif False:
-    AlarmRuleV4MetricAlarmSpecNoDataConditionsArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmRuleV4MetricAlarmSpecNoDataConditionsArgsDict(TypedDict):
+    no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the status of the threshold rule when the data is insufficient.
+    Valid values are as follows:
+    + **no_data**: A notification indicating insufficient data is sent.
+    + **alerting**: An alarm is triggered.
+    + **ok**: No exception occurs.
+    + **pre_state**: Retain the previous state.
+    """
+    no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of periods without data.
+    """
+    notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when data is insufficient.
+    Defaults to **false**.
+    """
 
 @pulumi.input_type
 class AlarmRuleV4MetricAlarmSpecNoDataConditionsArgs:
@@ -1965,18 +2255,15 @@ class AlarmRuleV4MetricAlarmSpecNoDataConditionsArgs:
         pulumi.set(self, "notify_no_data", value)
 
 
-if not MYPY:
-    class AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgsDict(TypedDict):
-        recovery_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of consecutive periods for which the trigger condition is
-        not met to clear an alarm.
+class AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgsDict(TypedDict):
+    recovery_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of consecutive periods for which the trigger condition is
+    not met to clear an alarm.
 
-        <a name="block--metric_alarm_spec--trigger_conditions"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--metric_alarm_spec--trigger_conditions"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgs:
@@ -2009,127 +2296,124 @@ class AlarmRuleV4MetricAlarmSpecRecoveryConditionsArgs:
         pulumi.set(self, "recovery_timeframe", value)
 
 
-if not MYPY:
-    class AlarmRuleV4MetricAlarmSpecTriggerConditionArgsDict(TypedDict):
-        metric_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the metric name.
-        """
-        metric_query_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the metric query mode.
-        Valid values are as follows:
-        + **AOM**: native AOM
-        + **PROM**: AOM prometheus
-        + **NATIVE_PROM**: native prometheus
-        """
-        promql: pulumi.Input[_builtins.str]
-        """
-        Specifies the prometheus statement.
-        """
-        aggregate_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the aggregation mode.
-        Valid values are **by**, **avg**, **max**, **min** and **sum**.
-        """
-        aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the statistical mode.
-        Valid values are **average**, **minimum**, **maximum**, **sum** and **sampleCount**.
-        """
-        aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the statistical period.
-        Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
-        """
-        aom_monitor_level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the monitoring layer.
-        """
-        expression: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the expression of a combined operation.
-        """
-        metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the metric dimension.
-        """
-        metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric namespace.
-        """
-        metric_statistic_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric statistics method to be used when you set
-        Configuration Mode to Select from all metrics during alarm rule setting.
-        Valid values are as follows:
-        + **single**: single metric
-        + **mix**: multi-metric combined operations
-        """
-        metric_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric unit.
-        """
-        mix_promql: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the promQL of a combined operation.
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the operator. Options: >, <, =, >=, and <=.
-        """
-        promql_exprs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the prometheus statement template.
-        """
-        promql_for: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the native prometheus monitoring duration.
-        """
-        query_match: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the query filter criteria.
-        """
-        query_param: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the query parameters.
-        """
-        thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
-        the value indicates the alarm threshold.
-        """
-        trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the check interval.
-        Valid values are as follows:
-        + If `trigger_type` is set to **HOURLY**, set this parameter to empty.
-        + If `trigger_type` is set to **DAILY**, set 00:00–23:00. Example: **03:00**.
-        + If `trigger_type` is set to **WEEKLY**, select a day in a week and then select 00:00–23:00.
-        Example: **1 03:00** indicates 03:00 on every Monday.
-        + If `trigger_type` is set to **CRON**, specify a standard cron expression.
-        + If `trigger_type` is set to **FIXED_RATE**, select 15s, 30s, 1–59 min, or 1–24 h.
-        Example: **15s**, **30s**, **1min**, or **1h**.
-        """
-        trigger_times: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of consecutive periods.
+class AlarmRuleV4MetricAlarmSpecTriggerConditionArgsDict(TypedDict):
+    metric_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the metric name.
+    """
+    metric_query_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the metric query mode.
+    Valid values are as follows:
+    + **AOM**: native AOM
+    + **PROM**: AOM prometheus
+    + **NATIVE_PROM**: native prometheus
+    """
+    promql: pulumi.Input[_builtins.str]
+    """
+    Specifies the prometheus statement.
+    """
+    aggregate_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the aggregation mode.
+    Valid values are **by**, **avg**, **max**, **min** and **sum**.
+    """
+    aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the statistical mode.
+    Valid values are **average**, **minimum**, **maximum**, **sum** and **sampleCount**.
+    """
+    aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the statistical period.
+    Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
+    """
+    aom_monitor_level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the monitoring layer.
+    """
+    expression: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the expression of a combined operation.
+    """
+    metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the metric dimension.
+    """
+    metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric namespace.
+    """
+    metric_statistic_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric statistics method to be used when you set
+    Configuration Mode to Select from all metrics during alarm rule setting.
+    Valid values are as follows:
+    + **single**: single metric
+    + **mix**: multi-metric combined operations
+    """
+    metric_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric unit.
+    """
+    mix_promql: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the promQL of a combined operation.
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the operator. Options: >, <, =, >=, and <=.
+    """
+    promql_expr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prometheus statement template.
+    """
+    promql_for: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the native prometheus monitoring duration.
+    """
+    query_match: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the query filter criteria.
+    """
+    query_param: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the query parameters.
+    """
+    thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
+    the value indicates the alarm threshold.
+    """
+    trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the check interval.
+    Valid values are as follows:
+    + If `trigger_type` is set to **HOURLY**, set this parameter to empty.
+    + If `trigger_type` is set to **DAILY**, set 00:00–23:00. Example: **03:00**.
+    + If `trigger_type` is set to **WEEKLY**, select a day in a week and then select 00:00–23:00.
+    Example: **1 03:00** indicates 03:00 on every Monday.
+    + If `trigger_type` is set to **CRON**, specify a standard cron expression.
+    + If `trigger_type` is set to **FIXED_RATE**, select 15s, 30s, 1–59 min, or 1–24 h.
+    Example: **15s**, **30s**, **1min**, or **1h**.
+    """
+    trigger_times: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of consecutive periods.
 
-        <a name="block--metric_alarm_spec--alarm_tags"></a>
-        The `alarm_tags` block supports:
-        """
-        trigger_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the trigger type.
-        Valid values are as follows:
-        + **FIXED_RATE**: fixed interval
-        + **HOURLY**: every hour
-        + **DAILY**: every day
-        + **WEEKLY**: every week
-        + **CRON**: Cron expression
-        """
-elif False:
-    AlarmRuleV4MetricAlarmSpecTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--metric_alarm_spec--alarm_tags"></a>
+    The `alarm_tags` block supports:
+    """
+    trigger_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the trigger type.
+    Valid values are as follows:
+    + **FIXED_RATE**: fixed interval
+    + **HOURLY**: every hour
+    + **DAILY**: every day
+    + **WEEKLY**: every week
+    + **CRON**: Cron expression
+    """
 
 @pulumi.input_type
 class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
@@ -2148,7 +2432,7 @@ class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
                  metric_unit: Optional[pulumi.Input[_builtins.str]] = None,
                  mix_promql: Optional[pulumi.Input[_builtins.str]] = None,
                  operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 promql_exprs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 promql_expr: Optional[pulumi.Input[_builtins.str]] = None,
                  promql_for: Optional[pulumi.Input[_builtins.str]] = None,
                  query_match: Optional[pulumi.Input[_builtins.str]] = None,
                  query_param: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2182,7 +2466,7 @@ class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
         :param pulumi.Input[_builtins.str] metric_unit: Specifies the metric unit.
         :param pulumi.Input[_builtins.str] mix_promql: Specifies the promQL of a combined operation.
         :param pulumi.Input[_builtins.str] operator: Specifies the operator. Options: >, <, =, >=, and <=.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] promql_exprs: Specifies the prometheus statement template.
+        :param pulumi.Input[_builtins.str] promql_expr: Specifies the prometheus statement template.
         :param pulumi.Input[_builtins.str] promql_for: Specifies the native prometheus monitoring duration.
         :param pulumi.Input[_builtins.str] query_match: Specifies the query filter criteria.
         :param pulumi.Input[_builtins.str] query_param: Specifies the query parameters.
@@ -2234,8 +2518,8 @@ class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
             pulumi.set(__self__, "mix_promql", mix_promql)
         if operator is not None:
             pulumi.set(__self__, "operator", operator)
-        if promql_exprs is not None:
-            pulumi.set(__self__, "promql_exprs", promql_exprs)
+        if promql_expr is not None:
+            pulumi.set(__self__, "promql_expr", promql_expr)
         if promql_for is not None:
             pulumi.set(__self__, "promql_for", promql_for)
         if query_match is not None:
@@ -2431,16 +2715,16 @@ class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
         pulumi.set(self, "operator", value)
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
-    @promql_exprs.setter
-    def promql_exprs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "promql_exprs", value)
+    @promql_expr.setter
+    def promql_expr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "promql_expr", value)
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -2545,35 +2829,32 @@ class AlarmRuleV4MetricAlarmSpecTriggerConditionArgs:
         pulumi.set(self, "trigger_type", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListArgsDict(TypedDict):
-        alarm_notification: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgsDict']]
-        """
-        Specifies the alarm notification.
-        The alarm_notification structure is documented below.
-        """
-        alarm_template_spec_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgsDict']]]]
-        """
-        Specifies the alarm template spec items.
-        The alarm_template_spec_items structure is documented below.
+class AlarmRulesTemplateAlarmTemplateSpecListArgsDict(TypedDict):
+    alarm_notification: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgsDict']]
+    """
+    Specifies the alarm notification.
+    The alarm_notification structure is documented below.
+    """
+    alarm_template_spec_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgsDict']]]]
+    """
+    Specifies the alarm template spec items.
+    The alarm_template_spec_items structure is documented below.
 
-        <a name="alarm_template_spec_list--alarm_notification"></a>
-        The `alarm_notification` block supports:
-        """
-        related_cce_clusters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the related cce clusters of the alarm rules.
-        """
-        related_cloud_service: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the related cloud service of the alarm rules.
-        """
-        related_prometheus_instances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the related prometheus instances of the alarm rules.
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_notification"></a>
+    The `alarm_notification` block supports:
+    """
+    related_cce_clusters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the related cce clusters of the alarm rules.
+    """
+    related_cloud_service: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the related cloud service of the alarm rules.
+    """
+    related_prometheus_instances: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the related prometheus instances of the alarm rules.
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListArgs:
@@ -2672,66 +2953,63 @@ class AlarmRulesTemplateAlarmTemplateSpecListArgs:
         pulumi.set(self, "related_prometheus_instances", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgsDict(TypedDict):
-        notification_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the notification type.
-        Valid values are as follows:
-        + **direct**: Direct alarm reporting.
-        + **alarm_policy**: Alarm reporting after noise reduction.
-        """
-        bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm action rule ID.
-        It's required if `notification_enable` is **true**.
-        """
-        notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable an alarm action rule. Defaults to **false**.
-        If the `notification_type` is **direct**, set this parameter to **true**.
-        """
-        notify_frequency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the notification frequency.
-        If the `notification_type` is **alarm_policy**, set this parameter to **-1**.
-        If the `notification_type` is **direct**, set this parameter to any of the following:
-        + **0**: alarm sent only once
-        + **300**: every 5 minutes
-        + **600**: every 10 minutes
-        + **900**: every 15 minutes
-        + **1800**: every 30 minutes
-        + **3600**: every hour
-        + **10800**: every 3 hours
-        + **21600**: every 6 hours
-        + **43200**: every 12 hours
-        + **86400**: every day
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgsDict(TypedDict):
+    notification_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the notification type.
+    Valid values are as follows:
+    + **direct**: Direct alarm reporting.
+    + **alarm_policy**: Alarm reporting after noise reduction.
+    """
+    bind_notification_rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm action rule ID.
+    It's required if `notification_enable` is **true**.
+    """
+    notification_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable an alarm action rule. Defaults to **false**.
+    If the `notification_type` is **direct**, set this parameter to **true**.
+    """
+    notify_frequency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the notification frequency.
+    If the `notification_type` is **alarm_policy**, set this parameter to **-1**.
+    If the `notification_type` is **direct**, set this parameter to any of the following:
+    + **0**: alarm sent only once
+    + **300**: every 5 minutes
+    + **600**: every 10 minutes
+    + **900**: every 15 minutes
+    + **1800**: every 30 minutes
+    + **3600**: every hour
+    + **10800**: every 3 hours
+    + **21600**: every 6 hours
+    + **43200**: every 12 hours
+    + **86400**: every day
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items"></a>
-        The `alarm_template_spec_items` block supports:
-        """
-        notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when an alarm is cleared.
-        Defaults to **false**.
-        """
-        notify_triggered: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when an alarm is triggered.
-        Defaults to **false**.
-        """
-        route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the grouping rule. Defaults to **false**.
-        If the `notification_type` is **alarm_policy**, set this parameter to **true**.
-        """
-        route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the grouping rule name.
-        It's required if `route_group_enable` is **true**.
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items"></a>
+    The `alarm_template_spec_items` block supports:
+    """
+    notify_resolved: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when an alarm is cleared.
+    Defaults to **false**.
+    """
+    notify_triggered: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when an alarm is triggered.
+    Defaults to **false**.
+    """
+    route_group_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the grouping rule. Defaults to **false**.
+    If the `notification_type` is **alarm_policy**, set this parameter to **true**.
+    """
+    route_group_rule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the grouping rule name.
+    It's required if `route_group_enable` is **true**.
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgs:
@@ -2915,40 +3193,37 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmNotificationArgs:
         pulumi.set(self, "route_group_rule", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgsDict(TypedDict):
-        alarm_rule_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the alarm rule name.
-        """
-        alarm_rule_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the alarm rule type.
-        Valid values are as follows:
-        + **metric**: metric alarm rule
-        + **event**: event alarm rule
-        """
-        alarm_rule_description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm rule description.
-        """
-        event_alarm_spec: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgsDict']]
-        """
-        Specifies the event alarm spec.
-        The event_alarm_spec structure is documented
-        below.
-        """
-        metric_alarm_spec: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgsDict']]
-        """
-        Specifies the metric alarm spec.
-        The metric_alarm_spec structure is
-        documented below.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgsDict(TypedDict):
+    alarm_rule_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the alarm rule name.
+    """
+    alarm_rule_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the alarm rule type.
+    Valid values are as follows:
+    + **metric**: metric alarm rule
+    + **event**: event alarm rule
+    """
+    alarm_rule_description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm rule description.
+    """
+    event_alarm_spec: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgsDict']]
+    """
+    Specifies the event alarm spec.
+    The event_alarm_spec structure is documented
+    below.
+    """
+    metric_alarm_spec: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgsDict']]
+    """
+    Specifies the metric alarm spec.
+    The metric_alarm_spec structure is
+    documented below.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--event_alarm_spec"></a>
-        The `event_alarm_spec` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--event_alarm_spec"></a>
+    The `event_alarm_spec` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgs:
@@ -3055,46 +3330,43 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemArgs:
         pulumi.set(self, "metric_alarm_spec", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgsDict(TypedDict):
-        alarm_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm source.
-        """
-        alarm_subtype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm subtype.
-        """
-        event_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm source.
-        """
-        monitor_object_templates: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the monitor object templates.
-        """
-        monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
-        """
-        Specifies the monitored objects. It's an array of map objects.
-        Key-value pair, key can be as follows:
-        + **event_type**: notification type
-        + **event_severity**: alarm severity
-        + **event_name**: event name
-        + **namespace**: namespace
-        + **clusterId**: cluster ID
-        + **customField**: user-defined field
-        """
-        trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgsDict']]]]
-        """
-        Specifies the trigger conditions.
-        The trigger_conditions
-        structure is documented below.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgsDict(TypedDict):
+    alarm_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm source.
+    """
+    alarm_subtype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm subtype.
+    """
+    event_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm source.
+    """
+    monitor_object_templates: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the monitor object templates.
+    """
+    monitor_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]
+    """
+    Specifies the monitored objects. It's an array of map objects.
+    Key-value pair, key can be as follows:
+    + **event_type**: notification type
+    + **event_severity**: alarm severity
+    + **event_name**: event name
+    + **namespace**: namespace
+    + **clusterId**: cluster ID
+    + **customField**: user-defined field
+    """
+    trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgsDict']]]]
+    """
+    Specifies the trigger conditions.
+    The trigger_conditions
+    structure is documented below.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--alarm_tags"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--alarm_tags"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecArgs:
@@ -3223,53 +3495,50 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpec
         pulumi.set(self, "trigger_conditions", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgsDict(TypedDict):
-        trigger_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the trigger type.
-        Valid values are as follows:
-        + **FIXED_RATE**: fixed interval
-        + **HOURLY**: every hour
-        + **DAILY**: every day
-        + **WEEKLY**: every week
-        + **CRON**: Cron expression
-        """
-        aggregation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the statistical period.
-        Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
-        """
-        event_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event name.
-        """
-        frequency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event alarm notification frequency. Leave this parameter empty if
-        `trigger_type` is set to **immediately**. Valid values are as follows:
-        + **0**: alarm sent only once
-        + **300**: every 5 minutes
-        + **600**: every 10 minutes
-        + **900**: every 15 minutes
-        + **1800**: every 30 minutes
-        + **3600**: every hour
-        + **10800**: every 3 hours
-        + **21600**: every 6 hours
-        + **43200**: every 12 hours
-        + **86400**: every day
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the operator. Options: >, <, =, >=, and <=.
-        """
-        thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
-        the value indicates the alarm threshold.
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgsDict(TypedDict):
+    trigger_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the trigger type.
+    Valid values are as follows:
+    + **FIXED_RATE**: fixed interval
+    + **HOURLY**: every hour
+    + **DAILY**: every day
+    + **WEEKLY**: every week
+    + **CRON**: Cron expression
+    """
+    aggregation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the statistical period.
+    Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
+    """
+    event_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event name.
+    """
+    frequency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event alarm notification frequency. Leave this parameter empty if
+    `trigger_type` is set to **immediately**. Valid values are as follows:
+    + **0**: alarm sent only once
+    + **300**: every 5 minutes
+    + **600**: every 10 minutes
+    + **900**: every 15 minutes
+    + **1800**: every 30 minutes
+    + **3600**: every hour
+    + **10800**: every 3 hours
+    + **21600**: every 6 hours
+    + **43200**: every 12 hours
+    + **86400**: every day
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the operator. Options: >, <, =, >=, and <=.
+    """
+    thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
+    the value indicates the alarm threshold.
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpecTriggerConditionArgs:
@@ -3411,49 +3680,46 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemEventAlarmSpec
         pulumi.set(self, "thresholds", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgsDict(TypedDict):
-        alarm_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm source.
-        """
-        alarm_subtype: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the alarm subtype.
-        """
-        alarm_tags: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgsDict']]
-        """
-        Specifies the alarm tags.
-        The alarm_tags structure
-        is documented below.
-        """
-        monitor_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the monitor type.
-        """
-        no_data_conditions: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgsDict']]
-        """
-        Specifies the no data conditions.
-        The no_data_conditions
-        structure is documented below.
-        """
-        recovery_conditions: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgsDict']]
-        """
-        Specifies the recovery conditions.
-        The recovery_conditions
-        structure is documented below.
-        """
-        trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgsDict']]]]
-        """
-        Specifies the trigger conditions.
-        The trigger_conditions
-        structure is documented below.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgsDict(TypedDict):
+    alarm_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm source.
+    """
+    alarm_subtype: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alarm subtype.
+    """
+    alarm_tags: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgsDict']]
+    """
+    Specifies the alarm tags.
+    The alarm_tags structure
+    is documented below.
+    """
+    monitor_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the monitor type.
+    """
+    no_data_conditions: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgsDict']]
+    """
+    Specifies the no data conditions.
+    The no_data_conditions
+    structure is documented below.
+    """
+    recovery_conditions: NotRequired[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgsDict']]
+    """
+    Specifies the recovery conditions.
+    The recovery_conditions
+    structure is documented below.
+    """
+    trigger_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgsDict']]]]
+    """
+    Specifies the trigger conditions.
+    The trigger_conditions
+    structure is documented below.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--alarm_tags"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--alarm_tags"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecArgs:
@@ -3596,25 +3862,22 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "trigger_conditions", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgsDict(TypedDict):
-        auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the automatic tag.
-        """
-        custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the custom tag.
-        """
-        custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the alarm annotation.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgsDict(TypedDict):
+    auto_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the automatic tag.
+    """
+    custom_annotations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the custom tag.
+    """
+    custom_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the alarm annotation.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--no_data_conditions"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--no_data_conditions"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecAlarmTagsArgs:
@@ -3677,31 +3940,28 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "custom_tags", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgsDict(TypedDict):
-        no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the status of the threshold rule when the data is insufficient.
-        Valid values are as follows:
-        + **no_data**: A notification indicating insufficient data is sent.
-        + **alerting**: An alarm is triggered.
-        + **ok**: No exception occurs.
-        + **pre_state**: Retain the previous state.
-        """
-        no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of periods without data.
-        """
-        notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send a notification when data is insufficient.
-        Defaults to **false**.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgsDict(TypedDict):
+    no_data_alert_state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the status of the threshold rule when the data is insufficient.
+    Valid values are as follows:
+    + **no_data**: A notification indicating insufficient data is sent.
+    + **alerting**: An alarm is triggered.
+    + **ok**: No exception occurs.
+    + **pre_state**: Retain the previous state.
+    """
+    no_data_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of periods without data.
+    """
+    notify_no_data: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send a notification when data is insufficient.
+    Defaults to **false**.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--recovery_conditions"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--recovery_conditions"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecNoDataConditionsArgs:
@@ -3776,18 +4036,15 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "notify_no_data", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgsDict(TypedDict):
-        recovery_timeframe: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of consecutive periods for which the trigger condition is
-        not met to clear an alarm.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgsDict(TypedDict):
+    recovery_timeframe: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of consecutive periods for which the trigger condition is
+    not met to clear an alarm.
 
-        <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--trigger_conditions"></a>
-        The `trigger_conditions` block supports:
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="alarm_template_spec_list--alarm_template_spec_items--metric_alarm_spec--trigger_conditions"></a>
+    The `trigger_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecRecoveryConditionsArgs:
@@ -3820,123 +4077,124 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "recovery_timeframe", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgsDict(TypedDict):
-        metric_query_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the metric query mode.
-        Valid values are as follows:
-        + **AOM**: native AOM
-        + **PROM**: AOM prometheus
-        + **NATIVE_PROM**: native prometheus
-        """
-        aggregate_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the aggregation mode.
-        Valid values are **by**, **avg**, **max**, **min** and **sum**.
-        """
-        aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the statistical mode.
-        Valid values are **average**, **minimum**, **maximum**, **sum** and **sampleCount**.
-        """
-        aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the statistical period.
-        Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
-        """
-        aom_monitor_level: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the monitoring layer.
-        """
-        expression: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the expression of a combined operation.
-        """
-        metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the metric dimension.
-        """
-        metric_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric name.
-        """
-        metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric namespace.
-        """
-        metric_statistic_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric statistics method to be used when you set
-        Configuration Mode to Select from all metrics during alarm rule setting.
-        Valid values are as follows:
-        + **single**: single metric
-        + **mix**: multi-metric combined operations
-        """
-        metric_unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the metric unit.
-        """
-        mix_promql: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the promQL of a combined operation.
-        """
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the operator. Options: >, <, =, >=, and <=.
-        """
-        promql: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prometheus statement.
-        """
-        promql_exprs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the prometheus statement template.
-        """
-        promql_for: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the native prometheus monitoring duration.
-        """
-        query_match: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the query filter criteria.
-        """
-        thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
-        the value indicates the alarm threshold.
-        """
-        trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the check interval.
-        Valid values are as follows:
-        + If `trigger_type` is set to **HOURLY**, set this parameter to empty.
-        + If `trigger_type` is set to **DAILY**, set 00:00–23:00. Example: **03:00**.
-        + If `trigger_type` is set to **WEEKLY**, select a day in a week and then select 00:00–23:00.
-        Example: **1 03:00** indicates 03:00 on every Monday.
-        + If `trigger_type` is set to **CRON**, specify a standard cron expression.
-        + If `trigger_type` is set to **FIXED_RATE**, select 15s, 30s, 1–59 min, or 1–24 h.
-        Example: **15s**, **30s**, **1min**, or **1h**.
-        """
-        trigger_times: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of consecutive periods.
+class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgsDict(TypedDict):
+    metric_query_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the metric query mode.
+    Valid values are as follows:
+    + **AOM**: native AOM
+    + **PROM**: AOM prometheus
+    + **NATIVE_PROM**: native prometheus
+    """
+    aggregate_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the aggregation mode.
+    Valid values are **by**, **avg**, **max**, **min** and **sum**.
+    """
+    aggregation_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the statistical mode.
+    Valid values are **average**, **minimum**, **maximum**, **sum** and **sampleCount**.
+    """
+    aggregation_window: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the statistical period.
+    Valid values are **15s**, **30s**, **1m**, **5m**, **15m** and **1h**.
+    """
+    aom_monitor_level: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the monitoring layer.
+    """
+    expression: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the expression of a combined operation.
+    """
+    metric_labels: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the metric dimension.
+    """
+    metric_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric name.
+    """
+    metric_namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric namespace.
+    """
+    metric_statistic_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric statistics method to be used when you set
+    Configuration Mode to Select from all metrics during alarm rule setting.
+    Valid values are as follows:
+    + **single**: single metric
+    + **mix**: multi-metric combined operations
+    """
+    metric_unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the metric unit.
+    """
+    mix_promql: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the promQL of a combined operation.
+    """
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the operator. Options: >, <, =, >=, and <=.
+    """
+    promql: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prometheus statement.
+    """
+    promql_expr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prometheus statement template.
+    """
+    promql_for: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the native prometheus monitoring duration.
+    """
+    query_match: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the query filter criteria.
+    """
+    query_param: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the query parameters.
+    """
+    thresholds: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
+    the value indicates the alarm threshold.
+    """
+    trigger_interval: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the check interval.
+    Valid values are as follows:
+    + If `trigger_type` is set to **HOURLY**, set this parameter to empty.
+    + If `trigger_type` is set to **DAILY**, set 00:00–23:00. Example: **03:00**.
+    + If `trigger_type` is set to **WEEKLY**, select a day in a week and then select 00:00–23:00.
+    Example: **1 03:00** indicates 03:00 on every Monday.
+    + If `trigger_type` is set to **CRON**, specify a standard cron expression.
+    + If `trigger_type` is set to **FIXED_RATE**, select 15s, 30s, 1–59 min, or 1–24 h.
+    Example: **15s**, **30s**, **1min**, or **1h**.
+    """
+    trigger_times: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of consecutive periods.
 
-        <a name="templating"></a>
-        The `templating` block supports:
-        """
-        trigger_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the trigger type.
-        Valid values are as follows:
-        + **FIXED_RATE**: fixed interval
-        + **HOURLY**: every hour
-        + **DAILY**: every day
-        + **WEEKLY**: every week
-        + **CRON**: Cron expression
-        """
-elif False:
-    AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="templating"></a>
+    The `templating` block supports:
+    """
+    trigger_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the trigger type.
+    Valid values are as follows:
+    + **FIXED_RATE**: fixed interval
+    + **HOURLY**: every hour
+    + **DAILY**: every day
+    + **WEEKLY**: every week
+    + **CRON**: Cron expression
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpecTriggerConditionArgs:
@@ -3955,9 +4213,10 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
                  mix_promql: Optional[pulumi.Input[_builtins.str]] = None,
                  operator: Optional[pulumi.Input[_builtins.str]] = None,
                  promql: Optional[pulumi.Input[_builtins.str]] = None,
-                 promql_exprs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 promql_expr: Optional[pulumi.Input[_builtins.str]] = None,
                  promql_for: Optional[pulumi.Input[_builtins.str]] = None,
                  query_match: Optional[pulumi.Input[_builtins.str]] = None,
+                 query_param: Optional[pulumi.Input[_builtins.str]] = None,
                  thresholds: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  trigger_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  trigger_times: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3988,9 +4247,10 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         :param pulumi.Input[_builtins.str] mix_promql: Specifies the promQL of a combined operation.
         :param pulumi.Input[_builtins.str] operator: Specifies the operator. Options: >, <, =, >=, and <=.
         :param pulumi.Input[_builtins.str] promql: Specifies the prometheus statement.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] promql_exprs: Specifies the prometheus statement template.
+        :param pulumi.Input[_builtins.str] promql_expr: Specifies the prometheus statement template.
         :param pulumi.Input[_builtins.str] promql_for: Specifies the native prometheus monitoring duration.
         :param pulumi.Input[_builtins.str] query_match: Specifies the query filter criteria.
+        :param pulumi.Input[_builtins.str] query_param: Specifies the query parameters.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] thresholds: Specifies the thresholds. Key-value pair. The key indicates the alarm severity while
                the value indicates the alarm threshold.
         :param pulumi.Input[_builtins.str] trigger_interval: Specifies the check interval.
@@ -4041,12 +4301,14 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
             pulumi.set(__self__, "operator", operator)
         if promql is not None:
             pulumi.set(__self__, "promql", promql)
-        if promql_exprs is not None:
-            pulumi.set(__self__, "promql_exprs", promql_exprs)
+        if promql_expr is not None:
+            pulumi.set(__self__, "promql_expr", promql_expr)
         if promql_for is not None:
             pulumi.set(__self__, "promql_for", promql_for)
         if query_match is not None:
             pulumi.set(__self__, "query_match", query_match)
+        if query_param is not None:
+            pulumi.set(__self__, "query_param", query_param)
         if thresholds is not None:
             pulumi.set(__self__, "thresholds", thresholds)
         if trigger_interval is not None:
@@ -4236,16 +4498,16 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "promql", value)
 
     @_builtins.property
-    @pulumi.getter(name="promqlExprs")
-    def promql_exprs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    @pulumi.getter(name="promqlExpr")
+    def promql_expr(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the prometheus statement template.
         """
-        return pulumi.get(self, "promql_exprs")
+        return pulumi.get(self, "promql_expr")
 
-    @promql_exprs.setter
-    def promql_exprs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "promql_exprs", value)
+    @promql_expr.setter
+    def promql_expr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "promql_expr", value)
 
     @_builtins.property
     @pulumi.getter(name="promqlFor")
@@ -4270,6 +4532,18 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
     @query_match.setter
     def query_match(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "query_match", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParam")
+    def query_param(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the query parameters.
+        """
+        return pulumi.get(self, "query_param")
+
+    @query_param.setter
+    def query_param(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "query_param", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4338,18 +4612,15 @@ class AlarmRulesTemplateAlarmTemplateSpecListAlarmTemplateSpecItemMetricAlarmSpe
         pulumi.set(self, "trigger_type", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateTemplatingArgsDict(TypedDict):
-        lists: pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateTemplatingListArgsDict']]]
-        """
-        Specifies the
-        The list structure is documented below.
+class AlarmRulesTemplateTemplatingArgsDict(TypedDict):
+    lists: pulumi.Input[Sequence[pulumi.Input['AlarmRulesTemplateTemplatingListArgsDict']]]
+    """
+    Specifies the
+    The list structure is documented below.
 
-        <a name="templating--list"></a>
-        The `list` block supports:
-        """
-elif False:
-    AlarmRulesTemplateTemplatingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="templating--list"></a>
+    The `list` block supports:
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateTemplatingArgs:
@@ -4381,26 +4652,23 @@ class AlarmRulesTemplateTemplatingArgs:
         pulumi.set(self, "lists", value)
 
 
-if not MYPY:
-    class AlarmRulesTemplateTemplatingListArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description.
-        """
-        query: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the query.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type.
-        """
-elif False:
-    AlarmRulesTemplateTemplatingListArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmRulesTemplateTemplatingListArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description.
+    """
+    query: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the query.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type.
+    """
 
 @pulumi.input_type
 class AlarmRulesTemplateTemplatingListArgs:
@@ -4472,19 +4740,16 @@ class AlarmRulesTemplateTemplatingListArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AlarmSilenceRuleSilenceConditionArgsDict(TypedDict):
-        conditions: pulumi.Input[Sequence[pulumi.Input['AlarmSilenceRuleSilenceConditionConditionArgsDict']]]
-        """
-        Specifies the serial conditions.
-        A maximum of 10 conditions are allowed.
-        The conditions structure is documented below.
+class AlarmSilenceRuleSilenceConditionArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['AlarmSilenceRuleSilenceConditionConditionArgsDict']]]
+    """
+    Specifies the serial conditions.
+    A maximum of 10 conditions are allowed.
+    The conditions structure is documented below.
 
-        <a name="conditions"></a>
-        The `conditions` block supports:
-        """
-elif False:
-    AlarmSilenceRuleSilenceConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="conditions"></a>
+    The `conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmSilenceRuleSilenceConditionArgs:
@@ -4518,24 +4783,21 @@ class AlarmSilenceRuleSilenceConditionArgs:
         pulumi.set(self, "conditions", value)
 
 
-if not MYPY:
-    class AlarmSilenceRuleSilenceConditionConditionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the match condition.
-        """
-        operate: pulumi.Input[_builtins.str]
-        """
-        Specifies the operate of the match condition.
-        The value can be: **EQUALS**, **REGEX** and **EXIST**.
-        """
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the value list of the match condition.
-        A maximum of 5 values are allowed. This should be empty when the value of operate is *EXIST**.
-        """
-elif False:
-    AlarmSilenceRuleSilenceConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+class AlarmSilenceRuleSilenceConditionConditionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the match condition.
+    """
+    operate: pulumi.Input[_builtins.str]
+    """
+    Specifies the operate of the match condition.
+    The value can be: **EQUALS**, **REGEX** and **EXIST**.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the value list of the match condition.
+    A maximum of 5 values are allowed. This should be empty when the value of operate is *EXIST**.
+    """
 
 @pulumi.input_type
 class AlarmSilenceRuleSilenceConditionConditionArgs:
@@ -4594,37 +4856,34 @@ class AlarmSilenceRuleSilenceConditionConditionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class AlarmSilenceRuleSilenceTimeArgsDict(TypedDict):
-        starts_at: pulumi.Input[_builtins.int]
-        """
-        Specifies the start time of the silence rule.
-        When the `type` is **FIXED**, the value is a time stamp, e.g. **1684466549755**,
-        which indicates **2023-05-19 11:22:29.755**. When the `type` is **DAILY**, **WEEKLY**
-        or **MONTHLY**, the value range is `0` to `86,399`, which indicates **00:00:00** to **23:59:59**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the effective time type of the silence rule.
-        The value can be: **FIXED**, **DAILY**, **WEEKLY** and **MONTHLY**.
-        """
-        ends_at: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the end time of the silence rule.
-        When the `type` is **FIXED**, the value is a time stamp, e.g. **1684466549755**,
-        which indicates **2023-05-19 11:22:29.755**. When the `type` is **DAILY**, **WEEKLY**
-        or **MONTHLY**, the value range is `0` to `86,399`, which indicates **00:00:00** to **23:59:59**.
-        """
-        scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the silence time of the rule.
-        It's required when the type is **WEEKLY** or **MONTHLY**.
+class AlarmSilenceRuleSilenceTimeArgsDict(TypedDict):
+    starts_at: pulumi.Input[_builtins.int]
+    """
+    Specifies the start time of the silence rule.
+    When the `type` is **FIXED**, the value is a time stamp, e.g. **1684466549755**,
+    which indicates **2023-05-19 11:22:29.755**. When the `type` is **DAILY**, **WEEKLY**
+    or **MONTHLY**, the value range is `0` to `86,399`, which indicates **00:00:00** to **23:59:59**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the effective time type of the silence rule.
+    The value can be: **FIXED**, **DAILY**, **WEEKLY** and **MONTHLY**.
+    """
+    ends_at: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the end time of the silence rule.
+    When the `type` is **FIXED**, the value is a time stamp, e.g. **1684466549755**,
+    which indicates **2023-05-19 11:22:29.755**. When the `type` is **DAILY**, **WEEKLY**
+    or **MONTHLY**, the value range is `0` to `86,399`, which indicates **00:00:00** to **23:59:59**.
+    """
+    scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the silence time of the rule.
+    It's required when the type is **WEEKLY** or **MONTHLY**.
 
-        <a name="silence_conditions"></a>
-        The `silence_conditions` block supports:
-        """
-elif False:
-    AlarmSilenceRuleSilenceTimeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="silence_conditions"></a>
+    The `silence_conditions` block supports:
+    """
 
 @pulumi.input_type
 class AlarmSilenceRuleSilenceTimeArgs:
@@ -4717,12 +4976,9 @@ class AlarmSilenceRuleSilenceTimeArgs:
         pulumi.set(self, "scopes", value)
 
 
-if not MYPY:
-    class EnvironmentEnvTagArgsDict(TypedDict):
-        tag_id: NotRequired[pulumi.Input[_builtins.str]]
-        tag_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    EnvironmentEnvTagArgsDict: TypeAlias = Mapping[str, Any]
+class EnvironmentEnvTagArgsDict(TypedDict):
+    tag_id: NotRequired[pulumi.Input[_builtins.str]]
+    tag_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class EnvironmentEnvTagArgs:
@@ -4753,27 +5009,180 @@ class EnvironmentEnvTagArgs:
         pulumi.set(self, "tag_name", value)
 
 
-if not MYPY:
-    class MessageTemplateTemplateArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
+class EventReportEventArgsDict(TypedDict):
+    metadata: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
+    """
+    Specifies the detail of the event or alarm, in key:value pair format.
+    The following fields are required:
+    """
+    annotations: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the additional fields of the event or alarm, in JSON
+    format.
+    This parameter can be empty.
+    """
+    ends_at: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the time when the event or alarm was cleared, in UTC
+    milliseconds timestamp.
+    Default value is `0`, indicating that the alarm was not cleared.
+    Required if the `action` is **clear**.
+    """
+    starts_at: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the time when the event or alarm occurred, in UTC
+    milliseconds timestamp.
+    For example: 2024-10-16 16:03:01 needs to be converted to UTC milliseconds timestamp: `1702759381000`.
+    Required if the `action` is empty.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the automatic clearing time for expired alarms, in milliseconds.
+    The maximum clearing time is `15` days.
+    + When `action` is empty:
+    - If `timeout` is empty, the default clearing time is `15` days.
+    - If `timeout` is specified with a time, the format of time should format be the corresponding milliseconds.
+    For example, if you want to set the clearing time to `5` days, the corresponding milliseconds: `432000000`.
+    + When `action` is **clear**:
+    - This parameter is not required when clearing alarms.
+    """
+
+@pulumi.input_type
+class EventReportEventArgs:
+    def __init__(__self__, *,
+                 metadata: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
+                 annotations: Optional[pulumi.Input[_builtins.str]] = None,
+                 ends_at: Optional[pulumi.Input[_builtins.int]] = None,
+                 starts_at: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        Specifies the content of the template.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the detail of the event or alarm, in key:value pair format.
+               The following fields are required:
+        :param pulumi.Input[_builtins.str] annotations: Specifies the additional fields of the event or alarm, in JSON
+               format.
+               This parameter can be empty.
+        :param pulumi.Input[_builtins.int] ends_at: Specifies the time when the event or alarm was cleared, in UTC
+               milliseconds timestamp.
+               Default value is `0`, indicating that the alarm was not cleared.
+               Required if the `action` is **clear**.
+        :param pulumi.Input[_builtins.int] starts_at: Specifies the time when the event or alarm occurred, in UTC
+               milliseconds timestamp.
+               For example: 2024-10-16 16:03:01 needs to be converted to UTC milliseconds timestamp: `1702759381000`.
+               Required if the `action` is empty.
+        :param pulumi.Input[_builtins.int] timeout: Specifies the automatic clearing time for expired alarms, in milliseconds.
+               The maximum clearing time is `15` days.
+               + When `action` is empty:
+               - If `timeout` is empty, the default clearing time is `15` days.
+               - If `timeout` is specified with a time, the format of time should format be the corresponding milliseconds.
+               For example, if you want to set the clearing time to `5` days, the corresponding milliseconds: `432000000`.
+               + When `action` is **clear**:
+               - This parameter is not required when clearing alarms.
         """
-        sub_type: pulumi.Input[_builtins.str]
+        pulumi.set(__self__, "metadata", metadata)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if ends_at is not None:
+            pulumi.set(__self__, "ends_at", ends_at)
+        if starts_at is not None:
+            pulumi.set(__self__, "starts_at", starts_at)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
         """
-        Specifies the subscription type of the template.
-        Valid value are **email**, **sms**, **wechat**, **dingding**, **webhook**, **voice**, **espace**, **feishu**, **welink**.
+        Specifies the detail of the event or alarm, in key:value pair format.
+        The following fields are required:
         """
-        topic: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the topic of the template.
+        Specifies the additional fields of the event or alarm, in JSON
+        format.
+        This parameter can be empty.
         """
-        version: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "annotations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="endsAt")
+    def ends_at(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the version of the template.
+        Specifies the time when the event or alarm was cleared, in UTC
+        milliseconds timestamp.
+        Default value is `0`, indicating that the alarm was not cleared.
+        Required if the `action` is **clear**.
         """
-elif False:
-    MessageTemplateTemplateArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "ends_at")
+
+    @ends_at.setter
+    def ends_at(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ends_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the time when the event or alarm occurred, in UTC
+        milliseconds timestamp.
+        For example: 2024-10-16 16:03:01 needs to be converted to UTC milliseconds timestamp: `1702759381000`.
+        Required if the `action` is empty.
+        """
+        return pulumi.get(self, "starts_at")
+
+    @starts_at.setter
+    def starts_at(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "starts_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the automatic clearing time for expired alarms, in milliseconds.
+        The maximum clearing time is `15` days.
+        + When `action` is empty:
+        - If `timeout` is empty, the default clearing time is `15` days.
+        - If `timeout` is specified with a time, the format of time should format be the corresponding milliseconds.
+        For example, if you want to set the clearing time to `5` days, the corresponding milliseconds: `432000000`.
+        + When `action` is **clear**:
+        - This parameter is not required when clearing alarms.
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MessageTemplateTemplateArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    """
+    Specifies the content of the template.
+    """
+    sub_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the subscription type of the template.
+    Valid value are **email**, **sms**, **wechat**, **dingding**, **webhook**, **voice**, **espace**, **feishu**, **welink**.
+    """
+    topic: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the topic of the template.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the template.
+    """
 
 @pulumi.input_type
 class MessageTemplateTemplateArgs:
@@ -4846,33 +5255,30 @@ class MessageTemplateTemplateArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class MultiAccountAggregationRuleAccountArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the account ID.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the account name.
-        """
-        join_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the method how the account joined in the organization.
-        """
-        joined_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time when the account joined in the organization.
+class MultiAccountAggregationRuleAccountArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the account ID.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the account name.
+    """
+    join_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the method how the account joined in the organization.
+    """
+    joined_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time when the account joined in the organization.
 
-        <a name="services_struct"></a>
-        The `services` block supports:
-        """
-        urn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the uniform resource name of the account.
-        """
-elif False:
-    MultiAccountAggregationRuleAccountArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="services_struct"></a>
+    The `services` block supports:
+    """
+    urn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the uniform resource name of the account.
+    """
 
 @pulumi.input_type
 class MultiAccountAggregationRuleAccountArgs:
@@ -4965,18 +5371,15 @@ class MultiAccountAggregationRuleAccountArgs:
         pulumi.set(self, "urn", value)
 
 
-if not MYPY:
-    class MultiAccountAggregationRuleServiceArgsDict(TypedDict):
-        metrics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the metrics List.
-        """
-        service: pulumi.Input[_builtins.str]
-        """
-        Specifies the service name.
-        """
-elif False:
-    MultiAccountAggregationRuleServiceArgsDict: TypeAlias = Mapping[str, Any]
+class MultiAccountAggregationRuleServiceArgsDict(TypedDict):
+    metrics: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the metrics List.
+    """
+    service: pulumi.Input[_builtins.str]
+    """
+    Specifies the service name.
+    """
 
 @pulumi.input_type
 class MultiAccountAggregationRuleServiceArgs:
@@ -5015,11 +5418,51 @@ class MultiAccountAggregationRuleServiceArgs:
         pulumi.set(self, "service", value)
 
 
-if not MYPY:
-    class PrometheusInstancePromForCloudServiceArgsDict(TypedDict):
-        ces_metric_namespaces: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-elif False:
-    PrometheusInstancePromForCloudServiceArgsDict: TypeAlias = Mapping[str, Any]
+class PromInstancePromLimitsArgsDict(TypedDict):
+    compactor_blocks_retention_period: pulumi.Input[_builtins.str]
+    """
+    Specifies the retention period for the compactor blocks.  
+    The valid values are as follows:
+    + **360h**
+    + **420h**
+    + **1440h**
+    + **2160h**
+    """
+
+@pulumi.input_type
+class PromInstancePromLimitsArgs:
+    def __init__(__self__, *,
+                 compactor_blocks_retention_period: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] compactor_blocks_retention_period: Specifies the retention period for the compactor blocks.  
+               The valid values are as follows:
+               + **360h**
+               + **420h**
+               + **1440h**
+               + **2160h**
+        """
+        pulumi.set(__self__, "compactor_blocks_retention_period", compactor_blocks_retention_period)
+
+    @_builtins.property
+    @pulumi.getter(name="compactorBlocksRetentionPeriod")
+    def compactor_blocks_retention_period(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the retention period for the compactor blocks.  
+        The valid values are as follows:
+        + **360h**
+        + **420h**
+        + **1440h**
+        + **2160h**
+        """
+        return pulumi.get(self, "compactor_blocks_retention_period")
+
+    @compactor_blocks_retention_period.setter
+    def compactor_blocks_retention_period(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "compactor_blocks_retention_period", value)
+
+
+class PrometheusInstancePromForCloudServiceArgsDict(TypedDict):
+    ces_metric_namespaces: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
 
 @pulumi.input_type
 class PrometheusInstancePromForCloudServiceArgs:
@@ -5037,22 +5480,19 @@ class PrometheusInstancePromForCloudServiceArgs:
         pulumi.set(self, "ces_metric_namespaces", value)
 
 
-if not MYPY:
-    class ServiceDiscoveryRuleDiscoveryRuleArgsDict(TypedDict):
-        check_contents: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the matched value. This is a list of strings.
-        """
-        check_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the match condition. The values can be **contain** and **equals**.
-        """
-        check_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the match type. The values can be **cmdLine**, **env** and **scope**.
-        """
-elif False:
-    ServiceDiscoveryRuleDiscoveryRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDiscoveryRuleDiscoveryRuleArgsDict(TypedDict):
+    check_contents: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the matched value. This is a list of strings.
+    """
+    check_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the match condition. The values can be **contain** and **equals**.
+    """
+    check_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the match type. The values can be **cmdLine**, **env** and **scope**.
+    """
 
 @pulumi.input_type
 class ServiceDiscoveryRuleDiscoveryRuleArgs:
@@ -5106,22 +5546,19 @@ class ServiceDiscoveryRuleDiscoveryRuleArgs:
         pulumi.set(self, "check_type", value)
 
 
-if not MYPY:
-    class ServiceDiscoveryRuleLogPathRuleArgsDict(TypedDict):
-        args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the command. This is a list of strings.
-        """
-        name_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the value type, which can be **cmdLineHash**.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the log path. This is a list of strings.
-        """
-elif False:
-    ServiceDiscoveryRuleLogPathRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDiscoveryRuleLogPathRuleArgsDict(TypedDict):
+    args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the command. This is a list of strings.
+    """
+    name_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the value type, which can be **cmdLineHash**.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the log path. This is a list of strings.
+    """
 
 @pulumi.input_type
 class ServiceDiscoveryRuleLogPathRuleArgs:
@@ -5175,35 +5612,32 @@ class ServiceDiscoveryRuleLogPathRuleArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class ServiceDiscoveryRuleNameRulesArgsDict(TypedDict):
-        application_name_rules: pulumi.Input[Sequence[pulumi.Input['ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict']]]
-        """
-        Specifies the application name rule. If the value of `name_type` is
-        **cmdLine**, `args` is in the format of ["start", "end"], indicating that the characters between start and end in
-        the command are extracted. If the value of `name_type` is **env**, `args` is in the format of ["aa"], indicating that
-        the environment variable named aa is extracted. If the value of `name_type` is **str**, `args` is in the format of
-        ["fix"], indicating that the application name is suffixed with fix. If the value of `name_type` is **cmdLineHash**,
-        `args` is in the format of ["0001"] and `value` is in the format of ["ser"], indicating that the application name is
-        ser when the startup command is 0001. The object structure is documented below.
+class ServiceDiscoveryRuleNameRulesArgsDict(TypedDict):
+    application_name_rules: pulumi.Input[Sequence[pulumi.Input['ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict']]]
+    """
+    Specifies the application name rule. If the value of `name_type` is
+    **cmdLine**, `args` is in the format of ["start", "end"], indicating that the characters between start and end in
+    the command are extracted. If the value of `name_type` is **env**, `args` is in the format of ["aa"], indicating that
+    the environment variable named aa is extracted. If the value of `name_type` is **str**, `args` is in the format of
+    ["fix"], indicating that the application name is suffixed with fix. If the value of `name_type` is **cmdLineHash**,
+    `args` is in the format of ["0001"] and `value` is in the format of ["ser"], indicating that the application name is
+    ser when the startup command is 0001. The object structure is documented below.
 
-        <a name="basic_name_rule_object"></a>
-        The `service_name_rule` block and `application_name_rule` block support:
-        """
-        service_name_rules: pulumi.Input[Sequence[pulumi.Input['ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict']]]
-        """
-        Specifies the service name rule. If there are multiple objects in the array,
-        the character strings extracted from these objects constitute the service name. If the value of `name_type` is
-        **cmdLine**, `args` is in the format of ["start", "end"], indicating that the characters between start and end
-        in the command are extracted. If the value of `name_type` is **env**, `args` is in the format of ["aa"],
-        indicating that the environment variable named aa is extracted. If the value of `name_type` is **str**, `args` is in the
-        format of ["fix"], indicating that the service name is suffixed with fix. If the value of `name_type` is
-        **cmdLineHash**, `args` is in the format of ["0001"] and `value` is in the format of ["ser"], indicating that the
-        service name is ser when the startup command is 0001. The object structure is
-        documented below.
-        """
-elif False:
-    ServiceDiscoveryRuleNameRulesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="basic_name_rule_object"></a>
+    The `service_name_rule` block and `application_name_rule` block support:
+    """
+    service_name_rules: pulumi.Input[Sequence[pulumi.Input['ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict']]]
+    """
+    Specifies the service name rule. If there are multiple objects in the array,
+    the character strings extracted from these objects constitute the service name. If the value of `name_type` is
+    **cmdLine**, `args` is in the format of ["start", "end"], indicating that the characters between start and end
+    in the command are extracted. If the value of `name_type` is **env**, `args` is in the format of ["aa"],
+    indicating that the environment variable named aa is extracted. If the value of `name_type` is **str**, `args` is in the
+    format of ["fix"], indicating that the service name is suffixed with fix. If the value of `name_type` is
+    **cmdLineHash**, `args` is in the format of ["0001"] and `value` is in the format of ["ser"], indicating that the
+    service name is ser when the startup command is 0001. The object structure is
+    documented below.
+    """
 
 @pulumi.input_type
 class ServiceDiscoveryRuleNameRulesArgs:
@@ -5276,24 +5710,21 @@ class ServiceDiscoveryRuleNameRulesArgs:
         pulumi.set(self, "service_name_rules", value)
 
 
-if not MYPY:
-    class ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict(TypedDict):
-        args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the input value.
-        """
-        name_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the value type. The value can be **cmdLineHash**, **cmdLine**, **env**
-        and **str**.
-        """
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the application name, which is mandatory only when the value of `name_type` is
-        **cmdLineHash**.
-        """
-elif False:
-    ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDiscoveryRuleNameRulesApplicationNameRuleArgsDict(TypedDict):
+    args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the input value.
+    """
+    name_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the value type. The value can be **cmdLineHash**, **cmdLine**, **env**
+    and **str**.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the application name, which is mandatory only when the value of `name_type` is
+    **cmdLineHash**.
+    """
 
 @pulumi.input_type
 class ServiceDiscoveryRuleNameRulesApplicationNameRuleArgs:
@@ -5352,24 +5783,21 @@ class ServiceDiscoveryRuleNameRulesApplicationNameRuleArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict(TypedDict):
-        args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the input value.
-        """
-        name_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the value type. The value can be **cmdLineHash**, **cmdLine**, **env**
-        and **str**.
-        """
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the application name, which is mandatory only when the value of `name_type` is
-        **cmdLineHash**.
-        """
-elif False:
-    ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDiscoveryRuleNameRulesServiceNameRuleArgsDict(TypedDict):
+    args: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the input value.
+    """
+    name_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the value type. The value can be **cmdLineHash**, **cmdLine**, **env**
+    and **str**.
+    """
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the application name, which is mandatory only when the value of `name_type` is
+    **cmdLineHash**.
+    """
 
 @pulumi.input_type
 class ServiceDiscoveryRuleNameRulesServiceNameRuleArgs:
@@ -5426,5 +5854,284 @@ class ServiceDiscoveryRuleNameRulesServiceNameRuleArgs:
     @values.setter
     def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "values", value)
+
+
+class UniagentBatchInstallAgentImportParamListArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    Specifies the SSH account of the target machine.
+    """
+    inner_ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address of the target machine.
+    """
+    os_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the operating system type of the target machine.
+    The valid values are as follows:
+    + **LINUX**
+    + **WINDOWS**
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the login password of the target machine.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the login port of the target machine, default is `22`.
+    """
+    agent_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unique value of the agent.
+
+    > Required if the corresponding machine is already installed this agent and you want to re-import.
+    """
+    coc_cmdb_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the external unique identifier for COC usage.
+
+    <a name="aom_plugin_install_base_param"></a>
+    The `plugin_install_base_param` block supports:
+    """
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC ID of the target machine.
+    """
+
+@pulumi.input_type
+class UniagentBatchInstallAgentImportParamListArgs:
+    def __init__(__self__, *,
+                 account: pulumi.Input[_builtins.str],
+                 inner_ip: pulumi.Input[_builtins.str],
+                 os_type: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[_builtins.str],
+                 port: pulumi.Input[_builtins.int],
+                 agent_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 coc_cmdb_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] account: Specifies the SSH account of the target machine.
+        :param pulumi.Input[_builtins.str] inner_ip: Specifies the IP address of the target machine.
+        :param pulumi.Input[_builtins.str] os_type: Specifies the operating system type of the target machine.
+               The valid values are as follows:
+               + **LINUX**
+               + **WINDOWS**
+        :param pulumi.Input[_builtins.str] password: Specifies the login password of the target machine.
+        :param pulumi.Input[_builtins.int] port: Specifies the login port of the target machine, default is `22`.
+        :param pulumi.Input[_builtins.str] agent_id: Specifies the unique value of the agent.
+               
+               > Required if the corresponding machine is already installed this agent and you want to re-import.
+        :param pulumi.Input[_builtins.str] coc_cmdb_id: Specifies the external unique identifier for COC usage.
+               
+               <a name="aom_plugin_install_base_param"></a>
+               The `plugin_install_base_param` block supports:
+        :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID of the target machine.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "inner_ip", inner_ip)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "port", port)
+        if agent_id is not None:
+            pulumi.set(__self__, "agent_id", agent_id)
+        if coc_cmdb_id is not None:
+            pulumi.set(__self__, "coc_cmdb_id", coc_cmdb_id)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the SSH account of the target machine.
+        """
+        return pulumi.get(self, "account")
+
+    @account.setter
+    def account(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="innerIp")
+    def inner_ip(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the IP address of the target machine.
+        """
+        return pulumi.get(self, "inner_ip")
+
+    @inner_ip.setter
+    def inner_ip(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "inner_ip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the operating system type of the target machine.
+        The valid values are as follows:
+        + **LINUX**
+        + **WINDOWS**
+        """
+        return pulumi.get(self, "os_type")
+
+    @os_type.setter
+    def os_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "os_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the login password of the target machine.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the login port of the target machine, default is `22`.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the unique value of the agent.
+
+        > Required if the corresponding machine is already installed this agent and you want to re-import.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @agent_id.setter
+    def agent_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "agent_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cocCmdbId")
+    def coc_cmdb_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the external unique identifier for COC usage.
+
+        <a name="aom_plugin_install_base_param"></a>
+        The `plugin_install_base_param` block supports:
+        """
+        return pulumi.get(self, "coc_cmdb_id")
+
+    @coc_cmdb_id.setter
+    def coc_cmdb_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "coc_cmdb_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the VPC ID of the target machine.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class UniagentBatchInstallPluginInstallBaseParamArgsDict(TypedDict):
+    install_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the specified ICAgent version to install.
+    + When `icagent_install_flag` is set to **true**:
+    - If `plugin_install_base_param` is empty, the latest version of ICAgent plugin will be installed by default.
+    - If `plugin_install_base_param` is specified with a version, that version will be installed.
+    + When `icagent_install_flag` is set to **false**:
+    - No ICAgent plugin will be installed regardless of this parameter.
+    """
+
+@pulumi.input_type
+class UniagentBatchInstallPluginInstallBaseParamArgs:
+    def __init__(__self__, *,
+                 install_version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] install_version: Specifies the specified ICAgent version to install.
+               + When `icagent_install_flag` is set to **true**:
+               - If `plugin_install_base_param` is empty, the latest version of ICAgent plugin will be installed by default.
+               - If `plugin_install_base_param` is specified with a version, that version will be installed.
+               + When `icagent_install_flag` is set to **false**:
+               - No ICAgent plugin will be installed regardless of this parameter.
+        """
+        if install_version is not None:
+            pulumi.set(__self__, "install_version", install_version)
+
+    @_builtins.property
+    @pulumi.getter(name="installVersion")
+    def install_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the specified ICAgent version to install.
+        + When `icagent_install_flag` is set to **true**:
+        - If `plugin_install_base_param` is empty, the latest version of ICAgent plugin will be installed by default.
+        - If `plugin_install_base_param` is specified with a version, that version will be installed.
+        + When `icagent_install_flag` is set to **false**:
+        - No ICAgent plugin will be installed regardless of this parameter.
+        """
+        return pulumi.get(self, "install_version")
+
+    @install_version.setter
+    def install_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "install_version", value)
+
+
+class UniagentBatchUpgradeAgentListArgsDict(TypedDict):
+    agent_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the unique agent ID.
+    """
+    inner_ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the host IP address.
+    """
+
+@pulumi.input_type
+class UniagentBatchUpgradeAgentListArgs:
+    def __init__(__self__, *,
+                 agent_id: pulumi.Input[_builtins.str],
+                 inner_ip: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] agent_id: Specifies the unique agent ID.
+        :param pulumi.Input[_builtins.str] inner_ip: Specifies the host IP address.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "inner_ip", inner_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the unique agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @agent_id.setter
+    def agent_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "agent_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="innerIp")
+    def inner_ip(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "inner_ip")
+
+    @inner_ip.setter
+    def inner_ip(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "inner_ip", value)
 
 

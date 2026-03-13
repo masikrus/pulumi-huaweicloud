@@ -124,27 +124,53 @@ class BatchtaskTargetsFilter(dict):
 
 @pulumi.output_type
 class BatchtaskTaskDetail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "OutputValue":
+            suggest = "output_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BatchtaskTaskDetail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BatchtaskTaskDetail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BatchtaskTaskDetail.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 output_value: Optional[_builtins.str] = None,
                  errors: Optional[Sequence['outputs.BatchtaskTaskDetailError']] = None,
-                 output: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None,
                  target: Optional[_builtins.str] = None):
         """
+        :param _builtins.str output_value: The output information of subtask execution. The value only exists when the subtask is successfully
+               executed, including device ID, space ID, device secret, and device fingerprint.
         :param Sequence['BatchtaskTaskDetailErrorArgs'] errors: Subtask execution failure information. The value only exists when the subtask fails.
                The task_details structure is documented below.
-        :param _builtins.str output: The output information of subtask execution. The value only exists when the subtask is successfully
-               executed, including device ID, space ID, device secret, and device fingerprint.
         :param _builtins.str status: The execution status of subtask. The value can be **Success** or **Fail**.
         :param _builtins.str target: The goal of executing subtask. The value includes product ID and node ID.
         """
+        if output_value is not None:
+            pulumi.set(__self__, "output_value", output_value)
         if errors is not None:
             pulumi.set(__self__, "errors", errors)
-        if output is not None:
-            pulumi.set(__self__, "output", output)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if target is not None:
             pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter(name="OutputValue")
+    def output_value(self) -> Optional[_builtins.str]:
+        """
+        The output information of subtask execution. The value only exists when the subtask is successfully
+        executed, including device ID, space ID, device secret, and device fingerprint.
+        """
+        return pulumi.get(self, "output_value")
 
     @_builtins.property
     @pulumi.getter
@@ -154,15 +180,6 @@ class BatchtaskTaskDetail(dict):
         The task_details structure is documented below.
         """
         return pulumi.get(self, "errors")
-
-    @_builtins.property
-    @pulumi.getter
-    def output(self) -> Optional[_builtins.str]:
-        """
-        The output information of subtask execution. The value only exists when the subtask is successfully
-        executed, including device ID, space ID, device secret, and device fingerprint.
-        """
-        return pulumi.get(self, "output")
 
     @_builtins.property
     @pulumi.getter
@@ -3138,9 +3155,9 @@ class UpgradePackageFileLocationObsLocation(dict):
                Changing this parameter will create a new resource.
         :param _builtins.str region: Specifies the region where OBS is located.
                Changing this parameter will create a new resource.
-        :param _builtins.str sign: Specifies the signature value of the upgrade package calculated by SHA256 algorithm.
-               After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade notification to the
-               device, it will send the signature to the device.
+        :param _builtins.str sign: Specifies the signature value of the upgrade package calculated by SHA256
+               algorithm. After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade
+               notification to the device, it will send the signature to the device.
                The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
                
                Changing this parameter will create a new resource.
@@ -3185,9 +3202,9 @@ class UpgradePackageFileLocationObsLocation(dict):
     @pulumi.getter
     def sign(self) -> Optional[_builtins.str]:
         """
-        Specifies the signature value of the upgrade package calculated by SHA256 algorithm.
-        After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade notification to the
-        device, it will send the signature to the device.
+        Specifies the signature value of the upgrade package calculated by SHA256
+        algorithm. After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade
+        notification to the device, it will send the signature to the device.
         The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
 
         Changing this parameter will create a new resource.

@@ -38,6 +38,7 @@ class ImageArgs:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Image resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the CBR backup that needs to be converted into an
                image. This parameter is valid and mandatory only when you create a private whole image from a CBR backup.
                Changing this parameter will create a new resource.
@@ -394,6 +395,7 @@ class _ImageState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Image resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the CBR backup that needs to be converted into an
                image. This parameter is valid and mandatory only when you create a private whole image from a CBR backup.
                Changing this parameter will create a new resource.
@@ -928,37 +930,15 @@ class Image(pulumi.CustomResource):
 
         Image can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/image:Image test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `vault_id`. It is generally recommended running `pulumi preview` after
-
         importing the image. You can then decide if changes should be applied to the image, or the resource
-
         definition should be updated to align with the image. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_images_image" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vault_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1111,37 +1091,15 @@ class Image(pulumi.CustomResource):
 
         Image can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/image:Image test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `vault_id`. It is generally recommended running `pulumi preview` after
-
         importing the image. You can then decide if changes should be applied to the image, or the resource
-
         definition should be updated to align with the image. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_images_image" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vault_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ImageArgs args: The arguments to use to populate this resource's properties.

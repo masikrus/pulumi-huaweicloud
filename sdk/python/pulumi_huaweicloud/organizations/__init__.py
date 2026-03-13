@@ -15,6 +15,7 @@ from .delegated_administrator import *
 from .get_accounts import *
 from .get_close_account_status import *
 from .get_create_account_status import *
+from .get_delegated_services import *
 from .get_effective_policies import *
 from .get_organization import *
 from .get_organizational_units import *

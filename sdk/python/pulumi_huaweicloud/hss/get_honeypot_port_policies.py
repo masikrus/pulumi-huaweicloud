@@ -93,7 +93,7 @@ def get_honeypot_port_policies(enterprise_project_id: Optional[_builtins.str] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_honeypot_port_policies()
+    test = huaweicloud.Hss.get_honeypot_port_policies()
     ```
 
 
@@ -110,7 +110,7 @@ def get_honeypot_port_policies(enterprise_project_id: Optional[_builtins.str] = 
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getHoneypotPortPolicies:getHoneypotPortPolicies', __args__, opts=opts, typ=GetHoneypotPortPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getHoneypotPortPolicies:getHoneypotPortPolicies', __args__, opts=opts, typ=GetHoneypotPortPoliciesResult).value
 
     return AwaitableGetHoneypotPortPoliciesResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -129,7 +129,7 @@ def get_honeypot_port_policies_output(enterprise_project_id: Optional[pulumi.Inp
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_honeypot_port_policies()
+    test = huaweicloud.Hss.get_honeypot_port_policies()
     ```
 
 
@@ -146,7 +146,7 @@ def get_honeypot_port_policies_output(enterprise_project_id: Optional[pulumi.Inp
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getHoneypotPortPolicies:getHoneypotPortPolicies', __args__, opts=opts, typ=GetHoneypotPortPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getHoneypotPortPolicies:getHoneypotPortPolicies', __args__, opts=opts, typ=GetHoneypotPortPoliciesResult)
     return __ret__.apply(lambda __response__: GetHoneypotPortPoliciesResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

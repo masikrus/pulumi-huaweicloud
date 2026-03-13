@@ -22,10 +22,12 @@ class FunctionTriggerArgs:
                  event_data: pulumi.Input[_builtins.str],
                  function_urn: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
+                 cascade_delete_eg_subscription: Optional[pulumi.Input[_builtins.bool]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionTrigger resource.
+
         :param pulumi.Input[_builtins.str] event_data: Specifies the detailed configuration of the function trigger event, in JSON
                format.
                For various types of trigger parameter configurations, please refer to the
@@ -40,6 +42,14 @@ class FunctionTriggerArgs:
                Changing this will create a new resource.
                
                > For more available values, please refer to the [documentation table 3](https://support.huaweicloud.com/intl/en-us/api-functiongraph/functiongraph_06_0122.html#section2).
+        :param pulumi.Input[_builtins.bool] cascade_delete_eg_subscription: Specifies whether to cascade delete the related EG event
+               subscription of the function trigger.
+               This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+               when the trigger is deleted.
+               Defaults to **false**.
+               
+               > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+               change.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the function trigger is located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] status: Specifies the status of the function trigger.  
@@ -53,6 +63,8 @@ class FunctionTriggerArgs:
         pulumi.set(__self__, "event_data", event_data)
         pulumi.set(__self__, "function_urn", function_urn)
         pulumi.set(__self__, "type", type)
+        if cascade_delete_eg_subscription is not None:
+            pulumi.set(__self__, "cascade_delete_eg_subscription", cascade_delete_eg_subscription)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if status is not None:
@@ -106,6 +118,25 @@ class FunctionTriggerArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="cascadeDeleteEgSubscription")
+    def cascade_delete_eg_subscription(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to cascade delete the related EG event
+        subscription of the function trigger.
+        This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+        when the trigger is deleted.
+        Defaults to **false**.
+
+        > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+        change.
+        """
+        return pulumi.get(self, "cascade_delete_eg_subscription")
+
+    @cascade_delete_eg_subscription.setter
+    def cascade_delete_eg_subscription(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cascade_delete_eg_subscription", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -140,6 +171,7 @@ class FunctionTriggerArgs:
 @pulumi.input_type
 class _FunctionTriggerState:
     def __init__(__self__, *,
+                 cascade_delete_eg_subscription: Optional[pulumi.Input[_builtins.bool]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  event_data: Optional[pulumi.Input[_builtins.str]] = None,
                  function_urn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -149,6 +181,15 @@ class _FunctionTriggerState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionTrigger resources.
+
+        :param pulumi.Input[_builtins.bool] cascade_delete_eg_subscription: Specifies whether to cascade delete the related EG event
+               subscription of the function trigger.
+               This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+               when the trigger is deleted.
+               Defaults to **false**.
+               
+               > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+               change.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the function trigger.
         :param pulumi.Input[_builtins.str] event_data: Specifies the detailed configuration of the function trigger event, in JSON
                format.
@@ -175,6 +216,8 @@ class _FunctionTriggerState:
                > For more available values, please refer to the [documentation table 3](https://support.huaweicloud.com/intl/en-us/api-functiongraph/functiongraph_06_0122.html#section2).
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the function trigger.
         """
+        if cascade_delete_eg_subscription is not None:
+            pulumi.set(__self__, "cascade_delete_eg_subscription", cascade_delete_eg_subscription)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if event_data is not None:
@@ -189,6 +232,25 @@ class _FunctionTriggerState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="cascadeDeleteEgSubscription")
+    def cascade_delete_eg_subscription(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to cascade delete the related EG event
+        subscription of the function trigger.
+        This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+        when the trigger is deleted.
+        Defaults to **false**.
+
+        > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+        change.
+        """
+        return pulumi.get(self, "cascade_delete_eg_subscription")
+
+    @cascade_delete_eg_subscription.setter
+    def cascade_delete_eg_subscription(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "cascade_delete_eg_subscription", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -299,6 +361,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cascade_delete_eg_subscription: Optional[pulumi.Input[_builtins.bool]] = None,
                  event_data: Optional[pulumi.Input[_builtins.str]] = None,
                  function_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -310,18 +373,57 @@ class FunctionTrigger(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an OBS Event Trigger with EventGrid
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        function_urn = config.require_object("functionUrn")
+        trigger_name_suffix = config.require_object("triggerNameSuffix")
+        agency_name = config.require_object("agencyName")
+        bucket_name = config.require_object("bucketName")
+        obs_trigger = huaweicloud.functiongraph.FunctionTrigger("obs_trigger",
+            function_urn=function_urn,
+            type="EVENTGRID",
+            cascade_delete_eg_subscription=True,
+            status="ACTIVE",
+            event_data=json.dumps({
+                "channel_id": "your_event_channel_id",
+                "channel_name": "default",
+                "source_name": "HC.OBS.DWR",
+                "trigger_name": trigger_name_suffix,
+                "agency": agency_name,
+                "bucket": bucket_name,
+                "event_types": [
+                    "OBS:DWR:ObjectCreated:PUT",
+                    "OBS:DWR:ObjectCreated:POST",
+                ],
+                "Key_encode": True,
+            }))
+        ```
+
         ## Import
 
         Function trigger can be imported using the `function_urn`, `type` and `id`, separated by the slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/functionTrigger:FunctionTrigger test <function_urn>/<type>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] cascade_delete_eg_subscription: Specifies whether to cascade delete the related EG event
+               subscription of the function trigger.
+               This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+               when the trigger is deleted.
+               Defaults to **false**.
+               
+               > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+               change.
         :param pulumi.Input[_builtins.str] event_data: Specifies the detailed configuration of the function trigger event, in JSON
                format.
                For various types of trigger parameter configurations, please refer to the
@@ -357,15 +459,46 @@ class FunctionTrigger(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an OBS Event Trigger with EventGrid
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        function_urn = config.require_object("functionUrn")
+        trigger_name_suffix = config.require_object("triggerNameSuffix")
+        agency_name = config.require_object("agencyName")
+        bucket_name = config.require_object("bucketName")
+        obs_trigger = huaweicloud.functiongraph.FunctionTrigger("obs_trigger",
+            function_urn=function_urn,
+            type="EVENTGRID",
+            cascade_delete_eg_subscription=True,
+            status="ACTIVE",
+            event_data=json.dumps({
+                "channel_id": "your_event_channel_id",
+                "channel_name": "default",
+                "source_name": "HC.OBS.DWR",
+                "trigger_name": trigger_name_suffix,
+                "agency": agency_name,
+                "bucket": bucket_name,
+                "event_types": [
+                    "OBS:DWR:ObjectCreated:PUT",
+                    "OBS:DWR:ObjectCreated:POST",
+                ],
+                "Key_encode": True,
+            }))
+        ```
+
         ## Import
 
         Function trigger can be imported using the `function_urn`, `type` and `id`, separated by the slashes (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/functionTrigger:FunctionTrigger test <function_urn>/<type>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionTriggerArgs args: The arguments to use to populate this resource's properties.
@@ -382,6 +515,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cascade_delete_eg_subscription: Optional[pulumi.Input[_builtins.bool]] = None,
                  event_data: Optional[pulumi.Input[_builtins.str]] = None,
                  function_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -396,6 +530,7 @@ class FunctionTrigger(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FunctionTriggerArgs.__new__(FunctionTriggerArgs)
 
+            __props__.__dict__["cascade_delete_eg_subscription"] = cascade_delete_eg_subscription
             if event_data is None and not opts.urn:
                 raise TypeError("Missing required property 'event_data'")
             __props__.__dict__["event_data"] = event_data
@@ -419,6 +554,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            cascade_delete_eg_subscription: Optional[pulumi.Input[_builtins.bool]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             event_data: Optional[pulumi.Input[_builtins.str]] = None,
             function_urn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -433,6 +569,14 @@ class FunctionTrigger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] cascade_delete_eg_subscription: Specifies whether to cascade delete the related EG event
+               subscription of the function trigger.
+               This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+               when the trigger is deleted.
+               Defaults to **false**.
+               
+               > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+               change.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the function trigger.
         :param pulumi.Input[_builtins.str] event_data: Specifies the detailed configuration of the function trigger event, in JSON
                format.
@@ -463,6 +607,7 @@ class FunctionTrigger(pulumi.CustomResource):
 
         __props__ = _FunctionTriggerState.__new__(_FunctionTriggerState)
 
+        __props__.__dict__["cascade_delete_eg_subscription"] = cascade_delete_eg_subscription
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["event_data"] = event_data
         __props__.__dict__["function_urn"] = function_urn
@@ -471,6 +616,21 @@ class FunctionTrigger(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         return FunctionTrigger(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="cascadeDeleteEgSubscription")
+    def cascade_delete_eg_subscription(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to cascade delete the related EG event
+        subscription of the function trigger.
+        This parameter is mainly used for `EVENTGRID` type triggers to automatically clean up related EG event subscription
+        when the trigger is deleted.
+        Defaults to **false**.
+
+        > This parameter cannot be imported. The effective value when deleted is the value of the parameter after the last
+        change.
+        """
+        return pulumi.get(self, "cascade_delete_eg_subscription")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

@@ -30,6 +30,7 @@ class OpenProtectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpenProtection resource.
+
         :param pulumi.Input[_builtins.int] app_type_id: Specifies the application type ID. Only `0` is supported.
         :param pulumi.Input[_builtins.int] cleaning_access_pos_id: Specifies the cleaning access position ID.
                The value can be:
@@ -178,6 +179,7 @@ class _OpenProtectionState:
                  traffic_pos_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering OpenProtection resources.
+
         :param pulumi.Input[_builtins.str] antiddos_config_id: Specifies the Anti-DDoS configuration ID.
         :param pulumi.Input[_builtins.int] app_type_id: Specifies the application type ID. Only `0` is supported.
         :param pulumi.Input[_builtins.int] cleaning_access_pos_id: Specifies the cleaning access position ID.
@@ -364,6 +366,7 @@ class OpenProtection(pulumi.CustomResource):
             antiddos_config_id=antiddos_config_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] antiddos_config_id: Specifies the Anti-DDoS configuration ID.
@@ -413,6 +416,7 @@ class OpenProtection(pulumi.CustomResource):
             traffic_pos_id=traffic_pos_id,
             antiddos_config_id=antiddos_config_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpenProtectionArgs args: The arguments to use to populate this resource's properties.

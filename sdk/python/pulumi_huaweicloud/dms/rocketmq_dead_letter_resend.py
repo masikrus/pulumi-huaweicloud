@@ -27,6 +27,7 @@ class RocketmqDeadLetterResendArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqDeadLetterResend resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] message_id_lists: Specifies the message ID list.
@@ -107,6 +108,7 @@ class _RocketmqDeadLetterResendState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqDeadLetterResend resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] message_id_lists: Specifies the message ID list.
@@ -227,6 +229,7 @@ class RocketmqDeadLetterResend(pulumi.CustomResource):
             message_id_lists=message_id_list)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -263,6 +266,7 @@ class RocketmqDeadLetterResend(pulumi.CustomResource):
             topic=dead_letter_topic,
             message_id_lists=message_id_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqDeadLetterResendArgs args: The arguments to use to populate this resource's properties.

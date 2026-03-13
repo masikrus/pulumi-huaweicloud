@@ -173,7 +173,7 @@ def get_domain_statistics(action: Optional[_builtins.str] = None,
                           stat_type: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainStatisticsResult:
     """
-    Use this data source to get the statistics of CDN domain.
+    Use this data source to get the statistics of CDN domain within HuaweiCloud.
 
     ## Example Usage
 
@@ -183,15 +183,21 @@ def get_domain_statistics(action: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     domain_name = config.require_object("domainName")
-    test = huaweicloud.Cdn.get_domain_statistics(domain_name="terraform.test.huaweicloud.com",
-        action="location_detail",
-        start_time=1662019200000,
-        end_time=1662021000000,
+    action = config.require_object("action")
+    start_time = config.require_object("startTime")
+    end_time = config.require_object("endTime")
+    test = huaweicloud.Cdn.get_domain_statistics(domain_name=domain_name,
+        action=action,
+        start_time=start_time,
+        end_time=end_time,
         stat_type="req_num")
     ```
 
 
-    :param _builtins.str action: Specifies the action name. Possible values are: **location_summary** and **location_detail**.
+    :param _builtins.str action: Specifies the action name.  
+           The valid values are as follows:
+           + **location_summary**
+           + **location_detail**
     :param _builtins.str country: Specifies the country or region code. Use commas (,) to separate multiple codes.
            The value all indicates all country/region codes.
            See the [country and region](https://support.huaweicloud.com/intl/en-us/api-cdn/cdn_02_0089.html) for values.
@@ -206,15 +212,16 @@ def get_domain_statistics(action: Optional[_builtins.str] = None,
            for example, 1631325600000, which means 2021-09-11 10:00:00.
            + If the value of interval is `86,400`, set this parameter to 00:00:00 (GMT+08:00),
            for example, 1631376000000, which means 2021-09-12 00:00:00.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project that the resource belongs to.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value all indicates all projects. This parameter is mandatory when you use an IAM user.
     :param _builtins.str group_by: Specifies the data grouping mode. Use commas (,) to separate multiple groups.
            Available data groups are **domain**, **country**, **province**, and **isp**. By default, data is not grouped.
-    :param _builtins.int interval: Specifies the query time interval, in seconds, the value can be,
-           + **300**(5 minutes): Maximum query span 2 days
-           + **3600**(1 hour): Maximum query span 7 days
-           + **86400**(1 day): Maximum query span 31 days
+    :param _builtins.int interval: Specifies the query time interval, in seconds.  
+           The vaild values are as follows:
+           + **300**(`5` minutes): Maximum query span `2` days
+           + **3,600**(`1` hour): Maximum query span `7` days
+           + **86,400**(`1` day): Maximum query span `31` days
            
            The default is the minimum interval for the corresponding time span.
     :param _builtins.str isp: Specifies the carrier code. Use commas (,) to separate multiple codes.
@@ -231,7 +238,7 @@ def get_domain_statistics(action: Optional[_builtins.str] = None,
            for example, 1631239200000, which means 2021-09-10 10:00:00.
            + If the value of interval is `86,400`, set this parameter to 00:00:00 (GMT+08:00),
            for example, 1631203200000, which means 2021-09-10 00:00:00.
-    :param _builtins.str stat_type: The statistic type.
+    :param _builtins.str stat_type: Specifies the statistic type.
            
            For network resource consumption statistics, the value can be:
            + **bw**: bandwidth
@@ -292,7 +299,7 @@ def get_domain_statistics_output(action: Optional[pulumi.Input[_builtins.str]] =
                                  stat_type: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainStatisticsResult]:
     """
-    Use this data source to get the statistics of CDN domain.
+    Use this data source to get the statistics of CDN domain within HuaweiCloud.
 
     ## Example Usage
 
@@ -302,15 +309,21 @@ def get_domain_statistics_output(action: Optional[pulumi.Input[_builtins.str]] =
 
     config = pulumi.Config()
     domain_name = config.require_object("domainName")
-    test = huaweicloud.Cdn.get_domain_statistics(domain_name="terraform.test.huaweicloud.com",
-        action="location_detail",
-        start_time=1662019200000,
-        end_time=1662021000000,
+    action = config.require_object("action")
+    start_time = config.require_object("startTime")
+    end_time = config.require_object("endTime")
+    test = huaweicloud.Cdn.get_domain_statistics(domain_name=domain_name,
+        action=action,
+        start_time=start_time,
+        end_time=end_time,
         stat_type="req_num")
     ```
 
 
-    :param _builtins.str action: Specifies the action name. Possible values are: **location_summary** and **location_detail**.
+    :param _builtins.str action: Specifies the action name.  
+           The valid values are as follows:
+           + **location_summary**
+           + **location_detail**
     :param _builtins.str country: Specifies the country or region code. Use commas (,) to separate multiple codes.
            The value all indicates all country/region codes.
            See the [country and region](https://support.huaweicloud.com/intl/en-us/api-cdn/cdn_02_0089.html) for values.
@@ -325,15 +338,16 @@ def get_domain_statistics_output(action: Optional[pulumi.Input[_builtins.str]] =
            for example, 1631325600000, which means 2021-09-11 10:00:00.
            + If the value of interval is `86,400`, set this parameter to 00:00:00 (GMT+08:00),
            for example, 1631376000000, which means 2021-09-12 00:00:00.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project that the resource belongs to.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource belongs.
            This parameter is valid only when the enterprise project function is enabled.
            The value all indicates all projects. This parameter is mandatory when you use an IAM user.
     :param _builtins.str group_by: Specifies the data grouping mode. Use commas (,) to separate multiple groups.
            Available data groups are **domain**, **country**, **province**, and **isp**. By default, data is not grouped.
-    :param _builtins.int interval: Specifies the query time interval, in seconds, the value can be,
-           + **300**(5 minutes): Maximum query span 2 days
-           + **3600**(1 hour): Maximum query span 7 days
-           + **86400**(1 day): Maximum query span 31 days
+    :param _builtins.int interval: Specifies the query time interval, in seconds.  
+           The vaild values are as follows:
+           + **300**(`5` minutes): Maximum query span `2` days
+           + **3,600**(`1` hour): Maximum query span `7` days
+           + **86,400**(`1` day): Maximum query span `31` days
            
            The default is the minimum interval for the corresponding time span.
     :param _builtins.str isp: Specifies the carrier code. Use commas (,) to separate multiple codes.
@@ -350,7 +364,7 @@ def get_domain_statistics_output(action: Optional[pulumi.Input[_builtins.str]] =
            for example, 1631239200000, which means 2021-09-10 10:00:00.
            + If the value of interval is `86,400`, set this parameter to 00:00:00 (GMT+08:00),
            for example, 1631203200000, which means 2021-09-10 00:00:00.
-    :param _builtins.str stat_type: The statistic type.
+    :param _builtins.str stat_type: Specifies the statistic type.
            
            For network resource consumption statistics, the value can be:
            + **bw**: bandwidth

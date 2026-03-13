@@ -26,6 +26,7 @@ class SystemIdentityPolicyAttachmentArgs:
                  policy_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a SystemIdentityPolicyAttachment resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] permission_set_id: Specifies the ID of the IAM Identity Center permission set.
@@ -86,6 +87,7 @@ class _SystemIdentityPolicyAttachmentState:
                  policy_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SystemIdentityPolicyAttachment resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SystemIdentityPolicyAttachmentAttachedPolicyArgs']]] attached_policies: All IAM managed system identity policies attached to the permission set.
                The attached_policies structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
@@ -157,7 +159,7 @@ class _SystemIdentityPolicyAttachmentState:
         pulumi.set(self, "policy_ids", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment")
+@pulumi.type_token("huaweicloud:Identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment")
 class SystemIdentityPolicyAttachment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -193,11 +195,10 @@ class SystemIdentityPolicyAttachment(pulumi.CustomResource):
 
         The Identity Center system identity policy attachment can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment test <id>
+        $ pulumi import huaweicloud:Identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -240,11 +241,10 @@ class SystemIdentityPolicyAttachment(pulumi.CustomResource):
 
         The Identity Center system identity policy attachment can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment test <id>
+        $ pulumi import huaweicloud:Identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SystemIdentityPolicyAttachmentArgs args: The arguments to use to populate this resource's properties.
@@ -284,7 +284,7 @@ class SystemIdentityPolicyAttachment(pulumi.CustomResource):
             __props__.__dict__["policy_ids"] = policy_ids
             __props__.__dict__["attached_policies"] = None
         super(SystemIdentityPolicyAttachment, __self__).__init__(
-            'huaweicloud:identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment',
+            'huaweicloud:Identitycenter/systemIdentityPolicyAttachment:SystemIdentityPolicyAttachment',
             resource_name,
             __props__,
             opts)

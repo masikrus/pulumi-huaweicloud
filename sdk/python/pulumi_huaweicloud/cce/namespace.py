@@ -27,6 +27,7 @@ class NamespaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID to which the CCE namespace belongs.
                Changing this will create a new namespace resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies an unstructured key value map for external parameters.
@@ -156,6 +157,7 @@ class _NamespaceState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: Specifies an unstructured key value map for external parameters.
                Changing this will create a new namespace resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID to which the CCE namespace belongs.
@@ -338,11 +340,10 @@ class Namespace(pulumi.CustomResource):
 
         CCE namespace can be imported using the cluster ID and namespace name separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/namespace:Namespace test bb6923e4-b16e-11eb-b0cd-0255ac101da1/test-namespace
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -393,11 +394,10 @@ class Namespace(pulumi.CustomResource):
 
         CCE namespace can be imported using the cluster ID and namespace name separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cce/namespace:Namespace test bb6923e4-b16e-11eb-b0cd-0255ac101da1/test-namespace
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

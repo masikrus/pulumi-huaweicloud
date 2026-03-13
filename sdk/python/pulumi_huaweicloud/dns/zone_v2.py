@@ -35,6 +35,7 @@ class ZoneV2Args:
                  zone_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ZoneV2 resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the zone.
         :param pulumi.Input[_builtins.str] dnssec: Specifies whether to enable DNSSEC for a public zone.
         :param pulumi.Input[_builtins.str] email: The email address of the administrator managing the zone.
@@ -229,6 +230,7 @@ class _ZoneV2State:
                  zone_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ZoneV2 resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the zone.
         :param pulumi.Input[_builtins.str] dnssec: Specifies whether to enable DNSSEC for a public zone.
         :param pulumi.Input[Sequence[pulumi.Input['ZoneV2DnssecInfoArgs']]] dnssec_infos: Indicates the DNSSEC infos.
@@ -455,6 +457,7 @@ class ZoneV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ZoneV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the zone.
@@ -476,6 +479,7 @@ class ZoneV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ZoneV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ZoneV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

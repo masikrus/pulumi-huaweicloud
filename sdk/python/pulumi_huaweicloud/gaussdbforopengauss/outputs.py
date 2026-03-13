@@ -210,9 +210,9 @@ class OpengaussInstanceDatastore(dict):
                  version: Optional[_builtins.str] = None):
         """
         :param _builtins.str engine: Specifies the database engine. Only **GaussDB(for openGauss)** is supported
-               now. Changing this parameter will create a new resource.
+               now.
         :param _builtins.str version: Specifies the database version. Defaults to the latest version. Please
-               reference to the API docs for valid options. Changing this parameter will create a new resource.
+               reference to the API docs for valid options.
                
                <a name="opengauss_backup_strategy"></a>
                The `backup_strategy` block supports:
@@ -226,7 +226,7 @@ class OpengaussInstanceDatastore(dict):
     def engine(self) -> _builtins.str:
         """
         Specifies the database engine. Only **GaussDB(for openGauss)** is supported
-        now. Changing this parameter will create a new resource.
+        now.
         """
         return pulumi.get(self, "engine")
 
@@ -235,7 +235,7 @@ class OpengaussInstanceDatastore(dict):
     def version(self) -> Optional[_builtins.str]:
         """
         Specifies the database version. Defaults to the latest version. Please
-        reference to the API docs for valid options. Changing this parameter will create a new resource.
+        reference to the API docs for valid options.
 
         <a name="opengauss_backup_strategy"></a>
         The `backup_strategy` block supports:
@@ -272,18 +272,14 @@ class OpengaussInstanceHa(dict):
         """
         :param _builtins.str mode: Specifies the deployment model.
                The valid values are **enterprise** and **centralization_standard**.
-               Changing this parameter will create a new resource.
         :param _builtins.str replication_mode: Specifies the database replication mode.
-               Only **sync** is supported now. Changing this parameter will create a new resource.
+               Only **sync** is supported now.
         :param _builtins.str consistency: Specifies the database consistency mode.
                The valid values are **strong** and **eventual**, not case-sensitive.
-               Changing this parameter will create a new resource.
         :param _builtins.str instance_mode: Specifies the product type of the instance. Value options:
                + **enterprise**: The instance of the enterprise edition will be created.
                + **basic**: The instance of the basic edition will be created.
                + **ecology**: The instance of the ecosystem edition will be created.
-               
-               Changing this parameter will create a new resource.
                
                <a name="opengauss_volume"></a>
                The `volume` block supports:
@@ -301,7 +297,6 @@ class OpengaussInstanceHa(dict):
         """
         Specifies the deployment model.
         The valid values are **enterprise** and **centralization_standard**.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "mode")
 
@@ -310,7 +305,7 @@ class OpengaussInstanceHa(dict):
     def replication_mode(self) -> _builtins.str:
         """
         Specifies the database replication mode.
-        Only **sync** is supported now. Changing this parameter will create a new resource.
+        Only **sync** is supported now.
         """
         return pulumi.get(self, "replication_mode")
 
@@ -320,7 +315,6 @@ class OpengaussInstanceHa(dict):
         """
         Specifies the database consistency mode.
         The valid values are **strong** and **eventual**, not case-sensitive.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "consistency")
 
@@ -332,8 +326,6 @@ class OpengaussInstanceHa(dict):
         + **enterprise**: The instance of the enterprise edition will be created.
         + **basic**: The instance of the basic edition will be created.
         + **ecology**: The instance of the ecosystem edition will be created.
-
-        Changing this parameter will create a new resource.
 
         <a name="opengauss_volume"></a>
         The `volume` block supports:
@@ -373,8 +365,8 @@ class OpengaussInstanceNode(dict):
                  role: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None):
         """
-        :param _builtins.str availability_zone: Specifies the availability zone information, can be three same or
-               different az like **cn-north-4a,cn-north-4a,cn-north-4a**. Changing this parameter will create a new resource.
+        :param _builtins.str availability_zone: Specifies the availability zone information, can be three same
+               or different az like **cn-north-4a,cn-north-4a,cn-north-4a**.
         :param _builtins.str id: Indicates the node ID.
         :param _builtins.str name: Specifies the name of the advance feature.
         :param _builtins.str private_ip: Indicates the private IP address of the node.
@@ -403,8 +395,8 @@ class OpengaussInstanceNode(dict):
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[_builtins.str]:
         """
-        Specifies the availability zone information, can be three same or
-        different az like **cn-north-4a,cn-north-4a,cn-north-4a**. Changing this parameter will create a new resource.
+        Specifies the availability zone information, can be three same
+        or different az like **cn-north-4a,cn-north-4a,cn-north-4a**.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -499,7 +491,6 @@ class OpengaussInstanceVolume(dict):
                <a name="opengauss_datastore"></a>
                The `datastore` block supports:
         :param _builtins.str type: Specifies the volume type. Only **ULTRAHIGH** is supported now.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -520,7 +511,6 @@ class OpengaussInstanceVolume(dict):
     def type(self) -> _builtins.str:
         """
         Specifies the volume type. Only **ULTRAHIGH** is supported now.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "type")
 

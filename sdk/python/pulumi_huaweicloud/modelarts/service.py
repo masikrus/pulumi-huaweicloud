@@ -36,6 +36,7 @@ class ServiceArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Service resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ServiceConfigArgs']]] configs: Model running configurations.  
                If `infer_type` is **batch** or **edge**, you can configure only one model.
                If `infer_type` is **real-time**, you can configure multiple models and assign weights based on service requirements.
@@ -364,6 +365,7 @@ class _ServiceState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Service resources.
+
         :param pulumi.Input[_builtins.str] access_address: Access address of an inference request.  
                This parameter is available when `infer_type` is set to **real-time**.
         :param pulumi.Input['ServiceAdditionalPropertiesArgs'] additional_properties: Additional attributes for model deployment, facilitating service instance management.
@@ -936,39 +938,16 @@ class Service(pulumi.CustomResource):
 
         The modelarts service can be imported using `id` e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/service:Service test 60495dd7-d56b-43c7-8f98-03833833f8e0
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `change_status_to`.
-
         It is generally recommended running `pulumi preview` after
-
         importing a dataset. You can then decide if changes should be applied to the dataset, or the resource definition
-
         should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_service" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              change_status_to,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1124,39 +1103,16 @@ class Service(pulumi.CustomResource):
 
         The modelarts service can be imported using `id` e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/service:Service test 60495dd7-d56b-43c7-8f98-03833833f8e0
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `change_status_to`.
-
         It is generally recommended running `pulumi preview` after
-
         importing a dataset. You can then decide if changes should be applied to the dataset, or the resource definition
-
         should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_service" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              change_status_to,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ServiceArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class SnapshotPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotPolicy resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: The cluster ID of which the automated snapshot policy belongs to.
                
                Changing this parameter will create a new resource.
@@ -141,6 +142,7 @@ class _SnapshotPolicyState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotPolicy resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: The cluster ID of which the automated snapshot policy belongs to.
                
                Changing this parameter will create a new resource.
@@ -315,11 +317,10 @@ class SnapshotPolicy(pulumi.CustomResource):
 
         The DWS snapshot policy can be imported using `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshotPolicy:SnapshotPolicy test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -404,11 +405,10 @@ class SnapshotPolicy(pulumi.CustomResource):
 
         The DWS snapshot policy can be imported using `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshotPolicy:SnapshotPolicy test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotPolicyArgs args: The arguments to use to populate this resource's properties.

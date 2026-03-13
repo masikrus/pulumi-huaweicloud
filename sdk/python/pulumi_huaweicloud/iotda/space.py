@@ -23,6 +23,7 @@ class SpaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Space resource.
+
         :param pulumi.Input[_builtins.str] name: Specifies the space name. The name contains a maximum of `64` characters.
                Only letters, digits, hyphens (-), underscore (_) and the following special characters are allowed: `?'#().,&%@!`.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the IoTDA resource space resource.
@@ -68,6 +69,7 @@ class _SpaceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Space resources.
+
         :param pulumi.Input[_builtins.bool] is_default: Whether it is the default resource space. The IoT platform automatically creates and assigns
                a default resource space (undeletable) to your account.
         :param pulumi.Input[_builtins.str] name: Specifies the space name. The name contains a maximum of `64` characters.
@@ -166,11 +168,10 @@ class Space(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/space:Space test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,11 +221,10 @@ class Space(pulumi.CustomResource):
 
         The resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/space:Space test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SpaceArgs args: The arguments to use to populate this resource's properties.

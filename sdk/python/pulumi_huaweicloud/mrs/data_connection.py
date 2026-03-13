@@ -27,6 +27,7 @@ class DataConnectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataConnection resource.
+
         :param pulumi.Input['DataConnectionSourceInfoArgs'] source_info: Information about the data source.  
                The source_info structure is documented below.
                
@@ -127,6 +128,7 @@ class _DataConnectionState:
                  used_clusters: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataConnection resources.
+
         :param pulumi.Input[_builtins.str] name: The data connection name.  
                The name can contain a maximum of 64 characters.
                
@@ -292,39 +294,16 @@ class DataConnection(pulumi.CustomResource):
 
         The data connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/dataConnection:DataConnection test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_info.0.password`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_data_connection" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_info.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -382,39 +361,16 @@ class DataConnection(pulumi.CustomResource):
 
         The data connection can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/dataConnection:DataConnection test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_info.0.password`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_data_connection" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_info.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DataConnectionArgs args: The arguments to use to populate this resource's properties.

@@ -251,7 +251,7 @@ def get_hosts(agent_status: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_hosts(host_id=host_id)
+    test = huaweicloud.Hss.get_hosts(host_id=host_id)
     ```
 
 
@@ -323,7 +323,7 @@ def get_hosts(agent_status: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult).value
 
     return AwaitableGetHostsResult(
         agent_status=pulumi.get(__ret__, 'agent_status'),
@@ -368,7 +368,7 @@ def get_hosts_output(agent_status: Optional[pulumi.Input[Optional[_builtins.str]
 
     config = pulumi.Config()
     host_id = config.require_object("hostId")
-    test = huaweicloud.hss.get_hosts(host_id=host_id)
+    test = huaweicloud.Hss.get_hosts(host_id=host_id)
     ```
 
 
@@ -440,7 +440,7 @@ def get_hosts_output(agent_status: Optional[pulumi.Input[Optional[_builtins.str]
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getHosts:getHosts', __args__, opts=opts, typ=GetHostsResult)
     return __ret__.apply(lambda __response__: GetHostsResult(
         agent_status=pulumi.get(__response__, 'agent_status'),
         asset_value=pulumi.get(__response__, 'asset_value'),

@@ -32,6 +32,7 @@ class PolicyArgs:
                  scheduled_policy: Optional[pulumi.Input['PolicyScheduledPolicyArgs']] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input[_builtins.str] scaling_group_id: Specifies the AS group ID. Changing this creates a new AS policy.
         :param pulumi.Input[_builtins.str] scaling_policy_name: Specifies the name of the AS policy. The name contains only letters, digits,
                underscores(_), and hyphens(-), and cannot exceed 64 characters.
@@ -217,6 +218,7 @@ class _PolicyState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation for the AS policy.
                The default value is **resume**. The valid values are as follows:
                + **resume**: Enables the AS policy.
@@ -493,7 +495,7 @@ class Policy(pulumi.CustomResource):
 
         config = pulumi.Config()
         as_group_id = config.require_object("asGroupId")
-        alarm_rule = huaweicloud.cse.Alarmrule("alarm_rule",
+        alarm_rule = huaweicloud.ces.Alarmrule("alarm_rule",
             alarm_name="as_alarm_rule",
             metric={
                 "namespace": "SYS.AS",
@@ -531,11 +533,10 @@ class Policy(pulumi.CustomResource):
 
         AS policies can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -630,7 +631,7 @@ class Policy(pulumi.CustomResource):
 
         config = pulumi.Config()
         as_group_id = config.require_object("asGroupId")
-        alarm_rule = huaweicloud.cse.Alarmrule("alarm_rule",
+        alarm_rule = huaweicloud.ces.Alarmrule("alarm_rule",
             alarm_name="as_alarm_rule",
             metric={
                 "namespace": "SYS.AS",
@@ -668,11 +669,10 @@ class Policy(pulumi.CustomResource):
 
         AS policies can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:As/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.

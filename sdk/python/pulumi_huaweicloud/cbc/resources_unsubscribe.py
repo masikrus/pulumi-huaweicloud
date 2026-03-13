@@ -23,6 +23,7 @@ class ResourcesUnsubscribeArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcesUnsubscribe resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the IDs of the resource to be unsubscribed.
                Supports up to `10` resource IDs.
         """
@@ -60,6 +61,7 @@ class _ResourcesUnsubscribeState:
                  resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ResourcesUnsubscribe resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the IDs of the resource to be unsubscribed.
                Supports up to `10` resource IDs.
         """
@@ -91,7 +93,7 @@ class _ResourcesUnsubscribeState:
         pulumi.set(self, "resource_ids", value)
 
 
-@pulumi.type_token("huaweicloud:cbc/resourcesUnsubscribe:ResourcesUnsubscribe")
+@pulumi.type_token("huaweicloud:Cbc/resourcesUnsubscribe:ResourcesUnsubscribe")
 class ResourcesUnsubscribe(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -116,6 +118,7 @@ class ResourcesUnsubscribe(pulumi.CustomResource):
         resource_ids = config.require_object("resourceIds")
         test = huaweicloud.cbc.ResourcesUnsubscribe("test", resource_ids=resource_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -144,6 +147,7 @@ class ResourcesUnsubscribe(pulumi.CustomResource):
         resource_ids = config.require_object("resourceIds")
         test = huaweicloud.cbc.ResourcesUnsubscribe("test", resource_ids=resource_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourcesUnsubscribeArgs args: The arguments to use to populate this resource's properties.
@@ -176,7 +180,7 @@ class ResourcesUnsubscribe(pulumi.CustomResource):
                 raise TypeError("Missing required property 'resource_ids'")
             __props__.__dict__["resource_ids"] = resource_ids
         super(ResourcesUnsubscribe, __self__).__init__(
-            'huaweicloud:cbc/resourcesUnsubscribe:ResourcesUnsubscribe',
+            'huaweicloud:Cbc/resourcesUnsubscribe:ResourcesUnsubscribe',
             resource_name,
             __props__,
             opts)

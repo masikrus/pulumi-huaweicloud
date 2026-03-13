@@ -27,6 +27,7 @@ class GlobalGatewayRouteTableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GlobalGatewayRouteTable resource.
+
         :param pulumi.Input[_builtins.str] destination: Specifies the subnet the route is destined for.
         :param pulumi.Input[_builtins.str] gdgw_id: Specifies the global DC gateway ID.
         :param pulumi.Input[_builtins.str] nexthop: Specifies the next hop ID.
@@ -136,6 +137,7 @@ class _GlobalGatewayRouteTableState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalGatewayRouteTable resources.
+
         :param pulumi.Input[_builtins.str] address_family: Indicates the address family.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the route.
         :param pulumi.Input[_builtins.str] destination: Specifies the subnet the route is destined for.
@@ -280,7 +282,7 @@ class _GlobalGatewayRouteTableState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:dc/globalGatewayRouteTable:GlobalGatewayRouteTable")
+@pulumi.type_token("huaweicloud:Dc/globalGatewayRouteTable:GlobalGatewayRouteTable")
 class GlobalGatewayRouteTable(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -316,11 +318,10 @@ class GlobalGatewayRouteTable(pulumi.CustomResource):
 
         The DC connect gateway resource can be imported using the `gdgw_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGatewayRouteTable:GlobalGatewayRouteTable test <gdgw_id>/<id>
+        $ pulumi import huaweicloud:Dc/globalGatewayRouteTable:GlobalGatewayRouteTable test <gdgw_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -363,11 +364,10 @@ class GlobalGatewayRouteTable(pulumi.CustomResource):
 
         The DC connect gateway resource can be imported using the `gdgw_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/globalGatewayRouteTable:GlobalGatewayRouteTable test <gdgw_id>/<id>
+        $ pulumi import huaweicloud:Dc/globalGatewayRouteTable:GlobalGatewayRouteTable test <gdgw_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalGatewayRouteTableArgs args: The arguments to use to populate this resource's properties.
@@ -417,7 +417,7 @@ class GlobalGatewayRouteTable(pulumi.CustomResource):
             __props__.__dict__["obtain_mode"] = None
             __props__.__dict__["status"] = None
         super(GlobalGatewayRouteTable, __self__).__init__(
-            'huaweicloud:dc/globalGatewayRouteTable:GlobalGatewayRouteTable',
+            'huaweicloud:Dc/globalGatewayRouteTable:GlobalGatewayRouteTable',
             resource_name,
             __props__,
             opts)

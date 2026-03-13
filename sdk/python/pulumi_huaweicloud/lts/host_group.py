@@ -28,6 +28,7 @@ class HostGroupArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a HostGroup resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the type of the host.
                The value can be **linux** and **windows**.
                
@@ -171,6 +172,7 @@ class _HostGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HostGroup resources.
+
         :param pulumi.Input[_builtins.str] agent_access_type: Specifies the type of the host group.
                The default value is **IP**.
                The valid values are as follows:
@@ -371,11 +373,10 @@ class HostGroup(pulumi.CustomResource):
 
         The host group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/hostGroup:HostGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -430,11 +431,10 @@ class HostGroup(pulumi.CustomResource):
 
         The host group can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/hostGroup:HostGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HostGroupArgs args: The arguments to use to populate this resource's properties.

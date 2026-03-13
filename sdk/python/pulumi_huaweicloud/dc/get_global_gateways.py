@@ -182,7 +182,7 @@ def get_global_gateways(cloud_connection_ids: Optional[Sequence[_builtins.str]] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_global_gateways()
+    test = huaweicloud.Dc.get_global_gateways()
     ```
 
 
@@ -213,7 +213,7 @@ def get_global_gateways(cloud_connection_ids: Optional[Sequence[_builtins.str]] 
     __args__['sortKey'] = sort_key
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getGlobalGateways:getGlobalGateways', __args__, opts=opts, typ=GetGlobalGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getGlobalGateways:getGlobalGateways', __args__, opts=opts, typ=GetGlobalGatewaysResult).value
 
     return AwaitableGetGlobalGatewaysResult(
         cloud_connection_ids=pulumi.get(__ret__, 'cloud_connection_ids'),
@@ -250,7 +250,7 @@ def get_global_gateways_output(cloud_connection_ids: Optional[pulumi.Input[Optio
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_global_gateways()
+    test = huaweicloud.Dc.get_global_gateways()
     ```
 
 
@@ -281,7 +281,7 @@ def get_global_gateways_output(cloud_connection_ids: Optional[pulumi.Input[Optio
     __args__['sortKey'] = sort_key
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getGlobalGateways:getGlobalGateways', __args__, opts=opts, typ=GetGlobalGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getGlobalGateways:getGlobalGateways', __args__, opts=opts, typ=GetGlobalGatewaysResult)
     return __ret__.apply(lambda __response__: GetGlobalGatewaysResult(
         cloud_connection_ids=pulumi.get(__response__, 'cloud_connection_ids'),
         enterprise_project_ids=pulumi.get(__response__, 'enterprise_project_ids'),

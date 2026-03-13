@@ -95,7 +95,7 @@ def get_analyzer_archive_rules(analyzer_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     analyzer_id = config.require_object("analyzerId")
-    test = huaweicloud.access.get_analyzer_archive_rules(analyzer_id=analyzer_id)
+    test = huaweicloud.Access.get_analyzer_archive_rules(analyzer_id=analyzer_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_analyzer_archive_rules(analyzer_id: Optional[_builtins.str] = None,
     __args__['analyzerId'] = analyzer_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:access/getAnalyzerArchiveRules:getAnalyzerArchiveRules', __args__, opts=opts, typ=GetAnalyzerArchiveRulesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Access/getAnalyzerArchiveRules:getAnalyzerArchiveRules', __args__, opts=opts, typ=GetAnalyzerArchiveRulesResult).value
 
     return AwaitableGetAnalyzerArchiveRulesResult(
         analyzer_id=pulumi.get(__ret__, 'analyzer_id'),
@@ -128,7 +128,7 @@ def get_analyzer_archive_rules_output(analyzer_id: Optional[pulumi.Input[_builti
 
     config = pulumi.Config()
     analyzer_id = config.require_object("analyzerId")
-    test = huaweicloud.access.get_analyzer_archive_rules(analyzer_id=analyzer_id)
+    test = huaweicloud.Access.get_analyzer_archive_rules(analyzer_id=analyzer_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_analyzer_archive_rules_output(analyzer_id: Optional[pulumi.Input[_builti
     __args__['analyzerId'] = analyzer_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:access/getAnalyzerArchiveRules:getAnalyzerArchiveRules', __args__, opts=opts, typ=GetAnalyzerArchiveRulesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Access/getAnalyzerArchiveRules:getAnalyzerArchiveRules', __args__, opts=opts, typ=GetAnalyzerArchiveRulesResult)
     return __ret__.apply(lambda __response__: GetAnalyzerArchiveRulesResult(
         analyzer_id=pulumi.get(__response__, 'analyzer_id'),
         archive_rules=pulumi.get(__response__, 'archive_rules'),

@@ -30,6 +30,7 @@ class SnatRuleV2Args:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnatRuleV2 resource.
+
         :param pulumi.Input[_builtins.str] nat_gateway_id: schema: Required; The ID of the gateway to which the SNAT rule belongs.
         :param pulumi.Input[_builtins.str] cidr: The CIDR block connected by SNAT rule (DC side).
         :param pulumi.Input[_builtins.str] description: The description of the SNAT rule.
@@ -186,6 +187,7 @@ class _SnatRuleV2State:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnatRuleV2 resources.
+
         :param pulumi.Input[_builtins.str] cidr: The CIDR block connected by SNAT rule (DC side).
         :param pulumi.Input[_builtins.str] created_at: The creation time of the SNAT rule.
         :param pulumi.Input[_builtins.str] description: The description of the SNAT rule.
@@ -417,6 +419,7 @@ class SnatRuleV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SnatRuleV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cidr: The CIDR block connected by SNAT rule (DC side).
@@ -436,6 +439,7 @@ class SnatRuleV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SnatRuleV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SnatRuleV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

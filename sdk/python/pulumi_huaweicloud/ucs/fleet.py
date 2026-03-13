@@ -26,6 +26,7 @@ class FleetArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FleetPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a Fleet resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the UCS fleet.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the UCS fleet.
                
@@ -87,6 +88,7 @@ class _FleetState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['FleetPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering Fleet resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cluster_ids: Indicates the list of cluster IDs to add to the UCS fleet.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the UCS fleet.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the UCS fleet.
@@ -154,7 +156,7 @@ class _FleetState:
         pulumi.set(self, "permissions", value)
 
 
-@pulumi.type_token("huaweicloud:ucs/fleet:Fleet")
+@pulumi.type_token("huaweicloud:Ucs/fleet:Fleet")
 class Fleet(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -215,11 +217,10 @@ class Fleet(pulumi.CustomResource):
 
         The UCS fleet can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/fleet:Fleet test dbd042ec-2474-11ee-9d1c-0255ac1000ce
+        $ pulumi import huaweicloud:Ucs/fleet:Fleet test dbd042ec-2474-11ee-9d1c-0255ac1000ce
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,11 +287,10 @@ class Fleet(pulumi.CustomResource):
 
         The UCS fleet can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ucs/fleet:Fleet test dbd042ec-2474-11ee-9d1c-0255ac1000ce
+        $ pulumi import huaweicloud:Ucs/fleet:Fleet test dbd042ec-2474-11ee-9d1c-0255ac1000ce
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FleetArgs args: The arguments to use to populate this resource's properties.
@@ -324,7 +324,7 @@ class Fleet(pulumi.CustomResource):
             __props__.__dict__["permissions"] = permissions
             __props__.__dict__["cluster_ids"] = None
         super(Fleet, __self__).__init__(
-            'huaweicloud:ucs/fleet:Fleet',
+            'huaweicloud:Ucs/fleet:Fleet',
             resource_name,
             __props__,
             opts)

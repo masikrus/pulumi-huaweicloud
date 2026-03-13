@@ -29,6 +29,7 @@ class DataserviceApiPublishArgs:
                  roma_app_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApiPublish resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be published.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the exclusive cluster ID to which the published API belongs on
@@ -196,6 +197,7 @@ class _DataserviceApiPublishState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApiPublish resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be published.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] apig_group_id: Specifies the APIG group ID to which the published API belongs.  
@@ -417,6 +419,7 @@ class DataserviceApiPublish(pulumi.CustomResource):
             apig_group_id=apig_group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be published.  
@@ -499,6 +502,7 @@ class DataserviceApiPublish(pulumi.CustomResource):
             apig_instance_id=apig_instance_id,
             apig_group_id=apig_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiPublishArgs args: The arguments to use to populate this resource's properties.

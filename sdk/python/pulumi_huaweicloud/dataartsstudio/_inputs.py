@@ -97,62 +97,57 @@ __all__ = [
     'FactoryScriptApproverArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ArchitectureBatchPublishBizInfoArgsDict(TypedDict):
-        biz_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the object to be published.
-        Changing this creates a new resource.
-        """
-        biz_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the object to be published.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **AGGREGATION_LOGIC_TABLE**
-        + **ATOMIC_INDEX**
-        + **ATOMIC_METRIC**
-        + **BIZ_CATALOG**
-        + **BIZ_METRIC**
-        + **CODE_TABLE**
-        + **COMMON_CONDITION**
-        + **COMPOUND_METRIC**
-        + **CONDITION_GROUP**
-        + **DEGENERATE_DIMENSION**
-        + **DERIVATIVE_INDEX**
-        + **DERIVED_METRIC**
-        + **DIMENSION**
-        + **DIMENSION_ATTRIBUTE**
-        + **DIMENSION_HIERARCHIES**
-        + **DIMENSION_LOGIC_TABLE**
-        + **DIMENSION_TABLE_ATTRIBUTE**
-        + **DIRECTORY**
-        + **FACT_ATTRIBUTE**
-        + **FACT_DIMENSION**
-        + **FACT_LOGIC_TABLE**
-        + **FACT_MEASURE**
-        + **FUNCTION**
-        + **INFO_ARCH**
-        + **MODEL**
-        + **QUALITY_RULE**
-        + **SECRECY_LEVEL**
-        + **STANDARD_ELEMENT**
-        + **STANDARD_ELEMENT_TEMPLATE**
-        + **SUBJECT**
-        + **SUMMARY_DIMENSION_ATTRIBUTE**
-        + **SUMMARY_INDEX**
-        + **SUMMARY_TIME**
-        + **TABLE_MODEL**
-        + **TABLE_MODEL_ATTRIBUTE**
-        + **TABLE_MODEL_LOGIC**
-        + **TABLE_TYPE**
-        + **TAG**
-        + **TIME_CONDITION**
-        """
-elif False:
-    ArchitectureBatchPublishBizInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureBatchPublishBizInfoArgsDict(TypedDict):
+    biz_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the object to be published.
+    Changing this creates a new resource.
+    """
+    biz_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the object to be published.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **AGGREGATION_LOGIC_TABLE**
+    + **ATOMIC_INDEX**
+    + **ATOMIC_METRIC**
+    + **BIZ_CATALOG**
+    + **BIZ_METRIC**
+    + **CODE_TABLE**
+    + **COMMON_CONDITION**
+    + **COMPOUND_METRIC**
+    + **CONDITION_GROUP**
+    + **DEGENERATE_DIMENSION**
+    + **DERIVATIVE_INDEX**
+    + **DERIVED_METRIC**
+    + **DIMENSION**
+    + **DIMENSION_ATTRIBUTE**
+    + **DIMENSION_HIERARCHIES**
+    + **DIMENSION_LOGIC_TABLE**
+    + **DIMENSION_TABLE_ATTRIBUTE**
+    + **DIRECTORY**
+    + **FACT_ATTRIBUTE**
+    + **FACT_DIMENSION**
+    + **FACT_LOGIC_TABLE**
+    + **FACT_MEASURE**
+    + **FUNCTION**
+    + **INFO_ARCH**
+    + **MODEL**
+    + **QUALITY_RULE**
+    + **SECRECY_LEVEL**
+    + **STANDARD_ELEMENT**
+    + **STANDARD_ELEMENT_TEMPLATE**
+    + **SUBJECT**
+    + **SUMMARY_DIMENSION_ATTRIBUTE**
+    + **SUMMARY_INDEX**
+    + **SUMMARY_TIME**
+    + **TABLE_MODEL**
+    + **TABLE_MODEL_ATTRIBUTE**
+    + **TABLE_MODEL_LOGIC**
+    + **TABLE_TYPE**
+    + **TAG**
+    + **TIME_CONDITION**
+    """
 
 @pulumi.input_type
 class ArchitectureBatchPublishBizInfoArgs:
@@ -275,60 +270,57 @@ class ArchitectureBatchPublishBizInfoArgs:
         pulumi.set(self, "biz_type", value)
 
 
-if not MYPY:
-    class ArchitectureBatchPublishmentBizInfoArgsDict(TypedDict):
-        biz_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the object to be published.
-        Changing this creates a new resource.
-        """
-        biz_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the object to be published.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **AGGREGATION_LOGIC_TABLE**
-        + **ATOMIC_INDEX**
-        + **ATOMIC_METRIC**
-        + **BIZ_CATALOG**
-        + **BIZ_METRIC**
-        + **CODE_TABLE**
-        + **COMMON_CONDITION**
-        + **COMPOUND_METRIC**
-        + **CONDITION_GROUP**
-        + **DEGENERATE_DIMENSION**
-        + **DERIVATIVE_INDEX**
-        + **DERIVED_METRIC**
-        + **DIMENSION**
-        + **DIMENSION_ATTRIBUTE**
-        + **DIMENSION_HIERARCHIES**
-        + **DIMENSION_LOGIC_TABLE**
-        + **DIMENSION_TABLE_ATTRIBUTE**
-        + **DIRECTORY**
-        + **FACT_ATTRIBUTE**
-        + **FACT_DIMENSION**
-        + **FACT_LOGIC_TABLE**
-        + **FACT_MEASURE**
-        + **FUNCTION**
-        + **INFO_ARCH**
-        + **MODEL**
-        + **QUALITY_RULE**
-        + **SECRECY_LEVEL**
-        + **STANDARD_ELEMENT**
-        + **STANDARD_ELEMENT_TEMPLATE**
-        + **SUBJECT**
-        + **SUMMARY_DIMENSION_ATTRIBUTE**
-        + **SUMMARY_INDEX**
-        + **SUMMARY_TIME**
-        + **TABLE_MODEL**
-        + **TABLE_MODEL_ATTRIBUTE**
-        + **TABLE_MODEL_LOGIC**
-        + **TABLE_TYPE**
-        + **TAG**
-        + **TIME_CONDITION**
-        """
-elif False:
-    ArchitectureBatchPublishmentBizInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureBatchPublishmentBizInfoArgsDict(TypedDict):
+    biz_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the object to be published.
+    Changing this creates a new resource.
+    """
+    biz_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the object to be published.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **AGGREGATION_LOGIC_TABLE**
+    + **ATOMIC_INDEX**
+    + **ATOMIC_METRIC**
+    + **BIZ_CATALOG**
+    + **BIZ_METRIC**
+    + **CODE_TABLE**
+    + **COMMON_CONDITION**
+    + **COMPOUND_METRIC**
+    + **CONDITION_GROUP**
+    + **DEGENERATE_DIMENSION**
+    + **DERIVATIVE_INDEX**
+    + **DERIVED_METRIC**
+    + **DIMENSION**
+    + **DIMENSION_ATTRIBUTE**
+    + **DIMENSION_HIERARCHIES**
+    + **DIMENSION_LOGIC_TABLE**
+    + **DIMENSION_TABLE_ATTRIBUTE**
+    + **DIRECTORY**
+    + **FACT_ATTRIBUTE**
+    + **FACT_DIMENSION**
+    + **FACT_LOGIC_TABLE**
+    + **FACT_MEASURE**
+    + **FUNCTION**
+    + **INFO_ARCH**
+    + **MODEL**
+    + **QUALITY_RULE**
+    + **SECRECY_LEVEL**
+    + **STANDARD_ELEMENT**
+    + **STANDARD_ELEMENT_TEMPLATE**
+    + **SUBJECT**
+    + **SUMMARY_DIMENSION_ATTRIBUTE**
+    + **SUMMARY_INDEX**
+    + **SUMMARY_TIME**
+    + **TABLE_MODEL**
+    + **TABLE_MODEL_ATTRIBUTE**
+    + **TABLE_MODEL_LOGIC**
+    + **TABLE_TYPE**
+    + **TAG**
+    + **TIME_CONDITION**
+    """
 
 @pulumi.input_type
 class ArchitectureBatchPublishmentBizInfoArgs:
@@ -451,60 +443,57 @@ class ArchitectureBatchPublishmentBizInfoArgs:
         pulumi.set(self, "biz_type", value)
 
 
-if not MYPY:
-    class ArchitectureBatchUnpublishBizInfoArgsDict(TypedDict):
-        biz_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the object to be published.
-        Changing this creates a new resource.
-        """
-        biz_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the object to be published.
-        Changing this creates a new resource.
-        The valid values are as follows:
-        + **AGGREGATION_LOGIC_TABLE**
-        + **ATOMIC_INDEX**
-        + **ATOMIC_METRIC**
-        + **BIZ_CATALOG**
-        + **BIZ_METRIC**
-        + **CODE_TABLE**
-        + **COMMON_CONDITION**
-        + **COMPOUND_METRIC**
-        + **CONDITION_GROUP**
-        + **DEGENERATE_DIMENSION**
-        + **DERIVATIVE_INDEX**
-        + **DERIVED_METRIC**
-        + **DIMENSION**
-        + **DIMENSION_ATTRIBUTE**
-        + **DIMENSION_HIERARCHIES**
-        + **DIMENSION_LOGIC_TABLE**
-        + **DIMENSION_TABLE_ATTRIBUTE**
-        + **DIRECTORY**
-        + **FACT_ATTRIBUTE**
-        + **FACT_DIMENSION**
-        + **FACT_LOGIC_TABLE**
-        + **FACT_MEASURE**
-        + **FUNCTION**
-        + **INFO_ARCH**
-        + **MODEL**
-        + **QUALITY_RULE**
-        + **SECRECY_LEVEL**
-        + **STANDARD_ELEMENT**
-        + **STANDARD_ELEMENT_TEMPLATE**
-        + **SUBJECT**
-        + **SUMMARY_DIMENSION_ATTRIBUTE**
-        + **SUMMARY_INDEX**
-        + **SUMMARY_TIME**
-        + **TABLE_MODEL**
-        + **TABLE_MODEL_ATTRIBUTE**
-        + **TABLE_MODEL_LOGIC**
-        + **TABLE_TYPE**
-        + **TAG**
-        + **TIME_CONDITION**
-        """
-elif False:
-    ArchitectureBatchUnpublishBizInfoArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureBatchUnpublishBizInfoArgsDict(TypedDict):
+    biz_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the object to be published.
+    Changing this creates a new resource.
+    """
+    biz_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the object to be published.
+    Changing this creates a new resource.
+    The valid values are as follows:
+    + **AGGREGATION_LOGIC_TABLE**
+    + **ATOMIC_INDEX**
+    + **ATOMIC_METRIC**
+    + **BIZ_CATALOG**
+    + **BIZ_METRIC**
+    + **CODE_TABLE**
+    + **COMMON_CONDITION**
+    + **COMPOUND_METRIC**
+    + **CONDITION_GROUP**
+    + **DEGENERATE_DIMENSION**
+    + **DERIVATIVE_INDEX**
+    + **DERIVED_METRIC**
+    + **DIMENSION**
+    + **DIMENSION_ATTRIBUTE**
+    + **DIMENSION_HIERARCHIES**
+    + **DIMENSION_LOGIC_TABLE**
+    + **DIMENSION_TABLE_ATTRIBUTE**
+    + **DIRECTORY**
+    + **FACT_ATTRIBUTE**
+    + **FACT_DIMENSION**
+    + **FACT_LOGIC_TABLE**
+    + **FACT_MEASURE**
+    + **FUNCTION**
+    + **INFO_ARCH**
+    + **MODEL**
+    + **QUALITY_RULE**
+    + **SECRECY_LEVEL**
+    + **STANDARD_ELEMENT**
+    + **STANDARD_ELEMENT_TEMPLATE**
+    + **SUBJECT**
+    + **SUMMARY_DIMENSION_ATTRIBUTE**
+    + **SUMMARY_INDEX**
+    + **SUMMARY_TIME**
+    + **TABLE_MODEL**
+    + **TABLE_MODEL_ATTRIBUTE**
+    + **TABLE_MODEL_LOGIC**
+    + **TABLE_TYPE**
+    + **TAG**
+    + **TIME_CONDITION**
+    """
 
 @pulumi.input_type
 class ArchitectureBatchUnpublishBizInfoArgs:
@@ -627,35 +616,32 @@ class ArchitectureBatchUnpublishBizInfoArgs:
         pulumi.set(self, "biz_type", value)
 
 
-if not MYPY:
-    class ArchitectureCodeTableFieldArgsDict(TypedDict):
-        code: pulumi.Input[_builtins.str]
-        """
-        Specifies the code of a field.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a field.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of a field. Valid values are: **BIGINT**, **BOOLEAN**, **DATE**,
-        **DECIMAL**, **DOUBLE**, **STRING**, and **TIMESTAMP**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of a field.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the field.
-        """
-        ordinal: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ordinal of a field.
-        """
-elif False:
-    ArchitectureCodeTableFieldArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureCodeTableFieldArgsDict(TypedDict):
+    code: pulumi.Input[_builtins.str]
+    """
+    Specifies the code of a field.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a field.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of a field. Valid values are: **BIGINT**, **BOOLEAN**, **DATE**,
+    **DECIMAL**, **DOUBLE**, **STRING**, and **TIMESTAMP**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of a field.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the field.
+    """
+    ordinal: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ordinal of a field.
+    """
 
 @pulumi.input_type
 class ArchitectureCodeTableFieldArgs:
@@ -759,22 +745,19 @@ class ArchitectureCodeTableFieldArgs:
         pulumi.set(self, "ordinal", value)
 
 
-if not MYPY:
-    class ArchitectureCodeTableValuesValueArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of a field.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of a value.
-        """
-        ordinal: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ordinal of a value.
-        """
-elif False:
-    ArchitectureCodeTableValuesValueArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureCodeTableValuesValueArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of a field.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of a value.
+    """
+    ordinal: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ordinal of a value.
+    """
 
 @pulumi.input_type
 class ArchitectureCodeTableValuesValueArgs:
@@ -830,42 +813,39 @@ class ArchitectureCodeTableValuesValueArgs:
         pulumi.set(self, "ordinal", value)
 
 
-if not MYPY:
-    class ArchitectureDataStandardNewBizArgsDict(TypedDict):
-        biz_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of data standard.
-        """
-        biz_info: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the info of the new biz.
-        """
-        biz_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the type of the new biz.
-        """
-        biz_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the version of the new biz.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time of the data standard.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the new biz.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the status of the new biz.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the latest update time of the new biz.
-        """
-elif False:
-    ArchitectureDataStandardNewBizArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureDataStandardNewBizArgsDict(TypedDict):
+    biz_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of data standard.
+    """
+    biz_info: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the info of the new biz.
+    """
+    biz_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the type of the new biz.
+    """
+    biz_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the version of the new biz.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time of the data standard.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the new biz.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of the new biz.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the latest update time of the new biz.
+    """
 
 @pulumi.input_type
 class ArchitectureDataStandardNewBizArgs:
@@ -1002,47 +982,44 @@ class ArchitectureDataStandardNewBizArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ArchitectureDataStandardTemplateCustomFieldArgsDict(TypedDict):
-        fd_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the field.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time of the field.
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of creator.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the custom field.
-        """
-        optional_values: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the optional values of the field. Multiple values are separated by
-        semicolons (;).
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the field is required.
-        """
-        searchable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the field is search supported.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the latest update time of the field.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of updater.
-        """
-elif False:
-    ArchitectureDataStandardTemplateCustomFieldArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureDataStandardTemplateCustomFieldArgsDict(TypedDict):
+    fd_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the field.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time of the field.
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of creator.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the custom field.
+    """
+    optional_values: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the optional values of the field. Multiple values are separated by
+    semicolons (;).
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the field is required.
+    """
+    searchable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the field is search supported.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the latest update time of the field.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of updater.
+    """
 
 @pulumi.input_type
 class ArchitectureDataStandardTemplateCustomFieldArgs:
@@ -1196,42 +1173,39 @@ class ArchitectureDataStandardTemplateCustomFieldArgs:
         pulumi.set(self, "updated_by", value)
 
 
-if not MYPY:
-    class ArchitectureDataStandardTemplateOptionalFieldArgsDict(TypedDict):
-        fd_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the field.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time of the field.
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of creator.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the custom field.
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the field is required.
-        """
-        searchable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the field is search supported.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the latest update time of the field.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of updater.
-        """
-elif False:
-    ArchitectureDataStandardTemplateOptionalFieldArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureDataStandardTemplateOptionalFieldArgsDict(TypedDict):
+    fd_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the field.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time of the field.
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of creator.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the custom field.
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the field is required.
+    """
+    searchable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the field is search supported.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the latest update time of the field.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of updater.
+    """
 
 @pulumi.input_type
 class ArchitectureDataStandardTemplateOptionalFieldArgs:
@@ -1367,54 +1341,51 @@ class ArchitectureDataStandardTemplateOptionalFieldArgs:
         pulumi.set(self, "updated_by", value)
 
 
-if not MYPY:
-    class ArchitectureDataStandardValueArgsDict(TypedDict):
-        fd_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the data standard attribute.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time of the data standard.
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the creation time of the new biz.
-        """
-        directory_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the directory ID that the data standard belongs to.
-        """
-        fd_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the data standard attribute definition.
-        """
-        fd_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the data standard attribute.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of the new biz.
-        """
-        row_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of data standard.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the status of the new biz.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the latest update time of the new biz.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of updater.
-        """
-elif False:
-    ArchitectureDataStandardValueArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureDataStandardValueArgsDict(TypedDict):
+    fd_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the data standard attribute.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time of the data standard.
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the creation time of the new biz.
+    """
+    directory_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the directory ID that the data standard belongs to.
+    """
+    fd_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the data standard attribute definition.
+    """
+    fd_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the data standard attribute.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the new biz.
+    """
+    row_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of data standard.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the status of the new biz.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the latest update time of the new biz.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of updater.
+    """
 
 @pulumi.input_type
 class ArchitectureDataStandardValueArgs:
@@ -1598,98 +1569,95 @@ class ArchitectureDataStandardValueArgs:
         pulumi.set(self, "updated_by", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelAttributeArgsDict(TypedDict):
-        data_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the data type of attribute.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the mapping name.
-        """
-        name_en: pulumi.Input[_builtins.str]
-        """
-        Specifies the English name of attribute.
-        """
-        code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the code of attribute.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creating time of the mapping
-        """
-        data_type_extend: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data type extend field of attribute.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of attribute.
-        """
-        domain_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The domain type of the attribute.
-        """
-        extend_field: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the extend field of attribute.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the mapping.
-        """
-        is_foreign_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the attribute is foreign key or not.
-        """
-        is_partition_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the attribute is partition key or not.
-        """
-        is_primary_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the attribute is primary key or not.
-        """
-        not_null: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the attribute is not null or null.
+class ArchitectureTableModelAttributeArgsDict(TypedDict):
+    data_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the data type of attribute.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the mapping name.
+    """
+    name_en: pulumi.Input[_builtins.str]
+    """
+    Specifies the English name of attribute.
+    """
+    code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the code of attribute.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creating time of the mapping
+    """
+    data_type_extend: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data type extend field of attribute.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of attribute.
+    """
+    domain_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain type of the attribute.
+    """
+    extend_field: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the extend field of attribute.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the mapping.
+    """
+    is_foreign_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the attribute is foreign key or not.
+    """
+    is_partition_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the attribute is partition key or not.
+    """
+    is_primary_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the attribute is primary key or not.
+    """
+    not_null: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the attribute is not null or null.
 
-        <a name="block--relations"></a>
-        The `relations` block supports:
-        """
-        ordinal: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the sequence number of attribute. The input values must start from one, and must
-        be continuous numbers.
-        """
-        related_logic_attr_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the related logic attribute ID of attribute.
-        """
-        related_logic_attr_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the related logic attribute name of attribute.
-        """
-        related_logic_attr_name_en: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the related logic attribute English name of attribute.
-        """
-        stand_row_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data standard ID of attribute.
-        """
-        stand_row_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the data standard name of attribute.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The updating time of the mapping.
-        """
-elif False:
-    ArchitectureTableModelAttributeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--relations"></a>
+    The `relations` block supports:
+    """
+    ordinal: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the sequence number of attribute. The input values must start from one, and must
+    be continuous numbers.
+    """
+    related_logic_attr_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the related logic attribute ID of attribute.
+    """
+    related_logic_attr_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the related logic attribute name of attribute.
+    """
+    related_logic_attr_name_en: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the related logic attribute English name of attribute.
+    """
+    stand_row_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data standard ID of attribute.
+    """
+    stand_row_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the data standard name of attribute.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The updating time of the mapping.
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelAttributeArgs:
@@ -2039,59 +2007,56 @@ class ArchitectureTableModelAttributeArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelMappingArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the mapping name.
-        """
-        source_tables: pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceTableArgsDict']]]
-        """
-        Specifies the source table informations of mapping.
-        The source_tables structure is documented below.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creating time of the mapping
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person creating the mapping.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the mapping.
-        """
-        source_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceFieldArgsDict']]]]
-        """
-        Specifies the source attribute informations of mapping.
-        The source_fields structure is documented below.
+class ArchitectureTableModelMappingArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the mapping name.
+    """
+    source_tables: pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceTableArgsDict']]]
+    """
+    Specifies the source table informations of mapping.
+    The source_tables structure is documented below.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creating time of the mapping
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person creating the mapping.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the mapping.
+    """
+    source_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceFieldArgsDict']]]]
+    """
+    Specifies the source attribute informations of mapping.
+    The source_fields structure is documented below.
 
-        <a name="block--mappings--source_fields"></a>
-        The `source_fields` block supports:
-        """
-        src_model_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source model ID. It's **Required** for physical table model.
-        """
-        src_model_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source model name.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The updating time of the mapping.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person updating the mapping.
-        """
-        view_text: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source to capturing the view, using for **DWS** reversed view.
-        """
-elif False:
-    ArchitectureTableModelMappingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--mappings--source_fields"></a>
+    The `source_fields` block supports:
+    """
+    src_model_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source model ID. It's **Required** for physical table model.
+    """
+    src_model_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source model name.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The updating time of the mapping.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person updating the mapping.
+    """
+    view_text: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source to capturing the view, using for **DWS** reversed view.
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelMappingArgs:
@@ -2284,33 +2249,30 @@ class ArchitectureTableModelMappingArgs:
         pulumi.set(self, "view_text", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelMappingSourceFieldArgsDict(TypedDict):
-        changed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The attributes changed or not.
-        """
-        field_ids: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source attribute IDs of mapping. Using **,** to split ID.
-        """
-        field_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the source attribute English name list of mapping.
-        """
-        target_field_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the attribute English name of this resource.
-        """
-        transform_expression: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the transform expression.
+class ArchitectureTableModelMappingSourceFieldArgsDict(TypedDict):
+    changed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The attributes changed or not.
+    """
+    field_ids: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source attribute IDs of mapping. Using **,** to split ID.
+    """
+    field_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the source attribute English name list of mapping.
+    """
+    target_field_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the attribute English name of this resource.
+    """
+    transform_expression: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the transform expression.
 
-        <a name="block--mappings--source_tables"></a>
-        The `source_tables` block supports:
-        """
-elif False:
-    ArchitectureTableModelMappingSourceFieldArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--mappings--source_tables"></a>
+    The `source_tables` block supports:
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelMappingSourceFieldArgs:
@@ -2405,39 +2367,36 @@ class ArchitectureTableModelMappingSourceFieldArgs:
         pulumi.set(self, "transform_expression", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelMappingSourceTableArgsDict(TypedDict):
-        table1_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the table id.
-        """
-        join_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceTableJoinFieldArgsDict']]]]
-        """
-        Specifies the attribute informations.
-        The join_fields structure is documented below.
-        """
-        join_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the join type of two table.
-        The valid values are **LEFT**, **RIGHT**, **INNER**, **FULL**.
-        """
-        table1_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the table name.
-        """
-        table2_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the table id.
-        """
-        table2_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the table name
+class ArchitectureTableModelMappingSourceTableArgsDict(TypedDict):
+    table1_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the table id.
+    """
+    join_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelMappingSourceTableJoinFieldArgsDict']]]]
+    """
+    Specifies the attribute informations.
+    The join_fields structure is documented below.
+    """
+    join_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the join type of two table.
+    The valid values are **LEFT**, **RIGHT**, **INNER**, **FULL**.
+    """
+    table1_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the table name.
+    """
+    table2_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the table id.
+    """
+    table2_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the table name
 
-        <a name="block--mappings--source_tables--join_fields"></a>
-        The `join_fields` block supports:
-        """
-elif False:
-    ArchitectureTableModelMappingSourceTableArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--mappings--source_tables--join_fields"></a>
+    The `join_fields` block supports:
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelMappingSourceTableArgs:
@@ -2551,26 +2510,23 @@ class ArchitectureTableModelMappingSourceTableArgs:
         pulumi.set(self, "table2_name", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelMappingSourceTableJoinFieldArgsDict(TypedDict):
-        field1_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the attribute ID.
-        """
-        field2_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the attribute ID.
-        """
-        field1_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the attribute English name.
-        """
-        field2_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the attribute English name.
-        """
-elif False:
-    ArchitectureTableModelMappingSourceTableJoinFieldArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureTableModelMappingSourceTableJoinFieldArgsDict(TypedDict):
+    field1_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the attribute ID.
+    """
+    field2_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the attribute ID.
+    """
+    field1_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the attribute English name.
+    """
+    field2_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the attribute English name.
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelMappingSourceTableJoinFieldArgs:
@@ -2641,74 +2597,71 @@ class ArchitectureTableModelMappingSourceTableJoinFieldArgs:
         pulumi.set(self, "field2_name", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelRelationArgsDict(TypedDict):
-        mappings: pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelRelationMappingArgsDict']]]
-        """
-        Specifies the mappings of the attributes related.
-        The mappings structure is documented below.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the mapping name.
-        """
-        source_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the relation type of source to target.
-        The valid values are **ONE**, **ZERO_OR_ONE**, **ZERO_OR_N**, **ONE_OR_N**.
-        """
-        target_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the relation type of target to source.
-        The valid values are **ONE**, **ZERO_OR_ONE**, **ZERO_OR_N**, **ONE_OR_N**.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creating time of the mapping
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person creating the mapping.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the mapping.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the role of the relation.
-        """
-        source_table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source table ID. Source table ID and target table ID, one of them
-        must be the resource ID, so it have to be empty and the other one is **Required**.
-        """
-        source_table_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source table name.
-        """
-        target_table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the target table ID. Source table ID and target table ID, one of them
-        must be the resource ID, so it have to be empty and the other one is **Required**.
-        """
-        target_table_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the target table name.
+class ArchitectureTableModelRelationArgsDict(TypedDict):
+    mappings: pulumi.Input[Sequence[pulumi.Input['ArchitectureTableModelRelationMappingArgsDict']]]
+    """
+    Specifies the mappings of the attributes related.
+    The mappings structure is documented below.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the mapping name.
+    """
+    source_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the relation type of source to target.
+    The valid values are **ONE**, **ZERO_OR_ONE**, **ZERO_OR_N**, **ONE_OR_N**.
+    """
+    target_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the relation type of target to source.
+    The valid values are **ONE**, **ZERO_OR_ONE**, **ZERO_OR_N**, **ONE_OR_N**.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creating time of the mapping
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person creating the mapping.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the mapping.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the role of the relation.
+    """
+    source_table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source table ID. Source table ID and target table ID, one of them
+    must be the resource ID, so it have to be empty and the other one is **Required**.
+    """
+    source_table_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source table name.
+    """
+    target_table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the target table ID. Source table ID and target table ID, one of them
+    must be the resource ID, so it have to be empty and the other one is **Required**.
+    """
+    target_table_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the target table name.
 
-        <a name="block--relations--mappings"></a>
-        The `mappings` block supports:
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The updating time of the mapping.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person updating the mapping.
-        """
-elif False:
-    ArchitectureTableModelRelationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--relations--mappings"></a>
+    The `mappings` block supports:
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The updating time of the mapping.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person updating the mapping.
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelRelationArgs:
@@ -2953,49 +2906,46 @@ class ArchitectureTableModelRelationArgs:
         pulumi.set(self, "updated_by", value)
 
 
-if not MYPY:
-    class ArchitectureTableModelRelationMappingArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creating time of the mapping
-        """
-        created_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person creating the mapping.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the mapping.
-        """
-        source_field_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source attribute ID. Source field ID and target field ID, one of
-        them must be the resource attribute ID, so it have to be empty and input its name, the other one ID is **Required**.
-        """
-        source_field_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source attribute English name. If the source attribute ID is
-        empty, it's **Required**.
-        """
-        target_field_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source attribute ID. Source field ID and target field ID, one of
-        them must be the resource attribute ID, so it have to be empty and the other one is **Required**.
-        """
-        target_field_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the attribute English name of this resource.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The updating time of the mapping.
-        """
-        updated_by: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The person updating the mapping.
-        """
-elif False:
-    ArchitectureTableModelRelationMappingArgsDict: TypeAlias = Mapping[str, Any]
+class ArchitectureTableModelRelationMappingArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creating time of the mapping
+    """
+    created_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person creating the mapping.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the mapping.
+    """
+    source_field_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source attribute ID. Source field ID and target field ID, one of
+    them must be the resource attribute ID, so it have to be empty and input its name, the other one ID is **Required**.
+    """
+    source_field_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source attribute English name. If the source attribute ID is
+    empty, it's **Required**.
+    """
+    target_field_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source attribute ID. Source field ID and target field ID, one of
+    them must be the resource attribute ID, so it have to be empty and the other one is **Required**.
+    """
+    target_field_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the attribute English name of this resource.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The updating time of the mapping.
+    """
+    updated_by: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The person updating the mapping.
+    """
 
 @pulumi.input_type
 class ArchitectureTableModelRelationMappingArgs:
@@ -3154,49 +3104,46 @@ class ArchitectureTableModelRelationMappingArgs:
         pulumi.set(self, "updated_by", value)
 
 
-if not MYPY:
-    class DataserviceApiBackendConfigArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend host.
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend path.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol of the backend request.  
-        The valid values are as follows:
-        + **PROTOCOL_TYPE_HTTP**
-        + **PROTOCOL_TYPE_HTTPS**
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_TYPE_NUMBER**
-        + **REQUEST_PARAMETER_TYPE_STRING**
-        """
-        backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiBackendConfigBackendParamArgsDict']]]]
-        """
-        Specifies the backend parameters of the API.  
-        The backend_params structure is documented below.
-        """
-        constant_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiBackendConfigConstantParamArgsDict']]]]
-        """
-        Specifies the backend constant parameters of the API.  
-        The constant_params structure is documented below.
+class DataserviceApiBackendConfigArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend host.
+    """
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend path.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol of the backend request.  
+    The valid values are as follows:
+    + **PROTOCOL_TYPE_HTTP**
+    + **PROTOCOL_TYPE_HTTPS**
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_TYPE_NUMBER**
+    + **REQUEST_PARAMETER_TYPE_STRING**
+    """
+    backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiBackendConfigBackendParamArgsDict']]]]
+    """
+    Specifies the backend parameters of the API.  
+    The backend_params structure is documented below.
+    """
+    constant_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiBackendConfigConstantParamArgsDict']]]]
+    """
+    Specifies the backend constant parameters of the API.  
+    The constant_params structure is documented below.
 
-        <a name="dataservice_api_backend_config_backend_params"></a>
-        The `backend_params` block supports:
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the backend timeout.
-        """
-elif False:
-    DataserviceApiBackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_backend_config_backend_params"></a>
+    The `backend_params` block supports:
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the backend timeout.
+    """
 
 @pulumi.input_type
 class DataserviceApiBackendConfigArgs:
@@ -3335,29 +3282,26 @@ class DataserviceApiBackendConfigArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class DataserviceApiBackendConfigBackendParamArgsDict(TypedDict):
-        backend_param_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the corresponding backend parameter.
+class DataserviceApiBackendConfigBackendParamArgsDict(TypedDict):
+    backend_param_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the corresponding backend parameter.
 
-        <a name="dataservice_api_backend_config_constant_params"></a>
-        The `constant_params` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        position: pulumi.Input[_builtins.str]
-        """
-        Specifies the position of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_POSITION_PATH**
-        + **REQUEST_PARAMETER_POSITION_HEADER**
-        + **REQUEST_PARAMETER_POSITION_QUERY**
-        """
-elif False:
-    DataserviceApiBackendConfigBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_backend_config_constant_params"></a>
+    The `constant_params` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    position: pulumi.Input[_builtins.str]
+    """
+    Specifies the position of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_POSITION_PATH**
+    + **REQUEST_PARAMETER_POSITION_HEADER**
+    + **REQUEST_PARAMETER_POSITION_QUERY**
+    """
 
 @pulumi.input_type
 class DataserviceApiBackendConfigBackendParamArgs:
@@ -3425,37 +3369,34 @@ class DataserviceApiBackendConfigBackendParamArgs:
         pulumi.set(self, "position", value)
 
 
-if not MYPY:
-    class DataserviceApiBackendConfigConstantParamArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        position: pulumi.Input[_builtins.str]
-        """
-        Specifies the position of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_POSITION_PATH**
-        + **REQUEST_PARAMETER_POSITION_HEADER**
-        + **REQUEST_PARAMETER_POSITION_QUERY**
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_TYPE_NUMBER**
-        + **REQUEST_PARAMETER_TYPE_STRING**
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the constant parameter.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant parameter.
-        """
-elif False:
-    DataserviceApiBackendConfigConstantParamArgsDict: TypeAlias = Mapping[str, Any]
+class DataserviceApiBackendConfigConstantParamArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    position: pulumi.Input[_builtins.str]
+    """
+    Specifies the position of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_POSITION_PATH**
+    + **REQUEST_PARAMETER_POSITION_HEADER**
+    + **REQUEST_PARAMETER_POSITION_QUERY**
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_TYPE_NUMBER**
+    + **REQUEST_PARAMETER_TYPE_STRING**
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the constant parameter.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant parameter.
+    """
 
 @pulumi.input_type
 class DataserviceApiBackendConfigConstantParamArgs:
@@ -3554,73 +3495,70 @@ class DataserviceApiBackendConfigConstantParamArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class DataserviceApiDatasourceConfigArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the database.
-        """
-        datatable: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the data table.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_TYPE_NUMBER**
-        + **REQUEST_PARAMETER_TYPE_STRING**
-        """
-        access_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access mode for the data.  
-        The valid values are as follows:
-        + **SQL**
-        + **ROW_KEY**
-        + **PREFIX_FILTER**
-        """
-        backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigBackendParamArgsDict']]]]
-        """
-        Specifies the backend parameters of the API.  
-        The backend_params structure is documented below.
-        """
-        connection_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the data connection for the DataArts Studio service.
-        """
-        connection_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the data connection.
-        """
-        order_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigOrderParamArgsDict']]]]
-        """
-        Specifies the order parameters of the API.  
-        The order_params structure is documented below.
+class DataserviceApiDatasourceConfigArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the database.
+    """
+    datatable: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the data table.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_TYPE_NUMBER**
+    + **REQUEST_PARAMETER_TYPE_STRING**
+    """
+    access_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access mode for the data.  
+    The valid values are as follows:
+    + **SQL**
+    + **ROW_KEY**
+    + **PREFIX_FILTER**
+    """
+    backend_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigBackendParamArgsDict']]]]
+    """
+    Specifies the backend parameters of the API.  
+    The backend_params structure is documented below.
+    """
+    connection_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the data connection for the DataArts Studio service.
+    """
+    connection_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the data connection.
+    """
+    order_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigOrderParamArgsDict']]]]
+    """
+    Specifies the order parameters of the API.  
+    The order_params structure is documented below.
 
-        > All column names that appear in the data table must have corresponding parameter mappings.
+    > All column names that appear in the data table must have corresponding parameter mappings.
 
-        <a name="dataservice_api_datasource_config_backend_params"></a>
-        The `backend_params` block supports:
-        """
-        queue: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the DLI queue.
-        """
-        response_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigResponseParamArgsDict']]]]
-        """
-        Specifies the response parameters of the API.  
-        The response_params structure is documented below.
-        """
-        sql: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SQL statements in script access type.
-        """
-        table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the data table.
-        """
-elif False:
-    DataserviceApiDatasourceConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_datasource_config_backend_params"></a>
+    The `backend_params` block supports:
+    """
+    queue: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the DLI queue.
+    """
+    response_params: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataserviceApiDatasourceConfigResponseParamArgsDict']]]]
+    """
+    Specifies the response parameters of the API.  
+    The response_params structure is documented below.
+    """
+    sql: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SQL statements in script access type.
+    """
+    table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the data table.
+    """
 
 @pulumi.input_type
 class DataserviceApiDatasourceConfigArgs:
@@ -3848,35 +3786,32 @@ class DataserviceApiDatasourceConfigArgs:
         pulumi.set(self, "table_id", value)
 
 
-if not MYPY:
-    class DataserviceApiDatasourceConfigBackendParamArgsDict(TypedDict):
-        mapping: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the mapping parameter.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        condition: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the condition character.  
-        The valid values are as follows:
-        + **CONDITION_TYPE_EQ**: =
-        + **CONDITION_TYPE_NE**: <>
-        + **CONDITION_TYPE_GT**: >
-        + **CONDITION_TYPE_GE**: >=
-        + **CONDITION_TYPE_LT**: <
-        + **CONDITION_TYPE_LE**: <=
-        + **CONDITION_TYPE_LIKE**: %like%
-        + **CONDITION_TYPE_LIKE_L**: %like
-        + **CONDITION_TYPE_LIKE_R**: like%
+class DataserviceApiDatasourceConfigBackendParamArgsDict(TypedDict):
+    mapping: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the mapping parameter.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    condition: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the condition character.  
+    The valid values are as follows:
+    + **CONDITION_TYPE_EQ**: =
+    + **CONDITION_TYPE_NE**: <>
+    + **CONDITION_TYPE_GT**: >
+    + **CONDITION_TYPE_GE**: >=
+    + **CONDITION_TYPE_LT**: <
+    + **CONDITION_TYPE_LE**: <=
+    + **CONDITION_TYPE_LIKE**: %like%
+    + **CONDITION_TYPE_LIKE_L**: %like
+    + **CONDITION_TYPE_LIKE_R**: like%
 
-        <a name="dataservice_api_datasource_config_response_params"></a>
-        The `response_params` block supports:
-        """
-elif False:
-    DataserviceApiDatasourceConfigBackendParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_datasource_config_response_params"></a>
+    The `response_params` block supports:
+    """
 
 @pulumi.input_type
 class DataserviceApiDatasourceConfigBackendParamArgs:
@@ -3957,37 +3892,34 @@ class DataserviceApiDatasourceConfigBackendParamArgs:
         pulumi.set(self, "condition", value)
 
 
-if not MYPY:
-    class DataserviceApiDatasourceConfigOrderParamArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the corresponding parameter field for the order parameter.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this order parameter is the optional parameter.
-        """
-        order: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the order of the sorting parameters.
+class DataserviceApiDatasourceConfigOrderParamArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the corresponding parameter field for the order parameter.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this order parameter is the optional parameter.
+    """
+    order: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the order of the sorting parameters.
 
-        <a name="dataservice_api_request_params"></a>
-        The `request_params` block supports:
-        """
-        sort: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the sort type of the order parameter.  
-        The valid values are as follows:
-        + **ASC**
-        + **DESC**
-        + **CUSTOM**
-        """
-elif False:
-    DataserviceApiDatasourceConfigOrderParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_request_params"></a>
+    The `request_params` block supports:
+    """
+    sort: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the sort type of the order parameter.  
+    The valid values are as follows:
+    + **ASC**
+    + **DESC**
+    + **CUSTOM**
+    """
 
 @pulumi.input_type
 class DataserviceApiDatasourceConfigOrderParamArgs:
@@ -4088,33 +4020,30 @@ class DataserviceApiDatasourceConfigOrderParamArgs:
         pulumi.set(self, "sort", value)
 
 
-if not MYPY:
-    class DataserviceApiDatasourceConfigResponseParamArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the corresponding parameter field for the order parameter.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_TYPE_NUMBER**
-        + **REQUEST_PARAMETER_TYPE_STRING**
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant parameter.
-        """
-        example_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the example value of the request parameter.
-        """
-elif False:
-    DataserviceApiDatasourceConfigResponseParamArgsDict: TypeAlias = Mapping[str, Any]
+class DataserviceApiDatasourceConfigResponseParamArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the corresponding parameter field for the order parameter.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_TYPE_NUMBER**
+    + **REQUEST_PARAMETER_TYPE_STRING**
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant parameter.
+    """
+    example_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the example value of the request parameter.
+    """
 
 @pulumi.input_type
 class DataserviceApiDatasourceConfigResponseParamArgs:
@@ -4206,30 +4135,27 @@ class DataserviceApiDatasourceConfigResponseParamArgs:
         pulumi.set(self, "example_value", value)
 
 
-if not MYPY:
-    class DataserviceApiHostArgsDict(TypedDict):
-        domains: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of gateway damains.
-        """
-        external_host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The exrernal address.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster ID to which the API belongs.
-        """
-        instance_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cluster name to which the API belongs.
-        """
-        intranet_host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The intranet address.
-        """
-elif False:
-    DataserviceApiHostArgsDict: TypeAlias = Mapping[str, Any]
+class DataserviceApiHostArgsDict(TypedDict):
+    domains: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of gateway damains.
+    """
+    external_host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The exrernal address.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster ID to which the API belongs.
+    """
+    instance_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cluster name to which the API belongs.
+    """
+    intranet_host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The intranet address.
+    """
 
 @pulumi.input_type
 class DataserviceApiHostArgs:
@@ -4318,48 +4244,45 @@ class DataserviceApiHostArgs:
         pulumi.set(self, "intranet_host", value)
 
 
-if not MYPY:
-    class DataserviceApiRequestParamArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the constant parameter.
-        """
-        position: pulumi.Input[_builtins.str]
-        """
-        Specifies the position of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_POSITION_PATH**
-        + **REQUEST_PARAMETER_POSITION_HEADER**
-        + **REQUEST_PARAMETER_POSITION_QUERY**
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the constant parameter.  
-        The valid values are as follows:
-        + **REQUEST_PARAMETER_TYPE_NUMBER**
-        + **REQUEST_PARAMETER_TYPE_STRING**
-        """
-        default_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value of the request parameter.
+class DataserviceApiRequestParamArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the constant parameter.
+    """
+    position: pulumi.Input[_builtins.str]
+    """
+    Specifies the position of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_POSITION_PATH**
+    + **REQUEST_PARAMETER_POSITION_HEADER**
+    + **REQUEST_PARAMETER_POSITION_QUERY**
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the constant parameter.  
+    The valid values are as follows:
+    + **REQUEST_PARAMETER_TYPE_NUMBER**
+    + **REQUEST_PARAMETER_TYPE_STRING**
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value of the request parameter.
 
-        <a name="dataservice_api_backend_config"></a>
-        The `backend_config` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the constant parameter.
-        """
-        example_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the example value of the request parameter.
-        """
-        necessary: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this parameter is the required parameter.
-        """
-elif False:
-    DataserviceApiRequestParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="dataservice_api_backend_config"></a>
+    The `backend_config` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the constant parameter.
+    """
+    example_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the example value of the request parameter.
+    """
+    necessary: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this parameter is the required parameter.
+    """
 
 @pulumi.input_type
 class DataserviceApiRequestParamArgs:
@@ -4497,35 +4420,32 @@ class DataserviceApiRequestParamArgs:
         pulumi.set(self, "necessary", value)
 
 
-if not MYPY:
-    class FactoryJobBasicConfigArgsDict(TypedDict):
-        custom_fields: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Custom fields.
-        """
-        execute_user: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job execution user. The value must be an existing user.
-        """
-        instance_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum execution time of a job instance.  
-        Unit: minute; value range: `5` to `1440`.
-        Default value: `60`.
-        """
-        owner: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job owner.
-        """
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Job priority.  
-        The value ranges from `0` to `2`.
-        `0` indicates a top priority, `1` indicates a medium priority, and `2` indicates a low priority.
-        Default value: `0`.
-        """
-elif False:
-    FactoryJobBasicConfigArgsDict: TypeAlias = Mapping[str, Any]
+class FactoryJobBasicConfigArgsDict(TypedDict):
+    custom_fields: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Custom fields.
+    """
+    execute_user: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job execution user. The value must be an existing user.
+    """
+    instance_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum execution time of a job instance.  
+    Unit: minute; value range: `5` to `1440`.
+    Default value: `60`.
+    """
+    owner: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job owner.
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Job priority.  
+    The value ranges from `0` to `2`.
+    `0` indicates a top priority, `1` indicates a medium priority, and `2` indicates a low priority.
+    Default value: `0`.
+    """
 
 @pulumi.input_type
 class FactoryJobBasicConfigArgs:
@@ -4624,114 +4544,111 @@ class FactoryJobBasicConfigArgs:
         pulumi.set(self, "priority", value)
 
 
-if not MYPY:
-    class FactoryJobNodeArgsDict(TypedDict):
-        location: pulumi.Input['FactoryJobNodeLocationArgsDict']
-        """
-        Location of a node on the job canvas
-        The location structure is documented below.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of a parameter.  
-        The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
-        underscores (_).
-        """
-        properties: pulumi.Input[Sequence[pulumi.Input['FactoryJobNodePropertyArgsDict']]]
-        """
-        Node property. Each type of node has its own property definition.  
-        - **HiveSQL**: For details, see [Table 14](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **SparkSQL**: For details, see [Table 15](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **DWSSQL**: For details, see [Table 16](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **DLISQL**: For details, see [Table 17](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **Shell**: For details, see [Table 18](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **CDMJob**: For details, see [Table 19](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **DISTransferTask**: For details, see [Table 20](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **CloudTableManager**: For details, see [Table 21](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **OBSManager**: For details, see [Table 22](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **RESTClient**: For details, see [Table 23](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **SMN**: For details, see [Table 24](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **MRSSpark**: For details, see [Table 25](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **MapReduce**: For details, see [Table 26](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **DLISpark**: For details, see [Table 27](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **MRSFlinkJob**: For details, see [Table 29](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
-        - **MRSHetuEngine**: For details, see [Table 30](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+class FactoryJobNodeArgsDict(TypedDict):
+    location: pulumi.Input['FactoryJobNodeLocationArgsDict']
+    """
+    Location of a node on the job canvas
+    The location structure is documented below.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of a parameter.  
+    The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
+    underscores (_).
+    """
+    properties: pulumi.Input[Sequence[pulumi.Input['FactoryJobNodePropertyArgsDict']]]
+    """
+    Node property. Each type of node has its own property definition.  
+    - **HiveSQL**: For details, see [Table 14](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **SparkSQL**: For details, see [Table 15](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **DWSSQL**: For details, see [Table 16](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **DLISQL**: For details, see [Table 17](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **Shell**: For details, see [Table 18](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **CDMJob**: For details, see [Table 19](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **DISTransferTask**: For details, see [Table 20](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **CloudTableManager**: For details, see [Table 21](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **OBSManager**: For details, see [Table 22](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **RESTClient**: For details, see [Table 23](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **SMN**: For details, see [Table 24](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **MRSSpark**: For details, see [Table 25](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **MapReduce**: For details, see [Table 26](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **DLISpark**: For details, see [Table 27](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **MRSFlinkJob**: For details, see [Table 29](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
+    - **MRSHetuEngine**: For details, see [Table 30](https://support.huaweicloud.com/intl/en-us/api-dataartsstudio/dataartsstudio_02_0084.html).
 
-        The properties structure is documented below.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Parameter type.  
-        The valid values are as follows:
-        - **variable**
-        - **constants**
+    The properties structure is documented below.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Parameter type.  
+    The valid values are as follows:
+    - **variable**
+    - **constants**
 
-        Defaults to **variable**.
+    Defaults to **variable**.
 
-        <a name="job_BasicConfig"></a>
-        The `basic_config` block supports:
-        """
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['FactoryJobNodeConditionArgsDict']]]]
-        """
-        Node execution condition.  
-        Whether the node is executed or not depends on the calculation result of the EL expression saved
-        in the expression field of condition.
-        The conditions structure is documented below.
-        """
-        cron_trigger: NotRequired[pulumi.Input['FactoryJobNodeCronTriggerArgsDict']]
-        """
-        Cron trigger for the real-time job node
-        The cron_trigger structure is documented below.
+    <a name="job_BasicConfig"></a>
+    The `basic_config` block supports:
+    """
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['FactoryJobNodeConditionArgsDict']]]]
+    """
+    Node execution condition.  
+    Whether the node is executed or not depends on the calculation result of the EL expression saved
+    in the expression field of condition.
+    The conditions structure is documented below.
+    """
+    cron_trigger: NotRequired[pulumi.Input['FactoryJobNodeCronTriggerArgsDict']]
+    """
+    Cron trigger for the real-time job node
+    The cron_trigger structure is documented below.
 
-        <a name="job_Location"></a>
-        The `location` block supports:
-        """
-        event_trigger: NotRequired[pulumi.Input['FactoryJobNodeEventTriggerArgsDict']]
-        """
-        Event trigger for the real-time job node.
-        The event_trigger structure is documented below.
-        """
-        fail_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job failure policy.  
-        The valid values are as follows:
-        - **SUSPEND**: Suspend the event.
-        - **IGNORE**: Ignore the failure and process with the next event.
+    <a name="job_Location"></a>
+    The `location` block supports:
+    """
+    event_trigger: NotRequired[pulumi.Input['FactoryJobNodeEventTriggerArgsDict']]
+    """
+    Event trigger for the real-time job node.
+    The event_trigger structure is documented below.
+    """
+    fail_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job failure policy.  
+    The valid values are as follows:
+    - **SUSPEND**: Suspend the event.
+    - **IGNORE**: Ignore the failure and process with the next event.
 
-        The default value is **SUSPEND**.
-        """
-        max_execution_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum execution time of a node.  
-        If a node is not executed within the maximum execution time, the node is set to the failed state.
-        Unit: minute; value range: `5` to `1,440`.
-        Default value: `60`.
-        """
-        polling_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Interval at which node running results are checked.  
-        Unit: second; value range: `1` to `60`.
-        Default value: `10`.
-        """
-        pre_node_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Name of the previous node on which the current node depends.
-        """
-        retry_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Interval at which a retry is performed upon a failure.  
-        The value ranges from `5` to `120`.
-        Unit: second.
-        Default value: `120`.
-        """
-        retry_times: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of the node retries.  
-        The value ranges from `0` to `5`. `0` indicates no retry.
-        Default value: `0`.
-        """
-elif False:
-    FactoryJobNodeArgsDict: TypeAlias = Mapping[str, Any]
+    The default value is **SUSPEND**.
+    """
+    max_execution_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum execution time of a node.  
+    If a node is not executed within the maximum execution time, the node is set to the failed state.
+    Unit: minute; value range: `5` to `1,440`.
+    Default value: `60`.
+    """
+    polling_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Interval at which node running results are checked.  
+    Unit: second; value range: `1` to `60`.
+    Default value: `10`.
+    """
+    pre_node_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Name of the previous node on which the current node depends.
+    """
+    retry_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Interval at which a retry is performed upon a failure.  
+    The value ranges from `5` to `120`.
+    Unit: second.
+    Default value: `120`.
+    """
+    retry_times: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of the node retries.  
+    The value ranges from `0` to `5`. `0` indicates no retry.
+    Default value: `0`.
+    """
 
 @pulumi.input_type
 class FactoryJobNodeArgs:
@@ -5048,18 +4965,15 @@ class FactoryJobNodeArgs:
         pulumi.set(self, "retry_times", value)
 
 
-if not MYPY:
-    class FactoryJobNodeConditionArgsDict(TypedDict):
-        expression: pulumi.Input[_builtins.str]
-        """
-        Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
-        """
-        pre_node_name: pulumi.Input[_builtins.str]
-        """
-        Name of the previous node on which the current node depends.
-        """
-elif False:
-    FactoryJobNodeConditionArgsDict: TypeAlias = Mapping[str, Any]
+class FactoryJobNodeConditionArgsDict(TypedDict):
+    expression: pulumi.Input[_builtins.str]
+    """
+    Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
+    """
+    pre_node_name: pulumi.Input[_builtins.str]
+    """
+    Name of the previous node on which the current node depends.
+    """
 
 @pulumi.input_type
 class FactoryJobNodeConditionArgs:
@@ -5098,60 +5012,57 @@ class FactoryJobNodeConditionArgs:
         pulumi.set(self, "pre_node_name", value)
 
 
-if not MYPY:
-    class FactoryJobNodeCronTriggerArgsDict(TypedDict):
-        expression: pulumi.Input[_builtins.str]
-        """
-        Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Scheduling start time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
-        which is an ISO 8601 time format.
-        For example, 2018-10-22T23:59:59+08, which indicates that a job starts to be scheduled at 23:59:59
-        on October 22nd, 2018.
-        """
-        concurrent: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of the concurrently scheduled jobs.  
-        Value range: `1` to `128`.
-        Default value: `1`.
-        """
-        depend_jobs: NotRequired[pulumi.Input['FactoryJobNodeCronTriggerDependJobsArgsDict']]
-        """
-        Job dependency configuration.
-        The depend_jobs structure is documented below.
+class FactoryJobNodeCronTriggerArgsDict(TypedDict):
+    expression: pulumi.Input[_builtins.str]
+    """
+    Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Scheduling start time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
+    which is an ISO 8601 time format.
+    For example, 2018-10-22T23:59:59+08, which indicates that a job starts to be scheduled at 23:59:59
+    on October 22nd, 2018.
+    """
+    concurrent: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of the concurrently scheduled jobs.  
+    Value range: `1` to `128`.
+    Default value: `1`.
+    """
+    depend_jobs: NotRequired[pulumi.Input['FactoryJobNodeCronTriggerDependJobsArgsDict']]
+    """
+    Job dependency configuration.
+    The depend_jobs structure is documented below.
 
-        <a name="job_ScheduleCronDependJobs"></a>
-        The `depend_jobs` block supports:
-        """
-        depend_pre_period: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether to depend on the execution result of the current
-        job's dependent job in the previous scheduling period.
-        Default value: **false**.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Scheduling end time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
-        which is an ISO 8601 time format.
-        For example, 2018-10-22T23:59:59+08, which indicates that a job stops to be scheduled at 23:59:59
-        on October 22nd, 2018.
-        If the end time is not set, the job will continuously be executed based on the scheduling period.
-        """
-        expression_time_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Time zone corresponding to the Cron expression.  
-        Default value: time zone where DataArts Studio is located
-        """
-        period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job execution interval consisting of a time and time unit.  
-        Example: 1 hours, 1 days, 1 weeks, 1 months.
-        The value must match the value of expression.
-        """
-elif False:
-    FactoryJobNodeCronTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_ScheduleCronDependJobs"></a>
+    The `depend_jobs` block supports:
+    """
+    depend_pre_period: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether to depend on the execution result of the current
+    job's dependent job in the previous scheduling period.
+    Default value: **false**.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Scheduling end time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
+    which is an ISO 8601 time format.
+    For example, 2018-10-22T23:59:59+08, which indicates that a job stops to be scheduled at 23:59:59
+    on October 22nd, 2018.
+    If the end time is not set, the job will continuously be executed based on the scheduling period.
+    """
+    expression_time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Time zone corresponding to the Cron expression.  
+    Default value: time zone where DataArts Studio is located
+    """
+    period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job execution interval consisting of a time and time unit.  
+    Example: 1 hours, 1 days, 1 weeks, 1 months.
+    The value must match the value of expression.
+    """
 
 @pulumi.input_type
 class FactoryJobNodeCronTriggerArgs:
@@ -5322,38 +5233,35 @@ class FactoryJobNodeCronTriggerArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class FactoryJobNodeCronTriggerDependJobsArgsDict(TypedDict):
-        jobs: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A list of dependent jobs. Only the existing jobs can be depended on.
-        """
-        depend_fail_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Dependency job failure policy.  
-        The valid values are as follows:
-        - **FAIL**: Stop the job and set the job to the failed state.
-        - **IGNORE**: Continue to run the job.
-        - **SUSPEND**: Suspend the job.
+class FactoryJobNodeCronTriggerDependJobsArgsDict(TypedDict):
+    jobs: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A list of dependent jobs. Only the existing jobs can be depended on.
+    """
+    depend_fail_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Dependency job failure policy.  
+    The valid values are as follows:
+    - **FAIL**: Stop the job and set the job to the failed state.
+    - **IGNORE**: Continue to run the job.
+    - **SUSPEND**: Suspend the job.
 
-        The default value is **FAIL**.
+    The default value is **FAIL**.
 
-        <a name="job_ScheduleEvent"></a>
-        The `event` block supports:
-        """
-        depend_period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Dependency period.  
-        The valid values are as follows:
-        - **SAME_PERIOD**: To run a job or not depends on the execution result of its depended job in
-        the current scheduling period.
-        - **PRE_PERIOD**: To run a job or not depends on the execution result of its depended job in
-        the previous scheduling period.
+    <a name="job_ScheduleEvent"></a>
+    The `event` block supports:
+    """
+    depend_period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Dependency period.  
+    The valid values are as follows:
+    - **SAME_PERIOD**: To run a job or not depends on the execution result of its depended job in
+    the current scheduling period.
+    - **PRE_PERIOD**: To run a job or not depends on the execution result of its depended job in
+    the previous scheduling period.
 
-        The default value is **SAME_PERIOD**.
-        """
-elif False:
-    FactoryJobNodeCronTriggerDependJobsArgsDict: TypeAlias = Mapping[str, Any]
+    The default value is **SAME_PERIOD**.
+    """
 
 @pulumi.input_type
 class FactoryJobNodeCronTriggerDependJobsArgs:
@@ -5441,57 +5349,54 @@ class FactoryJobNodeCronTriggerDependJobsArgs:
         pulumi.set(self, "depend_period", value)
 
 
-if not MYPY:
-    class FactoryJobNodeEventTriggerArgsDict(TypedDict):
-        channel: pulumi.Input[_builtins.str]
-        """
-        DIS stream name.  
-        Perform the following operations to obtain the stream name:
-        - Log in to the management console.
-        - Click **Data Ingestion Service** and select **Stream Management** from the left navigation pane.
-        - The stream management page lists the existing streams.
-        """
-        event_type: pulumi.Input[_builtins.str]
-        """
-        Event type.  
-        The valid values are as follows:
-        - **KAFKA**: Select the corresponding connection name and topic. When a new Kafka message is
-        received, the job is triggered.
-        - **OBS**: Select the OBS path to be listened to. If new files exist in the path, scheduling is
-        triggered. The path name can be referenced using variable Job.trigger.obsNewFiles. The
-        prerequisite is that DIS notifications have been configured for the OBS path.
-        - **DIS**: Currently, only newly reported data events from the DIS stream can be monitored.
-        Each time a data record is reported, the job runs once.
-        """
-        concurrent: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of the concurrently scheduled jobs.  
-        Value range: `1` to `128`.
-        Default value: `1`.
-        """
-        fail_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job failure policy.  
-        The valid values are as follows:
-        - **SUSPEND**: Suspend the event.
-        - **IGNORE**: Ignore the failure and process with the next event.
+class FactoryJobNodeEventTriggerArgsDict(TypedDict):
+    channel: pulumi.Input[_builtins.str]
+    """
+    DIS stream name.  
+    Perform the following operations to obtain the stream name:
+    - Log in to the management console.
+    - Click **Data Ingestion Service** and select **Stream Management** from the left navigation pane.
+    - The stream management page lists the existing streams.
+    """
+    event_type: pulumi.Input[_builtins.str]
+    """
+    Event type.  
+    The valid values are as follows:
+    - **KAFKA**: Select the corresponding connection name and topic. When a new Kafka message is
+    received, the job is triggered.
+    - **OBS**: Select the OBS path to be listened to. If new files exist in the path, scheduling is
+    triggered. The path name can be referenced using variable Job.trigger.obsNewFiles. The
+    prerequisite is that DIS notifications have been configured for the OBS path.
+    - **DIS**: Currently, only newly reported data events from the DIS stream can be monitored.
+    Each time a data record is reported, the job runs once.
+    """
+    concurrent: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of the concurrently scheduled jobs.  
+    Value range: `1` to `128`.
+    Default value: `1`.
+    """
+    fail_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job failure policy.  
+    The valid values are as follows:
+    - **SUSPEND**: Suspend the event.
+    - **IGNORE**: Ignore the failure and process with the next event.
 
-        The default value is **SUSPEND**.
-        """
-        read_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Access policy.  
-        The valid values are as follows:
-        - **LAST**: Access data from the last location.
-        - **NEW**: Access data from a new location.
+    The default value is **SUSPEND**.
+    """
+    read_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Access policy.  
+    The valid values are as follows:
+    - **LAST**: Access data from the last location.
+    - **NEW**: Access data from a new location.
 
-        The default value is **LAST**.
+    The default value is **LAST**.
 
-        <a name="job_Param"></a>
-        The `params` block supports:
-        """
-elif False:
-    FactoryJobNodeEventTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_Param"></a>
+    The `params` block supports:
+    """
 
 @pulumi.input_type
 class FactoryJobNodeEventTriggerArgs:
@@ -5632,21 +5537,18 @@ class FactoryJobNodeEventTriggerArgs:
         pulumi.set(self, "read_policy", value)
 
 
-if not MYPY:
-    class FactoryJobNodeLocationArgsDict(TypedDict):
-        x: pulumi.Input[_builtins.int]
-        """
-        Position of the node on the horizontal axis of the job canvas.
-        """
-        y: pulumi.Input[_builtins.int]
-        """
-        Position of the node on the vertical axis of the job canvas.
+class FactoryJobNodeLocationArgsDict(TypedDict):
+    x: pulumi.Input[_builtins.int]
+    """
+    Position of the node on the horizontal axis of the job canvas.
+    """
+    y: pulumi.Input[_builtins.int]
+    """
+    Position of the node on the vertical axis of the job canvas.
 
-        <a name="job_Condition"></a>
-        The `conditions` block supports:
-        """
-elif False:
-    FactoryJobNodeLocationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_Condition"></a>
+    The `conditions` block supports:
+    """
 
 @pulumi.input_type
 class FactoryJobNodeLocationArgs:
@@ -5691,21 +5593,18 @@ class FactoryJobNodeLocationArgs:
         pulumi.set(self, "y", value)
 
 
-if not MYPY:
-    class FactoryJobNodePropertyArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of a parameter.  
-        The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
-        underscores (_).
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Value of the parameter.  
-        It cannot exceed 1024 characters.
-        """
-elif False:
-    FactoryJobNodePropertyArgsDict: TypeAlias = Mapping[str, Any]
+class FactoryJobNodePropertyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of a parameter.  
+    The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
+    underscores (_).
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Value of the parameter.  
+    It cannot exceed 1024 characters.
+    """
 
 @pulumi.input_type
 class FactoryJobNodePropertyArgs:
@@ -5752,33 +5651,30 @@ class FactoryJobNodePropertyArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class FactoryJobParamArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of a parameter.  
-        The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
-        underscores (_).
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Value of the parameter.  
-        It cannot exceed 1024 characters.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Parameter type.  
-        The valid values are as follows:
-        - **variable**
-        - **constants**
+class FactoryJobParamArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of a parameter.  
+    The name contains a maximum of 64 characters, including only letters, numbers, hyphens (-), and
+    underscores (_).
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Value of the parameter.  
+    It cannot exceed 1024 characters.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Parameter type.  
+    The valid values are as follows:
+    - **variable**
+    - **constants**
 
-        Defaults to **variable**.
+    Defaults to **variable**.
 
-        <a name="job_BasicConfig"></a>
-        The `basic_config` block supports:
-        """
-elif False:
-    FactoryJobParamArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_BasicConfig"></a>
+    The `basic_config` block supports:
+    """
 
 @pulumi.input_type
 class FactoryJobParamArgs:
@@ -5855,35 +5751,32 @@ class FactoryJobParamArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class FactoryJobScheduleArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Parameter type.  
-        The valid values are as follows:
-        - **variable**
-        - **constants**
+class FactoryJobScheduleArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Parameter type.  
+    The valid values are as follows:
+    - **variable**
+    - **constants**
 
-        Defaults to **variable**.
+    Defaults to **variable**.
 
-        <a name="job_BasicConfig"></a>
-        The `basic_config` block supports:
-        """
-        cron: NotRequired[pulumi.Input['FactoryJobScheduleCronArgsDict']]
-        """
-        When `type` is set to **CRON**, configure the scheduling frequency and start time.
-        The cron structure is documented below.
-        """
-        event: NotRequired[pulumi.Input['FactoryJobScheduleEventArgsDict']]
-        """
-        When `type` is set to **EVENT**, configure information such as the event source.
-        The Event structure is documented below.
+    <a name="job_BasicConfig"></a>
+    The `basic_config` block supports:
+    """
+    cron: NotRequired[pulumi.Input['FactoryJobScheduleCronArgsDict']]
+    """
+    When `type` is set to **CRON**, configure the scheduling frequency and start time.
+    The cron structure is documented below.
+    """
+    event: NotRequired[pulumi.Input['FactoryJobScheduleEventArgsDict']]
+    """
+    When `type` is set to **EVENT**, configure information such as the event source.
+    The Event structure is documented below.
 
-        <a name="job_ScheduleCron"></a>
-        The `cron` block supports:
-        """
-elif False:
-    FactoryJobScheduleArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_ScheduleCron"></a>
+    The `cron` block supports:
+    """
 
 @pulumi.input_type
 class FactoryJobScheduleArgs:
@@ -5965,48 +5858,45 @@ class FactoryJobScheduleArgs:
         pulumi.set(self, "event", value)
 
 
-if not MYPY:
-    class FactoryJobScheduleCronArgsDict(TypedDict):
-        expression: pulumi.Input[_builtins.str]
-        """
-        Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Scheduling start time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
-        which is an ISO 8601 time format.
-        For example, 2018-10-22T23:59:59+08, which indicates that a job starts to be scheduled at 23:59:59
-        on October 22nd, 2018.
-        """
-        depend_jobs: NotRequired[pulumi.Input['FactoryJobScheduleCronDependJobsArgsDict']]
-        """
-        Job dependency configuration.
-        The depend_jobs structure is documented below.
+class FactoryJobScheduleCronArgsDict(TypedDict):
+    expression: pulumi.Input[_builtins.str]
+    """
+    Cron expression in the format of **`<second><minute><hour><day><month><week>`**.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Scheduling start time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
+    which is an ISO 8601 time format.
+    For example, 2018-10-22T23:59:59+08, which indicates that a job starts to be scheduled at 23:59:59
+    on October 22nd, 2018.
+    """
+    depend_jobs: NotRequired[pulumi.Input['FactoryJobScheduleCronDependJobsArgsDict']]
+    """
+    Job dependency configuration.
+    The depend_jobs structure is documented below.
 
-        <a name="job_ScheduleCronDependJobs"></a>
-        The `depend_jobs` block supports:
-        """
-        depend_pre_period: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether to depend on the execution result of the current
-        job's dependent job in the previous scheduling period.
-        Default value: **false**.
-        """
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Scheduling end time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
-        which is an ISO 8601 time format.
-        For example, 2018-10-22T23:59:59+08, which indicates that a job stops to be scheduled at 23:59:59
-        on October 22nd, 2018.
-        If the end time is not set, the job will continuously be executed based on the scheduling period.
-        """
-        expression_time_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Time zone corresponding to the Cron expression.  
-        Default value: time zone where DataArts Studio is located
-        """
-elif False:
-    FactoryJobScheduleCronArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_ScheduleCronDependJobs"></a>
+    The `depend_jobs` block supports:
+    """
+    depend_pre_period: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether to depend on the execution result of the current
+    job's dependent job in the previous scheduling period.
+    Default value: **false**.
+    """
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Scheduling end time in the format of **yyyy-MM-dd'T'HH:mm:ssZ**,
+    which is an ISO 8601 time format.
+    For example, 2018-10-22T23:59:59+08, which indicates that a job stops to be scheduled at 23:59:59
+    on October 22nd, 2018.
+    If the end time is not set, the job will continuously be executed based on the scheduling period.
+    """
+    expression_time_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Time zone corresponding to the Cron expression.  
+    Default value: time zone where DataArts Studio is located
+    """
 
 @pulumi.input_type
 class FactoryJobScheduleCronArgs:
@@ -6137,38 +6027,35 @@ class FactoryJobScheduleCronArgs:
         pulumi.set(self, "expression_time_zone", value)
 
 
-if not MYPY:
-    class FactoryJobScheduleCronDependJobsArgsDict(TypedDict):
-        jobs: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A list of dependent jobs. Only the existing jobs can be depended on.
-        """
-        depend_fail_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Dependency job failure policy.  
-        The valid values are as follows:
-        - **FAIL**: Stop the job and set the job to the failed state.
-        - **IGNORE**: Continue to run the job.
-        - **SUSPEND**: Suspend the job.
+class FactoryJobScheduleCronDependJobsArgsDict(TypedDict):
+    jobs: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A list of dependent jobs. Only the existing jobs can be depended on.
+    """
+    depend_fail_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Dependency job failure policy.  
+    The valid values are as follows:
+    - **FAIL**: Stop the job and set the job to the failed state.
+    - **IGNORE**: Continue to run the job.
+    - **SUSPEND**: Suspend the job.
 
-        The default value is **FAIL**.
+    The default value is **FAIL**.
 
-        <a name="job_ScheduleEvent"></a>
-        The `event` block supports:
-        """
-        depend_period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Dependency period.  
-        The valid values are as follows:
-        - **SAME_PERIOD**: To run a job or not depends on the execution result of its depended job in
-        the current scheduling period.
-        - **PRE_PERIOD**: To run a job or not depends on the execution result of its depended job in
-        the previous scheduling period.
+    <a name="job_ScheduleEvent"></a>
+    The `event` block supports:
+    """
+    depend_period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Dependency period.  
+    The valid values are as follows:
+    - **SAME_PERIOD**: To run a job or not depends on the execution result of its depended job in
+    the current scheduling period.
+    - **PRE_PERIOD**: To run a job or not depends on the execution result of its depended job in
+    the previous scheduling period.
 
-        The default value is **SAME_PERIOD**.
-        """
-elif False:
-    FactoryJobScheduleCronDependJobsArgsDict: TypeAlias = Mapping[str, Any]
+    The default value is **SAME_PERIOD**.
+    """
 
 @pulumi.input_type
 class FactoryJobScheduleCronDependJobsArgs:
@@ -6256,57 +6143,54 @@ class FactoryJobScheduleCronDependJobsArgs:
         pulumi.set(self, "depend_period", value)
 
 
-if not MYPY:
-    class FactoryJobScheduleEventArgsDict(TypedDict):
-        channel: pulumi.Input[_builtins.str]
-        """
-        DIS stream name.  
-        Perform the following operations to obtain the stream name:
-        - Log in to the management console.
-        - Click **Data Ingestion Service** and select **Stream Management** from the left navigation pane.
-        - The stream management page lists the existing streams.
-        """
-        event_type: pulumi.Input[_builtins.str]
-        """
-        Event type.  
-        The valid values are as follows:
-        - **KAFKA**: Select the corresponding connection name and topic. When a new Kafka message is
-        received, the job is triggered.
-        - **OBS**: Select the OBS path to be listened to. If new files exist in the path, scheduling is
-        triggered. The path name can be referenced using variable Job.trigger.obsNewFiles. The
-        prerequisite is that DIS notifications have been configured for the OBS path.
-        - **DIS**: Currently, only newly reported data events from the DIS stream can be monitored.
-        Each time a data record is reported, the job runs once.
-        """
-        concurrent: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of the concurrently scheduled jobs.  
-        Value range: `1` to `128`.
-        Default value: `1`.
-        """
-        fail_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Job failure policy.  
-        The valid values are as follows:
-        - **SUSPEND**: Suspend the event.
-        - **IGNORE**: Ignore the failure and process with the next event.
+class FactoryJobScheduleEventArgsDict(TypedDict):
+    channel: pulumi.Input[_builtins.str]
+    """
+    DIS stream name.  
+    Perform the following operations to obtain the stream name:
+    - Log in to the management console.
+    - Click **Data Ingestion Service** and select **Stream Management** from the left navigation pane.
+    - The stream management page lists the existing streams.
+    """
+    event_type: pulumi.Input[_builtins.str]
+    """
+    Event type.  
+    The valid values are as follows:
+    - **KAFKA**: Select the corresponding connection name and topic. When a new Kafka message is
+    received, the job is triggered.
+    - **OBS**: Select the OBS path to be listened to. If new files exist in the path, scheduling is
+    triggered. The path name can be referenced using variable Job.trigger.obsNewFiles. The
+    prerequisite is that DIS notifications have been configured for the OBS path.
+    - **DIS**: Currently, only newly reported data events from the DIS stream can be monitored.
+    Each time a data record is reported, the job runs once.
+    """
+    concurrent: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of the concurrently scheduled jobs.  
+    Value range: `1` to `128`.
+    Default value: `1`.
+    """
+    fail_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job failure policy.  
+    The valid values are as follows:
+    - **SUSPEND**: Suspend the event.
+    - **IGNORE**: Ignore the failure and process with the next event.
 
-        The default value is **SUSPEND**.
-        """
-        read_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Access policy.  
-        The valid values are as follows:
-        - **LAST**: Access data from the last location.
-        - **NEW**: Access data from a new location.
+    The default value is **SUSPEND**.
+    """
+    read_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Access policy.  
+    The valid values are as follows:
+    - **LAST**: Access data from the last location.
+    - **NEW**: Access data from a new location.
 
-        The default value is **LAST**.
+    The default value is **LAST**.
 
-        <a name="job_Param"></a>
-        The `params` block supports:
-        """
-elif False:
-    FactoryJobScheduleEventArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="job_Param"></a>
+    The `params` block supports:
+    """
 
 @pulumi.input_type
 class FactoryJobScheduleEventArgs:
@@ -6447,20 +6331,17 @@ class FactoryJobScheduleEventArgs:
         pulumi.set(self, "read_policy", value)
 
 
-if not MYPY:
-    class FactoryResourceDependPackageArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the path of the dependent file. Currently, only OBS paths is
-        supported.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the dependent file. The valid values are **file**,
-        **jar** and **pyFile**.
-        """
-elif False:
-    FactoryResourceDependPackageArgsDict: TypeAlias = Mapping[str, Any]
+class FactoryResourceDependPackageArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the path of the dependent file. Currently, only OBS paths is
+    supported.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the dependent file. The valid values are **file**,
+    **jar** and **pyFile**.
+    """
 
 @pulumi.input_type
 class FactoryResourceDependPackageArgs:
@@ -6503,14 +6384,11 @@ class FactoryResourceDependPackageArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class FactoryScriptApproverArgsDict(TypedDict):
-        approver_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the approver name of script.
-        """
-elif False:
-    FactoryScriptApproverArgsDict: TypeAlias = Mapping[str, Any]
+class FactoryScriptApproverArgsDict(TypedDict):
+    approver_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the approver name of script.
+    """
 
 @pulumi.input_type
 class FactoryScriptApproverArgs:

@@ -25,6 +25,7 @@ class MysqlEipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlEipAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] public_ip: Specifies the EIP address to be bound. The value must be in the standard IP
@@ -102,6 +103,7 @@ class _MysqlEipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlEipAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] public_ip: Specifies the EIP address to be bound. The value must be in the standard IP
@@ -207,11 +209,10 @@ class MysqlEipAssociate(pulumi.CustomResource):
 
         The GaussDB MySQL EIP associate can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlEipAssociate:MysqlEipAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -253,11 +254,10 @@ class MysqlEipAssociate(pulumi.CustomResource):
 
         The GaussDB MySQL EIP associate can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlEipAssociate:MysqlEipAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlEipAssociateArgs args: The arguments to use to populate this resource's properties.

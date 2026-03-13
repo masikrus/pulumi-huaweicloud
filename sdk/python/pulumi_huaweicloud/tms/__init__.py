@@ -10,6 +10,7 @@ from .get_quotas import *
 from .get_resource_instances import *
 from .get_resource_tag_keys import *
 from .get_resource_tag_values import *
+from .get_resource_tags import *
 from .get_resource_types import *
 from .get_tags import *
 from .resource_tags import *

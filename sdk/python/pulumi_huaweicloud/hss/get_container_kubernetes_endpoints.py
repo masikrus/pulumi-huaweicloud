@@ -156,7 +156,7 @@ def get_container_kubernetes_endpoints(cluster_name: Optional[_builtins.str] = N
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes_endpoints()
+    test = huaweicloud.Hss.get_container_kubernetes_endpoints()
     ```
 
 
@@ -179,7 +179,7 @@ def get_container_kubernetes_endpoints(cluster_name: Optional[_builtins.str] = N
     __args__['namespace'] = namespace
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerKubernetesEndpoints:getContainerKubernetesEndpoints', __args__, opts=opts, typ=GetContainerKubernetesEndpointsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerKubernetesEndpoints:getContainerKubernetesEndpoints', __args__, opts=opts, typ=GetContainerKubernetesEndpointsResult).value
 
     return AwaitableGetContainerKubernetesEndpointsResult(
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
@@ -206,7 +206,7 @@ def get_container_kubernetes_endpoints_output(cluster_name: Optional[pulumi.Inpu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_kubernetes_endpoints()
+    test = huaweicloud.Hss.get_container_kubernetes_endpoints()
     ```
 
 
@@ -229,7 +229,7 @@ def get_container_kubernetes_endpoints_output(cluster_name: Optional[pulumi.Inpu
     __args__['namespace'] = namespace
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerKubernetesEndpoints:getContainerKubernetesEndpoints', __args__, opts=opts, typ=GetContainerKubernetesEndpointsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerKubernetesEndpoints:getContainerKubernetesEndpoints', __args__, opts=opts, typ=GetContainerKubernetesEndpointsResult)
     return __ret__.apply(lambda __response__: GetContainerKubernetesEndpointsResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),
         endpoint_info_lists=pulumi.get(__response__, 'endpoint_info_lists'),

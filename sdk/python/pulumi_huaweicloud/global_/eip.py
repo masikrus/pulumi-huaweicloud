@@ -28,6 +28,7 @@ class EipArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Eip resource.
+
         :param pulumi.Input[_builtins.str] access_site: Specifies the access site name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] geip_pool_name: Specifies the global EIP pool name.
@@ -167,6 +168,7 @@ class _EipState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Eip resources.
+
         :param pulumi.Input[_builtins.str] access_site: Specifies the access site name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] associate_instance_id: The ID of the associate instance.
@@ -493,7 +495,7 @@ class _EipState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:global/eip:Eip")
+@pulumi.type_token("huaweicloud:Global/eip:Eip")
 class Eip(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -520,7 +522,7 @@ class Eip(pulumi.CustomResource):
         enterprise_project_id = config.require_object("enterpriseProjectId")
         bandwidth_name = config.require_object("bandwidthName")
         eip_name = config.require_object("eipName")
-        all = huaweicloud.global.get_eip_pools()
+        all = huaweicloud.Global.get_eip_pools()
         test = huaweicloud.global_.InternetBandwidth("test",
             access_site=all.geip_pools[0].access_site,
             charge_mode="95peak_guar",
@@ -544,11 +546,10 @@ class Eip(pulumi.CustomResource):
 
         The global EIP can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/eip:Eip test <id>
+        $ pulumi import huaweicloud:Global/eip:Eip test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -583,7 +584,7 @@ class Eip(pulumi.CustomResource):
         enterprise_project_id = config.require_object("enterpriseProjectId")
         bandwidth_name = config.require_object("bandwidthName")
         eip_name = config.require_object("eipName")
-        all = huaweicloud.global.get_eip_pools()
+        all = huaweicloud.Global.get_eip_pools()
         test = huaweicloud.global_.InternetBandwidth("test",
             access_site=all.geip_pools[0].access_site,
             charge_mode="95peak_guar",
@@ -607,11 +608,10 @@ class Eip(pulumi.CustomResource):
 
         The global EIP can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:global/eip:Eip test <id>
+        $ pulumi import huaweicloud:Global/eip:Eip test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipArgs args: The arguments to use to populate this resource's properties.
@@ -672,7 +672,7 @@ class Eip(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Eip, __self__).__init__(
-            'huaweicloud:global/eip:Eip',
+            'huaweicloud:Global/eip:Eip',
             resource_name,
             __props__,
             opts)

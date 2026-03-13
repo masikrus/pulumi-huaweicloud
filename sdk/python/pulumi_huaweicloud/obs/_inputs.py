@@ -53,25 +53,20 @@ __all__ = [
     'BucketWebsiteArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BucketAclAccountPermissionArgsDict(TypedDict):
-        account_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the account id to authorize. The account id cannot be the bucket owner,
-        and must be unique.
-        """
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to bucket. Valid values are **READ** and **WRITE**.
-        """
-elif False:
-    BucketAclAccountPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclAccountPermissionArgsDict(TypedDict):
+    account_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the account id to authorize. The account id cannot be the bucket owner,
+    and must be unique.
+    """
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to bucket. Valid values are **READ** and **WRITE**.
+    """
 
 @pulumi.input_type
 class BucketAclAccountPermissionArgs:
@@ -129,18 +124,15 @@ class BucketAclAccountPermissionArgs:
         pulumi.set(self, "access_to_buckets", value)
 
 
-if not MYPY:
-    class BucketAclLogDeliveryUserPermissionArgsDict(TypedDict):
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to bucket. Valid values are **READ** and **WRITE**.
-        """
-elif False:
-    BucketAclLogDeliveryUserPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclLogDeliveryUserPermissionArgsDict(TypedDict):
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to bucket. Valid values are **READ** and **WRITE**.
+    """
 
 @pulumi.input_type
 class BucketAclLogDeliveryUserPermissionArgs:
@@ -181,18 +173,15 @@ class BucketAclLogDeliveryUserPermissionArgs:
         pulumi.set(self, "access_to_buckets", value)
 
 
-if not MYPY:
-    class BucketAclOwnerPermissionArgsDict(TypedDict):
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to bucket. Valid values are **READ** and **WRITE**.
-        """
-elif False:
-    BucketAclOwnerPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclOwnerPermissionArgsDict(TypedDict):
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to bucket. Valid values are **READ** and **WRITE**.
+    """
 
 @pulumi.input_type
 class BucketAclOwnerPermissionArgs:
@@ -233,18 +222,15 @@ class BucketAclOwnerPermissionArgs:
         pulumi.set(self, "access_to_buckets", value)
 
 
-if not MYPY:
-    class BucketAclPublicPermissionArgsDict(TypedDict):
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to bucket. Valid values are **READ** and **WRITE**.
-        """
-elif False:
-    BucketAclPublicPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclPublicPermissionArgsDict(TypedDict):
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_buckets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to bucket. Valid values are **READ** and **WRITE**.
+    """
 
 @pulumi.input_type
 class BucketAclPublicPermissionArgs:
@@ -285,35 +271,32 @@ class BucketAclPublicPermissionArgs:
         pulumi.set(self, "access_to_buckets", value)
 
 
-if not MYPY:
-    class BucketCorsRuleArgsDict(TypedDict):
-        allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the acceptable operation type of buckets and objects. The methods
-        include `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
-        """
-        allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Requests from this origin can access the bucket. Multiple matching rules are
-        allowed. One rule occupies one line, and allows one wildcard character (*) at most.
-        """
-        allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the allowed header of cross-origin requests. Only CORS requests
-        matching the allowed header are valid.
-        """
-        expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the exposed header in CORS responses, providing additional information
-        for clients.
-        """
-        max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration that your browser can cache CORS responses, expressed in
-        seconds. The default value is 100.
-        """
-elif False:
-    BucketCorsRuleArgsDict: TypeAlias = Mapping[str, Any]
+class BucketCorsRuleArgsDict(TypedDict):
+    allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the acceptable operation type of buckets and objects. The methods
+    include `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+    """
+    allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Requests from this origin can access the bucket. Multiple matching rules are
+    allowed. One rule occupies one line, and allows one wildcard character (*) at most.
+    """
+    allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the allowed header of cross-origin requests. Only CORS requests
+    matching the allowed header are valid.
+    """
+    expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the exposed header in CORS responses, providing additional information
+    for clients.
+    """
+    max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration that your browser can cache CORS responses, expressed in
+    seconds. The default value is 100.
+    """
 
 @pulumi.input_type
 class BucketCorsRuleArgs:
@@ -410,55 +393,52 @@ class BucketCorsRuleArgs:
         pulumi.set(self, "max_age_seconds", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        """
-        Specifies lifecycle rule status.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.
-        """
-        abort_incomplete_multipart_uploads: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleAbortIncompleteMultipartUploadArgsDict']]]]
-        """
-        Specifies a period when the not merged parts (fragments) in an
-        incomplete upload are automatically deleted. (documented below).
+class BucketLifecycleRuleArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Specifies lifecycle rule status.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.
+    """
+    abort_incomplete_multipart_uploads: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleAbortIncompleteMultipartUploadArgsDict']]]]
+    """
+    Specifies a period when the not merged parts (fragments) in an
+    incomplete upload are automatically deleted. (documented below).
 
-        At least one of `expiration`, `transition`, `noncurrent_version_expiration`, `noncurrent_version_transition`,
-        `abort_incomplete_multipart_upload` must be specified. The parameter `versioning` must be set to **true** before using
-        `noncurrent_version_expiration` or `noncurrent_version_transition`.
-        """
-        expirations: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleExpirationArgsDict']]]]
-        """
-        Specifies a period when objects that have been last updated are automatically
-        deleted. (documented below).
-        """
-        noncurrent_version_expirations: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionExpirationArgsDict']]]]
-        """
-        Specifies a period when noncurrent object versions are
-        automatically deleted. (documented below).
-        """
-        noncurrent_version_transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionTransitionArgsDict']]]]
-        """
-        Specifies a period when noncurrent object versions are
-        automatically transitioned to `WARM` or `COLD` storage class (documented below).
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Object key prefix identifying one or more objects to which the rule applies. If omitted,
-        all objects in the bucket will be managed by the lifecycle rule. The prefix cannot start or end with a slash (/),
-        cannot have consecutive slashes (/), and cannot contain the following special characters: \\:*?"<>|.
-        When configuring multiple `lifecycle_rule`, field `prefix` in multiple `lifecycle_rule` cannot have an inclusive
-        relationship.
-        """
-        transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]
-        """
-        Specifies a period when objects that have been last updated are automatically
-        transitioned to `WARM` or `COLD` storage class (documented below).
-        """
-elif False:
-    BucketLifecycleRuleArgsDict: TypeAlias = Mapping[str, Any]
+    At least one of `expiration`, `transition`, `noncurrent_version_expiration`, `noncurrent_version_transition`,
+    `abort_incomplete_multipart_upload` must be specified. The parameter `versioning` must be set to **true** before using
+    `noncurrent_version_expiration` or `noncurrent_version_transition`.
+    """
+    expirations: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleExpirationArgsDict']]]]
+    """
+    Specifies a period when objects that have been last updated are automatically
+    deleted. (documented below).
+    """
+    noncurrent_version_expirations: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionExpirationArgsDict']]]]
+    """
+    Specifies a period when noncurrent object versions are
+    automatically deleted. (documented below).
+    """
+    noncurrent_version_transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionTransitionArgsDict']]]]
+    """
+    Specifies a period when noncurrent object versions are
+    automatically transitioned to `WARM` or `COLD` storage class (documented below).
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Object key prefix identifying one or more objects to which the rule applies. If omitted,
+    all objects in the bucket will be managed by the lifecycle rule. The prefix cannot start or end with a slash (/),
+    cannot have consecutive slashes (/), and cannot contain the following special characters: \\:*?"<>|.
+    When configuring multiple `lifecycle_rule`, field `prefix` in multiple `lifecycle_rule` cannot have an inclusive
+    relationship.
+    """
+    transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]
+    """
+    Specifies a period when objects that have been last updated are automatically
+    transitioned to `WARM` or `COLD` storage class (documented below).
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleArgs:
@@ -619,16 +599,13 @@ class BucketLifecycleRuleArgs:
         pulumi.set(self, "transitions", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleAbortIncompleteMultipartUploadArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days since the initiation of an incomplete multipart upload that OBS
-        will wait before deleting the not merged parts (fragments) of the upload.
-        The valid value ranges from 1 to 2,147,483,647.
-        """
-elif False:
-    BucketLifecycleRuleAbortIncompleteMultipartUploadArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleAbortIncompleteMultipartUploadArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days since the initiation of an incomplete multipart upload that OBS
+    will wait before deleting the not merged parts (fragments) of the upload.
+    The valid value ranges from 1 to 2,147,483,647.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleAbortIncompleteMultipartUploadArgs:
@@ -656,15 +633,12 @@ class BucketLifecycleRuleAbortIncompleteMultipartUploadArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleExpirationArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days when objects that have been last updated are automatically
-        deleted. The expiration time must be greater than the transition times.
-        """
-elif False:
-    BucketLifecycleRuleExpirationArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleExpirationArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days when objects that have been last updated are automatically
+    deleted. The expiration time must be greater than the transition times.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleExpirationArgs:
@@ -690,14 +664,11 @@ class BucketLifecycleRuleExpirationArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleNoncurrentVersionExpirationArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days when noncurrent object versions are automatically deleted.
-        """
-elif False:
-    BucketLifecycleRuleNoncurrentVersionExpirationArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleNoncurrentVersionExpirationArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days when noncurrent object versions are automatically deleted.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleNoncurrentVersionExpirationArgs:
@@ -721,20 +692,17 @@ class BucketLifecycleRuleNoncurrentVersionExpirationArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleNoncurrentVersionTransitionArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days when noncurrent object versions are automatically transitioned
-        to the specified storage class.
-        """
-        storage_class: pulumi.Input[_builtins.str]
-        """
-        The class of storage used to store the object. Only `WARM` and `COLD` are
-        supported.
-        """
-elif False:
-    BucketLifecycleRuleNoncurrentVersionTransitionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleNoncurrentVersionTransitionArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days when noncurrent object versions are automatically transitioned
+    to the specified storage class.
+    """
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    The class of storage used to store the object. Only `WARM` and `COLD` are
+    supported.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleNoncurrentVersionTransitionArgs:
@@ -777,20 +745,17 @@ class BucketLifecycleRuleNoncurrentVersionTransitionArgs:
         pulumi.set(self, "storage_class", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleTransitionArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days when objects that have been last updated are automatically
-        transitioned to the specified storage class.
-        """
-        storage_class: pulumi.Input[_builtins.str]
-        """
-        The class of storage used to store the object. Only `WARM` and `COLD` are
-        supported.
-        """
-elif False:
-    BucketLifecycleRuleTransitionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleTransitionArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days when objects that have been last updated are automatically
+    transitioned to the specified storage class.
+    """
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    The class of storage used to store the object. Only `WARM` and `COLD` are
+    supported.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleTransitionArgs:
@@ -833,27 +798,24 @@ class BucketLifecycleRuleTransitionArgs:
         pulumi.set(self, "storage_class", value)
 
 
-if not MYPY:
-    class BucketLoggingArgsDict(TypedDict):
-        target_bucket: pulumi.Input[_builtins.str]
-        """
-        The name of the bucket that will receive the log objects. The acl policy of the
-        target bucket should be `log-delivery-write`.
-        """
-        agency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IAM agency of OBS cloud service.
+class BucketLoggingArgsDict(TypedDict):
+    target_bucket: pulumi.Input[_builtins.str]
+    """
+    The name of the bucket that will receive the log objects. The acl policy of the
+    target bucket should be `log-delivery-write`.
+    """
+    agency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IAM agency of OBS cloud service.
 
-        > The IAM agency requires the `PutObject` permission for the target bucket.  If default encryption is enabled for the
-        target bucket, the agency also requires the `KMS Administrator` permission in the region where the target bucket is
-        located.
-        """
-        target_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        To specify a key prefix for log objects.
-        """
-elif False:
-    BucketLoggingArgsDict: TypeAlias = Mapping[str, Any]
+    > The IAM agency requires the `PutObject` permission for the target bucket.  If default encryption is enabled for the
+    target bucket, the agency also requires the `KMS Administrator` permission in the region where the target bucket is
+    located.
+    """
+    target_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    To specify a key prefix for log objects.
+    """
 
 @pulumi.input_type
 class BucketLoggingArgs:
@@ -919,23 +881,20 @@ class BucketLoggingArgs:
         pulumi.set(self, "target_prefix", value)
 
 
-if not MYPY:
-    class BucketObjectAclAccountPermissionArgsDict(TypedDict):
-        account_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the account id to authorize. The account id cannot be the object owner,
-        and must be unique.
-        """
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to object. Only **READ** supported.
-        """
-elif False:
-    BucketObjectAclAccountPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketObjectAclAccountPermissionArgsDict(TypedDict):
+    account_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the account id to authorize. The account id cannot be the object owner,
+    and must be unique.
+    """
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to object. Only **READ** supported.
+    """
 
 @pulumi.input_type
 class BucketObjectAclAccountPermissionArgs:
@@ -993,18 +952,15 @@ class BucketObjectAclAccountPermissionArgs:
         pulumi.set(self, "access_to_objects", value)
 
 
-if not MYPY:
-    class BucketObjectAclOwnerPermissionArgsDict(TypedDict):
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to object. Only **READ** supported.
-        """
-elif False:
-    BucketObjectAclOwnerPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketObjectAclOwnerPermissionArgsDict(TypedDict):
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to object. Only **READ** supported.
+    """
 
 @pulumi.input_type
 class BucketObjectAclOwnerPermissionArgs:
@@ -1045,18 +1001,15 @@ class BucketObjectAclOwnerPermissionArgs:
         pulumi.set(self, "access_to_objects", value)
 
 
-if not MYPY:
-    class BucketObjectAclPublicPermissionArgsDict(TypedDict):
-        access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
-        """
-        access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the access to object. Only **READ** supported.
-        """
-elif False:
-    BucketObjectAclPublicPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketObjectAclPublicPermissionArgsDict(TypedDict):
+    access_to_acls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to acl. Valid values are **READ_ACP** and **WRITE_ACP**.
+    """
+    access_to_objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the access to object. Only **READ** supported.
+    """
 
 @pulumi.input_type
 class BucketObjectAclPublicPermissionArgs:
@@ -1097,37 +1050,34 @@ class BucketObjectAclPublicPermissionArgs:
         pulumi.set(self, "access_to_objects", value)
 
 
-if not MYPY:
-    class BucketReplicationRuleArgsDict(TypedDict):
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies cross-region replication rule status. Defaults to `true`.
-        """
-        history_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies cross-region replication history rule status. Defaults to `false`.
-        If the value is `true`, historical objects meeting this rule are copied.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the bucket.
-        * `rule/id` - The ID of a rule in UUID format.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix of an object key name, applicable to one or more objects.
-        The maximum length of a prefix is 1024 characters.
-        Duplicated prefixes are not supported. If omitted, all objects in the bucket will be managed by the lifecycle rule.
-        To copy a folder, end the prefix with a slash (/), for example, imgs/.
-        """
-        storage_class: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the storage class for replicated objects. Valid values are `STANDARD`,
-        `WARM` (Infrequent Access) and `COLD` (Archive).
-        If omitted, the storage class of object copies is the same as that of objects in the source bucket.
-        """
-elif False:
-    BucketReplicationRuleArgsDict: TypeAlias = Mapping[str, Any]
+class BucketReplicationRuleArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies cross-region replication rule status. Defaults to `true`.
+    """
+    history_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies cross-region replication history rule status. Defaults to `false`.
+    If the value is `true`, historical objects meeting this rule are copied.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the bucket.
+    * `rule/id` - The ID of a rule in UUID format.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix of an object key name, applicable to one or more objects.
+    The maximum length of a prefix is 1024 characters.
+    Duplicated prefixes are not supported. If omitted, all objects in the bucket will be managed by the lifecycle rule.
+    To copy a folder, end the prefix with a slash (/), for example, imgs/.
+    """
+    storage_class: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the storage class for replicated objects. Valid values are `STANDARD`,
+    `WARM` (Infrequent Access) and `COLD` (Archive).
+    If omitted, the storage class of object copies is the same as that of objects in the source bucket.
+    """
 
 @pulumi.input_type
 class BucketReplicationRuleArgs:
@@ -1230,18 +1180,15 @@ class BucketReplicationRuleArgs:
         pulumi.set(self, "storage_class", value)
 
 
-if not MYPY:
-    class BucketStorageInfoArgsDict(TypedDict):
-        object_number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of objects stored in the bucket.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The stored size of the bucket.
-        """
-elif False:
-    BucketStorageInfoArgsDict: TypeAlias = Mapping[str, Any]
+class BucketStorageInfoArgsDict(TypedDict):
+    object_number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of objects stored in the bucket.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The stored size of the bucket.
+    """
 
 @pulumi.input_type
 class BucketStorageInfoArgs:
@@ -1282,38 +1229,35 @@ class BucketStorageInfoArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class BucketWebsiteArgsDict(TypedDict):
-        error_document: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the error page returned when an error occurs during static website
-        access. Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.
-        """
-        index_document: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unless using `redirect_all_requests_to`. Specifies the default homepage of the
-        static website, only HTML web pages are supported. OBS only allows files such as `index.html` in the root directory of
-        a bucket to function as the default homepage. That is to say, do not set the default homepage with a multi-level
-        directory structure (for example, /page/index.html).
-        """
-        redirect_all_requests_to: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A hostname to redirect all website requests for this bucket to.
-        Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The
-        default is the protocol that is used in the original request.
-        """
-        routing_rules: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON or XML format containing routing rules describing redirect behavior and
-        when redirects are applied. Each rule contains a `Condition` and a `Redirect` as shown in the following table:
+class BucketWebsiteArgsDict(TypedDict):
+    error_document: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the error page returned when an error occurs during static website
+    access. Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.
+    """
+    index_document: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Unless using `redirect_all_requests_to`. Specifies the default homepage of the
+    static website, only HTML web pages are supported. OBS only allows files such as `index.html` in the root directory of
+    a bucket to function as the default homepage. That is to say, do not set the default homepage with a multi-level
+    directory structure (for example, /page/index.html).
+    """
+    redirect_all_requests_to: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A hostname to redirect all website requests for this bucket to.
+    Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The
+    default is the protocol that is used in the original request.
+    """
+    routing_rules: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON or XML format containing routing rules describing redirect behavior and
+    when redirects are applied. Each rule contains a `Condition` and a `Redirect` as shown in the following table:
 
-        Parameter | Key
-        --- | ---
-        Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals
-        Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode
-        """
-elif False:
-    BucketWebsiteArgsDict: TypeAlias = Mapping[str, Any]
+    Parameter | Key
+    --- | ---
+    Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals
+    Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode
+    """
 
 @pulumi.input_type
 class BucketWebsiteArgs:

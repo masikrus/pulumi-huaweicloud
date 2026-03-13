@@ -27,7 +27,7 @@ class GetUsersResult:
     """
     A collection of values returned by getUsers.
     """
-    def __init__(__self__, enabled=None, id=None, name=None, users=None):
+    def __init__(__self__, enabled=None, id=None, name=None, user_id=None, users=None):
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
@@ -37,6 +37,9 @@ class GetUsersResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if user_id and not isinstance(user_id, str):
+            raise TypeError("Expected argument 'user_id' to be a str")
+        pulumi.set(__self__, "user_id", user_id)
         if users and not isinstance(users, list):
             raise TypeError("Expected argument 'users' to be a list")
         pulumi.set(__self__, "users", users)
@@ -45,7 +48,7 @@ class GetUsersResult:
     @pulumi.getter
     def enabled(self) -> Optional[_builtins.bool]:
         """
-        Indicates the whether the IAM user is enabled.
+        Indicates whether the IAM user is enabled.
         """
         return pulumi.get(self, "enabled")
 
@@ -61,15 +64,21 @@ class GetUsersResult:
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        Indicates the IAM user name.
+        Indicates the IAM username.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "user_id")
 
     @_builtins.property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetUsersUserResult']:
         """
         The details of the queried IAM users. The structure is documented below.
+        The users structure is documented below.
         """
         return pulumi.get(self, "users")
 
@@ -83,11 +92,13 @@ class AwaitableGetUsersResult(GetUsersResult):
             enabled=self.enabled,
             id=self.id,
             name=self.name,
+            user_id=self.user_id,
             users=self.users)
 
 
 def get_users(enabled: Optional[_builtins.bool] = None,
               name: Optional[_builtins.str] = None,
+              user_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
     Use this data source to query the IAM user list within HuaweiCloud.
@@ -100,17 +111,23 @@ def get_users(enabled: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
+    config = pulumi.Config()
+    user_name = config.require_object("userName")
+    user_id = config.require_object("userId")
     all = huaweicloud.Iam.get_users()
-    one = huaweicloud.Iam.get_users(name="user_name")
+    one1 = huaweicloud.Iam.get_users(name=user_name)
+    one2 = huaweicloud.Iam.get_users(user_id=user_id)
     ```
 
 
     :param _builtins.bool enabled: Specifies the status of the IAM user, the default value is **true**.
-    :param _builtins.str name: Specifies the IAM user name.
+    :param _builtins.str name: Specifies the IAM username.
+    :param _builtins.str user_id: Specifies the id of the IAM user. This parameter conflicts with `name` and `enabled`.
     """
     __args__ = dict()
     __args__['enabled'] = enabled
     __args__['name'] = name
+    __args__['userId'] = user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('huaweicloud:Iam/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
@@ -118,9 +135,11 @@ def get_users(enabled: Optional[_builtins.bool] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        user_id=pulumi.get(__ret__, 'user_id'),
         users=pulumi.get(__ret__, 'users'))
 def get_users_output(enabled: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                      name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                     user_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     Use this data source to query the IAM user list within HuaweiCloud.
@@ -133,21 +152,28 @@ def get_users_output(enabled: Optional[pulumi.Input[Optional[_builtins.bool]]] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
+    config = pulumi.Config()
+    user_name = config.require_object("userName")
+    user_id = config.require_object("userId")
     all = huaweicloud.Iam.get_users()
-    one = huaweicloud.Iam.get_users(name="user_name")
+    one1 = huaweicloud.Iam.get_users(name=user_name)
+    one2 = huaweicloud.Iam.get_users(user_id=user_id)
     ```
 
 
     :param _builtins.bool enabled: Specifies the status of the IAM user, the default value is **true**.
-    :param _builtins.str name: Specifies the IAM user name.
+    :param _builtins.str name: Specifies the IAM username.
+    :param _builtins.str user_id: Specifies the id of the IAM user. This parameter conflicts with `name` and `enabled`.
     """
     __args__ = dict()
     __args__['enabled'] = enabled
     __args__['name'] = name
+    __args__['userId'] = user_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:Iam/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        user_id=pulumi.get(__response__, 'user_id'),
         users=pulumi.get(__response__, 'users')))

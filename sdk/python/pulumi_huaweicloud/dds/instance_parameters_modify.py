@@ -27,6 +27,7 @@ class InstanceParametersModifyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceParametersModify resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParametersModifyParameterArgs']]] parameters: Specify an array of one or more parameters to be set to the DDS instance or entity.
@@ -121,6 +122,7 @@ class _InstanceParametersModifyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceParametersModify resources.
+
         :param pulumi.Input[_builtins.str] entity_id: Specifies the ID of a DDS instance entity.
                + If the DB instance type is cluster and the shard or config parameter template is to be changed, the value is the
                group ID. If the parameter template of the mongos node is to be changed, the value is the node ID.
@@ -266,6 +268,7 @@ class InstanceParametersModify(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] entity_id: Specifies the ID of a DDS instance entity.
@@ -337,6 +340,7 @@ class InstanceParametersModify(pulumi.CustomResource):
                 "value": parameter_value,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceParametersModifyArgs args: The arguments to use to populate this resource's properties.

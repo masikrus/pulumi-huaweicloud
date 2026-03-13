@@ -23,6 +23,7 @@ class VirtualMfaDeviceArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VirtualMfaDevice resource.
+
         :param pulumi.Input[_builtins.str] user_id: Specifies the user ID which the virtual MFA device belongs to.
                Changing this will create a new virtual MFA device.
         :param pulumi.Input[_builtins.str] name: Specifies the virtual MFA device name. Changing this will create a new virtual
@@ -68,6 +69,7 @@ class _VirtualMfaDeviceState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VirtualMfaDevice resources.
+
         :param pulumi.Input[_builtins.str] base32_string_seed: The base32 seed, which a third-patry system can use to generate a `CAPTCHA` code.
         :param pulumi.Input[_builtins.str] name: Specifies the virtual MFA device name. Changing this will create a new virtual
                MFA device.
@@ -147,6 +149,14 @@ class VirtualMfaDevice(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages an IAM virtual MFA device resource within HuaweiCloud.
+
+        > **NOTE:** You *must* have admin privileges to use this resource.
+
+        > **NOTE:** A virtual MFA device cannot be directly associated with an IAM User from Terraform. To associate the
+        virtual MFA device with a user and enable it, use the code returned in either `base32_string_seed` or `qr_code_png` to
+        generate TOTP authentication codes.
+
         ## Example Usage
 
         ```python
@@ -165,11 +175,10 @@ class VirtualMfaDevice(pulumi.CustomResource):
 
         The virtual MFA device can be imported using the `user_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/virtualMfaDevice:VirtualMfaDevice test <user_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,6 +194,14 @@ class VirtualMfaDevice(pulumi.CustomResource):
                  args: VirtualMfaDeviceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages an IAM virtual MFA device resource within HuaweiCloud.
+
+        > **NOTE:** You *must* have admin privileges to use this resource.
+
+        > **NOTE:** A virtual MFA device cannot be directly associated with an IAM User from Terraform. To associate the
+        virtual MFA device with a user and enable it, use the code returned in either `base32_string_seed` or `qr_code_png` to
+        generate TOTP authentication codes.
+
         ## Example Usage
 
         ```python
@@ -203,11 +220,10 @@ class VirtualMfaDevice(pulumi.CustomResource):
 
         The virtual MFA device can be imported using the `user_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/virtualMfaDevice:VirtualMfaDevice test <user_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VirtualMfaDeviceArgs args: The arguments to use to populate this resource's properties.

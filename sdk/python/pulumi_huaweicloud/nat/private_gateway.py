@@ -28,6 +28,7 @@ class PrivateGatewayArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PrivateGateway resource.
+
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the network ID of the subnet to which the private NAT gateway
                belongs.
                Changing this will create a new resource.
@@ -189,6 +190,7 @@ class _PrivateGatewayState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateGateway resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the private NAT gateway.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the private NAT gateway, which contain maximum of
                `255` characters, and angle brackets (< and >) are not allowed.
@@ -432,11 +434,10 @@ class PrivateGateway(pulumi.CustomResource):
 
         The private NAT gateways can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateGateway:PrivateGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -496,11 +497,10 @@ class PrivateGateway(pulumi.CustomResource):
 
         The private NAT gateways can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateGateway:PrivateGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateGatewayArgs args: The arguments to use to populate this resource's properties.

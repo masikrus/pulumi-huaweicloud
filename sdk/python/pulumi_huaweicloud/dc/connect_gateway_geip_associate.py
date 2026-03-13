@@ -26,6 +26,7 @@ class ConnectGatewayGeipAssociateArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ConnectGatewayGeipAssociate resource.
+
         :param pulumi.Input[_builtins.str] connect_gateway_id: Specifies the DC connect gateway ID.
         :param pulumi.Input[_builtins.str] global_eip_id: Specifies the global EIP ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -119,6 +120,7 @@ class _ConnectGatewayGeipAssociateState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConnectGatewayGeipAssociate resources.
+
         :param pulumi.Input[_builtins.str] address_family: Indicates the address family of the global EIP.
         :param pulumi.Input[_builtins.str] cidr: Indicates the global EIP and its subnet mask.
         :param pulumi.Input[_builtins.str] connect_gateway_id: Specifies the DC connect gateway ID.
@@ -302,7 +304,7 @@ class _ConnectGatewayGeipAssociateState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate")
+@pulumi.type_token("huaweicloud:Dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate")
 class ConnectGatewayGeipAssociate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -335,14 +337,12 @@ class ConnectGatewayGeipAssociate(pulumi.CustomResource):
         ## Import
 
         The DC connect gateway global EIP associate resource can be imported using the `connect_gateway_id` and `global_eip_id`,
-
         separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate test <connect_gateway_id>/<global_eip_id>
+        $ pulumi import huaweicloud:Dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate test <connect_gateway_id>/<global_eip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,14 +380,12 @@ class ConnectGatewayGeipAssociate(pulumi.CustomResource):
         ## Import
 
         The DC connect gateway global EIP associate resource can be imported using the `connect_gateway_id` and `global_eip_id`,
-
         separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate test <connect_gateway_id>/<global_eip_id>
+        $ pulumi import huaweicloud:Dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate test <connect_gateway_id>/<global_eip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectGatewayGeipAssociateArgs args: The arguments to use to populate this resource's properties.
@@ -435,7 +433,7 @@ class ConnectGatewayGeipAssociate(pulumi.CustomResource):
             __props__.__dict__["ie_vtep_ip"] = None
             __props__.__dict__["status"] = None
         super(ConnectGatewayGeipAssociate, __self__).__init__(
-            'huaweicloud:dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate',
+            'huaweicloud:Dc/connectGatewayGeipAssociate:ConnectGatewayGeipAssociate',
             resource_name,
             __props__,
             opts)

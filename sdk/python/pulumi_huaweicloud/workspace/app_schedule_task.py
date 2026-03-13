@@ -39,6 +39,7 @@ class AppScheduleTaskArgs:
                  week_list: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppScheduleTask resource.
+
         :param pulumi.Input[_builtins.str] scheduled_time: Specifies the execution time of the schedule task.  
                The format is `HH:mm:ss`.
         :param pulumi.Input[_builtins.str] scheduled_type: Specifies the execution cycle of the schedule task.  
@@ -366,6 +367,7 @@ class _AppScheduleTaskState:
                  week_list: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppScheduleTask resources.
+
         :param pulumi.Input[_builtins.str] date_list: Specifies the days of month of the schedule task.  
                The valid value ranges from `1` to `31` and `L` (means the last day), separated by commas, e.g. `1,2,28` or `L`.
                `L` can only be used alone, and cannot be used together with other values.
@@ -717,7 +719,7 @@ class AppScheduleTask(pulumi.CustomResource):
             target_infos=[{
                 "target_type": entry["value"]["targetType"],
                 "target_id": entry["value"]["targetId"],
-            } for entry in [{"key": k, "value": v} for k, v in target_objects]],
+            } for entry in [{"key": k, "value": v} for k, v in target_objects.items()]],
             task_name=schedule_task_name,
             task_type="STOP_SERVER",
             scheduled_type="WEEK",
@@ -730,11 +732,10 @@ class AppScheduleTask(pulumi.CustomResource):
 
         Schedule tasks can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appScheduleTask:AppScheduleTask test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -812,7 +813,7 @@ class AppScheduleTask(pulumi.CustomResource):
             target_infos=[{
                 "target_type": entry["value"]["targetType"],
                 "target_id": entry["value"]["targetId"],
-            } for entry in [{"key": k, "value": v} for k, v in target_objects]],
+            } for entry in [{"key": k, "value": v} for k, v in target_objects.items()]],
             task_name=schedule_task_name,
             task_type="STOP_SERVER",
             scheduled_type="WEEK",
@@ -825,11 +826,10 @@ class AppScheduleTask(pulumi.CustomResource):
 
         Schedule tasks can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/appScheduleTask:AppScheduleTask test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppScheduleTaskArgs args: The arguments to use to populate this resource's properties.

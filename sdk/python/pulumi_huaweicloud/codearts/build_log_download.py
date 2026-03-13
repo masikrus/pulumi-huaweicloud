@@ -26,6 +26,7 @@ class BuildLogDownloadArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BuildLogDownload resource.
+
         :param pulumi.Input[_builtins.str] record_id: Specifies the record ID.
         :param pulumi.Input[_builtins.str] log_file: Specifies the log file path. Defaults to *./{{record_id}}.txt*
         :param pulumi.Input[_builtins.str] log_level: Specifies the log level. Value can be **INFO** and **DEBUG**.
@@ -113,6 +114,7 @@ class _BuildLogDownloadState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BuildLogDownload resources.
+
         :param pulumi.Input[_builtins.str] log_file: Specifies the log file path. Defaults to *./{{record_id}}.txt*
         :param pulumi.Input[_builtins.str] log_level: Specifies the log level. Value can be **INFO** and **DEBUG**.
         :param pulumi.Input[_builtins.str] record_id: Specifies the record ID.
@@ -191,7 +193,7 @@ class _BuildLogDownloadState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/buildLogDownload:BuildLogDownload")
+@pulumi.type_token("huaweicloud:Codearts/buildLogDownload:BuildLogDownload")
 class BuildLogDownload(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -218,6 +220,7 @@ class BuildLogDownload(pulumi.CustomResource):
             record_id=record_id,
             log_file="./buildLog.txt")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -249,6 +252,7 @@ class BuildLogDownload(pulumi.CustomResource):
             record_id=record_id,
             log_file="./buildLog.txt")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BuildLogDownloadArgs args: The arguments to use to populate this resource's properties.
@@ -287,7 +291,7 @@ class BuildLogDownload(pulumi.CustomResource):
             __props__.__dict__["record_id"] = record_id
             __props__.__dict__["region"] = region
         super(BuildLogDownload, __self__).__init__(
-            'huaweicloud:codearts/buildLogDownload:BuildLogDownload',
+            'huaweicloud:Codearts/buildLogDownload:BuildLogDownload',
             resource_name,
             __props__,
             opts)

@@ -25,9 +25,11 @@ class CheckpointSyncArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CheckpointSync resource.
+
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether this checkpoint sync is automatically triggered.
         :param pulumi.Input[_builtins.str] vault_id: Specifies the ID of the hybrid cloud vault to sync checkpoints to.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         """
         pulumi.set(__self__, "auto_trigger", auto_trigger)
         pulumi.set(__self__, "vault_id", vault_id)
@@ -73,7 +75,8 @@ class CheckpointSyncArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 
@@ -91,8 +94,10 @@ class _CheckpointSyncState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CheckpointSync resources.
+
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether this checkpoint sync is automatically triggered.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] vault_id: Specifies the ID of the hybrid cloud vault to sync checkpoints to.
         """
         if auto_trigger is not None:
@@ -129,7 +134,8 @@ class _CheckpointSyncState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 
@@ -163,10 +169,12 @@ class CheckpointSync(pulumi.CustomResource):
                  __props__=None):
         """
         Create a CheckpointSync resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether this checkpoint sync is automatically triggered.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] vault_id: Specifies the ID of the hybrid cloud vault to sync checkpoints to.
         """
         ...
@@ -177,6 +185,7 @@ class CheckpointSync(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a CheckpointSync resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param CheckpointSyncArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -235,7 +244,8 @@ class CheckpointSync(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_trigger: Specifies whether this checkpoint sync is automatically triggered.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] vault_id: Specifies the ID of the hybrid cloud vault to sync checkpoints to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -265,7 +275,8 @@ class CheckpointSync(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 

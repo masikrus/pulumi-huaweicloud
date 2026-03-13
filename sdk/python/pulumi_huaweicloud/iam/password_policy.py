@@ -28,23 +28,29 @@ class PasswordPolicyArgs:
                  password_validity_period: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PasswordPolicy resource.
-        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is allowed
-               to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-               consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-               identical characters are not allowed in a password.
+
+        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is
+               allowed to consecutively present in a password.
+               The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+               are allowed in a password.
+               For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         :param pulumi.Input[_builtins.int] minimum_password_age: Specifies the minimum period (minutes) after which users are allowed to make
-               a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+               a password change.
+               The valid value is range from `0` to `1,440` and defaults to `0`.
         :param pulumi.Input[_builtins.int] minimum_password_length: Specifies the minimum number of characters that a password must contain.
-               The value ranges from `6` to `32` and defaults to `8`.
+               The valid value is range from `6` to `32` and defaults to `8`.
         :param pulumi.Input[_builtins.int] number_of_recent_passwords_disallowed: Specifies the member of previously used passwords that are
-               not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-               set the last three passwords that the user has previously used when setting a new password.
-        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must contain.
-               The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-               uppercase letters, lowercase letters, digits, and special characters.
-        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the username
-               spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-               be used as a password.
+               not allowed.
+               The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+               cannot set the last three passwords that the user has previously used when setting a new password.
+        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must
+               contain.
+               The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+               two of the following: uppercase letters, lowercase letters, digits, and special characters.
+        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the
+               username spelled backwards.
+               Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+               password.
         :param pulumi.Input[_builtins.int] password_validity_period: Specifies the password validity period (days).
                The value ranges from `0` to `180` and defaults to `0` which indicates that this requirement does not apply.
         """
@@ -67,10 +73,11 @@ class PasswordPolicyArgs:
     @pulumi.getter(name="maximumConsecutiveIdenticalChars")
     def maximum_consecutive_identical_chars(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of times that a character is allowed
-        to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-        consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-        identical characters are not allowed in a password.
+        Specifies the maximum number of times that a character is
+        allowed to consecutively present in a password.
+        The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+        are allowed in a password.
+        For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         """
         return pulumi.get(self, "maximum_consecutive_identical_chars")
 
@@ -83,7 +90,8 @@ class PasswordPolicyArgs:
     def minimum_password_age(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum period (minutes) after which users are allowed to make
-        a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+        a password change.
+        The valid value is range from `0` to `1,440` and defaults to `0`.
         """
         return pulumi.get(self, "minimum_password_age")
 
@@ -96,7 +104,7 @@ class PasswordPolicyArgs:
     def minimum_password_length(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum number of characters that a password must contain.
-        The value ranges from `6` to `32` and defaults to `8`.
+        The valid value is range from `6` to `32` and defaults to `8`.
         """
         return pulumi.get(self, "minimum_password_length")
 
@@ -109,8 +117,9 @@ class PasswordPolicyArgs:
     def number_of_recent_passwords_disallowed(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the member of previously used passwords that are
-        not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-        set the last three passwords that the user has previously used when setting a new password.
+        not allowed.
+        The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+        cannot set the last three passwords that the user has previously used when setting a new password.
         """
         return pulumi.get(self, "number_of_recent_passwords_disallowed")
 
@@ -122,9 +131,10 @@ class PasswordPolicyArgs:
     @pulumi.getter(name="passwordCharCombination")
     def password_char_combination(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the minimum number of character types that a password must contain.
-        The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-        uppercase letters, lowercase letters, digits, and special characters.
+        Specifies the minimum number of character types that a password must
+        contain.
+        The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+        two of the following: uppercase letters, lowercase letters, digits, and special characters.
         """
         return pulumi.get(self, "password_char_combination")
 
@@ -136,9 +146,10 @@ class PasswordPolicyArgs:
     @pulumi.getter(name="passwordNotUsernameOrInvert")
     def password_not_username_or_invert(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether the password can be the username or the username
-        spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-        be used as a password.
+        Specifies whether the password can be the username or the
+        username spelled backwards.
+        Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+        password.
         """
         return pulumi.get(self, "password_not_username_or_invert")
 
@@ -173,24 +184,30 @@ class _PasswordPolicyState:
                  password_validity_period: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PasswordPolicy resources.
-        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is allowed
-               to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-               consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-               identical characters are not allowed in a password.
+
+        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is
+               allowed to consecutively present in a password.
+               The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+               are allowed in a password.
+               For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         :param pulumi.Input[_builtins.int] maximum_password_length: The maximum number of characters that a password can contain.
         :param pulumi.Input[_builtins.int] minimum_password_age: Specifies the minimum period (minutes) after which users are allowed to make
-               a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+               a password change.
+               The valid value is range from `0` to `1,440` and defaults to `0`.
         :param pulumi.Input[_builtins.int] minimum_password_length: Specifies the minimum number of characters that a password must contain.
-               The value ranges from `6` to `32` and defaults to `8`.
+               The valid value is range from `6` to `32` and defaults to `8`.
         :param pulumi.Input[_builtins.int] number_of_recent_passwords_disallowed: Specifies the member of previously used passwords that are
-               not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-               set the last three passwords that the user has previously used when setting a new password.
-        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must contain.
-               The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-               uppercase letters, lowercase letters, digits, and special characters.
-        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the username
-               spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-               be used as a password.
+               not allowed.
+               The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+               cannot set the last three passwords that the user has previously used when setting a new password.
+        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must
+               contain.
+               The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+               two of the following: uppercase letters, lowercase letters, digits, and special characters.
+        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the
+               username spelled backwards.
+               Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+               password.
         :param pulumi.Input[_builtins.int] password_validity_period: Specifies the password validity period (days).
                The value ranges from `0` to `180` and defaults to `0` which indicates that this requirement does not apply.
         """
@@ -215,10 +232,11 @@ class _PasswordPolicyState:
     @pulumi.getter(name="maximumConsecutiveIdenticalChars")
     def maximum_consecutive_identical_chars(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the maximum number of times that a character is allowed
-        to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-        consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-        identical characters are not allowed in a password.
+        Specifies the maximum number of times that a character is
+        allowed to consecutively present in a password.
+        The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+        are allowed in a password.
+        For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         """
         return pulumi.get(self, "maximum_consecutive_identical_chars")
 
@@ -243,7 +261,8 @@ class _PasswordPolicyState:
     def minimum_password_age(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum period (minutes) after which users are allowed to make
-        a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+        a password change.
+        The valid value is range from `0` to `1,440` and defaults to `0`.
         """
         return pulumi.get(self, "minimum_password_age")
 
@@ -256,7 +275,7 @@ class _PasswordPolicyState:
     def minimum_password_length(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the minimum number of characters that a password must contain.
-        The value ranges from `6` to `32` and defaults to `8`.
+        The valid value is range from `6` to `32` and defaults to `8`.
         """
         return pulumi.get(self, "minimum_password_length")
 
@@ -269,8 +288,9 @@ class _PasswordPolicyState:
     def number_of_recent_passwords_disallowed(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the member of previously used passwords that are
-        not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-        set the last three passwords that the user has previously used when setting a new password.
+        not allowed.
+        The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+        cannot set the last three passwords that the user has previously used when setting a new password.
         """
         return pulumi.get(self, "number_of_recent_passwords_disallowed")
 
@@ -282,9 +302,10 @@ class _PasswordPolicyState:
     @pulumi.getter(name="passwordCharCombination")
     def password_char_combination(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the minimum number of character types that a password must contain.
-        The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-        uppercase letters, lowercase letters, digits, and special characters.
+        Specifies the minimum number of character types that a password must
+        contain.
+        The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+        two of the following: uppercase letters, lowercase letters, digits, and special characters.
         """
         return pulumi.get(self, "password_char_combination")
 
@@ -296,9 +317,10 @@ class _PasswordPolicyState:
     @pulumi.getter(name="passwordNotUsernameOrInvert")
     def password_not_username_or_invert(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether the password can be the username or the username
-        spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-        be used as a password.
+        Specifies whether the password can be the username or the
+        username spelled backwards.
+        Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+        password.
         """
         return pulumi.get(self, "password_not_username_or_invert")
 
@@ -335,13 +357,19 @@ class PasswordPolicy(pulumi.CustomResource):
                  password_validity_period: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        Manages the account password policy within HuaweiCloud.
+
+        > You *must* have admin privileges to use this resource.\\
+           This resource overwrites an existing configuration, make sure one resource per account.\\
+           During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        enhanced = huaweicloud.iam.PasswordPolicy("enhanced",
+        test = huaweicloud.iam.PasswordPolicy("test",
             password_char_combination=4,
             minimum_password_length=12,
             number_of_recent_passwords_disallowed=2,
@@ -352,31 +380,35 @@ class PasswordPolicy(pulumi.CustomResource):
 
         Identity password policy can be imported using the account ID or domain ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/passwordPolicy:PasswordPolicy example <your account ID>
+        $ pulumi import huaweicloud:Iam/passwordPolicy:PasswordPolicy example <domain_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is allowed
-               to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-               consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-               identical characters are not allowed in a password.
+        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is
+               allowed to consecutively present in a password.
+               The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+               are allowed in a password.
+               For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         :param pulumi.Input[_builtins.int] minimum_password_age: Specifies the minimum period (minutes) after which users are allowed to make
-               a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+               a password change.
+               The valid value is range from `0` to `1,440` and defaults to `0`.
         :param pulumi.Input[_builtins.int] minimum_password_length: Specifies the minimum number of characters that a password must contain.
-               The value ranges from `6` to `32` and defaults to `8`.
+               The valid value is range from `6` to `32` and defaults to `8`.
         :param pulumi.Input[_builtins.int] number_of_recent_passwords_disallowed: Specifies the member of previously used passwords that are
-               not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-               set the last three passwords that the user has previously used when setting a new password.
-        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must contain.
-               The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-               uppercase letters, lowercase letters, digits, and special characters.
-        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the username
-               spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-               be used as a password.
+               not allowed.
+               The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+               cannot set the last three passwords that the user has previously used when setting a new password.
+        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must
+               contain.
+               The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+               two of the following: uppercase letters, lowercase letters, digits, and special characters.
+        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the
+               username spelled backwards.
+               Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+               password.
         :param pulumi.Input[_builtins.int] password_validity_period: Specifies the password validity period (days).
                The value ranges from `0` to `180` and defaults to `0` which indicates that this requirement does not apply.
         """
@@ -387,13 +419,19 @@ class PasswordPolicy(pulumi.CustomResource):
                  args: Optional[PasswordPolicyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the account password policy within HuaweiCloud.
+
+        > You *must* have admin privileges to use this resource.\\
+           This resource overwrites an existing configuration, make sure one resource per account.\\
+           During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        enhanced = huaweicloud.iam.PasswordPolicy("enhanced",
+        test = huaweicloud.iam.PasswordPolicy("test",
             password_char_combination=4,
             minimum_password_length=12,
             number_of_recent_passwords_disallowed=2,
@@ -404,11 +442,10 @@ class PasswordPolicy(pulumi.CustomResource):
 
         Identity password policy can be imported using the account ID or domain ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Iam/passwordPolicy:PasswordPolicy example <your account ID>
+        $ pulumi import huaweicloud:Iam/passwordPolicy:PasswordPolicy example <domain_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PasswordPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -474,24 +511,29 @@ class PasswordPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is allowed
-               to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-               consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-               identical characters are not allowed in a password.
+        :param pulumi.Input[_builtins.int] maximum_consecutive_identical_chars: Specifies the maximum number of times that a character is
+               allowed to consecutively present in a password.
+               The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+               are allowed in a password.
+               For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         :param pulumi.Input[_builtins.int] maximum_password_length: The maximum number of characters that a password can contain.
         :param pulumi.Input[_builtins.int] minimum_password_age: Specifies the minimum period (minutes) after which users are allowed to make
-               a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+               a password change.
+               The valid value is range from `0` to `1,440` and defaults to `0`.
         :param pulumi.Input[_builtins.int] minimum_password_length: Specifies the minimum number of characters that a password must contain.
-               The value ranges from `6` to `32` and defaults to `8`.
+               The valid value is range from `6` to `32` and defaults to `8`.
         :param pulumi.Input[_builtins.int] number_of_recent_passwords_disallowed: Specifies the member of previously used passwords that are
-               not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-               set the last three passwords that the user has previously used when setting a new password.
-        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must contain.
-               The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-               uppercase letters, lowercase letters, digits, and special characters.
-        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the username
-               spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-               be used as a password.
+               not allowed.
+               The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+               cannot set the last three passwords that the user has previously used when setting a new password.
+        :param pulumi.Input[_builtins.int] password_char_combination: Specifies the minimum number of character types that a password must
+               contain.
+               The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+               two of the following: uppercase letters, lowercase letters, digits, and special characters.
+        :param pulumi.Input[_builtins.bool] password_not_username_or_invert: Specifies whether the password can be the username or the
+               username spelled backwards.
+               Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+               password.
         :param pulumi.Input[_builtins.int] password_validity_period: Specifies the password validity period (days).
                The value ranges from `0` to `180` and defaults to `0` which indicates that this requirement does not apply.
         """
@@ -513,10 +555,11 @@ class PasswordPolicy(pulumi.CustomResource):
     @pulumi.getter(name="maximumConsecutiveIdenticalChars")
     def maximum_consecutive_identical_chars(self) -> pulumi.Output[_builtins.int]:
         """
-        Specifies the maximum number of times that a character is allowed
-        to consecutively present in a password. The value ranges from `0` to `32` and defaults to `0` which indicates that
-        consecutive identical characters are allowed in a password. For example, value `2` indicates that two consecutive
-        identical characters are not allowed in a password.
+        Specifies the maximum number of times that a character is
+        allowed to consecutively present in a password.
+        The valid value is range from `0` to `32` and defaults to `0` which indicates that consecutive identical characters
+        are allowed in a password.
+        For example, value `2` indicates that two consecutive identical characters are not allowed in a password.
         """
         return pulumi.get(self, "maximum_consecutive_identical_chars")
 
@@ -533,7 +576,8 @@ class PasswordPolicy(pulumi.CustomResource):
     def minimum_password_age(self) -> pulumi.Output[_builtins.int]:
         """
         Specifies the minimum period (minutes) after which users are allowed to make
-        a password change. The value ranges from `0` to `1,440` and defaults to `0`.
+        a password change.
+        The valid value is range from `0` to `1,440` and defaults to `0`.
         """
         return pulumi.get(self, "minimum_password_age")
 
@@ -542,7 +586,7 @@ class PasswordPolicy(pulumi.CustomResource):
     def minimum_password_length(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Specifies the minimum number of characters that a password must contain.
-        The value ranges from `6` to `32` and defaults to `8`.
+        The valid value is range from `6` to `32` and defaults to `8`.
         """
         return pulumi.get(self, "minimum_password_length")
 
@@ -551,8 +595,9 @@ class PasswordPolicy(pulumi.CustomResource):
     def number_of_recent_passwords_disallowed(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Specifies the member of previously used passwords that are
-        not allowed. The value ranges from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user cannot
-        set the last three passwords that the user has previously used when setting a new password.
+        not allowed.
+        The valid value is range from `0` to `10` and defaults to `1`. For example, value `3` indicates that the user
+        cannot set the last three passwords that the user has previously used when setting a new password.
         """
         return pulumi.get(self, "number_of_recent_passwords_disallowed")
 
@@ -560,9 +605,10 @@ class PasswordPolicy(pulumi.CustomResource):
     @pulumi.getter(name="passwordCharCombination")
     def password_char_combination(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Specifies the minimum number of character types that a password must contain.
-        The value ranges from `2` to `4` and defaults to `2` which indicates that a password must contain at least two of the following:
-        uppercase letters, lowercase letters, digits, and special characters.
+        Specifies the minimum number of character types that a password must
+        contain.
+        The valid value is range from `2` to `4` and defaults to `2` which indicates that a password must contain at least
+        two of the following: uppercase letters, lowercase letters, digits, and special characters.
         """
         return pulumi.get(self, "password_char_combination")
 
@@ -570,9 +616,10 @@ class PasswordPolicy(pulumi.CustomResource):
     @pulumi.getter(name="passwordNotUsernameOrInvert")
     def password_not_username_or_invert(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether the password can be the username or the username
-        spelled backwards. Defaults to `true`, which indicates that the username or the inversion of username is not allowed to
-        be used as a password.
+        Specifies whether the password can be the username or the
+        username spelled backwards.
+        Defaults to `true`, which indicates that the username or the inversion of username is not allowed to be used as a
+        password.
         """
         return pulumi.get(self, "password_not_username_or_invert")
 

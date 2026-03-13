@@ -156,7 +156,7 @@ def get_container_nodes(agent_status: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_nodes()
+    test = huaweicloud.Hss.get_container_nodes()
     ```
 
 
@@ -192,7 +192,7 @@ def get_container_nodes(agent_status: Optional[_builtins.str] = None,
     __args__['protectStatus'] = protect_status
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerNodes:getContainerNodes', __args__, opts=opts, typ=GetContainerNodesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerNodes:getContainerNodes', __args__, opts=opts, typ=GetContainerNodesResult).value
 
     return AwaitableGetContainerNodesResult(
         agent_status=pulumi.get(__ret__, 'agent_status'),
@@ -219,7 +219,7 @@ def get_container_nodes_output(agent_status: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_container_nodes()
+    test = huaweicloud.Hss.get_container_nodes()
     ```
 
 
@@ -255,7 +255,7 @@ def get_container_nodes_output(agent_status: Optional[pulumi.Input[Optional[_bui
     __args__['protectStatus'] = protect_status
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerNodes:getContainerNodes', __args__, opts=opts, typ=GetContainerNodesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerNodes:getContainerNodes', __args__, opts=opts, typ=GetContainerNodesResult)
     return __ret__.apply(lambda __response__: GetContainerNodesResult(
         agent_status=pulumi.get(__response__, 'agent_status'),
         container_tags=pulumi.get(__response__, 'container_tags'),

@@ -27,6 +27,7 @@ class ForwardRuleArgs:
                  source_port: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a ForwardRule resource.
+
         :param pulumi.Input[_builtins.int] forward_port: Specifies the forward port.
                The valid value is range from `1` to `65,535`.
         :param pulumi.Input[_builtins.str] forward_protocol: Specifies the forward protocol.
@@ -138,6 +139,7 @@ class _ForwardRuleState:
                  status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ForwardRule resources.
+
         :param pulumi.Input[_builtins.int] forward_port: Specifies the forward port.
                The valid value is range from `1` to `65,535`.
         :param pulumi.Input[_builtins.str] forward_protocol: Specifies the forward protocol.
@@ -302,17 +304,33 @@ class ForwardRule(pulumi.CustomResource):
         """
         Manages a forward rule resource of Advanced Anti-DDos service within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        aad_instance_id = config.require_object("aadInstanceId")
+        aad_ip_address = config.require_object("aadIpAddress")
+        test = huaweicloud.advancedantiddos.ForwardRule("test",
+            instance_id=aad_instance_id,
+            ip=aad_ip_address,
+            forward_protocol="udp",
+            forward_port=808,
+            source_port=888,
+            source_ip_addresses="1.1.1.1,2.2.2.2")
+        ```
+
         ## Import
 
         Rule can be imported using the `id` (combination of `instance_id`, `ip`, `forward_protocol` and `forward_port`),
-
         separated by slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/forwardRule:ForwardRule test <instance_id>/<ip>/<forward_protocol>/<forward_port>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -337,17 +355,33 @@ class ForwardRule(pulumi.CustomResource):
         """
         Manages a forward rule resource of Advanced Anti-DDos service within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        aad_instance_id = config.require_object("aadInstanceId")
+        aad_ip_address = config.require_object("aadIpAddress")
+        test = huaweicloud.advancedantiddos.ForwardRule("test",
+            instance_id=aad_instance_id,
+            ip=aad_ip_address,
+            forward_protocol="udp",
+            forward_port=808,
+            source_port=888,
+            source_ip_addresses="1.1.1.1,2.2.2.2")
+        ```
+
         ## Import
 
         Rule can be imported using the `id` (combination of `instance_id`, `ip`, `forward_protocol` and `forward_port`),
-
         separated by slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/forwardRule:ForwardRule test <instance_id>/<ip>/<forward_protocol>/<forward_port>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ForwardRuleArgs args: The arguments to use to populate this resource's properties.

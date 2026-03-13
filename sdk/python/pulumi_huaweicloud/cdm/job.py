@@ -34,6 +34,7 @@ class JobArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of CDM cluster which this job run in.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] destination_connector: Specifies the connector name of destination link.
@@ -293,6 +294,7 @@ class _JobState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of CDM cluster which this job run in.
                Changing this parameter will create a new resource.
         :param pulumi.Input['JobConfigArgs'] config: Specifies the job configuration. Structure is documented below.
@@ -584,42 +586,18 @@ class Job(pulumi.CustomResource):
         ## Import
 
         Jobs can be imported by `id`. It is composed of the ID of CDM cluster which this job run in and the name of job,
-
          separated by a slash. For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cdm/job:Job test b11b407c-e604-4e8d-8bc4-92398320b847/jobName
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_job_config` and `destination_job_config`.
-
          It is generally recommended running `pulumi preview` after importing a cluster.
-
          You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_job_config, destination_job_config,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -690,42 +668,18 @@ class Job(pulumi.CustomResource):
         ## Import
 
         Jobs can be imported by `id`. It is composed of the ID of CDM cluster which this job run in and the name of job,
-
          separated by a slash. For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cdm/job:Job test b11b407c-e604-4e8d-8bc4-92398320b847/jobName
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_job_config` and `destination_job_config`.
-
          It is generally recommended running `pulumi preview` after importing a cluster.
-
          You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_job_config, destination_job_config,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

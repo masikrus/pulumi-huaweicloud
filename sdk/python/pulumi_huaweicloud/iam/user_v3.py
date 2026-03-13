@@ -33,6 +33,19 @@ class UserV3Args:
                  pwd_reset: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a UserV3 resource.
+
+        :param pulumi.Input[_builtins.str] access_type: The access type of the user.
+        :param pulumi.Input[_builtins.str] country_code: The country code.
+        :param pulumi.Input[_builtins.str] description: The description of the user.
+        :param pulumi.Input[_builtins.str] email: The email address.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled or disabled.
+        :param pulumi.Input[_builtins.str] external_identity_id: The ID of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] external_identity_type: The type of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] login_protect_verification_method: The verification method of login protect.
+        :param pulumi.Input[_builtins.str] name: The name of the user.
+        :param pulumi.Input[_builtins.str] password: The password for the user.
+        :param pulumi.Input[_builtins.str] phone: The mobile number.
+        :param pulumi.Input[_builtins.bool] pwd_reset: Whether the password should be reset.
         """
         if access_type is not None:
             pulumi.set(__self__, "access_type", access_type)
@@ -62,6 +75,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="accessType")
     def access_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The access type of the user.
+        """
         return pulumi.get(self, "access_type")
 
     @access_type.setter
@@ -71,6 +87,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="countryCode")
     def country_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The country code.
+        """
         return pulumi.get(self, "country_code")
 
     @country_code.setter
@@ -80,6 +99,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the user.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -89,6 +111,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The email address.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -98,6 +123,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the user is enabled or disabled.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -107,6 +135,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="externalIdentityId")
     def external_identity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_id")
 
     @external_identity_id.setter
@@ -116,6 +147,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="externalIdentityType")
     def external_identity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_type")
 
     @external_identity_type.setter
@@ -125,6 +159,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="loginProtectVerificationMethod")
     def login_protect_verification_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The verification method of login protect.
+        """
         return pulumi.get(self, "login_protect_verification_method")
 
     @login_protect_verification_method.setter
@@ -134,6 +171,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the user.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -143,6 +183,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The password for the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -152,6 +195,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter
     def phone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The mobile number.
+        """
         return pulumi.get(self, "phone")
 
     @phone.setter
@@ -161,6 +207,9 @@ class UserV3Args:
     @_builtins.property
     @pulumi.getter(name="pwdReset")
     def pwd_reset(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the password should be reset.
+        """
         return pulumi.get(self, "pwd_reset")
 
     @pwd_reset.setter
@@ -188,6 +237,22 @@ class _UserV3State:
                  pwd_reset: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering UserV3 resources.
+
+        :param pulumi.Input[_builtins.str] access_type: The access type of the user.
+        :param pulumi.Input[_builtins.str] country_code: The country code.
+        :param pulumi.Input[_builtins.str] create_time: The time when the IAM user was created.
+        :param pulumi.Input[_builtins.str] description: The description of the user.
+        :param pulumi.Input[_builtins.str] email: The email address.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled or disabled.
+        :param pulumi.Input[_builtins.str] external_identity_id: The ID of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] external_identity_type: The type of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] last_login: The time when the IAM user last login.
+        :param pulumi.Input[_builtins.str] login_protect_verification_method: The verification method of login protect.
+        :param pulumi.Input[_builtins.str] name: The name of the user.
+        :param pulumi.Input[_builtins.str] password: The password for the user.
+        :param pulumi.Input[_builtins.str] password_strength: The password strength.
+        :param pulumi.Input[_builtins.str] phone: The mobile number.
+        :param pulumi.Input[_builtins.bool] pwd_reset: Whether the password should be reset.
         """
         if access_type is not None:
             pulumi.set(__self__, "access_type", access_type)
@@ -223,6 +288,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="accessType")
     def access_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The access type of the user.
+        """
         return pulumi.get(self, "access_type")
 
     @access_type.setter
@@ -232,6 +300,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="countryCode")
     def country_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The country code.
+        """
         return pulumi.get(self, "country_code")
 
     @country_code.setter
@@ -241,6 +312,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="createTime")
     def create_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The time when the IAM user was created.
+        """
         return pulumi.get(self, "create_time")
 
     @create_time.setter
@@ -250,6 +324,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the user.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -259,6 +336,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The email address.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -268,6 +348,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the user is enabled or disabled.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -277,6 +360,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="externalIdentityId")
     def external_identity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_id")
 
     @external_identity_id.setter
@@ -286,6 +372,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="externalIdentityType")
     def external_identity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_type")
 
     @external_identity_type.setter
@@ -295,6 +384,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="lastLogin")
     def last_login(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The time when the IAM user last login.
+        """
         return pulumi.get(self, "last_login")
 
     @last_login.setter
@@ -304,6 +396,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="loginProtectVerificationMethod")
     def login_protect_verification_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The verification method of login protect.
+        """
         return pulumi.get(self, "login_protect_verification_method")
 
     @login_protect_verification_method.setter
@@ -313,6 +408,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the user.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -322,6 +420,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The password for the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -331,6 +432,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="passwordStrength")
     def password_strength(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The password strength.
+        """
         return pulumi.get(self, "password_strength")
 
     @password_strength.setter
@@ -340,6 +444,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter
     def phone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The mobile number.
+        """
         return pulumi.get(self, "phone")
 
     @phone.setter
@@ -349,6 +456,9 @@ class _UserV3State:
     @_builtins.property
     @pulumi.getter(name="pwdReset")
     def pwd_reset(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the password should be reset.
+        """
         return pulumi.get(self, "pwd_reset")
 
     @pwd_reset.setter
@@ -377,8 +487,21 @@ class UserV3(pulumi.CustomResource):
                  __props__=None):
         """
         Create a UserV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] access_type: The access type of the user.
+        :param pulumi.Input[_builtins.str] country_code: The country code.
+        :param pulumi.Input[_builtins.str] description: The description of the user.
+        :param pulumi.Input[_builtins.str] email: The email address.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled or disabled.
+        :param pulumi.Input[_builtins.str] external_identity_id: The ID of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] external_identity_type: The type of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] login_protect_verification_method: The verification method of login protect.
+        :param pulumi.Input[_builtins.str] name: The name of the user.
+        :param pulumi.Input[_builtins.str] password: The password for the user.
+        :param pulumi.Input[_builtins.str] phone: The mobile number.
+        :param pulumi.Input[_builtins.bool] pwd_reset: Whether the password should be reset.
         """
         ...
     @overload
@@ -388,6 +511,7 @@ class UserV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a UserV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param UserV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -473,6 +597,21 @@ class UserV3(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] access_type: The access type of the user.
+        :param pulumi.Input[_builtins.str] country_code: The country code.
+        :param pulumi.Input[_builtins.str] create_time: The time when the IAM user was created.
+        :param pulumi.Input[_builtins.str] description: The description of the user.
+        :param pulumi.Input[_builtins.str] email: The email address.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the user is enabled or disabled.
+        :param pulumi.Input[_builtins.str] external_identity_id: The ID of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] external_identity_type: The type of the IAM user in the external system.
+        :param pulumi.Input[_builtins.str] last_login: The time when the IAM user last login.
+        :param pulumi.Input[_builtins.str] login_protect_verification_method: The verification method of login protect.
+        :param pulumi.Input[_builtins.str] name: The name of the user.
+        :param pulumi.Input[_builtins.str] password: The password for the user.
+        :param pulumi.Input[_builtins.str] password_strength: The password strength.
+        :param pulumi.Input[_builtins.str] phone: The mobile number.
+        :param pulumi.Input[_builtins.bool] pwd_reset: Whether the password should be reset.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -498,75 +637,120 @@ class UserV3(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="accessType")
     def access_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The access type of the user.
+        """
         return pulumi.get(self, "access_type")
 
     @_builtins.property
     @pulumi.getter(name="countryCode")
     def country_code(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The country code.
+        """
         return pulumi.get(self, "country_code")
 
     @_builtins.property
     @pulumi.getter(name="createTime")
     def create_time(self) -> pulumi.Output[_builtins.str]:
+        """
+        The time when the IAM user was created.
+        """
         return pulumi.get(self, "create_time")
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description of the user.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
     def email(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The email address.
+        """
         return pulumi.get(self, "email")
 
     @_builtins.property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Whether the user is enabled or disabled.
+        """
         return pulumi.get(self, "enabled")
 
     @_builtins.property
     @pulumi.getter(name="externalIdentityId")
     def external_identity_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_id")
 
     @_builtins.property
     @pulumi.getter(name="externalIdentityType")
     def external_identity_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The type of the IAM user in the external system.
+        """
         return pulumi.get(self, "external_identity_type")
 
     @_builtins.property
     @pulumi.getter(name="lastLogin")
     def last_login(self) -> pulumi.Output[_builtins.str]:
+        """
+        The time when the IAM user last login.
+        """
         return pulumi.get(self, "last_login")
 
     @_builtins.property
     @pulumi.getter(name="loginProtectVerificationMethod")
     def login_protect_verification_method(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The verification method of login protect.
+        """
         return pulumi.get(self, "login_protect_verification_method")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the user.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The password for the user.
+        """
         return pulumi.get(self, "password")
 
     @_builtins.property
     @pulumi.getter(name="passwordStrength")
     def password_strength(self) -> pulumi.Output[_builtins.str]:
+        """
+        The password strength.
+        """
         return pulumi.get(self, "password_strength")
 
     @_builtins.property
     @pulumi.getter
     def phone(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The mobile number.
+        """
         return pulumi.get(self, "phone")
 
     @_builtins.property
     @pulumi.getter(name="pwdReset")
     def pwd_reset(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Whether the password should be reset.
+        """
         return pulumi.get(self, "pwd_reset")
 

@@ -35,6 +35,7 @@ class InspectorWebsiteScanArgs:
                  weak_pwd_scan: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a InspectorWebsiteScan resource.
+
         :param pulumi.Input[_builtins.str] task_name: Specifies the task name. Changing this parameter will create a new resource.
                The valid length is limited from `1` to `24`. Only Chinese characters, letters, digits, hyphens (-) and underscores (_)
                are allowed, and cannot start with a hyphen (-).
@@ -359,6 +360,7 @@ class _InspectorWebsiteScanState:
                  weak_pwd_scan: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering InspectorWebsiteScan resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the task.
         :param pulumi.Input[_builtins.bool] cve_check: Specifies whether to perform CVE vulnerability scanning. Changing this parameter
                will create a new resource. Defaults to **false**.
@@ -836,7 +838,7 @@ class _InspectorWebsiteScanState:
         pulumi.set(self, "weak_pwd_scan", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/inspectorWebsiteScan:InspectorWebsiteScan")
+@pulumi.type_token("huaweicloud:Codearts/inspectorWebsiteScan:InspectorWebsiteScan")
 class InspectorWebsiteScan(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -903,11 +905,10 @@ class InspectorWebsiteScan(pulumi.CustomResource):
 
         The CodeArts inspector website scan can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorWebsiteScan:InspectorWebsiteScan test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorWebsiteScan:InspectorWebsiteScan test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1019,11 +1020,10 @@ class InspectorWebsiteScan(pulumi.CustomResource):
 
         The CodeArts inspector website scan can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/inspectorWebsiteScan:InspectorWebsiteScan test <id>
+        $ pulumi import huaweicloud:Codearts/inspectorWebsiteScan:InspectorWebsiteScan test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InspectorWebsiteScanArgs args: The arguments to use to populate this resource's properties.
@@ -1094,7 +1094,7 @@ class InspectorWebsiteScan(pulumi.CustomResource):
             __props__.__dict__["score"] = None
             __props__.__dict__["task_status"] = None
         super(InspectorWebsiteScan, __self__).__init__(
-            'huaweicloud:codearts/inspectorWebsiteScan:InspectorWebsiteScan',
+            'huaweicloud:Codearts/inspectorWebsiteScan:InspectorWebsiteScan',
             resource_name,
             __props__,
             opts)

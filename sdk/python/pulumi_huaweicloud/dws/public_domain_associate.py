@@ -25,6 +25,7 @@ class PublicDomainAssociateArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PublicDomainAssociate resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the public domain name to be
                associated belongs. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the public domain name.  
@@ -113,6 +114,7 @@ class _PublicDomainAssociateState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PublicDomainAssociate resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID to which the public domain name to be
                associated belongs. Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the public domain name.  
@@ -230,39 +232,16 @@ class PublicDomainAssociate(pulumi.CustomResource):
 
         The resource can be imported using the `cluster_id` and `domain_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/publicDomainAssociate:PublicDomainAssociate test <cluster_id>/<domain_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ttl`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_public_domain_associate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ttl,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -311,39 +290,16 @@ class PublicDomainAssociate(pulumi.CustomResource):
 
         The resource can be imported using the `cluster_id` and `domain_name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/publicDomainAssociate:PublicDomainAssociate test <cluster_id>/<domain_name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ttl`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dws_public_domain_associate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ttl,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PublicDomainAssociateArgs args: The arguments to use to populate this resource's properties.

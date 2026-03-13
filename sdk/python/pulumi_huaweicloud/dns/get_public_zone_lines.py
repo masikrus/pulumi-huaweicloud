@@ -98,8 +98,6 @@ def get_public_zone_lines(region: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str zone_id: Specifies the zone ID.
     """
     __args__ = dict()
@@ -131,8 +129,6 @@ def get_public_zone_lines_output(region: Optional[pulumi.Input[Optional[_builtin
     ```
 
 
-    :param _builtins.str region: Specifies the region in which to query the resource.
-           If omitted, the provider-level region will be used.
     :param _builtins.str zone_id: Specifies the zone ID.
     """
     __args__ = dict()

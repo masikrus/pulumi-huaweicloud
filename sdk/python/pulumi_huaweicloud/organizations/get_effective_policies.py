@@ -115,7 +115,7 @@ def get_effective_policies(entity_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     entity_id = config.require_object("entityId")
-    test = huaweicloud.organizations.get_effective_policies(entity_id=entity_id,
+    test = huaweicloud.Organizations.get_effective_policies(entity_id=entity_id,
         policy_type="tag_policy")
     ```
 
@@ -132,7 +132,7 @@ def get_effective_policies(entity_id: Optional[_builtins.str] = None,
     __args__['policyType'] = policy_type
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getEffectivePolicies:getEffectivePolicies', __args__, opts=opts, typ=GetEffectivePoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getEffectivePolicies:getEffectivePolicies', __args__, opts=opts, typ=GetEffectivePoliciesResult).value
 
     return AwaitableGetEffectivePoliciesResult(
         entity_id=pulumi.get(__ret__, 'entity_id'),
@@ -156,7 +156,7 @@ def get_effective_policies_output(entity_id: Optional[pulumi.Input[_builtins.str
 
     config = pulumi.Config()
     entity_id = config.require_object("entityId")
-    test = huaweicloud.organizations.get_effective_policies(entity_id=entity_id,
+    test = huaweicloud.Organizations.get_effective_policies(entity_id=entity_id,
         policy_type="tag_policy")
     ```
 
@@ -173,7 +173,7 @@ def get_effective_policies_output(entity_id: Optional[pulumi.Input[_builtins.str
     __args__['policyType'] = policy_type
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getEffectivePolicies:getEffectivePolicies', __args__, opts=opts, typ=GetEffectivePoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getEffectivePolicies:getEffectivePolicies', __args__, opts=opts, typ=GetEffectivePoliciesResult)
     return __ret__.apply(lambda __response__: GetEffectivePoliciesResult(
         entity_id=pulumi.get(__response__, 'entity_id'),
         id=pulumi.get(__response__, 'id'),

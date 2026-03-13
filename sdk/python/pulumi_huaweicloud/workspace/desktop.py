@@ -43,6 +43,7 @@ class DesktopArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Desktop resource.
+
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of desktop.
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID to create the desktop.
                
@@ -73,6 +74,8 @@ class DesktopArgs:
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['DesktopDataVolumeArgs']]] data_volumes: Specifies the configuration of data volumes.
                The object structure is documented below.
+               
+               > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         :param pulumi.Input[_builtins.bool] delete_user: Specifies whether to delete user associated with this desktop after deleting it.
                The user can only be successfully deleted if the user has no other desktops.
                
@@ -82,6 +85,15 @@ class DesktopArgs:
                operations.
                Defaults to **false**. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the desktop.
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
         :param pulumi.Input[Sequence[pulumi.Input['DesktopNicArgs']]] nics: Specifies the NIC information corresponding to the desktop.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the desktop.
@@ -266,6 +278,8 @@ class DesktopArgs:
         """
         Specifies the configuration of data volumes.
         The object structure is documented below.
+
+        > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -318,6 +332,17 @@ class DesktopArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -434,10 +459,13 @@ class _DesktopState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Desktop resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone where the desktop is located.
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['DesktopDataVolumeArgs']]] data_volumes: Specifies the configuration of data volumes.
                The object structure is documented below.
+               
+               > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         :param pulumi.Input[_builtins.bool] delete_user: Specifies whether to delete user associated with this desktop after deleting it.
                The user can only be successfully deleted if the user has no other desktops.
                
@@ -455,6 +483,15 @@ class _DesktopState:
                + **market**: The market image.
                + **gold**: The public image.
                + **private**: The private image.
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
         :param pulumi.Input[Sequence[pulumi.Input['DesktopNicArgs']]] nics: Specifies the NIC information corresponding to the desktop.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the desktop.
@@ -554,6 +591,8 @@ class _DesktopState:
         """
         Specifies the configuration of data volumes.
         The object structure is documented below.
+
+        > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -647,6 +686,17 @@ class _DesktopState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -856,45 +906,58 @@ class Desktop(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create a desktop using market image
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        flavor_id = config.require_object("flavorId")
+        image_id = config.require_object("imageId")
+        desktop_name = config.require_object("desktopName")
+        test = huaweicloud.Index.get_availability_zones()
+        test_get_service = huaweicloud.Workspace.get_service()
+        test_desktop = huaweicloud.workspace.Desktop("test",
+            flavor_id=flavor_id,
+            image_type="market",
+            image_id=image_id,
+            availability_zone=test.names[0],
+            vpc_id=test_get_service.vpc_id,
+            security_groups=[__item.id for __item in test_get_service.desktop_security_groups],
+            nics=[{
+                "network_id": test_get_service.network_ids[0],
+            }],
+            name=desktop_name,
+            user_name="TestUser",
+            user_email="terraform@example.com",
+            user_group="administrators",
+            email_notification=True,
+            root_volume={
+                "type": "SAS",
+                "size": 80,
+            },
+            data_volumes=[{
+                "type": "SAS",
+                "size": 50,
+            }])
+        ```
+
         ## Import
 
         Desktops can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Workspace/desktop:Desktop test 339d2539-e945-4090-a08d-c16badc0c6bb
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `user_email`, `delete_user`, `image_type`, `vpc_id`, `power_action`,
-
         `power_action_type` and `email_notification`.
-
         It is generally recommended running `pulumi preview` after importing a desktop.
-
         You can then decide if changes should be applied to the desktop, or the resource definition should be updated to
-
         align with the desktop. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_desktop" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_email, delete_user, image_type, vpc_id, power_action, power_action_type, email_notification,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -902,6 +965,8 @@ class Desktop(pulumi.CustomResource):
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopDataVolumeArgs', 'DesktopDataVolumeArgsDict']]]] data_volumes: Specifies the configuration of data volumes.
                The object structure is documented below.
+               
+               > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         :param pulumi.Input[_builtins.bool] delete_user: Specifies whether to delete user associated with this desktop after deleting it.
                The user can only be successfully deleted if the user has no other desktops.
                
@@ -919,6 +984,15 @@ class Desktop(pulumi.CustomResource):
                + **market**: The market image.
                + **gold**: The public image.
                + **private**: The private image.
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopNicArgs', 'DesktopNicArgsDict']]]] nics: Specifies the NIC information corresponding to the desktop.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the desktop.
@@ -968,45 +1042,58 @@ class Desktop(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create a desktop using market image
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        flavor_id = config.require_object("flavorId")
+        image_id = config.require_object("imageId")
+        desktop_name = config.require_object("desktopName")
+        test = huaweicloud.Index.get_availability_zones()
+        test_get_service = huaweicloud.Workspace.get_service()
+        test_desktop = huaweicloud.workspace.Desktop("test",
+            flavor_id=flavor_id,
+            image_type="market",
+            image_id=image_id,
+            availability_zone=test.names[0],
+            vpc_id=test_get_service.vpc_id,
+            security_groups=[__item.id for __item in test_get_service.desktop_security_groups],
+            nics=[{
+                "network_id": test_get_service.network_ids[0],
+            }],
+            name=desktop_name,
+            user_name="TestUser",
+            user_email="terraform@example.com",
+            user_group="administrators",
+            email_notification=True,
+            root_volume={
+                "type": "SAS",
+                "size": 80,
+            },
+            data_volumes=[{
+                "type": "SAS",
+                "size": 50,
+            }])
+        ```
+
         ## Import
 
         Desktops can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Workspace/desktop:Desktop test 339d2539-e945-4090-a08d-c16badc0c6bb
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `user_email`, `delete_user`, `image_type`, `vpc_id`, `power_action`,
-
         `power_action_type` and `email_notification`.
-
         It is generally recommended running `pulumi preview` after importing a desktop.
-
         You can then decide if changes should be applied to the desktop, or the resource definition should be updated to
-
         align with the desktop. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_desktop" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_email, delete_user, image_type, vpc_id, power_action, power_action_type, email_notification,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DesktopArgs args: The arguments to use to populate this resource's properties.
@@ -1131,6 +1218,8 @@ class Desktop(pulumi.CustomResource):
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopDataVolumeArgs', 'DesktopDataVolumeArgsDict']]]] data_volumes: Specifies the configuration of data volumes.
                The object structure is documented below.
+               
+               > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         :param pulumi.Input[_builtins.bool] delete_user: Specifies whether to delete user associated with this desktop after deleting it.
                The user can only be successfully deleted if the user has no other desktops.
                
@@ -1148,6 +1237,15 @@ class Desktop(pulumi.CustomResource):
                + **market**: The market image.
                + **gold**: The public image.
                + **private**: The private image.
+        :param pulumi.Input[_builtins.str] name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopNicArgs', 'DesktopNicArgsDict']]]] nics: Specifies the NIC information corresponding to the desktop.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the desktop.
@@ -1227,6 +1325,8 @@ class Desktop(pulumi.CustomResource):
         """
         Specifies the configuration of data volumes.
         The object structure is documented below.
+
+        > Only can append new disks at the end of the queue, and cannot modify the order of existing disks.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -1292,6 +1392,17 @@ class Desktop(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property

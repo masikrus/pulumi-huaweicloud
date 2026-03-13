@@ -24,7 +24,9 @@ class AppServerGroupBatchDisassociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppServerGroupBatchDisassociate resource.
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate all application groups.
+
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate
+               all application groups.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the server group is located.  
                Changing this creates a new resource.
         """
@@ -38,7 +40,8 @@ class AppServerGroupBatchDisassociateArgs:
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ID of the server group to disassociate all application groups.
+        Specifies the ID of the server group to disassociate
+        all application groups.
         """
         return pulumi.get(self, "server_group_id")
 
@@ -77,9 +80,11 @@ class _AppServerGroupBatchDisassociateState:
                  server_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppServerGroupBatchDisassociate resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the server group is located.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate all application groups.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate
+               all application groups.
         """
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
@@ -114,7 +119,8 @@ class _AppServerGroupBatchDisassociateState:
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the server group to disassociate all application groups.
+        Specifies the ID of the server group to disassociate
+        all application groups.
         """
         return pulumi.get(self, "server_group_id")
 
@@ -151,11 +157,13 @@ class AppServerGroupBatchDisassociate(pulumi.CustomResource):
         test = huaweicloud.workspace.AppServerGroupBatchDisassociate("test", server_group_id=server_group_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the server group is located.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate all application groups.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate
+               all application groups.
         """
         ...
     @overload
@@ -180,6 +188,7 @@ class AppServerGroupBatchDisassociate(pulumi.CustomResource):
         server_group_id = config.require_object("serverGroupId")
         test = huaweicloud.workspace.AppServerGroupBatchDisassociate("test", server_group_id=server_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AppServerGroupBatchDisassociateArgs args: The arguments to use to populate this resource's properties.
@@ -235,7 +244,8 @@ class AppServerGroupBatchDisassociate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the server group is located.  
                Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate all application groups.
+        :param pulumi.Input[_builtins.str] server_group_id: Specifies the ID of the server group to disassociate
+               all application groups.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -264,7 +274,8 @@ class AppServerGroupBatchDisassociate(pulumi.CustomResource):
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the server group to disassociate all application groups.
+        Specifies the ID of the server group to disassociate
+        all application groups.
         """
         return pulumi.get(self, "server_group_id")
 

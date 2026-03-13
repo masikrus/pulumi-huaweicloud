@@ -29,6 +29,7 @@ class KafkaUserClientQuotaArgs:
                  user_default: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a KafkaUserClientQuota resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the kafka instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] client: Specifies the ID of the client to which the quota applies.
@@ -192,6 +193,7 @@ class _KafkaUserClientQuotaState:
                  user_default: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering KafkaUserClientQuota resources.
+
         :param pulumi.Input[_builtins.str] client: Specifies the ID of the client to which the quota applies.
                It must be empty if the value of `client_default` is **true**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] client_default: Specifies the client default configuration of the quota.
@@ -380,14 +382,12 @@ class KafkaUserClientQuota(pulumi.CustomResource):
         ## Import
 
         The kafka user client quota can be imported using the kafka `instance_id`, `user`, `user_default`, `client` and `client_default`
-
         separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaUserClientQuota:KafkaUserClientQuota test <instance_id>/<user>/<user_default>/<client>/<client_default>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -442,14 +442,12 @@ class KafkaUserClientQuota(pulumi.CustomResource):
         ## Import
 
         The kafka user client quota can be imported using the kafka `instance_id`, `user`, `user_default`, `client` and `client_default`
-
         separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/kafkaUserClientQuota:KafkaUserClientQuota test <instance_id>/<user>/<user_default>/<client>/<client_default>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaUserClientQuotaArgs args: The arguments to use to populate this resource's properties.

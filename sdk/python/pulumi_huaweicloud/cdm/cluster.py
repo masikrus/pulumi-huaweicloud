@@ -37,6 +37,7 @@ class ClusterArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies available zone.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies flavor id. Changing this parameter will create a new resource.
@@ -296,6 +297,7 @@ class _ClusterState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies available zone.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] created: Create time. The format is: `YYYY-MM-DDThh:mm:ss`.
@@ -678,39 +680,16 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cdm/cluster:Cluster test b11b407c-e604-4e8d-8bc4-92398320b847
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `email` and `phone_num`.
-
          It is generally recommended running `pulumi preview` after importing a cluster.
-
          You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone_num,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -780,39 +759,16 @@ class Cluster(pulumi.CustomResource):
 
         Clusters can be imported by `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cdm/cluster:Cluster test b11b407c-e604-4e8d-8bc4-92398320b847
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `email` and `phone_num`.
-
          It is generally recommended running `pulumi preview` after importing a cluster.
-
          You can then decide if changes should be applied to the cluster, or the resource definition
-
         should be updated to align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cdm_cluster" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              email, phone_num,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.

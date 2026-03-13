@@ -72,12 +72,12 @@ def get_advanced_block_list(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cnad.get_advanced_block_list()
+    test = huaweicloud.Cnad.get_advanced_block_list()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cnad/getAdvancedBlockList:getAdvancedBlockList', __args__, opts=opts, typ=GetAdvancedBlockListResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cnad/getAdvancedBlockList:getAdvancedBlockList', __args__, opts=opts, typ=GetAdvancedBlockListResult).value
 
     return AwaitableGetAdvancedBlockListResult(
         blocking_lists=pulumi.get(__ret__, 'blocking_lists'),
@@ -92,12 +92,12 @@ def get_advanced_block_list_output(opts: Optional[Union[pulumi.InvokeOptions, pu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cnad.get_advanced_block_list()
+    test = huaweicloud.Cnad.get_advanced_block_list()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cnad/getAdvancedBlockList:getAdvancedBlockList', __args__, opts=opts, typ=GetAdvancedBlockListResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cnad/getAdvancedBlockList:getAdvancedBlockList', __args__, opts=opts, typ=GetAdvancedBlockListResult)
     return __ret__.apply(lambda __response__: GetAdvancedBlockListResult(
         blocking_lists=pulumi.get(__response__, 'blocking_lists'),
         id=pulumi.get(__response__, 'id')))

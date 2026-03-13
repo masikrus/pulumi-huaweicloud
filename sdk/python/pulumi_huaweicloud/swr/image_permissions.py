@@ -27,6 +27,7 @@ class ImagePermissionsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImagePermissions resource.
+
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization.
                
                Changing this parameter will create a new resource.
@@ -115,6 +116,7 @@ class _ImagePermissionsState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['ImagePermissionsUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering ImagePermissions resources.
+
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization.
                
                Changing this parameter will create a new resource.
@@ -256,11 +258,18 @@ class ImagePermissions(pulumi.CustomResource):
 
         The SWR image permissions can be imported using the organization name and repository name separated by a slash, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use a slash to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imagePermissions:ImagePermissions test <organization_name>/<repository_name>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imagePermissions:ImagePermissions test <organization_name>,<repository_name>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,11 +325,18 @@ class ImagePermissions(pulumi.CustomResource):
 
         The SWR image permissions can be imported using the organization name and repository name separated by a slash, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use a slash to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imagePermissions:ImagePermissions test <organization_name>/<repository_name>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imagePermissions:ImagePermissions test <organization_name>,<repository_name>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ImagePermissionsArgs args: The arguments to use to populate this resource's properties.

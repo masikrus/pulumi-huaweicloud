@@ -831,7 +831,8 @@ class GetProtectedInstancesProtectedInstanceResult(dict):
                + **source**: Indicates that the current production site AZ is the source availability zone value.
                + **target**: Indicates that the current production site AZ is the target availability zone value.
         :param _builtins.int progress: The synchronization progress of a protected instance. Unit: %.
-        :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are queried.
+        :param _builtins.str server_group_id: Specifies the ID of the protection group, in which all protected instances are
+               queried.
                The value of this parameter can query from datasource `sdrs_get_protection_groups`.
         :param _builtins.str source_server: The production site server ID.
         :param _builtins.str status: Specifies the status.
@@ -928,7 +929,8 @@ class GetProtectedInstancesProtectedInstanceResult(dict):
     @pulumi.getter(name="serverGroupId")
     def server_group_id(self) -> _builtins.str:
         """
-        Specifies the ID of the protection group, in which all protected instances are queried.
+        Specifies the ID of the protection group, in which all protected instances are
+        queried.
         The value of this parameter can query from datasource `sdrs_get_protection_groups`.
         """
         return pulumi.get(self, "server_group_id")

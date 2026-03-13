@@ -26,6 +26,7 @@ class PipelineGroupSwapArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineGroupSwap resource.
+
         :param pulumi.Input[_builtins.str] group_id1: Specifies the pipeline group ID1.
         :param pulumi.Input[_builtins.str] group_id2: Specifies the pipeline group ID2.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project ID for CodeArts service.
@@ -111,6 +112,7 @@ class _PipelineGroupSwapState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineGroupSwap resources.
+
         :param pulumi.Input[_builtins.str] group_id1: Specifies the pipeline group ID1.
         :param pulumi.Input[_builtins.str] group_id2: Specifies the pipeline group ID2.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project ID for CodeArts service.
@@ -189,7 +191,7 @@ class _PipelineGroupSwapState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineGroupSwap:PipelineGroupSwap")
+@pulumi.type_token("huaweicloud:Codearts/pipelineGroupSwap:PipelineGroupSwap")
 class PipelineGroupSwap(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -219,6 +221,7 @@ class PipelineGroupSwap(pulumi.CustomResource):
             group_id1=group_id1,
             group_id2=group_id2)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -253,6 +256,7 @@ class PipelineGroupSwap(pulumi.CustomResource):
             group_id1=group_id1,
             group_id2=group_id2)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineGroupSwapArgs args: The arguments to use to populate this resource's properties.
@@ -295,7 +299,7 @@ class PipelineGroupSwap(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
         super(PipelineGroupSwap, __self__).__init__(
-            'huaweicloud:codearts/pipelineGroupSwap:PipelineGroupSwap',
+            'huaweicloud:Codearts/pipelineGroupSwap:PipelineGroupSwap',
             resource_name,
             __props__,
             opts)

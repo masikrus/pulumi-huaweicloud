@@ -167,7 +167,7 @@ def get_event_alarm_white_lists(enterprise_project_id: Optional[_builtins.str] =
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_alarm_white_lists()
+    test = huaweicloud.Hss.get_event_alarm_white_lists()
     ```
 
 
@@ -229,7 +229,7 @@ def get_event_alarm_white_lists(enterprise_project_id: Optional[_builtins.str] =
     __args__['hash'] = hash
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getEventAlarmWhiteLists:getEventAlarmWhiteLists', __args__, opts=opts, typ=GetEventAlarmWhiteListsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getEventAlarmWhiteLists:getEventAlarmWhiteLists', __args__, opts=opts, typ=GetEventAlarmWhiteListsResult).value
 
     return AwaitableGetEventAlarmWhiteListsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -256,7 +256,7 @@ def get_event_alarm_white_lists_output(enterprise_project_id: Optional[pulumi.In
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_alarm_white_lists()
+    test = huaweicloud.Hss.get_event_alarm_white_lists()
     ```
 
 
@@ -318,7 +318,7 @@ def get_event_alarm_white_lists_output(enterprise_project_id: Optional[pulumi.In
     __args__['hash'] = hash
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getEventAlarmWhiteLists:getEventAlarmWhiteLists', __args__, opts=opts, typ=GetEventAlarmWhiteListsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getEventAlarmWhiteLists:getEventAlarmWhiteLists', __args__, opts=opts, typ=GetEventAlarmWhiteListsResult)
     return __ret__.apply(lambda __response__: GetEventAlarmWhiteListsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

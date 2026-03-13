@@ -34,6 +34,7 @@ class EipArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Eip resource.
+
         :param pulumi.Input['EipBandwidthArgs'] bandwidth: Specifies the bandwidth configuration.  
                The object structure is documented below.
         :param pulumi.Input['EipPublicipArgs'] publicip: Specifies the EIP configuration.  
@@ -265,6 +266,7 @@ class _EipState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Eip resources.
+
         :param pulumi.Input[_builtins.str] address: The IPv4 address of the EIP.
         :param pulumi.Input[_builtins.str] associate_id: The associate id of EIP.
         :param pulumi.Input[_builtins.str] associate_type: The associate type of EIP. Values are **PORT**, **NATGW**, **ELB**, **ELBV1** and **VPN**.
@@ -663,11 +665,10 @@ class Eip(pulumi.CustomResource):
 
         EIPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eip:Eip test 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -716,11 +717,10 @@ class Eip(pulumi.CustomResource):
 
         EIPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eip:Eip test 2c7f39f3-702b-48d1-940c-b50384177ee1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipArgs args: The arguments to use to populate this resource's properties.

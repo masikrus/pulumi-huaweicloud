@@ -156,7 +156,7 @@ def get_public_script_detail(script_uuid: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     script_uuid = config.require_object("scriptUuid")
-    test = huaweicloud.coc.get_public_script_detail(script_uuid=script_uuid)
+    test = huaweicloud.Coc.get_public_script_detail(script_uuid=script_uuid)
     ```
 
 
@@ -165,7 +165,7 @@ def get_public_script_detail(script_uuid: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['scriptUuid'] = script_uuid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getPublicScriptDetail:getPublicScriptDetail', __args__, opts=opts, typ=GetPublicScriptDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getPublicScriptDetail:getPublicScriptDetail', __args__, opts=opts, typ=GetPublicScriptDetailResult).value
 
     return AwaitableGetPublicScriptDetailResult(
         content=pulumi.get(__ret__, 'content'),
@@ -190,7 +190,7 @@ def get_public_script_detail_output(script_uuid: Optional[pulumi.Input[_builtins
 
     config = pulumi.Config()
     script_uuid = config.require_object("scriptUuid")
-    test = huaweicloud.coc.get_public_script_detail(script_uuid=script_uuid)
+    test = huaweicloud.Coc.get_public_script_detail(script_uuid=script_uuid)
     ```
 
 
@@ -199,7 +199,7 @@ def get_public_script_detail_output(script_uuid: Optional[pulumi.Input[_builtins
     __args__ = dict()
     __args__['scriptUuid'] = script_uuid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getPublicScriptDetail:getPublicScriptDetail', __args__, opts=opts, typ=GetPublicScriptDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getPublicScriptDetail:getPublicScriptDetail', __args__, opts=opts, typ=GetPublicScriptDetailResult)
     return __ret__.apply(lambda __response__: GetPublicScriptDetailResult(
         content=pulumi.get(__response__, 'content'),
         description=pulumi.get(__response__, 'description'),

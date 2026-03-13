@@ -49,6 +49,7 @@ class RocketmqInstanceArgs:
                  tls_mode: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqInstance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of availability zone names, where
                instance brokers reside and which has available resources.
                
@@ -552,6 +553,7 @@ class _RocketmqInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of availability zone names, where
                instance brokers reside and which has available resources.
@@ -1309,11 +1311,10 @@ class RocketmqInstance(pulumi.CustomResource):
 
         The rocketmq instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqInstance:RocketmqInstance test 8d3c7938-dc47-4937-a30f-c80de381c5e3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1416,11 +1417,10 @@ class RocketmqInstance(pulumi.CustomResource):
 
         The rocketmq instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rocketmqInstance:RocketmqInstance test 8d3c7938-dc47-4937-a30f-c80de381c5e3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqInstanceArgs args: The arguments to use to populate this resource's properties.

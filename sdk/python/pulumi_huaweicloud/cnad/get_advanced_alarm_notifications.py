@@ -83,12 +83,12 @@ def get_advanced_alarm_notifications(opts: Optional[pulumi.InvokeOptions] = None
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cnad.get_advanced_alarm_notifications()
+    test = huaweicloud.Cnad.get_advanced_alarm_notifications()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cnad/getAdvancedAlarmNotifications:getAdvancedAlarmNotifications', __args__, opts=opts, typ=GetAdvancedAlarmNotificationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cnad/getAdvancedAlarmNotifications:getAdvancedAlarmNotifications', __args__, opts=opts, typ=GetAdvancedAlarmNotificationsResult).value
 
     return AwaitableGetAdvancedAlarmNotificationsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -104,12 +104,12 @@ def get_advanced_alarm_notifications_output(opts: Optional[Union[pulumi.InvokeOp
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cnad.get_advanced_alarm_notifications()
+    test = huaweicloud.Cnad.get_advanced_alarm_notifications()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cnad/getAdvancedAlarmNotifications:getAdvancedAlarmNotifications', __args__, opts=opts, typ=GetAdvancedAlarmNotificationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cnad/getAdvancedAlarmNotifications:getAdvancedAlarmNotifications', __args__, opts=opts, typ=GetAdvancedAlarmNotificationsResult)
     return __ret__.apply(lambda __response__: GetAdvancedAlarmNotificationsResult(
         id=pulumi.get(__response__, 'id'),
         is_close_attack_source_flag=pulumi.get(__response__, 'is_close_attack_source_flag'),

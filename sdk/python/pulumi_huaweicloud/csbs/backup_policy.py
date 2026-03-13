@@ -30,6 +30,7 @@ class BackupPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackupPolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['BackupPolicyResourceArgs']]] resources: block supports the following arguments:
         :param pulumi.Input['BackupPolicyScheduledOperationArgs'] scheduled_operation: block supports the following arguments:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] common: General backup policy parameters, which are blank by default.
@@ -158,6 +159,7 @@ class _BackupPolicyState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupPolicy resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] common: General backup policy parameters, which are blank by default.
         :param pulumi.Input[_builtins.str] created_at: Creation time.
         :param pulumi.Input[_builtins.str] description: Backup policy description. The value consists of 0 to 255 characters and
@@ -304,7 +306,7 @@ class _BackupPolicyState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:csbs/backupPolicy:BackupPolicy")
+@pulumi.type_token("huaweicloud:Csbs/backupPolicy:BackupPolicy")
 class BackupPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -356,11 +358,10 @@ class BackupPolicy(pulumi.CustomResource):
 
         Backup Policy can be imported using  `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:csbs/backupPolicy:BackupPolicy backup_policy 7056d636-ac60-4663-8a6c-82d3c32c1c64
+        $ pulumi import huaweicloud:Csbs/backupPolicy:BackupPolicy backup_policy 7056d636-ac60-4663-8a6c-82d3c32c1c64
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -420,11 +421,10 @@ class BackupPolicy(pulumi.CustomResource):
 
         Backup Policy can be imported using  `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:csbs/backupPolicy:BackupPolicy backup_policy 7056d636-ac60-4663-8a6c-82d3c32c1c64
+        $ pulumi import huaweicloud:Csbs/backupPolicy:BackupPolicy backup_policy 7056d636-ac60-4663-8a6c-82d3c32c1c64
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -471,7 +471,7 @@ class BackupPolicy(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["status"] = None
         super(BackupPolicy, __self__).__init__(
-            'huaweicloud:csbs/backupPolicy:BackupPolicy',
+            'huaweicloud:Csbs/backupPolicy:BackupPolicy',
             resource_name,
             __props__,
             opts)

@@ -25,6 +25,7 @@ class DeployApplicationGroupMoveArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplicationGroupMove resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the application group ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] movement: Specifies the moving direction.
@@ -112,6 +113,7 @@ class _DeployApplicationGroupMoveState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployApplicationGroupMove resources.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the application group ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.int] movement: Specifies the moving direction.
@@ -193,7 +195,7 @@ class _DeployApplicationGroupMoveState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplicationGroupMove:DeployApplicationGroupMove")
+@pulumi.type_token("huaweicloud:Codearts/deployApplicationGroupMove:DeployApplicationGroupMove")
 class DeployApplicationGroupMove(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -206,6 +208,23 @@ class DeployApplicationGroupMove(pulumi.CustomResource):
                  __props__=None):
         """
         Manages a CodeArts deploy application group move resource within HuaweiCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        project_id = config.require_object("projectId")
+        group_id = config.require_object("groupId")
+        movement = config.require_object("movement")
+        test = huaweicloud.codearts.DeployApplicationGroup("test",
+            project_id=project_id,
+            group_id=group_id,
+            movement=movement)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,6 +250,23 @@ class DeployApplicationGroupMove(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a CodeArts deploy application group move resource within HuaweiCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        project_id = config.require_object("projectId")
+        group_id = config.require_object("groupId")
+        movement = config.require_object("movement")
+        test = huaweicloud.codearts.DeployApplicationGroup("test",
+            project_id=project_id,
+            group_id=group_id,
+            movement=movement)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationGroupMoveArgs args: The arguments to use to populate this resource's properties.
@@ -271,7 +307,7 @@ class DeployApplicationGroupMove(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
         super(DeployApplicationGroupMove, __self__).__init__(
-            'huaweicloud:codearts/deployApplicationGroupMove:DeployApplicationGroupMove',
+            'huaweicloud:Codearts/deployApplicationGroupMove:DeployApplicationGroupMove',
             resource_name,
             __props__,
             opts)

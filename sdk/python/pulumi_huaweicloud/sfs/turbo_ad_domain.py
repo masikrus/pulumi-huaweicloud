@@ -32,6 +32,7 @@ class TurboAdDomainArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboAdDomain resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_servers: Specifies the IP address of the DNS server. It is used to resolve the AD domain
                name.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name of the domain controller. It is specified when the
@@ -223,6 +224,7 @@ class _TurboAdDomainState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboAdDomain resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_servers: Specifies the IP address of the DNS server. It is used to resolve the AD domain
                name.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name of the domain controller. It is specified when the
@@ -472,45 +474,31 @@ class TurboAdDomain(pulumi.CustomResource):
 
         The SFS Turbo AD domain can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboAdDomain:TurboAdDomain test <id>
         ```
 
+        ```sh
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `share_id`, `service_account`, `password`,
-
         `overwrite_same_account`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the snapshot group. Also, you can ignore changes as below.
 
-        hcl
-
+        ```hcl
         resource "huaweicloud_sfs_turbo_ad_domain" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               share_id,
-            
               service_account,
-            
               password,
-            
               overwrite_same_account,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -573,45 +561,31 @@ class TurboAdDomain(pulumi.CustomResource):
 
         The SFS Turbo AD domain can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboAdDomain:TurboAdDomain test <id>
         ```
 
+        ```sh
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `share_id`, `service_account`, `password`,
-
         `overwrite_same_account`. It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the snapshot group. Also, you can ignore changes as below.
 
-        hcl
-
+        ```hcl
         resource "huaweicloud_sfs_turbo_ad_domain" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               share_id,
-            
               service_account,
-            
               password,
-            
               overwrite_same_account,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboAdDomainArgs args: The arguments to use to populate this resource's properties.

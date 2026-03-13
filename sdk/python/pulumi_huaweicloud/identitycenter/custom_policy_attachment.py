@@ -24,6 +24,7 @@ class CustomPolicyAttachmentArgs:
                  permission_set_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a CustomPolicyAttachment resource.
+
         :param pulumi.Input[_builtins.str] custom_policy: Specifies the custom policy to attach to a permission set.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                
@@ -85,6 +86,7 @@ class _CustomPolicyAttachmentState:
                  permission_set_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomPolicyAttachment resources.
+
         :param pulumi.Input[_builtins.str] custom_policy: Specifies the custom policy to attach to a permission set.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                
@@ -141,7 +143,7 @@ class _CustomPolicyAttachmentState:
         pulumi.set(self, "permission_set_id", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/customPolicyAttachment:CustomPolicyAttachment")
+@pulumi.type_token("huaweicloud:Identitycenter/customPolicyAttachment:CustomPolicyAttachment")
 class CustomPolicyAttachment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -166,7 +168,7 @@ class CustomPolicyAttachment(pulumi.CustomResource):
 
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.CustomPolicyAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -182,14 +184,12 @@ class CustomPolicyAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center custom policy attachment can be imported using the `instance_id` and `permission_set_id` separated
-
         by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/customPolicyAttachment:CustomPolicyAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/customPolicyAttachment:CustomPolicyAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -222,7 +222,7 @@ class CustomPolicyAttachment(pulumi.CustomResource):
 
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.CustomPolicyAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -238,14 +238,12 @@ class CustomPolicyAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center custom policy attachment can be imported using the `instance_id` and `permission_set_id` separated
-
         by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/customPolicyAttachment:CustomPolicyAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/customPolicyAttachment:CustomPolicyAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomPolicyAttachmentArgs args: The arguments to use to populate this resource's properties.
@@ -284,7 +282,7 @@ class CustomPolicyAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'permission_set_id'")
             __props__.__dict__["permission_set_id"] = permission_set_id
         super(CustomPolicyAttachment, __self__).__init__(
-            'huaweicloud:identitycenter/customPolicyAttachment:CustomPolicyAttachment',
+            'huaweicloud:Identitycenter/customPolicyAttachment:CustomPolicyAttachment',
             resource_name,
             __props__,
             opts)

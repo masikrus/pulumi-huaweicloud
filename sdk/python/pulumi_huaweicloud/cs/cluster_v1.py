@@ -236,7 +236,7 @@ class _ClusterV1State:
         pulumi.set(self, "vpc_cidr", value)
 
 
-@pulumi.type_token("huaweicloud:cs/clusterV1:ClusterV1")
+@pulumi.type_token("huaweicloud:Cs/clusterV1:ClusterV1")
 class ClusterV1(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -252,6 +252,7 @@ class ClusterV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ClusterV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -263,6 +264,7 @@ class ClusterV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ClusterV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ClusterV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -305,7 +307,7 @@ class ClusterV1(pulumi.CustomResource):
             __props__.__dict__["manager_node_spu_num"] = None
             __props__.__dict__["used_spu_num"] = None
         super(ClusterV1, __self__).__init__(
-            'huaweicloud:cs/clusterV1:ClusterV1',
+            'huaweicloud:Cs/clusterV1:ClusterV1',
             resource_name,
             __props__,
             opts)

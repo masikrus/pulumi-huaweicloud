@@ -43,44 +43,39 @@ __all__ = [
     'TaskSrcNodeArgsDict',
 ]
 
-MYPY = False
+class MigrationSyncTaskSourceCdnArgsDict(TypedDict):
+    domain: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name from which to obtain objects to be migrated.
+    Changing this creates a new resource.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type. Value options: **http** and **https**.
+    Changing this creates a new resource.
+    """
+    authentication_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CDN authentication key.
+    Changing this creates a new resource.
+    """
+    authentication_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication type. Value options:
 
-if not MYPY:
-    class MigrationSyncTaskSourceCdnArgsDict(TypedDict):
-        domain: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name from which to obtain objects to be migrated.
-        Changing this creates a new resource.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type. Value options: **http** and **https**.
-        Changing this creates a new resource.
-        """
-        authentication_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CDN authentication key.
-        Changing this creates a new resource.
-        """
-        authentication_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication type. Value options:
+    + **NONE**
+    + **QINIU_PRIVATE_AUTHENTICATION**
+    + **ALIYUN_OSS_A**
+    + **ALIYUN_OSS_B**
+    + **ALIYUN_OSS_C**
+    + **KSYUN_PRIVATE_AUTHENTICATION**
+    + **TENCENT_COS_A**
+    + **TENCENT_COS_B**
+    + **TENCENT_COS_C**
+    + **TENCENT_COS_D**
 
-        + **NONE**
-        + **QINIU_PRIVATE_AUTHENTICATION**
-        + **ALIYUN_OSS_A**
-        + **ALIYUN_OSS_B**
-        + **ALIYUN_OSS_C**
-        + **KSYUN_PRIVATE_AUTHENTICATION**
-        + **TENCENT_COS_A**
-        + **TENCENT_COS_B**
-        + **TENCENT_COS_C**
-        + **TENCENT_COS_D**
-
-        Default value: **NONE**. Changing this creates a new resource.
-        """
-elif False:
-    MigrationSyncTaskSourceCdnArgsDict: TypeAlias = Mapping[str, Any]
+    Default value: **NONE**. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationSyncTaskSourceCdnArgs:
@@ -183,28 +178,25 @@ class MigrationSyncTaskSourceCdnArgs:
         pulumi.set(self, "authentication_type", value)
 
 
-if not MYPY:
-    class MigrationTaskBandwidthPolicyArgsDict(TypedDict):
-        end: pulumi.Input[_builtins.str]
-        """
-        Specifies the end time of the traffic limit rule. The format is **hh:mm**,
-        e.g. **12:03**.
+class MigrationTaskBandwidthPolicyArgsDict(TypedDict):
+    end: pulumi.Input[_builtins.str]
+    """
+    Specifies the end time of the traffic limit rule. The format is **hh:mm**,
+    e.g. **12:03**.
 
-        <a name="source_cdn_object"></a>
-        The `source_cdn` block supports:
-        """
-        max_bandwidth: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum traffic bandwidth allowed in the specified time
-        segment. The value ranges from `1` to `200`. The unit is MB/s.
-        """
-        start: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time of the traffic limit rule. The format is **hh:mm**,
-        e.g. **12:03**.
-        """
-elif False:
-    MigrationTaskBandwidthPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="source_cdn_object"></a>
+    The `source_cdn` block supports:
+    """
+    max_bandwidth: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum traffic bandwidth allowed in the specified time
+    segment. The value ranges from `1` to `200`. The unit is MB/s.
+    """
+    start: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time of the traffic limit rule. The format is **hh:mm**,
+    e.g. **12:03**.
+    """
 
 @pulumi.input_type
 class MigrationTaskBandwidthPolicyArgs:
@@ -270,43 +262,40 @@ class MigrationTaskBandwidthPolicyArgs:
         pulumi.set(self, "start", value)
 
 
-if not MYPY:
-    class MigrationTaskDestinationObjectArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the destination bucket.
-        Changing this creates a new resource.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region where the destination bucket is located.
-        Changing this creates a new resource.
-        """
-        access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        save_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path prefix in the destination bucket. The prefix is added
-        before the object key to form a new key. Changing this creates a new resource.
+class MigrationTaskDestinationObjectArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the destination bucket.
+    Changing this creates a new resource.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region where the destination bucket is located.
+    Changing this creates a new resource.
+    """
+    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    save_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path prefix in the destination bucket. The prefix is added
+    before the object key to form a new key. Changing this creates a new resource.
 
-        <a name="bandwidth_policy_object"></a>
-        The `bandwidth_policy` block supports:
-        """
-        secret_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the secret key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        security_token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the temporary token for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskDestinationObjectArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="bandwidth_policy_object"></a>
+    The `bandwidth_policy` block supports:
+    """
+    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the secret key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    security_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the temporary token for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskDestinationObjectArgs:
@@ -427,28 +416,25 @@ class MigrationTaskDestinationObjectArgs:
         pulumi.set(self, "security_token", value)
 
 
-if not MYPY:
-    class MigrationTaskGroupBandwidthPolicyArgsDict(TypedDict):
-        end: pulumi.Input[_builtins.str]
-        """
-        Specifies the end time of the traffic limit rule. The format is **hh:mm**,
-        e.g. **12:03**.
+class MigrationTaskGroupBandwidthPolicyArgsDict(TypedDict):
+    end: pulumi.Input[_builtins.str]
+    """
+    Specifies the end time of the traffic limit rule. The format is **hh:mm**,
+    e.g. **12:03**.
 
-        <a name="source_cdn_object"></a>
-        The `source_cdn` block supports:
-        """
-        max_bandwidth: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum traffic bandwidth allowed in the specified time
-        segment. The value ranges from `1` to `200`. The unit is MB/s.
-        """
-        start: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time of the traffic limit rule. The format is **hh:mm**,
-        e.g. **12:03**.
-        """
-elif False:
-    MigrationTaskGroupBandwidthPolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="source_cdn_object"></a>
+    The `source_cdn` block supports:
+    """
+    max_bandwidth: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum traffic bandwidth allowed in the specified time
+    segment. The value ranges from `1` to `200`. The unit is MB/s.
+    """
+    start: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time of the traffic limit rule. The format is **hh:mm**,
+    e.g. **12:03**.
+    """
 
 @pulumi.input_type
 class MigrationTaskGroupBandwidthPolicyArgs:
@@ -514,43 +500,40 @@ class MigrationTaskGroupBandwidthPolicyArgs:
         pulumi.set(self, "start", value)
 
 
-if not MYPY:
-    class MigrationTaskGroupDestinationObjectArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the destination bucket.
-        Changing this creates a new resource.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region where the destination bucket is located.
-        The value must be the same as that of the service endpoint. Changing this creates a new resource.
-        """
-        access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        data_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination data source. The default value is **HEC**.
-        Changing this creates a new resource.
-        """
-        save_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the path prefix in the destination bucket. The prefix is added
-        before the object key to form a new key. Changing this creates a new resource.
+class MigrationTaskGroupDestinationObjectArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the destination bucket.
+    Changing this creates a new resource.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region where the destination bucket is located.
+    The value must be the same as that of the service endpoint. Changing this creates a new resource.
+    """
+    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    data_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination data source. The default value is **HEC**.
+    Changing this creates a new resource.
+    """
+    save_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the path prefix in the destination bucket. The prefix is added
+    before the object key to form a new key. Changing this creates a new resource.
 
-        <a name="bandwidth_policy_object"></a>
-        The `bandwidth_policy` block supports:
-        """
-        secret_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the secret key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskGroupDestinationObjectArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="bandwidth_policy_object"></a>
+    The `bandwidth_policy` block supports:
+    """
+    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the secret key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskGroupDestinationObjectArgs:
@@ -671,32 +654,29 @@ class MigrationTaskGroupDestinationObjectArgs:
         pulumi.set(self, "secret_key", value)
 
 
-if not MYPY:
-    class MigrationTaskGroupSourceCdnArgsDict(TypedDict):
-        domain: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name from which to obtain objects to be migrated.
-        Changing this creates a new resource.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type. Valid values are **HTTP** and **HTTPS**.
-        Changing this creates a new resource.
-        """
-        authentication_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CDN authentication key.
-        Changing this creates a new resource.
-        """
-        authentication_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication type. Valid values are **NONE**,
-        **QINIU_PRIVATE_AUTHENTICATION**, **ALIYUN_OSS_A**, **ALIYUN_OSS_B**, **ALIYUN_OSS_C**,
-        **KSYUN_PRIVATE_AUTHENTICATION**, **TENCENT_COS_A**, **TENCENT_COS_B**, **TENCENT_COS_C**,
-        **TENCENT_COS_D**. Default value: **None**. Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskGroupSourceCdnArgsDict: TypeAlias = Mapping[str, Any]
+class MigrationTaskGroupSourceCdnArgsDict(TypedDict):
+    domain: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name from which to obtain objects to be migrated.
+    Changing this creates a new resource.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type. Valid values are **HTTP** and **HTTPS**.
+    Changing this creates a new resource.
+    """
+    authentication_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CDN authentication key.
+    Changing this creates a new resource.
+    """
+    authentication_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication type. Valid values are **NONE**,
+    **QINIU_PRIVATE_AUTHENTICATION**, **ALIYUN_OSS_A**, **ALIYUN_OSS_B**, **ALIYUN_OSS_C**,
+    **KSYUN_PRIVATE_AUTHENTICATION**, **TENCENT_COS_A**, **TENCENT_COS_B**, **TENCENT_COS_C**,
+    **TENCENT_COS_D**. Default value: **None**. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskGroupSourceCdnArgs:
@@ -779,76 +759,73 @@ class MigrationTaskGroupSourceCdnArgs:
         pulumi.set(self, "authentication_type", value)
 
 
-if not MYPY:
-    class MigrationTaskGroupSourceObjectArgsDict(TypedDict):
-        access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        app_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the APP ID. This parameter is mandatory when `data_source` is
-        **Tencent**. Changing this creates a new resource.
-        """
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the destination bucket.
-        Changing this creates a new resource.
-        """
-        data_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination data source. The default value is **HEC**.
-        Changing this creates a new resource.
-        """
-        list_file_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the OBS bucket for storing the object
-        list files. `list_file_bucket` is mandatory when `type` is set to **LIST** or **URL_LIST**.
-        Changing this creates a new resource.
+class MigrationTaskGroupSourceObjectArgsDict(TypedDict):
+    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    app_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the APP ID. This parameter is mandatory when `data_source` is
+    **Tencent**. Changing this creates a new resource.
+    """
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the destination bucket.
+    Changing this creates a new resource.
+    """
+    data_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination data source. The default value is **HEC**.
+    Changing this creates a new resource.
+    """
+    list_file_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the OBS bucket for storing the object
+    list files. `list_file_bucket` is mandatory when `type` is set to **LIST** or **URL_LIST**.
+    Changing this creates a new resource.
 
-        > Ensure that the OBS bucket is in the same region as the destination bucket, or the task group will fail to be
-        created.
-        """
-        list_file_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the OBS bucket folder name of the list file or URL list file.
-        `list_file_key` is mandatory when `type` is set to **LIST** or **URL_LIST**.
+    > Ensure that the OBS bucket is in the same region as the destination bucket, or the task group will fail to be
+    created.
+    """
+    list_file_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the OBS bucket folder name of the list file or URL list file.
+    `list_file_key` is mandatory when `type` is set to **LIST** or **URL_LIST**.
 
-        + If `type` is **LIST**: You need to write the names of source objects to be migrated into an object list file
-        and store the file in an OBS bucket on HUAWEI CLOUD. OMS migrates all objects specified in the object list file.
+    + If `type` is **LIST**: You need to write the names of source objects to be migrated into an object list file
+    and store the file in an OBS bucket on HUAWEI CLOUD. OMS migrates all objects specified in the object list file.
 
-        + If `type` is **URL_LIST**: You need to write the URLs of the files to be migrated and their destination objects
-        names into one or more .txt URL list files and store the files in an OBS bucket on HUAWEI CLOUD. You can store up
-        to 2,000 list files in a fixed folder in the OBS bucket. Each list file cannot exceed 1 GB. OMS migrates all
-        objects specified in the URL list files.
+    + If `type` is **URL_LIST**: You need to write the URLs of the files to be migrated and their destination objects
+    names into one or more .txt URL list files and store the files in an OBS bucket on HUAWEI CLOUD. You can store up
+    to 2,000 list files in a fixed folder in the OBS bucket. Each list file cannot exceed 1 GB. OMS migrates all
+    objects specified in the URL list files.
 
-        Changing this creates a new resource.
+    Changing this creates a new resource.
 
-        > More details for the format requirements of list file. Please see
-        the [User Guide](https://support.huaweicloud.com/intl/en-us/usermanual-oms/oms_01_0017.html).
+    > More details for the format requirements of list file. Please see
+    the [User Guide](https://support.huaweicloud.com/intl/en-us/usermanual-oms/oms_01_0017.html).
 
-        <a name="destination_object_object"></a>
-        The `destination_object` block supports:
-        """
-        objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the name prefixes of objects to be migrated if `type` is set to
-        **PREFIX**. If you want to migrate the entire bucket, set this parameter to [""].
-        Changing this creates a new resource.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region where the destination bucket is located.
-        The value must be the same as that of the service endpoint. Changing this creates a new resource.
-        """
-        secret_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the secret key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskGroupSourceObjectArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="destination_object_object"></a>
+    The `destination_object` block supports:
+    """
+    objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the name prefixes of objects to be migrated if `type` is set to
+    **PREFIX**. If you want to migrate the entire bucket, set this parameter to [""].
+    Changing this creates a new resource.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region where the destination bucket is located.
+    The value must be the same as that of the service endpoint. Changing this creates a new resource.
+    """
+    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the secret key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskGroupSourceObjectArgs:
@@ -1061,35 +1038,32 @@ class MigrationTaskGroupSourceObjectArgs:
         pulumi.set(self, "secret_key", value)
 
 
-if not MYPY:
-    class MigrationTaskSmnConfigArgsDict(TypedDict):
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the SMN message topic URN bound to a migration task.
-        Changing this creates a new resource.
-        """
-        trigger_conditions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the trigger conditions of sending messages using SMN.
-        The value can be:
-        + **FAILURE**: indicates that an SMN message will be sent after the migration task fails.
-        + **SUCCESS**: indicates that an SMN message will be sent after the migration task succeeds.
+class MigrationTaskSmnConfigArgsDict(TypedDict):
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the SMN message topic URN bound to a migration task.
+    Changing this creates a new resource.
+    """
+    trigger_conditions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the trigger conditions of sending messages using SMN.
+    The value can be:
+    + **FAILURE**: indicates that an SMN message will be sent after the migration task fails.
+    + **SUCCESS**: indicates that an SMN message will be sent after the migration task succeeds.
 
-        Changing this creates a new resource.
-        """
-        language: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SMN message language. The value can be **zh-cn** or
-        **en-us**. Default value: **en-us**. Changing this creates a new resource.
-        """
-        message_template_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the message template name.
-        If this parameter is specified, SMN messages are sent using the specified template.
-        Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskSmnConfigArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
+    language: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SMN message language. The value can be **zh-cn** or
+    **en-us**. Default value: **en-us**. Changing this creates a new resource.
+    """
+    message_template_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the message template name.
+    If this parameter is specified, SMN messages are sent using the specified template.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskSmnConfigArgs:
@@ -1178,35 +1152,32 @@ class MigrationTaskSmnConfigArgs:
         pulumi.set(self, "message_template_name", value)
 
 
-if not MYPY:
-    class MigrationTaskSourceCdnArgsDict(TypedDict):
-        domain: pulumi.Input[_builtins.str]
-        """
-        Specifies the domain name from which to obtain objects to be migrated.
-        Changing this creates a new resource.
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type. Valid values are **HTTP** and **HTTPS**.
-        Changing this creates a new resource.
-        """
-        authentication_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the CDN authentication key.
-        Changing this creates a new resource.
+class MigrationTaskSourceCdnArgsDict(TypedDict):
+    domain: pulumi.Input[_builtins.str]
+    """
+    Specifies the domain name from which to obtain objects to be migrated.
+    Changing this creates a new resource.
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type. Valid values are **HTTP** and **HTTPS**.
+    Changing this creates a new resource.
+    """
+    authentication_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CDN authentication key.
+    Changing this creates a new resource.
 
-        <a name="smn_config_object"></a>
-        The `smn_config` block supports:
-        """
-        authentication_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the authentication type. Valid values are **NONE**,
-        **QINIU_PRIVATE_AUTHENTICATION**, **ALIYUN_OSS_A**, **ALIYUN_OSS_B**, **ALIYUN_OSS_C**,
-        **KSYUN_PRIVATE_AUTHENTICATION**, **TENCENT_COS_A**, **TENCENT_COS_B**, **TENCENT_COS_C**,
-        **TENCENT_COS_D**. Default value: **None**. Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskSourceCdnArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="smn_config_object"></a>
+    The `smn_config` block supports:
+    """
+    authentication_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication type. Valid values are **NONE**,
+    **QINIU_PRIVATE_AUTHENTICATION**, **ALIYUN_OSS_A**, **ALIYUN_OSS_B**, **ALIYUN_OSS_C**,
+    **KSYUN_PRIVATE_AUTHENTICATION**, **TENCENT_COS_A**, **TENCENT_COS_B**, **TENCENT_COS_C**,
+    **TENCENT_COS_D**. Default value: **None**. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskSourceCdnArgs:
@@ -1295,83 +1266,80 @@ class MigrationTaskSourceCdnArgs:
         pulumi.set(self, "authentication_type", value)
 
 
-if not MYPY:
-    class MigrationTaskSourceObjectArgsDict(TypedDict):
-        access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        app_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the APP ID. This parameter is mandatory when `data_source` is  
-        **Tencent**. Changing this creates a new resource.
-        """
-        bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the destination bucket.
-        Changing this creates a new resource.
-        """
-        data_source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the source cloud service provider. If `type` is
-        **url_list**,set this parameter to **URLSource**. The value can be **AWS**, **Azure**, **Aliyun**, **Tencent**,
-        **HuaweiCloud**, **QingCloud**, **KingsoftCloud**, **Baidu**, **Qiniu**, **URLSource** and **UCloud**.
-        The default value is **Aliyun**. Changing this creates a new resource.
-        """
-        json_auth_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the file used for Google Cloud Storage authentication.
-        Changing this creates a new resource.
+class MigrationTaskSourceObjectArgsDict(TypedDict):
+    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    app_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the APP ID. This parameter is mandatory when `data_source` is  
+    **Tencent**. Changing this creates a new resource.
+    """
+    bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the destination bucket.
+    Changing this creates a new resource.
+    """
+    data_source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source cloud service provider. If `type` is
+    **url_list**,set this parameter to **URLSource**. The value can be **AWS**, **Azure**, **Aliyun**, **Tencent**,
+    **HuaweiCloud**, **QingCloud**, **KingsoftCloud**, **Baidu**, **Qiniu**, **URLSource** and **UCloud**.
+    The default value is **Aliyun**. Changing this creates a new resource.
+    """
+    json_auth_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file used for Google Cloud Storage authentication.
+    Changing this creates a new resource.
 
-        <a name="destination_object_object"></a>
-        The `destination_object` block supports:
-        """
-        list_file_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the OBS bucket for storing the object list files.
-        `list_file_bucket` is mandatory when `type` is set to **list** or **url_list**. Changing this creates a new resource.
+    <a name="destination_object_object"></a>
+    The `destination_object` block supports:
+    """
+    list_file_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the OBS bucket for storing the object list files.
+    `list_file_bucket` is mandatory when `type` is set to **list** or **url_list**. Changing this creates a new resource.
 
-        > Ensure that the OBS bucket is in the same region as the destination bucket, or the task will fail to be created.
-        """
-        list_file_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the object name of the list file or URL list file.
-        `list_file_key` is mandatory when `type` is set to **list** or **url_list**. Changing this creates a new resource.
-        """
-        list_file_num: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the number of stored object list files.
-        Changing this creates a new resource.
-        """
-        objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of object keys.
-        + If `type` is set to **object**, this parameter specifies the names of the objects to be migrated. The strings
-        ending with a slash (/) indicate the folders to be migrated, and the strings not ending with a slash (/) indicate the
-        files to be migrated.
-        + If `type` is set to **prefix**, this parameter indicates the name prefixes of the objects to be migrated.
-        Set this parameter to [""] to migrate the entire bucket
+    > Ensure that the OBS bucket is in the same region as the destination bucket, or the task will fail to be created.
+    """
+    list_file_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the object name of the list file or URL list file.
+    `list_file_key` is mandatory when `type` is set to **list** or **url_list**. Changing this creates a new resource.
+    """
+    list_file_num: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the number of stored object list files.
+    Changing this creates a new resource.
+    """
+    objects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of object keys.
+    + If `type` is set to **object**, this parameter specifies the names of the objects to be migrated. The strings
+    ending with a slash (/) indicate the folders to be migrated, and the strings not ending with a slash (/) indicate the
+    files to be migrated.
+    + If `type` is set to **prefix**, this parameter indicates the name prefixes of the objects to be migrated.
+    Set this parameter to [""] to migrate the entire bucket
 
-        Changing this creates a new resource.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the region where the destination bucket is located.
-        Changing this creates a new resource.
-        """
-        secret_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the secret key for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-        security_token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the temporary token for accessing the destination bucket.
-        Changing this creates a new resource.
-        """
-elif False:
-    MigrationTaskSourceObjectArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the region where the destination bucket is located.
+    Changing this creates a new resource.
+    """
+    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the secret key for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
+    security_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the temporary token for accessing the destination bucket.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MigrationTaskSourceObjectArgs:
@@ -1622,15 +1590,12 @@ class MigrationTaskSourceObjectArgs:
         pulumi.set(self, "security_token", value)
 
 
-if not MYPY:
-    class TaskDstNodeArgsDict(TypedDict):
-        ak: pulumi.Input[_builtins.str]
-        bucket: pulumi.Input[_builtins.str]
-        object_key: pulumi.Input[_builtins.str]
-        region: pulumi.Input[_builtins.str]
-        sk: pulumi.Input[_builtins.str]
-elif False:
-    TaskDstNodeArgsDict: TypeAlias = Mapping[str, Any]
+class TaskDstNodeArgsDict(TypedDict):
+    ak: pulumi.Input[_builtins.str]
+    bucket: pulumi.Input[_builtins.str]
+    object_key: pulumi.Input[_builtins.str]
+    region: pulumi.Input[_builtins.str]
+    sk: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class TaskDstNodeArgs:
@@ -1692,13 +1657,10 @@ class TaskDstNodeArgs:
         pulumi.set(self, "sk", value)
 
 
-if not MYPY:
-    class TaskSmnInfoArgsDict(TypedDict):
-        topic_urn: pulumi.Input[_builtins.str]
-        trigger_conditions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        language: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    TaskSmnInfoArgsDict: TypeAlias = Mapping[str, Any]
+class TaskSmnInfoArgsDict(TypedDict):
+    topic_urn: pulumi.Input[_builtins.str]
+    trigger_conditions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    language: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class TaskSmnInfoArgs:
@@ -1739,16 +1701,13 @@ class TaskSmnInfoArgs:
         pulumi.set(self, "language", value)
 
 
-if not MYPY:
-    class TaskSrcNodeArgsDict(TypedDict):
-        ak: pulumi.Input[_builtins.str]
-        bucket: pulumi.Input[_builtins.str]
-        object_key: pulumi.Input[_builtins.str]
-        region: pulumi.Input[_builtins.str]
-        sk: pulumi.Input[_builtins.str]
-        cloud_type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    TaskSrcNodeArgsDict: TypeAlias = Mapping[str, Any]
+class TaskSrcNodeArgsDict(TypedDict):
+    ak: pulumi.Input[_builtins.str]
+    bucket: pulumi.Input[_builtins.str]
+    object_key: pulumi.Input[_builtins.str]
+    region: pulumi.Input[_builtins.str]
+    sk: pulumi.Input[_builtins.str]
+    cloud_type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class TaskSrcNodeArgs:

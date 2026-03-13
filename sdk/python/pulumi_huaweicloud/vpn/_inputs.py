@@ -49,79 +49,74 @@ __all__ = [
     'GetResourceInstancesTagArgsDict',
 ]
 
-MYPY = False
+class ConnectionIkepolicyArgsDict(TypedDict):
+    authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication algorithm. The value can be **sha1**, **md5**,
+    **sha2-256**, **sha2-384**, **sha2-512**. Defaults to **sha2-256**. **sha1** and **md5** are less secure,
+    please use them with caution.
+    """
+    authentication_method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication method during IKE negotiation.
+    The value can be **pre-share** and **digital-envelope-v2**. Defaults to **pre-share**.
+    """
+    dh_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DH group used for key exchange in phase 1.
+    The value can be **group1**, **group2**, **group5**, **group14**, **group15**, **group16**, **group19**, **group20**,
+    or **group21**. Exercise caution when using **group1**, **group2**, **group5**,
+    or **group14** as they have low security. Defaults to **group15**.
+    """
+    dpd: NotRequired[pulumi.Input['ConnectionIkepolicyDpdArgsDict']]
+    """
+    Specifies the dead peer detection (DPD) object.
+    The dpd structure is documented below.
 
-if not MYPY:
-    class ConnectionIkepolicyArgsDict(TypedDict):
-        authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication algorithm. The value can be **sha1**, **md5**,
-        **sha2-256**, **sha2-384**, **sha2-512**. Defaults to **sha2-256**. **sha1** and **md5** are less secure,
-        please use them with caution.
-        """
-        authentication_method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication method during IKE negotiation.
-        The value can be **pre-share** and **digital-envelope-v2**. Defaults to **pre-share**.
-        """
-        dh_group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DH group used for key exchange in phase 1.
-        The value can be **group1**, **group2**, **group5**, **group14**, **group15**, **group16**, **group19**, **group20**,
-        or **group21**. Exercise caution when using **group1**, **group2**, **group5**,
-        or **group14** as they have low security. Defaults to **group15**.
-        """
-        dpd: NotRequired[pulumi.Input['ConnectionIkepolicyDpdArgsDict']]
-        """
-        Specifies the dead peer detection (DPD) object.
-        The dpd structure is documented below.
-
-        <a name="Connection_DPD"></a>
-        The `dpd` block supports:
-        """
-        encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The encryption algorithm. The value can be **3des**, **aes-128**, **aes-192**,
-        **aes-256**, **aes-128-gcm-16**, **aes-256-gcm-16**, **aes-128-gcm-128**, **aes-256-gcm-128**. Defaults to **aes-128**.
-        **3des** is less secure, please use it with caution.
-        """
-        ike_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IKE negotiation version. The value can be **v1** and **v2**. Defaults to **v2**.
-        """
-        lifetime_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The lifecycle time of Ipsec tunnel in seconds.
-        The value ranges from `60` to `604,800`. Defaults to `3600`.
-        """
-        local_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The local ID.
-        """
-        local_id_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The local ID type. The value can be **ip** or **fqdn**. Defaults to **ip**.
-        """
-        peer_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The peer ID.
-        """
-        peer_id_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The peer ID type. The value can be **ip**, **fqdn** or **any**. Defaults to **ip**.
-        """
-        pfs: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DH key group used by PFS. The value can be **group1**, **group2**, **group5**, **group14**
-        **group16**, **group19**, **group20**, **group21**. Defaults to **group14**.
-        """
-        phase1_negotiation_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The negotiation mode, only works when the ike_version is v1.
-        The value can be **main** or **aggressive**. Defaults to **main**.
-        """
-elif False:
-    ConnectionIkepolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Connection_DPD"></a>
+    The `dpd` block supports:
+    """
+    encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The encryption algorithm. The value can be **3des**, **aes-128**, **aes-192**,
+    **aes-256**, **aes-128-gcm-16**, **aes-256-gcm-16**, **aes-128-gcm-128**, **aes-256-gcm-128**. Defaults to **aes-128**.
+    **3des** is less secure, please use it with caution.
+    """
+    ike_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IKE negotiation version. The value can be **v1** and **v2**. Defaults to **v2**.
+    """
+    lifetime_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The lifecycle time of Ipsec tunnel in seconds.
+    The value ranges from `60` to `604,800`. Defaults to `3600`.
+    """
+    local_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The local ID.
+    """
+    local_id_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The local ID type. The value can be **ip** or **fqdn**. Defaults to **ip**.
+    """
+    peer_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The peer ID.
+    """
+    peer_id_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The peer ID type. The value can be **ip**, **fqdn** or **any**. Defaults to **ip**.
+    """
+    pfs: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DH key group used by PFS. The value can be **group1**, **group2**, **group5**, **group14**
+    **group16**, **group19**, **group20**, **group21**. Defaults to **group14**.
+    """
+    phase1_negotiation_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The negotiation mode, only works when the ike_version is v1.
+    The value can be **main** or **aggressive**. Defaults to **main**.
+    """
 
 @pulumi.input_type
 class ConnectionIkepolicyArgs:
@@ -368,31 +363,28 @@ class ConnectionIkepolicyArgs:
         pulumi.set(self, "phase1_negotiation_mode", value)
 
 
-if not MYPY:
-    class ConnectionIkepolicyDpdArgsDict(TypedDict):
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the DPD idle timeout period.
-        The value ranges from `10` to `3,600`, in seconds. Defaults to `30`.
-        """
-        msg: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the format of DPD packets. The value can be:
-        + **seq-hash-notify**: indicates that the payload of DPD packets is in the sequence of hash-notify;
-        + **seq-notify-hash**: indicates that the payload of DPD packets is in the sequence of notify-hash;
+class ConnectionIkepolicyDpdArgsDict(TypedDict):
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the DPD idle timeout period.
+    The value ranges from `10` to `3,600`, in seconds. Defaults to `30`.
+    """
+    msg: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the format of DPD packets. The value can be:
+    + **seq-hash-notify**: indicates that the payload of DPD packets is in the sequence of hash-notify;
+    + **seq-notify-hash**: indicates that the payload of DPD packets is in the sequence of notify-hash;
 
-        Defaults to **seq-hash-notify**.
+    Defaults to **seq-hash-notify**.
 
-        <a name="Connection_CreateRequestIpsecPolicy"></a>
-        The `ipsecpolicy` block supports:
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the interval for retransmitting DPD packets.
-        The value ranges from `2` to `60`, in seconds. Defaults to `15`.
-        """
-elif False:
-    ConnectionIkepolicyDpdArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Connection_CreateRequestIpsecPolicy"></a>
+    The `ipsecpolicy` block supports:
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the interval for retransmitting DPD packets.
+    The value ranges from `2` to `60`, in seconds. Defaults to `15`.
+    """
 
 @pulumi.input_type
 class ConnectionIkepolicyDpdArgs:
@@ -467,45 +459,42 @@ class ConnectionIkepolicyDpdArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class ConnectionIpsecpolicyArgsDict(TypedDict):
-        authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication algorithm. The value can be **sha1**, **md5**,
-        **sha2-256**, **sha2-384**, **sha2-512**. Defaults to **sha2-256**. **sha1** and **md5** are less secure,
-        please use them with caution.
-        """
-        encapsulation_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The encapsulation mode, only **tunnel** supported for now.
-        Defaults to **tunnel**.
+class ConnectionIpsecpolicyArgsDict(TypedDict):
+    authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication algorithm. The value can be **sha1**, **md5**,
+    **sha2-256**, **sha2-384**, **sha2-512**. Defaults to **sha2-256**. **sha1** and **md5** are less secure,
+    please use them with caution.
+    """
+    encapsulation_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The encapsulation mode, only **tunnel** supported for now.
+    Defaults to **tunnel**.
 
-        <a name="Connection_PolicyRule"></a>
-        The `policy_rules` block supports:
-        """
-        encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The encryption algorithm. The value can be **3des**, **aes-128**, **aes-192**,
-        **aes-256**, **aes-128-gcm-16**, **aes-256-gcm-16**, **aes-128-gcm-128**, **aes-256-gcm-128**. Defaults to **aes-128**.
-        **3des** is less secure, please use it with caution.
-        """
-        lifetime_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The lifecycle time of Ipsec tunnel in seconds.
-        The value ranges from `60` to `604,800`. Defaults to `3600`.
-        """
-        pfs: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DH key group used by PFS. The value can be **group1**, **group2**, **group5**, **group14**
-        **group16**, **group19**, **group20**, **group21**. Defaults to **group14**.
-        """
-        transform_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The transform protocol. Only **esp** supported for now.
-        Defaults to **esp**.
-        """
-elif False:
-    ConnectionIpsecpolicyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Connection_PolicyRule"></a>
+    The `policy_rules` block supports:
+    """
+    encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The encryption algorithm. The value can be **3des**, **aes-128**, **aes-192**,
+    **aes-256**, **aes-128-gcm-16**, **aes-256-gcm-16**, **aes-128-gcm-128**, **aes-256-gcm-128**. Defaults to **aes-128**.
+    **3des** is less secure, please use it with caution.
+    """
+    lifetime_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The lifecycle time of Ipsec tunnel in seconds.
+    The value ranges from `60` to `604,800`. Defaults to `3600`.
+    """
+    pfs: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DH key group used by PFS. The value can be **group1**, **group2**, **group5**, **group14**
+    **group16**, **group19**, **group20**, **group21**. Defaults to **group14**.
+    """
+    transform_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The transform protocol. Only **esp** supported for now.
+    Defaults to **esp**.
+    """
 
 @pulumi.input_type
 class ConnectionIpsecpolicyArgs:
@@ -632,22 +621,19 @@ class ConnectionIpsecpolicyArgs:
         pulumi.set(self, "transform_protocol", value)
 
 
-if not MYPY:
-    class ConnectionPolicyRuleArgsDict(TypedDict):
-        destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of destination CIDRs.
-        """
-        rule_index: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The rule index.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The source CIDR.
-        """
-elif False:
-    ConnectionPolicyRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionPolicyRuleArgsDict(TypedDict):
+    destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of destination CIDRs.
+    """
+    rule_index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The rule index.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The source CIDR.
+    """
 
 @pulumi.input_type
 class ConnectionPolicyRuleArgs:
@@ -704,94 +690,91 @@ class ConnectionPolicyRuleArgs:
         pulumi.set(self, "source", value)
 
 
-if not MYPY:
-    class GatewayCertificateArgsDict(TypedDict):
-        certificate_chain: pulumi.Input[_builtins.str]
-        """
-        The certificate chain of the gateway certificate.
-        """
-        content: pulumi.Input[_builtins.str]
-        """
-        The content of the gateway certificate.
-        """
-        enc_certificate: pulumi.Input[_builtins.str]
-        """
-        The enc certificate of the gateway certificate.
-        """
-        enc_private_key: pulumi.Input[_builtins.str]
-        """
-        The enc private key of the gateway certificate.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the gateway certificate.
-        """
-        private_key: pulumi.Input[_builtins.str]
-        """
-        The private of the gateway certificate.
-        """
-        certificate_chain_expire_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expire time of the certificate.
-        """
-        certificate_chain_serial_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The serial number of the certificate chain.
-        """
-        certificate_chain_subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subject of the certificate chain.
-        """
-        certificate_expire_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expire time of the certificate.
-        """
-        certificate_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The certificate ID.
-        """
-        certificate_serial_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The serial number of the certificate.
-        """
-        certificate_subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subject of the certificate.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The create time of the gateway certificate.
-        """
-        enc_certificate_expire_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expire time of the enc certificate.
-        """
-        enc_certificate_serial_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The serial number of the enc certificate.
-        """
-        enc_certificate_subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subject of the enc certificate.
-        """
-        issuer: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The issuer of the certificate.
-        """
-        signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The signature algorithm of the certificate.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the certificate.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The update time of the gateway certificate.
-        """
-elif False:
-    GatewayCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayCertificateArgsDict(TypedDict):
+    certificate_chain: pulumi.Input[_builtins.str]
+    """
+    The certificate chain of the gateway certificate.
+    """
+    content: pulumi.Input[_builtins.str]
+    """
+    The content of the gateway certificate.
+    """
+    enc_certificate: pulumi.Input[_builtins.str]
+    """
+    The enc certificate of the gateway certificate.
+    """
+    enc_private_key: pulumi.Input[_builtins.str]
+    """
+    The enc private key of the gateway certificate.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the gateway certificate.
+    """
+    private_key: pulumi.Input[_builtins.str]
+    """
+    The private of the gateway certificate.
+    """
+    certificate_chain_expire_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expire time of the certificate.
+    """
+    certificate_chain_serial_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The serial number of the certificate chain.
+    """
+    certificate_chain_subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subject of the certificate chain.
+    """
+    certificate_expire_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expire time of the certificate.
+    """
+    certificate_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The certificate ID.
+    """
+    certificate_serial_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The serial number of the certificate.
+    """
+    certificate_subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subject of the certificate.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The create time of the gateway certificate.
+    """
+    enc_certificate_expire_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expire time of the enc certificate.
+    """
+    enc_certificate_serial_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The serial number of the enc certificate.
+    """
+    enc_certificate_subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subject of the enc certificate.
+    """
+    issuer: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The issuer of the certificate.
+    """
+    signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The signature algorithm of the certificate.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the certificate.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The update time of the gateway certificate.
+    """
 
 @pulumi.input_type
 class GatewayCertificateArgs:
@@ -1130,61 +1113,58 @@ class GatewayCertificateArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class GatewayEip1ArgsDict(TypedDict):
-        bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth ID.
-        """
-        bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth name.  
-        The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
+class GatewayEip1ArgsDict(TypedDict):
+    bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth ID.
+    """
+    bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth name.  
+    The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
 
-        Changing this parameter will create a new resource.
-        """
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
-        cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
-        When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
+    Changing this parameter will create a new resource.
+    """
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
+    cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
+    When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
 
-        Changing this parameter will create a new resource.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
+    Changing this parameter will create a new resource.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
-        create a new EIP.
+    > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
+    create a new EIP.
 
-        <a name="Gateway_certificate"></a>
-        The `certificate` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP ID.
+    <a name="Gateway_certificate"></a>
+    The `certificate` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP ID.
 
-        Changing this parameter will create a new resource.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP address.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The public IP version.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type. The value can be **5_bgp** and **5_sbgp**.
+    Changing this parameter will create a new resource.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP address.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The public IP version.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type. The value can be **5_bgp** and **5_sbgp**.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    GatewayEip1ArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class GatewayEip1Args:
@@ -1359,61 +1339,58 @@ class GatewayEip1Args:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class GatewayEip2ArgsDict(TypedDict):
-        bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth ID.
-        """
-        bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth name.  
-        The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
+class GatewayEip2ArgsDict(TypedDict):
+    bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth ID.
+    """
+    bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth name.  
+    The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
 
-        Changing this parameter will create a new resource.
-        """
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
-        cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
-        When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
+    Changing this parameter will create a new resource.
+    """
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
+    cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
+    When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
 
-        Changing this parameter will create a new resource.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
+    Changing this parameter will create a new resource.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
-        create a new EIP.
+    > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
+    create a new EIP.
 
-        <a name="Gateway_certificate"></a>
-        The `certificate` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP ID.
+    <a name="Gateway_certificate"></a>
+    The `certificate` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP ID.
 
-        Changing this parameter will create a new resource.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP address.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The public IP version.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type. The value can be **5_bgp** and **5_sbgp**.
+    Changing this parameter will create a new resource.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP address.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The public IP version.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type. The value can be **5_bgp** and **5_sbgp**.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    GatewayEip2ArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class GatewayEip2Args:
@@ -1588,61 +1565,58 @@ class GatewayEip2Args:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class GatewayMasterEipArgsDict(TypedDict):
-        bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth ID.
-        """
-        bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth name.  
-        The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
+class GatewayMasterEipArgsDict(TypedDict):
+    bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth ID.
+    """
+    bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth name.  
+    The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
 
-        Changing this parameter will create a new resource.
-        """
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
-        cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
-        When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
+    Changing this parameter will create a new resource.
+    """
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
+    cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
+    When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
 
-        Changing this parameter will create a new resource.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
+    Changing this parameter will create a new resource.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
-        create a new EIP.
+    > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
+    create a new EIP.
 
-        <a name="Gateway_certificate"></a>
-        The `certificate` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP ID.
+    <a name="Gateway_certificate"></a>
+    The `certificate` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP ID.
 
-        Changing this parameter will create a new resource.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP address.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The public IP version.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type. The value can be **5_bgp** and **5_sbgp**.
+    Changing this parameter will create a new resource.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP address.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The public IP version.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type. The value can be **5_bgp** and **5_sbgp**.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    GatewayMasterEipArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class GatewayMasterEipArgs:
@@ -1817,61 +1791,58 @@ class GatewayMasterEipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class GatewaySlaveEipArgsDict(TypedDict):
-        bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth ID.
-        """
-        bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The bandwidth name.  
-        The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
+class GatewaySlaveEipArgsDict(TypedDict):
+    bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth ID.
+    """
+    bandwidth_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The bandwidth name.  
+    The valid length is limited from `1` to `64`, only letters, digits, hyphens (-) and underscores (_) are allowed.
 
-        Changing this parameter will create a new resource.
-        """
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
-        cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
-        When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
+    Changing this parameter will create a new resource.
+    """
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Bandwidth size in Mbit/s. When the `flavor` is **Basic**, the value
+    cannot be greater than `100`. When the `flavor` is **Professional1**, the value cannot be greater than `300`.
+    When the `flavor` is **Professional2**, the value cannot be greater than `1,000`.
 
-        Changing this parameter will create a new resource.
-        """
-        charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
+    Changing this parameter will create a new resource.
+    """
+    charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The charge mode of the bandwidth. The value can be **bandwidth** and **traffic**.
 
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
 
-        > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
-        create a new EIP.
+    > You can use `id` to specify an existing EIP or use `type`, `bandwidth_name`, `bandwidth_size` and `charge_mode` to
+    create a new EIP.
 
-        <a name="Gateway_certificate"></a>
-        The `certificate` block supports:
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP ID.
+    <a name="Gateway_certificate"></a>
+    The `certificate` block supports:
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP ID.
 
-        Changing this parameter will create a new resource.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IP address.
-        """
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The public IP version.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The EIP type. The value can be **5_bgp** and **5_sbgp**.
+    Changing this parameter will create a new resource.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IP address.
+    """
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The public IP version.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The EIP type. The value can be **5_bgp** and **5_sbgp**.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    GatewaySlaveEipArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class GatewaySlaveEipArgs:
@@ -2046,23 +2017,20 @@ class GatewaySlaveEipArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServerClientCaCertificateArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
-        """
-        Specifies the certificate content.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate name. If this parameter is left blank, the system automatically
-        generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
-        underscores (_), and hyphens (-).
+class ServerClientCaCertificateArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    """
+    Specifies the certificate content.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate name. If this parameter is left blank, the system automatically
+    generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
+    underscores (_), and hyphens (-).
 
-        <a name="block--server_certificate"></a>
-        The `server_certificate` block supports:
-        """
-elif False:
-    ServerClientCaCertificateArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--server_certificate"></a>
+    The `server_certificate` block supports:
+    """
 
 @pulumi.input_type
 class ServerClientCaCertificateArgs:
@@ -2112,55 +2080,52 @@ class ServerClientCaCertificateArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServerClientCaCertificatesUploadedArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The creation time of the client CA certificate.
-        """
-        expiration_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expiration time of the server certificate.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate ID, which is the ID of a certificated uploaded in the Cloud
-        Certificate Manager (CCM).
+class ServerClientCaCertificatesUploadedArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The creation time of the client CA certificate.
+    """
+    expiration_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expiration time of the server certificate.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate ID, which is the ID of a certificated uploaded in the Cloud
+    Certificate Manager (CCM).
 
-        <a name="block--ssl_options"></a>
-        The `ssl_options` block supports:
-        """
-        issuer: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The issuer of the server certificate.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate name. If this parameter is left blank, the system automatically
-        generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
-        underscores (_), and hyphens (-).
+    <a name="block--ssl_options"></a>
+    The `ssl_options` block supports:
+    """
+    issuer: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The issuer of the server certificate.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate name. If this parameter is left blank, the system automatically
+    generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
+    underscores (_), and hyphens (-).
 
-        <a name="block--server_certificate"></a>
-        The `server_certificate` block supports:
-        """
-        serial_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The serial number of the server certificate.
-        """
-        signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The signature algorithm of the server certificate.
-        """
-        subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subject of the server certificate.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The update time of the client CA certificate.
-        """
-elif False:
-    ServerClientCaCertificatesUploadedArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--server_certificate"></a>
+    The `server_certificate` block supports:
+    """
+    serial_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The serial number of the server certificate.
+    """
+    signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The signature algorithm of the server certificate.
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subject of the server certificate.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The update time of the client CA certificate.
+    """
 
 @pulumi.input_type
 class ServerClientCaCertificatesUploadedArgs:
@@ -2331,47 +2296,44 @@ class ServerClientCaCertificatesUploadedArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class ServerServerCertificateArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the certificate ID, which is the ID of a certificated uploaded in the Cloud
-        Certificate Manager (CCM).
+class ServerServerCertificateArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the certificate ID, which is the ID of a certificated uploaded in the Cloud
+    Certificate Manager (CCM).
 
-        <a name="block--ssl_options"></a>
-        The `ssl_options` block supports:
-        """
-        expiration_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The expiration time of the server certificate.
-        """
-        issuer: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The issuer of the server certificate.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the certificate name. If this parameter is left blank, the system automatically
-        generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
-        underscores (_), and hyphens (-).
+    <a name="block--ssl_options"></a>
+    The `ssl_options` block supports:
+    """
+    expiration_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The expiration time of the server certificate.
+    """
+    issuer: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The issuer of the server certificate.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the certificate name. If this parameter is left blank, the system automatically
+    generates a certificate name. The value is a string of **1** to **64** characters, which can contain digits, letters,
+    underscores (_), and hyphens (-).
 
-        <a name="block--server_certificate"></a>
-        The `server_certificate` block supports:
-        """
-        serial_number: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The serial number of the server certificate.
-        """
-        signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The signature algorithm of the server certificate.
-        """
-        subject: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subject of the server certificate.
-        """
-elif False:
-    ServerServerCertificateArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="block--server_certificate"></a>
+    The `server_certificate` block supports:
+    """
+    serial_number: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The serial number of the server certificate.
+    """
+    signature_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The signature algorithm of the server certificate.
+    """
+    subject: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subject of the server certificate.
+    """
 
 @pulumi.input_type
 class ServerServerCertificateArgs:
@@ -2509,31 +2471,28 @@ class ServerServerCertificateArgs:
         pulumi.set(self, "subject", value)
 
 
-if not MYPY:
-    class ServerSslOptionsArgsDict(TypedDict):
-        authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication algorithm.
-        """
-        encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the encryption algorithm.
-        Value can be **AES-128-GCM**, **AES-256-GCM**. The default value is **AES-128-GCM**.
-        """
-        is_compressed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to compress data. The default value is **false**.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the port number. Value can be **443**, **1194**. The default value is **443**.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol. Value can be **TCP**. Defaults to **TCP**.
-        """
-elif False:
-    ServerSslOptionsArgsDict: TypeAlias = Mapping[str, Any]
+class ServerSslOptionsArgsDict(TypedDict):
+    authentication_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication algorithm.
+    """
+    encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption algorithm.
+    Value can be **AES-128-GCM**, **AES-256-GCM**. The default value is **AES-128-GCM**.
+    """
+    is_compressed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to compress data. The default value is **false**.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the port number. Value can be **443**, **1194**. The default value is **443**.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol. Value can be **TCP**. Defaults to **TCP**.
+    """
 
 @pulumi.input_type
 class ServerSslOptionsArgs:
@@ -2624,22 +2583,19 @@ class ServerSslOptionsArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class UserGroupUserArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the user ID.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the user group.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the user group.
-        """
-elif False:
-    UserGroupUserArgsDict: TypeAlias = Mapping[str, Any]
+class UserGroupUserArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the user ID.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the user group.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the user group.
+    """
 
 @pulumi.input_type
 class UserGroupUserArgs:
@@ -2695,20 +2651,17 @@ class UserGroupUserArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetResourceInstancesMatchArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the match key.
-        The value can be **resource_name**.
-        """
-        value: _builtins.str
-        """
-        Specifies the match value.
-        The value is a sting of **0** to **255** characters.
-        """
-elif False:
-    GetResourceInstancesMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetResourceInstancesMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the match key.
+    The value can be **resource_name**.
+    """
+    value: _builtins.str
+    """
+    Specifies the match value.
+    The value is a sting of **0** to **255** characters.
+    """
 
 @pulumi.input_type
 class GetResourceInstancesMatchArgs:
@@ -2751,24 +2704,21 @@ class GetResourceInstancesMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetResourceInstancesTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the match key.
-        The value can be **resource_name**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the value list of the tag.
-        If values is an empty list, it indicates any value. The relationship between values is **OR**.
-        The value is a sting of **0** to **255** characters. A maximum of **20** values can be specified.
+class GetResourceInstancesTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the match key.
+    The value can be **resource_name**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the value list of the tag.
+    If values is an empty list, it indicates any value. The relationship between values is **OR**.
+    The value is a sting of **0** to **255** characters. A maximum of **20** values can be specified.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetResourceInstancesTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetResourceInstancesTagArgs:

@@ -27,7 +27,7 @@ class GetCustomEventChannelsResult:
     """
     A collection of values returned by getCustomEventChannels.
     """
-    def __init__(__self__, channel_id=None, channels=None, enterprise_project_id=None, id=None, name=None, region=None):
+    def __init__(__self__, channel_id=None, channels=None, enterprise_project_id=None, fuzzy_name=None, id=None, name=None, region=None, sort=None):
         if channel_id and not isinstance(channel_id, str):
             raise TypeError("Expected argument 'channel_id' to be a str")
         pulumi.set(__self__, "channel_id", channel_id)
@@ -37,6 +37,9 @@ class GetCustomEventChannelsResult:
         if enterprise_project_id and not isinstance(enterprise_project_id, str):
             raise TypeError("Expected argument 'enterprise_project_id' to be a str")
         pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if fuzzy_name and not isinstance(fuzzy_name, str):
+            raise TypeError("Expected argument 'fuzzy_name' to be a str")
+        pulumi.set(__self__, "fuzzy_name", fuzzy_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -46,6 +49,9 @@ class GetCustomEventChannelsResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if sort and not isinstance(sort, str):
+            raise TypeError("Expected argument 'sort' to be a str")
+        pulumi.set(__self__, "sort", sort)
 
     @_builtins.property
     @pulumi.getter(name="channelId")
@@ -70,6 +76,11 @@ class GetCustomEventChannelsResult:
         return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
+    @pulumi.getter(name="fuzzyName")
+    def fuzzy_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "fuzzy_name")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -90,6 +101,11 @@ class GetCustomEventChannelsResult:
     def region(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "region")
 
+    @_builtins.property
+    @pulumi.getter
+    def sort(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "sort")
+
 
 class AwaitableGetCustomEventChannelsResult(GetCustomEventChannelsResult):
     # pylint: disable=using-constant-test
@@ -100,15 +116,19 @@ class AwaitableGetCustomEventChannelsResult(GetCustomEventChannelsResult):
             channel_id=self.channel_id,
             channels=self.channels,
             enterprise_project_id=self.enterprise_project_id,
+            fuzzy_name=self.fuzzy_name,
             id=self.id,
             name=self.name,
-            region=self.region)
+            region=self.region,
+            sort=self.sort)
 
 
 def get_custom_event_channels(channel_id: Optional[_builtins.str] = None,
                               enterprise_project_id: Optional[_builtins.str] = None,
+                              fuzzy_name: Optional[_builtins.str] = None,
                               name: Optional[_builtins.str] = None,
                               region: Optional[_builtins.str] = None,
+                              sort: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomEventChannelsResult:
     """
     Use this data source to filter EG custom event channels within HuaweiCloud.
@@ -127,15 +147,19 @@ def get_custom_event_channels(channel_id: Optional[_builtins.str] = None,
 
     :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the custom event
            channels belong.
+    :param _builtins.str fuzzy_name: Specifies the name of the channels to be queried for fuzzy matching.
     :param _builtins.str name: Specifies the channel name used to query specified custom event channel.
     :param _builtins.str region: Specifies the region where the custom event channels are located.  
            If omitted, the provider-level region will be used.
+    :param _builtins.str sort: Specifies the sorting method for query results.
     """
     __args__ = dict()
     __args__['channelId'] = channel_id
     __args__['enterpriseProjectId'] = enterprise_project_id
+    __args__['fuzzyName'] = fuzzy_name
     __args__['name'] = name
     __args__['region'] = region
+    __args__['sort'] = sort
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('huaweicloud:eg/getCustomEventChannels:getCustomEventChannels', __args__, opts=opts, typ=GetCustomEventChannelsResult).value
 
@@ -143,13 +167,17 @@ def get_custom_event_channels(channel_id: Optional[_builtins.str] = None,
         channel_id=pulumi.get(__ret__, 'channel_id'),
         channels=pulumi.get(__ret__, 'channels'),
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
+        fuzzy_name=pulumi.get(__ret__, 'fuzzy_name'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
-        region=pulumi.get(__ret__, 'region'))
+        region=pulumi.get(__ret__, 'region'),
+        sort=pulumi.get(__ret__, 'sort'))
 def get_custom_event_channels_output(channel_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                      enterprise_project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                                     fuzzy_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                      name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                      region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                                     sort: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomEventChannelsResult]:
     """
     Use this data source to filter EG custom event channels within HuaweiCloud.
@@ -168,21 +196,27 @@ def get_custom_event_channels_output(channel_id: Optional[pulumi.Input[Optional[
 
     :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the custom event
            channels belong.
+    :param _builtins.str fuzzy_name: Specifies the name of the channels to be queried for fuzzy matching.
     :param _builtins.str name: Specifies the channel name used to query specified custom event channel.
     :param _builtins.str region: Specifies the region where the custom event channels are located.  
            If omitted, the provider-level region will be used.
+    :param _builtins.str sort: Specifies the sorting method for query results.
     """
     __args__ = dict()
     __args__['channelId'] = channel_id
     __args__['enterpriseProjectId'] = enterprise_project_id
+    __args__['fuzzyName'] = fuzzy_name
     __args__['name'] = name
     __args__['region'] = region
+    __args__['sort'] = sort
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:eg/getCustomEventChannels:getCustomEventChannels', __args__, opts=opts, typ=GetCustomEventChannelsResult)
     return __ret__.apply(lambda __response__: GetCustomEventChannelsResult(
         channel_id=pulumi.get(__response__, 'channel_id'),
         channels=pulumi.get(__response__, 'channels'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
+        fuzzy_name=pulumi.get(__response__, 'fuzzy_name'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
-        region=pulumi.get(__response__, 'region')))
+        region=pulumi.get(__response__, 'region'),
+        sort=pulumi.get(__response__, 'sort')))

@@ -26,6 +26,7 @@ class RuleWebTamperProtectionRefreshArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleWebTamperProtectionRefresh resource.
+
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the policy.
         :param pulumi.Input[_builtins.str] rule_id: Specifies the ID of the web tamper protection rule.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the web
@@ -112,6 +113,7 @@ class _RuleWebTamperProtectionRefreshState:
                  rule_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuleWebTamperProtectionRefresh resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the web
                tamper protection rule belongs.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the policy.
@@ -223,6 +225,7 @@ class RuleWebTamperProtectionRefresh(pulumi.CustomResource):
             rule_id=rule_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the web
@@ -258,6 +261,7 @@ class RuleWebTamperProtectionRefresh(pulumi.CustomResource):
             policy_id=policy_id,
             rule_id=rule_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleWebTamperProtectionRefreshArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class LogSettingArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogSetting resource.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the agency name. You can create an agency to allow CSS to
                call other cloud services.
         :param pulumi.Input[_builtins.str] base_path: Specifies the storage path of backed up logs in the OBS bucket.
@@ -138,6 +139,7 @@ class _LogSettingState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogSetting resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the agency name. You can create an agency to allow CSS to
                call other cloud services.
         :param pulumi.Input[_builtins.bool] auto_enabled: Whether to enable automatic backup.
@@ -322,11 +324,10 @@ class LogSetting(pulumi.CustomResource):
 
         The CSS log setting can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logSetting:LogSetting test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,11 +373,10 @@ class LogSetting(pulumi.CustomResource):
 
         The CSS log setting can be imported using `cluster_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logSetting:LogSetting test <cluster_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogSettingArgs args: The arguments to use to populate this resource's properties.

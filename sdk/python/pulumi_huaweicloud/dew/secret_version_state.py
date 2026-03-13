@@ -25,6 +25,7 @@ class SecretVersionStateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretVersionState resource.
+
         :param pulumi.Input[_builtins.str] secret_name: Specifies the name of the secret to which the secret version state
                belongs. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] version_id: Specifies the ID of the secret version.
@@ -106,6 +107,7 @@ class _SecretVersionStateState:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretVersionState resources.
+
         :param pulumi.Input[_builtins.str] name: Specifies the name of the secret version state.
                Changing this parameter will create a new secret version.
                Only letters, digits, underscores(_) and hyphens(-) are allowed.
@@ -234,11 +236,10 @@ class SecretVersionState(pulumi.CustomResource):
 
         The secret version state can be imported using the related `secret_name` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/secretVersionState:SecretVersionState test <secret_name>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -287,11 +288,10 @@ class SecretVersionState(pulumi.CustomResource):
 
         The secret version state can be imported using the related `secret_name` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/secretVersionState:SecretVersionState test <secret_name>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretVersionStateArgs args: The arguments to use to populate this resource's properties.

@@ -49,20 +49,15 @@ __all__ = [
     'MysqlTableRestoreRestoreTableTableArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class MysqlAccountPrivilegeDatabaseArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name.
-        """
-        readonly: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the database permission is read-only.
-        """
-elif False:
-    MysqlAccountPrivilegeDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlAccountPrivilegeDatabaseArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name.
+    """
+    readonly: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the database permission is read-only.
+    """
 
 @pulumi.input_type
 class MysqlAccountPrivilegeDatabaseArgs:
@@ -101,18 +96,15 @@ class MysqlAccountPrivilegeDatabaseArgs:
         pulumi.set(self, "readonly", value)
 
 
-if not MYPY:
-    class MysqlBackupDatastoreArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database engine.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database version.
-        """
-elif False:
-    MysqlBackupDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlBackupDatastoreArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database engine.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database version.
+    """
 
 @pulumi.input_type
 class MysqlBackupDatastoreArgs:
@@ -153,77 +145,74 @@ class MysqlBackupDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class MysqlInstanceAutoScalingArgsDict(TypedDict):
-        scaling_strategy: pulumi.Input['MysqlInstanceAutoScalingScalingStrategyArgsDict']
-        """
-        Specifies the auto-scaling policy.
-        The scaling_strategy structure is documented below.
-        """
-        status: pulumi.Input[_builtins.str]
-        """
-        Indicates the node status.
-        """
-        enlarge_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the average CPU usage (%). It is mandatory when `status` is set to
-        **ON**. Value options: **50–100**.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of an auto-scaling policy.
-        """
-        max_flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum specifications. It is mandatory when the instance specifications
-        are automatically scaled up or down.
-        """
-        max_read_only_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of read replicas. It is mandatory when read
-        replicas are automatically added or deleted.
-        """
-        min_flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the minimum specifications.
-        """
-        min_read_only_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the minimum number of read replicas.
-        """
-        monitor_cycle: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the observation period, in seconds. During the entire observation period,
-        if the average CPU usage is greater than or equal to the preset value, a scale-up is triggered. It is mandatory when
-        `status` is set to **ON**. Value options: **300**, **600**, **900** or **1800**.
-        """
-        read_only_weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the read weights of read replicas. It is mandatory when read replicas
-        are automatically added or deleted.
+class MysqlInstanceAutoScalingArgsDict(TypedDict):
+    scaling_strategy: pulumi.Input['MysqlInstanceAutoScalingScalingStrategyArgsDict']
+    """
+    Specifies the auto-scaling policy.
+    The scaling_strategy structure is documented below.
+    """
+    status: pulumi.Input[_builtins.str]
+    """
+    Indicates the node status.
+    """
+    enlarge_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the average CPU usage (%). It is mandatory when `status` is set to
+    **ON**. Value options: **50–100**.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of an auto-scaling policy.
+    """
+    max_flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum specifications. It is mandatory when the instance specifications
+    are automatically scaled up or down.
+    """
+    max_read_only_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of read replicas. It is mandatory when read
+    replicas are automatically added or deleted.
+    """
+    min_flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the minimum specifications.
+    """
+    min_read_only_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the minimum number of read replicas.
+    """
+    monitor_cycle: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the observation period, in seconds. During the entire observation period,
+    if the average CPU usage is greater than or equal to the preset value, a scale-up is triggered. It is mandatory when
+    `status` is set to **ON**. Value options: **300**, **600**, **900** or **1800**.
+    """
+    read_only_weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the read weights of read replicas. It is mandatory when read replicas
+    are automatically added or deleted.
 
-        <a name="scaling_strategy_struct"></a>
-        The `scaling_strategy` block supports:
-        """
-        reduce_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether auto-down is enabled. It is mandatory when `status` is set to
-        **ON**. Value options:
-        + **true**: enabled.
-        + **false**: disabled.
-        """
-        silence_cycle: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the silent period, in seconds. It indicates the minimum interval between
-        two auto scale-up operations or two scale-down operations. It is mandatory when `status` is set to **ON**. Value
-        options: **300**,  **600**, **1800**, **3600**, **7200**, **10800**, **86400** or **604800**.
-        """
-        silence_start_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the start time of the silent period.
-        """
-elif False:
-    MysqlInstanceAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="scaling_strategy_struct"></a>
+    The `scaling_strategy` block supports:
+    """
+    reduce_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether auto-down is enabled. It is mandatory when `status` is set to
+    **ON**. Value options:
+    + **true**: enabled.
+    + **false**: disabled.
+    """
+    silence_cycle: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the silent period, in seconds. It indicates the minimum interval between
+    two auto scale-up operations or two scale-down operations. It is mandatory when `status` is set to **ON**. Value
+    options: **300**,  **600**, **1800**, **3600**, **7200**, **10800**, **86400** or **604800**.
+    """
+    silence_start_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the start time of the silent period.
+    """
 
 @pulumi.input_type
 class MysqlInstanceAutoScalingArgs:
@@ -468,25 +457,22 @@ class MysqlInstanceAutoScalingArgs:
         pulumi.set(self, "silence_start_at", value)
 
 
-if not MYPY:
-    class MysqlInstanceAutoScalingScalingStrategyArgsDict(TypedDict):
-        flavor_switch: pulumi.Input[_builtins.str]
-        """
-        Specifies whether instance specifications can be automatically scaled up or down.
-        Value options:
-        + **ON**: Yes
-        + **OFF**: No
-        """
-        read_only_switch: pulumi.Input[_builtins.str]
-        """
-        Specifies whether read replicas can be automatically added or deleted. To use
-        this function, ensure that there is only one proxy instance.
-        Value options:
-        + **ON**: Yes
-        + **OFF**: No
-        """
-elif False:
-    MysqlInstanceAutoScalingScalingStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlInstanceAutoScalingScalingStrategyArgsDict(TypedDict):
+    flavor_switch: pulumi.Input[_builtins.str]
+    """
+    Specifies whether instance specifications can be automatically scaled up or down.
+    Value options:
+    + **ON**: Yes
+    + **OFF**: No
+    """
+    read_only_switch: pulumi.Input[_builtins.str]
+    """
+    Specifies whether read replicas can be automatically added or deleted. To use
+    this function, ensure that there is only one proxy instance.
+    Value options:
+    + **ON**: Yes
+    + **OFF**: No
+    """
 
 @pulumi.input_type
 class MysqlInstanceAutoScalingScalingStrategyArgs:
@@ -539,24 +525,21 @@ class MysqlInstanceAutoScalingScalingStrategyArgs:
         pulumi.set(self, "read_only_switch", value)
 
 
-if not MYPY:
-    class MysqlInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
-        HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
-        value: **08:00-09:00**, **03:00-04:00**.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files.  
-        The value ranges from `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set.
-        If this parameter is not transferred, the automated backup policy is enabled by default.
-        Backup files are stored for seven days by default.
-        """
-elif False:
-    MysqlInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The
+    HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example
+    value: **08:00-09:00**, **03:00-04:00**.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files.  
+    The value ranges from `0` to `35`. If this parameter is set to `0`, the automated backup policy is not set.
+    If this parameter is not transferred, the automated backup policy is enabled by default.
+    Backup files are stored for seven days by default.
+    """
 
 @pulumi.input_type
 class MysqlInstanceBackupStrategyArgs:
@@ -608,20 +591,17 @@ class MysqlInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class MysqlInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only "gaussdb-mysql" is supported now.
-        Changing this parameter will create a new resource.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version. Only "8.0" is supported now.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    MysqlInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only "gaussdb-mysql" is supported now.
+    Changing this parameter will create a new resource.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version. Only "8.0" is supported now.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class MysqlInstanceDatastoreArgs:
@@ -664,36 +644,33 @@ class MysqlInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class MysqlInstanceNodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the availability zone where the node resides.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the ID of an auto-scaling policy.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the instance name, which can be the same as an existing instance name.
-        The value must be `4` to `64` characters in length and start with a letter.
-        It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_).
-        """
-        private_read_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of a node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type: master or slave.
-        """
-elif False:
-    MysqlInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlInstanceNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the availability zone where the node resides.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of an auto-scaling policy.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the instance name, which can be the same as an existing instance name.
+    The value must be `4` to `64` characters in length and start with a letter.
+    It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_).
+    """
+    private_read_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of a node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node type: master or slave.
+    """
 
 @pulumi.input_type
 class MysqlInstanceNodeArgs:
@@ -802,23 +779,20 @@ class MysqlInstanceNodeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class MysqlInstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the instance name, which can be the same as an existing instance name.
-        The value must be `4` to `64` characters in length and start with a letter.
-        It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_).
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the parameter.
+class MysqlInstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the instance name, which can be the same as an existing instance name.
+    The value must be `4` to `64` characters in length and start with a letter.
+    It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_).
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the parameter.
 
-        <a name="auto_scaling_struct"></a>
-        The `auto_scaling` block supports:
-        """
-elif False:
-    MysqlInstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="auto_scaling_struct"></a>
+    The `auto_scaling` block supports:
+    """
 
 @pulumi.input_type
 class MysqlInstanceParameterArgs:
@@ -867,22 +841,19 @@ class MysqlInstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class MysqlParameterTemplateCompareDifferenceArgsDict(TypedDict):
-        parameter_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter name.
-        """
-        source_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the source parameter template.
-        """
-        target_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the destination parameter template.
-        """
-elif False:
-    MysqlParameterTemplateCompareDifferenceArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlParameterTemplateCompareDifferenceArgsDict(TypedDict):
+    parameter_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter name.
+    """
+    source_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the source parameter template.
+    """
+    target_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the destination parameter template.
+    """
 
 @pulumi.input_type
 class MysqlParameterTemplateCompareDifferenceArgs:
@@ -939,19 +910,16 @@ class MysqlParameterTemplateCompareDifferenceArgs:
         pulumi.set(self, "target_value", value)
 
 
-if not MYPY:
-    class MysqlProxyAccessControlIpListArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address or CIDR block.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description.
-        The description contains a maximum of `50` characters and the angle brackets (< and >) are not allowed.
-        """
-elif False:
-    MysqlProxyAccessControlIpListArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlProxyAccessControlIpListArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address or CIDR block.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description.
+    The description contains a maximum of `50` characters and the angle brackets (< and >) are not allowed.
+    """
 
 @pulumi.input_type
 class MysqlProxyAccessControlIpListArgs:
@@ -993,24 +961,21 @@ class MysqlProxyAccessControlIpListArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class MysqlProxyMasterNodeWeightArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the node.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies the weight assigned to the node.
-        + If `route_mode` is `0`, the value is `0` to `1,000`.
-        + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
-        + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
+class MysqlProxyMasterNodeWeightArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the node.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies the weight assigned to the node.
+    + If `route_mode` is `0`, the value is `0` to `1,000`.
+    + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
+    + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
 
-        <a name="parameters_struct"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    MysqlProxyMasterNodeWeightArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="parameters_struct"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class MysqlProxyMasterNodeWeightArgs:
@@ -1061,43 +1026,40 @@ class MysqlProxyMasterNodeWeightArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class MysqlProxyNodeArgsDict(TypedDict):
-        az_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the proxy node AZ.
-        """
-        frozen_flag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates whether the proxy node is frozen. The values can be:
-        + **0**: unfrozen.
-        + **1**: frozen.
-        + **2**: deleted after being frozen.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the node.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the parameter.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the proxy node role. The values can be:
-        + **master**: primary node.
-        + **slave**: read replica.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the proxy node status. The values can be:
-        + **ACTIVE**: The node is available.
-        + **ABNORMAL**: The node is abnormal.
-        + **FAILED**: The node fails.
-        + **DELETED**: The node has been deleted.
-        """
-elif False:
-    MysqlProxyNodeArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlProxyNodeArgsDict(TypedDict):
+    az_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the proxy node AZ.
+    """
+    frozen_flag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates whether the proxy node is frozen. The values can be:
+    + **0**: unfrozen.
+    + **1**: frozen.
+    + **2**: deleted after being frozen.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the node.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the parameter.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the proxy node role. The values can be:
+    + **master**: primary node.
+    + **slave**: read replica.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the proxy node status. The values can be:
+    + **ACTIVE**: The node is available.
+    + **ABNORMAL**: The node is abnormal.
+    + **FAILED**: The node fails.
+    + **DELETED**: The node has been deleted.
+    """
 
 @pulumi.input_type
 class MysqlProxyNodeArgs:
@@ -1220,25 +1182,22 @@ class MysqlProxyNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class MysqlProxyParameterArgsDict(TypedDict):
-        elem_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the parent tag type of the parameter.
+class MysqlProxyParameterArgsDict(TypedDict):
+    elem_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the parent tag type of the parameter.
 
-        <a name="access_control_ip_list_struct"></a>
-        The `access_control_ip_list` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the parameter.
-        """
-elif False:
-    MysqlProxyParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="access_control_ip_list_struct"></a>
+    The `access_control_ip_list` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the parameter.
+    """
 
 @pulumi.input_type
 class MysqlProxyParameterArgs:
@@ -1298,24 +1257,21 @@ class MysqlProxyParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class MysqlProxyReadonlyNodesWeightArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the node.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies the weight assigned to the node.
-        + If `route_mode` is `0`, the value is `0` to `1,000`.
-        + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
-        + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
+class MysqlProxyReadonlyNodesWeightArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the node.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies the weight assigned to the node.
+    + If `route_mode` is `0`, the value is `0` to `1,000`.
+    + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
+    + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
 
-        <a name="parameters_struct"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    MysqlProxyReadonlyNodesWeightArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="parameters_struct"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class MysqlProxyReadonlyNodesWeightArgs:
@@ -1366,26 +1322,23 @@ class MysqlProxyReadonlyNodesWeightArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class MysqlTableRestoreRestoreTableArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name.
+class MysqlTableRestoreRestoreTableArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name.
 
-        Changing this creates a new resource.
-        """
-        tables: pulumi.Input[Sequence[pulumi.Input['MysqlTableRestoreRestoreTableTableArgsDict']]]
-        """
-        Specifies the tables.
-        The tables structure is documented below.
+    Changing this creates a new resource.
+    """
+    tables: pulumi.Input[Sequence[pulumi.Input['MysqlTableRestoreRestoreTableTableArgsDict']]]
+    """
+    Specifies the tables.
+    The tables structure is documented below.
 
-        Changing this creates a new resource.
+    Changing this creates a new resource.
 
-        <a name="tables_struct"></a>
-        The `tables` block supports:
-        """
-elif False:
-    MysqlTableRestoreRestoreTableArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="tables_struct"></a>
+    The `tables` block supports:
+    """
 
 @pulumi.input_type
 class MysqlTableRestoreRestoreTableArgs:
@@ -1440,22 +1393,19 @@ class MysqlTableRestoreRestoreTableArgs:
         pulumi.set(self, "tables", value)
 
 
-if not MYPY:
-    class MysqlTableRestoreRestoreTableTableArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table after restoration.
+class MysqlTableRestoreRestoreTableTableArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table after restoration.
 
-        Changing this creates a new resource.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table before restoration.
+    Changing this creates a new resource.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table before restoration.
 
-        Changing this creates a new resource.
-        """
-elif False:
-    MysqlTableRestoreRestoreTableTableArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MysqlTableRestoreRestoreTableTableArgs:

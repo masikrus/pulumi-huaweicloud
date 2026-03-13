@@ -35,6 +35,7 @@ class CatalogueArgs:
                  second_catalogue_code: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Catalogue resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the catalogue belongs.
         :param pulumi.Input[_builtins.str] catalogue_address: Specifies the address of the directory.
         :param pulumi.Input[_builtins.str] layout_id: Specifies the ID of the layout.
@@ -271,6 +272,7 @@ class _CatalogueState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Catalogue resources.
+
         :param pulumi.Input[_builtins.str] catalogue_address: Specifies the address of the directory.
         :param pulumi.Input[_builtins.bool] catalogue_status: The flag indicating whether it is a built-in directory.
         :param pulumi.Input[_builtins.bool] is_card_area: The flag indicating whether to display the card area.
@@ -559,7 +561,7 @@ class _CatalogueState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/catalogue:Catalogue")
+@pulumi.type_token("huaweicloud:Secmaster/catalogue:Catalogue")
 class Catalogue(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -611,39 +613,16 @@ class Catalogue(pulumi.CustomResource):
 
         The catalogue can be imported using the workspace ID and the catalogue ID, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/catalogue:Catalogue test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/catalogue:Catalogue test <workspace_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `second_catalogue_code`.
-
         It is generally recommended running `pulumi preview` after importing a catalogue.
-
         You can then decide if changes should be applied to the catalogue, or the resource definition should be updated to
-
         align with the catalogue. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_secmaster_catalogue" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              second_catalogue_code,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -700,39 +679,16 @@ class Catalogue(pulumi.CustomResource):
 
         The catalogue can be imported using the workspace ID and the catalogue ID, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/catalogue:Catalogue test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/catalogue:Catalogue test <workspace_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `second_catalogue_code`.
-
         It is generally recommended running `pulumi preview` after importing a catalogue.
-
         You can then decide if changes should be applied to the catalogue, or the resource definition should be updated to
-
         align with the catalogue. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_secmaster_catalogue" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              second_catalogue_code,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CatalogueArgs args: The arguments to use to populate this resource's properties.
@@ -794,7 +750,7 @@ class Catalogue(pulumi.CustomResource):
             __props__.__dict__["is_landing_page"] = None
             __props__.__dict__["is_navigation"] = None
         super(Catalogue, __self__).__init__(
-            'huaweicloud:secmaster/catalogue:Catalogue',
+            'huaweicloud:Secmaster/catalogue:Catalogue',
             resource_name,
             __props__,
             opts)

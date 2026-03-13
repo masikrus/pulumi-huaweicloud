@@ -34,6 +34,7 @@ class ModifyAlarmNotificationArgs:
                  times: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ModifyAlarmNotification resource.
+
         :param pulumi.Input[_builtins.str] alert_id: Specifies the ID of the alarm notification.
         :param pulumi.Input[_builtins.str] notice_class: Specifies the type of the alarm notification.
                The valid values are as follows:
@@ -283,6 +284,7 @@ class _ModifyAlarmNotificationState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ModifyAlarmNotification resources.
+
         :param pulumi.Input[_builtins.str] alert_id: Specifies the ID of the alarm notification.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable the alarm notification.
                The value can be **true** or **false**.
@@ -562,6 +564,7 @@ class ModifyAlarmNotification(pulumi.CustomResource):
             notice_class=notice_class)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alert_id: Specifies the ID of the alarm notification.
@@ -627,6 +630,7 @@ class ModifyAlarmNotification(pulumi.CustomResource):
             topic_urn=topic_urn,
             notice_class=notice_class)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ModifyAlarmNotificationArgs args: The arguments to use to populate this resource's properties.

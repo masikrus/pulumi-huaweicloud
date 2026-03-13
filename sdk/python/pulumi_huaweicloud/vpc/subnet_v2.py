@@ -38,6 +38,7 @@ class SubnetV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SubnetV2 resource.
+
         :param pulumi.Input[_builtins.str] cidr: CIDR representing IP range for this subnet, based on IP version. Changing this
                creates a new subnet.
         :param pulumi.Input[_builtins.str] network_id: The UUID of the parent network. Changing this creates a new subnet.
@@ -296,6 +297,7 @@ class _SubnetV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SubnetV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SubnetV2AllocationPoolArgs']]] allocation_pools: An array of sub-ranges of CIDR available for dynamic allocation to ports. The
                allocation_pool object structure is documented below. Changing this creates a new subnet.
         :param pulumi.Input[_builtins.str] cidr: CIDR representing IP range for this subnet, based on IP version. Changing this
@@ -581,11 +583,10 @@ class SubnetV2(pulumi.CustomResource):
 
         Subnets can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetV2:SubnetV2 subnet_1 da4faf16-5546-41e4-8330-4d0002b74048
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -641,11 +642,10 @@ class SubnetV2(pulumi.CustomResource):
 
         Subnets can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetV2:SubnetV2 subnet_1 da4faf16-5546-41e4-8330-4d0002b74048
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubnetV2Args args: The arguments to use to populate this resource's properties.

@@ -188,7 +188,7 @@ def get_asset_apps(app_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_apps()
+    test = huaweicloud.Hss.get_asset_apps()
     ```
 
 
@@ -222,7 +222,7 @@ def get_asset_apps(app_name: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAssetApps:getAssetApps', __args__, opts=opts, typ=GetAssetAppsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAssetApps:getAssetApps', __args__, opts=opts, typ=GetAssetAppsResult).value
 
     return AwaitableGetAssetAppsResult(
         app_name=pulumi.get(__ret__, 'app_name'),
@@ -257,7 +257,7 @@ def get_asset_apps_output(app_name: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_asset_apps()
+    test = huaweicloud.Hss.get_asset_apps()
     ```
 
 
@@ -291,7 +291,7 @@ def get_asset_apps_output(app_name: Optional[pulumi.Input[Optional[_builtins.str
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAssetApps:getAssetApps', __args__, opts=opts, typ=GetAssetAppsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAssetApps:getAssetApps', __args__, opts=opts, typ=GetAssetAppsResult)
     return __ret__.apply(lambda __response__: GetAssetAppsResult(
         app_name=pulumi.get(__response__, 'app_name'),
         category=pulumi.get(__response__, 'category'),

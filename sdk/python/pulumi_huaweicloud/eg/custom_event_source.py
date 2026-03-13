@@ -27,6 +27,7 @@ class CustomEventSourceArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomEventSource resource.
+
         :param pulumi.Input[_builtins.str] channel_id: Specifies the ID of the custom event channel to which the custom event
                source belongs.
                Changing this will create a new resource.
@@ -167,6 +168,7 @@ class _CustomEventSourceState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomEventSource resources.
+
         :param pulumi.Input[_builtins.str] channel_id: Specifies the ID of the custom event channel to which the custom event
                source belongs.
                Changing this will create a new resource.
@@ -435,11 +437,10 @@ class CustomEventSource(pulumi.CustomResource):
 
         Custom event sources can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/customEventSource:CustomEventSource test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -556,11 +557,10 @@ class CustomEventSource(pulumi.CustomResource):
 
         Custom event sources can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/customEventSource:CustomEventSource test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomEventSourceArgs args: The arguments to use to populate this resource's properties.

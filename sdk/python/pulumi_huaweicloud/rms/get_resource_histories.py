@@ -117,7 +117,7 @@ def get_resource_histories(earlier_time: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
-    test = huaweicloud.rms.get_resource_histories(resource_id=resource_id)
+    test = huaweicloud.Rms.get_resource_histories(resource_id=resource_id)
     ```
 
 
@@ -137,7 +137,7 @@ def get_resource_histories(earlier_time: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceHistories:getResourceHistories', __args__, opts=opts, typ=GetResourceHistoriesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceHistories:getResourceHistories', __args__, opts=opts, typ=GetResourceHistoriesResult).value
 
     return AwaitableGetResourceHistoriesResult(
         earlier_time=pulumi.get(__ret__, 'earlier_time'),
@@ -162,7 +162,7 @@ def get_resource_histories_output(earlier_time: Optional[pulumi.Input[Optional[_
 
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
-    test = huaweicloud.rms.get_resource_histories(resource_id=resource_id)
+    test = huaweicloud.Rms.get_resource_histories(resource_id=resource_id)
     ```
 
 
@@ -182,7 +182,7 @@ def get_resource_histories_output(earlier_time: Optional[pulumi.Input[Optional[_
     __args__['region'] = region
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceHistories:getResourceHistories', __args__, opts=opts, typ=GetResourceHistoriesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceHistories:getResourceHistories', __args__, opts=opts, typ=GetResourceHistoriesResult)
     return __ret__.apply(lambda __response__: GetResourceHistoriesResult(
         earlier_time=pulumi.get(__response__, 'earlier_time'),
         id=pulumi.get(__response__, 'id'),

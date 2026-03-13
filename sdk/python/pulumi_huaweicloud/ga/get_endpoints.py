@@ -164,7 +164,7 @@ def get_endpoints(endpoint_group_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     endpoint_group_id = config.require_object("endpointGroupId")
     endpoint_id = config.require_object("endpointId")
-    test = huaweicloud.ga.get_endpoints(endpoint_group_id=endpoint_group_id,
+    test = huaweicloud.Ga.get_endpoints(endpoint_group_id=endpoint_group_id,
         endpoint_id=endpoint_id)
     ```
 
@@ -195,7 +195,7 @@ def get_endpoints(endpoint_group_id: Optional[_builtins.str] = None,
     __args__['resourceType'] = resource_type
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getEndpoints:getEndpoints', __args__, opts=opts, typ=GetEndpointsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getEndpoints:getEndpoints', __args__, opts=opts, typ=GetEndpointsResult).value
 
     return AwaitableGetEndpointsResult(
         endpoint_group_id=pulumi.get(__ret__, 'endpoint_group_id'),
@@ -227,7 +227,7 @@ def get_endpoints_output(endpoint_group_id: Optional[pulumi.Input[_builtins.str]
     config = pulumi.Config()
     endpoint_group_id = config.require_object("endpointGroupId")
     endpoint_id = config.require_object("endpointId")
-    test = huaweicloud.ga.get_endpoints(endpoint_group_id=endpoint_group_id,
+    test = huaweicloud.Ga.get_endpoints(endpoint_group_id=endpoint_group_id,
         endpoint_id=endpoint_id)
     ```
 
@@ -258,7 +258,7 @@ def get_endpoints_output(endpoint_group_id: Optional[pulumi.Input[_builtins.str]
     __args__['resourceType'] = resource_type
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getEndpoints:getEndpoints', __args__, opts=opts, typ=GetEndpointsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getEndpoints:getEndpoints', __args__, opts=opts, typ=GetEndpointsResult)
     return __ret__.apply(lambda __response__: GetEndpointsResult(
         endpoint_group_id=pulumi.get(__response__, 'endpoint_group_id'),
         endpoint_id=pulumi.get(__response__, 'endpoint_id'),

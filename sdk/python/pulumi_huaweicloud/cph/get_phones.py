@@ -134,7 +134,7 @@ def get_phones(phone_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_phones()
+    test = huaweicloud.Cph.get_phones()
     ```
 
 
@@ -166,7 +166,7 @@ def get_phones(phone_name: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getPhones:getPhones', __args__, opts=opts, typ=GetPhonesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getPhones:getPhones', __args__, opts=opts, typ=GetPhonesResult).value
 
     return AwaitableGetPhonesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -191,7 +191,7 @@ def get_phones_output(phone_name: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.cph.get_phones()
+    test = huaweicloud.Cph.get_phones()
     ```
 
 
@@ -223,7 +223,7 @@ def get_phones_output(phone_name: Optional[pulumi.Input[Optional[_builtins.str]]
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getPhones:getPhones', __args__, opts=opts, typ=GetPhonesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getPhones:getPhones', __args__, opts=opts, typ=GetPhonesResult)
     return __ret__.apply(lambda __response__: GetPhonesResult(
         id=pulumi.get(__response__, 'id'),
         phone_name=pulumi.get(__response__, 'phone_name'),

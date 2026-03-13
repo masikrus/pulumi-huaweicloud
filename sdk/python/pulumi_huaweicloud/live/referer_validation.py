@@ -26,6 +26,7 @@ class RefererValidationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RefererValidation resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the streaming domain name to which the referer validation
                belongs.
                Changing this parameter will create a new resource.
@@ -130,6 +131,7 @@ class _RefererValidationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RefererValidation resources.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the streaming domain name to which the referer validation
                belongs.
                Changing this parameter will create a new resource.
@@ -265,11 +267,10 @@ class RefererValidation(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/refererValidation:RefererValidation test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,11 +321,10 @@ class RefererValidation(pulumi.CustomResource):
 
         The resource can be imported using `domain_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/refererValidation:RefererValidation test <domain_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RefererValidationArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class GrantArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Grant resource.
+
         :param pulumi.Input[_builtins.str] grantee_principal: The ID of the authorized user or account.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] key_id: Key ID.
@@ -172,6 +173,7 @@ class _GrantState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Grant resources.
+
         :param pulumi.Input[_builtins.str] creator: The ID of the creator.
         :param pulumi.Input[_builtins.str] grantee_principal: The ID of the authorized user or account.  
                Changing this parameter will create a new resource.
@@ -345,14 +347,12 @@ class Grant(pulumi.CustomResource):
         ## Import
 
         The kms grant can be imported using
-
         `key_id`, `grant_id`, separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dew/grant:Grant test <key_id>/<grant_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -393,14 +393,12 @@ class Grant(pulumi.CustomResource):
         ## Import
 
         The kms grant can be imported using
-
         `key_id`, `grant_id`, separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dew/grant:Grant test <key_id>/<grant_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GrantArgs args: The arguments to use to populate this resource's properties.

@@ -35,6 +35,7 @@ class SecgroupRuleInitArgs:
                  remote_ip_prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecgroupRule resource.
+
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the rule, valid values are **ingress** or
                **egress**. Changing this creates a new security group rule.
         :param pulumi.Input[_builtins.str] ethertype: Specifies the layer 3 protocol type, valid values are **IPv4** or **IPv6**.
@@ -312,6 +313,7 @@ class _SecgroupRuleState:
                  security_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecgroupRule resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the effective policy. The valid values are **allow** and **deny**.
                This parameter is not used with `port_range_min` and `port_range_max`.
                Changing this creates a new security group rule.
@@ -691,11 +693,10 @@ class SecgroupRule(pulumi.CustomResource):
 
         Security Group Rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/secgroupRule:SecgroupRule secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -841,11 +842,10 @@ class SecgroupRule(pulumi.CustomResource):
 
         Security Group Rules can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/secgroupRule:SecgroupRule secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecgroupRuleInitArgs args: The arguments to use to populate this resource's properties.

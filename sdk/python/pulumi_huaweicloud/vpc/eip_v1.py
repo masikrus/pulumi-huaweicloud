@@ -34,6 +34,7 @@ class EipV1Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EipV1 resource.
+
         :param pulumi.Input['EipV1BandwidthArgs'] bandwidth: The bandwidth configuration.
         :param pulumi.Input['EipV1PublicipArgs'] publicip: The EIP configuration.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID to which the EIP belongs.
@@ -207,6 +208,7 @@ class _EipV1State:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EipV1 resources.
+
         :param pulumi.Input['EipV1BandwidthArgs'] bandwidth: The bandwidth configuration.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID to which the EIP belongs.
         :param pulumi.Input[_builtins.str] name: The name of the EIP.
@@ -496,6 +498,7 @@ class EipV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a EipV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['EipV1BandwidthArgs', 'EipV1BandwidthArgsDict']] bandwidth: The bandwidth configuration.
@@ -512,6 +515,7 @@ class EipV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a EipV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param EipV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

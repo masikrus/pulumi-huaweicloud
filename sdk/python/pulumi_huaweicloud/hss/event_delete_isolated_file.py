@@ -129,7 +129,7 @@ class _EventDeleteIsolatedFileState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/eventDeleteIsolatedFile:EventDeleteIsolatedFile")
+@pulumi.type_token("huaweicloud:Hss/eventDeleteIsolatedFile:EventDeleteIsolatedFile")
 class EventDeleteIsolatedFile(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -142,6 +142,7 @@ class EventDeleteIsolatedFile(pulumi.CustomResource):
                  __props__=None):
         """
         Create a EventDeleteIsolatedFile resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -153,6 +154,7 @@ class EventDeleteIsolatedFile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a EventDeleteIsolatedFile resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param EventDeleteIsolatedFileArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -188,7 +190,7 @@ class EventDeleteIsolatedFile(pulumi.CustomResource):
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["region"] = region
         super(EventDeleteIsolatedFile, __self__).__init__(
-            'huaweicloud:hss/eventDeleteIsolatedFile:EventDeleteIsolatedFile',
+            'huaweicloud:Hss/eventDeleteIsolatedFile:EventDeleteIsolatedFile',
             resource_name,
             __props__,
             opts)

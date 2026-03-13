@@ -25,6 +25,7 @@ class RabbitmqQueueMessageClearArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqQueueMessageClear resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] queue: Specifies the queue name.
@@ -108,6 +109,7 @@ class _RabbitmqQueueMessageClearState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqQueueMessageClear resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] queue: Specifies the queue name.
@@ -199,6 +201,28 @@ class RabbitmqQueueMessageClear(pulumi.CustomResource):
         """
         Manages a DMS RabbitMQ queue message clear resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        vhost = config.require_object("vhost")
+        queue = config.require_object("queue")
+        test = huaweicloud.dms.RabbitmqQueueMessageClear("test",
+            instance_id=instance_id,
+            vhost=std.index.urlencode(input=std.index.replace(text=vhost,
+                search="/",
+                replace="__F_SLASH__")["result"])["result"],
+            queue=std.index.urlencode(input=std.index.replace(text=queue,
+                search="/",
+                replace="__F_SLASH__")["result"])["result"])
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
@@ -221,6 +245,28 @@ class RabbitmqQueueMessageClear(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a DMS RabbitMQ queue message clear resource within HuaweiCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        instance_id = config.require_object("instanceId")
+        vhost = config.require_object("vhost")
+        queue = config.require_object("queue")
+        test = huaweicloud.dms.RabbitmqQueueMessageClear("test",
+            instance_id=instance_id,
+            vhost=std.index.urlencode(input=std.index.replace(text=vhost,
+                search="/",
+                replace="__F_SLASH__")["result"])["result"],
+            queue=std.index.urlencode(input=std.index.replace(text=queue,
+                search="/",
+                replace="__F_SLASH__")["result"])["result"])
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqQueueMessageClearArgs args: The arguments to use to populate this resource's properties.

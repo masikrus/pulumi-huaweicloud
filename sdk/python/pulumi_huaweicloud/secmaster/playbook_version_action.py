@@ -27,6 +27,7 @@ class PlaybookVersionActionArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookVersionAction resource.
+
         :param pulumi.Input[_builtins.str] version_id: Specifies the playbook version ID.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the playbook version belongs.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether the playbook version is enabled.
@@ -148,6 +149,7 @@ class _PlaybookVersionActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookVersionAction resources.
+
         :param pulumi.Input[_builtins.str] action_strategy: The execution policy.
         :param pulumi.Input[_builtins.str] approve_name: The reviewer.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
@@ -526,7 +528,7 @@ class _PlaybookVersionActionState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookVersionAction:PlaybookVersionAction")
+@pulumi.type_token("huaweicloud:Secmaster/playbookVersionAction:PlaybookVersionAction")
 class PlaybookVersionAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -580,6 +582,7 @@ class PlaybookVersionAction(pulumi.CustomResource):
         ### More Examples
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -638,6 +641,7 @@ class PlaybookVersionAction(pulumi.CustomResource):
         ### More Examples
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookVersionActionArgs args: The arguments to use to populate this resource's properties.
@@ -699,7 +703,7 @@ class PlaybookVersionAction(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["version"] = None
         super(PlaybookVersionAction, __self__).__init__(
-            'huaweicloud:secmaster/playbookVersionAction:PlaybookVersionAction',
+            'huaweicloud:Secmaster/playbookVersionAction:PlaybookVersionAction',
             resource_name,
             __props__,
             opts)

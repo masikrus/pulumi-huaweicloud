@@ -104,7 +104,7 @@ def get_gateway_route_tables(is_include_nexthop_resource: Optional[_builtins.boo
 
     config = pulumi.Config()
     vgw_id = config.require_object("vgwId")
-    test = huaweicloud.vpn.get_gateway_route_tables(vgw_id=vgw_id)
+    test = huaweicloud.Vpn.get_gateway_route_tables(vgw_id=vgw_id)
     ```
 
 
@@ -118,7 +118,7 @@ def get_gateway_route_tables(is_include_nexthop_resource: Optional[_builtins.boo
     __args__['region'] = region
     __args__['vgwId'] = vgw_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getGatewayRouteTables:getGatewayRouteTables', __args__, opts=opts, typ=GetGatewayRouteTablesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getGatewayRouteTables:getGatewayRouteTables', __args__, opts=opts, typ=GetGatewayRouteTablesResult).value
 
     return AwaitableGetGatewayRouteTablesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -141,7 +141,7 @@ def get_gateway_route_tables_output(is_include_nexthop_resource: Optional[pulumi
 
     config = pulumi.Config()
     vgw_id = config.require_object("vgwId")
-    test = huaweicloud.vpn.get_gateway_route_tables(vgw_id=vgw_id)
+    test = huaweicloud.Vpn.get_gateway_route_tables(vgw_id=vgw_id)
     ```
 
 
@@ -155,7 +155,7 @@ def get_gateway_route_tables_output(is_include_nexthop_resource: Optional[pulumi
     __args__['region'] = region
     __args__['vgwId'] = vgw_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getGatewayRouteTables:getGatewayRouteTables', __args__, opts=opts, typ=GetGatewayRouteTablesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getGatewayRouteTables:getGatewayRouteTables', __args__, opts=opts, typ=GetGatewayRouteTablesResult)
     return __ret__.apply(lambda __response__: GetGatewayRouteTablesResult(
         id=pulumi.get(__response__, 'id'),
         is_include_nexthop_resource=pulumi.get(__response__, 'is_include_nexthop_resource'),

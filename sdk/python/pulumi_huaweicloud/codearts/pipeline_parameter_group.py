@@ -29,6 +29,7 @@ class PipelineParameterGroupArgs:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineParameterGroupVariableArgs']]]] = None):
         """
         The set of arguments for constructing a PipelineParameterGroup resource.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[_builtins.str] description: Specifies the parameter description.
         :param pulumi.Input[_builtins.str] name: Specifies the custom variable name.
@@ -147,6 +148,7 @@ class _PipelineParameterGroupState:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineParameterGroupVariableArgs']]]] = None):
         """
         Input properties used for looking up and filtering PipelineParameterGroup resources.
+
         :param pulumi.Input[_builtins.int] create_time: Indicates the create time.
         :param pulumi.Input[_builtins.str] creator_id: Indicates the creator ID.
         :param pulumi.Input[_builtins.str] creator_name: Indicates the creator name.
@@ -355,7 +357,7 @@ class _PipelineParameterGroupState:
         pulumi.set(self, "variables", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineParameterGroup:PipelineParameterGroup")
+@pulumi.type_token("huaweicloud:Codearts/pipelineParameterGroup:PipelineParameterGroup")
 class PipelineParameterGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -389,11 +391,10 @@ class PipelineParameterGroup(pulumi.CustomResource):
 
         The parameter group can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineParameterGroup:PipelineParameterGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineParameterGroup:PipelineParameterGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -436,11 +437,10 @@ class PipelineParameterGroup(pulumi.CustomResource):
 
         The parameter group can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineParameterGroup:PipelineParameterGroup test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineParameterGroup:PipelineParameterGroup test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineParameterGroupArgs args: The arguments to use to populate this resource's properties.
@@ -488,7 +488,7 @@ class PipelineParameterGroup(pulumi.CustomResource):
             __props__.__dict__["updater_id"] = None
             __props__.__dict__["updater_name"] = None
         super(PipelineParameterGroup, __self__).__init__(
-            'huaweicloud:codearts/pipelineParameterGroup:PipelineParameterGroup',
+            'huaweicloud:Codearts/pipelineParameterGroup:PipelineParameterGroup',
             resource_name,
             __props__,
             opts)

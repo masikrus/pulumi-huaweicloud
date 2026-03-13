@@ -30,6 +30,7 @@ class NamespaceArgs:
                  warmup_pool_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the CCI namespace type.
                The valid values are **general-computing** and **gpu-accelerated**.
                Changing this will create a new CCI namespace resource.
@@ -223,6 +224,7 @@ class _NamespaceState:
                  warmup_pool_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input[_builtins.bool] auto_expend_enabled: Specifies whether elastic scheduling is enabled.
                Changing this will create a new CCI namespace resource.
         :param pulumi.Input[_builtins.bool] container_network_enabled: Specifies whether container network is enabled.
@@ -468,11 +470,10 @@ class Namespace(pulumi.CustomResource):
 
         CCI Namespaces can be imported using their `name`, e.g.,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/namespace:Namespace test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -533,11 +534,10 @@ class Namespace(pulumi.CustomResource):
 
         CCI Namespaces can be imported using their `name`, e.g.,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cci/namespace:Namespace test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

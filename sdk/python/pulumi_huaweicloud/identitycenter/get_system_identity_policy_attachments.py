@@ -105,7 +105,7 @@ def get_system_identity_policy_attachments(instance_id: Optional[_builtins.str] 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
     permission_set_id = config.require_object("permissionSetId")
-    test = huaweicloud.identitycenter.get_system_identity_policy_attachments(instance_id=instance_id,
+    test = huaweicloud.Identitycenter.get_system_identity_policy_attachments(instance_id=instance_id,
         permission_set_id=permission_set_id)
     ```
 
@@ -120,7 +120,7 @@ def get_system_identity_policy_attachments(instance_id: Optional[_builtins.str] 
     __args__['permissionSetId'] = permission_set_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getSystemIdentityPolicyAttachments:getSystemIdentityPolicyAttachments', __args__, opts=opts, typ=GetSystemIdentityPolicyAttachmentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getSystemIdentityPolicyAttachments:getSystemIdentityPolicyAttachments', __args__, opts=opts, typ=GetSystemIdentityPolicyAttachmentsResult).value
 
     return AwaitableGetSystemIdentityPolicyAttachmentsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -144,7 +144,7 @@ def get_system_identity_policy_attachments_output(instance_id: Optional[pulumi.I
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
     permission_set_id = config.require_object("permissionSetId")
-    test = huaweicloud.identitycenter.get_system_identity_policy_attachments(instance_id=instance_id,
+    test = huaweicloud.Identitycenter.get_system_identity_policy_attachments(instance_id=instance_id,
         permission_set_id=permission_set_id)
     ```
 
@@ -159,7 +159,7 @@ def get_system_identity_policy_attachments_output(instance_id: Optional[pulumi.I
     __args__['permissionSetId'] = permission_set_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getSystemIdentityPolicyAttachments:getSystemIdentityPolicyAttachments', __args__, opts=opts, typ=GetSystemIdentityPolicyAttachmentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getSystemIdentityPolicyAttachments:getSystemIdentityPolicyAttachments', __args__, opts=opts, typ=GetSystemIdentityPolicyAttachmentsResult)
     return __ret__.apply(lambda __response__: GetSystemIdentityPolicyAttachmentsResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

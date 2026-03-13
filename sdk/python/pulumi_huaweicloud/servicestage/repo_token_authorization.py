@@ -26,6 +26,7 @@ class RepoTokenAuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RepoTokenAuthorization resource.
+
         :param pulumi.Input[_builtins.str] token: Specified the personal access token of the repository.
                Changing this parameter will create a new authorization.
                
@@ -138,6 +139,7 @@ class _RepoTokenAuthorizationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RepoTokenAuthorization resources.
+
         :param pulumi.Input[_builtins.str] host: Specified the host name of the repository, e.g. **https://api.github.com**.
                Changing this parameter will create a new authorization.
                <!-- markdownlint-enable MD034 -->
@@ -277,11 +279,10 @@ class RepoTokenAuthorization(pulumi.CustomResource):
 
         Authorizations can be imported using their `id` or `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/repoTokenAuthorization:RepoTokenAuthorization test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -333,11 +334,10 @@ class RepoTokenAuthorization(pulumi.CustomResource):
 
         Authorizations can be imported using their `id` or `name`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/repoTokenAuthorization:RepoTokenAuthorization test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RepoTokenAuthorizationArgs args: The arguments to use to populate this resource's properties.

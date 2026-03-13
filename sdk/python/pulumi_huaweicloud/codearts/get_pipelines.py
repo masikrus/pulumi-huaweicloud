@@ -243,7 +243,7 @@ def get_pipelines(by_group: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipelines(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipelines(project_id=codearts_project_id)
     ```
 
 
@@ -294,7 +294,7 @@ def get_pipelines(by_group: Optional[_builtins.str] = None,
     __args__['startTime'] = start_time
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelines:getPipelines', __args__, opts=opts, typ=GetPipelinesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelines:getPipelines', __args__, opts=opts, typ=GetPipelinesResult).value
 
     return AwaitableGetPipelinesResult(
         by_group=pulumi.get(__ret__, 'by_group'),
@@ -341,7 +341,7 @@ def get_pipelines_output(by_group: Optional[pulumi.Input[Optional[_builtins.str]
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipelines(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipelines(project_id=codearts_project_id)
     ```
 
 
@@ -392,7 +392,7 @@ def get_pipelines_output(by_group: Optional[pulumi.Input[Optional[_builtins.str]
     __args__['startTime'] = start_time
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelines:getPipelines', __args__, opts=opts, typ=GetPipelinesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelines:getPipelines', __args__, opts=opts, typ=GetPipelinesResult)
     return __ret__.apply(lambda __response__: GetPipelinesResult(
         by_group=pulumi.get(__response__, 'by_group'),
         component_id=pulumi.get(__response__, 'component_id'),

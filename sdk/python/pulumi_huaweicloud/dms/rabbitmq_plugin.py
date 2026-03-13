@@ -24,6 +24,7 @@ class RabbitmqPluginArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqPlugin resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RabbitMQ instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the plugin.
@@ -88,6 +89,7 @@ class _RabbitmqPluginState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqPlugin resources.
+
         :param pulumi.Input[_builtins.bool] enable: Indicates whether the plugin is enabled.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RabbitMQ instance.
                Changing this parameter will create a new resource.
@@ -217,11 +219,10 @@ class RabbitmqPlugin(pulumi.CustomResource):
 
         The RabbitMQ plugin can be imported using the RabbitMQ `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqPlugin:RabbitmqPlugin test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -258,11 +259,10 @@ class RabbitmqPlugin(pulumi.CustomResource):
 
         The RabbitMQ plugin can be imported using the RabbitMQ `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqPlugin:RabbitmqPlugin test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqPluginArgs args: The arguments to use to populate this resource's properties.

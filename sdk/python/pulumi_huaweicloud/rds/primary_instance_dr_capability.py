@@ -29,6 +29,7 @@ class PrimaryInstanceDrCapabilityArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrimaryInstanceDrCapability resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the ID of the DR instance.
         :param pulumi.Input[_builtins.str] target_ip: Specifies the data virtual IP address (VIP) of the DR instance.
@@ -162,6 +163,7 @@ class _PrimaryInstanceDrCapabilityState:
                  time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrimaryInstanceDrCapability resources.
+
         :param pulumi.Input[_builtins.str] build_process: Indicates the process for configuring disaster recovery (DR). The value can be:
                + **master**: process of configuring DR capability for the primary instance
                + **slave**: process of configuring DR for the DR instance
@@ -378,11 +380,10 @@ class PrimaryInstanceDrCapability(pulumi.CustomResource):
 
         The RDS primary instance dr capability can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/primaryInstanceDrCapability:PrimaryInstanceDrCapability test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -431,11 +432,10 @@ class PrimaryInstanceDrCapability(pulumi.CustomResource):
 
         The RDS primary instance dr capability can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/primaryInstanceDrCapability:PrimaryInstanceDrCapability test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrimaryInstanceDrCapabilityArgs args: The arguments to use to populate this resource's properties.

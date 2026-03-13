@@ -31,29 +31,26 @@ __all__ = [
     'GlobalConnectionBandwidthInstanceArgsDict',
     'InterRegionBandwidthInterRegionArgs',
     'InterRegionBandwidthInterRegionArgsDict',
+    'GetCentralNetworksByTagsTagArgs',
+    'GetCentralNetworksByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CentralNetworkPolicyErInstanceArgsDict(TypedDict):
-        enterprise_router_id: pulumi.Input[_builtins.str]
-        """
-        Enterprise router ID.
-        Changing this parameter will create a new resource.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        Project ID.
-        Changing this parameter will create a new resource.
-        """
-        region_id: pulumi.Input[_builtins.str]
-        """
-        Region ID.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CentralNetworkPolicyErInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class CentralNetworkPolicyErInstanceArgsDict(TypedDict):
+    enterprise_router_id: pulumi.Input[_builtins.str]
+    """
+    Enterprise router ID.
+    Changing this parameter will create a new resource.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    Project ID.
+    Changing this parameter will create a new resource.
+    """
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Region ID.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CentralNetworkPolicyErInstanceArgs:
@@ -113,26 +110,23 @@ class CentralNetworkPolicyErInstanceArgs:
         pulumi.set(self, "region_id", value)
 
 
-if not MYPY:
-    class CentralNetworkPolicyPlanesArgsDict(TypedDict):
-        associate_er_tables: pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesAssociateErTableArgsDict']]]
-        """
-        List of route tables associated with the central network policy.
-        The associate_er_tables structure is documented below.
-        Changing this parameter will create a new resource.
-        """
-        exclude_er_connections: NotRequired[pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesExcludeErConnectionArgsDict']]]]
-        """
-        List of the enterprise router connections excluded from the
-        central network policy.
-        The exclude_er_connections structure is documented below.
-        Changing this parameter will create a new resource.
+class CentralNetworkPolicyPlanesArgsDict(TypedDict):
+    associate_er_tables: pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesAssociateErTableArgsDict']]]
+    """
+    List of route tables associated with the central network policy.
+    The associate_er_tables structure is documented below.
+    Changing this parameter will create a new resource.
+    """
+    exclude_er_connections: NotRequired[pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesExcludeErConnectionArgsDict']]]]
+    """
+    List of the enterprise router connections excluded from the
+    central network policy.
+    The exclude_er_connections structure is documented below.
+    Changing this parameter will create a new resource.
 
-        <a name="centralNetworkPolicy_AssociateErTableDocument"></a>
-        The `associate_er_tables` block supports:
-        """
-elif False:
-    CentralNetworkPolicyPlanesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="centralNetworkPolicy_AssociateErTableDocument"></a>
+    The `associate_er_tables` block supports:
+    """
 
 @pulumi.input_type
 class CentralNetworkPolicyPlanesArgs:
@@ -188,33 +182,30 @@ class CentralNetworkPolicyPlanesArgs:
         pulumi.set(self, "exclude_er_connections", value)
 
 
-if not MYPY:
-    class CentralNetworkPolicyPlanesAssociateErTableArgsDict(TypedDict):
-        enterprise_router_id: pulumi.Input[_builtins.str]
-        """
-        Enterprise router ID.
-        Changing this parameter will create a new resource.
-        """
-        enterprise_router_table_id: pulumi.Input[_builtins.str]
-        """
-        Enterprise router table ID.
-        Changing this parameter will create a new resource.
+class CentralNetworkPolicyPlanesAssociateErTableArgsDict(TypedDict):
+    enterprise_router_id: pulumi.Input[_builtins.str]
+    """
+    Enterprise router ID.
+    Changing this parameter will create a new resource.
+    """
+    enterprise_router_table_id: pulumi.Input[_builtins.str]
+    """
+    Enterprise router table ID.
+    Changing this parameter will create a new resource.
 
-        <a name="centralNetworkPolicy_ExcludeErConnectionDocument"></a>
-        The `exclude_er_connections` block supports:
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        Project ID.
-        Changing this parameter will create a new resource.
-        """
-        region_id: pulumi.Input[_builtins.str]
-        """
-        Region ID.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CentralNetworkPolicyPlanesAssociateErTableArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="centralNetworkPolicy_ExcludeErConnectionDocument"></a>
+    The `exclude_er_connections` block supports:
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    Project ID.
+    Changing this parameter will create a new resource.
+    """
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Region ID.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CentralNetworkPolicyPlanesAssociateErTableArgs:
@@ -297,16 +288,13 @@ class CentralNetworkPolicyPlanesAssociateErTableArgs:
         pulumi.set(self, "region_id", value)
 
 
-if not MYPY:
-    class CentralNetworkPolicyPlanesExcludeErConnectionArgsDict(TypedDict):
-        exclude_er_instances: pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgsDict']]]
-        """
-        List of enterprise routers that will not establish a connection.
-        The exclude_er_instances structure is the same as `er_instances`.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CentralNetworkPolicyPlanesExcludeErConnectionArgsDict: TypeAlias = Mapping[str, Any]
+class CentralNetworkPolicyPlanesExcludeErConnectionArgsDict(TypedDict):
+    exclude_er_instances: pulumi.Input[Sequence[pulumi.Input['CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgsDict']]]
+    """
+    List of enterprise routers that will not establish a connection.
+    The exclude_er_instances structure is the same as `er_instances`.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CentralNetworkPolicyPlanesExcludeErConnectionArgs:
@@ -334,25 +322,22 @@ class CentralNetworkPolicyPlanesExcludeErConnectionArgs:
         pulumi.set(self, "exclude_er_instances", value)
 
 
-if not MYPY:
-    class CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgsDict(TypedDict):
-        enterprise_router_id: pulumi.Input[_builtins.str]
-        """
-        Enterprise router ID.
-        Changing this parameter will create a new resource.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        Project ID.
-        Changing this parameter will create a new resource.
-        """
-        region_id: pulumi.Input[_builtins.str]
-        """
-        Region ID.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgsDict(TypedDict):
+    enterprise_router_id: pulumi.Input[_builtins.str]
+    """
+    Enterprise router ID.
+    Changing this parameter will create a new resource.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    Project ID.
+    Changing this parameter will create a new resource.
+    """
+    region_id: pulumi.Input[_builtins.str]
+    """
+    Region ID.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgs:
@@ -412,28 +397,25 @@ class CentralNetworkPolicyPlanesExcludeErConnectionExcludeErInstanceArgs:
         pulumi.set(self, "region_id", value)
 
 
-if not MYPY:
-    class GlobalConnectionBandwidthAssociateGcbBindingResourceArgsDict(TypedDict):
-        resource_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the resource to associate with the global connection bandwidth.
-        """
-        resource_type: pulumi.Input[_builtins.str]
-        """
-        The type of the resource to associate with the global connection bandwidth.
-        Currently, only **GEIP** is supported.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The project ID of the resource to associate with the global connection bandwidth.
-        """
-        region_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region ID of the resource to associate with the global connection bandwidth.
-        If the value of `resource_type` is **GEIP**, the valid value is **global**.
-        """
-elif False:
-    GlobalConnectionBandwidthAssociateGcbBindingResourceArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionBandwidthAssociateGcbBindingResourceArgsDict(TypedDict):
+    resource_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the resource to associate with the global connection bandwidth.
+    """
+    resource_type: pulumi.Input[_builtins.str]
+    """
+    The type of the resource to associate with the global connection bandwidth.
+    Currently, only **GEIP** is supported.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The project ID of the resource to associate with the global connection bandwidth.
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region ID of the resource to associate with the global connection bandwidth.
+    If the value of `resource_type` is **GEIP**, the valid value is **global**.
+    """
 
 @pulumi.input_type
 class GlobalConnectionBandwidthAssociateGcbBindingResourceArgs:
@@ -508,30 +490,27 @@ class GlobalConnectionBandwidthAssociateGcbBindingResourceArgs:
         pulumi.set(self, "region_id", value)
 
 
-if not MYPY:
-    class GlobalConnectionBandwidthInstanceArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The instance ID.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the instance.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the GCB type.
+class GlobalConnectionBandwidthInstanceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The instance ID.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the instance.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the GCB type.
 
-        Valid values are as follows:
-        + **TrsArea**: Cross geographic region.
-        + **Area**: Geographic region.
-        + **SubArea**: Homezones region.
-        + **Region**: Multi-city region.
+    Valid values are as follows:
+    + **TrsArea**: Cross geographic region.
+    + **Area**: Geographic region.
+    + **SubArea**: Homezones region.
+    + **Region**: Multi-city region.
 
-        Changing this creates a new resource.
-        """
-elif False:
-    GlobalConnectionBandwidthInstanceArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class GlobalConnectionBandwidthInstanceArgs:
@@ -604,26 +583,23 @@ class GlobalConnectionBandwidthInstanceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InterRegionBandwidthInterRegionArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Inter-region bandwidth ID.
-        """
-        local_region_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the local region where the inter-region bandwidth is used.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Project ID of a region where the inter-region bandwidth is used.
-        """
-        remote_region_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the remote region where the inter-region bandwidth is used.
-        """
-elif False:
-    InterRegionBandwidthInterRegionArgsDict: TypeAlias = Mapping[str, Any]
+class InterRegionBandwidthInterRegionArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Inter-region bandwidth ID.
+    """
+    local_region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the local region where the inter-region bandwidth is used.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Project ID of a region where the inter-region bandwidth is used.
+    """
+    remote_region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the remote region where the inter-region bandwidth is used.
+    """
 
 @pulumi.input_type
 class InterRegionBandwidthInterRegionArgs:
@@ -694,5 +670,55 @@ class InterRegionBandwidthInterRegionArgs:
     @remote_region_id.setter
     def remote_region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "remote_region_id", value)
+
+
+class GetCentralNetworksByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+    letters, digits, hyphens (-), and underscores (_).
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values with the same key.
+    """
+
+@pulumi.input_type
+class GetCentralNetworksByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+               letters, digits, hyphens (-), and underscores (_).
+        :param Sequence[_builtins.str] values: Specifies the list of values with the same key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key. The key can contain a maximum of **128** Unicode characters, including
+        letters, digits, hyphens (-), and underscores (_).
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values with the same key.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

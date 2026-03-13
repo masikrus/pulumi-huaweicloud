@@ -26,6 +26,7 @@ class CentralNetworkArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CentralNetwork resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the central network.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID to which the central network belongs.
                
@@ -121,6 +122,7 @@ class _CentralNetworkState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering CentralNetwork resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the central network.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID to which the central network belongs.
                
@@ -270,11 +272,10 @@ class CentralNetwork(pulumi.CustomResource):
 
         The central network can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetwork:CentralNetwork test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -317,11 +318,10 @@ class CentralNetwork(pulumi.CustomResource):
 
         The central network can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetwork:CentralNetwork test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CentralNetworkArgs args: The arguments to use to populate this resource's properties.

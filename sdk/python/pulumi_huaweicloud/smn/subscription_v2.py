@@ -110,6 +110,7 @@ class _SubscriptionV2State:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubscriptionV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionV2FilterPolicyArgs']]] filter_policies: The message filter policies of a subscriber.
         """
         if endpoint is not None:
@@ -242,6 +243,7 @@ class SubscriptionV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SubscriptionV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -253,6 +255,7 @@ class SubscriptionV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SubscriptionV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SubscriptionV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

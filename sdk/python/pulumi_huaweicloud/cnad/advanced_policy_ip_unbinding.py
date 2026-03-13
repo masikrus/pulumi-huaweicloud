@@ -24,6 +24,7 @@ class AdvancedPolicyIpUnbindingArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedPolicyIpUnbinding resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_lists: Specifies the list of IP addresses to unbind from the policy.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the protection policy to unbind IPs from.
         """
@@ -74,6 +75,7 @@ class _AdvancedPolicyIpUnbindingState:
                  policy_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedPolicyIpUnbinding resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_lists: Specifies the list of IP addresses to unbind from the policy.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the protection policy to unbind IPs from.
         """
@@ -118,7 +120,7 @@ class _AdvancedPolicyIpUnbindingState:
         pulumi.set(self, "policy_id", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedPolicyIpUnbinding:AdvancedPolicyIpUnbinding")
+@pulumi.type_token("huaweicloud:Cnad/advancedPolicyIpUnbinding:AdvancedPolicyIpUnbinding")
 class AdvancedPolicyIpUnbinding(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -147,6 +149,7 @@ class AdvancedPolicyIpUnbinding(pulumi.CustomResource):
             policy_id=policy_id,
             ip_lists=ip_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +181,7 @@ class AdvancedPolicyIpUnbinding(pulumi.CustomResource):
             policy_id=policy_id,
             ip_lists=ip_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedPolicyIpUnbindingArgs args: The arguments to use to populate this resource's properties.
@@ -214,7 +218,7 @@ class AdvancedPolicyIpUnbinding(pulumi.CustomResource):
                 raise TypeError("Missing required property 'policy_id'")
             __props__.__dict__["policy_id"] = policy_id
         super(AdvancedPolicyIpUnbinding, __self__).__init__(
-            'huaweicloud:cnad/advancedPolicyIpUnbinding:AdvancedPolicyIpUnbinding',
+            'huaweicloud:Cnad/advancedPolicyIpUnbinding:AdvancedPolicyIpUnbinding',
             resource_name,
             __props__,
             opts)

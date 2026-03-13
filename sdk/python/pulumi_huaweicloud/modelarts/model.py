@@ -43,6 +43,7 @@ class ModelArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Model resource.
+
         :param pulumi.Input[_builtins.str] model_type: Model type.  
                It can be **TensorFlow**, **MXNet**, **Caffe**, **Spark_MLlib**, **Scikit_Learn**,
                **XGBoost**, **Image**, **PyTorch**, or **Template** read from the configuration file.
@@ -538,6 +539,7 @@ class _ModelState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Model resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ModelDependencyArgs']]] dependencies: Package required for inference code and model.  
                If the package is read from the configuration file, this parameter can be left blank.
                The Dependency structure is documented below.
@@ -1431,11 +1433,10 @@ class Model(pulumi.CustomResource):
 
         The modelarts model can be imported using id, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/model:Model test 635a2d50-0546-469d-b45d-0204b9ad4f14
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1820,11 +1821,10 @@ class Model(pulumi.CustomResource):
 
         The modelarts model can be imported using id, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/model:Model test 635a2d50-0546-469d-b45d-0204b9ad4f14
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ModelArgs args: The arguments to use to populate this resource's properties.

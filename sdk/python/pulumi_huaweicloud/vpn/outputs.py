@@ -42,11 +42,15 @@ __all__ = [
     'GetCustomerGatewaysCustomerGatewayCaCertificateResult',
     'GetGatewayAvailabilityZonesV51AvailabilityZoneResult',
     'GetGatewayAvailabilityZonesV51AvailabilityZoneAvailableSpecResult',
+    'GetGatewayJobsJobResult',
+    'GetGatewayJobsJobSubJobResult',
     'GetGatewayRouteTablesRoutingTableResult',
     'GetGatewayRouteTablesRoutingTableNexthopResourceResult',
     'GetGatewaysGatewayResult',
     'GetGatewaysGatewayEipResult',
     'GetP2cGatewayConnectionsConnectionResult',
+    'GetP2cGatewayJobsJobResult',
+    'GetP2cGatewayJobsJobSubJobResult',
     'GetP2cGatewaysP2cVpnGatewayResult',
     'GetP2cGatewaysP2cVpnGatewayEipResult',
     'GetP2cGatewaysP2cVpnGatewayTagResult',
@@ -2966,6 +2970,165 @@ class GetGatewayAvailabilityZonesV51AvailabilityZoneAvailableSpecResult(dict):
 
 
 @pulumi.output_type
+class GetGatewayJobsJobResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 id: _builtins.str,
+                 job_type: _builtins.str,
+                 resource_id: _builtins.str,
+                 status: _builtins.str,
+                 sub_jobs: Sequence['outputs.GetGatewayJobsJobSubJobResult'],
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+        :param _builtins.str id: Indicates the job ID.
+        :param _builtins.str job_type: Indicates the job type.
+        :param _builtins.str resource_id: Specifies the instance ID of a VPN gateway.
+        :param _builtins.str status: Indicates the job status.
+        :param Sequence['GetGatewayJobsJobSubJobArgs'] sub_jobs: Indicates the sub-job info.
+               The sub_jobs structure is documented below.
+        :param _builtins.str updated_at: Indicates the update time.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sub_jobs", sub_jobs)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the job ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> _builtins.str:
+        """
+        Indicates the job type.
+        """
+        return pulumi.get(self, "job_type")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the instance ID of a VPN gateway.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the job status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="subJobs")
+    def sub_jobs(self) -> Sequence['outputs.GetGatewayJobsJobSubJobResult']:
+        """
+        Indicates the sub-job info.
+        The sub_jobs structure is documented below.
+        """
+        return pulumi.get(self, "sub_jobs")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetGatewayJobsJobSubJobResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 error_message: _builtins.str,
+                 finished_at: _builtins.str,
+                 id: _builtins.str,
+                 job_type: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+        :param _builtins.str error_message: Indicates error information.
+        :param _builtins.str finished_at: Indicates the end time.
+        :param _builtins.str id: Indicates the job ID.
+        :param _builtins.str job_type: Indicates the job type.
+        :param _builtins.str status: Indicates the job status.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Indicates error information.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> _builtins.str:
+        """
+        Indicates the end time.
+        """
+        return pulumi.get(self, "finished_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the job ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> _builtins.str:
+        """
+        Indicates the job type.
+        """
+        return pulumi.get(self, "job_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the job status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetGatewayRouteTablesRoutingTableResult(dict):
     def __init__(__self__, *,
                  as_path: _builtins.str,
@@ -3589,6 +3752,165 @@ class GetP2cGatewayConnectionsConnectionResult(dict):
         The timestamp.
         """
         return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class GetP2cGatewayJobsJobResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 id: _builtins.str,
+                 job_type: _builtins.str,
+                 resource_id: _builtins.str,
+                 status: _builtins.str,
+                 sub_jobs: Sequence['outputs.GetP2cGatewayJobsJobSubJobResult'],
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+        :param _builtins.str id: Indicates the job ID.
+        :param _builtins.str job_type: Indicates the job type.
+        :param _builtins.str resource_id: Specifies the instance ID of a VPN P2C gateway.
+        :param _builtins.str status: Indicates the job status.
+        :param Sequence['GetP2cGatewayJobsJobSubJobArgs'] sub_jobs: Indicates the sub-job info.
+               The sub_jobs structure is documented below.
+        :param _builtins.str updated_at: Indicates the update time.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sub_jobs", sub_jobs)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the job ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> _builtins.str:
+        """
+        Indicates the job type.
+        """
+        return pulumi.get(self, "job_type")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Specifies the instance ID of a VPN P2C gateway.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the job status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="subJobs")
+    def sub_jobs(self) -> Sequence['outputs.GetP2cGatewayJobsJobSubJobResult']:
+        """
+        Indicates the sub-job info.
+        The sub_jobs structure is documented below.
+        """
+        return pulumi.get(self, "sub_jobs")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetP2cGatewayJobsJobSubJobResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 error_message: _builtins.str,
+                 finished_at: _builtins.str,
+                 id: _builtins.str,
+                 job_type: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the creation time.
+        :param _builtins.str error_message: Indicates error information.
+        :param _builtins.str finished_at: Indicates the end time.
+        :param _builtins.str id: Indicates the job ID.
+        :param _builtins.str job_type: Indicates the job type.
+        :param _builtins.str status: Indicates the job status.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Indicates error information.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> _builtins.str:
+        """
+        Indicates the end time.
+        """
+        return pulumi.get(self, "finished_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the job ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> _builtins.str:
+        """
+        Indicates the job type.
+        """
+        return pulumi.get(self, "job_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the job status.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

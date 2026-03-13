@@ -27,6 +27,7 @@ class PlaybookApprovalArgs:
                  result: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookApproval resource.
+
         :param pulumi.Input[_builtins.str] version_id: Specifies the version ID of the playbook.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the playbook belongs.
         :param pulumi.Input[_builtins.str] content: Specifies the content of the playbook approval.
@@ -129,6 +130,7 @@ class _PlaybookApprovalState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookApproval resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the content of the playbook approval.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -222,7 +224,7 @@ class _PlaybookApprovalState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookApproval:PlaybookApproval")
+@pulumi.type_token("huaweicloud:Secmaster/playbookApproval:PlaybookApproval")
 class PlaybookApproval(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -261,6 +263,7 @@ class PlaybookApproval(pulumi.CustomResource):
         ### More Examples
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -305,6 +308,7 @@ class PlaybookApproval(pulumi.CustomResource):
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
 
+
         :param str resource_name: The name of the resource.
         :param PlaybookApprovalArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -346,7 +350,7 @@ class PlaybookApproval(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(PlaybookApproval, __self__).__init__(
-            'huaweicloud:secmaster/playbookApproval:PlaybookApproval',
+            'huaweicloud:Secmaster/playbookApproval:PlaybookApproval',
             resource_name,
             __props__,
             opts)

@@ -43,6 +43,7 @@ class ServerArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[_builtins.str] auto_renew: Whether auto renew is enabled. Valid values are **true** and **false**.
                Defaults to false.
                
@@ -461,6 +462,7 @@ class _ServerState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ServerAddressArgs']]] addresses: The IP addresses of the CPH server.
                The Address structure is documented below.
         :param pulumi.Input[_builtins.str] auto_renew: Whether auto renew is enabled. Valid values are **true** and **false**.
@@ -938,7 +940,7 @@ class _ServerState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:cph/server:Server")
+@pulumi.type_token("huaweicloud:Cph/server:Server")
 class Server(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -974,39 +976,16 @@ class Server(pulumi.CustomResource):
 
         The CPH server can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cph/server:Server test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Cph/server:Server test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_id`, `eip_id`, `eip_type`, `auto_renew`,
-
         `period`, and `period_unit`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cph_server" "test" {
-
-            ...
-            
-            lifecycle {
-            
-              ignore_changes = [
-            
-                image_id, eip_id, eip_type, auto_renew, period, period_unit,
-            
-              ]
-            
-            }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1093,39 +1072,16 @@ class Server(pulumi.CustomResource):
 
         The CPH server can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cph/server:Server test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Cph/server:Server test 0ce123456a00f2591fabc00385ff1234
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `image_id`, `eip_id`, `eip_type`, `auto_renew`,
-
         `period`, and `period_unit`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cph_server" "test" {
-
-            ...
-            
-            lifecycle {
-            
-              ignore_changes = [
-            
-                image_id, eip_id, eip_type, auto_renew, period, period_unit,
-            
-              ]
-            
-            }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.
@@ -1212,7 +1168,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["security_groups"] = None
             __props__.__dict__["status"] = None
         super(Server, __self__).__init__(
-            'huaweicloud:cph/server:Server',
+            'huaweicloud:Cph/server:Server',
             resource_name,
             __props__,
             opts)

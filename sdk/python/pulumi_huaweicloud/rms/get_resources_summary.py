@@ -155,7 +155,7 @@ def get_resources_summary(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resources_summary(type="vpc.vpcs")
+    test = huaweicloud.Rms.get_resources_summary(type="vpc.vpcs")
     ```
 
 
@@ -178,7 +178,7 @@ def get_resources_summary(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['tracked'] = tracked
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourcesSummary:getResourcesSummary', __args__, opts=opts, typ=GetResourcesSummaryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourcesSummary:getResourcesSummary', __args__, opts=opts, typ=GetResourcesSummaryResult).value
 
     return AwaitableGetResourcesSummaryResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -209,7 +209,7 @@ def get_resources_summary_output(enterprise_project_id: Optional[pulumi.Input[Op
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resources_summary(type="vpc.vpcs")
+    test = huaweicloud.Rms.get_resources_summary(type="vpc.vpcs")
     ```
 
 
@@ -232,7 +232,7 @@ def get_resources_summary_output(enterprise_project_id: Optional[pulumi.Input[Op
     __args__['tracked'] = tracked
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourcesSummary:getResourcesSummary', __args__, opts=opts, typ=GetResourcesSummaryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourcesSummary:getResourcesSummary', __args__, opts=opts, typ=GetResourcesSummaryResult)
     return __ret__.apply(lambda __response__: GetResourcesSummaryResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

@@ -27,6 +27,7 @@ class OpengaussQuotaArgs:
                  volume_quota: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a OpengaussQuota resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.int] instance_quota: Specifies the instance quantity quota. Value range: **-1** to **100000**. The value
@@ -147,6 +148,7 @@ class _OpengaussQuotaState:
                  volume_used: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering OpengaussQuota resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_name: Indicates the enterprise project name.
@@ -363,11 +365,10 @@ class OpengaussQuota(pulumi.CustomResource):
 
         The GaussDB OpenGauss quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussQuota:OpengaussQuota test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -413,11 +414,10 @@ class OpengaussQuota(pulumi.CustomResource):
 
         The GaussDB OpenGauss quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforOpenGauss/opengaussQuota:OpengaussQuota test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussQuotaArgs args: The arguments to use to populate this resource's properties.

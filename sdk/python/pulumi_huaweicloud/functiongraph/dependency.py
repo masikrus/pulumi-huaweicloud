@@ -26,7 +26,11 @@ class DependencyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Dependency resource.
-        :param pulumi.Input[_builtins.str] link: The OBS storage URL of the dependency package.
+
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+               must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] runtime: Specifies the dependency package runtime.
                The valid values are as follows:
                + **Java8**
@@ -68,7 +72,10 @@ class DependencyArgs:
     @pulumi.getter
     def link(self) -> pulumi.Input[_builtins.str]:
         """
-        The OBS storage URL of the dependency package.
+        Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+        must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 
@@ -162,10 +169,14 @@ class _DependencyState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Dependency resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the dependency description.
                The description can contain a maximum of `512` characters.
         :param pulumi.Input[_builtins.str] etag: The unique ID of the dependency package.
-        :param pulumi.Input[_builtins.str] link: The OBS storage URL of the dependency package.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+               must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the dependency name.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
                Only letters, digits, underscores (_), periods (.), and hyphens (-) are allowed.
@@ -243,7 +254,10 @@ class _DependencyState:
     @pulumi.getter
     def link(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OBS storage URL of the dependency package.
+        Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+        must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 
@@ -370,17 +384,19 @@ class Dependency(pulumi.CustomResource):
 
         Dependencies can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependency:Dependency test 795e722f-0c23-41b6-a189-dcd56f889cf6
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the dependency description.
                The description can contain a maximum of `512` characters.
-        :param pulumi.Input[_builtins.str] link: The OBS storage URL of the dependency package.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+               must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the dependency name.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
                Only letters, digits, underscores (_), periods (.), and hyphens (-) are allowed.
@@ -425,11 +441,10 @@ class Dependency(pulumi.CustomResource):
 
         Dependencies can be imported using the `id`, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/dependency:Dependency test 795e722f-0c23-41b6-a189-dcd56f889cf6
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DependencyArgs args: The arguments to use to populate this resource's properties.
@@ -502,7 +517,10 @@ class Dependency(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Specifies the dependency description.
                The description can contain a maximum of `512` characters.
         :param pulumi.Input[_builtins.str] etag: The unique ID of the dependency package.
-        :param pulumi.Input[_builtins.str] link: The OBS storage URL of the dependency package.
+        :param pulumi.Input[_builtins.str] link: Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+               must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+               
+               > A link can only be used to create at most one dependency package.
         :param pulumi.Input[_builtins.str] name: Specifies the dependency name.
                The name can contain a maximum of `96` characters and must start with a letter and end with a letter or digit.
                Only letters, digits, underscores (_), periods (.), and hyphens (-) are allowed.
@@ -568,7 +586,10 @@ class Dependency(pulumi.CustomResource):
     @pulumi.getter
     def link(self) -> pulumi.Output[_builtins.str]:
         """
-        The OBS storage URL of the dependency package.
+        Specifies the OBS bucket path where the dependency package is located. The OBS object URL
+        must be in zip format, such as `https://obs-terraform.obs.cn-north-4.myhuaweicloud.com/huaweicloudsdkcore.zip`.
+
+        > A link can only be used to create at most one dependency package.
         """
         return pulumi.get(self, "link")
 

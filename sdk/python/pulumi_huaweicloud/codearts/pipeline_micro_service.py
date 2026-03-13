@@ -32,6 +32,7 @@ class PipelineMicroServiceArgs:
                  repos: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineMicroServiceRepoArgs']]]] = None):
         """
         The set of arguments for constructing a PipelineMicroService resource.
+
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
         :param pulumi.Input[_builtins.str] type: Specifies the repository type.
         :param pulumi.Input[_builtins.str] description: Specifies the micro service description.
@@ -197,6 +198,7 @@ class _PipelineMicroServiceState:
                  updater_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineMicroService resources.
+
         :param pulumi.Input[_builtins.str] create_time: Indicates the create time.
         :param pulumi.Input[_builtins.str] creator_id: Indicates the creator ID.
         :param pulumi.Input[_builtins.str] creator_name: Indicates the creator name.
@@ -448,7 +450,7 @@ class _PipelineMicroServiceState:
         pulumi.set(self, "updater_name", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineMicroService:PipelineMicroService")
+@pulumi.type_token("huaweicloud:Codearts/pipelineMicroService:PipelineMicroService")
 class PipelineMicroService(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -486,11 +488,10 @@ class PipelineMicroService(pulumi.CustomResource):
 
         The micro service can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineMicroService:PipelineMicroService test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineMicroService:PipelineMicroService test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -537,11 +538,10 @@ class PipelineMicroService(pulumi.CustomResource):
 
         The micro service can be imported using `project_id` and `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineMicroService:PipelineMicroService test <project_id>/<id>
+        $ pulumi import huaweicloud:Codearts/pipelineMicroService:PipelineMicroService test <project_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineMicroServiceArgs args: The arguments to use to populate this resource's properties.
@@ -597,7 +597,7 @@ class PipelineMicroService(pulumi.CustomResource):
             __props__.__dict__["updater_id"] = None
             __props__.__dict__["updater_name"] = None
         super(PipelineMicroService, __self__).__init__(
-            'huaweicloud:codearts/pipelineMicroService:PipelineMicroService',
+            'huaweicloud:Codearts/pipelineMicroService:PipelineMicroService',
             resource_name,
             __props__,
             opts)

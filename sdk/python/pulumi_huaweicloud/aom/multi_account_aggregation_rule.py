@@ -28,6 +28,7 @@ class MultiAccountAggregationRuleArgs:
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['MultiAccountAggregationRuleServiceArgs']]]] = None):
         """
         The set of arguments for constructing a MultiAccountAggregationRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['MultiAccountAggregationRuleAccountArgs']]] accounts: Specifies the accounts list.
                The accounts structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AOM prometheus instance ID.
@@ -130,6 +131,7 @@ class _MultiAccountAggregationRuleState:
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['MultiAccountAggregationRuleServiceArgs']]]] = None):
         """
         Input properties used for looking up and filtering MultiAccountAggregationRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['MultiAccountAggregationRuleAccountArgs']]] accounts: Specifies the accounts list.
                The accounts structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AOM prometheus instance ID.
@@ -268,11 +270,10 @@ class MultiAccountAggregationRule(pulumi.CustomResource):
 
         The AOM multi account aggregation rule resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/multiAccountAggregationRule:MultiAccountAggregationRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,11 +329,10 @@ class MultiAccountAggregationRule(pulumi.CustomResource):
 
         The AOM multi account aggregation rule resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/multiAccountAggregationRule:MultiAccountAggregationRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MultiAccountAggregationRuleArgs args: The arguments to use to populate this resource's properties.

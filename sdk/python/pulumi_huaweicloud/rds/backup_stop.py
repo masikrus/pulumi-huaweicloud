@@ -24,6 +24,7 @@ class BackupStopArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackupStop resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance for which the
                ongoing backup is to be stopped.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -79,6 +80,7 @@ class _BackupStopState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupStop resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance for which the
                ongoing backup is to be stopped.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -155,6 +157,7 @@ class BackupStop(pulumi.CustomResource):
         test = huaweicloud.rds.BackupStop("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance for which the
@@ -185,6 +188,7 @@ class BackupStop(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.rds.BackupStop("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupStopArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class NamespaceV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NamespaceV2 resource.
+
         :param pulumi.Input[_builtins.str] name: The name of the namespace.
         """
         if enable_force_new is not None:
@@ -81,6 +82,7 @@ class _NamespaceV2State:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NamespaceV2 resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: The annotations of the namespace.
         :param pulumi.Input[_builtins.str] api_version: The API version of the namespace.
         :param pulumi.Input[_builtins.str] creation_timestamp: The creation timestamp of the namespace.
@@ -268,6 +270,7 @@ class NamespaceV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a NamespaceV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the namespace.
@@ -280,6 +283,7 @@ class NamespaceV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a NamespaceV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param NamespaceV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

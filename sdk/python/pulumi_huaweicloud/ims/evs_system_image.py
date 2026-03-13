@@ -31,6 +31,7 @@ class EvsSystemImageArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EvsSystemImage resource.
+
         :param pulumi.Input[_builtins.str] os_version: Specifies the operating system version of the image. Changing this
                parameter will create a new resource.
                For its values, see [API docs](https://support.huaweicloud.com/intl/en-us/api-ims/ims_03_0910.html).
@@ -282,6 +283,7 @@ class _EvsSystemImageState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EvsSystemImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1354,37 +1356,28 @@ class EvsSystemImage(pulumi.CustomResource):
 
         The IMS EVS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/evsSystemImage:EvsSystemImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `type`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_evs_system_image" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               type,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1447,37 +1440,28 @@ class EvsSystemImage(pulumi.CustomResource):
 
         The IMS EVS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/evsSystemImage:EvsSystemImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `type`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_evs_system_image" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               type,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param EvsSystemImageArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class PrivateCaRevokeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateCaRevoke resource.
+
         :param pulumi.Input[_builtins.str] ca_id: Specifies the ID of the private CA to be revoked.
                Changing this parameter will create a new resource.
                
@@ -111,6 +112,7 @@ class _PrivateCaRevokeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateCaRevoke resources.
+
         :param pulumi.Input[_builtins.str] ca_id: Specifies the ID of the private CA to be revoked.
                Changing this parameter will create a new resource.
                
@@ -191,7 +193,7 @@ class _PrivateCaRevokeState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/privateCaRevoke:PrivateCaRevoke")
+@pulumi.type_token("huaweicloud:Ccm/privateCaRevoke:PrivateCaRevoke")
 class PrivateCaRevoke(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -216,6 +218,7 @@ class PrivateCaRevoke(pulumi.CustomResource):
         ca_id = config.require_object("caId")
         test = huaweicloud.ccm.PrivateCaRevoke("test", ca_id=ca_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,6 +264,7 @@ class PrivateCaRevoke(pulumi.CustomResource):
         test = huaweicloud.ccm.PrivateCaRevoke("test", ca_id=ca_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PrivateCaRevokeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -294,7 +298,7 @@ class PrivateCaRevoke(pulumi.CustomResource):
             __props__.__dict__["reason"] = reason
             __props__.__dict__["region"] = region
         super(PrivateCaRevoke, __self__).__init__(
-            'huaweicloud:ccm/privateCaRevoke:PrivateCaRevoke',
+            'huaweicloud:Ccm/privateCaRevoke:PrivateCaRevoke',
             resource_name,
             __props__,
             opts)

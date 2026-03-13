@@ -27,6 +27,7 @@ class OpengaussRestoreArgs:
                  restore_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussRestore resource.
+
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID.
                
                Changing this creates a new resource.
@@ -158,6 +159,7 @@ class _OpengaussRestoreState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussRestore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. It indicates the ID of the
                full backup corresponding to schema_type. This parameter must be specified when the backup file is used for restoration.
                
@@ -336,6 +338,7 @@ class OpengaussRestore(pulumi.CustomResource):
             restore_time="1673852043000")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. It indicates the ID of the
@@ -407,6 +410,7 @@ class OpengaussRestore(pulumi.CustomResource):
             type="timestamp",
             restore_time="1673852043000")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussRestoreArgs args: The arguments to use to populate this resource's properties.

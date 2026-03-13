@@ -27,6 +27,7 @@ class AccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Account resource.
+
         :param pulumi.Input[_builtins.str] account_name: Specifies the name of the account.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] account_password: Specifies the password of the account.
@@ -141,6 +142,7 @@ class _AccountState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Account resources.
+
         :param pulumi.Input[_builtins.str] account_name: Specifies the name of the account.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] account_password: Specifies the password of the account.
@@ -314,39 +316,16 @@ class Account(pulumi.CustomResource):
 
         The DCS account can be imported using the DCS instance ID and the DCS account ID separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/account:Account test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `account_password`.
-
         It is generally recommended running `pulumi preview` after importing the account.
-
         You can then decide if changes should be applied to the account, or the resource definition should be updated to
-
         align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              account_password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -392,39 +371,16 @@ class Account(pulumi.CustomResource):
 
         The DCS account can be imported using the DCS instance ID and the DCS account ID separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/account:Account test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `account_password`.
-
         It is generally recommended running `pulumi preview` after importing the account.
-
         You can then decide if changes should be applied to the account, or the resource definition should be updated to
-
         align with the account. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              account_password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AccountArgs args: The arguments to use to populate this resource's properties.

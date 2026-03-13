@@ -35,6 +35,7 @@ class CustomAuthorizerArgs:
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomAuthorizer resource.
+
         :param pulumi.Input[_builtins.str] function_urn: Specifies the uniform function URN of the function graph resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies an ID of the APIG dedicated instance to which the
                custom authorizer belongs to.
@@ -272,6 +273,7 @@ class _CustomAuthorizerState:
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomAuthorizer resources.
+
         :param pulumi.Input[_builtins.int] cache_age: Specifies the maximum cache age.  
                The valid value is range from `1` to `3,600`.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the custom authorizer.
@@ -556,12 +558,12 @@ class CustomAuthorizer(pulumi.CustomResource):
         ## Import
 
         Custom Authorizers of the APIG can be imported using their `name` and related dedicated instance IDs, separated by a
-
         slash, e.g.
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/customAuthorizer:CustomAuthorizer test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -632,12 +634,12 @@ class CustomAuthorizer(pulumi.CustomResource):
         ## Import
 
         Custom Authorizers of the APIG can be imported using their `name` and related dedicated instance IDs, separated by a
-
         slash, e.g.
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/customAuthorizer:CustomAuthorizer test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomAuthorizerArgs args: The arguments to use to populate this resource's properties.

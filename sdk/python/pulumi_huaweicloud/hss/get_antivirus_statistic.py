@@ -155,7 +155,7 @@ def get_antivirus_statistic(enterprise_project_id: Optional[_builtins.str] = Non
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_statistic()
+    test = huaweicloud.Hss.get_antivirus_statistic()
     ```
 
 
@@ -172,7 +172,7 @@ def get_antivirus_statistic(enterprise_project_id: Optional[_builtins.str] = Non
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAntivirusStatistic:getAntivirusStatistic', __args__, opts=opts, typ=GetAntivirusStatisticResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAntivirusStatistic:getAntivirusStatistic', __args__, opts=opts, typ=GetAntivirusStatisticResult).value
 
     return AwaitableGetAntivirusStatisticResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -196,7 +196,7 @@ def get_antivirus_statistic_output(enterprise_project_id: Optional[pulumi.Input[
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_statistic()
+    test = huaweicloud.Hss.get_antivirus_statistic()
     ```
 
 
@@ -213,7 +213,7 @@ def get_antivirus_statistic_output(enterprise_project_id: Optional[pulumi.Input[
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAntivirusStatistic:getAntivirusStatistic', __args__, opts=opts, typ=GetAntivirusStatisticResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAntivirusStatistic:getAntivirusStatistic', __args__, opts=opts, typ=GetAntivirusStatisticResult)
     return __ret__.apply(lambda __response__: GetAntivirusStatisticResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

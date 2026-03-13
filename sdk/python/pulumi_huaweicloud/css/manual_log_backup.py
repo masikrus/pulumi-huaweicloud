@@ -23,6 +23,7 @@ class ManualLogBackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ManualLogBackup resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -75,6 +76,7 @@ class _ManualLogBackupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ManualLogBackup resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
@@ -242,6 +244,7 @@ class ManualLogBackup(pulumi.CustomResource):
         test = huaweicloud.css.ManualLogBackup("test", cluster_id=cluster_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
@@ -269,6 +272,7 @@ class ManualLogBackup(pulumi.CustomResource):
         cluster_id = config.require_object("clusterId")
         test = huaweicloud.css.ManualLogBackup("test", cluster_id=cluster_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ManualLogBackupArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class Eipv3AssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Eipv3Associate resource.
+
         :param pulumi.Input[_builtins.str] associate_instance_id: Specifies the ID of the instance that the port belongs to.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] associate_instance_type: Specifies the type of the instance that the port belongs to.
@@ -100,6 +101,7 @@ class _Eipv3AssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Eipv3Associate resources.
+
         :param pulumi.Input[_builtins.str] associate_instance_id: Specifies the ID of the instance that the port belongs to.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] associate_instance_type: Specifies the type of the instance that the port belongs to.
@@ -202,11 +204,10 @@ class Eipv3Associate(pulumi.CustomResource):
 
         The VPC EIP associations can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eipv3Associate:Eipv3Associate eip <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -246,11 +247,10 @@ class Eipv3Associate(pulumi.CustomResource):
 
         The VPC EIP associations can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/eipv3Associate:Eipv3Associate eip <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param Eipv3AssociateArgs args: The arguments to use to populate this resource's properties.

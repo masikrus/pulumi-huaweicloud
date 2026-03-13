@@ -134,15 +134,15 @@ def get_project(id: Optional[_builtins.str] = None,
     CDM | Cdm.Cluster
     CDN | Cdn.Domain
     CES | huaweicloud_ces_alarmrule<br>huaweicloud_ces_resource_group
-    CodeArts | codearts.Project
-    CPH | cph.Server
+    CodeArts | Codearts.Project
+    CPH | Cph.Server
     CSE | huaweicloud_cse__microservice_engine
     CSS | Css.Cluster
     DataArts | DataArtsStudio.StudioInstance
-    DBSS | dbss.Instance
+    DBSS | Dbss.Instance
     DC  | huaweicloud_dc_virtual_gateway<br>huaweicloud_dc_virtual_interface
     DCS | Dcs.Instance
-    DDM | ddm.Instance
+    DDM | Ddm.Instance
     DDS | Dds.Instance
     DEW | Dew.Key
     DIS | Dis.Stream
@@ -158,10 +158,10 @@ def get_project(id: Optional[_builtins.str] = None,
     ER  | Er.Instance
     EVS | Evs.Volume
     FGS | FunctionGraph.Function
-    GA  | ga.Accelerator
+    GA  | Ga.Accelerator
     GaussDB | huaweicloud_gaussdb_cassandra_instance<br>huaweicloud_gaussdb_influx_instance<br>huaweicloud_gaussdb_mongo_instance<br>huaweicloud_gaussdb_mysql_instance<br>huaweicloud_gaussdb_opengauss_instance<br>huaweicloud_gaussdb_redis_instance
-    GES | ges.Graph
-    HSS | hss.HostGroup
+    GES | Ges.Graph
+    HSS | Hss.HostGroup
     IAM | huaweicloud_identity_group_role_assignment<br>huaweicloud_identity_user_role_assignment
     IMS | huaweicloud_images_image<br>huaweicloud_images_image_copy
     LB  | huaweicloud_lb_certificate<br>huaweicloud_lb_loadbalancer
@@ -175,7 +175,7 @@ def get_project(id: Optional[_builtins.str] = None,
     SFS | huaweicloud_sfs_file_system<br>huaweicloud_sfs_turbo
     SMN | Smn.Topic
     VPC | huaweicloud_vpc<br>huaweicloud_networking_secgroup<br>huaweicloud_vpc_address_group
-    VPN | vpn.Gateway
+    VPN | Vpn.Gateway
     WAF | huaweicloud_waf_address_group<br>huaweicloud_waf_certificate<br>huaweicloud_waf_cloud_instance<br>huaweicloud_waf_dedicated_domain<br>huaweicloud_waf_dedicated_instance<br>huaweicloud_waf_domain<br>huaweicloud_waf_policy<br>huaweicloud_waf_reference_table<br> huaweicloud_waf_rule_anti_crawler<br>huaweicloud_waf_rule_blacklist<br>huaweicloud_waf_rule_cc_protection<br>huaweicloud_waf_rule_data_masking<br>huaweicloud_waf_rule_geolocation_access_control<br>huaweicloud_waf_rule_global_protection_whitelist<br>huaweicloud_waf_rule_information_leakage_prevention<br>huaweicloud_waf_rule_known_attack_source<br>huaweicloud_waf_rule_precise_protection<br>huaweicloud_waf_rule_web_tamper_protection
     WorkSpace | huaweicloud_workspace_desktop<br>
     <!-- markdownlint-enable MD033 -->
@@ -235,15 +235,15 @@ def get_project_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     CDM | Cdm.Cluster
     CDN | Cdn.Domain
     CES | huaweicloud_ces_alarmrule<br>huaweicloud_ces_resource_group
-    CodeArts | codearts.Project
-    CPH | cph.Server
+    CodeArts | Codearts.Project
+    CPH | Cph.Server
     CSE | huaweicloud_cse__microservice_engine
     CSS | Css.Cluster
     DataArts | DataArtsStudio.StudioInstance
-    DBSS | dbss.Instance
+    DBSS | Dbss.Instance
     DC  | huaweicloud_dc_virtual_gateway<br>huaweicloud_dc_virtual_interface
     DCS | Dcs.Instance
-    DDM | ddm.Instance
+    DDM | Ddm.Instance
     DDS | Dds.Instance
     DEW | Dew.Key
     DIS | Dis.Stream
@@ -259,10 +259,10 @@ def get_project_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     ER  | Er.Instance
     EVS | Evs.Volume
     FGS | FunctionGraph.Function
-    GA  | ga.Accelerator
+    GA  | Ga.Accelerator
     GaussDB | huaweicloud_gaussdb_cassandra_instance<br>huaweicloud_gaussdb_influx_instance<br>huaweicloud_gaussdb_mongo_instance<br>huaweicloud_gaussdb_mysql_instance<br>huaweicloud_gaussdb_opengauss_instance<br>huaweicloud_gaussdb_redis_instance
-    GES | ges.Graph
-    HSS | hss.HostGroup
+    GES | Ges.Graph
+    HSS | Hss.HostGroup
     IAM | huaweicloud_identity_group_role_assignment<br>huaweicloud_identity_user_role_assignment
     IMS | huaweicloud_images_image<br>huaweicloud_images_image_copy
     LB  | huaweicloud_lb_certificate<br>huaweicloud_lb_loadbalancer
@@ -276,7 +276,7 @@ def get_project_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     SFS | huaweicloud_sfs_file_system<br>huaweicloud_sfs_turbo
     SMN | Smn.Topic
     VPC | huaweicloud_vpc<br>huaweicloud_networking_secgroup<br>huaweicloud_vpc_address_group
-    VPN | vpn.Gateway
+    VPN | Vpn.Gateway
     WAF | huaweicloud_waf_address_group<br>huaweicloud_waf_certificate<br>huaweicloud_waf_cloud_instance<br>huaweicloud_waf_dedicated_domain<br>huaweicloud_waf_dedicated_instance<br>huaweicloud_waf_domain<br>huaweicloud_waf_policy<br>huaweicloud_waf_reference_table<br> huaweicloud_waf_rule_anti_crawler<br>huaweicloud_waf_rule_blacklist<br>huaweicloud_waf_rule_cc_protection<br>huaweicloud_waf_rule_data_masking<br>huaweicloud_waf_rule_geolocation_access_control<br>huaweicloud_waf_rule_global_protection_whitelist<br>huaweicloud_waf_rule_information_leakage_prevention<br>huaweicloud_waf_rule_known_attack_source<br>huaweicloud_waf_rule_precise_protection<br>huaweicloud_waf_rule_web_tamper_protection
     WorkSpace | huaweicloud_workspace_desktop<br>
     <!-- markdownlint-enable MD033 -->

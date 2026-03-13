@@ -23,6 +23,7 @@ class OrganizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Organization resource.
+
         :param pulumi.Input[_builtins.str] name: Specifies the name of the organization. The organization name must be globally
                unique.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the
@@ -70,6 +71,7 @@ class _OrganizationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
+
         :param pulumi.Input[_builtins.str] creator: The creator user name of the organization.
         :param pulumi.Input[_builtins.str] login_server: The URL that can be used to log into the container registry.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the organization. The organization name must be globally
@@ -177,11 +179,10 @@ class Organization(pulumi.CustomResource):
 
         Organizations can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Swr/organization:Organization test org-name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -212,11 +213,10 @@ class Organization(pulumi.CustomResource):
 
         Organizations can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Swr/organization:Organization test org-name
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.

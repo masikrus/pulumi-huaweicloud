@@ -119,7 +119,7 @@ def get_auto_launch_statistics(enterprise_project_id: Optional[_builtins.str] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_auto_launch_statistics()
+    test = huaweicloud.Hss.get_auto_launch_statistics()
     ```
 
 
@@ -143,7 +143,7 @@ def get_auto_launch_statistics(enterprise_project_id: Optional[_builtins.str] = 
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAutoLaunchStatistics:getAutoLaunchStatistics', __args__, opts=opts, typ=GetAutoLaunchStatisticsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAutoLaunchStatistics:getAutoLaunchStatistics', __args__, opts=opts, typ=GetAutoLaunchStatisticsResult).value
 
     return AwaitableGetAutoLaunchStatisticsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -166,7 +166,7 @@ def get_auto_launch_statistics_output(enterprise_project_id: Optional[pulumi.Inp
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_auto_launch_statistics()
+    test = huaweicloud.Hss.get_auto_launch_statistics()
     ```
 
 
@@ -190,7 +190,7 @@ def get_auto_launch_statistics_output(enterprise_project_id: Optional[pulumi.Inp
     __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAutoLaunchStatistics:getAutoLaunchStatistics', __args__, opts=opts, typ=GetAutoLaunchStatisticsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAutoLaunchStatistics:getAutoLaunchStatistics', __args__, opts=opts, typ=GetAutoLaunchStatisticsResult)
     return __ret__.apply(lambda __response__: GetAutoLaunchStatisticsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

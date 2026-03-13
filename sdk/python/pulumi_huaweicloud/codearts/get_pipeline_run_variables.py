@@ -136,7 +136,7 @@ def get_pipeline_run_variables(mode: Optional[_builtins.int] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineRunVariables:getPipelineRunVariables', __args__, opts=opts, typ=GetPipelineRunVariablesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineRunVariables:getPipelineRunVariables', __args__, opts=opts, typ=GetPipelineRunVariablesResult).value
 
     return AwaitableGetPipelineRunVariablesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -174,7 +174,7 @@ def get_pipeline_run_variables_output(mode: Optional[pulumi.Input[_builtins.int]
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineRunVariables:getPipelineRunVariables', __args__, opts=opts, typ=GetPipelineRunVariablesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineRunVariables:getPipelineRunVariables', __args__, opts=opts, typ=GetPipelineRunVariablesResult)
     return __ret__.apply(lambda __response__: GetPipelineRunVariablesResult(
         id=pulumi.get(__response__, 'id'),
         mode=pulumi.get(__response__, 'mode'),

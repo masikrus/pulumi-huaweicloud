@@ -17,30 +17,39 @@ from .. import _utilities
 __all__ = [
     'AccountBlueprintArgs',
     'AccountBlueprintArgsDict',
+    'AccountEnrollBlueprintArgs',
+    'AccountEnrollBlueprintArgsDict',
+    'LandingZoneLoggingConfigurationArgs',
+    'LandingZoneLoggingConfigurationArgsDict',
+    'LandingZoneLoggingConfigurationAccessLoggingBucketArgs',
+    'LandingZoneLoggingConfigurationAccessLoggingBucketArgsDict',
+    'LandingZoneLoggingConfigurationLoggingBucketArgs',
+    'LandingZoneLoggingConfigurationLoggingBucketArgsDict',
+    'LandingZoneOrganizationStructureArgs',
+    'LandingZoneOrganizationStructureArgsDict',
+    'LandingZoneOrganizationStructureAccountArgs',
+    'LandingZoneOrganizationStructureAccountArgsDict',
+    'LandingZoneRegionConfigurationListArgs',
+    'LandingZoneRegionConfigurationListArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AccountBlueprintArgsDict(TypedDict):
-        blueprint_product_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the blueprint.
-        """
-        blueprint_product_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the blueprint.
-        """
-        is_blueprint_has_multi_account_resource: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the blueprint has multi-account resources.
-        """
-        variables: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the variables of the blueprint.
-        """
-elif False:
-    AccountBlueprintArgsDict: TypeAlias = Mapping[str, Any]
+class AccountBlueprintArgsDict(TypedDict):
+    blueprint_product_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the blueprint.
+    """
+    blueprint_product_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the blueprint.
+    """
+    is_blueprint_has_multi_account_resource: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the blueprint has multi-account resources.
+    """
+    variables: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the variables of the blueprint.
+    """
 
 @pulumi.input_type
 class AccountBlueprintArgs:
@@ -111,5 +120,536 @@ class AccountBlueprintArgs:
     @variables.setter
     def variables(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "variables", value)
+
+
+class AccountEnrollBlueprintArgsDict(TypedDict):
+    blueprint_product_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the blueprint.
+    """
+    blueprint_product_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the blueprint.
+    """
+    is_blueprint_has_multi_account_resource: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the blueprint has multi-account resources.
+    """
+    variables: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the variables of the blueprint.
+    """
+
+@pulumi.input_type
+class AccountEnrollBlueprintArgs:
+    def __init__(__self__, *,
+                 blueprint_product_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 blueprint_product_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_blueprint_has_multi_account_resource: Optional[pulumi.Input[_builtins.bool]] = None,
+                 variables: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] blueprint_product_id: Specifies the ID of the blueprint.
+        :param pulumi.Input[_builtins.str] blueprint_product_version: Specifies the version of the blueprint.
+        :param pulumi.Input[_builtins.bool] is_blueprint_has_multi_account_resource: Specifies whether the blueprint has multi-account resources.
+        :param pulumi.Input[_builtins.str] variables: Specifies the variables of the blueprint.
+        """
+        if blueprint_product_id is not None:
+            pulumi.set(__self__, "blueprint_product_id", blueprint_product_id)
+        if blueprint_product_version is not None:
+            pulumi.set(__self__, "blueprint_product_version", blueprint_product_version)
+        if is_blueprint_has_multi_account_resource is not None:
+            pulumi.set(__self__, "is_blueprint_has_multi_account_resource", is_blueprint_has_multi_account_resource)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductId")
+    def blueprint_product_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the blueprint.
+        """
+        return pulumi.get(self, "blueprint_product_id")
+
+    @blueprint_product_id.setter
+    def blueprint_product_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "blueprint_product_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blueprintProductVersion")
+    def blueprint_product_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the version of the blueprint.
+        """
+        return pulumi.get(self, "blueprint_product_version")
+
+    @blueprint_product_version.setter
+    def blueprint_product_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "blueprint_product_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isBlueprintHasMultiAccountResource")
+    def is_blueprint_has_multi_account_resource(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the blueprint has multi-account resources.
+        """
+        return pulumi.get(self, "is_blueprint_has_multi_account_resource")
+
+    @is_blueprint_has_multi_account_resource.setter
+    def is_blueprint_has_multi_account_resource(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_blueprint_has_multi_account_resource", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def variables(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the variables of the blueprint.
+        """
+        return pulumi.get(self, "variables")
+
+    @variables.setter
+    def variables(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "variables", value)
+
+
+class LandingZoneLoggingConfigurationArgsDict(TypedDict):
+    access_logging_bucket: pulumi.Input['LandingZoneLoggingConfigurationAccessLoggingBucketArgsDict']
+    """
+    Specifies the access logging bucket structure.
+
+    The access_logging_bucket structure is documented below.
+
+    <a name="logging_bucket"></a>
+    The `logging_bucket` and  access_logging_bucket block supports:
+    """
+    logging_bucket: pulumi.Input['LandingZoneLoggingConfigurationLoggingBucketArgsDict']
+    """
+    Specifies the logging bucket structure.
+
+    The logging_bucket structure is documented below.
+    """
+    logging_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of logging bucket, set this field means
+    using existed bucket, RGC will not create bucket in setup landing zone progress.
+    """
+
+@pulumi.input_type
+class LandingZoneLoggingConfigurationArgs:
+    def __init__(__self__, *,
+                 access_logging_bucket: pulumi.Input['LandingZoneLoggingConfigurationAccessLoggingBucketArgs'],
+                 logging_bucket: pulumi.Input['LandingZoneLoggingConfigurationLoggingBucketArgs'],
+                 logging_bucket_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input['LandingZoneLoggingConfigurationAccessLoggingBucketArgs'] access_logging_bucket: Specifies the access logging bucket structure.
+               
+               The access_logging_bucket structure is documented below.
+               
+               <a name="logging_bucket"></a>
+               The `logging_bucket` and  access_logging_bucket block supports:
+        :param pulumi.Input['LandingZoneLoggingConfigurationLoggingBucketArgs'] logging_bucket: Specifies the logging bucket structure.
+               
+               The logging_bucket structure is documented below.
+        :param pulumi.Input[_builtins.str] logging_bucket_name: Specifies the name of logging bucket, set this field means
+               using existed bucket, RGC will not create bucket in setup landing zone progress.
+        """
+        pulumi.set(__self__, "access_logging_bucket", access_logging_bucket)
+        pulumi.set(__self__, "logging_bucket", logging_bucket)
+        if logging_bucket_name is not None:
+            pulumi.set(__self__, "logging_bucket_name", logging_bucket_name)
+
+    @_builtins.property
+    @pulumi.getter(name="accessLoggingBucket")
+    def access_logging_bucket(self) -> pulumi.Input['LandingZoneLoggingConfigurationAccessLoggingBucketArgs']:
+        """
+        Specifies the access logging bucket structure.
+
+        The access_logging_bucket structure is documented below.
+
+        <a name="logging_bucket"></a>
+        The `logging_bucket` and  access_logging_bucket block supports:
+        """
+        return pulumi.get(self, "access_logging_bucket")
+
+    @access_logging_bucket.setter
+    def access_logging_bucket(self, value: pulumi.Input['LandingZoneLoggingConfigurationAccessLoggingBucketArgs']):
+        pulumi.set(self, "access_logging_bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBucket")
+    def logging_bucket(self) -> pulumi.Input['LandingZoneLoggingConfigurationLoggingBucketArgs']:
+        """
+        Specifies the logging bucket structure.
+
+        The logging_bucket structure is documented below.
+        """
+        return pulumi.get(self, "logging_bucket")
+
+    @logging_bucket.setter
+    def logging_bucket(self, value: pulumi.Input['LandingZoneLoggingConfigurationLoggingBucketArgs']):
+        pulumi.set(self, "logging_bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loggingBucketName")
+    def logging_bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of logging bucket, set this field means
+        using existed bucket, RGC will not create bucket in setup landing zone progress.
+        """
+        return pulumi.get(self, "logging_bucket_name")
+
+    @logging_bucket_name.setter
+    def logging_bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "logging_bucket_name", value)
+
+
+class LandingZoneLoggingConfigurationAccessLoggingBucketArgsDict(TypedDict):
+    retention_days: pulumi.Input[_builtins.int]
+    """
+    Specifies retention days of access logging bucket.
+    """
+    enable_multi_az: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies multi-az storage access of access logging bucket,
+    default value is false.
+    """
+
+@pulumi.input_type
+class LandingZoneLoggingConfigurationAccessLoggingBucketArgs:
+    def __init__(__self__, *,
+                 retention_days: pulumi.Input[_builtins.int],
+                 enable_multi_az: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.int] retention_days: Specifies retention days of access logging bucket.
+        :param pulumi.Input[_builtins.bool] enable_multi_az: Specifies multi-az storage access of access logging bucket,
+               default value is false.
+        """
+        pulumi.set(__self__, "retention_days", retention_days)
+        if enable_multi_az is not None:
+            pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies retention days of access logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "retention_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies multi-az storage access of access logging bucket,
+        default value is false.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+    @enable_multi_az.setter
+    def enable_multi_az(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_multi_az", value)
+
+
+class LandingZoneLoggingConfigurationLoggingBucketArgsDict(TypedDict):
+    retention_days: pulumi.Input[_builtins.int]
+    """
+    Specifies retention days of access logging bucket.
+    """
+    enable_multi_az: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies multi-az storage access of access logging bucket,
+    default value is false.
+    """
+
+@pulumi.input_type
+class LandingZoneLoggingConfigurationLoggingBucketArgs:
+    def __init__(__self__, *,
+                 retention_days: pulumi.Input[_builtins.int],
+                 enable_multi_az: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.int] retention_days: Specifies retention days of access logging bucket.
+        :param pulumi.Input[_builtins.bool] enable_multi_az: Specifies multi-az storage access of access logging bucket,
+               default value is false.
+        """
+        pulumi.set(__self__, "retention_days", retention_days)
+        if enable_multi_az is not None:
+            pulumi.set(__self__, "enable_multi_az", enable_multi_az)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies retention days of access logging bucket.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "retention_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableMultiAz")
+    def enable_multi_az(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies multi-az storage access of access logging bucket,
+        default value is false.
+        """
+        return pulumi.get(self, "enable_multi_az")
+
+    @enable_multi_az.setter
+    def enable_multi_az(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_multi_az", value)
+
+
+class LandingZoneOrganizationStructureArgsDict(TypedDict):
+    organizational_unit_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of registered organizational unit,
+    only support CORE or CUSTOM.
+    """
+    accounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['LandingZoneOrganizationStructureAccountArgsDict']]]]
+    """
+    Specifies the account structure.
+
+    The accounts structure is documented below.
+
+    <a name="accounts"></a>
+    The `accounts` block supports:
+    """
+    organizational_unit_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of created organizational unit,
+    leaving this field means that the organizational unit will not be created.
+    """
+
+@pulumi.input_type
+class LandingZoneOrganizationStructureArgs:
+    def __init__(__self__, *,
+                 organizational_unit_type: pulumi.Input[_builtins.str],
+                 accounts: Optional[pulumi.Input[Sequence[pulumi.Input['LandingZoneOrganizationStructureAccountArgs']]]] = None,
+                 organizational_unit_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] organizational_unit_type: Specifies the type of registered organizational unit,
+               only support CORE or CUSTOM.
+        :param pulumi.Input[Sequence[pulumi.Input['LandingZoneOrganizationStructureAccountArgs']]] accounts: Specifies the account structure.
+               
+               The accounts structure is documented below.
+               
+               <a name="accounts"></a>
+               The `accounts` block supports:
+        :param pulumi.Input[_builtins.str] organizational_unit_name: Specifies the name of created organizational unit,
+               leaving this field means that the organizational unit will not be created.
+        """
+        pulumi.set(__self__, "organizational_unit_type", organizational_unit_type)
+        if accounts is not None:
+            pulumi.set(__self__, "accounts", accounts)
+        if organizational_unit_name is not None:
+            pulumi.set(__self__, "organizational_unit_name", organizational_unit_name)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitType")
+    def organizational_unit_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the type of registered organizational unit,
+        only support CORE or CUSTOM.
+        """
+        return pulumi.get(self, "organizational_unit_type")
+
+    @organizational_unit_type.setter
+    def organizational_unit_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "organizational_unit_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def accounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LandingZoneOrganizationStructureAccountArgs']]]]:
+        """
+        Specifies the account structure.
+
+        The accounts structure is documented below.
+
+        <a name="accounts"></a>
+        The `accounts` block supports:
+        """
+        return pulumi.get(self, "accounts")
+
+    @accounts.setter
+    def accounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LandingZoneOrganizationStructureAccountArgs']]]]):
+        pulumi.set(self, "accounts", value)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationalUnitName")
+    def organizational_unit_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of created organizational unit,
+        leaving this field means that the organizational unit will not be created.
+        """
+        return pulumi.get(self, "organizational_unit_name")
+
+    @organizational_unit_name.setter
+    def organizational_unit_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "organizational_unit_name", value)
+
+
+class LandingZoneOrganizationStructureAccountArgsDict(TypedDict):
+    account_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of created account or enrolled account.
+    """
+    account_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of created account or enrolled account,
+    only support LOGGING or SECURITY.
+    """
+    account_email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of account, international account or security
+    account is required.
+    """
+    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the id of enrolled account.
+    """
+    phone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of created account, domestic account is required.
+    """
+
+@pulumi.input_type
+class LandingZoneOrganizationStructureAccountArgs:
+    def __init__(__self__, *,
+                 account_name: pulumi.Input[_builtins.str],
+                 account_type: pulumi.Input[_builtins.str],
+                 account_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 account_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 phone: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] account_name: Specifies the name of created account or enrolled account.
+        :param pulumi.Input[_builtins.str] account_type: Specifies the name of created account or enrolled account,
+               only support LOGGING or SECURITY.
+        :param pulumi.Input[_builtins.str] account_email: Specifies the name of account, international account or security
+               account is required.
+        :param pulumi.Input[_builtins.str] account_id: Specifies the id of enrolled account.
+        :param pulumi.Input[_builtins.str] phone: Specifies the name of created account, domestic account is required.
+        """
+        pulumi.set(__self__, "account_name", account_name)
+        pulumi.set(__self__, "account_type", account_type)
+        if account_email is not None:
+            pulumi.set(__self__, "account_email", account_email)
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
+        if phone is not None:
+            pulumi.set(__self__, "phone", phone)
+
+    @_builtins.property
+    @pulumi.getter(name="accountName")
+    def account_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of created account or enrolled account.
+        """
+        return pulumi.get(self, "account_name")
+
+    @account_name.setter
+    def account_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of created account or enrolled account,
+        only support LOGGING or SECURITY.
+        """
+        return pulumi.get(self, "account_type")
+
+    @account_type.setter
+    def account_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "account_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountEmail")
+    def account_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of account, international account or security
+        account is required.
+        """
+        return pulumi.get(self, "account_email")
+
+    @account_email.setter
+    def account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the id of enrolled account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def phone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of created account, domestic account is required.
+        """
+        return pulumi.get(self, "phone")
+
+    @phone.setter
+    def phone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "phone", value)
+
+
+class LandingZoneRegionConfigurationListArgsDict(TypedDict):
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of enrolled region.
+    """
+    region_configuration_status: pulumi.Input[_builtins.str]
+    """
+    Specifies the status of enrolled region.
+    """
+
+@pulumi.input_type
+class LandingZoneRegionConfigurationListArgs:
+    def __init__(__self__, *,
+                 region: pulumi.Input[_builtins.str],
+                 region_configuration_status: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] region: Specifies the ID of enrolled region.
+        :param pulumi.Input[_builtins.str] region_configuration_status: Specifies the status of enrolled region.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "region_configuration_status", region_configuration_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of enrolled region.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionConfigurationStatus")
+    def region_configuration_status(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the status of enrolled region.
+        """
+        return pulumi.get(self, "region_configuration_status")
+
+    @region_configuration_status.setter
+    def region_configuration_status(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region_configuration_status", value)
 
 

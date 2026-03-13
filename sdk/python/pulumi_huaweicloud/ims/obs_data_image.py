@@ -30,6 +30,7 @@ class ObsDataImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ObsDataImage resource.
+
         :param pulumi.Input[_builtins.str] image_url: Specifies the URL of the external image file in the OBS bucket, the format
                is **OBS bucket name:image file name**. The storage category for OBS bucket and image file must be OBS standard
                storage. Changing this parameter will create a new resource.
@@ -249,6 +250,7 @@ class _ObsDataImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObsDataImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1263,11 +1265,10 @@ class ObsDataImage(pulumi.CustomResource):
 
         The IMS OBS data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsDataImage:ObsDataImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1322,11 +1323,10 @@ class ObsDataImage(pulumi.CustomResource):
 
         The IMS OBS data image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsDataImage:ObsDataImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ObsDataImageArgs args: The arguments to use to populate this resource's properties.

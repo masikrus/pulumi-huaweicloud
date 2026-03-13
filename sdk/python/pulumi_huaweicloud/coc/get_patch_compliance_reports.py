@@ -245,7 +245,7 @@ def get_patch_compliance_reports(cce_info_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_patch_compliance_reports()
+    test = huaweicloud.Coc.get_patch_compliance_reports()
     ```
 
 
@@ -287,7 +287,7 @@ def get_patch_compliance_reports(cce_info_id: Optional[_builtins.str] = None,
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getPatchComplianceReports:getPatchComplianceReports', __args__, opts=opts, typ=GetPatchComplianceReportsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getPatchComplianceReports:getPatchComplianceReports', __args__, opts=opts, typ=GetPatchComplianceReportsResult).value
 
     return AwaitableGetPatchComplianceReportsResult(
         cce_info_id=pulumi.get(__ret__, 'cce_info_id'),
@@ -330,7 +330,7 @@ def get_patch_compliance_reports_output(cce_info_id: Optional[pulumi.Input[Optio
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_patch_compliance_reports()
+    test = huaweicloud.Coc.get_patch_compliance_reports()
     ```
 
 
@@ -372,7 +372,7 @@ def get_patch_compliance_reports_output(cce_info_id: Optional[pulumi.Input[Optio
     __args__['sortDir'] = sort_dir
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getPatchComplianceReports:getPatchComplianceReports', __args__, opts=opts, typ=GetPatchComplianceReportsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getPatchComplianceReports:getPatchComplianceReports', __args__, opts=opts, typ=GetPatchComplianceReportsResult)
     return __ret__.apply(lambda __response__: GetPatchComplianceReportsResult(
         cce_info_id=pulumi.get(__response__, 'cce_info_id'),
         compliant_status=pulumi.get(__response__, 'compliant_status'),

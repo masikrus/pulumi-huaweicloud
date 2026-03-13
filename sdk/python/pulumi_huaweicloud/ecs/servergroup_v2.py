@@ -25,6 +25,7 @@ class ServergroupV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServergroupV2 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: schema: Required
         """
         if members is not None:
@@ -86,6 +87,7 @@ class _ServergroupV2State:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServergroupV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fault_domains: schema: Internal
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: schema: Required
         """
@@ -165,6 +167,7 @@ class ServergroupV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ServergroupV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: schema: Required
@@ -177,6 +180,7 @@ class ServergroupV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ServergroupV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ServergroupV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

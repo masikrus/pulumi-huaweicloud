@@ -28,6 +28,7 @@ class RemediationExecutionArgs:
                  resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RemediationExecution resource.
+
         :param pulumi.Input[_builtins.bool] all_supported: Specifies whether to perform remediation for all non-compliant resources.
         :param pulumi.Input[_builtins.str] policy_assignment_id: Specifies the policy assignment ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -113,6 +114,7 @@ class _RemediationExecutionState:
                  results: Optional[pulumi.Input[Sequence[pulumi.Input['RemediationExecutionResultArgs']]]] = None):
         """
         Input properties used for looking up and filtering RemediationExecution resources.
+
         :param pulumi.Input[_builtins.bool] all_supported: Specifies whether to perform remediation for all non-compliant resources.
         :param pulumi.Input[_builtins.str] policy_assignment_id: Specifies the policy assignment ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -204,7 +206,7 @@ class _RemediationExecutionState:
         pulumi.set(self, "results", value)
 
 
-@pulumi.type_token("huaweicloud:rms/remediationExecution:RemediationExecution")
+@pulumi.type_token("huaweicloud:Rms/remediationExecution:RemediationExecution")
 class RemediationExecution(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -233,6 +235,7 @@ class RemediationExecution(pulumi.CustomResource):
             policy_assignment_id=policy_assignment_id,
             all_supported=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,6 +268,7 @@ class RemediationExecution(pulumi.CustomResource):
             policy_assignment_id=policy_assignment_id,
             all_supported=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RemediationExecutionArgs args: The arguments to use to populate this resource's properties.
@@ -306,7 +310,7 @@ class RemediationExecution(pulumi.CustomResource):
             __props__.__dict__["resource_ids"] = resource_ids
             __props__.__dict__["results"] = None
         super(RemediationExecution, __self__).__init__(
-            'huaweicloud:rms/remediationExecution:RemediationExecution',
+            'huaweicloud:Rms/remediationExecution:RemediationExecution',
             resource_name,
             __props__,
             opts)

@@ -107,7 +107,7 @@ def get_private_ca_export(ca_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     ca_id = config.require_object("caId")
-    test = huaweicloud.ccm.get_private_ca_export(ca_id=ca_id)
+    test = huaweicloud.Ccm.get_private_ca_export(ca_id=ca_id)
     ```
 
 
@@ -119,7 +119,7 @@ def get_private_ca_export(ca_id: Optional[_builtins.str] = None,
     __args__['caId'] = ca_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getPrivateCaExport:getPrivateCaExport', __args__, opts=opts, typ=GetPrivateCaExportResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getPrivateCaExport:getPrivateCaExport', __args__, opts=opts, typ=GetPrivateCaExportResult).value
 
     return AwaitableGetPrivateCaExportResult(
         ca_id=pulumi.get(__ret__, 'ca_id'),
@@ -143,7 +143,7 @@ def get_private_ca_export_output(ca_id: Optional[pulumi.Input[_builtins.str]] = 
 
     config = pulumi.Config()
     ca_id = config.require_object("caId")
-    test = huaweicloud.ccm.get_private_ca_export(ca_id=ca_id)
+    test = huaweicloud.Ccm.get_private_ca_export(ca_id=ca_id)
     ```
 
 
@@ -155,7 +155,7 @@ def get_private_ca_export_output(ca_id: Optional[pulumi.Input[_builtins.str]] = 
     __args__['caId'] = ca_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getPrivateCaExport:getPrivateCaExport', __args__, opts=opts, typ=GetPrivateCaExportResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getPrivateCaExport:getPrivateCaExport', __args__, opts=opts, typ=GetPrivateCaExportResult)
     return __ret__.apply(lambda __response__: GetPrivateCaExportResult(
         ca_id=pulumi.get(__response__, 'ca_id'),
         certificate=pulumi.get(__response__, 'certificate'),

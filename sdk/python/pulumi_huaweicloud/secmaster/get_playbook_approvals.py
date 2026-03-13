@@ -119,7 +119,7 @@ def get_playbook_approvals(approve_type: Optional[_builtins.str] = None,
     workspace_id = config.require_object("workspaceId")
     resource_id = config.require_object("resourceId")
     approve_type = config.require_object("approveType")
-    test = huaweicloud.secmaster.get_playbook_approvals(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_approvals(workspace_id=workspace_id,
         resource_id=resource_id,
         approve_type=approve_type)
     ```
@@ -140,7 +140,7 @@ def get_playbook_approvals(approve_type: Optional[_builtins.str] = None,
     __args__['resourceId'] = resource_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookApprovals:getPlaybookApprovals', __args__, opts=opts, typ=GetPlaybookApprovalsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookApprovals:getPlaybookApprovals', __args__, opts=opts, typ=GetPlaybookApprovalsResult).value
 
     return AwaitableGetPlaybookApprovalsResult(
         approve_type=pulumi.get(__ret__, 'approve_type'),
@@ -167,7 +167,7 @@ def get_playbook_approvals_output(approve_type: Optional[pulumi.Input[_builtins.
     workspace_id = config.require_object("workspaceId")
     resource_id = config.require_object("resourceId")
     approve_type = config.require_object("approveType")
-    test = huaweicloud.secmaster.get_playbook_approvals(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_approvals(workspace_id=workspace_id,
         resource_id=resource_id,
         approve_type=approve_type)
     ```
@@ -188,7 +188,7 @@ def get_playbook_approvals_output(approve_type: Optional[pulumi.Input[_builtins.
     __args__['resourceId'] = resource_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookApprovals:getPlaybookApprovals', __args__, opts=opts, typ=GetPlaybookApprovalsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookApprovals:getPlaybookApprovals', __args__, opts=opts, typ=GetPlaybookApprovalsResult)
     return __ret__.apply(lambda __response__: GetPlaybookApprovalsResult(
         approve_type=pulumi.get(__response__, 'approve_type'),
         datas=pulumi.get(__response__, 'datas'),

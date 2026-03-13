@@ -29,6 +29,7 @@ class PolicyV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PolicyV2 resource.
+
         :param pulumi.Input[_builtins.bool] audited: Audit status of the firewall policy
                (must be "true" or "false" if provided - defaults to "false"). This status is set to "false" whenever the firewall
                policy or any of its rules are changed. Changing this updates the `audited` status of an existing firewall policy.
@@ -185,6 +186,7 @@ class _PolicyV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PolicyV2 resources.
+
         :param pulumi.Input[_builtins.bool] audited: Audit status of the firewall policy
                (must be "true" or "false" if provided - defaults to "false"). This status is set to "false" whenever the firewall
                policy or any of its rules are changed. Changing this updates the `audited` status of an existing firewall policy.
@@ -328,7 +330,7 @@ class _PolicyV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:fw/policyV2:PolicyV2")
+@pulumi.type_token("huaweicloud:Fw/policyV2:PolicyV2")
 class PolicyV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -380,11 +382,10 @@ class PolicyV2(pulumi.CustomResource):
 
         Firewall Policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/policyV2:PolicyV2 policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0
+        $ pulumi import huaweicloud:Fw/policyV2:PolicyV2 policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -449,11 +450,10 @@ class PolicyV2(pulumi.CustomResource):
 
         Firewall Policies can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:fw/policyV2:PolicyV2 policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0
+        $ pulumi import huaweicloud:Fw/policyV2:PolicyV2 policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyV2Args args: The arguments to use to populate this resource's properties.
@@ -496,7 +496,7 @@ class PolicyV2(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["value_specs"] = value_specs
         super(PolicyV2, __self__).__init__(
-            'huaweicloud:fw/policyV2:PolicyV2',
+            'huaweicloud:Fw/policyV2:PolicyV2',
             resource_name,
             __props__,
             opts)

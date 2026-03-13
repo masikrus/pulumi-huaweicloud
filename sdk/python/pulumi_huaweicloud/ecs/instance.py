@@ -37,12 +37,16 @@ class InstanceArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input['InstanceEnclaveOptionsArgs']] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -69,6 +73,7 @@ class InstanceArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkArgs']]] networks: Specifies an array of one or more networks to attach to the instance. The
                network object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the administrative password to assign to the instance.
@@ -76,8 +81,8 @@ class InstanceArgs:
                temporary credentials for ECS to access cloud services.
         :param pulumi.Input[_builtins.str] agent_list: Specifies the agent list in comma-separated string.
                Available agents are:
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
-               Valid values are *true* and *false*. Defaults to *false*.
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
+               Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] auto_terminate_time: Specifies the auto terminate time.
                The value is in the format of "yyyy-MM-ddTHH:mm:ssZ" in UTC+0 and complies with ISO8601.
                If the value of second (ss) is not "00", the system automatically sets to the current value of minute (mm).
@@ -89,10 +94,10 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS)
                for the values. Changing this creates a new instance.
-        :param pulumi.Input['InstanceBandwidthArgs'] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-               The object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are *prePaid*,
-               *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        :param pulumi.Input['InstanceBandwidthArgs'] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the
+               instance. The object structure is documented below. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are **prePaid**,
+               **postPaid** and **spot**, defaults to **postPaid**.
                
                > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
                interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -101,17 +106,20 @@ class InstanceArgs:
                the [billing modes](https://support.huaweicloud.com/intl/en-us/productdesc-ecs/ecs_01_0065.html).
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataDiskArgs']]] data_disks: Specifies an array of one or more data disks to attach to the instance.
                The data_disks object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is terminated.
-               Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-               in *prePaid* charging mode.
+        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is
+               terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+               will be deleted in *prePaid* charging mode.
         :param pulumi.Input[_builtins.bool] delete_eip_on_termination: Specifies whether the EIP is released when the instance is terminated.
                Defaults to *true*.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance. The description consists of 0 to 85
                characters, and can't contain '<' or '>'.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an *existing* EIP assigned to the instance.
                This parameter and `eip_type`, `bandwidth` are alternative. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the instance.
-               Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the
+               instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
+        :param pulumi.Input['InstanceEnclaveOptionsArgs'] enclave_options: Specifies the custom enclave options.
+               The object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies a unique id in UUID format of enterprise project.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the instance to be created.
         :param pulumi.Input[_builtins.str] flavor_name: The flavor name of the instance.
@@ -120,6 +128,10 @@ class InstanceArgs:
                image for the instance. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] image_name: Required if `image_id` is empty. Specifies the name of the desired image
                for the instance. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] include_data_disks_on_update: Specifies whether to change the billing modes of all pay-per-use
+               data disks to yearly/monthly. Defaults to **false**.
+        :param pulumi.Input[_builtins.bool] include_publicips_on_update: Specifies whether to change the billing modes of EIPs that are
+               exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the SSH keypair name used for logging in to the instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
@@ -130,12 +142,10 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] name: Specifies a unique name for the instance. The name consists of 1 to 64 characters,
                including letters, digits, underscores (_), hyphens (-), and periods (.).
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the instance.
-               If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-               new resource.
+               If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this creates a new instance.
+               Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
                The valid values are *ON*, *OFF*, *REBOOT*, *FORCE-OFF* and *FORCE-REBOOT*.
                
@@ -159,8 +169,9 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] spot_maximum_price: Specifies the highest price per hour you accept for a spot ECS.
                This parameter takes effect only when `charging_mode` is set to *spot*. If the price is not specified,
                the pay-per-use price is used by default. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus giving
-               chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus
+               giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+               anyway.
         :param pulumi.Input[_builtins.str] system_disk_dss_pool_id: Specifies the system disk DSS pool ID. This field is used
                only for dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] system_disk_iops: Specifies the IOPS(Input/Output Operations Per Second) for the disk.
@@ -245,6 +256,10 @@ class InstanceArgs:
             pulumi.set(__self__, "eip_id", eip_id)
         if eip_type is not None:
             pulumi.set(__self__, "eip_type", eip_type)
+        if enable_jumbo_frame is not None:
+            pulumi.set(__self__, "enable_jumbo_frame", enable_jumbo_frame)
+        if enclave_options is not None:
+            pulumi.set(__self__, "enclave_options", enclave_options)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if flavor_id is not None:
@@ -257,6 +272,10 @@ class InstanceArgs:
             pulumi.set(__self__, "image_id", image_id)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
+        if include_data_disks_on_update is not None:
+            pulumi.set(__self__, "include_data_disks_on_update", include_data_disks_on_update)
+        if include_publicips_on_update is not None:
+            pulumi.set(__self__, "include_publicips_on_update", include_publicips_on_update)
         if key_pair is not None:
             pulumi.set(__self__, "key_pair", key_pair)
         if metadata is not None:
@@ -371,8 +390,8 @@ class InstanceArgs:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies whether auto renew is enabled.
-        Valid values are *true* and *false*. Defaults to *false*.
+        Specifies whether auto-renew is enabled.
+        Valid values are **true** and **false**. Defaults to **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -417,8 +436,8 @@ class InstanceArgs:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input['InstanceBandwidthArgs']]:
         """
-        Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-        The object structure is documented below. Changing this creates a new instance.
+        Specifies the bandwidth of an EIP that will be automatically assigned to the
+        instance. The object structure is documented below. Changing this creates a new instance.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -430,8 +449,8 @@ class InstanceArgs:
     @pulumi.getter(name="chargingMode")
     def charging_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the charging mode of the instance. Valid values are *prePaid*,
-        *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        Specifies the charging mode of the instance. Valid values are **prePaid**,
+        **postPaid** and **spot**, defaults to **postPaid**.
 
         > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
         interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -462,9 +481,9 @@ class InstanceArgs:
     @pulumi.getter(name="deleteDisksOnTermination")
     def delete_disks_on_termination(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to delete the data disks when the instance is terminated.
-        Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-        in *prePaid* charging mode.
+        Specifies whether to delete the data disks when the instance is
+        terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+        will be deleted in *prePaid* charging mode.
         """
         return pulumi.get(self, "delete_disks_on_termination")
 
@@ -515,14 +534,39 @@ class InstanceArgs:
     @pulumi.getter(name="eipType")
     def eip_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of an EIP that will be automatically assigned to the instance.
-        Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        Specifies the type of an EIP that will be automatically assigned to the
+        instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
         """
         return pulumi.get(self, "eip_type")
 
     @eip_type.setter
     def eip_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "eip_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @enable_jumbo_frame.setter
+    def enable_jumbo_frame(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_jumbo_frame", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> Optional[pulumi.Input['InstanceEnclaveOptionsArgs']]:
+        """
+        Specifies the custom enclave options.
+        The object structure is documented below. Changing this creates a new instance.
+        """
+        return pulumi.get(self, "enclave_options")
+
+    @enclave_options.setter
+    def enclave_options(self, value: Optional[pulumi.Input['InstanceEnclaveOptionsArgs']]):
+        pulumi.set(self, "enclave_options", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -599,6 +643,32 @@ class InstanceArgs:
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of all pay-per-use
+        data disks to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @include_data_disks_on_update.setter
+    def include_data_disks_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_data_disks_on_update", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of EIPs that are
+        exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_publicips_on_update")
+
+    @include_publicips_on_update.setter
+    def include_publicips_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_publicips_on_update", value)
+
+    @_builtins.property
     @pulumi.getter(name="keyPair")
     def key_pair(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -645,9 +715,8 @@ class InstanceArgs:
     def period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the charging period of the instance.
-        If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-        new resource.
+        If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -660,8 +729,7 @@ class InstanceArgs:
     def period_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the charging period unit of the instance.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this creates a new instance.
+        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -795,8 +863,9 @@ class InstanceArgs:
     @pulumi.getter(name="stopBeforeDestroy")
     def stop_before_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to try stop instance gracefully before destroying it, thus giving
-        chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        Specifies whether to try stop instance gracefully before destroying it, thus
+        giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+        anyway.
         """
         return pulumi.get(self, "stop_before_destroy")
 
@@ -974,6 +1043,8 @@ class _InstanceState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input['InstanceEnclaveOptionsArgs']] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  expired_time: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -981,6 +1052,8 @@ class _InstanceState:
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1013,6 +1086,7 @@ class _InstanceState:
                  volume_attacheds: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceVolumeAttachedArgs']]]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] access_ip_v4: The first detected Fixed IPv4 address or the Floating IP.
         :param pulumi.Input[_builtins.str] access_ip_v6: The first detected Fixed IPv6 address.
         :param pulumi.Input[_builtins.str] admin_pass: Specifies the administrative password to assign to the instance.
@@ -1020,8 +1094,8 @@ class _InstanceState:
                temporary credentials for ECS to access cloud services.
         :param pulumi.Input[_builtins.str] agent_list: Specifies the agent list in comma-separated string.
                Available agents are:
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
-               Valid values are *true* and *false*. Defaults to *false*.
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
+               Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] auto_terminate_time: Specifies the auto terminate time.
                The value is in the format of "yyyy-MM-ddTHH:mm:ssZ" in UTC+0 and complies with ISO8601.
                If the value of second (ss) is not "00", the system automatically sets to the current value of minute (mm).
@@ -1033,10 +1107,10 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS)
                for the values. Changing this creates a new instance.
-        :param pulumi.Input['InstanceBandwidthArgs'] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-               The object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are *prePaid*,
-               *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        :param pulumi.Input['InstanceBandwidthArgs'] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the
+               instance. The object structure is documented below. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are **prePaid**,
+               **postPaid** and **spot**, defaults to **postPaid**.
                
                > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
                interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -1046,17 +1120,20 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] created_at: The creation time, in UTC format.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataDiskArgs']]] data_disks: Specifies an array of one or more data disks to attach to the instance.
                The data_disks object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is terminated.
-               Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-               in *prePaid* charging mode.
+        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is
+               terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+               will be deleted in *prePaid* charging mode.
         :param pulumi.Input[_builtins.bool] delete_eip_on_termination: Specifies whether the EIP is released when the instance is terminated.
                Defaults to *true*.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance. The description consists of 0 to 85
                characters, and can't contain '<' or '>'.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an *existing* EIP assigned to the instance.
                This parameter and `eip_type`, `bandwidth` are alternative. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the instance.
-               Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the
+               instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
+        :param pulumi.Input['InstanceEnclaveOptionsArgs'] enclave_options: Specifies the custom enclave options.
+               The object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies a unique id in UUID format of enterprise project.
         :param pulumi.Input[_builtins.str] expired_time: The expired time of prePaid instance, in UTC format.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the instance to be created.
@@ -1066,6 +1143,10 @@ class _InstanceState:
                image for the instance. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] image_name: Required if `image_id` is empty. Specifies the name of the desired image
                for the instance. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] include_data_disks_on_update: Specifies whether to change the billing modes of all pay-per-use
+               data disks to yearly/monthly. Defaults to **false**.
+        :param pulumi.Input[_builtins.bool] include_publicips_on_update: Specifies whether to change the billing modes of EIPs that are
+               exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the SSH keypair name used for logging in to the instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
@@ -1078,12 +1159,10 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNetworkArgs']]] networks: Specifies an array of one or more networks to attach to the instance. The
                network object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the instance.
-               If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-               new resource.
+               If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this creates a new instance.
+               Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
                The valid values are *ON*, *OFF*, *REBOOT*, *FORCE-OFF* and *FORCE-REBOOT*.
                
@@ -1109,8 +1188,9 @@ class _InstanceState:
                This parameter takes effect only when `charging_mode` is set to *spot*. If the price is not specified,
                the pay-per-use price is used by default. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] status: The status of the instance.
-        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus giving
-               chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus
+               giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+               anyway.
         :param pulumi.Input[_builtins.str] system_disk_dss_pool_id: Specifies the system disk DSS pool ID. This field is used
                only for dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] system_disk_id: The system disk volume ID.
@@ -1204,6 +1284,10 @@ class _InstanceState:
             pulumi.set(__self__, "eip_id", eip_id)
         if eip_type is not None:
             pulumi.set(__self__, "eip_type", eip_type)
+        if enable_jumbo_frame is not None:
+            pulumi.set(__self__, "enable_jumbo_frame", enable_jumbo_frame)
+        if enclave_options is not None:
+            pulumi.set(__self__, "enclave_options", enclave_options)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if expired_time is not None:
@@ -1218,6 +1302,10 @@ class _InstanceState:
             pulumi.set(__self__, "image_id", image_id)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
+        if include_data_disks_on_update is not None:
+            pulumi.set(__self__, "include_data_disks_on_update", include_data_disks_on_update)
+        if include_publicips_on_update is not None:
+            pulumi.set(__self__, "include_publicips_on_update", include_publicips_on_update)
         if key_pair is not None:
             pulumi.set(__self__, "key_pair", key_pair)
         if metadata is not None:
@@ -1355,8 +1443,8 @@ class _InstanceState:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies whether auto renew is enabled.
-        Valid values are *true* and *false*. Defaults to *false*.
+        Specifies whether auto-renew is enabled.
+        Valid values are **true** and **false**. Defaults to **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -1401,8 +1489,8 @@ class _InstanceState:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input['InstanceBandwidthArgs']]:
         """
-        Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-        The object structure is documented below. Changing this creates a new instance.
+        Specifies the bandwidth of an EIP that will be automatically assigned to the
+        instance. The object structure is documented below. Changing this creates a new instance.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -1414,8 +1502,8 @@ class _InstanceState:
     @pulumi.getter(name="chargingMode")
     def charging_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the charging mode of the instance. Valid values are *prePaid*,
-        *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        Specifies the charging mode of the instance. Valid values are **prePaid**,
+        **postPaid** and **spot**, defaults to **postPaid**.
 
         > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
         interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -1458,9 +1546,9 @@ class _InstanceState:
     @pulumi.getter(name="deleteDisksOnTermination")
     def delete_disks_on_termination(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to delete the data disks when the instance is terminated.
-        Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-        in *prePaid* charging mode.
+        Specifies whether to delete the data disks when the instance is
+        terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+        will be deleted in *prePaid* charging mode.
         """
         return pulumi.get(self, "delete_disks_on_termination")
 
@@ -1511,14 +1599,39 @@ class _InstanceState:
     @pulumi.getter(name="eipType")
     def eip_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of an EIP that will be automatically assigned to the instance.
-        Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        Specifies the type of an EIP that will be automatically assigned to the
+        instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
         """
         return pulumi.get(self, "eip_type")
 
     @eip_type.setter
     def eip_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "eip_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @enable_jumbo_frame.setter
+    def enable_jumbo_frame(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_jumbo_frame", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> Optional[pulumi.Input['InstanceEnclaveOptionsArgs']]:
+        """
+        Specifies the custom enclave options.
+        The object structure is documented below. Changing this creates a new instance.
+        """
+        return pulumi.get(self, "enclave_options")
+
+    @enclave_options.setter
+    def enclave_options(self, value: Optional[pulumi.Input['InstanceEnclaveOptionsArgs']]):
+        pulumi.set(self, "enclave_options", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -1607,6 +1720,32 @@ class _InstanceState:
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of all pay-per-use
+        data disks to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @include_data_disks_on_update.setter
+    def include_data_disks_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_data_disks_on_update", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of EIPs that are
+        exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_publicips_on_update")
+
+    @include_publicips_on_update.setter
+    def include_publicips_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "include_publicips_on_update", value)
+
+    @_builtins.property
     @pulumi.getter(name="keyPair")
     def key_pair(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1666,9 +1805,8 @@ class _InstanceState:
     def period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the charging period of the instance.
-        If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-        new resource.
+        If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -1681,8 +1819,7 @@ class _InstanceState:
     def period_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the charging period unit of the instance.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this creates a new instance.
+        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -1840,8 +1977,9 @@ class _InstanceState:
     @pulumi.getter(name="stopBeforeDestroy")
     def stop_before_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether to try stop instance gracefully before destroying it, thus giving
-        chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        Specifies whether to try stop instance gracefully before destroying it, thus
+        giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+        anyway.
         """
         return pulumi.get(self, "stop_before_destroy")
 
@@ -2056,12 +2194,16 @@ class Instance(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input[Union['InstanceEnclaveOptionsArgs', 'InstanceEnclaveOptionsArgsDict']]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2101,7 +2243,7 @@ class Instance(pulumi.CustomResource):
 
         config = pulumi.Config()
         secgroup_id = config.require_object("secgroupId")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myflavor = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2274,38 +2416,14 @@ class Instance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
-        The missing attributes include: `admin_pass`, `user_data`, `metadata`, `data_disks`, `scheduler_hints`, `stop_before_destroy`,
-
-        `delete_disks_on_termination`, `delete_eip_on_termination`, `network/access_network`, `bandwidth`, `eip_type`,
-
-        `power_action` and arguments for pre-paid and spot price.
-
+        The missing attributes include: `admin_pass`, `user_data`, `metadata`, `data_disks`, `scheduler_hints`,
+        `stop_before_destroy`, `delete_disks_on_termination`, `delete_eip_on_termination`, `network/access_network`,
+        `bandwidth`, `eip_type`, `power_action` and arguments for pre-paid and spot price.
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_compute_instance" "myinstance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_data, data_disks,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2314,8 +2432,8 @@ class Instance(pulumi.CustomResource):
                temporary credentials for ECS to access cloud services.
         :param pulumi.Input[_builtins.str] agent_list: Specifies the agent list in comma-separated string.
                Available agents are:
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
-               Valid values are *true* and *false*. Defaults to *false*.
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
+               Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] auto_terminate_time: Specifies the auto terminate time.
                The value is in the format of "yyyy-MM-ddTHH:mm:ssZ" in UTC+0 and complies with ISO8601.
                If the value of second (ss) is not "00", the system automatically sets to the current value of minute (mm).
@@ -2327,10 +2445,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS)
                for the values. Changing this creates a new instance.
-        :param pulumi.Input[Union['InstanceBandwidthArgs', 'InstanceBandwidthArgsDict']] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-               The object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are *prePaid*,
-               *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        :param pulumi.Input[Union['InstanceBandwidthArgs', 'InstanceBandwidthArgsDict']] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the
+               instance. The object structure is documented below. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are **prePaid**,
+               **postPaid** and **spot**, defaults to **postPaid**.
                
                > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
                interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -2339,17 +2457,20 @@ class Instance(pulumi.CustomResource):
                the [billing modes](https://support.huaweicloud.com/intl/en-us/productdesc-ecs/ecs_01_0065.html).
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceDataDiskArgs', 'InstanceDataDiskArgsDict']]]] data_disks: Specifies an array of one or more data disks to attach to the instance.
                The data_disks object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is terminated.
-               Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-               in *prePaid* charging mode.
+        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is
+               terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+               will be deleted in *prePaid* charging mode.
         :param pulumi.Input[_builtins.bool] delete_eip_on_termination: Specifies whether the EIP is released when the instance is terminated.
                Defaults to *true*.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance. The description consists of 0 to 85
                characters, and can't contain '<' or '>'.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an *existing* EIP assigned to the instance.
                This parameter and `eip_type`, `bandwidth` are alternative. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the instance.
-               Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the
+               instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
+        :param pulumi.Input[Union['InstanceEnclaveOptionsArgs', 'InstanceEnclaveOptionsArgsDict']] enclave_options: Specifies the custom enclave options.
+               The object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies a unique id in UUID format of enterprise project.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the instance to be created.
         :param pulumi.Input[_builtins.str] flavor_name: The flavor name of the instance.
@@ -2358,6 +2479,10 @@ class Instance(pulumi.CustomResource):
                image for the instance. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] image_name: Required if `image_id` is empty. Specifies the name of the desired image
                for the instance. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] include_data_disks_on_update: Specifies whether to change the billing modes of all pay-per-use
+               data disks to yearly/monthly. Defaults to **false**.
+        :param pulumi.Input[_builtins.bool] include_publicips_on_update: Specifies whether to change the billing modes of EIPs that are
+               exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the SSH keypair name used for logging in to the instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
@@ -2370,12 +2495,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceNetworkArgs', 'InstanceNetworkArgsDict']]]] networks: Specifies an array of one or more networks to attach to the instance. The
                network object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the instance.
-               If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-               new resource.
+               If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this creates a new instance.
+               Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
                The valid values are *ON*, *OFF*, *REBOOT*, *FORCE-OFF* and *FORCE-REBOOT*.
                
@@ -2399,8 +2522,9 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] spot_maximum_price: Specifies the highest price per hour you accept for a spot ECS.
                This parameter takes effect only when `charging_mode` is set to *spot*. If the price is not specified,
                the pay-per-use price is used by default. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus giving
-               chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus
+               giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+               anyway.
         :param pulumi.Input[_builtins.str] system_disk_dss_pool_id: Specifies the system disk DSS pool ID. This field is used
                only for dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] system_disk_iops: Specifies the IOPS(Input/Output Operations Per Second) for the disk.
@@ -2470,7 +2594,7 @@ class Instance(pulumi.CustomResource):
 
         config = pulumi.Config()
         secgroup_id = config.require_object("secgroupId")
-        myaz = huaweicloud.get_availability_zones()
+        myaz = huaweicloud.Index.get_availability_zones()
         myflavor = huaweicloud.Ecs.get_flavors(availability_zone=myaz.names[0],
             performance_type="normal",
             cpu_core_count=2,
@@ -2643,38 +2767,14 @@ class Instance(pulumi.CustomResource):
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
-        The missing attributes include: `admin_pass`, `user_data`, `metadata`, `data_disks`, `scheduler_hints`, `stop_before_destroy`,
-
-        `delete_disks_on_termination`, `delete_eip_on_termination`, `network/access_network`, `bandwidth`, `eip_type`,
-
-        `power_action` and arguments for pre-paid and spot price.
-
+        The missing attributes include: `admin_pass`, `user_data`, `metadata`, `data_disks`, `scheduler_hints`,
+        `stop_before_destroy`, `delete_disks_on_termination`, `delete_eip_on_termination`, `network/access_network`,
+        `bandwidth`, `eip_type`, `power_action` and arguments for pre-paid and spot price.
         It is generally recommended running `pulumi preview` after importing an instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_compute_instance" "myinstance" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              user_data, data_disks,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.
@@ -2706,12 +2806,16 @@ class Instance(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enclave_options: Optional[pulumi.Input[Union['InstanceEnclaveOptionsArgs', 'InstanceEnclaveOptionsArgsDict']]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  flavor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+                 include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_pair: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2761,12 +2865,16 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["eip_id"] = eip_id
             __props__.__dict__["eip_type"] = eip_type
+            __props__.__dict__["enable_jumbo_frame"] = enable_jumbo_frame
+            __props__.__dict__["enclave_options"] = enclave_options
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["flavor_id"] = flavor_id
             __props__.__dict__["flavor_name"] = flavor_name
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["image_id"] = image_id
             __props__.__dict__["image_name"] = image_name
+            __props__.__dict__["include_data_disks_on_update"] = include_data_disks_on_update
+            __props__.__dict__["include_publicips_on_update"] = include_publicips_on_update
             __props__.__dict__["key_pair"] = key_pair
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
@@ -2833,6 +2941,8 @@ class Instance(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             eip_id: Optional[pulumi.Input[_builtins.str]] = None,
             eip_type: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_jumbo_frame: Optional[pulumi.Input[_builtins.bool]] = None,
+            enclave_options: Optional[pulumi.Input[Union['InstanceEnclaveOptionsArgs', 'InstanceEnclaveOptionsArgsDict']]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             expired_time: Optional[pulumi.Input[_builtins.str]] = None,
             flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2840,6 +2950,8 @@ class Instance(pulumi.CustomResource):
             hostname: Optional[pulumi.Input[_builtins.str]] = None,
             image_id: Optional[pulumi.Input[_builtins.str]] = None,
             image_name: Optional[pulumi.Input[_builtins.str]] = None,
+            include_data_disks_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
+            include_publicips_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
             key_pair: Optional[pulumi.Input[_builtins.str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2884,8 +2996,8 @@ class Instance(pulumi.CustomResource):
                temporary credentials for ECS to access cloud services.
         :param pulumi.Input[_builtins.str] agent_list: Specifies the agent list in comma-separated string.
                Available agents are:
-        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
-               Valid values are *true* and *false*. Defaults to *false*.
+        :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
+               Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] auto_terminate_time: Specifies the auto terminate time.
                The value is in the format of "yyyy-MM-ddTHH:mm:ssZ" in UTC+0 and complies with ISO8601.
                If the value of second (ss) is not "00", the system automatically sets to the current value of minute (mm).
@@ -2897,10 +3009,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone in which to create the instance.
                Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint/?ECS)
                for the values. Changing this creates a new instance.
-        :param pulumi.Input[Union['InstanceBandwidthArgs', 'InstanceBandwidthArgsDict']] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-               The object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are *prePaid*,
-               *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        :param pulumi.Input[Union['InstanceBandwidthArgs', 'InstanceBandwidthArgsDict']] bandwidth: Specifies the bandwidth of an EIP that will be automatically assigned to the
+               instance. The object structure is documented below. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the instance. Valid values are **prePaid**,
+               **postPaid** and **spot**, defaults to **postPaid**.
                
                > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
                interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -2910,17 +3022,20 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation time, in UTC format.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceDataDiskArgs', 'InstanceDataDiskArgsDict']]]] data_disks: Specifies an array of one or more data disks to attach to the instance.
                The data_disks object structure is documented below. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is terminated.
-               Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-               in *prePaid* charging mode.
+        :param pulumi.Input[_builtins.bool] delete_disks_on_termination: Specifies whether to delete the data disks when the instance is
+               terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+               will be deleted in *prePaid* charging mode.
         :param pulumi.Input[_builtins.bool] delete_eip_on_termination: Specifies whether the EIP is released when the instance is terminated.
                Defaults to *true*.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the instance. The description consists of 0 to 85
                characters, and can't contain '<' or '>'.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the ID of an *existing* EIP assigned to the instance.
                This parameter and `eip_type`, `bandwidth` are alternative. Changing this creates a new instance.
-        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the instance.
-               Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.str] eip_type: Specifies the type of an EIP that will be automatically assigned to the
+               instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] enable_jumbo_frame: schema: Internal
+        :param pulumi.Input[Union['InstanceEnclaveOptionsArgs', 'InstanceEnclaveOptionsArgsDict']] enclave_options: Specifies the custom enclave options.
+               The object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies a unique id in UUID format of enterprise project.
         :param pulumi.Input[_builtins.str] expired_time: The expired time of prePaid instance, in UTC format.
         :param pulumi.Input[_builtins.str] flavor_id: Specifies the flavor ID of the instance to be created.
@@ -2930,6 +3045,10 @@ class Instance(pulumi.CustomResource):
                image for the instance. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] image_name: Required if `image_id` is empty. Specifies the name of the desired image
                for the instance. Changing this creates a new instance.
+        :param pulumi.Input[_builtins.bool] include_data_disks_on_update: Specifies whether to change the billing modes of all pay-per-use
+               data disks to yearly/monthly. Defaults to **false**.
+        :param pulumi.Input[_builtins.bool] include_publicips_on_update: Specifies whether to change the billing modes of EIPs that are
+               exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
         :param pulumi.Input[_builtins.str] key_pair: Specifies the SSH keypair name used for logging in to the instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Specifies the user-defined metadata key-value pair.
                
@@ -2942,12 +3061,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceNetworkArgs', 'InstanceNetworkArgsDict']]]] networks: Specifies an array of one or more networks to attach to the instance. The
                network object structure is documented below. Changing this creates a new instance.
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the instance.
-               If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-               new resource.
+               If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+               ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] period_unit: Specifies the charging period unit of the instance.
-               Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-               Changing this creates a new instance.
+               Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         :param pulumi.Input[_builtins.str] power_action: Specifies the power action to be done for the instance.
                The valid values are *ON*, *OFF*, *REBOOT*, *FORCE-OFF* and *FORCE-REBOOT*.
                
@@ -2973,8 +3090,9 @@ class Instance(pulumi.CustomResource):
                This parameter takes effect only when `charging_mode` is set to *spot*. If the price is not specified,
                the pay-per-use price is used by default. Changing this creates a new instance.
         :param pulumi.Input[_builtins.str] status: The status of the instance.
-        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus giving
-               chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        :param pulumi.Input[_builtins.bool] stop_before_destroy: Specifies whether to try stop instance gracefully before destroying it, thus
+               giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+               anyway.
         :param pulumi.Input[_builtins.str] system_disk_dss_pool_id: Specifies the system disk DSS pool ID. This field is used
                only for dedicated storage. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] system_disk_id: The system disk volume ID.
@@ -3051,6 +3169,8 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["eip_type"] = eip_type
+        __props__.__dict__["enable_jumbo_frame"] = enable_jumbo_frame
+        __props__.__dict__["enclave_options"] = enclave_options
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["expired_time"] = expired_time
         __props__.__dict__["flavor_id"] = flavor_id
@@ -3058,6 +3178,8 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["image_name"] = image_name
+        __props__.__dict__["include_data_disks_on_update"] = include_data_disks_on_update
+        __props__.__dict__["include_publicips_on_update"] = include_publicips_on_update
         __props__.__dict__["key_pair"] = key_pair
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
@@ -3142,8 +3264,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies whether auto renew is enabled.
-        Valid values are *true* and *false*. Defaults to *false*.
+        Specifies whether auto-renew is enabled.
+        Valid values are **true** and **false**. Defaults to **false**.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -3176,8 +3298,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def bandwidth(self) -> pulumi.Output[Optional['outputs.InstanceBandwidth']]:
         """
-        Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
-        The object structure is documented below. Changing this creates a new instance.
+        Specifies the bandwidth of an EIP that will be automatically assigned to the
+        instance. The object structure is documented below. Changing this creates a new instance.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -3185,8 +3307,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="chargingMode")
     def charging_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the charging mode of the instance. Valid values are *prePaid*,
-        *postPaid* and *spot*, defaults to *postPaid*. Changing this creates a new instance.
+        Specifies the charging mode of the instance. Valid values are **prePaid**,
+        **postPaid** and **spot**, defaults to **postPaid**.
 
         > **NOTE:** Spot price ECSs are suitable for stateless, fault-tolerant instances that are not sensitive to
         interruptions because they can be reclaimed suddenly. When the market price is higher than the maximum price
@@ -3217,9 +3339,9 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="deleteDisksOnTermination")
     def delete_disks_on_termination(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to delete the data disks when the instance is terminated.
-        Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
-        in *prePaid* charging mode.
+        Specifies whether to delete the data disks when the instance is
+        terminated. Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks
+        will be deleted in *prePaid* charging mode.
         """
         return pulumi.get(self, "delete_disks_on_termination")
 
@@ -3254,10 +3376,27 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="eipType")
     def eip_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the type of an EIP that will be automatically assigned to the instance.
-        Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+        Specifies the type of an EIP that will be automatically assigned to the
+        instance. Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
         """
         return pulumi.get(self, "eip_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableJumboFrame")
+    def enable_jumbo_frame(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        schema: Internal
+        """
+        return pulumi.get(self, "enable_jumbo_frame")
+
+    @_builtins.property
+    @pulumi.getter(name="enclaveOptions")
+    def enclave_options(self) -> pulumi.Output['outputs.InstanceEnclaveOptions']:
+        """
+        Specifies the custom enclave options.
+        The object structure is documented below. Changing this creates a new instance.
+        """
+        return pulumi.get(self, "enclave_options")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -3318,6 +3457,24 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "image_name")
 
     @_builtins.property
+    @pulumi.getter(name="includeDataDisksOnUpdate")
+    def include_data_disks_on_update(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of all pay-per-use
+        data disks to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_data_disks_on_update")
+
+    @_builtins.property
+    @pulumi.getter(name="includePublicipsOnUpdate")
+    def include_publicips_on_update(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to change the billing modes of EIPs that are
+        exclusive and billed by bandwidth to yearly/monthly. Defaults to **false**.
+        """
+        return pulumi.get(self, "include_publicips_on_update")
+
+    @_builtins.property
     @pulumi.getter(name="keyPair")
     def key_pair(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -3361,9 +3518,8 @@ class Instance(pulumi.CustomResource):
     def period(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Specifies the charging period of the instance.
-        If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-        new resource.
+        If `period_unit` is set to **month** , the value ranges from 1 to 9. If `period_unit` is set to **year**, the value
+        ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period")
 
@@ -3372,8 +3528,7 @@ class Instance(pulumi.CustomResource):
     def period_unit(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the charging period unit of the instance.
-        Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-        Changing this creates a new instance.
+        Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
         """
         return pulumi.get(self, "period_unit")
 
@@ -3416,7 +3571,7 @@ class Instance(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="schedulerHints")
-    def scheduler_hints(self) -> pulumi.Output[Sequence['outputs.InstanceSchedulerHint']]:
+    def scheduler_hints(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSchedulerHint']]]:
         """
         Specifies the scheduler with hints on how the instance should be launched. The
         available hints are described below.
@@ -3483,8 +3638,9 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="stopBeforeDestroy")
     def stop_before_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies whether to try stop instance gracefully before destroying it, thus giving
-        chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+        Specifies whether to try stop instance gracefully before destroying it, thus
+        giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed
+        anyway.
         """
         return pulumi.get(self, "stop_before_destroy")
 

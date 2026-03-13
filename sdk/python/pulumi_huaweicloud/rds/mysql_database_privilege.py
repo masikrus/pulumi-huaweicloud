@@ -25,14 +25,23 @@ class MysqlDatabasePrivilegeArgs:
                  instance_id: pulumi.Input[_builtins.str],
                  users: pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]],
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]] = None):
         """
         The set of arguments for constructing a MysqlDatabasePrivilege resource.
-        :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]] users: Specifies the account that associated with the database. Structure is documented below.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the RDS database privilege resource. If omitted,
-               the provider-level region will be used. Changing this creates a new resource.
+
+        :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which the users (accounts) are privileged.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the MySQL instance.
+        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]] users: Specifies the user (account) permissions with the database.  
+               The users structure is documented below.
+               
+               <a name="rds_mysql_database_privilege_users"></a>
+               The `users` block supports:
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] region: The region where the database and users (accounts) are located.  
+               If omitted, the provider-level region will be used. Changing this creates a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -41,12 +50,14 @@ class MysqlDatabasePrivilegeArgs:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if users_origins is not None:
+            pulumi.set(__self__, "users_origins", users_origins)
 
     @_builtins.property
     @pulumi.getter(name="dbName")
     def db_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the database name.
+        Specifies the database name to which the users (accounts) are privileged.
         """
         return pulumi.get(self, "db_name")
 
@@ -58,7 +69,7 @@ class MysqlDatabasePrivilegeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the RDS instance ID.
+        Specifies the ID of the MySQL instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -70,7 +81,11 @@ class MysqlDatabasePrivilegeArgs:
     @pulumi.getter
     def users(self) -> pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]]:
         """
-        Specifies the account that associated with the database. Structure is documented below.
+        Specifies the user (account) permissions with the database.  
+        The users structure is documented below.
+
+        <a name="rds_mysql_database_privilege_users"></a>
+        The `users` block supports:
         """
         return pulumi.get(self, "users")
 
@@ -81,6 +96,9 @@ class MysqlDatabasePrivilegeArgs:
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
         return pulumi.get(self, "enable_force_new")
 
     @enable_force_new.setter
@@ -91,14 +109,27 @@ class MysqlDatabasePrivilegeArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region in which to create the RDS database privilege resource. If omitted,
-        the provider-level region will be used. Changing this creates a new resource.
+        The region where the database and users (accounts) are located.  
+        If omitted, the provider-level region will be used. Changing this creates a new resource.
         """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
+
+    @users_origins.setter
+    def users_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]]):
+        pulumi.set(self, "users_origins", value)
 
 
 @pulumi.input_type
@@ -108,14 +139,23 @@ class _MysqlDatabasePrivilegeState:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]]] = None):
+                 users: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]] = None):
         """
         Input properties used for looking up and filtering MysqlDatabasePrivilege resources.
-        :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the RDS database privilege resource. If omitted,
-               the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]] users: Specifies the account that associated with the database. Structure is documented below.
+
+        :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which the users (accounts) are privileged.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the MySQL instance.
+        :param pulumi.Input[_builtins.str] region: The region where the database and users (accounts) are located.  
+               If omitted, the provider-level region will be used. Changing this creates a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]] users: Specifies the user (account) permissions with the database.  
+               The users structure is documented below.
+               
+               <a name="rds_mysql_database_privilege_users"></a>
+               The `users` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
@@ -127,12 +167,14 @@ class _MysqlDatabasePrivilegeState:
             pulumi.set(__self__, "region", region)
         if users is not None:
             pulumi.set(__self__, "users", users)
+        if users_origins is not None:
+            pulumi.set(__self__, "users_origins", users_origins)
 
     @_builtins.property
     @pulumi.getter(name="dbName")
     def db_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the database name.
+        Specifies the database name to which the users (accounts) are privileged.
         """
         return pulumi.get(self, "db_name")
 
@@ -143,6 +185,9 @@ class _MysqlDatabasePrivilegeState:
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
         return pulumi.get(self, "enable_force_new")
 
     @enable_force_new.setter
@@ -153,7 +198,7 @@ class _MysqlDatabasePrivilegeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the RDS instance ID.
+        Specifies the ID of the MySQL instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -165,8 +210,8 @@ class _MysqlDatabasePrivilegeState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region in which to create the RDS database privilege resource. If omitted,
-        the provider-level region will be used. Changing this creates a new resource.
+        The region where the database and users (accounts) are located.  
+        If omitted, the provider-level region will be used. Changing this creates a new resource.
         """
         return pulumi.get(self, "region")
 
@@ -178,13 +223,30 @@ class _MysqlDatabasePrivilegeState:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]]]:
         """
-        Specifies the account that associated with the database. Structure is documented below.
+        Specifies the user (account) permissions with the database.  
+        The users structure is documented below.
+
+        <a name="rds_mysql_database_privilege_users"></a>
+        The `users` block supports:
         """
         return pulumi.get(self, "users")
 
     @users.setter
     def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUserArgs']]]]):
         pulumi.set(self, "users", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
+
+    @users_origins.setter
+    def users_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MysqlDatabasePrivilegeUsersOriginArgs']]]]):
+        pulumi.set(self, "users_origins", value)
 
 
 @pulumi.type_token("huaweicloud:Rds/mysqlDatabasePrivilege:MysqlDatabasePrivilege")
@@ -198,6 +260,7 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUsersOriginArgs', 'MysqlDatabasePrivilegeUsersOriginArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages RDS Mysql database privilege resource within HuaweiCloud.
@@ -232,19 +295,28 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
 
         RDS database privilege can be imported using the `instance id` and `db_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlDatabasePrivilege:MysqlDatabasePrivilege test <instance_id>/<db_name>
         ```
 
+        > During the import process, all privileges under the database and managed remotely will be synchronized to the
+           `terraform.tfstate` file.
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the RDS database privilege resource. If omitted,
-               the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]] users: Specifies the account that associated with the database. Structure is documented below.
+        :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which the users (accounts) are privileged.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the MySQL instance.
+        :param pulumi.Input[_builtins.str] region: The region where the database and users (accounts) are located.  
+               If omitted, the provider-level region will be used. Changing this creates a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]] users: Specifies the user (account) permissions with the database.  
+               The users structure is documented below.
+               
+               <a name="rds_mysql_database_privilege_users"></a>
+               The `users` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUsersOriginArgs', 'MysqlDatabasePrivilegeUsersOriginArgsDict']]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         ...
     @overload
@@ -285,11 +357,13 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
 
         RDS database privilege can be imported using the `instance id` and `db_name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/mysqlDatabasePrivilege:MysqlDatabasePrivilege test <instance_id>/<db_name>
         ```
+
+        > During the import process, all privileges under the database and managed remotely will be synchronized to the
+           `terraform.tfstate` file.
+
 
         :param str resource_name: The name of the resource.
         :param MysqlDatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.
@@ -311,6 +385,7 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]]] = None,
+                 users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUsersOriginArgs', 'MysqlDatabasePrivilegeUsersOriginArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -331,6 +406,7 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
             if users is None and not opts.urn:
                 raise TypeError("Missing required property 'users'")
             __props__.__dict__["users"] = users
+            __props__.__dict__["users_origins"] = users_origins
         super(MysqlDatabasePrivilege, __self__).__init__(
             'huaweicloud:Rds/mysqlDatabasePrivilege:MysqlDatabasePrivilege',
             resource_name,
@@ -345,7 +421,8 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]]] = None) -> 'MysqlDatabasePrivilege':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]]] = None,
+            users_origins: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUsersOriginArgs', 'MysqlDatabasePrivilegeUsersOriginArgsDict']]]]] = None) -> 'MysqlDatabasePrivilege':
         """
         Get an existing MysqlDatabasePrivilege resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -353,11 +430,18 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
-        :param pulumi.Input[_builtins.str] instance_id: Specifies the RDS instance ID.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the RDS database privilege resource. If omitted,
-               the provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]] users: Specifies the account that associated with the database. Structure is documented below.
+        :param pulumi.Input[_builtins.str] db_name: Specifies the database name to which the users (accounts) are privileged.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the MySQL instance.
+        :param pulumi.Input[_builtins.str] region: The region where the database and users (accounts) are located.  
+               If omitted, the provider-level region will be used. Changing this creates a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUserArgs', 'MysqlDatabasePrivilegeUserArgsDict']]]] users: Specifies the user (account) permissions with the database.  
+               The users structure is documented below.
+               
+               <a name="rds_mysql_database_privilege_users"></a>
+               The `users` block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MysqlDatabasePrivilegeUsersOriginArgs', 'MysqlDatabasePrivilegeUsersOriginArgsDict']]]] users_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'users'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -368,26 +452,30 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["region"] = region
         __props__.__dict__["users"] = users
+        __props__.__dict__["users_origins"] = users_origins
         return MysqlDatabasePrivilege(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="dbName")
     def db_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the database name.
+        Specifies the database name to which the users (accounts) are privileged.
         """
         return pulumi.get(self, "db_name")
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
         return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the RDS instance ID.
+        Specifies the ID of the MySQL instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -395,8 +483,8 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The region in which to create the RDS database privilege resource. If omitted,
-        the provider-level region will be used. Changing this creates a new resource.
+        The region where the database and users (accounts) are located.  
+        If omitted, the provider-level region will be used. Changing this creates a new resource.
         """
         return pulumi.get(self, "region")
 
@@ -404,7 +492,20 @@ class MysqlDatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter
     def users(self) -> pulumi.Output[Sequence['outputs.MysqlDatabasePrivilegeUser']]:
         """
-        Specifies the account that associated with the database. Structure is documented below.
+        Specifies the user (account) permissions with the database.  
+        The users structure is documented below.
+
+        <a name="rds_mysql_database_privilege_users"></a>
+        The `users` block supports:
         """
         return pulumi.get(self, "users")
+
+    @_builtins.property
+    @pulumi.getter(name="usersOrigins")
+    def users_origins(self) -> pulumi.Output[Sequence['outputs.MysqlDatabasePrivilegeUsersOrigin']]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'users'.
+        """
+        return pulumi.get(self, "users_origins")
 

@@ -26,8 +26,9 @@ class DomainRuleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainRule resource.
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]] rules: Specifies a list of rules.
-        :param pulumi.Input[_builtins.str] name: Specifies the domain name.
+
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]] rules: The list of rules.
+        :param pulumi.Input[_builtins.str] name: The domain name.
         """
         pulumi.set(__self__, "rules", rules)
         if enable_force_new is not None:
@@ -39,7 +40,7 @@ class DomainRuleArgs:
     @pulumi.getter
     def rules(self) -> pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]]:
         """
-        Specifies a list of rules.
+        The list of rules.
         """
         return pulumi.get(self, "rules")
 
@@ -60,7 +61,7 @@ class DomainRuleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the domain name.
+        The domain name.
         """
         return pulumi.get(self, "name")
 
@@ -77,8 +78,9 @@ class _DomainRuleState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering DomainRule resources.
-        :param pulumi.Input[_builtins.str] name: Specifies the domain name.
-        :param pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]] rules: Specifies a list of rules.
+
+        :param pulumi.Input[_builtins.str] name: The domain name.
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]] rules: The list of rules.
         """
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
@@ -100,7 +102,7 @@ class _DomainRuleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the domain name.
+        The domain name.
         """
         return pulumi.get(self, "name")
 
@@ -112,7 +114,7 @@ class _DomainRuleState:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainRuleRuleArgs']]]]:
         """
-        Specifies a list of rules.
+        The list of rules.
         """
         return pulumi.get(self, "rules")
 
@@ -133,10 +135,11 @@ class DomainRule(pulumi.CustomResource):
                  __props__=None):
         """
         Create a DomainRule resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the domain name.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRuleRuleArgs', 'DomainRuleRuleArgsDict']]]] rules: Specifies a list of rules.
+        :param pulumi.Input[_builtins.str] name: The domain name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRuleRuleArgs', 'DomainRuleRuleArgsDict']]]] rules: The list of rules.
         """
         ...
     @overload
@@ -146,6 +149,7 @@ class DomainRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a DomainRule resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DomainRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -198,8 +202,8 @@ class DomainRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] name: Specifies the domain name.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRuleRuleArgs', 'DomainRuleRuleArgsDict']]]] rules: Specifies a list of rules.
+        :param pulumi.Input[_builtins.str] name: The domain name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRuleRuleArgs', 'DomainRuleRuleArgsDict']]]] rules: The list of rules.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -219,7 +223,7 @@ class DomainRule(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the domain name.
+        The domain name.
         """
         return pulumi.get(self, "name")
 
@@ -227,7 +231,7 @@ class DomainRule(pulumi.CustomResource):
     @pulumi.getter
     def rules(self) -> pulumi.Output[Sequence['outputs.DomainRuleRule']]:
         """
-        Specifies a list of rules.
+        The list of rules.
         """
         return pulumi.get(self, "rules")
 

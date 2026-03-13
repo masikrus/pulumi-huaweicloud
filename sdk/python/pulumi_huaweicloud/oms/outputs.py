@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'MigrationSyncTaskSourceCdn',
@@ -28,6 +29,29 @@ __all__ = [
     'TaskDstNode',
     'TaskSmnInfo',
     'TaskSrcNode',
+    'GetBucketObjectsRecordResult',
+    'GetMigrationSyncTasksTaskResult',
+    'GetMigrationSyncTasksTaskSourceCdnResult',
+    'GetMigrationTaskGroupsTaskgroupResult',
+    'GetMigrationTaskGroupsTaskgroupBandwidthPolicyResult',
+    'GetMigrationTaskGroupsTaskgroupDstNodeResult',
+    'GetMigrationTaskGroupsTaskgroupErrorReasonResult',
+    'GetMigrationTaskGroupsTaskgroupFailedObjectRecordResult',
+    'GetMigrationTaskGroupsTaskgroupSmnConfigResult',
+    'GetMigrationTaskGroupsTaskgroupSourceCdnResult',
+    'GetMigrationTaskGroupsTaskgroupSrcNodeResult',
+    'GetMigrationTaskGroupsTaskgroupSrcNodeListFileResult',
+    'GetMigrationTasksTaskResult',
+    'GetMigrationTasksTaskBandwidthPolicyResult',
+    'GetMigrationTasksTaskDstNodeResult',
+    'GetMigrationTasksTaskErrorReasonResult',
+    'GetMigrationTasksTaskFailedObjectRecordResult',
+    'GetMigrationTasksTaskSmnInfoResult',
+    'GetMigrationTasksTaskSourceCdnResult',
+    'GetMigrationTasksTaskSrcNodeResult',
+    'GetMigrationTasksTaskSrcNodeListFileResult',
+    'GetSyncTaskStatisticsStatisticDataResult',
+    'GetSyncTaskStatisticsStatisticDataDataResult',
 ]
 
 @pulumi.output_type
@@ -1378,5 +1402,2234 @@ class TaskSrcNode(dict):
     @pulumi.getter(name="cloudType")
     def cloud_type(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "cloud_type")
+
+
+@pulumi.output_type
+class GetBucketObjectsRecordResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 size: _builtins.str):
+        """
+        :param _builtins.str name: The object name.
+        :param _builtins.str size: The object size.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The object name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.str:
+        """
+        The object size.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetMigrationSyncTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 app_id: _builtins.str,
+                 consistency_check: _builtins.str,
+                 create_time: _builtins.int,
+                 description: _builtins.str,
+                 dst_bucket: _builtins.str,
+                 dst_region: _builtins.str,
+                 dst_storage_policy: _builtins.str,
+                 enable_kms: _builtins.bool,
+                 enable_metadata_migration: _builtins.bool,
+                 enable_restore: _builtins.bool,
+                 last_start_time: _builtins.int,
+                 object_overwrite_mode: _builtins.str,
+                 source_cdns: Sequence['outputs.GetMigrationSyncTasksTaskSourceCdnResult'],
+                 src_bucket: _builtins.str,
+                 src_cloud_type: _builtins.str,
+                 src_region: _builtins.str,
+                 status: _builtins.str,
+                 sync_task_id: _builtins.str):
+        """
+        :param _builtins.str app_id: The app ID.
+        :param _builtins.str consistency_check: The method for checking whether objects are consistent after migration.
+        :param _builtins.int create_time: The creation time of the synchronization task, in milliseconds.
+        :param _builtins.str description: The synchronization task description.
+        :param _builtins.str dst_bucket: The name of the destination bucket.
+        :param _builtins.str dst_region: The region where the destination bucket is located.
+        :param _builtins.str dst_storage_policy: The destination storage class.
+               + **STANDARD**
+               + **IA**
+               + **ARCHIVE**
+               + **DEEP_ARCHIVE**
+               + **SRC_STORAGE_MAPPING**
+        :param _builtins.bool enable_kms: Whether KMS encryption is enabled.
+        :param _builtins.bool enable_metadata_migration: Whether metadata migration is enabled.
+        :param _builtins.bool enable_restore: Whether automatic restoration of archived data is enabled.
+        :param _builtins.int last_start_time: The most recent start time of the synchronization task.
+        :param _builtins.str object_overwrite_mode: How a source object handles its paired destination object,
+               either overwriting the object or skipping the migration.
+               + **NO_OVERWRITE**
+               + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+               + **CRC64_COMPARISON_OVERWRITE**
+               + **FULL_OVERWRITE**
+        :param Sequence['GetMigrationSyncTasksTaskSourceCdnArgs'] source_cdns: Whether migration from CDN is enabled.
+               The source_cdn structure is documented below.
+        :param _builtins.str src_bucket: The name of the source bucket.
+        :param _builtins.str src_cloud_type: The source cloud service provider.
+               + **AWS**
+               + **Azure**
+               + **Aliyun**
+               + **Tencent**
+               + **HuaweiCloud**
+               + **QingCloud**
+               + **KingsoftCloud**
+               + **Baidu**
+               + **Qiniu**
+               + **UCloud**
+        :param _builtins.str src_region: The region where the source bucket is located.
+        :param _builtins.str status: Specifies the synchronization task status.  
+               The valid values are as follows:
+               + **SYNCHRONIZING**: Being synchronizing.
+               + **STOPPED**: Already stopped.
+        :param _builtins.str sync_task_id: The synchronization task ID.
+        """
+        pulumi.set(__self__, "app_id", app_id)
+        pulumi.set(__self__, "consistency_check", consistency_check)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dst_bucket", dst_bucket)
+        pulumi.set(__self__, "dst_region", dst_region)
+        pulumi.set(__self__, "dst_storage_policy", dst_storage_policy)
+        pulumi.set(__self__, "enable_kms", enable_kms)
+        pulumi.set(__self__, "enable_metadata_migration", enable_metadata_migration)
+        pulumi.set(__self__, "enable_restore", enable_restore)
+        pulumi.set(__self__, "last_start_time", last_start_time)
+        pulumi.set(__self__, "object_overwrite_mode", object_overwrite_mode)
+        pulumi.set(__self__, "source_cdns", source_cdns)
+        pulumi.set(__self__, "src_bucket", src_bucket)
+        pulumi.set(__self__, "src_cloud_type", src_cloud_type)
+        pulumi.set(__self__, "src_region", src_region)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "sync_task_id", sync_task_id)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> _builtins.str:
+        """
+        The app ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @_builtins.property
+    @pulumi.getter(name="consistencyCheck")
+    def consistency_check(self) -> _builtins.str:
+        """
+        The method for checking whether objects are consistent after migration.
+        """
+        return pulumi.get(self, "consistency_check")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time of the synchronization task, in milliseconds.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The synchronization task description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dstBucket")
+    def dst_bucket(self) -> _builtins.str:
+        """
+        The name of the destination bucket.
+        """
+        return pulumi.get(self, "dst_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="dstRegion")
+    def dst_region(self) -> _builtins.str:
+        """
+        The region where the destination bucket is located.
+        """
+        return pulumi.get(self, "dst_region")
+
+    @_builtins.property
+    @pulumi.getter(name="dstStoragePolicy")
+    def dst_storage_policy(self) -> _builtins.str:
+        """
+        The destination storage class.
+        + **STANDARD**
+        + **IA**
+        + **ARCHIVE**
+        + **DEEP_ARCHIVE**
+        + **SRC_STORAGE_MAPPING**
+        """
+        return pulumi.get(self, "dst_storage_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="enableKms")
+    def enable_kms(self) -> _builtins.bool:
+        """
+        Whether KMS encryption is enabled.
+        """
+        return pulumi.get(self, "enable_kms")
+
+    @_builtins.property
+    @pulumi.getter(name="enableMetadataMigration")
+    def enable_metadata_migration(self) -> _builtins.bool:
+        """
+        Whether metadata migration is enabled.
+        """
+        return pulumi.get(self, "enable_metadata_migration")
+
+    @_builtins.property
+    @pulumi.getter(name="enableRestore")
+    def enable_restore(self) -> _builtins.bool:
+        """
+        Whether automatic restoration of archived data is enabled.
+        """
+        return pulumi.get(self, "enable_restore")
+
+    @_builtins.property
+    @pulumi.getter(name="lastStartTime")
+    def last_start_time(self) -> _builtins.int:
+        """
+        The most recent start time of the synchronization task.
+        """
+        return pulumi.get(self, "last_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="objectOverwriteMode")
+    def object_overwrite_mode(self) -> _builtins.str:
+        """
+        How a source object handles its paired destination object,
+        either overwriting the object or skipping the migration.
+        + **NO_OVERWRITE**
+        + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+        + **CRC64_COMPARISON_OVERWRITE**
+        + **FULL_OVERWRITE**
+        """
+        return pulumi.get(self, "object_overwrite_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceCdns")
+    def source_cdns(self) -> Sequence['outputs.GetMigrationSyncTasksTaskSourceCdnResult']:
+        """
+        Whether migration from CDN is enabled.
+        The source_cdn structure is documented below.
+        """
+        return pulumi.get(self, "source_cdns")
+
+    @_builtins.property
+    @pulumi.getter(name="srcBucket")
+    def src_bucket(self) -> _builtins.str:
+        """
+        The name of the source bucket.
+        """
+        return pulumi.get(self, "src_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="srcCloudType")
+    def src_cloud_type(self) -> _builtins.str:
+        """
+        The source cloud service provider.
+        + **AWS**
+        + **Azure**
+        + **Aliyun**
+        + **Tencent**
+        + **HuaweiCloud**
+        + **QingCloud**
+        + **KingsoftCloud**
+        + **Baidu**
+        + **Qiniu**
+        + **UCloud**
+        """
+        return pulumi.get(self, "src_cloud_type")
+
+    @_builtins.property
+    @pulumi.getter(name="srcRegion")
+    def src_region(self) -> _builtins.str:
+        """
+        The region where the source bucket is located.
+        """
+        return pulumi.get(self, "src_region")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the synchronization task status.  
+        The valid values are as follows:
+        + **SYNCHRONIZING**: Being synchronizing.
+        + **STOPPED**: Already stopped.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="syncTaskId")
+    def sync_task_id(self) -> _builtins.str:
+        """
+        The synchronization task ID.
+        """
+        return pulumi.get(self, "sync_task_id")
+
+
+@pulumi.output_type
+class GetMigrationSyncTasksTaskSourceCdnResult(dict):
+    def __init__(__self__, *,
+                 authentication_type: _builtins.str,
+                 domain: _builtins.str,
+                 protocol: _builtins.str):
+        """
+        :param _builtins.str authentication_type: The authentication type.
+               + **NONE**
+               + **QINIU_PRIVATE_AUTHENTICATION**
+               + **ALIYUN_OSS_A**
+               + **ALIYUN_OSS_B**
+               + **ALIYUN_OSS_C**
+               + **KSYUN_PRIVATE_AUTHENTICATION**
+               + **AZURE_SAS_TOKEN**
+               + **TENCENT_COS_A**
+               + **TENCENT_COS_B**
+               + **TENCENT_COS_C**
+               + **TENCENT_COS_D**
+        :param _builtins.str domain: The domain name used to obtain objects to be migrated.
+        :param _builtins.str protocol: The protocol type.
+               + **http**
+               + **https**
+        """
+        pulumi.set(__self__, "authentication_type", authentication_type)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationType")
+    def authentication_type(self) -> _builtins.str:
+        """
+        The authentication type.
+        + **NONE**
+        + **QINIU_PRIVATE_AUTHENTICATION**
+        + **ALIYUN_OSS_A**
+        + **ALIYUN_OSS_B**
+        + **ALIYUN_OSS_C**
+        + **KSYUN_PRIVATE_AUTHENTICATION**
+        + **AZURE_SAS_TOKEN**
+        + **TENCENT_COS_A**
+        + **TENCENT_COS_B**
+        + **TENCENT_COS_C**
+        + **TENCENT_COS_D**
+        """
+        return pulumi.get(self, "authentication_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name used to obtain objects to be migrated.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol type.
+        + **http**
+        + **https**
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupResult(dict):
+    def __init__(__self__, *,
+                 bandwidth_policies: Sequence['outputs.GetMigrationTaskGroupsTaskgroupBandwidthPolicyResult'],
+                 complete_size: _builtins.int,
+                 complete_task_num: _builtins.int,
+                 consistency_check: _builtins.str,
+                 create_complete_num: _builtins.int,
+                 create_complete_size: _builtins.int,
+                 create_task_num: _builtins.int,
+                 description: _builtins.str,
+                 dst_nodes: Sequence['outputs.GetMigrationTaskGroupsTaskgroupDstNodeResult'],
+                 dst_storage_policy: _builtins.str,
+                 enable_failed_object_recording: _builtins.bool,
+                 enable_kms: _builtins.bool,
+                 enable_metadata_migration: _builtins.bool,
+                 enable_requester_pays: _builtins.bool,
+                 enable_restore: _builtins.bool,
+                 error_reasons: Sequence['outputs.GetMigrationTaskGroupsTaskgroupErrorReasonResult'],
+                 executing_task_num: _builtins.int,
+                 fail_num: _builtins.int,
+                 failed_object_records: Sequence['outputs.GetMigrationTaskGroupsTaskgroupFailedObjectRecordResult'],
+                 failed_task_num: _builtins.int,
+                 group_id: _builtins.str,
+                 migrate_since: _builtins.int,
+                 migrate_speed: _builtins.int,
+                 object_overwrite_mode: _builtins.str,
+                 paused_task_num: _builtins.int,
+                 skip_num: _builtins.int,
+                 smn_configs: Sequence['outputs.GetMigrationTaskGroupsTaskgroupSmnConfigResult'],
+                 source_cdns: Sequence['outputs.GetMigrationTaskGroupsTaskgroupSourceCdnResult'],
+                 src_nodes: Sequence['outputs.GetMigrationTaskGroupsTaskgroupSrcNodeResult'],
+                 start_time: _builtins.int,
+                 status: _builtins.int,
+                 success_num: _builtins.int,
+                 task_type: _builtins.str,
+                 total_num: _builtins.int,
+                 total_size: _builtins.int,
+                 total_task_num: _builtins.int,
+                 total_time: _builtins.int,
+                 waiting_task_num: _builtins.int):
+        """
+        :param Sequence['GetMigrationTaskGroupsTaskgroupBandwidthPolicyArgs'] bandwidth_policies: The traffic limiting rules.
+               The bandwidth_policy structure is documented below.
+        :param _builtins.int complete_size: The total size of migrated objects, in bytes.
+        :param _builtins.int complete_task_num: The number of completed migration tasks in the task group.
+        :param _builtins.str consistency_check: The method for checking whether objects are consistent before and after migration.
+               + **size_last_modified**
+               + **crc64**
+               + **no_check**
+        :param _builtins.int create_complete_num: The total number of objects included in the created migration tasks.
+        :param _builtins.int create_complete_size: The total size of objects migrated in the created migration tasks, in bytes.
+        :param _builtins.int create_task_num: The number of created migration tasks in the task group.
+        :param _builtins.str description: The task group description.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupDstNodeArgs'] dst_nodes: The destination information.
+               The dst_node structure is documented below.
+        :param _builtins.str dst_storage_policy: The destination storage class.
+               + **STANDARD**
+               + **IA**
+               + **ARCHIVE**
+               + **DEEP_ARCHIVE**
+               + **SRC_STORAGE_MAPPING**
+        :param _builtins.bool enable_failed_object_recording: Whether the function of recording failed objects is enabled.
+        :param _builtins.bool enable_kms: Whether KMS is used to encrypt the data to be stored in the destination OBS bucket.
+        :param _builtins.bool enable_metadata_migration: Whether metadata migration is enabled.
+        :param _builtins.bool enable_requester_pays: Whether Requester Pays is enabled.
+        :param _builtins.bool enable_restore: Whether automatic restoration of archived data is enabled.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupErrorReasonArgs'] error_reasons: The task group failure cause.
+               The value is an empty string if the task is not in the Migration failed state.
+               The error_reason structure is documented below.
+        :param _builtins.int executing_task_num: The number of migration tasks being executed in the task group.
+        :param _builtins.int fail_num: The number of failed objects.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupFailedObjectRecordArgs'] failed_object_records: The record of failed objects.
+               The failed_object_record structure is documented below.
+        :param _builtins.int failed_task_num: The number of failed migration tasks in the task group.
+        :param _builtins.str group_id: The task group ID.
+        :param _builtins.int migrate_since: The specified timestamp will be migrated, in milliseconds.
+        :param _builtins.int migrate_speed: The migration speed, in byte/s.
+        :param _builtins.str object_overwrite_mode: How a source object handles its paired destination object,
+               either overwriting the object or skipping the migration.
+               + **NO_OVERWRITE**
+               + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+               + **CRC64_COMPARISON_OVERWRITE**
+               + **FULL_OVERWRITE**
+        :param _builtins.int paused_task_num: The number of paused migration tasks in the task group.
+        :param _builtins.int skip_num: The number of skipped objects.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupSmnConfigArgs'] smn_configs: The configuration of SMN message sending.
+               The smn_config structure is documented below.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupSourceCdnArgs'] source_cdns: Whether migration from CDN is enabled.
+               The source_cdn structure is documented below.
+        :param Sequence['GetMigrationTaskGroupsTaskgroupSrcNodeArgs'] src_nodes: The source information.
+               The src_node structure is documented below.
+        :param _builtins.int start_time: The start time of the migration task group, in milliseconds.
+        :param _builtins.int status: Specifies the migration task group status.
+               The valid values are as follows:
+               + **0**: Waiting.
+               + **1**: Executing/creating.
+               + **2**: Running monitor task.
+               + **3**: Paused.
+               + **4**: Creation failed.
+               + **5**: Migration failed.
+               + **6**: Migration completed.
+               + **7**: Pausing.
+               + **8**: Waiting for deletion.
+               + **9**: Deleting.
+        :param _builtins.int success_num: The number of migrated objects.
+        :param _builtins.str task_type: The task type.
+               + **LIST**
+               + **URL_LIST**
+               + **PREFIX**
+        :param _builtins.int total_num: The total number of objects to be migrated in the migration task group.
+        :param _builtins.int total_size: The size of the objects that have been migrated, in bytes.
+        :param _builtins.int total_task_num: The total number of migration tasks in the task group.
+        :param _builtins.int total_time: The method for checking whether objects are consistent after migration.
+        :param _builtins.int waiting_task_num: The number of waiting migration tasks in the task group.
+        """
+        pulumi.set(__self__, "bandwidth_policies", bandwidth_policies)
+        pulumi.set(__self__, "complete_size", complete_size)
+        pulumi.set(__self__, "complete_task_num", complete_task_num)
+        pulumi.set(__self__, "consistency_check", consistency_check)
+        pulumi.set(__self__, "create_complete_num", create_complete_num)
+        pulumi.set(__self__, "create_complete_size", create_complete_size)
+        pulumi.set(__self__, "create_task_num", create_task_num)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dst_nodes", dst_nodes)
+        pulumi.set(__self__, "dst_storage_policy", dst_storage_policy)
+        pulumi.set(__self__, "enable_failed_object_recording", enable_failed_object_recording)
+        pulumi.set(__self__, "enable_kms", enable_kms)
+        pulumi.set(__self__, "enable_metadata_migration", enable_metadata_migration)
+        pulumi.set(__self__, "enable_requester_pays", enable_requester_pays)
+        pulumi.set(__self__, "enable_restore", enable_restore)
+        pulumi.set(__self__, "error_reasons", error_reasons)
+        pulumi.set(__self__, "executing_task_num", executing_task_num)
+        pulumi.set(__self__, "fail_num", fail_num)
+        pulumi.set(__self__, "failed_object_records", failed_object_records)
+        pulumi.set(__self__, "failed_task_num", failed_task_num)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "migrate_since", migrate_since)
+        pulumi.set(__self__, "migrate_speed", migrate_speed)
+        pulumi.set(__self__, "object_overwrite_mode", object_overwrite_mode)
+        pulumi.set(__self__, "paused_task_num", paused_task_num)
+        pulumi.set(__self__, "skip_num", skip_num)
+        pulumi.set(__self__, "smn_configs", smn_configs)
+        pulumi.set(__self__, "source_cdns", source_cdns)
+        pulumi.set(__self__, "src_nodes", src_nodes)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "success_num", success_num)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "total_num", total_num)
+        pulumi.set(__self__, "total_size", total_size)
+        pulumi.set(__self__, "total_task_num", total_task_num)
+        pulumi.set(__self__, "total_time", total_time)
+        pulumi.set(__self__, "waiting_task_num", waiting_task_num)
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthPolicies")
+    def bandwidth_policies(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupBandwidthPolicyResult']:
+        """
+        The traffic limiting rules.
+        The bandwidth_policy structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth_policies")
+
+    @_builtins.property
+    @pulumi.getter(name="completeSize")
+    def complete_size(self) -> _builtins.int:
+        """
+        The total size of migrated objects, in bytes.
+        """
+        return pulumi.get(self, "complete_size")
+
+    @_builtins.property
+    @pulumi.getter(name="completeTaskNum")
+    def complete_task_num(self) -> _builtins.int:
+        """
+        The number of completed migration tasks in the task group.
+        """
+        return pulumi.get(self, "complete_task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="consistencyCheck")
+    def consistency_check(self) -> _builtins.str:
+        """
+        The method for checking whether objects are consistent before and after migration.
+        + **size_last_modified**
+        + **crc64**
+        + **no_check**
+        """
+        return pulumi.get(self, "consistency_check")
+
+    @_builtins.property
+    @pulumi.getter(name="createCompleteNum")
+    def create_complete_num(self) -> _builtins.int:
+        """
+        The total number of objects included in the created migration tasks.
+        """
+        return pulumi.get(self, "create_complete_num")
+
+    @_builtins.property
+    @pulumi.getter(name="createCompleteSize")
+    def create_complete_size(self) -> _builtins.int:
+        """
+        The total size of objects migrated in the created migration tasks, in bytes.
+        """
+        return pulumi.get(self, "create_complete_size")
+
+    @_builtins.property
+    @pulumi.getter(name="createTaskNum")
+    def create_task_num(self) -> _builtins.int:
+        """
+        The number of created migration tasks in the task group.
+        """
+        return pulumi.get(self, "create_task_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The task group description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dstNodes")
+    def dst_nodes(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupDstNodeResult']:
+        """
+        The destination information.
+        The dst_node structure is documented below.
+        """
+        return pulumi.get(self, "dst_nodes")
+
+    @_builtins.property
+    @pulumi.getter(name="dstStoragePolicy")
+    def dst_storage_policy(self) -> _builtins.str:
+        """
+        The destination storage class.
+        + **STANDARD**
+        + **IA**
+        + **ARCHIVE**
+        + **DEEP_ARCHIVE**
+        + **SRC_STORAGE_MAPPING**
+        """
+        return pulumi.get(self, "dst_storage_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="enableFailedObjectRecording")
+    def enable_failed_object_recording(self) -> _builtins.bool:
+        """
+        Whether the function of recording failed objects is enabled.
+        """
+        return pulumi.get(self, "enable_failed_object_recording")
+
+    @_builtins.property
+    @pulumi.getter(name="enableKms")
+    def enable_kms(self) -> _builtins.bool:
+        """
+        Whether KMS is used to encrypt the data to be stored in the destination OBS bucket.
+        """
+        return pulumi.get(self, "enable_kms")
+
+    @_builtins.property
+    @pulumi.getter(name="enableMetadataMigration")
+    def enable_metadata_migration(self) -> _builtins.bool:
+        """
+        Whether metadata migration is enabled.
+        """
+        return pulumi.get(self, "enable_metadata_migration")
+
+    @_builtins.property
+    @pulumi.getter(name="enableRequesterPays")
+    def enable_requester_pays(self) -> _builtins.bool:
+        """
+        Whether Requester Pays is enabled.
+        """
+        return pulumi.get(self, "enable_requester_pays")
+
+    @_builtins.property
+    @pulumi.getter(name="enableRestore")
+    def enable_restore(self) -> _builtins.bool:
+        """
+        Whether automatic restoration of archived data is enabled.
+        """
+        return pulumi.get(self, "enable_restore")
+
+    @_builtins.property
+    @pulumi.getter(name="errorReasons")
+    def error_reasons(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupErrorReasonResult']:
+        """
+        The task group failure cause.
+        The value is an empty string if the task is not in the Migration failed state.
+        The error_reason structure is documented below.
+        """
+        return pulumi.get(self, "error_reasons")
+
+    @_builtins.property
+    @pulumi.getter(name="executingTaskNum")
+    def executing_task_num(self) -> _builtins.int:
+        """
+        The number of migration tasks being executed in the task group.
+        """
+        return pulumi.get(self, "executing_task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="failNum")
+    def fail_num(self) -> _builtins.int:
+        """
+        The number of failed objects.
+        """
+        return pulumi.get(self, "fail_num")
+
+    @_builtins.property
+    @pulumi.getter(name="failedObjectRecords")
+    def failed_object_records(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupFailedObjectRecordResult']:
+        """
+        The record of failed objects.
+        The failed_object_record structure is documented below.
+        """
+        return pulumi.get(self, "failed_object_records")
+
+    @_builtins.property
+    @pulumi.getter(name="failedTaskNum")
+    def failed_task_num(self) -> _builtins.int:
+        """
+        The number of failed migration tasks in the task group.
+        """
+        return pulumi.get(self, "failed_task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The task group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="migrateSince")
+    def migrate_since(self) -> _builtins.int:
+        """
+        The specified timestamp will be migrated, in milliseconds.
+        """
+        return pulumi.get(self, "migrate_since")
+
+    @_builtins.property
+    @pulumi.getter(name="migrateSpeed")
+    def migrate_speed(self) -> _builtins.int:
+        """
+        The migration speed, in byte/s.
+        """
+        return pulumi.get(self, "migrate_speed")
+
+    @_builtins.property
+    @pulumi.getter(name="objectOverwriteMode")
+    def object_overwrite_mode(self) -> _builtins.str:
+        """
+        How a source object handles its paired destination object,
+        either overwriting the object or skipping the migration.
+        + **NO_OVERWRITE**
+        + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+        + **CRC64_COMPARISON_OVERWRITE**
+        + **FULL_OVERWRITE**
+        """
+        return pulumi.get(self, "object_overwrite_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="pausedTaskNum")
+    def paused_task_num(self) -> _builtins.int:
+        """
+        The number of paused migration tasks in the task group.
+        """
+        return pulumi.get(self, "paused_task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="skipNum")
+    def skip_num(self) -> _builtins.int:
+        """
+        The number of skipped objects.
+        """
+        return pulumi.get(self, "skip_num")
+
+    @_builtins.property
+    @pulumi.getter(name="smnConfigs")
+    def smn_configs(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupSmnConfigResult']:
+        """
+        The configuration of SMN message sending.
+        The smn_config structure is documented below.
+        """
+        return pulumi.get(self, "smn_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceCdns")
+    def source_cdns(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupSourceCdnResult']:
+        """
+        Whether migration from CDN is enabled.
+        The source_cdn structure is documented below.
+        """
+        return pulumi.get(self, "source_cdns")
+
+    @_builtins.property
+    @pulumi.getter(name="srcNodes")
+    def src_nodes(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupSrcNodeResult']:
+        """
+        The source information.
+        The src_node structure is documented below.
+        """
+        return pulumi.get(self, "src_nodes")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        The start time of the migration task group, in milliseconds.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        Specifies the migration task group status.
+        The valid values are as follows:
+        + **0**: Waiting.
+        + **1**: Executing/creating.
+        + **2**: Running monitor task.
+        + **3**: Paused.
+        + **4**: Creation failed.
+        + **5**: Migration failed.
+        + **6**: Migration completed.
+        + **7**: Pausing.
+        + **8**: Waiting for deletion.
+        + **9**: Deleting.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="successNum")
+    def success_num(self) -> _builtins.int:
+        """
+        The number of migrated objects.
+        """
+        return pulumi.get(self, "success_num")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        The task type.
+        + **LIST**
+        + **URL_LIST**
+        + **PREFIX**
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The total number of objects to be migrated in the migration task group.
+        """
+        return pulumi.get(self, "total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSize")
+    def total_size(self) -> _builtins.int:
+        """
+        The size of the objects that have been migrated, in bytes.
+        """
+        return pulumi.get(self, "total_size")
+
+    @_builtins.property
+    @pulumi.getter(name="totalTaskNum")
+    def total_task_num(self) -> _builtins.int:
+        """
+        The total number of migration tasks in the task group.
+        """
+        return pulumi.get(self, "total_task_num")
+
+    @_builtins.property
+    @pulumi.getter(name="totalTime")
+    def total_time(self) -> _builtins.int:
+        """
+        The method for checking whether objects are consistent after migration.
+        """
+        return pulumi.get(self, "total_time")
+
+    @_builtins.property
+    @pulumi.getter(name="waitingTaskNum")
+    def waiting_task_num(self) -> _builtins.int:
+        """
+        The number of waiting migration tasks in the task group.
+        """
+        return pulumi.get(self, "waiting_task_num")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupBandwidthPolicyResult(dict):
+    def __init__(__self__, *,
+                 end: _builtins.str,
+                 max_bandwidth: _builtins.int,
+                 start: _builtins.str):
+        """
+        :param _builtins.str end: The time when traffic limiting is ended. The format is **hh:mm**.
+        :param _builtins.int max_bandwidth: The maximum traffic bandwidth allowed in the specified period. The unit is byte/s.
+        :param _builtins.str start: The time when traffic limiting is started. The format is **hh:mm**.
+        """
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "max_bandwidth", max_bandwidth)
+        pulumi.set(__self__, "start", start)
+
+    @_builtins.property
+    @pulumi.getter
+    def end(self) -> _builtins.str:
+        """
+        The time when traffic limiting is ended. The format is **hh:mm**.
+        """
+        return pulumi.get(self, "end")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBandwidth")
+    def max_bandwidth(self) -> _builtins.int:
+        """
+        The maximum traffic bandwidth allowed in the specified period. The unit is byte/s.
+        """
+        return pulumi.get(self, "max_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.str:
+        """
+        The time when traffic limiting is started. The format is **hh:mm**.
+        """
+        return pulumi.get(self, "start")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupDstNodeResult(dict):
+    def __init__(__self__, *,
+                 bucket: _builtins.str,
+                 region: _builtins.str,
+                 save_prefix: _builtins.str):
+        """
+        :param _builtins.str bucket: The name of the destination bucket.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str save_prefix: The path prefix used to organize object locations in the destination bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "save_prefix", save_prefix)
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> _builtins.str:
+        """
+        The name of the destination bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="savePrefix")
+    def save_prefix(self) -> _builtins.str:
+        """
+        The path prefix used to organize object locations in the destination bucket.
+        """
+        return pulumi.get(self, "save_prefix")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupErrorReasonResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 error_msg: _builtins.str):
+        """
+        :param _builtins.str error_code: The error code returned when the list of failed objects fails to be uploaded.
+        :param _builtins.str error_msg: The migration failure cause.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_msg", error_msg)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code returned when the list of failed objects fails to be uploaded.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        The migration failure cause.
+        """
+        return pulumi.get(self, "error_msg")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupFailedObjectRecordResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 list_file_key: _builtins.str,
+                 result: _builtins.bool):
+        """
+        :param _builtins.str error_code: The error code returned when the list of failed objects fails to be uploaded.
+        :param _builtins.str list_file_key: The path for storing the list of failed objects.
+        :param _builtins.bool result: Whether retransmission of failed objects is supported.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "list_file_key", list_file_key)
+        pulumi.set(__self__, "result", result)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code returned when the list of failed objects fails to be uploaded.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="listFileKey")
+    def list_file_key(self) -> _builtins.str:
+        """
+        The path for storing the list of failed objects.
+        """
+        return pulumi.get(self, "list_file_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> _builtins.bool:
+        """
+        Whether retransmission of failed objects is supported.
+        """
+        return pulumi.get(self, "result")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupSmnConfigResult(dict):
+    def __init__(__self__, *,
+                 notify_error_message: _builtins.str,
+                 notify_result: _builtins.bool,
+                 topic_name: _builtins.str):
+        """
+        :param _builtins.str notify_error_message: The error codes presenting why SMN messages failed to be sent.
+        :param _builtins.bool notify_result: Whether SMN messages are sent successfully after a migration task is complete.
+        :param _builtins.str topic_name: The SMN topic name.
+        """
+        pulumi.set(__self__, "notify_error_message", notify_error_message)
+        pulumi.set(__self__, "notify_result", notify_result)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @_builtins.property
+    @pulumi.getter(name="notifyErrorMessage")
+    def notify_error_message(self) -> _builtins.str:
+        """
+        The error codes presenting why SMN messages failed to be sent.
+        """
+        return pulumi.get(self, "notify_error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="notifyResult")
+    def notify_result(self) -> _builtins.bool:
+        """
+        Whether SMN messages are sent successfully after a migration task is complete.
+        """
+        return pulumi.get(self, "notify_result")
+
+    @_builtins.property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> _builtins.str:
+        """
+        The SMN topic name.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupSourceCdnResult(dict):
+    def __init__(__self__, *,
+                 authentication_type: _builtins.str,
+                 domain: _builtins.str,
+                 protocol: _builtins.str):
+        """
+        :param _builtins.str authentication_type: The authentication type.
+               + **NONE**
+               + **QINIU_PRIVATE_AUTHENTICATION**
+               + **ALIYUN_OSS_A**
+               + **ALIYUN_OSS_B**
+               + **ALIYUN_OSS_C**
+               + **KSYUN_PRIVATE_AUTHENTICATION**
+               + **AZURE_SAS_TOKEN**
+               + **TENCENT_COS_A**
+               + **TENCENT_COS_B**
+               + **TENCENT_COS_C**
+               + **TENCENT_COS_D**
+        :param _builtins.str domain: The domain name used to obtain objects to be migrated.
+        :param _builtins.str protocol: The protocol type.
+               + **http**
+               + **https**
+        """
+        pulumi.set(__self__, "authentication_type", authentication_type)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationType")
+    def authentication_type(self) -> _builtins.str:
+        """
+        The authentication type.
+        + **NONE**
+        + **QINIU_PRIVATE_AUTHENTICATION**
+        + **ALIYUN_OSS_A**
+        + **ALIYUN_OSS_B**
+        + **ALIYUN_OSS_C**
+        + **KSYUN_PRIVATE_AUTHENTICATION**
+        + **AZURE_SAS_TOKEN**
+        + **TENCENT_COS_A**
+        + **TENCENT_COS_B**
+        + **TENCENT_COS_C**
+        + **TENCENT_COS_D**
+        """
+        return pulumi.get(self, "authentication_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name used to obtain objects to be migrated.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol type.
+        + **http**
+        + **https**
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupSrcNodeResult(dict):
+    def __init__(__self__, *,
+                 app_id: _builtins.str,
+                 bucket: _builtins.str,
+                 cloud_type: _builtins.str,
+                 list_files: Sequence['outputs.GetMigrationTaskGroupsTaskgroupSrcNodeListFileResult'],
+                 object_keys: Sequence[_builtins.str],
+                 region: _builtins.str):
+        """
+        :param _builtins.str app_id: The app ID.
+        :param _builtins.str bucket: The name of the destination bucket.
+        :param _builtins.str cloud_type: The source cloud service provider.
+               + **AWS**
+               + **AZURE**
+               + **ALIYUN**
+               + **TENCENT**
+               + **HUAWEICLOUD**
+               + **QINGCLOUD**
+               + **KINGSOFTCLOUD**
+               + **BAIDU**
+               + **QINIU**
+               + **URLSOURCE**
+               + **UCLOUD**
+               + **GOOGLE**
+        :param Sequence['GetMigrationTaskGroupsTaskgroupSrcNodeListFileArgs'] list_files: The configurations of the list file.
+               The list_file structure is documented below.
+        :param Sequence[_builtins.str] object_keys: The name prefixes of objects to be migrated.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        """
+        pulumi.set(__self__, "app_id", app_id)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "cloud_type", cloud_type)
+        pulumi.set(__self__, "list_files", list_files)
+        pulumi.set(__self__, "object_keys", object_keys)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> _builtins.str:
+        """
+        The app ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> _builtins.str:
+        """
+        The name of the destination bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudType")
+    def cloud_type(self) -> _builtins.str:
+        """
+        The source cloud service provider.
+        + **AWS**
+        + **AZURE**
+        + **ALIYUN**
+        + **TENCENT**
+        + **HUAWEICLOUD**
+        + **QINGCLOUD**
+        + **KINGSOFTCLOUD**
+        + **BAIDU**
+        + **QINIU**
+        + **URLSOURCE**
+        + **UCLOUD**
+        + **GOOGLE**
+        """
+        return pulumi.get(self, "cloud_type")
+
+    @_builtins.property
+    @pulumi.getter(name="listFiles")
+    def list_files(self) -> Sequence['outputs.GetMigrationTaskGroupsTaskgroupSrcNodeListFileResult']:
+        """
+        The configurations of the list file.
+        The list_file structure is documented below.
+        """
+        return pulumi.get(self, "list_files")
+
+    @_builtins.property
+    @pulumi.getter(name="objectKeys")
+    def object_keys(self) -> Sequence[_builtins.str]:
+        """
+        The name prefixes of objects to be migrated.
+        """
+        return pulumi.get(self, "object_keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetMigrationTaskGroupsTaskgroupSrcNodeListFileResult(dict):
+    def __init__(__self__, *,
+                 list_file_key: _builtins.str,
+                 list_file_num: _builtins.str,
+                 obs_bucket: _builtins.str):
+        """
+        :param _builtins.str list_file_key: The path for storing the list of failed objects.
+        :param _builtins.str list_file_num: The number of stored object list files.
+        :param _builtins.str obs_bucket: The name of the OBS bucket for storing object list files.
+        """
+        pulumi.set(__self__, "list_file_key", list_file_key)
+        pulumi.set(__self__, "list_file_num", list_file_num)
+        pulumi.set(__self__, "obs_bucket", obs_bucket)
+
+    @_builtins.property
+    @pulumi.getter(name="listFileKey")
+    def list_file_key(self) -> _builtins.str:
+        """
+        The path for storing the list of failed objects.
+        """
+        return pulumi.get(self, "list_file_key")
+
+    @_builtins.property
+    @pulumi.getter(name="listFileNum")
+    def list_file_num(self) -> _builtins.str:
+        """
+        The number of stored object list files.
+        """
+        return pulumi.get(self, "list_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="obsBucket")
+    def obs_bucket(self) -> _builtins.str:
+        """
+        The name of the OBS bucket for storing object list files.
+        """
+        return pulumi.get(self, "obs_bucket")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 bandwidth_policies: Sequence['outputs.GetMigrationTasksTaskBandwidthPolicyResult'],
+                 complete_size: _builtins.int,
+                 consistency_check: _builtins.str,
+                 description: _builtins.str,
+                 dst_nodes: Sequence['outputs.GetMigrationTasksTaskDstNodeResult'],
+                 dst_storage_policy: _builtins.str,
+                 enable_failed_object_recording: _builtins.bool,
+                 enable_kms: _builtins.bool,
+                 enable_metadata_migration: _builtins.bool,
+                 enable_requester_pays: _builtins.bool,
+                 enable_restore: _builtins.bool,
+                 error_reasons: Sequence['outputs.GetMigrationTasksTaskErrorReasonResult'],
+                 fail_num: _builtins.int,
+                 failed_object_records: Sequence['outputs.GetMigrationTasksTaskFailedObjectRecordResult'],
+                 group_id: _builtins.str,
+                 group_type: _builtins.str,
+                 id: _builtins.int,
+                 is_query_over: _builtins.bool,
+                 left_time: _builtins.int,
+                 migrate_since: _builtins.int,
+                 migrate_speed: _builtins.int,
+                 name: _builtins.str,
+                 object_overwrite_mode: _builtins.str,
+                 progress: _builtins.int,
+                 real_size: _builtins.int,
+                 skip_record_error_reason: _builtins.str,
+                 skipped_num: _builtins.int,
+                 smn_infos: Sequence['outputs.GetMigrationTasksTaskSmnInfoResult'],
+                 source_cdns: Sequence['outputs.GetMigrationTasksTaskSourceCdnResult'],
+                 src_nodes: Sequence['outputs.GetMigrationTasksTaskSrcNodeResult'],
+                 start_time: _builtins.int,
+                 status: _builtins.int,
+                 success_record_error_reason: _builtins.str,
+                 successful_num: _builtins.int,
+                 task_priority: _builtins.str,
+                 task_type: _builtins.str,
+                 total_num: _builtins.int,
+                 total_size: _builtins.int,
+                 total_time: _builtins.int):
+        """
+        :param Sequence['GetMigrationTasksTaskBandwidthPolicyArgs'] bandwidth_policies: The traffic limiting rules.
+               The bandwidth_policy structure is documented below.
+        :param _builtins.int complete_size: The size of the objects that have been processed in the task, in bytes.
+        :param _builtins.str consistency_check: The method for checking whether objects are consistent before and after migration.
+               + **size_last_modified**
+               + **crc64**
+               + **no_check**
+        :param _builtins.str description: The task description.
+        :param Sequence['GetMigrationTasksTaskDstNodeArgs'] dst_nodes: The destination information.
+               The dst_node structure is documented below.
+        :param _builtins.str dst_storage_policy: The destination storage class.
+               + **STANDARD**
+               + **IA**
+               + **ARCHIVE**
+               + **DEEP_ARCHIVE**
+               + **SRC_STORAGE_MAPPING**
+        :param _builtins.bool enable_failed_object_recording: Whether the function of recording failed objects is enabled.
+        :param _builtins.bool enable_kms: Whether KMS is used to encrypt the data to be stored in the destination OBS bucket.
+        :param _builtins.bool enable_metadata_migration: Whether metadata migration is enabled.
+        :param _builtins.bool enable_requester_pays: Whether Requester Pays is enabled.
+        :param _builtins.bool enable_restore: Whether automatic restoration of archived data is enabled.
+        :param Sequence['GetMigrationTasksTaskErrorReasonArgs'] error_reasons: The task failure cause.
+               The value is an empty string if the task is not in the Migration failed state.
+               The error_reason structure is documented below.
+        :param _builtins.int fail_num: The number of objects that fail to be migrated.
+        :param Sequence['GetMigrationTasksTaskFailedObjectRecordArgs'] failed_object_records: The record of objects that failed to be migrated.
+               The failed_object_record structure is documented below.
+        :param _builtins.str group_id: Specifies the migration task group ID.
+        :param _builtins.str group_type: The migration group type.
+               + **NORMAL_TASK**: General migration tasks.
+               + **SYNC_TASK**: Migration tasks generated for a synchronization task.
+               + **GROUP_TASK**: Migration tasks in a task group.
+        :param _builtins.int id: The task ID.
+        :param _builtins.bool is_query_over: Whether the statistics of source objects in the migration task have been scanned.
+        :param _builtins.int left_time: The remaining time of the task, in milliseconds.
+        :param _builtins.int migrate_since: The specified timestamp will be migrated, in milliseconds.
+        :param _builtins.int migrate_speed: The migration speed, in byte/s.
+        :param _builtins.str name: The task name.
+        :param _builtins.str object_overwrite_mode: How a source object handles its paired destination object,
+               either overwriting the object or skipping the migration.
+               + **NO_OVERWRITE**
+               + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+               + **CRC64_COMPARISON_OVERWRITE**
+               + **FULL_OVERWRITE**
+        :param _builtins.int progress: The task progress.
+        :param _builtins.int real_size: The total size of the migrated objects, in bytes.
+        :param _builtins.str skip_record_error_reason: The error code returned for the failure in recording the list of objects that  
+               are ignored.
+        :param _builtins.int skipped_num: The number of objects skipped during migration.
+        :param Sequence['GetMigrationTasksTaskSmnInfoArgs'] smn_infos: The SMN notification results.
+               The smn_info structure is documented below.
+        :param Sequence['GetMigrationTasksTaskSourceCdnArgs'] source_cdns: Whether migration from CDN is enabled.
+               The source_cdn structure is documented below.
+        :param Sequence['GetMigrationTasksTaskSrcNodeArgs'] src_nodes: The source information.
+               The src_node structure is documented below.
+        :param _builtins.int start_time: The start time of the migration task, in milliseconds.
+        :param _builtins.int status: Specifies the migration task status.
+               The valid values are as follows:
+               + **1**: Waiting for scheduling.
+               + **2**: Migrating.
+               + **3**: Paused.
+               + **4**: Failed.
+               + **5**: Succeeded.
+               + **7**: Pausing.
+        :param _builtins.str success_record_error_reason: The error code returned for the failure in recording the list of objects  
+               that are successfully migrated.
+        :param _builtins.int successful_num: The number of successfully migrated objects.
+        :param _builtins.str task_priority: The migration task priority.
+               + **HIGH**: High priority.
+               + **MEDIUM**: Medium priority.
+               + **LOW**: Low priority.
+        :param _builtins.str task_type: The task type.
+               + **list**
+               + **object**
+               + **prefix**
+               + **url_list**
+        :param _builtins.int total_num: The total number of objects that need to be migrated in the task.
+        :param _builtins.int total_size: The size of objects that need to be migrated in the task, in bytes.
+        :param _builtins.int total_time: The total time used, in milliseconds.
+        """
+        pulumi.set(__self__, "bandwidth_policies", bandwidth_policies)
+        pulumi.set(__self__, "complete_size", complete_size)
+        pulumi.set(__self__, "consistency_check", consistency_check)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dst_nodes", dst_nodes)
+        pulumi.set(__self__, "dst_storage_policy", dst_storage_policy)
+        pulumi.set(__self__, "enable_failed_object_recording", enable_failed_object_recording)
+        pulumi.set(__self__, "enable_kms", enable_kms)
+        pulumi.set(__self__, "enable_metadata_migration", enable_metadata_migration)
+        pulumi.set(__self__, "enable_requester_pays", enable_requester_pays)
+        pulumi.set(__self__, "enable_restore", enable_restore)
+        pulumi.set(__self__, "error_reasons", error_reasons)
+        pulumi.set(__self__, "fail_num", fail_num)
+        pulumi.set(__self__, "failed_object_records", failed_object_records)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_type", group_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_query_over", is_query_over)
+        pulumi.set(__self__, "left_time", left_time)
+        pulumi.set(__self__, "migrate_since", migrate_since)
+        pulumi.set(__self__, "migrate_speed", migrate_speed)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "object_overwrite_mode", object_overwrite_mode)
+        pulumi.set(__self__, "progress", progress)
+        pulumi.set(__self__, "real_size", real_size)
+        pulumi.set(__self__, "skip_record_error_reason", skip_record_error_reason)
+        pulumi.set(__self__, "skipped_num", skipped_num)
+        pulumi.set(__self__, "smn_infos", smn_infos)
+        pulumi.set(__self__, "source_cdns", source_cdns)
+        pulumi.set(__self__, "src_nodes", src_nodes)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "success_record_error_reason", success_record_error_reason)
+        pulumi.set(__self__, "successful_num", successful_num)
+        pulumi.set(__self__, "task_priority", task_priority)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "total_num", total_num)
+        pulumi.set(__self__, "total_size", total_size)
+        pulumi.set(__self__, "total_time", total_time)
+
+    @_builtins.property
+    @pulumi.getter(name="bandwidthPolicies")
+    def bandwidth_policies(self) -> Sequence['outputs.GetMigrationTasksTaskBandwidthPolicyResult']:
+        """
+        The traffic limiting rules.
+        The bandwidth_policy structure is documented below.
+        """
+        return pulumi.get(self, "bandwidth_policies")
+
+    @_builtins.property
+    @pulumi.getter(name="completeSize")
+    def complete_size(self) -> _builtins.int:
+        """
+        The size of the objects that have been processed in the task, in bytes.
+        """
+        return pulumi.get(self, "complete_size")
+
+    @_builtins.property
+    @pulumi.getter(name="consistencyCheck")
+    def consistency_check(self) -> _builtins.str:
+        """
+        The method for checking whether objects are consistent before and after migration.
+        + **size_last_modified**
+        + **crc64**
+        + **no_check**
+        """
+        return pulumi.get(self, "consistency_check")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The task description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dstNodes")
+    def dst_nodes(self) -> Sequence['outputs.GetMigrationTasksTaskDstNodeResult']:
+        """
+        The destination information.
+        The dst_node structure is documented below.
+        """
+        return pulumi.get(self, "dst_nodes")
+
+    @_builtins.property
+    @pulumi.getter(name="dstStoragePolicy")
+    def dst_storage_policy(self) -> _builtins.str:
+        """
+        The destination storage class.
+        + **STANDARD**
+        + **IA**
+        + **ARCHIVE**
+        + **DEEP_ARCHIVE**
+        + **SRC_STORAGE_MAPPING**
+        """
+        return pulumi.get(self, "dst_storage_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="enableFailedObjectRecording")
+    def enable_failed_object_recording(self) -> _builtins.bool:
+        """
+        Whether the function of recording failed objects is enabled.
+        """
+        return pulumi.get(self, "enable_failed_object_recording")
+
+    @_builtins.property
+    @pulumi.getter(name="enableKms")
+    def enable_kms(self) -> _builtins.bool:
+        """
+        Whether KMS is used to encrypt the data to be stored in the destination OBS bucket.
+        """
+        return pulumi.get(self, "enable_kms")
+
+    @_builtins.property
+    @pulumi.getter(name="enableMetadataMigration")
+    def enable_metadata_migration(self) -> _builtins.bool:
+        """
+        Whether metadata migration is enabled.
+        """
+        return pulumi.get(self, "enable_metadata_migration")
+
+    @_builtins.property
+    @pulumi.getter(name="enableRequesterPays")
+    def enable_requester_pays(self) -> _builtins.bool:
+        """
+        Whether Requester Pays is enabled.
+        """
+        return pulumi.get(self, "enable_requester_pays")
+
+    @_builtins.property
+    @pulumi.getter(name="enableRestore")
+    def enable_restore(self) -> _builtins.bool:
+        """
+        Whether automatic restoration of archived data is enabled.
+        """
+        return pulumi.get(self, "enable_restore")
+
+    @_builtins.property
+    @pulumi.getter(name="errorReasons")
+    def error_reasons(self) -> Sequence['outputs.GetMigrationTasksTaskErrorReasonResult']:
+        """
+        The task failure cause.
+        The value is an empty string if the task is not in the Migration failed state.
+        The error_reason structure is documented below.
+        """
+        return pulumi.get(self, "error_reasons")
+
+    @_builtins.property
+    @pulumi.getter(name="failNum")
+    def fail_num(self) -> _builtins.int:
+        """
+        The number of objects that fail to be migrated.
+        """
+        return pulumi.get(self, "fail_num")
+
+    @_builtins.property
+    @pulumi.getter(name="failedObjectRecords")
+    def failed_object_records(self) -> Sequence['outputs.GetMigrationTasksTaskFailedObjectRecordResult']:
+        """
+        The record of objects that failed to be migrated.
+        The failed_object_record structure is documented below.
+        """
+        return pulumi.get(self, "failed_object_records")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the migration task group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupType")
+    def group_type(self) -> _builtins.str:
+        """
+        The migration group type.
+        + **NORMAL_TASK**: General migration tasks.
+        + **SYNC_TASK**: Migration tasks generated for a synchronization task.
+        + **GROUP_TASK**: Migration tasks in a task group.
+        """
+        return pulumi.get(self, "group_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The task ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isQueryOver")
+    def is_query_over(self) -> _builtins.bool:
+        """
+        Whether the statistics of source objects in the migration task have been scanned.
+        """
+        return pulumi.get(self, "is_query_over")
+
+    @_builtins.property
+    @pulumi.getter(name="leftTime")
+    def left_time(self) -> _builtins.int:
+        """
+        The remaining time of the task, in milliseconds.
+        """
+        return pulumi.get(self, "left_time")
+
+    @_builtins.property
+    @pulumi.getter(name="migrateSince")
+    def migrate_since(self) -> _builtins.int:
+        """
+        The specified timestamp will be migrated, in milliseconds.
+        """
+        return pulumi.get(self, "migrate_since")
+
+    @_builtins.property
+    @pulumi.getter(name="migrateSpeed")
+    def migrate_speed(self) -> _builtins.int:
+        """
+        The migration speed, in byte/s.
+        """
+        return pulumi.get(self, "migrate_speed")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The task name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="objectOverwriteMode")
+    def object_overwrite_mode(self) -> _builtins.str:
+        """
+        How a source object handles its paired destination object,
+        either overwriting the object or skipping the migration.
+        + **NO_OVERWRITE**
+        + **SIZE_LAST_MODIFIED_COMPARISON_OVERWRITE**
+        + **CRC64_COMPARISON_OVERWRITE**
+        + **FULL_OVERWRITE**
+        """
+        return pulumi.get(self, "object_overwrite_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def progress(self) -> _builtins.int:
+        """
+        The task progress.
+        """
+        return pulumi.get(self, "progress")
+
+    @_builtins.property
+    @pulumi.getter(name="realSize")
+    def real_size(self) -> _builtins.int:
+        """
+        The total size of the migrated objects, in bytes.
+        """
+        return pulumi.get(self, "real_size")
+
+    @_builtins.property
+    @pulumi.getter(name="skipRecordErrorReason")
+    def skip_record_error_reason(self) -> _builtins.str:
+        """
+        The error code returned for the failure in recording the list of objects that  
+        are ignored.
+        """
+        return pulumi.get(self, "skip_record_error_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="skippedNum")
+    def skipped_num(self) -> _builtins.int:
+        """
+        The number of objects skipped during migration.
+        """
+        return pulumi.get(self, "skipped_num")
+
+    @_builtins.property
+    @pulumi.getter(name="smnInfos")
+    def smn_infos(self) -> Sequence['outputs.GetMigrationTasksTaskSmnInfoResult']:
+        """
+        The SMN notification results.
+        The smn_info structure is documented below.
+        """
+        return pulumi.get(self, "smn_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceCdns")
+    def source_cdns(self) -> Sequence['outputs.GetMigrationTasksTaskSourceCdnResult']:
+        """
+        Whether migration from CDN is enabled.
+        The source_cdn structure is documented below.
+        """
+        return pulumi.get(self, "source_cdns")
+
+    @_builtins.property
+    @pulumi.getter(name="srcNodes")
+    def src_nodes(self) -> Sequence['outputs.GetMigrationTasksTaskSrcNodeResult']:
+        """
+        The source information.
+        The src_node structure is documented below.
+        """
+        return pulumi.get(self, "src_nodes")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        The start time of the migration task, in milliseconds.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.int:
+        """
+        Specifies the migration task status.
+        The valid values are as follows:
+        + **1**: Waiting for scheduling.
+        + **2**: Migrating.
+        + **3**: Paused.
+        + **4**: Failed.
+        + **5**: Succeeded.
+        + **7**: Pausing.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="successRecordErrorReason")
+    def success_record_error_reason(self) -> _builtins.str:
+        """
+        The error code returned for the failure in recording the list of objects  
+        that are successfully migrated.
+        """
+        return pulumi.get(self, "success_record_error_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="successfulNum")
+    def successful_num(self) -> _builtins.int:
+        """
+        The number of successfully migrated objects.
+        """
+        return pulumi.get(self, "successful_num")
+
+    @_builtins.property
+    @pulumi.getter(name="taskPriority")
+    def task_priority(self) -> _builtins.str:
+        """
+        The migration task priority.
+        + **HIGH**: High priority.
+        + **MEDIUM**: Medium priority.
+        + **LOW**: Low priority.
+        """
+        return pulumi.get(self, "task_priority")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        The task type.
+        + **list**
+        + **object**
+        + **prefix**
+        + **url_list**
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The total number of objects that need to be migrated in the task.
+        """
+        return pulumi.get(self, "total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="totalSize")
+    def total_size(self) -> _builtins.int:
+        """
+        The size of objects that need to be migrated in the task, in bytes.
+        """
+        return pulumi.get(self, "total_size")
+
+    @_builtins.property
+    @pulumi.getter(name="totalTime")
+    def total_time(self) -> _builtins.int:
+        """
+        The total time used, in milliseconds.
+        """
+        return pulumi.get(self, "total_time")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskBandwidthPolicyResult(dict):
+    def __init__(__self__, *,
+                 end: _builtins.str,
+                 max_bandwidth: _builtins.int,
+                 start: _builtins.str):
+        """
+        :param _builtins.str end: The time when traffic limiting is ended. The format is **hh:mm**.
+        :param _builtins.int max_bandwidth: The maximum traffic bandwidth allowed in the specified period. The unit is byte/s.
+        :param _builtins.str start: The time when traffic limiting is started. The format is **hh:mm**.
+        """
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "max_bandwidth", max_bandwidth)
+        pulumi.set(__self__, "start", start)
+
+    @_builtins.property
+    @pulumi.getter
+    def end(self) -> _builtins.str:
+        """
+        The time when traffic limiting is ended. The format is **hh:mm**.
+        """
+        return pulumi.get(self, "end")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBandwidth")
+    def max_bandwidth(self) -> _builtins.int:
+        """
+        The maximum traffic bandwidth allowed in the specified period. The unit is byte/s.
+        """
+        return pulumi.get(self, "max_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.str:
+        """
+        The time when traffic limiting is started. The format is **hh:mm**.
+        """
+        return pulumi.get(self, "start")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskDstNodeResult(dict):
+    def __init__(__self__, *,
+                 bucket: _builtins.str,
+                 region: _builtins.str,
+                 save_prefix: _builtins.str):
+        """
+        :param _builtins.str bucket: The name of the source bucket.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        :param _builtins.str save_prefix: The path prefix used to organize object locations in the destination bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "save_prefix", save_prefix)
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> _builtins.str:
+        """
+        The name of the source bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="savePrefix")
+    def save_prefix(self) -> _builtins.str:
+        """
+        The path prefix used to organize object locations in the destination bucket.
+        """
+        return pulumi.get(self, "save_prefix")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskErrorReasonResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 error_msg: _builtins.str):
+        """
+        :param _builtins.str error_code: The error code returned when the list of failed objects fails to be uploaded.
+        :param _builtins.str error_msg: The migration failure cause.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_msg", error_msg)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code returned when the list of failed objects fails to be uploaded.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        The migration failure cause.
+        """
+        return pulumi.get(self, "error_msg")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskFailedObjectRecordResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 list_file_key: _builtins.str,
+                 result: _builtins.bool):
+        """
+        :param _builtins.str error_code: The error code returned when the list of failed objects fails to be uploaded.
+        :param _builtins.str list_file_key: The path for storing the list of failed objects.
+        :param _builtins.bool result: Whether retransmission of failed objects is supported.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "list_file_key", list_file_key)
+        pulumi.set(__self__, "result", result)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code returned when the list of failed objects fails to be uploaded.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="listFileKey")
+    def list_file_key(self) -> _builtins.str:
+        """
+        The path for storing the list of failed objects.
+        """
+        return pulumi.get(self, "list_file_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> _builtins.bool:
+        """
+        Whether retransmission of failed objects is supported.
+        """
+        return pulumi.get(self, "result")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskSmnInfoResult(dict):
+    def __init__(__self__, *,
+                 notify_error_message: _builtins.str,
+                 notify_result: _builtins.bool,
+                 topic_name: _builtins.str):
+        """
+        :param _builtins.str notify_error_message: The error codes presenting why SMN messages failed to be sent.
+        :param _builtins.bool notify_result: Whether SMN messages are sent successfully after a migration task is complete.
+        :param _builtins.str topic_name: The SMN topic name.
+        """
+        pulumi.set(__self__, "notify_error_message", notify_error_message)
+        pulumi.set(__self__, "notify_result", notify_result)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @_builtins.property
+    @pulumi.getter(name="notifyErrorMessage")
+    def notify_error_message(self) -> _builtins.str:
+        """
+        The error codes presenting why SMN messages failed to be sent.
+        """
+        return pulumi.get(self, "notify_error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="notifyResult")
+    def notify_result(self) -> _builtins.bool:
+        """
+        Whether SMN messages are sent successfully after a migration task is complete.
+        """
+        return pulumi.get(self, "notify_result")
+
+    @_builtins.property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> _builtins.str:
+        """
+        The SMN topic name.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskSourceCdnResult(dict):
+    def __init__(__self__, *,
+                 authentication_type: _builtins.str,
+                 domain: _builtins.str,
+                 protocol: _builtins.str):
+        """
+        :param _builtins.str authentication_type: The authentication type.
+               + **NONE**
+               + **QINIU_PRIVATE_AUTHENTICATION**
+               + **ALIYUN_OSS_A**
+               + **ALIYUN_OSS_B**
+               + **ALIYUN_OSS_C**
+               + **KSYUN_PRIVATE_AUTHENTICATION**
+               + **AZURE_SAS_TOKEN**
+               + **TENCENT_COS_A**
+               + **TENCENT_COS_B**
+               + **TENCENT_COS_C**
+               + **TENCENT_COS_D**
+        :param _builtins.str domain: The domain name used to obtain objects to be migrated.
+        :param _builtins.str protocol: The protocol type.
+               + **http**
+               + **https**
+        """
+        pulumi.set(__self__, "authentication_type", authentication_type)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationType")
+    def authentication_type(self) -> _builtins.str:
+        """
+        The authentication type.
+        + **NONE**
+        + **QINIU_PRIVATE_AUTHENTICATION**
+        + **ALIYUN_OSS_A**
+        + **ALIYUN_OSS_B**
+        + **ALIYUN_OSS_C**
+        + **KSYUN_PRIVATE_AUTHENTICATION**
+        + **AZURE_SAS_TOKEN**
+        + **TENCENT_COS_A**
+        + **TENCENT_COS_B**
+        + **TENCENT_COS_C**
+        + **TENCENT_COS_D**
+        """
+        return pulumi.get(self, "authentication_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name used to obtain objects to be migrated.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol type.
+        + **http**
+        + **https**
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskSrcNodeResult(dict):
+    def __init__(__self__, *,
+                 app_id: _builtins.str,
+                 bucket: _builtins.str,
+                 cloud_type: _builtins.str,
+                 list_files: Sequence['outputs.GetMigrationTasksTaskSrcNodeListFileResult'],
+                 object_keys: Sequence[_builtins.str],
+                 region: _builtins.str):
+        """
+        :param _builtins.str app_id: The app ID.
+        :param _builtins.str bucket: The name of the source bucket.
+        :param _builtins.str cloud_type: The source cloud service provider.
+               + **AWS**
+               + **AZURE**
+               + **ALIYUN**
+               + **TENCENT**
+               + **HUAWEICLOUD**
+               + **QINGCLOUD**
+               + **KINGSOFTCLOUD**
+               + **BAIDU**
+               + **QINIU**
+               + **URLSOURCE**
+               + **UCLOUD**
+               + **GOOGLE**
+        :param Sequence['GetMigrationTasksTaskSrcNodeListFileArgs'] list_files: The configurations of the list file.
+               The list_file structure is documented below.
+        :param Sequence[_builtins.str] object_keys: The name prefixes of objects to be migrated.
+        :param _builtins.str region: Specifies the region in which to query the resource.
+               If omitted, the provider-level region will be used.
+        """
+        pulumi.set(__self__, "app_id", app_id)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "cloud_type", cloud_type)
+        pulumi.set(__self__, "list_files", list_files)
+        pulumi.set(__self__, "object_keys", object_keys)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="appId")
+    def app_id(self) -> _builtins.str:
+        """
+        The app ID.
+        """
+        return pulumi.get(self, "app_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> _builtins.str:
+        """
+        The name of the source bucket.
+        """
+        return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudType")
+    def cloud_type(self) -> _builtins.str:
+        """
+        The source cloud service provider.
+        + **AWS**
+        + **AZURE**
+        + **ALIYUN**
+        + **TENCENT**
+        + **HUAWEICLOUD**
+        + **QINGCLOUD**
+        + **KINGSOFTCLOUD**
+        + **BAIDU**
+        + **QINIU**
+        + **URLSOURCE**
+        + **UCLOUD**
+        + **GOOGLE**
+        """
+        return pulumi.get(self, "cloud_type")
+
+    @_builtins.property
+    @pulumi.getter(name="listFiles")
+    def list_files(self) -> Sequence['outputs.GetMigrationTasksTaskSrcNodeListFileResult']:
+        """
+        The configurations of the list file.
+        The list_file structure is documented below.
+        """
+        return pulumi.get(self, "list_files")
+
+    @_builtins.property
+    @pulumi.getter(name="objectKeys")
+    def object_keys(self) -> Sequence[_builtins.str]:
+        """
+        The name prefixes of objects to be migrated.
+        """
+        return pulumi.get(self, "object_keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Specifies the region in which to query the resource.
+        If omitted, the provider-level region will be used.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetMigrationTasksTaskSrcNodeListFileResult(dict):
+    def __init__(__self__, *,
+                 list_file_key: _builtins.str,
+                 list_file_num: _builtins.str,
+                 obs_bucket: _builtins.str):
+        """
+        :param _builtins.str list_file_key: The path for storing the list of failed objects.
+        :param _builtins.str list_file_num: The number of stored object list files.
+        :param _builtins.str obs_bucket: The name of the OBS bucket for storing object list files.
+        """
+        pulumi.set(__self__, "list_file_key", list_file_key)
+        pulumi.set(__self__, "list_file_num", list_file_num)
+        pulumi.set(__self__, "obs_bucket", obs_bucket)
+
+    @_builtins.property
+    @pulumi.getter(name="listFileKey")
+    def list_file_key(self) -> _builtins.str:
+        """
+        The path for storing the list of failed objects.
+        """
+        return pulumi.get(self, "list_file_key")
+
+    @_builtins.property
+    @pulumi.getter(name="listFileNum")
+    def list_file_num(self) -> _builtins.str:
+        """
+        The number of stored object list files.
+        """
+        return pulumi.get(self, "list_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="obsBucket")
+    def obs_bucket(self) -> _builtins.str:
+        """
+        The name of the OBS bucket for storing object list files.
+        """
+        return pulumi.get(self, "obs_bucket")
+
+
+@pulumi.output_type
+class GetSyncTaskStatisticsStatisticDataResult(dict):
+    def __init__(__self__, *,
+                 data_type: _builtins.str,
+                 datas: Sequence['outputs.GetSyncTaskStatisticsStatisticDataDataResult']):
+        """
+        :param _builtins.str data_type: Specifies the statistical data type.  
+               Use commas (,) to separate multiple data types.
+               The valid values are as follows:
+               + **REQUEST**: The number of objects requested for synchronization.
+               + **SUCCESS**: The number of objects that are successfully synchronized.
+               + **FAILURE**: The number of objects that fail to be synchronized.
+               + **SKIP**: The number of objects that are skipped during synchronization.
+               + **SIZE**: The size of successfully synchronized objects, in bytes.
+        :param Sequence['GetSyncTaskStatisticsStatisticDataDataArgs'] datas: The source cloud service provider.
+               The data structure is documented below.
+        """
+        pulumi.set(__self__, "data_type", data_type)
+        pulumi.set(__self__, "datas", datas)
+
+    @_builtins.property
+    @pulumi.getter(name="dataType")
+    def data_type(self) -> _builtins.str:
+        """
+        Specifies the statistical data type.  
+        Use commas (,) to separate multiple data types.
+        The valid values are as follows:
+        + **REQUEST**: The number of objects requested for synchronization.
+        + **SUCCESS**: The number of objects that are successfully synchronized.
+        + **FAILURE**: The number of objects that fail to be synchronized.
+        + **SKIP**: The number of objects that are skipped during synchronization.
+        + **SIZE**: The size of successfully synchronized objects, in bytes.
+        """
+        return pulumi.get(self, "data_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def datas(self) -> Sequence['outputs.GetSyncTaskStatisticsStatisticDataDataResult']:
+        """
+        The source cloud service provider.
+        The data structure is documented below.
+        """
+        return pulumi.get(self, "datas")
+
+
+@pulumi.output_type
+class GetSyncTaskStatisticsStatisticDataDataResult(dict):
+    def __init__(__self__, *,
+                 statistic_num: _builtins.int,
+                 time_stamp: _builtins.int):
+        """
+        :param _builtins.int statistic_num: The statistics number.
+        :param _builtins.int time_stamp: The statistics timestamp.
+        """
+        pulumi.set(__self__, "statistic_num", statistic_num)
+        pulumi.set(__self__, "time_stamp", time_stamp)
+
+    @_builtins.property
+    @pulumi.getter(name="statisticNum")
+    def statistic_num(self) -> _builtins.int:
+        """
+        The statistics number.
+        """
+        return pulumi.get(self, "statistic_num")
+
+    @_builtins.property
+    @pulumi.getter(name="timeStamp")
+    def time_stamp(self) -> _builtins.int:
+        """
+        The statistics timestamp.
+        """
+        return pulumi.get(self, "time_stamp")
 
 

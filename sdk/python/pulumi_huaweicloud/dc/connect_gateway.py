@@ -25,6 +25,7 @@ class ConnectGatewayArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ConnectGateway resource.
+
         :param pulumi.Input[_builtins.str] address_family: Specifies the IP address family of the DC connect gateway. Value options:
                + **ipv4**: Only IPv4 is supported.
                + **dual**: Both IPv4 and IPv6 are supported.
@@ -115,6 +116,7 @@ class _ConnectGatewayState:
                  updated_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConnectGateway resources.
+
         :param pulumi.Input[_builtins.str] access_site: Indicates the access site of the connect gateway.
         :param pulumi.Input[_builtins.str] address_family: Specifies the IP address family of the DC connect gateway. Value options:
                + **ipv4**: Only IPv4 is supported.
@@ -308,7 +310,7 @@ class _ConnectGatewayState:
         pulumi.set(self, "updated_time", value)
 
 
-@pulumi.type_token("huaweicloud:dc/connectGateway:ConnectGateway")
+@pulumi.type_token("huaweicloud:Dc/connectGateway:ConnectGateway")
 class ConnectGateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -340,11 +342,10 @@ class ConnectGateway(pulumi.CustomResource):
 
         The DC connect gateway resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/connectGateway:ConnectGateway test <id>
+        $ pulumi import huaweicloud:Dc/connectGateway:ConnectGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -385,11 +386,10 @@ class ConnectGateway(pulumi.CustomResource):
 
         The DC connect gateway resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dc/connectGateway:ConnectGateway test <id>
+        $ pulumi import huaweicloud:Dc/connectGateway:ConnectGateway test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectGatewayArgs args: The arguments to use to populate this resource's properties.
@@ -432,7 +432,7 @@ class ConnectGateway(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_time"] = None
         super(ConnectGateway, __self__).__init__(
-            'huaweicloud:dc/connectGateway:ConnectGateway',
+            'huaweicloud:Dc/connectGateway:ConnectGateway',
             resource_name,
             __props__,
             opts)

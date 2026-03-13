@@ -6,6 +6,14 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_bucket_objects import *
+from .get_bucket_region import *
+from .get_buckets import *
+from .get_cloud_type_venders import *
+from .get_migration_sync_tasks import *
+from .get_migration_task_groups import *
+from .get_migration_tasks import *
+from .get_sync_task_statistics import *
 from .migration_sync_task import *
 from .migration_task import *
 from .migration_task_group import *

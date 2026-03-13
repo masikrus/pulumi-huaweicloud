@@ -32,6 +32,7 @@ class RecordsetArgs:
                  weight: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Recordset resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] records: Specifies the list of the records of the record set.  
                The value depends on the `type` parameter, you can refer to this [document](https://support.huaweicloud.com/intl/en-us/usermanual-dns/dns_usermanual_0601.html#dns_usermanual_0601__table936244914119).
         :param pulumi.Input[_builtins.str] type: Specifies the type of the record set.  
@@ -245,6 +246,7 @@ class _RecordsetState:
                  zone_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Recordset resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the record set.
         :param pulumi.Input[_builtins.str] line_id: Specifies the resolution line ID.  
                Changing this parameter will create a new resource.
@@ -549,11 +551,10 @@ class Recordset(pulumi.CustomResource):
 
         The DNS recordset can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/recordset:Recordset test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -644,11 +645,10 @@ class Recordset(pulumi.CustomResource):
 
         The DNS recordset can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/recordset:Recordset test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecordsetArgs args: The arguments to use to populate this resource's properties.

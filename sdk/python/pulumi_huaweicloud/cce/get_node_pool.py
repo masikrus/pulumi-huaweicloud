@@ -27,7 +27,7 @@ class GetNodePoolResult:
     """
     A collection of values returned by getNodePool.
     """
-    def __init__(__self__, availability_zone=None, cluster_id=None, current_node_count=None, data_volumes=None, enterprise_project_id=None, extend_param=None, flavor_id=None, hostname_configs=None, id=None, initial_node_count=None, key_pair=None, labels=None, max_node_count=None, max_pods=None, min_node_count=None, name=None, node_pool_id=None, os=None, priority=None, region=None, root_volumes=None, scale_down_cooldown_time=None, scall_enable=None, status=None, subnet_id=None, tags=None, type=None):
+    def __init__(__self__, availability_zone=None, cluster_id=None, current_node_count=None, data_volumes=None, enterprise_project_id=None, extend_param=None, extension_scale_groups=None, flavor_id=None, hostname_configs=None, id=None, initial_node_count=None, key_pair=None, labels=None, max_node_count=None, max_pods=None, min_node_count=None, name=None, node_pool_id=None, os=None, priority=None, region=None, root_volumes=None, scale_down_cooldown_time=None, scall_enable=None, status=None, subnet_id=None, tags=None, type=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -46,6 +46,9 @@ class GetNodePoolResult:
         if extend_param and not isinstance(extend_param, dict):
             raise TypeError("Expected argument 'extend_param' to be a dict")
         pulumi.set(__self__, "extend_param", extend_param)
+        if extension_scale_groups and not isinstance(extension_scale_groups, list):
+            raise TypeError("Expected argument 'extension_scale_groups' to be a list")
+        pulumi.set(__self__, "extension_scale_groups", extension_scale_groups)
         if flavor_id and not isinstance(flavor_id, str):
             raise TypeError("Expected argument 'flavor_id' to be a str")
         pulumi.set(__self__, "flavor_id", flavor_id)
@@ -135,7 +138,8 @@ class GetNodePoolResult:
     @pulumi.getter(name="dataVolumes")
     def data_volumes(self) -> Sequence['outputs.GetNodePoolDataVolumeResult']:
         """
-        Represents the data disk to be created. Structure is documented below.
+        Represents the data disk to be created.
+        The data_volumes structure is documented below.
         """
         return pulumi.get(self, "data_volumes")
 
@@ -156,6 +160,15 @@ class GetNodePoolResult:
         return pulumi.get(self, "extend_param")
 
     @_builtins.property
+    @pulumi.getter(name="extensionScaleGroups")
+    def extension_scale_groups(self) -> Sequence['outputs.GetNodePoolExtensionScaleGroupResult']:
+        """
+        The configurations of extended scaling groups in the node pool.
+        The extension_scale_groups structure is documented below.
+        """
+        return pulumi.get(self, "extension_scale_groups")
+
+    @_builtins.property
     @pulumi.getter(name="flavorId")
     def flavor_id(self) -> _builtins.str:
         """
@@ -168,7 +181,7 @@ class GetNodePoolResult:
     def hostname_configs(self) -> Sequence['outputs.GetNodePoolHostnameConfigResult']:
         """
         The hostname config of the kubernetes node.
-        The object structure is documented below.
+        The hostname_config structure is documented below.
         """
         return pulumi.get(self, "hostname_configs")
 
@@ -208,7 +221,7 @@ class GetNodePoolResult:
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> _builtins.int:
         """
-        Maximum number of nodes allowed if auto scaling is enabled.
+        The maximum number of nodes that can be retained in the scaling group during auto-scaling.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -224,13 +237,17 @@ class GetNodePoolResult:
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> _builtins.int:
         """
-        Minimum number of nodes allowed if auto scaling is enabled.
+        The minimum number of nodes in the scaling group during auto-scaling.
         """
         return pulumi.get(self, "min_node_count")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        The name of an extended scaling group.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -263,7 +280,8 @@ class GetNodePoolResult:
     @pulumi.getter(name="rootVolumes")
     def root_volumes(self) -> Sequence['outputs.GetNodePoolRootVolumeResult']:
         """
-        It corresponds to the system disk related configuration. Structure is documented below.
+        It corresponds to the system disk related configuration.
+        The root_volume structure is documented below.
         """
         return pulumi.get(self, "root_volumes")
 
@@ -279,7 +297,7 @@ class GetNodePoolResult:
     @pulumi.getter(name="scallEnable")
     def scall_enable(self) -> _builtins.bool:
         """
-        Whether auto scaling is enabled.
+        Whether auto-scaling is enabled.
         """
         return pulumi.get(self, "scall_enable")
 
@@ -325,6 +343,7 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
             data_volumes=self.data_volumes,
             enterprise_project_id=self.enterprise_project_id,
             extend_param=self.extend_param,
+            extension_scale_groups=self.extension_scale_groups,
             flavor_id=self.flavor_id,
             hostname_configs=self.hostname_configs,
             id=self.id,
@@ -394,6 +413,7 @@ def get_node_pool(cluster_id: Optional[_builtins.str] = None,
         data_volumes=pulumi.get(__ret__, 'data_volumes'),
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
         extend_param=pulumi.get(__ret__, 'extend_param'),
+        extension_scale_groups=pulumi.get(__ret__, 'extension_scale_groups'),
         flavor_id=pulumi.get(__ret__, 'flavor_id'),
         hostname_configs=pulumi.get(__ret__, 'hostname_configs'),
         id=pulumi.get(__ret__, 'id'),
@@ -460,6 +480,7 @@ def get_node_pool_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = Non
         data_volumes=pulumi.get(__response__, 'data_volumes'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         extend_param=pulumi.get(__response__, 'extend_param'),
+        extension_scale_groups=pulumi.get(__response__, 'extension_scale_groups'),
         flavor_id=pulumi.get(__response__, 'flavor_id'),
         hostname_configs=pulumi.get(__response__, 'hostname_configs'),
         id=pulumi.get(__response__, 'id'),

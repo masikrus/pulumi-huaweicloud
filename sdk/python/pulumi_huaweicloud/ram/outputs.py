@@ -13,17 +13,32 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ResourceShareAssociatedPermission',
+    'GetDistinctSharedPrincipalsDistinctSharedPrincipalResult',
+    'GetDistinctSharedResourcesDistinctSharedResourceResult',
+    'GetPermissionVersionsPermissionResult',
+    'GetQuotasQuotaResult',
+    'GetQuotasQuotaResourceResult',
+    'GetResourceInstancesCountMatchResult',
+    'GetResourceInstancesCountTagResult',
+    'GetResourceInstancesFilterMatchResult',
+    'GetResourceInstancesFilterResourceResult',
+    'GetResourceInstancesFilterResourceTagResult',
+    'GetResourceInstancesFilterTagResult',
+    'GetResourcePermissionPermissionResult',
     'GetResourcePermissionsPermissionResult',
     'GetResourceShareAssociatedPermissionsAssociatedPermissionResult',
     'GetResourceShareAssociationsAssociationResult',
     'GetResourceShareInvitationsResourceShareInvitationResult',
     'GetResourceSharesResourceShareResult',
     'GetResourceSharesTagFilterResult',
+    'GetResourceTypesResourceTypeResult',
     'GetSharedPrincipalsSharedPrincipalResult',
     'GetSharedResourcesSharedResourceResult',
+    'GetTagsTagResult',
 ]
 
 @pulumi.output_type
@@ -103,6 +118,636 @@ class ResourceShareAssociatedPermission(dict):
 
 
 @pulumi.output_type
+class GetDistinctSharedPrincipalsDistinctSharedPrincipalResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str id: The account ID or URN of the creator or user of the resource sharing instance.
+        :param _builtins.str updated_at: The last time the resource sharing instance was updated.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The account ID or URN of the creator or user of the resource sharing instance.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The last time the resource sharing instance was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetDistinctSharedResourcesDistinctSharedResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_type: _builtins.str,
+                 resource_urn: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str resource_type: The resource type.
+        :param _builtins.str resource_urn: The unified resource name for resources.
+        :param _builtins.str updated_at: The last time the resource sharing instance was updated.
+        """
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "resource_urn", resource_urn)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceUrn")
+    def resource_urn(self) -> _builtins.str:
+        """
+        The unified resource name for resources.
+        """
+        return pulumi.get(self, "resource_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The last time the resource sharing instance was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetPermissionVersionsPermissionResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 default_version: _builtins.bool,
+                 id: _builtins.str,
+                 is_resource_type_default: _builtins.bool,
+                 name: _builtins.str,
+                 permission_type: _builtins.str,
+                 permission_urn: _builtins.str,
+                 resource_type: _builtins.str,
+                 status: _builtins.str,
+                 updated_at: _builtins.str,
+                 version: _builtins.int):
+        """
+        :param _builtins.str created_at: Indicates the RAM permission creation time.
+        :param _builtins.bool default_version: Indicates whether the current version is the default version.
+        :param _builtins.str id: Indicates the ID of RAM permission.
+        :param _builtins.bool is_resource_type_default: Whether the RAM permission resource type is default.
+        :param _builtins.str name: Indicates the name of RAM permission.
+        :param _builtins.str permission_type: Indicates the permission type.
+        :param _builtins.str permission_urn: Indicates the URN for the permission.
+        :param _builtins.str resource_type: Indicates the resource type of RAM permission.
+        :param _builtins.str status: Indicates the status of the permission.
+        :param _builtins.str updated_at: Indicates the RAM permission last update time.
+        :param _builtins.int version: Indicates the version of the permission.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default_version", default_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_resource_type_default", is_resource_type_default)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "permission_type", permission_type)
+        pulumi.set(__self__, "permission_urn", permission_urn)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the RAM permission creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultVersion")
+    def default_version(self) -> _builtins.bool:
+        """
+        Indicates whether the current version is the default version.
+        """
+        return pulumi.get(self, "default_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of RAM permission.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isResourceTypeDefault")
+    def is_resource_type_default(self) -> _builtins.bool:
+        """
+        Whether the RAM permission resource type is default.
+        """
+        return pulumi.get(self, "is_resource_type_default")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of RAM permission.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionType")
+    def permission_type(self) -> _builtins.str:
+        """
+        Indicates the permission type.
+        """
+        return pulumi.get(self, "permission_type")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionUrn")
+    def permission_urn(self) -> _builtins.str:
+        """
+        Indicates the URN for the permission.
+        """
+        return pulumi.get(self, "permission_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Indicates the resource type of RAM permission.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the permission.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the RAM permission last update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        Indicates the version of the permission.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetQuotasQuotaResourceResult']):
+        """
+        :param Sequence['GetQuotasQuotaResourceArgs'] resources: The list of resources.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetQuotasQuotaResourceResult']:
+        """
+        The list of resources.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int max: The maximum quota.
+        :param _builtins.int min: The minimum quota.
+        :param _builtins.int quota: The total number quotas.
+        :param _builtins.str type: The type of quota.
+        :param _builtins.int used: The number of quotas already used
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        The maximum quota.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        The minimum quota.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The total number quotas.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of quota.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The number of quotas already used
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetResourceInstancesCountMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param _builtins.str value: Specifies the value of the key in the matched tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the key in the matched tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourceInstancesCountTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param Sequence[_builtins.str] values: Specifies all values of the key in the tags.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies all values of the key in the tags.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourceInstancesFilterMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param _builtins.str value: Specifies the value of the key in the matched tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the key in the matched tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourceInstancesFilterResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetResourceInstancesFilterResourceTagResult']):
+        """
+        :param _builtins.str resource_detail: Indicates the details of resource.
+        :param _builtins.str resource_id: Indicates the ID of resource.
+        :param _builtins.str resource_name: Indicates the name of resource.
+        :param Sequence['GetResourceInstancesFilterResourceTagArgs'] tags: Specifies the list of tags.
+               
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        Indicates the details of resource.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the ID of resource.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        Indicates the name of resource.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResourceInstancesFilterResourceTagResult']:
+        """
+        Specifies the list of tags.
+
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetResourceInstancesFilterResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param _builtins.str value: Specifies the value of the key in the matched tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the key in the matched tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourceInstancesFilterTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str key: Specifies the key of matched tags.
+        :param Sequence[_builtins.str] values: Specifies all values of the key in the tags.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of matched tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies all values of the key in the tags.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcePermissionPermissionResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 created_at: _builtins.str,
+                 default_version: _builtins.bool,
+                 id: _builtins.str,
+                 is_resource_type_default: _builtins.bool,
+                 name: _builtins.str,
+                 permission_type: _builtins.str,
+                 permission_urn: _builtins.str,
+                 resource_type: _builtins.str,
+                 status: _builtins.str,
+                 updated_at: _builtins.str,
+                 version: _builtins.int):
+        """
+        :param _builtins.str content: Impact and actions allowed by the permission.
+        :param _builtins.str created_at: Indicates the RAM permission creation time.
+        :param _builtins.bool default_version: Indicates whether the current version is the default version.
+        :param _builtins.str id: Indicates the ID of RAM permission.
+        :param _builtins.bool is_resource_type_default: Whether the RAM permission resource type is default.
+        :param _builtins.str name: Indicates the name of RAM permission.
+        :param _builtins.str permission_type: Indicates the permission type.
+        :param _builtins.str permission_urn: Indicates the URN for the permission.
+        :param _builtins.str resource_type: Indicates the resource type of RAM permission.
+        :param _builtins.str status: Indicates the status of the permission.
+        :param _builtins.str updated_at: Indicates the RAM permission last update time.
+        :param _builtins.int version: Indicates the version of the permission.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default_version", default_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_resource_type_default", is_resource_type_default)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "permission_type", permission_type)
+        pulumi.set(__self__, "permission_urn", permission_urn)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        Impact and actions allowed by the permission.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the RAM permission creation time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultVersion")
+    def default_version(self) -> _builtins.bool:
+        """
+        Indicates whether the current version is the default version.
+        """
+        return pulumi.get(self, "default_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of RAM permission.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isResourceTypeDefault")
+    def is_resource_type_default(self) -> _builtins.bool:
+        """
+        Whether the RAM permission resource type is default.
+        """
+        return pulumi.get(self, "is_resource_type_default")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the name of RAM permission.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionType")
+    def permission_type(self) -> _builtins.str:
+        """
+        Indicates the permission type.
+        """
+        return pulumi.get(self, "permission_type")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionUrn")
+    def permission_urn(self) -> _builtins.str:
+        """
+        Indicates the URN for the permission.
+        """
+        return pulumi.get(self, "permission_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Indicates the resource type of RAM permission.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the status of the permission.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the RAM permission last update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        Indicates the version of the permission.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetResourcePermissionsPermissionResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -117,9 +762,9 @@ class GetResourcePermissionsPermissionResult(dict):
                  updated_at: _builtins.str,
                  version: _builtins.int):
         """
-        :param _builtins.str created_at: Indicates the RAM permission create time.
+        :param _builtins.str created_at: Indicates the RAM permission creation time.
         :param _builtins.bool default_version: Indicates whether the current version is the default version.
-        :param _builtins.str id: Indicates the id of RAM permission.
+        :param _builtins.str id: Indicates the ID of RAM permission.
         :param _builtins.bool is_resource_type_default: Whether the RAM permission resource type is default.
         :param _builtins.str name: Specifies the name of RAM permission in which to query the data source.
         :param _builtins.str permission_type: Specifies the type of the permission. Valid values are as follows:
@@ -151,7 +796,7 @@ class GetResourcePermissionsPermissionResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        Indicates the RAM permission create time.
+        Indicates the RAM permission creation time.
         """
         return pulumi.get(self, "created_at")
 
@@ -167,7 +812,7 @@ class GetResourcePermissionsPermissionResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Indicates the id of RAM permission.
+        Indicates the ID of RAM permission.
         """
         return pulumi.get(self, "id")
 
@@ -657,6 +1302,35 @@ class GetResourceSharesTagFilterResult(dict):
 
 
 @pulumi.output_type
+class GetResourceTypesResourceTypeResult(dict):
+    def __init__(__self__, *,
+                 region_id: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param _builtins.str region_id: The ID of region.
+        :param _builtins.str resource_type: The resource type name.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The ID of region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type name.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
 class GetSharedPrincipalsSharedPrincipalResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -778,5 +1452,34 @@ class GetSharedResourcesSharedResourceResult(dict):
         The latest update time of the RAM share.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of tags.
+        :param Sequence[_builtins.str] values: All values of the key in the tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of tags.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        All values of the key in the tags.
+        """
+        return pulumi.get(self, "values")
 
 

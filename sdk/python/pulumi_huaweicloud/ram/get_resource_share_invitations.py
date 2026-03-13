@@ -111,7 +111,7 @@ def get_resource_share_invitations(resource_share_ids: Optional[Sequence[_builti
     __args__['resourceShareInvitationIds'] = resource_share_invitation_ids
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getResourceShareInvitations:getResourceShareInvitations', __args__, opts=opts, typ=GetResourceShareInvitationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getResourceShareInvitations:getResourceShareInvitations', __args__, opts=opts, typ=GetResourceShareInvitationsResult).value
 
     return AwaitableGetResourceShareInvitationsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -137,7 +137,7 @@ def get_resource_share_invitations_output(resource_share_ids: Optional[pulumi.In
     __args__['resourceShareInvitationIds'] = resource_share_invitation_ids
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getResourceShareInvitations:getResourceShareInvitations', __args__, opts=opts, typ=GetResourceShareInvitationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getResourceShareInvitations:getResourceShareInvitations', __args__, opts=opts, typ=GetResourceShareInvitationsResult)
     return __ret__.apply(lambda __response__: GetResourceShareInvitationsResult(
         id=pulumi.get(__response__, 'id'),
         resource_share_ids=pulumi.get(__response__, 'resource_share_ids'),

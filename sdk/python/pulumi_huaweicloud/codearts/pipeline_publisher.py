@@ -30,6 +30,7 @@ class PipelinePublisherArgs:
                  website: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelinePublisher resource.
+
         :param pulumi.Input[_builtins.str] en_name: Specifies the publisher English name.
         :param pulumi.Input[_builtins.str] support_url: Specifies the support URL.
         :param pulumi.Input[_builtins.str] description: Specifies the description.
@@ -185,6 +186,7 @@ class _PipelinePublisherState:
                  website: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelinePublisher resources.
+
         :param pulumi.Input[_builtins.str] auth_status: Indicates the authorization status.
         :param pulumi.Input[_builtins.str] description: Specifies the description.
         :param pulumi.Input[_builtins.str] en_name: Specifies the publisher English name.
@@ -398,7 +400,7 @@ class _PipelinePublisherState:
         pulumi.set(self, "website", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelinePublisher:PipelinePublisher")
+@pulumi.type_token("huaweicloud:Codearts/pipelinePublisher:PipelinePublisher")
 class PipelinePublisher(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -443,11 +445,10 @@ class PipelinePublisher(pulumi.CustomResource):
 
         The publisher can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelinePublisher:PipelinePublisher test <id>
+        $ pulumi import huaweicloud:Codearts/pipelinePublisher:PipelinePublisher test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -497,11 +498,10 @@ class PipelinePublisher(pulumi.CustomResource):
 
         The publisher can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelinePublisher:PipelinePublisher test <id>
+        $ pulumi import huaweicloud:Codearts/pipelinePublisher:PipelinePublisher test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelinePublisherArgs args: The arguments to use to populate this resource's properties.
@@ -555,7 +555,7 @@ class PipelinePublisher(pulumi.CustomResource):
             __props__.__dict__["last_update_user_name"] = None
             __props__.__dict__["user_id"] = None
         super(PipelinePublisher, __self__).__init__(
-            'huaweicloud:codearts/pipelinePublisher:PipelinePublisher',
+            'huaweicloud:Codearts/pipelinePublisher:PipelinePublisher',
             resource_name,
             __props__,
             opts)

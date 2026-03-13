@@ -25,6 +25,7 @@ class CmdbApplicationArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CmdbApplication resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description about the application.
                The description can contain a maximum of 255 characters.
         :param pulumi.Input[_builtins.str] display_name: Specifies the **display** name of the application. The value can contain
@@ -109,6 +110,7 @@ class _CmdbApplicationState:
                  register_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CmdbApplication resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description about the application.
                The description can contain a maximum of 255 characters.
@@ -242,11 +244,10 @@ class CmdbApplication(pulumi.CustomResource):
 
         The AOM application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbApplication:CmdbApplication test d61ef1ddb07f40e381ee37a000512caa
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -285,11 +286,10 @@ class CmdbApplication(pulumi.CustomResource):
 
         The AOM application can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbApplication:CmdbApplication test d61ef1ddb07f40e381ee37a000512caa
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CmdbApplicationArgs args: The arguments to use to populate this resource's properties.

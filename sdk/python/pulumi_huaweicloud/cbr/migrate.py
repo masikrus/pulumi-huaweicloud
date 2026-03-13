@@ -24,6 +24,7 @@ class MigrateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Migrate resource.
+
         :param pulumi.Input[_builtins.bool] all_regions: Specifies whether to trigger migration in other regions.
         :param pulumi.Input[_builtins.float] reservation: Specifies the default expansion ratio of the vault.
                The value must be a float between `0` and `1`.
@@ -82,6 +83,7 @@ class _MigrateState:
                  reservation: Optional[pulumi.Input[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering Migrate resources.
+
         :param pulumi.Input[_builtins.bool] all_regions: Specifies whether to trigger migration in other regions.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this will create new resource.
@@ -161,6 +163,7 @@ class Migrate(pulumi.CustomResource):
             reservation=0.5)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] all_regions: Specifies whether to trigger migration in other regions.
@@ -191,6 +194,7 @@ class Migrate(pulumi.CustomResource):
             all_regions=False,
             reservation=0.5)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrateArgs args: The arguments to use to populate this resource's properties.

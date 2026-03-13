@@ -124,7 +124,7 @@ def get_rasp_status(app_type: Optional[_builtins.str] = None,
     __args__['hostId'] = host_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getRaspStatus:getRaspStatus', __args__, opts=opts, typ=GetRaspStatusResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getRaspStatus:getRaspStatus', __args__, opts=opts, typ=GetRaspStatusResult).value
 
     return AwaitableGetRaspStatusResult(
         app_type=pulumi.get(__ret__, 'app_type'),
@@ -160,7 +160,7 @@ def get_rasp_status_output(app_type: Optional[pulumi.Input[Optional[_builtins.st
     __args__['hostId'] = host_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getRaspStatus:getRaspStatus', __args__, opts=opts, typ=GetRaspStatusResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getRaspStatus:getRaspStatus', __args__, opts=opts, typ=GetRaspStatusResult)
     return __ret__.apply(lambda __response__: GetRaspStatusResult(
         app_type=pulumi.get(__response__, 'app_type'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

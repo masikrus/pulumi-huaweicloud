@@ -115,7 +115,7 @@ def get_resource_aggregator_discovered_resources(aggregator_id: Optional[_builti
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_discovered_resources(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_discovered_resources(aggregator_id=aggregator_id)
     ```
 
 
@@ -133,7 +133,7 @@ def get_resource_aggregator_discovered_resources(aggregator_id: Optional[_builti
     __args__['resourceType'] = resource_type
     __args__['serviceType'] = service_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregatorDiscoveredResources:getResourceAggregatorDiscoveredResources', __args__, opts=opts, typ=GetResourceAggregatorDiscoveredResourcesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregatorDiscoveredResources:getResourceAggregatorDiscoveredResources', __args__, opts=opts, typ=GetResourceAggregatorDiscoveredResourcesResult).value
 
     return AwaitableGetResourceAggregatorDiscoveredResourcesResult(
         aggregator_id=pulumi.get(__ret__, 'aggregator_id'),
@@ -158,7 +158,7 @@ def get_resource_aggregator_discovered_resources_output(aggregator_id: Optional[
 
     config = pulumi.Config()
     aggregator_id = config.require_object("aggregatorId")
-    test = huaweicloud.rms.get_resource_aggregator_discovered_resources(aggregator_id=aggregator_id)
+    test = huaweicloud.Rms.get_resource_aggregator_discovered_resources(aggregator_id=aggregator_id)
     ```
 
 
@@ -176,7 +176,7 @@ def get_resource_aggregator_discovered_resources_output(aggregator_id: Optional[
     __args__['resourceType'] = resource_type
     __args__['serviceType'] = service_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregatorDiscoveredResources:getResourceAggregatorDiscoveredResources', __args__, opts=opts, typ=GetResourceAggregatorDiscoveredResourcesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregatorDiscoveredResources:getResourceAggregatorDiscoveredResources', __args__, opts=opts, typ=GetResourceAggregatorDiscoveredResourcesResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorDiscoveredResourcesResult(
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),
         filter=pulumi.get(__response__, 'filter'),

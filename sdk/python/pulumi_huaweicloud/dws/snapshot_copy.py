@@ -25,6 +25,7 @@ class SnapshotCopyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotCopy resource.
+
         :param pulumi.Input[_builtins.str] snapshot_id: Specifies the ID of the automated snapshot to be copied.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the copy snapshot.
@@ -114,6 +115,7 @@ class _SnapshotCopyState:
                  snapshot_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotCopy resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the copy snapshot.
                Changing this creates a new resource.
                The maximum length is limited to `256` characters, and special characters (`!<>'=&"`) are not allowed.
@@ -232,11 +234,10 @@ class SnapshotCopy(pulumi.CustomResource):
 
         The resource can be imported using the related `snapshot_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshotCopy:SnapshotCopy test <snapshot_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,11 +287,10 @@ class SnapshotCopy(pulumi.CustomResource):
 
         The resource can be imported using the related `snapshot_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/snapshotCopy:SnapshotCopy test <snapshot_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotCopyArgs args: The arguments to use to populate this resource's properties.

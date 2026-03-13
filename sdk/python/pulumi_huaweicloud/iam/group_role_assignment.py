@@ -22,30 +22,30 @@ class GroupRoleAssignmentArgs:
                  group_id: pulumi.Input[_builtins.str],
                  role_id: pulumi.Input[_builtins.str],
                  domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupRoleAssignment resource.
-        :param pulumi.Input[_builtins.str] group_id: Specifies the group to assign the role to.
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
-               Changing this parameter will create a new resource.
+
+        :param pulumi.Input[_builtins.str] group_id: Specifies the ID of user group to which the role to be authorized
+               belongs.
+        :param pulumi.Input[_builtins.str] role_id: Specifies the ID of role to be authorized.
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain to assign the role in.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project to assign the role in.
-               Changing this parameter will create a new resource.
                
-               > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
+               > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project to assign the role in.
                If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
                including existing and future projects.
-               
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "role_id", role_id)
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if project_id is not None:
@@ -55,8 +55,8 @@ class GroupRoleAssignmentArgs:
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the group to assign the role to.
-        Changing this parameter will create a new resource.
+        Specifies the ID of user group to which the role to be authorized
+        belongs.
         """
         return pulumi.get(self, "group_id")
 
@@ -68,8 +68,7 @@ class GroupRoleAssignmentArgs:
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the role to assign.
-        Changing this parameter will create a new resource.
+        Specifies the ID of role to be authorized.
         """
         return pulumi.get(self, "role_id")
 
@@ -82,7 +81,6 @@ class GroupRoleAssignmentArgs:
     def domain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the domain to assign the role in.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_id")
 
@@ -91,13 +89,24 @@ class GroupRoleAssignmentArgs:
         pulumi.set(self, "domain_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the enterprise project to assign the role in.
-        Changing this parameter will create a new resource.
 
-        > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
+        > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -112,8 +121,6 @@ class GroupRoleAssignmentArgs:
         Specifies the project to assign the role in.
         If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
         including existing and future projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -126,30 +133,30 @@ class GroupRoleAssignmentArgs:
 class _GroupRoleAssignmentState:
     def __init__(__self__, *,
                  domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupRoleAssignment resources.
+
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain to assign the role in.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project to assign the role in.
-               Changing this parameter will create a new resource.
                
-               > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
-        :param pulumi.Input[_builtins.str] group_id: Specifies the group to assign the role to.
-               Changing this parameter will create a new resource.
+               > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
+        :param pulumi.Input[_builtins.str] group_id: Specifies the ID of user group to which the role to be authorized
+               belongs.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project to assign the role in.
                If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
                including existing and future projects.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] role_id: Specifies the ID of role to be authorized.
         """
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if group_id is not None:
@@ -164,7 +171,6 @@ class _GroupRoleAssignmentState:
     def domain_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the domain to assign the role in.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_id")
 
@@ -173,13 +179,24 @@ class _GroupRoleAssignmentState:
         pulumi.set(self, "domain_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the enterprise project to assign the role in.
-        Changing this parameter will create a new resource.
 
-        > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
+        > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -191,8 +208,8 @@ class _GroupRoleAssignmentState:
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the group to assign the role to.
-        Changing this parameter will create a new resource.
+        Specifies the ID of user group to which the role to be authorized
+        belongs.
         """
         return pulumi.get(self, "group_id")
 
@@ -207,8 +224,6 @@ class _GroupRoleAssignmentState:
         Specifies the project to assign the role in.
         If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
         including existing and future projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -220,8 +235,7 @@ class _GroupRoleAssignmentState:
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the role to assign.
-        Changing this parameter will create a new resource.
+        Specifies the ID of role to be authorized.
         """
         return pulumi.get(self, "role_id")
 
@@ -237,32 +251,33 @@ class GroupRoleAssignment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an IAM user group role assignment within HuaweiCloud IAM Service.
-        This is an alternative to `Iam.RoleAssignment`
+        Using this resource to authorize a role to a user group and specify the scope of effect within HuaweiCloud.
 
-        > **NOTE:** 1. You *must* have admin privileges to use this resource.
-          <br/>2. When the resource is created, the permissions will take effect after 15 to 30 minutes.
+        > You **must** have admin privileges to use this resource.<br>
+           When the resource is created, the permissions will take effect after `15` to `30` minutes.
 
         ## Example Usage
 
-        ### Assign role with project
+        ### Assign role with a specified project
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         project_id = config.require_object("projectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             project_id=project_id)
         ```
@@ -274,100 +289,95 @@ class GroupRoleAssignment(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
-        project_id = config.require_object("projectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
-        all = huaweicloud.iam.GroupRoleAssignment("all",
-            group_id=test_group.id,
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
+        # The role name can be the system name (e.g. RDS Administrator) or a custom name
+        test = huaweicloud.Iam.get_role(name=role_name)
+        test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
+            group_id=group_id,
             role_id=test.id,
             project_id="all")
         ```
 
-        ### Assign role with domain
+        ### Assign role with a specified domain
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         domain_id = config.require_object("domainId")
-        test = huaweicloud.Iam.get_role(name="obs_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             domain_id=domain_id)
         ```
 
-        ### Assign role with enterprise project
+        ### Assign role with a specified enterprise project
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             enterprise_project_id=enterprise_project_id)
         ```
 
         ## Import
 
-        The role assignments can be imported using the `group_id`, `role_id` and  `domain_id`, `project_id`,
-
-          `enterprise_project_id`, e.g.
-
-        bash
+        The role assignments can be imported using the `group_id`, `role_id`, `assignment_type` and one of `domain_id`,
+        `project_id` and `enterprise_project_id` (assigned object ID), which depends on the value of assignment type, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<domain_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<assigned_object_id>:<assignment_type>
         ```
 
-        or
+        The valid values of 'assignment_type' are as follows (and the corresponding meanings of 'assigned_object_id' are also
+        explained):
 
-        bash
+        * **domain**: the value of 'assigned_object_id' input is domain (account) ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<project_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<domain_id>:domain
         ```
 
-        or
-
-        bash
+        * **project**: the value of 'assigned_object_id' input is project ID or **all**, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/all
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/all:project
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<project_id>:project
         ```
 
-        or
-
-        bash
+        * **enterprise_project**: the value of 'assigned_object_id' input is enterprise project ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<enterprise_project_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<enterprise_project_id>:enterprise_project
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain to assign the role in.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project to assign the role in.
-               Changing this parameter will create a new resource.
                
-               > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
-        :param pulumi.Input[_builtins.str] group_id: Specifies the group to assign the role to.
-               Changing this parameter will create a new resource.
+               > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
+        :param pulumi.Input[_builtins.str] group_id: Specifies the ID of user group to which the role to be authorized
+               belongs.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project to assign the role in.
                If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
                including existing and future projects.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] role_id: Specifies the ID of role to be authorized.
         """
         ...
     @overload
@@ -376,26 +386,26 @@ class GroupRoleAssignment(pulumi.CustomResource):
                  args: GroupRoleAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an IAM user group role assignment within HuaweiCloud IAM Service.
-        This is an alternative to `Iam.RoleAssignment`
+        Using this resource to authorize a role to a user group and specify the scope of effect within HuaweiCloud.
 
-        > **NOTE:** 1. You *must* have admin privileges to use this resource.
-          <br/>2. When the resource is created, the permissions will take effect after 15 to 30 minutes.
+        > You **must** have admin privileges to use this resource.<br>
+           When the resource is created, the permissions will take effect after `15` to `30` minutes.
 
         ## Example Usage
 
-        ### Assign role with project
+        ### Assign role with a specified project
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         project_id = config.require_object("projectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             project_id=project_id)
         ```
@@ -407,82 +417,81 @@ class GroupRoleAssignment(pulumi.CustomResource):
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
-        project_id = config.require_object("projectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
-        all = huaweicloud.iam.GroupRoleAssignment("all",
-            group_id=test_group.id,
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
+        # The role name can be the system name (e.g. RDS Administrator) or a custom name
+        test = huaweicloud.Iam.get_role(name=role_name)
+        test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
+            group_id=group_id,
             role_id=test.id,
             project_id="all")
         ```
 
-        ### Assign role with domain
+        ### Assign role with a specified domain
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         domain_id = config.require_object("domainId")
-        test = huaweicloud.Iam.get_role(name="obs_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             domain_id=domain_id)
         ```
 
-        ### Assign role with enterprise project
+        ### Assign role with a specified enterprise project
 
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
+        group_id = config.require_object("groupId")
+        role_name = config.require_object("roleName")
         enterprise_project_id = config.require_object("enterpriseProjectId")
-        test = huaweicloud.Iam.get_role(name="rds_adm")
-        test_group = huaweicloud.iam.Group("test", name="group_1")
+        test = huaweicloud.Iam.get_role(name=role_name)
         test_group_role_assignment = huaweicloud.iam.GroupRoleAssignment("test",
-            group_id=test_group.id,
+            group_id=group_id,
             role_id=test.id,
             enterprise_project_id=enterprise_project_id)
         ```
 
         ## Import
 
-        The role assignments can be imported using the `group_id`, `role_id` and  `domain_id`, `project_id`,
-
-          `enterprise_project_id`, e.g.
-
-        bash
+        The role assignments can be imported using the `group_id`, `role_id`, `assignment_type` and one of `domain_id`,
+        `project_id` and `enterprise_project_id` (assigned object ID), which depends on the value of assignment type, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<domain_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<assigned_object_id>:<assignment_type>
         ```
 
-        or
+        The valid values of 'assignment_type' are as follows (and the corresponding meanings of 'assigned_object_id' are also
+        explained):
 
-        bash
+        * **domain**: the value of 'assigned_object_id' input is domain (account) ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<project_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<domain_id>:domain
         ```
 
-        or
-
-        bash
+        * **project**: the value of 'assigned_object_id' input is project ID or **all**, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/all
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/all:project
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<project_id>:project
         ```
 
-        or
-
-        bash
+        * **enterprise_project**: the value of 'assigned_object_id' input is enterprise project ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<enterprise_project_id>
+        $ pulumi import huaweicloud:Iam/groupRoleAssignment:GroupRoleAssignment test <group_id>/<role_id>/<enterprise_project_id>:enterprise_project
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupRoleAssignmentArgs args: The arguments to use to populate this resource's properties.
@@ -500,6 +509,7 @@ class GroupRoleAssignment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  group_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -514,6 +524,7 @@ class GroupRoleAssignment(pulumi.CustomResource):
             __props__ = GroupRoleAssignmentArgs.__new__(GroupRoleAssignmentArgs)
 
             __props__.__dict__["domain_id"] = domain_id
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
@@ -533,6 +544,7 @@ class GroupRoleAssignment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             domain_id: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             group_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -545,26 +557,23 @@ class GroupRoleAssignment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_id: Specifies the domain to assign the role in.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] enable_force_new: Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project to assign the role in.
-               Changing this parameter will create a new resource.
                
-               > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
-        :param pulumi.Input[_builtins.str] group_id: Specifies the group to assign the role to.
-               Changing this parameter will create a new resource.
+               > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
+        :param pulumi.Input[_builtins.str] group_id: Specifies the ID of user group to which the role to be authorized
+               belongs.
         :param pulumi.Input[_builtins.str] project_id: Specifies the project to assign the role in.
                If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
                including existing and future projects.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] role_id: Specifies the ID of role to be authorized.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _GroupRoleAssignmentState.__new__(_GroupRoleAssignmentState)
 
         __props__.__dict__["domain_id"] = domain_id
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["project_id"] = project_id
@@ -576,18 +585,24 @@ class GroupRoleAssignment(pulumi.CustomResource):
     def domain_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the domain to assign the role in.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Whether to allow parameters that do not support changes to have their change-triggered behavior set to 'ForceNew'.
+        """
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the enterprise project to assign the role in.
-        Changing this parameter will create a new resource.
 
-        > Exactly one of `domain_id`, `project_id` or `enterprise_project_id` must be specified.
+        > Exactly one of `domain_id`, `project_id` and `enterprise_project_id` must be specified.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -595,8 +610,8 @@ class GroupRoleAssignment(pulumi.CustomResource):
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the group to assign the role to.
-        Changing this parameter will create a new resource.
+        Specifies the ID of user group to which the role to be authorized
+        belongs.
         """
         return pulumi.get(self, "group_id")
 
@@ -607,8 +622,6 @@ class GroupRoleAssignment(pulumi.CustomResource):
         Specifies the project to assign the role in.
         If `project_id` is set to **all**, it means that the specified user group will be able to use all projects,
         including existing and future projects.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -616,8 +629,7 @@ class GroupRoleAssignment(pulumi.CustomResource):
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the role to assign.
-        Changing this parameter will create a new resource.
+        Specifies the ID of role to be authorized.
         """
         return pulumi.get(self, "role_id")
 

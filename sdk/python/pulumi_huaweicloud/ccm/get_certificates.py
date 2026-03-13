@@ -135,7 +135,7 @@ def get_certificates(deploy_support: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_certificates(status="ALL")
+    test = huaweicloud.Ccm.get_certificates(status="ALL")
     ```
 
 
@@ -172,7 +172,7 @@ def get_certificates(deploy_support: Optional[_builtins.bool] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getCertificates:getCertificates', __args__, opts=opts, typ=GetCertificatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getCertificates:getCertificates', __args__, opts=opts, typ=GetCertificatesResult).value
 
     return AwaitableGetCertificatesResult(
         certificates=pulumi.get(__ret__, 'certificates'),
@@ -197,7 +197,7 @@ def get_certificates_output(deploy_support: Optional[pulumi.Input[Optional[_buil
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_certificates(status="ALL")
+    test = huaweicloud.Ccm.get_certificates(status="ALL")
     ```
 
 
@@ -234,7 +234,7 @@ def get_certificates_output(deploy_support: Optional[pulumi.Input[Optional[_buil
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getCertificates:getCertificates', __args__, opts=opts, typ=GetCertificatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getCertificates:getCertificates', __args__, opts=opts, typ=GetCertificatesResult)
     return __ret__.apply(lambda __response__: GetCertificatesResult(
         certificates=pulumi.get(__response__, 'certificates'),
         deploy_support=pulumi.get(__response__, 'deploy_support'),

@@ -37,6 +37,7 @@ class ObsSystemImageArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ObsSystemImage resource.
+
         :param pulumi.Input[_builtins.str] image_url: Specifies the URL of the external image file in the OBS bucket, the format
                is **OBS bucket name:image file name**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] min_disk: Specifies the minimum size of the system disk, in GB unit.
@@ -403,6 +404,7 @@ class _ObsSystemImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObsSystemImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1548,37 +1550,28 @@ class ObsSystemImage(pulumi.CustomResource):
 
         The IMS OBS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsSystemImage:ObsSystemImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `type`, `is_config`, `is_quick_import`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_obs_system_image" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               type, is_config, is_quick_import,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1658,37 +1651,28 @@ class ObsSystemImage(pulumi.CustomResource):
 
         The IMS OBS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/obsSystemImage:ObsSystemImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `type`, `is_config`, `is_quick_import`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_obs_system_image" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               type, is_config, is_quick_import,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ObsSystemImageArgs args: The arguments to use to populate this resource's properties.

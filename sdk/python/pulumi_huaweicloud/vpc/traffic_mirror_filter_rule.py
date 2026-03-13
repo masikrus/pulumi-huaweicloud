@@ -33,6 +33,7 @@ class TrafficMirrorFilterRuleArgs:
                  source_port_range: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TrafficMirrorFilterRule resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the policy of in the traffic mirror filter rule.
                Valid values are **accept** or **reject**.
         :param pulumi.Input[_builtins.str] direction: Specifies the direction of the traffic mirror filter rule.
@@ -253,6 +254,7 @@ class _TrafficMirrorFilterRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TrafficMirrorFilterRule resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the policy of in the traffic mirror filter rule.
                Valid values are **accept** or **reject**.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the traffic mirror filter rule.
@@ -537,11 +539,10 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
 
         The traffic mirror filter rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/trafficMirrorFilterRule:TrafficMirrorFilterRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -604,11 +605,10 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
 
         The traffic mirror filter rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/trafficMirrorFilterRule:TrafficMirrorFilterRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TrafficMirrorFilterRuleArgs args: The arguments to use to populate this resource's properties.

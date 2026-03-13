@@ -28,6 +28,7 @@ class ClusterArgs:
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input['ClusterClientNodeConfigArgs']] = None,
                  cold_node_config: Optional[pulumi.Input['ClusterColdNodeConfigArgs']] = None,
+                 disk_encryption: Optional[pulumi.Input['ClusterDiskEncryptionArgs']] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -51,6 +52,7 @@ class ClusterArgs:
                  vpcep_endpoint: Optional[pulumi.Input['ClusterVpcepEndpointArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.str] engine_version: Specifies the engine version.
                For details, see [Supported Cluster Versions](https://support.huaweicloud.com/intl/en-us/api-css/css_03_0056.html).
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
@@ -70,6 +72,8 @@ class ClusterArgs:
                The client_node_config structure is documented below.
         :param pulumi.Input['ClusterColdNodeConfigArgs'] cold_node_config: Specifies the config of cold data node.
                The cold_node_config structure is documented below.
+        :param pulumi.Input['ClusterDiskEncryptionArgs'] disk_encryption: Specifies the disk encryption information.
+               The disk_encryption structure is documented below.
         :param pulumi.Input[_builtins.str] engine_type: Specifies the engine type. The valid value can be **elasticsearch** or **opensearch**.
                Defaults to **elasticsearch**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project id of the css cluster, The value **0**
@@ -136,6 +140,8 @@ class ClusterArgs:
             pulumi.set(__self__, "client_node_config", client_node_config)
         if cold_node_config is not None:
             pulumi.set(__self__, "cold_node_config", cold_node_config)
+        if disk_encryption is not None:
+            pulumi.set(__self__, "disk_encryption", disk_encryption)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if engine_type is not None:
@@ -280,6 +286,19 @@ class ClusterArgs:
     @cold_node_config.setter
     def cold_node_config(self, value: Optional[pulumi.Input['ClusterColdNodeConfigArgs']]):
         pulumi.set(self, "cold_node_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> Optional[pulumi.Input['ClusterDiskEncryptionArgs']]:
+        """
+        Specifies the disk encryption information.
+        The disk_encryption structure is documented below.
+        """
+        return pulumi.get(self, "disk_encryption")
+
+    @disk_encryption.setter
+    def disk_encryption(self, value: Optional[pulumi.Input['ClusterDiskEncryptionArgs']]):
+        pulumi.set(self, "disk_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -575,6 +594,7 @@ class _ClusterState:
                  created: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
+                 disk_encryption: Optional[pulumi.Input['ClusterDiskEncryptionArgs']] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -606,6 +626,7 @@ class _ClusterState:
                  vpcep_ip: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                The valid values are **true** and **false**, defaults to **false**.
                
@@ -628,6 +649,8 @@ class _ClusterState:
         :param pulumi.Input[_builtins.str] created: schema: Deprecated; use created_at instead
         :param pulumi.Input[_builtins.str] created_at: Time when a cluster is created. The format is ISO8601: CCYY-MM-DDThh:mm:ss.
         :param pulumi.Input[_builtins.bool] disk_encrypted: Whether disks are encrypted.
+        :param pulumi.Input['ClusterDiskEncryptionArgs'] disk_encryption: Specifies the disk encryption information.
+               The disk_encryption structure is documented below.
         :param pulumi.Input[_builtins.str] endpoint: The IP address and port number.
         :param pulumi.Input[_builtins.str] engine_type: Specifies the engine type. The valid value can be **elasticsearch** or **opensearch**.
                Defaults to **elasticsearch**. Changing this parameter will create a new resource.
@@ -713,6 +736,8 @@ class _ClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if disk_encrypted is not None:
             pulumi.set(__self__, "disk_encrypted", disk_encrypted)
+        if disk_encryption is not None:
+            pulumi.set(__self__, "disk_encryption", disk_encryption)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if endpoint is not None:
@@ -920,6 +945,19 @@ class _ClusterState:
     @disk_encrypted.setter
     def disk_encrypted(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "disk_encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> Optional[pulumi.Input['ClusterDiskEncryptionArgs']]:
+        """
+        Specifies the disk encryption information.
+        The disk_encryption structure is documented below.
+        """
+        return pulumi.get(self, "disk_encryption")
+
+    @disk_encryption.setter
+    def disk_encryption(self, value: Optional[pulumi.Input['ClusterDiskEncryptionArgs']]):
+        pulumi.set(self, "disk_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -1311,6 +1349,7 @@ class Cluster(pulumi.CustomResource):
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input[Union['ClusterClientNodeConfigArgs', 'ClusterClientNodeConfigArgsDict']]] = None,
                  cold_node_config: Optional[pulumi.Input[Union['ClusterColdNodeConfigArgs', 'ClusterColdNodeConfigArgsDict']]] = None,
+                 disk_encryption: Optional[pulumi.Input[Union['ClusterDiskEncryptionArgs', 'ClusterDiskEncryptionArgsDict']]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1435,41 +1474,17 @@ class Cluster(pulumi.CustomResource):
 
         The CSS cluster can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/cluster:Cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ess_node_config.0.type`, `cold_node_config.0.type`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to
-
         align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ess_node_config.0.type, cold_node_config.0.type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1490,6 +1505,8 @@ class Cluster(pulumi.CustomResource):
                The client_node_config structure is documented below.
         :param pulumi.Input[Union['ClusterColdNodeConfigArgs', 'ClusterColdNodeConfigArgsDict']] cold_node_config: Specifies the config of cold data node.
                The cold_node_config structure is documented below.
+        :param pulumi.Input[Union['ClusterDiskEncryptionArgs', 'ClusterDiskEncryptionArgsDict']] disk_encryption: Specifies the disk encryption information.
+               The disk_encryption structure is documented below.
         :param pulumi.Input[_builtins.str] engine_type: Specifies the engine type. The valid value can be **elasticsearch** or **opensearch**.
                Defaults to **elasticsearch**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] engine_version: Specifies the engine version.
@@ -1652,41 +1669,17 @@ class Cluster(pulumi.CustomResource):
 
         The CSS cluster can be imported by `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/cluster:Cluster test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `ess_node_config.0.type`, `cold_node_config.0.type`.
-
         It is generally recommended running `pulumi preview` after importing a cluster.
-
         You can then decide if changes should be applied to the cluster, or the resource definition should be updated to
-
         align with the cluster. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_cluster" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ess_node_config.0.type, cold_node_config.0.type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
@@ -1709,6 +1702,7 @@ class Cluster(pulumi.CustomResource):
                  charging_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  client_node_config: Optional[pulumi.Input[Union['ClusterClientNodeConfigArgs', 'ClusterClientNodeConfigArgsDict']]] = None,
                  cold_node_config: Optional[pulumi.Input[Union['ClusterColdNodeConfigArgs', 'ClusterColdNodeConfigArgsDict']]] = None,
+                 disk_encryption: Optional[pulumi.Input[Union['ClusterDiskEncryptionArgs', 'ClusterDiskEncryptionArgsDict']]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_type: Optional[pulumi.Input[_builtins.str]] = None,
                  engine_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1746,6 +1740,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["charging_mode"] = charging_mode
             __props__.__dict__["client_node_config"] = client_node_config
             __props__.__dict__["cold_node_config"] = cold_node_config
+            __props__.__dict__["disk_encryption"] = disk_encryption
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["engine_type"] = engine_type
             if engine_version is None and not opts.urn:
@@ -1805,6 +1800,7 @@ class Cluster(pulumi.CustomResource):
             created: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             disk_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
+            disk_encryption: Optional[pulumi.Input[Union['ClusterDiskEncryptionArgs', 'ClusterDiskEncryptionArgsDict']]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             engine_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1863,6 +1859,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created: schema: Deprecated; use created_at instead
         :param pulumi.Input[_builtins.str] created_at: Time when a cluster is created. The format is ISO8601: CCYY-MM-DDThh:mm:ss.
         :param pulumi.Input[_builtins.bool] disk_encrypted: Whether disks are encrypted.
+        :param pulumi.Input[Union['ClusterDiskEncryptionArgs', 'ClusterDiskEncryptionArgsDict']] disk_encryption: Specifies the disk encryption information.
+               The disk_encryption structure is documented below.
         :param pulumi.Input[_builtins.str] endpoint: The IP address and port number.
         :param pulumi.Input[_builtins.str] engine_type: Specifies the engine type. The valid value can be **elasticsearch** or **opensearch**.
                Defaults to **elasticsearch**. Changing this parameter will create a new resource.
@@ -1941,6 +1939,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["disk_encrypted"] = disk_encrypted
+        __props__.__dict__["disk_encryption"] = disk_encryption
         __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["engine_type"] = engine_type
@@ -2070,6 +2069,15 @@ class Cluster(pulumi.CustomResource):
         Whether disks are encrypted.
         """
         return pulumi.get(self, "disk_encrypted")
+
+    @_builtins.property
+    @pulumi.getter(name="diskEncryption")
+    def disk_encryption(self) -> pulumi.Output['outputs.ClusterDiskEncryption']:
+        """
+        Specifies the disk encryption information.
+        The disk_encryption structure is documented below.
+        """
+        return pulumi.get(self, "disk_encryption")
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")

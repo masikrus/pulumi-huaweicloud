@@ -26,6 +26,7 @@ class DataBacklogPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataBacklogPolicy resource.
+
         :param pulumi.Input[_builtins.str] backlog_size: Specifies the size of data backlog in bytes. The range of valid values is integers
                from `0` to `1,073,741,823`, defaults to `1,073,741,823` (`1` GB).
                + When `backlog_size` is set to `0`, it means there is no backlog.
@@ -134,6 +135,7 @@ class _DataBacklogPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataBacklogPolicy resources.
+
         :param pulumi.Input[_builtins.str] backlog_size: Specifies the size of data backlog in bytes. The range of valid values is integers
                from `0` to `1,073,741,823`, defaults to `1,073,741,823` (`1` GB).
                + When `backlog_size` is set to `0`, it means there is no backlog.
@@ -283,11 +285,10 @@ class DataBacklogPolicy(pulumi.CustomResource):
 
         The data backlog policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataBacklogPolicy:DataBacklogPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -352,11 +353,10 @@ class DataBacklogPolicy(pulumi.CustomResource):
 
         The data backlog policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/dataBacklogPolicy:DataBacklogPolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataBacklogPolicyArgs args: The arguments to use to populate this resource's properties.

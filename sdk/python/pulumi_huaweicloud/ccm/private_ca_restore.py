@@ -23,6 +23,7 @@ class PrivateCaRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateCaRestore resource.
+
         :param pulumi.Input[_builtins.str] ca_id: Specifies the ID of the private CA you want to restore. The specified private
                CA status must be **DELETED**.
                
@@ -70,6 +71,7 @@ class _PrivateCaRestoreState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateCaRestore resources.
+
         :param pulumi.Input[_builtins.str] ca_id: Specifies the ID of the private CA you want to restore. The specified private
                CA status must be **DELETED**.
                
@@ -111,7 +113,7 @@ class _PrivateCaRestoreState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/privateCaRestore:PrivateCaRestore")
+@pulumi.type_token("huaweicloud:Ccm/privateCaRestore:PrivateCaRestore")
 class PrivateCaRestore(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -136,6 +138,7 @@ class PrivateCaRestore(pulumi.CustomResource):
         ca_id = config.require_object("caId")
         test = huaweicloud.ccm.PrivateCaRestore("test", ca_id=ca_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -169,6 +172,7 @@ class PrivateCaRestore(pulumi.CustomResource):
         test = huaweicloud.ccm.PrivateCaRestore("test", ca_id=ca_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PrivateCaRestoreArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,7 +204,7 @@ class PrivateCaRestore(pulumi.CustomResource):
             __props__.__dict__["ca_id"] = ca_id
             __props__.__dict__["region"] = region
         super(PrivateCaRestore, __self__).__init__(
-            'huaweicloud:ccm/privateCaRestore:PrivateCaRestore',
+            'huaweicloud:Ccm/privateCaRestore:PrivateCaRestore',
             resource_name,
             __props__,
             opts)

@@ -25,6 +25,7 @@ class AuthorizationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Authorization resource.
+
         :param pulumi.Input[_builtins.str] agency_name: Agency name.  
                If the agency does not exist, it will be created automatically,
                the agency name can be **modelarts_agency** or prefixed with **ma_agency_**.
@@ -113,6 +114,7 @@ class _AuthorizationState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Authorization resources.
+
         :param pulumi.Input[_builtins.str] agency_name: Agency name.  
                If the agency does not exist, it will be created automatically,
                the agency name can be **modelarts_agency** or prefixed with **ma_agency_**.
@@ -257,11 +259,10 @@ class Authorization(pulumi.CustomResource):
 
         The ModelArts authorization can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/authorization:Authorization test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,11 +321,10 @@ class Authorization(pulumi.CustomResource):
 
         The ModelArts authorization can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/authorization:Authorization test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthorizationArgs args: The arguments to use to populate this resource's properties.

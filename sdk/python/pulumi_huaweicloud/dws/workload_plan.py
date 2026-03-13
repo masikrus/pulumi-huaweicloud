@@ -27,6 +27,7 @@ class WorkloadPlanArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadPlan resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload plan belongs.
                Changing this parameter will create a new resource.
                
@@ -109,6 +110,7 @@ class _WorkloadPlanState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkloadPlan resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID of to which the workload plan belongs.
                Changing this parameter will create a new resource.
                
@@ -263,11 +265,10 @@ class WorkloadPlan(pulumi.CustomResource):
 
         The workload plan can be imported using `cluster_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadPlan:WorkloadPlan test <cluster_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -308,11 +309,10 @@ class WorkloadPlan(pulumi.CustomResource):
 
         The workload plan can be imported using `cluster_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadPlan:WorkloadPlan test <cluster_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkloadPlanArgs args: The arguments to use to populate this resource's properties.

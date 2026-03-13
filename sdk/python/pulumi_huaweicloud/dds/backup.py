@@ -27,6 +27,7 @@ class BackupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Backup resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                
                Changing this parameter will create a new resource.
@@ -123,6 +124,7 @@ class _BackupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backup resources.
+
         :param pulumi.Input[_builtins.str] begin_time: Indicates the start time of the backup. The format is yyyy-mm-dd hh:mm:ss. The value is in UTC format.
         :param pulumi.Input[Sequence[pulumi.Input['BackupDatastoreArgs']]] datastores: Indicates the database version.
                The datastore structure is documented below.
@@ -351,11 +353,10 @@ class Backup(pulumi.CustomResource):
 
         The DDS backup can be imported using the `instance_id` and the `id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/backup:Backup test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -400,11 +401,10 @@ class Backup(pulumi.CustomResource):
 
         The DDS backup can be imported using the `instance_id` and the `id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/backup:Backup test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupArgs args: The arguments to use to populate this resource's properties.

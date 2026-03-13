@@ -27,6 +27,7 @@ class ComponentActionV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentActionV3 resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the component execution.  
                The valid values are as follows:
                + **start**
@@ -158,6 +159,7 @@ class _ComponentActionV3State:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentActionV3 resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the component execution.  
                The valid values are as follows:
                + **start**
@@ -300,6 +302,22 @@ class ComponentActionV3(pulumi.CustomResource):
         > This resource is only a one-time action resource for operating component. Deleting this resource will not clear
            the corresponding request record, but will only remove the resource information from the tfstate file.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        application_id = config.require_object("applicationId")
+        component_id = config.require_object("componentId")
+        test = huaweicloud.cae.ComponentAction("test",
+            application_id=application_id,
+            component_id=component_id,
+            action="sync_workload")
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action type of the component execution.  
@@ -336,6 +354,22 @@ class ComponentActionV3(pulumi.CustomResource):
 
         > This resource is only a one-time action resource for operating component. Deleting this resource will not clear
            the corresponding request record, but will only remove the resource information from the tfstate file.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        application_id = config.require_object("applicationId")
+        component_id = config.require_object("componentId")
+        test = huaweicloud.cae.ComponentAction("test",
+            application_id=application_id,
+            component_id=component_id,
+            action="sync_workload")
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ComponentActionV3Args args: The arguments to use to populate this resource's properties.

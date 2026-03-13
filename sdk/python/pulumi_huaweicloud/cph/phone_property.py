@@ -26,6 +26,7 @@ class PhonePropertyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PhoneProperty resource.
+
         :param pulumi.Input['PhonePropertyPhonesArgs'] phones: Specifies the CPH phones.
                The phones structure is documented below.
                
@@ -89,6 +90,7 @@ class _PhonePropertyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PhoneProperty resources.
+
         :param pulumi.Input['PhonePropertyPhonesArgs'] phones: Specifies the CPH phones.
                The phones structure is documented below.
                
@@ -145,7 +147,7 @@ class _PhonePropertyState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cph/phoneProperty:PhoneProperty")
+@pulumi.type_token("huaweicloud:Cph/phoneProperty:PhoneProperty")
 class PhoneProperty(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -182,6 +184,7 @@ class PhoneProperty(pulumi.CustomResource):
             }),
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,6 +231,7 @@ class PhoneProperty(pulumi.CustomResource):
         })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PhonePropertyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,7 +265,7 @@ class PhoneProperty(pulumi.CustomResource):
             __props__.__dict__["phones"] = phones
             __props__.__dict__["region"] = region
         super(PhoneProperty, __self__).__init__(
-            'huaweicloud:cph/phoneProperty:PhoneProperty',
+            'huaweicloud:Cph/phoneProperty:PhoneProperty',
             resource_name,
             __props__,
             opts)

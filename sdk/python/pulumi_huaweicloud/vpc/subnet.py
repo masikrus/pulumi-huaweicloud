@@ -38,6 +38,7 @@ class SubnetArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Subnet resource.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the network segment on which the subnet resides. The value must be in
                CIDR format and within the CIDR block of the VPC. The subnet mask cannot be greater than 28. Changing this creates a
                new subnet.
@@ -362,6 +363,7 @@ class _SubnetState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Subnet resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone (AZ) to which the subnet belongs.
                The value must be an existing AZ in the system. Changing this creates a new subnet.
         :param pulumi.Input[_builtins.str] cidr: Specifies the network segment on which the subnet resides. The value must be in
@@ -812,11 +814,10 @@ class Subnet(pulumi.CustomResource):
 
         Subnets can be imported using the subnet `Network ID`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnet:Subnet subnet 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -916,11 +917,10 @@ class Subnet(pulumi.CustomResource):
 
         Subnets can be imported using the subnet `Network ID`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnet:Subnet subnet 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubnetArgs args: The arguments to use to populate this resource's properties.

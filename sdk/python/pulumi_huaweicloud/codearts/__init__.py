@@ -34,12 +34,14 @@ from .get_inspector_host_groups import *
 from .get_inspector_hosts import *
 from .get_inspector_website_scan_tasks import *
 from .get_inspector_websites import *
+from .get_pipeline_available_plugins import *
 from .get_pipeline_groups import *
 from .get_pipeline_micro_services import *
 from .get_pipeline_modify_histories import *
 from .get_pipeline_modules import *
 from .get_pipeline_parameter_groups import *
 from .get_pipeline_plugin_metrics import *
+from .get_pipeline_plugin_versions import *
 from .get_pipeline_plugins import *
 from .get_pipeline_publishers import *
 from .get_pipeline_queueing_records import *
@@ -68,6 +70,7 @@ from .pipeline_group_swap import *
 from .pipeline_micro_service import *
 from .pipeline_parameter_group import *
 from .pipeline_permission import *
+from .pipeline_plugin_version import *
 from .pipeline_publisher import *
 from .pipeline_rule import *
 from .pipeline_service_endpoint import *

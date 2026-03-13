@@ -30,6 +30,7 @@ class ArchitectureSubjectArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureSubject resource.
+
         :param pulumi.Input[_builtins.str] code: Specifies the subject code.
         :param pulumi.Input[_builtins.int] level: Specifies the level of subject. The valid values are `1`, `2` and `3`.
         :param pulumi.Input[_builtins.str] owner: Specifies the owner of the subject.
@@ -195,6 +196,7 @@ class _ArchitectureSubjectState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureSubject resources.
+
         :param pulumi.Input[_builtins.str] code: Specifies the subject code.
         :param pulumi.Input[_builtins.str] created_at: The creating time of the subject.
         :param pulumi.Input[_builtins.str] created_by: The person creating the subject.
@@ -502,6 +504,7 @@ class ArchitectureSubject(pulumi.CustomResource):
         $ pulumi import huaweicloud:DataArtsStudio/architectureSubject:ArchitectureSubject test b606cd4a47b645108a122857204b360f/test-L1.test-L2
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] code: Specifies the subject code.
@@ -562,6 +565,7 @@ class ArchitectureSubject(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureSubject:ArchitectureSubject test b606cd4a47b645108a122857204b360f/test-L1.test-L2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureSubjectArgs args: The arguments to use to populate this resource's properties.

@@ -121,7 +121,7 @@ def get_address_groups(address_group_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     associated_listener_id = config.require_object("associatedListenerId")
-    test = huaweicloud.ga.get_address_groups(listener_id=associated_listener_id)
+    test = huaweicloud.Ga.get_address_groups(listener_id=associated_listener_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_address_groups(address_group_id: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ga/getAddressGroups:getAddressGroups', __args__, opts=opts, typ=GetAddressGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ga/getAddressGroups:getAddressGroups', __args__, opts=opts, typ=GetAddressGroupsResult).value
 
     return AwaitableGetAddressGroupsResult(
         address_group_id=pulumi.get(__ret__, 'address_group_id'),
@@ -164,7 +164,7 @@ def get_address_groups_output(address_group_id: Optional[pulumi.Input[Optional[_
 
     config = pulumi.Config()
     associated_listener_id = config.require_object("associatedListenerId")
-    test = huaweicloud.ga.get_address_groups(listener_id=associated_listener_id)
+    test = huaweicloud.Ga.get_address_groups(listener_id=associated_listener_id)
     ```
 
 
@@ -182,7 +182,7 @@ def get_address_groups_output(address_group_id: Optional[pulumi.Input[Optional[_
     __args__['name'] = name
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ga/getAddressGroups:getAddressGroups', __args__, opts=opts, typ=GetAddressGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ga/getAddressGroups:getAddressGroups', __args__, opts=opts, typ=GetAddressGroupsResult)
     return __ret__.apply(lambda __response__: GetAddressGroupsResult(
         address_group_id=pulumi.get(__response__, 'address_group_id'),
         address_groups=pulumi.get(__response__, 'address_groups'),

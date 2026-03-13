@@ -28,6 +28,7 @@ class EventArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Event resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_types: Specifies the event type list. Valid values are:
                + **SECRET_VERSION_CREATED**: Triggered when a version of a secret is created.
                + **SECRET_VERSION_EXPIRED**: Triggered when a secret version expires, and only once per expiration.
@@ -168,6 +169,7 @@ class _EventState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Event resources.
+
         :param pulumi.Input[_builtins.str] event_id: The event ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_types: Specifies the event type list. Valid values are:
                + **SECRET_VERSION_CREATED**: Triggered when a version of a secret is created.
@@ -358,11 +360,10 @@ class Event(pulumi.CustomResource):
 
         The CSMS event can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/event:Event test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -421,11 +422,10 @@ class Event(pulumi.CustomResource):
 
         The CSMS event can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dew/event:Event test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventArgs args: The arguments to use to populate this resource's properties.

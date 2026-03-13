@@ -27,6 +27,7 @@ class SecurityPermissionSetMemberArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityPermissionSetMember resource.
+
         :param pulumi.Input[_builtins.str] object_id: Specifies the ID of the member object. The valid value ranges from `1` to `128`.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] permission_set_id: Specifies the permission set ID to which the member belongs.
@@ -144,6 +145,7 @@ class _SecurityPermissionSetMemberState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityPermissionSetMember resources.
+
         :param pulumi.Input[_builtins.str] member_id: The ID of the member.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the member object.
                Changing this creates a new resource.
@@ -306,14 +308,12 @@ class SecurityPermissionSetMember(pulumi.CustomResource):
         ## Import
 
         The permission set member can be imported using `workspace_id`, `permission_set_id` and `object_id`, separated by
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSetMember:SecurityPermissionSetMember test <workspace_id>/<permission_set_id>/<object_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -363,14 +363,12 @@ class SecurityPermissionSetMember(pulumi.CustomResource):
         ## Import
 
         The permission set member can be imported using `workspace_id`, `permission_set_id` and `object_id`, separated by
-
         slashes (/), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/securityPermissionSetMember:SecurityPermissionSetMember test <workspace_id>/<permission_set_id>/<object_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityPermissionSetMemberArgs args: The arguments to use to populate this resource's properties.

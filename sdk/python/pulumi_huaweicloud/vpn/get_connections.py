@@ -164,7 +164,7 @@ def get_connections(connection_id: Optional[_builtins.str] = None,
     vpn_type = config.require_object("vpnType")
     gateway_id = config.require_object("gatewayId")
     gateway_ip = config.require_object("gatewayIp")
-    services = huaweicloud.vpn.get_connections(status=status,
+    services = huaweicloud.Vpn.get_connections(status=status,
         name=name,
         vpn_type=vpn_type,
         gateway_id=gateway_id,
@@ -190,7 +190,7 @@ def get_connections(connection_id: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['vpnType'] = vpn_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult).value
 
     return AwaitableGetConnectionsResult(
         connection_id=pulumi.get(__ret__, 'connection_id'),
@@ -225,7 +225,7 @@ def get_connections_output(connection_id: Optional[pulumi.Input[Optional[_builti
     vpn_type = config.require_object("vpnType")
     gateway_id = config.require_object("gatewayId")
     gateway_ip = config.require_object("gatewayIp")
-    services = huaweicloud.vpn.get_connections(status=status,
+    services = huaweicloud.Vpn.get_connections(status=status,
         name=name,
         vpn_type=vpn_type,
         gateway_id=gateway_id,
@@ -251,7 +251,7 @@ def get_connections_output(connection_id: Optional[pulumi.Input[Optional[_builti
     __args__['status'] = status
     __args__['vpnType'] = vpn_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getConnections:getConnections', __args__, opts=opts, typ=GetConnectionsResult)
     return __ret__.apply(lambda __response__: GetConnectionsResult(
         connection_id=pulumi.get(__response__, 'connection_id'),
         connections=pulumi.get(__response__, 'connections'),

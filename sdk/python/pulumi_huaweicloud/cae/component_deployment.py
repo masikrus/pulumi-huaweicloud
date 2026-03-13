@@ -25,14 +25,17 @@ class ComponentDeploymentArgs:
                  component_id: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[_builtins.str],
                  metadata: pulumi.Input['ComponentDeploymentMetadataArgs'],
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  spec: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComponentDeployment resource.
+
         :param pulumi.Input[_builtins.str] application_id: The ID of the application where the component is located.
         :param pulumi.Input[_builtins.str] component_id: The ID of the component to be operated.
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment where the application is located.
         :param pulumi.Input['ComponentDeploymentMetadataArgs'] metadata: The metadata of this action request.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the component to be operated belongs.
         :param pulumi.Input[_builtins.str] region: The region where the component to be operated is located.
         :param pulumi.Input[_builtins.str] spec: The specification detail of the action, in JSON format.
         """
@@ -40,6 +43,8 @@ class ComponentDeploymentArgs:
         pulumi.set(__self__, "component_id", component_id)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "metadata", metadata)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if spec is not None:
@@ -94,6 +99,18 @@ class ComponentDeploymentArgs:
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the component to be operated belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -123,14 +140,17 @@ class _ComponentDeploymentState:
     def __init__(__self__, *,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input['ComponentDeploymentMetadataArgs']] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  spec: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComponentDeployment resources.
+
         :param pulumi.Input[_builtins.str] application_id: The ID of the application where the component is located.
         :param pulumi.Input[_builtins.str] component_id: The ID of the component to be operated.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the component to be operated belongs.
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment where the application is located.
         :param pulumi.Input['ComponentDeploymentMetadataArgs'] metadata: The metadata of this action request.
         :param pulumi.Input[_builtins.str] region: The region where the component to be operated is located.
@@ -140,6 +160,8 @@ class _ComponentDeploymentState:
             pulumi.set(__self__, "application_id", application_id)
         if component_id is not None:
             pulumi.set(__self__, "component_id", component_id)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if metadata is not None:
@@ -172,6 +194,18 @@ class _ComponentDeploymentState:
     @component_id.setter
     def component_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "component_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the component to be operated belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -222,7 +256,7 @@ class _ComponentDeploymentState:
         pulumi.set(self, "spec", value)
 
 
-@pulumi.type_token("huaweicloud:cae/componentDeployment:ComponentDeployment")
+@pulumi.type_token("huaweicloud:Cae/componentDeployment:ComponentDeployment")
 class ComponentDeployment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -230,6 +264,7 @@ class ComponentDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentDeploymentMetadataArgs', 'ComponentDeploymentMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -237,10 +272,12 @@ class ComponentDeployment(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ComponentDeployment resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: The ID of the application where the component is located.
         :param pulumi.Input[_builtins.str] component_id: The ID of the component to be operated.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the component to be operated belongs.
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment where the application is located.
         :param pulumi.Input[Union['ComponentDeploymentMetadataArgs', 'ComponentDeploymentMetadataArgsDict']] metadata: The metadata of this action request.
         :param pulumi.Input[_builtins.str] region: The region where the component to be operated is located.
@@ -254,6 +291,7 @@ class ComponentDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ComponentDeployment resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ComponentDeploymentArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -271,6 +309,7 @@ class ComponentDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  component_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  metadata: Optional[pulumi.Input[Union['ComponentDeploymentMetadataArgs', 'ComponentDeploymentMetadataArgsDict']]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -290,6 +329,7 @@ class ComponentDeployment(pulumi.CustomResource):
             if component_id is None and not opts.urn:
                 raise TypeError("Missing required property 'component_id'")
             __props__.__dict__["component_id"] = component_id
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
@@ -299,7 +339,7 @@ class ComponentDeployment(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["spec"] = spec
         super(ComponentDeployment, __self__).__init__(
-            'huaweicloud:cae/componentDeployment:ComponentDeployment',
+            'huaweicloud:Cae/componentDeployment:ComponentDeployment',
             resource_name,
             __props__,
             opts)
@@ -310,6 +350,7 @@ class ComponentDeployment(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             application_id: Optional[pulumi.Input[_builtins.str]] = None,
             component_id: Optional[pulumi.Input[_builtins.str]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             environment_id: Optional[pulumi.Input[_builtins.str]] = None,
             metadata: Optional[pulumi.Input[Union['ComponentDeploymentMetadataArgs', 'ComponentDeploymentMetadataArgsDict']]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -323,6 +364,7 @@ class ComponentDeployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: The ID of the application where the component is located.
         :param pulumi.Input[_builtins.str] component_id: The ID of the component to be operated.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the component to be operated belongs.
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment where the application is located.
         :param pulumi.Input[Union['ComponentDeploymentMetadataArgs', 'ComponentDeploymentMetadataArgsDict']] metadata: The metadata of this action request.
         :param pulumi.Input[_builtins.str] region: The region where the component to be operated is located.
@@ -334,6 +376,7 @@ class ComponentDeployment(pulumi.CustomResource):
 
         __props__.__dict__["application_id"] = application_id
         __props__.__dict__["component_id"] = component_id
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["region"] = region
@@ -355,6 +398,14 @@ class ComponentDeployment(pulumi.CustomResource):
         The ID of the component to be operated.
         """
         return pulumi.get(self, "component_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the component to be operated belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="environmentId")

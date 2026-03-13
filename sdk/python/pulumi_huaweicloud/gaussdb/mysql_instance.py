@@ -69,6 +69,7 @@ class MysqlInstanceArgs:
                  volume_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MysqlInstance resource.
+
         :param pulumi.Input[_builtins.str] flavor: Specifies the instance specifications. Please use
                `gaussdb_mysql_flavors` data source to fetch the available flavors.
         :param pulumi.Input[_builtins.str] password: Specifies the database password. The value must be `8` to `32` characters in length,
@@ -881,6 +882,7 @@ class _MysqlInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are **true** and **false**.
         :param pulumi.Input['MysqlInstanceAutoScalingArgs'] auto_scaling: Specifies the auto-scaling policies.
@@ -1912,39 +1914,16 @@ class MysqlInstance(pulumi.CustomResource):
 
         GaussDB instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlInstance:MysqlInstance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `table_name_case_sensitivity`, `enterprise_project_id`, `password`, `ssl_option`,
-
         `encryption_type`, `kms_key_id` and `parameters`. It is generally recommended running `pulumi preview` after importing
-
         a GaussDB MySQL instance. You can then decide if changes should be applied to the GaussDB MySQL instance, or the resource
-
         definition should be updated to align with the GaussDB MySQL instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              new_node_weight, proxy_mode, readonly_nodes_weight, parameters, ssl_option, encryption_type, kms_key_id
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2077,39 +2056,16 @@ class MysqlInstance(pulumi.CustomResource):
 
         GaussDB instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlInstance:MysqlInstance test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `table_name_case_sensitivity`, `enterprise_project_id`, `password`, `ssl_option`,
-
         `encryption_type`, `kms_key_id` and `parameters`. It is generally recommended running `pulumi preview` after importing
-
         a GaussDB MySQL instance. You can then decide if changes should be applied to the GaussDB MySQL instance, or the resource
-
         definition should be updated to align with the GaussDB MySQL instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_instance" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              new_node_weight, proxy_mode, readonly_nodes_weight, parameters, ssl_option, encryption_type, kms_key_id
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MysqlInstanceArgs args: The arguments to use to populate this resource's properties.

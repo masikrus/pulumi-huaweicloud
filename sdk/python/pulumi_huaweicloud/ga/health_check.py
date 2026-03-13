@@ -31,6 +31,7 @@ class HealthCheckArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HealthCheck resource.
+
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable health check.
         :param pulumi.Input[_builtins.str] endpoint_group_id: Specifies the endpoint group ID.
                
@@ -187,6 +188,7 @@ class _HealthCheckState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HealthCheck resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates when the health check was configured.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable health check.
         :param pulumi.Input[_builtins.str] endpoint_group_id: Specifies the endpoint group ID.
@@ -396,7 +398,7 @@ class _HealthCheckState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ga/healthCheck:HealthCheck")
+@pulumi.type_token("huaweicloud:Ga/healthCheck:HealthCheck")
 class HealthCheck(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -435,11 +437,10 @@ class HealthCheck(pulumi.CustomResource):
 
         The healthcheck can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/healthCheck:HealthCheck test <id>
+        $ pulumi import huaweicloud:Ga/healthCheck:HealthCheck test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -493,11 +494,10 @@ class HealthCheck(pulumi.CustomResource):
 
         The healthcheck can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ga/healthCheck:HealthCheck test <id>
+        $ pulumi import huaweicloud:Ga/healthCheck:HealthCheck test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HealthCheckArgs args: The arguments to use to populate this resource's properties.
@@ -556,7 +556,7 @@ class HealthCheck(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(HealthCheck, __self__).__init__(
-            'huaweicloud:ga/healthCheck:HealthCheck',
+            'huaweicloud:Ga/healthCheck:HealthCheck',
             resource_name,
             __props__,
             opts)

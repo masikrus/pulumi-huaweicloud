@@ -32,6 +32,7 @@ class OrganizationalPolicyAssignmentArgs:
                  policy_filter: Optional[pulumi.Input['OrganizationalPolicyAssignmentPolicyFilterArgs']] = None):
         """
         The set of arguments for constructing a OrganizationalPolicyAssignment resource.
+
         :param pulumi.Input[_builtins.str] organization_id: Specifies the ID of the organization.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the organizational policy assignment,
@@ -225,6 +226,7 @@ class _OrganizationalPolicyAssignmentState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrganizationalPolicyAssignment resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the organizational policy assignment.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the organizational policy assignment,
                which contain maximum of `512` characters.
@@ -461,7 +463,7 @@ class _OrganizationalPolicyAssignmentState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment")
+@pulumi.type_token("huaweicloud:Rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment")
 class OrganizationalPolicyAssignment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -492,7 +494,7 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
         config = pulumi.Config()
         function_name = config.require_object("functionName")
         policy_assignment_name = config.require_object("policyAssignmentName")
-        test = huaweicloud.organizations.get_organization()
+        test = huaweicloud.Organizations.get_organization()
         test_function = huaweicloud.functiongraph.Function("test",
             name=function_name,
             code_type="inline",
@@ -508,9 +510,9 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
             name=policy_assignment_name,
             description="This is a custom policy assignment.",
             function_urn=pulumi.Output.all(
-                urn=test_function.urn,
+                function_urn=test_function.function_urn,
                 version=test_function.version
-        ).apply(lambda resolved_outputs: f"{resolved_outputs['urn']}:{resolved_outputs['version']}")
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['function_urn']}:{resolved_outputs['version']}")
         ,
             period="TwentyFour_Hours",
             parameters={
@@ -526,11 +528,10 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
 
         The organizational policy assignment can be imported using the `organization_id` and `id`separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment test <organization_id>/<id>
+        $ pulumi import huaweicloud:Rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment test <organization_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -584,7 +585,7 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
         config = pulumi.Config()
         function_name = config.require_object("functionName")
         policy_assignment_name = config.require_object("policyAssignmentName")
-        test = huaweicloud.organizations.get_organization()
+        test = huaweicloud.Organizations.get_organization()
         test_function = huaweicloud.functiongraph.Function("test",
             name=function_name,
             code_type="inline",
@@ -600,9 +601,9 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
             name=policy_assignment_name,
             description="This is a custom policy assignment.",
             function_urn=pulumi.Output.all(
-                urn=test_function.urn,
+                function_urn=test_function.function_urn,
                 version=test_function.version
-        ).apply(lambda resolved_outputs: f"{resolved_outputs['urn']}:{resolved_outputs['version']}")
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['function_urn']}:{resolved_outputs['version']}")
         ,
             period="TwentyFour_Hours",
             parameters={
@@ -618,11 +619,10 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
 
         The organizational policy assignment can be imported using the `organization_id` and `id`separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment test <organization_id>/<id>
+        $ pulumi import huaweicloud:Rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment test <organization_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationalPolicyAssignmentArgs args: The arguments to use to populate this resource's properties.
@@ -673,7 +673,7 @@ class OrganizationalPolicyAssignment(pulumi.CustomResource):
             __props__.__dict__["owner_id"] = None
             __props__.__dict__["updated_at"] = None
         super(OrganizationalPolicyAssignment, __self__).__init__(
-            'huaweicloud:rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment',
+            'huaweicloud:Rms/organizationalPolicyAssignment:OrganizationalPolicyAssignment',
             resource_name,
             __props__,
             opts)

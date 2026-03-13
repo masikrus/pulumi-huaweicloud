@@ -26,6 +26,7 @@ class MigrationTaskExchangeIpArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MigrationTaskExchangeIp resource.
+
         :param pulumi.Input[_builtins.str] task_id: Specifies the ID of the migration task.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exchanged_ips: Specifies the list of IP address to be switched during data migration.
         :param pulumi.Input[_builtins.bool] is_exchange_domain: Specifies whether to switch the domain name.
@@ -111,6 +112,7 @@ class _MigrationTaskExchangeIpState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MigrationTaskExchangeIp resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exchanged_ips: Specifies the list of IP address to be switched during data migration.
         :param pulumi.Input[_builtins.bool] is_exchange_domain: Specifies whether to switch the domain name.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -214,6 +216,7 @@ class MigrationTaskExchangeIp(pulumi.CustomResource):
         test = huaweicloud.dcs.MigrationTaskExchangeIp("test", task_id=task_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exchanged_ips: Specifies the list of IP address to be switched during data migration.
@@ -242,6 +245,7 @@ class MigrationTaskExchangeIp(pulumi.CustomResource):
         task_id = config.require_object("taskId")
         test = huaweicloud.dcs.MigrationTaskExchangeIp("test", task_id=task_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrationTaskExchangeIpArgs args: The arguments to use to populate this resource's properties.

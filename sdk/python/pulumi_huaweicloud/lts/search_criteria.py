@@ -28,6 +28,7 @@ class SearchCriteriaArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SearchCriteria resource.
+
         :param pulumi.Input[_builtins.str] criteria: Specifies the content of search criteria. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of a log group. Changing this parameter will create
@@ -160,6 +161,7 @@ class _SearchCriteriaState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SearchCriteria resources.
+
         :param pulumi.Input[_builtins.str] criteria: Specifies the content of search criteria. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID.
@@ -322,11 +324,10 @@ class SearchCriteria(pulumi.CustomResource):
 
         The search criteria can be imported using the group ID, stream ID, and resource ID separated by the slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/searchCriteria:SearchCriteria test <log_group_id>/<log_stream_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -376,11 +377,10 @@ class SearchCriteria(pulumi.CustomResource):
 
         The search criteria can be imported using the group ID, stream ID, and resource ID separated by the slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/searchCriteria:SearchCriteria test <log_group_id>/<log_stream_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SearchCriteriaArgs args: The arguments to use to populate this resource's properties.

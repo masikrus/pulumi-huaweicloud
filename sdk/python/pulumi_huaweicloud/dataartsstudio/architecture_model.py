@@ -29,6 +29,7 @@ class ArchitectureModelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureModel resource.
+
         :param pulumi.Input[_builtins.bool] physical: Specifies the model is physical or logical.
                When the value is **true**, it means physical model.
                Changing this parameter will create a new model.
@@ -192,6 +193,7 @@ class _ArchitectureModelState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureModel resources.
+
         :param pulumi.Input[_builtins.str] created_at: The create time of the model.
         :param pulumi.Input[_builtins.str] created_by: The person creating the model.
         :param pulumi.Input[_builtins.str] description: Specifies the description of model.
@@ -449,6 +451,7 @@ class ArchitectureModel(pulumi.CustomResource):
         $ pulumi import huaweicloud:DataArtsStudio/architectureModel:ArchitectureModel test <workspace_id>/<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of model.
@@ -511,6 +514,7 @@ class ArchitectureModel(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureModel:ArchitectureModel test <workspace_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureModelArgs args: The arguments to use to populate this resource's properties.

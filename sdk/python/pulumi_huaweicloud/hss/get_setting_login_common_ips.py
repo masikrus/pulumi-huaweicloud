@@ -118,7 +118,7 @@ def get_setting_login_common_ips(enterprise_project_id: Optional[_builtins.str] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_setting_login_common_ips()
+    test = huaweicloud.Hss.get_setting_login_common_ips()
     ```
 
 
@@ -138,7 +138,7 @@ def get_setting_login_common_ips(enterprise_project_id: Optional[_builtins.str] 
     __args__['ipAddr'] = ip_addr
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getSettingLoginCommonIps:getSettingLoginCommonIps', __args__, opts=opts, typ=GetSettingLoginCommonIpsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getSettingLoginCommonIps:getSettingLoginCommonIps', __args__, opts=opts, typ=GetSettingLoginCommonIpsResult).value
 
     return AwaitableGetSettingLoginCommonIpsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -160,7 +160,7 @@ def get_setting_login_common_ips_output(enterprise_project_id: Optional[pulumi.I
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_setting_login_common_ips()
+    test = huaweicloud.Hss.get_setting_login_common_ips()
     ```
 
 
@@ -180,7 +180,7 @@ def get_setting_login_common_ips_output(enterprise_project_id: Optional[pulumi.I
     __args__['ipAddr'] = ip_addr
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getSettingLoginCommonIps:getSettingLoginCommonIps', __args__, opts=opts, typ=GetSettingLoginCommonIpsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getSettingLoginCommonIps:getSettingLoginCommonIps', __args__, opts=opts, typ=GetSettingLoginCommonIpsResult)
     return __ret__.apply(lambda __response__: GetSettingLoginCommonIpsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

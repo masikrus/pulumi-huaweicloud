@@ -26,6 +26,7 @@ class InstanceShardBandwidthArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceShardBandwidth resource.
+
         :param pulumi.Input[_builtins.int] bandwidth: Specifies the current bandwidth (Mbit/s).
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the shard.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
@@ -112,6 +113,7 @@ class _InstanceShardBandwidthState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceShardBandwidth resources.
+
         :param pulumi.Input[_builtins.int] assured_bandwidth: Indicates the assured bandwidth (Mbit/s).
         :param pulumi.Input[_builtins.int] bandwidth: Specifies the current bandwidth (Mbit/s).
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the shard.
@@ -267,11 +269,10 @@ class InstanceShardBandwidth(pulumi.CustomResource):
 
         The DCS instance shard bandwidth can be imported using the `instance_id` and `group_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instanceShardBandwidth:InstanceShardBandwidth test <instance_id>/<group_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,11 +310,10 @@ class InstanceShardBandwidth(pulumi.CustomResource):
 
         The DCS instance shard bandwidth can be imported using the `instance_id` and `group_id` separated by a slash, e.g.:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/instanceShardBandwidth:InstanceShardBandwidth test <instance_id>/<group_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceShardBandwidthArgs args: The arguments to use to populate this resource's properties.

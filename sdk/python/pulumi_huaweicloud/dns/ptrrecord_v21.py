@@ -29,6 +29,7 @@ class PtrrecordV21Args:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PtrrecordV21 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] names: Specifies the domain names of the PTR record.
         :param pulumi.Input[_builtins.str] publicip_id: Specifies the ID of the EIP.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the PTR record.
@@ -165,6 +166,7 @@ class _PtrrecordV21State:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PtrrecordV21 resources.
+
         :param pulumi.Input[_builtins.str] address: The address of the EIP.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the PTR record.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the PTR record.
@@ -336,15 +338,28 @@ class PtrrecordV21(pulumi.CustomResource):
         """
         Manages a DNS PTR record resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        ptrrecord_names = config.require_object("ptrrecordNames")
+        eip_id = config.require_object("eipId")
+        test = huaweicloud.dns.Ptrrecord("test",
+            names=ptrrecord_names,
+            publicip_id=eip_id)
+        ```
+
         ## Import
 
         The PTR record can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecordV21:PtrrecordV21 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -367,15 +382,28 @@ class PtrrecordV21(pulumi.CustomResource):
         """
         Manages a DNS PTR record resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        ptrrecord_names = config.require_object("ptrrecordNames")
+        eip_id = config.require_object("eipId")
+        test = huaweicloud.dns.Ptrrecord("test",
+            names=ptrrecord_names,
+            publicip_id=eip_id)
+        ```
+
         ## Import
 
         The PTR record can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/ptrrecordV21:PtrrecordV21 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PtrrecordV21Args args: The arguments to use to populate this resource's properties.

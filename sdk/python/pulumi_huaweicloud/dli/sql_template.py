@@ -26,6 +26,7 @@ class SqlTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SqlTemplate resource.
+
         :param pulumi.Input[_builtins.str] sql: The statement of the SQL template.
         :param pulumi.Input[_builtins.str] description: The description of the SQL template.
         :param pulumi.Input[_builtins.str] group: The group of the SQL template.
@@ -116,6 +117,7 @@ class _SqlTemplateState:
                  sql: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SqlTemplate resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the SQL template.
         :param pulumi.Input[_builtins.str] group: The group of the SQL template.
         :param pulumi.Input[_builtins.str] name: The name of the SQL template.
@@ -245,11 +247,10 @@ class SqlTemplate(pulumi.CustomResource):
 
         The SQL template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sqlTemplate:SqlTemplate test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -288,11 +289,10 @@ class SqlTemplate(pulumi.CustomResource):
 
         The SQL template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/sqlTemplate:SqlTemplate test 0ce123456a00f2591fabc00385ff1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqlTemplateArgs args: The arguments to use to populate this resource's properties.

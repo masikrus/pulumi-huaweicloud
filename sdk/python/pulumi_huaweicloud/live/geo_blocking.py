@@ -25,6 +25,7 @@ class GeoBlockingArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GeoBlocking resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] area_whitelists: Specifies the list of supported areas.
                The values of all region codes, except that of China, contain two uppercase letters.
@@ -116,6 +117,7 @@ class _GeoBlockingState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GeoBlocking resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] area_whitelists: Specifies the list of supported areas.
                The values of all region codes, except that of China, contain two uppercase letters.
@@ -238,11 +240,10 @@ class GeoBlocking(pulumi.CustomResource):
 
         The Live geo-blocking resource can be imported using `domain_name` and `app_name`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/geoBlocking:GeoBlocking test <domain_name>/<app_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -294,11 +295,10 @@ class GeoBlocking(pulumi.CustomResource):
 
         The Live geo-blocking resource can be imported using `domain_name` and `app_name`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/geoBlocking:GeoBlocking test <domain_name>/<app_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GeoBlockingArgs args: The arguments to use to populate this resource's properties.

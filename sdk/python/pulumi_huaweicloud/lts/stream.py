@@ -28,6 +28,7 @@ class StreamArgs:
                  ttl_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Stream resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of a created log group. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] stream_name: Specifies the log stream name. Changing this parameter will create a new
@@ -160,6 +161,7 @@ class _StreamState:
                  ttl_in_days: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Stream resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the log stream.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
                Changing this parameter will create a new resource.
@@ -344,11 +346,10 @@ class Stream(pulumi.CustomResource):
 
         The log stream can be imported using the group ID and stream ID separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/stream:Stream test <group_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -392,11 +393,10 @@ class Stream(pulumi.CustomResource):
 
         The log stream can be imported using the group ID and stream ID separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/stream:Stream test <group_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StreamArgs args: The arguments to use to populate this resource's properties.

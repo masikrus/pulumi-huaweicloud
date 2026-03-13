@@ -23,6 +23,9 @@ class GroupV3Args:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupV3 resource.
+
+        :param pulumi.Input[_builtins.str] description: The description of the group.
+        :param pulumi.Input[_builtins.str] name: The name of the group.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -32,6 +35,9 @@ class GroupV3Args:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -41,6 +47,9 @@ class GroupV3Args:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -55,6 +64,9 @@ class _GroupV3State:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupV3 resources.
+
+        :param pulumi.Input[_builtins.str] description: The description of the group.
+        :param pulumi.Input[_builtins.str] name: The name of the group.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -64,6 +76,9 @@ class _GroupV3State:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description of the group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -73,6 +88,9 @@ class _GroupV3State:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -91,8 +109,11 @@ class GroupV3(pulumi.CustomResource):
                  __props__=None):
         """
         Create a GroupV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] description: The description of the group.
+        :param pulumi.Input[_builtins.str] name: The name of the group.
         """
         ...
     @overload
@@ -102,6 +123,7 @@ class GroupV3(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a GroupV3 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param GroupV3Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -149,6 +171,8 @@ class GroupV3(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] description: The description of the group.
+        :param pulumi.Input[_builtins.str] name: The name of the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -161,10 +185,16 @@ class GroupV3(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The description of the group.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the group.
+        """
         return pulumi.get(self, "name")
 

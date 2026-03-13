@@ -92,7 +92,7 @@ def get_types(availability_zone: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.deh.get_types()
+    test = huaweicloud.Deh.get_types()
     ```
 
 
@@ -104,7 +104,7 @@ def get_types(availability_zone: Optional[_builtins.str] = None,
     __args__['availabilityZone'] = availability_zone
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:deh/getTypes:getTypes', __args__, opts=opts, typ=GetTypesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Deh/getTypes:getTypes', __args__, opts=opts, typ=GetTypesResult).value
 
     return AwaitableGetTypesResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -123,7 +123,7 @@ def get_types_output(availability_zone: Optional[pulumi.Input[_builtins.str]] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.deh.get_types()
+    test = huaweicloud.Deh.get_types()
     ```
 
 
@@ -135,7 +135,7 @@ def get_types_output(availability_zone: Optional[pulumi.Input[_builtins.str]] = 
     __args__['availabilityZone'] = availability_zone
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:deh/getTypes:getTypes', __args__, opts=opts, typ=GetTypesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Deh/getTypes:getTypes', __args__, opts=opts, typ=GetTypesResult)
     return __ret__.apply(lambda __response__: GetTypesResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         dedicated_host_types=pulumi.get(__response__, 'dedicated_host_types'),

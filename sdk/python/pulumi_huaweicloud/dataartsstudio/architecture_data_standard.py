@@ -27,6 +27,7 @@ class ArchitectureDataStandardArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureDataStandard resource.
+
         :param pulumi.Input[_builtins.str] directory_id: Specifies the directory ID that the data standard belongs to.
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureDataStandardValueArgs']]] values: Specifies the value of data standard attributes.
                The values structure is documented below.
@@ -115,6 +116,7 @@ class _ArchitectureDataStandardState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureDataStandard resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time of the data standard.
         :param pulumi.Input[_builtins.str] created_by: Indicates the creation time of the new biz.
         :param pulumi.Input[_builtins.str] directory_id: Specifies the directory ID that the data standard belongs to.
@@ -343,11 +345,10 @@ class ArchitectureDataStandard(pulumi.CustomResource):
 
         The DataArts Architecture data standard can be imported using the `workspace_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureDataStandard:ArchitectureDataStandard test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,11 +404,10 @@ class ArchitectureDataStandard(pulumi.CustomResource):
 
         The DataArts Architecture data standard can be imported using the `workspace_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureDataStandard:ArchitectureDataStandard test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureDataStandardArgs args: The arguments to use to populate this resource's properties.

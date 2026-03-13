@@ -24,6 +24,7 @@ class AdvancedBlackWhiteListArgs:
                  white_ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AdvancedBlackWhiteList resource.
+
         :param pulumi.Input[_builtins.str] policy_id: Specifies the CNAD advanced policy ID in which to add black and white IP
                list.
                
@@ -97,6 +98,7 @@ class _AdvancedBlackWhiteListState:
                  white_ip_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AdvancedBlackWhiteList resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] black_ip_lists: Specifies the black IP list.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the CNAD advanced policy ID in which to add black and white IP
                list.
@@ -163,7 +165,7 @@ class _AdvancedBlackWhiteListState:
         pulumi.set(self, "white_ip_lists", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedBlackWhiteList:AdvancedBlackWhiteList")
+@pulumi.type_token("huaweicloud:Cnad/advancedBlackWhiteList:AdvancedBlackWhiteList")
 class AdvancedBlackWhiteList(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -196,11 +198,10 @@ class AdvancedBlackWhiteList(pulumi.CustomResource):
 
         The CNAD advanced policy black and white IP list can be imported using the `policy_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedBlackWhiteList:AdvancedBlackWhiteList test <policy_id>
+        $ pulumi import huaweicloud:Cnad/advancedBlackWhiteList:AdvancedBlackWhiteList test <policy_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -246,11 +247,10 @@ class AdvancedBlackWhiteList(pulumi.CustomResource):
 
         The CNAD advanced policy black and white IP list can be imported using the `policy_id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cnad/advancedBlackWhiteList:AdvancedBlackWhiteList test <policy_id>
+        $ pulumi import huaweicloud:Cnad/advancedBlackWhiteList:AdvancedBlackWhiteList test <policy_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedBlackWhiteListArgs args: The arguments to use to populate this resource's properties.
@@ -285,7 +285,7 @@ class AdvancedBlackWhiteList(pulumi.CustomResource):
             __props__.__dict__["policy_id"] = policy_id
             __props__.__dict__["white_ip_lists"] = white_ip_lists
         super(AdvancedBlackWhiteList, __self__).__init__(
-            'huaweicloud:cnad/advancedBlackWhiteList:AdvancedBlackWhiteList',
+            'huaweicloud:Cnad/advancedBlackWhiteList:AdvancedBlackWhiteList',
             resource_name,
             __props__,
             opts)

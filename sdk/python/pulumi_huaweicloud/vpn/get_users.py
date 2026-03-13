@@ -94,7 +94,7 @@ def get_users(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_users(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_users(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_users(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
     return AwaitableGetUsersResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_users_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = N
 
     config = pulumi.Config()
     vpn_server_id = config.require_object("vpnServerId")
-    test = huaweicloud.vpn.get_users(vpn_server_id=vpn_server_id)
+    test = huaweicloud.Vpn.get_users(vpn_server_id=vpn_server_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_users_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     __args__['region'] = region
     __args__['vpnServerId'] = vpn_server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

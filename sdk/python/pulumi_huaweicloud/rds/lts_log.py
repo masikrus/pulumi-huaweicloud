@@ -28,6 +28,7 @@ class LtsLogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LtsLog resource.
+
         :param pulumi.Input[_builtins.str] engine: Specifies the engine of the RDS instance.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.str] log_type: Specifies the type of the LTS log.
@@ -135,6 +136,7 @@ class _LtsLogState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LtsLog resources.
+
         :param pulumi.Input[_builtins.str] engine: Specifies the engine of the RDS instance.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS instance.
         :param pulumi.Input[_builtins.str] log_type: Specifies the type of the LTS log.
@@ -251,6 +253,7 @@ class LtsLog(pulumi.CustomResource):
                  __props__=None):
         """
         Create a LtsLog resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] engine: Specifies the engine of the RDS instance.
@@ -267,6 +270,7 @@ class LtsLog(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a LtsLog resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param LtsLogArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -28,6 +28,7 @@ class OrchestrationRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OrchestrationRule resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the orchestration
                rule belongs.
                Changing this will create a new resource.
@@ -194,6 +195,7 @@ class _OrchestrationRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrchestrationRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the orchestration rule, in RFC3339 format.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the orchestration
                rule belongs.
@@ -666,11 +668,10 @@ class OrchestrationRule(pulumi.CustomResource):
 
         Orchestration rules be imported using related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/orchestrationRule:OrchestrationRule test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -985,11 +986,10 @@ class OrchestrationRule(pulumi.CustomResource):
 
         Orchestration rules be imported using related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/orchestrationRule:OrchestrationRule test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrchestrationRuleArgs args: The arguments to use to populate this resource's properties.

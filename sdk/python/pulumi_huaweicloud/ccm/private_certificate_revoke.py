@@ -24,6 +24,7 @@ class PrivateCertificateRevokeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateCertificateRevoke resource.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the private certificate to be revoked.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] reason: Specifies the reason for revoking the private certificate.
@@ -107,6 +108,7 @@ class _PrivateCertificateRevokeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateCertificateRevoke resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: Specifies the ID of the private certificate to be revoked.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] reason: Specifies the reason for revoking the private certificate.
@@ -183,7 +185,7 @@ class _PrivateCertificateRevokeState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:ccm/privateCertificateRevoke:PrivateCertificateRevoke")
+@pulumi.type_token("huaweicloud:Ccm/privateCertificateRevoke:PrivateCertificateRevoke")
 class PrivateCertificateRevoke(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -208,6 +210,7 @@ class PrivateCertificateRevoke(pulumi.CustomResource):
         certificate_id = config.require_object("certificateId")
         test = huaweicloud.ccm.PrivateCertificateRevoke("test", certificate_id=certificate_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -251,6 +254,7 @@ class PrivateCertificateRevoke(pulumi.CustomResource):
         test = huaweicloud.ccm.PrivateCertificateRevoke("test", certificate_id=certificate_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PrivateCertificateRevokeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -284,7 +288,7 @@ class PrivateCertificateRevoke(pulumi.CustomResource):
             __props__.__dict__["reason"] = reason
             __props__.__dict__["region"] = region
         super(PrivateCertificateRevoke, __self__).__init__(
-            'huaweicloud:ccm/privateCertificateRevoke:PrivateCertificateRevoke',
+            'huaweicloud:Ccm/privateCertificateRevoke:PrivateCertificateRevoke',
             resource_name,
             __props__,
             opts)

@@ -72,12 +72,12 @@ def get_document_atomics(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_document_atomics()
+    test = huaweicloud.Coc.get_document_atomics()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getDocumentAtomics:getDocumentAtomics', __args__, opts=opts, typ=GetDocumentAtomicsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getDocumentAtomics:getDocumentAtomics', __args__, opts=opts, typ=GetDocumentAtomicsResult).value
 
     return AwaitableGetDocumentAtomicsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -92,12 +92,12 @@ def get_document_atomics_output(opts: Optional[Union[pulumi.InvokeOptions, pulum
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_document_atomics()
+    test = huaweicloud.Coc.get_document_atomics()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getDocumentAtomics:getDocumentAtomics', __args__, opts=opts, typ=GetDocumentAtomicsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getDocumentAtomics:getDocumentAtomics', __args__, opts=opts, typ=GetDocumentAtomicsResult)
     return __ret__.apply(lambda __response__: GetDocumentAtomicsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id')))

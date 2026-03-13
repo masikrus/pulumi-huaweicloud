@@ -29,6 +29,7 @@ class SubnetCidrReservationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SubnetCidrReservation resource.
+
         :param pulumi.Input[_builtins.int] ip_version: Specifies the IP version of the subnet CIDR reservation (4 or 6).
         :param pulumi.Input[_builtins.str] subnet_id: Specifies the ID of the virtual subnet to which the
                CIDR reservation belongs.
@@ -173,6 +174,7 @@ class _SubnetCidrReservationState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubnetCidrReservation resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the reserved CIDR block in CIDR notation.
                Conflicts with `mask`.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the subnet CIDR reservation.
@@ -400,11 +402,10 @@ class SubnetCidrReservation(pulumi.CustomResource):
 
         Subnet CIDR reservations can be imported using their `id`:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetCidrReservation:SubnetCidrReservation test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -450,11 +451,10 @@ class SubnetCidrReservation(pulumi.CustomResource):
 
         Subnet CIDR reservations can be imported using their `id`:
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subnetCidrReservation:SubnetCidrReservation test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubnetCidrReservationArgs args: The arguments to use to populate this resource's properties.

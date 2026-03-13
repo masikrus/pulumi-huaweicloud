@@ -104,12 +104,13 @@ def get_physical_sessions(instance_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.ddm.get_physical_sessions(instance_id=instance_id)
+    test = huaweicloud.Ddm.get_physical_sessions(instance_id=instance_id)
     ```
 
 
     :param _builtins.str instance_id: Specifies the ID of the associated RDS instance.
-    :param _builtins.str keyword: Specifies the Keyword filtered by the sessions result. It can contain a maximum of 255 characters.
+    :param _builtins.str keyword: Specifies the Keyword filtered by the sessions result. It can contain a maximum of 255
+           characters.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
     """
@@ -118,7 +119,7 @@ def get_physical_sessions(instance_id: Optional[_builtins.str] = None,
     __args__['keyword'] = keyword
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getPhysicalSessions:getPhysicalSessions', __args__, opts=opts, typ=GetPhysicalSessionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getPhysicalSessions:getPhysicalSessions', __args__, opts=opts, typ=GetPhysicalSessionsResult).value
 
     return AwaitableGetPhysicalSessionsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -141,12 +142,13 @@ def get_physical_sessions_output(instance_id: Optional[pulumi.Input[_builtins.st
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.ddm.get_physical_sessions(instance_id=instance_id)
+    test = huaweicloud.Ddm.get_physical_sessions(instance_id=instance_id)
     ```
 
 
     :param _builtins.str instance_id: Specifies the ID of the associated RDS instance.
-    :param _builtins.str keyword: Specifies the Keyword filtered by the sessions result. It can contain a maximum of 255 characters.
+    :param _builtins.str keyword: Specifies the Keyword filtered by the sessions result. It can contain a maximum of 255
+           characters.
     :param _builtins.str region: Specifies the region in which to query the resource.
            If omitted, the provider-level region will be used.
     """
@@ -155,7 +157,7 @@ def get_physical_sessions_output(instance_id: Optional[pulumi.Input[_builtins.st
     __args__['keyword'] = keyword
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getPhysicalSessions:getPhysicalSessions', __args__, opts=opts, typ=GetPhysicalSessionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getPhysicalSessions:getPhysicalSessions', __args__, opts=opts, typ=GetPhysicalSessionsResult)
     return __ret__.apply(lambda __response__: GetPhysicalSessionsResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

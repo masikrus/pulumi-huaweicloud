@@ -30,6 +30,7 @@ class WorkflowActionArgs:
                  simulation_context: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkflowAction resource.
+
         :param pulumi.Input[_builtins.str] action_type: Sepcifies the action type, e.g. **workflow**.
         :param pulumi.Input[_builtins.str] command_type: Sepcifies the command type.
                The value can be: **ActionInstanceRunCommand**, **ActionInstanceDebugCommand**, **ActionInstanceTerminateCommand**,
@@ -182,6 +183,7 @@ class _WorkflowActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkflowAction resources.
+
         :param pulumi.Input[_builtins.str] action_instance_id: Sepcifies the action instance ID.
         :param pulumi.Input[_builtins.str] action_type: Sepcifies the action type, e.g. **workflow**.
         :param pulumi.Input[_builtins.str] command_type: Sepcifies the command type.
@@ -324,7 +326,7 @@ class _WorkflowActionState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/workflowAction:WorkflowAction")
+@pulumi.type_token("huaweicloud:Secmaster/workflowAction:WorkflowAction")
 class WorkflowAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -362,6 +364,7 @@ class WorkflowAction(pulumi.CustomResource):
             command_type="ActionInstanceRunCommand",
             action_type="workflow")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -406,6 +409,7 @@ class WorkflowAction(pulumi.CustomResource):
             command_type="ActionInstanceRunCommand",
             action_type="workflow")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkflowActionArgs args: The arguments to use to populate this resource's properties.
@@ -458,7 +462,7 @@ class WorkflowAction(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(WorkflowAction, __self__).__init__(
-            'huaweicloud:secmaster/workflowAction:WorkflowAction',
+            'huaweicloud:Secmaster/workflowAction:WorkflowAction',
             resource_name,
             __props__,
             opts)

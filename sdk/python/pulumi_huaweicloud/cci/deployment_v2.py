@@ -24,6 +24,7 @@ class DeploymentV2Args:
                  namespace: pulumi.Input[_builtins.str],
                  selector: pulumi.Input['DeploymentV2SelectorArgs'],
                  template: pulumi.Input['DeploymentV2TemplateArgs'],
+                 delete_propagation_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  min_ready_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -37,6 +38,8 @@ class DeploymentV2Args:
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "selector", selector)
         pulumi.set(__self__, "template", template)
+        if delete_propagation_policy is not None:
+            pulumi.set(__self__, "delete_propagation_policy", delete_propagation_policy)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if min_ready_seconds is not None:
@@ -78,6 +81,15 @@ class DeploymentV2Args:
     @template.setter
     def template(self, value: pulumi.Input['DeploymentV2TemplateArgs']):
         pulumi.set(self, "template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deletePropagationPolicy")
+    def delete_propagation_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "delete_propagation_policy")
+
+    @delete_propagation_policy.setter
+    def delete_propagation_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_propagation_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -149,6 +161,7 @@ class _DeploymentV2State:
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  api_version: Optional[pulumi.Input[_builtins.str]] = None,
                  creation_timestamp: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_propagation_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  generation: Optional[pulumi.Input[_builtins.int]] = None,
                  kind: Optional[pulumi.Input[_builtins.str]] = None,
@@ -173,6 +186,8 @@ class _DeploymentV2State:
             pulumi.set(__self__, "api_version", api_version)
         if creation_timestamp is not None:
             pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        if delete_propagation_policy is not None:
+            pulumi.set(__self__, "delete_propagation_policy", delete_propagation_policy)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
         if generation is not None:
@@ -230,6 +245,15 @@ class _DeploymentV2State:
     @creation_timestamp.setter
     def creation_timestamp(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "creation_timestamp", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deletePropagationPolicy")
+    def delete_propagation_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "delete_propagation_policy")
+
+    @delete_propagation_policy.setter
+    def delete_propagation_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_propagation_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")
@@ -373,6 +397,7 @@ class DeploymentV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_propagation_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  min_ready_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -386,6 +411,7 @@ class DeploymentV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a DeploymentV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -397,6 +423,7 @@ class DeploymentV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a DeploymentV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DeploymentV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -412,6 +439,7 @@ class DeploymentV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_propagation_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  min_ready_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -431,6 +459,7 @@ class DeploymentV2(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DeploymentV2Args.__new__(DeploymentV2Args)
 
+            __props__.__dict__["delete_propagation_policy"] = delete_propagation_policy
             __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["min_ready_seconds"] = min_ready_seconds
             __props__.__dict__["name"] = name
@@ -468,6 +497,7 @@ class DeploymentV2(pulumi.CustomResource):
             annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             api_version: Optional[pulumi.Input[_builtins.str]] = None,
             creation_timestamp: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_propagation_policy: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             generation: Optional[pulumi.Input[_builtins.int]] = None,
             kind: Optional[pulumi.Input[_builtins.str]] = None,
@@ -498,6 +528,7 @@ class DeploymentV2(pulumi.CustomResource):
         __props__.__dict__["annotations"] = annotations
         __props__.__dict__["api_version"] = api_version
         __props__.__dict__["creation_timestamp"] = creation_timestamp
+        __props__.__dict__["delete_propagation_policy"] = delete_propagation_policy
         __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["generation"] = generation
         __props__.__dict__["kind"] = kind
@@ -529,6 +560,11 @@ class DeploymentV2(pulumi.CustomResource):
     @pulumi.getter(name="creationTimestamp")
     def creation_timestamp(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "creation_timestamp")
+
+    @_builtins.property
+    @pulumi.getter(name="deletePropagationPolicy")
+    def delete_propagation_policy(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "delete_propagation_policy")
 
     @_builtins.property
     @pulumi.getter(name="enableForceNew")

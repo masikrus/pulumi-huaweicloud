@@ -150,7 +150,7 @@ def get_customer_gateways(asn: Optional[_builtins.int] = None,
     name = config.require_object("name")
     asn = config.require_object("asn")
     ip = config.require_object("ip")
-    services = huaweicloud.vpn.get_customer_gateways(route_mode=route_mode,
+    services = huaweicloud.Vpn.get_customer_gateways(route_mode=route_mode,
         name=name,
         asn=asn,
         ip=ip)
@@ -174,7 +174,7 @@ def get_customer_gateways(asn: Optional[_builtins.int] = None,
     __args__['region'] = region
     __args__['routeMode'] = route_mode
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getCustomerGateways:getCustomerGateways', __args__, opts=opts, typ=GetCustomerGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getCustomerGateways:getCustomerGateways', __args__, opts=opts, typ=GetCustomerGatewaysResult).value
 
     return AwaitableGetCustomerGatewaysResult(
         asn=pulumi.get(__ret__, 'asn'),
@@ -206,7 +206,7 @@ def get_customer_gateways_output(asn: Optional[pulumi.Input[Optional[_builtins.i
     name = config.require_object("name")
     asn = config.require_object("asn")
     ip = config.require_object("ip")
-    services = huaweicloud.vpn.get_customer_gateways(route_mode=route_mode,
+    services = huaweicloud.Vpn.get_customer_gateways(route_mode=route_mode,
         name=name,
         asn=asn,
         ip=ip)
@@ -230,7 +230,7 @@ def get_customer_gateways_output(asn: Optional[pulumi.Input[Optional[_builtins.i
     __args__['region'] = region
     __args__['routeMode'] = route_mode
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getCustomerGateways:getCustomerGateways', __args__, opts=opts, typ=GetCustomerGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getCustomerGateways:getCustomerGateways', __args__, opts=opts, typ=GetCustomerGatewaysResult)
     return __ret__.apply(lambda __response__: GetCustomerGatewaysResult(
         asn=pulumi.get(__response__, 'asn'),
         customer_gateway_id=pulumi.get(__response__, 'customer_gateway_id'),

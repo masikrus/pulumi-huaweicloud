@@ -25,6 +25,7 @@ class LogtankArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Logtank resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: The lts log group ID.
         :param pulumi.Input[_builtins.str] log_stream_id: The lts log stream ID.
         :param pulumi.Input[_builtins.str] topic_urn: Resource identifier of a topic, which is unique.
@@ -101,6 +102,7 @@ class _LogtankState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Logtank resources.
+
         :param pulumi.Input[_builtins.str] created_at: Time when the logtank was created.
         :param pulumi.Input[_builtins.str] log_group_id: The lts log group ID.
         :param pulumi.Input[_builtins.str] log_stream_id: The lts log stream ID.
@@ -252,19 +254,16 @@ class Logtank(pulumi.CustomResource):
 
         SMN logtank can be imported using the `topic_urn` or using the `topic_urn` and `logtank_id` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/logtank:Logtank logtank_test urn:smn:cn-south-1:09f960944c80f4802f85c003e0ed1d98:logtank_test
         ```
 
         or
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/logtank:Logtank logtank_test urn:smn:cn-south-1:09f960944c80f4802f85c003e0ed1d98:logtank_test/d9dbc3baee5c43d18a79b3fe29292003
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,19 +308,16 @@ class Logtank(pulumi.CustomResource):
 
         SMN logtank can be imported using the `topic_urn` or using the `topic_urn` and `logtank_id` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/logtank:Logtank logtank_test urn:smn:cn-south-1:09f960944c80f4802f85c003e0ed1d98:logtank_test
         ```
 
         or
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/logtank:Logtank logtank_test urn:smn:cn-south-1:09f960944c80f4802f85c003e0ed1d98:logtank_test/d9dbc3baee5c43d18a79b3fe29292003
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogtankArgs args: The arguments to use to populate this resource's properties.

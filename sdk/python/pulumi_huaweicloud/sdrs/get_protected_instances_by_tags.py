@@ -162,7 +162,7 @@ def get_protected_instances_by_tags(action: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances_by_tags(action="filter",
+    test = huaweicloud.Sdrs.get_protected_instances_by_tags(action="filter",
         tags=[{
             "key": "foo",
             "values": ["bar"],
@@ -175,7 +175,7 @@ def get_protected_instances_by_tags(action: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances_by_tags(action="count")
+    test = huaweicloud.Sdrs.get_protected_instances_by_tags(action="count")
     ```
 
 
@@ -187,7 +187,8 @@ def get_protected_instances_by_tags(action: Optional[_builtins.str] = None,
     :param Sequence[Union['GetProtectedInstancesByTagsMatchArgs', 'GetProtectedInstancesByTagsMatchArgsDict']] matches: Specifies the search field.
            The matches structure is documented below.
            
-           > The tag key is the field to be matched, for example, **resource_name**. The tag value indicates the value to be matched.
+           > The tag key is the field to be matched, for example, **resource_name**. The tag value indicates the value to be
+           matched.
            The key is a fixed dictionary value and cannot contain duplicate keys or unsupported keys.
            Determine whether fuzzy match is required based on the keys. For example, if key is **resource_name**,
            fuzzy search (case insensitive) is used by default. If value is an empty string, exact match is used.
@@ -203,7 +204,8 @@ def get_protected_instances_by_tags(action: Optional[_builtins.str] = None,
            Each tag key must be unique, and each tag value in a tag must be unique. The response returns resources containing
            no tags in this list. Keys in this list are in an AND relationship while values in each key-value structure are
            in an OR relationship. If no tag filtering condition is specified, full data is returned.
-    :param Sequence[Union['GetProtectedInstancesByTagsNotTagsAnyArgs', 'GetProtectedInstancesByTagsNotTagsAnyArgsDict']] not_tags_anies: Specifies the tags to query resource list which do not contain any of the specified tags.
+    :param Sequence[Union['GetProtectedInstancesByTagsNotTagsAnyArgs', 'GetProtectedInstancesByTagsNotTagsAnyArgsDict']] not_tags_anies: Specifies the tags to query resource list which do not contain any of the specified
+           tags.
            The not_tags_any structure is documented below.
            
            > Each resource to be queried contains a maximum of `10` keys. Each tag key can have a maximum of `10` tag values.
@@ -240,7 +242,7 @@ def get_protected_instances_by_tags(action: Optional[_builtins.str] = None,
     __args__['tags'] = tags
     __args__['tagsAnies'] = tags_anies
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getProtectedInstancesByTags:getProtectedInstancesByTags', __args__, opts=opts, typ=GetProtectedInstancesByTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getProtectedInstancesByTags:getProtectedInstancesByTags', __args__, opts=opts, typ=GetProtectedInstancesByTagsResult).value
 
     return AwaitableGetProtectedInstancesByTagsResult(
         action=pulumi.get(__ret__, 'action'),
@@ -272,7 +274,7 @@ def get_protected_instances_by_tags_output(action: Optional[pulumi.Input[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances_by_tags(action="filter",
+    test = huaweicloud.Sdrs.get_protected_instances_by_tags(action="filter",
         tags=[{
             "key": "foo",
             "values": ["bar"],
@@ -285,7 +287,7 @@ def get_protected_instances_by_tags_output(action: Optional[pulumi.Input[_builti
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_protected_instances_by_tags(action="count")
+    test = huaweicloud.Sdrs.get_protected_instances_by_tags(action="count")
     ```
 
 
@@ -297,7 +299,8 @@ def get_protected_instances_by_tags_output(action: Optional[pulumi.Input[_builti
     :param Sequence[Union['GetProtectedInstancesByTagsMatchArgs', 'GetProtectedInstancesByTagsMatchArgsDict']] matches: Specifies the search field.
            The matches structure is documented below.
            
-           > The tag key is the field to be matched, for example, **resource_name**. The tag value indicates the value to be matched.
+           > The tag key is the field to be matched, for example, **resource_name**. The tag value indicates the value to be
+           matched.
            The key is a fixed dictionary value and cannot contain duplicate keys or unsupported keys.
            Determine whether fuzzy match is required based on the keys. For example, if key is **resource_name**,
            fuzzy search (case insensitive) is used by default. If value is an empty string, exact match is used.
@@ -313,7 +316,8 @@ def get_protected_instances_by_tags_output(action: Optional[pulumi.Input[_builti
            Each tag key must be unique, and each tag value in a tag must be unique. The response returns resources containing
            no tags in this list. Keys in this list are in an AND relationship while values in each key-value structure are
            in an OR relationship. If no tag filtering condition is specified, full data is returned.
-    :param Sequence[Union['GetProtectedInstancesByTagsNotTagsAnyArgs', 'GetProtectedInstancesByTagsNotTagsAnyArgsDict']] not_tags_anies: Specifies the tags to query resource list which do not contain any of the specified tags.
+    :param Sequence[Union['GetProtectedInstancesByTagsNotTagsAnyArgs', 'GetProtectedInstancesByTagsNotTagsAnyArgsDict']] not_tags_anies: Specifies the tags to query resource list which do not contain any of the specified
+           tags.
            The not_tags_any structure is documented below.
            
            > Each resource to be queried contains a maximum of `10` keys. Each tag key can have a maximum of `10` tag values.
@@ -350,7 +354,7 @@ def get_protected_instances_by_tags_output(action: Optional[pulumi.Input[_builti
     __args__['tags'] = tags
     __args__['tagsAnies'] = tags_anies
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getProtectedInstancesByTags:getProtectedInstancesByTags', __args__, opts=opts, typ=GetProtectedInstancesByTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getProtectedInstancesByTags:getProtectedInstancesByTags', __args__, opts=opts, typ=GetProtectedInstancesByTagsResult)
     return __ret__.apply(lambda __response__: GetProtectedInstancesByTagsResult(
         action=pulumi.get(__response__, 'action'),
         id=pulumi.get(__response__, 'id'),

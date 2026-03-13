@@ -18,6 +18,13 @@ from . import outputs
 __all__ = [
     'ListenerInsertHeaders',
     'ListenerV2InsertHeaders',
+    'MemberCheckTaskResult',
+    'MemberCheckTaskResultAcl',
+    'MemberCheckTaskResultAclCheckItem',
+    'MemberCheckTaskResultConfig',
+    'MemberCheckTaskResultConfigCheckItem',
+    'MemberCheckTaskResultSecurityGroup',
+    'MemberCheckTaskResultSecurityGroupCheckItem',
     'PoolPersistence',
     'PoolV2Persistence',
     'GetAsynchronousTasksJobResult',
@@ -27,6 +34,22 @@ __all__ = [
     'GetListenersListenerResult',
     'GetListenersListenerInsertHeaderResult',
     'GetListenersListenerLoadbalancerResult',
+    'GetLoadbalancerPortsPortResult',
+    'GetLoadbalancerStatusStatusResult',
+    'GetLoadbalancerStatusStatusLoadbalancerResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerL7policyResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerL7policyRuleResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerPoolResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerPoolHealthmonitorResult',
+    'GetLoadbalancerStatusStatusLoadbalancerListenerPoolMemberResult',
+    'GetLoadbalancerStatusStatusLoadbalancerPoolResult',
+    'GetLoadbalancerStatusStatusLoadbalancerPoolHealthmonitorResult',
+    'GetLoadbalancerStatusStatusLoadbalancerPoolMemberResult',
+    'GetLoadbalancersByTagsMatchResult',
+    'GetLoadbalancersByTagsResourceResult',
+    'GetLoadbalancersByTagsResourceTagResult',
+    'GetLoadbalancersByTagsTagResult',
     'GetMembersMemberResult',
     'GetMembersMemberReasonResult',
     'GetMembersMemberStatusResult',
@@ -37,6 +60,14 @@ __all__ = [
     'GetPoolsPoolMemberResult',
     'GetPoolsPoolPersistenceResult',
     'GetQuotaDetailsQuotaResult',
+    'GetRecycleBinLoadbalancersLoadbalancerResult',
+    'GetRecycleBinLoadbalancersLoadbalancerGlobalEipResult',
+    'GetRecycleBinLoadbalancersLoadbalancerIpv6BandwidthResult',
+    'GetRecycleBinLoadbalancersLoadbalancerListenerResult',
+    'GetRecycleBinLoadbalancersLoadbalancerPoolResult',
+    'GetRecycleBinLoadbalancersLoadbalancerPublicipResult',
+    'GetRecycleBinLoadbalancersLoadbalancerTagResult',
+    'GetWhitelistsWhitelistResult',
 ]
 
 @pulumi.output_type
@@ -141,6 +172,648 @@ class ListenerV2InsertHeaders(dict):
     @pulumi.getter(name="xForwardedHost")
     def x_forwarded_host(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "x_forwarded_host")
+
+
+@pulumi.output_type
+class MemberCheckTaskResult(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "securityGroups":
+            suggest = "security_groups"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResult. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResult.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResult.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 acls: Optional[Sequence['outputs.MemberCheckTaskResultAcl']] = None,
+                 configs: Optional[Sequence['outputs.MemberCheckTaskResultConfig']] = None,
+                 security_groups: Optional[Sequence['outputs.MemberCheckTaskResultSecurityGroup']] = None):
+        """
+        :param Sequence['MemberCheckTaskResultAclArgs'] acls: Indicates the network ACL rule check.
+               The acl structure is documented below.
+        :param Sequence['MemberCheckTaskResultConfigArgs'] configs: Indicates the configuration check.
+               The config structure is documented below.
+        :param Sequence['MemberCheckTaskResultSecurityGroupArgs'] security_groups: Indicates the security group rule check.
+               The security_group structure is documented below.
+        """
+        if acls is not None:
+            pulumi.set(__self__, "acls", acls)
+        if configs is not None:
+            pulumi.set(__self__, "configs", configs)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def acls(self) -> Optional[Sequence['outputs.MemberCheckTaskResultAcl']]:
+        """
+        Indicates the network ACL rule check.
+        The acl structure is documented below.
+        """
+        return pulumi.get(self, "acls")
+
+    @_builtins.property
+    @pulumi.getter
+    def configs(self) -> Optional[Sequence['outputs.MemberCheckTaskResultConfig']]:
+        """
+        Indicates the configuration check.
+        The config structure is documented below.
+        """
+        return pulumi.get(self, "configs")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence['outputs.MemberCheckTaskResultSecurityGroup']]:
+        """
+        Indicates the security group rule check.
+        The security_group structure is documented below.
+        """
+        return pulumi.get(self, "security_groups")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultAcl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkItems":
+            suggest = "check_items"
+        elif key == "checkResult":
+            suggest = "check_result"
+        elif key == "checkStatus":
+            suggest = "check_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultAcl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultAcl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultAcl.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 check_items: Optional[Sequence['outputs.MemberCheckTaskResultAclCheckItem']] = None,
+                 check_result: Optional[_builtins.bool] = None,
+                 check_status: Optional[_builtins.str] = None):
+        """
+        :param Sequence['MemberCheckTaskResultAclCheckItemArgs'] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param _builtins.bool check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param _builtins.str check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[Sequence['outputs.MemberCheckTaskResultAclCheckItem']]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[_builtins.bool]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[_builtins.str]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultAclCheckItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jobId":
+            suggest = "job_id"
+        elif key == "reasonParams":
+            suggest = "reason_params"
+        elif key == "reasonTemplate":
+            suggest = "reason_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultAclCheckItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultAclCheckItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultAclCheckItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 job_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 reason: Optional[_builtins.str] = None,
+                 reason_params: Optional[Sequence[_builtins.str]] = None,
+                 reason_template: Optional[_builtins.str] = None,
+                 severity: Optional[_builtins.str] = None,
+                 subject: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str job_id: Indicates the task ID.
+        :param _builtins.str name: Indicates the check item name.
+        :param _builtins.str reason: Indicates the exception cause.
+        :param Sequence[_builtins.str] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param _builtins.str reason_template: Indicates the exception reason template.
+        :param _builtins.str severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param _builtins.str subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[_builtins.str]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkItems":
+            suggest = "check_items"
+        elif key == "checkResult":
+            suggest = "check_result"
+        elif key == "checkStatus":
+            suggest = "check_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 check_items: Optional[Sequence['outputs.MemberCheckTaskResultConfigCheckItem']] = None,
+                 check_result: Optional[_builtins.bool] = None,
+                 check_status: Optional[_builtins.str] = None):
+        """
+        :param Sequence['MemberCheckTaskResultConfigCheckItemArgs'] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param _builtins.bool check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param _builtins.str check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[Sequence['outputs.MemberCheckTaskResultConfigCheckItem']]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[_builtins.bool]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[_builtins.str]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultConfigCheckItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jobId":
+            suggest = "job_id"
+        elif key == "reasonParams":
+            suggest = "reason_params"
+        elif key == "reasonTemplate":
+            suggest = "reason_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultConfigCheckItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultConfigCheckItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultConfigCheckItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 job_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 reason: Optional[_builtins.str] = None,
+                 reason_params: Optional[Sequence[_builtins.str]] = None,
+                 reason_template: Optional[_builtins.str] = None,
+                 severity: Optional[_builtins.str] = None,
+                 subject: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str job_id: Indicates the task ID.
+        :param _builtins.str name: Indicates the check item name.
+        :param _builtins.str reason: Indicates the exception cause.
+        :param Sequence[_builtins.str] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param _builtins.str reason_template: Indicates the exception reason template.
+        :param _builtins.str severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param _builtins.str subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[_builtins.str]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultSecurityGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkItems":
+            suggest = "check_items"
+        elif key == "checkResult":
+            suggest = "check_result"
+        elif key == "checkStatus":
+            suggest = "check_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultSecurityGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultSecurityGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultSecurityGroup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 check_items: Optional[Sequence['outputs.MemberCheckTaskResultSecurityGroupCheckItem']] = None,
+                 check_result: Optional[_builtins.bool] = None,
+                 check_status: Optional[_builtins.str] = None):
+        """
+        :param Sequence['MemberCheckTaskResultSecurityGroupCheckItemArgs'] check_items: Indicates the summary of grouped check items.
+               The check_items structure is documented below.
+        :param _builtins.bool check_result: Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+               the check is not passed.
+        :param _builtins.str check_status: Indicates the status of a backend server check task. The value can be **processed**, **processing**
+               or **failed**.
+        """
+        if check_items is not None:
+            pulumi.set(__self__, "check_items", check_items)
+        if check_result is not None:
+            pulumi.set(__self__, "check_result", check_result)
+        if check_status is not None:
+            pulumi.set(__self__, "check_status", check_status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkItems")
+    def check_items(self) -> Optional[Sequence['outputs.MemberCheckTaskResultSecurityGroupCheckItem']]:
+        """
+        Indicates the summary of grouped check items.
+        The check_items structure is documented below.
+        """
+        return pulumi.get(self, "check_items")
+
+    @_builtins.property
+    @pulumi.getter(name="checkResult")
+    def check_result(self) -> Optional[_builtins.bool]:
+        """
+        Indicates the check result. **true** indicates that the check is passed, and **false** indicates that
+        the check is not passed.
+        """
+        return pulumi.get(self, "check_result")
+
+    @_builtins.property
+    @pulumi.getter(name="checkStatus")
+    def check_status(self) -> Optional[_builtins.str]:
+        """
+        Indicates the status of a backend server check task. The value can be **processed**, **processing**
+        or **failed**.
+        """
+        return pulumi.get(self, "check_status")
+
+
+@pulumi.output_type
+class MemberCheckTaskResultSecurityGroupCheckItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jobId":
+            suggest = "job_id"
+        elif key == "reasonParams":
+            suggest = "reason_params"
+        elif key == "reasonTemplate":
+            suggest = "reason_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MemberCheckTaskResultSecurityGroupCheckItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MemberCheckTaskResultSecurityGroupCheckItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MemberCheckTaskResultSecurityGroupCheckItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 job_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 reason: Optional[_builtins.str] = None,
+                 reason_params: Optional[Sequence[_builtins.str]] = None,
+                 reason_template: Optional[_builtins.str] = None,
+                 severity: Optional[_builtins.str] = None,
+                 subject: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str job_id: Indicates the task ID.
+        :param _builtins.str name: Indicates the check item name.
+        :param _builtins.str reason: Indicates the exception cause.
+        :param Sequence[_builtins.str] reason_params: Indicates the exception variables, which is used to dynamically generate exception causes based on
+               the exception cause template.
+        :param _builtins.str reason_template: Indicates the exception reason template.
+        :param _builtins.str severity: Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        :param _builtins.str subject: Specifies the check items. Value options:
+               + **securityGroup**: security group checks
+               + **networkAcl**: network ACL checks
+               + **config**: health check port checks
+               + **all**: all check items
+        """
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if reason_params is not None:
+            pulumi.set(__self__, "reason_params", reason_params)
+        if reason_template is not None:
+            pulumi.set(__self__, "reason_template", reason_template)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if subject is not None:
+            pulumi.set(__self__, "subject", subject)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[_builtins.str]:
+        """
+        Indicates the task ID.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Indicates the check item name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception cause.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonParams")
+    def reason_params(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Indicates the exception variables, which is used to dynamically generate exception causes based on
+        the exception cause template.
+        """
+        return pulumi.get(self, "reason_params")
+
+    @_builtins.property
+    @pulumi.getter(name="reasonTemplate")
+    def reason_template(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception reason template.
+        """
+        return pulumi.get(self, "reason_template")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[_builtins.str]:
+        """
+        Indicates the exception severity, which can be **Major (severe)** or **Tips (informational)**.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def subject(self) -> Optional[_builtins.str]:
+        """
+        Specifies the check items. Value options:
+        + **securityGroup**: security group checks
+        + **networkAcl**: network ACL checks
+        + **config**: health check port checks
+        + **all**: all check items
+        """
+        return pulumi.get(self, "subject")
 
 
 @pulumi.output_type
@@ -1005,6 +1678,921 @@ class GetListenersListenerLoadbalancerResult(dict):
 
 
 @pulumi.output_type
+class GetLoadbalancerPortsPortResult(dict):
+    def __init__(__self__, *,
+                 ip_address: _builtins.str,
+                 ipv6_address: _builtins.str,
+                 port_id: _builtins.str,
+                 type: _builtins.str,
+                 virsubnet_id: _builtins.str):
+        """
+        :param _builtins.str ip_address: Specifies the private IPv4 address used by the load balancer. Multiple IP addresses
+               can be used.
+        :param _builtins.str ipv6_address: Specifies the IPv6 address used by the load balancer. Multiple IPv6 addresses can be
+               used.
+        :param _builtins.str port_id: Specifies the ID of the port used by the load balancer. Multiple IDs can be used.
+        :param _builtins.str type: Specifies the port type. Multiple types can be used. Value options:
+               + **l4_hc**: port used for health checks during Layer 4 traffic forwarding using DNAT.
+               + **l4**: port used for Layer 4 health checks and traffic forwarding using FullNAT.
+               + **l7**: port used for Layer 7 health checks and service forwarding.
+        :param _builtins.str virsubnet_id: Specifies the network ID of the downstream subnet where the port is located. Multiple
+               IDs can be used.
+        """
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ipv6_address", ipv6_address)
+        pulumi.set(__self__, "port_id", port_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "virsubnet_id", virsubnet_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Specifies the private IPv4 address used by the load balancer. Multiple IP addresses
+        can be used.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Address")
+    def ipv6_address(self) -> _builtins.str:
+        """
+        Specifies the IPv6 address used by the load balancer. Multiple IPv6 addresses can be
+        used.
+        """
+        return pulumi.get(self, "ipv6_address")
+
+    @_builtins.property
+    @pulumi.getter(name="portId")
+    def port_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the port used by the load balancer. Multiple IDs can be used.
+        """
+        return pulumi.get(self, "port_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the port type. Multiple types can be used. Value options:
+        + **l4_hc**: port used for health checks during Layer 4 traffic forwarding using DNAT.
+        + **l4**: port used for Layer 4 health checks and traffic forwarding using FullNAT.
+        + **l7**: port used for Layer 7 health checks and service forwarding.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="virsubnetId")
+    def virsubnet_id(self) -> _builtins.str:
+        """
+        Specifies the network ID of the downstream subnet where the port is located. Multiple
+        IDs can be used.
+        """
+        return pulumi.get(self, "virsubnet_id")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusResult(dict):
+    def __init__(__self__, *,
+                 loadbalancers: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerResult']):
+        """
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerArgs'] loadbalancers: Indicates the statuses of the load balancer and its associated resources.
+               The loadbalancer structure is documented below.
+        """
+        pulumi.set(__self__, "loadbalancers", loadbalancers)
+
+    @_builtins.property
+    @pulumi.getter
+    def loadbalancers(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerResult']:
+        """
+        Indicates the statuses of the load balancer and its associated resources.
+        The loadbalancer structure is documented below.
+        """
+        return pulumi.get(self, "loadbalancers")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 listeners: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerResult'],
+                 name: _builtins.str,
+                 operating_status: _builtins.str,
+                 pools: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolResult'],
+                 provisioning_status: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerArgs'] listeners: Indicates the listeners added to the load balancer.
+               The listeners structure is documented below.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerPoolArgs'] pools: Indicates the operating status of the backend server groups associated with the listener.
+               The pools structure is documented below.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "pools", pools)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerResult']:
+        """
+        Indicates the listeners added to the load balancer.
+        The listeners structure is documented below.
+        """
+        return pulumi.get(self, "listeners")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def pools(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolResult']:
+        """
+        Indicates the operating status of the backend server groups associated with the listener.
+        The pools structure is documented below.
+        """
+        return pulumi.get(self, "pools")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 l7policies: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerL7policyResult'],
+                 name: _builtins.str,
+                 operating_status: _builtins.str,
+                 pools: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolResult'],
+                 provisioning_status: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerL7policyArgs'] l7policies: Indicates the operating status of the forwarding policy added to the listener.
+               The l7policies structure is documented below.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerPoolArgs'] pools: Indicates the operating status of the backend server groups associated with the listener.
+               The pools structure is documented below.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "l7policies", l7policies)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "pools", pools)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def l7policies(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerL7policyResult']:
+        """
+        Indicates the operating status of the forwarding policy added to the listener.
+        The l7policies structure is documented below.
+        """
+        return pulumi.get(self, "l7policies")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def pools(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolResult']:
+        """
+        Indicates the operating status of the backend server groups associated with the listener.
+        The pools structure is documented below.
+        """
+        return pulumi.get(self, "pools")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerL7policyResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 provisioning_status: _builtins.str,
+                 rules: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerL7policyRuleResult']):
+        """
+        :param _builtins.str action: Indicates whether requests are forwarded to another backend server group or redirected to an HTTPS listener.
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerL7policyRuleArgs'] rules: Indicates the status of all forwarding rules in the forwarding policy.
+               The rules structure is documented below.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "rules", rules)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Indicates whether requests are forwarded to another backend server group or redirected to an HTTPS listener.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerL7policyRuleResult']:
+        """
+        Indicates the status of all forwarding rules in the forwarding policy.
+        The rules structure is documented below.
+        """
+        return pulumi.get(self, "rules")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerL7policyRuleResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 provisioning_status: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        :param _builtins.str type: Indicates the type of the match content.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of the match content.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerPoolResult(dict):
+    def __init__(__self__, *,
+                 healthmonitors: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolHealthmonitorResult'],
+                 id: _builtins.str,
+                 members: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolMemberResult'],
+                 name: _builtins.str,
+                 operating_status: _builtins.str,
+                 provisioning_status: _builtins.str):
+        """
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerPoolHealthmonitorArgs'] healthmonitors: Indicates the health check results of backend servers in the load balancer status tree.
+               The healthmonitor structure is documented below.
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerListenerPoolMemberArgs'] members: Indicates the statuses of all backend servers in the backend server group.
+               The members structure is documented below.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "healthmonitors", healthmonitors)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def healthmonitors(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolHealthmonitorResult']:
+        """
+        Indicates the health check results of backend servers in the load balancer status tree.
+        The healthmonitor structure is documented below.
+        """
+        return pulumi.get(self, "healthmonitors")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def members(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerListenerPoolMemberResult']:
+        """
+        Indicates the statuses of all backend servers in the backend server group.
+        The members structure is documented below.
+        """
+        return pulumi.get(self, "members")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerPoolHealthmonitorResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 provisioning_status: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        :param _builtins.str type: Indicates the type of the match content.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of the match content.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerListenerPoolMemberResult(dict):
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 id: _builtins.str,
+                 operating_status: _builtins.str,
+                 protocol_port: _builtins.int,
+                 provisioning_status: _builtins.str):
+        """
+        :param _builtins.str address: Indicates the IP address of the backend server.
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param _builtins.int protocol_port: Indicates the port used by the backend server to receive requests.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "protocol_port", protocol_port)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        Indicates the IP address of the backend server.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter(name="protocolPort")
+    def protocol_port(self) -> _builtins.int:
+        """
+        Indicates the port used by the backend server to receive requests.
+        """
+        return pulumi.get(self, "protocol_port")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerPoolResult(dict):
+    def __init__(__self__, *,
+                 healthmonitors: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolHealthmonitorResult'],
+                 id: _builtins.str,
+                 members: Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolMemberResult'],
+                 name: _builtins.str,
+                 operating_status: _builtins.str,
+                 provisioning_status: _builtins.str):
+        """
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerPoolHealthmonitorArgs'] healthmonitors: Indicates the health check results of backend servers in the load balancer status tree.
+               The healthmonitor structure is documented below.
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param Sequence['GetLoadbalancerStatusStatusLoadbalancerPoolMemberArgs'] members: Indicates the statuses of all backend servers in the backend server group.
+               The members structure is documented below.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "healthmonitors", healthmonitors)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def healthmonitors(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolHealthmonitorResult']:
+        """
+        Indicates the health check results of backend servers in the load balancer status tree.
+        The healthmonitor structure is documented below.
+        """
+        return pulumi.get(self, "healthmonitors")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def members(self) -> Sequence['outputs.GetLoadbalancerStatusStatusLoadbalancerPoolMemberResult']:
+        """
+        Indicates the statuses of all backend servers in the backend server group.
+        The members structure is documented below.
+        """
+        return pulumi.get(self, "members")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerPoolHealthmonitorResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 provisioning_status: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str name: Indicates the forwarding policy name.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        :param _builtins.str type: Indicates the type of the match content.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the forwarding policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Indicates the type of the match content.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLoadbalancerStatusStatusLoadbalancerPoolMemberResult(dict):
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 id: _builtins.str,
+                 operating_status: _builtins.str,
+                 protocol_port: _builtins.int,
+                 provisioning_status: _builtins.str):
+        """
+        :param _builtins.str address: Indicates the IP address of the backend server.
+        :param _builtins.str id: Indicates the ID of the forwarding rule.
+        :param _builtins.str operating_status: Indicates the operating status of the backend server.
+        :param _builtins.int protocol_port: Indicates the port used by the backend server to receive requests.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the forwarding rule.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "protocol_port", protocol_port)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        Indicates the IP address of the backend server.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the ID of the forwarding rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Indicates the operating status of the backend server.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter(name="protocolPort")
+    def protocol_port(self) -> _builtins.int:
+        """
+        Indicates the port used by the backend server to receive requests.
+        """
+        return pulumi.get(self, "protocol_port")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the forwarding rule.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+
+@pulumi.output_type
+class GetLoadbalancersByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matchs key.
+               Currently, only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the value corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matchs key.
+        Currently, only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value corresponding to the key.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetLoadbalancersByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 super_resource_id: _builtins.str,
+                 tags: Sequence['outputs.GetLoadbalancersByTagsResourceTagResult']):
+        """
+        :param _builtins.str resource_detail: The detail of the resource.
+               The value is a resource object used for extension. This parameter is left blank by default.
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str resource_name: The resource name.
+        :param _builtins.str super_resource_id: The parent resource ID.
+        :param Sequence['GetLoadbalancersByTagsResourceTagArgs'] tags: Specifies the list of the tags to be queried.
+               The tags structure is documented below.
+               
+               > 1. The tags contains a maximum of `20` keys. Each tag key can have a maximum of `20` tag values.
+               <br/>2. The key cannot be left blank or set to an empty string.
+               <br/>3. Each tag key must be unique, and each tag value in a tag must be unique.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "super_resource_id", super_resource_id)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        The detail of the resource.
+        The value is a resource object used for extension. This parameter is left blank by default.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="superResourceId")
+    def super_resource_id(self) -> _builtins.str:
+        """
+        The parent resource ID.
+        """
+        return pulumi.get(self, "super_resource_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetLoadbalancersByTagsResourceTagResult']:
+        """
+        Specifies the list of the tags to be queried.
+        The tags structure is documented below.
+
+        > 1. The tags contains a maximum of `20` keys. Each tag key can have a maximum of `20` tag values.
+        <br/>2. The key cannot be left blank or set to an empty string.
+        <br/>3. Each tag key must be unique, and each tag value in a tag must be unique.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetLoadbalancersByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the matchs key.
+               Currently, only **resource_name** for key is supported.
+        :param _builtins.str value: Specifies the value corresponding to the key.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matchs key.
+        Currently, only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value corresponding to the key.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetLoadbalancersByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the matchs key.
+               Currently, only **resource_name** for key is supported.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > 1. The tag value contains up to `255` unicode characters.
+               <br/>2. The values in this list are in an OR relationship.
+               <br/>3. If this list is left blank, it indicates that all values are included.
+               <br/>4. If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the matchs key.
+        Currently, only **resource_name** for key is supported.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > 1. The tag value contains up to `255` unicode characters.
+        <br/>2. The values in this list are in an OR relationship.
+        <br/>3. If this list is left blank, it indicates that all values are included.
+        <br/>4. If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetMembersMemberResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
@@ -1619,5 +3207,770 @@ class GetQuotaDetailsQuotaResult(dict):
         Indicates the used quota.
         """
         return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerResult(dict):
+    def __init__(__self__, *,
+                 auto_terminate_time: _builtins.str,
+                 availability_zone_lists: Sequence[_builtins.str],
+                 billing_info: _builtins.str,
+                 charge_mode: _builtins.str,
+                 created_at: _builtins.str,
+                 deletion_protection_enable: _builtins.bool,
+                 description: _builtins.str,
+                 elb_virsubnet_ids: Sequence[_builtins.str],
+                 elb_virsubnet_type: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 frozen_scene: _builtins.str,
+                 global_eips: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerGlobalEipResult'],
+                 guaranteed: _builtins.bool,
+                 id: _builtins.str,
+                 ip_target_enable: _builtins.bool,
+                 ipv6_bandwidths: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerIpv6BandwidthResult'],
+                 ipv6_vip_address: _builtins.str,
+                 ipv6_vip_port_id: _builtins.str,
+                 ipv6_vip_virsubnet_id: _builtins.str,
+                 l4_flavor_id: _builtins.str,
+                 l4_scale_flavor_id: _builtins.str,
+                 l7_flavor_id: _builtins.str,
+                 l7_scale_flavor_id: _builtins.str,
+                 listeners: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerListenerResult'],
+                 log_group_id: _builtins.str,
+                 log_topic_id: _builtins.str,
+                 name: _builtins.str,
+                 operating_status: _builtins.str,
+                 pools: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerPoolResult'],
+                 protection_reason: _builtins.str,
+                 protection_status: _builtins.str,
+                 provider: _builtins.str,
+                 provisioning_status: _builtins.str,
+                 public_border_group: _builtins.str,
+                 publicips: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerPublicipResult'],
+                 tags: Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerTagResult'],
+                 updated_at: _builtins.str,
+                 vip_address: _builtins.str,
+                 vip_port_id: _builtins.str,
+                 vip_subnet_cidr_id: _builtins.str,
+                 vpc_id: _builtins.str,
+                 waf_failure_action: _builtins.str):
+        """
+        :param _builtins.str auto_terminate_time: Indicates the time when the load balancers in the recycle bin will be permanently deleted.
+               The format is **yyyy-MM-dd'T'HH:mm:ss'Z'**.
+        :param Sequence[_builtins.str] availability_zone_lists: Specifies the list of AZs where the load balancer is created.
+               Multiple AZs can be used.
+        :param _builtins.str billing_info: Specifies the provides resource billing information.
+               Multipple values can be used.
+        :param _builtins.str charge_mode: Indicates the charge mode of the load balancer.
+        :param _builtins.str created_at: Indicates the time when the load balancer was created.
+        :param _builtins.bool deletion_protection_enable: Specifies whether to enable deletion protection. Value options:
+               + **false**: disable this option
+               + **true**: enable this option
+        :param _builtins.str description: Specifies the load balancer description.
+               Multiple descriptions can be used.
+        :param Sequence[_builtins.str] elb_virsubnet_ids: Indicates the network IDs of subnets on the downstream plane.
+        :param _builtins.str elb_virsubnet_type: Specifies the type of the subnet on the downstream plane.
+               Multiple values can be used. Value options:
+               + **ipv4**: IPv4 subnet
+               + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+        :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project where the load balancer is used.
+               Multiple values can be used.
+        :param _builtins.str frozen_scene: Indicates the scenario where the load balancer is frozen.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerGlobalEipArgs'] global_eips: Specifies the EIP bound to the load balancer.
+               Multiple values can be used. Value options:
+               + If `global_eip_id` is used as the query condition, the format is **global_eips=global_eip_id=xxx**.
+               + If `global_eip_address` is used as the query condition, the format is **global_eips=global_eip_address=xxx**.
+               + If `ip_version` is used as the query condition, the format is **global_eips=ip_version=xxx**.
+        :param _builtins.bool guaranteed: Specifies whether the load balancer is a dedicated load balancer. Value options:
+               **false**: The load balancer is a shared load balancer.
+               + **true**: The load balancer is a dedicated load balancer.
+        :param _builtins.str id: Indicates the listener ID.
+        :param _builtins.bool ip_target_enable: Indicates whether to add backend servers that are not in the load balancer's VPC.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerIpv6BandwidthArgs'] ipv6_bandwidths: Indicates the ID of the bandwidth.
+        :param _builtins.str ipv6_vip_address: Specifies the IPv6 address bound to the load balancer.
+               Multiple IPv6 addresses can be used.
+        :param _builtins.str ipv6_vip_port_id: Specifies the ID of the port bound to the IPv6 address of the load balancer.
+               Multiple ports can be used.
+        :param _builtins.str ipv6_vip_virsubnet_id: Specifies the ID of the IPv6 subnet where the load balancer resides.
+               Multiple IDs can be used.
+        :param _builtins.str l4_flavor_id: Specifies the ID of a flavor at Layer 4.
+               Multiple IDs can be used.
+        :param _builtins.str l4_scale_flavor_id: Indicates the ID of the elastic flavor at Layer 4.
+        :param _builtins.str l7_flavor_id: Specifies the ID of a flavor at Layer 7.
+               Multiple flavors can be used.
+        :param _builtins.str l7_scale_flavor_id: Indicates the ID of an elastic flavor at Layer 7.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerListenerArgs'] listeners: Indicates the IDs of listeners associated with the load balancer.
+        :param _builtins.str log_group_id: Specifies the ID of the log group that is associated with the load balancer.
+               Multiple IDs can be used.
+        :param _builtins.str log_topic_id: Specifies the ID of the log topic that is associated with the load balancer.
+               Multiple IDs can be used.
+        :param _builtins.str name: Specifies the load balancer name.
+               Multiple names can be used.
+        :param _builtins.str operating_status: Specifies the operating status of the load balancer.
+               Multiple operating statuses can be used. Value options:
+               + **ONLINE**: The load balancer is working normally.
+               + **FROZEN**: The load balancer has been frozen.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerPoolArgs'] pools: Indicates the IDs of backend server groups associated with the load balancer.
+        :param _builtins.str protection_reason: Indicates why modification protection is enabled.
+        :param _builtins.str protection_status: Specifies the protection status. Value options:
+               + **nonProtection**: The resource is not protected.
+               + **consoleProtection**: Modification is not allowed on the console.
+        :param _builtins.str provider: Indicates the provider of the load balancer. The value is fixed to **vlb**.
+        :param _builtins.str provisioning_status: Indicates the provisioning status of the load balancer.
+        :param _builtins.str public_border_group: Indicates the AZ group to which the load balancer belongs.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerPublicipArgs'] publicips: Specifies the EIP bound to the load balancer.
+               Multiple publicips can be used.
+               + If `publicip_id` is used as the query condition, the format is **publicips=publicip_id=xxx**.
+               + If `publicip_address` is used as the query condition, the format is **publicips=publicip_address=xxx**.
+               + If `ip_version` is used as the query condition, the format is **publicips=ip_version=xxx**.
+        :param Sequence['GetRecycleBinLoadbalancersLoadbalancerTagArgs'] tags: Indicates the tags added to the load balancer.
+        :param _builtins.str updated_at: Indicates the time when the load balancer was updated.
+        :param _builtins.str vip_address: Specifies the IPv4 private IP address of the load balancer.
+               Multiple IP addresses can be used.
+        :param _builtins.str vip_port_id: Specifies the ID of the port bound to the private IPv4 address of the load balancer.
+               Multiple IDs can be used.
+        :param _builtins.str vip_subnet_cidr_id: Specifies the ID of the IPv4 subnet where the load balancer resides.
+               Multiple IDs can be used.
+        :param _builtins.str vpc_id: Specifies the ID of the VPC where the load balancer resides.
+               Multiple IDs can be used.
+        :param _builtins.str waf_failure_action: Indicates traffic distributing policies when the WAF is faulty.
+        """
+        pulumi.set(__self__, "auto_terminate_time", auto_terminate_time)
+        pulumi.set(__self__, "availability_zone_lists", availability_zone_lists)
+        pulumi.set(__self__, "billing_info", billing_info)
+        pulumi.set(__self__, "charge_mode", charge_mode)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "elb_virsubnet_ids", elb_virsubnet_ids)
+        pulumi.set(__self__, "elb_virsubnet_type", elb_virsubnet_type)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "frozen_scene", frozen_scene)
+        pulumi.set(__self__, "global_eips", global_eips)
+        pulumi.set(__self__, "guaranteed", guaranteed)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_target_enable", ip_target_enable)
+        pulumi.set(__self__, "ipv6_bandwidths", ipv6_bandwidths)
+        pulumi.set(__self__, "ipv6_vip_address", ipv6_vip_address)
+        pulumi.set(__self__, "ipv6_vip_port_id", ipv6_vip_port_id)
+        pulumi.set(__self__, "ipv6_vip_virsubnet_id", ipv6_vip_virsubnet_id)
+        pulumi.set(__self__, "l4_flavor_id", l4_flavor_id)
+        pulumi.set(__self__, "l4_scale_flavor_id", l4_scale_flavor_id)
+        pulumi.set(__self__, "l7_flavor_id", l7_flavor_id)
+        pulumi.set(__self__, "l7_scale_flavor_id", l7_scale_flavor_id)
+        pulumi.set(__self__, "listeners", listeners)
+        pulumi.set(__self__, "log_group_id", log_group_id)
+        pulumi.set(__self__, "log_topic_id", log_topic_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operating_status", operating_status)
+        pulumi.set(__self__, "pools", pools)
+        pulumi.set(__self__, "protection_reason", protection_reason)
+        pulumi.set(__self__, "protection_status", protection_status)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "provisioning_status", provisioning_status)
+        pulumi.set(__self__, "public_border_group", public_border_group)
+        pulumi.set(__self__, "publicips", publicips)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vip_address", vip_address)
+        pulumi.set(__self__, "vip_port_id", vip_port_id)
+        pulumi.set(__self__, "vip_subnet_cidr_id", vip_subnet_cidr_id)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "waf_failure_action", waf_failure_action)
+
+    @_builtins.property
+    @pulumi.getter(name="autoTerminateTime")
+    def auto_terminate_time(self) -> _builtins.str:
+        """
+        Indicates the time when the load balancers in the recycle bin will be permanently deleted.
+        The format is **yyyy-MM-dd'T'HH:mm:ss'Z'**.
+        """
+        return pulumi.get(self, "auto_terminate_time")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZoneLists")
+    def availability_zone_lists(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of AZs where the load balancer is created.
+        Multiple AZs can be used.
+        """
+        return pulumi.get(self, "availability_zone_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="billingInfo")
+    def billing_info(self) -> _builtins.str:
+        """
+        Specifies the provides resource billing information.
+        Multipple values can be used.
+        """
+        return pulumi.get(self, "billing_info")
+
+    @_builtins.property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> _builtins.str:
+        """
+        Indicates the charge mode of the load balancer.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the time when the load balancer was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="deletionProtectionEnable")
+    def deletion_protection_enable(self) -> _builtins.bool:
+        """
+        Specifies whether to enable deletion protection. Value options:
+        + **false**: disable this option
+        + **true**: enable this option
+        """
+        return pulumi.get(self, "deletion_protection_enable")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the load balancer description.
+        Multiple descriptions can be used.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="elbVirsubnetIds")
+    def elb_virsubnet_ids(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the network IDs of subnets on the downstream plane.
+        """
+        return pulumi.get(self, "elb_virsubnet_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="elbVirsubnetType")
+    def elb_virsubnet_type(self) -> _builtins.str:
+        """
+        Specifies the type of the subnet on the downstream plane.
+        Multiple values can be used. Value options:
+        + **ipv4**: IPv4 subnet
+        + **dualstack**: subnet that supports IPv4/IPv6 dual stack
+        """
+        return pulumi.get(self, "elb_virsubnet_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the enterprise project where the load balancer is used.
+        Multiple values can be used.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="frozenScene")
+    def frozen_scene(self) -> _builtins.str:
+        """
+        Indicates the scenario where the load balancer is frozen.
+        """
+        return pulumi.get(self, "frozen_scene")
+
+    @_builtins.property
+    @pulumi.getter(name="globalEips")
+    def global_eips(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerGlobalEipResult']:
+        """
+        Specifies the EIP bound to the load balancer.
+        Multiple values can be used. Value options:
+        + If `global_eip_id` is used as the query condition, the format is **global_eips=global_eip_id=xxx**.
+        + If `global_eip_address` is used as the query condition, the format is **global_eips=global_eip_address=xxx**.
+        + If `ip_version` is used as the query condition, the format is **global_eips=ip_version=xxx**.
+        """
+        return pulumi.get(self, "global_eips")
+
+    @_builtins.property
+    @pulumi.getter
+    def guaranteed(self) -> _builtins.bool:
+        """
+        Specifies whether the load balancer is a dedicated load balancer. Value options:
+        **false**: The load balancer is a shared load balancer.
+        + **true**: The load balancer is a dedicated load balancer.
+        """
+        return pulumi.get(self, "guaranteed")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the listener ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipTargetEnable")
+    def ip_target_enable(self) -> _builtins.bool:
+        """
+        Indicates whether to add backend servers that are not in the load balancer's VPC.
+        """
+        return pulumi.get(self, "ip_target_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Bandwidths")
+    def ipv6_bandwidths(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerIpv6BandwidthResult']:
+        """
+        Indicates the ID of the bandwidth.
+        """
+        return pulumi.get(self, "ipv6_bandwidths")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6VipAddress")
+    def ipv6_vip_address(self) -> _builtins.str:
+        """
+        Specifies the IPv6 address bound to the load balancer.
+        Multiple IPv6 addresses can be used.
+        """
+        return pulumi.get(self, "ipv6_vip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6VipPortId")
+    def ipv6_vip_port_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the port bound to the IPv6 address of the load balancer.
+        Multiple ports can be used.
+        """
+        return pulumi.get(self, "ipv6_vip_port_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6VipVirsubnetId")
+    def ipv6_vip_virsubnet_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the IPv6 subnet where the load balancer resides.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "ipv6_vip_virsubnet_id")
+
+    @_builtins.property
+    @pulumi.getter(name="l4FlavorId")
+    def l4_flavor_id(self) -> _builtins.str:
+        """
+        Specifies the ID of a flavor at Layer 4.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "l4_flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="l4ScaleFlavorId")
+    def l4_scale_flavor_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the elastic flavor at Layer 4.
+        """
+        return pulumi.get(self, "l4_scale_flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="l7FlavorId")
+    def l7_flavor_id(self) -> _builtins.str:
+        """
+        Specifies the ID of a flavor at Layer 7.
+        Multiple flavors can be used.
+        """
+        return pulumi.get(self, "l7_flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="l7ScaleFlavorId")
+    def l7_scale_flavor_id(self) -> _builtins.str:
+        """
+        Indicates the ID of an elastic flavor at Layer 7.
+        """
+        return pulumi.get(self, "l7_scale_flavor_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def listeners(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerListenerResult']:
+        """
+        Indicates the IDs of listeners associated with the load balancer.
+        """
+        return pulumi.get(self, "listeners")
+
+    @_builtins.property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the log group that is associated with the load balancer.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logTopicId")
+    def log_topic_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the log topic that is associated with the load balancer.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "log_topic_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the load balancer name.
+        Multiple names can be used.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operatingStatus")
+    def operating_status(self) -> _builtins.str:
+        """
+        Specifies the operating status of the load balancer.
+        Multiple operating statuses can be used. Value options:
+        + **ONLINE**: The load balancer is working normally.
+        + **FROZEN**: The load balancer has been frozen.
+        """
+        return pulumi.get(self, "operating_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def pools(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerPoolResult']:
+        """
+        Indicates the IDs of backend server groups associated with the load balancer.
+        """
+        return pulumi.get(self, "pools")
+
+    @_builtins.property
+    @pulumi.getter(name="protectionReason")
+    def protection_reason(self) -> _builtins.str:
+        """
+        Indicates why modification protection is enabled.
+        """
+        return pulumi.get(self, "protection_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> _builtins.str:
+        """
+        Specifies the protection status. Value options:
+        + **nonProtection**: The resource is not protected.
+        + **consoleProtection**: Modification is not allowed on the console.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> _builtins.str:
+        """
+        Indicates the provider of the load balancer. The value is fixed to **vlb**.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningStatus")
+    def provisioning_status(self) -> _builtins.str:
+        """
+        Indicates the provisioning status of the load balancer.
+        """
+        return pulumi.get(self, "provisioning_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicBorderGroup")
+    def public_border_group(self) -> _builtins.str:
+        """
+        Indicates the AZ group to which the load balancer belongs.
+        """
+        return pulumi.get(self, "public_border_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def publicips(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerPublicipResult']:
+        """
+        Specifies the EIP bound to the load balancer.
+        Multiple publicips can be used.
+        + If `publicip_id` is used as the query condition, the format is **publicips=publicip_id=xxx**.
+        + If `publicip_address` is used as the query condition, the format is **publicips=publicip_address=xxx**.
+        + If `ip_version` is used as the query condition, the format is **publicips=ip_version=xxx**.
+        """
+        return pulumi.get(self, "publicips")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetRecycleBinLoadbalancersLoadbalancerTagResult']:
+        """
+        Indicates the tags added to the load balancer.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the time when the load balancer was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="vipAddress")
+    def vip_address(self) -> _builtins.str:
+        """
+        Specifies the IPv4 private IP address of the load balancer.
+        Multiple IP addresses can be used.
+        """
+        return pulumi.get(self, "vip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="vipPortId")
+    def vip_port_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the port bound to the private IPv4 address of the load balancer.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "vip_port_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vipSubnetCidrId")
+    def vip_subnet_cidr_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the IPv4 subnet where the load balancer resides.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "vip_subnet_cidr_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the VPC where the load balancer resides.
+        Multiple IDs can be used.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @_builtins.property
+    @pulumi.getter(name="wafFailureAction")
+    def waf_failure_action(self) -> _builtins.str:
+        """
+        Indicates traffic distributing policies when the WAF is faulty.
+        """
+        return pulumi.get(self, "waf_failure_action")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerGlobalEipResult(dict):
+    def __init__(__self__, *,
+                 global_eip_address: _builtins.str,
+                 global_eip_id: _builtins.str,
+                 ip_version: _builtins.int):
+        """
+        :param _builtins.str global_eip_address: Indicates the global EIP.
+        :param _builtins.str global_eip_id: Indicates the ID of the global EIP.
+        :param _builtins.int ip_version: Specifies the IP version.
+               Multiple versions can be used. The value can be **4 (IPv4)** or **6 (IPv6)**.
+        """
+        pulumi.set(__self__, "global_eip_address", global_eip_address)
+        pulumi.set(__self__, "global_eip_id", global_eip_id)
+        pulumi.set(__self__, "ip_version", ip_version)
+
+    @_builtins.property
+    @pulumi.getter(name="globalEipAddress")
+    def global_eip_address(self) -> _builtins.str:
+        """
+        Indicates the global EIP.
+        """
+        return pulumi.get(self, "global_eip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="globalEipId")
+    def global_eip_id(self) -> _builtins.str:
+        """
+        Indicates the ID of the global EIP.
+        """
+        return pulumi.get(self, "global_eip_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> _builtins.int:
+        """
+        Specifies the IP version.
+        Multiple versions can be used. The value can be **4 (IPv4)** or **6 (IPv6)**.
+        """
+        return pulumi.get(self, "ip_version")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerIpv6BandwidthResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the listener ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the listener ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerListenerResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the listener ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the listener ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerPoolResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: Indicates the listener ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the listener ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerPublicipResult(dict):
+    def __init__(__self__, *,
+                 ip_version: _builtins.int,
+                 publicip_address: _builtins.str,
+                 publicip_id: _builtins.str):
+        """
+        :param _builtins.int ip_version: Specifies the IP version.
+               Multiple versions can be used. The value can be **4 (IPv4)** or **6 (IPv6)**.
+        :param _builtins.str publicip_address: Indicates the EIP.
+        :param _builtins.str publicip_id: Indicates the EIP ID.
+        """
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "publicip_address", publicip_address)
+        pulumi.set(__self__, "publicip_id", publicip_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> _builtins.int:
+        """
+        Specifies the IP version.
+        Multiple versions can be used. The value can be **4 (IPv4)** or **6 (IPv6)**.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipAddress")
+    def publicip_address(self) -> _builtins.str:
+        """
+        Indicates the EIP.
+        """
+        return pulumi.get(self, "publicip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="publicipId")
+    def publicip_id(self) -> _builtins.str:
+        """
+        Indicates the EIP ID.
+        """
+        return pulumi.get(self, "publicip_id")
+
+
+@pulumi.output_type
+class GetRecycleBinLoadbalancersLoadbalancerTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Indicates the tag key.
+        :param _builtins.str value: Indicates the tag value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Indicates the tag value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetWhitelistsWhitelistResult(dict):
+    def __init__(__self__, *,
+                 enable_whitelist: _builtins.bool,
+                 id: _builtins.str,
+                 listener_id: _builtins.str,
+                 whitelist: _builtins.str):
+        """
+        :param _builtins.bool enable_whitelist: Specifies whether to enable access control. Value options:
+               + **true**: Access control is enabled.
+               + **false**: Access control is disabled.
+        :param _builtins.str id: Indicates the whitelist ID.
+        :param _builtins.str listener_id: Specifies the ID of the listener to which the whitelist is added.
+        :param _builtins.str whitelist: Specifies the IP addresses in the whitelist.
+        """
+        pulumi.set(__self__, "enable_whitelist", enable_whitelist)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "listener_id", listener_id)
+        pulumi.set(__self__, "whitelist", whitelist)
+
+    @_builtins.property
+    @pulumi.getter(name="enableWhitelist")
+    def enable_whitelist(self) -> _builtins.bool:
+        """
+        Specifies whether to enable access control. Value options:
+        + **true**: Access control is enabled.
+        + **false**: Access control is disabled.
+        """
+        return pulumi.get(self, "enable_whitelist")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Indicates the whitelist ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="listenerId")
+    def listener_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the listener to which the whitelist is added.
+        """
+        return pulumi.get(self, "listener_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def whitelist(self) -> _builtins.str:
+        """
+        Specifies the IP addresses in the whitelist.
+        """
+        return pulumi.get(self, "whitelist")
 
 

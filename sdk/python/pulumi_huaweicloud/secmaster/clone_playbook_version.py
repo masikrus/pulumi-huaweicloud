@@ -26,6 +26,7 @@ class ClonePlaybookVersionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClonePlaybookVersion resource.
+
         :param pulumi.Input[_builtins.str] version_id: Sepcifies the ID of the playbook version.
         :param pulumi.Input[_builtins.str] workspace_id: Sepcifies the ID of the workspace to which the playbook belongs.
         :param pulumi.Input[_builtins.str] name: Sepcifies the name of the clone generated playbook.
@@ -112,6 +113,7 @@ class _ClonePlaybookVersionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClonePlaybookVersion resources.
+
         :param pulumi.Input[_builtins.str] name: Sepcifies the name of the clone generated playbook.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
@@ -190,7 +192,7 @@ class _ClonePlaybookVersionState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/clonePlaybookVersion:ClonePlaybookVersion")
+@pulumi.type_token("huaweicloud:Secmaster/clonePlaybookVersion:ClonePlaybookVersion")
 class ClonePlaybookVersion(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -222,6 +224,7 @@ class ClonePlaybookVersion(pulumi.CustomResource):
             version_id=version_id,
             name=name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -258,6 +261,7 @@ class ClonePlaybookVersion(pulumi.CustomResource):
             version_id=version_id,
             name=name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClonePlaybookVersionArgs args: The arguments to use to populate this resource's properties.
@@ -298,7 +302,7 @@ class ClonePlaybookVersion(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(ClonePlaybookVersion, __self__).__init__(
-            'huaweicloud:secmaster/clonePlaybookVersion:ClonePlaybookVersion',
+            'huaweicloud:Secmaster/clonePlaybookVersion:ClonePlaybookVersion',
             resource_name,
             __props__,
             opts)

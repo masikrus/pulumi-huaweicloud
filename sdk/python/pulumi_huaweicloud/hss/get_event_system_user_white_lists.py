@@ -191,7 +191,7 @@ def get_event_system_user_white_lists(enterprise_project_id: Optional[_builtins.
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_system_user_white_lists()
+    test = huaweicloud.Hss.get_event_system_user_white_lists()
     ```
 
 
@@ -218,7 +218,7 @@ def get_event_system_user_white_lists(enterprise_project_id: Optional[_builtins.
     __args__['region'] = region
     __args__['systemUserName'] = system_user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getEventSystemUserWhiteLists:getEventSystemUserWhiteLists', __args__, opts=opts, typ=GetEventSystemUserWhiteListsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getEventSystemUserWhiteLists:getEventSystemUserWhiteLists', __args__, opts=opts, typ=GetEventSystemUserWhiteListsResult).value
 
     return AwaitableGetEventSystemUserWhiteListsResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -250,7 +250,7 @@ def get_event_system_user_white_lists_output(enterprise_project_id: Optional[pul
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_event_system_user_white_lists()
+    test = huaweicloud.Hss.get_event_system_user_white_lists()
     ```
 
 
@@ -277,7 +277,7 @@ def get_event_system_user_white_lists_output(enterprise_project_id: Optional[pul
     __args__['region'] = region
     __args__['systemUserName'] = system_user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getEventSystemUserWhiteLists:getEventSystemUserWhiteLists', __args__, opts=opts, typ=GetEventSystemUserWhiteListsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getEventSystemUserWhiteLists:getEventSystemUserWhiteLists', __args__, opts=opts, typ=GetEventSystemUserWhiteListsResult)
     return __ret__.apply(lambda __response__: GetEventSystemUserWhiteListsResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

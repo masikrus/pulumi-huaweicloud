@@ -25,6 +25,7 @@ class LineGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LineGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lines: Specifies the list of the resolution line IDs. You should specify at least `2` different lines.
         :param pulumi.Input[_builtins.str] description: Specifies the line group description. A maximum of `255` characters are allowed.
         :param pulumi.Input[_builtins.str] name: Specifies the line group name.
@@ -107,6 +108,7 @@ class _LineGroupState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LineGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the line group.
         :param pulumi.Input[_builtins.str] description: Specifies the line group description. A maximum of `255` characters are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lines: Specifies the list of the resolution line IDs. You should specify at least `2` different lines.
@@ -257,11 +259,10 @@ class LineGroup(pulumi.CustomResource):
 
         The DNS line group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/lineGroup:LineGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -303,11 +304,10 @@ class LineGroup(pulumi.CustomResource):
 
         The DNS line group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/lineGroup:LineGroup test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LineGroupArgs args: The arguments to use to populate this resource's properties.

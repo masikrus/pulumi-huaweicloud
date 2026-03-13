@@ -31,6 +31,7 @@ class BackupSyncArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackupSync resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID to be synchronized.
         :param pulumi.Input[_builtins.str] backup_name: Specifies the name of the backup.
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the name of the bucket where the backup is stored.
@@ -39,7 +40,8 @@ class BackupSyncArgs:
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_name: Specifies the name of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource to be backed up.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         """
         pulumi.set(__self__, "backup_id", backup_id)
         pulumi.set(__self__, "backup_name", backup_name)
@@ -163,7 +165,8 @@ class BackupSyncArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 
@@ -187,12 +190,14 @@ class _BackupSyncState:
                  resource_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupSync resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID to be synchronized.
         :param pulumi.Input[_builtins.str] backup_name: Specifies the name of the backup.
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the name of the bucket where the backup is stored.
         :param pulumi.Input[_builtins.int] created_at: Specifies the timestamp when the backup was created.
         :param pulumi.Input[_builtins.str] image_path: Specifies the path of the backup image in the bucket.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_name: Specifies the name of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource to be backed up.
@@ -291,7 +296,8 @@ class _BackupSyncState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 
@@ -355,6 +361,7 @@ class BackupSync(pulumi.CustomResource):
                  __props__=None):
         """
         Create a BackupSync resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the backup ID to be synchronized.
@@ -362,7 +369,8 @@ class BackupSync(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the name of the bucket where the backup is stored.
         :param pulumi.Input[_builtins.int] created_at: Specifies the timestamp when the backup was created.
         :param pulumi.Input[_builtins.str] image_path: Specifies the path of the backup image in the bucket.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_name_: Specifies the name of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource to be backed up.
@@ -375,6 +383,7 @@ class BackupSync(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a BackupSync resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param BackupSyncArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -467,7 +476,8 @@ class BackupSync(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the name of the bucket where the backup is stored.
         :param pulumi.Input[_builtins.int] created_at: Specifies the timestamp when the backup was created.
         :param pulumi.Input[_builtins.str] image_path: Specifies the path of the backup image in the bucket.
-        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource. If omitted, the provider-level
+               region will be used.
         :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_name_: Specifies the name of the resource to be backed up.
         :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource to be backed up.
@@ -537,7 +547,8 @@ class BackupSync(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the region in which to create the resource. If omitted, the provider-level region will be used.
+        Specifies the region in which to create the resource. If omitted, the provider-level
+        region will be used.
         """
         return pulumi.get(self, "region")
 

@@ -30,6 +30,7 @@ class JobArgs:
                  sql: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies an ID of the MapReduce cluster to which the job belongs to.
                Changing this will create a new MapReduce job resource.
         :param pulumi.Input[_builtins.str] type: Specifies the job type.
@@ -256,6 +257,7 @@ class _JobState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies an ID of the MapReduce cluster to which the job belongs to.
                Changing this will create a new MapReduce job resource.
         :param pulumi.Input[_builtins.str] finish_time: The completion time of the MapReduce job.
@@ -571,14 +573,12 @@ class Job(pulumi.CustomResource):
         ## Import
 
         MapReduce jobs can be imported using their `id` and the IDs of the MapReduce cluster to which the job belongs, separated
-
         by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Mrs/job:Job test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -663,14 +663,12 @@ class Job(pulumi.CustomResource):
         ## Import
 
         MapReduce jobs can be imported using their `id` and the IDs of the MapReduce cluster to which the job belongs, separated
-
         by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Mrs/job:Job test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

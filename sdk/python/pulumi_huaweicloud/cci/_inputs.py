@@ -241,6 +241,8 @@ __all__ = [
     'NetworkV2StatusSubnetAttrArgsDict',
     'NetworkV2SubnetArgs',
     'NetworkV2SubnetArgsDict',
+    'ObservabilityConfigurationV2EventArgs',
+    'ObservabilityConfigurationV2EventArgsDict',
     'PersistentVolumeClaimV2ResourcesArgs',
     'PersistentVolumeClaimV2ResourcesArgsDict',
     'PersistentVolumeClaimV2SelectorArgs',
@@ -541,6 +543,12 @@ __all__ = [
     'PoolBindingPoolRefArgsDict',
     'PoolBindingTargetRefArgs',
     'PoolBindingTargetRefArgsDict',
+    'PoolBindingV2OwnerReferenceArgs',
+    'PoolBindingV2OwnerReferenceArgsDict',
+    'PoolBindingV2PoolRefArgs',
+    'PoolBindingV2PoolRefArgsDict',
+    'PoolBindingV2TargetRefArgs',
+    'PoolBindingV2TargetRefArgsDict',
     'PvcV2ResourcesArgs',
     'PvcV2ResourcesArgsDict',
     'PvcV2SelectorArgs',
@@ -561,14 +569,9 @@ __all__ = [
     'ServiceV2StatusLoadbalancerIngressPortArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class DeploymentV2SelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2SelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2SelectorArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2SelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2SelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2SelectorArgs:
@@ -599,13 +602,10 @@ class DeploymentV2SelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class DeploymentV2SelectorMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2SelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2SelectorMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2SelectorMatchExpressionArgs:
@@ -646,12 +646,9 @@ class DeploymentV2SelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class DeploymentV2StatusArgsDict(TypedDict):
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2StatusConditionArgsDict']]]]
-        observed_generation: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DeploymentV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2StatusArgsDict(TypedDict):
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2StatusConditionArgsDict']]]]
+    observed_generation: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class DeploymentV2StatusArgs:
@@ -682,16 +679,13 @@ class DeploymentV2StatusArgs:
         pulumi.set(self, "observed_generation", value)
 
 
-if not MYPY:
-    class DeploymentV2StatusConditionArgsDict(TypedDict):
-        last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
-        last_update_time: NotRequired[pulumi.Input[_builtins.str]]
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DeploymentV2StatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2StatusConditionArgsDict(TypedDict):
+    last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
+    last_update_time: NotRequired[pulumi.Input[_builtins.str]]
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class DeploymentV2StatusConditionArgs:
@@ -770,12 +764,9 @@ class DeploymentV2StatusConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DeploymentV2StrategyArgsDict(TypedDict):
-        rolling_update: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DeploymentV2StrategyArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2StrategyArgsDict(TypedDict):
+    rolling_update: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class DeploymentV2StrategyArgs:
@@ -806,12 +797,9 @@ class DeploymentV2StrategyArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateArgsDict(TypedDict):
-        metadata: NotRequired[pulumi.Input['DeploymentV2TemplateMetadataArgsDict']]
-        spec: NotRequired[pulumi.Input['DeploymentV2TemplateSpecArgsDict']]
-elif False:
-    DeploymentV2TemplateArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateArgsDict(TypedDict):
+    metadata: NotRequired[pulumi.Input['DeploymentV2TemplateMetadataArgsDict']]
+    spec: NotRequired[pulumi.Input['DeploymentV2TemplateSpecArgsDict']]
 
 @pulumi.input_type
 class DeploymentV2TemplateArgs:
@@ -842,12 +830,9 @@ class DeploymentV2TemplateArgs:
         pulumi.set(self, "spec", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateMetadataArgsDict(TypedDict):
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateMetadataArgsDict(TypedDict):
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateMetadataArgs:
@@ -878,23 +863,20 @@ class DeploymentV2TemplateMetadataArgs:
         pulumi.set(self, "labels", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecArgsDict(TypedDict):
-        containers: pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerArgsDict']]]
-        active_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityArgsDict']]
-        dns_policy: NotRequired[pulumi.Input[_builtins.str]]
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        image_pull_secrets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecImagePullSecretArgsDict']]]]
-        node_name: NotRequired[pulumi.Input[_builtins.str]]
-        overhead: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        restart_policy: NotRequired[pulumi.Input[_builtins.str]]
-        scheduler_name: NotRequired[pulumi.Input[_builtins.str]]
-        set_hostname_as_pqdn: NotRequired[pulumi.Input[_builtins.bool]]
-        share_process_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DeploymentV2TemplateSpecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecArgsDict(TypedDict):
+    containers: pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerArgsDict']]]
+    active_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityArgsDict']]
+    dns_policy: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    image_pull_secrets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecImagePullSecretArgsDict']]]]
+    node_name: NotRequired[pulumi.Input[_builtins.str]]
+    overhead: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    restart_policy: NotRequired[pulumi.Input[_builtins.str]]
+    scheduler_name: NotRequired[pulumi.Input[_builtins.str]]
+    set_hostname_as_pqdn: NotRequired[pulumi.Input[_builtins.bool]]
+    share_process_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecArgs:
@@ -1056,12 +1038,9 @@ class DeploymentV2TemplateSpecArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityArgsDict(TypedDict):
-        node_affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityArgsDict']]
-        pod_anti_affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityArgsDict']]
-elif False:
-    DeploymentV2TemplateSpecAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityArgsDict(TypedDict):
+    node_affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityArgsDict']]
+    pod_anti_affinity: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityArgsDict']]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityArgs:
@@ -1092,11 +1071,8 @@ class DeploymentV2TemplateSpecAffinityArgs:
         pulumi.set(self, "pod_anti_affinity", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityNodeAffinityArgsDict(TypedDict):
-        required_during_scheduling_ignored_during_execution: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]
-elif False:
-    DeploymentV2TemplateSpecAffinityNodeAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityNodeAffinityArgsDict(TypedDict):
+    required_during_scheduling_ignored_during_execution: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityNodeAffinityArgs:
@@ -1115,11 +1091,8 @@ class DeploymentV2TemplateSpecAffinityNodeAffinityArgs:
         pulumi.set(self, "required_during_scheduling_ignored_during_execution", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        node_selector_terms: pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict']]]
-elif False:
-    DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    node_selector_terms: pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict']]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -1137,11 +1110,8 @@ class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnore
         pulumi.set(self, "node_selector_terms", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict']]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict']]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgs:
@@ -1160,13 +1130,10 @@ class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnore
         pulumi.set(self, "match_expressions", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgs:
@@ -1207,12 +1174,9 @@ class DeploymentV2TemplateSpecAffinityNodeAffinityRequiredDuringSchedulingIgnore
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityArgsDict(TypedDict):
-        preferred_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
-        required_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityArgsDict(TypedDict):
+    preferred_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
+    required_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityArgs:
@@ -1243,12 +1207,9 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityArgs:
         pulumi.set(self, "required_during_scheduling_ignored_during_executions", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        pod_affinity_term: pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict']
-        weight: pulumi.Input[_builtins.int]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    pod_affinity_term: pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict']
+    weight: pulumi.Input[_builtins.int]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -1277,13 +1238,10 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIg
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict(TypedDict):
-        topology_key: pulumi.Input[_builtins.str]
-        label_selector: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict']]
-        namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict(TypedDict):
+    topology_key: pulumi.Input[_builtins.str]
+    label_selector: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict']]
+    namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgs:
@@ -1325,12 +1283,9 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIg
         pulumi.set(self, "namespaces", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs:
@@ -1361,13 +1316,10 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIg
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgs:
@@ -1408,13 +1360,10 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityPreferredDuringSchedulingIg
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        topology_key: pulumi.Input[_builtins.str]
-        label_selector: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict']]
-        namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    topology_key: pulumi.Input[_builtins.str]
+    label_selector: NotRequired[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict']]
+    namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -1456,12 +1405,9 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgn
         pulumi.set(self, "namespaces", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs:
@@ -1492,13 +1438,10 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgn
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgs:
@@ -1539,84 +1482,81 @@ class DeploymentV2TemplateSpecAffinityPodAntiAffinityRequiredDuringSchedulingIgn
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the container.
-        """
-        args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the arguments to the entrypoint of the container.
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command of the container.
-        """
-        env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromArgsDict']]]]
-        """
-        The sources to populate environment variables of the container.
-        """
-        envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerEnvArgsDict']]]]
-        image: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image name of the CCI Pod container.
-        """
-        lifecycle: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecycleArgsDict']]
-        """
-        Specifies the lifecycle of the container.
-        """
-        liveness_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeArgsDict']]
-        """
-        Specifies the liveness probe of the container.
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerPortArgsDict']]]]
-        """
-        Specifies the ports of the container.
-        """
-        readiness_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeArgsDict']]
-        """
-        Specifies the readiness probe of the container.
-        """
-        resources: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerResourcesArgsDict']]
-        """
-        Specifies the resources of the container.
-        """
-        security_context: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerSecurityContextArgsDict']]
-        """
-        Specifies the security context of the container.
-        """
-        startup_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeArgsDict']]
-        """
-        Specifies the startup probe of the container.
-        """
-        stdin: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a buffer for stdin in the container runtime.
-        """
-        stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container runtime should close the stdin channel.
-        """
-        termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message path of the CCI Pod container.
-        """
-        termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message policy of the CCI Pod container.
-        """
-        tty: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a TTY for itself.
-        """
-        volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerVolumeMountArgsDict']]]]
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the working directory of the CCI Pod container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the container.
+    """
+    args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the arguments to the entrypoint of the container.
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command of the container.
+    """
+    env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromArgsDict']]]]
+    """
+    The sources to populate environment variables of the container.
+    """
+    envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerEnvArgsDict']]]]
+    image: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image name of the CCI Pod container.
+    """
+    lifecycle: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecycleArgsDict']]
+    """
+    Specifies the lifecycle of the container.
+    """
+    liveness_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeArgsDict']]
+    """
+    Specifies the liveness probe of the container.
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerPortArgsDict']]]]
+    """
+    Specifies the ports of the container.
+    """
+    readiness_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeArgsDict']]
+    """
+    Specifies the readiness probe of the container.
+    """
+    resources: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerResourcesArgsDict']]
+    """
+    Specifies the resources of the container.
+    """
+    security_context: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerSecurityContextArgsDict']]
+    """
+    Specifies the security context of the container.
+    """
+    startup_probe: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeArgsDict']]
+    """
+    Specifies the startup probe of the container.
+    """
+    stdin: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a buffer for stdin in the container runtime.
+    """
+    stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container runtime should close the stdin channel.
+    """
+    termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message path of the CCI Pod container.
+    """
+    termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message policy of the CCI Pod container.
+    """
+    tty: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a TTY for itself.
+    """
+    volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerVolumeMountArgsDict']]]]
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerArgs:
@@ -1936,12 +1876,9 @@ class DeploymentV2TemplateSpecContainerArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerEnvArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DeploymentV2TemplateSpecContainerEnvArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerEnvArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerEnvArgs:
@@ -1972,22 +1909,19 @@ class DeploymentV2TemplateSpecContainerEnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerEnvFromArgsDict(TypedDict):
-        config_map_ref: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgsDict']]
-        """
-        Specifies the config map.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix.
-        """
-        secret_ref: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromSecretRefArgsDict']]
-        """
-        Specifies the secret.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerEnvFromArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerEnvFromArgsDict(TypedDict):
+    config_map_ref: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgsDict']]
+    """
+    Specifies the config map.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix.
+    """
+    secret_ref: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerEnvFromSecretRefArgsDict']]
+    """
+    Specifies the secret.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerEnvFromArgs:
@@ -2044,18 +1978,15 @@ class DeploymentV2TemplateSpecContainerEnvFromArgs:
         pulumi.set(self, "secret_ref", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgs:
@@ -2096,18 +2027,15 @@ class DeploymentV2TemplateSpecContainerEnvFromConfigMapRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerEnvFromSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerEnvFromSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerEnvFromSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerEnvFromSecretRefArgs:
@@ -2148,18 +2076,15 @@ class DeploymentV2TemplateSpecContainerEnvFromSecretRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecycleArgsDict(TypedDict):
-        post_start: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        pre_stop: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecycleArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecycleArgsDict(TypedDict):
+    post_start: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    pre_stop: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecycleArgs:
@@ -2200,18 +2125,15 @@ class DeploymentV2TemplateSpecContainerLifecycleArgs:
         pulumi.set(self, "pre_stop", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePostStartArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePostStartArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePostStartArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePostStartArgs:
@@ -2252,14 +2174,11 @@ class DeploymentV2TemplateSpecContainerLifecyclePostStartArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgs:
@@ -2284,30 +2203,27 @@ class DeploymentV2TemplateSpecContainerLifecyclePostStartExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgs:
@@ -2396,18 +2312,15 @@ class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgs:
@@ -2448,18 +2361,15 @@ class DeploymentV2TemplateSpecContainerLifecyclePostStartHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePreStopArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePreStopArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePreStopArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePreStopArgs:
@@ -2500,14 +2410,11 @@ class DeploymentV2TemplateSpecContainerLifecyclePreStopArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgs:
@@ -2532,30 +2439,27 @@ class DeploymentV2TemplateSpecContainerLifecyclePreStopExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgs:
@@ -2644,18 +2548,15 @@ class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgs:
@@ -2696,35 +2597,32 @@ class DeploymentV2TemplateSpecContainerLifecyclePreStopHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLivenessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DeploymentV2TemplateSpecContainerLivenessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLivenessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLivenessProbeArgs:
@@ -2841,14 +2739,11 @@ class DeploymentV2TemplateSpecContainerLivenessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLivenessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLivenessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLivenessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLivenessProbeExecArgs:
@@ -2873,30 +2768,27 @@ class DeploymentV2TemplateSpecContainerLivenessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgs:
@@ -2985,18 +2877,15 @@ class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgs:
@@ -3037,22 +2926,19 @@ class DeploymentV2TemplateSpecContainerLivenessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerPortArgsDict(TypedDict):
-        container_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of port to expose on the IP address of pod.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the port name of the container.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol for container port.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerPortArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerPortArgsDict(TypedDict):
+    container_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of port to expose on the IP address of pod.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port name of the container.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol for container port.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerPortArgs:
@@ -3108,35 +2994,32 @@ class DeploymentV2TemplateSpecContainerPortArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerReadinessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DeploymentV2TemplateSpecContainerReadinessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerReadinessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerReadinessProbeArgs:
@@ -3253,14 +3136,11 @@ class DeploymentV2TemplateSpecContainerReadinessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerReadinessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerReadinessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerReadinessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerReadinessProbeExecArgs:
@@ -3285,30 +3165,27 @@ class DeploymentV2TemplateSpecContainerReadinessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgs:
@@ -3397,18 +3274,15 @@ class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgs:
@@ -3449,18 +3323,15 @@ class DeploymentV2TemplateSpecContainerReadinessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the limits of resource.
-        """
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the requests of the resource.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the limits of resource.
+    """
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the requests of the resource.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerResourcesArgs:
@@ -3501,34 +3372,31 @@ class DeploymentV2TemplateSpecContainerResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerSecurityContextArgsDict(TypedDict):
-        capabilities: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgsDict']]
-        """
-        Specifies the capabilities of the security context.
-        """
-        proc_mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the denotes the type of proc mount to use for the containers.
-        """
-        read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this container has a read-only root file system.
-        """
-        run_as_group: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The GID TO run the entrypoint of the container process.
-        """
-        run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The container must run as a non-root user.
-        """
-        run_as_user: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The UID to run the entrypoint of the container process.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerSecurityContextArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerSecurityContextArgsDict(TypedDict):
+    capabilities: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgsDict']]
+    """
+    Specifies the capabilities of the security context.
+    """
+    proc_mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the denotes the type of proc mount to use for the containers.
+    """
+    read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this container has a read-only root file system.
+    """
+    run_as_group: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GID TO run the entrypoint of the container process.
+    """
+    run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The container must run as a non-root user.
+    """
+    run_as_user: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The UID to run the entrypoint of the container process.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerSecurityContextArgs:
@@ -3633,12 +3501,9 @@ class DeploymentV2TemplateSpecContainerSecurityContextArgs:
         pulumi.set(self, "run_as_user", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgsDict(TypedDict):
-        adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgsDict(TypedDict):
+    adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgs:
@@ -3669,35 +3534,32 @@ class DeploymentV2TemplateSpecContainerSecurityContextCapabilitiesArgs:
         pulumi.set(self, "drops", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerStartupProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DeploymentV2TemplateSpecContainerStartupProbeArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerStartupProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerStartupProbeArgs:
@@ -3814,14 +3676,11 @@ class DeploymentV2TemplateSpecContainerStartupProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerStartupProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerStartupProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerStartupProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerStartupProbeExecArgs:
@@ -3846,30 +3705,27 @@ class DeploymentV2TemplateSpecContainerStartupProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgs:
@@ -3958,18 +3814,15 @@ class DeploymentV2TemplateSpecContainerStartupProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgs:
@@ -4010,16 +3863,13 @@ class DeploymentV2TemplateSpecContainerStartupProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecContainerVolumeMountArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-        sub_path: NotRequired[pulumi.Input[_builtins.str]]
-        sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DeploymentV2TemplateSpecContainerVolumeMountArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecContainerVolumeMountArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    sub_path: NotRequired[pulumi.Input[_builtins.str]]
+    sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecContainerVolumeMountArgs:
@@ -4096,11 +3946,8 @@ class DeploymentV2TemplateSpecContainerVolumeMountArgs:
         pulumi.set(self, "sub_path_expr", value)
 
 
-if not MYPY:
-    class DeploymentV2TemplateSpecImagePullSecretArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    DeploymentV2TemplateSpecImagePullSecretArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentV2TemplateSpecImagePullSecretArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class DeploymentV2TemplateSpecImagePullSecretArgs:
@@ -4119,12 +3966,9 @@ class DeploymentV2TemplateSpecImagePullSecretArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HpaV2BehaviorArgsDict(TypedDict):
-        scale_down: NotRequired[pulumi.Input['HpaV2BehaviorScaleDownArgsDict']]
-        scale_up: NotRequired[pulumi.Input['HpaV2BehaviorScaleUpArgsDict']]
-elif False:
-    HpaV2BehaviorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2BehaviorArgsDict(TypedDict):
+    scale_down: NotRequired[pulumi.Input['HpaV2BehaviorScaleDownArgsDict']]
+    scale_up: NotRequired[pulumi.Input['HpaV2BehaviorScaleUpArgsDict']]
 
 @pulumi.input_type
 class HpaV2BehaviorArgs:
@@ -4155,13 +3999,10 @@ class HpaV2BehaviorArgs:
         pulumi.set(self, "scale_up", value)
 
 
-if not MYPY:
-    class HpaV2BehaviorScaleDownArgsDict(TypedDict):
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2BehaviorScaleDownPolicyArgsDict']]]]
-        select_policy: NotRequired[pulumi.Input[_builtins.str]]
-        stabilization_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    HpaV2BehaviorScaleDownArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2BehaviorScaleDownArgsDict(TypedDict):
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2BehaviorScaleDownPolicyArgsDict']]]]
+    select_policy: NotRequired[pulumi.Input[_builtins.str]]
+    stabilization_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class HpaV2BehaviorScaleDownArgs:
@@ -4204,13 +4045,10 @@ class HpaV2BehaviorScaleDownArgs:
         pulumi.set(self, "stabilization_window_seconds", value)
 
 
-if not MYPY:
-    class HpaV2BehaviorScaleDownPolicyArgsDict(TypedDict):
-        period_seconds: pulumi.Input[_builtins.int]
-        type: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.int]
-elif False:
-    HpaV2BehaviorScaleDownPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2BehaviorScaleDownPolicyArgsDict(TypedDict):
+    period_seconds: pulumi.Input[_builtins.int]
+    type: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.int]
 
 @pulumi.input_type
 class HpaV2BehaviorScaleDownPolicyArgs:
@@ -4250,13 +4088,10 @@ class HpaV2BehaviorScaleDownPolicyArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2BehaviorScaleUpArgsDict(TypedDict):
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2BehaviorScaleUpPolicyArgsDict']]]]
-        select_policy: NotRequired[pulumi.Input[_builtins.str]]
-        stabilization_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    HpaV2BehaviorScaleUpArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2BehaviorScaleUpArgsDict(TypedDict):
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2BehaviorScaleUpPolicyArgsDict']]]]
+    select_policy: NotRequired[pulumi.Input[_builtins.str]]
+    stabilization_window_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class HpaV2BehaviorScaleUpArgs:
@@ -4299,13 +4134,10 @@ class HpaV2BehaviorScaleUpArgs:
         pulumi.set(self, "stabilization_window_seconds", value)
 
 
-if not MYPY:
-    class HpaV2BehaviorScaleUpPolicyArgsDict(TypedDict):
-        period_seconds: pulumi.Input[_builtins.int]
-        type: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.int]
-elif False:
-    HpaV2BehaviorScaleUpPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2BehaviorScaleUpPolicyArgsDict(TypedDict):
+    period_seconds: pulumi.Input[_builtins.int]
+    type: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.int]
 
 @pulumi.input_type
 class HpaV2BehaviorScaleUpPolicyArgs:
@@ -4345,16 +4177,13 @@ class HpaV2BehaviorScaleUpPolicyArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2MetricArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        container_resource: NotRequired[pulumi.Input['HpaV2MetricContainerResourceArgsDict']]
-        external: NotRequired[pulumi.Input['HpaV2MetricExternalArgsDict']]
-        object: NotRequired[pulumi.Input['HpaV2MetricObjectArgsDict']]
-        pods: NotRequired[pulumi.Input['HpaV2MetricPodsArgsDict']]
-        resources: NotRequired[pulumi.Input['HpaV2MetricResourcesArgsDict']]
-elif False:
-    HpaV2MetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    container_resource: NotRequired[pulumi.Input['HpaV2MetricContainerResourceArgsDict']]
+    external: NotRequired[pulumi.Input['HpaV2MetricExternalArgsDict']]
+    object: NotRequired[pulumi.Input['HpaV2MetricObjectArgsDict']]
+    pods: NotRequired[pulumi.Input['HpaV2MetricPodsArgsDict']]
+    resources: NotRequired[pulumi.Input['HpaV2MetricResourcesArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricArgs:
@@ -4432,13 +4261,10 @@ class HpaV2MetricArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class HpaV2MetricContainerResourceArgsDict(TypedDict):
-        container: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        target: NotRequired[pulumi.Input['HpaV2MetricContainerResourceTargetArgsDict']]
-elif False:
-    HpaV2MetricContainerResourceArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricContainerResourceArgsDict(TypedDict):
+    container: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input['HpaV2MetricContainerResourceTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricContainerResourceArgs:
@@ -4481,14 +4307,11 @@ class HpaV2MetricContainerResourceArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2MetricContainerResourceTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricContainerResourceTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricContainerResourceTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricContainerResourceTargetArgs:
@@ -4543,12 +4366,9 @@ class HpaV2MetricContainerResourceTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2MetricExternalArgsDict(TypedDict):
-        metric: pulumi.Input['HpaV2MetricExternalMetricArgsDict']
-        target: pulumi.Input['HpaV2MetricExternalTargetArgsDict']
-elif False:
-    HpaV2MetricExternalArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricExternalArgsDict(TypedDict):
+    metric: pulumi.Input['HpaV2MetricExternalMetricArgsDict']
+    target: pulumi.Input['HpaV2MetricExternalTargetArgsDict']
 
 @pulumi.input_type
 class HpaV2MetricExternalArgs:
@@ -4577,12 +4397,9 @@ class HpaV2MetricExternalArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2MetricExternalMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2MetricExternalMetricSelectorArgsDict']]
-elif False:
-    HpaV2MetricExternalMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricExternalMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2MetricExternalMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricExternalMetricArgs:
@@ -4612,12 +4429,9 @@ class HpaV2MetricExternalMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2MetricExternalMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricExternalMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricExternalMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricExternalMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricExternalMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricExternalMetricSelectorArgs:
@@ -4648,13 +4462,10 @@ class HpaV2MetricExternalMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2MetricExternalMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricExternalMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricExternalMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricExternalMetricSelectorMatchExpressionArgs:
@@ -4697,14 +4508,11 @@ class HpaV2MetricExternalMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2MetricExternalTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricExternalTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricExternalTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricExternalTargetArgs:
@@ -4759,13 +4567,10 @@ class HpaV2MetricExternalTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectArgsDict(TypedDict):
-        described_object: pulumi.Input['HpaV2MetricObjectDescribedObjectArgsDict']
-        metric: pulumi.Input['HpaV2MetricObjectMetricArgsDict']
-        target: pulumi.Input['HpaV2MetricObjectTargetArgsDict']
-elif False:
-    HpaV2MetricObjectArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectArgsDict(TypedDict):
+    described_object: pulumi.Input['HpaV2MetricObjectDescribedObjectArgsDict']
+    metric: pulumi.Input['HpaV2MetricObjectMetricArgsDict']
+    target: pulumi.Input['HpaV2MetricObjectTargetArgsDict']
 
 @pulumi.input_type
 class HpaV2MetricObjectArgs:
@@ -4805,13 +4610,10 @@ class HpaV2MetricObjectArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectDescribedObjectArgsDict(TypedDict):
-        api_version: NotRequired[pulumi.Input[_builtins.str]]
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    HpaV2MetricObjectDescribedObjectArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectDescribedObjectArgsDict(TypedDict):
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class HpaV2MetricObjectDescribedObjectArgs:
@@ -4854,12 +4656,9 @@ class HpaV2MetricObjectDescribedObjectArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2MetricObjectMetricSelectorArgsDict']]
-elif False:
-    HpaV2MetricObjectMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2MetricObjectMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricObjectMetricArgs:
@@ -4889,12 +4688,9 @@ class HpaV2MetricObjectMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricObjectMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricObjectMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricObjectMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricObjectMetricSelectorArgs:
@@ -4925,13 +4721,10 @@ class HpaV2MetricObjectMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricObjectMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricObjectMetricSelectorMatchExpressionArgs:
@@ -4974,14 +4767,11 @@ class HpaV2MetricObjectMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2MetricObjectTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricObjectTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricObjectTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricObjectTargetArgs:
@@ -5036,12 +4826,9 @@ class HpaV2MetricObjectTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2MetricPodsArgsDict(TypedDict):
-        metric: NotRequired[pulumi.Input['HpaV2MetricPodsMetricArgsDict']]
-        target: NotRequired[pulumi.Input['HpaV2MetricPodsTargetArgsDict']]
-elif False:
-    HpaV2MetricPodsArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricPodsArgsDict(TypedDict):
+    metric: NotRequired[pulumi.Input['HpaV2MetricPodsMetricArgsDict']]
+    target: NotRequired[pulumi.Input['HpaV2MetricPodsTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricPodsArgs:
@@ -5072,12 +4859,9 @@ class HpaV2MetricPodsArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2MetricPodsMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2MetricPodsMetricSelectorArgsDict']]
-elif False:
-    HpaV2MetricPodsMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricPodsMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2MetricPodsMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricPodsMetricArgs:
@@ -5107,12 +4891,9 @@ class HpaV2MetricPodsMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2MetricPodsMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricPodsMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricPodsMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricPodsMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2MetricPodsMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricPodsMetricSelectorArgs:
@@ -5143,13 +4924,10 @@ class HpaV2MetricPodsMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2MetricPodsMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricPodsMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricPodsMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricPodsMetricSelectorMatchExpressionArgs:
@@ -5192,14 +4970,11 @@ class HpaV2MetricPodsMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2MetricPodsTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricPodsTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricPodsTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricPodsTargetArgs:
@@ -5254,12 +5029,9 @@ class HpaV2MetricPodsTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2MetricResourcesArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        target: NotRequired[pulumi.Input['HpaV2MetricResourcesTargetArgsDict']]
-elif False:
-    HpaV2MetricResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricResourcesArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input['HpaV2MetricResourcesTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2MetricResourcesArgs:
@@ -5290,14 +5062,11 @@ class HpaV2MetricResourcesArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2MetricResourcesTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2MetricResourcesTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2MetricResourcesTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2MetricResourcesTargetArgs:
@@ -5352,13 +5121,10 @@ class HpaV2MetricResourcesTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2ScaleTargetRefArgsDict(TypedDict):
-        api_version: NotRequired[pulumi.Input[_builtins.str]]
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    HpaV2ScaleTargetRefArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2ScaleTargetRefArgsDict(TypedDict):
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class HpaV2ScaleTargetRefArgs:
@@ -5401,16 +5167,13 @@ class HpaV2ScaleTargetRefArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HpaV2StatusArgsDict(TypedDict):
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusConditionArgsDict']]]]
-        current_metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricArgsDict']]]]
-        current_replicas: NotRequired[pulumi.Input[_builtins.int]]
-        desired_replicas: NotRequired[pulumi.Input[_builtins.int]]
-        last_scale_time: NotRequired[pulumi.Input[_builtins.str]]
-        observed_generation: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    HpaV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusArgsDict(TypedDict):
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusConditionArgsDict']]]]
+    current_metrics: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricArgsDict']]]]
+    current_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    desired_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    last_scale_time: NotRequired[pulumi.Input[_builtins.str]]
+    observed_generation: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class HpaV2StatusArgs:
@@ -5489,15 +5252,12 @@ class HpaV2StatusArgs:
         pulumi.set(self, "observed_generation", value)
 
 
-if not MYPY:
-    class HpaV2StatusConditionArgsDict(TypedDict):
-        last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    HpaV2StatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusConditionArgsDict(TypedDict):
+    last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class HpaV2StatusConditionArgs:
@@ -5564,16 +5324,13 @@ class HpaV2StatusConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        container_resource: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricContainerResourceArgsDict']]
-        external: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricExternalArgsDict']]
-        object: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricObjectArgsDict']]
-        pods: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsArgsDict']]
-        resources: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricResourcesArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    container_resource: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricContainerResourceArgsDict']]
+    external: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricExternalArgsDict']]
+    object: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricObjectArgsDict']]
+    pods: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsArgsDict']]
+    resources: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricResourcesArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricArgs:
@@ -5651,13 +5408,10 @@ class HpaV2StatusCurrentMetricArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricContainerResourceArgsDict(TypedDict):
-        container: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricContainerResourceTargetArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricContainerResourceArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricContainerResourceArgsDict(TypedDict):
+    container: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricContainerResourceTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricContainerResourceArgs:
@@ -5700,14 +5454,11 @@ class HpaV2StatusCurrentMetricContainerResourceArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricContainerResourceTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricContainerResourceTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricContainerResourceTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricContainerResourceTargetArgs:
@@ -5762,12 +5513,9 @@ class HpaV2StatusCurrentMetricContainerResourceTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricExternalArgsDict(TypedDict):
-        metric: pulumi.Input['HpaV2StatusCurrentMetricExternalMetricArgsDict']
-        target: pulumi.Input['HpaV2StatusCurrentMetricExternalTargetArgsDict']
-elif False:
-    HpaV2StatusCurrentMetricExternalArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricExternalArgsDict(TypedDict):
+    metric: pulumi.Input['HpaV2StatusCurrentMetricExternalMetricArgsDict']
+    target: pulumi.Input['HpaV2StatusCurrentMetricExternalTargetArgsDict']
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricExternalArgs:
@@ -5796,12 +5544,9 @@ class HpaV2StatusCurrentMetricExternalArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricExternalMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricExternalMetricSelectorArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricExternalMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricExternalMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricExternalMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricExternalMetricArgs:
@@ -5831,12 +5576,9 @@ class HpaV2StatusCurrentMetricExternalMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricExternalMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricExternalMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricExternalMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricExternalMetricSelectorArgs:
@@ -5867,13 +5609,10 @@ class HpaV2StatusCurrentMetricExternalMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgs:
@@ -5916,14 +5655,11 @@ class HpaV2StatusCurrentMetricExternalMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricExternalTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricExternalTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricExternalTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricExternalTargetArgs:
@@ -5978,13 +5714,10 @@ class HpaV2StatusCurrentMetricExternalTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectArgsDict(TypedDict):
-        described_object: pulumi.Input['HpaV2StatusCurrentMetricObjectDescribedObjectArgsDict']
-        metric: pulumi.Input['HpaV2StatusCurrentMetricObjectMetricArgsDict']
-        target: pulumi.Input['HpaV2StatusCurrentMetricObjectTargetArgsDict']
-elif False:
-    HpaV2StatusCurrentMetricObjectArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectArgsDict(TypedDict):
+    described_object: pulumi.Input['HpaV2StatusCurrentMetricObjectDescribedObjectArgsDict']
+    metric: pulumi.Input['HpaV2StatusCurrentMetricObjectMetricArgsDict']
+    target: pulumi.Input['HpaV2StatusCurrentMetricObjectTargetArgsDict']
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectArgs:
@@ -6024,13 +5757,10 @@ class HpaV2StatusCurrentMetricObjectArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectDescribedObjectArgsDict(TypedDict):
-        api_version: NotRequired[pulumi.Input[_builtins.str]]
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    HpaV2StatusCurrentMetricObjectDescribedObjectArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectDescribedObjectArgsDict(TypedDict):
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectDescribedObjectArgs:
@@ -6073,12 +5803,9 @@ class HpaV2StatusCurrentMetricObjectDescribedObjectArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricObjectMetricSelectorArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricObjectMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricObjectMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectMetricArgs:
@@ -6108,12 +5835,9 @@ class HpaV2StatusCurrentMetricObjectMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricObjectMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectMetricSelectorArgs:
@@ -6144,13 +5868,10 @@ class HpaV2StatusCurrentMetricObjectMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgs:
@@ -6193,14 +5914,11 @@ class HpaV2StatusCurrentMetricObjectMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricObjectTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricObjectTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricObjectTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricObjectTargetArgs:
@@ -6255,12 +5973,9 @@ class HpaV2StatusCurrentMetricObjectTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricPodsArgsDict(TypedDict):
-        metric: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricArgsDict']]
-        target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsTargetArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricPodsArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricPodsArgsDict(TypedDict):
+    metric: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricArgsDict']]
+    target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricPodsArgs:
@@ -6291,12 +6006,9 @@ class HpaV2StatusCurrentMetricPodsArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricPodsMetricArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricSelectorArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricPodsMetricArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricPodsMetricArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    selector: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricSelectorArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricPodsMetricArgs:
@@ -6326,12 +6038,9 @@ class HpaV2StatusCurrentMetricPodsMetricArgs:
         pulumi.set(self, "selector", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricPodsMetricSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricPodsMetricSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricPodsMetricSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricPodsMetricSelectorArgs:
@@ -6362,13 +6071,10 @@ class HpaV2StatusCurrentMetricPodsMetricSelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgs:
@@ -6411,14 +6117,11 @@ class HpaV2StatusCurrentMetricPodsMetricSelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricPodsTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricPodsTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricPodsTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricPodsTargetArgs:
@@ -6473,12 +6176,9 @@ class HpaV2StatusCurrentMetricPodsTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricResourcesArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricResourcesTargetArgsDict']]
-elif False:
-    HpaV2StatusCurrentMetricResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricResourcesArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input['HpaV2StatusCurrentMetricResourcesTargetArgsDict']]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricResourcesArgs:
@@ -6509,14 +6209,11 @@ class HpaV2StatusCurrentMetricResourcesArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class HpaV2StatusCurrentMetricResourcesTargetArgsDict(TypedDict):
-        average_utilization: NotRequired[pulumi.Input[_builtins.int]]
-        average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    HpaV2StatusCurrentMetricResourcesTargetArgsDict: TypeAlias = Mapping[str, Any]
+class HpaV2StatusCurrentMetricResourcesTargetArgsDict(TypedDict):
+    average_utilization: NotRequired[pulumi.Input[_builtins.int]]
+    average_value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class HpaV2StatusCurrentMetricResourcesTargetArgs:
@@ -6571,14 +6268,11 @@ class HpaV2StatusCurrentMetricResourcesTargetArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2BuildingConfigArgsDict(TypedDict):
-        auto_create_eip: NotRequired[pulumi.Input[_builtins.bool]]
-        auto_create_eip_attribute: NotRequired[pulumi.Input['ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgsDict']]
-        eip_id: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ImageSnapshotV2BuildingConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2BuildingConfigArgsDict(TypedDict):
+    auto_create_eip: NotRequired[pulumi.Input[_builtins.bool]]
+    auto_create_eip_attribute: NotRequired[pulumi.Input['ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgsDict']]
+    eip_id: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ImageSnapshotV2BuildingConfigArgs:
@@ -6633,15 +6327,12 @@ class ImageSnapshotV2BuildingConfigArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgsDict(TypedDict):
-        bandwidth_charge_mode: NotRequired[pulumi.Input[_builtins.str]]
-        bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
-        bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
-        ip_version: NotRequired[pulumi.Input[_builtins.int]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgsDict(TypedDict):
+    bandwidth_charge_mode: NotRequired[pulumi.Input[_builtins.str]]
+    bandwidth_id: NotRequired[pulumi.Input[_builtins.str]]
+    bandwidth_size: NotRequired[pulumi.Input[_builtins.int]]
+    ip_version: NotRequired[pulumi.Input[_builtins.int]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgs:
@@ -6708,11 +6399,8 @@ class ImageSnapshotV2BuildingConfigAutoCreateEipAttributeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2ImageArgsDict(TypedDict):
-        image: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ImageSnapshotV2ImageArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2ImageArgsDict(TypedDict):
+    image: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ImageSnapshotV2ImageArgs:
@@ -6731,14 +6419,11 @@ class ImageSnapshotV2ImageArgs:
         pulumi.set(self, "image", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2RegistryArgsDict(TypedDict):
-        image_pull_secret: NotRequired[pulumi.Input[_builtins.str]]
-        insecure_skip_verify: NotRequired[pulumi.Input[_builtins.bool]]
-        plain_http: NotRequired[pulumi.Input[_builtins.bool]]
-        server: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ImageSnapshotV2RegistryArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2RegistryArgsDict(TypedDict):
+    image_pull_secret: NotRequired[pulumi.Input[_builtins.str]]
+    insecure_skip_verify: NotRequired[pulumi.Input[_builtins.bool]]
+    plain_http: NotRequired[pulumi.Input[_builtins.bool]]
+    server: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ImageSnapshotV2RegistryArgs:
@@ -6793,18 +6478,15 @@ class ImageSnapshotV2RegistryArgs:
         pulumi.set(self, "server", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2StatusArgsDict(TypedDict):
-        expire_date_time: NotRequired[pulumi.Input[_builtins.str]]
-        images: NotRequired[pulumi.Input[Sequence[pulumi.Input['ImageSnapshotV2StatusImageArgsDict']]]]
-        last_updated_time: NotRequired[pulumi.Input[_builtins.str]]
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        phase: NotRequired[pulumi.Input[_builtins.str]]
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
-        snapshot_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ImageSnapshotV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2StatusArgsDict(TypedDict):
+    expire_date_time: NotRequired[pulumi.Input[_builtins.str]]
+    images: NotRequired[pulumi.Input[Sequence[pulumi.Input['ImageSnapshotV2StatusImageArgsDict']]]]
+    last_updated_time: NotRequired[pulumi.Input[_builtins.str]]
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    phase: NotRequired[pulumi.Input[_builtins.str]]
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    snapshot_id: NotRequired[pulumi.Input[_builtins.str]]
+    snapshot_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ImageSnapshotV2StatusArgs:
@@ -6907,13 +6589,10 @@ class ImageSnapshotV2StatusArgs:
         pulumi.set(self, "snapshot_name", value)
 
 
-if not MYPY:
-    class ImageSnapshotV2StatusImageArgsDict(TypedDict):
-        digest: NotRequired[pulumi.Input[_builtins.str]]
-        image: NotRequired[pulumi.Input[_builtins.str]]
-        size_bytes: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    ImageSnapshotV2StatusImageArgsDict: TypeAlias = Mapping[str, Any]
+class ImageSnapshotV2StatusImageArgsDict(TypedDict):
+    digest: NotRequired[pulumi.Input[_builtins.str]]
+    image: NotRequired[pulumi.Input[_builtins.str]]
+    size_bytes: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class ImageSnapshotV2StatusImageArgs:
@@ -6956,22 +6635,19 @@ class ImageSnapshotV2StatusImageArgs:
         pulumi.set(self, "size_bytes", value)
 
 
-if not MYPY:
-    class NetworkV2StatusArgsDict(TypedDict):
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NetworkV2StatusConditionArgsDict']]]]
-        """
-        Tthe conditions of the CCI network.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the CCI network.
-        """
-        subnet_attrs: NotRequired[pulumi.Input[Sequence[pulumi.Input['NetworkV2StatusSubnetAttrArgsDict']]]]
-        """
-        The subnet attributes of the CCI network.
-        """
-elif False:
-    NetworkV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkV2StatusArgsDict(TypedDict):
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NetworkV2StatusConditionArgsDict']]]]
+    """
+    Tthe conditions of the CCI network.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the CCI network.
+    """
+    subnet_attrs: NotRequired[pulumi.Input[Sequence[pulumi.Input['NetworkV2StatusSubnetAttrArgsDict']]]]
+    """
+    The subnet attributes of the CCI network.
+    """
 
 @pulumi.input_type
 class NetworkV2StatusArgs:
@@ -7028,30 +6704,27 @@ class NetworkV2StatusArgs:
         pulumi.set(self, "subnet_attrs", value)
 
 
-if not MYPY:
-    class NetworkV2StatusConditionArgsDict(TypedDict):
-        last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The last transition time of the CCI network conditions.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The message of the CCI network conditions.
-        """
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reason of the CCI network conditions.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Tthe status of the CCI network conditions.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the CCI network conditions.
-        """
-elif False:
-    NetworkV2StatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkV2StatusConditionArgsDict(TypedDict):
+    last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The last transition time of the CCI network conditions.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The message of the CCI network conditions.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reason of the CCI network conditions.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Tthe status of the CCI network conditions.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the CCI network conditions.
+    """
 
 @pulumi.input_type
 class NetworkV2StatusConditionArgs:
@@ -7140,22 +6813,19 @@ class NetworkV2StatusConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class NetworkV2StatusSubnetAttrArgsDict(TypedDict):
-        network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the CCI network.
-        """
-        subnet_v4_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet IPv4 ID of the CCI network.
-        """
-        subnet_v6_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet IPv6 ID of the CCI network.
-        """
-elif False:
-    NetworkV2StatusSubnetAttrArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkV2StatusSubnetAttrArgsDict(TypedDict):
+    network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the CCI network.
+    """
+    subnet_v4_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet IPv4 ID of the CCI network.
+    """
+    subnet_v6_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet IPv6 ID of the CCI network.
+    """
 
 @pulumi.input_type
 class NetworkV2StatusSubnetAttrArgs:
@@ -7212,14 +6882,11 @@ class NetworkV2StatusSubnetAttrArgs:
         pulumi.set(self, "subnet_v6_id", value)
 
 
-if not MYPY:
-    class NetworkV2SubnetArgsDict(TypedDict):
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subnet ID of the CCI network.
-        """
-elif False:
-    NetworkV2SubnetArgsDict: TypeAlias = Mapping[str, Any]
+class NetworkV2SubnetArgsDict(TypedDict):
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subnet ID of the CCI network.
+    """
 
 @pulumi.input_type
 class NetworkV2SubnetArgs:
@@ -7244,12 +6911,28 @@ class NetworkV2SubnetArgs:
         pulumi.set(self, "subnet_id", value)
 
 
-if not MYPY:
-    class PersistentVolumeClaimV2ResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PersistentVolumeClaimV2ResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class ObservabilityConfigurationV2EventArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.bool]
+
+@pulumi.input_type
+class ObservabilityConfigurationV2EventArgs:
+    def __init__(__self__, *,
+                 enable: pulumi.Input[_builtins.bool]):
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> pulumi.Input[_builtins.bool]:
+        return pulumi.get(self, "enable")
+
+    @enable.setter
+    def enable(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enable", value)
+
+
+class PersistentVolumeClaimV2ResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PersistentVolumeClaimV2ResourcesArgs:
@@ -7280,12 +6963,9 @@ class PersistentVolumeClaimV2ResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class PersistentVolumeClaimV2SelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PersistentVolumeClaimV2SelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PersistentVolumeClaimV2SelectorArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeClaimV2SelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PersistentVolumeClaimV2SelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PersistentVolumeClaimV2SelectorArgs:
@@ -7316,13 +6996,10 @@ class PersistentVolumeClaimV2SelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class PersistentVolumeClaimV2SelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PersistentVolumeClaimV2SelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeClaimV2SelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PersistentVolumeClaimV2SelectorMatchExpressionArgs:
@@ -7365,17 +7042,14 @@ class PersistentVolumeClaimV2SelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2ClaimRefArgsDict(TypedDict):
-        api_version: NotRequired[pulumi.Input[_builtins.str]]
-        field_path: NotRequired[pulumi.Input[_builtins.str]]
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        resource_version: NotRequired[pulumi.Input[_builtins.str]]
-        uid: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2ClaimRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2ClaimRefArgsDict(TypedDict):
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
+    field_path: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    resource_version: NotRequired[pulumi.Input[_builtins.str]]
+    uid: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2ClaimRefArgs:
@@ -7466,20 +7140,17 @@ class PersistentVolumeV2ClaimRefArgs:
         pulumi.set(self, "uid", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiArgsDict(TypedDict):
-        driver: pulumi.Input[_builtins.str]
-        volume_handle: pulumi.Input[_builtins.str]
-        controller_expand_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiControllerExpandSecretRefArgsDict']]
-        controller_publish_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiControllerPublishSecretRefArgsDict']]
-        fs_type: NotRequired[pulumi.Input[_builtins.str]]
-        node_expand_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodeExpandSecretRefArgsDict']]
-        node_publish_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodePublishSecretRefArgsDict']]
-        node_stage_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodeStageSecretRefArgsDict']]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-        volume_attributes: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PersistentVolumeV2CsiArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiArgsDict(TypedDict):
+    driver: pulumi.Input[_builtins.str]
+    volume_handle: pulumi.Input[_builtins.str]
+    controller_expand_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiControllerExpandSecretRefArgsDict']]
+    controller_publish_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiControllerPublishSecretRefArgsDict']]
+    fs_type: NotRequired[pulumi.Input[_builtins.str]]
+    node_expand_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodeExpandSecretRefArgsDict']]
+    node_publish_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodePublishSecretRefArgsDict']]
+    node_stage_secret_ref: NotRequired[pulumi.Input['PersistentVolumeV2CsiNodeStageSecretRefArgsDict']]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    volume_attributes: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiArgs:
@@ -7604,12 +7275,9 @@ class PersistentVolumeV2CsiArgs:
         pulumi.set(self, "volume_attributes", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiControllerExpandSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2CsiControllerExpandSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiControllerExpandSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiControllerExpandSecretRefArgs:
@@ -7640,12 +7308,9 @@ class PersistentVolumeV2CsiControllerExpandSecretRefArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiControllerPublishSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2CsiControllerPublishSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiControllerPublishSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiControllerPublishSecretRefArgs:
@@ -7676,12 +7341,9 @@ class PersistentVolumeV2CsiControllerPublishSecretRefArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiNodeExpandSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2CsiNodeExpandSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiNodeExpandSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiNodeExpandSecretRefArgs:
@@ -7712,12 +7374,9 @@ class PersistentVolumeV2CsiNodeExpandSecretRefArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiNodePublishSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2CsiNodePublishSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiNodePublishSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiNodePublishSecretRefArgs:
@@ -7748,12 +7407,9 @@ class PersistentVolumeV2CsiNodePublishSecretRefArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2CsiNodeStageSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2CsiNodeStageSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2CsiNodeStageSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2CsiNodeStageSecretRefArgs:
@@ -7784,11 +7440,8 @@ class PersistentVolumeV2CsiNodeStageSecretRefArgs:
         pulumi.set(self, "namespace", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2NodeAffinityArgsDict(TypedDict):
-        required: NotRequired[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredArgsDict']]
-elif False:
-    PersistentVolumeV2NodeAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2NodeAffinityArgsDict(TypedDict):
+    required: NotRequired[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredArgsDict']]
 
 @pulumi.input_type
 class PersistentVolumeV2NodeAffinityArgs:
@@ -7807,11 +7460,8 @@ class PersistentVolumeV2NodeAffinityArgs:
         pulumi.set(self, "required", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2NodeAffinityRequiredArgsDict(TypedDict):
-        node_selector_terms: pulumi.Input[Sequence[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgsDict']]]
-elif False:
-    PersistentVolumeV2NodeAffinityRequiredArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2NodeAffinityRequiredArgsDict(TypedDict):
+    node_selector_terms: pulumi.Input[Sequence[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgsDict']]]
 
 @pulumi.input_type
 class PersistentVolumeV2NodeAffinityRequiredArgs:
@@ -7829,11 +7479,8 @@ class PersistentVolumeV2NodeAffinityRequiredArgs:
         pulumi.set(self, "node_selector_terms", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgsDict']]]]
-elif False:
-    PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgsDict']]]]
 
 @pulumi.input_type
 class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgs:
@@ -7852,13 +7499,10 @@ class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermArgs:
         pulumi.set(self, "match_expressions", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgs:
@@ -7899,13 +7543,10 @@ class PersistentVolumeV2NodeAffinityRequiredNodeSelectorTermMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PersistentVolumeV2StatusArgsDict(TypedDict):
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        phase: NotRequired[pulumi.Input[_builtins.str]]
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PersistentVolumeV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class PersistentVolumeV2StatusArgsDict(TypedDict):
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    phase: NotRequired[pulumi.Input[_builtins.str]]
+    reason: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PersistentVolumeV2StatusArgs:
@@ -7948,12 +7589,9 @@ class PersistentVolumeV2StatusArgs:
         pulumi.set(self, "reason", value)
 
 
-if not MYPY:
-    class PodV2AffinityArgsDict(TypedDict):
-        node_affinity: NotRequired[pulumi.Input['PodV2AffinityNodeAffinityArgsDict']]
-        pod_anti_affinity: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityArgsDict']]
-elif False:
-    PodV2AffinityArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityArgsDict(TypedDict):
+    node_affinity: NotRequired[pulumi.Input['PodV2AffinityNodeAffinityArgsDict']]
+    pod_anti_affinity: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityArgsDict']]
 
 @pulumi.input_type
 class PodV2AffinityArgs:
@@ -7984,11 +7622,8 @@ class PodV2AffinityArgs:
         pulumi.set(self, "pod_anti_affinity", value)
 
 
-if not MYPY:
-    class PodV2AffinityNodeAffinityArgsDict(TypedDict):
-        required_during_scheduling_ignored_during_execution: NotRequired[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]
-elif False:
-    PodV2AffinityNodeAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityNodeAffinityArgsDict(TypedDict):
+    required_during_scheduling_ignored_during_execution: NotRequired[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]
 
 @pulumi.input_type
 class PodV2AffinityNodeAffinityArgs:
@@ -8007,11 +7642,8 @@ class PodV2AffinityNodeAffinityArgs:
         pulumi.set(self, "required_during_scheduling_ignored_during_execution", value)
 
 
-if not MYPY:
-    class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        node_selector_terms: pulumi.Input[Sequence[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict']]]
-elif False:
-    PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    node_selector_terms: pulumi.Input[Sequence[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict']]]
 
 @pulumi.input_type
 class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -8029,11 +7661,8 @@ class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionArg
         pulumi.set(self, "node_selector_terms", value)
 
 
-if not MYPY:
-    class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict']]]]
-elif False:
-    PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict']]]]
 
 @pulumi.input_type
 class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermArgs:
@@ -8052,13 +7681,10 @@ class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNod
         pulumi.set(self, "match_expressions", value)
 
 
-if not MYPY:
-    class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermMatchExpressionArgs:
@@ -8099,12 +7725,9 @@ class PodV2AffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNod
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityArgsDict(TypedDict):
-        preferred_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
-        required_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
-elif False:
-    PodV2AffinityPodAntiAffinityArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityArgsDict(TypedDict):
+    preferred_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
+    required_during_scheduling_ignored_during_executions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict']]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityArgs:
@@ -8135,12 +7758,9 @@ class PodV2AffinityPodAntiAffinityArgs:
         pulumi.set(self, "required_during_scheduling_ignored_during_executions", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        pod_affinity_term: pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict']
-        weight: pulumi.Input[_builtins.int]
-elif False:
-    PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    pod_affinity_term: pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict']
+    weight: pulumi.Input[_builtins.int]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -8169,13 +7789,10 @@ class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutio
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict(TypedDict):
-        topology_key: pulumi.Input[_builtins.str]
-        label_selector: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict']]
-        namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgsDict(TypedDict):
+    topology_key: pulumi.Input[_builtins.str]
+    label_selector: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict']]
+    namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermArgs:
@@ -8217,12 +7834,9 @@ class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutio
         pulumi.set(self, "namespaces", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorArgs:
@@ -8253,13 +7867,10 @@ class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutio
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressionArgs:
@@ -8300,13 +7911,10 @@ class PodV2AffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutio
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
-        topology_key: pulumi.Input[_builtins.str]
-        label_selector: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict']]
-        namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgsDict(TypedDict):
+    topology_key: pulumi.Input[_builtins.str]
+    label_selector: NotRequired[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict']]
+    namespaces: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionArgs:
@@ -8348,12 +7956,9 @@ class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution
         pulumi.set(self, "namespaces", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorArgs:
@@ -8384,13 +7989,10 @@ class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        operator: pulumi.Input[_builtins.str]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    operator: pulumi.Input[_builtins.str]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressionArgs:
@@ -8431,84 +8033,81 @@ class PodV2AffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class PodV2ContainerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the container.
-        """
-        args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the arguments to the entrypoint of the container.
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command of the container.
-        """
-        env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerEnvFromArgsDict']]]]
-        """
-        The sources to populate environment variables of the container.
-        """
-        envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerEnvArgsDict']]]]
-        image: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image name of the CCI Pod container.
-        """
-        lifecycle: NotRequired[pulumi.Input['PodV2ContainerLifecycleArgsDict']]
-        """
-        Specifies the lifecycle of the container.
-        """
-        liveness_probe: NotRequired[pulumi.Input['PodV2ContainerLivenessProbeArgsDict']]
-        """
-        Specifies the liveness probe of the container.
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerPortArgsDict']]]]
-        """
-        Specifies the ports of the container.
-        """
-        readiness_probe: NotRequired[pulumi.Input['PodV2ContainerReadinessProbeArgsDict']]
-        """
-        Specifies the readiness probe of the container.
-        """
-        resources: NotRequired[pulumi.Input['PodV2ContainerResourcesArgsDict']]
-        """
-        Specifies the resources of the container.
-        """
-        security_context: NotRequired[pulumi.Input['PodV2ContainerSecurityContextArgsDict']]
-        """
-        Specifies the security context of the container.
-        """
-        startup_probe: NotRequired[pulumi.Input['PodV2ContainerStartupProbeArgsDict']]
-        """
-        Specifies the startup probe of the container.
-        """
-        stdin: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a buffer for stdin in the container runtime.
-        """
-        stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container runtime should close the stdin channel.
-        """
-        termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message path of the CCI Pod container.
-        """
-        termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message policy of the CCI Pod container.
-        """
-        tty: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a TTY for itself.
-        """
-        volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerVolumeMountArgsDict']]]]
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the working directory of the CCI Pod container.
-        """
-elif False:
-    PodV2ContainerArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the container.
+    """
+    args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the arguments to the entrypoint of the container.
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command of the container.
+    """
+    env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerEnvFromArgsDict']]]]
+    """
+    The sources to populate environment variables of the container.
+    """
+    envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerEnvArgsDict']]]]
+    image: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image name of the CCI Pod container.
+    """
+    lifecycle: NotRequired[pulumi.Input['PodV2ContainerLifecycleArgsDict']]
+    """
+    Specifies the lifecycle of the container.
+    """
+    liveness_probe: NotRequired[pulumi.Input['PodV2ContainerLivenessProbeArgsDict']]
+    """
+    Specifies the liveness probe of the container.
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerPortArgsDict']]]]
+    """
+    Specifies the ports of the container.
+    """
+    readiness_probe: NotRequired[pulumi.Input['PodV2ContainerReadinessProbeArgsDict']]
+    """
+    Specifies the readiness probe of the container.
+    """
+    resources: NotRequired[pulumi.Input['PodV2ContainerResourcesArgsDict']]
+    """
+    Specifies the resources of the container.
+    """
+    security_context: NotRequired[pulumi.Input['PodV2ContainerSecurityContextArgsDict']]
+    """
+    Specifies the security context of the container.
+    """
+    startup_probe: NotRequired[pulumi.Input['PodV2ContainerStartupProbeArgsDict']]
+    """
+    Specifies the startup probe of the container.
+    """
+    stdin: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a buffer for stdin in the container runtime.
+    """
+    stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container runtime should close the stdin channel.
+    """
+    termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message path of the CCI Pod container.
+    """
+    termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message policy of the CCI Pod container.
+    """
+    tty: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a TTY for itself.
+    """
+    volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerVolumeMountArgsDict']]]]
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerArgs:
@@ -8828,12 +8427,9 @@ class PodV2ContainerArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class PodV2ContainerEnvArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2ContainerEnvArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerEnvArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2ContainerEnvArgs:
@@ -8864,22 +8460,19 @@ class PodV2ContainerEnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerEnvFromArgsDict(TypedDict):
-        config_map_ref: NotRequired[pulumi.Input['PodV2ContainerEnvFromConfigMapRefArgsDict']]
-        """
-        Specifies the config map.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix.
-        """
-        secret_ref: NotRequired[pulumi.Input['PodV2ContainerEnvFromSecretRefArgsDict']]
-        """
-        Specifies the secret.
-        """
-elif False:
-    PodV2ContainerEnvFromArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerEnvFromArgsDict(TypedDict):
+    config_map_ref: NotRequired[pulumi.Input['PodV2ContainerEnvFromConfigMapRefArgsDict']]
+    """
+    Specifies the config map.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix.
+    """
+    secret_ref: NotRequired[pulumi.Input['PodV2ContainerEnvFromSecretRefArgsDict']]
+    """
+    Specifies the secret.
+    """
 
 @pulumi.input_type
 class PodV2ContainerEnvFromArgs:
@@ -8936,18 +8529,15 @@ class PodV2ContainerEnvFromArgs:
         pulumi.set(self, "secret_ref", value)
 
 
-if not MYPY:
-    class PodV2ContainerEnvFromConfigMapRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2ContainerEnvFromConfigMapRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerEnvFromConfigMapRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2ContainerEnvFromConfigMapRefArgs:
@@ -8988,18 +8578,15 @@ class PodV2ContainerEnvFromConfigMapRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2ContainerEnvFromSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2ContainerEnvFromSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerEnvFromSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2ContainerEnvFromSecretRefArgs:
@@ -9040,18 +8627,15 @@ class PodV2ContainerEnvFromSecretRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecycleArgsDict(TypedDict):
-        post_start: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        pre_stop: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2ContainerLifecycleArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecycleArgsDict(TypedDict):
+    post_start: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    pre_stop: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecycleArgs:
@@ -9092,18 +8676,15 @@ class PodV2ContainerLifecycleArgs:
         pulumi.set(self, "pre_stop", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePostStartArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2ContainerLifecyclePostStartArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePostStartArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2ContainerLifecyclePostStartHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePostStartArgs:
@@ -9144,14 +8725,11 @@ class PodV2ContainerLifecyclePostStartArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePostStartExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2ContainerLifecyclePostStartExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePostStartExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePostStartExecArgs:
@@ -9176,30 +8754,27 @@ class PodV2ContainerLifecyclePostStartExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2ContainerLifecyclePostStartHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePostStartHttpGetArgs:
@@ -9288,18 +8863,15 @@ class PodV2ContainerLifecyclePostStartHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgs:
@@ -9340,18 +8912,15 @@ class PodV2ContainerLifecyclePostStartHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePreStopArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2ContainerLifecyclePreStopArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePreStopArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2ContainerLifecyclePreStopHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePreStopArgs:
@@ -9392,14 +8961,11 @@ class PodV2ContainerLifecyclePreStopArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePreStopExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2ContainerLifecyclePreStopExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePreStopExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePreStopExecArgs:
@@ -9424,30 +8990,27 @@ class PodV2ContainerLifecyclePreStopExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2ContainerLifecyclePreStopHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePreStopHttpGetArgs:
@@ -9536,18 +9099,15 @@ class PodV2ContainerLifecyclePreStopHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgs:
@@ -9588,35 +9148,32 @@ class PodV2ContainerLifecyclePreStopHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerLivenessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2ContainerLivenessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLivenessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2ContainerLivenessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLivenessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2ContainerLivenessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLivenessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2ContainerLivenessProbeArgs:
@@ -9733,14 +9290,11 @@ class PodV2ContainerLivenessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2ContainerLivenessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2ContainerLivenessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLivenessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLivenessProbeExecArgs:
@@ -9765,30 +9319,27 @@ class PodV2ContainerLivenessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2ContainerLivenessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2ContainerLivenessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLivenessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLivenessProbeHttpGetArgs:
@@ -9877,18 +9428,15 @@ class PodV2ContainerLivenessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2ContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2ContainerLivenessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2ContainerLivenessProbeHttpGetHttpHeaderArgs:
@@ -9929,22 +9477,19 @@ class PodV2ContainerLivenessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerPortArgsDict(TypedDict):
-        container_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of port to expose on the IP address of pod.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the port name of the container.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol for container port.
-        """
-elif False:
-    PodV2ContainerPortArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerPortArgsDict(TypedDict):
+    container_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of port to expose on the IP address of pod.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port name of the container.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol for container port.
+    """
 
 @pulumi.input_type
 class PodV2ContainerPortArgs:
@@ -10000,35 +9545,32 @@ class PodV2ContainerPortArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class PodV2ContainerReadinessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2ContainerReadinessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerReadinessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2ContainerReadinessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerReadinessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2ContainerReadinessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerReadinessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2ContainerReadinessProbeArgs:
@@ -10145,14 +9687,11 @@ class PodV2ContainerReadinessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2ContainerReadinessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2ContainerReadinessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerReadinessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerReadinessProbeExecArgs:
@@ -10177,30 +9716,27 @@ class PodV2ContainerReadinessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2ContainerReadinessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2ContainerReadinessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerReadinessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2ContainerReadinessProbeHttpGetArgs:
@@ -10289,18 +9825,15 @@ class PodV2ContainerReadinessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2ContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2ContainerReadinessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2ContainerReadinessProbeHttpGetHttpHeaderArgs:
@@ -10341,18 +9874,15 @@ class PodV2ContainerReadinessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the limits of resource.
-        """
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the requests of the resource.
-        """
-elif False:
-    PodV2ContainerResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the limits of resource.
+    """
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the requests of the resource.
+    """
 
 @pulumi.input_type
 class PodV2ContainerResourcesArgs:
@@ -10393,34 +9923,31 @@ class PodV2ContainerResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class PodV2ContainerSecurityContextArgsDict(TypedDict):
-        capabilities: NotRequired[pulumi.Input['PodV2ContainerSecurityContextCapabilitiesArgsDict']]
-        """
-        Specifies the capabilities of the security context.
-        """
-        proc_mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the denotes the type of proc mount to use for the containers.
-        """
-        read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this container has a read-only root file system.
-        """
-        run_as_group: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The GID TO run the entrypoint of the container process.
-        """
-        run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The container must run as a non-root user.
-        """
-        run_as_user: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The UID to run the entrypoint of the container process.
-        """
-elif False:
-    PodV2ContainerSecurityContextArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerSecurityContextArgsDict(TypedDict):
+    capabilities: NotRequired[pulumi.Input['PodV2ContainerSecurityContextCapabilitiesArgsDict']]
+    """
+    Specifies the capabilities of the security context.
+    """
+    proc_mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the denotes the type of proc mount to use for the containers.
+    """
+    read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this container has a read-only root file system.
+    """
+    run_as_group: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GID TO run the entrypoint of the container process.
+    """
+    run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The container must run as a non-root user.
+    """
+    run_as_user: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The UID to run the entrypoint of the container process.
+    """
 
 @pulumi.input_type
 class PodV2ContainerSecurityContextArgs:
@@ -10525,12 +10052,9 @@ class PodV2ContainerSecurityContextArgs:
         pulumi.set(self, "run_as_user", value)
 
 
-if not MYPY:
-    class PodV2ContainerSecurityContextCapabilitiesArgsDict(TypedDict):
-        adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2ContainerSecurityContextCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerSecurityContextCapabilitiesArgsDict(TypedDict):
+    adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2ContainerSecurityContextCapabilitiesArgs:
@@ -10561,35 +10085,32 @@ class PodV2ContainerSecurityContextCapabilitiesArgs:
         pulumi.set(self, "drops", value)
 
 
-if not MYPY:
-    class PodV2ContainerStartupProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2ContainerStartupProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerStartupProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2ContainerStartupProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerStartupProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2ContainerStartupProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerStartupProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2ContainerStartupProbeArgs:
@@ -10706,14 +10227,11 @@ class PodV2ContainerStartupProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2ContainerStartupProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2ContainerStartupProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerStartupProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2ContainerStartupProbeExecArgs:
@@ -10738,30 +10256,27 @@ class PodV2ContainerStartupProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2ContainerStartupProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2ContainerStartupProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerStartupProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2ContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2ContainerStartupProbeHttpGetArgs:
@@ -10850,18 +10365,15 @@ class PodV2ContainerStartupProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2ContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2ContainerStartupProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2ContainerStartupProbeHttpGetHttpHeaderArgs:
@@ -10902,16 +10414,13 @@ class PodV2ContainerStartupProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2ContainerVolumeMountArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-        sub_path: NotRequired[pulumi.Input[_builtins.str]]
-        sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2ContainerVolumeMountArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ContainerVolumeMountArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    sub_path: NotRequired[pulumi.Input[_builtins.str]]
+    sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2ContainerVolumeMountArgs:
@@ -10988,22 +10497,19 @@ class PodV2ContainerVolumeMountArgs:
         pulumi.set(self, "sub_path_expr", value)
 
 
-if not MYPY:
-    class PodV2DnsConfigArgsDict(TypedDict):
-        nameservers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the name servers of the DNS config.
-        """
-        options: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2DnsConfigOptionArgsDict']]]]
-        """
-        Specifies the options of the DNS config.
-        """
-        searches: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the searches of the DNS config.
-        """
-elif False:
-    PodV2DnsConfigArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2DnsConfigArgsDict(TypedDict):
+    nameservers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the name servers of the DNS config.
+    """
+    options: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2DnsConfigOptionArgsDict']]]]
+    """
+    Specifies the options of the DNS config.
+    """
+    searches: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the searches of the DNS config.
+    """
 
 @pulumi.input_type
 class PodV2DnsConfigArgs:
@@ -11060,18 +10566,15 @@ class PodV2DnsConfigArgs:
         pulumi.set(self, "searches", value)
 
 
-if not MYPY:
-    class PodV2DnsConfigOptionArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the options.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the value of the options.
-        """
-elif False:
-    PodV2DnsConfigOptionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2DnsConfigOptionArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the options.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the value of the options.
+    """
 
 @pulumi.input_type
 class PodV2DnsConfigOptionArgs:
@@ -11112,84 +10615,81 @@ class PodV2DnsConfigOptionArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the container.
-        """
-        args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the arguments to the entrypoint of the container.
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command of the container.
-        """
-        env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerEnvFromArgsDict']]]]
-        """
-        The sources to populate environment variables of the container.
-        """
-        envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerEnvArgsDict']]]]
-        image: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image name of the CCI Pod container.
-        """
-        lifecycle: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecycleArgsDict']]
-        """
-        Specifies the lifecycle of the container.
-        """
-        liveness_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerLivenessProbeArgsDict']]
-        """
-        Specifies the liveness probe of the container.
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerPortArgsDict']]]]
-        """
-        Specifies the ports of the container.
-        """
-        readiness_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerReadinessProbeArgsDict']]
-        """
-        Specifies the readiness probe of the container.
-        """
-        resources: NotRequired[pulumi.Input['PodV2EphemeralContainerResourcesArgsDict']]
-        """
-        Specifies the resources of the container.
-        """
-        security_context: NotRequired[pulumi.Input['PodV2EphemeralContainerSecurityContextArgsDict']]
-        """
-        Specifies the security context of the container.
-        """
-        startup_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerStartupProbeArgsDict']]
-        """
-        Specifies the startup probe of the container.
-        """
-        stdin: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a buffer for stdin in the container runtime.
-        """
-        stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container runtime should close the stdin channel.
-        """
-        termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message path of the CCI Pod container.
-        """
-        termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message policy of the CCI Pod container.
-        """
-        tty: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a TTY for itself.
-        """
-        volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerVolumeMountArgsDict']]]]
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the working directory of the CCI Pod container.
-        """
-elif False:
-    PodV2EphemeralContainerArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the container.
+    """
+    args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the arguments to the entrypoint of the container.
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command of the container.
+    """
+    env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerEnvFromArgsDict']]]]
+    """
+    The sources to populate environment variables of the container.
+    """
+    envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerEnvArgsDict']]]]
+    image: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image name of the CCI Pod container.
+    """
+    lifecycle: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecycleArgsDict']]
+    """
+    Specifies the lifecycle of the container.
+    """
+    liveness_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerLivenessProbeArgsDict']]
+    """
+    Specifies the liveness probe of the container.
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerPortArgsDict']]]]
+    """
+    Specifies the ports of the container.
+    """
+    readiness_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerReadinessProbeArgsDict']]
+    """
+    Specifies the readiness probe of the container.
+    """
+    resources: NotRequired[pulumi.Input['PodV2EphemeralContainerResourcesArgsDict']]
+    """
+    Specifies the resources of the container.
+    """
+    security_context: NotRequired[pulumi.Input['PodV2EphemeralContainerSecurityContextArgsDict']]
+    """
+    Specifies the security context of the container.
+    """
+    startup_probe: NotRequired[pulumi.Input['PodV2EphemeralContainerStartupProbeArgsDict']]
+    """
+    Specifies the startup probe of the container.
+    """
+    stdin: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a buffer for stdin in the container runtime.
+    """
+    stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container runtime should close the stdin channel.
+    """
+    termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message path of the CCI Pod container.
+    """
+    termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message policy of the CCI Pod container.
+    """
+    tty: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a TTY for itself.
+    """
+    volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerVolumeMountArgsDict']]]]
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerArgs:
@@ -11509,12 +11009,9 @@ class PodV2EphemeralContainerArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerEnvArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2EphemeralContainerEnvArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerEnvArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerEnvArgs:
@@ -11545,22 +11042,19 @@ class PodV2EphemeralContainerEnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerEnvFromArgsDict(TypedDict):
-        config_map_ref: NotRequired[pulumi.Input['PodV2EphemeralContainerEnvFromConfigMapRefArgsDict']]
-        """
-        Specifies the config map.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix.
-        """
-        secret_ref: NotRequired[pulumi.Input['PodV2EphemeralContainerEnvFromSecretRefArgsDict']]
-        """
-        Specifies the secret.
-        """
-elif False:
-    PodV2EphemeralContainerEnvFromArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerEnvFromArgsDict(TypedDict):
+    config_map_ref: NotRequired[pulumi.Input['PodV2EphemeralContainerEnvFromConfigMapRefArgsDict']]
+    """
+    Specifies the config map.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix.
+    """
+    secret_ref: NotRequired[pulumi.Input['PodV2EphemeralContainerEnvFromSecretRefArgsDict']]
+    """
+    Specifies the secret.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerEnvFromArgs:
@@ -11617,18 +11111,15 @@ class PodV2EphemeralContainerEnvFromArgs:
         pulumi.set(self, "secret_ref", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerEnvFromConfigMapRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2EphemeralContainerEnvFromConfigMapRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerEnvFromConfigMapRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerEnvFromConfigMapRefArgs:
@@ -11669,18 +11160,15 @@ class PodV2EphemeralContainerEnvFromConfigMapRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerEnvFromSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2EphemeralContainerEnvFromSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerEnvFromSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerEnvFromSecretRefArgs:
@@ -11721,18 +11209,15 @@ class PodV2EphemeralContainerEnvFromSecretRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecycleArgsDict(TypedDict):
-        post_start: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        pre_stop: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2EphemeralContainerLifecycleArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecycleArgsDict(TypedDict):
+    post_start: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    pre_stop: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecycleArgs:
@@ -11773,18 +11258,15 @@ class PodV2EphemeralContainerLifecycleArgs:
         pulumi.set(self, "pre_stop", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePostStartArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePostStartArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePostStartArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePostStartArgs:
@@ -11825,14 +11307,11 @@ class PodV2EphemeralContainerLifecyclePostStartArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePostStartExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePostStartExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePostStartExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePostStartExecArgs:
@@ -11857,30 +11336,27 @@ class PodV2EphemeralContainerLifecyclePostStartExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePostStartHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePostStartHttpGetArgs:
@@ -11969,18 +11445,15 @@ class PodV2EphemeralContainerLifecyclePostStartHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgs:
@@ -12021,18 +11494,15 @@ class PodV2EphemeralContainerLifecyclePostStartHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePreStopArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePreStopArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePreStopArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePreStopArgs:
@@ -12073,14 +11543,11 @@ class PodV2EphemeralContainerLifecyclePreStopArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePreStopExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePreStopExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePreStopExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePreStopExecArgs:
@@ -12105,30 +11572,27 @@ class PodV2EphemeralContainerLifecyclePreStopExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePreStopHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePreStopHttpGetArgs:
@@ -12217,18 +11681,15 @@ class PodV2EphemeralContainerLifecyclePreStopHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgs:
@@ -12269,35 +11730,32 @@ class PodV2EphemeralContainerLifecyclePreStopHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLivenessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLivenessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLivenessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2EphemeralContainerLivenessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLivenessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerLivenessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLivenessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerLivenessProbeArgs:
@@ -12414,14 +11872,11 @@ class PodV2EphemeralContainerLivenessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLivenessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2EphemeralContainerLivenessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLivenessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLivenessProbeExecArgs:
@@ -12446,30 +11901,27 @@ class PodV2EphemeralContainerLivenessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLivenessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2EphemeralContainerLivenessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLivenessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLivenessProbeHttpGetArgs:
@@ -12558,18 +12010,15 @@ class PodV2EphemeralContainerLivenessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgs:
@@ -12610,22 +12059,19 @@ class PodV2EphemeralContainerLivenessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerPortArgsDict(TypedDict):
-        container_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of port to expose on the IP address of pod.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the port name of the container.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol for container port.
-        """
-elif False:
-    PodV2EphemeralContainerPortArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerPortArgsDict(TypedDict):
+    container_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of port to expose on the IP address of pod.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port name of the container.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol for container port.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerPortArgs:
@@ -12681,35 +12127,32 @@ class PodV2EphemeralContainerPortArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerReadinessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerReadinessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerReadinessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2EphemeralContainerReadinessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerReadinessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerReadinessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerReadinessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerReadinessProbeArgs:
@@ -12826,14 +12269,11 @@ class PodV2EphemeralContainerReadinessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerReadinessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2EphemeralContainerReadinessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerReadinessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerReadinessProbeExecArgs:
@@ -12858,30 +12298,27 @@ class PodV2EphemeralContainerReadinessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerReadinessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2EphemeralContainerReadinessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerReadinessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerReadinessProbeHttpGetArgs:
@@ -12970,18 +12407,15 @@ class PodV2EphemeralContainerReadinessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgs:
@@ -13022,18 +12456,15 @@ class PodV2EphemeralContainerReadinessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the limits of resource.
-        """
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the requests of the resource.
-        """
-elif False:
-    PodV2EphemeralContainerResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the limits of resource.
+    """
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the requests of the resource.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerResourcesArgs:
@@ -13074,34 +12505,31 @@ class PodV2EphemeralContainerResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerSecurityContextArgsDict(TypedDict):
-        capabilities: NotRequired[pulumi.Input['PodV2EphemeralContainerSecurityContextCapabilitiesArgsDict']]
-        """
-        Specifies the capabilities of the security context.
-        """
-        proc_mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the denotes the type of proc mount to use for the containers.
-        """
-        read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this container has a read-only root file system.
-        """
-        run_as_group: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The GID TO run the entrypoint of the container process.
-        """
-        run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The container must run as a non-root user.
-        """
-        run_as_user: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The UID to run the entrypoint of the container process.
-        """
-elif False:
-    PodV2EphemeralContainerSecurityContextArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerSecurityContextArgsDict(TypedDict):
+    capabilities: NotRequired[pulumi.Input['PodV2EphemeralContainerSecurityContextCapabilitiesArgsDict']]
+    """
+    Specifies the capabilities of the security context.
+    """
+    proc_mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the denotes the type of proc mount to use for the containers.
+    """
+    read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this container has a read-only root file system.
+    """
+    run_as_group: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GID TO run the entrypoint of the container process.
+    """
+    run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The container must run as a non-root user.
+    """
+    run_as_user: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The UID to run the entrypoint of the container process.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerSecurityContextArgs:
@@ -13206,12 +12634,9 @@ class PodV2EphemeralContainerSecurityContextArgs:
         pulumi.set(self, "run_as_user", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerSecurityContextCapabilitiesArgsDict(TypedDict):
-        adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2EphemeralContainerSecurityContextCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerSecurityContextCapabilitiesArgsDict(TypedDict):
+    adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerSecurityContextCapabilitiesArgs:
@@ -13242,35 +12667,32 @@ class PodV2EphemeralContainerSecurityContextCapabilitiesArgs:
         pulumi.set(self, "drops", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerStartupProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerStartupProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerStartupProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2EphemeralContainerStartupProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerStartupProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2EphemeralContainerStartupProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerStartupProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerStartupProbeArgs:
@@ -13387,14 +12809,11 @@ class PodV2EphemeralContainerStartupProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerStartupProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2EphemeralContainerStartupProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerStartupProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerStartupProbeExecArgs:
@@ -13419,30 +12838,27 @@ class PodV2EphemeralContainerStartupProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerStartupProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2EphemeralContainerStartupProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerStartupProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerStartupProbeHttpGetArgs:
@@ -13531,18 +12947,15 @@ class PodV2EphemeralContainerStartupProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgs:
@@ -13583,16 +12996,13 @@ class PodV2EphemeralContainerStartupProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2EphemeralContainerVolumeMountArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-        sub_path: NotRequired[pulumi.Input[_builtins.str]]
-        sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2EphemeralContainerVolumeMountArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2EphemeralContainerVolumeMountArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    sub_path: NotRequired[pulumi.Input[_builtins.str]]
+    sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2EphemeralContainerVolumeMountArgs:
@@ -13669,12 +13079,9 @@ class PodV2EphemeralContainerVolumeMountArgs:
         pulumi.set(self, "sub_path_expr", value)
 
 
-if not MYPY:
-    class PodV2HostAliasArgsDict(TypedDict):
-        hostnames: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2HostAliasArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2HostAliasArgsDict(TypedDict):
+    hostnames: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    ip: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2HostAliasArgs:
@@ -13705,11 +13112,8 @@ class PodV2HostAliasArgs:
         pulumi.set(self, "ip", value)
 
 
-if not MYPY:
-    class PodV2ImagePullSecretArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2ImagePullSecretArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ImagePullSecretArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2ImagePullSecretArgs:
@@ -13728,84 +13132,81 @@ class PodV2ImagePullSecretArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class PodV2InitContainerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the container.
-        """
-        args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the arguments to the entrypoint of the container.
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the command of the container.
-        """
-        env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerEnvFromArgsDict']]]]
-        """
-        The sources to populate environment variables of the container.
-        """
-        envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerEnvArgsDict']]]]
-        image: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the image name of the CCI Pod container.
-        """
-        lifecycle: NotRequired[pulumi.Input['PodV2InitContainerLifecycleArgsDict']]
-        """
-        Specifies the lifecycle of the container.
-        """
-        liveness_probe: NotRequired[pulumi.Input['PodV2InitContainerLivenessProbeArgsDict']]
-        """
-        Specifies the liveness probe of the container.
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerPortArgsDict']]]]
-        """
-        Specifies the ports of the container.
-        """
-        readiness_probe: NotRequired[pulumi.Input['PodV2InitContainerReadinessProbeArgsDict']]
-        """
-        Specifies the readiness probe of the container.
-        """
-        resources: NotRequired[pulumi.Input['PodV2InitContainerResourcesArgsDict']]
-        """
-        Specifies the resources of the container.
-        """
-        security_context: NotRequired[pulumi.Input['PodV2InitContainerSecurityContextArgsDict']]
-        """
-        Specifies the security context of the container.
-        """
-        startup_probe: NotRequired[pulumi.Input['PodV2InitContainerStartupProbeArgsDict']]
-        """
-        Specifies the startup probe of the container.
-        """
-        stdin: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a buffer for stdin in the container runtime.
-        """
-        stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container runtime should close the stdin channel.
-        """
-        termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message path of the CCI Pod container.
-        """
-        termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the termination message policy of the CCI Pod container.
-        """
-        tty: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether this container should allocate a TTY for itself.
-        """
-        volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerVolumeMountArgsDict']]]]
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the working directory of the CCI Pod container.
-        """
-elif False:
-    PodV2InitContainerArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the container.
+    """
+    args: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the arguments to the entrypoint of the container.
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the command of the container.
+    """
+    env_froms: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerEnvFromArgsDict']]]]
+    """
+    The sources to populate environment variables of the container.
+    """
+    envs: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerEnvArgsDict']]]]
+    image: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the image name of the CCI Pod container.
+    """
+    lifecycle: NotRequired[pulumi.Input['PodV2InitContainerLifecycleArgsDict']]
+    """
+    Specifies the lifecycle of the container.
+    """
+    liveness_probe: NotRequired[pulumi.Input['PodV2InitContainerLivenessProbeArgsDict']]
+    """
+    Specifies the liveness probe of the container.
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerPortArgsDict']]]]
+    """
+    Specifies the ports of the container.
+    """
+    readiness_probe: NotRequired[pulumi.Input['PodV2InitContainerReadinessProbeArgsDict']]
+    """
+    Specifies the readiness probe of the container.
+    """
+    resources: NotRequired[pulumi.Input['PodV2InitContainerResourcesArgsDict']]
+    """
+    Specifies the resources of the container.
+    """
+    security_context: NotRequired[pulumi.Input['PodV2InitContainerSecurityContextArgsDict']]
+    """
+    Specifies the security context of the container.
+    """
+    startup_probe: NotRequired[pulumi.Input['PodV2InitContainerStartupProbeArgsDict']]
+    """
+    Specifies the startup probe of the container.
+    """
+    stdin: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a buffer for stdin in the container runtime.
+    """
+    stdin_once: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container runtime should close the stdin channel.
+    """
+    termination_message_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message path of the CCI Pod container.
+    """
+    termination_message_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the termination message policy of the CCI Pod container.
+    """
+    tty: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether this container should allocate a TTY for itself.
+    """
+    volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerVolumeMountArgsDict']]]]
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerArgs:
@@ -14125,12 +13526,9 @@ class PodV2InitContainerArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class PodV2InitContainerEnvArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2InitContainerEnvArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerEnvArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2InitContainerEnvArgs:
@@ -14161,22 +13559,19 @@ class PodV2InitContainerEnvArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerEnvFromArgsDict(TypedDict):
-        config_map_ref: NotRequired[pulumi.Input['PodV2InitContainerEnvFromConfigMapRefArgsDict']]
-        """
-        Specifies the config map.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix.
-        """
-        secret_ref: NotRequired[pulumi.Input['PodV2InitContainerEnvFromSecretRefArgsDict']]
-        """
-        Specifies the secret.
-        """
-elif False:
-    PodV2InitContainerEnvFromArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerEnvFromArgsDict(TypedDict):
+    config_map_ref: NotRequired[pulumi.Input['PodV2InitContainerEnvFromConfigMapRefArgsDict']]
+    """
+    Specifies the config map.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix.
+    """
+    secret_ref: NotRequired[pulumi.Input['PodV2InitContainerEnvFromSecretRefArgsDict']]
+    """
+    Specifies the secret.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerEnvFromArgs:
@@ -14233,18 +13628,15 @@ class PodV2InitContainerEnvFromArgs:
         pulumi.set(self, "secret_ref", value)
 
 
-if not MYPY:
-    class PodV2InitContainerEnvFromConfigMapRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2InitContainerEnvFromConfigMapRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerEnvFromConfigMapRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerEnvFromConfigMapRefArgs:
@@ -14285,18 +13677,15 @@ class PodV2InitContainerEnvFromConfigMapRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2InitContainerEnvFromSecretRefArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name.
-        """
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to be defined.
-        """
-elif False:
-    PodV2InitContainerEnvFromSecretRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerEnvFromSecretRefArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to be defined.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerEnvFromSecretRefArgs:
@@ -14337,18 +13726,15 @@ class PodV2InitContainerEnvFromSecretRefArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecycleArgsDict(TypedDict):
-        post_start: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        pre_stop: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2InitContainerLifecycleArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecycleArgsDict(TypedDict):
+    post_start: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    pre_stop: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecycleArgs:
@@ -14389,18 +13775,15 @@ class PodV2InitContainerLifecycleArgs:
         pulumi.set(self, "pre_stop", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePostStartArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2InitContainerLifecyclePostStartArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePostStartArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePostStartHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePostStartArgs:
@@ -14441,14 +13824,11 @@ class PodV2InitContainerLifecyclePostStartArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePostStartExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2InitContainerLifecyclePostStartExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePostStartExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePostStartExecArgs:
@@ -14473,30 +13853,27 @@ class PodV2InitContainerLifecyclePostStartExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2InitContainerLifecyclePostStartHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePostStartHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePostStartHttpGetArgs:
@@ -14585,18 +13962,15 @@ class PodV2InitContainerLifecyclePostStartHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgs:
@@ -14637,18 +14011,15 @@ class PodV2InitContainerLifecyclePostStartHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePreStopArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopExecArgsDict']]
-        """
-        The lifecycle post start of the CCI Pod container.
-        """
-        http_get: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopHttpGetArgsDict']]
-        """
-        The lifecycle pre stop of the CCI Pod container.
-        """
-elif False:
-    PodV2InitContainerLifecyclePreStopArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePreStopArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopExecArgsDict']]
+    """
+    The lifecycle post start of the CCI Pod container.
+    """
+    http_get: NotRequired[pulumi.Input['PodV2InitContainerLifecyclePreStopHttpGetArgsDict']]
+    """
+    The lifecycle pre stop of the CCI Pod container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePreStopArgs:
@@ -14689,14 +14060,11 @@ class PodV2InitContainerLifecyclePreStopArgs:
         pulumi.set(self, "http_get", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePreStopExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2InitContainerLifecyclePreStopExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePreStopExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePreStopExecArgs:
@@ -14721,30 +14089,27 @@ class PodV2InitContainerLifecyclePreStopExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2InitContainerLifecyclePreStopHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePreStopHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePreStopHttpGetArgs:
@@ -14833,18 +14198,15 @@ class PodV2InitContainerLifecyclePreStopHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgs:
@@ -14885,35 +14247,32 @@ class PodV2InitContainerLifecyclePreStopHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLivenessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2InitContainerLivenessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLivenessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2InitContainerLivenessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLivenessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2InitContainerLivenessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLivenessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2InitContainerLivenessProbeArgs:
@@ -15030,14 +14389,11 @@ class PodV2InitContainerLivenessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLivenessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2InitContainerLivenessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLivenessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLivenessProbeExecArgs:
@@ -15062,30 +14418,27 @@ class PodV2InitContainerLivenessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLivenessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2InitContainerLivenessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLivenessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLivenessProbeHttpGetArgs:
@@ -15174,18 +14527,15 @@ class PodV2InitContainerLivenessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgs:
@@ -15226,22 +14576,19 @@ class PodV2InitContainerLivenessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerPortArgsDict(TypedDict):
-        container_port: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of port to expose on the IP address of pod.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the port name of the container.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the protocol for container port.
-        """
-elif False:
-    PodV2InitContainerPortArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerPortArgsDict(TypedDict):
+    container_port: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of port to expose on the IP address of pod.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the port name of the container.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol for container port.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerPortArgs:
@@ -15297,35 +14644,32 @@ class PodV2InitContainerPortArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class PodV2InitContainerReadinessProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2InitContainerReadinessProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerReadinessProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2InitContainerReadinessProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerReadinessProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2InitContainerReadinessProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerReadinessProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2InitContainerReadinessProbeArgs:
@@ -15442,14 +14786,11 @@ class PodV2InitContainerReadinessProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2InitContainerReadinessProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2InitContainerReadinessProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerReadinessProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerReadinessProbeExecArgs:
@@ -15474,30 +14815,27 @@ class PodV2InitContainerReadinessProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2InitContainerReadinessProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2InitContainerReadinessProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerReadinessProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerReadinessProbeHttpGetArgs:
@@ -15586,18 +14924,15 @@ class PodV2InitContainerReadinessProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgs:
@@ -15638,18 +14973,15 @@ class PodV2InitContainerReadinessProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the limits of resource.
-        """
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the requests of the resource.
-        """
-elif False:
-    PodV2InitContainerResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the limits of resource.
+    """
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the requests of the resource.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerResourcesArgs:
@@ -15690,34 +15022,31 @@ class PodV2InitContainerResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class PodV2InitContainerSecurityContextArgsDict(TypedDict):
-        capabilities: NotRequired[pulumi.Input['PodV2InitContainerSecurityContextCapabilitiesArgsDict']]
-        """
-        Specifies the capabilities of the security context.
-        """
-        proc_mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the denotes the type of proc mount to use for the containers.
-        """
-        read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this container has a read-only root file system.
-        """
-        run_as_group: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The GID TO run the entrypoint of the container process.
-        """
-        run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The container must run as a non-root user.
-        """
-        run_as_user: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The UID to run the entrypoint of the container process.
-        """
-elif False:
-    PodV2InitContainerSecurityContextArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerSecurityContextArgsDict(TypedDict):
+    capabilities: NotRequired[pulumi.Input['PodV2InitContainerSecurityContextCapabilitiesArgsDict']]
+    """
+    Specifies the capabilities of the security context.
+    """
+    proc_mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the denotes the type of proc mount to use for the containers.
+    """
+    read_only_root_file_system: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this container has a read-only root file system.
+    """
+    run_as_group: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The GID TO run the entrypoint of the container process.
+    """
+    run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The container must run as a non-root user.
+    """
+    run_as_user: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The UID to run the entrypoint of the container process.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerSecurityContextArgs:
@@ -15822,12 +15151,9 @@ class PodV2InitContainerSecurityContextArgs:
         pulumi.set(self, "run_as_user", value)
 
 
-if not MYPY:
-    class PodV2InitContainerSecurityContextCapabilitiesArgsDict(TypedDict):
-        adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PodV2InitContainerSecurityContextCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerSecurityContextCapabilitiesArgsDict(TypedDict):
+    adds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    drops: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PodV2InitContainerSecurityContextCapabilitiesArgs:
@@ -15858,35 +15184,32 @@ class PodV2InitContainerSecurityContextCapabilitiesArgs:
         pulumi.set(self, "drops", value)
 
 
-if not MYPY:
-    class PodV2InitContainerStartupProbeArgsDict(TypedDict):
-        exec_: NotRequired[pulumi.Input['PodV2InitContainerStartupProbeExecArgsDict']]
-        """
-        Specifies the exec.
-        """
-        failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
-        """
-        http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerStartupProbeHttpGetArgsDict']]]]
-        """
-        Specifies the HTTP get.
-        """
-        initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds after the container has started before liveness probes are initialed.
-        """
-        period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies how often to perform the probe.
-        """
-        success_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum consecutive successes for the probe to be considered failed after having succeeded.
-        """
-        termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2InitContainerStartupProbeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerStartupProbeArgsDict(TypedDict):
+    exec_: NotRequired[pulumi.Input['PodV2InitContainerStartupProbeExecArgsDict']]
+    """
+    Specifies the exec.
+    """
+    failure_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the minimum consecutive failures for the probe to be considered failed after having succeeded.
+    """
+    http_gets: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerStartupProbeHttpGetArgsDict']]]]
+    """
+    Specifies the HTTP get.
+    """
+    initial_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds after the container has started before liveness probes are initialed.
+    """
+    period_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how often to perform the probe.
+    """
+    success_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum consecutive successes for the probe to be considered failed after having succeeded.
+    """
+    termination_grace_period_seconds: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2InitContainerStartupProbeArgs:
@@ -16003,14 +15326,11 @@ class PodV2InitContainerStartupProbeArgs:
         pulumi.set(self, "termination_grace_period_seconds", value)
 
 
-if not MYPY:
-    class PodV2InitContainerStartupProbeExecArgsDict(TypedDict):
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The command line to execute inside the container.
-        """
-elif False:
-    PodV2InitContainerStartupProbeExecArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerStartupProbeExecArgsDict(TypedDict):
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The command line to execute inside the container.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerStartupProbeExecArgs:
@@ -16035,30 +15355,27 @@ class PodV2InitContainerStartupProbeExecArgs:
         pulumi.set(self, "commands", value)
 
 
-if not MYPY:
-    class PodV2InitContainerStartupProbeHttpGetArgsDict(TypedDict):
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The host name.
-        """
-        http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
-        """
-        The custom headers to set in the request.
-        """
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to access on the HTTP server.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to access on the HTTP server.
-        """
-        scheme: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scheme to use for connecting to the host.
-        """
-elif False:
-    PodV2InitContainerStartupProbeHttpGetArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerStartupProbeHttpGetArgsDict(TypedDict):
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host name.
+    """
+    http_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2InitContainerStartupProbeHttpGetHttpHeaderArgsDict']]]]
+    """
+    The custom headers to set in the request.
+    """
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to access on the HTTP server.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to access on the HTTP server.
+    """
+    scheme: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scheme to use for connecting to the host.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerStartupProbeHttpGetArgs:
@@ -16147,18 +15464,15 @@ class PodV2InitContainerStartupProbeHttpGetArgs:
         pulumi.set(self, "scheme", value)
 
 
-if not MYPY:
-    class PodV2InitContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the custom HTTP headers.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value of the custom HTTP headers.
-        """
-elif False:
-    PodV2InitContainerStartupProbeHttpGetHttpHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerStartupProbeHttpGetHttpHeaderArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the custom HTTP headers.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The value of the custom HTTP headers.
+    """
 
 @pulumi.input_type
 class PodV2InitContainerStartupProbeHttpGetHttpHeaderArgs:
@@ -16199,16 +15513,13 @@ class PodV2InitContainerStartupProbeHttpGetHttpHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2InitContainerVolumeMountArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-        sub_path: NotRequired[pulumi.Input[_builtins.str]]
-        sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2InitContainerVolumeMountArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2InitContainerVolumeMountArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    extend_path_mode: NotRequired[pulumi.Input[_builtins.str]]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    sub_path: NotRequired[pulumi.Input[_builtins.str]]
+    sub_path_expr: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2InitContainerVolumeMountArgs:
@@ -16285,11 +15596,8 @@ class PodV2InitContainerVolumeMountArgs:
         pulumi.set(self, "sub_path_expr", value)
 
 
-if not MYPY:
-    class PodV2ReadinessGateArgsDict(TypedDict):
-        condition_type: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2ReadinessGateArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2ReadinessGateArgsDict(TypedDict):
+    condition_type: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2ReadinessGateArgs:
@@ -16308,17 +15616,14 @@ class PodV2ReadinessGateArgs:
         pulumi.set(self, "condition_type", value)
 
 
-if not MYPY:
-    class PodV2SecurityContextArgsDict(TypedDict):
-        fs_group: NotRequired[pulumi.Input[_builtins.int]]
-        fs_group_change_policy: NotRequired[pulumi.Input[_builtins.str]]
-        run_as_group: NotRequired[pulumi.Input[_builtins.int]]
-        run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
-        run_as_user: NotRequired[pulumi.Input[_builtins.int]]
-        supplemental_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        sysctls: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2SecurityContextSysctlArgsDict']]]]
-elif False:
-    PodV2SecurityContextArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2SecurityContextArgsDict(TypedDict):
+    fs_group: NotRequired[pulumi.Input[_builtins.int]]
+    fs_group_change_policy: NotRequired[pulumi.Input[_builtins.str]]
+    run_as_group: NotRequired[pulumi.Input[_builtins.int]]
+    run_as_non_root: NotRequired[pulumi.Input[_builtins.bool]]
+    run_as_user: NotRequired[pulumi.Input[_builtins.int]]
+    supplemental_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    sysctls: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2SecurityContextSysctlArgsDict']]]]
 
 @pulumi.input_type
 class PodV2SecurityContextArgs:
@@ -16409,12 +15714,9 @@ class PodV2SecurityContextArgs:
         pulumi.set(self, "sysctls", value)
 
 
-if not MYPY:
-    class PodV2SecurityContextSysctlArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    PodV2SecurityContextSysctlArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2SecurityContextSysctlArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class PodV2SecurityContextSysctlArgs:
@@ -16443,18 +15745,15 @@ class PodV2SecurityContextSysctlArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class PodV2StatusArgsDict(TypedDict):
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2StatusConditionArgsDict']]]]
-        """
-        Tthe conditions of the CCI Pod.
-        """
-        observed_generation: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The observed generation of the CCI Pod.
-        """
-elif False:
-    PodV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2StatusArgsDict(TypedDict):
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2StatusConditionArgsDict']]]]
+    """
+    Tthe conditions of the CCI Pod.
+    """
+    observed_generation: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The observed generation of the CCI Pod.
+    """
 
 @pulumi.input_type
 class PodV2StatusArgs:
@@ -16495,34 +15794,31 @@ class PodV2StatusArgs:
         pulumi.set(self, "observed_generation", value)
 
 
-if not MYPY:
-    class PodV2StatusConditionArgsDict(TypedDict):
-        last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The last transition time of the CCI Pod conditions.
-        """
-        last_update_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The last update time of the CCI Pod conditions.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The message of the CCI Pod conditions.
-        """
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reason of the CCI Pod conditions.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Tthe status of the CCI Pod conditions.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the CCI Pod conditions.
-        """
-elif False:
-    PodV2StatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2StatusConditionArgsDict(TypedDict):
+    last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The last transition time of the CCI Pod conditions.
+    """
+    last_update_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The last update time of the CCI Pod conditions.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The message of the CCI Pod conditions.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reason of the CCI Pod conditions.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Tthe status of the CCI Pod conditions.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the CCI Pod conditions.
+    """
 
 @pulumi.input_type
 class PodV2StatusConditionArgs:
@@ -16627,16 +15923,13 @@ class PodV2StatusConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class PodV2VolumeArgsDict(TypedDict):
-        config_map: NotRequired[pulumi.Input['PodV2VolumeConfigMapArgsDict']]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        nfs: NotRequired[pulumi.Input['PodV2VolumeNfsArgsDict']]
-        persistent_volume_claim: NotRequired[pulumi.Input['PodV2VolumePersistentVolumeClaimArgsDict']]
-        projected: NotRequired[pulumi.Input['PodV2VolumeProjectedArgsDict']]
-        secret: NotRequired[pulumi.Input['PodV2VolumeSecretArgsDict']]
-elif False:
-    PodV2VolumeArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeArgsDict(TypedDict):
+    config_map: NotRequired[pulumi.Input['PodV2VolumeConfigMapArgsDict']]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    nfs: NotRequired[pulumi.Input['PodV2VolumeNfsArgsDict']]
+    persistent_volume_claim: NotRequired[pulumi.Input['PodV2VolumePersistentVolumeClaimArgsDict']]
+    projected: NotRequired[pulumi.Input['PodV2VolumeProjectedArgsDict']]
+    secret: NotRequired[pulumi.Input['PodV2VolumeSecretArgsDict']]
 
 @pulumi.input_type
 class PodV2VolumeArgs:
@@ -16715,14 +16008,11 @@ class PodV2VolumeArgs:
         pulumi.set(self, "secret", value)
 
 
-if not MYPY:
-    class PodV2VolumeConfigMapArgsDict(TypedDict):
-        default_mode: NotRequired[pulumi.Input[_builtins.int]]
-        items: NotRequired[pulumi.Input['PodV2VolumeConfigMapItemsArgsDict']]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PodV2VolumeConfigMapArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeConfigMapArgsDict(TypedDict):
+    default_mode: NotRequired[pulumi.Input[_builtins.int]]
+    items: NotRequired[pulumi.Input['PodV2VolumeConfigMapItemsArgsDict']]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PodV2VolumeConfigMapArgs:
@@ -16777,13 +16067,10 @@ class PodV2VolumeConfigMapArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2VolumeConfigMapItemsArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        path: pulumi.Input[_builtins.str]
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2VolumeConfigMapItemsArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeConfigMapItemsArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    path: pulumi.Input[_builtins.str]
+    mode: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2VolumeConfigMapItemsArgs:
@@ -16824,13 +16111,10 @@ class PodV2VolumeConfigMapItemsArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class PodV2VolumeNfsArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        server: pulumi.Input[_builtins.str]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PodV2VolumeNfsArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeNfsArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    server: pulumi.Input[_builtins.str]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PodV2VolumeNfsArgs:
@@ -16871,12 +16155,9 @@ class PodV2VolumeNfsArgs:
         pulumi.set(self, "read_only", value)
 
 
-if not MYPY:
-    class PodV2VolumePersistentVolumeClaimArgsDict(TypedDict):
-        claim_name: pulumi.Input[_builtins.str]
-        read_only: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PodV2VolumePersistentVolumeClaimArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumePersistentVolumeClaimArgsDict(TypedDict):
+    claim_name: pulumi.Input[_builtins.str]
+    read_only: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PodV2VolumePersistentVolumeClaimArgs:
@@ -16906,18 +16187,15 @@ class PodV2VolumePersistentVolumeClaimArgs:
         pulumi.set(self, "read_only", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedArgsDict(TypedDict):
-        default_mode: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the rolling update config of the CCI Pod strategy.
-        """
-        sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceArgsDict']]]]
-        """
-        Specifies the type of the CCI Pod strategy.
-        """
-elif False:
-    PodV2VolumeProjectedArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedArgsDict(TypedDict):
+    default_mode: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the rolling update config of the CCI Pod strategy.
+    """
+    sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceArgsDict']]]]
+    """
+    Specifies the type of the CCI Pod strategy.
+    """
 
 @pulumi.input_type
 class PodV2VolumeProjectedArgs:
@@ -16958,13 +16236,10 @@ class PodV2VolumeProjectedArgs:
         pulumi.set(self, "sources", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceArgsDict(TypedDict):
-        config_map: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceConfigMapArgsDict']]
-        downward_api: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiArgsDict']]
-        secret: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceSecretArgsDict']]
-elif False:
-    PodV2VolumeProjectedSourceArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceArgsDict(TypedDict):
+    config_map: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceConfigMapArgsDict']]
+    downward_api: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiArgsDict']]
+    secret: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceSecretArgsDict']]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceArgs:
@@ -17007,13 +16282,10 @@ class PodV2VolumeProjectedSourceArgs:
         pulumi.set(self, "secret", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceConfigMapArgsDict(TypedDict):
-        items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceConfigMapItemArgsDict']]]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PodV2VolumeProjectedSourceConfigMapArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceConfigMapArgsDict(TypedDict):
+    items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceConfigMapItemArgsDict']]]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceConfigMapArgs:
@@ -17056,13 +16328,10 @@ class PodV2VolumeProjectedSourceConfigMapArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceConfigMapItemArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        path: pulumi.Input[_builtins.str]
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2VolumeProjectedSourceConfigMapItemArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceConfigMapItemArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    path: pulumi.Input[_builtins.str]
+    mode: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceConfigMapItemArgs:
@@ -17103,11 +16372,8 @@ class PodV2VolumeProjectedSourceConfigMapItemArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceDownwardApiArgsDict(TypedDict):
-        items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemArgsDict']]]]
-elif False:
-    PodV2VolumeProjectedSourceDownwardApiArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceDownwardApiArgsDict(TypedDict):
+    items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemArgsDict']]]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceDownwardApiArgs:
@@ -17126,14 +16392,11 @@ class PodV2VolumeProjectedSourceDownwardApiArgs:
         pulumi.set(self, "items", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceDownwardApiItemArgsDict(TypedDict):
-        field_ref: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgsDict']]
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-        path: NotRequired[pulumi.Input[_builtins.str]]
-        resource_file_ref: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgsDict']]
-elif False:
-    PodV2VolumeProjectedSourceDownwardApiItemArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceDownwardApiItemArgsDict(TypedDict):
+    field_ref: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgsDict']]
+    mode: NotRequired[pulumi.Input[_builtins.int]]
+    path: NotRequired[pulumi.Input[_builtins.str]]
+    resource_file_ref: NotRequired[pulumi.Input['PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgsDict']]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceDownwardApiItemArgs:
@@ -17188,12 +16451,9 @@ class PodV2VolumeProjectedSourceDownwardApiItemArgs:
         pulumi.set(self, "resource_file_ref", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgsDict(TypedDict):
-        field_path: pulumi.Input[_builtins.str]
-        api_version: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgsDict(TypedDict):
+    field_path: pulumi.Input[_builtins.str]
+    api_version: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgs:
@@ -17223,12 +16483,9 @@ class PodV2VolumeProjectedSourceDownwardApiItemFieldRefArgs:
         pulumi.set(self, "api_version", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgsDict(TypedDict):
-        resource: pulumi.Input[_builtins.str]
-        container_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgsDict(TypedDict):
+    resource: pulumi.Input[_builtins.str]
+    container_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgs:
@@ -17258,13 +16515,10 @@ class PodV2VolumeProjectedSourceDownwardApiItemResourceFileRefArgs:
         pulumi.set(self, "container_name", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceSecretArgsDict(TypedDict):
-        items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceSecretItemArgsDict']]]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PodV2VolumeProjectedSourceSecretArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceSecretArgsDict(TypedDict):
+    items: NotRequired[pulumi.Input[Sequence[pulumi.Input['PodV2VolumeProjectedSourceSecretItemArgsDict']]]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceSecretArgs:
@@ -17307,13 +16561,10 @@ class PodV2VolumeProjectedSourceSecretArgs:
         pulumi.set(self, "optional", value)
 
 
-if not MYPY:
-    class PodV2VolumeProjectedSourceSecretItemArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        path: pulumi.Input[_builtins.str]
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2VolumeProjectedSourceSecretItemArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeProjectedSourceSecretItemArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    path: pulumi.Input[_builtins.str]
+    mode: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2VolumeProjectedSourceSecretItemArgs:
@@ -17354,14 +16605,11 @@ class PodV2VolumeProjectedSourceSecretItemArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class PodV2VolumeSecretArgsDict(TypedDict):
-        default_mode: NotRequired[pulumi.Input[_builtins.int]]
-        items: NotRequired[pulumi.Input['PodV2VolumeSecretItemsArgsDict']]
-        optional: NotRequired[pulumi.Input[_builtins.bool]]
-        secret_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PodV2VolumeSecretArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeSecretArgsDict(TypedDict):
+    default_mode: NotRequired[pulumi.Input[_builtins.int]]
+    items: NotRequired[pulumi.Input['PodV2VolumeSecretItemsArgsDict']]
+    optional: NotRequired[pulumi.Input[_builtins.bool]]
+    secret_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PodV2VolumeSecretArgs:
@@ -17416,13 +16664,10 @@ class PodV2VolumeSecretArgs:
         pulumi.set(self, "secret_name", value)
 
 
-if not MYPY:
-    class PodV2VolumeSecretItemsArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        path: pulumi.Input[_builtins.str]
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PodV2VolumeSecretItemsArgsDict: TypeAlias = Mapping[str, Any]
+class PodV2VolumeSecretItemsArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    path: pulumi.Input[_builtins.str]
+    mode: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PodV2VolumeSecretItemsArgs:
@@ -17463,16 +16708,13 @@ class PodV2VolumeSecretItemsArgs:
         pulumi.set(self, "mode", value)
 
 
-if not MYPY:
-    class PoolBindingOwnerReferenceArgsDict(TypedDict):
-        api_version: pulumi.Input[_builtins.str]
-        kind: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        uid: pulumi.Input[_builtins.str]
-        block_owner_deletion: NotRequired[pulumi.Input[_builtins.bool]]
-        controller: NotRequired[pulumi.Input[_builtins.bool]]
-elif False:
-    PoolBindingOwnerReferenceArgsDict: TypeAlias = Mapping[str, Any]
+class PoolBindingOwnerReferenceArgsDict(TypedDict):
+    api_version: pulumi.Input[_builtins.str]
+    kind: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    uid: pulumi.Input[_builtins.str]
+    block_owner_deletion: NotRequired[pulumi.Input[_builtins.bool]]
+    controller: NotRequired[pulumi.Input[_builtins.bool]]
 
 @pulumi.input_type
 class PoolBindingOwnerReferenceArgs:
@@ -17547,11 +16789,8 @@ class PoolBindingOwnerReferenceArgs:
         pulumi.set(self, "controller", value)
 
 
-if not MYPY:
-    class PoolBindingPoolRefArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    PoolBindingPoolRefArgsDict: TypeAlias = Mapping[str, Any]
+class PoolBindingPoolRefArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class PoolBindingPoolRefArgs:
@@ -17570,15 +16809,12 @@ class PoolBindingPoolRefArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class PoolBindingTargetRefArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        group: NotRequired[pulumi.Input[_builtins.str]]
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        port: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    PoolBindingTargetRefArgsDict: TypeAlias = Mapping[str, Any]
+class PoolBindingTargetRefArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    group: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class PoolBindingTargetRefArgs:
@@ -17644,12 +16880,181 @@ class PoolBindingTargetRefArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class PvcV2ResourcesArgsDict(TypedDict):
-        limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PvcV2ResourcesArgsDict: TypeAlias = Mapping[str, Any]
+class PoolBindingV2OwnerReferenceArgsDict(TypedDict):
+    api_version: pulumi.Input[_builtins.str]
+    kind: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    uid: pulumi.Input[_builtins.str]
+    block_owner_deletion: NotRequired[pulumi.Input[_builtins.bool]]
+    controller: NotRequired[pulumi.Input[_builtins.bool]]
+
+@pulumi.input_type
+class PoolBindingV2OwnerReferenceArgs:
+    def __init__(__self__, *,
+                 api_version: pulumi.Input[_builtins.str],
+                 kind: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 uid: pulumi.Input[_builtins.str],
+                 block_owner_deletion: Optional[pulumi.Input[_builtins.bool]] = None,
+                 controller: Optional[pulumi.Input[_builtins.bool]] = None):
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+        if block_owner_deletion is not None:
+            pulumi.set(__self__, "block_owner_deletion", block_owner_deletion)
+        if controller is not None:
+            pulumi.set(__self__, "controller", controller)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "api_version")
+
+    @api_version.setter
+    def api_version(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "api_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "kind", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockOwnerDeletion")
+    def block_owner_deletion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "block_owner_deletion")
+
+    @block_owner_deletion.setter
+    def block_owner_deletion(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "block_owner_deletion", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def controller(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "controller")
+
+    @controller.setter
+    def controller(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "controller", value)
+
+
+class PoolBindingV2PoolRefArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class PoolBindingV2PoolRefArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+
+class PoolBindingV2TargetRefArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    group: NotRequired[pulumi.Input[_builtins.str]]
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[_builtins.int]]
+
+@pulumi.input_type
+class PoolBindingV2TargetRefArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 group: Optional[pulumi.Input[_builtins.str]] = None,
+                 kind: Optional[pulumi.Input[_builtins.str]] = None,
+                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None):
+        pulumi.set(__self__, "name", name)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kind", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "namespace", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+
+class PvcV2ResourcesArgsDict(TypedDict):
+    limits: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    requests: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PvcV2ResourcesArgs:
@@ -17680,12 +17085,9 @@ class PvcV2ResourcesArgs:
         pulumi.set(self, "requests", value)
 
 
-if not MYPY:
-    class PvcV2SelectorArgsDict(TypedDict):
-        match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PvcV2SelectorMatchExpressionArgsDict']]]]
-        match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    PvcV2SelectorArgsDict: TypeAlias = Mapping[str, Any]
+class PvcV2SelectorArgsDict(TypedDict):
+    match_expressions: NotRequired[pulumi.Input[Sequence[pulumi.Input['PvcV2SelectorMatchExpressionArgsDict']]]]
+    match_labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PvcV2SelectorArgs:
@@ -17716,13 +17118,10 @@ class PvcV2SelectorArgs:
         pulumi.set(self, "match_labels", value)
 
 
-if not MYPY:
-    class PvcV2SelectorMatchExpressionArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        operator: NotRequired[pulumi.Input[_builtins.str]]
-        values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    PvcV2SelectorMatchExpressionArgsDict: TypeAlias = Mapping[str, Any]
+class PvcV2SelectorMatchExpressionArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[_builtins.str]]
+    values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class PvcV2SelectorMatchExpressionArgs:
@@ -17765,30 +17164,27 @@ class PvcV2SelectorMatchExpressionArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class ServiceV2PortArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        The port.
-        """
-        app_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The app protocol.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol.
-        """
-        target_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The target port.
-        """
-elif False:
-    ServiceV2PortArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2PortArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    The port.
+    """
+    app_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The app protocol.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol.
+    """
+    target_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The target port.
+    """
 
 @pulumi.input_type
 class ServiceV2PortArgs:
@@ -17876,18 +17272,15 @@ class ServiceV2PortArgs:
         pulumi.set(self, "target_port", value)
 
 
-if not MYPY:
-    class ServiceV2StatusArgsDict(TypedDict):
-        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusConditionArgsDict']]]]
-        """
-        Tthe conditions of the CCI Service.
-        """
-        loadbalancers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerArgsDict']]]]
-        """
-        The loadbalancer of the CCI Service.
-        """
-elif False:
-    ServiceV2StatusArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2StatusArgsDict(TypedDict):
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusConditionArgsDict']]]]
+    """
+    Tthe conditions of the CCI Service.
+    """
+    loadbalancers: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerArgsDict']]]]
+    """
+    The loadbalancer of the CCI Service.
+    """
 
 @pulumi.input_type
 class ServiceV2StatusArgs:
@@ -17928,34 +17321,31 @@ class ServiceV2StatusArgs:
         pulumi.set(self, "loadbalancers", value)
 
 
-if not MYPY:
-    class ServiceV2StatusConditionArgsDict(TypedDict):
-        last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The last transition time.
-        """
-        message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The message.
-        """
-        observe_generation: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The observe generation.
-        """
-        reason: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reason.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Tthe status.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type.
-        """
-elif False:
-    ServiceV2StatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2StatusConditionArgsDict(TypedDict):
+    last_transition_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The last transition time.
+    """
+    message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The message.
+    """
+    observe_generation: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The observe generation.
+    """
+    reason: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reason.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Tthe status.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type.
+    """
 
 @pulumi.input_type
 class ServiceV2StatusConditionArgs:
@@ -18060,14 +17450,11 @@ class ServiceV2StatusConditionArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ServiceV2StatusLoadbalancerArgsDict(TypedDict):
-        ingresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerIngressArgsDict']]]]
-        """
-        The ingress of the loadbalancer.
-        """
-elif False:
-    ServiceV2StatusLoadbalancerArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2StatusLoadbalancerArgsDict(TypedDict):
+    ingresses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerIngressArgsDict']]]]
+    """
+    The ingress of the loadbalancer.
+    """
 
 @pulumi.input_type
 class ServiceV2StatusLoadbalancerArgs:
@@ -18092,18 +17479,15 @@ class ServiceV2StatusLoadbalancerArgs:
         pulumi.set(self, "ingresses", value)
 
 
-if not MYPY:
-    class ServiceV2StatusLoadbalancerIngressArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP of the loadbalancer.
-        """
-        ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerIngressPortArgsDict']]]]
-        """
-        The ports of the loadbalancer.
-        """
-elif False:
-    ServiceV2StatusLoadbalancerIngressArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2StatusLoadbalancerIngressArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP of the loadbalancer.
+    """
+    ports: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServiceV2StatusLoadbalancerIngressPortArgsDict']]]]
+    """
+    The ports of the loadbalancer.
+    """
 
 @pulumi.input_type
 class ServiceV2StatusLoadbalancerIngressArgs:
@@ -18144,22 +17528,19 @@ class ServiceV2StatusLoadbalancerIngressArgs:
         pulumi.set(self, "ports", value)
 
 
-if not MYPY:
-    class ServiceV2StatusLoadbalancerIngressPortArgsDict(TypedDict):
-        error: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The error.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol.
-        """
-elif False:
-    ServiceV2StatusLoadbalancerIngressPortArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceV2StatusLoadbalancerIngressPortArgsDict(TypedDict):
+    error: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The error.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol.
+    """
 
 @pulumi.input_type
 class ServiceV2StatusLoadbalancerIngressPortArgs:

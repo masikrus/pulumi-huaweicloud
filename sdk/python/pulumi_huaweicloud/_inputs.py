@@ -17,30 +17,27 @@ from . import _utilities
 __all__ = [
     'ProviderAssumeRoleArgs',
     'ProviderAssumeRoleArgsDict',
+    'ProviderAssumeRoleWithOidcArgs',
+    'ProviderAssumeRoleWithOidcArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ProviderAssumeRoleArgsDict(TypedDict):
-        agency_name: pulumi.Input[_builtins.str]
-        """
-        The name of agency for assume role.
-        """
-        domain_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The id of domain for v5 assume role.
-        """
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of domain for assume role.
-        """
-        duration: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The duration for v5 assume role.
-        """
-elif False:
-    ProviderAssumeRoleArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAssumeRoleArgsDict(TypedDict):
+    agency_name: pulumi.Input[_builtins.str]
+    """
+    The name of agency for assume role.
+    """
+    domain_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The id of domain for v5 assume role.
+    """
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of domain for assume role.
+    """
+    duration: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The duration for v5 assume role.
+    """
 
 @pulumi.input_type
 class ProviderAssumeRoleArgs:
@@ -110,5 +107,124 @@ class ProviderAssumeRoleArgs:
     @duration.setter
     def duration(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "duration", value)
+
+
+class ProviderAssumeRoleWithOidcArgsDict(TypedDict):
+    agency_name: pulumi.Input[_builtins.str]
+    """
+    The name of agency for assume role.
+    """
+    domain_id: pulumi.Input[_builtins.str]
+    """
+    The id of domain for v5 assume role.
+    """
+    idp_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the external IdP.
+    """
+    duration: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The duration for v5 assume role.
+    """
+    id_token: NotRequired[pulumi.Input[_builtins.str]]
+    id_token_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The file path of Id token that is issued by the external IdP.
+    """
+
+@pulumi.input_type
+class ProviderAssumeRoleWithOidcArgs:
+    def __init__(__self__, *,
+                 agency_name: pulumi.Input[_builtins.str],
+                 domain_id: pulumi.Input[_builtins.str],
+                 idp_id: pulumi.Input[_builtins.str],
+                 duration: Optional[pulumi.Input[_builtins.int]] = None,
+                 id_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 id_token_file: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] agency_name: The name of agency for assume role.
+        :param pulumi.Input[_builtins.str] domain_id: The id of domain for v5 assume role.
+        :param pulumi.Input[_builtins.str] idp_id: The ID of the external IdP.
+        :param pulumi.Input[_builtins.int] duration: The duration for v5 assume role.
+        :param pulumi.Input[_builtins.str] id_token_file: The file path of Id token that is issued by the external IdP.
+        """
+        pulumi.set(__self__, "agency_name", agency_name)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "idp_id", idp_id)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if id_token is not None:
+            pulumi.set(__self__, "id_token", id_token)
+        if id_token_file is not None:
+            pulumi.set(__self__, "id_token_file", id_token_file)
+
+    @_builtins.property
+    @pulumi.getter(name="agencyName")
+    def agency_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of agency for assume role.
+        """
+        return pulumi.get(self, "agency_name")
+
+    @agency_name.setter
+    def agency_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "agency_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The id of domain for v5 assume role.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "domain_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idpId")
+    def idp_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the external IdP.
+        """
+        return pulumi.get(self, "idp_id")
+
+    @idp_id.setter
+    def idp_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "idp_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The duration for v5 assume role.
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "duration", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idToken")
+    def id_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "id_token")
+
+    @id_token.setter
+    def id_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idTokenFile")
+    def id_token_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The file path of Id token that is issued by the external IdP.
+        """
+        return pulumi.get(self, "id_token_file")
+
+    @id_token_file.setter
+    def id_token_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id_token_file", value)
 
 

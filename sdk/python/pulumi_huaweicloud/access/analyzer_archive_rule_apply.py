@@ -102,7 +102,7 @@ class _AnalyzerArchiveRuleApplyState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:access/analyzerArchiveRuleApply:AnalyzerArchiveRuleApply")
+@pulumi.type_token("huaweicloud:Access/analyzerArchiveRuleApply:AnalyzerArchiveRuleApply")
 class AnalyzerArchiveRuleApply(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -114,6 +114,7 @@ class AnalyzerArchiveRuleApply(pulumi.CustomResource):
                  __props__=None):
         """
         Create a AnalyzerArchiveRuleApply resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -125,6 +126,7 @@ class AnalyzerArchiveRuleApply(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AnalyzerArchiveRuleApply resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AnalyzerArchiveRuleApplyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -160,7 +162,7 @@ class AnalyzerArchiveRuleApply(pulumi.CustomResource):
             __props__.__dict__["archive_rule_id"] = archive_rule_id
             __props__.__dict__["region"] = region
         super(AnalyzerArchiveRuleApply, __self__).__init__(
-            'huaweicloud:access/analyzerArchiveRuleApply:AnalyzerArchiveRuleApply',
+            'huaweicloud:Access/analyzerArchiveRuleApply:AnalyzerArchiveRuleApply',
             resource_name,
             __props__,
             opts)

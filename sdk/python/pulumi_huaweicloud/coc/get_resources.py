@@ -373,7 +373,7 @@ def get_resources(agent_state: Optional[_builtins.str] = None,
     config = pulumi.Config()
     cloud_service_name = config.require_object("cloudServiceName")
     type = config.require_object("type")
-    test = huaweicloud.coc.get_resources(cloud_service_name=cloud_service_name,
+    test = huaweicloud.Coc.get_resources(cloud_service_name=cloud_service_name,
         type=type)
     ```
 
@@ -450,7 +450,7 @@ def get_resources(agent_state: Optional[_builtins.str] = None,
     __args__['type'] = type
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult).value
 
     return AwaitableGetResourcesResult(
         agent_state=pulumi.get(__ret__, 'agent_state'),
@@ -522,7 +522,7 @@ def get_resources_output(agent_state: Optional[pulumi.Input[Optional[_builtins.s
     config = pulumi.Config()
     cloud_service_name = config.require_object("cloudServiceName")
     type = config.require_object("type")
-    test = huaweicloud.coc.get_resources(cloud_service_name=cloud_service_name,
+    test = huaweicloud.Coc.get_resources(cloud_service_name=cloud_service_name,
         type=type)
     ```
 
@@ -599,7 +599,7 @@ def get_resources_output(agent_state: Optional[pulumi.Input[Optional[_builtins.s
     __args__['type'] = type
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult)
     return __ret__.apply(lambda __response__: GetResourcesResult(
         agent_state=pulumi.get(__response__, 'agent_state'),
         application_id=pulumi.get(__response__, 'application_id'),

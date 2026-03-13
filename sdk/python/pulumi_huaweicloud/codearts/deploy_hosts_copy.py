@@ -25,6 +25,7 @@ class DeployHostsCopyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployHostsCopy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] host_uuids: Specifies the host IDs list.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] source_group_id: Specifies the source group ID.
@@ -104,6 +105,7 @@ class _DeployHostsCopyState:
                  target_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployHostsCopy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] host_uuids: Specifies the host IDs list.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -177,7 +179,7 @@ class _DeployHostsCopyState:
         pulumi.set(self, "target_group_id", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployHostsCopy:DeployHostsCopy")
+@pulumi.type_token("huaweicloud:Codearts/deployHostsCopy:DeployHostsCopy")
 class DeployHostsCopy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -206,6 +208,7 @@ class DeployHostsCopy(pulumi.CustomResource):
             host_uuids=host_uuids,
             target_group_id=target_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,6 +246,7 @@ class DeployHostsCopy(pulumi.CustomResource):
             host_uuids=host_uuids,
             target_group_id=target_group_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeployHostsCopyArgs args: The arguments to use to populate this resource's properties.
@@ -283,7 +287,7 @@ class DeployHostsCopy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'target_group_id'")
             __props__.__dict__["target_group_id"] = target_group_id
         super(DeployHostsCopy, __self__).__init__(
-            'huaweicloud:codearts/deployHostsCopy:DeployHostsCopy',
+            'huaweicloud:Codearts/deployHostsCopy:DeployHostsCopy',
             resource_name,
             __props__,
             opts)

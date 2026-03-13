@@ -118,7 +118,7 @@ def get_script_orders(creator: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_script_orders()
+    test = huaweicloud.Coc.get_script_orders()
     ```
 
 
@@ -140,7 +140,7 @@ def get_script_orders(creator: Optional[_builtins.str] = None,
     __args__['startTime'] = start_time
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getScriptOrders:getScriptOrders', __args__, opts=opts, typ=GetScriptOrdersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getScriptOrders:getScriptOrders', __args__, opts=opts, typ=GetScriptOrdersResult).value
 
     return AwaitableGetScriptOrdersResult(
         creator=pulumi.get(__ret__, 'creator'),
@@ -163,7 +163,7 @@ def get_script_orders_output(creator: Optional[pulumi.Input[Optional[_builtins.s
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.coc.get_script_orders()
+    test = huaweicloud.Coc.get_script_orders()
     ```
 
 
@@ -185,7 +185,7 @@ def get_script_orders_output(creator: Optional[pulumi.Input[Optional[_builtins.s
     __args__['startTime'] = start_time
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getScriptOrders:getScriptOrders', __args__, opts=opts, typ=GetScriptOrdersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getScriptOrders:getScriptOrders', __args__, opts=opts, typ=GetScriptOrdersResult)
     return __ret__.apply(lambda __response__: GetScriptOrdersResult(
         creator=pulumi.get(__response__, 'creator'),
         datas=pulumi.get(__response__, 'datas'),

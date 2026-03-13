@@ -32,6 +32,7 @@ class PipelineRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PipelineRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PipelineRuleContentArgs']]] contents: Specifies the rule attribute group list.
                The content structure is documented below.
         :param pulumi.Input[_builtins.str] layout_content: Specifies the layout content.
@@ -197,6 +198,7 @@ class _PipelineRuleState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PipelineRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PipelineRuleContentArgs']]] contents: Specifies the rule attribute group list.
                The content structure is documented below.
         :param pulumi.Input[_builtins.str] create_time: Indicates the create time.
@@ -463,7 +465,7 @@ class _PipelineRuleState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineRule:PipelineRule")
+@pulumi.type_token("huaweicloud:Codearts/pipelineRule:PipelineRule")
 class PipelineRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -488,41 +490,17 @@ class PipelineRule(pulumi.CustomResource):
 
         The rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineRule:PipelineRule test <id>
+        $ pulumi import huaweicloud:Codearts/pipelineRule:PipelineRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `layout_content`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the rule, or the resource definition should be updated to
-
         align with the rule. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              layout_content,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -556,41 +534,17 @@ class PipelineRule(pulumi.CustomResource):
 
         The rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineRule:PipelineRule test <id>
+        $ pulumi import huaweicloud:Codearts/pipelineRule:PipelineRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `layout_content`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the rule, or the resource definition should be updated to
-
         align with the rule. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_rule" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              layout_content,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PipelineRuleArgs args: The arguments to use to populate this resource's properties.
@@ -649,7 +603,7 @@ class PipelineRule(pulumi.CustomResource):
             __props__.__dict__["updater"] = None
             __props__.__dict__["version"] = None
         super(PipelineRule, __self__).__init__(
-            'huaweicloud:codearts/pipelineRule:PipelineRule',
+            'huaweicloud:Codearts/pipelineRule:PipelineRule',
             resource_name,
             __props__,
             opts)

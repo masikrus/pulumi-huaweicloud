@@ -40,6 +40,7 @@ class MigrationSyncTaskArgs:
                  src_cloud_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MigrationSyncTask resource.
+
         :param pulumi.Input[_builtins.str] dst_ak: Specifies the access key for accessing the destination bucket.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] dst_bucket: Specifies the name of the destination bucket.
@@ -411,6 +412,7 @@ class _MigrationSyncTaskState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MigrationSyncTask resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action for migration synchronization task. Value options:
                
                + **start**: Start a migration synchronization task.
@@ -963,6 +965,7 @@ class MigrationSyncTask(pulumi.CustomResource):
             dst_sk=dest_secret_key)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the action for migration synchronization task. Value options:
@@ -1062,6 +1065,7 @@ class MigrationSyncTask(pulumi.CustomResource):
             dst_ak=dest_access_key,
             dst_sk=dest_secret_key)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MigrationSyncTaskArgs args: The arguments to use to populate this resource's properties.

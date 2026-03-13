@@ -26,6 +26,7 @@ class AssetManualCollectArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AssetManualCollect resource.
+
         :param pulumi.Input[_builtins.str] host_id: Specifies the host ID.
         :param pulumi.Input[_builtins.str] type: Specifies the asset type.
                The valid values are as follows:
@@ -138,6 +139,7 @@ class _AssetManualCollectState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AssetManualCollect resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
                This parameter is valid only when the enterprise project is enabled.
                The default value is **0**, indicating the default enterprise project.
@@ -242,7 +244,7 @@ class _AssetManualCollectState:
         pulumi.set(self, "type", value)
 
 
-@pulumi.type_token("huaweicloud:hss/assetManualCollect:AssetManualCollect")
+@pulumi.type_token("huaweicloud:Hss/assetManualCollect:AssetManualCollect")
 class AssetManualCollect(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -273,6 +275,7 @@ class AssetManualCollect(pulumi.CustomResource):
             type=type,
             host_id=host_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -322,6 +325,7 @@ class AssetManualCollect(pulumi.CustomResource):
             host_id=host_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AssetManualCollectArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -361,7 +365,7 @@ class AssetManualCollect(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
         super(AssetManualCollect, __self__).__init__(
-            'huaweicloud:hss/assetManualCollect:AssetManualCollect',
+            'huaweicloud:Hss/assetManualCollect:AssetManualCollect',
             resource_name,
             __props__,
             opts)

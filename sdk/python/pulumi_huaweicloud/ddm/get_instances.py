@@ -137,7 +137,7 @@ def get_instances(engine_version: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_name = config.require_object("instanceName")
-    test = huaweicloud.ddm.get_instances(name=instance_name)
+    test = huaweicloud.Ddm.get_instances(name=instance_name)
     ```
 
 
@@ -155,7 +155,7 @@ def get_instances(engine_version: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
         engine_version=pulumi.get(__ret__, 'engine_version'),
@@ -182,7 +182,7 @@ def get_instances_output(engine_version: Optional[pulumi.Input[Optional[_builtin
 
     config = pulumi.Config()
     instance_name = config.require_object("instanceName")
-    test = huaweicloud.ddm.get_instances(name=instance_name)
+    test = huaweicloud.Ddm.get_instances(name=instance_name)
     ```
 
 
@@ -200,7 +200,7 @@ def get_instances_output(engine_version: Optional[pulumi.Input[Optional[_builtin
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
     return __ret__.apply(lambda __response__: GetInstancesResult(
         engine_version=pulumi.get(__response__, 'engine_version'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

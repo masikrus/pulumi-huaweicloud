@@ -24,6 +24,7 @@ class AccessCredentialArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessCredential resource.
+
         :param pulumi.Input[_builtins.bool] force_disconnect: Specifies whether to disconnect AMQP or MQTT connection when
                creating access credential.
                The valid values are as follows:
@@ -108,6 +109,7 @@ class _AccessCredentialState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessCredential resources.
+
         :param pulumi.Input[_builtins.str] access_code: The access credential.
         :param pulumi.Input[_builtins.str] access_key: The access name.
         :param pulumi.Input[_builtins.bool] force_disconnect: Specifies whether to disconnect AMQP or MQTT connection when
@@ -252,6 +254,7 @@ class AccessCredential(pulumi.CustomResource):
             force_disconnect=False)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] force_disconnect: Specifies whether to disconnect AMQP or MQTT connection when
@@ -306,6 +309,7 @@ class AccessCredential(pulumi.CustomResource):
             type="AMQP",
             force_disconnect=False)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessCredentialArgs args: The arguments to use to populate this resource's properties.

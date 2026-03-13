@@ -26,6 +26,7 @@ class SqlserverAccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SqlserverAccount resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.str] password: Specifies the password of the DB account. It consists of 8 to 128 characters and
                contains at least three types of the following characters: uppercase letters, lowercase letters, digits, and special
@@ -119,6 +120,7 @@ class _SqlserverAccountState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SqlserverAccount resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.str] name: Specifies the username of the DB account. The username consists of 1 to 128
                characters and must be different from system usernames. System users include **rdsadmin**, **rdsuser**, **rdsbackup**,
@@ -255,39 +257,16 @@ class SqlserverAccount(pulumi.CustomResource):
 
         The RDS sqlserver account can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverAccount:SqlserverAccount test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing a RDS SQLServer account. You can then decide if changes should be applied to
-
         the RDS SQLServer account, or the resource definition should be updated to align with the RDS SQLServer account. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_sqlserver_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,39 +307,16 @@ class SqlserverAccount(pulumi.CustomResource):
 
         The RDS sqlserver account can be imported using the `instance_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverAccount:SqlserverAccount test <instance_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`. It is generally recommended
-
         running `pulumi preview` after importing a RDS SQLServer account. You can then decide if changes should be applied to
-
         the RDS SQLServer account, or the resource definition should be updated to align with the RDS SQLServer account. Also
-
         you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_sqlserver_account" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param SqlserverAccountArgs args: The arguments to use to populate this resource's properties.

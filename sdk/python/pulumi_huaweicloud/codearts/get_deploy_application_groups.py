@@ -95,7 +95,7 @@ def get_deploy_application_groups(project_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_application_groups(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_application_groups(project_id=project_id)
     ```
 
 
@@ -107,7 +107,7 @@ def get_deploy_application_groups(project_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getDeployApplicationGroups:getDeployApplicationGroups', __args__, opts=opts, typ=GetDeployApplicationGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getDeployApplicationGroups:getDeployApplicationGroups', __args__, opts=opts, typ=GetDeployApplicationGroupsResult).value
 
     return AwaitableGetDeployApplicationGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
@@ -128,7 +128,7 @@ def get_deploy_application_groups_output(project_id: Optional[pulumi.Input[_buil
 
     config = pulumi.Config()
     project_id = config.require_object("projectId")
-    test = huaweicloud.codearts.get_deploy_application_groups(project_id=project_id)
+    test = huaweicloud.Codearts.get_deploy_application_groups(project_id=project_id)
     ```
 
 
@@ -140,7 +140,7 @@ def get_deploy_application_groups_output(project_id: Optional[pulumi.Input[_buil
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getDeployApplicationGroups:getDeployApplicationGroups', __args__, opts=opts, typ=GetDeployApplicationGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getDeployApplicationGroups:getDeployApplicationGroups', __args__, opts=opts, typ=GetDeployApplicationGroupsResult)
     return __ret__.apply(lambda __response__: GetDeployApplicationGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
         id=pulumi.get(__response__, 'id'),

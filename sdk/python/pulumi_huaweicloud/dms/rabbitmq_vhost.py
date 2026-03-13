@@ -24,6 +24,7 @@ class RabbitmqVhostArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqVhost resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the vhost name. Changing this creates a new resource.
@@ -84,6 +85,7 @@ class _RabbitmqVhostState:
                  tracing: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering RabbitmqVhost resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DMS RabbitMQ instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the vhost name. Changing this creates a new resource.
@@ -181,20 +183,16 @@ class RabbitmqVhost(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ vhost can be imported using the `instance_id` and `name` separated by a slash or a comma, but if `name`
-
         contains slashes, the import ID can only be separated by a comma, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqVhost:RabbitmqVhost test <instance_id>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqVhost:RabbitmqVhost test <instance_id>,<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -230,20 +228,16 @@ class RabbitmqVhost(pulumi.CustomResource):
         ## Import
 
         The RabbitMQ vhost can be imported using the `instance_id` and `name` separated by a slash or a comma, but if `name`
-
         contains slashes, the import ID can only be separated by a comma, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqVhost:RabbitmqVhost test <instance_id>/<name>
         ```
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dms/rabbitmqVhost:RabbitmqVhost test <instance_id>,<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqVhostArgs args: The arguments to use to populate this resource's properties.

@@ -23,6 +23,7 @@ class RuntimeStackBatchReleaseV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuntimeStackBatchReleaseV3 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runtime_stack_ids: Specifies the runtime stack IDs to be released.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the runtime stacks are located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
@@ -64,6 +65,7 @@ class _RuntimeStackBatchReleaseV3State:
                  runtime_stack_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RuntimeStackBatchReleaseV3 resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the runtime stacks are located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runtime_stack_ids: Specifies the runtime stack IDs to be released.
@@ -113,6 +115,18 @@ class RuntimeStackBatchReleaseV3(pulumi.CustomResource):
 
         > When deleting resources, all runtime stacks in the list (stored in .tfstate) will be canceled release.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        runtime_stack_ids = config.require_object("runtimeStackIds")
+        test = huaweicloud.servicestage.RuntimeStackBatchReleaseV3("test", nruntime_stack_idsame=runtime_stack_ids)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the runtime stacks are located.  
@@ -129,6 +143,18 @@ class RuntimeStackBatchReleaseV3(pulumi.CustomResource):
         Use this resource to batch release the runtime stacks within HuaweiCloud.
 
         > When deleting resources, all runtime stacks in the list (stored in .tfstate) will be canceled release.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        runtime_stack_ids = config.require_object("runtimeStackIds")
+        test = huaweicloud.servicestage.RuntimeStackBatchReleaseV3("test", nruntime_stack_idsame=runtime_stack_ids)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RuntimeStackBatchReleaseV3Args args: The arguments to use to populate this resource's properties.

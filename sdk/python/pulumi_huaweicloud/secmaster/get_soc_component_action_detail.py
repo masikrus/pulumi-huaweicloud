@@ -126,7 +126,7 @@ def get_soc_component_action_detail(action_id: Optional[_builtins.str] = None,
     workspace_id = config.require_object("workspaceId")
     component_id = config.require_object("componentId")
     action_id = config.require_object("actionId")
-    test = huaweicloud.secmaster.get_soc_component_action_detail(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_soc_component_action_detail(workspace_id=workspace_id,
         component_id=component_id,
         action_id=action_id)
     ```
@@ -147,7 +147,7 @@ def get_soc_component_action_detail(action_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getSocComponentActionDetail:getSocComponentActionDetail', __args__, opts=opts, typ=GetSocComponentActionDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getSocComponentActionDetail:getSocComponentActionDetail', __args__, opts=opts, typ=GetSocComponentActionDetailResult).value
 
     return AwaitableGetSocComponentActionDetailResult(
         action_id=pulumi.get(__ret__, 'action_id'),
@@ -176,7 +176,7 @@ def get_soc_component_action_detail_output(action_id: Optional[pulumi.Input[_bui
     workspace_id = config.require_object("workspaceId")
     component_id = config.require_object("componentId")
     action_id = config.require_object("actionId")
-    test = huaweicloud.secmaster.get_soc_component_action_detail(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_soc_component_action_detail(workspace_id=workspace_id,
         component_id=component_id,
         action_id=action_id)
     ```
@@ -197,7 +197,7 @@ def get_soc_component_action_detail_output(action_id: Optional[pulumi.Input[_bui
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getSocComponentActionDetail:getSocComponentActionDetail', __args__, opts=opts, typ=GetSocComponentActionDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getSocComponentActionDetail:getSocComponentActionDetail', __args__, opts=opts, typ=GetSocComponentActionDetailResult)
     return __ret__.apply(lambda __response__: GetSocComponentActionDetailResult(
         action_id=pulumi.get(__response__, 'action_id'),
         component_id=pulumi.get(__response__, 'component_id'),

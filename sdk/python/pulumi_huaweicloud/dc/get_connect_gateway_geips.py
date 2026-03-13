@@ -153,7 +153,7 @@ def get_connect_gateway_geips(connect_gateway_id: Optional[_builtins.str] = None
 
     config = pulumi.Config()
     connect_gateway_id = config.require_object("connectGatewayId")
-    test = huaweicloud.dc.get_connect_gateway_geips(connect_gateway_id=connect_gateway_id)
+    test = huaweicloud.Dc.get_connect_gateway_geips(connect_gateway_id=connect_gateway_id)
     ```
 
 
@@ -176,7 +176,7 @@ def get_connect_gateway_geips(connect_gateway_id: Optional[_builtins.str] = None
     __args__['sortKey'] = sort_key
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getConnectGatewayGeips:getConnectGatewayGeips', __args__, opts=opts, typ=GetConnectGatewayGeipsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getConnectGatewayGeips:getConnectGatewayGeips', __args__, opts=opts, typ=GetConnectGatewayGeipsResult).value
 
     return AwaitableGetConnectGatewayGeipsResult(
         connect_gateway_id=pulumi.get(__ret__, 'connect_gateway_id'),
@@ -207,7 +207,7 @@ def get_connect_gateway_geips_output(connect_gateway_id: Optional[pulumi.Input[_
 
     config = pulumi.Config()
     connect_gateway_id = config.require_object("connectGatewayId")
-    test = huaweicloud.dc.get_connect_gateway_geips(connect_gateway_id=connect_gateway_id)
+    test = huaweicloud.Dc.get_connect_gateway_geips(connect_gateway_id=connect_gateway_id)
     ```
 
 
@@ -230,7 +230,7 @@ def get_connect_gateway_geips_output(connect_gateway_id: Optional[pulumi.Input[_
     __args__['sortKey'] = sort_key
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getConnectGatewayGeips:getConnectGatewayGeips', __args__, opts=opts, typ=GetConnectGatewayGeipsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getConnectGatewayGeips:getConnectGatewayGeips', __args__, opts=opts, typ=GetConnectGatewayGeipsResult)
     return __ret__.apply(lambda __response__: GetConnectGatewayGeipsResult(
         connect_gateway_id=pulumi.get(__response__, 'connect_gateway_id'),
         global_eip_ids=pulumi.get(__response__, 'global_eip_ids'),

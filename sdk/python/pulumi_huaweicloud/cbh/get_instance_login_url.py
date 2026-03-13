@@ -93,7 +93,7 @@ def get_instance_login_url(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     server_id = config.require_object("serverId")
-    test = huaweicloud.cbh.get_instance_login_url(server_id=server_id)
+    test = huaweicloud.Cbh.get_instance_login_url(server_id=server_id)
     ```
 
 
@@ -105,7 +105,7 @@ def get_instance_login_url(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cbh/getInstanceLoginUrl:getInstanceLoginUrl', __args__, opts=opts, typ=GetInstanceLoginUrlResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cbh/getInstanceLoginUrl:getInstanceLoginUrl', __args__, opts=opts, typ=GetInstanceLoginUrlResult).value
 
     return AwaitableGetInstanceLoginUrlResult(
         id=pulumi.get(__ret__, 'id'),
@@ -126,7 +126,7 @@ def get_instance_login_url_output(region: Optional[pulumi.Input[Optional[_builti
 
     config = pulumi.Config()
     server_id = config.require_object("serverId")
-    test = huaweicloud.cbh.get_instance_login_url(server_id=server_id)
+    test = huaweicloud.Cbh.get_instance_login_url(server_id=server_id)
     ```
 
 
@@ -138,7 +138,7 @@ def get_instance_login_url_output(region: Optional[pulumi.Input[Optional[_builti
     __args__['region'] = region
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cbh/getInstanceLoginUrl:getInstanceLoginUrl', __args__, opts=opts, typ=GetInstanceLoginUrlResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cbh/getInstanceLoginUrl:getInstanceLoginUrl', __args__, opts=opts, typ=GetInstanceLoginUrlResult)
     return __ret__.apply(lambda __response__: GetInstanceLoginUrlResult(
         id=pulumi.get(__response__, 'id'),
         login_url=pulumi.get(__response__, 'login_url'),

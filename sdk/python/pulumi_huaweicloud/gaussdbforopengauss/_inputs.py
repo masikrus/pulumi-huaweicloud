@@ -41,20 +41,15 @@ __all__ = [
     'OpengaussSqlThrottlingTaskNodeInfoArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class OpengaussBackupDatastoreArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database engine.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database version.
-        """
-elif False:
-    OpengaussBackupDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class OpengaussBackupDatastoreArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database engine.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database version.
+    """
 
 @pulumi.input_type
 class OpengaussBackupDatastoreArgs:
@@ -95,18 +90,15 @@ class OpengaussBackupDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class OpengaussInstanceAdvanceFeatureArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the advance feature.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the advance feature.
-        """
-elif False:
-    OpengaussInstanceAdvanceFeatureArgsDict: TypeAlias = Mapping[str, Any]
+class OpengaussInstanceAdvanceFeatureArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the advance feature.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the advance feature.
+    """
 
 @pulumi.input_type
 class OpengaussInstanceAdvanceFeatureArgs:
@@ -145,26 +137,23 @@ class OpengaussInstanceAdvanceFeatureArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class OpengaussInstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the **hh:mm-HH:MM** format. The current time is in the UTC format. The
-        **HH** value must be `1` greater than the **hh** value. The values of mm and MM must be the same and must be set to
-        **00**. Example value: **08:00-09:00**, **23:00-00:00**.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days to retain the generated backup files. The value ranges from
-        `0` to `732`. If this parameter is set to `0`, the automated backup policy is not set.
-        If this parameter is not transferred, the automated backup policy is enabled by default.
+class OpengaussInstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the **hh:mm-HH:MM** format. The current time is in the UTC format. The
+    **HH** value must be `1` greater than the **hh** value. The values of mm and MM must be the same and must be set to
+    **00**. Example value: **08:00-09:00**, **23:00-00:00**.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days to retain the generated backup files. The value ranges from
+    `0` to `732`. If this parameter is set to `0`, the automated backup policy is not set.
+    If this parameter is not transferred, the automated backup policy is enabled by default.
 
-        <a name="parameters_struct"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    OpengaussInstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="parameters_struct"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class OpengaussInstanceBackupStrategyArgs:
@@ -220,23 +209,20 @@ class OpengaussInstanceBackupStrategyArgs:
         pulumi.set(self, "keep_days", value)
 
 
-if not MYPY:
-    class OpengaussInstanceDatastoreArgsDict(TypedDict):
-        engine: pulumi.Input[_builtins.str]
-        """
-        Specifies the database engine. Only **GaussDB(for openGauss)** is supported
-        now. Changing this parameter will create a new resource.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database version. Defaults to the latest version. Please
-        reference to the API docs for valid options. Changing this parameter will create a new resource.
+class OpengaussInstanceDatastoreArgsDict(TypedDict):
+    engine: pulumi.Input[_builtins.str]
+    """
+    Specifies the database engine. Only **GaussDB(for openGauss)** is supported
+    now.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database version. Defaults to the latest version. Please
+    reference to the API docs for valid options.
 
-        <a name="opengauss_backup_strategy"></a>
-        The `backup_strategy` block supports:
-        """
-elif False:
-    OpengaussInstanceDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="opengauss_backup_strategy"></a>
+    The `backup_strategy` block supports:
+    """
 
 @pulumi.input_type
 class OpengaussInstanceDatastoreArgs:
@@ -245,9 +231,9 @@ class OpengaussInstanceDatastoreArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] engine: Specifies the database engine. Only **GaussDB(for openGauss)** is supported
-               now. Changing this parameter will create a new resource.
+               now.
         :param pulumi.Input[_builtins.str] version: Specifies the database version. Defaults to the latest version. Please
-               reference to the API docs for valid options. Changing this parameter will create a new resource.
+               reference to the API docs for valid options.
                
                <a name="opengauss_backup_strategy"></a>
                The `backup_strategy` block supports:
@@ -261,7 +247,7 @@ class OpengaussInstanceDatastoreArgs:
     def engine(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the database engine. Only **GaussDB(for openGauss)** is supported
-        now. Changing this parameter will create a new resource.
+        now.
         """
         return pulumi.get(self, "engine")
 
@@ -274,7 +260,7 @@ class OpengaussInstanceDatastoreArgs:
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the database version. Defaults to the latest version. Please
-        reference to the API docs for valid options. Changing this parameter will create a new resource.
+        reference to the API docs for valid options.
 
         <a name="opengauss_backup_strategy"></a>
         The `backup_strategy` block supports:
@@ -286,39 +272,32 @@ class OpengaussInstanceDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class OpengaussInstanceHaArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the deployment model.
-        The valid values are **enterprise** and **centralization_standard**.
-        Changing this parameter will create a new resource.
-        """
-        replication_mode: pulumi.Input[_builtins.str]
-        """
-        Specifies the database replication mode.
-        Only **sync** is supported now. Changing this parameter will create a new resource.
-        """
-        consistency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database consistency mode.
-        The valid values are **strong** and **eventual**, not case-sensitive.
-        Changing this parameter will create a new resource.
-        """
-        instance_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the product type of the instance. Value options:
-        + **enterprise**: The instance of the enterprise edition will be created.
-        + **basic**: The instance of the basic edition will be created.
-        + **ecology**: The instance of the ecosystem edition will be created.
+class OpengaussInstanceHaArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the deployment model.
+    The valid values are **enterprise** and **centralization_standard**.
+    """
+    replication_mode: pulumi.Input[_builtins.str]
+    """
+    Specifies the database replication mode.
+    Only **sync** is supported now.
+    """
+    consistency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database consistency mode.
+    The valid values are **strong** and **eventual**, not case-sensitive.
+    """
+    instance_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the product type of the instance. Value options:
+    + **enterprise**: The instance of the enterprise edition will be created.
+    + **basic**: The instance of the basic edition will be created.
+    + **ecology**: The instance of the ecosystem edition will be created.
 
-        Changing this parameter will create a new resource.
-
-        <a name="opengauss_volume"></a>
-        The `volume` block supports:
-        """
-elif False:
-    OpengaussInstanceHaArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="opengauss_volume"></a>
+    The `volume` block supports:
+    """
 
 @pulumi.input_type
 class OpengaussInstanceHaArgs:
@@ -330,18 +309,14 @@ class OpengaussInstanceHaArgs:
         """
         :param pulumi.Input[_builtins.str] mode: Specifies the deployment model.
                The valid values are **enterprise** and **centralization_standard**.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] replication_mode: Specifies the database replication mode.
-               Only **sync** is supported now. Changing this parameter will create a new resource.
+               Only **sync** is supported now.
         :param pulumi.Input[_builtins.str] consistency: Specifies the database consistency mode.
                The valid values are **strong** and **eventual**, not case-sensitive.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_mode: Specifies the product type of the instance. Value options:
                + **enterprise**: The instance of the enterprise edition will be created.
                + **basic**: The instance of the basic edition will be created.
                + **ecology**: The instance of the ecosystem edition will be created.
-               
-               Changing this parameter will create a new resource.
                
                <a name="opengauss_volume"></a>
                The `volume` block supports:
@@ -359,7 +334,6 @@ class OpengaussInstanceHaArgs:
         """
         Specifies the deployment model.
         The valid values are **enterprise** and **centralization_standard**.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "mode")
 
@@ -372,7 +346,7 @@ class OpengaussInstanceHaArgs:
     def replication_mode(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the database replication mode.
-        Only **sync** is supported now. Changing this parameter will create a new resource.
+        Only **sync** is supported now.
         """
         return pulumi.get(self, "replication_mode")
 
@@ -386,7 +360,6 @@ class OpengaussInstanceHaArgs:
         """
         Specifies the database consistency mode.
         The valid values are **strong** and **eventual**, not case-sensitive.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "consistency")
 
@@ -403,8 +376,6 @@ class OpengaussInstanceHaArgs:
         + **basic**: The instance of the basic edition will be created.
         + **ecology**: The instance of the ecosystem edition will be created.
 
-        Changing this parameter will create a new resource.
-
         <a name="opengauss_volume"></a>
         The `volume` block supports:
         """
@@ -415,41 +386,38 @@ class OpengaussInstanceHaArgs:
         pulumi.set(self, "instance_mode", value)
 
 
-if not MYPY:
-    class OpengaussInstanceNodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the availability zone information, can be three same or
-        different az like **cn-north-4a,cn-north-4a,cn-north-4a**. Changing this parameter will create a new resource.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the advance feature.
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the private IP address of the node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the EIP that has been bound.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node role.
-        + **master**.
-        + **slave**.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-elif False:
-    OpengaussInstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class OpengaussInstanceNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the availability zone information, can be three same
+    or different az like **cn-north-4a,cn-north-4a,cn-north-4a**.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the advance feature.
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the private IP address of the node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the EIP that has been bound.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node role.
+    + **master**.
+    + **slave**.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
 
 @pulumi.input_type
 class OpengaussInstanceNodeArgs:
@@ -462,8 +430,8 @@ class OpengaussInstanceNodeArgs:
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone information, can be three same or
-               different az like **cn-north-4a,cn-north-4a,cn-north-4a**. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone information, can be three same
+               or different az like **cn-north-4a,cn-north-4a,cn-north-4a**.
         :param pulumi.Input[_builtins.str] id: Indicates the node ID.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the advance feature.
         :param pulumi.Input[_builtins.str] private_ip: Indicates the private IP address of the node.
@@ -492,8 +460,8 @@ class OpengaussInstanceNodeArgs:
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the availability zone information, can be three same or
-        different az like **cn-north-4a,cn-north-4a,cn-north-4a**. Changing this parameter will create a new resource.
+        Specifies the availability zone information, can be three same
+        or different az like **cn-north-4a,cn-north-4a,cn-north-4a**.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -576,18 +544,15 @@ class OpengaussInstanceNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class OpengaussInstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the advance feature.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the advance feature.
-        """
-elif False:
-    OpengaussInstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+class OpengaussInstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the advance feature.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the advance feature.
+    """
 
 @pulumi.input_type
 class OpengaussInstanceParameterArgs:
@@ -626,22 +591,18 @@ class OpengaussInstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class OpengaussInstanceVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size (in gigabytes). The valid value is range form `40` to `4,000`.
+class OpengaussInstanceVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size (in gigabytes). The valid value is range form `40` to `4,000`.
 
-        <a name="opengauss_datastore"></a>
-        The `datastore` block supports:
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Only **ULTRAHIGH** is supported now.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    OpengaussInstanceVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="opengauss_datastore"></a>
+    The `datastore` block supports:
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Only **ULTRAHIGH** is supported now.
+    """
 
 @pulumi.input_type
 class OpengaussInstanceVolumeArgs:
@@ -654,7 +615,6 @@ class OpengaussInstanceVolumeArgs:
                <a name="opengauss_datastore"></a>
                The `datastore` block supports:
         :param pulumi.Input[_builtins.str] type: Specifies the volume type. Only **ULTRAHIGH** is supported now.
-               Changing this parameter will create a new resource.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -679,7 +639,6 @@ class OpengaussInstanceVolumeArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the volume type. Only **ULTRAHIGH** is supported now.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "type")
 
@@ -688,22 +647,19 @@ class OpengaussInstanceVolumeArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class OpengaussParameterTemplateCompareDifferenceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter name.
-        """
-        source_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the source parameter template.
-        """
-        target_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value in the destination parameter template.
-        """
-elif False:
-    OpengaussParameterTemplateCompareDifferenceArgsDict: TypeAlias = Mapping[str, Any]
+class OpengaussParameterTemplateCompareDifferenceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter name.
+    """
+    source_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the source parameter template.
+    """
+    target_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value in the destination parameter template.
+    """
 
 @pulumi.input_type
 class OpengaussParameterTemplateCompareDifferenceArgs:
@@ -760,43 +716,40 @@ class OpengaussParameterTemplateCompareDifferenceArgs:
         pulumi.set(self, "target_value", value)
 
 
-if not MYPY:
-    class OpengaussParameterTemplateParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a specific parameter.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of a specific parameter.
-        """
-        data_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the data type. The value can be **string**, **integer**, **boolean**, **list**, **all**,
-        or **float**.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Parameter template description. This parameter is left blank
-        by default. Up to **256** characters are displayed. Carriage return characters or special characters (>!<"&'=) are not
-        allowed.
+class OpengaussParameterTemplateParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a specific parameter.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of a specific parameter.
+    """
+    data_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the data type. The value can be **string**, **integer**, **boolean**, **list**, **all**,
+    or **float**.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Parameter template description. This parameter is left blank
+    by default. Up to **256** characters are displayed. Carriage return characters or special characters (>!<"&'=) are not
+    allowed.
 
-        Changing this parameter will create a new resource.
-        """
-        need_restart: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the instance needs to be rebooted.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the parameter is read-only.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value range.
-        """
-elif False:
-    OpengaussParameterTemplateParameterArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    need_restart: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the instance needs to be rebooted.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the parameter is read-only.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value range.
+    """
 
 @pulumi.input_type
 class OpengaussParameterTemplateParameterArgs:
@@ -925,23 +878,20 @@ class OpengaussParameterTemplateParameterArgs:
         pulumi.set(self, "value_range", value)
 
 
-if not MYPY:
-    class OpengaussPrimaryStandbySwitchShardArgsDict(TypedDict):
-        component_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the standby DN to be promoted to primary.
+class OpengaussPrimaryStandbySwitchShardArgsDict(TypedDict):
+    component_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the standby DN to be promoted to primary.
 
-        Changing this parameter will create a new resource.
-        """
-        node_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the node where the standby DN to be promoted to primary is
-        deployed.
+    Changing this parameter will create a new resource.
+    """
+    node_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the node where the standby DN to be promoted to primary is
+    deployed.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    OpengaussPrimaryStandbySwitchShardArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class OpengaussPrimaryStandbySwitchShardArgs:
@@ -990,23 +940,20 @@ class OpengaussPrimaryStandbySwitchShardArgs:
         pulumi.set(self, "node_id", value)
 
 
-if not MYPY:
-    class OpengaussSqlThrottlingTaskNodeInfoArgsDict(TypedDict):
-        node_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the node ID.
+class OpengaussSqlThrottlingTaskNodeInfoArgsDict(TypedDict):
+    node_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the node ID.
 
-        Changing this parameter will create a new resource.
-        """
-        sql_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the SQL statement executed on the node. If `limit_type` is
-        set to **SQL_ID**, the value of this parameter must be the same as that of `limit_type_value`.
+    Changing this parameter will create a new resource.
+    """
+    sql_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the SQL statement executed on the node. If `limit_type` is
+    set to **SQL_ID**, the value of this parameter must be the same as that of `limit_type_value`.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    OpengaussSqlThrottlingTaskNodeInfoArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class OpengaussSqlThrottlingTaskNodeInfoArgs:

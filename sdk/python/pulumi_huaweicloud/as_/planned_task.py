@@ -28,6 +28,7 @@ class PlannedTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlannedTask resource.
+
         :param pulumi.Input['PlannedTaskInstanceNumberArgs'] instance_number: Specifies the numbers of scaling group instance for AS planned task.
                The instance_number structure is documented below.
                
@@ -128,6 +129,7 @@ class _PlannedTaskState:
                  scheduled_policy: Optional[pulumi.Input['PlannedTaskScheduledPolicyArgs']] = None):
         """
         Input properties used for looking up and filtering PlannedTask resources.
+
         :param pulumi.Input[_builtins.str] created_at: The (UTC) creation time of the event source, in RFC3339 format.
         :param pulumi.Input['PlannedTaskInstanceNumberArgs'] instance_number: Specifies the numbers of scaling group instance for AS planned task.
                The instance_number structure is documented below.
@@ -308,6 +310,7 @@ class PlannedTask(pulumi.CustomResource):
         $ pulumi import huaweicloud:As/plannedTask:PlannedTask test <scaling_group_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['PlannedTaskInstanceNumberArgs', 'PlannedTaskInstanceNumberArgsDict']] instance_number: Specifies the numbers of scaling group instance for AS planned task.
@@ -389,6 +392,7 @@ class PlannedTask(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:As/plannedTask:PlannedTask test <scaling_group_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlannedTaskArgs args: The arguments to use to populate this resource's properties.

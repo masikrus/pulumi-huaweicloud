@@ -27,7 +27,7 @@ class GetAccountsResult:
     """
     A collection of values returned by getAccounts.
     """
-    def __init__(__self__, accounts=None, id=None, name=None, parent_id=None):
+    def __init__(__self__, accounts=None, id=None, name=None, parent_id=None, with_register_contact_info=None):
         if accounts and not isinstance(accounts, list):
             raise TypeError("Expected argument 'accounts' to be a list")
         pulumi.set(__self__, "accounts", accounts)
@@ -40,6 +40,9 @@ class GetAccountsResult:
         if parent_id and not isinstance(parent_id, str):
             raise TypeError("Expected argument 'parent_id' to be a str")
         pulumi.set(__self__, "parent_id", parent_id)
+        if with_register_contact_info and not isinstance(with_register_contact_info, bool):
+            raise TypeError("Expected argument 'with_register_contact_info' to be a bool")
+        pulumi.set(__self__, "with_register_contact_info", with_register_contact_info)
 
     @_builtins.property
     @pulumi.getter
@@ -71,6 +74,11 @@ class GetAccountsResult:
     def parent_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "parent_id")
 
+    @_builtins.property
+    @pulumi.getter(name="withRegisterContactInfo")
+    def with_register_contact_info(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "with_register_contact_info")
+
 
 class AwaitableGetAccountsResult(GetAccountsResult):
     # pylint: disable=using-constant-test
@@ -81,11 +89,13 @@ class AwaitableGetAccountsResult(GetAccountsResult):
             accounts=self.accounts,
             id=self.id,
             name=self.name,
-            parent_id=self.parent_id)
+            parent_id=self.parent_id,
+            with_register_contact_info=self.with_register_contact_info)
 
 
 def get_accounts(name: Optional[_builtins.str] = None,
                  parent_id: Optional[_builtins.str] = None,
+                 with_register_contact_info: Optional[_builtins.bool] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountsResult:
     """
     Use this data source to get the list of accounts in an organization.
@@ -98,26 +108,31 @@ def get_accounts(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     parent_id = config.require_object("parentId")
-    test = huaweicloud.organizations.get_accounts(parent_id=parent_id)
+    test = huaweicloud.Organizations.get_accounts(parent_id=parent_id)
     ```
 
 
     :param _builtins.str name: Specifies the name of the account.
     :param _builtins.str parent_id: Specifies the ID of root or organizational unit.
+    :param _builtins.bool with_register_contact_info: Whether to return email addresses and mobile
+           numbers associated with the account.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['parentId'] = parent_id
+    __args__['withRegisterContactInfo'] = with_register_contact_info
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult).value
 
     return AwaitableGetAccountsResult(
         accounts=pulumi.get(__ret__, 'accounts'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
-        parent_id=pulumi.get(__ret__, 'parent_id'))
+        parent_id=pulumi.get(__ret__, 'parent_id'),
+        with_register_contact_info=pulumi.get(__ret__, 'with_register_contact_info'))
 def get_accounts_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         parent_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                        with_register_contact_info: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountsResult]:
     """
     Use this data source to get the list of accounts in an organization.
@@ -130,20 +145,24 @@ def get_accounts_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = 
 
     config = pulumi.Config()
     parent_id = config.require_object("parentId")
-    test = huaweicloud.organizations.get_accounts(parent_id=parent_id)
+    test = huaweicloud.Organizations.get_accounts(parent_id=parent_id)
     ```
 
 
     :param _builtins.str name: Specifies the name of the account.
     :param _builtins.str parent_id: Specifies the ID of root or organizational unit.
+    :param _builtins.bool with_register_contact_info: Whether to return email addresses and mobile
+           numbers associated with the account.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['parentId'] = parent_id
+    __args__['withRegisterContactInfo'] = with_register_contact_info
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getAccounts:getAccounts', __args__, opts=opts, typ=GetAccountsResult)
     return __ret__.apply(lambda __response__: GetAccountsResult(
         accounts=pulumi.get(__response__, 'accounts'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
-        parent_id=pulumi.get(__response__, 'parent_id')))
+        parent_id=pulumi.get(__response__, 'parent_id'),
+        with_register_contact_info=pulumi.get(__response__, 'with_register_contact_info')))

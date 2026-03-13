@@ -18,6 +18,9 @@ from . import outputs
 __all__ = [
     'DatasourceConnectionHost',
     'DatasourceConnectionRoute',
+    'FlinkjarJobResourceConfig',
+    'FlinkjarJobResourceConfigJobManagerResourceSpec',
+    'FlinkjarJobResourceConfigTaskManagerResourceSpec',
     'QueueScalingPolicy',
     'QueueSparkDriver',
     'QueueV1ScalingPolicy',
@@ -120,6 +123,164 @@ class DatasourceConnectionRoute(dict):
         The valid length is limited from `1` to `64`.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FlinkjarJobResourceConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jobManagerResourceSpec":
+            suggest = "job_manager_resource_spec"
+        elif key == "maxSlot":
+            suggest = "max_slot"
+        elif key == "parallelNumber":
+            suggest = "parallel_number"
+        elif key == "taskManagerResourceSpec":
+            suggest = "task_manager_resource_spec"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FlinkjarJobResourceConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FlinkjarJobResourceConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FlinkjarJobResourceConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 job_manager_resource_spec: Optional['outputs.FlinkjarJobResourceConfigJobManagerResourceSpec'] = None,
+                 max_slot: Optional[_builtins.int] = None,
+                 parallel_number: Optional[_builtins.int] = None,
+                 task_manager_resource_spec: Optional['outputs.FlinkjarJobResourceConfigTaskManagerResourceSpec'] = None):
+        """
+        :param 'FlinkjarJobResourceConfigJobManagerResourceSpecArgs' job_manager_resource_spec: Specifies the resource configuration of the JobManager.  
+               The object structure is documented below.
+        :param _builtins.int max_slot: Specifies the maximum number of slots in the JobManager.
+        :param _builtins.int parallel_number: Specifies the number of parallel for the Flink job.
+        :param 'FlinkjarJobResourceConfigTaskManagerResourceSpecArgs' task_manager_resource_spec: Specifies the resource configuration of the TaskManager.  
+               The object structure is documented below.
+               
+               <a name="flinkjar_job_resource_config_manager_resource_spec"></a>
+               The `job_manager_resource_spec` and `task_manager_resource_spec` block supports:
+        """
+        if job_manager_resource_spec is not None:
+            pulumi.set(__self__, "job_manager_resource_spec", job_manager_resource_spec)
+        if max_slot is not None:
+            pulumi.set(__self__, "max_slot", max_slot)
+        if parallel_number is not None:
+            pulumi.set(__self__, "parallel_number", parallel_number)
+        if task_manager_resource_spec is not None:
+            pulumi.set(__self__, "task_manager_resource_spec", task_manager_resource_spec)
+
+    @_builtins.property
+    @pulumi.getter(name="jobManagerResourceSpec")
+    def job_manager_resource_spec(self) -> Optional['outputs.FlinkjarJobResourceConfigJobManagerResourceSpec']:
+        """
+        Specifies the resource configuration of the JobManager.  
+        The object structure is documented below.
+        """
+        return pulumi.get(self, "job_manager_resource_spec")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSlot")
+    def max_slot(self) -> Optional[_builtins.int]:
+        """
+        Specifies the maximum number of slots in the JobManager.
+        """
+        return pulumi.get(self, "max_slot")
+
+    @_builtins.property
+    @pulumi.getter(name="parallelNumber")
+    def parallel_number(self) -> Optional[_builtins.int]:
+        """
+        Specifies the number of parallel for the Flink job.
+        """
+        return pulumi.get(self, "parallel_number")
+
+    @_builtins.property
+    @pulumi.getter(name="taskManagerResourceSpec")
+    def task_manager_resource_spec(self) -> Optional['outputs.FlinkjarJobResourceConfigTaskManagerResourceSpec']:
+        """
+        Specifies the resource configuration of the TaskManager.  
+        The object structure is documented below.
+
+        <a name="flinkjar_job_resource_config_manager_resource_spec"></a>
+        The `job_manager_resource_spec` and `task_manager_resource_spec` block supports:
+        """
+        return pulumi.get(self, "task_manager_resource_spec")
+
+
+@pulumi.output_type
+class FlinkjarJobResourceConfigJobManagerResourceSpec(dict):
+    def __init__(__self__, *,
+                 cpu: Optional[_builtins.float] = None,
+                 memory: Optional[_builtins.str] = None):
+        """
+        :param _builtins.float cpu: Specifies the cores of the CPU.  
+               The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        :param _builtins.str memory: Specifies the memory size, in MB or GB (default).  
+               The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[_builtins.float]:
+        """
+        Specifies the cores of the CPU.  
+        The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> Optional[_builtins.str]:
+        """
+        Specifies the memory size, in MB or GB (default).  
+        The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        return pulumi.get(self, "memory")
+
+
+@pulumi.output_type
+class FlinkjarJobResourceConfigTaskManagerResourceSpec(dict):
+    def __init__(__self__, *,
+                 cpu: Optional[_builtins.float] = None,
+                 memory: Optional[_builtins.str] = None):
+        """
+        :param _builtins.float cpu: Specifies the cores of the CPU.  
+               The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        :param _builtins.str memory: Specifies the memory size, in MB or GB (default).  
+               The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[_builtins.float]:
+        """
+        Specifies the cores of the CPU.  
+        The default value is `1.0`. The minimum value cannot be less than `0.5`.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> Optional[_builtins.str]:
+        """
+        Specifies the memory size, in MB or GB (default).  
+        The default value is `4GB`. The minimum value cannot be less than `2GB`.
+        """
+        return pulumi.get(self, "memory")
 
 
 @pulumi.output_type
@@ -265,14 +426,14 @@ class QueueSparkDriver(dict):
                  max_instance: Optional[_builtins.int] = None,
                  max_prefetch_instance: Optional[_builtins.str] = None):
         """
-        :param _builtins.int max_concurrent: Specifies the maximum number of tasks that can be concurrently executed by a spark driver.
-               The valid value ranges from `1` to `32`.
+        :param _builtins.int max_concurrent: Specifies the maximum number of tasks that can be concurrently executed by a spark
+               driver. The valid value ranges from `1` to `32`.
         :param _builtins.int max_instance: Specifies the maximum number of spark drivers that can be started on the queue.
                If the `cu_count` is `16`, the value can only be `2`.
                If The `cu_count` is greater than `16`, the minimum value is `2`, the maximum value is the number of queue CUs
                divided by `16`.
-        :param _builtins.str max_prefetch_instance: Specifies the maximum number of spark drivers to be pre-started on the queue.
-               The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
+        :param _builtins.str max_prefetch_instance: Specifies the maximum number of spark drivers to be pre-started on the
+               queue. The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
                If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
                
                > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters
@@ -289,8 +450,8 @@ class QueueSparkDriver(dict):
     @pulumi.getter(name="maxConcurrent")
     def max_concurrent(self) -> Optional[_builtins.int]:
         """
-        Specifies the maximum number of tasks that can be concurrently executed by a spark driver.
-        The valid value ranges from `1` to `32`.
+        Specifies the maximum number of tasks that can be concurrently executed by a spark
+        driver. The valid value ranges from `1` to `32`.
         """
         return pulumi.get(self, "max_concurrent")
 
@@ -309,8 +470,8 @@ class QueueSparkDriver(dict):
     @pulumi.getter(name="maxPrefetchInstance")
     def max_prefetch_instance(self) -> Optional[_builtins.str]:
         """
-        Specifies the maximum number of spark drivers to be pre-started on the queue.
-        The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
+        Specifies the maximum number of spark drivers to be pre-started on the
+        queue. The minimum value is `0`. If the `cu_count` is less than `32`, the maximum value is `1`.
         If the `cu_count` is greater than or equal to `32`, the maximum value is the number of queue CUs divided by `16`.
 
         > If the minimum CUs of the queue is less than `16` CUs, the `max_instance` and `max_prefetch_instance` parameters

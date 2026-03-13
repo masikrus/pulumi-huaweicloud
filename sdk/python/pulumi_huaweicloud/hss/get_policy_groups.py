@@ -129,7 +129,7 @@ def get_policy_groups(container_mode: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_policy_groups()
+    test = huaweicloud.Hss.get_policy_groups()
     ```
 
 
@@ -149,7 +149,7 @@ def get_policy_groups(container_mode: Optional[_builtins.bool] = None,
     __args__['groupName'] = group_name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getPolicyGroups:getPolicyGroups', __args__, opts=opts, typ=GetPolicyGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getPolicyGroups:getPolicyGroups', __args__, opts=opts, typ=GetPolicyGroupsResult).value
 
     return AwaitableGetPolicyGroupsResult(
         container_mode=pulumi.get(__ret__, 'container_mode'),
@@ -174,7 +174,7 @@ def get_policy_groups_output(container_mode: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_policy_groups()
+    test = huaweicloud.Hss.get_policy_groups()
     ```
 
 
@@ -194,7 +194,7 @@ def get_policy_groups_output(container_mode: Optional[pulumi.Input[Optional[_bui
     __args__['groupName'] = group_name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getPolicyGroups:getPolicyGroups', __args__, opts=opts, typ=GetPolicyGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getPolicyGroups:getPolicyGroups', __args__, opts=opts, typ=GetPolicyGroupsResult)
     return __ret__.apply(lambda __response__: GetPolicyGroupsResult(
         container_mode=pulumi.get(__response__, 'container_mode'),
         data_lists=pulumi.get(__response__, 'data_lists'),

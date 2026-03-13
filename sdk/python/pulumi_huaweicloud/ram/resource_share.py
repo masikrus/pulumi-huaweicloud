@@ -30,6 +30,7 @@ class ResourceShareArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ResourceShare resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] principals: Specifies one or more principals associated with the resource share.
                The principals could be account IDs and organization IDs. You can put account IDs and organization IDs to this
                field together.
@@ -191,6 +192,7 @@ class _ResourceShareState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResourceShare resources.
+
         :param pulumi.Input[_builtins.bool] allow_external_principals: Specifies whether resources can be shared with any accounts outside
                the organization. Defaults to **true**.
                
@@ -414,7 +416,7 @@ class _ResourceShareState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:ram/resourceShare:ResourceShare")
+@pulumi.type_token("huaweicloud:Ram/resourceShare:ResourceShare")
 class ResourceShare(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -440,7 +442,7 @@ class ResourceShare(pulumi.CustomResource):
         config = pulumi.Config()
         account_id = config.require_object("accountId")
         resource_urn = config.require_object("resourceUrn")
-        test = huaweicloud.ram.get_resource_permissions(resource_type="vpc:subnets")
+        test = huaweicloud.Ram.get_resource_permissions(resource_type="vpc:subnets")
         test_resource_share = huaweicloud.ram.ResourceShare("test",
             name="demo-share",
             description="test description information",
@@ -457,39 +459,16 @@ class ResourceShare(pulumi.CustomResource):
 
         The ram share can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ram/resourceShare:ResourceShare test <id>
+        $ pulumi import huaweicloud:Ram/resourceShare:ResourceShare test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `permission_ids`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ram_resource_share" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              permission_ids,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -538,7 +517,7 @@ class ResourceShare(pulumi.CustomResource):
         config = pulumi.Config()
         account_id = config.require_object("accountId")
         resource_urn = config.require_object("resourceUrn")
-        test = huaweicloud.ram.get_resource_permissions(resource_type="vpc:subnets")
+        test = huaweicloud.Ram.get_resource_permissions(resource_type="vpc:subnets")
         test_resource_share = huaweicloud.ram.ResourceShare("test",
             name="demo-share",
             description="test description information",
@@ -555,39 +534,16 @@ class ResourceShare(pulumi.CustomResource):
 
         The ram share can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ram/resourceShare:ResourceShare test <id>
+        $ pulumi import huaweicloud:Ram/resourceShare:ResourceShare test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `permission_ids`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_ram_resource_share" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              permission_ids,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ResourceShareArgs args: The arguments to use to populate this resource's properties.
@@ -637,7 +593,7 @@ class ResourceShare(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(ResourceShare, __self__).__init__(
-            'huaweicloud:ram/resourceShare:ResourceShare',
+            'huaweicloud:Ram/resourceShare:ResourceShare',
             resource_name,
             __props__,
             opts)

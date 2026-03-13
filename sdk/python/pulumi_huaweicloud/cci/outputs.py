@@ -129,6 +129,7 @@ __all__ = [
     'NetworkV2StatusCondition',
     'NetworkV2StatusSubnetAttr',
     'NetworkV2Subnet',
+    'ObservabilityConfigurationV2Event',
     'PersistentVolumeClaimV2Resources',
     'PersistentVolumeClaimV2Selector',
     'PersistentVolumeClaimV2SelectorMatchExpression',
@@ -279,6 +280,9 @@ __all__ = [
     'PoolBindingOwnerReference',
     'PoolBindingPoolRef',
     'PoolBindingTargetRef',
+    'PoolBindingV2OwnerReference',
+    'PoolBindingV2PoolRef',
+    'PoolBindingV2TargetRef',
     'PvcV2Resources',
     'PvcV2Selector',
     'PvcV2SelectorMatchExpression',
@@ -5954,6 +5958,18 @@ class NetworkV2Subnet(dict):
         Specifies the subnet ID of the CCI network.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class ObservabilityConfigurationV2Event(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool):
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        return pulumi.get(self, "enable")
 
 
 @pulumi.output_type
@@ -13714,6 +13730,131 @@ class PoolBindingPoolRef(dict):
 
 @pulumi.output_type
 class PoolBindingTargetRef(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 group: Optional[_builtins.str] = None,
+                 kind: Optional[_builtins.str] = None,
+                 namespace: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None):
+        pulumi.set(__self__, "name", name)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class PoolBindingV2OwnerReference(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiVersion":
+            suggest = "api_version"
+        elif key == "blockOwnerDeletion":
+            suggest = "block_owner_deletion"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PoolBindingV2OwnerReference. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PoolBindingV2OwnerReference.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PoolBindingV2OwnerReference.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_version: _builtins.str,
+                 kind: _builtins.str,
+                 name: _builtins.str,
+                 uid: _builtins.str,
+                 block_owner_deletion: Optional[_builtins.bool] = None,
+                 controller: Optional[_builtins.bool] = None):
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+        if block_owner_deletion is not None:
+            pulumi.set(__self__, "block_owner_deletion", block_owner_deletion)
+        if controller is not None:
+            pulumi.set(__self__, "controller", controller)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> _builtins.str:
+        return pulumi.get(self, "api_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter(name="blockOwnerDeletion")
+    def block_owner_deletion(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "block_owner_deletion")
+
+    @_builtins.property
+    @pulumi.getter
+    def controller(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "controller")
+
+
+@pulumi.output_type
+class PoolBindingV2PoolRef(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class PoolBindingV2TargetRef(dict):
     def __init__(__self__, *,
                  name: _builtins.str,
                  group: Optional[_builtins.str] = None,

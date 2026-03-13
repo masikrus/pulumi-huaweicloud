@@ -27,6 +27,7 @@ class ArchitectureDataStandardTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureDataStandardTemplate resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the workspace ID of DataArts Architecture. Changing this
                parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureDataStandardTemplateCustomFieldArgs']]] custom_fields: Specifies the custom fields of the data standard template to be added.
@@ -112,6 +113,7 @@ class _ArchitectureDataStandardTemplateState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureDataStandardTemplate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ArchitectureDataStandardTemplateCustomFieldArgs']]] custom_fields: Specifies the custom fields of the data standard template to be added.
                The custom_fields structure is documented below.
                
@@ -237,11 +239,10 @@ class ArchitectureDataStandardTemplate(pulumi.CustomResource):
 
         The DataArts architecture data standard template can be imported using the `workspace_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureDataStandardTemplate:ArchitectureDataStandardTemplate test <workspace_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -300,11 +301,10 @@ class ArchitectureDataStandardTemplate(pulumi.CustomResource):
 
         The DataArts architecture data standard template can be imported using the `workspace_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureDataStandardTemplate:ArchitectureDataStandardTemplate test <workspace_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureDataStandardTemplateArgs args: The arguments to use to populate this resource's properties.

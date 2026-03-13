@@ -27,6 +27,7 @@ class CentralNetworkPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CentralNetworkPolicy resource.
+
         :param pulumi.Input[_builtins.str] central_network_id: Central network ID.
                
                Changing this parameter will create a new resource.
@@ -125,6 +126,7 @@ class _CentralNetworkPolicyState:
                  version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering CentralNetworkPolicy resources.
+
         :param pulumi.Input[_builtins.str] central_network_id: Central network ID.
                
                Changing this parameter will create a new resource.
@@ -409,14 +411,12 @@ class CentralNetworkPolicy(pulumi.CustomResource):
         ## Import
 
         The central network policy can be imported using
-
         `central_network_id`, `id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkPolicy:CentralNetworkPolicy test <central_network_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -557,14 +557,12 @@ class CentralNetworkPolicy(pulumi.CustomResource):
         ## Import
 
         The central network policy can be imported using
-
         `central_network_id`, `id`, separated by a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Cc/centralNetworkPolicy:CentralNetworkPolicy test <central_network_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CentralNetworkPolicyArgs args: The arguments to use to populate this resource's properties.

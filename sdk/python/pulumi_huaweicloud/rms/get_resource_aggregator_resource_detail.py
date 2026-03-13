@@ -195,6 +195,8 @@ def get_resource_aggregator_resource_detail(aggregator_id: Optional[_builtins.st
     """
     Use this data source to get the detail about a specific resource in a source account.
 
+    ## Example Usage
+
 
     :param _builtins.str aggregator_id: Specifies the resource aggregator ID.
     :param _builtins.str region_id: Specifies the region to which the resource belongs.
@@ -213,7 +215,7 @@ def get_resource_aggregator_resource_detail(aggregator_id: Optional[_builtins.st
     __args__['sourceAccountId'] = source_account_id
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourceAggregatorResourceDetail:getResourceAggregatorResourceDetail', __args__, opts=opts, typ=GetResourceAggregatorResourceDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourceAggregatorResourceDetail:getResourceAggregatorResourceDetail', __args__, opts=opts, typ=GetResourceAggregatorResourceDetailResult).value
 
     return AwaitableGetResourceAggregatorResourceDetailResult(
         aggregator_domain_id=pulumi.get(__ret__, 'aggregator_domain_id'),
@@ -241,6 +243,8 @@ def get_resource_aggregator_resource_detail_output(aggregator_id: Optional[pulum
     """
     Use this data source to get the detail about a specific resource in a source account.
 
+    ## Example Usage
+
 
     :param _builtins.str aggregator_id: Specifies the resource aggregator ID.
     :param _builtins.str region_id: Specifies the region to which the resource belongs.
@@ -259,7 +263,7 @@ def get_resource_aggregator_resource_detail_output(aggregator_id: Optional[pulum
     __args__['sourceAccountId'] = source_account_id
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourceAggregatorResourceDetail:getResourceAggregatorResourceDetail', __args__, opts=opts, typ=GetResourceAggregatorResourceDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourceAggregatorResourceDetail:getResourceAggregatorResourceDetail', __args__, opts=opts, typ=GetResourceAggregatorResourceDetailResult)
     return __ret__.apply(lambda __response__: GetResourceAggregatorResourceDetailResult(
         aggregator_domain_id=pulumi.get(__response__, 'aggregator_domain_id'),
         aggregator_id=pulumi.get(__response__, 'aggregator_id'),

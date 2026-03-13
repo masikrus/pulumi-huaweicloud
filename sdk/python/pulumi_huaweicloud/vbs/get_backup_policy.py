@@ -171,7 +171,7 @@ def get_backup_policy(filter_tags: Optional[Sequence[Union['GetBackupPolicyFilte
     config = pulumi.Config()
     policy_name = config.require_object("policyName")
     policy_id = config.require_object("policyId")
-    policies = huaweicloud.vbs.get_backup_policy(name=policy_name,
+    policies = huaweicloud.Vbs.get_backup_policy(name=policy_name,
        id=policy_id)
     ```
 
@@ -191,7 +191,7 @@ def get_backup_policy(filter_tags: Optional[Sequence[Union['GetBackupPolicyFilte
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult).value
 
     return AwaitableGetBackupPolicyResult(
         filter_tags=pulumi.get(__ret__, 'filter_tags'),
@@ -226,7 +226,7 @@ def get_backup_policy_output(filter_tags: Optional[pulumi.Input[Optional[Sequenc
     config = pulumi.Config()
     policy_name = config.require_object("policyName")
     policy_id = config.require_object("policyId")
-    policies = huaweicloud.vbs.get_backup_policy(name=policy_name,
+    policies = huaweicloud.Vbs.get_backup_policy(name=policy_name,
        id=policy_id)
     ```
 
@@ -246,7 +246,7 @@ def get_backup_policy_output(filter_tags: Optional[pulumi.Input[Optional[Sequenc
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult)
     return __ret__.apply(lambda __response__: GetBackupPolicyResult(
         filter_tags=pulumi.get(__response__, 'filter_tags'),
         frequency=pulumi.get(__response__, 'frequency'),

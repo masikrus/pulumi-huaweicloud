@@ -53,8 +53,9 @@ class GetBillingOptionResult:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> _builtins.str:
         """
-        Indicates the billing option. The value can be **flux** (traffic-based billing) or
-        **bw** (bandwidth-based billing, only for V2 and higher customers).
+        The billing option.  
+        + **flux**: traffic-based billing.
+        + **bw**: bandwidth-based billing, only for V2 and higher customers.
         """
         return pulumi.get(self, "charge_mode")
 
@@ -62,7 +63,7 @@ class GetBillingOptionResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        Indicates the creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -70,7 +71,7 @@ class GetBillingOptionResult:
     @pulumi.getter(name="effectiveTime")
     def effective_time(self) -> _builtins.str:
         """
-        Indicates the effective time of the option.
+        The effective time, in RFC3339 format.
         """
         return pulumi.get(self, "effective_time")
 
@@ -130,11 +131,20 @@ def get_billing_option(product_type: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-    :param _builtins.str service_area: Specifies the service area. Valid values are **mainland_china** (Chinese mainland)
-           and **outside_mainland_china** (outside the Chinese mainland). Defaults to **mainland_china**.
-    :param _builtins.str status: Specifies the billing option status. Valid values are **active** (effective) and
-           **upcoming** (to take effect). Defaults to **active**.
+    :param _builtins.str product_type: Specifies the product mode.  
+           Currently, only **base** (basic acceleration) is supported.
+    :param _builtins.str service_area: Specifies the service area.  
+           The valid values are as follows:
+           + **mainland_china**: Chinese mainland.
+           + **outside_mainland_china**: outside the Chinese mainland.
+           
+           Defaults to **mainland_china**.
+    :param _builtins.str status: Specifies the billing option status.  
+           The valid values are as follows:
+           + **active**: effective.
+           + **upcoming**: to take effect.
+           
+           Defaults to **active**.
     """
     __args__ = dict()
     __args__['productType'] = product_type
@@ -168,11 +178,20 @@ def get_billing_option_output(product_type: Optional[pulumi.Input[_builtins.str]
     ```
 
 
-    :param _builtins.str product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-    :param _builtins.str service_area: Specifies the service area. Valid values are **mainland_china** (Chinese mainland)
-           and **outside_mainland_china** (outside the Chinese mainland). Defaults to **mainland_china**.
-    :param _builtins.str status: Specifies the billing option status. Valid values are **active** (effective) and
-           **upcoming** (to take effect). Defaults to **active**.
+    :param _builtins.str product_type: Specifies the product mode.  
+           Currently, only **base** (basic acceleration) is supported.
+    :param _builtins.str service_area: Specifies the service area.  
+           The valid values are as follows:
+           + **mainland_china**: Chinese mainland.
+           + **outside_mainland_china**: outside the Chinese mainland.
+           
+           Defaults to **mainland_china**.
+    :param _builtins.str status: Specifies the billing option status.  
+           The valid values are as follows:
+           + **active**: effective.
+           + **upcoming**: to take effect.
+           
+           Defaults to **active**.
     """
     __args__ = dict()
     __args__['productType'] = product_type

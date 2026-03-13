@@ -24,6 +24,7 @@ class AdvancedPolicyIpBindingArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedPolicyIpBinding resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_lists: Specifies the list of IP addresses to bind the policy.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the protection policy.
         """
@@ -74,6 +75,7 @@ class _AdvancedPolicyIpBindingState:
                  policy_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedPolicyIpBinding resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_lists: Specifies the list of IP addresses to bind the policy.
         :param pulumi.Input[_builtins.str] policy_id: Specifies the ID of the protection policy.
         """
@@ -118,7 +120,7 @@ class _AdvancedPolicyIpBindingState:
         pulumi.set(self, "policy_id", value)
 
 
-@pulumi.type_token("huaweicloud:cnad/advancedPolicyIpBinding:AdvancedPolicyIpBinding")
+@pulumi.type_token("huaweicloud:Cnad/advancedPolicyIpBinding:AdvancedPolicyIpBinding")
 class AdvancedPolicyIpBinding(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -147,6 +149,7 @@ class AdvancedPolicyIpBinding(pulumi.CustomResource):
             policy_id=policy_id,
             ip_lists=ip_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +181,7 @@ class AdvancedPolicyIpBinding(pulumi.CustomResource):
             policy_id=policy_id,
             ip_lists=ip_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AdvancedPolicyIpBindingArgs args: The arguments to use to populate this resource's properties.
@@ -214,7 +218,7 @@ class AdvancedPolicyIpBinding(pulumi.CustomResource):
                 raise TypeError("Missing required property 'policy_id'")
             __props__.__dict__["policy_id"] = policy_id
         super(AdvancedPolicyIpBinding, __self__).__init__(
-            'huaweicloud:cnad/advancedPolicyIpBinding:AdvancedPolicyIpBinding',
+            'huaweicloud:Cnad/advancedPolicyIpBinding:AdvancedPolicyIpBinding',
             resource_name,
             __props__,
             opts)

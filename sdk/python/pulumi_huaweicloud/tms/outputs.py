@@ -17,12 +17,14 @@ from . import outputs
 
 __all__ = [
     'ResourceTagsResource',
-    'TagsTag',
+    'TagsTagsValue',
     'GetQuotasQuotaResult',
     'GetResourceInstancesErrorResult',
     'GetResourceInstancesResourceResult',
     'GetResourceInstancesResourceTagResult',
     'GetResourceInstancesTagResult',
+    'GetResourceTagsErrorResult',
+    'GetResourceTagsTagResult',
     'GetResourceTypesTypeResult',
     'GetTagsTagResult',
 ]
@@ -76,7 +78,7 @@ class ResourceTagsResource(dict):
 
 
 @pulumi.output_type
-class TagsTag(dict):
+class TagsTagsValue(dict):
     def __init__(__self__, *,
                  key: _builtins.str,
                  value: _builtins.str):
@@ -343,6 +345,86 @@ class GetResourceInstancesTagResult(dict):
     def values(self) -> Sequence[_builtins.str]:
         """
         Specifies the tag values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourceTagsErrorResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.str,
+                 error_msg: _builtins.str,
+                 project_id: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param _builtins.str error_code: Indicates the error code.
+        :param _builtins.str error_msg: Indicates the error message.
+        :param _builtins.str project_id: Specifies the project ID.
+        :param _builtins.str resource_type: Indicates the resource type.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_msg", error_msg)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        Indicates the error code.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        Indicates the error message.
+        """
+        return pulumi.get(self, "error_msg")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Specifies the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Indicates the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetResourceTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the key of the tag.
+        :param Sequence[_builtins.str] values: Indicates the value list of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the value list of the tag.
         """
         return pulumi.get(self, "values")
 

@@ -22,6 +22,7 @@ class LogConvergeSwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogConvergeSwitch resource.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the configurations of log converge are located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
@@ -48,6 +49,7 @@ class _LogConvergeSwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogConvergeSwitch resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region where the configurations of log converge are located.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
@@ -91,6 +93,7 @@ class LogConvergeSwitch(pulumi.CustomResource):
         test = huaweicloud.lts.LogConvergeSwitch("test")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the configurations of log converge are located.
@@ -116,6 +119,7 @@ class LogConvergeSwitch(pulumi.CustomResource):
         # Create a resource to enable the LTS log receiving status.
         test = huaweicloud.lts.LogConvergeSwitch("test")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogConvergeSwitchArgs args: The arguments to use to populate this resource's properties.

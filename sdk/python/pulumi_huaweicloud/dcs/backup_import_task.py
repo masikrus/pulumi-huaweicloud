@@ -31,6 +31,7 @@ class BackupImportTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackupImportTask resource.
+
         :param pulumi.Input['BackupImportTaskBackupFilesArgs'] backup_files: Specifies the backup files to be imported when the migration mode is
                backup file import.
                The backup_files structure is documented below.
@@ -182,6 +183,7 @@ class _BackupImportTaskState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupImportTask resources.
+
         :param pulumi.Input['BackupImportTaskBackupFilesArgs'] backup_files: Specifies the backup files to be imported when the migration mode is
                backup file import.
                The backup_files structure is documented below.
@@ -460,37 +462,15 @@ class BackupImportTask(pulumi.CustomResource):
 
         The DCS backup import task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/backupImportTask:BackupImportTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `target_instance.0.password`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied to
-
         the resource, or the resource definition should be updated to align with the task. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_backup_import_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              target_instance.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -582,37 +562,15 @@ class BackupImportTask(pulumi.CustomResource):
 
         The DCS backup import task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/backupImportTask:BackupImportTask test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `target_instance.0.password`. It is generally
-
         recommended running `pulumi preview` after importing the resource. You can then decide if changes should be applied to
-
         the resource, or the resource definition should be updated to align with the task. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dcs_backup_import_task" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              target_instance.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param BackupImportTaskArgs args: The arguments to use to populate this resource's properties.

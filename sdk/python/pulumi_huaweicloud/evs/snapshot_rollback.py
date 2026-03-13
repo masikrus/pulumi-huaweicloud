@@ -25,6 +25,7 @@ class SnapshotRollbackArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotRollback resource.
+
         :param pulumi.Input[_builtins.str] snapshot_id: Specifies the ID of the snapshot.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] volume_id: Specifies the target volume ID for snapshot rollback.
@@ -103,6 +104,7 @@ class _SnapshotRollbackState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotRollback resources.
+
         :param pulumi.Input[_builtins.str] name: Specifies the target volume name for snapshot rollback.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -208,6 +210,7 @@ class SnapshotRollback(pulumi.CustomResource):
             snapshot_id=snapshot_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Specifies the target volume name for snapshot rollback.
@@ -247,6 +250,7 @@ class SnapshotRollback(pulumi.CustomResource):
             volume_id=volume_id,
             snapshot_id=snapshot_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotRollbackArgs args: The arguments to use to populate this resource's properties.

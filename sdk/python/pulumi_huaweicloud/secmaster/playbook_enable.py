@@ -27,6 +27,7 @@ class PlaybookEnableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookEnable resource.
+
         :param pulumi.Input[_builtins.str] active_version_id: Specifies the actived playbook version ID.
         :param pulumi.Input[_builtins.str] playbook_id: Specifies the playbook ID.
         :param pulumi.Input[_builtins.str] playbook_name: Specifies the playbook name.
@@ -127,6 +128,7 @@ class _PlaybookEnableState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookEnable resources.
+
         :param pulumi.Input[_builtins.str] active_version_id: Specifies the actived playbook version ID.
         :param pulumi.Input[_builtins.str] playbook_id: Specifies the playbook ID.
         :param pulumi.Input[_builtins.str] playbook_name: Specifies the playbook name.
@@ -220,7 +222,7 @@ class _PlaybookEnableState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookEnable:PlaybookEnable")
+@pulumi.type_token("huaweicloud:Secmaster/playbookEnable:PlaybookEnable")
 class PlaybookEnable(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -259,6 +261,7 @@ class PlaybookEnable(pulumi.CustomResource):
         ### More Examples
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,6 +305,7 @@ class PlaybookEnable(pulumi.CustomResource):
         ### More Examples
 
         For more detailed associated usage see [playbook instructions](https://www.terraform.io/examples/secmaster/playbook/README.md)
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookEnableArgs args: The arguments to use to populate this resource's properties.
@@ -348,7 +352,7 @@ class PlaybookEnable(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(PlaybookEnable, __self__).__init__(
-            'huaweicloud:secmaster/playbookEnable:PlaybookEnable',
+            'huaweicloud:Secmaster/playbookEnable:PlaybookEnable',
             resource_name,
             __props__,
             opts)

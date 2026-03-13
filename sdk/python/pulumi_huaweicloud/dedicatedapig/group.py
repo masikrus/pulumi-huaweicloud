@@ -31,6 +31,7 @@ class GroupArgs:
                  url_domains: Optional[pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the group belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the group description.  
@@ -206,6 +207,7 @@ class _GroupState:
                  url_domains: Optional[pulumi.Input[Sequence[pulumi.Input['GroupUrlDomainArgs']]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the group, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: Specifies the group description.  
                The description contain a maximum of 255 characters and the angle brackets (< and >) are not allowed.
@@ -475,6 +477,7 @@ class Group(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/group:Group test <instance_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the group description.  
@@ -544,6 +547,7 @@ class Group(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/group:Group test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

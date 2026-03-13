@@ -167,12 +167,12 @@ def get_organization(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_organization()
+    test = huaweicloud.Organizations.get_organization()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:organizations/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Organizations/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
         created_at=pulumi.get(__ret__, 'created_at'),
@@ -195,12 +195,12 @@ def get_organization_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.In
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.organizations.get_organization()
+    test = huaweicloud.Organizations.get_organization()
     ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:organizations/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Organizations/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         created_at=pulumi.get(__response__, 'created_at'),
         enabled_policy_types=pulumi.get(__response__, 'enabled_policy_types'),

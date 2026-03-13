@@ -33,21 +33,16 @@ __all__ = [
     'MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict',
 ]
 
-MYPY = False
+class MeshExtendParamsArgsDict(TypedDict):
+    clusters: pulumi.Input[Sequence[pulumi.Input['MeshExtendParamsClusterArgsDict']]]
+    """
+    Specifies the cluster informations in the mesh.
 
-if not MYPY:
-    class MeshExtendParamsArgsDict(TypedDict):
-        clusters: pulumi.Input[Sequence[pulumi.Input['MeshExtendParamsClusterArgsDict']]]
-        """
-        Specifies the cluster informations in the mesh.
+    The clusters structure is documented below.
 
-        The clusters structure is documented below.
-
-        <a name="extend_params_clusters_struct"></a>
-        The `clusters` block supports:
-        """
-elif False:
-    MeshExtendParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="extend_params_clusters_struct"></a>
+    The `clusters` block supports:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsArgs:
@@ -81,29 +76,26 @@ class MeshExtendParamsArgs:
         pulumi.set(self, "clusters", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterArgsDict(TypedDict):
-        cluster_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the cluster ID.
-        """
-        installation: pulumi.Input['MeshExtendParamsClusterInstallationArgsDict']
-        """
-        Specifies the mesh components installation configuration.
+class MeshExtendParamsClusterArgsDict(TypedDict):
+    cluster_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the cluster ID.
+    """
+    installation: pulumi.Input['MeshExtendParamsClusterInstallationArgsDict']
+    """
+    Specifies the mesh components installation configuration.
 
-        The installation structure is documented below.
-        """
-        injection: NotRequired[pulumi.Input['MeshExtendParamsClusterInjectionArgsDict']]
-        """
-        Specifies the sidecar injection configuration.
+    The installation structure is documented below.
+    """
+    injection: NotRequired[pulumi.Input['MeshExtendParamsClusterInjectionArgsDict']]
+    """
+    Specifies the sidecar injection configuration.
 
-        The injection structure is documented below.
+    The injection structure is documented below.
 
-        <a name="clusters_installation_struct"></a>
-        The `installation` block supports:
-        """
-elif False:
-    MeshExtendParamsClusterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="clusters_installation_struct"></a>
+    The `installation` block supports:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterArgs:
@@ -172,19 +164,16 @@ class MeshExtendParamsClusterArgs:
         pulumi.set(self, "injection", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInjectionArgsDict(TypedDict):
-        namespaces: pulumi.Input['MeshExtendParamsClusterInjectionNamespacesArgsDict']
-        """
-        Specifies the namespace of the sidecar injection.
+class MeshExtendParamsClusterInjectionArgsDict(TypedDict):
+    namespaces: pulumi.Input['MeshExtendParamsClusterInjectionNamespacesArgsDict']
+    """
+    Specifies the namespace of the sidecar injection.
 
-        The namespaces structure is documented below.
+    The namespaces structure is documented below.
 
-        <a name="nodes_or_namespaces_struct"></a>
-        The `namespaces` and `nodes` block support:
-        """
-elif False:
-    MeshExtendParamsClusterInjectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="nodes_or_namespaces_struct"></a>
+    The `namespaces` and `nodes` block support:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInjectionArgs:
@@ -218,19 +207,16 @@ class MeshExtendParamsClusterInjectionArgs:
         pulumi.set(self, "namespaces", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInjectionNamespacesArgsDict(TypedDict):
-        field_selector: pulumi.Input['MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgsDict']
-        """
-        Specifies the field selector.
+class MeshExtendParamsClusterInjectionNamespacesArgsDict(TypedDict):
+    field_selector: pulumi.Input['MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgsDict']
+    """
+    Specifies the field selector.
 
-        The field_selector structure is documented below.
+    The field_selector structure is documented below.
 
-        <a name="field_selector_struct"></a>
-        The `field_selector` block supports:
-        """
-elif False:
-    MeshExtendParamsClusterInjectionNamespacesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="field_selector_struct"></a>
+    The `field_selector` block supports:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInjectionNamespacesArgs:
@@ -264,23 +250,20 @@ class MeshExtendParamsClusterInjectionNamespacesArgs:
         pulumi.set(self, "field_selector", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the selector.
-        """
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the operator of the selector.
-        The value can be **In**.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the value of the selector.
-        """
-elif False:
-    MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the selector.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the operator of the selector.
+    The value can be **In**.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the value of the selector.
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgs:
@@ -336,19 +319,16 @@ class MeshExtendParamsClusterInjectionNamespacesFieldSelectorArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInstallationArgsDict(TypedDict):
-        nodes: pulumi.Input['MeshExtendParamsClusterInstallationNodesArgsDict']
-        """
-        Specifies the mesh components installation configuration.
+class MeshExtendParamsClusterInstallationArgsDict(TypedDict):
+    nodes: pulumi.Input['MeshExtendParamsClusterInstallationNodesArgsDict']
+    """
+    Specifies the mesh components installation configuration.
 
-        The nodes structure is documented below.
+    The nodes structure is documented below.
 
-        <a name="clusters_injection_struct"></a>
-        The `injection` block supports:
-        """
-elif False:
-    MeshExtendParamsClusterInstallationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="clusters_injection_struct"></a>
+    The `injection` block supports:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInstallationArgs:
@@ -382,19 +362,16 @@ class MeshExtendParamsClusterInstallationArgs:
         pulumi.set(self, "nodes", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInstallationNodesArgsDict(TypedDict):
-        field_selector: pulumi.Input['MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict']
-        """
-        Specifies the field selector.
+class MeshExtendParamsClusterInstallationNodesArgsDict(TypedDict):
+    field_selector: pulumi.Input['MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict']
+    """
+    Specifies the field selector.
 
-        The field_selector structure is documented below.
+    The field_selector structure is documented below.
 
-        <a name="field_selector_struct"></a>
-        The `field_selector` block supports:
-        """
-elif False:
-    MeshExtendParamsClusterInstallationNodesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="field_selector_struct"></a>
+    The `field_selector` block supports:
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInstallationNodesArgs:
@@ -428,23 +405,20 @@ class MeshExtendParamsClusterInstallationNodesArgs:
         pulumi.set(self, "field_selector", value)
 
 
-if not MYPY:
-    class MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        Specifies the key of the selector.
-        """
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the operator of the selector.
-        The value can be **In**.
-        """
-        values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the value of the selector.
-        """
-elif False:
-    MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class MeshExtendParamsClusterInstallationNodesFieldSelectorArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    Specifies the key of the selector.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the operator of the selector.
+    The value can be **In**.
+    """
+    values: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the value of the selector.
+    """
 
 @pulumi.input_type
 class MeshExtendParamsClusterInstallationNodesFieldSelectorArgs:

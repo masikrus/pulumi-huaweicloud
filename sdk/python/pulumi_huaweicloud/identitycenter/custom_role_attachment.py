@@ -24,6 +24,7 @@ class CustomRoleAttachmentArgs:
                  permission_set_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a CustomRoleAttachment resource.
+
         :param pulumi.Input[_builtins.str] custom_role: Specifies the custom role to attach to a permission set.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                
@@ -85,6 +86,7 @@ class _CustomRoleAttachmentState:
                  permission_set_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomRoleAttachment resources.
+
         :param pulumi.Input[_builtins.str] custom_role: Specifies the custom role to attach to a permission set.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                
@@ -141,7 +143,7 @@ class _CustomRoleAttachmentState:
         pulumi.set(self, "permission_set_id", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/customRoleAttachment:CustomRoleAttachment")
+@pulumi.type_token("huaweicloud:Identitycenter/customRoleAttachment:CustomRoleAttachment")
 class CustomRoleAttachment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -166,7 +168,7 @@ class CustomRoleAttachment(pulumi.CustomResource):
 
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.CustomRoleAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -185,14 +187,12 @@ class CustomRoleAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center custom role attachment can be imported using the `instance_id` and `permission_set_id` separated by
-
         a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/customRoleAttachment:CustomRoleAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/customRoleAttachment:CustomRoleAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -225,7 +225,7 @@ class CustomRoleAttachment(pulumi.CustomResource):
 
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.CustomRoleAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -244,14 +244,12 @@ class CustomRoleAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center custom role attachment can be imported using the `instance_id` and `permission_set_id` separated by
-
         a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/customRoleAttachment:CustomRoleAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/customRoleAttachment:CustomRoleAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomRoleAttachmentArgs args: The arguments to use to populate this resource's properties.
@@ -290,7 +288,7 @@ class CustomRoleAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'permission_set_id'")
             __props__.__dict__["permission_set_id"] = permission_set_id
         super(CustomRoleAttachment, __self__).__init__(
-            'huaweicloud:identitycenter/customRoleAttachment:CustomRoleAttachment',
+            'huaweicloud:Identitycenter/customRoleAttachment:CustomRoleAttachment',
             resource_name,
             __props__,
             opts)

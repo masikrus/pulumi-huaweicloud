@@ -27,6 +27,7 @@ class VolumeTransferV3Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeTransferV3 resource.
+
         :param pulumi.Input[_builtins.str] volume_id: Specifies the volume ID to be transferred.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the volume transfer record.
                Supports a maximum of `64` characters.
@@ -101,6 +102,7 @@ class _VolumeTransferV3State:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeTransferV3 resources.
+
         :param pulumi.Input[_builtins.str] auth_key: The identity authentication key for volume transfer.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the volume transfer record, in RFC3339 format.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeTransferV3LinkArgs']]] links: The links to the cloud disk transfer record.
@@ -254,39 +256,16 @@ class VolumeTransferV3(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/volumeTransferV3:VolumeTransferV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `auth_key`.
-
         It is generally recommended running pulumi preview after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evsv3_volume_transfer" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_key, 
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -334,39 +313,16 @@ class VolumeTransferV3(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/volumeTransferV3:VolumeTransferV3 test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `auth_key`.
-
         It is generally recommended running pulumi preview after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evsv3_volume_transfer" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              auth_key, 
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param VolumeTransferV3Args args: The arguments to use to populate this resource's properties.

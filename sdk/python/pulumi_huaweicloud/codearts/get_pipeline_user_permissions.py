@@ -119,7 +119,7 @@ def get_pipeline_user_permissions(pipeline_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_user_permissions(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_user_permissions(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -136,7 +136,7 @@ def get_pipeline_user_permissions(pipeline_id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineUserPermissions:getPipelineUserPermissions', __args__, opts=opts, typ=GetPipelineUserPermissionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineUserPermissions:getPipelineUserPermissions', __args__, opts=opts, typ=GetPipelineUserPermissionsResult).value
 
     return AwaitableGetPipelineUserPermissionsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -162,7 +162,7 @@ def get_pipeline_user_permissions_output(pipeline_id: Optional[pulumi.Input[_bui
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_user_permissions(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_user_permissions(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -179,7 +179,7 @@ def get_pipeline_user_permissions_output(pipeline_id: Optional[pulumi.Input[_bui
     __args__['region'] = region
     __args__['userName'] = user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineUserPermissions:getPipelineUserPermissions', __args__, opts=opts, typ=GetPipelineUserPermissionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineUserPermissions:getPipelineUserPermissions', __args__, opts=opts, typ=GetPipelineUserPermissionsResult)
     return __ret__.apply(lambda __response__: GetPipelineUserPermissionsResult(
         id=pulumi.get(__response__, 'id'),
         pipeline_id=pulumi.get(__response__, 'pipeline_id'),

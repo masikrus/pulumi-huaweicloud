@@ -93,7 +93,7 @@ def get_alert_rule_metrics(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_alert_rule_metrics(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_alert_rule_metrics(workspace_id=workspace_id)
     ```
 
 
@@ -105,7 +105,7 @@ def get_alert_rule_metrics(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getAlertRuleMetrics:getAlertRuleMetrics', __args__, opts=opts, typ=GetAlertRuleMetricsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getAlertRuleMetrics:getAlertRuleMetrics', __args__, opts=opts, typ=GetAlertRuleMetricsResult).value
 
     return AwaitableGetAlertRuleMetricsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -126,7 +126,7 @@ def get_alert_rule_metrics_output(region: Optional[pulumi.Input[Optional[_builti
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_alert_rule_metrics(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_alert_rule_metrics(workspace_id=workspace_id)
     ```
 
 
@@ -138,7 +138,7 @@ def get_alert_rule_metrics_output(region: Optional[pulumi.Input[Optional[_builti
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getAlertRuleMetrics:getAlertRuleMetrics', __args__, opts=opts, typ=GetAlertRuleMetricsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getAlertRuleMetrics:getAlertRuleMetrics', __args__, opts=opts, typ=GetAlertRuleMetricsResult)
     return __ret__.apply(lambda __response__: GetAlertRuleMetricsResult(
         id=pulumi.get(__response__, 'id'),
         metrics=pulumi.get(__response__, 'metrics'),

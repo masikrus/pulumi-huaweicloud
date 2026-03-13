@@ -53,6 +53,7 @@ class FlinksqlJobArgs:
                  udf_jar_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FlinksqlJob resource.
+
         :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.
                + **true**: indicates to enable the automatic job snapshot function.
                + **false**: indicates to disable the automatic job snapshot function.
@@ -667,6 +668,7 @@ class _FlinksqlJobState:
                  udf_jar_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FlinksqlJob resources.
+
         :param pulumi.Input[_builtins.bool] checkpoint_enabled: Specifies whether to enable the automatic job snapshot function.
                + **true**: indicates to enable the automatic job snapshot function.
                + **false**: indicates to disable the automatic job snapshot function.
@@ -1335,41 +1337,17 @@ class FlinksqlJob(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinksqlJob:FlinksqlJob test 12345
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `static_estimator`, `graph_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              static_estimator, graph_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1482,41 +1460,17 @@ class FlinksqlJob(pulumi.CustomResource):
 
         Clusters can be imported by their `id`. For example,
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/flinksqlJob:FlinksqlJob test 12345
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `static_estimator`, `graph_type`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_cae_component" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              static_estimator, graph_type,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param FlinksqlJobArgs args: The arguments to use to populate this resource's properties.

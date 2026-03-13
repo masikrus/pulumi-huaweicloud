@@ -132,7 +132,7 @@ def get_virtual_gateways(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_virtual_gateways(name="test")
+    test = huaweicloud.Dc.get_virtual_gateways(name="test")
     ```
 
 
@@ -150,7 +150,7 @@ def get_virtual_gateways(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['virtualGatewayId'] = virtual_gateway_id
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getVirtualGateways:getVirtualGateways', __args__, opts=opts, typ=GetVirtualGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getVirtualGateways:getVirtualGateways', __args__, opts=opts, typ=GetVirtualGatewaysResult).value
 
     return AwaitableGetVirtualGatewaysResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -175,7 +175,7 @@ def get_virtual_gateways_output(enterprise_project_id: Optional[pulumi.Input[Opt
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_virtual_gateways(name="test")
+    test = huaweicloud.Dc.get_virtual_gateways(name="test")
     ```
 
 
@@ -193,7 +193,7 @@ def get_virtual_gateways_output(enterprise_project_id: Optional[pulumi.Input[Opt
     __args__['virtualGatewayId'] = virtual_gateway_id
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getVirtualGateways:getVirtualGateways', __args__, opts=opts, typ=GetVirtualGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getVirtualGateways:getVirtualGateways', __args__, opts=opts, typ=GetVirtualGatewaysResult)
     return __ret__.apply(lambda __response__: GetVirtualGatewaysResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

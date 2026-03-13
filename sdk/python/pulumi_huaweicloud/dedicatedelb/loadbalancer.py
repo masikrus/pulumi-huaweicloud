@@ -31,8 +31,10 @@ class LoadbalancerArgs:
                  cross_vpc_backend: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  force_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gw_flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  iptype: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_eip_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -56,6 +58,7 @@ class LoadbalancerArgs:
                  waf_failure_action: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of AZ names.
                
                > **NOTE:** Removing an AZ may disconnect existing connections. Exercise caution when performing this
@@ -77,18 +80,17 @@ class LoadbalancerArgs:
                + **traffic**: Billed by traffic.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_id: Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-               is **WHOLE**. Changing this parameter will create a new resource.
+               is **WHOLE**.
                
                > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
                `bandwidth_charge_mode`, `bandwidth_size`.
         :param pulumi.Input[_builtins.int] bandwidth_size: Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-               is empty. Changing this parameter will create a new resource.
+               is empty.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the ELB load balancer.
                Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
         :param pulumi.Input[_builtins.bool] cross_vpc_backend: Enable this if you want to associate the IP addresses of backend servers with
-               your load balancer. Can only be true when updating.
+               your load balancer. Can only be true when updating. Defaults to **false**.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection
                for the load balancer. Value options:
                + **true**: Enable deletion protection.
@@ -97,9 +99,10 @@ class LoadbalancerArgs:
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project id of the load balancer.
         :param pulumi.Input[_builtins.bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load balancer,
                listeners, unbind associated pools. Defaults to **false**.
-        :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] gw_flavor_id: The flavor ID of the gateway load balancer.
+        :param pulumi.Input[_builtins.str] iptype: Elastic IP type.
         :param pulumi.Input[_builtins.str] ipv4_address: The ipv4 address of the load balancer.
-        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP.
                
                > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
                `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -109,7 +112,17 @@ class LoadbalancerArgs:
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: The ipv6 bandwidth id. Only support shared bandwidth.
         :param pulumi.Input[_builtins.str] ipv6_network_id: The **ID** of the subnet on which to allocate the load balancer ipv6 address.
         :param pulumi.Input[_builtins.str] l4_flavor_id: The L4 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] l7_flavor_id: The L7 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] loadbalancer_type: Specifies the type of the load balancer. Value options:
                + **gateway**: indicates a gateway load balancer.
                + Keep empty(default) indicates other types of load balancers.
@@ -138,10 +151,8 @@ class LoadbalancerArgs:
                + **WHOLE**: Shared bandwidth.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the load balancer.
-        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer. Changing this creates a new
-               load balancer.
+        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer.
         :param pulumi.Input[_builtins.str] waf_failure_action: Specifies traffic distributing policies when the WAF is faulty.
                Value options:
                + **discard**: Traffic will not be distributed.
@@ -173,10 +184,14 @@ class LoadbalancerArgs:
             pulumi.set(__self__, "deletion_protection_enable", deletion_protection_enable)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if force_delete is not None:
             pulumi.set(__self__, "force_delete", force_delete)
+        if gw_flavor_id is not None:
+            pulumi.set(__self__, "gw_flavor_id", gw_flavor_id)
         if iptype is not None:
             pulumi.set(__self__, "iptype", iptype)
         if ipv4_address is not None:
@@ -297,7 +312,6 @@ class LoadbalancerArgs:
         + **traffic**: Billed by traffic.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "bandwidth_charge_mode")
 
@@ -310,7 +324,7 @@ class LoadbalancerArgs:
     def bandwidth_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-        is **WHOLE**. Changing this parameter will create a new resource.
+        is **WHOLE**.
 
         > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
         `bandwidth_charge_mode`, `bandwidth_size`.
@@ -326,7 +340,7 @@ class LoadbalancerArgs:
     def bandwidth_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-        is empty. Changing this parameter will create a new resource.
+        is empty.
         """
         return pulumi.get(self, "bandwidth_size")
 
@@ -352,7 +366,7 @@ class LoadbalancerArgs:
     def cross_vpc_backend(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Enable this if you want to associate the IP addresses of backend servers with
-        your load balancer. Can only be true when updating.
+        your load balancer. Can only be true when updating. Defaults to **false**.
         """
         return pulumi.get(self, "cross_vpc_backend")
 
@@ -388,6 +402,15 @@ class LoadbalancerArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -413,10 +436,22 @@ class LoadbalancerArgs:
         pulumi.set(self, "force_delete", value)
 
     @_builtins.property
+    @pulumi.getter(name="gwFlavorId")
+    def gw_flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The flavor ID of the gateway load balancer.
+        """
+        return pulumi.get(self, "gw_flavor_id")
+
+    @gw_flavor_id.setter
+    def gw_flavor_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gw_flavor_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def iptype(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Elastic IP type. Changing this parameter will create a new resource.
+        Elastic IP type.
         """
         return pulumi.get(self, "iptype")
 
@@ -440,7 +475,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="ipv4EipId")
     def ipv4_eip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the EIP. Changing this parameter will create a new resource.
+        The ID of the EIP.
 
         > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
         `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -505,6 +540,11 @@ class LoadbalancerArgs:
     def l4_flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The L4 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l4_flavor_id")
 
@@ -517,6 +557,11 @@ class LoadbalancerArgs:
     def l7_flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The L7 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l7_flavor_id")
 
@@ -642,7 +687,6 @@ class LoadbalancerArgs:
         + **WHOLE**: Shared bandwidth.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "sharetype")
 
@@ -666,8 +710,7 @@ class LoadbalancerArgs:
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The vpc on which to create the load balancer. Changing this creates a new
-        load balancer.
+        The vpc on which to create the load balancer.
         """
         return pulumi.get(self, "vpc_id")
 
@@ -709,6 +752,7 @@ class _LoadbalancerState:
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  elb_virsubnet_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  force_delete: Optional[pulumi.Input[_builtins.bool]] = None,
                  frozen_scene: Optional[pulumi.Input[_builtins.str]] = None,
@@ -744,6 +788,7 @@ class _LoadbalancerState:
                  waf_failure_action: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
                
                > **NOTE:** `period_unit`, `period` and `auto_renew` can only be updated when `charging_mode` changed to **prePaid**
@@ -765,14 +810,13 @@ class _LoadbalancerState:
                + **traffic**: Billed by traffic.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_id: Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-               is **WHOLE**. Changing this parameter will create a new resource.
+               is **WHOLE**.
                
                > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
                `bandwidth_charge_mode`, `bandwidth_size`.
         :param pulumi.Input[_builtins.int] bandwidth_size: Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-               is empty. Changing this parameter will create a new resource.
+               is empty.
         :param pulumi.Input[_builtins.str] charge_mode: Indicates the billing mode. The value can be one of the following:
                + **flavor**: Billed by the specifications you will select.
                + **lcu**: Billed by LCU usage.
@@ -780,7 +824,7 @@ class _LoadbalancerState:
                Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the load balancer was created, in RFC3339 format.
         :param pulumi.Input[_builtins.bool] cross_vpc_backend: Enable this if you want to associate the IP addresses of backend servers with
-               your load balancer. Can only be true when updating.
+               your load balancer. Can only be true when updating. Defaults to **false**.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection
                for the load balancer. Value options:
                + **true**: Enable deletion protection.
@@ -804,10 +848,10 @@ class _LoadbalancerState:
                + **false**: The load balancer is a shared load balancer.
                + **true**: The load balancer is a dedicated load balancer.
         :param pulumi.Input[_builtins.str] gw_flavor_id: The flavor ID of the gateway load balancer.
-        :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] iptype: Elastic IP type.
         :param pulumi.Input[_builtins.str] ipv4_address: The ipv4 address of the load balancer.
         :param pulumi.Input[_builtins.str] ipv4_eip: The ipv4 eip address of the load balancer.
-        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP.
                
                > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
                `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -822,7 +866,17 @@ class _LoadbalancerState:
                + **dualstack**: subnet that supports IPv4/IPv6 dual stack
         :param pulumi.Input[_builtins.str] ipv6_network_id: The **ID** of the subnet on which to allocate the load balancer ipv6 address.
         :param pulumi.Input[_builtins.str] l4_flavor_id: The L4 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] l7_flavor_id: The L7 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] loadbalancer_type: Specifies the type of the load balancer. Value options:
                + **gateway**: indicates a gateway load balancer.
                + Keep empty(default) indicates other types of load balancers.
@@ -855,11 +909,9 @@ class _LoadbalancerState:
                + **WHOLE**: Shared bandwidth.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the load balancer.
         :param pulumi.Input[_builtins.str] updated_at: Indicates the time when the load balancer was updated, in RFC3339 format.
-        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer. Changing this creates a new
-               load balancer.
+        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer.
         :param pulumi.Input[_builtins.str] waf_failure_action: Specifies traffic distributing policies when the WAF is faulty.
                Value options:
                + **discard**: Traffic will not be distributed.
@@ -898,6 +950,8 @@ class _LoadbalancerState:
             pulumi.set(__self__, "description", description)
         if elb_virsubnet_type is not None:
             pulumi.set(__self__, "elb_virsubnet_type", elb_virsubnet_type)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if force_delete is not None:
@@ -1042,7 +1096,6 @@ class _LoadbalancerState:
         + **traffic**: Billed by traffic.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "bandwidth_charge_mode")
 
@@ -1055,7 +1108,7 @@ class _LoadbalancerState:
     def bandwidth_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-        is **WHOLE**. Changing this parameter will create a new resource.
+        is **WHOLE**.
 
         > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
         `bandwidth_charge_mode`, `bandwidth_size`.
@@ -1071,7 +1124,7 @@ class _LoadbalancerState:
     def bandwidth_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-        is empty. Changing this parameter will create a new resource.
+        is empty.
         """
         return pulumi.get(self, "bandwidth_size")
 
@@ -1123,7 +1176,7 @@ class _LoadbalancerState:
     def cross_vpc_backend(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Enable this if you want to associate the IP addresses of backend servers with
-        your load balancer. Can only be true when updating.
+        your load balancer. Can only be true when updating. Defaults to **false**.
         """
         return pulumi.get(self, "cross_vpc_backend")
 
@@ -1171,6 +1224,15 @@ class _LoadbalancerState:
     @elb_virsubnet_type.setter
     def elb_virsubnet_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "elb_virsubnet_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -1246,7 +1308,7 @@ class _LoadbalancerState:
     @pulumi.getter
     def iptype(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Elastic IP type. Changing this parameter will create a new resource.
+        Elastic IP type.
         """
         return pulumi.get(self, "iptype")
 
@@ -1282,7 +1344,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="ipv4EipId")
     def ipv4_eip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the EIP. Changing this parameter will create a new resource.
+        The ID of the EIP.
 
         > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
         `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -1385,6 +1447,11 @@ class _LoadbalancerState:
     def l4_flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The L4 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l4_flavor_id")
 
@@ -1397,6 +1464,11 @@ class _LoadbalancerState:
     def l7_flavor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The L7 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l7_flavor_id")
 
@@ -1548,7 +1620,6 @@ class _LoadbalancerState:
         + **WHOLE**: Shared bandwidth.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "sharetype")
 
@@ -1584,8 +1655,7 @@ class _LoadbalancerState:
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The vpc on which to create the load balancer. Changing this creates a new
-        load balancer.
+        The vpc on which to create the load balancer.
         """
         return pulumi.get(self, "vpc_id")
 
@@ -1627,8 +1697,10 @@ class Loadbalancer(pulumi.CustomResource):
                  cross_vpc_backend: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  force_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gw_flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  iptype: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_eip_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1671,7 +1743,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv4_subnet_id=ipv4_subnet_id,
             l4_flavor_id=l4_flavor_id,
@@ -1701,7 +1772,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv6_network_id=ipv6_network_id,
             ipv6_bandwidth_id=ipv6_bandwidth_id,
@@ -1732,7 +1802,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv6_network_id=ipv6_network_id,
             ipv6_bandwidth_id=ipv6_bandwidth_id,
@@ -1769,43 +1838,17 @@ class Loadbalancer(pulumi.CustomResource):
 
         ELB load balancer can be imported using the ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/loadbalancer:Loadbalancer loadbalancer_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `ipv6_bandwidth_id`, `iptype`,
-
         `bandwidth_charge_mode`, `sharetype`,  `bandwidth_size`, `bandwidth_id`, `force_delete`
-
         and `deletion_protection_enable`. It is generally recommended running `pulumi preview` after importing a load balancer.
-
         You can then decide if changes should be applied to the load balancer, or the resource
-
         definition should be updated to align with the load balancer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_loadbalancer" "loadbalancer_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ipv6_bandwidth_id, iptype, bandwidth_charge_mode, sharetype, bandwidth_size, bandwidth_id, force_delete,
-            
-              deletion_protection_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1830,18 +1873,17 @@ class Loadbalancer(pulumi.CustomResource):
                + **traffic**: Billed by traffic.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_id: Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-               is **WHOLE**. Changing this parameter will create a new resource.
+               is **WHOLE**.
                
                > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
                `bandwidth_charge_mode`, `bandwidth_size`.
         :param pulumi.Input[_builtins.int] bandwidth_size: Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-               is empty. Changing this parameter will create a new resource.
+               is empty.
         :param pulumi.Input[_builtins.str] charging_mode: Specifies the charging mode of the ELB load balancer.
                Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
         :param pulumi.Input[_builtins.bool] cross_vpc_backend: Enable this if you want to associate the IP addresses of backend servers with
-               your load balancer. Can only be true when updating.
+               your load balancer. Can only be true when updating. Defaults to **false**.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection
                for the load balancer. Value options:
                + **true**: Enable deletion protection.
@@ -1850,9 +1892,10 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project id of the load balancer.
         :param pulumi.Input[_builtins.bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load balancer,
                listeners, unbind associated pools. Defaults to **false**.
-        :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] gw_flavor_id: The flavor ID of the gateway load balancer.
+        :param pulumi.Input[_builtins.str] iptype: Elastic IP type.
         :param pulumi.Input[_builtins.str] ipv4_address: The ipv4 address of the load balancer.
-        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP.
                
                > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
                `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -1862,7 +1905,17 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ipv6_bandwidth_id: The ipv6 bandwidth id. Only support shared bandwidth.
         :param pulumi.Input[_builtins.str] ipv6_network_id: The **ID** of the subnet on which to allocate the load balancer ipv6 address.
         :param pulumi.Input[_builtins.str] l4_flavor_id: The L4 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] l7_flavor_id: The L7 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] loadbalancer_type: Specifies the type of the load balancer. Value options:
                + **gateway**: indicates a gateway load balancer.
                + Keep empty(default) indicates other types of load balancers.
@@ -1891,10 +1944,8 @@ class Loadbalancer(pulumi.CustomResource):
                + **WHOLE**: Shared bandwidth.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the load balancer.
-        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer. Changing this creates a new
-               load balancer.
+        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer.
         :param pulumi.Input[_builtins.str] waf_failure_action: Specifies traffic distributing policies when the WAF is faulty.
                Value options:
                + **discard**: Traffic will not be distributed.
@@ -1926,7 +1977,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv4_subnet_id=ipv4_subnet_id,
             l4_flavor_id=l4_flavor_id,
@@ -1956,7 +2006,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv6_network_id=ipv6_network_id,
             ipv6_bandwidth_id=ipv6_bandwidth_id,
@@ -1987,7 +2036,6 @@ class Loadbalancer(pulumi.CustomResource):
         basic = huaweicloud.dedicatedelb.Loadbalancer("basic",
             name="basic",
             description="basic example",
-            cross_vpc_backend=True,
             vpc_id=vpc_id,
             ipv6_network_id=ipv6_network_id,
             ipv6_bandwidth_id=ipv6_bandwidth_id,
@@ -2024,43 +2072,17 @@ class Loadbalancer(pulumi.CustomResource):
 
         ELB load balancer can be imported using the ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/loadbalancer:Loadbalancer loadbalancer_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `ipv6_bandwidth_id`, `iptype`,
-
         `bandwidth_charge_mode`, `sharetype`,  `bandwidth_size`, `bandwidth_id`, `force_delete`
-
         and `deletion_protection_enable`. It is generally recommended running `pulumi preview` after importing a load balancer.
-
         You can then decide if changes should be applied to the load balancer, or the resource
-
         definition should be updated to align with the load balancer. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_loadbalancer" "loadbalancer_1" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              ipv6_bandwidth_id, iptype, bandwidth_charge_mode, sharetype, bandwidth_size, bandwidth_id, force_delete,
-            
-              deletion_protection_enable,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.
@@ -2089,8 +2111,10 @@ class Loadbalancer(pulumi.CustomResource):
                  cross_vpc_backend: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  force_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gw_flavor_id: Optional[pulumi.Input[_builtins.str]] = None,
                  iptype: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv4_eip_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2135,8 +2159,10 @@ class Loadbalancer(pulumi.CustomResource):
             __props__.__dict__["cross_vpc_backend"] = cross_vpc_backend
             __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["force_delete"] = force_delete
+            __props__.__dict__["gw_flavor_id"] = gw_flavor_id
             __props__.__dict__["iptype"] = iptype
             __props__.__dict__["ipv4_address"] = ipv4_address
             __props__.__dict__["ipv4_eip_id"] = ipv4_eip_id
@@ -2163,7 +2189,6 @@ class Loadbalancer(pulumi.CustomResource):
             __props__.__dict__["elb_virsubnet_type"] = None
             __props__.__dict__["frozen_scene"] = None
             __props__.__dict__["guaranteed"] = None
-            __props__.__dict__["gw_flavor_id"] = None
             __props__.__dict__["ipv4_eip"] = None
             __props__.__dict__["ipv4_port_id"] = None
             __props__.__dict__["ipv6_eip"] = None
@@ -2196,6 +2221,7 @@ class Loadbalancer(pulumi.CustomResource):
             deletion_protection_enable: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             elb_virsubnet_type: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             force_delete: Optional[pulumi.Input[_builtins.bool]] = None,
             frozen_scene: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2257,14 +2283,13 @@ class Loadbalancer(pulumi.CustomResource):
                + **traffic**: Billed by traffic.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] bandwidth_id: Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-               is **WHOLE**. Changing this parameter will create a new resource.
+               is **WHOLE**.
                
                > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
                `bandwidth_charge_mode`, `bandwidth_size`.
         :param pulumi.Input[_builtins.int] bandwidth_size: Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-               is empty. Changing this parameter will create a new resource.
+               is empty.
         :param pulumi.Input[_builtins.str] charge_mode: Indicates the billing mode. The value can be one of the following:
                + **flavor**: Billed by the specifications you will select.
                + **lcu**: Billed by LCU usage.
@@ -2272,7 +2297,7 @@ class Loadbalancer(pulumi.CustomResource):
                Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when the load balancer was created, in RFC3339 format.
         :param pulumi.Input[_builtins.bool] cross_vpc_backend: Enable this if you want to associate the IP addresses of backend servers with
-               your load balancer. Can only be true when updating.
+               your load balancer. Can only be true when updating. Defaults to **false**.
         :param pulumi.Input[_builtins.bool] deletion_protection_enable: Specifies whether to enable deletion protection
                for the load balancer. Value options:
                + **true**: Enable deletion protection.
@@ -2296,10 +2321,10 @@ class Loadbalancer(pulumi.CustomResource):
                + **false**: The load balancer is a shared load balancer.
                + **true**: The load balancer is a dedicated load balancer.
         :param pulumi.Input[_builtins.str] gw_flavor_id: The flavor ID of the gateway load balancer.
-        :param pulumi.Input[_builtins.str] iptype: Elastic IP type. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] iptype: Elastic IP type.
         :param pulumi.Input[_builtins.str] ipv4_address: The ipv4 address of the load balancer.
         :param pulumi.Input[_builtins.str] ipv4_eip: The ipv4 eip address of the load balancer.
-        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP. Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] ipv4_eip_id: The ID of the EIP.
                
                > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
                `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -2314,7 +2339,17 @@ class Loadbalancer(pulumi.CustomResource):
                + **dualstack**: subnet that supports IPv4/IPv6 dual stack
         :param pulumi.Input[_builtins.str] ipv6_network_id: The **ID** of the subnet on which to allocate the load balancer ipv6 address.
         :param pulumi.Input[_builtins.str] l4_flavor_id: The L4 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] l7_flavor_id: The L7 flavor id of the load balancer.
+               + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+               site.
+               + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+               + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+               LCUs you use.
         :param pulumi.Input[_builtins.str] loadbalancer_type: Specifies the type of the load balancer. Value options:
                + **gateway**: indicates a gateway load balancer.
                + Keep empty(default) indicates other types of load balancers.
@@ -2347,11 +2382,9 @@ class Loadbalancer(pulumi.CustomResource):
                + **WHOLE**: Shared bandwidth.
                
                It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the load balancer.
         :param pulumi.Input[_builtins.str] updated_at: Indicates the time when the load balancer was updated, in RFC3339 format.
-        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer. Changing this creates a new
-               load balancer.
+        :param pulumi.Input[_builtins.str] vpc_id: The vpc on which to create the load balancer.
         :param pulumi.Input[_builtins.str] waf_failure_action: Specifies traffic distributing policies when the WAF is faulty.
                Value options:
                + **discard**: Traffic will not be distributed.
@@ -2376,6 +2409,7 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["deletion_protection_enable"] = deletion_protection_enable
         __props__.__dict__["description"] = description
         __props__.__dict__["elb_virsubnet_type"] = elb_virsubnet_type
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["force_delete"] = force_delete
         __props__.__dict__["frozen_scene"] = frozen_scene
@@ -2468,7 +2502,6 @@ class Loadbalancer(pulumi.CustomResource):
         + **traffic**: Billed by traffic.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "bandwidth_charge_mode")
 
@@ -2477,7 +2510,7 @@ class Loadbalancer(pulumi.CustomResource):
     def bandwidth_id(self) -> pulumi.Output[_builtins.str]:
         """
         Bandwidth ID of the shared bandwidth. It is mandatory when `sharetype`
-        is **WHOLE**. Changing this parameter will create a new resource.
+        is **WHOLE**.
 
         > **NOTE:** If the `bandwidth_id` parameter is configured, you can not configure the parameters:
         `bandwidth_charge_mode`, `bandwidth_size`.
@@ -2489,7 +2522,7 @@ class Loadbalancer(pulumi.CustomResource):
     def bandwidth_size(self) -> pulumi.Output[_builtins.int]:
         """
         Bandwidth size. It is mandatory when `iptype` is set and `bandwidth_id`
-        is empty. Changing this parameter will create a new resource.
+        is empty.
         """
         return pulumi.get(self, "bandwidth_size")
 
@@ -2525,7 +2558,7 @@ class Loadbalancer(pulumi.CustomResource):
     def cross_vpc_backend(self) -> pulumi.Output[_builtins.bool]:
         """
         Enable this if you want to associate the IP addresses of backend servers with
-        your load balancer. Can only be true when updating.
+        your load balancer. Can only be true when updating. Defaults to **false**.
         """
         return pulumi.get(self, "cross_vpc_backend")
 
@@ -2557,6 +2590,11 @@ class Loadbalancer(pulumi.CustomResource):
         + **dualstack**: subnet that supports IPv4/IPv6 dual stack
         """
         return pulumi.get(self, "elb_virsubnet_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
@@ -2612,7 +2650,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def iptype(self) -> pulumi.Output[_builtins.str]:
         """
-        Elastic IP type. Changing this parameter will create a new resource.
+        Elastic IP type.
         """
         return pulumi.get(self, "iptype")
 
@@ -2636,7 +2674,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="ipv4EipId")
     def ipv4_eip_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the EIP. Changing this parameter will create a new resource.
+        The ID of the EIP.
 
         > **NOTE:** If the ipv4_eip_id parameter is configured, you do not need to configure the bandwidth parameters:
         `iptype`, `bandwidth_charge_mode`, `bandwidth_size`, `share_type` and `bandwidth_id`.
@@ -2704,17 +2742,27 @@ class Loadbalancer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="l4FlavorId")
-    def l4_flavor_id(self) -> pulumi.Output[_builtins.str]:
+    def l4_flavor_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The L4 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L4**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L4_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l4_flavor_id")
 
     @_builtins.property
     @pulumi.getter(name="l7FlavorId")
-    def l7_flavor_id(self) -> pulumi.Output[_builtins.str]:
+    def l7_flavor_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The L7 flavor id of the load balancer.
+        + If neither `l4_flavor_id` nor `l7_flavor_id` is specified, the default flavor is used. The default flavor varies by
+        site.
+        + If the flavor type is **L7**, the load balancer uses the fixed flavors and will be billed by the flavor you select.
+        + If the flavor type is **L7_elastic_max**, the load balancer uses the elastic flavors and will be billed by how many
+        LCUs you use.
         """
         return pulumi.get(self, "l7_flavor_id")
 
@@ -2822,7 +2870,6 @@ class Loadbalancer(pulumi.CustomResource):
         + **WHOLE**: Shared bandwidth.
 
         It is mandatory when `iptype` is set and `bandwidth_id` is empty.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "sharetype")
 
@@ -2846,8 +2893,7 @@ class Loadbalancer(pulumi.CustomResource):
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The vpc on which to create the load balancer. Changing this creates a new
-        load balancer.
+        The vpc on which to create the load balancer.
         """
         return pulumi.get(self, "vpc_id")
 

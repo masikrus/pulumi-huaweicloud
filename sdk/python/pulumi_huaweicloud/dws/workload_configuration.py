@@ -25,6 +25,7 @@ class WorkloadConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WorkloadConfiguration resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] workload_switch: Specifies the workload management switch.  
@@ -113,6 +114,7 @@ class _WorkloadConfigurationState:
                  workload_switch: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WorkloadConfiguration resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] max_concurrency_num: Specifies the maximum number of concurrent tasks on a single CN.  
@@ -226,11 +228,10 @@ class WorkloadConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadConfiguration:WorkloadConfiguration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -275,11 +276,10 @@ class WorkloadConfiguration(pulumi.CustomResource):
 
         The resource can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/workloadConfiguration:WorkloadConfiguration test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WorkloadConfigurationArgs args: The arguments to use to populate this resource's properties.

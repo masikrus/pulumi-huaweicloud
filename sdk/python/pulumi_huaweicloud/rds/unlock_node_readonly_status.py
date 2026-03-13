@@ -24,6 +24,7 @@ class UnlockNodeReadonlyStatusArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UnlockNodeReadonlyStatus resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.int] status_preservation_time: Specifies the duration (in minutes) during which the HA
                component no longer sets the instance to read-only. Value ranges: **0** to **1440**.
@@ -82,6 +83,7 @@ class _UnlockNodeReadonlyStatusState:
                  status_preservation_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering UnlockNodeReadonlyStatus resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -160,6 +162,7 @@ class UnlockNodeReadonlyStatus(pulumi.CustomResource):
             status_preservation_time=0)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQLServer instance.
@@ -189,6 +192,7 @@ class UnlockNodeReadonlyStatus(pulumi.CustomResource):
             instance_id=instance_id,
             status_preservation_time=0)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UnlockNodeReadonlyStatusArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class CmdbComponentArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CmdbComponent resource.
+
         :param pulumi.Input[_builtins.str] model_id: Specifies the application or sub-application ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] model_type: Specifies the application type. The valid values are **APPLICATION** and **SUB_APPLICATION**.
@@ -107,6 +108,7 @@ class _CmdbComponentState:
                  sub_app_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CmdbComponent resources.
+
         :param pulumi.Input[_builtins.str] app_id: The application id.
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description about the component.
@@ -271,11 +273,10 @@ class CmdbComponent(pulumi.CustomResource):
 
         The AOM component can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbComponent:CmdbComponent test 6bbcad9cbddf4a60abaf5358a9339c98
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,11 +317,10 @@ class CmdbComponent(pulumi.CustomResource):
 
         The AOM component can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cmdbComponent:CmdbComponent test 6bbcad9cbddf4a60abaf5358a9339c98
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CmdbComponentArgs args: The arguments to use to populate this resource's properties.

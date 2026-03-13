@@ -26,6 +26,7 @@ class ImageExportArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageExport resource.
+
         :param pulumi.Input[_builtins.str] bucket_url: Specifies the URL of the image file to be exported to the OBS bucket, the
                format is **OBS bucket name:image file name**, e.g. **test_bucket:test_image_file**. The storage category of the OBS
                bucket and image file here must be OBS standard storage. Changing this parameter will create a new resource.
@@ -132,6 +133,7 @@ class _ImageExportState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageExport resources.
+
         :param pulumi.Input[_builtins.str] bucket_url: Specifies the URL of the image file to be exported to the OBS bucket, the
                format is **OBS bucket name:image file name**, e.g. **test_bucket:test_image_file**. The storage category of the OBS
                bucket and image file here must be OBS standard storage. Changing this parameter will create a new resource.
@@ -285,6 +287,7 @@ class ImageExport(pulumi.CustomResource):
             is_quick_export=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_url: Specifies the URL of the image file to be exported to the OBS bucket, the
@@ -351,6 +354,7 @@ class ImageExport(pulumi.CustomResource):
             bucket_url=bucket_url,
             is_quick_export=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageExportArgs args: The arguments to use to populate this resource's properties.

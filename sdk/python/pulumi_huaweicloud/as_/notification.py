@@ -25,6 +25,7 @@ class NotificationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Notification resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events: Specifies the topic scene of AS group. The events include `SCALING_UP`,
                `SCALING_UP_FAIL`, `SCALING_DOWN`, `SCALING_DOWN_FAIL`, `SCALING_GROUP_ABNORMAL`.
         :param pulumi.Input[_builtins.str] scaling_group_id: Specifies the AS group ID.
@@ -103,6 +104,7 @@ class _NotificationState:
                  topic_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events: Specifies the topic scene of AS group. The events include `SCALING_UP`,
                `SCALING_UP_FAIL`, `SCALING_DOWN`, `SCALING_DOWN_FAIL`, `SCALING_GROUP_ABNORMAL`.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -227,6 +229,7 @@ class Notification(pulumi.CustomResource):
         $ pulumi import huaweicloud:As/notification:Notification test <scaling_group_id>/<topic_urn>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events: Specifies the topic scene of AS group. The events include `SCALING_UP`,
@@ -270,6 +273,7 @@ class Notification(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:As/notification:Notification test <scaling_group_id>/<topic_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

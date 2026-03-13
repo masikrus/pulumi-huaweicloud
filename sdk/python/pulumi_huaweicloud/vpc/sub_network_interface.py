@@ -30,6 +30,7 @@ class SubNetworkInterfaceArgs:
                  vlan_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SubNetworkInterface resource.
+
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of the elastic network interface to which the
                supplementary network interface belongs.
                Changing this creates a new resource.
@@ -201,6 +202,7 @@ class _SubNetworkInterfaceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubNetworkInterface resources.
+
         :param pulumi.Input[_builtins.str] created_at: The create time of the supplementary network interface.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the supplementary network interface.
         :param pulumi.Input[_builtins.str] ip_address: Specifies the private IPv4 address of the supplementary network interface.
@@ -470,11 +472,10 @@ class SubNetworkInterface(pulumi.CustomResource):
 
         The supplementary network interface can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subNetworkInterface:SubNetworkInterface test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -526,11 +527,10 @@ class SubNetworkInterface(pulumi.CustomResource):
 
         The supplementary network interface can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/subNetworkInterface:SubNetworkInterface test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubNetworkInterfaceArgs args: The arguments to use to populate this resource's properties.

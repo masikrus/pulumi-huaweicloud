@@ -27,6 +27,7 @@ class LogicalClusterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogicalCluster resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                
                Changing this parameter will create a new resource.
@@ -123,6 +124,7 @@ class _LogicalClusterState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogicalCluster resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the DWS cluster ID.
                
                Changing this parameter will create a new resource.
@@ -317,7 +319,7 @@ class LogicalCluster(pulumi.CustomResource):
                     "cpu_cores": entry["value"]["cpuCores"],
                     "memory": entry["value"]["memory"],
                     "disk_size": entry["value"]["diskSize"],
-                } for entry in [{"key": k, "value": v} for k, v in ring_hosts]],
+                } for entry in [{"key": k, "value": v} for k, v in ring_hosts.items()]],
             }],
             logical_cluster_name="test_name",
             cluster_id=cluster_id)
@@ -327,11 +329,10 @@ class LogicalCluster(pulumi.CustomResource):
 
         The DWS logical cluster resource can be imported using the `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/logicalCluster:LogicalCluster test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -380,7 +381,7 @@ class LogicalCluster(pulumi.CustomResource):
                     "cpu_cores": entry["value"]["cpuCores"],
                     "memory": entry["value"]["memory"],
                     "disk_size": entry["value"]["diskSize"],
-                } for entry in [{"key": k, "value": v} for k, v in ring_hosts]],
+                } for entry in [{"key": k, "value": v} for k, v in ring_hosts.items()]],
             }],
             logical_cluster_name="test_name",
             cluster_id=cluster_id)
@@ -390,11 +391,10 @@ class LogicalCluster(pulumi.CustomResource):
 
         The DWS logical cluster resource can be imported using the `cluster_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dws/logicalCluster:LogicalCluster test <cluster_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogicalClusterArgs args: The arguments to use to populate this resource's properties.

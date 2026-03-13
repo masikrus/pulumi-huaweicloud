@@ -25,6 +25,7 @@ class BucketPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketPolicy resource.
+
         :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket to which to apply the policy.
         :param pulumi.Input[_builtins.str] policy: Specifies the text of the bucket policy in JSON format. For more information about obs
                format bucket policy,
@@ -103,6 +104,7 @@ class _BucketPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketPolicy resources.
+
         :param pulumi.Input[_builtins.str] bucket: Specifies the name of the bucket to which to apply the policy.
         :param pulumi.Input[_builtins.str] policy: Specifies the text of the bucket policy in JSON format. For more information about obs
                format bucket policy,
@@ -198,7 +200,7 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        bucket = huaweicloud.obs.Bucket("bucket", bucket="my-test-bucket")
+        bucket = huaweicloud.obs.Bucket("bucket", bucket_value="my-test-bucket")
         policy = huaweicloud.obs.BucketPolicy("policy",
             bucket=bucket.id,
             policy=\"\"\"{
@@ -221,7 +223,7 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        bucket = huaweicloud.obs.Bucket("bucket", bucket="my-test-bucket")
+        bucket = huaweicloud.obs.Bucket("bucket", bucket_value="my-test-bucket")
         s3_policy = huaweicloud.obs.BucketPolicy("s3_policy",
             bucket=bucket.id,
             policy_format="s3",
@@ -248,19 +250,16 @@ class BucketPolicy(pulumi.CustomResource):
 
         OBS format bucket policy can be imported using the `<bucket>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketPolicy:BucketPolicy policy <bucket-name>
         ```
 
         S3 format bucket policy can be imported using the `<bucket>` and "s3" by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketPolicy:BucketPolicy s3_policy <bucket-name>/s3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,7 +291,7 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        bucket = huaweicloud.obs.Bucket("bucket", bucket="my-test-bucket")
+        bucket = huaweicloud.obs.Bucket("bucket", bucket_value="my-test-bucket")
         policy = huaweicloud.obs.BucketPolicy("policy",
             bucket=bucket.id,
             policy=\"\"\"{
@@ -315,7 +314,7 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
-        bucket = huaweicloud.obs.Bucket("bucket", bucket="my-test-bucket")
+        bucket = huaweicloud.obs.Bucket("bucket", bucket_value="my-test-bucket")
         s3_policy = huaweicloud.obs.BucketPolicy("s3_policy",
             bucket=bucket.id,
             policy_format="s3",
@@ -342,19 +341,16 @@ class BucketPolicy(pulumi.CustomResource):
 
         OBS format bucket policy can be imported using the `<bucket>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketPolicy:BucketPolicy policy <bucket-name>
         ```
 
         S3 format bucket policy can be imported using the `<bucket>` and "s3" by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Obs/bucketPolicy:BucketPolicy s3_policy <bucket-name>/s3
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketPolicyArgs args: The arguments to use to populate this resource's properties.

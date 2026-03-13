@@ -35,6 +35,7 @@ class ZoneArgs:
                  zone_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Zone resource.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the zone.  
                A maximum of `255` characters are allowed.
         :param pulumi.Input[_builtins.str] dnssec: Specifies whether to enable DNSSEC for a public zone.
@@ -43,6 +44,9 @@ class ZoneArgs:
                + **DISABLE**
                
                > Before changing this parameter, make sure the zone status is enabled.
+               
+               <a name="zone_router"></a>
+               The `router` block supports:
         :param pulumi.Input[_builtins.str] email: Specifies the email address of the administrator managing the zone.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the zone.  
                Changing this parameter will create a new resource.
@@ -71,9 +75,6 @@ class ZoneArgs:
                
                > This is a one-time action.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the zone.
-               
-               <a name="zone_router"></a>
-               The `router` block supports:
         :param pulumi.Input[_builtins.int] ttl: Specifies the time to live (TTL) of the zone, defaults to `300`.  
                The valid value is range from `1` to `2,147,483,647`.
         :param pulumi.Input[_builtins.str] zone_type: Specifies the type of zone, defaults to **public**.  
@@ -130,6 +131,9 @@ class ZoneArgs:
         + **DISABLE**
 
         > Before changing this parameter, make sure the zone status is enabled.
+
+        <a name="zone_router"></a>
+        The `router` block supports:
         """
         return pulumi.get(self, "dnssec")
 
@@ -246,9 +250,6 @@ class ZoneArgs:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the key/value pairs to associate with the zone.
-
-        <a name="zone_router"></a>
-        The `router` block supports:
         """
         return pulumi.get(self, "tags")
 
@@ -305,6 +306,7 @@ class _ZoneState:
                  zone_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Zone resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the zone.  
                A maximum of `255` characters are allowed.
         :param pulumi.Input[_builtins.str] dnssec: Specifies whether to enable DNSSEC for a public zone.
@@ -313,6 +315,9 @@ class _ZoneState:
                + **DISABLE**
                
                > Before changing this parameter, make sure the zone status is enabled.
+               
+               <a name="zone_router"></a>
+               The `router` block supports:
         :param pulumi.Input[Sequence[pulumi.Input['ZoneDnssecInfoArgs']]] dnssec_infos: Indicates the DNSSEC infos.
                The dnssec_infos structure is documented below.
         :param pulumi.Input[_builtins.str] email: Specifies the email address of the administrator managing the zone.
@@ -344,9 +349,6 @@ class _ZoneState:
                
                > This is a one-time action.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the zone.
-               
-               <a name="zone_router"></a>
-               The `router` block supports:
         :param pulumi.Input[_builtins.int] ttl: Specifies the time to live (TTL) of the zone, defaults to `300`.  
                The valid value is range from `1` to `2,147,483,647`.
         :param pulumi.Input[_builtins.str] zone_type: Specifies the type of zone, defaults to **public**.  
@@ -407,6 +409,9 @@ class _ZoneState:
         + **DISABLE**
 
         > Before changing this parameter, make sure the zone status is enabled.
+
+        <a name="zone_router"></a>
+        The `router` block supports:
         """
         return pulumi.get(self, "dnssec")
 
@@ -548,9 +553,6 @@ class _ZoneState:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the key/value pairs to associate with the zone.
-
-        <a name="zone_router"></a>
-        The `router` block supports:
         """
         return pulumi.get(self, "tags")
 
@@ -656,11 +658,10 @@ class Zone(pulumi.CustomResource):
 
         This resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/zone:Zone test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -672,6 +673,9 @@ class Zone(pulumi.CustomResource):
                + **DISABLE**
                
                > Before changing this parameter, make sure the zone status is enabled.
+               
+               <a name="zone_router"></a>
+               The `router` block supports:
         :param pulumi.Input[_builtins.str] email: Specifies the email address of the administrator managing the zone.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of the zone.  
                Changing this parameter will create a new resource.
@@ -700,9 +704,6 @@ class Zone(pulumi.CustomResource):
                
                > This is a one-time action.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the zone.
-               
-               <a name="zone_router"></a>
-               The `router` block supports:
         :param pulumi.Input[_builtins.int] ttl: Specifies the time to live (TTL) of the zone, defaults to `300`.  
                The valid value is range from `1` to `2,147,483,647`.
         :param pulumi.Input[_builtins.str] zone_type: Specifies the type of zone, defaults to **public**.  
@@ -766,11 +767,10 @@ class Zone(pulumi.CustomResource):
 
         This resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dns/zone:Zone test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ZoneArgs args: The arguments to use to populate this resource's properties.
@@ -861,6 +861,9 @@ class Zone(pulumi.CustomResource):
                + **DISABLE**
                
                > Before changing this parameter, make sure the zone status is enabled.
+               
+               <a name="zone_router"></a>
+               The `router` block supports:
         :param pulumi.Input[Sequence[pulumi.Input[Union['ZoneDnssecInfoArgs', 'ZoneDnssecInfoArgsDict']]]] dnssec_infos: Indicates the DNSSEC infos.
                The dnssec_infos structure is documented below.
         :param pulumi.Input[_builtins.str] email: Specifies the email address of the administrator managing the zone.
@@ -892,9 +895,6 @@ class Zone(pulumi.CustomResource):
                
                > This is a one-time action.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the zone.
-               
-               <a name="zone_router"></a>
-               The `router` block supports:
         :param pulumi.Input[_builtins.int] ttl: Specifies the time to live (TTL) of the zone, defaults to `300`.  
                The valid value is range from `1` to `2,147,483,647`.
         :param pulumi.Input[_builtins.str] zone_type: Specifies the type of zone, defaults to **public**.  
@@ -942,6 +942,9 @@ class Zone(pulumi.CustomResource):
         + **DISABLE**
 
         > Before changing this parameter, make sure the zone status is enabled.
+
+        <a name="zone_router"></a>
+        The `router` block supports:
         """
         return pulumi.get(self, "dnssec")
 
@@ -1043,9 +1046,6 @@ class Zone(pulumi.CustomResource):
     def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         Specifies the key/value pairs to associate with the zone.
-
-        <a name="zone_router"></a>
-        The `router` block supports:
         """
         return pulumi.get(self, "tags")
 

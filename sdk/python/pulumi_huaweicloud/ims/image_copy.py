@@ -33,6 +33,7 @@ class ImageCopyArgs:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageCopy resource.
+
         :param pulumi.Input[_builtins.str] source_image_id: Specifies the ID of the copied image.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name. It is required in the cross-region scene.
@@ -311,6 +312,7 @@ class _ImageCopyState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageCopy resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1453,6 +1455,7 @@ class ImageCopy(pulumi.CustomResource):
             agency_name=agency_name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name. It is required in the cross-region scene.
@@ -1525,6 +1528,7 @@ class ImageCopy(pulumi.CustomResource):
             target_region=target_region,
             agency_name=agency_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageCopyArgs args: The arguments to use to populate this resource's properties.

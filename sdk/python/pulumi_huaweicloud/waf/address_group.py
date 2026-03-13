@@ -28,6 +28,7 @@ class AddressGroupArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AddressGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_addresses: Specifies the IP addresses or IP address ranges.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the address group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF address group.
@@ -126,6 +127,7 @@ class _AddressGroupState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['AddressGroupRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering AddressGroup resources.
+
         :param pulumi.Input[_builtins.str] description: Specifies the description of the address group.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID of WAF address group.
                Changing this parameter will create a new resource.
@@ -270,19 +272,16 @@ class AddressGroup(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/addressGroup:AddressGroup test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/addressGroup:AddressGroup test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -330,19 +329,16 @@ class AddressGroup(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/addressGroup:AddressGroup test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/addressGroup:AddressGroup test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AddressGroupArgs args: The arguments to use to populate this resource's properties.

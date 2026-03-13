@@ -27,6 +27,7 @@ class DataserviceApiAuthArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceApiAuth resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the API ID that used to authorize the authentication.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] app_ids: Specifies the list of authorized application IDs.  
@@ -137,6 +138,7 @@ class _DataserviceApiAuthState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceApiAuth resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the API ID that used to authorize the authentication.  
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] app_ids: Specifies the list of authorized application IDs.  
@@ -282,6 +284,7 @@ class DataserviceApiAuth(pulumi.CustomResource):
             app_ids=authorized_app_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_id: Specifies the API ID that used to authorize the authentication.  
@@ -330,6 +333,7 @@ class DataserviceApiAuth(pulumi.CustomResource):
             expired_at=auth_expiration_time,
             app_ids=authorized_app_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceApiAuthArgs args: The arguments to use to populate this resource's properties.

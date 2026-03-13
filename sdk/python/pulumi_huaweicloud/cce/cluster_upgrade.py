@@ -25,23 +25,28 @@ class ClusterUpgradeArgs:
                  strategy: pulumi.Input['ClusterUpgradeStrategyArgs'],
                  target_version: pulumi.Input[_builtins.str],
                  addons: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterUpgradeAddonArgs']]]] = None,
+                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_postcheck: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
                  node_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nodepool_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClusterUpgrade resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input['ClusterUpgradeStrategyArgs'] strategy: Specifies the upgrade strategy.
                The strategy structure is documented below.
-        :param pulumi.Input[_builtins.str] target_version: Specifies the target version.
+        :param pulumi.Input[_builtins.str] target_version: Specifies the target version, e.g. **v1.29.13-r10**.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterUpgradeAddonArgs']]] addons: Specifies the add-on configuration list
                The addons structure is documented below.
-        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
+        :param pulumi.Input[_builtins.str] current_version: Specifies the current version, e.g. **v1.28.15-r30**.
+        :param pulumi.Input[_builtins.bool] is_postcheck: Specifies whether to run postcheck.
                
                <a name="addons"></a>
                The `addons` block supports:
+        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] node_order: Specifies the upgrade sequence of nodes in the node pools.
                The key is the node pool ID, **DefaultPool** indicates the default pool.
                The value is a json string which indicates the priority of nodes in this pool. Please check the example.
@@ -57,8 +62,12 @@ class ClusterUpgradeArgs:
         pulumi.set(__self__, "target_version", target_version)
         if addons is not None:
             pulumi.set(__self__, "addons", addons)
+        if current_version is not None:
+            pulumi.set(__self__, "current_version", current_version)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if is_postcheck is not None:
+            pulumi.set(__self__, "is_postcheck", is_postcheck)
         if is_snapshot is not None:
             pulumi.set(__self__, "is_snapshot", is_snapshot)
         if node_order is not None:
@@ -97,7 +106,7 @@ class ClusterUpgradeArgs:
     @pulumi.getter(name="targetVersion")
     def target_version(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the target version.
+        Specifies the target version, e.g. **v1.29.13-r10**.
         """
         return pulumi.get(self, "target_version")
 
@@ -119,6 +128,18 @@ class ClusterUpgradeArgs:
         pulumi.set(self, "addons", value)
 
     @_builtins.property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the current version, e.g. **v1.28.15-r30**.
+        """
+        return pulumi.get(self, "current_version")
+
+    @current_version.setter
+    def current_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "current_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "enable_force_new")
@@ -128,13 +149,25 @@ class ClusterUpgradeArgs:
         pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
+    @pulumi.getter(name="isPostcheck")
+    def is_postcheck(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to run postcheck.
+
+        <a name="addons"></a>
+        The `addons` block supports:
+        """
+        return pulumi.get(self, "is_postcheck")
+
+    @is_postcheck.setter
+    def is_postcheck(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_postcheck", value)
+
+    @_builtins.property
     @pulumi.getter(name="isSnapshot")
     def is_snapshot(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether the cluster is snapshotted.
-
-        <a name="addons"></a>
-        The `addons` block supports:
         """
         return pulumi.get(self, "is_snapshot")
 
@@ -190,7 +223,9 @@ class _ClusterUpgradeState:
     def __init__(__self__, *,
                  addons: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterUpgradeAddonArgs']]]] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_postcheck: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
                  node_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nodepool_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]] = None,
@@ -199,13 +234,16 @@ class _ClusterUpgradeState:
                  target_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterUpgrade resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ClusterUpgradeAddonArgs']]] addons: Specifies the add-on configuration list
                The addons structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
-        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
+        :param pulumi.Input[_builtins.str] current_version: Specifies the current version, e.g. **v1.28.15-r30**.
+        :param pulumi.Input[_builtins.bool] is_postcheck: Specifies whether to run postcheck.
                
                <a name="addons"></a>
                The `addons` block supports:
+        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] node_order: Specifies the upgrade sequence of nodes in the node pools.
                The key is the node pool ID, **DefaultPool** indicates the default pool.
                The value is a json string which indicates the priority of nodes in this pool. Please check the example.
@@ -217,14 +255,18 @@ class _ClusterUpgradeState:
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input['ClusterUpgradeStrategyArgs'] strategy: Specifies the upgrade strategy.
                The strategy structure is documented below.
-        :param pulumi.Input[_builtins.str] target_version: Specifies the target version.
+        :param pulumi.Input[_builtins.str] target_version: Specifies the target version, e.g. **v1.29.13-r10**.
         """
         if addons is not None:
             pulumi.set(__self__, "addons", addons)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if current_version is not None:
+            pulumi.set(__self__, "current_version", current_version)
         if enable_force_new is not None:
             pulumi.set(__self__, "enable_force_new", enable_force_new)
+        if is_postcheck is not None:
+            pulumi.set(__self__, "is_postcheck", is_postcheck)
         if is_snapshot is not None:
             pulumi.set(__self__, "is_snapshot", is_snapshot)
         if node_order is not None:
@@ -264,6 +306,18 @@ class _ClusterUpgradeState:
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the current version, e.g. **v1.28.15-r30**.
+        """
+        return pulumi.get(self, "current_version")
+
+    @current_version.setter
+    def current_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "current_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "enable_force_new")
@@ -273,13 +327,25 @@ class _ClusterUpgradeState:
         pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
+    @pulumi.getter(name="isPostcheck")
+    def is_postcheck(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to run postcheck.
+
+        <a name="addons"></a>
+        The `addons` block supports:
+        """
+        return pulumi.get(self, "is_postcheck")
+
+    @is_postcheck.setter
+    def is_postcheck(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_postcheck", value)
+
+    @_builtins.property
     @pulumi.getter(name="isSnapshot")
     def is_snapshot(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Specifies whether the cluster is snapshotted.
-
-        <a name="addons"></a>
-        The `addons` block supports:
         """
         return pulumi.get(self, "is_snapshot")
 
@@ -346,7 +412,7 @@ class _ClusterUpgradeState:
     @pulumi.getter(name="targetVersion")
     def target_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the target version.
+        Specifies the target version, e.g. **v1.29.13-r10**.
         """
         return pulumi.get(self, "target_version")
 
@@ -363,7 +429,9 @@ class ClusterUpgrade(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  addons: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterUpgradeAddonArgs', 'ClusterUpgradeAddonArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_postcheck: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
                  node_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nodepool_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]] = None,
@@ -376,15 +444,18 @@ class ClusterUpgrade(pulumi.CustomResource):
 
         ## Example Usage
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterUpgradeAddonArgs', 'ClusterUpgradeAddonArgsDict']]]] addons: Specifies the add-on configuration list
                The addons structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
-        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
+        :param pulumi.Input[_builtins.str] current_version: Specifies the current version, e.g. **v1.28.15-r30**.
+        :param pulumi.Input[_builtins.bool] is_postcheck: Specifies whether to run postcheck.
                
                <a name="addons"></a>
                The `addons` block supports:
+        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] node_order: Specifies the upgrade sequence of nodes in the node pools.
                The key is the node pool ID, **DefaultPool** indicates the default pool.
                The value is a json string which indicates the priority of nodes in this pool. Please check the example.
@@ -396,7 +467,7 @@ class ClusterUpgrade(pulumi.CustomResource):
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[Union['ClusterUpgradeStrategyArgs', 'ClusterUpgradeStrategyArgsDict']] strategy: Specifies the upgrade strategy.
                The strategy structure is documented below.
-        :param pulumi.Input[_builtins.str] target_version: Specifies the target version.
+        :param pulumi.Input[_builtins.str] target_version: Specifies the target version, e.g. **v1.29.13-r10**.
         """
         ...
     @overload
@@ -408,6 +479,7 @@ class ClusterUpgrade(pulumi.CustomResource):
         Use this resource to upgrade a CCE cluster within HuaweiCloud.
 
         ## Example Usage
+
 
         :param str resource_name: The name of the resource.
         :param ClusterUpgradeArgs args: The arguments to use to populate this resource's properties.
@@ -426,7 +498,9 @@ class ClusterUpgrade(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  addons: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterUpgradeAddonArgs', 'ClusterUpgradeAddonArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_version: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_postcheck: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
                  node_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nodepool_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]] = None,
@@ -446,7 +520,9 @@ class ClusterUpgrade(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["current_version"] = current_version
             __props__.__dict__["enable_force_new"] = enable_force_new
+            __props__.__dict__["is_postcheck"] = is_postcheck
             __props__.__dict__["is_snapshot"] = is_snapshot
             __props__.__dict__["node_order"] = node_order
             __props__.__dict__["nodepool_order"] = nodepool_order
@@ -469,7 +545,9 @@ class ClusterUpgrade(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             addons: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterUpgradeAddonArgs', 'ClusterUpgradeAddonArgsDict']]]]] = None,
             cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+            current_version: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
+            is_postcheck: Optional[pulumi.Input[_builtins.bool]] = None,
             is_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
             node_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             nodepool_order: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.int]]]] = None,
@@ -486,10 +564,12 @@ class ClusterUpgrade(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterUpgradeAddonArgs', 'ClusterUpgradeAddonArgsDict']]]] addons: Specifies the add-on configuration list
                The addons structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
-        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
+        :param pulumi.Input[_builtins.str] current_version: Specifies the current version, e.g. **v1.28.15-r30**.
+        :param pulumi.Input[_builtins.bool] is_postcheck: Specifies whether to run postcheck.
                
                <a name="addons"></a>
                The `addons` block supports:
+        :param pulumi.Input[_builtins.bool] is_snapshot: Specifies whether the cluster is snapshotted.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] node_order: Specifies the upgrade sequence of nodes in the node pools.
                The key is the node pool ID, **DefaultPool** indicates the default pool.
                The value is a json string which indicates the priority of nodes in this pool. Please check the example.
@@ -501,7 +581,7 @@ class ClusterUpgrade(pulumi.CustomResource):
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[Union['ClusterUpgradeStrategyArgs', 'ClusterUpgradeStrategyArgsDict']] strategy: Specifies the upgrade strategy.
                The strategy structure is documented below.
-        :param pulumi.Input[_builtins.str] target_version: Specifies the target version.
+        :param pulumi.Input[_builtins.str] target_version: Specifies the target version, e.g. **v1.29.13-r10**.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -509,7 +589,9 @@ class ClusterUpgrade(pulumi.CustomResource):
 
         __props__.__dict__["addons"] = addons
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["current_version"] = current_version
         __props__.__dict__["enable_force_new"] = enable_force_new
+        __props__.__dict__["is_postcheck"] = is_postcheck
         __props__.__dict__["is_snapshot"] = is_snapshot
         __props__.__dict__["node_order"] = node_order
         __props__.__dict__["nodepool_order"] = nodepool_order
@@ -536,18 +618,34 @@ class ClusterUpgrade(pulumi.CustomResource):
         return pulumi.get(self, "cluster_id")
 
     @_builtins.property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the current version, e.g. **v1.28.15-r30**.
+        """
+        return pulumi.get(self, "current_version")
+
+    @_builtins.property
     @pulumi.getter(name="enableForceNew")
     def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "enable_force_new")
+
+    @_builtins.property
+    @pulumi.getter(name="isPostcheck")
+    def is_postcheck(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies whether to run postcheck.
+
+        <a name="addons"></a>
+        The `addons` block supports:
+        """
+        return pulumi.get(self, "is_postcheck")
 
     @_builtins.property
     @pulumi.getter(name="isSnapshot")
     def is_snapshot(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Specifies whether the cluster is snapshotted.
-
-        <a name="addons"></a>
-        The `addons` block supports:
         """
         return pulumi.get(self, "is_snapshot")
 
@@ -594,7 +692,7 @@ class ClusterUpgrade(pulumi.CustomResource):
     @pulumi.getter(name="targetVersion")
     def target_version(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the target version.
+        Specifies the target version, e.g. **v1.29.13-r10**.
         """
         return pulumi.get(self, "target_version")
 

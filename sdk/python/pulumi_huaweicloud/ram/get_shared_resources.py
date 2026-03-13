@@ -146,7 +146,7 @@ def get_shared_resources(principal: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ram.get_shared_resources(resource_owner="self")
+    test = huaweicloud.Ram.get_shared_resources(resource_owner="self")
     ```
 
 
@@ -177,7 +177,7 @@ def get_shared_resources(principal: Optional[_builtins.str] = None,
     __args__['resourceType'] = resource_type
     __args__['resourceUrns'] = resource_urns
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ram/getSharedResources:getSharedResources', __args__, opts=opts, typ=GetSharedResourcesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ram/getSharedResources:getSharedResources', __args__, opts=opts, typ=GetSharedResourcesResult).value
 
     return AwaitableGetSharedResourcesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -206,7 +206,7 @@ def get_shared_resources_output(principal: Optional[pulumi.Input[Optional[_built
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ram.get_shared_resources(resource_owner="self")
+    test = huaweicloud.Ram.get_shared_resources(resource_owner="self")
     ```
 
 
@@ -237,7 +237,7 @@ def get_shared_resources_output(principal: Optional[pulumi.Input[Optional[_built
     __args__['resourceType'] = resource_type
     __args__['resourceUrns'] = resource_urns
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ram/getSharedResources:getSharedResources', __args__, opts=opts, typ=GetSharedResourcesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ram/getSharedResources:getSharedResources', __args__, opts=opts, typ=GetSharedResourcesResult)
     return __ret__.apply(lambda __response__: GetSharedResourcesResult(
         id=pulumi.get(__response__, 'id'),
         principal=pulumi.get(__response__, 'principal'),

@@ -25,6 +25,7 @@ class LogstashCustomCertificateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstashCustomCertificate resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket name where the certificate file is stored.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] cert_object: Specifies the certificate file path to upload in the OBS bucket.
@@ -114,6 +115,7 @@ class _LogstashCustomCertificateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashCustomCertificate resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the OBS bucket name where the certificate file is stored.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] cert_object: Specifies the certificate file path to upload in the OBS bucket.
@@ -287,41 +289,17 @@ class LogstashCustomCertificate(pulumi.CustomResource):
 
         The CSS logstash cluster custom certificate can be imported using `cluster_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashCustomCertificate:LogstashCustomCertificate test <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attributes include: `bucket_name`, `cert_object`.
-
         It is generally recommended running `pulumi preview` after importing a CSS logstash cluster custom certificate.
-
         You can then decide if changes should be applied to the CSS logstash cluster custom certificate, or the resource
-
         definition should be updated to align with the CSS logstash cluster custom certificate. Also you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_custom_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              bucket_name, cert_object,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -367,41 +345,17 @@ class LogstashCustomCertificate(pulumi.CustomResource):
 
         The CSS logstash cluster custom certificate can be imported using `cluster_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashCustomCertificate:LogstashCustomCertificate test <cluster_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attributes include: `bucket_name`, `cert_object`.
-
         It is generally recommended running `pulumi preview` after importing a CSS logstash cluster custom certificate.
-
         You can then decide if changes should be applied to the CSS logstash cluster custom certificate, or the resource
-
         definition should be updated to align with the CSS logstash cluster custom certificate. Also you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_custom_certificate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              bucket_name, cert_object,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LogstashCustomCertificateArgs args: The arguments to use to populate this resource's properties.

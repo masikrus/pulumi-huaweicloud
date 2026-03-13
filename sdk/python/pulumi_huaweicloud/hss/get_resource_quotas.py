@@ -123,7 +123,7 @@ def get_resource_quotas(charging_mode: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_resource_quotas(version="hss.version.basic")
+    test = huaweicloud.Hss.get_resource_quotas(version="hss.version.basic")
     ```
 
 
@@ -151,7 +151,7 @@ def get_resource_quotas(charging_mode: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getResourceQuotas:getResourceQuotas', __args__, opts=opts, typ=GetResourceQuotasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getResourceQuotas:getResourceQuotas', __args__, opts=opts, typ=GetResourceQuotasResult).value
 
     return AwaitableGetResourceQuotasResult(
         charging_mode=pulumi.get(__ret__, 'charging_mode'),
@@ -174,7 +174,7 @@ def get_resource_quotas_output(charging_mode: Optional[pulumi.Input[Optional[_bu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_resource_quotas(version="hss.version.basic")
+    test = huaweicloud.Hss.get_resource_quotas(version="hss.version.basic")
     ```
 
 
@@ -202,7 +202,7 @@ def get_resource_quotas_output(charging_mode: Optional[pulumi.Input[Optional[_bu
     __args__['region'] = region
     __args__['version'] = version
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getResourceQuotas:getResourceQuotas', __args__, opts=opts, typ=GetResourceQuotasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getResourceQuotas:getResourceQuotas', __args__, opts=opts, typ=GetResourceQuotasResult)
     return __ret__.apply(lambda __response__: GetResourceQuotasResult(
         charging_mode=pulumi.get(__response__, 'charging_mode'),
         data_lists=pulumi.get(__response__, 'data_lists'),

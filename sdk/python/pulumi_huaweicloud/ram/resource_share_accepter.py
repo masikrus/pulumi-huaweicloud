@@ -23,6 +23,7 @@ class ResourceShareAccepterArgs:
                  resource_share_invitation_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ResourceShareAccepter resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action to be taken for resource share invitation.
                The value can be **accept** or **reject**.
         :param pulumi.Input[_builtins.str] resource_share_invitation_id: Specifies the ID of the resource share invitation.
@@ -63,6 +64,7 @@ class _ResourceShareAccepterState:
                  resource_share_invitation_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResourceShareAccepter resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action to be taken for resource share invitation.
                The value can be **accept** or **reject**.
         :param pulumi.Input[_builtins.str] resource_share_invitation_id: Specifies the ID of the resource share invitation.
@@ -98,7 +100,7 @@ class _ResourceShareAccepterState:
         pulumi.set(self, "resource_share_invitation_id", value)
 
 
-@pulumi.type_token("huaweicloud:ram/resourceShareAccepter:ResourceShareAccepter")
+@pulumi.type_token("huaweicloud:Ram/resourceShareAccepter:ResourceShareAccepter")
 class ResourceShareAccepter(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -123,6 +125,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
             resource_share_invitation_id=invitation_id,
             action=action)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -152,6 +155,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
             resource_share_invitation_id=invitation_id,
             action=action)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceShareAccepterArgs args: The arguments to use to populate this resource's properties.
@@ -186,7 +190,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
                 raise TypeError("Missing required property 'resource_share_invitation_id'")
             __props__.__dict__["resource_share_invitation_id"] = resource_share_invitation_id
         super(ResourceShareAccepter, __self__).__init__(
-            'huaweicloud:ram/resourceShareAccepter:ResourceShareAccepter',
+            'huaweicloud:Ram/resourceShareAccepter:ResourceShareAccepter',
             resource_name,
             __props__,
             opts)

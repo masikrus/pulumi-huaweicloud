@@ -62,7 +62,7 @@ class GetDomainsResult:
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> Optional[_builtins.str]:
         """
-        The status of accelerate domain.
+        The status of the domain.
         """
         return pulumi.get(self, "domain_status")
 
@@ -70,7 +70,7 @@ class GetDomainsResult:
     @pulumi.getter
     def domains(self) -> Sequence['outputs.GetDomainsDomainResult']:
         """
-        A list of CDN domains.
+        The list of domains that matched filter parameters.  
         The domains structure is documented below.
         """
         return pulumi.get(self, "domains")
@@ -79,7 +79,7 @@ class GetDomainsResult:
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[_builtins.str]:
         """
-        The enterprise project ID.
+        The ID of the enterprise project to which the resource belongs.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -95,7 +95,7 @@ class GetDomainsResult:
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        The name of accelerate domain.
+        The name of the domain.
         """
         return pulumi.get(self, "name")
 
@@ -103,7 +103,7 @@ class GetDomainsResult:
     @pulumi.getter(name="serviceArea")
     def service_area(self) -> Optional[_builtins.str]:
         """
-        The area covered by the accelerate service.
+        The accelerated coverage area for the domain.
         """
         return pulumi.get(self, "service_area")
 
@@ -111,7 +111,7 @@ class GetDomainsResult:
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        The business type of accelerate domain.
+        The business type of the domain.
         """
         return pulumi.get(self, "type")
 
@@ -140,7 +140,7 @@ def get_domains(domain_id: Optional[_builtins.str] = None,
                 type: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainsResult:
     """
-    Use this data source to get a list of CDN domains.
+    Use this data source to get a list of CDN domains within HuaweiCloud.
 
     ## Example Usage
 
@@ -154,20 +154,30 @@ def get_domains(domain_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str domain_id: Specifies the ID of accelerate domain.
-    :param _builtins.str domain_status: Specifies the status of accelerate domain.
-           The valid value can be **online**, **offline**, **configuring**, **configuring_failed**, **checking**,
-           **check_failed** or **deleting**.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project ID of the CDN domain.
+    :param _builtins.str domain_id: Specifies the ID of the domain.
+    :param _builtins.str domain_status: Specifies the status of the domain.  
+           The valid values are as follows:
+           + **online**
+           + **offline**
+           + **configuring**
+           + **configuring_failed**
+           + **checking**
+           + **check_failed**
+           + **deleting**
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource
+           belongs.
            When the user turns on the enterprise project function, this parameter takes effect,
            indicating that the project to which the resource belongs is queried.
            "all" indicates all projects.
-    :param _builtins.str name: Specifies the name of accelerate domain, using fuzzy matching.
+    :param _builtins.str name: Specifies the name of the domain, using fuzzy matching.  
            The valid length is limited from `1` to `255`.
-    :param _builtins.str service_area: Specifies the area covered by the accelerate service.
-           The valid value can be **mainland_china**, **outside_mainland_china** or **global**.
-    :param _builtins.str type: Specifies the business type of accelerate domain.
-           The valid values are as follows;
+    :param _builtins.str service_area: Specifies the accelerated coverage area for the domain.  
+           The valid values are as follows:
+           + **mainland_china**
+           + **outside_mainland_china**
+           + **global**
+    :param _builtins.str type: Specifies the business type of the domain.  
+           The valid values are as follows:
            + **web**: Accelerate for the website.
            + **download**: Accelerate for file downloads.
            + **video**: Accelerate for on-demand.
@@ -200,7 +210,7 @@ def get_domains_output(domain_id: Optional[pulumi.Input[Optional[_builtins.str]]
                        type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainsResult]:
     """
-    Use this data source to get a list of CDN domains.
+    Use this data source to get a list of CDN domains within HuaweiCloud.
 
     ## Example Usage
 
@@ -214,20 +224,30 @@ def get_domains_output(domain_id: Optional[pulumi.Input[Optional[_builtins.str]]
     ```
 
 
-    :param _builtins.str domain_id: Specifies the ID of accelerate domain.
-    :param _builtins.str domain_status: Specifies the status of accelerate domain.
-           The valid value can be **online**, **offline**, **configuring**, **configuring_failed**, **checking**,
-           **check_failed** or **deleting**.
-    :param _builtins.str enterprise_project_id: Specifies the enterprise project ID of the CDN domain.
+    :param _builtins.str domain_id: Specifies the ID of the domain.
+    :param _builtins.str domain_status: Specifies the status of the domain.  
+           The valid values are as follows:
+           + **online**
+           + **offline**
+           + **configuring**
+           + **configuring_failed**
+           + **checking**
+           + **check_failed**
+           + **deleting**
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource
+           belongs.
            When the user turns on the enterprise project function, this parameter takes effect,
            indicating that the project to which the resource belongs is queried.
            "all" indicates all projects.
-    :param _builtins.str name: Specifies the name of accelerate domain, using fuzzy matching.
+    :param _builtins.str name: Specifies the name of the domain, using fuzzy matching.  
            The valid length is limited from `1` to `255`.
-    :param _builtins.str service_area: Specifies the area covered by the accelerate service.
-           The valid value can be **mainland_china**, **outside_mainland_china** or **global**.
-    :param _builtins.str type: Specifies the business type of accelerate domain.
-           The valid values are as follows;
+    :param _builtins.str service_area: Specifies the accelerated coverage area for the domain.  
+           The valid values are as follows:
+           + **mainland_china**
+           + **outside_mainland_china**
+           + **global**
+    :param _builtins.str type: Specifies the business type of the domain.  
+           The valid values are as follows:
            + **web**: Accelerate for the website.
            + **download**: Accelerate for file downloads.
            + **video**: Accelerate for on-demand.

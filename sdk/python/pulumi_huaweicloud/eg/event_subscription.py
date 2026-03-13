@@ -29,6 +29,7 @@ class EventSubscriptionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventSubscription resource.
+
         :param pulumi.Input[_builtins.str] channel_id: Specifies the channel ID to which the event subscription belongs.
                Changing this will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['EventSubscriptionSourceArgs']]] sources: Specifies the list of the event sources.
@@ -151,6 +152,7 @@ class _EventSubscriptionState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EventSubscription resources.
+
         :param pulumi.Input[_builtins.str] channel_id: Specifies the channel ID to which the event subscription belongs.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] created_at: The (UTC) creation time of the event target, in RFC3339 format.
@@ -485,11 +487,10 @@ class EventSubscription(pulumi.CustomResource):
 
         Subscriptions can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/eventSubscription:EventSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -680,11 +681,10 @@ class EventSubscription(pulumi.CustomResource):
 
         Subscriptions can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:eg/eventSubscription:EventSubscription test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventSubscriptionArgs args: The arguments to use to populate this resource's properties.

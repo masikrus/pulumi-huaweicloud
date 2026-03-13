@@ -26,6 +26,7 @@ class PlaybookInstanceOperationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PlaybookInstanceOperation resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the version ID of the playbook.
         :param pulumi.Input[_builtins.str] operation: Specifies the operation of the playbook instance.
                The value can be **RETRY** or **TERMINATE**.
@@ -113,6 +114,7 @@ class _PlaybookInstanceOperationState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookInstanceOperation resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the version ID of the playbook.
         :param pulumi.Input[_builtins.str] operation: Specifies the operation of the playbook instance.
                The value can be **RETRY** or **TERMINATE**.
@@ -193,7 +195,7 @@ class _PlaybookInstanceOperationState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookInstanceOperation:PlaybookInstanceOperation")
+@pulumi.type_token("huaweicloud:Secmaster/playbookInstanceOperation:PlaybookInstanceOperation")
 class PlaybookInstanceOperation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -225,6 +227,7 @@ class PlaybookInstanceOperation(pulumi.CustomResource):
             instance_id=instance_id,
             operation=operation)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -262,6 +265,7 @@ class PlaybookInstanceOperation(pulumi.CustomResource):
             instance_id=instance_id,
             operation=operation)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookInstanceOperationArgs args: The arguments to use to populate this resource's properties.
@@ -304,7 +308,7 @@ class PlaybookInstanceOperation(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(PlaybookInstanceOperation, __self__).__init__(
-            'huaweicloud:secmaster/playbookInstanceOperation:PlaybookInstanceOperation',
+            'huaweicloud:Secmaster/playbookInstanceOperation:PlaybookInstanceOperation',
             resource_name,
             __props__,
             opts)

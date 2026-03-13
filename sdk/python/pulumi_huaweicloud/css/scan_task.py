@@ -28,6 +28,7 @@ class ScanTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScanTask resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies ID of the CSS cluster.
                Changing this creates a new resource.
         :param pulumi.Input['ScanTaskAlarmArgs'] alarm: Specifies sending SMN alarm message configuration
@@ -143,6 +144,7 @@ class _ScanTaskState:
                  task_risks: Optional[pulumi.Input[Sequence[pulumi.Input['ScanTaskTaskRiskArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScanTask resources.
+
         :param pulumi.Input['ScanTaskAlarmArgs'] alarm: Specifies sending SMN alarm message configuration
                after the cluster scan task is completed.
                Changing this creates a new resource.
@@ -370,39 +372,16 @@ class ScanTask(pulumi.CustomResource):
 
         The CSS cluster scan task can be imported using `cluster_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/scanTask:ScanTask test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `alarm`.
-
         It is generally recommended running `pulumi preview` after importing a scan task.
-
         You can then decide if changes should be applied to the scan task, or the resource definition should be updated to align
-
         with the scan task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_scan_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              alarm,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -450,39 +429,16 @@ class ScanTask(pulumi.CustomResource):
 
         The CSS cluster scan task can be imported using `cluster_id` and `name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/scanTask:ScanTask test <cluster_id>/<name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `alarm`.
-
         It is generally recommended running `pulumi preview` after importing a scan task.
-
         You can then decide if changes should be applied to the scan task, or the resource definition should be updated to align
-
         with the scan task. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_scan_task" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              alarm,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ScanTaskArgs args: The arguments to use to populate this resource's properties.

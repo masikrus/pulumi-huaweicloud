@@ -91,7 +91,7 @@ def get_antivirus_pay_per_scan_switch_status(enterprise_project_id: Optional[_bu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_pay_per_scan_switch_status()
+    test = huaweicloud.Hss.get_antivirus_pay_per_scan_switch_status()
     ```
 
 
@@ -108,7 +108,7 @@ def get_antivirus_pay_per_scan_switch_status(enterprise_project_id: Optional[_bu
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAntivirusPayPerScanSwitchStatus:getAntivirusPayPerScanSwitchStatus', __args__, opts=opts, typ=GetAntivirusPayPerScanSwitchStatusResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAntivirusPayPerScanSwitchStatus:getAntivirusPayPerScanSwitchStatus', __args__, opts=opts, typ=GetAntivirusPayPerScanSwitchStatusResult).value
 
     return AwaitableGetAntivirusPayPerScanSwitchStatusResult(
         enabled=pulumi.get(__ret__, 'enabled'),
@@ -127,7 +127,7 @@ def get_antivirus_pay_per_scan_switch_status_output(enterprise_project_id: Optio
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_pay_per_scan_switch_status()
+    test = huaweicloud.Hss.get_antivirus_pay_per_scan_switch_status()
     ```
 
 
@@ -144,7 +144,7 @@ def get_antivirus_pay_per_scan_switch_status_output(enterprise_project_id: Optio
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAntivirusPayPerScanSwitchStatus:getAntivirusPayPerScanSwitchStatus', __args__, opts=opts, typ=GetAntivirusPayPerScanSwitchStatusResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAntivirusPayPerScanSwitchStatus:getAntivirusPayPerScanSwitchStatus', __args__, opts=opts, typ=GetAntivirusPayPerScanSwitchStatusResult)
     return __ret__.apply(lambda __response__: GetAntivirusPayPerScanSwitchStatusResult(
         enabled=pulumi.get(__response__, 'enabled'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

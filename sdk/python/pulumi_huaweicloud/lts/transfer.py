@@ -27,6 +27,7 @@ class TransferArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Transfer resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Log group ID.
                
                Changing this parameter will create a new resource.
@@ -118,6 +119,7 @@ class _TransferState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Transfer resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the log transfer, in RFC3339 format.
         :param pulumi.Input[_builtins.str] log_group_id: Log group ID.
                
@@ -415,41 +417,17 @@ class Transfer(pulumi.CustomResource):
 
         The LTS transfer task can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/transfer:Transfer test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `log_transfer_info.0.log_transfer_detail.0.invalid_field_value`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_transfer" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              log_transfer_info.0.log_transfer_detail.0.invalid_field_value
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -647,41 +625,17 @@ class Transfer(pulumi.CustomResource):
 
         The LTS transfer task can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/transfer:Transfer test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `log_transfer_info.0.log_transfer_detail.0.invalid_field_value`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_transfer" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              log_transfer_info.0.log_transfer_detail.0.invalid_field_value
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param TransferArgs args: The arguments to use to populate this resource's properties.

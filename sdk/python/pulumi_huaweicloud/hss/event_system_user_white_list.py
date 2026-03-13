@@ -28,6 +28,7 @@ class EventSystemUserWhiteListArgs:
                  remarks: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventSystemUserWhiteList resource.
+
         :param pulumi.Input[_builtins.str] host_id: Specifies the host ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] system_user_name_lists: Specifies the list of system user-names to be added to the white list.
         :param pulumi.Input[_builtins.bool] delete_all: Specifies whether to delete all system user white lists. When set to `true`, all
@@ -161,6 +162,7 @@ class _EventSystemUserWhiteListState:
                  update_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering EventSystemUserWhiteList resources.
+
         :param pulumi.Input[_builtins.bool] delete_all: Specifies whether to delete all system user white lists. When set to `true`, all
                system user white lists under HSS will be deleted.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.  
@@ -354,7 +356,7 @@ class _EventSystemUserWhiteListState:
         pulumi.set(self, "update_time", value)
 
 
-@pulumi.type_token("huaweicloud:hss/eventSystemUserWhiteList:EventSystemUserWhiteList")
+@pulumi.type_token("huaweicloud:Hss/eventSystemUserWhiteList:EventSystemUserWhiteList")
 class EventSystemUserWhiteList(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -391,39 +393,16 @@ class EventSystemUserWhiteList(pulumi.CustomResource):
 
         The HSS event system user white list can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/eventSystemUserWhiteList:EventSystemUserWhiteList test <host_id>
+        $ pulumi import huaweicloud:Hss/eventSystemUserWhiteList:EventSystemUserWhiteList test <host_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`, `delete_all`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_event_system_user_white_list" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, delete_all,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -470,39 +449,16 @@ class EventSystemUserWhiteList(pulumi.CustomResource):
 
         The HSS event system user white list can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/eventSystemUserWhiteList:EventSystemUserWhiteList test <host_id>
+        $ pulumi import huaweicloud:Hss/eventSystemUserWhiteList:EventSystemUserWhiteList test <host_id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `enterprise_project_id`, `delete_all`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_event_system_user_white_list" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              enterprise_project_id, delete_all,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param EventSystemUserWhiteListArgs args: The arguments to use to populate this resource's properties.
@@ -552,7 +508,7 @@ class EventSystemUserWhiteList(pulumi.CustomResource):
             __props__.__dict__["public_ip"] = None
             __props__.__dict__["update_time"] = None
         super(EventSystemUserWhiteList, __self__).__init__(
-            'huaweicloud:hss/eventSystemUserWhiteList:EventSystemUserWhiteList',
+            'huaweicloud:Hss/eventSystemUserWhiteList:EventSystemUserWhiteList',
             resource_name,
             __props__,
             opts)

@@ -23,6 +23,7 @@ class AccountInviteArgs:
                  remove_account_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AccountInvite resource.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the target account.
                
                Changing this parameter will create a new resource.
@@ -64,6 +65,7 @@ class AccountInviteArgs:
 @pulumi.input_type
 class _AccountInviteState:
     def __init__(__self__, *,
+                 account_invite_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  master_account_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -71,10 +73,11 @@ class _AccountInviteState:
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  remove_account_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountInvite resources.
+
+        :param pulumi.Input[_builtins.str] account_invite_urn: Indicates the uniform resource name of the invitation
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the target account.
                
                Changing this parameter will create a new resource.
@@ -87,8 +90,9 @@ class _AccountInviteState:
         :param pulumi.Input[_builtins.str] status: Indicates the current state of the invitation (handshake).
         :param pulumi.Input[_builtins.str] updated_at: Indicates the date and time when an invitation (handshake) request was accepted, canceled,
                declined, or expired.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the invitation
         """
+        if account_invite_urn is not None:
+            pulumi.set(__self__, "account_invite_urn", account_invite_urn)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
         if created_at is not None:
@@ -105,8 +109,18 @@ class _AccountInviteState:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountInviteUrn")
+    def account_invite_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the invitation
+        """
+        return pulumi.get(self, "account_invite_urn")
+
+    @account_invite_urn.setter
+    def account_invite_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_invite_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -208,20 +222,8 @@ class _AccountInviteState:
     def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the invitation
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/accountInvite:AccountInvite")
+@pulumi.type_token("huaweicloud:Organizations/accountInvite:AccountInvite")
 class AccountInvite(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -248,39 +250,16 @@ class AccountInvite(pulumi.CustomResource):
 
         The Organizations account invite can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountInvite:AccountInvite test <id>
+        $ pulumi import huaweicloud:Organizations/accountInvite:AccountInvite test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `remove_account_on_destroy`. It is
-
         generally recommended running `pulumi preview` after importing an account invite. You can then decide if changes should
-
         be applied to the account invite, or the resource definition should be updated to align with the account invite.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account_invite" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              remove_account_on_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -314,39 +293,16 @@ class AccountInvite(pulumi.CustomResource):
 
         The Organizations account invite can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountInvite:AccountInvite test <id>
+        $ pulumi import huaweicloud:Organizations/accountInvite:AccountInvite test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `remove_account_on_destroy`. It is
-
         generally recommended running `pulumi preview` after importing an account invite. You can then decide if changes should
-
         be applied to the account invite, or the resource definition should be updated to align with the account invite.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_organizations_account_invite" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              remove_account_on_destroy,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AccountInviteArgs args: The arguments to use to populate this resource's properties.
@@ -378,15 +334,15 @@ class AccountInvite(pulumi.CustomResource):
                 raise TypeError("Missing required property 'account_id'")
             __props__.__dict__["account_id"] = account_id
             __props__.__dict__["remove_account_on_destroy"] = remove_account_on_destroy
+            __props__.__dict__["account_invite_urn"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["master_account_id"] = None
             __props__.__dict__["master_account_name"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["urn"] = None
         super(AccountInvite, __self__).__init__(
-            'huaweicloud:organizations/accountInvite:AccountInvite',
+            'huaweicloud:Organizations/accountInvite:AccountInvite',
             resource_name,
             __props__,
             opts)
@@ -395,6 +351,7 @@ class AccountInvite(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_invite_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             master_account_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -402,8 +359,7 @@ class AccountInvite(pulumi.CustomResource):
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
             remove_account_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountInvite':
+            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountInvite':
         """
         Get an existing AccountInvite resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -411,6 +367,7 @@ class AccountInvite(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] account_invite_urn: Indicates the uniform resource name of the invitation
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the target account.
                
                Changing this parameter will create a new resource.
@@ -423,12 +380,12 @@ class AccountInvite(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status: Indicates the current state of the invitation (handshake).
         :param pulumi.Input[_builtins.str] updated_at: Indicates the date and time when an invitation (handshake) request was accepted, canceled,
                declined, or expired.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the invitation
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountInviteState.__new__(_AccountInviteState)
 
+        __props__.__dict__["account_invite_urn"] = account_invite_urn
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["master_account_id"] = master_account_id
@@ -437,8 +394,15 @@ class AccountInvite(pulumi.CustomResource):
         __props__.__dict__["remove_account_on_destroy"] = remove_account_on_destroy
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
-        __props__.__dict__["urn"] = urn
         return AccountInvite(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountInviteUrn")
+    def account_invite_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the invitation
+        """
+        return pulumi.get(self, "account_invite_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -507,12 +471,4 @@ class AccountInvite(pulumi.CustomResource):
         declined, or expired.
         """
         return pulumi.get(self, "updated_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the invitation
-        """
-        return pulumi.get(self, "urn")
 

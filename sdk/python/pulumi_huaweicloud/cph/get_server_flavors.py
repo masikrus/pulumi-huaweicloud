@@ -126,7 +126,7 @@ def get_server_flavors(memory: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    flavor = huaweicloud.cph.get_server_flavors(type="0")
+    flavor = huaweicloud.Cph.get_server_flavors(type="0")
     ```
 
 
@@ -146,7 +146,7 @@ def get_server_flavors(memory: Optional[_builtins.int] = None,
     __args__['type'] = type
     __args__['vcpus'] = vcpus
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:cph/getServerFlavors:getServerFlavors', __args__, opts=opts, typ=GetServerFlavorsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Cph/getServerFlavors:getServerFlavors', __args__, opts=opts, typ=GetServerFlavorsResult).value
 
     return AwaitableGetServerFlavorsResult(
         flavors=pulumi.get(__ret__, 'flavors'),
@@ -169,7 +169,7 @@ def get_server_flavors_output(memory: Optional[pulumi.Input[Optional[_builtins.i
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    flavor = huaweicloud.cph.get_server_flavors(type="0")
+    flavor = huaweicloud.Cph.get_server_flavors(type="0")
     ```
 
 
@@ -189,7 +189,7 @@ def get_server_flavors_output(memory: Optional[pulumi.Input[Optional[_builtins.i
     __args__['type'] = type
     __args__['vcpus'] = vcpus
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:cph/getServerFlavors:getServerFlavors', __args__, opts=opts, typ=GetServerFlavorsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Cph/getServerFlavors:getServerFlavors', __args__, opts=opts, typ=GetServerFlavorsResult)
     return __ret__.apply(lambda __response__: GetServerFlavorsResult(
         flavors=pulumi.get(__response__, 'flavors'),
         id=pulumi.get(__response__, 'id'),

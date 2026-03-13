@@ -32,6 +32,7 @@ class PolicyAssignmentArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PolicyAssignment resource.
+
         :param pulumi.Input['PolicyAssignmentCustomPolicyArgs'] custom_policy: Specifies the configuration of the custom policy.  
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the policy assignment, which contain maximum of
@@ -233,6 +234,7 @@ class _PolicyAssignmentState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PolicyAssignment resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the policy assignment.
         :param pulumi.Input['PolicyAssignmentCustomPolicyArgs'] custom_policy: Specifies the configuration of the custom policy.  
                The object structure is documented below.
@@ -468,7 +470,7 @@ class _PolicyAssignmentState:
         pulumi.set(self, "updated_at", value)
 
 
-@pulumi.type_token("huaweicloud:rms/policyAssignment:PolicyAssignment")
+@pulumi.type_token("huaweicloud:Rms/policyAssignment:PolicyAssignment")
 class PolicyAssignment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -522,11 +524,10 @@ class PolicyAssignment(pulumi.CustomResource):
 
         Policy assignments can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/policyAssignment:PolicyAssignment test 63f48e3762ce955981ab7e25
+        $ pulumi import huaweicloud:Rms/policyAssignment:PolicyAssignment test 63f48e3762ce955981ab7e25
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -607,11 +608,10 @@ class PolicyAssignment(pulumi.CustomResource):
 
         Policy assignments can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/policyAssignment:PolicyAssignment test 63f48e3762ce955981ab7e25
+        $ pulumi import huaweicloud:Rms/policyAssignment:PolicyAssignment test 63f48e3762ce955981ab7e25
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyAssignmentArgs args: The arguments to use to populate this resource's properties.
@@ -659,7 +659,7 @@ class PolicyAssignment(pulumi.CustomResource):
             __props__.__dict__["type"] = None
             __props__.__dict__["updated_at"] = None
         super(PolicyAssignment, __self__).__init__(
-            'huaweicloud:rms/policyAssignment:PolicyAssignment',
+            'huaweicloud:Rms/policyAssignment:PolicyAssignment',
             resource_name,
             __props__,
             opts)

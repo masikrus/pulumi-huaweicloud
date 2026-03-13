@@ -27,6 +27,7 @@ class SubscriptionFilterPolicyInitArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SubscriptionFilterPolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionFilterPolicyFilterPolicyArgs']]] filter_policies: Specifies the message filter policies of a subscriber.
                The filter_policies structure is documented below.
                
@@ -105,6 +106,7 @@ class _SubscriptionFilterPolicyState:
                  subscription_urn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubscriptionFilterPolicy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionFilterPolicyFilterPolicyArgs']]] filter_policies: Specifies the message filter policies of a subscriber.
                The filter_policies structure is documented below.
                
@@ -213,11 +215,10 @@ class SubscriptionFilterPolicy(pulumi.CustomResource):
 
         The SMN subscription filter policy can be imported using `subscription_urn`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/subscriptionFilterPolicy:SubscriptionFilterPolicy test <subscription_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -263,11 +264,10 @@ class SubscriptionFilterPolicy(pulumi.CustomResource):
 
         The SMN subscription filter policy can be imported using `subscription_urn`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Smn/subscriptionFilterPolicy:SubscriptionFilterPolicy test <subscription_urn>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SubscriptionFilterPolicyInitArgs args: The arguments to use to populate this resource's properties.

@@ -16,6 +16,13 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'GetImageSharedMembersMemberResult',
+    'GetImagesByTagsMatchResult',
+    'GetImagesByTagsNotTagResult',
+    'GetImagesByTagsNotTagsAnyResult',
+    'GetImagesByTagsResourceResult',
+    'GetImagesByTagsTagResult',
+    'GetImagesByTagsTagsAnyResult',
     'GetImagesImageResult',
     'GetOsVersionsOsVersionResult',
     'GetOsVersionsOsVersionVersionResult',
@@ -23,6 +30,313 @@ __all__ = [
     'GetQuotasQuotaResourceResult',
     'GetTagsTagResult',
 ]
+
+@pulumi.output_type
+class GetImageSharedMembersMemberResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 image_id: _builtins.str,
+                 member_id: _builtins.str,
+                 member_type: _builtins.str,
+                 schema: _builtins.str,
+                 status: _builtins.str,
+                 updated_at: _builtins.str,
+                 urn: _builtins.str):
+        """
+        :param _builtins.str created_at: Indicates the shared time.
+        :param _builtins.str image_id: Specifies the image ID.
+        :param _builtins.str member_id: Indicates the member ID.
+        :param _builtins.str member_type: Indicates the member type.
+        :param _builtins.str schema: Indicates the schema.
+        :param _builtins.str status: Indicates the shared status.
+        :param _builtins.str updated_at: Indicates the update time.
+        :param _builtins.str urn: Indicates the shared organization urn.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "member_id", member_id)
+        pulumi.set(__self__, "member_type", member_type)
+        pulumi.set(__self__, "schema", schema)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Indicates the shared time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        Specifies the image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="memberId")
+    def member_id(self) -> _builtins.str:
+        """
+        Indicates the member ID.
+        """
+        return pulumi.get(self, "member_id")
+
+    @_builtins.property
+    @pulumi.getter(name="memberType")
+    def member_type(self) -> _builtins.str:
+        """
+        Indicates the member type.
+        """
+        return pulumi.get(self, "member_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def schema(self) -> _builtins.str:
+        """
+        Indicates the schema.
+        """
+        return pulumi.get(self, "schema")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Indicates the shared status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Indicates the update time.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def urn(self) -> _builtins.str:
+        """
+        Indicates the shared organization urn.
+        """
+        return pulumi.get(self, "urn")
+
+
+@pulumi.output_type
+class GetImagesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the tag value.
+               
+               <a name="tags_struct"></a>
+               The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+
+        <a name="tags_struct"></a>
+        The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetImagesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetImagesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetImagesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_detail: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Mapping[str, _builtins.str]):
+        """
+        :param _builtins.str resource_detail: Indicates the provides details about the resource.
+        :param _builtins.str resource_id: Indicates the resource ID.
+        :param _builtins.str resource_name: Indicates the resource name.
+        :param Mapping[str, _builtins.str] tags: Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+               a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+               Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+               are in AND relationship, and values in one tag are in OR relationship. If no tag filtering criteria is specified, full
+               data is returned.
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_detail", resource_detail)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetail")
+    def resource_detail(self) -> _builtins.str:
+        """
+        Indicates the provides details about the resource.
+        """
+        return pulumi.get(self, "resource_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        Indicates the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+        a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+        Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+        are in AND relationship, and values in one tag are in OR relationship. If no tag filtering criteria is specified, full
+        data is returned.
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetImagesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetImagesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
 
 @pulumi.output_type
 class GetImagesImageResult(dict):

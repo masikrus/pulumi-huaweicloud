@@ -36,6 +36,7 @@ class FileSystemArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FileSystem resource.
+
         :param pulumi.Input[_builtins.int] size: Specifies the size (GB) of the shared file system.
         :param pulumi.Input[_builtins.str] access_level: Specifies the access level of the shared file system. Possible values are *ro* (
                read-only)
@@ -300,6 +301,7 @@ class _FileSystemState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering FileSystem resources.
+
         :param pulumi.Input[_builtins.str] access_level: Specifies the access level of the shared file system. Possible values are *ro* (
                read-only)
                and *rw* (read-write). The default value is *rw* (read/write). Changing this will create a new access rule.
@@ -690,13 +692,13 @@ class FileSystem(pulumi.CustomResource):
 
         SFS can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Sfs/fileSystem:FileSystem huaweicloud_sfs_file_system 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+        $ terraform import huaweicloud_sfs_file_system 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
 
+        **NOTE:** The `access_to`, `access_type` and `access_level` will not be imported. Please importing them by
           huaweicloud_sfs_access_rule.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -795,13 +797,13 @@ class FileSystem(pulumi.CustomResource):
 
         SFS can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Sfs/fileSystem:FileSystem huaweicloud_sfs_file_system 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+        $ terraform import huaweicloud_sfs_file_system 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
 
+        **NOTE:** The `access_to`, `access_type` and `access_level` will not be imported. Please importing them by
           huaweicloud_sfs_access_rule.
+
 
         :param str resource_name: The name of the resource.
         :param FileSystemArgs args: The arguments to use to populate this resource's properties.

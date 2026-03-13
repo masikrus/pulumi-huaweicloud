@@ -160,12 +160,13 @@ def get_virtual_interfaces(direct_connect_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     direct_connect_id = config.require_object("directConnectId")
-    test = huaweicloud.dc.get_virtual_interfaces(direct_connect_id=direct_connect_id)
+    test = huaweicloud.Dc.get_virtual_interfaces(direct_connect_id=direct_connect_id)
     ```
 
 
-    :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual interface.
-    :param _builtins.str enterprise_project_id: Indicates the ID of the enterprise project
+    :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual
+           interface.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project
            that the virtual interface belongs to.
     :param _builtins.str name: Specifies the name of the virtual interface.
     :param _builtins.str region: Specifies the region in which to query the data source.
@@ -183,7 +184,7 @@ def get_virtual_interfaces(direct_connect_id: Optional[_builtins.str] = None,
     __args__['vgwId'] = vgw_id
     __args__['virtualInterfaceId'] = virtual_interface_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getVirtualInterfaces:getVirtualInterfaces', __args__, opts=opts, typ=GetVirtualInterfacesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getVirtualInterfaces:getVirtualInterfaces', __args__, opts=opts, typ=GetVirtualInterfacesResult).value
 
     return AwaitableGetVirtualInterfacesResult(
         direct_connect_id=pulumi.get(__ret__, 'direct_connect_id'),
@@ -214,12 +215,13 @@ def get_virtual_interfaces_output(direct_connect_id: Optional[pulumi.Input[Optio
 
     config = pulumi.Config()
     direct_connect_id = config.require_object("directConnectId")
-    test = huaweicloud.dc.get_virtual_interfaces(direct_connect_id=direct_connect_id)
+    test = huaweicloud.Dc.get_virtual_interfaces(direct_connect_id=direct_connect_id)
     ```
 
 
-    :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual interface.
-    :param _builtins.str enterprise_project_id: Indicates the ID of the enterprise project
+    :param _builtins.str direct_connect_id: Specifies the ID of the direct connection associated with the virtual
+           interface.
+    :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project
            that the virtual interface belongs to.
     :param _builtins.str name: Specifies the name of the virtual interface.
     :param _builtins.str region: Specifies the region in which to query the data source.
@@ -237,7 +239,7 @@ def get_virtual_interfaces_output(direct_connect_id: Optional[pulumi.Input[Optio
     __args__['vgwId'] = vgw_id
     __args__['virtualInterfaceId'] = virtual_interface_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getVirtualInterfaces:getVirtualInterfaces', __args__, opts=opts, typ=GetVirtualInterfacesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getVirtualInterfaces:getVirtualInterfaces', __args__, opts=opts, typ=GetVirtualInterfacesResult)
     return __ret__.apply(lambda __response__: GetVirtualInterfacesResult(
         direct_connect_id=pulumi.get(__response__, 'direct_connect_id'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

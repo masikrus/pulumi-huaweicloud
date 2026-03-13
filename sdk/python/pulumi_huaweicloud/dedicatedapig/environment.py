@@ -25,6 +25,7 @@ class EnvironmentArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Environment resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the environment
                belongs.
                Changing this will create a new resource.
@@ -112,6 +113,7 @@ class _EnvironmentState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
+
         :param pulumi.Input[_builtins.str] create_time: schema: Deprecated; The time when the environment was created.
         :param pulumi.Input[_builtins.str] created_at: The time when the environment was created.
         :param pulumi.Input[_builtins.str] description: Specifies the environment description.  
@@ -257,11 +259,10 @@ class Environment(pulumi.CustomResource):
 
         Environments can be imported using their `name` and the ID of the related dedicated instance, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/environment:Environment test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -306,11 +307,10 @@ class Environment(pulumi.CustomResource):
 
         Environments can be imported using their `name` and the ID of the related dedicated instance, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/environment:Environment test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.

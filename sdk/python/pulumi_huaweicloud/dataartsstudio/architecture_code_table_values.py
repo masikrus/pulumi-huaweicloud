@@ -32,6 +32,7 @@ class ArchitectureCodeTableValuesArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureCodeTableValues resource.
+
         :param pulumi.Input[_builtins.str] field_code: Specifies the code of the code table field.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] field_id: Specifies the ID of the code table field.
@@ -200,6 +201,7 @@ class _ArchitectureCodeTableValuesState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureCodeTableValues resources.
+
         :param pulumi.Input[_builtins.str] field_code: Specifies the code of the code table field.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] field_id: Specifies the ID of the code table field.
@@ -408,6 +410,7 @@ class ArchitectureCodeTableValues(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] field_code: Specifies the code of the code table field.
@@ -467,6 +470,7 @@ class ArchitectureCodeTableValues(pulumi.CustomResource):
                 "value": "1",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureCodeTableValuesArgs args: The arguments to use to populate this resource's properties.

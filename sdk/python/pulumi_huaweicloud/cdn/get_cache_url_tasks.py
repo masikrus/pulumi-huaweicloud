@@ -62,7 +62,9 @@ class GetCacheUrlTasksResult:
     @pulumi.getter(name="fileType")
     def file_type(self) -> Optional[_builtins.str]:
         """
-        Indicates the file type. Possible values: **file** and **directory**.
+        The file type.
+        + **file**
+        + **directory**
         """
         return pulumi.get(self, "file_type")
 
@@ -83,8 +85,13 @@ class GetCacheUrlTasksResult:
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
         """
-        Indicates the URL status. Possible values: **processing**, **succeed**, **failed**, **waiting**,
-        **refreshing**, and **preheating**.
+        The URL status.
+        + **processing**
+        + **succeed**
+        + **failed**
+        + **waiting**
+        + **refreshing**
+        + **preheating**
         """
         return pulumi.get(self, "status")
 
@@ -92,7 +99,9 @@ class GetCacheUrlTasksResult:
     @pulumi.getter(name="taskType")
     def task_type(self) -> Optional[_builtins.str]:
         """
-        Indicates the task type. Possible values: **REFRESH** (cache refresh) and **PREHEATING** (cache preheat).
+        The task type.
+        + **REFRESH**: cache refresh.
+        + **PREHEATING**: cache preheat.
         """
         return pulumi.get(self, "task_type")
 
@@ -100,7 +109,8 @@ class GetCacheUrlTasksResult:
     @pulumi.getter
     def tasks(self) -> Sequence['outputs.GetCacheUrlTasksTaskResult']:
         """
-        The list of URL task information. The tasks structure is documented below.
+        The list of URL task information that matched filter parameters.
+        The tasks structure is documented below.
         """
         return pulumi.get(self, "tasks")
 
@@ -108,7 +118,7 @@ class GetCacheUrlTasksResult:
     @pulumi.getter
     def url(self) -> Optional[_builtins.str]:
         """
-        Indicates the URL.
+        The URL.
         """
         return pulumi.get(self, "url")
 
@@ -149,14 +159,26 @@ def get_cache_url_tasks(end_time: Optional[_builtins.int] = None,
     ```
 
 
-    :param _builtins.int end_time: Specifies the end timestamp, in milliseconds. The default value is 00:00 of the next day.
-    :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-    :param _builtins.int start_time: Specifies the start timestamp, in milliseconds. The default value is 00:00 of the
-           current day.
-    :param _builtins.str status: Specifies the URL status. Possible values: **processing**, **succeed**, **failed**,
-           **waiting**, **refreshing**, and **preheating**.
-    :param _builtins.str task_type: Specifies the task type. Possible values: **REFRESH** (cache refresh) and
-           **PREHEATING** (cache preheat).
+    :param _builtins.int end_time: Specifies the end timestamp, in milliseconds.  
+           The default value is 00:00 of the next day.
+    :param _builtins.str file_type: Specifies the file type.
+           The valid values are as follows:
+           + **file**
+           + **directory**
+    :param _builtins.int start_time: Specifies the start timestamp, in milliseconds.  
+           The default value is 00:00 of the current day.
+    :param _builtins.str status: Specifies the URL status.  
+           The valid values are as follows:
+           + **processing**
+           + **succeed**
+           + **failed**
+           + **waiting**
+           + **refreshing**
+           + **preheating**
+    :param _builtins.str task_type: Specifies the task type.  
+           The valid values are as follows:
+           + **REFRESH**: cache refresh.
+           + **PREHEATING**: cache preheat.
     :param _builtins.str url: Specifies the refresh or preheat URL.
     """
     __args__ = dict()
@@ -198,14 +220,26 @@ def get_cache_url_tasks_output(end_time: Optional[pulumi.Input[Optional[_builtin
     ```
 
 
-    :param _builtins.int end_time: Specifies the end timestamp, in milliseconds. The default value is 00:00 of the next day.
-    :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-    :param _builtins.int start_time: Specifies the start timestamp, in milliseconds. The default value is 00:00 of the
-           current day.
-    :param _builtins.str status: Specifies the URL status. Possible values: **processing**, **succeed**, **failed**,
-           **waiting**, **refreshing**, and **preheating**.
-    :param _builtins.str task_type: Specifies the task type. Possible values: **REFRESH** (cache refresh) and
-           **PREHEATING** (cache preheat).
+    :param _builtins.int end_time: Specifies the end timestamp, in milliseconds.  
+           The default value is 00:00 of the next day.
+    :param _builtins.str file_type: Specifies the file type.
+           The valid values are as follows:
+           + **file**
+           + **directory**
+    :param _builtins.int start_time: Specifies the start timestamp, in milliseconds.  
+           The default value is 00:00 of the current day.
+    :param _builtins.str status: Specifies the URL status.  
+           The valid values are as follows:
+           + **processing**
+           + **succeed**
+           + **failed**
+           + **waiting**
+           + **refreshing**
+           + **preheating**
+    :param _builtins.str task_type: Specifies the task type.  
+           The valid values are as follows:
+           + **REFRESH**: cache refresh.
+           + **PREHEATING**: cache preheat.
     :param _builtins.str url: Specifies the refresh or preheat URL.
     """
     __args__ = dict()

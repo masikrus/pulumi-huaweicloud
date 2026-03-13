@@ -91,7 +91,8 @@ class GetInstancesResult:
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetInstancesInstanceResult']:
         """
-        The result of the query's list of kafka instances. The structure is documented below.
+        The list of instances that match the filter parameters.  
+        The instances structure is documented below.
         """
         return pulumi.get(self, "instances")
 
@@ -105,7 +106,7 @@ class GetInstancesResult:
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
+    def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
 
     @_builtins.property
@@ -143,7 +144,7 @@ def get_instances(enterprise_project_id: Optional[_builtins.str] = None,
                   status: Optional[_builtins.str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
-    Use this data source to query the available instances within HuaweiCloud DMS service.
+    Use this data source to query Kafka instance list within HuaweiCloud.
 
     ## Example Usage
 
@@ -173,6 +174,8 @@ def get_instances(enterprise_project_id: Optional[_builtins.str] = None,
 
     :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which all instances of the list
            belong.
+           This field is only valid for enterprise users. For enterprise users, if omitted, all instances under the enterprise
+           project will be queried.
     :param _builtins.bool fuzzy_match: Specifies whether to match the instance name fuzzily, the default is a exact
            match (`flase`).
     :param _builtins.bool include_failure: Specifies whether the query results contain instances that failed to create.
@@ -212,7 +215,7 @@ def get_instances_output(enterprise_project_id: Optional[pulumi.Input[Optional[_
                          status: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancesResult]:
     """
-    Use this data source to query the available instances within HuaweiCloud DMS service.
+    Use this data source to query Kafka instance list within HuaweiCloud.
 
     ## Example Usage
 
@@ -242,6 +245,8 @@ def get_instances_output(enterprise_project_id: Optional[pulumi.Input[Optional[_
 
     :param _builtins.str enterprise_project_id: Specifies the enterprise project ID to which all instances of the list
            belong.
+           This field is only valid for enterprise users. For enterprise users, if omitted, all instances under the enterprise
+           project will be queried.
     :param _builtins.bool fuzzy_match: Specifies whether to match the instance name fuzzily, the default is a exact
            match (`flase`).
     :param _builtins.bool include_failure: Specifies whether the query results contain instances that failed to create.

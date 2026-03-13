@@ -24,6 +24,7 @@ class OpengaussInstanceNodeStopArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussInstanceNodeStop resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the GaussDB OpenGauss instance node that needs to be stopped.
@@ -84,6 +85,7 @@ class _OpengaussInstanceNodeStopState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussInstanceNodeStop resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the GaussDB OpenGauss instance node that needs to be stopped.
@@ -165,6 +167,7 @@ class OpengaussInstanceNodeStop(pulumi.CustomResource):
             node_id=node_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB OpenGauss instance. Changing this parameter
@@ -196,6 +199,7 @@ class OpengaussInstanceNodeStop(pulumi.CustomResource):
             instance_id=instance_id,
             node_id=node_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussInstanceNodeStopArgs args: The arguments to use to populate this resource's properties.

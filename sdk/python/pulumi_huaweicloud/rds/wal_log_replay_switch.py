@@ -25,6 +25,7 @@ class WalLogReplaySwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a WalLogReplaySwitch resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.str] pause_log_replay: Specifies whether to pause or resume WAL replay.
                Valid values are:
@@ -99,6 +100,7 @@ class _WalLogReplaySwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WalLogReplaySwitch resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
         :param pulumi.Input[_builtins.str] pause_log_replay: Specifies whether to pause or resume WAL replay.
                Valid values are:
@@ -193,6 +195,7 @@ class WalLogReplaySwitch(pulumi.CustomResource):
             pause_log_replay="true")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS PostgreSQL instance.
@@ -224,6 +227,7 @@ class WalLogReplaySwitch(pulumi.CustomResource):
             instance_id=instance_id,
             pause_log_replay="true")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WalLogReplaySwitchArgs args: The arguments to use to populate this resource's properties.

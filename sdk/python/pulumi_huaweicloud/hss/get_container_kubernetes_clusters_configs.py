@@ -118,7 +118,7 @@ def get_container_kubernetes_clusters_configs(cluster_id_lists: Optional[Sequenc
     enterprise_project_id = config.require_object("enterpriseProjectId")
     cluster_id = config.require_object("clusterId")
     cluster_name = config.require_object("clusterName")
-    test = huaweicloud.hss.get_container_kubernetes_clusters_configs(enterprise_project_id=enterprise_project_id,
+    test = huaweicloud.Hss.get_container_kubernetes_clusters_configs(enterprise_project_id=enterprise_project_id,
         cluster_info_lists=[{
             "cluster_id": cluster_id,
             "cluster_name": cluster_name,
@@ -148,7 +148,7 @@ def get_container_kubernetes_clusters_configs(cluster_id_lists: Optional[Sequenc
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getContainerKubernetesClustersConfigs:getContainerKubernetesClustersConfigs', __args__, opts=opts, typ=GetContainerKubernetesClustersConfigsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getContainerKubernetesClustersConfigs:getContainerKubernetesClustersConfigs', __args__, opts=opts, typ=GetContainerKubernetesClustersConfigsResult).value
 
     return AwaitableGetContainerKubernetesClustersConfigsResult(
         cluster_id_lists=pulumi.get(__ret__, 'cluster_id_lists'),
@@ -175,7 +175,7 @@ def get_container_kubernetes_clusters_configs_output(cluster_id_lists: Optional[
     enterprise_project_id = config.require_object("enterpriseProjectId")
     cluster_id = config.require_object("clusterId")
     cluster_name = config.require_object("clusterName")
-    test = huaweicloud.hss.get_container_kubernetes_clusters_configs(enterprise_project_id=enterprise_project_id,
+    test = huaweicloud.Hss.get_container_kubernetes_clusters_configs(enterprise_project_id=enterprise_project_id,
         cluster_info_lists=[{
             "cluster_id": cluster_id,
             "cluster_name": cluster_name,
@@ -205,7 +205,7 @@ def get_container_kubernetes_clusters_configs_output(cluster_id_lists: Optional[
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getContainerKubernetesClustersConfigs:getContainerKubernetesClustersConfigs', __args__, opts=opts, typ=GetContainerKubernetesClustersConfigsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getContainerKubernetesClustersConfigs:getContainerKubernetesClustersConfigs', __args__, opts=opts, typ=GetContainerKubernetesClustersConfigsResult)
     return __ret__.apply(lambda __response__: GetContainerKubernetesClustersConfigsResult(
         cluster_id_lists=pulumi.get(__response__, 'cluster_id_lists'),
         cluster_info_lists=pulumi.get(__response__, 'cluster_info_lists'),

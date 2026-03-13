@@ -23,34 +23,59 @@ __all__ = [
     'GatewayV3SessionConfArgsDict',
     'PrivateSnatRuleTransitIpAssociationArgs',
     'PrivateSnatRuleTransitIpAssociationArgsDict',
+    'GetGatewaysByTagsMatchArgs',
+    'GetGatewaysByTagsMatchArgsDict',
+    'GetGatewaysByTagsNotTagArgs',
+    'GetGatewaysByTagsNotTagArgsDict',
+    'GetGatewaysByTagsNotTagsAnyArgs',
+    'GetGatewaysByTagsNotTagsAnyArgsDict',
+    'GetGatewaysByTagsTagArgs',
+    'GetGatewaysByTagsTagArgsDict',
+    'GetGatewaysByTagsTagsAnyArgs',
+    'GetGatewaysByTagsTagsAnyArgsDict',
+    'GetPrivateGatewaysByTagsMatchArgs',
+    'GetPrivateGatewaysByTagsMatchArgsDict',
+    'GetPrivateGatewaysByTagsNotTagArgs',
+    'GetPrivateGatewaysByTagsNotTagArgsDict',
+    'GetPrivateGatewaysByTagsNotTagsAnyArgs',
+    'GetPrivateGatewaysByTagsNotTagsAnyArgsDict',
+    'GetPrivateGatewaysByTagsTagArgs',
+    'GetPrivateGatewaysByTagsTagArgsDict',
+    'GetPrivateGatewaysByTagsTagsAnyArgs',
+    'GetPrivateGatewaysByTagsTagsAnyArgsDict',
+    'GetPrivateTransitIpsByTagsMatchArgs',
+    'GetPrivateTransitIpsByTagsMatchArgsDict',
+    'GetPrivateTransitIpsByTagsNotTagArgs',
+    'GetPrivateTransitIpsByTagsNotTagArgsDict',
+    'GetPrivateTransitIpsByTagsNotTagsAnyArgs',
+    'GetPrivateTransitIpsByTagsNotTagsAnyArgsDict',
+    'GetPrivateTransitIpsByTagsTagArgs',
+    'GetPrivateTransitIpsByTagsTagArgsDict',
+    'GetPrivateTransitIpsByTagsTagsAnyArgs',
+    'GetPrivateTransitIpsByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class GatewaySessionConfArgsDict(TypedDict):
-        icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the ICMP session expiration time, in seconds.
-        The valid value from `10` to `7,200`, default value is `10`.
-        """
-        tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the TCP session expiration time, in seconds.
-        The valid value from `40` to `7,200`, default value is `900`.
-        """
-        tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration of TIME_WAIT state when TCP connection is closed,
-        in seconds. The valid value from `0` to `1,800`, default value is `5`.
-        """
-        udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the UDP session expiration time, in seconds.
-        The valid value from `40` to `7,200`, default value is `300`.
-        """
-elif False:
-    GatewaySessionConfArgsDict: TypeAlias = Mapping[str, Any]
+class GatewaySessionConfArgsDict(TypedDict):
+    icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the ICMP session expiration time, in seconds.
+    The valid value from `10` to `7,200`, default value is `10`.
+    """
+    tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the TCP session expiration time, in seconds.
+    The valid value from `40` to `7,200`, default value is `900`.
+    """
+    tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration of TIME_WAIT state when TCP connection is closed,
+    in seconds. The valid value from `0` to `1,800`, default value is `5`.
+    """
+    udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the UDP session expiration time, in seconds.
+    The valid value from `40` to `7,200`, default value is `300`.
+    """
 
 @pulumi.input_type
 class GatewaySessionConfArgs:
@@ -131,26 +156,23 @@ class GatewaySessionConfArgs:
         pulumi.set(self, "udp_session_expire_time", value)
 
 
-if not MYPY:
-    class GatewayV2SessionConfArgsDict(TypedDict):
-        icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ICMP session expiration time.
-        """
-        tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The TCP session expiration time.
-        """
-        tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The duration of TIME_WAIT state when TCP connection is closed.
-        """
-        udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The UDP session expiration time.
-        """
-elif False:
-    GatewayV2SessionConfArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayV2SessionConfArgsDict(TypedDict):
+    icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ICMP session expiration time.
+    """
+    tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The TCP session expiration time.
+    """
+    tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The duration of TIME_WAIT state when TCP connection is closed.
+    """
+    udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The UDP session expiration time.
+    """
 
 @pulumi.input_type
 class GatewayV2SessionConfArgs:
@@ -223,30 +245,27 @@ class GatewayV2SessionConfArgs:
         pulumi.set(self, "udp_session_expire_time", value)
 
 
-if not MYPY:
-    class GatewayV3SessionConfArgsDict(TypedDict):
-        icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the ICMP session expiration time, in seconds.
-        The valid value from `10` to `7,200`, default value is `10`.
-        """
-        tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the TCP session expiration time, in seconds.
-        The valid value from `40` to `7,200`, default value is `900`.
-        """
-        tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration of TIME_WAIT state when TCP connection is closed,
-        in seconds. The valid value from `0` to `1,800`, default value is `5`.
-        """
-        udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the UDP session expiration time, in seconds.
-        The valid value from `40` to `7,200`, default value is `300`.
-        """
-elif False:
-    GatewayV3SessionConfArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayV3SessionConfArgsDict(TypedDict):
+    icmp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the ICMP session expiration time, in seconds.
+    The valid value from `10` to `7,200`, default value is `10`.
+    """
+    tcp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the TCP session expiration time, in seconds.
+    The valid value from `40` to `7,200`, default value is `900`.
+    """
+    tcp_time_wait_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration of TIME_WAIT state when TCP connection is closed,
+    in seconds. The valid value from `0` to `1,800`, default value is `5`.
+    """
+    udp_session_expire_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the UDP session expiration time, in seconds.
+    The valid value from `40` to `7,200`, default value is `300`.
+    """
 
 @pulumi.input_type
 class GatewayV3SessionConfArgs:
@@ -327,18 +346,15 @@ class GatewayV3SessionConfArgs:
         pulumi.set(self, "udp_session_expire_time", value)
 
 
-if not MYPY:
-    class PrivateSnatRuleTransitIpAssociationArgsDict(TypedDict):
-        transit_ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address of the transit IP associated with the private SNAT rule.
-        """
-        transit_ip_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the transit IP associated with the private SNAT rule.
-        """
-elif False:
-    PrivateSnatRuleTransitIpAssociationArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateSnatRuleTransitIpAssociationArgsDict(TypedDict):
+    transit_ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address of the transit IP associated with the private SNAT rule.
+    """
+    transit_ip_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the transit IP associated with the private SNAT rule.
+    """
 
 @pulumi.input_type
 class PrivateSnatRuleTransitIpAssociationArgs:
@@ -377,5 +393,1148 @@ class PrivateSnatRuleTransitIpAssociationArgs:
     @transit_ip_id.setter
     def transit_ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "transit_ip_id", value)
+
+
+class GetGatewaysByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the resource tag.
+    A value consists of up to `255` characters.
+    If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+    """
+
+@pulumi.input_type
+class GetGatewaysByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param _builtins.str value: Specifies the value of the resource tag.
+               A value consists of up to `255` characters.
+               If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the resource tag.
+        A value consists of up to `255` characters.
+        If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetGatewaysByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetGatewaysByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetGatewaysByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetGatewaysByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetGatewaysByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetGatewaysByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetGatewaysByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetGatewaysByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateGatewaysByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    value: _builtins.str
+    """
+    Specifies the value of the resource tag.
+    A value consists of up to `255` characters.
+    If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+    """
+
+@pulumi.input_type
+class GetPrivateGatewaysByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param _builtins.str value: Specifies the value of the resource tag.
+               A value consists of up to `255` characters.
+               If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the value of the resource tag.
+        A value consists of up to `255` characters.
+        If key is **resource_name**, an empty string indicates exact match and any non-empty string indicates fuzzy match.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetPrivateGatewaysByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateGatewaysByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateGatewaysByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateGatewaysByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateGatewaysByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateGatewaysByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateGatewaysByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource tag.
+    A key can only be set to **resource_name**, indicating the resource name.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+
+    > The field has the following restrictions:
+    <br/>1. The list can contain up to `10` values.
+    <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+    <br/>3. Values in this list must be unique.
+    <br/>4. Values in this list are in an OR relationship.
+    <br/>5. This list can be empty and each value can be an empty character string.
+    <br/>6. If this list is left blank, it indicates that all values are included.
+    <br/>7. The asterisk (*) is a reserved character in the system.
+    If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+    The value cannot contain only asterisks.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateGatewaysByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the resource tag.
+               A key can only be set to **resource_name**, indicating the resource name.
+        :param Sequence[_builtins.str] values: Specifies the list of values corresponding to the key.
+               
+               > The field has the following restrictions:
+               <br/>1. The list can contain up to `10` values.
+               <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+               <br/>3. Values in this list must be unique.
+               <br/>4. Values in this list are in an OR relationship.
+               <br/>5. This list can be empty and each value can be an empty character string.
+               <br/>6. If this list is left blank, it indicates that all values are included.
+               <br/>7. The asterisk (*) is a reserved character in the system.
+               If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+               The value cannot contain only asterisks.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the resource tag.
+        A key can only be set to **resource_name**, indicating the resource name.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of values corresponding to the key.
+
+        > The field has the following restrictions:
+        <br/>1. The list can contain up to `10` values.
+        <br/>2. A tag value contains up to `255` unicode characters. Spaces before and after a key will be deprecated.
+        <br/>3. Values in this list must be unique.
+        <br/>4. Values in this list are in an OR relationship.
+        <br/>5. This list can be empty and each value can be an empty character string.
+        <br/>6. If this list is left blank, it indicates that all values are included.
+        <br/>7. The asterisk (*) is a reserved character in the system.
+        If the value starts with (*), it indicates that fuzzy match is performed based on the value following (*).
+        The value cannot contain only asterisks.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateTransitIpsByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key used to search for resources.
+    """
+    value: _builtins.str
+    """
+    Specifies the tag value used to search for resources.
+    """
+
+@pulumi.input_type
+class GetPrivateTransitIpsByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the tag key used to search for resources.
+        :param _builtins.str value: Specifies the tag value used to search for resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key used to search for resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value used to search for resources.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetPrivateTransitIpsByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key used to search for resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tags values.
+    The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+    The values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateTransitIpsByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key used to search for resources.
+        :param Sequence[_builtins.str] values: Specifies the list of tags values.
+               The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+               The values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key used to search for resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of tags values.
+        The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+        The values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateTransitIpsByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key used to search for resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tags values.
+    The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+    The values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateTransitIpsByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key used to search for resources.
+        :param Sequence[_builtins.str] values: Specifies the list of tags values.
+               The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+               The values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key used to search for resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of tags values.
+        The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+        The values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateTransitIpsByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key used to search for resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tags values.
+    The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+    The values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateTransitIpsByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key used to search for resources.
+        :param Sequence[_builtins.str] values: Specifies the list of tags values.
+               The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+               The values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key used to search for resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of tags values.
+        The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+        The values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetPrivateTransitIpsByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the tag key used to search for resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of tags values.
+    The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+    The values are in the OR relationship.
+
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
+
+@pulumi.input_type
+class GetPrivateTransitIpsByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key used to search for resources.
+        :param Sequence[_builtins.str] values: Specifies the list of tags values.
+               The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+               The values are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key used to search for resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of tags values.
+        The value can be an empty array but cannot be left blank. If values is an empty array, any value can be queried.
+        The values are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

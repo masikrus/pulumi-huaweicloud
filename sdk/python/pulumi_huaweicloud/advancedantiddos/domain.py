@@ -30,6 +30,7 @@ class DomainArgs:
                  vips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Domain resource.
+
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name to be protected by AAD instance.
                The domain name must be put on record otherwise it can not be used.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID. The enterprise project
@@ -229,6 +230,7 @@ class _DomainState:
                  waf_status: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
         :param pulumi.Input[_builtins.str] cname: The cname of domain.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name to be protected by AAD instance.
                The domain name must be put on record otherwise it can not be used.
@@ -491,39 +493,16 @@ class Domain(pulumi.CustomResource):
 
         The AAD domain can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/domain:Domain test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `vips`, `port_http` and `port_https`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aad_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vips, port_http, port_https
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -583,39 +562,16 @@ class Domain(pulumi.CustomResource):
 
         The AAD domain can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:AdvancedAntiDDos/domain:Domain test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `vips`, `port_http` and `port_https`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aad_domain" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vips, port_http, port_https
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.

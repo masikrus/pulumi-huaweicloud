@@ -134,7 +134,7 @@ def get_global_gateway_route_tables(address_families: Optional[Sequence[_builtin
 
     config = pulumi.Config()
     gdgw_id = config.require_object("gdgwId")
-    test = huaweicloud.dc.get_global_gateway_route_tables(gdgw_id=gdgw_id)
+    test = huaweicloud.Dc.get_global_gateway_route_tables(gdgw_id=gdgw_id)
     ```
 
 
@@ -152,7 +152,7 @@ def get_global_gateway_route_tables(address_families: Optional[Sequence[_builtin
     __args__['nexthops'] = nexthops
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getGlobalGatewayRouteTables:getGlobalGatewayRouteTables', __args__, opts=opts, typ=GetGlobalGatewayRouteTablesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getGlobalGatewayRouteTables:getGlobalGatewayRouteTables', __args__, opts=opts, typ=GetGlobalGatewayRouteTablesResult).value
 
     return AwaitableGetGlobalGatewayRouteTablesResult(
         address_families=pulumi.get(__ret__, 'address_families'),
@@ -179,7 +179,7 @@ def get_global_gateway_route_tables_output(address_families: Optional[pulumi.Inp
 
     config = pulumi.Config()
     gdgw_id = config.require_object("gdgwId")
-    test = huaweicloud.dc.get_global_gateway_route_tables(gdgw_id=gdgw_id)
+    test = huaweicloud.Dc.get_global_gateway_route_tables(gdgw_id=gdgw_id)
     ```
 
 
@@ -197,7 +197,7 @@ def get_global_gateway_route_tables_output(address_families: Optional[pulumi.Inp
     __args__['nexthops'] = nexthops
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getGlobalGatewayRouteTables:getGlobalGatewayRouteTables', __args__, opts=opts, typ=GetGlobalGatewayRouteTablesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getGlobalGatewayRouteTables:getGlobalGatewayRouteTables', __args__, opts=opts, typ=GetGlobalGatewayRouteTablesResult)
     return __ret__.apply(lambda __response__: GetGlobalGatewayRouteTablesResult(
         address_families=pulumi.get(__response__, 'address_families'),
         destinations=pulumi.get(__response__, 'destinations'),

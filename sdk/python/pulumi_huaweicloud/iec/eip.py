@@ -26,6 +26,7 @@ class EipArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Eip resource.
+
         :param pulumi.Input[_builtins.str] site_id: Specifies the ID of IEC service site. Changing this parameter creates a new
                resource.
         :param pulumi.Input[_builtins.int] ip_version: The version of elastic IP address.
@@ -127,6 +128,7 @@ class _EipState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Eip resources.
+
         :param pulumi.Input[_builtins.str] bandwidth_id: The id of bandwidth.
         :param pulumi.Input[_builtins.str] bandwidth_name: The name of bandwidth.
         :param pulumi.Input[_builtins.str] bandwidth_share_type: Whether the bandwidth is shared or exclusive.
@@ -360,11 +362,10 @@ class Eip(pulumi.CustomResource):
 
         IEC EIPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/eip:Eip eip_test b5ad19d1-57d1-48fd-aab7-1378f9bee169
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -400,11 +401,10 @@ class Eip(pulumi.CustomResource):
 
         IEC EIPs can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/eip:Eip eip_test b5ad19d1-57d1-48fd-aab7-1378f9bee169
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipArgs args: The arguments to use to populate this resource's properties.

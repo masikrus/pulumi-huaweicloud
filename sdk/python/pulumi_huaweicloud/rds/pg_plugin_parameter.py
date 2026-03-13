@@ -26,6 +26,7 @@ class PgPluginParameterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgPluginParameter resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] values: Specifies the list of plugin parameter values.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the plugin parameter.
@@ -112,6 +113,7 @@ class _PgPluginParameterState:
                  values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PgPluginParameter resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_values: Indicates the default values of the plugin parameter.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS instance.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the plugin parameter.
@@ -251,11 +253,10 @@ class PgPluginParameter(pulumi.CustomResource):
 
         The SQL limit can be imported using the `instance_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgPluginParameter:PgPluginParameter test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,11 +293,10 @@ class PgPluginParameter(pulumi.CustomResource):
 
         The SQL limit can be imported using the `instance_id` and `name`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/pgPluginParameter:PgPluginParameter test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgPluginParameterArgs args: The arguments to use to populate this resource's properties.

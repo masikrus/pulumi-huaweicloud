@@ -33,6 +33,7 @@ class DnatRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DnatRule resource.
+
         :param pulumi.Input[_builtins.str] nat_gateway_id: Specifies the ID of the NAT gateway to which the DNAT rule belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] protocol: Specifies the protocol type.  
@@ -277,6 +278,7 @@ class _DnatRuleState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DnatRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the DNAT rule.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the DNAT rule.  
                The value is a string of no more than `255` characters, and angle brackets (<>) are not allowed.
@@ -608,11 +610,10 @@ class DnatRule(pulumi.CustomResource):
 
         DNAT rules can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/dnatRule:DnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -683,11 +684,10 @@ class DnatRule(pulumi.CustomResource):
 
         DNAT rules can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/dnatRule:DnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnatRuleArgs args: The arguments to use to populate this resource's properties.

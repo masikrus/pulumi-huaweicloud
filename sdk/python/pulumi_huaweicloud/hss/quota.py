@@ -28,6 +28,7 @@ class QuotaArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Quota resource.
+
         :param pulumi.Input[_builtins.int] period: Specifies the charging period of the quota. Changing this parameter will
                create a new resource.
                If `period_unit` is set to **month**, the value ranges from `1` to `9`.
@@ -184,6 +185,7 @@ class _QuotaState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Quota resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled.
                Valid values are **true** and **false**. Defaults to **false**.
         :param pulumi.Input[_builtins.str] charging_mode: The charging mode of quota.  
@@ -461,7 +463,7 @@ class _QuotaState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:hss/quota:Quota")
+@pulumi.type_token("huaweicloud:Hss/quota:Quota")
 class Quota(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -496,39 +498,16 @@ class Quota(pulumi.CustomResource):
 
         The quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/quota:Quota test <id>
+        $ pulumi import huaweicloud:Hss/quota:Quota test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_quota" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -582,39 +561,16 @@ class Quota(pulumi.CustomResource):
 
         The quota can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:hss/quota:Quota test <id>
+        $ pulumi import huaweicloud:Hss/quota:Quota test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_hss_quota" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              period_unit, period, auto_renew,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param QuotaArgs args: The arguments to use to populate this resource's properties.
@@ -670,7 +626,7 @@ class Quota(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["used_status"] = None
         super(Quota, __self__).__init__(
-            'huaweicloud:hss/quota:Quota',
+            'huaweicloud:Hss/quota:Quota',
             resource_name,
             __props__,
             opts)

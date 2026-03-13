@@ -29,58 +29,259 @@ __all__ = [
     'HoneypotPortPolicyPortList',
     'HoneypotPortPolicyPortsList',
     'ImageBatchScanImageInfoList',
+    'ModifyWebtamperProtectionPolicyPrivilegedProcessInfo',
+    'ModifyWebtamperProtectionPolicyProtectDirInfo',
+    'ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfo',
+    'ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList',
+    'RansomwareProtectionPolicyProcessWhitelist',
+    'RansomwareProtectionPolicyProcessWhitelistAttribute',
+    'RaspProtectionPolicyFeatureList',
+    'RaspProtectionPolicyRuleList',
+    'VulnerabilityHistoryExportTaskSpecificVul',
     'GetAgentInstallScriptInstallScriptListResult',
+    'GetAgentVersionsDataListResult',
+    'GetAgentVersionsDataListVersionListResult',
     'GetAntivirusAvailableHostsDataListResult',
     'GetAntivirusCustomScanPoliciesDataListResult',
     'GetAntivirusCustomScanPoliciesDataListHostInfoListResult',
+    'GetAntivirusHandleHistoryDataListResult',
+    'GetAntivirusPayPerScanHostsDataListResult',
+    'GetAntivirusResultDataListResult',
+    'GetAntivirusResultDataListFileInfoResult',
+    'GetAntivirusResultDataListOperateDetailListResult',
+    'GetAntivirusResultDataListResourceInfoResult',
     'GetAntivirusVirusScanTasksDataListResult',
     'GetAntivirusVirusScanTasksDataListHostInfoListResult',
+    'GetAppEventsDataListResult',
+    'GetAppEventsDataListOperateDetailListResult',
+    'GetAppEventsDataListProcessInfoResult',
+    'GetAppEventsDataListResourceInfoResult',
     'GetAppStatisticsDataListResult',
+    'GetAppWhitelistAssociateHostsDataListResult',
+    'GetAppWhitelistOptionalHostsDataListResult',
+    'GetAppWhitelistPoliciesDataListResult',
+    'GetAppWhitelistPoliciesDataListAbnormalInfoListResult',
+    'GetAppWhitelistPolicyProcessExtendDataListResult',
+    'GetAssetAppChangeHistoryDataListResult',
     'GetAssetAppsDataListResult',
+    'GetAssetKernelModuleHostsDataListResult',
+    'GetAssetKernelModuleHostsDataListKernelModuleInfoResult',
+    'GetAssetKernelModuleStatisticsDataListResult',
+    'GetAssetMidwaresDataListResult',
+    'GetAssetOverviewAccountTopDataListResult',
+    'GetAssetOverviewAutoLaunchTopDataListResult',
+    'GetAssetOverviewSoftwareTopDataListResult',
+    'GetAssetOverviewStatisticsTopPortsDataListResult',
+    'GetAssetOverviewStatusOsOsListResult',
+    'GetAssetOverviewStatusQuotasDataListResult',
+    'GetAssetPortDetailDataListResult',
     'GetAssetPortStatisticsDataListResult',
     'GetAssetPortsDataListResult',
+    'GetAssetProcessDetailDataListResult',
+    'GetAssetProcessStatisticsDataListResult',
     'GetAssetUserStatisticsDataListResult',
     'GetAssetUsersDataListResult',
+    'GetAssetWebAppServiceHostsDataListResult',
+    'GetAssetWebAppServiceStatisticsDataListResult',
+    'GetAssetWebFrameworkHostsDataListResult',
+    'GetAssetWebFrameworkStatisticsDataListResult',
+    'GetAssetWebsiteHostsDataListResult',
+    'GetAssetWebsiteStatisticsDataListResult',
+    'GetAutoLaunchChangeHistoryDataListResult',
     'GetAutoLaunchStatisticsDataListResult',
     'GetAutoLaunchsDataListResult',
     'GetBackupPolicyOperationDefinitionResult',
     'GetBackupPolicyTriggerResult',
     'GetBackupPolicyTriggerPropertyResult',
+    'GetBaselineAllRiskConfigCheckRulesDataListResult',
+    'GetBaselineAllRiskConfigCheckRulesDataListRuleParamResult',
+    'GetBaselineCheckRuleFailDetailFailDetailListResult',
+    'GetBaselineCheckRuleHabCheckRuleListResult',
+    'GetBaselineCheckRuleHabDataListResult',
+    'GetBaselineCheckRuleHostsDataListResult',
+    'GetBaselineCheckRulesDataListResult',
+    'GetBaselineOverviewsHostRiskResult',
+    'GetBaselineOverviewsWeakPwdRiskHostResult',
+    'GetBaselineRiskConfigCheckRulesDataListResult',
+    'GetBaselineRiskConfigCheckRulesDataListRuleParamResult',
+    'GetBaselineSecurityChecksDetailsCheckDetailResult',
+    'GetBaselineSecurityChecksDetailsCheckDetailRuleParamResult',
+    'GetBaselineSecurityChecksDirectoriesBaselineDirectoryListResult',
+    'GetBaselineSecurityChecksDirectoriesBaselineDirectoryListDataListResult',
+    'GetBaselineSecurityChecksDirectoriesPwdDirectoryListResult',
+    'GetBaselineSecurityChecksDirectoriesTaskConditionResult',
+    'GetBaselineWhiteListsDataListResult',
+    'GetChangeFilesDataListResult',
+    'GetCicdConfigurationsDataListResult',
+    'GetClusterProtectAlarmEventsDataListResult',
+    'GetClusterProtectAlarmEventsDataListResourceInfoResult',
+    'GetClusterProtectDefaultPoliciesDataListResult',
+    'GetClusterProtectDefaultPoliciesDataListResourceResult',
+    'GetClusterProtectDefaultPoliciesDataListWhiteImageResult',
+    'GetClusterProtectInfoDataListResult',
+    'GetClusterProtectPoliciesDataListResult',
+    'GetClusterProtectPoliciesDataListResourceResult',
+    'GetClusterProtectPoliciesDataListWhiteImageResult',
+    'GetClusterProtectProtectionItemsBaselineResult',
+    'GetClusterProtectProtectionItemsClusterResult',
+    'GetClusterProtectProtectionItemsImageResult',
+    'GetClusterProtectProtectionItemsMalwareResult',
+    'GetCommonTasksClusterScanInfoResult',
+    'GetCommonTasksDataListResult',
+    'GetCommonTasksDataListClusterScanInfoResult',
+    'GetCommonTasksDataListIacScanInfoResult',
+    'GetCommonTasksIacScanInfoResult',
+    'GetConfigsDataListResult',
+    'GetContainerClusterRiskAffectedResourcesDataListResult',
+    'GetContainerClusterRisksDataListResult',
+    'GetContainerClustersPolicyTemplatesDataListResult',
+    'GetContainerIacFileRisksDataListResult',
+    'GetContainerIacFilesDataListResult',
+    'GetContainerImagesDataListResult',
     'GetContainerKubernetesClustersClusterInfoListResult',
     'GetContainerKubernetesClustersConfigsClusterInfoListResult',
     'GetContainerKubernetesClustersConfigsDataListResult',
+    'GetContainerKubernetesClustersDaemonsetsDataListResult',
+    'GetContainerKubernetesClustersDaemonsetsDataListDsInfoResult',
+    'GetContainerKubernetesClustersDaemonsetsDataListRegistryInfoResult',
+    'GetContainerKubernetesClustersRisksDataListResult',
     'GetContainerKubernetesDataListResult',
     'GetContainerKubernetesEndpointDetailEndpointPodListResult',
     'GetContainerKubernetesEndpointDetailEndpointPortListResult',
     'GetContainerKubernetesEndpointsEndpointInfoListResult',
+    'GetContainerKubernetesMccDataListResult',
+    'GetContainerKubernetesTemplateRuntimeInfoResult',
+    'GetContainerKubernetesTemplateScheduleInfoResult',
+    'GetContainerLogsDataListResult',
+    'GetContainerNetworkClusterDataListResult',
+    'GetContainerNetworkPoliciesDataListResult',
+    'GetContainerNetworkSecurityGroupsSecurityGroupResult',
     'GetContainerNodesDataListResult',
     'GetEventAlarmWhiteListsDataListResult',
+    'GetEventAttCkStatisticsDataListResult',
     'GetEventHandleHistoryDataListResult',
+    'GetEventIntrusionEventsDataListResult',
+    'GetEventIntrusionEventsDataListFileInfoListResult',
+    'GetEventIntrusionEventsDataListOperateDetailListResult',
+    'GetEventIntrusionEventsDataListProcessInfoListResult',
+    'GetEventIntrusionEventsDataListResourceInfoResult',
+    'GetEventIntrusionEventsDataListUserInfoListResult',
     'GetEventLoginWhiteListsDataListResult',
     'GetEventSystemUserWhiteListsDataListResult',
+    'GetEventTypesDataListResult',
+    'GetEventTypesDataListEventTypeListResult',
     'GetEventUnblockIpsDataListResult',
+    'GetFilesChangeHostsDataListResult',
+    'GetHoneypotPortHostsDataListResult',
     'GetHoneypotPortPoliciesDataListResult',
+    'GetHoneypotPortSupportListDataListResult',
     'GetHostGroupsGroupResult',
+    'GetHostStatisticsAssetValueListResult',
+    'GetHostStatisticsServerGroupListResult',
     'GetHostVulnerabilitiesDataListResult',
     'GetHostVulnerabilitiesDataListAppListResult',
     'GetHostVulnerabilitiesDataListCveListResult',
     'GetHostVulnerabilitiesDataListDisabledOperateTypeResult',
     'GetHostsHostResult',
+    'GetHostsRiskDataListResult',
+    'GetImageAppsDataListResult',
+    'GetImageBaselineRiskConfigsDataListResult',
+    'GetImageLocalAppsDataListResult',
+    'GetImageLocalHostsDataListResult',
+    'GetImageLocalRepositoriesDataListResult',
+    'GetImageNonCompliantAppDataListResult',
+    'GetImagePayPerScanStatisticsHasRiskResult',
+    'GetImagePayPerScanStatisticsHighRiskResult',
+    'GetImagePayPerScanStatisticsTotalResult',
+    'GetImagePayPerScanStatisticsUnscanResult',
+    'GetImageRegistriesDataListResult',
+    'GetImageRegistryImagesDataListResult',
+    'GetImageRegistryImagesDataListAssociationImageResult',
+    'GetImageSensitiveInformationDataListResult',
+    'GetImageSensitiveInformationDetailDataListResult',
+    'GetImageTasksDataListResult',
+    'GetImageTasksDataListFailedImageResult',
+    'GetImageVulnerabilitiesDataListResult',
+    'GetImageVulnerabilitiesDataListDataListResult',
+    'GetImageVulnerabilityCvesDataListResult',
+    'GetImageWhitelistsDataListResult',
+    'GetImageWhitelistsDataListCfeResult',
+    'GetImageWhitelistsDataListImageInfoResult',
+    'GetImageWhitelistsDataListQueryInfoResult',
+    'GetKubernetesContainerDetailExtraResult',
+    'GetKubernetesContainerDetailExtraLinuxResult',
+    'GetKubernetesContainerDetailExtraMysqlResult',
+    'GetKubernetesContainerDetailExtraOpenvpnResult',
+    'GetKubernetesContainerDetailExtraRdpResult',
+    'GetKubernetesContainerDetailServicePortListResult',
+    'GetKubernetesCronjobsCronjobInfoListResult',
+    'GetKubernetesCronjobsCronjobInfoListMatchLabelResult',
+    'GetKubernetesDaemonsetsDataListResult',
+    'GetKubernetesDaemonsetsDataListMatchLabelResult',
+    'GetKubernetesDeploymentsResourcesInfoListResult',
+    'GetKubernetesDeploymentsResourcesInfoListMatchLabelResult',
+    'GetKubernetesJobsJobInfoListResult',
+    'GetKubernetesJobsJobInfoListMatchLabelResult',
+    'GetKubernetesPodDetailContainerResult',
+    'GetKubernetesPodsDataListResult',
+    'GetKubernetesPodsPodInfoListResult',
+    'GetKubernetesServiceDetailServicePortListResult',
+    'GetKubernetesServicesServiceInfoListResult',
+    'GetOperationalReportWelfareActivitiesInfoResult',
+    'GetOperationalReportWelfareHotInfoResult',
+    'GetOperationalReportWelfareVersionUpdateInfoResult',
+    'GetOverviewHotInformationDataListResult',
+    'GetOverviewSecurityRisksAlarmRiskResult',
+    'GetOverviewSecurityRisksAlarmRiskPolicyListResult',
+    'GetOverviewSecurityRisksAlarmRiskRiskListResult',
+    'GetOverviewSecurityRisksAssetRiskResult',
+    'GetOverviewSecurityRisksAssetRiskPolicyListResult',
+    'GetOverviewSecurityRisksBaselineRiskResult',
+    'GetOverviewSecurityRisksBaselineRiskPolicyListResult',
+    'GetOverviewSecurityRisksBaselineRiskRiskListResult',
+    'GetOverviewSecurityRisksImageRiskResult',
+    'GetOverviewSecurityRisksImageRiskRiskListResult',
+    'GetOverviewSecurityRisksSecurityProtectRiskResult',
+    'GetOverviewSecurityRisksVulRiskResult',
+    'GetOverviewSecurityRisksVulRiskRiskListResult',
+    'GetPageNoticesDataListResult',
+    'GetPluginAttachmentsDataListResult',
+    'GetPluginInfoDataListResult',
+    'GetPluginsDataListResult',
     'GetPolicyGroupsDataListResult',
     'GetProductInfosDataListResult',
     'GetProductInfosDataListVersionInfoResult',
     'GetProductInfosDataListVersionInfoPeriodResult',
     'GetQuotasQuotaResult',
+    'GetRansomwareBackupDetailChildrenResult',
+    'GetRansomwareBackupOperationLogsDataListResult',
+    'GetRansomwareBackupOperationLogsDataListErrorInfoResult',
+    'GetRansomwareBackupPoliciesDataListResult',
+    'GetRansomwareBackupPoliciesDataListOperationDefinitionResult',
+    'GetRansomwareBackupPoliciesDataListTriggerResult',
+    'GetRansomwareBackupPoliciesDataListTriggerPropertyResult',
+    'GetRansomwareBackupVaultsDataListResult',
+    'GetRansomwareBackupsDataListResult',
+    'GetRansomwareBackupsDataListOsImagesDataResult',
     'GetRansomwareProtectionPoliciesPolicyResult',
     'GetRansomwareProtectionPoliciesPolicyProcessWhitelistResult',
+    'GetRansomwareProtectionServersDataListResult',
+    'GetRansomwareProtectionServersDataListBackupErrorResult',
+    'GetRaspEventsDataListResult',
     'GetRaspPoliciesDataListResult',
     'GetRaspPolicyDetailRuleListResult',
     'GetRaspRulesDataListResult',
     'GetRaspServersDataListResult',
     'GetResourceQuotasDataListResult',
     'GetResourceQuotasDataListAvailableResourcesListResult',
+    'GetSettingDictionariesDataListResult',
+    'GetSettingDockerPluginInstallScriptDataListResult',
     'GetSettingLoginCommonIpsDataListResult',
     'GetSettingLoginCommonLocationsDataListResult',
+    'GetSettingLoginWhiteIpsDataListResult',
+    'GetSettingPluginsDataListResult',
+    'GetSettingTwoFactorLoginHostsDataListResult',
     'GetTagsTagResult',
     'GetVulnerabilitiesDataListResult',
     'GetVulnerabilitiesDataListCveListResult',
@@ -88,9 +289,39 @@ __all__ = [
     'GetVulnerabilitiesDataListRepairPriorityListResult',
     'GetVulnerabilityHandleHistoryDataListResult',
     'GetVulnerabilityHandleHistoryDataListCveListResult',
+    'GetVulnerabilityHostAppsDataListResult',
+    'GetVulnerabilityHostAppsDataListPathResult',
+    'GetVulnerabilityHostHostsDataListResult',
+    'GetVulnerabilityHostHostsDataListVulIdsInfoResult',
+    'GetVulnerabilityHostHostsDataListVulNumWithRepairPriorityListResult',
+    'GetVulnerabilityHostVulnerabilitiesDataListResult',
+    'GetVulnerabilityHostVulnerabilitiesDataListCveListResult',
+    'GetVulnerabilityHostVulnerabilitiesDataListDisabledOperateTypeResult',
     'GetVulnerabilityHostsDataListResult',
     'GetVulnerabilityHostsDataListDisabledOperateTypeResult',
+    'GetVulnerabilityScanTaskHostsDataListResult',
+    'GetVulnerabilityScanTaskHostsDataListFailedReasonResult',
+    'GetVulnerabilityScanTaskHostsDataListVulScanDetailResult',
+    'GetVulnerabilityScanTaskHostsDataListVulScanDetailScanVulListResult',
+    'GetVulnerabilityScanTasksDataListResult',
+    'GetVulnerabilityStatisticsAffectedCceDisabledVulListResult',
+    'GetVulnerabilityStatisticsAffectedDataListResult',
+    'GetVulnerabilityStatisticsAffectedDisabledOperateTypeResult',
+    'GetVulnerabilityUrgentVulnerabilitiesDataListResult',
+    'GetVulnerabilityUrgentVulnerabilitiesDataListHostsNumResult',
+    'GetVulnerabilityWhiteListsDataListResult',
+    'GetVulnerabilityWhiteListsDataListCfeResult',
+    'GetVulnerabilityWhiteListsDataListHostResult',
+    'GetVulnerabilityWhitelistOptionsDataListResult',
+    'GetWebtamperHostManagementHostsDataListResult',
     'GetWebtamperHostsHostResult',
+    'GetWebtamperImageOptionsDataListResult',
+    'GetWebtamperPolicyProtectDirInfoResult',
+    'GetWebtamperPolicyProtectDirInfoProtectDirListResult',
+    'GetWebtamperPolicyTimingOffConfigInfoResult',
+    'GetWebtamperPolicyTimingOffConfigInfoTimingRangeListResult',
+    'GetWebtamperRaspProtectHistoryDataListResult',
+    'GetWebtamperStaticProtectHistoryDataListResult',
 ]
 
 @pulumi.output_type
@@ -955,6 +1186,758 @@ class ImageBatchScanImageInfoList(dict):
 
 
 @pulumi.output_type
+class ModifyWebtamperProtectionPolicyPrivilegedProcessInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privilegedProcessPathLists":
+            suggest = "privileged_process_path_lists"
+        elif key == "privilegedChildStatus":
+            suggest = "privileged_child_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModifyWebtamperProtectionPolicyPrivilegedProcessInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModifyWebtamperProtectionPolicyPrivilegedProcessInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModifyWebtamperProtectionPolicyPrivilegedProcessInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 privileged_process_path_lists: Sequence[_builtins.str],
+                 privileged_child_status: Optional[_builtins.bool] = None):
+        """
+        :param Sequence[_builtins.str] privileged_process_path_lists: Specifies the list of privileged process file paths.
+               
+               > At least one, up to `10` items included.
+        :param _builtins.bool privileged_child_status: Specifies the privileged sub-process trusted status.
+               The valid values are as follows:
+               + **true**: Indicates the sub-process is trusted.
+               + **false**: Indicates the sub-process is not trusted. Defaults value.
+        """
+        pulumi.set(__self__, "privileged_process_path_lists", privileged_process_path_lists)
+        if privileged_child_status is not None:
+            pulumi.set(__self__, "privileged_child_status", privileged_child_status)
+
+    @_builtins.property
+    @pulumi.getter(name="privilegedProcessPathLists")
+    def privileged_process_path_lists(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of privileged process file paths.
+
+        > At least one, up to `10` items included.
+        """
+        return pulumi.get(self, "privileged_process_path_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="privilegedChildStatus")
+    def privileged_child_status(self) -> Optional[_builtins.bool]:
+        """
+        Specifies the privileged sub-process trusted status.
+        The valid values are as follows:
+        + **true**: Indicates the sub-process is trusted.
+        + **false**: Indicates the sub-process is not trusted. Defaults value.
+        """
+        return pulumi.get(self, "privileged_child_status")
+
+
+@pulumi.output_type
+class ModifyWebtamperProtectionPolicyProtectDirInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "protectDirLists":
+            suggest = "protect_dir_lists"
+        elif key == "excludeFileType":
+            suggest = "exclude_file_type"
+        elif key == "protectMode":
+            suggest = "protect_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModifyWebtamperProtectionPolicyProtectDirInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModifyWebtamperProtectionPolicyProtectDirInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModifyWebtamperProtectionPolicyProtectDirInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 protect_dir_lists: Sequence['outputs.ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList'],
+                 exclude_file_type: Optional[_builtins.str] = None,
+                 protect_mode: Optional[_builtins.str] = None):
+        """
+        :param Sequence['ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirListArgs'] protect_dir_lists: Specifies the protected directory list.
+               The protect_dir_list structure is documented below.
+               
+               > At least one, up to `50` items included.
+        :param _builtins.str exclude_file_type: Specifies the excluded file type.
+               The file type can only contain letters and digits, a maximum of `10` file types are supported, and each file type
+               not exceeding `10` characters, multiple file types should be separated by semicolons (;).
+        :param _builtins.str protect_mode: Specifies the protection mode.
+               The valid values are as follows:
+               + **recovery**: Indicates interception mode.
+               + **alarm**: Indicates alarm mode. Only Linux server are supported.
+               
+               <a name="protect_dir_list_struct"></a>
+               The `protect_dir_list` block supports:
+        """
+        pulumi.set(__self__, "protect_dir_lists", protect_dir_lists)
+        if exclude_file_type is not None:
+            pulumi.set(__self__, "exclude_file_type", exclude_file_type)
+        if protect_mode is not None:
+            pulumi.set(__self__, "protect_mode", protect_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="protectDirLists")
+    def protect_dir_lists(self) -> Sequence['outputs.ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList']:
+        """
+        Specifies the protected directory list.
+        The protect_dir_list structure is documented below.
+
+        > At least one, up to `50` items included.
+        """
+        return pulumi.get(self, "protect_dir_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeFileType")
+    def exclude_file_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the excluded file type.
+        The file type can only contain letters and digits, a maximum of `10` file types are supported, and each file type
+        not exceeding `10` characters, multiple file types should be separated by semicolons (;).
+        """
+        return pulumi.get(self, "exclude_file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="protectMode")
+    def protect_mode(self) -> Optional[_builtins.str]:
+        """
+        Specifies the protection mode.
+        The valid values are as follows:
+        + **recovery**: Indicates interception mode.
+        + **alarm**: Indicates alarm mode. Only Linux server are supported.
+
+        <a name="protect_dir_list_struct"></a>
+        The `protect_dir_list` block supports:
+        """
+        return pulumi.get(self, "protect_mode")
+
+
+@pulumi.output_type
+class ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "protectDir":
+            suggest = "protect_dir"
+        elif key == "excludeChildDir":
+            suggest = "exclude_child_dir"
+        elif key == "excludeFilePath":
+            suggest = "exclude_file_path"
+        elif key == "localBackupDir":
+            suggest = "local_backup_dir"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModifyWebtamperProtectionPolicyProtectDirInfoProtectDirList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 protect_dir: _builtins.str,
+                 exclude_child_dir: Optional[_builtins.str] = None,
+                 exclude_file_path: Optional[_builtins.str] = None,
+                 local_backup_dir: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str protect_dir: Specifies the protected directory.
+               + The valid length is `1` to `256` characters.
+               + For Linux servers, the value must start with a slash (/) and cannot end with a slash (/). Only letters, digits,
+               underscores (_), hyphens (-), and periods (.) are allowed.
+               + For Windows servers, the directory name cannot start with a space or end with a backslash (\\\\), and cannot contain
+               the following special characters: ;/*?"<>|.
+        :param _builtins.str exclude_child_dir: Specifies the excluded subdirectory.
+               + The subdirectory must be a relative path under the protected directory.
+               + The maximum length of the subdirectory is `256` characters. A maximum of `10` subdirectories can be added,
+               separated by semicolons (;).
+               + A subdirectory name on a Linux server cannot start or end with a slash (/). A subdirectory name on a Windows server
+               cannot start or end with a backslash (\\\\).
+        :param _builtins.str exclude_file_path: Specifies the excluded file path.
+               + The file path must be a relative path under the protected directory.
+               + The maximum length of the file path is `256` characters. A maximum of `50` paths can be added,
+               separated by semicolons (;).
+               + The file path cannot start or end with a slash (/).
+               
+               > This parameter is only valid for Linux servers.
+               
+               <a name="policy_timing_off_config_info_struct"></a>
+               The `timing_off_config_info` block supports:
+        :param _builtins.str local_backup_dir: Specifies the local backup path.
+               + The local backup path cannot start with a space or end with a slash (/), and cannot contain semicolons (;).
+               + The value consists of a maximum of `256` characters.
+               
+               > This parameter is only valid and required for Linux servers.
+        """
+        pulumi.set(__self__, "protect_dir", protect_dir)
+        if exclude_child_dir is not None:
+            pulumi.set(__self__, "exclude_child_dir", exclude_child_dir)
+        if exclude_file_path is not None:
+            pulumi.set(__self__, "exclude_file_path", exclude_file_path)
+        if local_backup_dir is not None:
+            pulumi.set(__self__, "local_backup_dir", local_backup_dir)
+
+    @_builtins.property
+    @pulumi.getter(name="protectDir")
+    def protect_dir(self) -> _builtins.str:
+        """
+        Specifies the protected directory.
+        + The valid length is `1` to `256` characters.
+        + For Linux servers, the value must start with a slash (/) and cannot end with a slash (/). Only letters, digits,
+        underscores (_), hyphens (-), and periods (.) are allowed.
+        + For Windows servers, the directory name cannot start with a space or end with a backslash (\\\\), and cannot contain
+        the following special characters: ;/*?"<>|.
+        """
+        return pulumi.get(self, "protect_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeChildDir")
+    def exclude_child_dir(self) -> Optional[_builtins.str]:
+        """
+        Specifies the excluded subdirectory.
+        + The subdirectory must be a relative path under the protected directory.
+        + The maximum length of the subdirectory is `256` characters. A maximum of `10` subdirectories can be added,
+        separated by semicolons (;).
+        + A subdirectory name on a Linux server cannot start or end with a slash (/). A subdirectory name on a Windows server
+        cannot start or end with a backslash (\\\\).
+        """
+        return pulumi.get(self, "exclude_child_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeFilePath")
+    def exclude_file_path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the excluded file path.
+        + The file path must be a relative path under the protected directory.
+        + The maximum length of the file path is `256` characters. A maximum of `50` paths can be added,
+        separated by semicolons (;).
+        + The file path cannot start or end with a slash (/).
+
+        > This parameter is only valid for Linux servers.
+
+        <a name="policy_timing_off_config_info_struct"></a>
+        The `timing_off_config_info` block supports:
+        """
+        return pulumi.get(self, "exclude_file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="localBackupDir")
+    def local_backup_dir(self) -> Optional[_builtins.str]:
+        """
+        Specifies the local backup path.
+        + The local backup path cannot start with a space or end with a slash (/), and cannot contain semicolons (;).
+        + The value consists of a maximum of `256` characters.
+
+        > This parameter is only valid and required for Linux servers.
+        """
+        return pulumi.get(self, "local_backup_dir")
+
+
+@pulumi.output_type
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timingRangeLists":
+            suggest = "timing_range_lists"
+        elif key == "weekOffLists":
+            suggest = "week_off_lists"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModifyWebtamperProtectionPolicyTimingOffConfigInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModifyWebtamperProtectionPolicyTimingOffConfigInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModifyWebtamperProtectionPolicyTimingOffConfigInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 timing_range_lists: Sequence['outputs.ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList'],
+                 week_off_lists: Sequence[_builtins.int]):
+        """
+        :param Sequence['ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeListArgs'] timing_range_lists: Specifies the automatically turn off the protection period.
+               The timing_range_list structure is documented below.
+               
+               > At least one, up to `5` items included.
+               
+               <a name="timing_range_list_struct"></a>
+               The `timing_range_list` block supports:
+        :param Sequence[_builtins.int] week_off_lists: Specifies the automatically close the protection cycle.
+               The valid value from `1` to `7`, `1` indicates Monday, `2` indicates Tuesday and so on.
+        """
+        pulumi.set(__self__, "timing_range_lists", timing_range_lists)
+        pulumi.set(__self__, "week_off_lists", week_off_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="timingRangeLists")
+    def timing_range_lists(self) -> Sequence['outputs.ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList']:
+        """
+        Specifies the automatically turn off the protection period.
+        The timing_range_list structure is documented below.
+
+        > At least one, up to `5` items included.
+
+        <a name="timing_range_list_struct"></a>
+        The `timing_range_list` block supports:
+        """
+        return pulumi.get(self, "timing_range_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="weekOffLists")
+    def week_off_lists(self) -> Sequence[_builtins.int]:
+        """
+        Specifies the automatically close the protection cycle.
+        The valid value from `1` to `7`, `1` indicates Monday, `2` indicates Tuesday and so on.
+        """
+        return pulumi.get(self, "week_off_lists")
+
+
+@pulumi.output_type
+class ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timeRange":
+            suggest = "time_range"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModifyWebtamperProtectionPolicyTimingOffConfigInfoTimingRangeList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 time_range: _builtins.str,
+                 description: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str time_range: Specifies the time range of automatically turn off the protection
+               period.
+               + The start time and end time are separated by a hyphen (-). e.g. **15:00-15:30**.
+               + A time range must be at least `5` minutes.
+               + Time ranges cannot overlap and must have at least a 5-minute interval.
+        :param _builtins.str description: Specifies the description of automatically turn off the protection
+               period.
+               
+               <a name="policy_privileged_process_info_struct"></a>
+               The `privileged_process_info` block supports:
+        """
+        pulumi.set(__self__, "time_range", time_range)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter(name="timeRange")
+    def time_range(self) -> _builtins.str:
+        """
+        Specifies the time range of automatically turn off the protection
+        period.
+        + The start time and end time are separated by a hyphen (-). e.g. **15:00-15:30**.
+        + A time range must be at least `5` minutes.
+        + Time ranges cannot overlap and must have at least a 5-minute interval.
+        """
+        return pulumi.get(self, "time_range")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the description of automatically turn off the protection
+        period.
+
+        <a name="policy_privileged_process_info_struct"></a>
+        The `privileged_process_info` block supports:
+        """
+        return pulumi.get(self, "description")
+
+
+@pulumi.output_type
+class RansomwareProtectionPolicyProcessWhitelist(dict):
+    def __init__(__self__, *,
+                 hash: Optional[_builtins.str] = None,
+                 path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str hash: Specifies the hash value of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        :param _builtins.str path: Specifies the path of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        """
+        if hash is not None:
+            pulumi.set(__self__, "hash", hash)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> Optional[_builtins.str]:
+        """
+        Specifies the hash value of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the path of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class RansomwareProtectionPolicyProcessWhitelistAttribute(dict):
+    def __init__(__self__, *,
+                 hash: Optional[_builtins.str] = None,
+                 path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str hash: Specifies the hash value of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        :param _builtins.str path: Specifies the path of the process to be added to the whitelist.
+               The value can contain `0` to `128` characters.
+        """
+        if hash is not None:
+            pulumi.set(__self__, "hash", hash)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> Optional[_builtins.str]:
+        """
+        Specifies the hash value of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the path of the process to be added to the whitelist.
+        The value can contain `0` to `128` characters.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class RaspProtectionPolicyFeatureList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chkFeatureId":
+            suggest = "chk_feature_id"
+        elif key == "featureConfigure":
+            suggest = "feature_configure"
+        elif key == "protectiveAction":
+            suggest = "protective_action"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RaspProtectionPolicyFeatureList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RaspProtectionPolicyFeatureList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RaspProtectionPolicyFeatureList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 chk_feature_id: _builtins.int,
+                 enabled: _builtins.int,
+                 feature_configure: _builtins.str,
+                 protective_action: _builtins.int):
+        """
+        :param _builtins.int chk_feature_id: Specifies the detection feature rule ID.
+        :param _builtins.int enabled: Specifies the enabled status.
+               The valid values are as follows:
+               + **0**: Indicates disabled.
+               + **1**: Indicates enabled.
+        :param _builtins.str feature_configure: Specifies the detection feature rule configuration information.
+        :param _builtins.int protective_action: Specifies the protective action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+        """
+        pulumi.set(__self__, "chk_feature_id", chk_feature_id)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "feature_configure", feature_configure)
+        pulumi.set(__self__, "protective_action", protective_action)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureId")
+    def chk_feature_id(self) -> _builtins.int:
+        """
+        Specifies the detection feature rule ID.
+        """
+        return pulumi.get(self, "chk_feature_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.int:
+        """
+        Specifies the enabled status.
+        The valid values are as follows:
+        + **0**: Indicates disabled.
+        + **1**: Indicates enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="featureConfigure")
+    def feature_configure(self) -> _builtins.str:
+        """
+        Specifies the detection feature rule configuration information.
+        """
+        return pulumi.get(self, "feature_configure")
+
+    @_builtins.property
+    @pulumi.getter(name="protectiveAction")
+    def protective_action(self) -> _builtins.int:
+        """
+        Specifies the protective action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        """
+        return pulumi.get(self, "protective_action")
+
+
+@pulumi.output_type
+class RaspProtectionPolicyRuleList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chkFeatureDesc":
+            suggest = "chk_feature_desc"
+        elif key == "chkFeatureId":
+            suggest = "chk_feature_id"
+        elif key == "chkFeatureName":
+            suggest = "chk_feature_name"
+        elif key == "featureConfigure":
+            suggest = "feature_configure"
+        elif key == "optionalProtectiveAction":
+            suggest = "optional_protective_action"
+        elif key == "protectiveAction":
+            suggest = "protective_action"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RaspProtectionPolicyRuleList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RaspProtectionPolicyRuleList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RaspProtectionPolicyRuleList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 chk_feature_desc: Optional[_builtins.str] = None,
+                 chk_feature_id: Optional[_builtins.int] = None,
+                 chk_feature_name: Optional[_builtins.str] = None,
+                 editable: Optional[_builtins.int] = None,
+                 enabled: Optional[_builtins.int] = None,
+                 feature_configure: Optional[_builtins.str] = None,
+                 optional_protective_action: Optional[_builtins.int] = None,
+                 protective_action: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str chk_feature_desc: The detection rule description.
+        :param _builtins.int chk_feature_id: Specifies the detection feature rule ID.
+        :param _builtins.str chk_feature_name: The detection rule name.
+        :param _builtins.int editable: Whether the configuration information can be edited.
+               The valid values are as follows:
+               + **0**: Indicates no.
+               + **1**: Indicates yes.
+        :param _builtins.int enabled: Specifies the enabled status.
+               The valid values are as follows:
+               + **0**: Indicates disabled.
+               + **1**: Indicates enabled.
+        :param _builtins.str feature_configure: Specifies the detection feature rule configuration information.
+        :param _builtins.int optional_protective_action: The optional protection action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+               + **3**: Indicates all.
+        :param _builtins.int protective_action: Specifies the protective action.
+               The valid values are as follows:
+               + **1**: Indicates detect.
+               + **2**: Indicates detect and block.
+        """
+        if chk_feature_desc is not None:
+            pulumi.set(__self__, "chk_feature_desc", chk_feature_desc)
+        if chk_feature_id is not None:
+            pulumi.set(__self__, "chk_feature_id", chk_feature_id)
+        if chk_feature_name is not None:
+            pulumi.set(__self__, "chk_feature_name", chk_feature_name)
+        if editable is not None:
+            pulumi.set(__self__, "editable", editable)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if feature_configure is not None:
+            pulumi.set(__self__, "feature_configure", feature_configure)
+        if optional_protective_action is not None:
+            pulumi.set(__self__, "optional_protective_action", optional_protective_action)
+        if protective_action is not None:
+            pulumi.set(__self__, "protective_action", protective_action)
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureDesc")
+    def chk_feature_desc(self) -> Optional[_builtins.str]:
+        """
+        The detection rule description.
+        """
+        return pulumi.get(self, "chk_feature_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureId")
+    def chk_feature_id(self) -> Optional[_builtins.int]:
+        """
+        Specifies the detection feature rule ID.
+        """
+        return pulumi.get(self, "chk_feature_id")
+
+    @_builtins.property
+    @pulumi.getter(name="chkFeatureName")
+    def chk_feature_name(self) -> Optional[_builtins.str]:
+        """
+        The detection rule name.
+        """
+        return pulumi.get(self, "chk_feature_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def editable(self) -> Optional[_builtins.int]:
+        """
+        Whether the configuration information can be edited.
+        The valid values are as follows:
+        + **0**: Indicates no.
+        + **1**: Indicates yes.
+        """
+        return pulumi.get(self, "editable")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.int]:
+        """
+        Specifies the enabled status.
+        The valid values are as follows:
+        + **0**: Indicates disabled.
+        + **1**: Indicates enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="featureConfigure")
+    def feature_configure(self) -> Optional[_builtins.str]:
+        """
+        Specifies the detection feature rule configuration information.
+        """
+        return pulumi.get(self, "feature_configure")
+
+    @_builtins.property
+    @pulumi.getter(name="optionalProtectiveAction")
+    def optional_protective_action(self) -> Optional[_builtins.int]:
+        """
+        The optional protection action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        + **3**: Indicates all.
+        """
+        return pulumi.get(self, "optional_protective_action")
+
+    @_builtins.property
+    @pulumi.getter(name="protectiveAction")
+    def protective_action(self) -> Optional[_builtins.int]:
+        """
+        Specifies the protective action.
+        The valid values are as follows:
+        + **1**: Indicates detect.
+        + **2**: Indicates detect and block.
+        """
+        return pulumi.get(self, "protective_action")
+
+
+@pulumi.output_type
+class VulnerabilityHistoryExportTaskSpecificVul(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "hostId":
+            suggest = "host_id"
+        elif key == "vulId":
+            suggest = "vul_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VulnerabilityHistoryExportTaskSpecificVul. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VulnerabilityHistoryExportTaskSpecificVul.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VulnerabilityHistoryExportTaskSpecificVul.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host_id: Optional[_builtins.str] = None,
+                 vul_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str vul_id: Specifies the vulnerability ID.
+        """
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if vul_id is not None:
+            pulumi.set(__self__, "vul_id", vul_id)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+
+@pulumi.output_type
 class GetAgentInstallScriptInstallScriptListResult(dict):
     def __init__(__self__, *,
                  cmd: _builtins.str,
@@ -992,6 +1975,88 @@ class GetAgentInstallScriptInstallScriptListResult(dict):
         The packet type.
         """
         return pulumi.get(self, "package_type")
+
+
+@pulumi.output_type
+class GetAgentVersionsDataListResult(dict):
+    def __init__(__self__, *,
+                 latest_version: _builtins.str,
+                 os_type: _builtins.str,
+                 version_lists: Sequence['outputs.GetAgentVersionsDataListVersionListResult']):
+        """
+        :param _builtins.str latest_version: The latest version number.
+        :param _builtins.str os_type: Specifies the operating system type.
+               Valid values are **Linux** and **Windows**.
+        :param Sequence['GetAgentVersionsDataListVersionListArgs'] version_lists: The version list.
+        """
+        pulumi.set(__self__, "latest_version", latest_version)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "version_lists", version_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> _builtins.str:
+        """
+        The latest version number.
+        """
+        return pulumi.get(self, "latest_version")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the operating system type.
+        Valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="versionLists")
+    def version_lists(self) -> Sequence['outputs.GetAgentVersionsDataListVersionListResult']:
+        """
+        The version list.
+        """
+        return pulumi.get(self, "version_lists")
+
+
+@pulumi.output_type
+class GetAgentVersionsDataListVersionListResult(dict):
+    def __init__(__self__, *,
+                 release_note: _builtins.str,
+                 release_version: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str release_note: The release note.
+        :param _builtins.str release_version: The release version.
+        :param _builtins.int update_time: The update time, in milliseconds.
+        """
+        pulumi.set(__self__, "release_note", release_note)
+        pulumi.set(__self__, "release_version", release_version)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="releaseNote")
+    def release_note(self) -> _builtins.str:
+        """
+        The release note.
+        """
+        return pulumi.get(self, "release_note")
+
+    @_builtins.property
+    @pulumi.getter(name="releaseVersion")
+    def release_version(self) -> _builtins.str:
+        """
+        The release version.
+        """
+        return pulumi.get(self, "release_version")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time, in milliseconds.
+        """
+        return pulumi.get(self, "update_time")
 
 
 @pulumi.output_type
@@ -1358,6 +2423,777 @@ class GetAntivirusCustomScanPoliciesDataListHostInfoListResult(dict):
     def public_ip(self) -> _builtins.str:
         """
         The host public IP address.
+        """
+        return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetAntivirusHandleHistoryDataListResult(dict):
+    def __init__(__self__, *,
+                 asset_value: _builtins.str,
+                 file_path: _builtins.str,
+                 handle_method: _builtins.str,
+                 handle_status: _builtins.str,
+                 handle_time: _builtins.int,
+                 host_name: _builtins.str,
+                 malware_name: _builtins.str,
+                 malware_type: _builtins.str,
+                 notes: _builtins.str,
+                 occur_time: _builtins.int,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 result_id: _builtins.str,
+                 severity: _builtins.str,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.str asset_value: Specifies the asset importance.
+               The valid values are as follows:
+               + **important**: Important assets.
+               + **common**: Common assets.
+               + **test**: Test assets.
+        :param _builtins.str file_path: Specifies the file path.
+        :param _builtins.str handle_method: Specifies the handling status to filter the results.  
+               The valid values are as follows:
+               + **mark_as_handled**: Manual handling.
+               + **ignore**: Ignore.
+               + **add_to_alarm_whitelist**: Add to alarm whitelist.
+               + **isolate_and_kill**: Isolate file.
+               + **unhandled**: Cancel manual handling.
+               + **do_not_ignore**: Unignore.
+               + **remove_from_alarm_whitelist**: Remove from the alarm whitelist.
+               + **do_not_isolate_or_kill**: Cancel isolation of a file.
+        :param _builtins.str handle_status: The handling status.
+        :param _builtins.int handle_time: The handing time.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str malware_name: Specifies the virus name.
+        :param _builtins.str malware_type: The virus type.
+        :param _builtins.str notes: The remarks.
+        :param _builtins.int occur_time: The occurrence time, in milliseconds.
+        :param _builtins.str private_ip: Specifies the server private IP.
+        :param _builtins.str public_ip: Specifies the server public IP.
+        :param _builtins.str result_id: The result ID of virus scanning and removal.
+        :param _builtins.str severity: The threat level.
+        :param _builtins.str user_name: Specifies the user name.
+        """
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "handle_method", handle_method)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "handle_time", handle_time)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "malware_name", malware_name)
+        pulumi.set(__self__, "malware_type", malware_type)
+        pulumi.set(__self__, "notes", notes)
+        pulumi.set(__self__, "occur_time", occur_time)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "result_id", result_id)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the asset importance.
+        The valid values are as follows:
+        + **important**: Important assets.
+        + **common**: Common assets.
+        + **test**: Test assets.
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        Specifies the file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="handleMethod")
+    def handle_method(self) -> _builtins.str:
+        """
+        Specifies the handling status to filter the results.  
+        The valid values are as follows:
+        + **mark_as_handled**: Manual handling.
+        + **ignore**: Ignore.
+        + **add_to_alarm_whitelist**: Add to alarm whitelist.
+        + **isolate_and_kill**: Isolate file.
+        + **unhandled**: Cancel manual handling.
+        + **do_not_ignore**: Unignore.
+        + **remove_from_alarm_whitelist**: Remove from the alarm whitelist.
+        + **do_not_isolate_or_kill**: Cancel isolation of a file.
+        """
+        return pulumi.get(self, "handle_method")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        The handling status.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="handleTime")
+    def handle_time(self) -> _builtins.int:
+        """
+        The handing time.
+        """
+        return pulumi.get(self, "handle_time")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="malwareName")
+    def malware_name(self) -> _builtins.str:
+        """
+        Specifies the virus name.
+        """
+        return pulumi.get(self, "malware_name")
+
+    @_builtins.property
+    @pulumi.getter(name="malwareType")
+    def malware_type(self) -> _builtins.str:
+        """
+        The virus type.
+        """
+        return pulumi.get(self, "malware_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def notes(self) -> _builtins.str:
+        """
+        The remarks.
+        """
+        return pulumi.get(self, "notes")
+
+    @_builtins.property
+    @pulumi.getter(name="occurTime")
+    def occur_time(self) -> _builtins.int:
+        """
+        The occurrence time, in milliseconds.
+        """
+        return pulumi.get(self, "occur_time")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the server private IP.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the server public IP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="resultId")
+    def result_id(self) -> _builtins.str:
+        """
+        The result ID of virus scanning and removal.
+        """
+        return pulumi.get(self, "result_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The threat level.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        Specifies the user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetAntivirusPayPerScanHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 group_id: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str group_id: Specifies the group ID.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str os_type: The operating system type. The valid values are **Linux** and **Windows**.
+        :param _builtins.str private_ip: Specifies the private IP.
+        :param _builtins.str public_ip: Specifies the public IP.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The operating system type. The valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the private IP.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the public IP.
+        """
+        return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetAntivirusResultDataListResult(dict):
+    def __init__(__self__, *,
+                 event_type: _builtins.int,
+                 file_infos: Sequence['outputs.GetAntivirusResultDataListFileInfoResult'],
+                 handle_method: _builtins.str,
+                 handle_status: _builtins.str,
+                 isolate_tag: _builtins.str,
+                 malware_name: _builtins.str,
+                 malware_type: _builtins.str,
+                 memo: _builtins.str,
+                 occur_time: _builtins.int,
+                 operate_accept_lists: Sequence[_builtins.str],
+                 operate_detail_lists: Sequence['outputs.GetAntivirusResultDataListOperateDetailListResult'],
+                 resource_infos: Sequence['outputs.GetAntivirusResultDataListResourceInfoResult'],
+                 result_id: _builtins.str,
+                 severity: _builtins.str,
+                 task_id: _builtins.str,
+                 task_name: _builtins.str):
+        """
+        :param _builtins.int event_type: The event type.
+        :param Sequence['GetAntivirusResultDataListFileInfoArgs'] file_infos: The file information.
+        :param _builtins.str handle_method: The handling method.  
+               The valid values are as follows:
+               + **mark_as_handled**: Manual handling.
+               + **ignore**: Ignore.
+               + **add_to_alarm_whitelist**: Add to alarm whitelist.
+               + **isolate_and_kill**: Isolate file.
+        :param _builtins.str handle_status: Specifies the handling status to filter the results.  
+               The valid values are as follows:
+               + **unhandled**: Unhandled.
+               + **handled**: Handled.
+        :param _builtins.str isolate_tag: The automatic isolation scan tag.
+        :param _builtins.str malware_name: Specifies the malware name to filter the results.
+        :param _builtins.str malware_type: The malware type.
+        :param _builtins.str memo: The memo information.
+        :param _builtins.int occur_time: The occurrence time in milliseconds.
+        :param Sequence[_builtins.str] operate_accept_lists: The list of supported handling operations.
+        :param Sequence['GetAntivirusResultDataListOperateDetailListArgs'] operate_detail_lists: The operation details information list.
+        :param Sequence['GetAntivirusResultDataListResourceInfoArgs'] resource_infos: The resource information.
+        :param _builtins.str result_id: The antivirus result ID.
+        :param _builtins.str severity: The threat level. The valid values are **Low**, **Medium**, **High**, and **Critical**.
+        :param _builtins.str task_id: The task ID.
+        :param _builtins.str task_name: Specifies the task name to filter the results.
+        """
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "file_infos", file_infos)
+        pulumi.set(__self__, "handle_method", handle_method)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "isolate_tag", isolate_tag)
+        pulumi.set(__self__, "malware_name", malware_name)
+        pulumi.set(__self__, "malware_type", malware_type)
+        pulumi.set(__self__, "memo", memo)
+        pulumi.set(__self__, "occur_time", occur_time)
+        pulumi.set(__self__, "operate_accept_lists", operate_accept_lists)
+        pulumi.set(__self__, "operate_detail_lists", operate_detail_lists)
+        pulumi.set(__self__, "resource_infos", resource_infos)
+        pulumi.set(__self__, "result_id", result_id)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+
+    @_builtins.property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> _builtins.int:
+        """
+        The event type.
+        """
+        return pulumi.get(self, "event_type")
+
+    @_builtins.property
+    @pulumi.getter(name="fileInfos")
+    def file_infos(self) -> Sequence['outputs.GetAntivirusResultDataListFileInfoResult']:
+        """
+        The file information.
+        """
+        return pulumi.get(self, "file_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="handleMethod")
+    def handle_method(self) -> _builtins.str:
+        """
+        The handling method.  
+        The valid values are as follows:
+        + **mark_as_handled**: Manual handling.
+        + **ignore**: Ignore.
+        + **add_to_alarm_whitelist**: Add to alarm whitelist.
+        + **isolate_and_kill**: Isolate file.
+        """
+        return pulumi.get(self, "handle_method")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Specifies the handling status to filter the results.  
+        The valid values are as follows:
+        + **unhandled**: Unhandled.
+        + **handled**: Handled.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="isolateTag")
+    def isolate_tag(self) -> _builtins.str:
+        """
+        The automatic isolation scan tag.
+        """
+        return pulumi.get(self, "isolate_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="malwareName")
+    def malware_name(self) -> _builtins.str:
+        """
+        Specifies the malware name to filter the results.
+        """
+        return pulumi.get(self, "malware_name")
+
+    @_builtins.property
+    @pulumi.getter(name="malwareType")
+    def malware_type(self) -> _builtins.str:
+        """
+        The malware type.
+        """
+        return pulumi.get(self, "malware_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def memo(self) -> _builtins.str:
+        """
+        The memo information.
+        """
+        return pulumi.get(self, "memo")
+
+    @_builtins.property
+    @pulumi.getter(name="occurTime")
+    def occur_time(self) -> _builtins.int:
+        """
+        The occurrence time in milliseconds.
+        """
+        return pulumi.get(self, "occur_time")
+
+    @_builtins.property
+    @pulumi.getter(name="operateAcceptLists")
+    def operate_accept_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of supported handling operations.
+        """
+        return pulumi.get(self, "operate_accept_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="operateDetailLists")
+    def operate_detail_lists(self) -> Sequence['outputs.GetAntivirusResultDataListOperateDetailListResult']:
+        """
+        The operation details information list.
+        """
+        return pulumi.get(self, "operate_detail_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceInfos")
+    def resource_infos(self) -> Sequence['outputs.GetAntivirusResultDataListResourceInfoResult']:
+        """
+        The resource information.
+        """
+        return pulumi.get(self, "resource_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="resultId")
+    def result_id(self) -> _builtins.str:
+        """
+        The antivirus result ID.
+        """
+        return pulumi.get(self, "result_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The threat level. The valid values are **Low**, **Medium**, **High**, and **Critical**.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> _builtins.str:
+        """
+        The task ID.
+        """
+        return pulumi.get(self, "task_id")
+
+    @_builtins.property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> _builtins.str:
+        """
+        Specifies the task name to filter the results.
+        """
+        return pulumi.get(self, "task_name")
+
+
+@pulumi.output_type
+class GetAntivirusResultDataListFileInfoResult(dict):
+    def __init__(__self__, *,
+                 file_attr: _builtins.str,
+                 file_ctime: _builtins.int,
+                 file_hash: _builtins.str,
+                 file_mtime: _builtins.int,
+                 file_owner: _builtins.str,
+                 file_path: _builtins.str,
+                 file_size: _builtins.int):
+        """
+        :param _builtins.str file_attr: The file attributes.
+        :param _builtins.int file_ctime: The file creation time.
+        :param _builtins.str file_hash: Specifies the file hash (SHA256) to filter the results.
+        :param _builtins.int file_mtime: The file update time.
+        :param _builtins.str file_owner: The file owner.
+        :param _builtins.str file_path: Specifies the file path to filter the results.
+        :param _builtins.int file_size: The file size.
+        """
+        pulumi.set(__self__, "file_attr", file_attr)
+        pulumi.set(__self__, "file_ctime", file_ctime)
+        pulumi.set(__self__, "file_hash", file_hash)
+        pulumi.set(__self__, "file_mtime", file_mtime)
+        pulumi.set(__self__, "file_owner", file_owner)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "file_size", file_size)
+
+    @_builtins.property
+    @pulumi.getter(name="fileAttr")
+    def file_attr(self) -> _builtins.str:
+        """
+        The file attributes.
+        """
+        return pulumi.get(self, "file_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="fileCtime")
+    def file_ctime(self) -> _builtins.int:
+        """
+        The file creation time.
+        """
+        return pulumi.get(self, "file_ctime")
+
+    @_builtins.property
+    @pulumi.getter(name="fileHash")
+    def file_hash(self) -> _builtins.str:
+        """
+        Specifies the file hash (SHA256) to filter the results.
+        """
+        return pulumi.get(self, "file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="fileMtime")
+    def file_mtime(self) -> _builtins.int:
+        """
+        The file update time.
+        """
+        return pulumi.get(self, "file_mtime")
+
+    @_builtins.property
+    @pulumi.getter(name="fileOwner")
+    def file_owner(self) -> _builtins.str:
+        """
+        The file owner.
+        """
+        return pulumi.get(self, "file_owner")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        Specifies the file path to filter the results.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="fileSize")
+    def file_size(self) -> _builtins.int:
+        """
+        The file size.
+        """
+        return pulumi.get(self, "file_size")
+
+
+@pulumi.output_type
+class GetAntivirusResultDataListOperateDetailListResult(dict):
+    def __init__(__self__, *,
+                 hash: _builtins.str,
+                 keyword: _builtins.str):
+        """
+        :param _builtins.str hash: The alarm event hash, only used for alarm whitelist.
+        :param _builtins.str keyword: The alarm event keywords, only used for alarm whitelist.
+        """
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "keyword", keyword)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The alarm event hash, only used for alarm whitelist.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter
+    def keyword(self) -> _builtins.str:
+        """
+        The alarm event keywords, only used for alarm whitelist.
+        """
+        return pulumi.get(self, "keyword")
+
+
+@pulumi.output_type
+class GetAntivirusResultDataListResourceInfoResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 agent_status: _builtins.str,
+                 asset_value: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_status: _builtins.str,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str,
+                 os_version: _builtins.str,
+                 private_ip: _builtins.str,
+                 protect_status: _builtins.str,
+                 public_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str agent_status: The agent status.  
+               The valid values are as follows:
+               + **installed**: Installed.
+               + **not_installed**: Not installed.
+               + **online**: Online.
+               + **offline**: Offline.
+               + **install_failed**: Installation failed.
+               + **installing**: Installing.
+        :param _builtins.str asset_value: Specifies the asset importance to filter the results.  
+               The valid values are as follows:
+               + **important**: Important assets.
+               + **common**: Common assets.
+               + **test**: Test assets.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the server name to filter the results.
+        :param _builtins.str host_status: The server status.  
+               The valid values are as follows:
+               + **ACTIVE**: Running.
+               + **SHUTOFF**: Shutdown.
+               + **BUILDING**: Creating.
+               + **ERROR**: Fault.
+        :param _builtins.str os_name: The operating system name.
+        :param _builtins.str os_type: The operating system type. The valid values are **Linux** and **Windows**.
+        :param _builtins.str os_version: The operating system version.
+        :param _builtins.str private_ip: Specifies the private IP to filter the results.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **closed**: Not protected.
+               + **opened**: Protected.
+        :param _builtins.str public_ip: Specifies the public IP to filter the results.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "os_version", os_version)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "public_ip", public_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        The agent status.  
+        The valid values are as follows:
+        + **installed**: Installed.
+        + **not_installed**: Not installed.
+        + **online**: Online.
+        + **offline**: Offline.
+        + **install_failed**: Installation failed.
+        + **installing**: Installing.
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the asset importance to filter the results.  
+        The valid values are as follows:
+        + **important**: Important assets.
+        + **common**: Common assets.
+        + **test**: Test assets.
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name to filter the results.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        The server status.  
+        The valid values are as follows:
+        + **ACTIVE**: Running.
+        + **SHUTOFF**: Shutdown.
+        + **BUILDING**: Creating.
+        + **ERROR**: Fault.
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The operating system name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The operating system type. The valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osVersion")
+    def os_version(self) -> _builtins.str:
+        """
+        The operating system version.
+        """
+        return pulumi.get(self, "os_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the private IP to filter the results.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **closed**: Not protected.
+        + **opened**: Protected.
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the public IP to filter the results.
         """
         return pulumi.get(self, "public_ip")
 
@@ -1854,6 +3690,1606 @@ class GetAntivirusVirusScanTasksDataListHostInfoListResult(dict):
 
 
 @pulumi.output_type
+class GetAppEventsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_status: _builtins.str,
+                 asset_value: _builtins.str,
+                 attack_phase: _builtins.str,
+                 attack_tag: _builtins.str,
+                 event_class_id: _builtins.str,
+                 event_id: _builtins.str,
+                 event_name: _builtins.str,
+                 event_type: _builtins.int,
+                 handle_method: _builtins.str,
+                 handle_status: _builtins.str,
+                 handle_time: _builtins.int,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_status: _builtins.str,
+                 occur_time: _builtins.int,
+                 operate_accept_lists: Sequence[_builtins.str],
+                 operate_detail_lists: Sequence['outputs.GetAppEventsDataListOperateDetailListResult'],
+                 os_type: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 process_infos: Sequence['outputs.GetAppEventsDataListProcessInfoResult'],
+                 protect_status: _builtins.str,
+                 public_ip: _builtins.str,
+                 recommendation: _builtins.str,
+                 resource_infos: Sequence['outputs.GetAppEventsDataListResourceInfoResult'],
+                 severity: _builtins.str):
+        """
+        :param _builtins.str agent_status: The agent status. Valid values are:
+               + **installed**
+               + **not_installed**
+               + **online**
+               + **offline**
+               + **install_failed**
+               + **installing**
+               + **not_online**
+        :param _builtins.str asset_value: The asset importance. Valid values are:
+               + **important**:
+               + **common**:
+               + **test**:
+        :param _builtins.str attack_phase: The attack phase. Valid values:
+               + **reconnaissance**
+               + **weaponization**
+               + **delivery**
+               + **exploit**
+               + **installation**
+               + **command_and_control**
+               + **actions**
+        :param _builtins.str attack_tag: The attack tag. Valid values:
+               + **attack_success**: successful attack
+               + **attack_attempt**: attack attempt
+               + **attack_blocked**: attack blocked
+               + **abnormal_behavior**: abnormal behavior
+               + **collapsible_host**: server compromised
+               + **system_vulnerability**: system vulnerability
+        :param _builtins.str event_class_id: The event type. Valid values:
+               + **container_1001**: container namespace
+               + **container_1002**: container open port
+               + **container_1003**: container security option
+               + **container_1004**: container mount directory
+               + **containerescape_0001**: high-risk system call
+               + **containerescape_0002**: shocker attack
+               + **containerescape_0003**: Dirty Cow attack
+               + **containerescape_0004**: container file escape
+               + **dockerfile_001**: modification of user-defined protected container file
+               + **dockerfile_002**: modification of executable files in the container file system
+               + **dockerproc_001**: abnormal container process
+               + **fileprotect_0001**: file privilege escalation
+               + **fileprotect_0002**: critical file change
+               + **fileprotect_0003**: critical file path change
+               + **fileprotect_0004**: file/directory change
+               + **av_1002**: virus
+               + **av_1003**: worm
+               + **av_1004**: Trojan
+               + **av_1005**: botnet
+               + **av_1006**: backdoor
+               + **av_1007**: spyware
+               + **av_1008**: adware
+               + **av_1009**: phishing
+               + **av_1010**: rootkit
+               + **av_1011**: ransomware
+               + **av_1012**: hacker tool
+               + **av_1013**: grayware
+               + **av_1015**: web shell
+               + **av_1016**: mining software
+               + **login_0001**: brute-force attack attempt
+               + **login_0002**: successful brute-force attack
+               + **login_1001**: successful login
+               + **login_1002**: remote login
+               + **login_1003**: weak password
+               + **malware_0001**: shell change event
+               + **malware_0002**: reverse shell event
+               + **malware_1001**: malicious program
+               + **procdet_0001**: abnormal process behavior
+               + **procdet_0002**: process privilege escalation
+               + **procreport_0001**: risky command
+               + **user_1001**: account change
+               + **user_1002**: risky account
+               + **vmescape_0001**: VM sensitive command execution
+               + **vmescape_0002**: access from virtualization process to sensitive file
+               + **vmescape_0003**: abnormal VM port access
+               + **webshell_0001**: web shell
+               + **network_1001**: mining
+               + **network_1002**: servers exploited to launch DDoS attacks
+               + **network_1003**: malicious scan
+               + **network_1004**: attack in sensitive areas
+               + **ransomware_0001**: ransomware attack
+               + **ransomware_0002**: ransomware attack
+               + **ransomware_0003**: ransomware attack
+               + **fileless_0001**: process injection
+               + **fileless_0002**: dynamic library injection
+               + **fileless_0003**: critical configuration change
+               + **fileless_0004**: environment variable change
+               + **fileless_0005**: memory file process
+               + **fileless_0006**: VDSO hijacking
+               + **crontab_1001**: suspicious crontab task
+               + **vul_exploit_0001**: Redis vulnerability exploit
+               + **vul_exploit_0002**: Hadoop vulnerability exploit
+               + **vul_exploit_0003**: MySQL vulnerability exploit
+               + **rootkit_0001**: suspicious rootkit file
+               + **rootkit_0002**: suspicious kernel module
+               + **RASP_0004**: web shell upload
+               + **RASP_0018**: fileless web shell
+               + **blockexec_001**: known ransomware attack
+               + **hips_0001**: Windows Defender disabled
+               + **hips_0002**: suspicious hacker tool
+               + **hips_0003**: suspicious ransomware encryption behavior
+               + **hips_0004**: hidden account creation
+               + **hips_0005**: user password and credential reading
+               + **hips_0006**: suspicious SAM file export
+               + **hips_0007**: suspicious shadow copy deletion
+               + **hips_0008**: backup file deletion
+               + **hips_0009**: registry operation probably performed by ransomware
+               + **hips_0010**: suspicious abnormal process
+               + **hips_0011**: suspicious scan
+               + **hips_0012**: suspicious ransomware script execution
+               + **hips_0013**: suspicious mining command execution
+               + **hips_0014**: suspicious Windows security center disabling
+               + **hips_0015**: suspicious firewall disabling
+               + **hips_0016**: suspicious disabling of system automatic recovery
+               + **hips_0017**: executable file creation in Office
+               + **hips_0018**: abnormal file creation with macros in Office
+               + **hips_0019**: suspicious registry operation
+               + **hips_0020**: Confluence remote code execution
+               + **hips_0021**: MSDT remote code execution
+               + **portscan_0001**: common port scan
+               + **portscan_0002**: secret port scan
+               + **k8s_1001**: Kubernetes event deletion
+               + **k8s_1002**: privileged pod creation
+               + **k8s_1003**: interactive shell used in pod
+               + **k8s_1004**: pod created with sensitive directory
+               + **k8s_1005**: pod created with server network
+               + **k8s_1006**: pod created with host PID space
+               + **k8s_1007**: authentication failure when common pods access API server
+               + **k8s_1008**: API server access from common pod using cURL
+               + **k8s_1009**: exec in system management space
+               + **k8s_1010**: pod created in management space
+               + **k8s_1011**: static pod creation
+               + **k8s_1012**: DaemonSet creation
+               + **k8s_1013**: scheduled cluster task creation
+               + **k8s_1014**: operation on secrets
+               + **k8s_1015**: allowed operation enumeration
+               + **k8s_1016**: high privilege RoleBinding or ClusterRoleBinding
+               + **k8s_1017**: ServiceAccount creation
+               + **k8s_1018**: Cronjob creation
+               + **k8s_1019**: interactive shell used for exec in pods
+               + **k8s_1020**: unauthorized access to API server
+               + **k8s_1021**: access to API server with curl
+               + **k8s_1022**: Ingress vulnerability
+               + **k8s_1023**: man-in-the-middle (MITM) attack
+               + **k8s_1024**: worm, mining, or Trojan
+               + **k8s_1025**: K8s event deletion
+               + **k8s_1026**: SelfSubjectRulesReview
+               + **imgblock_0001**: image blocking based on whitelist
+               + **imgblock_0002**: image blocking based on blacklist
+               + **imgblock_0003**: image tag blocking based on whitelist
+               + **imgblock_0004**: image tag blocking based on blacklist
+               + **imgblock_0005**: container creation blocked based on whitelist
+               + **imgblock_0006**: container creation blocked based on blacklist
+               + **imgblock_0007**: container mount proc
+               + **imgblock_0008**: container seccomp unconfined
+               + **imgblock_0009**: container privilege blocking
+               + **imgblock_0010**: container capabilities blocking
+        :param _builtins.str event_id: The event ID.
+        :param _builtins.str event_name: The event name.
+        :param _builtins.int event_type: The event type. Valid values are:
+        :param _builtins.str handle_method: The handling method. Valid values:
+               + **mark_as_trust**
+               + **mark_as_suspicious**
+               + **isolate_and_kill**
+        :param _builtins.str handle_status: Specifies the event handling status. Valid values are **handled** and **unhandled**.
+        :param _builtins.int handle_time: The handling time, in milliseconds. This parameter is available only for handled alarms.
+        :param _builtins.str host_id: The Host ID.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str host_status: The server status. Valid values are:
+               + **ACTIVE**: running
+               + **SHUTOFF**: shut down
+               + **BUILDING**: creating
+               + **ERROR**: faulty
+        :param _builtins.int occur_time: The occurrence time, accurate to milliseconds.
+        :param Sequence[_builtins.str] operate_accept_lists: The supported processing operation.
+        :param Sequence['GetAppEventsDataListOperateDetailListArgs'] operate_detail_lists: The operation details list (Not displayed on the page).
+               The operate_detail_list structure is documented below.
+        :param _builtins.str os_type: The OS type. Valid values are **Linux** and **Windows**.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param _builtins.str private_ip: The server private IP address.
+        :param Sequence['GetAppEventsDataListProcessInfoArgs'] process_infos: The offset, process information list.
+               The process_info structure is documented below.
+        :param _builtins.str protect_status: The Protection status. Valid values are:
+               + **closed**
+               + **opened**
+        :param _builtins.str public_ip: The EIP.
+        :param _builtins.str recommendation: The suggestion.
+        :param Sequence['GetAppEventsDataListResourceInfoArgs'] resource_infos: The resource information (not displayed currently).
+               The resource_info structure is documented below.
+        :param _builtins.str severity: The risk level. Valid values:
+               + **Security**
+               + **Low**
+               + **Medium**
+               + **High**
+               + **Critical**
+        """
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "attack_phase", attack_phase)
+        pulumi.set(__self__, "attack_tag", attack_tag)
+        pulumi.set(__self__, "event_class_id", event_class_id)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "handle_method", handle_method)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "handle_time", handle_time)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "occur_time", occur_time)
+        pulumi.set(__self__, "operate_accept_lists", operate_accept_lists)
+        pulumi.set(__self__, "operate_detail_lists", operate_detail_lists)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "process_infos", process_infos)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "recommendation", recommendation)
+        pulumi.set(__self__, "resource_infos", resource_infos)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        The agent status. Valid values are:
+        + **installed**
+        + **not_installed**
+        + **online**
+        + **offline**
+        + **install_failed**
+        + **installing**
+        + **not_online**
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The asset importance. Valid values are:
+        + **important**:
+        + **common**:
+        + **test**:
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="attackPhase")
+    def attack_phase(self) -> _builtins.str:
+        """
+        The attack phase. Valid values:
+        + **reconnaissance**
+        + **weaponization**
+        + **delivery**
+        + **exploit**
+        + **installation**
+        + **command_and_control**
+        + **actions**
+        """
+        return pulumi.get(self, "attack_phase")
+
+    @_builtins.property
+    @pulumi.getter(name="attackTag")
+    def attack_tag(self) -> _builtins.str:
+        """
+        The attack tag. Valid values:
+        + **attack_success**: successful attack
+        + **attack_attempt**: attack attempt
+        + **attack_blocked**: attack blocked
+        + **abnormal_behavior**: abnormal behavior
+        + **collapsible_host**: server compromised
+        + **system_vulnerability**: system vulnerability
+        """
+        return pulumi.get(self, "attack_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="eventClassId")
+    def event_class_id(self) -> _builtins.str:
+        """
+        The event type. Valid values:
+        + **container_1001**: container namespace
+        + **container_1002**: container open port
+        + **container_1003**: container security option
+        + **container_1004**: container mount directory
+        + **containerescape_0001**: high-risk system call
+        + **containerescape_0002**: shocker attack
+        + **containerescape_0003**: Dirty Cow attack
+        + **containerescape_0004**: container file escape
+        + **dockerfile_001**: modification of user-defined protected container file
+        + **dockerfile_002**: modification of executable files in the container file system
+        + **dockerproc_001**: abnormal container process
+        + **fileprotect_0001**: file privilege escalation
+        + **fileprotect_0002**: critical file change
+        + **fileprotect_0003**: critical file path change
+        + **fileprotect_0004**: file/directory change
+        + **av_1002**: virus
+        + **av_1003**: worm
+        + **av_1004**: Trojan
+        + **av_1005**: botnet
+        + **av_1006**: backdoor
+        + **av_1007**: spyware
+        + **av_1008**: adware
+        + **av_1009**: phishing
+        + **av_1010**: rootkit
+        + **av_1011**: ransomware
+        + **av_1012**: hacker tool
+        + **av_1013**: grayware
+        + **av_1015**: web shell
+        + **av_1016**: mining software
+        + **login_0001**: brute-force attack attempt
+        + **login_0002**: successful brute-force attack
+        + **login_1001**: successful login
+        + **login_1002**: remote login
+        + **login_1003**: weak password
+        + **malware_0001**: shell change event
+        + **malware_0002**: reverse shell event
+        + **malware_1001**: malicious program
+        + **procdet_0001**: abnormal process behavior
+        + **procdet_0002**: process privilege escalation
+        + **procreport_0001**: risky command
+        + **user_1001**: account change
+        + **user_1002**: risky account
+        + **vmescape_0001**: VM sensitive command execution
+        + **vmescape_0002**: access from virtualization process to sensitive file
+        + **vmescape_0003**: abnormal VM port access
+        + **webshell_0001**: web shell
+        + **network_1001**: mining
+        + **network_1002**: servers exploited to launch DDoS attacks
+        + **network_1003**: malicious scan
+        + **network_1004**: attack in sensitive areas
+        + **ransomware_0001**: ransomware attack
+        + **ransomware_0002**: ransomware attack
+        + **ransomware_0003**: ransomware attack
+        + **fileless_0001**: process injection
+        + **fileless_0002**: dynamic library injection
+        + **fileless_0003**: critical configuration change
+        + **fileless_0004**: environment variable change
+        + **fileless_0005**: memory file process
+        + **fileless_0006**: VDSO hijacking
+        + **crontab_1001**: suspicious crontab task
+        + **vul_exploit_0001**: Redis vulnerability exploit
+        + **vul_exploit_0002**: Hadoop vulnerability exploit
+        + **vul_exploit_0003**: MySQL vulnerability exploit
+        + **rootkit_0001**: suspicious rootkit file
+        + **rootkit_0002**: suspicious kernel module
+        + **RASP_0004**: web shell upload
+        + **RASP_0018**: fileless web shell
+        + **blockexec_001**: known ransomware attack
+        + **hips_0001**: Windows Defender disabled
+        + **hips_0002**: suspicious hacker tool
+        + **hips_0003**: suspicious ransomware encryption behavior
+        + **hips_0004**: hidden account creation
+        + **hips_0005**: user password and credential reading
+        + **hips_0006**: suspicious SAM file export
+        + **hips_0007**: suspicious shadow copy deletion
+        + **hips_0008**: backup file deletion
+        + **hips_0009**: registry operation probably performed by ransomware
+        + **hips_0010**: suspicious abnormal process
+        + **hips_0011**: suspicious scan
+        + **hips_0012**: suspicious ransomware script execution
+        + **hips_0013**: suspicious mining command execution
+        + **hips_0014**: suspicious Windows security center disabling
+        + **hips_0015**: suspicious firewall disabling
+        + **hips_0016**: suspicious disabling of system automatic recovery
+        + **hips_0017**: executable file creation in Office
+        + **hips_0018**: abnormal file creation with macros in Office
+        + **hips_0019**: suspicious registry operation
+        + **hips_0020**: Confluence remote code execution
+        + **hips_0021**: MSDT remote code execution
+        + **portscan_0001**: common port scan
+        + **portscan_0002**: secret port scan
+        + **k8s_1001**: Kubernetes event deletion
+        + **k8s_1002**: privileged pod creation
+        + **k8s_1003**: interactive shell used in pod
+        + **k8s_1004**: pod created with sensitive directory
+        + **k8s_1005**: pod created with server network
+        + **k8s_1006**: pod created with host PID space
+        + **k8s_1007**: authentication failure when common pods access API server
+        + **k8s_1008**: API server access from common pod using cURL
+        + **k8s_1009**: exec in system management space
+        + **k8s_1010**: pod created in management space
+        + **k8s_1011**: static pod creation
+        + **k8s_1012**: DaemonSet creation
+        + **k8s_1013**: scheduled cluster task creation
+        + **k8s_1014**: operation on secrets
+        + **k8s_1015**: allowed operation enumeration
+        + **k8s_1016**: high privilege RoleBinding or ClusterRoleBinding
+        + **k8s_1017**: ServiceAccount creation
+        + **k8s_1018**: Cronjob creation
+        + **k8s_1019**: interactive shell used for exec in pods
+        + **k8s_1020**: unauthorized access to API server
+        + **k8s_1021**: access to API server with curl
+        + **k8s_1022**: Ingress vulnerability
+        + **k8s_1023**: man-in-the-middle (MITM) attack
+        + **k8s_1024**: worm, mining, or Trojan
+        + **k8s_1025**: K8s event deletion
+        + **k8s_1026**: SelfSubjectRulesReview
+        + **imgblock_0001**: image blocking based on whitelist
+        + **imgblock_0002**: image blocking based on blacklist
+        + **imgblock_0003**: image tag blocking based on whitelist
+        + **imgblock_0004**: image tag blocking based on blacklist
+        + **imgblock_0005**: container creation blocked based on whitelist
+        + **imgblock_0006**: container creation blocked based on blacklist
+        + **imgblock_0007**: container mount proc
+        + **imgblock_0008**: container seccomp unconfined
+        + **imgblock_0009**: container privilege blocking
+        + **imgblock_0010**: container capabilities blocking
+        """
+        return pulumi.get(self, "event_class_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> _builtins.str:
+        """
+        The event ID.
+        """
+        return pulumi.get(self, "event_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> _builtins.str:
+        """
+        The event name.
+        """
+        return pulumi.get(self, "event_name")
+
+    @_builtins.property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> _builtins.int:
+        """
+        The event type. Valid values are:
+        """
+        return pulumi.get(self, "event_type")
+
+    @_builtins.property
+    @pulumi.getter(name="handleMethod")
+    def handle_method(self) -> _builtins.str:
+        """
+        The handling method. Valid values:
+        + **mark_as_trust**
+        + **mark_as_suspicious**
+        + **isolate_and_kill**
+        """
+        return pulumi.get(self, "handle_method")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Specifies the event handling status. Valid values are **handled** and **unhandled**.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="handleTime")
+    def handle_time(self) -> _builtins.int:
+        """
+        The handling time, in milliseconds. This parameter is available only for handled alarms.
+        """
+        return pulumi.get(self, "handle_time")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The Host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        The server status. Valid values are:
+        + **ACTIVE**: running
+        + **SHUTOFF**: shut down
+        + **BUILDING**: creating
+        + **ERROR**: faulty
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter(name="occurTime")
+    def occur_time(self) -> _builtins.int:
+        """
+        The occurrence time, accurate to milliseconds.
+        """
+        return pulumi.get(self, "occur_time")
+
+    @_builtins.property
+    @pulumi.getter(name="operateAcceptLists")
+    def operate_accept_lists(self) -> Sequence[_builtins.str]:
+        """
+        The supported processing operation.
+        """
+        return pulumi.get(self, "operate_accept_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="operateDetailLists")
+    def operate_detail_lists(self) -> Sequence['outputs.GetAppEventsDataListOperateDetailListResult']:
+        """
+        The operation details list (Not displayed on the page).
+        The operate_detail_list structure is documented below.
+        """
+        return pulumi.get(self, "operate_detail_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type. Valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The server private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="processInfos")
+    def process_infos(self) -> Sequence['outputs.GetAppEventsDataListProcessInfoResult']:
+        """
+        The offset, process information list.
+        The process_info structure is documented below.
+        """
+        return pulumi.get(self, "process_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The Protection status. Valid values are:
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The EIP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def recommendation(self) -> _builtins.str:
+        """
+        The suggestion.
+        """
+        return pulumi.get(self, "recommendation")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceInfos")
+    def resource_infos(self) -> Sequence['outputs.GetAppEventsDataListResourceInfoResult']:
+        """
+        The resource information (not displayed currently).
+        The resource_info structure is documented below.
+        """
+        return pulumi.get(self, "resource_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level. Valid values:
+        + **Security**
+        + **Low**
+        + **Medium**
+        + **High**
+        + **Critical**
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetAppEventsDataListOperateDetailListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 file_attr: _builtins.str,
+                 file_hash: _builtins.str,
+                 file_path: _builtins.str,
+                 login_ip: _builtins.str,
+                 login_user_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 process_pid: _builtins.int):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str file_attr: The file attribute.
+        :param _builtins.str file_hash: The file hash.
+        :param _builtins.str file_path: The file path.
+        :param _builtins.str login_ip: The login source IP address.
+        :param _builtins.str login_user_name: The login username.
+        :param _builtins.str private_ip: The server private IP address.
+        :param _builtins.int process_pid: The process ID.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "file_attr", file_attr)
+        pulumi.set(__self__, "file_hash", file_hash)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "login_ip", login_ip)
+        pulumi.set(__self__, "login_user_name", login_user_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "process_pid", process_pid)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAttr")
+    def file_attr(self) -> _builtins.str:
+        """
+        The file attribute.
+        """
+        return pulumi.get(self, "file_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="fileHash")
+    def file_hash(self) -> _builtins.str:
+        """
+        The file hash.
+        """
+        return pulumi.get(self, "file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="loginIp")
+    def login_ip(self) -> _builtins.str:
+        """
+        The login source IP address.
+        """
+        return pulumi.get(self, "login_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="loginUserName")
+    def login_user_name(self) -> _builtins.str:
+        """
+        The login username.
+        """
+        return pulumi.get(self, "login_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The server private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="processPid")
+    def process_pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "process_pid")
+
+
+@pulumi.output_type
+class GetAppEventsDataListProcessInfoResult(dict):
+    def __init__(__self__, *,
+                 ancestor_process_cmdline: _builtins.str,
+                 ancestor_process_path: _builtins.str,
+                 ancestor_process_pid: _builtins.int,
+                 child_process_cmdline: _builtins.str,
+                 child_process_egid: _builtins.int,
+                 child_process_euid: _builtins.int,
+                 child_process_filename: _builtins.str,
+                 child_process_gid: _builtins.int,
+                 child_process_name: _builtins.str,
+                 child_process_path: _builtins.str,
+                 child_process_pid: _builtins.int,
+                 child_process_start_time: _builtins.int,
+                 child_process_uid: _builtins.int,
+                 escape_cmd: _builtins.str,
+                 escape_mode: _builtins.str,
+                 mode: _builtins.str,
+                 operate_type: _builtins.int,
+                 parent_process_cmdline: _builtins.str,
+                 parent_process_egid: _builtins.int,
+                 parent_process_euid: _builtins.int,
+                 parent_process_file_hash: _builtins.str,
+                 parent_process_filename: _builtins.str,
+                 parent_process_gid: _builtins.int,
+                 parent_process_name: _builtins.str,
+                 parent_process_path: _builtins.str,
+                 parent_process_pid: _builtins.int,
+                 parent_process_start_time: _builtins.int,
+                 parent_process_uid: _builtins.int,
+                 process_cmdline: _builtins.str,
+                 process_egid: _builtins.int,
+                 process_euid: _builtins.int,
+                 process_file_hash: _builtins.str,
+                 process_filename: _builtins.str,
+                 process_gid: _builtins.int,
+                 process_hash: _builtins.str,
+                 process_name: _builtins.str,
+                 process_path: _builtins.str,
+                 process_pid: _builtins.int,
+                 process_start_time: _builtins.int,
+                 process_uid: _builtins.int,
+                 process_username: _builtins.str,
+                 rule: _builtins.int,
+                 score: _builtins.int,
+                 session_id: _builtins.int,
+                 virt_cmd: _builtins.str,
+                 virt_process_name: _builtins.str):
+        """
+        :param _builtins.str ancestor_process_cmdline: The grandparent process command line.
+        :param _builtins.str ancestor_process_path: The grandparent process path.
+        :param _builtins.int ancestor_process_pid: The grandparent process ID.
+        :param _builtins.str child_process_cmdline: The subprocess file command line.
+        :param _builtins.int child_process_egid: The effective subprocess group ID.
+        :param _builtins.int child_process_euid: The effective subprocess user ID.
+        :param _builtins.str child_process_filename: The subprocess file name.
+        :param _builtins.int child_process_gid: The subprocess group ID.
+        :param _builtins.str child_process_name: The subprocess name.
+        :param _builtins.str child_process_path: The subprocess file path.
+        :param _builtins.int child_process_pid: The subprocess ID.
+        :param _builtins.int child_process_start_time: The subprocess start time.
+        :param _builtins.int child_process_uid: The user ID associated with the subprocess.
+        :param _builtins.str escape_cmd: The command executed after the escape.
+        :param _builtins.str escape_mode: The escape method.
+        :param _builtins.str mode: The file attribute.
+        :param _builtins.int operate_type: The operation type.
+        :param _builtins.str parent_process_cmdline: The parent process file command line.
+        :param _builtins.int parent_process_egid: The effective parent process group ID.
+        :param _builtins.int parent_process_euid: The effective parent process user ID.
+        :param _builtins.str parent_process_file_hash: The hash of the parent process file.
+        :param _builtins.str parent_process_filename: The parent process file name.
+        :param _builtins.int parent_process_gid: The parent process group ID.
+        :param _builtins.str parent_process_name: The parent process name.
+        :param _builtins.str parent_process_path: The parent process file path.
+        :param _builtins.int parent_process_pid: The parent process ID.
+        :param _builtins.int parent_process_start_time: The parent process start time.
+        :param _builtins.int parent_process_uid: The user ID associated with the parent process.
+        :param _builtins.str process_cmdline: The process command line.
+        :param _builtins.int process_egid: The effective process group ID.
+        :param _builtins.int process_euid: The effective process user ID.
+        :param _builtins.str process_file_hash: The process file hash.
+        :param _builtins.str process_filename: The process file name.
+        :param _builtins.int process_gid: The process group ID.
+        :param _builtins.str process_hash: The process startup file hash.
+        :param _builtins.str process_name: The process name.
+        :param _builtins.str process_path: The process path.
+        :param _builtins.int process_pid: The process ID.
+        :param _builtins.int process_start_time: The process start time.
+        :param _builtins.int process_uid: The process name.
+        :param _builtins.str process_username: The process username.
+        :param _builtins.int rule: The rule.
+        :param _builtins.int score: The score.
+        :param _builtins.int session_id: The session ID.
+        :param _builtins.str virt_cmd: The virtualization command.
+        :param _builtins.str virt_process_name: The virtualization process name.
+        """
+        pulumi.set(__self__, "ancestor_process_cmdline", ancestor_process_cmdline)
+        pulumi.set(__self__, "ancestor_process_path", ancestor_process_path)
+        pulumi.set(__self__, "ancestor_process_pid", ancestor_process_pid)
+        pulumi.set(__self__, "child_process_cmdline", child_process_cmdline)
+        pulumi.set(__self__, "child_process_egid", child_process_egid)
+        pulumi.set(__self__, "child_process_euid", child_process_euid)
+        pulumi.set(__self__, "child_process_filename", child_process_filename)
+        pulumi.set(__self__, "child_process_gid", child_process_gid)
+        pulumi.set(__self__, "child_process_name", child_process_name)
+        pulumi.set(__self__, "child_process_path", child_process_path)
+        pulumi.set(__self__, "child_process_pid", child_process_pid)
+        pulumi.set(__self__, "child_process_start_time", child_process_start_time)
+        pulumi.set(__self__, "child_process_uid", child_process_uid)
+        pulumi.set(__self__, "escape_cmd", escape_cmd)
+        pulumi.set(__self__, "escape_mode", escape_mode)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "parent_process_cmdline", parent_process_cmdline)
+        pulumi.set(__self__, "parent_process_egid", parent_process_egid)
+        pulumi.set(__self__, "parent_process_euid", parent_process_euid)
+        pulumi.set(__self__, "parent_process_file_hash", parent_process_file_hash)
+        pulumi.set(__self__, "parent_process_filename", parent_process_filename)
+        pulumi.set(__self__, "parent_process_gid", parent_process_gid)
+        pulumi.set(__self__, "parent_process_name", parent_process_name)
+        pulumi.set(__self__, "parent_process_path", parent_process_path)
+        pulumi.set(__self__, "parent_process_pid", parent_process_pid)
+        pulumi.set(__self__, "parent_process_start_time", parent_process_start_time)
+        pulumi.set(__self__, "parent_process_uid", parent_process_uid)
+        pulumi.set(__self__, "process_cmdline", process_cmdline)
+        pulumi.set(__self__, "process_egid", process_egid)
+        pulumi.set(__self__, "process_euid", process_euid)
+        pulumi.set(__self__, "process_file_hash", process_file_hash)
+        pulumi.set(__self__, "process_filename", process_filename)
+        pulumi.set(__self__, "process_gid", process_gid)
+        pulumi.set(__self__, "process_hash", process_hash)
+        pulumi.set(__self__, "process_name", process_name)
+        pulumi.set(__self__, "process_path", process_path)
+        pulumi.set(__self__, "process_pid", process_pid)
+        pulumi.set(__self__, "process_start_time", process_start_time)
+        pulumi.set(__self__, "process_uid", process_uid)
+        pulumi.set(__self__, "process_username", process_username)
+        pulumi.set(__self__, "rule", rule)
+        pulumi.set(__self__, "score", score)
+        pulumi.set(__self__, "session_id", session_id)
+        pulumi.set(__self__, "virt_cmd", virt_cmd)
+        pulumi.set(__self__, "virt_process_name", virt_process_name)
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessCmdline")
+    def ancestor_process_cmdline(self) -> _builtins.str:
+        """
+        The grandparent process command line.
+        """
+        return pulumi.get(self, "ancestor_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessPath")
+    def ancestor_process_path(self) -> _builtins.str:
+        """
+        The grandparent process path.
+        """
+        return pulumi.get(self, "ancestor_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessPid")
+    def ancestor_process_pid(self) -> _builtins.int:
+        """
+        The grandparent process ID.
+        """
+        return pulumi.get(self, "ancestor_process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessCmdline")
+    def child_process_cmdline(self) -> _builtins.str:
+        """
+        The subprocess file command line.
+        """
+        return pulumi.get(self, "child_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessEgid")
+    def child_process_egid(self) -> _builtins.int:
+        """
+        The effective subprocess group ID.
+        """
+        return pulumi.get(self, "child_process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessEuid")
+    def child_process_euid(self) -> _builtins.int:
+        """
+        The effective subprocess user ID.
+        """
+        return pulumi.get(self, "child_process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessFilename")
+    def child_process_filename(self) -> _builtins.str:
+        """
+        The subprocess file name.
+        """
+        return pulumi.get(self, "child_process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessGid")
+    def child_process_gid(self) -> _builtins.int:
+        """
+        The subprocess group ID.
+        """
+        return pulumi.get(self, "child_process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessName")
+    def child_process_name(self) -> _builtins.str:
+        """
+        The subprocess name.
+        """
+        return pulumi.get(self, "child_process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessPath")
+    def child_process_path(self) -> _builtins.str:
+        """
+        The subprocess file path.
+        """
+        return pulumi.get(self, "child_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessPid")
+    def child_process_pid(self) -> _builtins.int:
+        """
+        The subprocess ID.
+        """
+        return pulumi.get(self, "child_process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessStartTime")
+    def child_process_start_time(self) -> _builtins.int:
+        """
+        The subprocess start time.
+        """
+        return pulumi.get(self, "child_process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessUid")
+    def child_process_uid(self) -> _builtins.int:
+        """
+        The user ID associated with the subprocess.
+        """
+        return pulumi.get(self, "child_process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="escapeCmd")
+    def escape_cmd(self) -> _builtins.str:
+        """
+        The command executed after the escape.
+        """
+        return pulumi.get(self, "escape_cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="escapeMode")
+    def escape_mode(self) -> _builtins.str:
+        """
+        The escape method.
+        """
+        return pulumi.get(self, "escape_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The file attribute.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> _builtins.int:
+        """
+        The operation type.
+        """
+        return pulumi.get(self, "operate_type")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessCmdline")
+    def parent_process_cmdline(self) -> _builtins.str:
+        """
+        The parent process file command line.
+        """
+        return pulumi.get(self, "parent_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessEgid")
+    def parent_process_egid(self) -> _builtins.int:
+        """
+        The effective parent process group ID.
+        """
+        return pulumi.get(self, "parent_process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessEuid")
+    def parent_process_euid(self) -> _builtins.int:
+        """
+        The effective parent process user ID.
+        """
+        return pulumi.get(self, "parent_process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessFileHash")
+    def parent_process_file_hash(self) -> _builtins.str:
+        """
+        The hash of the parent process file.
+        """
+        return pulumi.get(self, "parent_process_file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessFilename")
+    def parent_process_filename(self) -> _builtins.str:
+        """
+        The parent process file name.
+        """
+        return pulumi.get(self, "parent_process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessGid")
+    def parent_process_gid(self) -> _builtins.int:
+        """
+        The parent process group ID.
+        """
+        return pulumi.get(self, "parent_process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessName")
+    def parent_process_name(self) -> _builtins.str:
+        """
+        The parent process name.
+        """
+        return pulumi.get(self, "parent_process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessPath")
+    def parent_process_path(self) -> _builtins.str:
+        """
+        The parent process file path.
+        """
+        return pulumi.get(self, "parent_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessPid")
+    def parent_process_pid(self) -> _builtins.int:
+        """
+        The parent process ID.
+        """
+        return pulumi.get(self, "parent_process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessStartTime")
+    def parent_process_start_time(self) -> _builtins.int:
+        """
+        The parent process start time.
+        """
+        return pulumi.get(self, "parent_process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessUid")
+    def parent_process_uid(self) -> _builtins.int:
+        """
+        The user ID associated with the parent process.
+        """
+        return pulumi.get(self, "parent_process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="processCmdline")
+    def process_cmdline(self) -> _builtins.str:
+        """
+        The process command line.
+        """
+        return pulumi.get(self, "process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="processEgid")
+    def process_egid(self) -> _builtins.int:
+        """
+        The effective process group ID.
+        """
+        return pulumi.get(self, "process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="processEuid")
+    def process_euid(self) -> _builtins.int:
+        """
+        The effective process user ID.
+        """
+        return pulumi.get(self, "process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="processFileHash")
+    def process_file_hash(self) -> _builtins.str:
+        """
+        The process file hash.
+        """
+        return pulumi.get(self, "process_file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="processFilename")
+    def process_filename(self) -> _builtins.str:
+        """
+        The process file name.
+        """
+        return pulumi.get(self, "process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="processGid")
+    def process_gid(self) -> _builtins.int:
+        """
+        The process group ID.
+        """
+        return pulumi.get(self, "process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="processHash")
+    def process_hash(self) -> _builtins.str:
+        """
+        The process startup file hash.
+        """
+        return pulumi.get(self, "process_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="processName")
+    def process_name(self) -> _builtins.str:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="processPath")
+    def process_path(self) -> _builtins.str:
+        """
+        The process path.
+        """
+        return pulumi.get(self, "process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="processPid")
+    def process_pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="processStartTime")
+    def process_start_time(self) -> _builtins.int:
+        """
+        The process start time.
+        """
+        return pulumi.get(self, "process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="processUid")
+    def process_uid(self) -> _builtins.int:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="processUsername")
+    def process_username(self) -> _builtins.str:
+        """
+        The process username.
+        """
+        return pulumi.get(self, "process_username")
+
+    @_builtins.property
+    @pulumi.getter
+    def rule(self) -> _builtins.int:
+        """
+        The rule.
+        """
+        return pulumi.get(self, "rule")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.int:
+        """
+        The score.
+        """
+        return pulumi.get(self, "score")
+
+    @_builtins.property
+    @pulumi.getter(name="sessionId")
+    def session_id(self) -> _builtins.int:
+        """
+        The session ID.
+        """
+        return pulumi.get(self, "session_id")
+
+    @_builtins.property
+    @pulumi.getter(name="virtCmd")
+    def virt_cmd(self) -> _builtins.str:
+        """
+        The virtualization command.
+        """
+        return pulumi.get(self, "virt_cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="virtProcessName")
+    def virt_process_name(self) -> _builtins.str:
+        """
+        The virtualization process name.
+        """
+        return pulumi.get(self, "virt_process_name")
+
+
+@pulumi.output_type
+class GetAppEventsDataListResourceInfoResult(dict):
+    def __init__(__self__, *,
+                 agent_version: _builtins.str,
+                 asset_value: _builtins.str,
+                 cloud_id: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 container_id: _builtins.str,
+                 container_status: _builtins.str,
+                 domain_id: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 host_attr: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 micro_service: _builtins.str,
+                 namespace: _builtins.str,
+                 os_bit: _builtins.str,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str,
+                 os_version: _builtins.str,
+                 pod_name: _builtins.str,
+                 pod_uid: _builtins.str,
+                 project_id: _builtins.str,
+                 public_ip: _builtins.str,
+                 region_name: _builtins.str,
+                 service: _builtins.str,
+                 sys_arch: _builtins.str,
+                 vm_name: _builtins.str,
+                 vm_uuid: _builtins.str,
+                 vpc_id: _builtins.str):
+        """
+        :param _builtins.str agent_version: The agent version.
+        :param _builtins.str asset_value: The asset importance. Valid values are:
+               + **important**:
+               + **common**:
+               + **test**:
+        :param _builtins.str cloud_id: The server ID.
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_status: The container status.
+        :param _builtins.str domain_id: The tenant account ID.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+        :param _builtins.str host_attr: The server attribute.
+        :param _builtins.str host_id: The Host ID.
+        :param _builtins.str host_ip: Specifies the server IP address.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: The image name. This parameter is available only for container alarms.
+        :param _builtins.str micro_service: The microservice.
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.str os_bit: The OS bit version.
+        :param _builtins.str os_name: The OS name.
+        :param _builtins.str os_type: The OS type. Valid values are **Linux** and **Windows**.
+        :param _builtins.str os_version: The OS version.
+        :param _builtins.str pod_name: The pod name.
+        :param _builtins.str pod_uid: The pod uid.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str public_ip: The EIP.
+        :param _builtins.str region_name: The region ID
+        :param _builtins.str service: The business service.
+        :param _builtins.str sys_arch: The system CPU architecture.
+        :param _builtins.str vm_name: The VM name.
+        :param _builtins.str vm_uuid: The VM UUID.
+        :param _builtins.str vpc_id: The VPC ID.
+        """
+        pulumi.set(__self__, "agent_version", agent_version)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "cloud_id", cloud_id)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_status", container_status)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "host_attr", host_attr)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "micro_service", micro_service)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "os_bit", os_bit)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "os_version", os_version)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "pod_uid", pod_uid)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "sys_arch", sys_arch)
+        pulumi.set(__self__, "vm_name", vm_name)
+        pulumi.set(__self__, "vm_uuid", vm_uuid)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter(name="agentVersion")
+    def agent_version(self) -> _builtins.str:
+        """
+        The agent version.
+        """
+        return pulumi.get(self, "agent_version")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The asset importance. Valid values are:
+        + **important**:
+        + **common**:
+        + **test**:
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudId")
+    def cloud_id(self) -> _builtins.str:
+        """
+        The server ID.
+        """
+        return pulumi.get(self, "cloud_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerStatus")
+    def container_status(self) -> _builtins.str:
+        """
+        The container status.
+        """
+        return pulumi.get(self, "container_status")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The tenant account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostAttr")
+    def host_attr(self) -> _builtins.str:
+        """
+        The server attribute.
+        """
+        return pulumi.get(self, "host_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The Host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the server IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name. This parameter is available only for container alarms.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="microService")
+    def micro_service(self) -> _builtins.str:
+        """
+        The microservice.
+        """
+        return pulumi.get(self, "micro_service")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="osBit")
+    def os_bit(self) -> _builtins.str:
+        """
+        The OS bit version.
+        """
+        return pulumi.get(self, "os_bit")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The OS name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type. Valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osVersion")
+    def os_version(self) -> _builtins.str:
+        """
+        The OS version.
+        """
+        return pulumi.get(self, "os_version")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        The pod name.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podUid")
+    def pod_uid(self) -> _builtins.str:
+        """
+        The pod uid.
+        """
+        return pulumi.get(self, "pod_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The EIP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region ID
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The business service.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter(name="sysArch")
+    def sys_arch(self) -> _builtins.str:
+        """
+        The system CPU architecture.
+        """
+        return pulumi.get(self, "sys_arch")
+
+    @_builtins.property
+    @pulumi.getter(name="vmName")
+    def vm_name(self) -> _builtins.str:
+        """
+        The VM name.
+        """
+        return pulumi.get(self, "vm_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vmUuid")
+    def vm_uuid(self) -> _builtins.str:
+        """
+        The VM UUID.
+        """
+        return pulumi.get(self, "vm_uuid")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> _builtins.str:
+        """
+        The VPC ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
 class GetAppStatisticsDataListResult(dict):
     def __init__(__self__, *,
                  app_name: _builtins.str,
@@ -1880,6 +5316,735 @@ class GetAppStatisticsDataListResult(dict):
         The number of hosts that have this app.
         """
         return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAppWhitelistAssociateHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 apply_status: _builtins.bool,
+                 asset_value: _builtins.str,
+                 event_num: _builtins.int,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 intercept: _builtins.bool,
+                 learning_status: _builtins.str,
+                 os_type: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 policy_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str):
+        """
+        :param _builtins.bool apply_status: Specifies the policy application status.
+               The valid values are as follows:
+               + **true**
+               + **false**
+        :param _builtins.str asset_value: Specifies the asset importance.
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param _builtins.int event_num: The number of events on the host.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.bool intercept: Whether to enable blocking.
+        :param _builtins.str learning_status: Specifies the policy learning status.
+               The valid values are as follows:
+               + **effecting**: Learning completed, strategy activated.
+               + **learned**: Learning completed, pending confirmation.
+               + **learning**: Learning in progress.
+               + **pause**: Paused.
+               + **abnormal**: Learning anomaly.
+        :param _builtins.str os_type: Specifies the OS type.
+               The valid values are as follows:
+               + **Linux**
+               + **Windows**
+        :param _builtins.str policy_id: Specifies the policy ID.
+        :param _builtins.str policy_name: Specifies the policy name.
+        :param _builtins.str policy_type: The policy type.
+        :param _builtins.str private_ip: Specifies the private IP address of the host.
+        :param _builtins.str public_ip: Specifies the public IP address of the host.
+        """
+        pulumi.set(__self__, "apply_status", apply_status)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "event_num", event_num)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "intercept", intercept)
+        pulumi.set(__self__, "learning_status", learning_status)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_type", policy_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="applyStatus")
+    def apply_status(self) -> _builtins.bool:
+        """
+        Specifies the policy application status.
+        The valid values are as follows:
+        + **true**
+        + **false**
+        """
+        return pulumi.get(self, "apply_status")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the asset importance.
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="eventNum")
+    def event_num(self) -> _builtins.int:
+        """
+        The number of events on the host.
+        """
+        return pulumi.get(self, "event_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def intercept(self) -> _builtins.bool:
+        """
+        Whether to enable blocking.
+        """
+        return pulumi.get(self, "intercept")
+
+    @_builtins.property
+    @pulumi.getter(name="learningStatus")
+    def learning_status(self) -> _builtins.str:
+        """
+        Specifies the policy learning status.
+        The valid values are as follows:
+        + **effecting**: Learning completed, strategy activated.
+        + **learned**: Learning completed, pending confirmation.
+        + **learning**: Learning in progress.
+        + **pause**: Paused.
+        + **abnormal**: Learning anomaly.
+        """
+        return pulumi.get(self, "learning_status")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the OS type.
+        The valid values are as follows:
+        + **Linux**
+        + **Windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        Specifies the policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        Specifies the policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> _builtins.str:
+        """
+        The policy type.
+        """
+        return pulumi.get(self, "policy_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the private IP address of the host.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the public IP address of the host.
+        """
+        return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetAppWhitelistOptionalHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 asset_value: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str asset_value: The asset importance.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str private_ip: Specifies the private IP address of the host.
+        :param _builtins.str public_ip: Specifies the public IP address of the host.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The asset importance.
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the private IP address of the host.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the public IP address of the host.
+        """
+        return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetAppWhitelistPoliciesDataListResult(dict):
+    def __init__(__self__, *,
+                 abnormal_info_lists: Sequence['outputs.GetAppWhitelistPoliciesDataListAbnormalInfoListResult'],
+                 auto_confirm: _builtins.bool,
+                 auto_detect: _builtins.bool,
+                 default_policy: _builtins.bool,
+                 dir_lists: Sequence[_builtins.str],
+                 effect_host_num: _builtins.int,
+                 file_extension_lists: Sequence[_builtins.str],
+                 host_id_lists: Sequence[_builtins.str],
+                 intercept: _builtins.bool,
+                 learning_days: _builtins.int,
+                 learning_status: _builtins.str,
+                 malicious_num: _builtins.int,
+                 not_effect_host_num: _builtins.int,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 policy_type: _builtins.str,
+                 specified_dir: _builtins.bool,
+                 suspicious_num: _builtins.int,
+                 trust_num: _builtins.int,
+                 unknown_num: _builtins.int):
+        """
+        :param Sequence['GetAppWhitelistPoliciesDataListAbnormalInfoListArgs'] abnormal_info_lists: The list of reasons for learning abnormalities.
+        :param _builtins.bool auto_confirm: Whether the learning results are automatically confirmed.
+        :param _builtins.bool auto_detect: Whether to automatically enable detection.
+        :param _builtins.bool default_policy: Whether to default the process whitelist policy.
+        :param Sequence[_builtins.str] dir_lists: The list of monitored directories.
+        :param _builtins.int effect_host_num: The number of hosts where the learning completion strategy has take effect.
+        :param Sequence[_builtins.str] file_extension_lists: The list of monitored file extensions.
+        :param Sequence[_builtins.str] host_id_lists: The list of host IDs.
+        :param _builtins.bool intercept: Specifies whether to enable blocking.
+               The valid values are as follows:
+               + **true**
+               + **false**
+        :param _builtins.int learning_days: The policy learning days.
+        :param _builtins.str learning_status: Specifies the policy learning status.
+               The valid values are as follows:
+               + **effecting**: Learning completed, strategy activated.
+               + **learned**: Learning completed, pending confirmation.
+               + **learning**: Learning in progress.
+               + **pause**: Paused.
+               + **abnormal**: Learning anomaly.
+        :param _builtins.int malicious_num: The number of malicious processes identified.
+        :param _builtins.int not_effect_host_num: The number of hosts where the learning completion strategy is not effective.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: Specifies the policy name.
+        :param _builtins.str policy_type: Specifies the policy type.
+               The value can be **block** (Indicates daily operation mode).
+        :param _builtins.bool specified_dir: Whether to specify a learning directory.
+        :param _builtins.int suspicious_num: The number of suspicious processes identified.
+        :param _builtins.int trust_num: The number of trusted processes identified.
+        :param _builtins.int unknown_num: The number of unknown processes identified.
+        """
+        pulumi.set(__self__, "abnormal_info_lists", abnormal_info_lists)
+        pulumi.set(__self__, "auto_confirm", auto_confirm)
+        pulumi.set(__self__, "auto_detect", auto_detect)
+        pulumi.set(__self__, "default_policy", default_policy)
+        pulumi.set(__self__, "dir_lists", dir_lists)
+        pulumi.set(__self__, "effect_host_num", effect_host_num)
+        pulumi.set(__self__, "file_extension_lists", file_extension_lists)
+        pulumi.set(__self__, "host_id_lists", host_id_lists)
+        pulumi.set(__self__, "intercept", intercept)
+        pulumi.set(__self__, "learning_days", learning_days)
+        pulumi.set(__self__, "learning_status", learning_status)
+        pulumi.set(__self__, "malicious_num", malicious_num)
+        pulumi.set(__self__, "not_effect_host_num", not_effect_host_num)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_type", policy_type)
+        pulumi.set(__self__, "specified_dir", specified_dir)
+        pulumi.set(__self__, "suspicious_num", suspicious_num)
+        pulumi.set(__self__, "trust_num", trust_num)
+        pulumi.set(__self__, "unknown_num", unknown_num)
+
+    @_builtins.property
+    @pulumi.getter(name="abnormalInfoLists")
+    def abnormal_info_lists(self) -> Sequence['outputs.GetAppWhitelistPoliciesDataListAbnormalInfoListResult']:
+        """
+        The list of reasons for learning abnormalities.
+        """
+        return pulumi.get(self, "abnormal_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="autoConfirm")
+    def auto_confirm(self) -> _builtins.bool:
+        """
+        Whether the learning results are automatically confirmed.
+        """
+        return pulumi.get(self, "auto_confirm")
+
+    @_builtins.property
+    @pulumi.getter(name="autoDetect")
+    def auto_detect(self) -> _builtins.bool:
+        """
+        Whether to automatically enable detection.
+        """
+        return pulumi.get(self, "auto_detect")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPolicy")
+    def default_policy(self) -> _builtins.bool:
+        """
+        Whether to default the process whitelist policy.
+        """
+        return pulumi.get(self, "default_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="dirLists")
+    def dir_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of monitored directories.
+        """
+        return pulumi.get(self, "dir_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="effectHostNum")
+    def effect_host_num(self) -> _builtins.int:
+        """
+        The number of hosts where the learning completion strategy has take effect.
+        """
+        return pulumi.get(self, "effect_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="fileExtensionLists")
+    def file_extension_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of monitored file extensions.
+        """
+        return pulumi.get(self, "file_extension_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIdLists")
+    def host_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of host IDs.
+        """
+        return pulumi.get(self, "host_id_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def intercept(self) -> _builtins.bool:
+        """
+        Specifies whether to enable blocking.
+        The valid values are as follows:
+        + **true**
+        + **false**
+        """
+        return pulumi.get(self, "intercept")
+
+    @_builtins.property
+    @pulumi.getter(name="learningDays")
+    def learning_days(self) -> _builtins.int:
+        """
+        The policy learning days.
+        """
+        return pulumi.get(self, "learning_days")
+
+    @_builtins.property
+    @pulumi.getter(name="learningStatus")
+    def learning_status(self) -> _builtins.str:
+        """
+        Specifies the policy learning status.
+        The valid values are as follows:
+        + **effecting**: Learning completed, strategy activated.
+        + **learned**: Learning completed, pending confirmation.
+        + **learning**: Learning in progress.
+        + **pause**: Paused.
+        + **abnormal**: Learning anomaly.
+        """
+        return pulumi.get(self, "learning_status")
+
+    @_builtins.property
+    @pulumi.getter(name="maliciousNum")
+    def malicious_num(self) -> _builtins.int:
+        """
+        The number of malicious processes identified.
+        """
+        return pulumi.get(self, "malicious_num")
+
+    @_builtins.property
+    @pulumi.getter(name="notEffectHostNum")
+    def not_effect_host_num(self) -> _builtins.int:
+        """
+        The number of hosts where the learning completion strategy is not effective.
+        """
+        return pulumi.get(self, "not_effect_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        Specifies the policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> _builtins.str:
+        """
+        Specifies the policy type.
+        The value can be **block** (Indicates daily operation mode).
+        """
+        return pulumi.get(self, "policy_type")
+
+    @_builtins.property
+    @pulumi.getter(name="specifiedDir")
+    def specified_dir(self) -> _builtins.bool:
+        """
+        Whether to specify a learning directory.
+        """
+        return pulumi.get(self, "specified_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="suspiciousNum")
+    def suspicious_num(self) -> _builtins.int:
+        """
+        The number of suspicious processes identified.
+        """
+        return pulumi.get(self, "suspicious_num")
+
+    @_builtins.property
+    @pulumi.getter(name="trustNum")
+    def trust_num(self) -> _builtins.int:
+        """
+        The number of trusted processes identified.
+        """
+        return pulumi.get(self, "trust_num")
+
+    @_builtins.property
+    @pulumi.getter(name="unknownNum")
+    def unknown_num(self) -> _builtins.int:
+        """
+        The number of unknown processes identified.
+        """
+        return pulumi.get(self, "unknown_num")
+
+
+@pulumi.output_type
+class GetAppWhitelistPoliciesDataListAbnormalInfoListResult(dict):
+    def __init__(__self__, *,
+                 abnormal_description: _builtins.str,
+                 abnormal_type: _builtins.int):
+        """
+        :param _builtins.str abnormal_description: The exception description.
+        :param _builtins.int abnormal_type: The exception type.
+        """
+        pulumi.set(__self__, "abnormal_description", abnormal_description)
+        pulumi.set(__self__, "abnormal_type", abnormal_type)
+
+    @_builtins.property
+    @pulumi.getter(name="abnormalDescription")
+    def abnormal_description(self) -> _builtins.str:
+        """
+        The exception description.
+        """
+        return pulumi.get(self, "abnormal_description")
+
+    @_builtins.property
+    @pulumi.getter(name="abnormalType")
+    def abnormal_type(self) -> _builtins.int:
+        """
+        The exception type.
+        """
+        return pulumi.get(self, "abnormal_type")
+
+
+@pulumi.output_type
+class GetAppWhitelistPolicyProcessExtendDataListResult(dict):
+    def __init__(__self__, *,
+                 cmdline: _builtins.str,
+                 container_id: _builtins.str,
+                 file_size: _builtins.int,
+                 process_hash: _builtins.str,
+                 process_name: _builtins.str,
+                 process_path: _builtins.str):
+        """
+        :param _builtins.str cmdline: The process command line.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.int file_size: The file size.
+        :param _builtins.str process_hash: The process hash.
+        :param _builtins.str process_name: The process name.
+        :param _builtins.str process_path: The process path.
+        """
+        pulumi.set(__self__, "cmdline", cmdline)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "file_size", file_size)
+        pulumi.set(__self__, "process_hash", process_hash)
+        pulumi.set(__self__, "process_name", process_name)
+        pulumi.set(__self__, "process_path", process_path)
+
+    @_builtins.property
+    @pulumi.getter
+    def cmdline(self) -> _builtins.str:
+        """
+        The process command line.
+        """
+        return pulumi.get(self, "cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="fileSize")
+    def file_size(self) -> _builtins.int:
+        """
+        The file size.
+        """
+        return pulumi.get(self, "file_size")
+
+    @_builtins.property
+    @pulumi.getter(name="processHash")
+    def process_hash(self) -> _builtins.str:
+        """
+        The process hash.
+        """
+        return pulumi.get(self, "process_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="processName")
+    def process_name(self) -> _builtins.str:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="processPath")
+    def process_path(self) -> _builtins.str:
+        """
+        The process path.
+        """
+        return pulumi.get(self, "process_path")
+
+
+@pulumi.output_type
+class GetAssetAppChangeHistoryDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 app_name: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 recent_scan_time: _builtins.int,
+                 update_time: _builtins.int,
+                 variation_type: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str app_name: Specifies the software name.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.int recent_scan_time: The last scan time.
+        :param _builtins.int update_time: The software update time.
+        :param _builtins.str variation_type: Specifies the change type.
+               The valid values are as follows:
+               + **add**
+               + **delete**
+               + **modify**
+        :param _builtins.str version: The software version.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "recent_scan_time", recent_scan_time)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "variation_type", variation_type)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        Specifies the software name.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="recentScanTime")
+    def recent_scan_time(self) -> _builtins.int:
+        """
+        The last scan time.
+        """
+        return pulumi.get(self, "recent_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The software update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="variationType")
+    def variation_type(self) -> _builtins.str:
+        """
+        Specifies the change type.
+        The valid values are as follows:
+        + **add**
+        + **delete**
+        + **modify**
+        """
+        return pulumi.get(self, "variation_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The software version.
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -1997,6 +6162,674 @@ class GetAssetAppsDataListResult(dict):
         Specifies the software version.
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAssetKernelModuleHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 kernel_module_infos: Sequence['outputs.GetAssetKernelModuleHostsDataListKernelModuleInfoResult']):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param Sequence['GetAssetKernelModuleHostsDataListKernelModuleInfoArgs'] kernel_module_infos: The kernel module information.
+               The kernel_module_info structure is documented below.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "kernel_module_infos", kernel_module_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="kernelModuleInfos")
+    def kernel_module_infos(self) -> Sequence['outputs.GetAssetKernelModuleHostsDataListKernelModuleInfoResult']:
+        """
+        The kernel module information.
+        The kernel_module_info structure is documented below.
+        """
+        return pulumi.get(self, "kernel_module_infos")
+
+
+@pulumi.output_type
+class GetAssetKernelModuleHostsDataListKernelModuleInfoResult(dict):
+    def __init__(__self__, *,
+                 ctime: _builtins.int,
+                 desc: _builtins.str,
+                 file_name: _builtins.str,
+                 hash: _builtins.str,
+                 mode: _builtins.str,
+                 mtime: _builtins.int,
+                 name: _builtins.str,
+                 path: _builtins.str,
+                 record_time: _builtins.int,
+                 size: _builtins.int,
+                 srcversion: _builtins.str,
+                 uid: _builtins.int,
+                 version: _builtins.str):
+        """
+        :param _builtins.int ctime: The file creation time.
+        :param _builtins.str desc: The kernel module description.
+        :param _builtins.str file_name: The file name.
+        :param _builtins.str hash: The file hash.
+        :param _builtins.str mode: The file permissions.
+        :param _builtins.int mtime: The last modify time.
+        :param _builtins.str name: Specifies the kernel module name.
+        :param _builtins.str path: The file path.
+        :param _builtins.int record_time: The scan time.
+        :param _builtins.int size: The file size.
+        :param _builtins.str srcversion: The source code version.
+        :param _builtins.int uid: The file UID.
+        :param _builtins.str version: The kernel module version.
+        """
+        pulumi.set(__self__, "ctime", ctime)
+        pulumi.set(__self__, "desc", desc)
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "mtime", mtime)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "record_time", record_time)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "srcversion", srcversion)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def ctime(self) -> _builtins.int:
+        """
+        The file creation time.
+        """
+        return pulumi.get(self, "ctime")
+
+    @_builtins.property
+    @pulumi.getter
+    def desc(self) -> _builtins.str:
+        """
+        The kernel module description.
+        """
+        return pulumi.get(self, "desc")
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        The file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The file hash.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The file permissions.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def mtime(self) -> _builtins.int:
+        """
+        The last modify time.
+        """
+        return pulumi.get(self, "mtime")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the kernel module name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="recordTime")
+    def record_time(self) -> _builtins.int:
+        """
+        The scan time.
+        """
+        return pulumi.get(self, "record_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The file size.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def srcversion(self) -> _builtins.str:
+        """
+        The source code version.
+        """
+        return pulumi.get(self, "srcversion")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.int:
+        """
+        The file UID.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The kernel module version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAssetKernelModuleStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str name: Specifies the kernel module name.
+        :param _builtins.int num: The total number of kernel module.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the kernel module name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The total number of kernel module.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAssetMidwaresDataListResult(dict):
+    def __init__(__self__, *,
+                 file_name: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str file_name: Specifies the jar package name.
+        :param _builtins.int num: The number of middleware statistics.
+        """
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        Specifies the jar package name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of middleware statistics.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAssetOverviewAccountTopDataListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 name: _builtins.str,
+                 percentage: _builtins.int):
+        """
+        :param _builtins.int host_num: The number of hosts.
+        :param _builtins.str name: The name.
+        :param _builtins.int percentage: The host occupancy percentage.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of hosts.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> _builtins.int:
+        """
+        The host occupancy percentage.
+        """
+        return pulumi.get(self, "percentage")
+
+
+@pulumi.output_type
+class GetAssetOverviewAutoLaunchTopDataListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 name: _builtins.str,
+                 percentage: _builtins.int):
+        """
+        :param _builtins.int host_num: The number of hosts.
+        :param _builtins.str name: The name.
+        :param _builtins.int percentage: The host occupancy percentage.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of hosts.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> _builtins.int:
+        """
+        The host occupancy percentage.
+        """
+        return pulumi.get(self, "percentage")
+
+
+@pulumi.output_type
+class GetAssetOverviewSoftwareTopDataListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 name: _builtins.str,
+                 percentage: _builtins.int):
+        """
+        :param _builtins.int host_num: The number of hosts.
+        :param _builtins.str name: The name of the software.
+        :param _builtins.int percentage: The host occupancy percentage.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of hosts.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the software.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> _builtins.int:
+        """
+        The host occupancy percentage.
+        """
+        return pulumi.get(self, "percentage")
+
+
+@pulumi.output_type
+class GetAssetOverviewStatisticsTopPortsDataListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 name: _builtins.str,
+                 percentage: _builtins.int):
+        """
+        :param _builtins.int host_num: The number of hosts.
+        :param _builtins.str name: The port name.
+        :param _builtins.int percentage: The host usage percentage.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of hosts.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The port name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> _builtins.int:
+        """
+        The host usage percentage.
+        """
+        return pulumi.get(self, "percentage")
+
+
+@pulumi.output_type
+class GetAssetOverviewStatusOsOsListResult(dict):
+    def __init__(__self__, *,
+                 number: _builtins.int,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str):
+        """
+        :param _builtins.int number: The number of assets with this OS.
+        :param _builtins.str os_name: The OS name.
+        :param _builtins.str os_type: The OS type.
+        """
+        pulumi.set(__self__, "number", number)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def number(self) -> _builtins.int:
+        """
+        The number of assets with this OS.
+        """
+        return pulumi.get(self, "number")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The OS name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+
+@pulumi.output_type
+class GetAssetOverviewStatusQuotasDataListResult(dict):
+    def __init__(__self__, *,
+                 idle_num: _builtins.int,
+                 total_num: _builtins.int,
+                 used_num: _builtins.int,
+                 version: _builtins.str):
+        """
+        :param _builtins.int idle_num: The total number of idle resources.
+        :param _builtins.int total_num: The total number.
+        :param _builtins.int used_num: The total number in use.
+        :param _builtins.str version: The host portection version.
+        """
+        pulumi.set(__self__, "idle_num", idle_num)
+        pulumi.set(__self__, "total_num", total_num)
+        pulumi.set(__self__, "used_num", used_num)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="idleNum")
+    def idle_num(self) -> _builtins.int:
+        """
+        The total number of idle resources.
+        """
+        return pulumi.get(self, "idle_num")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The total number.
+        """
+        return pulumi.get(self, "total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="usedNum")
+    def used_num(self) -> _builtins.int:
+        """
+        The total number in use.
+        """
+        return pulumi.get(self, "used_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The host portection version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAssetPortDetailDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 laddr: _builtins.str,
+                 path: _builtins.str,
+                 pid: _builtins.int,
+                 port: _builtins.int,
+                 status: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str laddr: The listening IP address.
+        :param _builtins.str path: The executable file path of the process.
+        :param _builtins.int pid: The process ID.
+        :param _builtins.int port: Specifies the port number.
+        :param _builtins.str status: The port status.
+        :param _builtins.str type: Specifies the port type.
+               The valid values are as follows:
+               + **TCP**
+               + **UDP**
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "laddr", laddr)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "pid", pid)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def laddr(self) -> _builtins.str:
+        """
+        The listening IP address.
+        """
+        return pulumi.get(self, "laddr")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The executable file path of the process.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "pid")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        Specifies the port number.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The port status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the port type.
+        The valid values are as follows:
+        + **TCP**
+        + **UDP**
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -2177,6 +7010,152 @@ class GetAssetPortsDataListResult(dict):
 
 
 @pulumi.output_type
+class GetAssetProcessDetailDataListResult(dict):
+    def __init__(__self__, *,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 hash: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 launch_params: _builtins.str,
+                 launch_time: _builtins.int,
+                 process_path: _builtins.str,
+                 process_pid: _builtins.int,
+                 run_permission: _builtins.str):
+        """
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.str hash: The SHA256 value corresponding to the path.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str launch_params: The startup parameter.
+        :param _builtins.int launch_time: The startup time.
+        :param _builtins.str process_path: The process executable file path.
+        :param _builtins.int process_pid: The process PID.
+        :param _builtins.str run_permission: The file permission.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "launch_params", launch_params)
+        pulumi.set(__self__, "launch_time", launch_time)
+        pulumi.set(__self__, "process_path", process_path)
+        pulumi.set(__self__, "process_pid", process_pid)
+        pulumi.set(__self__, "run_permission", run_permission)
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The SHA256 value corresponding to the path.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="launchParams")
+    def launch_params(self) -> _builtins.str:
+        """
+        The startup parameter.
+        """
+        return pulumi.get(self, "launch_params")
+
+    @_builtins.property
+    @pulumi.getter(name="launchTime")
+    def launch_time(self) -> _builtins.int:
+        """
+        The startup time.
+        """
+        return pulumi.get(self, "launch_time")
+
+    @_builtins.property
+    @pulumi.getter(name="processPath")
+    def process_path(self) -> _builtins.str:
+        """
+        The process executable file path.
+        """
+        return pulumi.get(self, "process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="processPid")
+    def process_pid(self) -> _builtins.int:
+        """
+        The process PID.
+        """
+        return pulumi.get(self, "process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="runPermission")
+    def run_permission(self) -> _builtins.str:
+        """
+        The file permission.
+        """
+        return pulumi.get(self, "run_permission")
+
+
+@pulumi.output_type
+class GetAssetProcessStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 num: _builtins.int,
+                 path: _builtins.str):
+        """
+        :param _builtins.int num: The number of processes.
+        :param _builtins.str path: Specifies the executable process path.
+        """
+        pulumi.set(__self__, "num", num)
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of processes.
+        """
+        return pulumi.get(self, "num")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Specifies the executable process path.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
 class GetAssetUserStatisticsDataListResult(dict):
     def __init__(__self__, *,
                  num: _builtins.int,
@@ -2353,6 +7332,963 @@ class GetAssetUsersDataListResult(dict):
         Specifies the account name.
         """
         return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GetAssetWebAppServiceHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 atime: _builtins.int,
+                 catalogue: _builtins.str,
+                 config_path: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 ctime: _builtins.int,
+                 gid: _builtins.int,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 install_path: _builtins.str,
+                 mode: _builtins.str,
+                 mtime: _builtins.int,
+                 name: _builtins.str,
+                 pid: _builtins.int,
+                 proc_path: _builtins.str,
+                 record_time: _builtins.int,
+                 uid: _builtins.int,
+                 version: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.int atime: The file last accessed time.
+        :param _builtins.str catalogue: Specifies the asset type.
+               The valid values are as follows:
+               + **web-app**: Web application.
+               + **web-service**: Web service.
+               + **database**: Database.
+        :param _builtins.str config_path: The configuration file path.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.int ctime: The file last changed time.
+        :param _builtins.int gid: The user group ID.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str install_path: The installation path.
+        :param _builtins.str mode: The file permissions.
+        :param _builtins.int mtime: The file last modified time.
+        :param _builtins.str name: Specifies the web application, web service or database name.
+        :param _builtins.int pid: The process ID.
+        :param _builtins.str proc_path: The process path.
+        :param _builtins.int record_time: The scan time.
+        :param _builtins.int uid: The user ID.
+        :param _builtins.str version: Specifies the web application, web service or database version.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "atime", atime)
+        pulumi.set(__self__, "catalogue", catalogue)
+        pulumi.set(__self__, "config_path", config_path)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "ctime", ctime)
+        pulumi.set(__self__, "gid", gid)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "install_path", install_path)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "mtime", mtime)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pid", pid)
+        pulumi.set(__self__, "proc_path", proc_path)
+        pulumi.set(__self__, "record_time", record_time)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def atime(self) -> _builtins.int:
+        """
+        The file last accessed time.
+        """
+        return pulumi.get(self, "atime")
+
+    @_builtins.property
+    @pulumi.getter
+    def catalogue(self) -> _builtins.str:
+        """
+        Specifies the asset type.
+        The valid values are as follows:
+        + **web-app**: Web application.
+        + **web-service**: Web service.
+        + **database**: Database.
+        """
+        return pulumi.get(self, "catalogue")
+
+    @_builtins.property
+    @pulumi.getter(name="configPath")
+    def config_path(self) -> _builtins.str:
+        """
+        The configuration file path.
+        """
+        return pulumi.get(self, "config_path")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def ctime(self) -> _builtins.int:
+        """
+        The file last changed time.
+        """
+        return pulumi.get(self, "ctime")
+
+    @_builtins.property
+    @pulumi.getter
+    def gid(self) -> _builtins.int:
+        """
+        The user group ID.
+        """
+        return pulumi.get(self, "gid")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="installPath")
+    def install_path(self) -> _builtins.str:
+        """
+        The installation path.
+        """
+        return pulumi.get(self, "install_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The file permissions.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def mtime(self) -> _builtins.int:
+        """
+        The file last modified time.
+        """
+        return pulumi.get(self, "mtime")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the web application, web service or database name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "pid")
+
+    @_builtins.property
+    @pulumi.getter(name="procPath")
+    def proc_path(self) -> _builtins.str:
+        """
+        The process path.
+        """
+        return pulumi.get(self, "proc_path")
+
+    @_builtins.property
+    @pulumi.getter(name="recordTime")
+    def record_time(self) -> _builtins.int:
+        """
+        The scan time.
+        """
+        return pulumi.get(self, "record_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.int:
+        """
+        The user ID.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Specifies the web application, web service or database version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAssetWebAppServiceStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str name: Specifies the web application, web service or database name.
+        :param _builtins.int num: The host number.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the web application, web service or database name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The host number.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAssetWebFrameworkHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 catalogue: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 file_name: _builtins.str,
+                 file_type: _builtins.str,
+                 gid: _builtins.int,
+                 hash: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 is_embedded: _builtins.int,
+                 mode: _builtins.str,
+                 name: _builtins.str,
+                 path: _builtins.str,
+                 pid: _builtins.int,
+                 proc_path: _builtins.str,
+                 record_time: _builtins.int,
+                 uid: _builtins.int,
+                 version: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str catalogue: The software type.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.str file_name: Specifies the file name.
+        :param _builtins.str file_type: The web framework file type.
+        :param _builtins.int gid: The web framework GID.
+        :param _builtins.str hash: The web framework file hash.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.int is_embedded: Whether the file is compressed.
+        :param _builtins.str mode: The file permissions.
+        :param _builtins.str name: The web framework name.
+        :param _builtins.str path: The web framework file path.
+        :param _builtins.int pid: The web framework process ID.
+        :param _builtins.str proc_path: The web framework process path.
+        :param _builtins.int record_time: The web framework scan time.
+        :param _builtins.int uid: The web framework UID.
+        :param _builtins.str version: The web framework version.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "catalogue", catalogue)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "file_type", file_type)
+        pulumi.set(__self__, "gid", gid)
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "is_embedded", is_embedded)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "pid", pid)
+        pulumi.set(__self__, "proc_path", proc_path)
+        pulumi.set(__self__, "record_time", record_time)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def catalogue(self) -> _builtins.str:
+        """
+        The software type.
+        """
+        return pulumi.get(self, "catalogue")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        Specifies the file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> _builtins.str:
+        """
+        The web framework file type.
+        """
+        return pulumi.get(self, "file_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def gid(self) -> _builtins.int:
+        """
+        The web framework GID.
+        """
+        return pulumi.get(self, "gid")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The web framework file hash.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="isEmbedded")
+    def is_embedded(self) -> _builtins.int:
+        """
+        Whether the file is compressed.
+        """
+        return pulumi.get(self, "is_embedded")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The file permissions.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The web framework name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The web framework file path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def pid(self) -> _builtins.int:
+        """
+        The web framework process ID.
+        """
+        return pulumi.get(self, "pid")
+
+    @_builtins.property
+    @pulumi.getter(name="procPath")
+    def proc_path(self) -> _builtins.str:
+        """
+        The web framework process path.
+        """
+        return pulumi.get(self, "proc_path")
+
+    @_builtins.property
+    @pulumi.getter(name="recordTime")
+    def record_time(self) -> _builtins.int:
+        """
+        The web framework scan time.
+        """
+        return pulumi.get(self, "record_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.int:
+        """
+        The web framework UID.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The web framework version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAssetWebFrameworkStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 file_name: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str file_name: Specifies the web framework file name.
+        :param _builtins.int num: The number of web framework statistics.
+        """
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        Specifies the web framework file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of web framework statistics.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAssetWebsiteHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 app_name: _builtins.str,
+                 bind_addr: _builtins.str,
+                 cert_expired_time: _builtins.str,
+                 cert_issue_time: _builtins.str,
+                 cert_issuer: _builtins.str,
+                 cert_user: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 domain: _builtins.str,
+                 gid: _builtins.int,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 is_https: _builtins.bool,
+                 mode: _builtins.str,
+                 path: _builtins.str,
+                 pid: _builtins.int,
+                 port: _builtins.int,
+                 proc_path: _builtins.str,
+                 record_time: _builtins.int,
+                 uid: _builtins.int,
+                 url_path: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str app_name: The application name.
+        :param _builtins.str bind_addr: The IP address to be bound.
+        :param _builtins.str cert_expired_time: The SSL certificate expiration time.
+        :param _builtins.str cert_issue_time: The SSL certificate issue time.
+        :param _builtins.str cert_issuer: The SSL certificate issuer.
+        :param _builtins.str cert_user: The SSL certificate user.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.str domain: Specifies the domain name.
+        :param _builtins.int gid: The user group ID.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.bool is_https: Whether HTTPS is used.
+        :param _builtins.str mode: The file permissions.
+        :param _builtins.str path: The path.
+        :param _builtins.int pid: The process ID.
+        :param _builtins.int port: The port.
+        :param _builtins.str proc_path: The process path.
+        :param _builtins.int record_time: The scan time.
+        :param _builtins.int uid: The user ID.
+        :param _builtins.str url_path: The URL path.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "bind_addr", bind_addr)
+        pulumi.set(__self__, "cert_expired_time", cert_expired_time)
+        pulumi.set(__self__, "cert_issue_time", cert_issue_time)
+        pulumi.set(__self__, "cert_issuer", cert_issuer)
+        pulumi.set(__self__, "cert_user", cert_user)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "gid", gid)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "is_https", is_https)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "pid", pid)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "proc_path", proc_path)
+        pulumi.set(__self__, "record_time", record_time)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "url_path", url_path)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        The application name.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter(name="bindAddr")
+    def bind_addr(self) -> _builtins.str:
+        """
+        The IP address to be bound.
+        """
+        return pulumi.get(self, "bind_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="certExpiredTime")
+    def cert_expired_time(self) -> _builtins.str:
+        """
+        The SSL certificate expiration time.
+        """
+        return pulumi.get(self, "cert_expired_time")
+
+    @_builtins.property
+    @pulumi.getter(name="certIssueTime")
+    def cert_issue_time(self) -> _builtins.str:
+        """
+        The SSL certificate issue time.
+        """
+        return pulumi.get(self, "cert_issue_time")
+
+    @_builtins.property
+    @pulumi.getter(name="certIssuer")
+    def cert_issuer(self) -> _builtins.str:
+        """
+        The SSL certificate issuer.
+        """
+        return pulumi.get(self, "cert_issuer")
+
+    @_builtins.property
+    @pulumi.getter(name="certUser")
+    def cert_user(self) -> _builtins.str:
+        """
+        The SSL certificate user.
+        """
+        return pulumi.get(self, "cert_user")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        Specifies the domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def gid(self) -> _builtins.int:
+        """
+        The user group ID.
+        """
+        return pulumi.get(self, "gid")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="isHttps")
+    def is_https(self) -> _builtins.bool:
+        """
+        Whether HTTPS is used.
+        """
+        return pulumi.get(self, "is_https")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The file permissions.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "pid")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The port.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter(name="procPath")
+    def proc_path(self) -> _builtins.str:
+        """
+        The process path.
+        """
+        return pulumi.get(self, "proc_path")
+
+    @_builtins.property
+    @pulumi.getter(name="recordTime")
+    def record_time(self) -> _builtins.int:
+        """
+        The scan time.
+        """
+        return pulumi.get(self, "record_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.int:
+        """
+        The user ID.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter(name="urlPath")
+    def url_path(self) -> _builtins.str:
+        """
+        The URL path.
+        """
+        return pulumi.get(self, "url_path")
+
+
+@pulumi.output_type
+class GetAssetWebsiteStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 domain: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str domain: Specifies the domain name.
+        :param _builtins.int num: The number of website statistics.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        Specifies the domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The number of website statistics.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
+class GetAutoLaunchChangeHistoryDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 hash: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 name: _builtins.str,
+                 path: _builtins.str,
+                 recent_scan_time: _builtins.int,
+                 run_user: _builtins.str,
+                 type: _builtins.int,
+                 variation_type: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str hash: The file hash value generated using the SHA256 algorithm.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_ip: Specifies the host IP address.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str name: The auto launch item name.
+        :param _builtins.str path: The path of the auto launch item.
+        :param _builtins.int recent_scan_time: The latest scan time.
+        :param _builtins.str run_user: The user who starts the execution.
+        :param _builtins.int type: Specifies the auto launch item type.
+               The valid values are as follows:
+               + **0**: Auto launch service.
+               + **1**: Scheduled task.
+               + **2**: Preloaded dynamic library.
+               + **3**: Run registry key.
+               + **4**: Startup folder.
+        :param _builtins.str variation_type: Specifies the change type.
+               The valid values are as follows:
+               + **add**
+               + **delete**
+               + **modify**
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "recent_scan_time", recent_scan_time)
+        pulumi.set(__self__, "run_user", run_user)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "variation_type", variation_type)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The file hash value generated using the SHA256 algorithm.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The auto launch item name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The path of the auto launch item.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="recentScanTime")
+    def recent_scan_time(self) -> _builtins.int:
+        """
+        The latest scan time.
+        """
+        return pulumi.get(self, "recent_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="runUser")
+    def run_user(self) -> _builtins.str:
+        """
+        The user who starts the execution.
+        """
+        return pulumi.get(self, "run_user")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.int:
+        """
+        Specifies the auto launch item type.
+        The valid values are as follows:
+        + **0**: Auto launch service.
+        + **1**: Scheduled task.
+        + **2**: Preloaded dynamic library.
+        + **3**: Run registry key.
+        + **4**: Startup folder.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="variationType")
+    def variation_type(self) -> _builtins.str:
+        """
+        Specifies the change type.
+        The valid values are as follows:
+        + **add**
+        + **delete**
+        + **modify**
+        """
+        return pulumi.get(self, "variation_type")
 
 
 @pulumi.output_type
@@ -2716,6 +8652,4183 @@ class GetBackupPolicyTriggerPropertyResult(dict):
         The scheduler start time. Example: **2020-01-08 09:59:49**.
         """
         return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetBaselineAllRiskConfigCheckRulesDataListResult(dict):
+    def __init__(__self__, *,
+                 cancel_ignore_enable_click: _builtins.bool,
+                 check_rule_id: _builtins.str,
+                 check_rule_name: _builtins.str,
+                 check_type: _builtins.str,
+                 check_type_name: _builtins.str,
+                 enable_click: _builtins.bool,
+                 enable_fix: _builtins.int,
+                 failed_num: _builtins.int,
+                 host_num: _builtins.int,
+                 rule_params: Sequence['outputs.GetBaselineAllRiskConfigCheckRulesDataListRuleParamResult'],
+                 scan_time: _builtins.int,
+                 severity: _builtins.str,
+                 standard: _builtins.str,
+                 statistics_scan_result: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.bool cancel_ignore_enable_click: The neglected whether the check item is clickable.  
+               **true** means the button is clickable, **false** means the button is not clickable.
+        :param _builtins.str check_rule_id: The check item ID.
+        :param _builtins.str check_rule_name: Specifies the name of the inspection item (inspection rule) and support fuzzy
+               matching.
+        :param _builtins.str check_type: Specifies the configuration check (baseline) type, such as **SSH**, **CentOS 7**,
+               **Windows**.
+        :param _builtins.str check_type_name: The type name of configuration check (baseline).
+        :param _builtins.bool enable_click: Whether the fix, ignore, and verify buttons of the check item are enabled.  
+               The valid values are as follows:
+               + **true**: The buttons are enabled.
+               + **false**: The buttons are disabled.
+        :param _builtins.int enable_fix: Whether one-click fix is supported.  
+               The valid values are as follows:
+               + **1**: One-click fix is supported.
+               + **0**: not supported
+        :param _builtins.int failed_num: This test item failed, with the number of hosts that were neither ignored nor whitelisted.
+        :param _builtins.int host_num: The number of affected servers, the number of servers undergoing current baseline detection.
+        :param Sequence['GetBaselineAllRiskConfigCheckRulesDataListRuleParamArgs'] rule_params: The value range of a parameter that can be configured to fix a check item. This information is only
+               returned for the parameters that can be configured to fix check items.
+        :param _builtins.int scan_time: The latest detection time (ms).  
+               The valid values are as follows:
+               + **1**: One-click fix is supported.
+               + **0**: not supported
+        :param _builtins.str severity: Specifies the risk level.  
+               The valid values are as follows:
+               + **Security**: Security.
+               + **Low**: Low risk.
+               + **Medium**: Medium risk.
+               + **High**: High risk.
+               + **Critical**: Critical.
+        :param _builtins.str standard: Specifies the baseline standard type.  
+               The valid values are as follows:
+               + **cn_standard**: Waiting for compliance standards.
+               + **hw_standard**: Cloud Security Practice Standards.
+               + **cis_standard**: General safety standards.
+        :param _builtins.str statistics_scan_result: Specifies the type of statistical result.  
+               The valid values are as follows:
+               + **pass**: Passed, indicating that all inspection items for the host have been checked and passed.
+               + **failed**: Failed, indicating that all check items on the host have not passed and have not been processed.
+               + **processed**: Processed, indicating that there are check items on the host that have not passed or have all been
+               processed (ignored, highlighted).
+        :param _builtins.str tag: Specifies the type of baseline inspection item.
+        """
+        pulumi.set(__self__, "cancel_ignore_enable_click", cancel_ignore_enable_click)
+        pulumi.set(__self__, "check_rule_id", check_rule_id)
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "check_type_name", check_type_name)
+        pulumi.set(__self__, "enable_click", enable_click)
+        pulumi.set(__self__, "enable_fix", enable_fix)
+        pulumi.set(__self__, "failed_num", failed_num)
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "rule_params", rule_params)
+        pulumi.set(__self__, "scan_time", scan_time)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "statistics_scan_result", statistics_scan_result)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="cancelIgnoreEnableClick")
+    def cancel_ignore_enable_click(self) -> _builtins.bool:
+        """
+        The neglected whether the check item is clickable.  
+        **true** means the button is clickable, **false** means the button is not clickable.
+        """
+        return pulumi.get(self, "cancel_ignore_enable_click")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> _builtins.str:
+        """
+        The check item ID.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        Specifies the name of the inspection item (inspection rule) and support fuzzy
+        matching.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        Specifies the configuration check (baseline) type, such as **SSH**, **CentOS 7**,
+        **Windows**.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter(name="checkTypeName")
+    def check_type_name(self) -> _builtins.str:
+        """
+        The type name of configuration check (baseline).
+        """
+        return pulumi.get(self, "check_type_name")
+
+    @_builtins.property
+    @pulumi.getter(name="enableClick")
+    def enable_click(self) -> _builtins.bool:
+        """
+        Whether the fix, ignore, and verify buttons of the check item are enabled.  
+        The valid values are as follows:
+        + **true**: The buttons are enabled.
+        + **false**: The buttons are disabled.
+        """
+        return pulumi.get(self, "enable_click")
+
+    @_builtins.property
+    @pulumi.getter(name="enableFix")
+    def enable_fix(self) -> _builtins.int:
+        """
+        Whether one-click fix is supported.  
+        The valid values are as follows:
+        + **1**: One-click fix is supported.
+        + **0**: not supported
+        """
+        return pulumi.get(self, "enable_fix")
+
+    @_builtins.property
+    @pulumi.getter(name="failedNum")
+    def failed_num(self) -> _builtins.int:
+        """
+        This test item failed, with the number of hosts that were neither ignored nor whitelisted.
+        """
+        return pulumi.get(self, "failed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of affected servers, the number of servers undergoing current baseline detection.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParams")
+    def rule_params(self) -> Sequence['outputs.GetBaselineAllRiskConfigCheckRulesDataListRuleParamResult']:
+        """
+        The value range of a parameter that can be configured to fix a check item. This information is only
+        returned for the parameters that can be configured to fix check items.
+        """
+        return pulumi.get(self, "rule_params")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The latest detection time (ms).  
+        The valid values are as follows:
+        + **1**: One-click fix is supported.
+        + **0**: not supported
+        """
+        return pulumi.get(self, "scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the risk level.  
+        The valid values are as follows:
+        + **Security**: Security.
+        + **Low**: Low risk.
+        + **Medium**: Medium risk.
+        + **High**: High risk.
+        + **Critical**: Critical.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        Specifies the baseline standard type.  
+        The valid values are as follows:
+        + **cn_standard**: Waiting for compliance standards.
+        + **hw_standard**: Cloud Security Practice Standards.
+        + **cis_standard**: General safety standards.
+        """
+        return pulumi.get(self, "standard")
+
+    @_builtins.property
+    @pulumi.getter(name="statisticsScanResult")
+    def statistics_scan_result(self) -> _builtins.str:
+        """
+        Specifies the type of statistical result.  
+        The valid values are as follows:
+        + **pass**: Passed, indicating that all inspection items for the host have been checked and passed.
+        + **failed**: Failed, indicating that all check items on the host have not passed and have not been processed.
+        + **processed**: Processed, indicating that there are check items on the host that have not passed or have all been
+        processed (ignored, highlighted).
+        """
+        return pulumi.get(self, "statistics_scan_result")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        Specifies the type of baseline inspection item.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
+class GetBaselineAllRiskConfigCheckRulesDataListRuleParamResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.int,
+                 range_max: _builtins.int,
+                 range_min: _builtins.int,
+                 rule_desc: _builtins.str,
+                 rule_param_id: _builtins.int):
+        """
+        :param _builtins.int default_value: The default values of check item parameters.
+        :param _builtins.int range_max: The maximum value of check item parameters.
+        :param _builtins.int range_min: The minimum value of check item parameters.
+        :param _builtins.str rule_desc: The check item parameter description.
+        :param _builtins.int rule_param_id: The check item parameter ID.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "range_max", range_max)
+        pulumi.set(__self__, "range_min", range_min)
+        pulumi.set(__self__, "rule_desc", rule_desc)
+        pulumi.set(__self__, "rule_param_id", rule_param_id)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.int:
+        """
+        The default values of check item parameters.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMax")
+    def range_max(self) -> _builtins.int:
+        """
+        The maximum value of check item parameters.
+        """
+        return pulumi.get(self, "range_max")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMin")
+    def range_min(self) -> _builtins.int:
+        """
+        The minimum value of check item parameters.
+        """
+        return pulumi.get(self, "range_min")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleDesc")
+    def rule_desc(self) -> _builtins.str:
+        """
+        The check item parameter description.
+        """
+        return pulumi.get(self, "rule_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParamId")
+    def rule_param_id(self) -> _builtins.int:
+        """
+        The check item parameter ID.
+        """
+        return pulumi.get(self, "rule_param_id")
+
+
+@pulumi.output_type
+class GetBaselineCheckRuleFailDetailFailDetailListResult(dict):
+    def __init__(__self__, *,
+                 fix_fail_reason: _builtins.str,
+                 host_name: _builtins.str):
+        """
+        :param _builtins.str fix_fail_reason: The reason for fix failure.
+        :param _builtins.str host_name: The server name.
+        """
+        pulumi.set(__self__, "fix_fail_reason", fix_fail_reason)
+        pulumi.set(__self__, "host_name", host_name)
+
+    @_builtins.property
+    @pulumi.getter(name="fixFailReason")
+    def fix_fail_reason(self) -> _builtins.str:
+        """
+        The reason for fix failure.
+        """
+        return pulumi.get(self, "fix_fail_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The server name.
+        """
+        return pulumi.get(self, "host_name")
+
+
+@pulumi.output_type
+class GetBaselineCheckRuleHabCheckRuleListResult(dict):
+    def __init__(__self__, *,
+                 check_name: Optional[_builtins.str] = None,
+                 check_rule_id: Optional[_builtins.str] = None,
+                 standard: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str check_name: Specifies the name of the baseline check.
+               The value can contain up to `256` characters.
+        :param _builtins.str check_rule_id: Specifies the ID of the baseline check rule.
+               The value can contain up to `256` characters.
+        :param _builtins.str standard: Specifies the standard type of the baseline check.
+               Valid values are:
+               + **cn_standard**: Compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+               + **cis_standard**: General security standard.
+        """
+        if check_name is not None:
+            pulumi.set(__self__, "check_name", check_name)
+        if check_rule_id is not None:
+            pulumi.set(__self__, "check_rule_id", check_rule_id)
+        if standard is not None:
+            pulumi.set(__self__, "standard", standard)
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the baseline check.
+        The value can contain up to `256` characters.
+        """
+        return pulumi.get(self, "check_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the baseline check rule.
+        The value can contain up to `256` characters.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> Optional[_builtins.str]:
+        """
+        Specifies the standard type of the baseline check.
+        Valid values are:
+        + **cn_standard**: Compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        + **cis_standard**: General security standard.
+        """
+        return pulumi.get(self, "standard")
+
+
+@pulumi.output_type
+class GetBaselineCheckRuleHabDataListResult(dict):
+    def __init__(__self__, *,
+                 asset_value: _builtins.str,
+                 check_rule_name: _builtins.str,
+                 check_type: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 standard: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str asset_value: The asset value of the host. Valid values are:
+               + **important**: Important asset.
+               + **common**: Common asset.
+               + **test**: Test asset.
+        :param _builtins.str check_rule_name: The name of check items in the baseline check.
+        :param _builtins.str check_type: The name of the baseline check.
+        :param _builtins.str host_id: Specifies the ID of the host to be queried.
+        :param _builtins.str host_name: The name of the affected host.
+        :param _builtins.str private_ip: The private IP address of the host.
+        :param _builtins.str public_ip: The public IP address of the host.
+        :param _builtins.str standard: Specifies the standard type of the baseline check.
+               Valid values are:
+               + **cn_standard**: Compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+               + **cis_standard**: General security standard.
+        :param _builtins.str tag: The check type of check items in the baseline check.
+        """
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The asset value of the host. Valid values are:
+        + **important**: Important asset.
+        + **common**: Common asset.
+        + **test**: Test asset.
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        The name of check items in the baseline check.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        The name of the baseline check.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the host to be queried.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The name of the affected host.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The private IP address of the host.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The public IP address of the host.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        Specifies the standard type of the baseline check.
+        Valid values are:
+        + **cn_standard**: Compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        + **cis_standard**: General security standard.
+        """
+        return pulumi.get(self, "standard")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The check type of check items in the baseline check.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
+class GetBaselineCheckRuleHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 baseline_name: _builtins.str,
+                 cancel_ignore_enable_click: _builtins.bool,
+                 check_name: _builtins.str,
+                 cluster_id: _builtins.str,
+                 description: _builtins.str,
+                 diff_description: _builtins.str,
+                 enable_click: _builtins.bool,
+                 enable_fix: _builtins.int,
+                 enable_verify: _builtins.bool,
+                 failed_num: _builtins.int,
+                 fix_failed_reason: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_private_ip: _builtins.str,
+                 host_public_ip: _builtins.str,
+                 host_type: _builtins.str,
+                 passed_num: _builtins.int,
+                 result_type: _builtins.str,
+                 scan_time: _builtins.int):
+        """
+        :param _builtins.str baseline_name: The baseline name.
+        :param _builtins.bool cancel_ignore_enable_click: The neglected whether the check item is clickable.
+               **true** means the button is clickable, **false** means the button is not clickable.
+        :param _builtins.str check_name: Specifies the configuration check (baseline) name, such as **SSH**, **CentOS 7**,
+               **Windows**. Compared with `check_type`, it includes more process information such as -PID. When querying by specific
+               baseline dimension, use `check_name`.
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str description: The ignore or add white remarks.
+        :param _builtins.str diff_description: The differentiated display prompt information.
+        :param _builtins.bool enable_click: Is the repair, ignore, and verify button for this check item clickable.
+               **true** means the button is clickable, **false** means the button is not clickable.
+        :param _builtins.int enable_fix: Does it support one click repair. `1` represents support, `0` represents no support.
+        :param _builtins.bool enable_verify: Is this check item verifiable. It requires Linux and agent version>=3.2.24.
+               **true** means verifiable, **false** means unverifiable.
+        :param _builtins.int failed_num: The number of risk items.
+        :param _builtins.str fix_failed_reason: The reason for repair failure.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name or IP address.
+        :param _builtins.str host_private_ip: The private IP.
+        :param _builtins.str host_public_ip: The host public IP.
+        :param _builtins.str host_type: The host type, when the host is of CCE type, return CCE.
+        :param _builtins.int passed_num: The number of items passed.
+        :param _builtins.str result_type: Specifies the detection result type.  
+               The valid values are as follows:
+               + **safe**: The item passed the check.
+               + **unhandled**: The item failed the check and is not ignored.
+               + **ignored**: The item failed the check but is ignored.
+               + **fixing**: The item is being fixed.
+               + **fix-failed**: The fix failed.
+               + **verifying**: The item is being verified.
+               + **add_to_whitelist**: The item has been added to whitelist.
+        :param _builtins.int scan_time: The scanning time (ms).
+        """
+        pulumi.set(__self__, "baseline_name", baseline_name)
+        pulumi.set(__self__, "cancel_ignore_enable_click", cancel_ignore_enable_click)
+        pulumi.set(__self__, "check_name", check_name)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "diff_description", diff_description)
+        pulumi.set(__self__, "enable_click", enable_click)
+        pulumi.set(__self__, "enable_fix", enable_fix)
+        pulumi.set(__self__, "enable_verify", enable_verify)
+        pulumi.set(__self__, "failed_num", failed_num)
+        pulumi.set(__self__, "fix_failed_reason", fix_failed_reason)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_private_ip", host_private_ip)
+        pulumi.set(__self__, "host_public_ip", host_public_ip)
+        pulumi.set(__self__, "host_type", host_type)
+        pulumi.set(__self__, "passed_num", passed_num)
+        pulumi.set(__self__, "result_type", result_type)
+        pulumi.set(__self__, "scan_time", scan_time)
+
+    @_builtins.property
+    @pulumi.getter(name="baselineName")
+    def baseline_name(self) -> _builtins.str:
+        """
+        The baseline name.
+        """
+        return pulumi.get(self, "baseline_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cancelIgnoreEnableClick")
+    def cancel_ignore_enable_click(self) -> _builtins.bool:
+        """
+        The neglected whether the check item is clickable.
+        **true** means the button is clickable, **false** means the button is not clickable.
+        """
+        return pulumi.get(self, "cancel_ignore_enable_click")
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> _builtins.str:
+        """
+        Specifies the configuration check (baseline) name, such as **SSH**, **CentOS 7**,
+        **Windows**. Compared with `check_type`, it includes more process information such as -PID. When querying by specific
+        baseline dimension, use `check_name`.
+        """
+        return pulumi.get(self, "check_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The ignore or add white remarks.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="diffDescription")
+    def diff_description(self) -> _builtins.str:
+        """
+        The differentiated display prompt information.
+        """
+        return pulumi.get(self, "diff_description")
+
+    @_builtins.property
+    @pulumi.getter(name="enableClick")
+    def enable_click(self) -> _builtins.bool:
+        """
+        Is the repair, ignore, and verify button for this check item clickable.
+        **true** means the button is clickable, **false** means the button is not clickable.
+        """
+        return pulumi.get(self, "enable_click")
+
+    @_builtins.property
+    @pulumi.getter(name="enableFix")
+    def enable_fix(self) -> _builtins.int:
+        """
+        Does it support one click repair. `1` represents support, `0` represents no support.
+        """
+        return pulumi.get(self, "enable_fix")
+
+    @_builtins.property
+    @pulumi.getter(name="enableVerify")
+    def enable_verify(self) -> _builtins.bool:
+        """
+        Is this check item verifiable. It requires Linux and agent version>=3.2.24.
+        **true** means verifiable, **false** means unverifiable.
+        """
+        return pulumi.get(self, "enable_verify")
+
+    @_builtins.property
+    @pulumi.getter(name="failedNum")
+    def failed_num(self) -> _builtins.int:
+        """
+        The number of risk items.
+        """
+        return pulumi.get(self, "failed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="fixFailedReason")
+    def fix_failed_reason(self) -> _builtins.str:
+        """
+        The reason for repair failure.
+        """
+        return pulumi.get(self, "fix_failed_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name or IP address.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostPrivateIp")
+    def host_private_ip(self) -> _builtins.str:
+        """
+        The private IP.
+        """
+        return pulumi.get(self, "host_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostPublicIp")
+    def host_public_ip(self) -> _builtins.str:
+        """
+        The host public IP.
+        """
+        return pulumi.get(self, "host_public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostType")
+    def host_type(self) -> _builtins.str:
+        """
+        The host type, when the host is of CCE type, return CCE.
+        """
+        return pulumi.get(self, "host_type")
+
+    @_builtins.property
+    @pulumi.getter(name="passedNum")
+    def passed_num(self) -> _builtins.int:
+        """
+        The number of items passed.
+        """
+        return pulumi.get(self, "passed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="resultType")
+    def result_type(self) -> _builtins.str:
+        """
+        Specifies the detection result type.  
+        The valid values are as follows:
+        + **safe**: The item passed the check.
+        + **unhandled**: The item failed the check and is not ignored.
+        + **ignored**: The item failed the check but is ignored.
+        + **fixing**: The item is being fixed.
+        + **fix-failed**: The fix failed.
+        + **verifying**: The item is being verified.
+        + **add_to_whitelist**: The item has been added to whitelist.
+        """
+        return pulumi.get(self, "result_type")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The scanning time (ms).
+        """
+        return pulumi.get(self, "scan_time")
+
+
+@pulumi.output_type
+class GetBaselineCheckRulesDataListResult(dict):
+    def __init__(__self__, *,
+                 check_name: _builtins.str,
+                 check_rule_id: _builtins.str,
+                 check_rule_name: _builtins.str,
+                 check_type: _builtins.str,
+                 check_type_desc: _builtins.str,
+                 image_num: _builtins.int,
+                 latest_scan_time: _builtins.int,
+                 scan_result: _builtins.str,
+                 severity: _builtins.str,
+                 standard: _builtins.str):
+        """
+        :param _builtins.str check_name: The baseline name.
+        :param _builtins.str check_rule_id: The check rule ID.
+        :param _builtins.str check_rule_name: The check rule name.
+        :param _builtins.str check_type: The baseline type.
+        :param _builtins.str check_type_desc: The baseline description.
+        :param _builtins.int image_num: The number of affected images, the number of images that have undergone current baseline detection.
+        :param _builtins.int latest_scan_time: The latest scan time, in Unix timestamp format (milliseconds).
+        :param _builtins.str scan_result: Specifies the scan result.  
+               The valid values are as follows:
+               + **pass**: The check is passed.
+               + **failed**: The check is not passed.
+        :param _builtins.str severity: The risk level. Valid values:
+               + **Security**
+               + **Low**
+               + **Medium**
+               + **High**
+               + **Critical**
+        :param _builtins.str standard: The standard type. Valid values are:
+               + **cn_standard**: Waiting for compliance standards.
+               + **hw_standard**: Huawei Standard.
+               + **qt_standard**: Qingteng Standard.
+        """
+        pulumi.set(__self__, "check_name", check_name)
+        pulumi.set(__self__, "check_rule_id", check_rule_id)
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "check_type_desc", check_type_desc)
+        pulumi.set(__self__, "image_num", image_num)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "scan_result", scan_result)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "standard", standard)
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> _builtins.str:
+        """
+        The baseline name.
+        """
+        return pulumi.get(self, "check_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> _builtins.str:
+        """
+        The check rule ID.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        The check rule name.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        The baseline type.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter(name="checkTypeDesc")
+    def check_type_desc(self) -> _builtins.str:
+        """
+        The baseline description.
+        """
+        return pulumi.get(self, "check_type_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="imageNum")
+    def image_num(self) -> _builtins.int:
+        """
+        The number of affected images, the number of images that have undergone current baseline detection.
+        """
+        return pulumi.get(self, "image_num")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The latest scan time, in Unix timestamp format (milliseconds).
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="scanResult")
+    def scan_result(self) -> _builtins.str:
+        """
+        Specifies the scan result.  
+        The valid values are as follows:
+        + **pass**: The check is passed.
+        + **failed**: The check is not passed.
+        """
+        return pulumi.get(self, "scan_result")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level. Valid values:
+        + **Security**
+        + **Low**
+        + **Medium**
+        + **High**
+        + **Critical**
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        The standard type. Valid values are:
+        + **cn_standard**: Waiting for compliance standards.
+        + **hw_standard**: Huawei Standard.
+        + **qt_standard**: Qingteng Standard.
+        """
+        return pulumi.get(self, "standard")
+
+
+@pulumi.output_type
+class GetBaselineOverviewsHostRiskResult(dict):
+    def __init__(__self__, *,
+                 high_risk_num: _builtins.int,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 low_risk_num: _builtins.int,
+                 medium_risk_num: _builtins.int,
+                 scan_time: _builtins.int):
+        """
+        :param _builtins.int high_risk_num: The number of high-risk risks.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_ip: The server IP address.
+        :param _builtins.str host_name: The server name.
+        :param _builtins.int low_risk_num: The number of low-risk risks.
+        :param _builtins.int medium_risk_num: The number of medium-risk risks.
+        :param _builtins.int scan_time: The scan time, in milliseconds.
+        """
+        pulumi.set(__self__, "high_risk_num", high_risk_num)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "low_risk_num", low_risk_num)
+        pulumi.set(__self__, "medium_risk_num", medium_risk_num)
+        pulumi.set(__self__, "scan_time", scan_time)
+
+    @_builtins.property
+    @pulumi.getter(name="highRiskNum")
+    def high_risk_num(self) -> _builtins.int:
+        """
+        The number of high-risk risks.
+        """
+        return pulumi.get(self, "high_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        The server IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRiskNum")
+    def low_risk_num(self) -> _builtins.int:
+        """
+        The number of low-risk risks.
+        """
+        return pulumi.get(self, "low_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRiskNum")
+    def medium_risk_num(self) -> _builtins.int:
+        """
+        The number of medium-risk risks.
+        """
+        return pulumi.get(self, "medium_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The scan time, in milliseconds.
+        """
+        return pulumi.get(self, "scan_time")
+
+
+@pulumi.output_type
+class GetBaselineOverviewsWeakPwdRiskHostResult(dict):
+    def __init__(__self__, *,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 weak_pwd_num: _builtins.int):
+        """
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_ip: The server IP address.
+        :param _builtins.str host_name: The server name.
+        :param _builtins.int weak_pwd_num: The number of weak passwords.
+        """
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "weak_pwd_num", weak_pwd_num)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        The server IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="weakPwdNum")
+    def weak_pwd_num(self) -> _builtins.int:
+        """
+        The number of weak passwords.
+        """
+        return pulumi.get(self, "weak_pwd_num")
+
+
+@pulumi.output_type
+class GetBaselineRiskConfigCheckRulesDataListResult(dict):
+    def __init__(__self__, *,
+                 check_name: _builtins.str,
+                 check_rule_id: _builtins.str,
+                 check_rule_name: _builtins.str,
+                 check_type: _builtins.str,
+                 enable_click: _builtins.bool,
+                 enable_fix: _builtins.int,
+                 host_num: _builtins.int,
+                 not_enable_click_description: _builtins.str,
+                 rule_params: Sequence['outputs.GetBaselineRiskConfigCheckRulesDataListRuleParamResult'],
+                 scan_result: _builtins.str,
+                 severity: _builtins.str,
+                 standard: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str check_name: Specifies the configuration check baseline name.
+               For example, **SSH**, **CentOS 7**, **Windows**.
+        :param _builtins.str check_rule_id: The check item ID.
+        :param _builtins.str check_rule_name: Specifies the check item name.
+               Fuzzy match is supported.
+        :param _builtins.str check_type: The baseline type.
+               The values for `check_type` and `check_name` are the same for Linux servers. For example,
+               they can both be set to **SSH** or **CentOS 7**.
+               For Windows servers, the values for `check_type` and `check_name` are different. For example,
+               `check_type` can be set to **Windows Server 2019 R2** or **Windows Server 2016 R2**.
+        :param _builtins.bool enable_click: Whether the fix, ignore, and verify buttons of the check item are enabled.
+               The valid values are as follows:
+               + **true**: The buttons are enabled.
+               + **false**: The buttons are disabled.
+        :param _builtins.int enable_fix: Whether one-click fix is supported.
+               The valid values are as follows:
+               + **1**: One-click fix is supported.
+               + **0**: not supported
+        :param _builtins.int host_num: The number of affected servers, that is, the number of servers where
+               the current baseline check is performed.
+        :param _builtins.str not_enable_click_description: The reason why it cannot be clicked.
+        :param Sequence['GetBaselineRiskConfigCheckRulesDataListRuleParamArgs'] rule_params: The value range of a parameter that can be configured to fix a check item.
+               This information is only returned for the parameters that can be configured to fix check items.
+               The rule_params structure is documented below.
+        :param _builtins.str scan_result: The check result.
+               The valid values are as follows:
+               + **pass**: The check is passed.
+               + **failed**: The check is not passed.
+        :param _builtins.str severity: Specifies the risk level.
+               The valid values are as follows:
+               + **Security**
+               + **Low**
+               + **Medium**
+               + **High**
+               + **Critical**
+        :param _builtins.str standard: Specifies the standard type.
+               The valid values are as follows:
+               + **cn_standard**: DJCP MLPS compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+        :param _builtins.str status: The check item status.
+               The valid values are as follows:
+               + **safe**
+               + **ignored**
+               + **unhandled**
+               + **fixing**
+               + **fix-failed**
+               + **verifying**
+        """
+        pulumi.set(__self__, "check_name", check_name)
+        pulumi.set(__self__, "check_rule_id", check_rule_id)
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "enable_click", enable_click)
+        pulumi.set(__self__, "enable_fix", enable_fix)
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "not_enable_click_description", not_enable_click_description)
+        pulumi.set(__self__, "rule_params", rule_params)
+        pulumi.set(__self__, "scan_result", scan_result)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> _builtins.str:
+        """
+        Specifies the configuration check baseline name.
+        For example, **SSH**, **CentOS 7**, **Windows**.
+        """
+        return pulumi.get(self, "check_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> _builtins.str:
+        """
+        The check item ID.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        Specifies the check item name.
+        Fuzzy match is supported.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        The baseline type.
+        The values for `check_type` and `check_name` are the same for Linux servers. For example,
+        they can both be set to **SSH** or **CentOS 7**.
+        For Windows servers, the values for `check_type` and `check_name` are different. For example,
+        `check_type` can be set to **Windows Server 2019 R2** or **Windows Server 2016 R2**.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableClick")
+    def enable_click(self) -> _builtins.bool:
+        """
+        Whether the fix, ignore, and verify buttons of the check item are enabled.
+        The valid values are as follows:
+        + **true**: The buttons are enabled.
+        + **false**: The buttons are disabled.
+        """
+        return pulumi.get(self, "enable_click")
+
+    @_builtins.property
+    @pulumi.getter(name="enableFix")
+    def enable_fix(self) -> _builtins.int:
+        """
+        Whether one-click fix is supported.
+        The valid values are as follows:
+        + **1**: One-click fix is supported.
+        + **0**: not supported
+        """
+        return pulumi.get(self, "enable_fix")
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of affected servers, that is, the number of servers where
+        the current baseline check is performed.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="notEnableClickDescription")
+    def not_enable_click_description(self) -> _builtins.str:
+        """
+        The reason why it cannot be clicked.
+        """
+        return pulumi.get(self, "not_enable_click_description")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParams")
+    def rule_params(self) -> Sequence['outputs.GetBaselineRiskConfigCheckRulesDataListRuleParamResult']:
+        """
+        The value range of a parameter that can be configured to fix a check item.
+        This information is only returned for the parameters that can be configured to fix check items.
+        The rule_params structure is documented below.
+        """
+        return pulumi.get(self, "rule_params")
+
+    @_builtins.property
+    @pulumi.getter(name="scanResult")
+    def scan_result(self) -> _builtins.str:
+        """
+        The check result.
+        The valid values are as follows:
+        + **pass**: The check is passed.
+        + **failed**: The check is not passed.
+        """
+        return pulumi.get(self, "scan_result")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the risk level.
+        The valid values are as follows:
+        + **Security**
+        + **Low**
+        + **Medium**
+        + **High**
+        + **Critical**
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        Specifies the standard type.
+        The valid values are as follows:
+        + **cn_standard**: DJCP MLPS compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        """
+        return pulumi.get(self, "standard")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The check item status.
+        The valid values are as follows:
+        + **safe**
+        + **ignored**
+        + **unhandled**
+        + **fixing**
+        + **fix-failed**
+        + **verifying**
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetBaselineRiskConfigCheckRulesDataListRuleParamResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.int,
+                 range_max: _builtins.int,
+                 range_min: _builtins.int,
+                 rule_desc: _builtins.str,
+                 rule_param_id: _builtins.int):
+        """
+        :param _builtins.int default_value: The default values of check item parameters.
+        :param _builtins.int range_max: The maximum value of check item parameters.
+        :param _builtins.int range_min: The minimum value of check item parameters.
+        :param _builtins.str rule_desc: The check item parameter description.
+        :param _builtins.int rule_param_id: The check item parameter ID.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "range_max", range_max)
+        pulumi.set(__self__, "range_min", range_min)
+        pulumi.set(__self__, "rule_desc", rule_desc)
+        pulumi.set(__self__, "rule_param_id", rule_param_id)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.int:
+        """
+        The default values of check item parameters.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMax")
+    def range_max(self) -> _builtins.int:
+        """
+        The maximum value of check item parameters.
+        """
+        return pulumi.get(self, "range_max")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMin")
+    def range_min(self) -> _builtins.int:
+        """
+        The minimum value of check item parameters.
+        """
+        return pulumi.get(self, "range_min")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleDesc")
+    def rule_desc(self) -> _builtins.str:
+        """
+        The check item parameter description.
+        """
+        return pulumi.get(self, "rule_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParamId")
+    def rule_param_id(self) -> _builtins.int:
+        """
+        The check item parameter ID.
+        """
+        return pulumi.get(self, "rule_param_id")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDetailsCheckDetailResult(dict):
+    def __init__(__self__, *,
+                 check_rule_id: _builtins.str,
+                 check_rule_name: _builtins.str,
+                 check_rule_type: _builtins.int,
+                 check_type: _builtins.str,
+                 checked: _builtins.bool,
+                 key: _builtins.str,
+                 level: _builtins.str,
+                 rule_params: Sequence['outputs.GetBaselineSecurityChecksDetailsCheckDetailRuleParamResult'],
+                 severity: _builtins.str):
+        """
+        :param _builtins.str check_rule_id: The check item ID.
+        :param _builtins.str check_rule_name: Specifies the name of configuration check (baseline) check item.
+        :param _builtins.int check_rule_type: The check if the item type is a numerical type.  
+               The valid values are as follows:
+               + **1**: Yes.
+               + **0**: Not.
+        :param _builtins.str check_type: Specifies the configuration check (baseline) type, such as **SSH**, **CentOS 7**,
+               **Windows Server 2019 R2**, **Windows Server 2016 R2**, **MySQL5-Windows**, **weakpwd**, **pwdcomplexity**.
+        :param _builtins.bool checked: Specifies whether the default is selected or not.  
+               The valid values are as follows:
+               + **true**: Selected.
+               + **false**: Not selected.
+               
+               Defaults to **true**.
+        :param _builtins.str key: The unique value of inspection item.
+        :param _builtins.str level: Specifies the version information of configuration check (baseline) check items.
+        :param Sequence['GetBaselineSecurityChecksDetailsCheckDetailRuleParamArgs'] rule_params: The customizable parameters.
+        :param _builtins.str severity: Specifies the risk level of configuration check (baseline) check items.
+        """
+        pulumi.set(__self__, "check_rule_id", check_rule_id)
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_rule_type", check_rule_type)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "checked", checked)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "rule_params", rule_params)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleId")
+    def check_rule_id(self) -> _builtins.str:
+        """
+        The check item ID.
+        """
+        return pulumi.get(self, "check_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        Specifies the name of configuration check (baseline) check item.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleType")
+    def check_rule_type(self) -> _builtins.int:
+        """
+        The check if the item type is a numerical type.  
+        The valid values are as follows:
+        + **1**: Yes.
+        + **0**: Not.
+        """
+        return pulumi.get(self, "check_rule_type")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        Specifies the configuration check (baseline) type, such as **SSH**, **CentOS 7**,
+        **Windows Server 2019 R2**, **Windows Server 2016 R2**, **MySQL5-Windows**, **weakpwd**, **pwdcomplexity**.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def checked(self) -> _builtins.bool:
+        """
+        Specifies whether the default is selected or not.  
+        The valid values are as follows:
+        + **true**: Selected.
+        + **false**: Not selected.
+
+        Defaults to **true**.
+        """
+        return pulumi.get(self, "checked")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The unique value of inspection item.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        Specifies the version information of configuration check (baseline) check items.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParams")
+    def rule_params(self) -> Sequence['outputs.GetBaselineSecurityChecksDetailsCheckDetailRuleParamResult']:
+        """
+        The customizable parameters.
+        """
+        return pulumi.get(self, "rule_params")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the risk level of configuration check (baseline) check items.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDetailsCheckDetailRuleParamResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.int,
+                 range_max: _builtins.int,
+                 range_min: _builtins.int,
+                 rule_desc: _builtins.str,
+                 rule_param_id: _builtins.int):
+        """
+        :param _builtins.int default_value: The default values for inspection item parameters.
+        :param _builtins.int range_max: The maximum value that the inspection item parameter can take.
+        :param _builtins.int range_min: The parameter for the inspection item can take the minimum value.
+        :param _builtins.str rule_desc: The description of inspection item parameters.
+        :param _builtins.int rule_param_id: The check item parameter ID.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "range_max", range_max)
+        pulumi.set(__self__, "range_min", range_min)
+        pulumi.set(__self__, "rule_desc", rule_desc)
+        pulumi.set(__self__, "rule_param_id", rule_param_id)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.int:
+        """
+        The default values for inspection item parameters.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMax")
+    def range_max(self) -> _builtins.int:
+        """
+        The maximum value that the inspection item parameter can take.
+        """
+        return pulumi.get(self, "range_max")
+
+    @_builtins.property
+    @pulumi.getter(name="rangeMin")
+    def range_min(self) -> _builtins.int:
+        """
+        The parameter for the inspection item can take the minimum value.
+        """
+        return pulumi.get(self, "range_min")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleDesc")
+    def rule_desc(self) -> _builtins.str:
+        """
+        The description of inspection item parameters.
+        """
+        return pulumi.get(self, "rule_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleParamId")
+    def rule_param_id(self) -> _builtins.int:
+        """
+        The check item parameter ID.
+        """
+        return pulumi.get(self, "rule_param_id")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDirectoriesBaselineDirectoryListResult(dict):
+    def __init__(__self__, *,
+                 data_lists: Sequence['outputs.GetBaselineSecurityChecksDirectoriesBaselineDirectoryListDataListResult'],
+                 standard: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param Sequence['GetBaselineSecurityChecksDirectoriesBaselineDirectoryListDataListArgs'] data_lists: The third-level directory information for baseline check policies.
+        :param _builtins.str standard: The standard type. Valid values are:
+               + **cn_standard**: Compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+               + **cis_standard**: General security standard.
+        :param _builtins.str type: The meaning varies based on the value of `select_type`:
+               + When `select_type` is **check_type**, this field represents the check type (baseline name).
+               + When `select_type` is **tag**, this field represents the tag (type of baseline check item).
+        """
+        pulumi.set(__self__, "data_lists", data_lists)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="dataLists")
+    def data_lists(self) -> Sequence['outputs.GetBaselineSecurityChecksDirectoriesBaselineDirectoryListDataListResult']:
+        """
+        The third-level directory information for baseline check policies.
+        """
+        return pulumi.get(self, "data_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        The standard type. Valid values are:
+        + **cn_standard**: Compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        + **cis_standard**: General security standard.
+        """
+        return pulumi.get(self, "standard")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The meaning varies based on the value of `select_type`:
+        + When `select_type` is **check_type**, this field represents the check type (baseline name).
+        + When `select_type` is **tag**, this field represents the tag (type of baseline check item).
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDirectoriesBaselineDirectoryListDataListResult(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param _builtins.bool enable: Whether the item is selected.
+        :param _builtins.str name: The meaning varies based on the value of `select_type`.
+               + When `select_type` is **check_type**, this field represents the tag (type of baseline check item).
+               + When `select_type` is **tag**, this field represents the check type (baseline name).
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether the item is selected.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The meaning varies based on the value of `select_type`.
+        + When `select_type` is **check_type**, this field represents the tag (type of baseline check item).
+        + When `select_type` is **tag**, this field represents the check type (baseline name).
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDirectoriesPwdDirectoryListResult(dict):
+    def __init__(__self__, *,
+                 checked: _builtins.str,
+                 key: _builtins.str,
+                 sub_tag: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str checked: Whether the item is selected. The value can be **true** or **false**.
+        :param _builtins.str key: The unique value in the directory. Valid values are:
+               + **weak_pwd**: Classic weak password detection.
+               + **pwd_complexity**: Password complexity policy check.
+        :param _builtins.str sub_tag: The sub-tag for password checks. Valid values are:
+               + **weak_pwd**: Classic weak password detection.
+               + **pwd_complexity**: Password complexity policy check.
+        :param _builtins.str tag: The primary tag for weak password and password complexity. Valid values are:
+               + **weakpwd_pwdcomplexity**: Weak password and password complexity detection.
+               + **weakpwd**: Weak password detection.
+        """
+        pulumi.set(__self__, "checked", checked)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "sub_tag", sub_tag)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter
+    def checked(self) -> _builtins.str:
+        """
+        Whether the item is selected. The value can be **true** or **false**.
+        """
+        return pulumi.get(self, "checked")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The unique value in the directory. Valid values are:
+        + **weak_pwd**: Classic weak password detection.
+        + **pwd_complexity**: Password complexity policy check.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="subTag")
+    def sub_tag(self) -> _builtins.str:
+        """
+        The sub-tag for password checks. Valid values are:
+        + **weak_pwd**: Classic weak password detection.
+        + **pwd_complexity**: Password complexity policy check.
+        """
+        return pulumi.get(self, "sub_tag")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        The primary tag for weak password and password complexity. Valid values are:
+        + **weakpwd_pwdcomplexity**: Weak password and password complexity detection.
+        + **weakpwd**: Weak password detection.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
+class GetBaselineSecurityChecksDirectoriesTaskConditionResult(dict):
+    def __init__(__self__, *,
+                 day_of_weeks: Sequence[_builtins.str],
+                 hour: _builtins.int,
+                 minute: _builtins.int,
+                 random_offset: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param Sequence[_builtins.str] day_of_weeks: Which day of the week triggers it. Choose `0` or multiple options.
+        :param _builtins.int hour: The hour when the task is triggered.
+        :param _builtins.int minute: The minute when the task is triggered.
+        :param _builtins.int random_offset: The random offset time.
+        :param _builtins.str type: The meaning varies based on the value of `select_type`:
+               + When `select_type` is **check_type**, this field represents the check type (baseline name).
+               + When `select_type` is **tag**, this field represents the tag (type of baseline check item).
+        """
+        pulumi.set(__self__, "day_of_weeks", day_of_weeks)
+        pulumi.set(__self__, "hour", hour)
+        pulumi.set(__self__, "minute", minute)
+        pulumi.set(__self__, "random_offset", random_offset)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfWeeks")
+    def day_of_weeks(self) -> Sequence[_builtins.str]:
+        """
+        Which day of the week triggers it. Choose `0` or multiple options.
+        """
+        return pulumi.get(self, "day_of_weeks")
+
+    @_builtins.property
+    @pulumi.getter
+    def hour(self) -> _builtins.int:
+        """
+        The hour when the task is triggered.
+        """
+        return pulumi.get(self, "hour")
+
+    @_builtins.property
+    @pulumi.getter
+    def minute(self) -> _builtins.int:
+        """
+        The minute when the task is triggered.
+        """
+        return pulumi.get(self, "minute")
+
+    @_builtins.property
+    @pulumi.getter(name="randomOffset")
+    def random_offset(self) -> _builtins.int:
+        """
+        The random offset time.
+        """
+        return pulumi.get(self, "random_offset")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The meaning varies based on the value of `select_type`:
+        + When `select_type` is **check_type**, this field represents the check type (baseline name).
+        + When `select_type` is **tag**, this field represents the tag (type of baseline check item).
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetBaselineWhiteListsDataListResult(dict):
+    def __init__(__self__, *,
+                 check_rule_name: _builtins.str,
+                 check_type: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 index_version: _builtins.str,
+                 os_type: _builtins.str,
+                 rule_type: _builtins.str,
+                 standard: _builtins.str,
+                 tag: _builtins.str):
+        """
+        :param _builtins.str check_rule_name: Specifies the baseline check rule name to filter the white lists.
+        :param _builtins.str check_type: The check type of the baseline white list.
+        :param _builtins.str description: Specifies the description to filter the white lists.
+        :param _builtins.str id: The ID of the baseline white list.
+        :param _builtins.str index_version: The index version of the baseline check rule.
+        :param _builtins.str os_type: Specifies the operating system type to filter the white lists.
+               Valid values are **Linux** and **Windows**.
+        :param _builtins.str rule_type: Specifies the rule type of the white lists.
+               Valid values are **specific_host** and **all_host**.
+        :param _builtins.str standard: The standard type of the baseline white list.
+               Valid values are **cn_standard**, **hw_standard**, and **cis_standard**.
+        :param _builtins.str tag: Specifies the tag to filter the white lists.
+        """
+        pulumi.set(__self__, "check_rule_name", check_rule_name)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "index_version", index_version)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "rule_type", rule_type)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "tag", tag)
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleName")
+    def check_rule_name(self) -> _builtins.str:
+        """
+        Specifies the baseline check rule name to filter the white lists.
+        """
+        return pulumi.get(self, "check_rule_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        The check type of the baseline white list.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Specifies the description to filter the white lists.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the baseline white list.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="indexVersion")
+    def index_version(self) -> _builtins.str:
+        """
+        The index version of the baseline check rule.
+        """
+        return pulumi.get(self, "index_version")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the operating system type to filter the white lists.
+        Valid values are **Linux** and **Windows**.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleType")
+    def rule_type(self) -> _builtins.str:
+        """
+        Specifies the rule type of the white lists.
+        Valid values are **specific_host** and **all_host**.
+        """
+        return pulumi.get(self, "rule_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        The standard type of the baseline white list.
+        Valid values are **cn_standard**, **hw_standard**, and **cis_standard**.
+        """
+        return pulumi.get(self, "standard")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        Specifies the tag to filter the white lists.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
+class GetChangeFilesDataListResult(dict):
+    def __init__(__self__, *,
+                 after_change: _builtins.str,
+                 before_change: _builtins.str,
+                 change_category: _builtins.str,
+                 change_type: _builtins.str,
+                 file_name: _builtins.str,
+                 file_path: _builtins.str,
+                 host_name: _builtins.str,
+                 id: _builtins.int,
+                 latest_time: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.str after_change: The modified hash.
+        :param _builtins.str before_change: The hash.
+        :param _builtins.str change_category: Specifies the change category. Valid values are:
+               + **all**: All.
+               + **modify**: Modify.
+               + **add**: Add.
+               + **delete**: Delete.
+        :param _builtins.str change_type: Specifies the change type. Valid values are:
+               + **all**: All.
+               + **registry**: Registry.
+               + **file**: File.
+        :param _builtins.str file_name: Specifies the file name.
+        :param _builtins.str file_path: Specifies the file path.
+        :param _builtins.str host_name: Specifies the server name. Character length `1` - `256` bits.
+        :param _builtins.int id: The ID.
+        :param _builtins.int latest_time: The last change time.
+        :param _builtins.str status: Specifies the status. Valid values are:
+               + **all**: All.
+               + **trust**: Trusted.
+               + **untrust**: Untrusted.
+               + **unknown**: Unknown.
+        """
+        pulumi.set(__self__, "after_change", after_change)
+        pulumi.set(__self__, "before_change", before_change)
+        pulumi.set(__self__, "change_category", change_category)
+        pulumi.set(__self__, "change_type", change_type)
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "latest_time", latest_time)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="afterChange")
+    def after_change(self) -> _builtins.str:
+        """
+        The modified hash.
+        """
+        return pulumi.get(self, "after_change")
+
+    @_builtins.property
+    @pulumi.getter(name="beforeChange")
+    def before_change(self) -> _builtins.str:
+        """
+        The hash.
+        """
+        return pulumi.get(self, "before_change")
+
+    @_builtins.property
+    @pulumi.getter(name="changeCategory")
+    def change_category(self) -> _builtins.str:
+        """
+        Specifies the change category. Valid values are:
+        + **all**: All.
+        + **modify**: Modify.
+        + **add**: Add.
+        + **delete**: Delete.
+        """
+        return pulumi.get(self, "change_category")
+
+    @_builtins.property
+    @pulumi.getter(name="changeType")
+    def change_type(self) -> _builtins.str:
+        """
+        Specifies the change type. Valid values are:
+        + **all**: All.
+        + **registry**: Registry.
+        + **file**: File.
+        """
+        return pulumi.get(self, "change_type")
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        Specifies the file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        Specifies the file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name. Character length `1` - `256` bits.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="latestTime")
+    def latest_time(self) -> _builtins.int:
+        """
+        The last change time.
+        """
+        return pulumi.get(self, "latest_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the status. Valid values are:
+        + **all**: All.
+        + **trust**: Trusted.
+        + **untrust**: Untrusted.
+        + **unknown**: Unknown.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetCicdConfigurationsDataListResult(dict):
+    def __init__(__self__, *,
+                 associated_config_num: _builtins.int,
+                 associated_images_num: _builtins.int,
+                 cicd_id: _builtins.str,
+                 cicd_name: _builtins.str):
+        """
+        :param _builtins.int associated_config_num: The number of associated configuration scans.
+        :param _builtins.int associated_images_num: The number of associated mirror scans.
+        :param _builtins.str cicd_id: Specifies the CiCd ID.
+        :param _builtins.str cicd_name: Specifies the CiCd name.
+        """
+        pulumi.set(__self__, "associated_config_num", associated_config_num)
+        pulumi.set(__self__, "associated_images_num", associated_images_num)
+        pulumi.set(__self__, "cicd_id", cicd_id)
+        pulumi.set(__self__, "cicd_name", cicd_name)
+
+    @_builtins.property
+    @pulumi.getter(name="associatedConfigNum")
+    def associated_config_num(self) -> _builtins.int:
+        """
+        The number of associated configuration scans.
+        """
+        return pulumi.get(self, "associated_config_num")
+
+    @_builtins.property
+    @pulumi.getter(name="associatedImagesNum")
+    def associated_images_num(self) -> _builtins.int:
+        """
+        The number of associated mirror scans.
+        """
+        return pulumi.get(self, "associated_images_num")
+
+    @_builtins.property
+    @pulumi.getter(name="cicdId")
+    def cicd_id(self) -> _builtins.str:
+        """
+        Specifies the CiCd ID.
+        """
+        return pulumi.get(self, "cicd_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cicdName")
+    def cicd_name(self) -> _builtins.str:
+        """
+        Specifies the CiCd name.
+        """
+        return pulumi.get(self, "cicd_name")
+
+
+@pulumi.output_type
+class GetClusterProtectAlarmEventsDataListResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 create_time: _builtins.int,
+                 enterprise_project_id: _builtins.str,
+                 event_class_id: _builtins.str,
+                 event_content: _builtins.str,
+                 event_id: _builtins.str,
+                 event_name: _builtins.str,
+                 event_type: _builtins.int,
+                 handle_status: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 project_id: _builtins.str,
+                 resource_infos: Sequence['outputs.GetClusterProtectAlarmEventsDataListResourceInfoResult'],
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str action: The blocking action.
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.  
+               This parameter is valid only when the enterprise project is enabled.
+               The default value is **0**, indicating the default enterprise project.
+               If it is necessary to operate the asset under all enterprise projects, the value is **all_granted_eps**.
+               If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+               the operation may fail due to insufficient permissions.
+        :param _builtins.str event_class_id: The event unique identifier.
+        :param _builtins.str event_content: The event content.
+        :param _builtins.str event_id: The event ID.
+        :param _builtins.str event_name: The event name.
+        :param _builtins.int event_type: The event type.
+        :param _builtins.str handle_status: The handling status.  
+               The valid values are as follows:
+               + **unhandled**: Unhandled.
+               + **handled**: Handled.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param _builtins.str project_id: The project ID.
+        :param Sequence['GetClusterProtectAlarmEventsDataListResourceInfoArgs'] resource_infos: The event resource information.
+        :param _builtins.int update_time: The update time.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "event_class_id", event_class_id)
+        pulumi.set(__self__, "event_content", event_content)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "resource_infos", resource_infos)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The blocking action.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise project ID.  
+        This parameter is valid only when the enterprise project is enabled.
+        The default value is **0**, indicating the default enterprise project.
+        If it is necessary to operate the asset under all enterprise projects, the value is **all_granted_eps**.
+        If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+        the operation may fail due to insufficient permissions.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventClassId")
+    def event_class_id(self) -> _builtins.str:
+        """
+        The event unique identifier.
+        """
+        return pulumi.get(self, "event_class_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventContent")
+    def event_content(self) -> _builtins.str:
+        """
+        The event content.
+        """
+        return pulumi.get(self, "event_content")
+
+    @_builtins.property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> _builtins.str:
+        """
+        The event ID.
+        """
+        return pulumi.get(self, "event_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> _builtins.str:
+        """
+        The event name.
+        """
+        return pulumi.get(self, "event_name")
+
+    @_builtins.property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> _builtins.int:
+        """
+        The event type.
+        """
+        return pulumi.get(self, "event_type")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        The handling status.  
+        The valid values are as follows:
+        + **unhandled**: Unhandled.
+        + **handled**: Handled.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceInfos")
+    def resource_infos(self) -> Sequence['outputs.GetClusterProtectAlarmEventsDataListResourceInfoResult']:
+        """
+        The event resource information.
+        """
+        return pulumi.get(self, "resource_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetClusterProtectAlarmEventsDataListResourceInfoResult(dict):
+    def __init__(__self__, *,
+                 enforcement_action: _builtins.str,
+                 group: _builtins.str,
+                 kind: _builtins.str,
+                 message: _builtins.str,
+                 name: _builtins.str,
+                 namespace: _builtins.str,
+                 resource_name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str enforcement_action: The enforcement action.
+        :param _builtins.str group: The group.
+        :param _builtins.str kind: The resource type.
+        :param _builtins.str message: The message.
+        :param _builtins.str name: The name.
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.str resource_name: The resource name.
+        :param _builtins.str version: The version.
+        """
+        pulumi.set(__self__, "enforcement_action", enforcement_action)
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="enforcementAction")
+    def enforcement_action(self) -> _builtins.str:
+        """
+        The enforcement action.
+        """
+        return pulumi.get(self, "enforcement_action")
+
+    @_builtins.property
+    @pulumi.getter
+    def group(self) -> _builtins.str:
+        """
+        The group.
+        """
+        return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        """
+        The resource type.
+        """
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The message.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetClusterProtectDefaultPoliciesDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 content: _builtins.str,
+                 create_time: _builtins.int,
+                 deploy_content: _builtins.str,
+                 description: _builtins.str,
+                 image_num: _builtins.int,
+                 labels_num: _builtins.int,
+                 parameters: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 resources: Sequence['outputs.GetClusterProtectDefaultPoliciesDataListResourceResult'],
+                 status: _builtins.str,
+                 template_id: _builtins.str,
+                 template_name: _builtins.str,
+                 template_type: _builtins.str,
+                 update_time: _builtins.int,
+                 white_images: Sequence['outputs.GetClusterProtectDefaultPoliciesDataListWhiteImageResult']):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str content: The policy content.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str deploy_content: The deployment content.
+        :param _builtins.str description: The policy description.
+        :param _builtins.int image_num: The number of protected images.
+        :param _builtins.int labels_num: The number of protected labels.
+        :param _builtins.str parameters: The parameters.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param Sequence['GetClusterProtectDefaultPoliciesDataListResourceArgs'] resources: The resources.
+        :param _builtins.str status: The status.
+        :param _builtins.str template_id: The template ID.
+        :param _builtins.str template_name: The template name.
+        :param _builtins.str template_type: The template type.
+        :param _builtins.int update_time: The update time.
+        :param Sequence['GetClusterProtectDefaultPoliciesDataListWhiteImageArgs'] white_images: The white list images.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "deploy_content", deploy_content)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "image_num", image_num)
+        pulumi.set(__self__, "labels_num", labels_num)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "template_type", template_type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "white_images", white_images)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The policy content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="deployContent")
+    def deploy_content(self) -> _builtins.str:
+        """
+        The deployment content.
+        """
+        return pulumi.get(self, "deploy_content")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The policy description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="imageNum")
+    def image_num(self) -> _builtins.int:
+        """
+        The number of protected images.
+        """
+        return pulumi.get(self, "image_num")
+
+    @_builtins.property
+    @pulumi.getter(name="labelsNum")
+    def labels_num(self) -> _builtins.int:
+        """
+        The number of protected labels.
+        """
+        return pulumi.get(self, "labels_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> _builtins.str:
+        """
+        The parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetClusterProtectDefaultPoliciesDataListResourceResult']:
+        """
+        The resources.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> _builtins.str:
+        """
+        The template name.
+        """
+        return pulumi.get(self, "template_name")
+
+    @_builtins.property
+    @pulumi.getter(name="templateType")
+    def template_type(self) -> _builtins.str:
+        """
+        The template type.
+        """
+        return pulumi.get(self, "template_type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="whiteImages")
+    def white_images(self) -> Sequence['outputs.GetClusterProtectDefaultPoliciesDataListWhiteImageResult']:
+        """
+        The white list images.
+        """
+        return pulumi.get(self, "white_images")
+
+
+@pulumi.output_type
+class GetClusterProtectDefaultPoliciesDataListResourceResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 images: _builtins.str,
+                 labels: _builtins.str,
+                 namespace: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str images: The images.
+        :param _builtins.str labels: The labels.
+        :param _builtins.str namespace: The namespace.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "images", images)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "namespace", namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def images(self) -> _builtins.str:
+        """
+        The images.
+        """
+        return pulumi.get(self, "images")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> _builtins.str:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetClusterProtectDefaultPoliciesDataListWhiteImageResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_version: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_version: The image version.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_version", image_version)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
+
+
+@pulumi.output_type
+class GetClusterProtectInfoDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_status: _builtins.str,
+                 cluster_type: _builtins.str,
+                 cluster_version: _builtins.str,
+                 policy_num: _builtins.int,
+                 protect_status: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str cluster_status: The cluster running status.  
+               The valid values are as follows:
+               + **Available**: Available.
+               + **Unavailable**: Unavailable.
+        :param _builtins.str cluster_type: The cluster type.  
+               The valid values are as follows:
+               + **k8s**: Native cluster.
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.str cluster_version: The cluster version.
+        :param _builtins.int policy_num: The number of policies.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **unprotected**: Unprotected.
+               + **plugin error**: Plugin error.
+               + **protected with policy**: Protected with policy.
+               + **deploy policy failed**: Deploy policy failed.
+               + **protected without policy**: Protected without policy.
+               + **uninstall failed**: Uninstall failed.
+               + **uninstall**: Uninstall.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_status", cluster_status)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "cluster_version", cluster_version)
+        pulumi.set(__self__, "policy_num", policy_num)
+        pulumi.set(__self__, "protect_status", protect_status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterStatus")
+    def cluster_status(self) -> _builtins.str:
+        """
+        The cluster running status.  
+        The valid values are as follows:
+        + **Available**: Available.
+        + **Unavailable**: Unavailable.
+        """
+        return pulumi.get(self, "cluster_status")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.  
+        The valid values are as follows:
+        + **k8s**: Native cluster.
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterVersion")
+    def cluster_version(self) -> _builtins.str:
+        """
+        The cluster version.
+        """
+        return pulumi.get(self, "cluster_version")
+
+    @_builtins.property
+    @pulumi.getter(name="policyNum")
+    def policy_num(self) -> _builtins.int:
+        """
+        The number of policies.
+        """
+        return pulumi.get(self, "policy_num")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **unprotected**: Unprotected.
+        + **plugin error**: Plugin error.
+        + **protected with policy**: Protected with policy.
+        + **deploy policy failed**: Deploy policy failed.
+        + **protected without policy**: Protected without policy.
+        + **uninstall failed**: Uninstall failed.
+        + **uninstall**: Uninstall.
+        """
+        return pulumi.get(self, "protect_status")
+
+
+@pulumi.output_type
+class GetClusterProtectPoliciesDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 content: _builtins.str,
+                 create_time: _builtins.int,
+                 deploy_content: _builtins.str,
+                 description: _builtins.str,
+                 image_num: _builtins.int,
+                 labels_num: _builtins.int,
+                 parameters: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 resources: Sequence['outputs.GetClusterProtectPoliciesDataListResourceResult'],
+                 status: _builtins.str,
+                 template_id: _builtins.str,
+                 template_name: _builtins.str,
+                 template_type: _builtins.str,
+                 update_time: _builtins.int,
+                 white_images: Sequence['outputs.GetClusterProtectPoliciesDataListWhiteImageResult']):
+        """
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str content: The policy content.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str deploy_content: The deployment content.
+        :param _builtins.str description: The description.
+        :param _builtins.int image_num: The number of protective images.
+        :param _builtins.int labels_num: The number of protective labels.
+        :param _builtins.str parameters: The parameters.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param Sequence['GetClusterProtectPoliciesDataListResourceArgs'] resources: The resources.
+        :param _builtins.str status: The status.
+        :param _builtins.str template_id: The template ID.
+        :param _builtins.str template_name: The template name.
+        :param _builtins.str template_type: The template type.
+        :param _builtins.int update_time: The update time.
+        :param Sequence['GetClusterProtectPoliciesDataListWhiteImageArgs'] white_images: The whitelist image.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "deploy_content", deploy_content)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "image_num", image_num)
+        pulumi.set(__self__, "labels_num", labels_num)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "template_type", template_type)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "white_images", white_images)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The policy content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="deployContent")
+    def deploy_content(self) -> _builtins.str:
+        """
+        The deployment content.
+        """
+        return pulumi.get(self, "deploy_content")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="imageNum")
+    def image_num(self) -> _builtins.int:
+        """
+        The number of protective images.
+        """
+        return pulumi.get(self, "image_num")
+
+    @_builtins.property
+    @pulumi.getter(name="labelsNum")
+    def labels_num(self) -> _builtins.int:
+        """
+        The number of protective labels.
+        """
+        return pulumi.get(self, "labels_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> _builtins.str:
+        """
+        The parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetClusterProtectPoliciesDataListResourceResult']:
+        """
+        The resources.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> _builtins.str:
+        """
+        The template name.
+        """
+        return pulumi.get(self, "template_name")
+
+    @_builtins.property
+    @pulumi.getter(name="templateType")
+    def template_type(self) -> _builtins.str:
+        """
+        The template type.
+        """
+        return pulumi.get(self, "template_type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="whiteImages")
+    def white_images(self) -> Sequence['outputs.GetClusterProtectPoliciesDataListWhiteImageResult']:
+        """
+        The whitelist image.
+        """
+        return pulumi.get(self, "white_images")
+
+
+@pulumi.output_type
+class GetClusterProtectPoliciesDataListResourceResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 images: _builtins.str,
+                 labels: _builtins.str,
+                 namespace: _builtins.str):
+        """
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str images: The images.
+        :param _builtins.str labels: The labels.
+        :param _builtins.str namespace: The namespace.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "images", images)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "namespace", namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def images(self) -> _builtins.str:
+        """
+        The images.
+        """
+        return pulumi.get(self, "images")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> _builtins.str:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class GetClusterProtectPoliciesDataListWhiteImageResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_version: _builtins.str):
+        """
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_version: The image version.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_version", image_version)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
+
+
+@pulumi.output_type
+class GetClusterProtectProtectionItemsBaselineResult(dict):
+    def __init__(__self__, *,
+                 baseline_desc: _builtins.str,
+                 baseline_index: _builtins.str,
+                 baseline_type: _builtins.str):
+        """
+        :param _builtins.str baseline_desc: The baseline description.
+        :param _builtins.str baseline_index: The baseline ID.
+        :param _builtins.str baseline_type: The baseline type.
+        """
+        pulumi.set(__self__, "baseline_desc", baseline_desc)
+        pulumi.set(__self__, "baseline_index", baseline_index)
+        pulumi.set(__self__, "baseline_type", baseline_type)
+
+    @_builtins.property
+    @pulumi.getter(name="baselineDesc")
+    def baseline_desc(self) -> _builtins.str:
+        """
+        The baseline description.
+        """
+        return pulumi.get(self, "baseline_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="baselineIndex")
+    def baseline_index(self) -> _builtins.str:
+        """
+        The baseline ID.
+        """
+        return pulumi.get(self, "baseline_index")
+
+    @_builtins.property
+    @pulumi.getter(name="baselineType")
+    def baseline_type(self) -> _builtins.str:
+        """
+        The baseline type.
+        """
+        return pulumi.get(self, "baseline_type")
+
+
+@pulumi.output_type
+class GetClusterProtectProtectionItemsClusterResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_labels: Sequence[_builtins.str],
+                 cluster_name: _builtins.str,
+                 cluster_ns: Sequence[_builtins.str],
+                 protect_status: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param Sequence[_builtins.str] cluster_labels: The cluster label list.
+        :param _builtins.str cluster_name: The cluster name.
+        :param Sequence[_builtins.str] cluster_ns: The cluster namespace list.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **unprotected**: Unprotected.
+               + **plugin error**: Plugin error.
+               + **protected with policy**: Protected with policy.
+               + **deploy policy failed**: Deploy policy failed.
+               + **protected without policy**: Protected without policy.
+               + **uninstall failed**: Uninstall failed.
+               + **uninstall**: Uninstall.
+               + **installing**: Installing.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_labels", cluster_labels)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_ns", cluster_ns)
+        pulumi.set(__self__, "protect_status", protect_status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterLabels")
+    def cluster_labels(self) -> Sequence[_builtins.str]:
+        """
+        The cluster label list.
+        """
+        return pulumi.get(self, "cluster_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterNs")
+    def cluster_ns(self) -> Sequence[_builtins.str]:
+        """
+        The cluster namespace list.
+        """
+        return pulumi.get(self, "cluster_ns")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **unprotected**: Unprotected.
+        + **plugin error**: Plugin error.
+        + **protected with policy**: Protected with policy.
+        + **deploy policy failed**: Deploy policy failed.
+        + **protected without policy**: Protected without policy.
+        + **uninstall failed**: Uninstall failed.
+        + **uninstall**: Uninstall.
+        + **installing**: Installing.
+        """
+        return pulumi.get(self, "protect_status")
+
+
+@pulumi.output_type
+class GetClusterProtectProtectionItemsImageResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_version: _builtins.str):
+        """
+        :param _builtins.str id: The ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_version: The image version.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_version", image_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
+
+
+@pulumi.output_type
+class GetClusterProtectProtectionItemsMalwareResult(dict):
+    def __init__(__self__, *,
+                 malware_type: _builtins.str):
+        """
+        :param _builtins.str malware_type: The malicious file type.
+        """
+        pulumi.set(__self__, "malware_type", malware_type)
+
+    @_builtins.property
+    @pulumi.getter(name="malwareType")
+    def malware_type(self) -> _builtins.str:
+        """
+        The malicious file type.
+        """
+        return pulumi.get(self, "malware_type")
+
+
+@pulumi.output_type
+class GetCommonTasksClusterScanInfoResult(dict):
+    def __init__(__self__, *,
+                 scan_type_lists: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] scan_type_lists: Specifies the list of scan types.
+               Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+               
+               <a name="iac_scan_info_struct"></a>
+               The `iac_scan_info` block supports:
+        """
+        if scan_type_lists is not None:
+            pulumi.set(__self__, "scan_type_lists", scan_type_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="scanTypeLists")
+    def scan_type_lists(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of scan types.
+        Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+
+        <a name="iac_scan_info_struct"></a>
+        The `iac_scan_info` block supports:
+        """
+        return pulumi.get(self, "scan_type_lists")
+
+
+@pulumi.output_type
+class GetCommonTasksDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_scan_infos: Sequence['outputs.GetCommonTasksDataListClusterScanInfoResult'],
+                 end_time: _builtins.int,
+                 estimated_time: _builtins.int,
+                 iac_scan_infos: Sequence['outputs.GetCommonTasksDataListIacScanInfoResult'],
+                 start_time: _builtins.int,
+                 task_id: _builtins.str,
+                 task_name: _builtins.str,
+                 task_status: _builtins.str,
+                 task_type: _builtins.str,
+                 trigger_type: _builtins.str):
+        """
+        :param Sequence['GetCommonTasksDataListClusterScanInfoArgs'] cluster_scan_infos: Specifies the cluster scan information.
+               Only valid when `task_type` is **cluster_scan**.
+               The cluster_scan_info structure is documented below.
+        :param _builtins.int end_time: The end time of the task in milliseconds.
+        :param _builtins.int estimated_time: The estimated remaining time in minutes.
+        :param Sequence['GetCommonTasksDataListIacScanInfoArgs'] iac_scan_infos: Specifies the IAC scan information.
+               Only valid when `task_type` is **iac_scan**.
+               The iac_scan_info structure is documented below.
+        :param _builtins.int start_time: The start time of the task in milliseconds.
+        :param _builtins.str task_id: Specifies the task ID to query.
+        :param _builtins.str task_name: Specifies the task name to fuzzy match.
+        :param _builtins.str task_status: Specifies the task status. Valid values are **ready**, **running**, and **finished**.
+        :param _builtins.str task_type: Specifies the task type. Valid values are **cluster_scan** and **iac_scan**.
+        :param _builtins.str trigger_type: Specifies the task trigger type. Valid values are **manual** and **schedule**.
+        """
+        pulumi.set(__self__, "cluster_scan_infos", cluster_scan_infos)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "estimated_time", estimated_time)
+        pulumi.set(__self__, "iac_scan_infos", iac_scan_infos)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "trigger_type", trigger_type)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterScanInfos")
+    def cluster_scan_infos(self) -> Sequence['outputs.GetCommonTasksDataListClusterScanInfoResult']:
+        """
+        Specifies the cluster scan information.
+        Only valid when `task_type` is **cluster_scan**.
+        The cluster_scan_info structure is documented below.
+        """
+        return pulumi.get(self, "cluster_scan_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The end time of the task in milliseconds.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="estimatedTime")
+    def estimated_time(self) -> _builtins.int:
+        """
+        The estimated remaining time in minutes.
+        """
+        return pulumi.get(self, "estimated_time")
+
+    @_builtins.property
+    @pulumi.getter(name="iacScanInfos")
+    def iac_scan_infos(self) -> Sequence['outputs.GetCommonTasksDataListIacScanInfoResult']:
+        """
+        Specifies the IAC scan information.
+        Only valid when `task_type` is **iac_scan**.
+        The iac_scan_info structure is documented below.
+        """
+        return pulumi.get(self, "iac_scan_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        The start time of the task in milliseconds.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> _builtins.str:
+        """
+        Specifies the task ID to query.
+        """
+        return pulumi.get(self, "task_id")
+
+    @_builtins.property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> _builtins.str:
+        """
+        Specifies the task name to fuzzy match.
+        """
+        return pulumi.get(self, "task_name")
+
+    @_builtins.property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> _builtins.str:
+        """
+        Specifies the task status. Valid values are **ready**, **running**, and **finished**.
+        """
+        return pulumi.get(self, "task_status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        Specifies the task type. Valid values are **cluster_scan** and **iac_scan**.
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="triggerType")
+    def trigger_type(self) -> _builtins.str:
+        """
+        Specifies the task trigger type. Valid values are **manual** and **schedule**.
+        """
+        return pulumi.get(self, "trigger_type")
+
+
+@pulumi.output_type
+class GetCommonTasksDataListClusterScanInfoResult(dict):
+    def __init__(__self__, *,
+                 failed_cluster_num: _builtins.int,
+                 scan_type_lists: Sequence[_builtins.str],
+                 scanning_cluster_num: _builtins.int,
+                 success_cluster_num: _builtins.int):
+        """
+        :param _builtins.int failed_cluster_num: The number of failed scanned clusters.
+        :param Sequence[_builtins.str] scan_type_lists: Specifies the list of scan types.
+               Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+               
+               <a name="iac_scan_info_struct"></a>
+               The `iac_scan_info` block supports:
+        :param _builtins.int scanning_cluster_num: The number of clusters being scanned.
+        :param _builtins.int success_cluster_num: The number of successfully scanned clusters.
+        """
+        pulumi.set(__self__, "failed_cluster_num", failed_cluster_num)
+        pulumi.set(__self__, "scan_type_lists", scan_type_lists)
+        pulumi.set(__self__, "scanning_cluster_num", scanning_cluster_num)
+        pulumi.set(__self__, "success_cluster_num", success_cluster_num)
+
+    @_builtins.property
+    @pulumi.getter(name="failedClusterNum")
+    def failed_cluster_num(self) -> _builtins.int:
+        """
+        The number of failed scanned clusters.
+        """
+        return pulumi.get(self, "failed_cluster_num")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTypeLists")
+    def scan_type_lists(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of scan types.
+        Valid values are **cluster_vul**, **risk_assessment**, and **benchmark**.
+
+        <a name="iac_scan_info_struct"></a>
+        The `iac_scan_info` block supports:
+        """
+        return pulumi.get(self, "scan_type_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="scanningClusterNum")
+    def scanning_cluster_num(self) -> _builtins.int:
+        """
+        The number of clusters being scanned.
+        """
+        return pulumi.get(self, "scanning_cluster_num")
+
+    @_builtins.property
+    @pulumi.getter(name="successClusterNum")
+    def success_cluster_num(self) -> _builtins.int:
+        """
+        The number of successfully scanned clusters.
+        """
+        return pulumi.get(self, "success_cluster_num")
+
+
+@pulumi.output_type
+class GetCommonTasksDataListIacScanInfoResult(dict):
+    def __init__(__self__, *,
+                 failed_file_num: _builtins.int,
+                 file_type: _builtins.str,
+                 scan_file_num: _builtins.int,
+                 success_file_num: _builtins.int):
+        """
+        :param _builtins.int failed_file_num: The number of failed scanned files.
+        :param _builtins.str file_type: Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        :param _builtins.int scan_file_num: The total number of scanned files.
+        :param _builtins.int success_file_num: The number of successfully scanned files.
+        """
+        pulumi.set(__self__, "failed_file_num", failed_file_num)
+        pulumi.set(__self__, "file_type", file_type)
+        pulumi.set(__self__, "scan_file_num", scan_file_num)
+        pulumi.set(__self__, "success_file_num", success_file_num)
+
+    @_builtins.property
+    @pulumi.getter(name="failedFileNum")
+    def failed_file_num(self) -> _builtins.int:
+        """
+        The number of failed scanned files.
+        """
+        return pulumi.get(self, "failed_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> _builtins.str:
+        """
+        Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        """
+        return pulumi.get(self, "file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="scanFileNum")
+    def scan_file_num(self) -> _builtins.int:
+        """
+        The total number of scanned files.
+        """
+        return pulumi.get(self, "scan_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="successFileNum")
+    def success_file_num(self) -> _builtins.int:
+        """
+        The number of successfully scanned files.
+        """
+        return pulumi.get(self, "success_file_num")
+
+
+@pulumi.output_type
+class GetCommonTasksIacScanInfoResult(dict):
+    def __init__(__self__, *,
+                 file_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str file_type: Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        """
+        if file_type is not None:
+            pulumi.set(__self__, "file_type", file_type)
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the file type to scan. Valid values are **dockerfile** and **k8s_yaml**.
+        """
+        return pulumi.get(self, "file_type")
+
+
+@pulumi.output_type
+class GetConfigsDataListResult(dict):
+    def __init__(__self__, *,
+                 config_name: _builtins.str,
+                 config_value: _builtins.str):
+        """
+        :param _builtins.str config_name: The config name.
+        :param _builtins.str config_value: The config content.
+        """
+        pulumi.set(__self__, "config_name", config_name)
+        pulumi.set(__self__, "config_value", config_value)
+
+    @_builtins.property
+    @pulumi.getter(name="configName")
+    def config_name(self) -> _builtins.str:
+        """
+        The config name.
+        """
+        return pulumi.get(self, "config_name")
+
+    @_builtins.property
+    @pulumi.getter(name="configValue")
+    def config_value(self) -> _builtins.str:
+        """
+        The config content.
+        """
+        return pulumi.get(self, "config_value")
+
+
+@pulumi.output_type
+class GetContainerClusterRiskAffectedResourcesDataListResult(dict):
+    def __init__(__self__, *,
+                 first_scan_time: _builtins.int,
+                 hit_path_lists: Sequence[_builtins.str],
+                 hit_rule: _builtins.str,
+                 last_scan_time: _builtins.int,
+                 namespace: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param _builtins.int first_scan_time: The first scan time.
+        :param Sequence[_builtins.str] hit_path_lists: The list of paths where risks exist in the resource.
+        :param _builtins.str hit_rule: The rule that detected the risk in the resource.
+        :param _builtins.int last_scan_time: The last scan time.
+        :param _builtins.str namespace: Specifies the namespace of the resource.
+        :param _builtins.str resource_id: The resource ID.
+        :param _builtins.str resource_name: Specifies the resource name.
+        :param _builtins.str resource_type: Specifies the resource type.
+        """
+        pulumi.set(__self__, "first_scan_time", first_scan_time)
+        pulumi.set(__self__, "hit_path_lists", hit_path_lists)
+        pulumi.set(__self__, "hit_rule", hit_rule)
+        pulumi.set(__self__, "last_scan_time", last_scan_time)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="firstScanTime")
+    def first_scan_time(self) -> _builtins.int:
+        """
+        The first scan time.
+        """
+        return pulumi.get(self, "first_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="hitPathLists")
+    def hit_path_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of paths where risks exist in the resource.
+        """
+        return pulumi.get(self, "hit_path_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="hitRule")
+    def hit_rule(self) -> _builtins.str:
+        """
+        The rule that detected the risk in the resource.
+        """
+        return pulumi.get(self, "hit_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="lastScanTime")
+    def last_scan_time(self) -> _builtins.int:
+        """
+        The last scan time.
+        """
+        return pulumi.get(self, "last_scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace of the resource.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        Specifies the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        Specifies the resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetContainerClusterRisksDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 description: _builtins.str,
+                 last_scan_time: _builtins.int,
+                 remediation: _builtins.str,
+                 risk_category: _builtins.str,
+                 risk_id: _builtins.str,
+                 risk_level: _builtins.str,
+                 risk_name: _builtins.str,
+                 risk_num: _builtins.int):
+        """
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str description: The risk description.
+        :param _builtins.int last_scan_time: The last scan time.
+        :param _builtins.str remediation: The risk remediation suggestion.
+        :param _builtins.str risk_category: Specifies the risk category. Valid values are:
+               + **control_plane**: Control plane.
+               + **access_control**: Access control.
+               + **network**: Network.
+               + **workload**: Workload.
+               + **secrets**: Secrets management.
+               + **node_escape**: Node escape.
+        :param _builtins.str risk_id: The risk ID.
+        :param _builtins.str risk_level: Specifies the risk level. Valid values are:
+               + **high**: High risk.
+               + **medium**: Medium risk.
+               + **low**: Low risk.
+               + **tips**: Tips.
+        :param _builtins.str risk_name: Specifies the risk name.
+        :param _builtins.int risk_num: The number of risks.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "last_scan_time", last_scan_time)
+        pulumi.set(__self__, "remediation", remediation)
+        pulumi.set(__self__, "risk_category", risk_category)
+        pulumi.set(__self__, "risk_id", risk_id)
+        pulumi.set(__self__, "risk_level", risk_level)
+        pulumi.set(__self__, "risk_name", risk_name)
+        pulumi.set(__self__, "risk_num", risk_num)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The risk description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="lastScanTime")
+    def last_scan_time(self) -> _builtins.int:
+        """
+        The last scan time.
+        """
+        return pulumi.get(self, "last_scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def remediation(self) -> _builtins.str:
+        """
+        The risk remediation suggestion.
+        """
+        return pulumi.get(self, "remediation")
+
+    @_builtins.property
+    @pulumi.getter(name="riskCategory")
+    def risk_category(self) -> _builtins.str:
+        """
+        Specifies the risk category. Valid values are:
+        + **control_plane**: Control plane.
+        + **access_control**: Access control.
+        + **network**: Network.
+        + **workload**: Workload.
+        + **secrets**: Secrets management.
+        + **node_escape**: Node escape.
+        """
+        return pulumi.get(self, "risk_category")
+
+    @_builtins.property
+    @pulumi.getter(name="riskId")
+    def risk_id(self) -> _builtins.str:
+        """
+        The risk ID.
+        """
+        return pulumi.get(self, "risk_id")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> _builtins.str:
+        """
+        Specifies the risk level. Valid values are:
+        + **high**: High risk.
+        + **medium**: Medium risk.
+        + **low**: Low risk.
+        + **tips**: Tips.
+        """
+        return pulumi.get(self, "risk_level")
+
+    @_builtins.property
+    @pulumi.getter(name="riskName")
+    def risk_name(self) -> _builtins.str:
+        """
+        Specifies the risk name.
+        """
+        return pulumi.get(self, "risk_name")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risks.
+        """
+        return pulumi.get(self, "risk_num")
+
+
+@pulumi.output_type
+class GetContainerClustersPolicyTemplatesDataListResult(dict):
+    def __init__(__self__, *,
+                 constraint_template: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 level: _builtins.str,
+                 tag: _builtins.str,
+                 target_kind: _builtins.str,
+                 template_name: _builtins.str,
+                 template_type: _builtins.str):
+        """
+        :param _builtins.str constraint_template: The policy template content.
+        :param _builtins.str description: The template description.
+        :param _builtins.str id: The template ID.
+        :param _builtins.str level: Specifies the recommendation level.
+        :param _builtins.str tag: Specifies the tag.
+        :param _builtins.str target_kind: Specifies the policy template application resource type.
+               Multiple resource types are separated by semicolons.
+        :param _builtins.str template_name: Specifies the template name.
+        :param _builtins.str template_type: Specifies the template type.
+        """
+        pulumi.set(__self__, "constraint_template", constraint_template)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "tag", tag)
+        pulumi.set(__self__, "target_kind", target_kind)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "template_type", template_type)
+
+    @_builtins.property
+    @pulumi.getter(name="constraintTemplate")
+    def constraint_template(self) -> _builtins.str:
+        """
+        The policy template content.
+        """
+        return pulumi.get(self, "constraint_template")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The template description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The template ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        Specifies the recommendation level.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter
+    def tag(self) -> _builtins.str:
+        """
+        Specifies the tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @_builtins.property
+    @pulumi.getter(name="targetKind")
+    def target_kind(self) -> _builtins.str:
+        """
+        Specifies the policy template application resource type.
+        Multiple resource types are separated by semicolons.
+        """
+        return pulumi.get(self, "target_kind")
+
+    @_builtins.property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> _builtins.str:
+        """
+        Specifies the template name.
+        """
+        return pulumi.get(self, "template_name")
+
+    @_builtins.property
+    @pulumi.getter(name="templateType")
+    def template_type(self) -> _builtins.str:
+        """
+        Specifies the template type.
+        """
+        return pulumi.get(self, "template_type")
+
+
+@pulumi.output_type
+class GetContainerIacFileRisksDataListResult(dict):
+    def __init__(__self__, *,
+                 build_instruction: _builtins.str,
+                 description: _builtins.str,
+                 last_scan_time: _builtins.int,
+                 remediation: _builtins.str,
+                 risk_category: _builtins.str,
+                 risk_id: _builtins.str,
+                 risk_level: _builtins.str,
+                 risk_name: _builtins.str,
+                 risk_num: _builtins.int,
+                 rule_id: _builtins.str):
+        """
+        :param _builtins.str build_instruction: The construction instructions with potential risks.
+        :param _builtins.str description: The risk description.
+        :param _builtins.int last_scan_time: The last scanning time.
+        :param _builtins.str remediation: The risk mitigation recommendations.
+        :param _builtins.str risk_category: Specifies the risk classification.  
+               The risk classification of k8s YAML includes the follows:
+               + **control_plane**: Control plane.
+               + **access_control**: Access control.
+               + **network**: Network.
+               + **workload**: Workload.
+               + **secrets**: Key management.
+               + **node_escape**: Node escape.
+        :param _builtins.str risk_id: The risk ID.
+        :param _builtins.str risk_level: Specifies the risk level.  
+               The valid values are as follows:
+               + **high**: High risk.
+               + **medium**: Medium risk.
+               + **low**: Low risk.
+               + **tips**: Tips.
+        :param _builtins.str risk_name: Specifies the risk name.
+        :param _builtins.int risk_num: The number of risks.
+        :param _builtins.str rule_id: The risk detection rule ID.
+        """
+        pulumi.set(__self__, "build_instruction", build_instruction)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "last_scan_time", last_scan_time)
+        pulumi.set(__self__, "remediation", remediation)
+        pulumi.set(__self__, "risk_category", risk_category)
+        pulumi.set(__self__, "risk_id", risk_id)
+        pulumi.set(__self__, "risk_level", risk_level)
+        pulumi.set(__self__, "risk_name", risk_name)
+        pulumi.set(__self__, "risk_num", risk_num)
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="buildInstruction")
+    def build_instruction(self) -> _builtins.str:
+        """
+        The construction instructions with potential risks.
+        """
+        return pulumi.get(self, "build_instruction")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The risk description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="lastScanTime")
+    def last_scan_time(self) -> _builtins.int:
+        """
+        The last scanning time.
+        """
+        return pulumi.get(self, "last_scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def remediation(self) -> _builtins.str:
+        """
+        The risk mitigation recommendations.
+        """
+        return pulumi.get(self, "remediation")
+
+    @_builtins.property
+    @pulumi.getter(name="riskCategory")
+    def risk_category(self) -> _builtins.str:
+        """
+        Specifies the risk classification.  
+        The risk classification of k8s YAML includes the follows:
+        + **control_plane**: Control plane.
+        + **access_control**: Access control.
+        + **network**: Network.
+        + **workload**: Workload.
+        + **secrets**: Key management.
+        + **node_escape**: Node escape.
+        """
+        return pulumi.get(self, "risk_category")
+
+    @_builtins.property
+    @pulumi.getter(name="riskId")
+    def risk_id(self) -> _builtins.str:
+        """
+        The risk ID.
+        """
+        return pulumi.get(self, "risk_id")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLevel")
+    def risk_level(self) -> _builtins.str:
+        """
+        Specifies the risk level.  
+        The valid values are as follows:
+        + **high**: High risk.
+        + **medium**: Medium risk.
+        + **low**: Low risk.
+        + **tips**: Tips.
+        """
+        return pulumi.get(self, "risk_level")
+
+    @_builtins.property
+    @pulumi.getter(name="riskName")
+    def risk_name(self) -> _builtins.str:
+        """
+        Specifies the risk name.
+        """
+        return pulumi.get(self, "risk_name")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risks.
+        """
+        return pulumi.get(self, "risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> _builtins.str:
+        """
+        The risk detection rule ID.
+        """
+        return pulumi.get(self, "rule_id")
+
+
+@pulumi.output_type
+class GetContainerIacFilesDataListResult(dict):
+    def __init__(__self__, *,
+                 cicd_id: _builtins.str,
+                 cicd_name: _builtins.str,
+                 file_id: _builtins.str,
+                 file_name: _builtins.str,
+                 file_type: _builtins.str,
+                 first_scan_time: _builtins.int,
+                 last_scan_time: _builtins.int,
+                 risk_num: _builtins.int,
+                 risky: _builtins.bool,
+                 scan_type: _builtins.str,
+                 upload_file_time: _builtins.int):
+        """
+        :param _builtins.str cicd_id: Specifies the CI/CD ID.
+        :param _builtins.str cicd_name: Specifies the CI/CD name.
+        :param _builtins.str file_id: Specifies the file ID.
+        :param _builtins.str file_name: Specifies the file name.
+        :param _builtins.str file_type: Specifies the file type.  
+               The valid values are as follows:
+               + **dockerfile**
+               + **k8s_yaml**
+        :param _builtins.int first_scan_time: The first scan time.
+        :param _builtins.int last_scan_time: The last scan time.
+        :param _builtins.int risk_num: The number of risk items.
+        :param _builtins.bool risky: Specifies whether there are risks.  
+               The valid values are as follows:
+               + **true**: There are risks.
+               + **false**: There are no risks.
+        :param _builtins.str scan_type: Specifies the scan type.  
+               The valid values are as follows:
+               + **manual_scan**: Manual scan.
+               + **cicd_scan**: Cicd scan.
+        :param _builtins.int upload_file_time: The file upload time.
+        """
+        pulumi.set(__self__, "cicd_id", cicd_id)
+        pulumi.set(__self__, "cicd_name", cicd_name)
+        pulumi.set(__self__, "file_id", file_id)
+        pulumi.set(__self__, "file_name", file_name)
+        pulumi.set(__self__, "file_type", file_type)
+        pulumi.set(__self__, "first_scan_time", first_scan_time)
+        pulumi.set(__self__, "last_scan_time", last_scan_time)
+        pulumi.set(__self__, "risk_num", risk_num)
+        pulumi.set(__self__, "risky", risky)
+        pulumi.set(__self__, "scan_type", scan_type)
+        pulumi.set(__self__, "upload_file_time", upload_file_time)
+
+    @_builtins.property
+    @pulumi.getter(name="cicdId")
+    def cicd_id(self) -> _builtins.str:
+        """
+        Specifies the CI/CD ID.
+        """
+        return pulumi.get(self, "cicd_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cicdName")
+    def cicd_name(self) -> _builtins.str:
+        """
+        Specifies the CI/CD name.
+        """
+        return pulumi.get(self, "cicd_name")
+
+    @_builtins.property
+    @pulumi.getter(name="fileId")
+    def file_id(self) -> _builtins.str:
+        """
+        Specifies the file ID.
+        """
+        return pulumi.get(self, "file_id")
+
+    @_builtins.property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> _builtins.str:
+        """
+        Specifies the file name.
+        """
+        return pulumi.get(self, "file_name")
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> _builtins.str:
+        """
+        Specifies the file type.  
+        The valid values are as follows:
+        + **dockerfile**
+        + **k8s_yaml**
+        """
+        return pulumi.get(self, "file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="firstScanTime")
+    def first_scan_time(self) -> _builtins.int:
+        """
+        The first scan time.
+        """
+        return pulumi.get(self, "first_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="lastScanTime")
+    def last_scan_time(self) -> _builtins.int:
+        """
+        The last scan time.
+        """
+        return pulumi.get(self, "last_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risk items.
+        """
+        return pulumi.get(self, "risk_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def risky(self) -> _builtins.bool:
+        """
+        Specifies whether there are risks.  
+        The valid values are as follows:
+        + **true**: There are risks.
+        + **false**: There are no risks.
+        """
+        return pulumi.get(self, "risky")
+
+    @_builtins.property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> _builtins.str:
+        """
+        Specifies the scan type.  
+        The valid values are as follows:
+        + **manual_scan**: Manual scan.
+        + **cicd_scan**: Cicd scan.
+        """
+        return pulumi.get(self, "scan_type")
+
+    @_builtins.property
+    @pulumi.getter(name="uploadFileTime")
+    def upload_file_time(self) -> _builtins.int:
+        """
+        The file upload time.
+        """
+        return pulumi.get(self, "upload_file_time")
+
+
+@pulumi.output_type
+class GetContainerImagesDataListResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.int,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_version: _builtins.str):
+        """
+        :param _builtins.int create_time: The image creation time (local save time).
+        :param _builtins.str image_id: The image unique identifier.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_version: The image version.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_version", image_version)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The image creation time (local save time).
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image unique identifier.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
 
 
 @pulumi.output_type
@@ -3179,6 +13292,451 @@ class GetContainerKubernetesClustersConfigsDataListResult(dict):
         The number of unprotected nodes.
         """
         return pulumi.get(self, "unprotect_node_num")
+
+
+@pulumi.output_type
+class GetContainerKubernetesClustersDaemonsetsDataListResult(dict):
+    def __init__(__self__, *,
+                 access_status: _builtins.str,
+                 agent_version: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_log_status: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_status: _builtins.str,
+                 cluster_type: _builtins.str,
+                 combined_status: _builtins.str,
+                 ds_infos: Sequence['outputs.GetContainerKubernetesClustersDaemonsetsDataListDsInfoResult'],
+                 failed_message: _builtins.str,
+                 installed_status: _builtins.str,
+                 invoked_service: _builtins.str,
+                 latest_version: _builtins.bool,
+                 namespace: _builtins.str,
+                 node_num: _builtins.int,
+                 registry_infos: Sequence['outputs.GetContainerKubernetesClustersDaemonsetsDataListRegistryInfoResult']):
+        """
+        :param _builtins.str access_status: Specifies to query based on the access status of the cluster,
+               with **true** indicating access and **false** indicating no access.
+        :param _builtins.str agent_version: The cluster agent version.
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_log_status: The access status of cluster logs.  
+               The valid values are as follows:
+               + **success**
+               + **partial_success**
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str cluster_status: The cluster status.  
+               The valid values are as follows:
+               + **Available**: Indicating that the cluster is in a normal state.
+               + **Unavailable**: Indicating cluster anomaly, manual deletion is required or contact the administrator for deletion.
+               + **ScalingUp**: Indicating that the cluster is currently undergoing expansion.
+               + **ScalingDown**: Indicating that the cluster is currently undergoing capacity reduction.
+               + **Creating**: Indicating that the cluster is currently in the process of being created.
+               + **Deleting**: Indicating that the cluster is in the process of being deleted.
+               + **Upgrading**: Indicating that the cluster is currently undergoing an upgrade process.
+               + **Resizing**: The cluster is currently undergoing specification changes.
+               + **RollingBack**: Indicating that the cluster is currently in the process of rolling back.
+               + **RollbackFailed**: Indicating a cluster rollback exception, please contact the administrator for a rollback retry.
+               + **Empty**: The cluster has no resources.
+        :param _builtins.str cluster_type: The cluster type.
+        :param _builtins.str combined_status: The combination state of cluster ANP and DS.  
+               The valid values are as follows:
+               + **accessing**
+               + **access_error**
+               + **running**
+               + **run_error**
+               + **upgrading**
+               + **upgrade_error**
+        :param Sequence['GetContainerKubernetesClustersDaemonsetsDataListDsInfoArgs'] ds_infos: The daemonset status.
+        :param _builtins.str failed_message: The reasons for cluster plugin access failure.
+        :param _builtins.str installed_status: The Cluster DS installation status.  
+               The valid values are as follows:
+               + **installing**
+               + **install_success**
+               + **install_failed**
+               + **partically_success**
+               + **upgrade_success**
+               + **upgrade_failed**
+               + **upgrading**
+               + **none**
+        :param _builtins.str invoked_service: Call the service to identify the CCE free medical examination report.  
+               The valid values are as follows:
+               + **hss**
+               + **cce**
+        :param _builtins.bool latest_version: Is it the latest version.
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.int node_num: The total number of nodes.
+        :param Sequence['GetContainerKubernetesClustersDaemonsetsDataListRegistryInfoArgs'] registry_infos: The image warehouse information.
+        """
+        pulumi.set(__self__, "access_status", access_status)
+        pulumi.set(__self__, "agent_version", agent_version)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_log_status", cluster_log_status)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_status", cluster_status)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "combined_status", combined_status)
+        pulumi.set(__self__, "ds_infos", ds_infos)
+        pulumi.set(__self__, "failed_message", failed_message)
+        pulumi.set(__self__, "installed_status", installed_status)
+        pulumi.set(__self__, "invoked_service", invoked_service)
+        pulumi.set(__self__, "latest_version", latest_version)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "node_num", node_num)
+        pulumi.set(__self__, "registry_infos", registry_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="accessStatus")
+    def access_status(self) -> _builtins.str:
+        """
+        Specifies to query based on the access status of the cluster,
+        with **true** indicating access and **false** indicating no access.
+        """
+        return pulumi.get(self, "access_status")
+
+    @_builtins.property
+    @pulumi.getter(name="agentVersion")
+    def agent_version(self) -> _builtins.str:
+        """
+        The cluster agent version.
+        """
+        return pulumi.get(self, "agent_version")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterLogStatus")
+    def cluster_log_status(self) -> _builtins.str:
+        """
+        The access status of cluster logs.  
+        The valid values are as follows:
+        + **success**
+        + **partial_success**
+        """
+        return pulumi.get(self, "cluster_log_status")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterStatus")
+    def cluster_status(self) -> _builtins.str:
+        """
+        The cluster status.  
+        The valid values are as follows:
+        + **Available**: Indicating that the cluster is in a normal state.
+        + **Unavailable**: Indicating cluster anomaly, manual deletion is required or contact the administrator for deletion.
+        + **ScalingUp**: Indicating that the cluster is currently undergoing expansion.
+        + **ScalingDown**: Indicating that the cluster is currently undergoing capacity reduction.
+        + **Creating**: Indicating that the cluster is currently in the process of being created.
+        + **Deleting**: Indicating that the cluster is in the process of being deleted.
+        + **Upgrading**: Indicating that the cluster is currently undergoing an upgrade process.
+        + **Resizing**: The cluster is currently undergoing specification changes.
+        + **RollingBack**: Indicating that the cluster is currently in the process of rolling back.
+        + **RollbackFailed**: Indicating a cluster rollback exception, please contact the administrator for a rollback retry.
+        + **Empty**: The cluster has no resources.
+        """
+        return pulumi.get(self, "cluster_status")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="combinedStatus")
+    def combined_status(self) -> _builtins.str:
+        """
+        The combination state of cluster ANP and DS.  
+        The valid values are as follows:
+        + **accessing**
+        + **access_error**
+        + **running**
+        + **run_error**
+        + **upgrading**
+        + **upgrade_error**
+        """
+        return pulumi.get(self, "combined_status")
+
+    @_builtins.property
+    @pulumi.getter(name="dsInfos")
+    def ds_infos(self) -> Sequence['outputs.GetContainerKubernetesClustersDaemonsetsDataListDsInfoResult']:
+        """
+        The daemonset status.
+        """
+        return pulumi.get(self, "ds_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="failedMessage")
+    def failed_message(self) -> _builtins.str:
+        """
+        The reasons for cluster plugin access failure.
+        """
+        return pulumi.get(self, "failed_message")
+
+    @_builtins.property
+    @pulumi.getter(name="installedStatus")
+    def installed_status(self) -> _builtins.str:
+        """
+        The Cluster DS installation status.  
+        The valid values are as follows:
+        + **installing**
+        + **install_success**
+        + **install_failed**
+        + **partically_success**
+        + **upgrade_success**
+        + **upgrade_failed**
+        + **upgrading**
+        + **none**
+        """
+        return pulumi.get(self, "installed_status")
+
+    @_builtins.property
+    @pulumi.getter(name="invokedService")
+    def invoked_service(self) -> _builtins.str:
+        """
+        Call the service to identify the CCE free medical examination report.  
+        The valid values are as follows:
+        + **hss**
+        + **cce**
+        """
+        return pulumi.get(self, "invoked_service")
+
+    @_builtins.property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> _builtins.bool:
+        """
+        Is it the latest version.
+        """
+        return pulumi.get(self, "latest_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeNum")
+    def node_num(self) -> _builtins.int:
+        """
+        The total number of nodes.
+        """
+        return pulumi.get(self, "node_num")
+
+    @_builtins.property
+    @pulumi.getter(name="registryInfos")
+    def registry_infos(self) -> Sequence['outputs.GetContainerKubernetesClustersDaemonsetsDataListRegistryInfoResult']:
+        """
+        The image warehouse information.
+        """
+        return pulumi.get(self, "registry_infos")
+
+
+@pulumi.output_type
+class GetContainerKubernetesClustersDaemonsetsDataListDsInfoResult(dict):
+    def __init__(__self__, *,
+                 current_num: _builtins.int,
+                 desired_num: _builtins.int,
+                 ready_num: _builtins.int):
+        """
+        :param _builtins.int current_num: The current quantity.
+        :param _builtins.int desired_num: The target quantity.
+        :param _builtins.int ready_num: The ready quantity.
+        """
+        pulumi.set(__self__, "current_num", current_num)
+        pulumi.set(__self__, "desired_num", desired_num)
+        pulumi.set(__self__, "ready_num", ready_num)
+
+    @_builtins.property
+    @pulumi.getter(name="currentNum")
+    def current_num(self) -> _builtins.int:
+        """
+        The current quantity.
+        """
+        return pulumi.get(self, "current_num")
+
+    @_builtins.property
+    @pulumi.getter(name="desiredNum")
+    def desired_num(self) -> _builtins.int:
+        """
+        The target quantity.
+        """
+        return pulumi.get(self, "desired_num")
+
+    @_builtins.property
+    @pulumi.getter(name="readyNum")
+    def ready_num(self) -> _builtins.int:
+        """
+        The ready quantity.
+        """
+        return pulumi.get(self, "ready_num")
+
+
+@pulumi.output_type
+class GetContainerKubernetesClustersDaemonsetsDataListRegistryInfoResult(dict):
+    def __init__(__self__, *,
+                 namespace: _builtins.str,
+                 registry_addr: _builtins.str,
+                 registry_type: _builtins.str,
+                 registry_username: _builtins.str):
+        """
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.str registry_addr: The image warehouse address.
+        :param _builtins.str registry_type: The image repository type.
+        :param _builtins.str registry_username: The image repository username.
+        """
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "registry_addr", registry_addr)
+        pulumi.set(__self__, "registry_type", registry_type)
+        pulumi.set(__self__, "registry_username", registry_username)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="registryAddr")
+    def registry_addr(self) -> _builtins.str:
+        """
+        The image warehouse address.
+        """
+        return pulumi.get(self, "registry_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="registryType")
+    def registry_type(self) -> _builtins.str:
+        """
+        The image repository type.
+        """
+        return pulumi.get(self, "registry_type")
+
+    @_builtins.property
+    @pulumi.getter(name="registryUsername")
+    def registry_username(self) -> _builtins.str:
+        """
+        The image repository username.
+        """
+        return pulumi.get(self, "registry_username")
+
+
+@pulumi.output_type
+class GetContainerKubernetesClustersRisksDataListResult(dict):
+    def __init__(__self__, *,
+                 baseline_risk_num: _builtins.int,
+                 charging_mode: _builtins.str,
+                 cluster_id: _builtins.str,
+                 event_num: _builtins.int,
+                 images_num: _builtins.int,
+                 node_total_num: _builtins.int,
+                 protect_node_num: _builtins.int,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.int baseline_risk_num: The total number of baseline check risks.
+        :param _builtins.str charging_mode: The charging mode.  
+               The valid values are as follows:
+               + **on_demand**: Pay-per-use.
+               + **free**: Free.
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.int event_num: The number of alarm events.
+        :param _builtins.int images_num: The number of risky images.
+        :param _builtins.int node_total_num: The total number of nodes in the cluster.
+        :param _builtins.int protect_node_num: The number of protected nodes in the cluster.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "baseline_risk_num", baseline_risk_num)
+        pulumi.set(__self__, "charging_mode", charging_mode)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "event_num", event_num)
+        pulumi.set(__self__, "images_num", images_num)
+        pulumi.set(__self__, "node_total_num", node_total_num)
+        pulumi.set(__self__, "protect_node_num", protect_node_num)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="baselineRiskNum")
+    def baseline_risk_num(self) -> _builtins.int:
+        """
+        The total number of baseline check risks.
+        """
+        return pulumi.get(self, "baseline_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="chargingMode")
+    def charging_mode(self) -> _builtins.str:
+        """
+        The charging mode.  
+        The valid values are as follows:
+        + **on_demand**: Pay-per-use.
+        + **free**: Free.
+        """
+        return pulumi.get(self, "charging_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventNum")
+    def event_num(self) -> _builtins.int:
+        """
+        The number of alarm events.
+        """
+        return pulumi.get(self, "event_num")
+
+    @_builtins.property
+    @pulumi.getter(name="imagesNum")
+    def images_num(self) -> _builtins.int:
+        """
+        The number of risky images.
+        """
+        return pulumi.get(self, "images_num")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeTotalNum")
+    def node_total_num(self) -> _builtins.int:
+        """
+        The total number of nodes in the cluster.
+        """
+        return pulumi.get(self, "node_total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="protectNodeNum")
+    def protect_node_num(self) -> _builtins.int:
+        """
+        The number of protected nodes in the cluster.
+        """
+        return pulumi.get(self, "protect_node_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
 
 
 @pulumi.output_type
@@ -3672,6 +14230,596 @@ class GetContainerKubernetesEndpointsEndpointInfoListResult(dict):
 
 
 @pulumi.output_type
+class GetContainerKubernetesMccDataListResult(dict):
+    def __init__(__self__, *,
+                 certificate_expiration_date: _builtins.int,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 current_expiration_date: _builtins.int,
+                 image_repo: _builtins.str,
+                 provider: _builtins.str,
+                 server: _builtins.str,
+                 status: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.int certificate_expiration_date: The certificate expiration date.
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.int current_expiration_date: The current expiration date.
+        :param _builtins.str image_repo: The image repository address.
+        :param _builtins.str provider: The cluster provider.
+        :param _builtins.str server: The cluster apiserver address.
+        :param _builtins.str status: The anp-agent connection status.  
+               The valid values are as follows:
+               + **not_connect**
+               + **connect_success**
+               + **connect_fail**
+               + **connect_success**
+               + **connect_disruption**
+        :param _builtins.str version: The anp-agent version.
+        """
+        pulumi.set(__self__, "certificate_expiration_date", certificate_expiration_date)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "current_expiration_date", current_expiration_date)
+        pulumi.set(__self__, "image_repo", image_repo)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "server", server)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateExpirationDate")
+    def certificate_expiration_date(self) -> _builtins.int:
+        """
+        The certificate expiration date.
+        """
+        return pulumi.get(self, "certificate_expiration_date")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="currentExpirationDate")
+    def current_expiration_date(self) -> _builtins.int:
+        """
+        The current expiration date.
+        """
+        return pulumi.get(self, "current_expiration_date")
+
+    @_builtins.property
+    @pulumi.getter(name="imageRepo")
+    def image_repo(self) -> _builtins.str:
+        """
+        The image repository address.
+        """
+        return pulumi.get(self, "image_repo")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> _builtins.str:
+        """
+        The cluster provider.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def server(self) -> _builtins.str:
+        """
+        The cluster apiserver address.
+        """
+        return pulumi.get(self, "server")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The anp-agent connection status.  
+        The valid values are as follows:
+        + **not_connect**
+        + **connect_success**
+        + **connect_fail**
+        + **connect_success**
+        + **connect_disruption**
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The anp-agent version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetContainerKubernetesTemplateRuntimeInfoResult(dict):
+    def __init__(__self__, *,
+                 runtime_name: _builtins.str,
+                 runtime_path: _builtins.str):
+        """
+        :param _builtins.str runtime_name: The runtime name. Valid values are:
+               + **crio_endpoint**: CRIO
+               + **containerd_endpoint**: Containerd
+               + **docker_endpoint**: Docker
+               + **isulad_endpoint**: Isulad
+               + **podman_endpoint**: Podman
+        :param _builtins.str runtime_path: The runtime path.
+        """
+        pulumi.set(__self__, "runtime_name", runtime_name)
+        pulumi.set(__self__, "runtime_path", runtime_path)
+
+    @_builtins.property
+    @pulumi.getter(name="runtimeName")
+    def runtime_name(self) -> _builtins.str:
+        """
+        The runtime name. Valid values are:
+        + **crio_endpoint**: CRIO
+        + **containerd_endpoint**: Containerd
+        + **docker_endpoint**: Docker
+        + **isulad_endpoint**: Isulad
+        + **podman_endpoint**: Podman
+        """
+        return pulumi.get(self, "runtime_name")
+
+    @_builtins.property
+    @pulumi.getter(name="runtimePath")
+    def runtime_path(self) -> _builtins.str:
+        """
+        The runtime path.
+        """
+        return pulumi.get(self, "runtime_path")
+
+
+@pulumi.output_type
+class GetContainerKubernetesTemplateScheduleInfoResult(dict):
+    def __init__(__self__, *,
+                 node_selectors: Sequence[_builtins.str],
+                 pod_tolerances: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] node_selectors: The node selector.
+        :param Sequence[_builtins.str] pod_tolerances: The pod tolerance.
+        """
+        pulumi.set(__self__, "node_selectors", node_selectors)
+        pulumi.set(__self__, "pod_tolerances", pod_tolerances)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeSelectors")
+    def node_selectors(self) -> Sequence[_builtins.str]:
+        """
+        The node selector.
+        """
+        return pulumi.get(self, "node_selectors")
+
+    @_builtins.property
+    @pulumi.getter(name="podTolerances")
+    def pod_tolerances(self) -> Sequence[_builtins.str]:
+        """
+        The pod tolerance.
+        """
+        return pulumi.get(self, "pod_tolerances")
+
+
+@pulumi.output_type
+class GetContainerLogsDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 content: _builtins.str,
+                 host_ip: _builtins.str,
+                 line_num: _builtins.str,
+                 namespace: _builtins.str,
+                 pod_id: _builtins.str,
+                 pod_ip: _builtins.str,
+                 pod_name: _builtins.str,
+                 time: _builtins.int):
+        """
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str cluster_type: The cluster type.  
+               The valid values are as follows:
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.str container_id: Specifies the container ID.
+        :param _builtins.str container_name: Specifies the container name for generating logs.
+        :param _builtins.str content: Specifies the log content.
+        :param _builtins.str host_ip: Specifies the IP address of the host where the container generating the log is located.
+        :param _builtins.str line_num: Specifies the pagination line number that needs to be passed when querying the CCE
+               cluster container log.
+        :param _builtins.str namespace: Specifies the namespace to which the container generating the log belongs.
+        :param _builtins.str pod_id: Specifies the ID of the pod to which the container generating the log belongs.
+        :param _builtins.str pod_ip: Specifies the IP address of the pod to which the container generating the log belongs.
+        :param _builtins.str pod_name: Specifies the name of the pod to which the container generating the log belongs.
+        :param _builtins.int time: The time when the log was generated.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "line_num", line_num)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "pod_id", pod_id)
+        pulumi.set(__self__, "pod_ip", pod_ip)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.  
+        The valid values are as follows:
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        Specifies the container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        Specifies the container name for generating logs.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        Specifies the log content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the IP address of the host where the container generating the log is located.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="lineNum")
+    def line_num(self) -> _builtins.str:
+        """
+        Specifies the pagination line number that needs to be passed when querying the CCE
+        cluster container log.
+        """
+        return pulumi.get(self, "line_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace to which the container generating the log belongs.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="podId")
+    def pod_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the pod to which the container generating the log belongs.
+        """
+        return pulumi.get(self, "pod_id")
+
+    @_builtins.property
+    @pulumi.getter(name="podIp")
+    def pod_ip(self) -> _builtins.str:
+        """
+        Specifies the IP address of the pod to which the container generating the log belongs.
+        """
+        return pulumi.get(self, "pod_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        Specifies the name of the pod to which the container generating the log belongs.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.int:
+        """
+        The time when the log was generated.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetContainerNetworkClusterDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 mode: _builtins.str,
+                 namespace_num: _builtins.int,
+                 policy_num: _builtins.int,
+                 protection_status: _builtins.bool,
+                 version: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str cluster_type: The cluster type.  
+               The valid values are as follows:
+               + **cce**: CCE cluster.
+               + **k8s**: Native cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.str mode: The network mode.  
+               The valid values are as follows:
+               + **overlay_l2**: Container tunnel network.
+               + **vpc-router**: VPC network.
+               + **eni**: Cloud native network 2.0.
+               + **native-network**: K8S native network.
+        :param _builtins.int namespace_num: The number of namespaces.
+        :param _builtins.int policy_num: The number of policies.
+        :param _builtins.bool protection_status: The protection status. The valid values are **true** and **false**.
+        :param _builtins.str version: The cluster version.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "namespace_num", namespace_num)
+        pulumi.set(__self__, "policy_num", policy_num)
+        pulumi.set(__self__, "protection_status", protection_status)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.  
+        The valid values are as follows:
+        + **cce**: CCE cluster.
+        + **k8s**: Native cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        The network mode.  
+        The valid values are as follows:
+        + **overlay_l2**: Container tunnel network.
+        + **vpc-router**: VPC network.
+        + **eni**: Cloud native network 2.0.
+        + **native-network**: K8S native network.
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceNum")
+    def namespace_num(self) -> _builtins.int:
+        """
+        The number of namespaces.
+        """
+        return pulumi.get(self, "namespace_num")
+
+    @_builtins.property
+    @pulumi.getter(name="policyNum")
+    def policy_num(self) -> _builtins.int:
+        """
+        The number of policies.
+        """
+        return pulumi.get(self, "policy_num")
+
+    @_builtins.property
+    @pulumi.getter(name="protectionStatus")
+    def protection_status(self) -> _builtins.bool:
+        """
+        The protection status. The valid values are **true** and **false**.
+        """
+        return pulumi.get(self, "protection_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The cluster version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetContainerNetworkPoliciesDataListResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 deploy_status: _builtins.bool,
+                 name: _builtins.str,
+                 namespace: _builtins.str,
+                 policy_content: _builtins.str,
+                 policy_id: _builtins.str):
+        """
+        :param _builtins.str create_time: The creation time of the network policy.
+        :param _builtins.bool deploy_status: The deployment status of the network policy.
+        :param _builtins.str name: The name of the network policy.
+        :param _builtins.str namespace: Specifies the namespace to filter the network policies.
+        :param _builtins.str policy_content: The content of the network policy in JSON format.
+        :param _builtins.str policy_id: The ID of the network policy.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "deploy_status", deploy_status)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "policy_content", policy_content)
+        pulumi.set(__self__, "policy_id", policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the network policy.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="deployStatus")
+    def deploy_status(self) -> _builtins.bool:
+        """
+        The deployment status of the network policy.
+        """
+        return pulumi.get(self, "deploy_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the network policy.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace to filter the network policies.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="policyContent")
+    def policy_content(self) -> _builtins.str:
+        """
+        The content of the network policy in JSON format.
+        """
+        return pulumi.get(self, "policy_content")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The ID of the network policy.
+        """
+        return pulumi.get(self, "policy_id")
+
+
+@pulumi.output_type
+class GetContainerNetworkSecurityGroupsSecurityGroupResult(dict):
+    def __init__(__self__, *,
+                 security_group_description: _builtins.str,
+                 security_group_id: _builtins.str,
+                 security_group_name: _builtins.str):
+        """
+        :param _builtins.str security_group_description: The security group description.
+        :param _builtins.str security_group_id: The security group ID.
+        :param _builtins.str security_group_name: The security group name.
+        """
+        pulumi.set(__self__, "security_group_description", security_group_description)
+        pulumi.set(__self__, "security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_name", security_group_name)
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupDescription")
+    def security_group_description(self) -> _builtins.str:
+        """
+        The security group description.
+        """
+        return pulumi.get(self, "security_group_description")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> _builtins.str:
+        """
+        The security group ID.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupName")
+    def security_group_name(self) -> _builtins.str:
+        """
+        The security group name.
+        """
+        return pulumi.get(self, "security_group_name")
+
+
+@pulumi.output_type
 class GetContainerNodesDataListResult(dict):
     def __init__(__self__, *,
                  agent_id: _builtins.str,
@@ -4133,6 +15281,35 @@ class GetEventAlarmWhiteListsDataListResult(dict):
 
 
 @pulumi.output_type
+class GetEventAttCkStatisticsDataListResult(dict):
+    def __init__(__self__, *,
+                 att_ck: _builtins.str,
+                 num: _builtins.int):
+        """
+        :param _builtins.str att_ck: The attack phase name.
+        :param _builtins.int num: The quantity.
+        """
+        pulumi.set(__self__, "att_ck", att_ck)
+        pulumi.set(__self__, "num", num)
+
+    @_builtins.property
+    @pulumi.getter(name="attCk")
+    def att_ck(self) -> _builtins.str:
+        """
+        The attack phase name.
+        """
+        return pulumi.get(self, "att_ck")
+
+    @_builtins.property
+    @pulumi.getter
+    def num(self) -> _builtins.int:
+        """
+        The quantity.
+        """
+        return pulumi.get(self, "num")
+
+
+@pulumi.output_type
 class GetEventHandleHistoryDataListResult(dict):
     def __init__(__self__, *,
                  asset_value: _builtins.str,
@@ -4460,6 +15637,1911 @@ class GetEventHandleHistoryDataListResult(dict):
 
 
 @pulumi.output_type
+class GetEventIntrusionEventsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_status: _builtins.str,
+                 app_info: _builtins.str,
+                 asset_value: _builtins.str,
+                 attack_phase: _builtins.str,
+                 attack_tag: _builtins.str,
+                 container_name: _builtins.str,
+                 description: _builtins.str,
+                 event_abstract: _builtins.str,
+                 event_class_id: _builtins.str,
+                 event_count: _builtins.int,
+                 event_details: _builtins.str,
+                 event_id: _builtins.str,
+                 event_name: _builtins.str,
+                 event_type: _builtins.int,
+                 extend_info: _builtins.str,
+                 file_info_lists: Sequence['outputs.GetEventIntrusionEventsDataListFileInfoListResult'],
+                 forensic_info: _builtins.str,
+                 geo_info: _builtins.str,
+                 handle_method: _builtins.str,
+                 handle_status: _builtins.str,
+                 handle_time: _builtins.int,
+                 handler: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_status: _builtins.str,
+                 image_name: _builtins.str,
+                 malware_info: _builtins.str,
+                 network_info: _builtins.str,
+                 occur_time: _builtins.int,
+                 operate_accept_lists: Sequence[_builtins.str],
+                 operate_detail_lists: Sequence['outputs.GetEventIntrusionEventsDataListOperateDetailListResult'],
+                 operate_type: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 process_info_lists: Sequence['outputs.GetEventIntrusionEventsDataListProcessInfoListResult'],
+                 protect_status: _builtins.str,
+                 public_ip: _builtins.str,
+                 recommendation: _builtins.str,
+                 resource_infos: Sequence['outputs.GetEventIntrusionEventsDataListResourceInfoResult'],
+                 severity: _builtins.str,
+                 system_info: _builtins.str,
+                 tag_lists: Sequence[_builtins.str],
+                 user_info_lists: Sequence['outputs.GetEventIntrusionEventsDataListUserInfoListResult']):
+        """
+        :param _builtins.str agent_status: The agent status.
+               The valid values are as follows:
+               + **installed**
+               + **not_installed**
+               + **online**
+               + **offline**
+               + **install_failed**
+               + **installing**
+        :param _builtins.str app_info: The application information, in JSON format.
+        :param _builtins.str asset_value: Specifies the asset importance.
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param _builtins.str attack_phase: The event attack phase.
+        :param _builtins.str attack_tag: Specifies the attack flag.
+               The valid values are as follows:
+               + **attack_success**: Indicates attack success.
+               + **attack_attempt**: Indicates attack attempt.
+               + **attack_blocked**: Indicated blocked attack.
+               + **abnormal_behavior**: Indicates abnormal behavior.
+               + **collapsible_host**: Indicates compromised host.
+               + **system_vulnerability**: Indicates system vulnerability.
+        :param _builtins.str container_name: Specifies the container instance name.
+        :param _builtins.str description: The alarm description.
+        :param _builtins.str event_abstract: The alarm summary.
+        :param _builtins.str event_class_id: The event class ID.
+        :param _builtins.int event_count: The event occurrences.
+        :param _builtins.str event_details: The event brief description.
+        :param _builtins.str event_id: The event ID.
+        :param _builtins.str event_name: Specifies the alarm name.
+        :param _builtins.int event_type: The event type.
+        :param _builtins.str extend_info: The extended event information, in JSON format.
+        :param Sequence['GetEventIntrusionEventsDataListFileInfoListArgs'] file_info_lists: The files information list.
+        :param _builtins.str forensic_info: The attack information, in JSON format.
+        :param _builtins.str geo_info: The geographical location, in JSON format.
+        :param _builtins.str handle_method: The handle method.
+               The valid values are as follows:
+               + **mark_as_handled**
+               + **ignore**
+               + **add_to_alarm_whitelist**
+               + **add_to_login_whitelist**
+               + **isolate_and_kill**
+        :param _builtins.str handle_status: Specifies the handling status.
+               The valid values are as follows:
+               + **unhandled**
+               + **handled**
+        :param _builtins.int handle_time: The handling time, in milliseconds.
+        :param _builtins.str handler: The remarks.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str host_status: The host status.
+               The valid values are as follows:
+               + **ACTIVE**
+               + **SHUTOFF**
+               + **BUILDING**
+               + **ERROR**
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str malware_info: The malware information, in JSON format.
+        :param _builtins.str network_info: The network information, in JSON format.
+        :param _builtins.int occur_time: The event occurrence time, in milliseconds.
+        :param Sequence[_builtins.str] operate_accept_lists: The supported processing operation.
+        :param Sequence['GetEventIntrusionEventsDataListOperateDetailListArgs'] operate_detail_lists: The operation details list.
+        :param _builtins.str operate_type: The operation type.
+               The valid values are as follows:
+               + **add**
+               + **delete**
+               + **change_attribute**
+               + **modify**
+               + **move**
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str private_ip: Specifies the host private IP address.
+        :param Sequence['GetEventIntrusionEventsDataListProcessInfoListArgs'] process_info_lists: The processes information list.
+        :param _builtins.str protect_status: The protection status.
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+        :param _builtins.str public_ip: Specifies the host EIP.
+        :param _builtins.str recommendation: The handle suggestion.
+        :param Sequence['GetEventIntrusionEventsDataListResourceInfoArgs'] resource_infos: The resource information.
+        :param _builtins.str severity: Specifies the threat level.
+               The valid values are as follows:
+               + **Security**
+               + **Low**
+               + **Medium**
+               + **High**
+               + **Critical**
+        :param _builtins.str system_info: The system information, in JSON format.
+        :param Sequence[_builtins.str] tag_lists: Specifies the event tags list.
+        :param Sequence['GetEventIntrusionEventsDataListUserInfoListArgs'] user_info_lists: The users information list.
+        """
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "app_info", app_info)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "attack_phase", attack_phase)
+        pulumi.set(__self__, "attack_tag", attack_tag)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "event_abstract", event_abstract)
+        pulumi.set(__self__, "event_class_id", event_class_id)
+        pulumi.set(__self__, "event_count", event_count)
+        pulumi.set(__self__, "event_details", event_details)
+        pulumi.set(__self__, "event_id", event_id)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "extend_info", extend_info)
+        pulumi.set(__self__, "file_info_lists", file_info_lists)
+        pulumi.set(__self__, "forensic_info", forensic_info)
+        pulumi.set(__self__, "geo_info", geo_info)
+        pulumi.set(__self__, "handle_method", handle_method)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "handle_time", handle_time)
+        pulumi.set(__self__, "handler", handler)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "malware_info", malware_info)
+        pulumi.set(__self__, "network_info", network_info)
+        pulumi.set(__self__, "occur_time", occur_time)
+        pulumi.set(__self__, "operate_accept_lists", operate_accept_lists)
+        pulumi.set(__self__, "operate_detail_lists", operate_detail_lists)
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "process_info_lists", process_info_lists)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "recommendation", recommendation)
+        pulumi.set(__self__, "resource_infos", resource_infos)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "system_info", system_info)
+        pulumi.set(__self__, "tag_lists", tag_lists)
+        pulumi.set(__self__, "user_info_lists", user_info_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        The agent status.
+        The valid values are as follows:
+        + **installed**
+        + **not_installed**
+        + **online**
+        + **offline**
+        + **install_failed**
+        + **installing**
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="appInfo")
+    def app_info(self) -> _builtins.str:
+        """
+        The application information, in JSON format.
+        """
+        return pulumi.get(self, "app_info")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the asset importance.
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="attackPhase")
+    def attack_phase(self) -> _builtins.str:
+        """
+        The event attack phase.
+        """
+        return pulumi.get(self, "attack_phase")
+
+    @_builtins.property
+    @pulumi.getter(name="attackTag")
+    def attack_tag(self) -> _builtins.str:
+        """
+        Specifies the attack flag.
+        The valid values are as follows:
+        + **attack_success**: Indicates attack success.
+        + **attack_attempt**: Indicates attack attempt.
+        + **attack_blocked**: Indicated blocked attack.
+        + **abnormal_behavior**: Indicates abnormal behavior.
+        + **collapsible_host**: Indicates compromised host.
+        + **system_vulnerability**: Indicates system vulnerability.
+        """
+        return pulumi.get(self, "attack_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        Specifies the container instance name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The alarm description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="eventAbstract")
+    def event_abstract(self) -> _builtins.str:
+        """
+        The alarm summary.
+        """
+        return pulumi.get(self, "event_abstract")
+
+    @_builtins.property
+    @pulumi.getter(name="eventClassId")
+    def event_class_id(self) -> _builtins.str:
+        """
+        The event class ID.
+        """
+        return pulumi.get(self, "event_class_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventCount")
+    def event_count(self) -> _builtins.int:
+        """
+        The event occurrences.
+        """
+        return pulumi.get(self, "event_count")
+
+    @_builtins.property
+    @pulumi.getter(name="eventDetails")
+    def event_details(self) -> _builtins.str:
+        """
+        The event brief description.
+        """
+        return pulumi.get(self, "event_details")
+
+    @_builtins.property
+    @pulumi.getter(name="eventId")
+    def event_id(self) -> _builtins.str:
+        """
+        The event ID.
+        """
+        return pulumi.get(self, "event_id")
+
+    @_builtins.property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> _builtins.str:
+        """
+        Specifies the alarm name.
+        """
+        return pulumi.get(self, "event_name")
+
+    @_builtins.property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> _builtins.int:
+        """
+        The event type.
+        """
+        return pulumi.get(self, "event_type")
+
+    @_builtins.property
+    @pulumi.getter(name="extendInfo")
+    def extend_info(self) -> _builtins.str:
+        """
+        The extended event information, in JSON format.
+        """
+        return pulumi.get(self, "extend_info")
+
+    @_builtins.property
+    @pulumi.getter(name="fileInfoLists")
+    def file_info_lists(self) -> Sequence['outputs.GetEventIntrusionEventsDataListFileInfoListResult']:
+        """
+        The files information list.
+        """
+        return pulumi.get(self, "file_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="forensicInfo")
+    def forensic_info(self) -> _builtins.str:
+        """
+        The attack information, in JSON format.
+        """
+        return pulumi.get(self, "forensic_info")
+
+    @_builtins.property
+    @pulumi.getter(name="geoInfo")
+    def geo_info(self) -> _builtins.str:
+        """
+        The geographical location, in JSON format.
+        """
+        return pulumi.get(self, "geo_info")
+
+    @_builtins.property
+    @pulumi.getter(name="handleMethod")
+    def handle_method(self) -> _builtins.str:
+        """
+        The handle method.
+        The valid values are as follows:
+        + **mark_as_handled**
+        + **ignore**
+        + **add_to_alarm_whitelist**
+        + **add_to_login_whitelist**
+        + **isolate_and_kill**
+        """
+        return pulumi.get(self, "handle_method")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Specifies the handling status.
+        The valid values are as follows:
+        + **unhandled**
+        + **handled**
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="handleTime")
+    def handle_time(self) -> _builtins.int:
+        """
+        The handling time, in milliseconds.
+        """
+        return pulumi.get(self, "handle_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def handler(self) -> _builtins.str:
+        """
+        The remarks.
+        """
+        return pulumi.get(self, "handler")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        The host status.
+        The valid values are as follows:
+        + **ACTIVE**
+        + **SHUTOFF**
+        + **BUILDING**
+        + **ERROR**
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="malwareInfo")
+    def malware_info(self) -> _builtins.str:
+        """
+        The malware information, in JSON format.
+        """
+        return pulumi.get(self, "malware_info")
+
+    @_builtins.property
+    @pulumi.getter(name="networkInfo")
+    def network_info(self) -> _builtins.str:
+        """
+        The network information, in JSON format.
+        """
+        return pulumi.get(self, "network_info")
+
+    @_builtins.property
+    @pulumi.getter(name="occurTime")
+    def occur_time(self) -> _builtins.int:
+        """
+        The event occurrence time, in milliseconds.
+        """
+        return pulumi.get(self, "occur_time")
+
+    @_builtins.property
+    @pulumi.getter(name="operateAcceptLists")
+    def operate_accept_lists(self) -> Sequence[_builtins.str]:
+        """
+        The supported processing operation.
+        """
+        return pulumi.get(self, "operate_accept_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="operateDetailLists")
+    def operate_detail_lists(self) -> Sequence['outputs.GetEventIntrusionEventsDataListOperateDetailListResult']:
+        """
+        The operation details list.
+        """
+        return pulumi.get(self, "operate_detail_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> _builtins.str:
+        """
+        The operation type.
+        The valid values are as follows:
+        + **add**
+        + **delete**
+        + **change_attribute**
+        + **modify**
+        + **move**
+        """
+        return pulumi.get(self, "operate_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the host private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="processInfoLists")
+    def process_info_lists(self) -> Sequence['outputs.GetEventIntrusionEventsDataListProcessInfoListResult']:
+        """
+        The processes information list.
+        """
+        return pulumi.get(self, "process_info_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the host EIP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def recommendation(self) -> _builtins.str:
+        """
+        The handle suggestion.
+        """
+        return pulumi.get(self, "recommendation")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceInfos")
+    def resource_infos(self) -> Sequence['outputs.GetEventIntrusionEventsDataListResourceInfoResult']:
+        """
+        The resource information.
+        """
+        return pulumi.get(self, "resource_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the threat level.
+        The valid values are as follows:
+        + **Security**
+        + **Low**
+        + **Medium**
+        + **High**
+        + **Critical**
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter(name="systemInfo")
+    def system_info(self) -> _builtins.str:
+        """
+        The system information, in JSON format.
+        """
+        return pulumi.get(self, "system_info")
+
+    @_builtins.property
+    @pulumi.getter(name="tagLists")
+    def tag_lists(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the event tags list.
+        """
+        return pulumi.get(self, "tag_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="userInfoLists")
+    def user_info_lists(self) -> Sequence['outputs.GetEventIntrusionEventsDataListUserInfoListResult']:
+        """
+        The users information list.
+        """
+        return pulumi.get(self, "user_info_lists")
+
+
+@pulumi.output_type
+class GetEventIntrusionEventsDataListFileInfoListResult(dict):
+    def __init__(__self__, *,
+                 fd_count: _builtins.int,
+                 fd_info: _builtins.str,
+                 file_action: _builtins.str,
+                 file_alias: _builtins.str,
+                 file_atime: _builtins.int,
+                 file_attr: _builtins.str,
+                 file_change_attr: _builtins.str,
+                 file_content: _builtins.str,
+                 file_ctime: _builtins.int,
+                 file_desc: _builtins.str,
+                 file_hash: _builtins.str,
+                 file_key_word: _builtins.str,
+                 file_md5: _builtins.str,
+                 file_mtime: _builtins.int,
+                 file_new_path: _builtins.str,
+                 file_operation: _builtins.int,
+                 file_path: _builtins.str,
+                 file_sha256: _builtins.str,
+                 file_size: _builtins.int,
+                 file_type: _builtins.str,
+                 is_dir: _builtins.bool):
+        """
+        :param _builtins.int fd_count: The number of file handles.
+        :param _builtins.str fd_info: The file handle information.
+        :param _builtins.str file_action: The file action.
+        :param _builtins.str file_alias: The file alias.
+        :param _builtins.int file_atime: The file last access time.
+        :param _builtins.str file_attr: The file attributes before and after the change.
+        :param _builtins.str file_change_attr: The file change attribute.
+        :param _builtins.str file_content: The file content.
+        :param _builtins.int file_ctime: The file status was changed last time.
+        :param _builtins.str file_desc: The file description.
+        :param _builtins.str file_hash: The file hash.
+        :param _builtins.str file_key_word: The file keyword.
+        :param _builtins.str file_md5: The file MD5 value.
+        :param _builtins.int file_mtime: The file last modified time.
+        :param _builtins.str file_new_path: The new file path.
+        :param _builtins.int file_operation: The file operation type.
+        :param _builtins.str file_path: The file path.
+        :param _builtins.str file_sha256: The file SHA256 value.
+        :param _builtins.int file_size: The file size.
+        :param _builtins.str file_type: The file type.
+        :param _builtins.bool is_dir: Whether it is a directory.
+        """
+        pulumi.set(__self__, "fd_count", fd_count)
+        pulumi.set(__self__, "fd_info", fd_info)
+        pulumi.set(__self__, "file_action", file_action)
+        pulumi.set(__self__, "file_alias", file_alias)
+        pulumi.set(__self__, "file_atime", file_atime)
+        pulumi.set(__self__, "file_attr", file_attr)
+        pulumi.set(__self__, "file_change_attr", file_change_attr)
+        pulumi.set(__self__, "file_content", file_content)
+        pulumi.set(__self__, "file_ctime", file_ctime)
+        pulumi.set(__self__, "file_desc", file_desc)
+        pulumi.set(__self__, "file_hash", file_hash)
+        pulumi.set(__self__, "file_key_word", file_key_word)
+        pulumi.set(__self__, "file_md5", file_md5)
+        pulumi.set(__self__, "file_mtime", file_mtime)
+        pulumi.set(__self__, "file_new_path", file_new_path)
+        pulumi.set(__self__, "file_operation", file_operation)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "file_sha256", file_sha256)
+        pulumi.set(__self__, "file_size", file_size)
+        pulumi.set(__self__, "file_type", file_type)
+        pulumi.set(__self__, "is_dir", is_dir)
+
+    @_builtins.property
+    @pulumi.getter(name="fdCount")
+    def fd_count(self) -> _builtins.int:
+        """
+        The number of file handles.
+        """
+        return pulumi.get(self, "fd_count")
+
+    @_builtins.property
+    @pulumi.getter(name="fdInfo")
+    def fd_info(self) -> _builtins.str:
+        """
+        The file handle information.
+        """
+        return pulumi.get(self, "fd_info")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAction")
+    def file_action(self) -> _builtins.str:
+        """
+        The file action.
+        """
+        return pulumi.get(self, "file_action")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAlias")
+    def file_alias(self) -> _builtins.str:
+        """
+        The file alias.
+        """
+        return pulumi.get(self, "file_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAtime")
+    def file_atime(self) -> _builtins.int:
+        """
+        The file last access time.
+        """
+        return pulumi.get(self, "file_atime")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAttr")
+    def file_attr(self) -> _builtins.str:
+        """
+        The file attributes before and after the change.
+        """
+        return pulumi.get(self, "file_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="fileChangeAttr")
+    def file_change_attr(self) -> _builtins.str:
+        """
+        The file change attribute.
+        """
+        return pulumi.get(self, "file_change_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="fileContent")
+    def file_content(self) -> _builtins.str:
+        """
+        The file content.
+        """
+        return pulumi.get(self, "file_content")
+
+    @_builtins.property
+    @pulumi.getter(name="fileCtime")
+    def file_ctime(self) -> _builtins.int:
+        """
+        The file status was changed last time.
+        """
+        return pulumi.get(self, "file_ctime")
+
+    @_builtins.property
+    @pulumi.getter(name="fileDesc")
+    def file_desc(self) -> _builtins.str:
+        """
+        The file description.
+        """
+        return pulumi.get(self, "file_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="fileHash")
+    def file_hash(self) -> _builtins.str:
+        """
+        The file hash.
+        """
+        return pulumi.get(self, "file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="fileKeyWord")
+    def file_key_word(self) -> _builtins.str:
+        """
+        The file keyword.
+        """
+        return pulumi.get(self, "file_key_word")
+
+    @_builtins.property
+    @pulumi.getter(name="fileMd5")
+    def file_md5(self) -> _builtins.str:
+        """
+        The file MD5 value.
+        """
+        return pulumi.get(self, "file_md5")
+
+    @_builtins.property
+    @pulumi.getter(name="fileMtime")
+    def file_mtime(self) -> _builtins.int:
+        """
+        The file last modified time.
+        """
+        return pulumi.get(self, "file_mtime")
+
+    @_builtins.property
+    @pulumi.getter(name="fileNewPath")
+    def file_new_path(self) -> _builtins.str:
+        """
+        The new file path.
+        """
+        return pulumi.get(self, "file_new_path")
+
+    @_builtins.property
+    @pulumi.getter(name="fileOperation")
+    def file_operation(self) -> _builtins.int:
+        """
+        The file operation type.
+        """
+        return pulumi.get(self, "file_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="fileSha256")
+    def file_sha256(self) -> _builtins.str:
+        """
+        The file SHA256 value.
+        """
+        return pulumi.get(self, "file_sha256")
+
+    @_builtins.property
+    @pulumi.getter(name="fileSize")
+    def file_size(self) -> _builtins.int:
+        """
+        The file size.
+        """
+        return pulumi.get(self, "file_size")
+
+    @_builtins.property
+    @pulumi.getter(name="fileType")
+    def file_type(self) -> _builtins.str:
+        """
+        The file type.
+        """
+        return pulumi.get(self, "file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="isDir")
+    def is_dir(self) -> _builtins.bool:
+        """
+        Whether it is a directory.
+        """
+        return pulumi.get(self, "is_dir")
+
+
+@pulumi.output_type
+class GetEventIntrusionEventsDataListOperateDetailListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 file_attr: _builtins.str,
+                 file_hash: _builtins.str,
+                 file_path: _builtins.str,
+                 hash: _builtins.str,
+                 is_parent: _builtins.bool,
+                 keyword: _builtins.str,
+                 login_ip: _builtins.str,
+                 login_user_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 process_pid: _builtins.int):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str file_attr: The file attributes before and after the change.
+        :param _builtins.str file_hash: The file hash.
+        :param _builtins.str file_path: The file path.
+        :param _builtins.str hash: The alarm event hash.
+        :param _builtins.bool is_parent: Whether a process is a parent process.
+        :param _builtins.str keyword: The alarm event keyword.
+        :param _builtins.str login_ip: The user login IP address.
+        :param _builtins.str login_user_name: The login user name.
+        :param _builtins.str private_ip: Specifies the host private IP address.
+        :param _builtins.int process_pid: The process ID.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "file_attr", file_attr)
+        pulumi.set(__self__, "file_hash", file_hash)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "hash", hash)
+        pulumi.set(__self__, "is_parent", is_parent)
+        pulumi.set(__self__, "keyword", keyword)
+        pulumi.set(__self__, "login_ip", login_ip)
+        pulumi.set(__self__, "login_user_name", login_user_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "process_pid", process_pid)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="fileAttr")
+    def file_attr(self) -> _builtins.str:
+        """
+        The file attributes before and after the change.
+        """
+        return pulumi.get(self, "file_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="fileHash")
+    def file_hash(self) -> _builtins.str:
+        """
+        The file hash.
+        """
+        return pulumi.get(self, "file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        The alarm event hash.
+        """
+        return pulumi.get(self, "hash")
+
+    @_builtins.property
+    @pulumi.getter(name="isParent")
+    def is_parent(self) -> _builtins.bool:
+        """
+        Whether a process is a parent process.
+        """
+        return pulumi.get(self, "is_parent")
+
+    @_builtins.property
+    @pulumi.getter
+    def keyword(self) -> _builtins.str:
+        """
+        The alarm event keyword.
+        """
+        return pulumi.get(self, "keyword")
+
+    @_builtins.property
+    @pulumi.getter(name="loginIp")
+    def login_ip(self) -> _builtins.str:
+        """
+        The user login IP address.
+        """
+        return pulumi.get(self, "login_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="loginUserName")
+    def login_user_name(self) -> _builtins.str:
+        """
+        The login user name.
+        """
+        return pulumi.get(self, "login_user_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the host private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="processPid")
+    def process_pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "process_pid")
+
+
+@pulumi.output_type
+class GetEventIntrusionEventsDataListProcessInfoListResult(dict):
+    def __init__(__self__, *,
+                 ancestor_process_cmdline: _builtins.str,
+                 ancestor_process_path: _builtins.str,
+                 ancestor_process_pid: _builtins.int,
+                 block: _builtins.int,
+                 child_process_cmdline: _builtins.str,
+                 child_process_egid: _builtins.int,
+                 child_process_euid: _builtins.int,
+                 child_process_filename: _builtins.str,
+                 child_process_gid: _builtins.int,
+                 child_process_name: _builtins.str,
+                 child_process_path: _builtins.str,
+                 child_process_pid: _builtins.int,
+                 child_process_start_time: _builtins.int,
+                 child_process_uid: _builtins.int,
+                 escape_cmd: _builtins.str,
+                 escape_mode: _builtins.str,
+                 parent_process_cmdline: _builtins.str,
+                 parent_process_egid: _builtins.int,
+                 parent_process_euid: _builtins.int,
+                 parent_process_file_hash: _builtins.str,
+                 parent_process_filename: _builtins.str,
+                 parent_process_gid: _builtins.int,
+                 parent_process_name: _builtins.str,
+                 parent_process_path: _builtins.str,
+                 parent_process_pid: _builtins.int,
+                 parent_process_start_time: _builtins.int,
+                 parent_process_uid: _builtins.int,
+                 process_cmdline: _builtins.str,
+                 process_egid: _builtins.int,
+                 process_euid: _builtins.int,
+                 process_file_hash: _builtins.str,
+                 process_filename: _builtins.str,
+                 process_gid: _builtins.int,
+                 process_hash: _builtins.str,
+                 process_name: _builtins.str,
+                 process_path: _builtins.str,
+                 process_pid: _builtins.int,
+                 process_start_time: _builtins.int,
+                 process_uid: _builtins.int,
+                 process_username: _builtins.str,
+                 virt_cmd: _builtins.str,
+                 virt_process_name: _builtins.str):
+        """
+        :param _builtins.str ancestor_process_cmdline: The grandparent process file command line.
+        :param _builtins.str ancestor_process_path: The grandparent process path
+        :param _builtins.int ancestor_process_pid: The grandparent process ID.
+        :param _builtins.int block: Whether the blocking is successful.
+               `1` indicates blocking is successed and `0` indicates blocking is failed.
+        :param _builtins.str child_process_cmdline: The subprocess file command line.
+        :param _builtins.int child_process_egid: The subprocess effective group ID.
+        :param _builtins.int child_process_euid: The subprocess effective user ID.
+        :param _builtins.str child_process_filename: The subprocess file name.
+        :param _builtins.int child_process_gid: The subprocess group ID.
+        :param _builtins.str child_process_name: The subprocess name.
+        :param _builtins.str child_process_path: The subprocess file path.
+        :param _builtins.int child_process_pid: The subprocess ID.
+        :param _builtins.int child_process_start_time: The subprocess start time.
+        :param _builtins.int child_process_uid: The subprocess user ID.
+        :param _builtins.str escape_cmd: The command executed after the espace.
+        :param _builtins.str escape_mode: The espace method.
+        :param _builtins.str parent_process_cmdline: The parent process file command line.
+        :param _builtins.int parent_process_egid: The parent effective process group ID.
+        :param _builtins.int parent_process_euid: The parent effective process user ID.
+        :param _builtins.str parent_process_file_hash: The parent process file hash.
+        :param _builtins.str parent_process_filename: The parent process file name.
+        :param _builtins.int parent_process_gid: The parent process group ID.
+        :param _builtins.str parent_process_name: The parent process name.
+        :param _builtins.str parent_process_path: The parent process file path.
+        :param _builtins.int parent_process_pid: The parent process ID.
+        :param _builtins.int parent_process_start_time: The parent process start time.
+        :param _builtins.int parent_process_uid: The parent process user ID.
+        :param _builtins.str process_cmdline: The process file command line.
+        :param _builtins.int process_egid: The effective process group ID.
+        :param _builtins.int process_euid: The effective process user ID.
+        :param _builtins.str process_file_hash: The process file hash.
+        :param _builtins.str process_filename: The process file name.
+        :param _builtins.int process_gid: The process group ID.
+        :param _builtins.str process_hash: The process startup file hash.
+        :param _builtins.str process_name: The process name.
+        :param _builtins.str process_path: The process file path.
+        :param _builtins.int process_pid: The process ID.
+        :param _builtins.int process_start_time: The process start time.
+        :param _builtins.int process_uid: The process user ID.
+        :param _builtins.str process_username: The process user name.
+        :param _builtins.str virt_cmd: The virtualization command.
+        :param _builtins.str virt_process_name: The virtualization process name.
+        """
+        pulumi.set(__self__, "ancestor_process_cmdline", ancestor_process_cmdline)
+        pulumi.set(__self__, "ancestor_process_path", ancestor_process_path)
+        pulumi.set(__self__, "ancestor_process_pid", ancestor_process_pid)
+        pulumi.set(__self__, "block", block)
+        pulumi.set(__self__, "child_process_cmdline", child_process_cmdline)
+        pulumi.set(__self__, "child_process_egid", child_process_egid)
+        pulumi.set(__self__, "child_process_euid", child_process_euid)
+        pulumi.set(__self__, "child_process_filename", child_process_filename)
+        pulumi.set(__self__, "child_process_gid", child_process_gid)
+        pulumi.set(__self__, "child_process_name", child_process_name)
+        pulumi.set(__self__, "child_process_path", child_process_path)
+        pulumi.set(__self__, "child_process_pid", child_process_pid)
+        pulumi.set(__self__, "child_process_start_time", child_process_start_time)
+        pulumi.set(__self__, "child_process_uid", child_process_uid)
+        pulumi.set(__self__, "escape_cmd", escape_cmd)
+        pulumi.set(__self__, "escape_mode", escape_mode)
+        pulumi.set(__self__, "parent_process_cmdline", parent_process_cmdline)
+        pulumi.set(__self__, "parent_process_egid", parent_process_egid)
+        pulumi.set(__self__, "parent_process_euid", parent_process_euid)
+        pulumi.set(__self__, "parent_process_file_hash", parent_process_file_hash)
+        pulumi.set(__self__, "parent_process_filename", parent_process_filename)
+        pulumi.set(__self__, "parent_process_gid", parent_process_gid)
+        pulumi.set(__self__, "parent_process_name", parent_process_name)
+        pulumi.set(__self__, "parent_process_path", parent_process_path)
+        pulumi.set(__self__, "parent_process_pid", parent_process_pid)
+        pulumi.set(__self__, "parent_process_start_time", parent_process_start_time)
+        pulumi.set(__self__, "parent_process_uid", parent_process_uid)
+        pulumi.set(__self__, "process_cmdline", process_cmdline)
+        pulumi.set(__self__, "process_egid", process_egid)
+        pulumi.set(__self__, "process_euid", process_euid)
+        pulumi.set(__self__, "process_file_hash", process_file_hash)
+        pulumi.set(__self__, "process_filename", process_filename)
+        pulumi.set(__self__, "process_gid", process_gid)
+        pulumi.set(__self__, "process_hash", process_hash)
+        pulumi.set(__self__, "process_name", process_name)
+        pulumi.set(__self__, "process_path", process_path)
+        pulumi.set(__self__, "process_pid", process_pid)
+        pulumi.set(__self__, "process_start_time", process_start_time)
+        pulumi.set(__self__, "process_uid", process_uid)
+        pulumi.set(__self__, "process_username", process_username)
+        pulumi.set(__self__, "virt_cmd", virt_cmd)
+        pulumi.set(__self__, "virt_process_name", virt_process_name)
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessCmdline")
+    def ancestor_process_cmdline(self) -> _builtins.str:
+        """
+        The grandparent process file command line.
+        """
+        return pulumi.get(self, "ancestor_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessPath")
+    def ancestor_process_path(self) -> _builtins.str:
+        """
+        The grandparent process path
+        """
+        return pulumi.get(self, "ancestor_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="ancestorProcessPid")
+    def ancestor_process_pid(self) -> _builtins.int:
+        """
+        The grandparent process ID.
+        """
+        return pulumi.get(self, "ancestor_process_pid")
+
+    @_builtins.property
+    @pulumi.getter
+    def block(self) -> _builtins.int:
+        """
+        Whether the blocking is successful.
+        `1` indicates blocking is successed and `0` indicates blocking is failed.
+        """
+        return pulumi.get(self, "block")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessCmdline")
+    def child_process_cmdline(self) -> _builtins.str:
+        """
+        The subprocess file command line.
+        """
+        return pulumi.get(self, "child_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessEgid")
+    def child_process_egid(self) -> _builtins.int:
+        """
+        The subprocess effective group ID.
+        """
+        return pulumi.get(self, "child_process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessEuid")
+    def child_process_euid(self) -> _builtins.int:
+        """
+        The subprocess effective user ID.
+        """
+        return pulumi.get(self, "child_process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessFilename")
+    def child_process_filename(self) -> _builtins.str:
+        """
+        The subprocess file name.
+        """
+        return pulumi.get(self, "child_process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessGid")
+    def child_process_gid(self) -> _builtins.int:
+        """
+        The subprocess group ID.
+        """
+        return pulumi.get(self, "child_process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessName")
+    def child_process_name(self) -> _builtins.str:
+        """
+        The subprocess name.
+        """
+        return pulumi.get(self, "child_process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessPath")
+    def child_process_path(self) -> _builtins.str:
+        """
+        The subprocess file path.
+        """
+        return pulumi.get(self, "child_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessPid")
+    def child_process_pid(self) -> _builtins.int:
+        """
+        The subprocess ID.
+        """
+        return pulumi.get(self, "child_process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessStartTime")
+    def child_process_start_time(self) -> _builtins.int:
+        """
+        The subprocess start time.
+        """
+        return pulumi.get(self, "child_process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="childProcessUid")
+    def child_process_uid(self) -> _builtins.int:
+        """
+        The subprocess user ID.
+        """
+        return pulumi.get(self, "child_process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="escapeCmd")
+    def escape_cmd(self) -> _builtins.str:
+        """
+        The command executed after the espace.
+        """
+        return pulumi.get(self, "escape_cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="escapeMode")
+    def escape_mode(self) -> _builtins.str:
+        """
+        The espace method.
+        """
+        return pulumi.get(self, "escape_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessCmdline")
+    def parent_process_cmdline(self) -> _builtins.str:
+        """
+        The parent process file command line.
+        """
+        return pulumi.get(self, "parent_process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessEgid")
+    def parent_process_egid(self) -> _builtins.int:
+        """
+        The parent effective process group ID.
+        """
+        return pulumi.get(self, "parent_process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessEuid")
+    def parent_process_euid(self) -> _builtins.int:
+        """
+        The parent effective process user ID.
+        """
+        return pulumi.get(self, "parent_process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessFileHash")
+    def parent_process_file_hash(self) -> _builtins.str:
+        """
+        The parent process file hash.
+        """
+        return pulumi.get(self, "parent_process_file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessFilename")
+    def parent_process_filename(self) -> _builtins.str:
+        """
+        The parent process file name.
+        """
+        return pulumi.get(self, "parent_process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessGid")
+    def parent_process_gid(self) -> _builtins.int:
+        """
+        The parent process group ID.
+        """
+        return pulumi.get(self, "parent_process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessName")
+    def parent_process_name(self) -> _builtins.str:
+        """
+        The parent process name.
+        """
+        return pulumi.get(self, "parent_process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessPath")
+    def parent_process_path(self) -> _builtins.str:
+        """
+        The parent process file path.
+        """
+        return pulumi.get(self, "parent_process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessPid")
+    def parent_process_pid(self) -> _builtins.int:
+        """
+        The parent process ID.
+        """
+        return pulumi.get(self, "parent_process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessStartTime")
+    def parent_process_start_time(self) -> _builtins.int:
+        """
+        The parent process start time.
+        """
+        return pulumi.get(self, "parent_process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="parentProcessUid")
+    def parent_process_uid(self) -> _builtins.int:
+        """
+        The parent process user ID.
+        """
+        return pulumi.get(self, "parent_process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="processCmdline")
+    def process_cmdline(self) -> _builtins.str:
+        """
+        The process file command line.
+        """
+        return pulumi.get(self, "process_cmdline")
+
+    @_builtins.property
+    @pulumi.getter(name="processEgid")
+    def process_egid(self) -> _builtins.int:
+        """
+        The effective process group ID.
+        """
+        return pulumi.get(self, "process_egid")
+
+    @_builtins.property
+    @pulumi.getter(name="processEuid")
+    def process_euid(self) -> _builtins.int:
+        """
+        The effective process user ID.
+        """
+        return pulumi.get(self, "process_euid")
+
+    @_builtins.property
+    @pulumi.getter(name="processFileHash")
+    def process_file_hash(self) -> _builtins.str:
+        """
+        The process file hash.
+        """
+        return pulumi.get(self, "process_file_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="processFilename")
+    def process_filename(self) -> _builtins.str:
+        """
+        The process file name.
+        """
+        return pulumi.get(self, "process_filename")
+
+    @_builtins.property
+    @pulumi.getter(name="processGid")
+    def process_gid(self) -> _builtins.int:
+        """
+        The process group ID.
+        """
+        return pulumi.get(self, "process_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="processHash")
+    def process_hash(self) -> _builtins.str:
+        """
+        The process startup file hash.
+        """
+        return pulumi.get(self, "process_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="processName")
+    def process_name(self) -> _builtins.str:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="processPath")
+    def process_path(self) -> _builtins.str:
+        """
+        The process file path.
+        """
+        return pulumi.get(self, "process_path")
+
+    @_builtins.property
+    @pulumi.getter(name="processPid")
+    def process_pid(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "process_pid")
+
+    @_builtins.property
+    @pulumi.getter(name="processStartTime")
+    def process_start_time(self) -> _builtins.int:
+        """
+        The process start time.
+        """
+        return pulumi.get(self, "process_start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="processUid")
+    def process_uid(self) -> _builtins.int:
+        """
+        The process user ID.
+        """
+        return pulumi.get(self, "process_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="processUsername")
+    def process_username(self) -> _builtins.str:
+        """
+        The process user name.
+        """
+        return pulumi.get(self, "process_username")
+
+    @_builtins.property
+    @pulumi.getter(name="virtCmd")
+    def virt_cmd(self) -> _builtins.str:
+        """
+        The virtualization command.
+        """
+        return pulumi.get(self, "virt_cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="virtProcessName")
+    def virt_process_name(self) -> _builtins.str:
+        """
+        The virtualization process name.
+        """
+        return pulumi.get(self, "virt_process_name")
+
+
+@pulumi.output_type
+class GetEventIntrusionEventsDataListResourceInfoResult(dict):
+    def __init__(__self__, *,
+                 cloud_id: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 container_id: _builtins.str,
+                 container_status: _builtins.str,
+                 domain_id: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 host_attr: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 micro_service: _builtins.str,
+                 namespace: _builtins.str,
+                 os_bit: _builtins.str,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str,
+                 os_version: _builtins.str,
+                 pod_name: _builtins.str,
+                 pod_uid: _builtins.str,
+                 project_id: _builtins.str,
+                 region_name: _builtins.str,
+                 service: _builtins.str,
+                 sys_arch: _builtins.str,
+                 vm_name: _builtins.str,
+                 vm_uuid: _builtins.str,
+                 vpc_id: _builtins.str):
+        """
+        :param _builtins.str cloud_id: The cloud host ID.
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_status: The container status.
+        :param _builtins.str domain_id: The account ID.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+               This parameter is valid only when the enterprise project is enabled.
+               The default value is **0**, indicating the default enterprise project.
+               If you need to query data for all enterprise projects, the value is **all_granted_eps**.
+               If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+               the operation may fail due to insufficient permissions.
+        :param _builtins.str host_attr: The host attribute.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str micro_service: The microservice.
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.str os_bit: The OS bit version.
+        :param _builtins.str os_name: The OS name.
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str os_version: The OS version.
+        :param _builtins.str pod_name: The pod name.
+        :param _builtins.str pod_uid: The pod UID.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str region_name: The region name.
+        :param _builtins.str service: The business service.
+        :param _builtins.str sys_arch: The system CPU architecture.
+        :param _builtins.str vm_name: The VM name.
+        :param _builtins.str vm_uuid: The VM UUID.
+        :param _builtins.str vpc_id: The vpc ID.
+        """
+        pulumi.set(__self__, "cloud_id", cloud_id)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_status", container_status)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "host_attr", host_attr)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "micro_service", micro_service)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "os_bit", os_bit)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "os_version", os_version)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "pod_uid", pod_uid)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "service", service)
+        pulumi.set(__self__, "sys_arch", sys_arch)
+        pulumi.set(__self__, "vm_name", vm_name)
+        pulumi.set(__self__, "vm_uuid", vm_uuid)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudId")
+    def cloud_id(self) -> _builtins.str:
+        """
+        The cloud host ID.
+        """
+        return pulumi.get(self, "cloud_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerStatus")
+    def container_status(self) -> _builtins.str:
+        """
+        The container status.
+        """
+        return pulumi.get(self, "container_status")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise project ID.
+        This parameter is valid only when the enterprise project is enabled.
+        The default value is **0**, indicating the default enterprise project.
+        If you need to query data for all enterprise projects, the value is **all_granted_eps**.
+        If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+        the operation may fail due to insufficient permissions.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostAttr")
+    def host_attr(self) -> _builtins.str:
+        """
+        The host attribute.
+        """
+        return pulumi.get(self, "host_attr")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="microService")
+    def micro_service(self) -> _builtins.str:
+        """
+        The microservice.
+        """
+        return pulumi.get(self, "micro_service")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="osBit")
+    def os_bit(self) -> _builtins.str:
+        """
+        The OS bit version.
+        """
+        return pulumi.get(self, "os_bit")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The OS name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osVersion")
+    def os_version(self) -> _builtins.str:
+        """
+        The OS version.
+        """
+        return pulumi.get(self, "os_version")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        The pod name.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podUid")
+    def pod_uid(self) -> _builtins.str:
+        """
+        The pod UID.
+        """
+        return pulumi.get(self, "pod_uid")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region name.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> _builtins.str:
+        """
+        The business service.
+        """
+        return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter(name="sysArch")
+    def sys_arch(self) -> _builtins.str:
+        """
+        The system CPU architecture.
+        """
+        return pulumi.get(self, "sys_arch")
+
+    @_builtins.property
+    @pulumi.getter(name="vmName")
+    def vm_name(self) -> _builtins.str:
+        """
+        The VM name.
+        """
+        return pulumi.get(self, "vm_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vmUuid")
+    def vm_uuid(self) -> _builtins.str:
+        """
+        The VM UUID.
+        """
+        return pulumi.get(self, "vm_uuid")
+
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> _builtins.str:
+        """
+        The vpc ID.
+        """
+        return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetEventIntrusionEventsDataListUserInfoListResult(dict):
+    def __init__(__self__, *,
+                 login_fail_count: _builtins.int,
+                 login_ip: _builtins.str,
+                 login_last_time: _builtins.int,
+                 login_mode: _builtins.int,
+                 pwd_hash: _builtins.str,
+                 pwd_max_days: _builtins.int,
+                 pwd_min_days: _builtins.int,
+                 pwd_used_days: _builtins.int,
+                 pwd_warn_left_days: _builtins.int,
+                 pwd_with_fuzzing: _builtins.str,
+                 service_port: _builtins.int,
+                 service_type: _builtins.str,
+                 user_gid: _builtins.int,
+                 user_group_name: _builtins.str,
+                 user_home_dir: _builtins.str,
+                 user_id: _builtins.int,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.int login_fail_count: The number of user filed login.
+        :param _builtins.str login_ip: The user login IP address.
+        :param _builtins.int login_last_time: The user last login time.
+        :param _builtins.int login_mode: The login method.
+        :param _builtins.str pwd_hash: The password hash.
+        :param _builtins.int pwd_max_days: The maximum password validity period.
+        :param _builtins.int pwd_min_days: The minimum password validity period.
+        :param _builtins.int pwd_used_days: The password used days.
+        :param _builtins.int pwd_warn_left_days: The advance warning of a password expiration days.
+        :param _builtins.str pwd_with_fuzzing: The anonymized password.
+        :param _builtins.int service_port: The login service port.
+        :param _builtins.str service_type: The service type.
+               The valid values are as follows:
+               + **system**
+               + **mysql**
+               + **redis**
+        :param _builtins.int user_gid: The user group ID.
+        :param _builtins.str user_group_name: The user group name.
+        :param _builtins.str user_home_dir: The user home directory.
+        :param _builtins.int user_id: The user ID.
+        :param _builtins.str user_name: The user name.
+        """
+        pulumi.set(__self__, "login_fail_count", login_fail_count)
+        pulumi.set(__self__, "login_ip", login_ip)
+        pulumi.set(__self__, "login_last_time", login_last_time)
+        pulumi.set(__self__, "login_mode", login_mode)
+        pulumi.set(__self__, "pwd_hash", pwd_hash)
+        pulumi.set(__self__, "pwd_max_days", pwd_max_days)
+        pulumi.set(__self__, "pwd_min_days", pwd_min_days)
+        pulumi.set(__self__, "pwd_used_days", pwd_used_days)
+        pulumi.set(__self__, "pwd_warn_left_days", pwd_warn_left_days)
+        pulumi.set(__self__, "pwd_with_fuzzing", pwd_with_fuzzing)
+        pulumi.set(__self__, "service_port", service_port)
+        pulumi.set(__self__, "service_type", service_type)
+        pulumi.set(__self__, "user_gid", user_gid)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+        pulumi.set(__self__, "user_home_dir", user_home_dir)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="loginFailCount")
+    def login_fail_count(self) -> _builtins.int:
+        """
+        The number of user filed login.
+        """
+        return pulumi.get(self, "login_fail_count")
+
+    @_builtins.property
+    @pulumi.getter(name="loginIp")
+    def login_ip(self) -> _builtins.str:
+        """
+        The user login IP address.
+        """
+        return pulumi.get(self, "login_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="loginLastTime")
+    def login_last_time(self) -> _builtins.int:
+        """
+        The user last login time.
+        """
+        return pulumi.get(self, "login_last_time")
+
+    @_builtins.property
+    @pulumi.getter(name="loginMode")
+    def login_mode(self) -> _builtins.int:
+        """
+        The login method.
+        """
+        return pulumi.get(self, "login_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdHash")
+    def pwd_hash(self) -> _builtins.str:
+        """
+        The password hash.
+        """
+        return pulumi.get(self, "pwd_hash")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdMaxDays")
+    def pwd_max_days(self) -> _builtins.int:
+        """
+        The maximum password validity period.
+        """
+        return pulumi.get(self, "pwd_max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdMinDays")
+    def pwd_min_days(self) -> _builtins.int:
+        """
+        The minimum password validity period.
+        """
+        return pulumi.get(self, "pwd_min_days")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdUsedDays")
+    def pwd_used_days(self) -> _builtins.int:
+        """
+        The password used days.
+        """
+        return pulumi.get(self, "pwd_used_days")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdWarnLeftDays")
+    def pwd_warn_left_days(self) -> _builtins.int:
+        """
+        The advance warning of a password expiration days.
+        """
+        return pulumi.get(self, "pwd_warn_left_days")
+
+    @_builtins.property
+    @pulumi.getter(name="pwdWithFuzzing")
+    def pwd_with_fuzzing(self) -> _builtins.str:
+        """
+        The anonymized password.
+        """
+        return pulumi.get(self, "pwd_with_fuzzing")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePort")
+    def service_port(self) -> _builtins.int:
+        """
+        The login service port.
+        """
+        return pulumi.get(self, "service_port")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> _builtins.str:
+        """
+        The service type.
+        The valid values are as follows:
+        + **system**
+        + **mysql**
+        + **redis**
+        """
+        return pulumi.get(self, "service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="userGid")
+    def user_gid(self) -> _builtins.int:
+        """
+        The user group ID.
+        """
+        return pulumi.get(self, "user_gid")
+
+    @_builtins.property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> _builtins.str:
+        """
+        The user group name.
+        """
+        return pulumi.get(self, "user_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="userHomeDir")
+    def user_home_dir(self) -> _builtins.str:
+        """
+        The user home directory.
+        """
+        return pulumi.get(self, "user_home_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.int:
+        """
+        The user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        The user name.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
 class GetEventLoginWhiteListsDataListResult(dict):
     def __init__(__self__, *,
                  enterprise_project_name: _builtins.str,
@@ -4628,6 +17710,94 @@ class GetEventSystemUserWhiteListsDataListResult(dict):
 
 
 @pulumi.output_type
+class GetEventTypesDataListResult(dict):
+    def __init__(__self__, *,
+                 event_type_lists: Sequence['outputs.GetEventTypesDataListEventTypeListResult'],
+                 event_type_name: _builtins.str,
+                 event_type_num: _builtins.int):
+        """
+        :param Sequence['GetEventTypesDataListEventTypeListArgs'] event_type_lists: The list of names and quantities corresponding to subcategories.
+        :param _builtins.str event_type_name: The names corresponding to major categories. For its values,
+               see [API docs](https://support.huaweicloud.com/api-hss2.0/ListEventType.html#ListEventType__response_EventTypeResponseInfo).
+        :param _builtins.int event_type_num: The total number of event categories.
+        """
+        pulumi.set(__self__, "event_type_lists", event_type_lists)
+        pulumi.set(__self__, "event_type_name", event_type_name)
+        pulumi.set(__self__, "event_type_num", event_type_num)
+
+    @_builtins.property
+    @pulumi.getter(name="eventTypeLists")
+    def event_type_lists(self) -> Sequence['outputs.GetEventTypesDataListEventTypeListResult']:
+        """
+        The list of names and quantities corresponding to subcategories.
+        """
+        return pulumi.get(self, "event_type_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="eventTypeName")
+    def event_type_name(self) -> _builtins.str:
+        """
+        The names corresponding to major categories. For its values,
+        see [API docs](https://support.huaweicloud.com/api-hss2.0/ListEventType.html#ListEventType__response_EventTypeResponseInfo).
+        """
+        return pulumi.get(self, "event_type_name")
+
+    @_builtins.property
+    @pulumi.getter(name="eventTypeNum")
+    def event_type_num(self) -> _builtins.int:
+        """
+        The total number of event categories.
+        """
+        return pulumi.get(self, "event_type_num")
+
+
+@pulumi.output_type
+class GetEventTypesDataListEventTypeListResult(dict):
+    def __init__(__self__, *,
+                 event_num: _builtins.int,
+                 event_type: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.int event_num: The number of events.
+        :param _builtins.int event_type: The event type. For its values,
+               see [API docs](https://support.huaweicloud.com/api-hss2.0/ListEventType.html#ListEventType__response_EventTypeResponseInfo).
+        :param _builtins.str status: The status. Valid values are:
+               + **locked**
+               + **unlocked**
+        """
+        pulumi.set(__self__, "event_num", event_num)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="eventNum")
+    def event_num(self) -> _builtins.int:
+        """
+        The number of events.
+        """
+        return pulumi.get(self, "event_num")
+
+    @_builtins.property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> _builtins.int:
+        """
+        The event type. For its values,
+        see [API docs](https://support.huaweicloud.com/api-hss2.0/ListEventType.html#ListEventType__response_EventTypeResponseInfo).
+        """
+        return pulumi.get(self, "event_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status. Valid values are:
+        + **locked**
+        + **unlocked**
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetEventUnblockIpsDataListResult(dict):
     def __init__(__self__, *,
                  block_time: _builtins.int,
@@ -4741,6 +17911,152 @@ class GetEventUnblockIpsDataListResult(dict):
 
 
 @pulumi.output_type
+class GetFilesChangeHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 change_file_num: _builtins.int,
+                 change_registry_num: _builtins.int,
+                 change_total_num: _builtins.int,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 latest_time: _builtins.int):
+        """
+        :param _builtins.int change_file_num: The change the number of files.
+        :param _builtins.int change_registry_num: The change the number of registry entries.
+        :param _builtins.int change_total_num: The total number of changes.
+        :param _builtins.str host_id: The server ID.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.int latest_time: The last modified time.
+        """
+        pulumi.set(__self__, "change_file_num", change_file_num)
+        pulumi.set(__self__, "change_registry_num", change_registry_num)
+        pulumi.set(__self__, "change_total_num", change_total_num)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "latest_time", latest_time)
+
+    @_builtins.property
+    @pulumi.getter(name="changeFileNum")
+    def change_file_num(self) -> _builtins.int:
+        """
+        The change the number of files.
+        """
+        return pulumi.get(self, "change_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="changeRegistryNum")
+    def change_registry_num(self) -> _builtins.int:
+        """
+        The change the number of registry entries.
+        """
+        return pulumi.get(self, "change_registry_num")
+
+    @_builtins.property
+    @pulumi.getter(name="changeTotalNum")
+    def change_total_num(self) -> _builtins.int:
+        """
+        The total number of changes.
+        """
+        return pulumi.get(self, "change_total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The server ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="latestTime")
+    def latest_time(self) -> _builtins.int:
+        """
+        The last modified time.
+        """
+        return pulumi.get(self, "latest_time")
+
+
+@pulumi.output_type
+class GetHoneypotPortHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 applied_ports: Sequence[_builtins.int],
+                 conflict_ports: Sequence[_builtins.int],
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 private_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param Sequence[_builtins.int] applied_ports: The application ports.
+        :param Sequence[_builtins.int] conflict_ports: The conflicting ports.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str private_ip: Specifies the server private IP address.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "applied_ports", applied_ports)
+        pulumi.set(__self__, "conflict_ports", conflict_ports)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="appliedPorts")
+    def applied_ports(self) -> Sequence[_builtins.int]:
+        """
+        The application ports.
+        """
+        return pulumi.get(self, "applied_ports")
+
+    @_builtins.property
+    @pulumi.getter(name="conflictPorts")
+    def conflict_ports(self) -> Sequence[_builtins.int]:
+        """
+        The conflicting ports.
+        """
+        return pulumi.get(self, "conflict_ports")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the server private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+
+@pulumi.output_type
 class GetHoneypotPortPoliciesDataListResult(dict):
     def __init__(__self__, *,
                  host_num: _builtins.int,
@@ -4833,6 +18149,105 @@ class GetHoneypotPortPoliciesDataListResult(dict):
 
 
 @pulumi.output_type
+class GetHoneypotPortSupportListDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 conflict_ports: Sequence[_builtins.int],
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param Sequence[_builtins.int] conflict_ports: The conflicting ports.
+        :param _builtins.str group_id: The group ID.
+        :param _builtins.str group_name: The group name.
+        :param _builtins.str host_id: The server (host) unique identifier ID.
+        :param _builtins.str host_name: The server name.
+        :param _builtins.str os_type: Specifies the operating system type. Valid values are:
+               + **Linux**: Linux.
+               + **Windows**: Windows.
+        :param _builtins.str private_ip: The server private IP.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "conflict_ports", conflict_ports)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="conflictPorts")
+    def conflict_ports(self) -> Sequence[_builtins.int]:
+        """
+        The conflicting ports.
+        """
+        return pulumi.get(self, "conflict_ports")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The group name.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The server (host) unique identifier ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the operating system type. Valid values are:
+        + **Linux**: Linux.
+        + **Windows**: Windows.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The server private IP.
+        """
+        return pulumi.get(self, "private_ip")
+
+
+@pulumi.output_type
 class GetHostGroupsGroupResult(dict):
     def __init__(__self__, *,
                  host_ids: Sequence[_builtins.str],
@@ -4905,6 +18320,75 @@ class GetHostGroupsGroupResult(dict):
         Specifies the number of unprotected hosts in the host groups to be queried.
         """
         return pulumi.get(self, "unprotect_host_num")
+
+
+@pulumi.output_type
+class GetHostStatisticsAssetValueListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 value_type: _builtins.str):
+        """
+        :param _builtins.int host_num: The number of servers allocated to the server group.
+        :param _builtins.str value_type: The asset importance type.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of servers allocated to the server group.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> _builtins.str:
+        """
+        The asset importance type.
+        """
+        return pulumi.get(self, "value_type")
+
+
+@pulumi.output_type
+class GetHostStatisticsServerGroupListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 server_group_id: _builtins.str,
+                 server_group_name: _builtins.str):
+        """
+        :param _builtins.int host_num: The number of servers allocated to the server group.
+        :param _builtins.str server_group_id: The server group ID.
+        :param _builtins.str server_group_name: The server group name.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "server_group_name", server_group_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of servers allocated to the server group.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> _builtins.str:
+        """
+        The server group ID.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="serverGroupName")
+    def server_group_name(self) -> _builtins.str:
+        """
+        The server group name.
+        """
+        return pulumi.get(self, "server_group_name")
 
 
 @pulumi.output_type
@@ -5683,6 +19167,6171 @@ class GetHostsHostResult(dict):
 
 
 @pulumi.output_type
+class GetHostsRiskDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_status: _builtins.str,
+                 asset: _builtins.int,
+                 baseline: _builtins.int,
+                 detect_result: _builtins.str,
+                 host_id: _builtins.str,
+                 install_result_code: _builtins.str,
+                 intrusion: _builtins.int,
+                 protect_status: _builtins.str,
+                 version: _builtins.str,
+                 vulnerability: _builtins.int):
+        """
+        :param _builtins.str agent_status: The agent status.  
+               The valid values are as follows:
+               + **not_installed**
+               + **online**
+               + **offline**
+               + **install_failed**
+               + **installing**
+        :param _builtins.int asset: The asset risk.
+        :param _builtins.int baseline: The baseline risk.
+        :param _builtins.str detect_result: The cloud host security testing results.  
+               The valid values are as follows:
+               + **undetected**
+               + **clean**
+               + **risk**
+               + **scanning**
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str install_result_code: The installation result.  
+               The valid values are as follows:
+               + **install_succeed**
+               + **network_access_timeout**
+               + **invalid_port**
+               + **auth_failed**
+               + **permission_denied**
+               + **no_available_vpc**
+               + **install_exception**
+               + **invalid_param**
+               + **install_failed**
+               + **package_unavailable**
+               + **os_type_not_support**
+               + **os_arch_not_support**
+        :param _builtins.int intrusion: The intrusion risk.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+        :param _builtins.str version: The version.  
+               The valid values are as follows:
+               + **hss.version.null**
+               + **hss.version.basic**
+               + **hss.version.advanced**
+               + **hss.version.enterprise**
+               + **hss.version.premium**
+               + **hss.version.wtp**
+               + **hss.version.container.enterprise**
+        :param _builtins.int vulnerability: The vulnerability risk.
+        """
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "asset", asset)
+        pulumi.set(__self__, "baseline", baseline)
+        pulumi.set(__self__, "detect_result", detect_result)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "install_result_code", install_result_code)
+        pulumi.set(__self__, "intrusion", intrusion)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vulnerability", vulnerability)
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        The agent status.  
+        The valid values are as follows:
+        + **not_installed**
+        + **online**
+        + **offline**
+        + **install_failed**
+        + **installing**
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def asset(self) -> _builtins.int:
+        """
+        The asset risk.
+        """
+        return pulumi.get(self, "asset")
+
+    @_builtins.property
+    @pulumi.getter
+    def baseline(self) -> _builtins.int:
+        """
+        The baseline risk.
+        """
+        return pulumi.get(self, "baseline")
+
+    @_builtins.property
+    @pulumi.getter(name="detectResult")
+    def detect_result(self) -> _builtins.str:
+        """
+        The cloud host security testing results.  
+        The valid values are as follows:
+        + **undetected**
+        + **clean**
+        + **risk**
+        + **scanning**
+        """
+        return pulumi.get(self, "detect_result")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="installResultCode")
+    def install_result_code(self) -> _builtins.str:
+        """
+        The installation result.  
+        The valid values are as follows:
+        + **install_succeed**
+        + **network_access_timeout**
+        + **invalid_port**
+        + **auth_failed**
+        + **permission_denied**
+        + **no_available_vpc**
+        + **install_exception**
+        + **invalid_param**
+        + **install_failed**
+        + **package_unavailable**
+        + **os_type_not_support**
+        + **os_arch_not_support**
+        """
+        return pulumi.get(self, "install_result_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def intrusion(self) -> _builtins.int:
+        """
+        The intrusion risk.
+        """
+        return pulumi.get(self, "intrusion")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version.  
+        The valid values are as follows:
+        + **hss.version.null**
+        + **hss.version.basic**
+        + **hss.version.advanced**
+        + **hss.version.enterprise**
+        + **hss.version.premium**
+        + **hss.version.wtp**
+        + **hss.version.container.enterprise**
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter
+    def vulnerability(self) -> _builtins.int:
+        """
+        The vulnerability risk.
+        """
+        return pulumi.get(self, "vulnerability")
+
+
+@pulumi.output_type
+class GetImageAppsDataListResult(dict):
+    def __init__(__self__, *,
+                 app_name: _builtins.str,
+                 app_path: _builtins.str,
+                 app_type: _builtins.str,
+                 app_version: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_type: _builtins.str,
+                 image_version: _builtins.str,
+                 is_compliant: _builtins.bool,
+                 latest_scan_time: _builtins.int,
+                 layer_digest: _builtins.str,
+                 namespace: _builtins.str,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.str app_name: Specifies the app name.
+        :param _builtins.str app_path: The app path.
+        :param _builtins.str app_type: The app type.
+        :param _builtins.str app_version: The app version.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_type: Specifies the image type.  
+               The valid values are as follows:
+               + **local**: Local image.
+               + **registry**: Warehouse image.
+               + **cicd**: CICD image.
+        :param _builtins.str image_version: The image version.
+        :param _builtins.bool is_compliant: Specifies whether it is compliant. The value can be **true** or **false**.
+               Only supports **false*.
+        :param _builtins.int latest_scan_time: The last detection time, in milliseconds (ms).
+        :param _builtins.str layer_digest: The layer digest.
+        :param _builtins.str namespace: The namespace.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "app_path", app_path)
+        pulumi.set(__self__, "app_type", app_type)
+        pulumi.set(__self__, "app_version", app_version)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "image_version", image_version)
+        pulumi.set(__self__, "is_compliant", is_compliant)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "layer_digest", layer_digest)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        Specifies the app name.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter(name="appPath")
+    def app_path(self) -> _builtins.str:
+        """
+        The app path.
+        """
+        return pulumi.get(self, "app_path")
+
+    @_builtins.property
+    @pulumi.getter(name="appType")
+    def app_type(self) -> _builtins.str:
+        """
+        The app type.
+        """
+        return pulumi.get(self, "app_type")
+
+    @_builtins.property
+    @pulumi.getter(name="appVersion")
+    def app_version(self) -> _builtins.str:
+        """
+        The app version.
+        """
+        return pulumi.get(self, "app_version")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        Specifies the image type.  
+        The valid values are as follows:
+        + **local**: Local image.
+        + **registry**: Warehouse image.
+        + **cicd**: CICD image.
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
+
+    @_builtins.property
+    @pulumi.getter(name="isCompliant")
+    def is_compliant(self) -> _builtins.bool:
+        """
+        Specifies whether it is compliant. The value can be **true** or **false**.
+        Only supports **false*.
+        """
+        return pulumi.get(self, "is_compliant")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The last detection time, in milliseconds (ms).
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="layerDigest")
+    def layer_digest(self) -> _builtins.str:
+        """
+        The layer digest.
+        """
+        return pulumi.get(self, "layer_digest")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetImageBaselineRiskConfigsDataListResult(dict):
+    def __init__(__self__, *,
+                 check_name: _builtins.str,
+                 check_rule_num: _builtins.int,
+                 check_type: _builtins.str,
+                 check_type_desc: _builtins.str,
+                 failed_rule_num: _builtins.int,
+                 severity: _builtins.str,
+                 standard: _builtins.str):
+        """
+        :param _builtins.str check_name: Specifies the baseline name.
+        :param _builtins.int check_rule_num: The number of inspection items.
+        :param _builtins.str check_type: The baseline type.
+        :param _builtins.str check_type_desc: The baseline description.
+        :param _builtins.int failed_rule_num: The number of risk items.
+        :param _builtins.str severity: Specifies the risk level. Valid values are:
+               + **Security**: Security.
+               + **Low**: Low risk.
+               + **Medium**: Medium risk.
+               + **High**: High risk.
+        :param _builtins.str standard: Specifies the standard type. Valid values are:
+               + **cn_standard**: Compliance standard.
+               + **hw_standard**: Cloud security practice standard.
+        """
+        pulumi.set(__self__, "check_name", check_name)
+        pulumi.set(__self__, "check_rule_num", check_rule_num)
+        pulumi.set(__self__, "check_type", check_type)
+        pulumi.set(__self__, "check_type_desc", check_type_desc)
+        pulumi.set(__self__, "failed_rule_num", failed_rule_num)
+        pulumi.set(__self__, "severity", severity)
+        pulumi.set(__self__, "standard", standard)
+
+    @_builtins.property
+    @pulumi.getter(name="checkName")
+    def check_name(self) -> _builtins.str:
+        """
+        Specifies the baseline name.
+        """
+        return pulumi.get(self, "check_name")
+
+    @_builtins.property
+    @pulumi.getter(name="checkRuleNum")
+    def check_rule_num(self) -> _builtins.int:
+        """
+        The number of inspection items.
+        """
+        return pulumi.get(self, "check_rule_num")
+
+    @_builtins.property
+    @pulumi.getter(name="checkType")
+    def check_type(self) -> _builtins.str:
+        """
+        The baseline type.
+        """
+        return pulumi.get(self, "check_type")
+
+    @_builtins.property
+    @pulumi.getter(name="checkTypeDesc")
+    def check_type_desc(self) -> _builtins.str:
+        """
+        The baseline description.
+        """
+        return pulumi.get(self, "check_type_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="failedRuleNum")
+    def failed_rule_num(self) -> _builtins.int:
+        """
+        The number of risk items.
+        """
+        return pulumi.get(self, "failed_rule_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the risk level. Valid values are:
+        + **Security**: Security.
+        + **Low**: Low risk.
+        + **Medium**: Medium risk.
+        + **High**: High risk.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def standard(self) -> _builtins.str:
+        """
+        Specifies the standard type. Valid values are:
+        + **cn_standard**: Compliance standard.
+        + **hw_standard**: Cloud security practice standard.
+        """
+        return pulumi.get(self, "standard")
+
+
+@pulumi.output_type
+class GetImageLocalAppsDataListResult(dict):
+    def __init__(__self__, *,
+                 app_name: _builtins.str,
+                 app_type: _builtins.str,
+                 app_version: _builtins.str,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.str app_name: Specifies app name filtering query, supports fuzzy matching.
+        :param _builtins.str app_type: The app type.
+        :param _builtins.str app_version: The app version.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "app_type", app_type)
+        pulumi.set(__self__, "app_version", app_version)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        Specifies app name filtering query, supports fuzzy matching.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter(name="appType")
+    def app_type(self) -> _builtins.str:
+        """
+        The app type.
+        """
+        return pulumi.get(self, "app_type")
+
+    @_builtins.property
+    @pulumi.getter(name="appVersion")
+    def app_version(self) -> _builtins.str:
+        """
+        The app version.
+        """
+        return pulumi.get(self, "app_version")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetImageLocalHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 agent_status: _builtins.str,
+                 docker_name: _builtins.str,
+                 docker_type: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str agent_id: Specifies the agent ID.
+        :param _builtins.str agent_status: The agent status.
+        :param _builtins.str docker_name: The docker name.
+        :param _builtins.str docker_type: The docker type.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str private_ip: The private IP address.
+        :param _builtins.str public_ip: The elastic public IP address.
+        :param _builtins.str version: The server activated version.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "docker_name", docker_name)
+        pulumi.set(__self__, "docker_type", docker_type)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        Specifies the agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        The agent status.
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="dockerName")
+    def docker_name(self) -> _builtins.str:
+        """
+        The docker name.
+        """
+        return pulumi.get(self, "docker_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dockerType")
+    def docker_type(self) -> _builtins.str:
+        """
+        The docker type.
+        """
+        return pulumi.get(self, "docker_type")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The elastic public IP address.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The server activated version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetImageLocalRepositoriesDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 component_num: _builtins.int,
+                 container_num: _builtins.int,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_num: _builtins.int,
+                 image_digest: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_size: _builtins.int,
+                 image_version: _builtins.str,
+                 latest_scan_time: _builtins.int,
+                 latest_update_time: _builtins.int,
+                 local_image_type: _builtins.str,
+                 malicious_file_num: _builtins.int,
+                 non_scan_reason: _builtins.str,
+                 scan_failed_desc: _builtins.str,
+                 scan_status: _builtins.str,
+                 severity_level: _builtins.str,
+                 unsafe_setting_num: _builtins.int,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.int component_num: The number of associated components.
+        :param _builtins.int container_num: The number of associated containers.
+        :param _builtins.str host_id: Specifies the ID of the server associated with the local image.
+        :param _builtins.str host_name: Specifies the name of the server associated with the local image.
+        :param _builtins.int host_num: The number of associated hosts.
+        :param _builtins.str image_digest: The image digest.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: Specifies the image name.
+        :param _builtins.int image_size: Specifies the image size in bytes.
+        :param _builtins.str image_version: Specifies the image version.
+        :param _builtins.int latest_scan_time: The last scan time, in milliseconds.
+        :param _builtins.int latest_update_time: The last update time of the image version, in milliseconds.
+        :param _builtins.str local_image_type: Specifies the image type. Valid values are:
+               + **other_image**: Non-SWR image.
+               + **swr_image**: SWR image.
+        :param _builtins.int malicious_file_num: The number of malicious files.
+        :param _builtins.str non_scan_reason: The reason why the image cannot be scanned. If this field is empty, it means that the image can
+               be scanned.
+        :param _builtins.str scan_failed_desc: The reason for scan failure. For details, please refer to the
+               document link [reference](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListImageLocal.html).
+        :param _builtins.str scan_status: Specifies the scan status. Valid values are:
+               + **unscan**: Not scanned.
+               + **success**: Scan completed.
+               + **scanning**: Scanning.
+               + **failed**: Scan failed.
+               + **waiting_for_scan**: Waiting for scan.
+        :param _builtins.str severity_level: The image risk level, display after image scanning is completed. Valid values are:
+               + **Security**: Safety.
+               + **Low**: Low risk.
+               + **Medium**: Medium risk.
+               + **High**: High-risk.
+        :param _builtins.int unsafe_setting_num: The number of baseline scan failures.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "component_num", component_num)
+        pulumi.set(__self__, "container_num", container_num)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "image_digest", image_digest)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_size", image_size)
+        pulumi.set(__self__, "image_version", image_version)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "latest_update_time", latest_update_time)
+        pulumi.set(__self__, "local_image_type", local_image_type)
+        pulumi.set(__self__, "malicious_file_num", malicious_file_num)
+        pulumi.set(__self__, "non_scan_reason", non_scan_reason)
+        pulumi.set(__self__, "scan_failed_desc", scan_failed_desc)
+        pulumi.set(__self__, "scan_status", scan_status)
+        pulumi.set(__self__, "severity_level", severity_level)
+        pulumi.set(__self__, "unsafe_setting_num", unsafe_setting_num)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="componentNum")
+    def component_num(self) -> _builtins.int:
+        """
+        The number of associated components.
+        """
+        return pulumi.get(self, "component_num")
+
+    @_builtins.property
+    @pulumi.getter(name="containerNum")
+    def container_num(self) -> _builtins.int:
+        """
+        The number of associated containers.
+        """
+        return pulumi.get(self, "container_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the server associated with the local image.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the name of the server associated with the local image.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The number of associated hosts.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="imageDigest")
+    def image_digest(self) -> _builtins.str:
+        """
+        The image digest.
+        """
+        return pulumi.get(self, "image_digest")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        Specifies the image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageSize")
+    def image_size(self) -> _builtins.int:
+        """
+        Specifies the image size in bytes.
+        """
+        return pulumi.get(self, "image_size")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        Specifies the image version.
+        """
+        return pulumi.get(self, "image_version")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The last scan time, in milliseconds.
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="latestUpdateTime")
+    def latest_update_time(self) -> _builtins.int:
+        """
+        The last update time of the image version, in milliseconds.
+        """
+        return pulumi.get(self, "latest_update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="localImageType")
+    def local_image_type(self) -> _builtins.str:
+        """
+        Specifies the image type. Valid values are:
+        + **other_image**: Non-SWR image.
+        + **swr_image**: SWR image.
+        """
+        return pulumi.get(self, "local_image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="maliciousFileNum")
+    def malicious_file_num(self) -> _builtins.int:
+        """
+        The number of malicious files.
+        """
+        return pulumi.get(self, "malicious_file_num")
+
+    @_builtins.property
+    @pulumi.getter(name="nonScanReason")
+    def non_scan_reason(self) -> _builtins.str:
+        """
+        The reason why the image cannot be scanned. If this field is empty, it means that the image can
+        be scanned.
+        """
+        return pulumi.get(self, "non_scan_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="scanFailedDesc")
+    def scan_failed_desc(self) -> _builtins.str:
+        """
+        The reason for scan failure. For details, please refer to the
+        document link [reference](https://support.huaweicloud.com/intl/en-us/api-hss2.0/ListImageLocal.html).
+        """
+        return pulumi.get(self, "scan_failed_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="scanStatus")
+    def scan_status(self) -> _builtins.str:
+        """
+        Specifies the scan status. Valid values are:
+        + **unscan**: Not scanned.
+        + **success**: Scan completed.
+        + **scanning**: Scanning.
+        + **failed**: Scan failed.
+        + **waiting_for_scan**: Waiting for scan.
+        """
+        return pulumi.get(self, "scan_status")
+
+    @_builtins.property
+    @pulumi.getter(name="severityLevel")
+    def severity_level(self) -> _builtins.str:
+        """
+        The image risk level, display after image scanning is completed. Valid values are:
+        + **Security**: Safety.
+        + **Low**: Low risk.
+        + **Medium**: Medium risk.
+        + **High**: High-risk.
+        """
+        return pulumi.get(self, "severity_level")
+
+    @_builtins.property
+    @pulumi.getter(name="unsafeSettingNum")
+    def unsafe_setting_num(self) -> _builtins.int:
+        """
+        The number of baseline scan failures.
+        """
+        return pulumi.get(self, "unsafe_setting_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetImageNonCompliantAppDataListResult(dict):
+    def __init__(__self__, *,
+                 app_name: _builtins.str,
+                 app_path: _builtins.str,
+                 app_version: _builtins.str,
+                 id: _builtins.str,
+                 layer_digest: _builtins.str):
+        """
+        :param _builtins.str app_name: Specifies the non-compliant app name.
+        :param _builtins.str app_path: The non-compliant app path.
+        :param _builtins.str app_version: The non-compliant app version.
+        :param _builtins.str id: The ID.
+        :param _builtins.str layer_digest: The layer digest.
+        """
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "app_path", app_path)
+        pulumi.set(__self__, "app_version", app_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "layer_digest", layer_digest)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        Specifies the non-compliant app name.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter(name="appPath")
+    def app_path(self) -> _builtins.str:
+        """
+        The non-compliant app path.
+        """
+        return pulumi.get(self, "app_path")
+
+    @_builtins.property
+    @pulumi.getter(name="appVersion")
+    def app_version(self) -> _builtins.str:
+        """
+        The non-compliant app version.
+        """
+        return pulumi.get(self, "app_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="layerDigest")
+    def layer_digest(self) -> _builtins.str:
+        """
+        The layer digest.
+        """
+        return pulumi.get(self, "layer_digest")
+
+
+@pulumi.output_type
+class GetImagePayPerScanStatisticsHasRiskResult(dict):
+    def __init__(__self__, *,
+                 cicd: _builtins.int,
+                 local: _builtins.int,
+                 registriy: _builtins.int):
+        """
+        :param _builtins.int cicd: The number of CICD images.
+        :param _builtins.int local: The number of local images.
+        :param _builtins.int registriy: The number of repository images.
+        """
+        pulumi.set(__self__, "cicd", cicd)
+        pulumi.set(__self__, "local", local)
+        pulumi.set(__self__, "registriy", registriy)
+
+    @_builtins.property
+    @pulumi.getter
+    def cicd(self) -> _builtins.int:
+        """
+        The number of CICD images.
+        """
+        return pulumi.get(self, "cicd")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> _builtins.int:
+        """
+        The number of local images.
+        """
+        return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter
+    def registriy(self) -> _builtins.int:
+        """
+        The number of repository images.
+        """
+        return pulumi.get(self, "registriy")
+
+
+@pulumi.output_type
+class GetImagePayPerScanStatisticsHighRiskResult(dict):
+    def __init__(__self__, *,
+                 cicd: _builtins.int,
+                 local: _builtins.int,
+                 registriy: _builtins.int):
+        """
+        :param _builtins.int cicd: The number of CICD images.
+        :param _builtins.int local: The number of local images.
+        :param _builtins.int registriy: The number of repository images.
+        """
+        pulumi.set(__self__, "cicd", cicd)
+        pulumi.set(__self__, "local", local)
+        pulumi.set(__self__, "registriy", registriy)
+
+    @_builtins.property
+    @pulumi.getter
+    def cicd(self) -> _builtins.int:
+        """
+        The number of CICD images.
+        """
+        return pulumi.get(self, "cicd")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> _builtins.int:
+        """
+        The number of local images.
+        """
+        return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter
+    def registriy(self) -> _builtins.int:
+        """
+        The number of repository images.
+        """
+        return pulumi.get(self, "registriy")
+
+
+@pulumi.output_type
+class GetImagePayPerScanStatisticsTotalResult(dict):
+    def __init__(__self__, *,
+                 cicd: _builtins.int,
+                 local: _builtins.int,
+                 registriy: _builtins.int):
+        """
+        :param _builtins.int cicd: The number of CICD images.
+        :param _builtins.int local: The number of local images.
+        :param _builtins.int registriy: The number of repository images.
+        """
+        pulumi.set(__self__, "cicd", cicd)
+        pulumi.set(__self__, "local", local)
+        pulumi.set(__self__, "registriy", registriy)
+
+    @_builtins.property
+    @pulumi.getter
+    def cicd(self) -> _builtins.int:
+        """
+        The number of CICD images.
+        """
+        return pulumi.get(self, "cicd")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> _builtins.int:
+        """
+        The number of local images.
+        """
+        return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter
+    def registriy(self) -> _builtins.int:
+        """
+        The number of repository images.
+        """
+        return pulumi.get(self, "registriy")
+
+
+@pulumi.output_type
+class GetImagePayPerScanStatisticsUnscanResult(dict):
+    def __init__(__self__, *,
+                 cicd: _builtins.int,
+                 local: _builtins.int,
+                 registriy: _builtins.int):
+        """
+        :param _builtins.int cicd: The number of CICD images.
+        :param _builtins.int local: The number of local images.
+        :param _builtins.int registriy: The number of repository images.
+        """
+        pulumi.set(__self__, "cicd", cicd)
+        pulumi.set(__self__, "local", local)
+        pulumi.set(__self__, "registriy", registriy)
+
+    @_builtins.property
+    @pulumi.getter
+    def cicd(self) -> _builtins.int:
+        """
+        The number of CICD images.
+        """
+        return pulumi.get(self, "cicd")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> _builtins.int:
+        """
+        The number of local images.
+        """
+        return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter
+    def registriy(self) -> _builtins.int:
+        """
+        The number of repository images.
+        """
+        return pulumi.get(self, "registriy")
+
+
+@pulumi.output_type
+class GetImageRegistriesDataListResult(dict):
+    def __init__(__self__, *,
+                 api_version: _builtins.str,
+                 connect_cluster_id: _builtins.str,
+                 fail_reason: _builtins.str,
+                 get_scan_image_channel: _builtins.str,
+                 id: _builtins.str,
+                 images_num: _builtins.int,
+                 latest_sync_time: _builtins.int,
+                 namespace: _builtins.str,
+                 protocol: _builtins.str,
+                 registry_addr: _builtins.str,
+                 registry_name: _builtins.str,
+                 registry_type: _builtins.str,
+                 registry_username: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str api_version: The image repository API version. Valid values are:
+               + **V1**: V1 version
+               + **V2**: V2 version
+        :param _builtins.str connect_cluster_id: The jumper cluster ID.
+        :param _builtins.str fail_reason: The reason. Valid values are:
+               + **CREATE_JOB_FAILED**: The cluster access status is abnormal. Check the cluster access status.
+               + **REQUEST_API_ERROR**: The network is disconnected, and the image repository fails to be accessed. Check whether the
+               container cluster can access the image repository or retry on the Third-party Image Repository page.
+               + **SERVER_ERROR**: Internal system error. Try again later.
+        :param _builtins.str get_scan_image_channel: The method of obtaining the scan component. Valid values are:
+               + **Swr**: Access SWR to obtain the scan component.
+               + **Other**: Manually upload the scan component to the jumper cluster.
+        :param _builtins.str id: The image repository ID.
+        :param _builtins.int images_num: The number of images.
+        :param _builtins.int latest_sync_time: The last synchronization time, in ms.
+        :param _builtins.str namespace: The image repository project, which is used to specify the image repository directory that the scan
+               component is to be uploaded to. This value is returned when `get_scan_image_channel` is set to **Other**.
+        :param _builtins.str protocol: The protocol type. Valid values are:
+               + **http**: HTTP protocol.
+               + **https**: HTTPS protocol.
+        :param _builtins.str registry_addr: Specifies the image repository address.
+        :param _builtins.str registry_name: Specifies the repository name.
+        :param _builtins.str registry_type: Specifies the image repository type. If this parameter is not specified, all types
+               are returned by default. To query multiple types, separate them with commas (,). Valid values are:
+               + **Harbor**: Harbor
+               + **Jfrog**: Jfrog
+               + **SwrPrivate**: SWR private repository
+               + **SwrShared**: SWR shared repository
+               + **SwrEnterprise**: SWR enterprise repository
+               + **Other**: Other repository
+        :param _builtins.str registry_username: The username for logging in to the image repository.
+        :param _builtins.str status: Specifies the access status. Valid values are:
+               + **success**: The access is successful.
+               + **fail**: The access is abnormal.
+               + **accessing**: Accessing.
+        """
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "connect_cluster_id", connect_cluster_id)
+        pulumi.set(__self__, "fail_reason", fail_reason)
+        pulumi.set(__self__, "get_scan_image_channel", get_scan_image_channel)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "images_num", images_num)
+        pulumi.set(__self__, "latest_sync_time", latest_sync_time)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "registry_addr", registry_addr)
+        pulumi.set(__self__, "registry_name", registry_name)
+        pulumi.set(__self__, "registry_type", registry_type)
+        pulumi.set(__self__, "registry_username", registry_username)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> _builtins.str:
+        """
+        The image repository API version. Valid values are:
+        + **V1**: V1 version
+        + **V2**: V2 version
+        """
+        return pulumi.get(self, "api_version")
+
+    @_builtins.property
+    @pulumi.getter(name="connectClusterId")
+    def connect_cluster_id(self) -> _builtins.str:
+        """
+        The jumper cluster ID.
+        """
+        return pulumi.get(self, "connect_cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="failReason")
+    def fail_reason(self) -> _builtins.str:
+        """
+        The reason. Valid values are:
+        + **CREATE_JOB_FAILED**: The cluster access status is abnormal. Check the cluster access status.
+        + **REQUEST_API_ERROR**: The network is disconnected, and the image repository fails to be accessed. Check whether the
+        container cluster can access the image repository or retry on the Third-party Image Repository page.
+        + **SERVER_ERROR**: Internal system error. Try again later.
+        """
+        return pulumi.get(self, "fail_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="getScanImageChannel")
+    def get_scan_image_channel(self) -> _builtins.str:
+        """
+        The method of obtaining the scan component. Valid values are:
+        + **Swr**: Access SWR to obtain the scan component.
+        + **Other**: Manually upload the scan component to the jumper cluster.
+        """
+        return pulumi.get(self, "get_scan_image_channel")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The image repository ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imagesNum")
+    def images_num(self) -> _builtins.int:
+        """
+        The number of images.
+        """
+        return pulumi.get(self, "images_num")
+
+    @_builtins.property
+    @pulumi.getter(name="latestSyncTime")
+    def latest_sync_time(self) -> _builtins.int:
+        """
+        The last synchronization time, in ms.
+        """
+        return pulumi.get(self, "latest_sync_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The image repository project, which is used to specify the image repository directory that the scan
+        component is to be uploaded to. This value is returned when `get_scan_image_channel` is set to **Other**.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol type. Valid values are:
+        + **http**: HTTP protocol.
+        + **https**: HTTPS protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="registryAddr")
+    def registry_addr(self) -> _builtins.str:
+        """
+        Specifies the image repository address.
+        """
+        return pulumi.get(self, "registry_addr")
+
+    @_builtins.property
+    @pulumi.getter(name="registryName")
+    def registry_name(self) -> _builtins.str:
+        """
+        Specifies the repository name.
+        """
+        return pulumi.get(self, "registry_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registryType")
+    def registry_type(self) -> _builtins.str:
+        """
+        Specifies the image repository type. If this parameter is not specified, all types
+        are returned by default. To query multiple types, separate them with commas (,). Valid values are:
+        + **Harbor**: Harbor
+        + **Jfrog**: Jfrog
+        + **SwrPrivate**: SWR private repository
+        + **SwrShared**: SWR shared repository
+        + **SwrEnterprise**: SWR enterprise repository
+        + **Other**: Other repository
+        """
+        return pulumi.get(self, "registry_type")
+
+    @_builtins.property
+    @pulumi.getter(name="registryUsername")
+    def registry_username(self) -> _builtins.str:
+        """
+        The username for logging in to the image repository.
+        """
+        return pulumi.get(self, "registry_username")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the access status. Valid values are:
+        + **success**: The access is successful.
+        + **fail**: The access is abnormal.
+        + **accessing**: Accessing.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetImageRegistryImagesDataListResult(dict):
+    def __init__(__self__, *,
+                 association_images: Sequence['outputs.GetImageRegistryImagesDataListAssociationImageResult'],
+                 domain_name: _builtins.str,
+                 id: _builtins.int,
+                 image_digest: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_size: _builtins.int,
+                 image_type: _builtins.str,
+                 image_version: _builtins.str,
+                 instance_id: _builtins.str,
+                 instance_name: _builtins.str,
+                 instance_url: _builtins.str,
+                 is_multiple_arch: _builtins.bool,
+                 latest_scan_time: _builtins.int,
+                 latest_sync_time: _builtins.int,
+                 latest_update_time: _builtins.int,
+                 latest_version: _builtins.bool,
+                 malicious_file_num: _builtins.int,
+                 namespace: _builtins.str,
+                 registry_id: _builtins.str,
+                 registry_name: _builtins.str,
+                 registry_type: _builtins.str,
+                 scan_failed_code: _builtins.str,
+                 scan_failed_desc: _builtins.str,
+                 scan_status: _builtins.str,
+                 scannable: _builtins.bool,
+                 severity_level: _builtins.str,
+                 shared_status: _builtins.str,
+                 unsafe_setting_num: _builtins.int,
+                 vul_num: _builtins.int):
+        """
+        :param Sequence['GetImageRegistryImagesDataListAssociationImageArgs'] association_images: The multi-architecture associated image information.
+        :param _builtins.str domain_name: The owner (shared image parameter).
+        :param _builtins.int id: The ID.
+        :param _builtins.str image_digest: The image digest.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: Specifies the image name.
+        :param _builtins.int image_size: Specifies the image size.
+        :param _builtins.str image_type: Specifies the image type. Valid values are:
+               + **private_image**: SWR private image
+               + **shared_image**: SWR shared image
+               + **instance_image**: SWR enterprise edition image
+               + **harbor**: Harbor repository image
+               + **jfrog**: JFrog image
+        :param _builtins.str image_version: Specifies the image tag.
+        :param _builtins.str instance_id: Specifies the enterprise repository instance ID. This parameter can be specified
+               for the enterprise edition SWR.
+        :param _builtins.str instance_name: Specifies the enterprise image instance name. This parameter can be specified
+               for the enterprise edition SWR.
+        :param _builtins.str instance_url: The enterprise image instance URL.
+        :param _builtins.bool is_multiple_arch: Whether it is a multi-architecture image.
+        :param _builtins.int latest_scan_time: The last scanned, in ms.
+        :param _builtins.int latest_sync_time: The last synchronization time, in ms.
+        :param _builtins.int latest_update_time: The last update time of the image tag, in ms.
+        :param _builtins.bool latest_version: Specifies whether to focus only on the latest version image.
+        :param _builtins.int malicious_file_num: The number of malicious files.
+        :param _builtins.str namespace: Specifies the organization name.
+        :param _builtins.str registry_id: The image repository ID.
+        :param _builtins.str registry_name: Specifies the repository name.
+        :param _builtins.str registry_type: The image repository type. Valid values are:
+               + **SwrPrivate**: SWR private repository.
+               + **SwrShared**: SWR shared repository.
+               + **SwrEnterprise**: SWR enterprise repository.
+               + **Harbor**: Harbor repository.
+               + **Jfrog**: JFrog repository.
+               + **Other**: Other repository.
+        :param _builtins.str scan_failed_code: The failure cause code of the scan. The scan failure cause codes and their description are as
+               follows:
+               + **unknown_error**: Unknown error.
+               + **authentication_failed**: Authentication failed.
+               + **download_failed**: The image download failed. Contact technical support.
+               + **image_over_sized**: The image is too large and cannot be scanned. Reduce the image size.
+               + **get_detail_info_not_found**: Image details failed to be obtained. The image is not found in the repository.
+               Synchronize the latest images.
+               + **image_layer_over_sized**: The image has too many layers and cannot be scanned. Reduce the image size.
+               + **schema_v1_not_support**: Schema V1 images cannot be scanned. Upgrade to V2.
+               + **access_swr_failed**: Failed to access SWR. Contact technical support.
+               + **swr_authentication_error**: The SWR authorization is missing. Refer to the image authorization guide to configure
+               permissions.
+               + **failed_to_scan_vulnerability**: The vulnerability scan failed.
+               + **failed_to_scan_file**: The file scan failed.
+               + **failed_to_scan_software**: The software scan failed.
+               + **failed_to_check_sensitive_information**: Failed to check sensitive information.
+               + **failed_to_check_baseline**: Baseline check failed.
+               + **failed_to_check_software_compliance**: The software compliance check failed.
+               + **failed_to_query_basic_image_information**: Failed to query the basic image information.
+               + **failed_to_check_build_cmd**: Failed to scan the image building instructions.
+               + **response_timed_out**: The response timed out.
+               + **database_error**: Database error.
+               + **failed_to_send_the_scan_request**: Failed to send the scan request.
+        :param _builtins.str scan_failed_desc: The failure cause of the scan. The scan failure cause codes and their description are as follows:
+               + **unknown_error**：Unknown error.
+               + **authentication_failed**：Authentication failed.
+               + **download_failed**：The image download failed. Contact technical support.
+               + **image_over_sized**：The image is too large and cannot be scanned. Reduce the image size.
+               + **get_detail_info_not_found**：Image details failed to be obtained. The image is not found in the repository.
+               Synchronize the latest images.
+               + **image_layer_over_sized**：The image has too many layers and cannot be scanned. Reduce the image size.
+               + **schema_v1_not_support**：Schema V1 images cannot be scanned. Upgrade to V2.
+               + **access_swr_failed**：Failed to access SWR. Contact technical support.
+               + **swr_authentication_error**：The SWR authorization is missing. Refer to the image authorization guide to configure
+               permissions.
+               + **failed_to_scan_vulnerability**：The vulnerability scan failed.
+               + **failed_to_scan_file**：The file scan failed.
+               + **failed_to_scan_software**：The software scan failed.
+               + **failed_to_check_sensitive_information**：Failed to check sensitive information.
+               + **failed_to_check_baseline**：Baseline check failed.
+               + **failed_to_check_software_compliance**：The software compliance check failed.
+               + **failed_to_query_basic_image_information**：Failed to query the basic image information.
+               + **failed_to_check_build_cmd**：Failed to scan the image building instructions.
+               + **response_timed_out**：The response timed out.
+               + **database_error**：Database error.
+               + **failed_to_send_the_scan_request**：Failed to send the scan request.
+        :param _builtins.str scan_status: Specifies the scan status. Valid values are:
+               + **unscan**: not scanned
+               + **success**: the scan is complete
+               + **scanning**: scanning
+               + **failed**: the scan failed
+               + **waiting_for_scan**: waiting for scan
+        :param _builtins.bool scannable: Whether scan or not.
+        :param _builtins.str severity_level: Specifies the image risk level, which is displayed after the image scan is complete.
+               Valid values are:
+               + **Security**: secure
+               + **Low**: low-risk
+               + **Medium**: medium-risk
+               + **High**: high-risk
+        :param _builtins.str shared_status: The shared image status. Valid values are:
+               + **expired**: expired
+               + **effective**: valid
+        :param _builtins.int unsafe_setting_num: The number of settings that failed the baseline check.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "association_images", association_images)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_digest", image_digest)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_size", image_size)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "image_version", image_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "instance_url", instance_url)
+        pulumi.set(__self__, "is_multiple_arch", is_multiple_arch)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "latest_sync_time", latest_sync_time)
+        pulumi.set(__self__, "latest_update_time", latest_update_time)
+        pulumi.set(__self__, "latest_version", latest_version)
+        pulumi.set(__self__, "malicious_file_num", malicious_file_num)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "registry_id", registry_id)
+        pulumi.set(__self__, "registry_name", registry_name)
+        pulumi.set(__self__, "registry_type", registry_type)
+        pulumi.set(__self__, "scan_failed_code", scan_failed_code)
+        pulumi.set(__self__, "scan_failed_desc", scan_failed_desc)
+        pulumi.set(__self__, "scan_status", scan_status)
+        pulumi.set(__self__, "scannable", scannable)
+        pulumi.set(__self__, "severity_level", severity_level)
+        pulumi.set(__self__, "shared_status", shared_status)
+        pulumi.set(__self__, "unsafe_setting_num", unsafe_setting_num)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="associationImages")
+    def association_images(self) -> Sequence['outputs.GetImageRegistryImagesDataListAssociationImageResult']:
+        """
+        The multi-architecture associated image information.
+        """
+        return pulumi.get(self, "association_images")
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The owner (shared image parameter).
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageDigest")
+    def image_digest(self) -> _builtins.str:
+        """
+        The image digest.
+        """
+        return pulumi.get(self, "image_digest")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        Specifies the image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageSize")
+    def image_size(self) -> _builtins.int:
+        """
+        Specifies the image size.
+        """
+        return pulumi.get(self, "image_size")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        Specifies the image type. Valid values are:
+        + **private_image**: SWR private image
+        + **shared_image**: SWR shared image
+        + **instance_image**: SWR enterprise edition image
+        + **harbor**: Harbor repository image
+        + **jfrog**: JFrog image
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        Specifies the image tag.
+        """
+        return pulumi.get(self, "image_version")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise repository instance ID. This parameter can be specified
+        for the enterprise edition SWR.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> _builtins.str:
+        """
+        Specifies the enterprise image instance name. This parameter can be specified
+        for the enterprise edition SWR.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceUrl")
+    def instance_url(self) -> _builtins.str:
+        """
+        The enterprise image instance URL.
+        """
+        return pulumi.get(self, "instance_url")
+
+    @_builtins.property
+    @pulumi.getter(name="isMultipleArch")
+    def is_multiple_arch(self) -> _builtins.bool:
+        """
+        Whether it is a multi-architecture image.
+        """
+        return pulumi.get(self, "is_multiple_arch")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The last scanned, in ms.
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="latestSyncTime")
+    def latest_sync_time(self) -> _builtins.int:
+        """
+        The last synchronization time, in ms.
+        """
+        return pulumi.get(self, "latest_sync_time")
+
+    @_builtins.property
+    @pulumi.getter(name="latestUpdateTime")
+    def latest_update_time(self) -> _builtins.int:
+        """
+        The last update time of the image tag, in ms.
+        """
+        return pulumi.get(self, "latest_update_time")
+
+    @_builtins.property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> _builtins.bool:
+        """
+        Specifies whether to focus only on the latest version image.
+        """
+        return pulumi.get(self, "latest_version")
+
+    @_builtins.property
+    @pulumi.getter(name="maliciousFileNum")
+    def malicious_file_num(self) -> _builtins.int:
+        """
+        The number of malicious files.
+        """
+        return pulumi.get(self, "malicious_file_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the organization name.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="registryId")
+    def registry_id(self) -> _builtins.str:
+        """
+        The image repository ID.
+        """
+        return pulumi.get(self, "registry_id")
+
+    @_builtins.property
+    @pulumi.getter(name="registryName")
+    def registry_name(self) -> _builtins.str:
+        """
+        Specifies the repository name.
+        """
+        return pulumi.get(self, "registry_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registryType")
+    def registry_type(self) -> _builtins.str:
+        """
+        The image repository type. Valid values are:
+        + **SwrPrivate**: SWR private repository.
+        + **SwrShared**: SWR shared repository.
+        + **SwrEnterprise**: SWR enterprise repository.
+        + **Harbor**: Harbor repository.
+        + **Jfrog**: JFrog repository.
+        + **Other**: Other repository.
+        """
+        return pulumi.get(self, "registry_type")
+
+    @_builtins.property
+    @pulumi.getter(name="scanFailedCode")
+    def scan_failed_code(self) -> _builtins.str:
+        """
+        The failure cause code of the scan. The scan failure cause codes and their description are as
+        follows:
+        + **unknown_error**: Unknown error.
+        + **authentication_failed**: Authentication failed.
+        + **download_failed**: The image download failed. Contact technical support.
+        + **image_over_sized**: The image is too large and cannot be scanned. Reduce the image size.
+        + **get_detail_info_not_found**: Image details failed to be obtained. The image is not found in the repository.
+        Synchronize the latest images.
+        + **image_layer_over_sized**: The image has too many layers and cannot be scanned. Reduce the image size.
+        + **schema_v1_not_support**: Schema V1 images cannot be scanned. Upgrade to V2.
+        + **access_swr_failed**: Failed to access SWR. Contact technical support.
+        + **swr_authentication_error**: The SWR authorization is missing. Refer to the image authorization guide to configure
+        permissions.
+        + **failed_to_scan_vulnerability**: The vulnerability scan failed.
+        + **failed_to_scan_file**: The file scan failed.
+        + **failed_to_scan_software**: The software scan failed.
+        + **failed_to_check_sensitive_information**: Failed to check sensitive information.
+        + **failed_to_check_baseline**: Baseline check failed.
+        + **failed_to_check_software_compliance**: The software compliance check failed.
+        + **failed_to_query_basic_image_information**: Failed to query the basic image information.
+        + **failed_to_check_build_cmd**: Failed to scan the image building instructions.
+        + **response_timed_out**: The response timed out.
+        + **database_error**: Database error.
+        + **failed_to_send_the_scan_request**: Failed to send the scan request.
+        """
+        return pulumi.get(self, "scan_failed_code")
+
+    @_builtins.property
+    @pulumi.getter(name="scanFailedDesc")
+    def scan_failed_desc(self) -> _builtins.str:
+        """
+        The failure cause of the scan. The scan failure cause codes and their description are as follows:
+        + **unknown_error**：Unknown error.
+        + **authentication_failed**：Authentication failed.
+        + **download_failed**：The image download failed. Contact technical support.
+        + **image_over_sized**：The image is too large and cannot be scanned. Reduce the image size.
+        + **get_detail_info_not_found**：Image details failed to be obtained. The image is not found in the repository.
+        Synchronize the latest images.
+        + **image_layer_over_sized**：The image has too many layers and cannot be scanned. Reduce the image size.
+        + **schema_v1_not_support**：Schema V1 images cannot be scanned. Upgrade to V2.
+        + **access_swr_failed**：Failed to access SWR. Contact technical support.
+        + **swr_authentication_error**：The SWR authorization is missing. Refer to the image authorization guide to configure
+        permissions.
+        + **failed_to_scan_vulnerability**：The vulnerability scan failed.
+        + **failed_to_scan_file**：The file scan failed.
+        + **failed_to_scan_software**：The software scan failed.
+        + **failed_to_check_sensitive_information**：Failed to check sensitive information.
+        + **failed_to_check_baseline**：Baseline check failed.
+        + **failed_to_check_software_compliance**：The software compliance check failed.
+        + **failed_to_query_basic_image_information**：Failed to query the basic image information.
+        + **failed_to_check_build_cmd**：Failed to scan the image building instructions.
+        + **response_timed_out**：The response timed out.
+        + **database_error**：Database error.
+        + **failed_to_send_the_scan_request**：Failed to send the scan request.
+        """
+        return pulumi.get(self, "scan_failed_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="scanStatus")
+    def scan_status(self) -> _builtins.str:
+        """
+        Specifies the scan status. Valid values are:
+        + **unscan**: not scanned
+        + **success**: the scan is complete
+        + **scanning**: scanning
+        + **failed**: the scan failed
+        + **waiting_for_scan**: waiting for scan
+        """
+        return pulumi.get(self, "scan_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def scannable(self) -> _builtins.bool:
+        """
+        Whether scan or not.
+        """
+        return pulumi.get(self, "scannable")
+
+    @_builtins.property
+    @pulumi.getter(name="severityLevel")
+    def severity_level(self) -> _builtins.str:
+        """
+        Specifies the image risk level, which is displayed after the image scan is complete.
+        Valid values are:
+        + **Security**: secure
+        + **Low**: low-risk
+        + **Medium**: medium-risk
+        + **High**: high-risk
+        """
+        return pulumi.get(self, "severity_level")
+
+    @_builtins.property
+    @pulumi.getter(name="sharedStatus")
+    def shared_status(self) -> _builtins.str:
+        """
+        The shared image status. Valid values are:
+        + **expired**: expired
+        + **effective**: valid
+        """
+        return pulumi.get(self, "shared_status")
+
+    @_builtins.property
+    @pulumi.getter(name="unsafeSettingNum")
+    def unsafe_setting_num(self) -> _builtins.int:
+        """
+        The number of settings that failed the baseline check.
+        """
+        return pulumi.get(self, "unsafe_setting_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetImageRegistryImagesDataListAssociationImageResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.int,
+                 image_digest: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_type: _builtins.str,
+                 image_version: _builtins.str,
+                 malicious_file_num: _builtins.int,
+                 namespace: _builtins.str,
+                 scan_status: _builtins.str,
+                 unsafe_setting_num: _builtins.int,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.int id: The ID.
+        :param _builtins.str image_digest: The image digest.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: Specifies the image name.
+        :param _builtins.str image_type: Specifies the image type. Valid values are:
+               + **private_image**: SWR private image
+               + **shared_image**: SWR shared image
+               + **instance_image**: SWR enterprise edition image
+               + **harbor**: Harbor repository image
+               + **jfrog**: JFrog image
+        :param _builtins.str image_version: Specifies the image tag.
+        :param _builtins.int malicious_file_num: The number of malicious files.
+        :param _builtins.str namespace: Specifies the organization name.
+        :param _builtins.str scan_status: Specifies the scan status. Valid values are:
+               + **unscan**: not scanned
+               + **success**: the scan is complete
+               + **scanning**: scanning
+               + **failed**: the scan failed
+               + **waiting_for_scan**: waiting for scan
+        :param _builtins.int unsafe_setting_num: The number of settings that failed the baseline check.
+        :param _builtins.int vul_num: The number of vulnerabilities.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_digest", image_digest)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "image_version", image_version)
+        pulumi.set(__self__, "malicious_file_num", malicious_file_num)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "scan_status", scan_status)
+        pulumi.set(__self__, "unsafe_setting_num", unsafe_setting_num)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageDigest")
+    def image_digest(self) -> _builtins.str:
+        """
+        The image digest.
+        """
+        return pulumi.get(self, "image_digest")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        Specifies the image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        Specifies the image type. Valid values are:
+        + **private_image**: SWR private image
+        + **shared_image**: SWR shared image
+        + **instance_image**: SWR enterprise edition image
+        + **harbor**: Harbor repository image
+        + **jfrog**: JFrog image
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        Specifies the image tag.
+        """
+        return pulumi.get(self, "image_version")
+
+    @_builtins.property
+    @pulumi.getter(name="maliciousFileNum")
+    def malicious_file_num(self) -> _builtins.int:
+        """
+        The number of malicious files.
+        """
+        return pulumi.get(self, "malicious_file_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the organization name.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="scanStatus")
+    def scan_status(self) -> _builtins.str:
+        """
+        Specifies the scan status. Valid values are:
+        + **unscan**: not scanned
+        + **success**: the scan is complete
+        + **scanning**: scanning
+        + **failed**: the scan failed
+        + **waiting_for_scan**: waiting for scan
+        """
+        return pulumi.get(self, "scan_status")
+
+    @_builtins.property
+    @pulumi.getter(name="unsafeSettingNum")
+    def unsafe_setting_num(self) -> _builtins.int:
+        """
+        The number of settings that failed the baseline check.
+        """
+        return pulumi.get(self, "unsafe_setting_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetImageSensitiveInformationDataListResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 description: _builtins.str,
+                 file_path: _builtins.str,
+                 handle_status: _builtins.str,
+                 latest_scan_time: _builtins.int,
+                 name: _builtins.str,
+                 operate_accept: _builtins.str,
+                 position: _builtins.str,
+                 sensitive_info_id: _builtins.str,
+                 severity: _builtins.str):
+        """
+        :param _builtins.str content: The sensitive information content.
+        :param _builtins.str description: The rule description.
+        :param _builtins.str file_path: The file path.
+        :param _builtins.str handle_status: Whether it has been handled. Valid values are:
+               + **unhandled**: Not handled.
+               + **handled**: Handled.
+        :param _builtins.int latest_scan_time: The last scan time, in milliseconds.
+        :param _builtins.str name: The rule name.
+        :param _builtins.str operate_accept: The operation type. Valid values are:
+               + **ignore**: Ignore.
+               + **do_not_ignore**: Do not ignore.
+        :param _builtins.str position: The layer where the sensitive information is located in the image.
+        :param _builtins.str sensitive_info_id: The sensitive event ID.
+        :param _builtins.str severity: The threat level. Valid values are:
+               + **critical**: Critical.
+               + **high**: High risk.
+               + **medium**: Medium risk.
+               + **low**: Low risk.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operate_accept", operate_accept)
+        pulumi.set(__self__, "position", position)
+        pulumi.set(__self__, "sensitive_info_id", sensitive_info_id)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The sensitive information content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        The file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Whether it has been handled. Valid values are:
+        + **unhandled**: Not handled.
+        + **handled**: Handled.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The last scan time, in milliseconds.
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The rule name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operateAccept")
+    def operate_accept(self) -> _builtins.str:
+        """
+        The operation type. Valid values are:
+        + **ignore**: Ignore.
+        + **do_not_ignore**: Do not ignore.
+        """
+        return pulumi.get(self, "operate_accept")
+
+    @_builtins.property
+    @pulumi.getter
+    def position(self) -> _builtins.str:
+        """
+        The layer where the sensitive information is located in the image.
+        """
+        return pulumi.get(self, "position")
+
+    @_builtins.property
+    @pulumi.getter(name="sensitiveInfoId")
+    def sensitive_info_id(self) -> _builtins.str:
+        """
+        The sensitive event ID.
+        """
+        return pulumi.get(self, "sensitive_info_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The threat level. Valid values are:
+        + **critical**: Critical.
+        + **high**: High risk.
+        + **medium**: Medium risk.
+        + **low**: Low risk.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetImageSensitiveInformationDetailDataListResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 description: _builtins.str,
+                 file_path: _builtins.str,
+                 handle_status: _builtins.str,
+                 latest_scan_time: _builtins.int,
+                 name: _builtins.str,
+                 operate_accept: _builtins.str,
+                 position: _builtins.str,
+                 sensitive_info_id: _builtins.str,
+                 severity: _builtins.str):
+        """
+        :param _builtins.str content: The sensitive information content.
+        :param _builtins.str description: The rule description.
+        :param _builtins.str file_path: Specifies the file path.
+        :param _builtins.str handle_status: Specifies whether it has been handled. Valid values are:
+               + **unhandled**: Not handled.
+               + **handled**: Handled.
+        :param _builtins.int latest_scan_time: The last scan time, in milliseconds.
+        :param _builtins.str name: The rule name.
+        :param _builtins.str operate_accept: The operation type. Valid values are:
+               + **ignore**: Ignore.
+               + **do_not_ignore**: Do not ignore.
+        :param _builtins.str position: The layer where the sensitive information is located in the image.
+        :param _builtins.str sensitive_info_id: The sensitive event ID.
+        :param _builtins.str severity: Specifies the threat level. Valid values are:
+               + **critical**: Critical.
+               + **high**: High risk.
+               + **medium**: Medium risk.
+               + **low**: Low risk.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "latest_scan_time", latest_scan_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operate_accept", operate_accept)
+        pulumi.set(__self__, "position", position)
+        pulumi.set(__self__, "sensitive_info_id", sensitive_info_id)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The sensitive information content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        Specifies the file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Specifies whether it has been handled. Valid values are:
+        + **unhandled**: Not handled.
+        + **handled**: Handled.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="latestScanTime")
+    def latest_scan_time(self) -> _builtins.int:
+        """
+        The last scan time, in milliseconds.
+        """
+        return pulumi.get(self, "latest_scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The rule name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operateAccept")
+    def operate_accept(self) -> _builtins.str:
+        """
+        The operation type. Valid values are:
+        + **ignore**: Ignore.
+        + **do_not_ignore**: Do not ignore.
+        """
+        return pulumi.get(self, "operate_accept")
+
+    @_builtins.property
+    @pulumi.getter
+    def position(self) -> _builtins.str:
+        """
+        The layer where the sensitive information is located in the image.
+        """
+        return pulumi.get(self, "position")
+
+    @_builtins.property
+    @pulumi.getter(name="sensitiveInfoId")
+    def sensitive_info_id(self) -> _builtins.str:
+        """
+        The sensitive event ID.
+        """
+        return pulumi.get(self, "sensitive_info_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the threat level. Valid values are:
+        + **critical**: Critical.
+        + **high**: High risk.
+        + **medium**: Medium risk.
+        + **low**: Low risk.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetImageTasksDataListResult(dict):
+    def __init__(__self__, *,
+                 begin_time: _builtins.int,
+                 end_time: _builtins.int,
+                 failed_images: Sequence['outputs.GetImageTasksDataListFailedImageResult'],
+                 failed_num: _builtins.int,
+                 failed_reason: _builtins.str,
+                 image_type: _builtins.str,
+                 is_all: _builtins.bool,
+                 policy_id: _builtins.str,
+                 rate_limit: _builtins.int,
+                 remain_min: _builtins.int,
+                 risky_num: _builtins.int,
+                 scan_scope: _builtins.int,
+                 success_num: _builtins.int,
+                 sync_task_type: _builtins.str,
+                 task_id: _builtins.str,
+                 task_name: _builtins.str,
+                 task_status: _builtins.int,
+                 task_type: _builtins.str,
+                 total_num: _builtins.int):
+        """
+        :param _builtins.int begin_time: The task start time.
+        :param _builtins.int end_time: Specifies the task end time, in milliseconds.
+        :param Sequence['GetImageTasksDataListFailedImageArgs'] failed_images: The list of failed images.
+        :param _builtins.int failed_num: The number of images that fail to be scanned.
+        :param _builtins.str failed_reason: The failed reason.
+        :param _builtins.str image_type: The image type.
+        :param _builtins.bool is_all: Whether to scan all images.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.int rate_limit: The scan speed limit (unit:images/hour)
+        :param _builtins.int remain_min: The task remain time.
+        :param _builtins.int risky_num: The total number of images with vulnerability risks, baseline risks, and malicious files.
+        :param _builtins.int scan_scope: Specifies the scan risk type.
+               The valid values are as follows:
+               + **0**: None.
+               + **0x7fffffff**: All.
+               + **0x000f0000**: Vulnerability.
+               + **0x0000f000**: Baseline check.
+               + **0x00000f00**: Malicious file.
+               + **0x000000f0**: Sensitive information.
+               + **0x0000000f**: Software compliance.
+        :param _builtins.int success_num: The number of images that are successfully scanned.
+        :param _builtins.str sync_task_type: The synchronization task type.
+        :param _builtins.str task_id: Specifies the task ID.
+        :param _builtins.str task_name: Specifies the task name fuzzy match.
+        :param _builtins.int task_status: Specifies the task status.
+               The valid values are as follows:
+               + **scanning**
+               + **finished**
+        :param _builtins.str task_type: Specifies the task type.
+               The valid values are as follows:
+               + **cycle**: Scheduled scan.
+               + **manual**: Manual scan.
+               + **autoSync**: Scheduled synchronization.
+               + **manualSync**: Manual synchronization.
+        :param _builtins.int total_num: The total number of images associated with a task.
+        """
+        pulumi.set(__self__, "begin_time", begin_time)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "failed_images", failed_images)
+        pulumi.set(__self__, "failed_num", failed_num)
+        pulumi.set(__self__, "failed_reason", failed_reason)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "is_all", is_all)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "rate_limit", rate_limit)
+        pulumi.set(__self__, "remain_min", remain_min)
+        pulumi.set(__self__, "risky_num", risky_num)
+        pulumi.set(__self__, "scan_scope", scan_scope)
+        pulumi.set(__self__, "success_num", success_num)
+        pulumi.set(__self__, "sync_task_type", sync_task_type)
+        pulumi.set(__self__, "task_id", task_id)
+        pulumi.set(__self__, "task_name", task_name)
+        pulumi.set(__self__, "task_status", task_status)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "total_num", total_num)
+
+    @_builtins.property
+    @pulumi.getter(name="beginTime")
+    def begin_time(self) -> _builtins.int:
+        """
+        The task start time.
+        """
+        return pulumi.get(self, "begin_time")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        Specifies the task end time, in milliseconds.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="failedImages")
+    def failed_images(self) -> Sequence['outputs.GetImageTasksDataListFailedImageResult']:
+        """
+        The list of failed images.
+        """
+        return pulumi.get(self, "failed_images")
+
+    @_builtins.property
+    @pulumi.getter(name="failedNum")
+    def failed_num(self) -> _builtins.int:
+        """
+        The number of images that fail to be scanned.
+        """
+        return pulumi.get(self, "failed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> _builtins.str:
+        """
+        The failed reason.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        The image type.
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="isAll")
+    def is_all(self) -> _builtins.bool:
+        """
+        Whether to scan all images.
+        """
+        return pulumi.get(self, "is_all")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="rateLimit")
+    def rate_limit(self) -> _builtins.int:
+        """
+        The scan speed limit (unit:images/hour)
+        """
+        return pulumi.get(self, "rate_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="remainMin")
+    def remain_min(self) -> _builtins.int:
+        """
+        The task remain time.
+        """
+        return pulumi.get(self, "remain_min")
+
+    @_builtins.property
+    @pulumi.getter(name="riskyNum")
+    def risky_num(self) -> _builtins.int:
+        """
+        The total number of images with vulnerability risks, baseline risks, and malicious files.
+        """
+        return pulumi.get(self, "risky_num")
+
+    @_builtins.property
+    @pulumi.getter(name="scanScope")
+    def scan_scope(self) -> _builtins.int:
+        """
+        Specifies the scan risk type.
+        The valid values are as follows:
+        + **0**: None.
+        + **0x7fffffff**: All.
+        + **0x000f0000**: Vulnerability.
+        + **0x0000f000**: Baseline check.
+        + **0x00000f00**: Malicious file.
+        + **0x000000f0**: Sensitive information.
+        + **0x0000000f**: Software compliance.
+        """
+        return pulumi.get(self, "scan_scope")
+
+    @_builtins.property
+    @pulumi.getter(name="successNum")
+    def success_num(self) -> _builtins.int:
+        """
+        The number of images that are successfully scanned.
+        """
+        return pulumi.get(self, "success_num")
+
+    @_builtins.property
+    @pulumi.getter(name="syncTaskType")
+    def sync_task_type(self) -> _builtins.str:
+        """
+        The synchronization task type.
+        """
+        return pulumi.get(self, "sync_task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="taskId")
+    def task_id(self) -> _builtins.str:
+        """
+        Specifies the task ID.
+        """
+        return pulumi.get(self, "task_id")
+
+    @_builtins.property
+    @pulumi.getter(name="taskName")
+    def task_name(self) -> _builtins.str:
+        """
+        Specifies the task name fuzzy match.
+        """
+        return pulumi.get(self, "task_name")
+
+    @_builtins.property
+    @pulumi.getter(name="taskStatus")
+    def task_status(self) -> _builtins.int:
+        """
+        Specifies the task status.
+        The valid values are as follows:
+        + **scanning**
+        + **finished**
+        """
+        return pulumi.get(self, "task_status")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        Specifies the task type.
+        The valid values are as follows:
+        + **cycle**: Scheduled scan.
+        + **manual**: Manual scan.
+        + **autoSync**: Scheduled synchronization.
+        + **manualSync**: Manual synchronization.
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The total number of images associated with a task.
+        """
+        return pulumi.get(self, "total_num")
+
+
+@pulumi.output_type
+class GetImageTasksDataListFailedImageResult(dict):
+    def __init__(__self__, *,
+                 failed_reason: _builtins.str,
+                 id: _builtins.int,
+                 image_name: _builtins.str,
+                 image_version: _builtins.str,
+                 namespace: _builtins.str,
+                 registry_id: _builtins.str,
+                 registry_name: _builtins.str,
+                 registry_type: _builtins.str):
+        """
+        :param _builtins.str failed_reason: The failed reason.
+        :param _builtins.int id: The failed image ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.str image_version: The image version.
+        :param _builtins.str namespace: The name space.
+        :param _builtins.str registry_id: The image repository ID.
+        :param _builtins.str registry_name: The image repository name.
+        :param _builtins.str registry_type: The image repository type.
+               The valid values are as follows:
+               + **SwrPrivate**: SWR private repository.
+               + **SwrShared**: SWR shared repository.
+               + **SwrEnterprise**: SWR enterprise repository.
+               + **Harbor**: Harbor repository.
+               + **Jfrog**: JFfog repository.
+               + **Other**: Other repository.
+        """
+        pulumi.set(__self__, "failed_reason", failed_reason)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_version", image_version)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "registry_id", registry_id)
+        pulumi.set(__self__, "registry_name", registry_name)
+        pulumi.set(__self__, "registry_type", registry_type)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> _builtins.str:
+        """
+        The failed reason.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The failed image ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersion")
+    def image_version(self) -> _builtins.str:
+        """
+        The image version.
+        """
+        return pulumi.get(self, "image_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        The name space.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="registryId")
+    def registry_id(self) -> _builtins.str:
+        """
+        The image repository ID.
+        """
+        return pulumi.get(self, "registry_id")
+
+    @_builtins.property
+    @pulumi.getter(name="registryName")
+    def registry_name(self) -> _builtins.str:
+        """
+        The image repository name.
+        """
+        return pulumi.get(self, "registry_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registryType")
+    def registry_type(self) -> _builtins.str:
+        """
+        The image repository type.
+        The valid values are as follows:
+        + **SwrPrivate**: SWR private repository.
+        + **SwrShared**: SWR shared repository.
+        + **SwrEnterprise**: SWR enterprise repository.
+        + **Harbor**: Harbor repository.
+        + **Jfrog**: JFfog repository.
+        + **Other**: Other repository.
+        """
+        return pulumi.get(self, "registry_type")
+
+
+@pulumi.output_type
+class GetImageVulnerabilitiesDataListResult(dict):
+    def __init__(__self__, *,
+                 data_lists: Sequence['outputs.GetImageVulnerabilitiesDataListDataListResult'],
+                 description: _builtins.str,
+                 history_number: _builtins.int,
+                 repair_necessity: _builtins.str,
+                 solution: _builtins.str,
+                 undeal_number: _builtins.int,
+                 url: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param Sequence['GetImageVulnerabilitiesDataListDataListArgs'] data_lists: The CVE list.
+        :param _builtins.str description: The CVE description.
+        :param _builtins.int history_number: The number of affected mirrors in history.
+        :param _builtins.str repair_necessity: Specifies repair urgency.  
+               The valid values are as follows:
+               + **immediate_repair**: Need to repair as soon as possible.
+               + **delay_repair**: Can be postponed for repair.
+               + **not_needed_repair**: Not yet fixed.
+        :param _builtins.str solution: The solution.
+        :param _builtins.int undeal_number: The unprocessed image format.
+        :param _builtins.str url: The URL link.
+        :param _builtins.str vul_id: Specifies the vulnerability ID (supports fuzzy query).
+        :param _builtins.str vul_name: The vulnerability name.
+        """
+        pulumi.set(__self__, "data_lists", data_lists)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "history_number", history_number)
+        pulumi.set(__self__, "repair_necessity", repair_necessity)
+        pulumi.set(__self__, "solution", solution)
+        pulumi.set(__self__, "undeal_number", undeal_number)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter(name="dataLists")
+    def data_lists(self) -> Sequence['outputs.GetImageVulnerabilitiesDataListDataListResult']:
+        """
+        The CVE list.
+        """
+        return pulumi.get(self, "data_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The CVE description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="historyNumber")
+    def history_number(self) -> _builtins.int:
+        """
+        The number of affected mirrors in history.
+        """
+        return pulumi.get(self, "history_number")
+
+    @_builtins.property
+    @pulumi.getter(name="repairNecessity")
+    def repair_necessity(self) -> _builtins.str:
+        """
+        Specifies repair urgency.  
+        The valid values are as follows:
+        + **immediate_repair**: Need to repair as soon as possible.
+        + **delay_repair**: Can be postponed for repair.
+        + **not_needed_repair**: Not yet fixed.
+        """
+        return pulumi.get(self, "repair_necessity")
+
+    @_builtins.property
+    @pulumi.getter
+    def solution(self) -> _builtins.str:
+        """
+        The solution.
+        """
+        return pulumi.get(self, "solution")
+
+    @_builtins.property
+    @pulumi.getter(name="undealNumber")
+    def undeal_number(self) -> _builtins.int:
+        """
+        The unprocessed image format.
+        """
+        return pulumi.get(self, "undeal_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL link.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        Specifies the vulnerability ID (supports fuzzy query).
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        The vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetImageVulnerabilitiesDataListDataListResult(dict):
+    def __init__(__self__, *,
+                 cve_id: _builtins.str,
+                 cvss_score: _builtins.str,
+                 description: _builtins.str,
+                 publish_time: _builtins.str):
+        """
+        :param _builtins.str cve_id: The CVE ID.
+        :param _builtins.str cvss_score: The CVSS score.
+        :param _builtins.str description: The CVE description.
+        :param _builtins.str publish_time: The CVE announcement time, time unit: milliseconds (ms).
+        """
+        pulumi.set(__self__, "cve_id", cve_id)
+        pulumi.set(__self__, "cvss_score", cvss_score)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "publish_time", publish_time)
+
+    @_builtins.property
+    @pulumi.getter(name="cveId")
+    def cve_id(self) -> _builtins.str:
+        """
+        The CVE ID.
+        """
+        return pulumi.get(self, "cve_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cvssScore")
+    def cvss_score(self) -> _builtins.str:
+        """
+        The CVSS score.
+        """
+        return pulumi.get(self, "cvss_score")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The CVE description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.str:
+        """
+        The CVE announcement time, time unit: milliseconds (ms).
+        """
+        return pulumi.get(self, "publish_time")
+
+
+@pulumi.output_type
+class GetImageVulnerabilityCvesDataListResult(dict):
+    def __init__(__self__, *,
+                 cve_id: _builtins.str,
+                 cvss_score: _builtins.int,
+                 description: _builtins.str,
+                 publish_time: _builtins.int):
+        """
+        :param _builtins.str cve_id: The CVE ID.
+        :param _builtins.int cvss_score: The CVSS score.
+        :param _builtins.str description: The CVE description.
+        :param _builtins.int publish_time: The publication time, in milliseconds.
+        """
+        pulumi.set(__self__, "cve_id", cve_id)
+        pulumi.set(__self__, "cvss_score", cvss_score)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "publish_time", publish_time)
+
+    @_builtins.property
+    @pulumi.getter(name="cveId")
+    def cve_id(self) -> _builtins.str:
+        """
+        The CVE ID.
+        """
+        return pulumi.get(self, "cve_id")
+
+    @_builtins.property
+    @pulumi.getter(name="cvssScore")
+    def cvss_score(self) -> _builtins.int:
+        """
+        The CVSS score.
+        """
+        return pulumi.get(self, "cvss_score")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The CVE description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.int:
+        """
+        The publication time, in milliseconds.
+        """
+        return pulumi.get(self, "publish_time")
+
+
+@pulumi.output_type
+class GetImageWhitelistsDataListResult(dict):
+    def __init__(__self__, *,
+                 cves: Sequence['outputs.GetImageWhitelistsDataListCfeResult'],
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 image_infos: Sequence['outputs.GetImageWhitelistsDataListImageInfoResult'],
+                 query_infos: Sequence['outputs.GetImageWhitelistsDataListQueryInfoResult'],
+                 rule_type: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str,
+                 vul_type: _builtins.str):
+        """
+        :param Sequence['GetImageWhitelistsDataListCfeArgs'] cves: The vulnerability CVE list.
+        :param _builtins.str description: The whitelist description.
+        :param _builtins.str id: The repository image iD.
+        :param Sequence['GetImageWhitelistsDataListImageInfoArgs'] image_infos: The images list information. Only has value when `rule_type` set to **specific_images**.
+        :param Sequence['GetImageWhitelistsDataListQueryInfoArgs'] query_infos: The image type information. Only has value when `rule_type` set to **specific_image_types**.
+        :param _builtins.str rule_type: The whitelist rule type.
+               The valid values are as follows:
+               + **all_images**
+               + **specific_image_types**
+               + **specific_images**
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: Specifies the vulnerability name.
+        :param _builtins.str vul_type: Specifies the vulnerability type.
+               The valid values are as follows:
+               + **linux_vul**: Linux vulnerability.
+               + **app_vul**: Application vulnerability.
+        """
+        pulumi.set(__self__, "cves", cves)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_infos", image_infos)
+        pulumi.set(__self__, "query_infos", query_infos)
+        pulumi.set(__self__, "rule_type", rule_type)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+        pulumi.set(__self__, "vul_type", vul_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def cves(self) -> Sequence['outputs.GetImageWhitelistsDataListCfeResult']:
+        """
+        The vulnerability CVE list.
+        """
+        return pulumi.get(self, "cves")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The whitelist description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The repository image iD.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageInfos")
+    def image_infos(self) -> Sequence['outputs.GetImageWhitelistsDataListImageInfoResult']:
+        """
+        The images list information. Only has value when `rule_type` set to **specific_images**.
+        """
+        return pulumi.get(self, "image_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="queryInfos")
+    def query_infos(self) -> Sequence['outputs.GetImageWhitelistsDataListQueryInfoResult']:
+        """
+        The image type information. Only has value when `rule_type` set to **specific_image_types**.
+        """
+        return pulumi.get(self, "query_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleType")
+    def rule_type(self) -> _builtins.str:
+        """
+        The whitelist rule type.
+        The valid values are as follows:
+        + **all_images**
+        + **specific_image_types**
+        + **specific_images**
+        """
+        return pulumi.get(self, "rule_type")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        Specifies the vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vulType")
+    def vul_type(self) -> _builtins.str:
+        """
+        Specifies the vulnerability type.
+        The valid values are as follows:
+        + **linux_vul**: Linux vulnerability.
+        + **app_vul**: Application vulnerability.
+        """
+        return pulumi.get(self, "vul_type")
+
+
+@pulumi.output_type
+class GetImageWhitelistsDataListCfeResult(dict):
+    def __init__(__self__, *,
+                 cve_id: _builtins.str,
+                 cvss: _builtins.int):
+        """
+        :param _builtins.str cve_id: The CVE ID.
+        :param _builtins.int cvss: The CVSS score.
+        """
+        pulumi.set(__self__, "cve_id", cve_id)
+        pulumi.set(__self__, "cvss", cvss)
+
+    @_builtins.property
+    @pulumi.getter(name="cveId")
+    def cve_id(self) -> _builtins.str:
+        """
+        The CVE ID.
+        """
+        return pulumi.get(self, "cve_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def cvss(self) -> _builtins.int:
+        """
+        The CVSS score.
+        """
+        return pulumi.get(self, "cvss")
+
+
+@pulumi.output_type
+class GetImageWhitelistsDataListImageInfoResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.int,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str):
+        """
+        :param _builtins.int id: The repository image iD.
+        :param _builtins.str image_id: The local image ID.
+        :param _builtins.str image_name: The image name.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The repository image iD.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The local image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+
+@pulumi.output_type
+class GetImageWhitelistsDataListQueryInfoResult(dict):
+    def __init__(__self__, *,
+                 image_type: _builtins.str):
+        """
+        :param _builtins.str image_type: The image type.
+               The valid values are as follows:
+               + **private_image**: SWR private image repository.
+               + **shared_image**: Shared image repository of SWR.
+               + **instance_image**: SWR enterprise repository.
+               + **harbor**: Harbor repository.
+               + **jfrog**: JFrog repository.
+        """
+        pulumi.set(__self__, "image_type", image_type)
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        The image type.
+        The valid values are as follows:
+        + **private_image**: SWR private image repository.
+        + **shared_image**: Shared image repository of SWR.
+        + **instance_image**: SWR enterprise repository.
+        + **harbor**: Harbor repository.
+        + **jfrog**: JFrog repository.
+        """
+        return pulumi.get(self, "image_type")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailExtraResult(dict):
+    def __init__(__self__, *,
+                 linuxes: Sequence['outputs.GetKubernetesContainerDetailExtraLinuxResult'],
+                 mysqls: Sequence['outputs.GetKubernetesContainerDetailExtraMysqlResult'],
+                 openvpns: Sequence['outputs.GetKubernetesContainerDetailExtraOpenvpnResult'],
+                 rdps: Sequence['outputs.GetKubernetesContainerDetailExtraRdpResult']):
+        """
+        :param Sequence['GetKubernetesContainerDetailExtraLinuxArgs'] linuxes: The Linux sandbox.
+        :param Sequence['GetKubernetesContainerDetailExtraMysqlArgs'] mysqls: The MYSQL, MYSQLCHEAT sandbox.
+        :param Sequence['GetKubernetesContainerDetailExtraOpenvpnArgs'] openvpns: The VPN drainage sandbox.
+        :param Sequence['GetKubernetesContainerDetailExtraRdpArgs'] rdps: The RDP sandbox.
+        """
+        pulumi.set(__self__, "linuxes", linuxes)
+        pulumi.set(__self__, "mysqls", mysqls)
+        pulumi.set(__self__, "openvpns", openvpns)
+        pulumi.set(__self__, "rdps", rdps)
+
+    @_builtins.property
+    @pulumi.getter
+    def linuxes(self) -> Sequence['outputs.GetKubernetesContainerDetailExtraLinuxResult']:
+        """
+        The Linux sandbox.
+        """
+        return pulumi.get(self, "linuxes")
+
+    @_builtins.property
+    @pulumi.getter
+    def mysqls(self) -> Sequence['outputs.GetKubernetesContainerDetailExtraMysqlResult']:
+        """
+        The MYSQL, MYSQLCHEAT sandbox.
+        """
+        return pulumi.get(self, "mysqls")
+
+    @_builtins.property
+    @pulumi.getter
+    def openvpns(self) -> Sequence['outputs.GetKubernetesContainerDetailExtraOpenvpnResult']:
+        """
+        The VPN drainage sandbox.
+        """
+        return pulumi.get(self, "openvpns")
+
+    @_builtins.property
+    @pulumi.getter
+    def rdps(self) -> Sequence['outputs.GetKubernetesContainerDetailExtraRdpResult']:
+        """
+        The RDP sandbox.
+        """
+        return pulumi.get(self, "rdps")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailExtraLinuxResult(dict):
+    def __init__(__self__, *,
+                 os: _builtins.str):
+        """
+        :param _builtins.str os: The operating system.  
+               The valid values are as follows:
+               + **ubt**: Ubuntu.
+               + **centos**
+               + **debian**
+               + **redhat**
+               + **opensuse**
+               + **kylin**
+               + **uos**
+               + **euleros**
+        """
+        pulumi.set(__self__, "os", os)
+
+    @_builtins.property
+    @pulumi.getter
+    def os(self) -> _builtins.str:
+        """
+        The operating system.  
+        The valid values are as follows:
+        + **ubt**: Ubuntu.
+        + **centos**
+        + **debian**
+        + **redhat**
+        + **opensuse**
+        + **kylin**
+        + **uos**
+        + **euleros**
+        """
+        return pulumi.get(self, "os")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailExtraMysqlResult(dict):
+    def __init__(__self__, *,
+                 custom_path: _builtins.str):
+        """
+        :param _builtins.str custom_path: The custom countermeasure path.
+        """
+        pulumi.set(__self__, "custom_path", custom_path)
+
+    @_builtins.property
+    @pulumi.getter(name="customPath")
+    def custom_path(self) -> _builtins.str:
+        """
+        The custom countermeasure path.
+        """
+        return pulumi.get(self, "custom_path")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailExtraOpenvpnResult(dict):
+    def __init__(__self__, *,
+                 outside_ip: _builtins.str,
+                 outside_port: _builtins.str):
+        """
+        :param _builtins.str outside_ip: The mapped IP.
+        :param _builtins.str outside_port: The mapped port.
+        """
+        pulumi.set(__self__, "outside_ip", outside_ip)
+        pulumi.set(__self__, "outside_port", outside_port)
+
+    @_builtins.property
+    @pulumi.getter(name="outsideIp")
+    def outside_ip(self) -> _builtins.str:
+        """
+        The mapped IP.
+        """
+        return pulumi.get(self, "outside_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="outsidePort")
+    def outside_port(self) -> _builtins.str:
+        """
+        The mapped port.
+        """
+        return pulumi.get(self, "outside_port")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailExtraRdpResult(dict):
+    def __init__(__self__, *,
+                 proto_env: _builtins.str,
+                 system: _builtins.str):
+        """
+        :param _builtins.str proto_env: The protocol type.  
+               The valid values are as follows:
+               + **0**: Protocol simulation.
+               + **1**: System simulation.
+        :param _builtins.str system: The system type. Used when simulating the system.  
+               The valid values are as follows:
+               + **win7**
+               + **win8**
+               + **win10**
+               + **win-server2012**
+               + **win-server2016**
+        """
+        pulumi.set(__self__, "proto_env", proto_env)
+        pulumi.set(__self__, "system", system)
+
+    @_builtins.property
+    @pulumi.getter(name="protoEnv")
+    def proto_env(self) -> _builtins.str:
+        """
+        The protocol type.  
+        The valid values are as follows:
+        + **0**: Protocol simulation.
+        + **1**: System simulation.
+        """
+        return pulumi.get(self, "proto_env")
+
+    @_builtins.property
+    @pulumi.getter
+    def system(self) -> _builtins.str:
+        """
+        The system type. Used when simulating the system.  
+        The valid values are as follows:
+        + **win7**
+        + **win8**
+        + **win10**
+        + **win-server2012**
+        + **win-server2016**
+        """
+        return pulumi.get(self, "system")
+
+
+@pulumi.output_type
+class GetKubernetesContainerDetailServicePortListResult(dict):
+    def __init__(__self__, *,
+                 desc: _builtins.str,
+                 port: _builtins.int,
+                 protocol: _builtins.str,
+                 type: _builtins.str,
+                 user_port: _builtins.int):
+        """
+        :param _builtins.str desc: The service name.
+        :param _builtins.int port: The container internal port.
+        :param _builtins.str protocol: The protocol. The valid values are **tcp** and **udp**. Defaults to **tcp**.
+        :param _builtins.str type: The type.  
+               The valid values are as follows:
+               + **http**: HTTP port.
+               + **https**: HTTPS port.
+        :param _builtins.int user_port: The user port.
+        """
+        pulumi.set(__self__, "desc", desc)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "user_port", user_port)
+
+    @_builtins.property
+    @pulumi.getter
+    def desc(self) -> _builtins.str:
+        """
+        The service name.
+        """
+        return pulumi.get(self, "desc")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The container internal port.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol. The valid values are **tcp** and **udp**. Defaults to **tcp**.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type.  
+        The valid values are as follows:
+        + **http**: HTTP port.
+        + **https**: HTTPS port.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userPort")
+    def user_port(self) -> _builtins.int:
+        """
+        The user port.
+        """
+        return pulumi.get(self, "user_port")
+
+
+@pulumi.output_type
+class GetKubernetesCronjobsCronjobInfoListResult(dict):
+    def __init__(__self__, *,
+                 cluster_name: _builtins.str,
+                 create_time: _builtins.int,
+                 execute_time: _builtins.int,
+                 image_name: _builtins.str,
+                 match_labels: Sequence['outputs.GetKubernetesCronjobsCronjobInfoListMatchLabelResult'],
+                 name: _builtins.str,
+                 namespace_name: _builtins.str,
+                 running_jobs_num: _builtins.int,
+                 schedule: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.int execute_time: The last execution time.
+        :param _builtins.str image_name: The image name.
+        :param Sequence['GetKubernetesCronjobsCronjobInfoListMatchLabelArgs'] match_labels: The labels.
+        :param _builtins.str name: The cronjob name.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.int running_jobs_num: The number of running jobs.
+        :param _builtins.str schedule: The job trigger cycle.
+        :param _builtins.str status: The status. Valid values are:
+               + **Running**: Normal operation.
+               + **Failed**: Abnormal.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "execute_time", execute_time)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "match_labels", match_labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "running_jobs_num", running_jobs_num)
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="executeTime")
+    def execute_time(self) -> _builtins.int:
+        """
+        The last execution time.
+        """
+        return pulumi.get(self, "execute_time")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="matchLabels")
+    def match_labels(self) -> Sequence['outputs.GetKubernetesCronjobsCronjobInfoListMatchLabelResult']:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "match_labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The cronjob name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="runningJobsNum")
+    def running_jobs_num(self) -> _builtins.int:
+        """
+        The number of running jobs.
+        """
+        return pulumi.get(self, "running_jobs_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        The job trigger cycle.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status. Valid values are:
+        + **Running**: Normal operation.
+        + **Failed**: Abnormal.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesCronjobsCronjobInfoListMatchLabelResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 val: _builtins.str):
+        """
+        :param _builtins.str key: The label name.
+        :param _builtins.str val: The label value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "val", val)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The label name.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def val(self) -> _builtins.str:
+        """
+        The label value.
+        """
+        return pulumi.get(self, "val")
+
+
+@pulumi.output_type
+class GetKubernetesDaemonsetsDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 create_time: _builtins.int,
+                 image_name: _builtins.str,
+                 match_labels: Sequence['outputs.GetKubernetesDaemonsetsDataListMatchLabelResult'],
+                 name: _builtins.str,
+                 namespace_name: _builtins.str,
+                 pods_num: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str cluster_type: The cluster type. Valid values are:
+               + **k8s**: Native cluster.
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str image_name: The image name.
+        :param Sequence['GetKubernetesDaemonsetsDataListMatchLabelArgs'] match_labels: The labels.
+        :param _builtins.str name: The daemonset name.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.int pods_num: The number of instances.
+        :param _builtins.str status: The status. Valid values are:
+               + **Running**: Normal operation.
+               + **Failed**: Abnormal.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "match_labels", match_labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "pods_num", pods_num)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type. Valid values are:
+        + **k8s**: Native cluster.
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="matchLabels")
+    def match_labels(self) -> Sequence['outputs.GetKubernetesDaemonsetsDataListMatchLabelResult']:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "match_labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The daemonset name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podsNum")
+    def pods_num(self) -> _builtins.int:
+        """
+        The number of instances.
+        """
+        return pulumi.get(self, "pods_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status. Valid values are:
+        + **Running**: Normal operation.
+        + **Failed**: Abnormal.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesDaemonsetsDataListMatchLabelResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 val: _builtins.str):
+        """
+        :param _builtins.str key: The label name.
+        :param _builtins.str val: The label value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "val", val)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The label name.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def val(self) -> _builtins.str:
+        """
+        The label value.
+        """
+        return pulumi.get(self, "val")
+
+
+@pulumi.output_type
+class GetKubernetesDeploymentsResourcesInfoListResult(dict):
+    def __init__(__self__, *,
+                 agent_install_failed_num: _builtins.int,
+                 agent_installed_num: _builtins.int,
+                 agent_not_install_num: _builtins.int,
+                 cluster_name: _builtins.str,
+                 create_time: _builtins.int,
+                 image_name: _builtins.str,
+                 match_labels: Sequence['outputs.GetKubernetesDeploymentsResourcesInfoListMatchLabelResult'],
+                 name: _builtins.str,
+                 namespace_name: _builtins.str,
+                 pods_num: _builtins.int,
+                 protect_status: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.int agent_install_failed_num: The number of failed instances of agent installation under workload.
+        :param _builtins.int agent_installed_num: The number of installed agent instances under the workload.
+        :param _builtins.int agent_not_install_num: The number of uninstalled agent instances under the workload.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str image_name: The image name.
+        :param Sequence['GetKubernetesDeploymentsResourcesInfoListMatchLabelArgs'] match_labels: The labels.
+        :param _builtins.str name: The deployment name.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.int pods_num: The total number of instances.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **closed**: Closed.
+               + **opened**: Opened.
+        :param _builtins.str status: The deployment status.  
+               The valid values are as follows:
+               + **Running**: Normal running.
+               + **Failed**: There are exceptions.
+        """
+        pulumi.set(__self__, "agent_install_failed_num", agent_install_failed_num)
+        pulumi.set(__self__, "agent_installed_num", agent_installed_num)
+        pulumi.set(__self__, "agent_not_install_num", agent_not_install_num)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "match_labels", match_labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "pods_num", pods_num)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="agentInstallFailedNum")
+    def agent_install_failed_num(self) -> _builtins.int:
+        """
+        The number of failed instances of agent installation under workload.
+        """
+        return pulumi.get(self, "agent_install_failed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="agentInstalledNum")
+    def agent_installed_num(self) -> _builtins.int:
+        """
+        The number of installed agent instances under the workload.
+        """
+        return pulumi.get(self, "agent_installed_num")
+
+    @_builtins.property
+    @pulumi.getter(name="agentNotInstallNum")
+    def agent_not_install_num(self) -> _builtins.int:
+        """
+        The number of uninstalled agent instances under the workload.
+        """
+        return pulumi.get(self, "agent_not_install_num")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="matchLabels")
+    def match_labels(self) -> Sequence['outputs.GetKubernetesDeploymentsResourcesInfoListMatchLabelResult']:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "match_labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The deployment name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podsNum")
+    def pods_num(self) -> _builtins.int:
+        """
+        The total number of instances.
+        """
+        return pulumi.get(self, "pods_num")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **closed**: Closed.
+        + **opened**: Opened.
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The deployment status.  
+        The valid values are as follows:
+        + **Running**: Normal running.
+        + **Failed**: There are exceptions.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesDeploymentsResourcesInfoListMatchLabelResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 val: _builtins.str):
+        """
+        :param _builtins.str key: The label name.
+        :param _builtins.str val: The label value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "val", val)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The label name.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def val(self) -> _builtins.str:
+        """
+        The label value.
+        """
+        return pulumi.get(self, "val")
+
+
+@pulumi.output_type
+class GetKubernetesJobsJobInfoListResult(dict):
+    def __init__(__self__, *,
+                 cluster_name: _builtins.str,
+                 create_time: _builtins.int,
+                 execute_time: _builtins.int,
+                 image_name: _builtins.str,
+                 match_labels: Sequence['outputs.GetKubernetesJobsJobInfoListMatchLabelResult'],
+                 name: _builtins.str,
+                 namespace_name: _builtins.str,
+                 pods_num: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.int execute_time: The execution time.
+        :param _builtins.str image_name: The image name.
+        :param Sequence['GetKubernetesJobsJobInfoListMatchLabelArgs'] match_labels: The labels.
+        :param _builtins.str name: The job name.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.int pods_num: The number of instances.
+        :param _builtins.str status: The status. Valid values are:
+               + **Running**: Normal operation.
+               + **Failed**: Abnormal.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "execute_time", execute_time)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "match_labels", match_labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "pods_num", pods_num)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="executeTime")
+    def execute_time(self) -> _builtins.int:
+        """
+        The execution time.
+        """
+        return pulumi.get(self, "execute_time")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="matchLabels")
+    def match_labels(self) -> Sequence['outputs.GetKubernetesJobsJobInfoListMatchLabelResult']:
+        """
+        The labels.
+        """
+        return pulumi.get(self, "match_labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The job name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podsNum")
+    def pods_num(self) -> _builtins.int:
+        """
+        The number of instances.
+        """
+        return pulumi.get(self, "pods_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status. Valid values are:
+        + **Running**: Normal operation.
+        + **Failed**: Abnormal.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesJobsJobInfoListMatchLabelResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 val: _builtins.str):
+        """
+        :param _builtins.str key: The label name.
+        :param _builtins.str val: The label value.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "val", val)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The label name.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def val(self) -> _builtins.str:
+        """
+        The label value.
+        """
+        return pulumi.get(self, "val")
+
+
+@pulumi.output_type
+class GetKubernetesPodDetailContainerResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 container_id: _builtins.str,
+                 container_name: _builtins.str,
+                 cpu_limit: _builtins.str,
+                 create_time: _builtins.int,
+                 fatal_risk: _builtins.int,
+                 high_risk: _builtins.int,
+                 id: _builtins.str,
+                 image_name: _builtins.str,
+                 low_risk: _builtins.int,
+                 medium_risk: _builtins.int,
+                 memory_limit: _builtins.str,
+                 pod_name: _builtins.str,
+                 region_id: _builtins.str,
+                 restart_count: _builtins.int,
+                 risky: _builtins.bool,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str cluster_type: The cluster type.
+               The valid values are as follows:
+               + **k8s**: Native cluster.
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.str container_id: The container ID.
+        :param _builtins.str container_name: The container name.
+        :param _builtins.str cpu_limit: The CPU limit.
+        :param _builtins.int create_time: The creation timestamp.
+        :param _builtins.int fatal_risk: The number of fatal-risk vulnerabilities.
+        :param _builtins.int high_risk: The number of high-risk vulnerabilities.
+        :param _builtins.str id: The container ID.
+        :param _builtins.str image_name: The image name.
+        :param _builtins.int low_risk: The number of low-risk vulnerabilities.
+        :param _builtins.int medium_risk: The number of medium-risk vulnerabilities.
+        :param _builtins.str memory_limit: The memory limit.
+        :param _builtins.str pod_name: Specifies the pod name.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.int restart_count: The restart count.
+        :param _builtins.bool risky: Whether there is a risk.
+               The valid values are as follows:
+               + **true**: There is a risk.
+               + **false**: No risk.
+        :param _builtins.str status: The container status.
+               The valid values are as follows:
+               + **Running**: Running.
+               + **Terminated**: Terminated.
+               + **Waiting**: Waiting.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "container_name", container_name)
+        pulumi.set(__self__, "cpu_limit", cpu_limit)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "fatal_risk", fatal_risk)
+        pulumi.set(__self__, "high_risk", high_risk)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "low_risk", low_risk)
+        pulumi.set(__self__, "medium_risk", medium_risk)
+        pulumi.set(__self__, "memory_limit", memory_limit)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "restart_count", restart_count)
+        pulumi.set(__self__, "risky", risky)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.
+        The valid values are as follows:
+        + **k8s**: Native cluster.
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> _builtins.str:
+        """
+        The container name.
+        """
+        return pulumi.get(self, "container_name")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuLimit")
+    def cpu_limit(self) -> _builtins.str:
+        """
+        The CPU limit.
+        """
+        return pulumi.get(self, "cpu_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation timestamp.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="fatalRisk")
+    def fatal_risk(self) -> _builtins.int:
+        """
+        The number of fatal-risk vulnerabilities.
+        """
+        return pulumi.get(self, "fatal_risk")
+
+    @_builtins.property
+    @pulumi.getter(name="highRisk")
+    def high_risk(self) -> _builtins.int:
+        """
+        The number of high-risk vulnerabilities.
+        """
+        return pulumi.get(self, "high_risk")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The container ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        The image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="lowRisk")
+    def low_risk(self) -> _builtins.int:
+        """
+        The number of low-risk vulnerabilities.
+        """
+        return pulumi.get(self, "low_risk")
+
+    @_builtins.property
+    @pulumi.getter(name="mediumRisk")
+    def medium_risk(self) -> _builtins.int:
+        """
+        The number of medium-risk vulnerabilities.
+        """
+        return pulumi.get(self, "medium_risk")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimit")
+    def memory_limit(self) -> _builtins.str:
+        """
+        The memory limit.
+        """
+        return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        Specifies the pod name.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter(name="restartCount")
+    def restart_count(self) -> _builtins.int:
+        """
+        The restart count.
+        """
+        return pulumi.get(self, "restart_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def risky(self) -> _builtins.bool:
+        """
+        Whether there is a risk.
+        The valid values are as follows:
+        + **true**: There is a risk.
+        + **false**: No risk.
+        """
+        return pulumi.get(self, "risky")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The container status.
+        The valid values are as follows:
+        + **Running**: Running.
+        + **Terminated**: Terminated.
+        + **Waiting**: Waiting.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesPodsDataListResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 cpu: _builtins.str,
+                 cpu_limit: _builtins.str,
+                 create_time: _builtins.int,
+                 id: _builtins.str,
+                 memory: _builtins.str,
+                 memory_limit: _builtins.str,
+                 namespace_name: _builtins.str,
+                 node_ip: _builtins.str,
+                 node_name: _builtins.str,
+                 pod_ip: _builtins.str,
+                 pod_name: _builtins.str,
+                 region_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_id: The cluster ID.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str cluster_type: The cluster type.  
+               The valid values are as follows:
+               + **k8s**: Native cluster.
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.str cpu: The CPU usage.
+        :param _builtins.str cpu_limit: The CPU limit.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str id: The ID.
+        :param _builtins.str memory: The memory usage.
+        :param _builtins.str memory_limit: The memory limit.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.str node_ip: The node IP.
+        :param _builtins.str node_name: The node name.
+        :param _builtins.str pod_ip: The pod IP.
+        :param _builtins.str pod_name: Specifies the pod name.
+        :param _builtins.str region_id: The region ID.
+        :param _builtins.str status: The pod status.  
+               The valid values are as follows:
+               + **Pending**: The pod has been accepted by the Kubernetes system, but one or more container images have not been
+               created yet.
+               + **Running**: The pod has been bound to a node and all containers have been created.
+               + **Succeeded**: All containers in the pod have successfully terminated and will not restart.
+               + **Failed**: All containers in the pod have terminated, and at least one container has terminated due to a failure.
+               + **Unknown**: Due to some reason, the status of the pod cannot be obtained, usually due to an error in communication
+               with the pod's host.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "cpu_limit", cpu_limit)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "memory_limit", memory_limit)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "node_ip", node_ip)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "pod_ip", pod_ip)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type.  
+        The valid values are as follows:
+        + **k8s**: Native cluster.
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> _builtins.str:
+        """
+        The CPU usage.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuLimit")
+    def cpu_limit(self) -> _builtins.str:
+        """
+        The CPU limit.
+        """
+        return pulumi.get(self, "cpu_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> _builtins.str:
+        """
+        The memory usage.
+        """
+        return pulumi.get(self, "memory")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimit")
+    def memory_limit(self) -> _builtins.str:
+        """
+        The memory limit.
+        """
+        return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeIp")
+    def node_ip(self) -> _builtins.str:
+        """
+        The node IP.
+        """
+        return pulumi.get(self, "node_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> _builtins.str:
+        """
+        The node name.
+        """
+        return pulumi.get(self, "node_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podIp")
+    def pod_ip(self) -> _builtins.str:
+        """
+        The pod IP.
+        """
+        return pulumi.get(self, "pod_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        Specifies the pod name.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> _builtins.str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The pod status.  
+        The valid values are as follows:
+        + **Pending**: The pod has been accepted by the Kubernetes system, but one or more container images have not been
+        created yet.
+        + **Running**: The pod has been bound to a node and all containers have been created.
+        + **Succeeded**: All containers in the pod have successfully terminated and will not restart.
+        + **Failed**: All containers in the pod have terminated, and at least one container has terminated due to a failure.
+        + **Unknown**: Due to some reason, the status of the pod cannot be obtained, usually due to an error in communication
+        with the pod's host.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesPodsPodInfoListResult(dict):
+    def __init__(__self__, *,
+                 cluster_name: _builtins.str,
+                 cpu: _builtins.str,
+                 cpu_limit: _builtins.str,
+                 create_time: _builtins.int,
+                 detect_result: _builtins.str,
+                 memory: _builtins.str,
+                 memory_limit: _builtins.str,
+                 namespace_name: _builtins.str,
+                 pod_ip: _builtins.str,
+                 pod_name: _builtins.str,
+                 protect_status: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str cpu: The CPU usage.
+        :param _builtins.str cpu_limit: The CPU limit.
+        :param _builtins.int create_time: The creation time.
+        :param _builtins.str detect_result: The serverless security detection results.  
+               The valid values are as follows:
+               + **undetected**: Not detected.
+               + **clean**: No risk.
+               + **risk**: At risk.
+               + **scanning**: Under detection.
+        :param _builtins.str memory: The memory usage.
+        :param _builtins.str memory_limit: The memory limit.
+        :param _builtins.str namespace_name: Specifies the namespace name.
+        :param _builtins.str pod_ip: The pod IP.
+        :param _builtins.str pod_name: Specifies the pod name.
+        :param _builtins.str protect_status: The protect status.  
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+               + **protection_exception**
+        :param _builtins.str status: The pod status.  
+               The valid values are as follows:
+               + **Pending**: The pod has been accepted by the Kubernetes system, but one or more container images have not been
+               created yet.
+               + **Running**: The pod has been bound to a node and all containers have been created.
+               + **Succeeded**: All containers in the pod have successfully terminated and will not restart.
+               + **Failed**: All containers in the pod have terminated, and at least one container has terminated due to a failure.
+               + **Unknown**: Due to some reason, the status of the pod cannot be obtained, usually due to an error in communication
+               with the pod's host.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "cpu_limit", cpu_limit)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "detect_result", detect_result)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "memory_limit", memory_limit)
+        pulumi.set(__self__, "namespace_name", namespace_name)
+        pulumi.set(__self__, "pod_ip", pod_ip)
+        pulumi.set(__self__, "pod_name", pod_name)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> _builtins.str:
+        """
+        The CPU usage.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuLimit")
+    def cpu_limit(self) -> _builtins.str:
+        """
+        The CPU limit.
+        """
+        return pulumi.get(self, "cpu_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.int:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="detectResult")
+    def detect_result(self) -> _builtins.str:
+        """
+        The serverless security detection results.  
+        The valid values are as follows:
+        + **undetected**: Not detected.
+        + **clean**: No risk.
+        + **risk**: At risk.
+        + **scanning**: Under detection.
+        """
+        return pulumi.get(self, "detect_result")
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> _builtins.str:
+        """
+        The memory usage.
+        """
+        return pulumi.get(self, "memory")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimit")
+    def memory_limit(self) -> _builtins.str:
+        """
+        The memory limit.
+        """
+        return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="namespaceName")
+    def namespace_name(self) -> _builtins.str:
+        """
+        Specifies the namespace name.
+        """
+        return pulumi.get(self, "namespace_name")
+
+    @_builtins.property
+    @pulumi.getter(name="podIp")
+    def pod_ip(self) -> _builtins.str:
+        """
+        The pod IP.
+        """
+        return pulumi.get(self, "pod_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="podName")
+    def pod_name(self) -> _builtins.str:
+        """
+        Specifies the pod name.
+        """
+        return pulumi.get(self, "pod_name")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protect status.  
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        + **protection_exception**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The pod status.  
+        The valid values are as follows:
+        + **Pending**: The pod has been accepted by the Kubernetes system, but one or more container images have not been
+        created yet.
+        + **Running**: The pod has been bound to a node and all containers have been created.
+        + **Succeeded**: All containers in the pod have successfully terminated and will not restart.
+        + **Failed**: All containers in the pod have terminated, and at least one container has terminated due to a failure.
+        + **Unknown**: Due to some reason, the status of the pod cannot be obtained, usually due to an error in communication
+        with the pod's host.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesServiceDetailServicePortListResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 node_port: _builtins.int,
+                 port: _builtins.int,
+                 protocol: _builtins.str,
+                 service_id: _builtins.str,
+                 target_port: _builtins.str):
+        """
+        :param _builtins.str id: The ID.
+        :param _builtins.str name: The port name.
+        :param _builtins.int node_port: The node port.
+        :param _builtins.int port: The port number.
+        :param _builtins.str protocol: The service protocol.
+        :param _builtins.str service_id: Specifies the service ID.
+        :param _builtins.str target_port: The backend container port.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_port", node_port)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "target_port", target_port)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The port name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nodePort")
+    def node_port(self) -> _builtins.int:
+        """
+        The node port.
+        """
+        return pulumi.get(self, "node_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The port number.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The service protocol.
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> _builtins.str:
+        """
+        Specifies the service ID.
+        """
+        return pulumi.get(self, "service_id")
+
+    @_builtins.property
+    @pulumi.getter(name="targetPort")
+    def target_port(self) -> _builtins.str:
+        """
+        The backend container port.
+        """
+        return pulumi.get(self, "target_port")
+
+
+@pulumi.output_type
+class GetKubernetesServicesServiceInfoListResult(dict):
+    def __init__(__self__, *,
+                 cluster_ip: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_type: _builtins.str,
+                 creation_timestamp: _builtins.int,
+                 endpoint_name: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 namespace: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str cluster_ip: The cluster IP.
+        :param _builtins.str cluster_name: Specifies the cluster name.
+        :param _builtins.str cluster_type: The cluster type. Valid values are:
+               + **k8s**: Native cluster.
+               + **cce**: CCE cluster.
+               + **ali**: Alibaba Cloud cluster.
+               + **tencent**: Tencent Cloud cluster.
+               + **azure**: Microsoft Azure cluster.
+               + **aws**: Amazon cluster.
+               + **self_built_hw**: Huawei Cloud self-built cluster.
+               + **self_built_idc**: IDC self-built cluster.
+        :param _builtins.int creation_timestamp: The creation timestamp.
+        :param _builtins.str endpoint_name: The endpoint name.
+        :param _builtins.str id: The service ID.
+        :param _builtins.str name: Specifies the service name.
+        :param _builtins.str namespace: Specifies the namespace.
+        :param _builtins.str type: The service type. Valid values are:
+               + **ClusterIP**: Services that are only accessible within the cluster.
+               + **NodePort**: Services that are exposed through NodePort.
+               + **LoadBalancer**: Services that are exposed through LoadBalancer.
+        """
+        pulumi.set(__self__, "cluster_ip", cluster_ip)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterIp")
+    def cluster_ip(self) -> _builtins.str:
+        """
+        The cluster IP.
+        """
+        return pulumi.get(self, "cluster_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Specifies the cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type. Valid values are:
+        + **k8s**: Native cluster.
+        + **cce**: CCE cluster.
+        + **ali**: Alibaba Cloud cluster.
+        + **tencent**: Tencent Cloud cluster.
+        + **azure**: Microsoft Azure cluster.
+        + **aws**: Amazon cluster.
+        + **self_built_hw**: Huawei Cloud self-built cluster.
+        + **self_built_idc**: IDC self-built cluster.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> _builtins.int:
+        """
+        The creation timestamp.
+        """
+        return pulumi.get(self, "creation_timestamp")
+
+    @_builtins.property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> _builtins.str:
+        """
+        The endpoint name.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The service ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the service name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The service type. Valid values are:
+        + **ClusterIP**: Services that are only accessible within the cluster.
+        + **NodePort**: Services that are exposed through NodePort.
+        + **LoadBalancer**: Services that are exposed through LoadBalancer.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetOperationalReportWelfareActivitiesInfoResult(dict):
+    def __init__(__self__, *,
+                 title: _builtins.str,
+                 url_json: _builtins.str):
+        """
+        :param _builtins.str title: The promotion title.
+        :param _builtins.str url_json: The promotion links.
+        """
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "url_json", url_json)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The promotion title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="urlJson")
+    def url_json(self) -> _builtins.str:
+        """
+        The promotion links.
+        """
+        return pulumi.get(self, "url_json")
+
+
+@pulumi.output_type
+class GetOperationalReportWelfareHotInfoResult(dict):
+    def __init__(__self__, *,
+                 title: _builtins.str,
+                 url_json: _builtins.str):
+        """
+        :param _builtins.str title: The promotion title.
+        :param _builtins.str url_json: The promotion links.
+        """
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "url_json", url_json)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The promotion title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="urlJson")
+    def url_json(self) -> _builtins.str:
+        """
+        The promotion links.
+        """
+        return pulumi.get(self, "url_json")
+
+
+@pulumi.output_type
+class GetOperationalReportWelfareVersionUpdateInfoResult(dict):
+    def __init__(__self__, *,
+                 title: _builtins.str,
+                 url_json: _builtins.str):
+        """
+        :param _builtins.str title: The promotion title.
+        :param _builtins.str url_json: The promotion links.
+        """
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "url_json", url_json)
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The promotion title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="urlJson")
+    def url_json(self) -> _builtins.str:
+        """
+        The promotion links.
+        """
+        return pulumi.get(self, "url_json")
+
+
+@pulumi.output_type
+class GetOverviewHotInformationDataListResult(dict):
+    def __init__(__self__, *,
+                 severity_level: _builtins.str,
+                 title: _builtins.str,
+                 update_time: _builtins.int):
+        """
+        :param _builtins.str severity_level: The severity level of the hot information.
+        :param _builtins.str title: The title of the hot information.
+        :param _builtins.int update_time: The update time of the hot information.
+        """
+        pulumi.set(__self__, "severity_level", severity_level)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="severityLevel")
+    def severity_level(self) -> _builtins.str:
+        """
+        The severity level of the hot information.
+        """
+        return pulumi.get(self, "severity_level")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The title of the hot information.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The update time of the hot information.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksAlarmRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 policy_lists: Sequence['outputs.GetOverviewSecurityRisksAlarmRiskPolicyListResult'],
+                 risk_lists: Sequence['outputs.GetOverviewSecurityRisksAlarmRiskRiskListResult'],
+                 total_risk_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param Sequence['GetOverviewSecurityRisksAlarmRiskPolicyListArgs'] policy_lists: The list of policies.
+               The policy_list structure is documented below.
+        :param Sequence['GetOverviewSecurityRisksAlarmRiskRiskListArgs'] risk_lists: The list of images risks.
+               The risk_list structure is documented below.
+        :param _builtins.int total_risk_num: The total number of risks.
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "policy_lists", policy_lists)
+        pulumi.set(__self__, "risk_lists", risk_lists)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="policyLists")
+    def policy_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksAlarmRiskPolicyListResult']:
+        """
+        The list of policies.
+        The policy_list structure is documented below.
+        """
+        return pulumi.get(self, "policy_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLists")
+    def risk_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksAlarmRiskRiskListResult']:
+        """
+        The list of images risks.
+        The risk_list structure is documented below.
+        """
+        return pulumi.get(self, "risk_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksAlarmRiskPolicyListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 os_type: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 rule_name: _builtins.str):
+        """
+        :param _builtins.int host_num: The associated servers.
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param _builtins.str rule_name: The detection feature rule name.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "rule_name", rule_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The associated servers.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> _builtins.str:
+        """
+        The detection feature rule name.
+        """
+        return pulumi.get(self, "rule_name")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksAlarmRiskRiskListResult(dict):
+    def __init__(__self__, *,
+                 effected_host_num: _builtins.int,
+                 risk_num: _builtins.int,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int effected_host_num: The number of affected assets.
+        :param _builtins.int risk_num: The number of risks.
+        :param _builtins.str severity: The risk level.
+        """
+        pulumi.set(__self__, "effected_host_num", effected_host_num)
+        pulumi.set(__self__, "risk_num", risk_num)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="effectedHostNum")
+    def effected_host_num(self) -> _builtins.int:
+        """
+        The number of affected assets.
+        """
+        return pulumi.get(self, "effected_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risks.
+        """
+        return pulumi.get(self, "risk_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksAssetRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 existed_danger_port_host_num: _builtins.int,
+                 policy_lists: Sequence['outputs.GetOverviewSecurityRisksAssetRiskPolicyListResult'],
+                 total_risk_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param _builtins.int existed_danger_port_host_num: The number of servers with dangerous ports.
+        :param Sequence['GetOverviewSecurityRisksAssetRiskPolicyListArgs'] policy_lists: The list of policies.
+               The policy_list structure is documented below.
+        :param _builtins.int total_risk_num: The total number of risks.
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "existed_danger_port_host_num", existed_danger_port_host_num)
+        pulumi.set(__self__, "policy_lists", policy_lists)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="existedDangerPortHostNum")
+    def existed_danger_port_host_num(self) -> _builtins.int:
+        """
+        The number of servers with dangerous ports.
+        """
+        return pulumi.get(self, "existed_danger_port_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="policyLists")
+    def policy_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksAssetRiskPolicyListResult']:
+        """
+        The list of policies.
+        The policy_list structure is documented below.
+        """
+        return pulumi.get(self, "policy_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksAssetRiskPolicyListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 os_type: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 rule_name: _builtins.str):
+        """
+        :param _builtins.int host_num: The associated servers.
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param _builtins.str rule_name: The detection feature rule name.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "rule_name", rule_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The associated servers.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> _builtins.str:
+        """
+        The detection feature rule name.
+        """
+        return pulumi.get(self, "rule_name")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksBaselineRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 existed_pwd_host_num: _builtins.int,
+                 policy_lists: Sequence['outputs.GetOverviewSecurityRisksBaselineRiskPolicyListResult'],
+                 risk_lists: Sequence['outputs.GetOverviewSecurityRisksBaselineRiskRiskListResult'],
+                 total_risk_num: _builtins.int,
+                 un_scanned_baseline_host_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param _builtins.int existed_pwd_host_num: The number of servers with weak passwords.
+        :param Sequence['GetOverviewSecurityRisksBaselineRiskPolicyListArgs'] policy_lists: The list of policies.
+               The policy_list structure is documented below.
+        :param Sequence['GetOverviewSecurityRisksBaselineRiskRiskListArgs'] risk_lists: The list of images risks.
+               The risk_list structure is documented below.
+        :param _builtins.int total_risk_num: The total number of risks.
+        :param _builtins.int un_scanned_baseline_host_num: The number of servers where baseline check is not performed.
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "existed_pwd_host_num", existed_pwd_host_num)
+        pulumi.set(__self__, "policy_lists", policy_lists)
+        pulumi.set(__self__, "risk_lists", risk_lists)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+        pulumi.set(__self__, "un_scanned_baseline_host_num", un_scanned_baseline_host_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="existedPwdHostNum")
+    def existed_pwd_host_num(self) -> _builtins.int:
+        """
+        The number of servers with weak passwords.
+        """
+        return pulumi.get(self, "existed_pwd_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="policyLists")
+    def policy_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksBaselineRiskPolicyListResult']:
+        """
+        The list of policies.
+        The policy_list structure is documented below.
+        """
+        return pulumi.get(self, "policy_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLists")
+    def risk_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksBaselineRiskRiskListResult']:
+        """
+        The list of images risks.
+        The risk_list structure is documented below.
+        """
+        return pulumi.get(self, "risk_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="unScannedBaselineHostNum")
+    def un_scanned_baseline_host_num(self) -> _builtins.int:
+        """
+        The number of servers where baseline check is not performed.
+        """
+        return pulumi.get(self, "un_scanned_baseline_host_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksBaselineRiskPolicyListResult(dict):
+    def __init__(__self__, *,
+                 host_num: _builtins.int,
+                 os_type: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_name: _builtins.str,
+                 rule_name: _builtins.str):
+        """
+        :param _builtins.int host_num: The associated servers.
+        :param _builtins.str os_type: The OS type.
+        :param _builtins.str policy_id: The policy ID.
+        :param _builtins.str policy_name: The policy name.
+        :param _builtins.str rule_name: The detection feature rule name.
+        """
+        pulumi.set(__self__, "host_num", host_num)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "rule_name", rule_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostNum")
+    def host_num(self) -> _builtins.int:
+        """
+        The associated servers.
+        """
+        return pulumi.get(self, "host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The OS type.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> _builtins.str:
+        """
+        The policy name.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> _builtins.str:
+        """
+        The detection feature rule name.
+        """
+        return pulumi.get(self, "rule_name")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksBaselineRiskRiskListResult(dict):
+    def __init__(__self__, *,
+                 effected_host_num: _builtins.int,
+                 risk_num: _builtins.int,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int effected_host_num: The number of affected assets.
+        :param _builtins.int risk_num: The number of risks.
+        :param _builtins.str severity: The risk level.
+        """
+        pulumi.set(__self__, "effected_host_num", effected_host_num)
+        pulumi.set(__self__, "risk_num", risk_num)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="effectedHostNum")
+    def effected_host_num(self) -> _builtins.int:
+        """
+        The number of affected assets.
+        """
+        return pulumi.get(self, "effected_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risks.
+        """
+        return pulumi.get(self, "risk_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksImageRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 risk_lists: Sequence['outputs.GetOverviewSecurityRisksImageRiskRiskListResult'],
+                 total_risk_num: _builtins.int,
+                 un_scanned_image_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param Sequence['GetOverviewSecurityRisksImageRiskRiskListArgs'] risk_lists: The list of images risks.
+               The risk_list structure is documented below.
+        :param _builtins.int total_risk_num: The total number of risks.
+        :param _builtins.int un_scanned_image_num: The number of unscanned images.
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "risk_lists", risk_lists)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+        pulumi.set(__self__, "un_scanned_image_num", un_scanned_image_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLists")
+    def risk_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksImageRiskRiskListResult']:
+        """
+        The list of images risks.
+        The risk_list structure is documented below.
+        """
+        return pulumi.get(self, "risk_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="unScannedImageNum")
+    def un_scanned_image_num(self) -> _builtins.int:
+        """
+        The number of unscanned images.
+        """
+        return pulumi.get(self, "un_scanned_image_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksImageRiskRiskListResult(dict):
+    def __init__(__self__, *,
+                 image_num: _builtins.int,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int image_num: The number of images.
+        :param _builtins.str severity: The risk level.
+        """
+        pulumi.set(__self__, "image_num", image_num)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="imageNum")
+    def image_num(self) -> _builtins.int:
+        """
+        The number of images.
+        """
+        return pulumi.get(self, "image_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksSecurityProtectRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 total_risk_num: _builtins.int,
+                 un_open_protection_host_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param _builtins.int total_risk_num: The total number of risks.
+        :param _builtins.int un_open_protection_host_num: The number of unprotected servers.
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+        pulumi.set(__self__, "un_open_protection_host_num", un_open_protection_host_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="unOpenProtectionHostNum")
+    def un_open_protection_host_num(self) -> _builtins.int:
+        """
+        The number of unprotected servers.
+        """
+        return pulumi.get(self, "un_open_protection_host_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksVulRiskResult(dict):
+    def __init__(__self__, *,
+                 deduct_score: _builtins.int,
+                 risk_lists: Sequence['outputs.GetOverviewSecurityRisksVulRiskRiskListResult'],
+                 total_risk_num: _builtins.int,
+                 un_scanned_host_num: _builtins.int):
+        """
+        :param _builtins.int deduct_score: The score deduction.
+        :param Sequence['GetOverviewSecurityRisksVulRiskRiskListArgs'] risk_lists: The list of images risks.
+               The risk_list structure is documented below.
+        :param _builtins.int total_risk_num: The total number of risks.
+        :param _builtins.int un_scanned_host_num: The number of servers where vulnerability scan is not performed (in the past month).
+        """
+        pulumi.set(__self__, "deduct_score", deduct_score)
+        pulumi.set(__self__, "risk_lists", risk_lists)
+        pulumi.set(__self__, "total_risk_num", total_risk_num)
+        pulumi.set(__self__, "un_scanned_host_num", un_scanned_host_num)
+
+    @_builtins.property
+    @pulumi.getter(name="deductScore")
+    def deduct_score(self) -> _builtins.int:
+        """
+        The score deduction.
+        """
+        return pulumi.get(self, "deduct_score")
+
+    @_builtins.property
+    @pulumi.getter(name="riskLists")
+    def risk_lists(self) -> Sequence['outputs.GetOverviewSecurityRisksVulRiskRiskListResult']:
+        """
+        The list of images risks.
+        The risk_list structure is documented below.
+        """
+        return pulumi.get(self, "risk_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalRiskNum")
+    def total_risk_num(self) -> _builtins.int:
+        """
+        The total number of risks.
+        """
+        return pulumi.get(self, "total_risk_num")
+
+    @_builtins.property
+    @pulumi.getter(name="unScannedHostNum")
+    def un_scanned_host_num(self) -> _builtins.int:
+        """
+        The number of servers where vulnerability scan is not performed (in the past month).
+        """
+        return pulumi.get(self, "un_scanned_host_num")
+
+
+@pulumi.output_type
+class GetOverviewSecurityRisksVulRiskRiskListResult(dict):
+    def __init__(__self__, *,
+                 effected_host_num: _builtins.int,
+                 risk_num: _builtins.int,
+                 severity: _builtins.str):
+        """
+        :param _builtins.int effected_host_num: The number of affected assets.
+        :param _builtins.int risk_num: The number of risks.
+        :param _builtins.str severity: The risk level.
+        """
+        pulumi.set(__self__, "effected_host_num", effected_host_num)
+        pulumi.set(__self__, "risk_num", risk_num)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="effectedHostNum")
+    def effected_host_num(self) -> _builtins.int:
+        """
+        The number of affected assets.
+        """
+        return pulumi.get(self, "effected_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="riskNum")
+    def risk_num(self) -> _builtins.int:
+        """
+        The number of risks.
+        """
+        return pulumi.get(self, "risk_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        The risk level.
+        """
+        return pulumi.get(self, "severity")
+
+
+@pulumi.output_type
+class GetPageNoticesDataListResult(dict):
+    def __init__(__self__, *,
+                 content: _builtins.str,
+                 level: _builtins.str,
+                 page_location: _builtins.str,
+                 title: _builtins.str,
+                 type: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.str content: The notice content.
+        :param _builtins.str level: The notice level. Valid values are:
+               + **error**: Emergency.
+               + **warn**: Important.
+               + **prompt**: Prompt.
+        :param _builtins.str page_location: Specifies the page location. Valid values are:
+               + **hostMgmt**: Host management - ECS.
+               + **hostProtectQuota**: Host management - Protection quota.
+               + **containerNodeList**: Container management - Container nodes.
+               + **containerProtectQuota**: Container management - Container protection quota.
+               + **containerMirror**: Container management - Container image.
+               + **container**: Container management - Container.
+               + **clusterAgent**: Container management - Cluster agent.
+               + **vulView**: Vulnerability management - Vulnerability view.
+               + **vulHostView**: Vulnerability management - Host view.
+               + **ransomwareProtection**: Ransomware protection.
+               + **policyMgmt**: Policy management.
+               + **antiVirus**: Antivirus.
+               + **hostAlarm**: Security alarm events - Host security alarms.
+               + **containerAlarm**: Security alarm events - Container security alarms.
+        :param _builtins.str title: The notice title.
+        :param _builtins.str type: The notice type. Valid values are:
+               + **links**: Hyperlink.
+               + **text**: Text.
+        :param _builtins.str url: The hyperlink.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "level", level)
+        pulumi.set(__self__, "page_location", page_location)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> _builtins.str:
+        """
+        The notice content.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> _builtins.str:
+        """
+        The notice level. Valid values are:
+        + **error**: Emergency.
+        + **warn**: Important.
+        + **prompt**: Prompt.
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter(name="pageLocation")
+    def page_location(self) -> _builtins.str:
+        """
+        Specifies the page location. Valid values are:
+        + **hostMgmt**: Host management - ECS.
+        + **hostProtectQuota**: Host management - Protection quota.
+        + **containerNodeList**: Container management - Container nodes.
+        + **containerProtectQuota**: Container management - Container protection quota.
+        + **containerMirror**: Container management - Container image.
+        + **container**: Container management - Container.
+        + **clusterAgent**: Container management - Cluster agent.
+        + **vulView**: Vulnerability management - Vulnerability view.
+        + **vulHostView**: Vulnerability management - Host view.
+        + **ransomwareProtection**: Ransomware protection.
+        + **policyMgmt**: Policy management.
+        + **antiVirus**: Antivirus.
+        + **hostAlarm**: Security alarm events - Host security alarms.
+        + **containerAlarm**: Security alarm events - Container security alarms.
+        """
+        return pulumi.get(self, "page_location")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        The notice title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The notice type. Valid values are:
+        + **links**: Hyperlink.
+        + **text**: Text.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The hyperlink.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetPluginAttachmentsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_status: _builtins.str,
+                 agent_version: _builtins.str,
+                 asset_value: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 host_status: _builtins.str,
+                 host_type: _builtins.str,
+                 install_progress: _builtins.str,
+                 os_arch: _builtins.str,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str,
+                 os_version: _builtins.str,
+                 plugin_status: _builtins.str,
+                 plugin_version: _builtins.str,
+                 private_ip: _builtins.str,
+                 protect_status: _builtins.str,
+                 public_ip: _builtins.str,
+                 remaining_time: _builtins.str,
+                 status_detail: _builtins.str):
+        """
+        :param _builtins.str agent_status: Specifies the agent status.  
+               The valid values are as follows:
+               + **not_installed**
+               + **online**
+               + **offline**
+               + **install_failed**
+               + **installing**
+        :param _builtins.str agent_version: The agent version.
+        :param _builtins.str asset_value: The importance of server assets.  
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str host_status: Specifies the host status.  
+               The valid values are as follows:
+               + **ACTIVE**
+               + **BUILDING**
+               + **ERROR**
+               + **SHUTOFF**
+        :param _builtins.str host_type: Specifies the server type.  
+               The valid values are as follows:
+               + **host**
+               + **container**
+        :param _builtins.str install_progress: The plugin installation progress, percentage.
+        :param _builtins.str os_arch: Specifies the system architecture.  
+               The valid values are as follows:
+               + **x86_64**
+               + **arm**
+        :param _builtins.str os_name: The system name.
+        :param _builtins.str os_type: Specifies the host operating system.  
+               The valid values are as follows:
+               + **Linux**
+               + **Windows**
+        :param _builtins.str os_version: The operating system version.
+        :param _builtins.str plugin_status: Specifies the plugin status.  
+               The valid values are as follows:
+               + **not_installed**
+               + **installing**
+               + **install_fail**
+               + **starting**
+               + **running**
+               + **start_fail**
+               + **offline**
+               + **stopping**
+               + **stopped**
+               + **updating**
+               + **update_fail**
+               + **uninstalling**
+               + **uninstall_fail**
+        :param _builtins.str plugin_version: Specifies the plugin version.
+        :param _builtins.str private_ip: The host private network IP address.
+        :param _builtins.str protect_status: The host protection status.  
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+        :param _builtins.str public_ip: The host public IP address.
+        :param _builtins.str remaining_time: The remaining installation time of plugin, in minutes.
+        :param _builtins.str status_detail: The reasons for plugin operation failure, including installation failure, startup failure, offline,
+               stop failure, update failure, and uninstallation failure.
+        """
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "agent_version", agent_version)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "host_type", host_type)
+        pulumi.set(__self__, "install_progress", install_progress)
+        pulumi.set(__self__, "os_arch", os_arch)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "os_version", os_version)
+        pulumi.set(__self__, "plugin_status", plugin_status)
+        pulumi.set(__self__, "plugin_version", plugin_version)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "remaining_time", remaining_time)
+        pulumi.set(__self__, "status_detail", status_detail)
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        Specifies the agent status.  
+        The valid values are as follows:
+        + **not_installed**
+        + **online**
+        + **offline**
+        + **install_failed**
+        + **installing**
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="agentVersion")
+    def agent_version(self) -> _builtins.str:
+        """
+        The agent version.
+        """
+        return pulumi.get(self, "agent_version")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The importance of server assets.  
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        Specifies the host status.  
+        The valid values are as follows:
+        + **ACTIVE**
+        + **BUILDING**
+        + **ERROR**
+        + **SHUTOFF**
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter(name="hostType")
+    def host_type(self) -> _builtins.str:
+        """
+        Specifies the server type.  
+        The valid values are as follows:
+        + **host**
+        + **container**
+        """
+        return pulumi.get(self, "host_type")
+
+    @_builtins.property
+    @pulumi.getter(name="installProgress")
+    def install_progress(self) -> _builtins.str:
+        """
+        The plugin installation progress, percentage.
+        """
+        return pulumi.get(self, "install_progress")
+
+    @_builtins.property
+    @pulumi.getter(name="osArch")
+    def os_arch(self) -> _builtins.str:
+        """
+        Specifies the system architecture.  
+        The valid values are as follows:
+        + **x86_64**
+        + **arm**
+        """
+        return pulumi.get(self, "os_arch")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The system name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the host operating system.  
+        The valid values are as follows:
+        + **Linux**
+        + **Windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="osVersion")
+    def os_version(self) -> _builtins.str:
+        """
+        The operating system version.
+        """
+        return pulumi.get(self, "os_version")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginStatus")
+    def plugin_status(self) -> _builtins.str:
+        """
+        Specifies the plugin status.  
+        The valid values are as follows:
+        + **not_installed**
+        + **installing**
+        + **install_fail**
+        + **starting**
+        + **running**
+        + **start_fail**
+        + **offline**
+        + **stopping**
+        + **stopped**
+        + **updating**
+        + **update_fail**
+        + **uninstalling**
+        + **uninstall_fail**
+        """
+        return pulumi.get(self, "plugin_status")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> _builtins.str:
+        """
+        Specifies the plugin version.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The host private network IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The host protection status.  
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The host public IP address.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="remainingTime")
+    def remaining_time(self) -> _builtins.str:
+        """
+        The remaining installation time of plugin, in minutes.
+        """
+        return pulumi.get(self, "remaining_time")
+
+    @_builtins.property
+    @pulumi.getter(name="statusDetail")
+    def status_detail(self) -> _builtins.str:
+        """
+        The reasons for plugin operation failure, including installation failure, startup failure, offline,
+        stop failure, update failure, and uninstallation failure.
+        """
+        return pulumi.get(self, "status_detail")
+
+
+@pulumi.output_type
+class GetPluginInfoDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_version: _builtins.str,
+                 arch: _builtins.str,
+                 cpu_limit: _builtins.int,
+                 id: _builtins.str,
+                 memory_limit: _builtins.int,
+                 name: _builtins.str,
+                 os_type: _builtins.str,
+                 size: _builtins.str,
+                 update_time: _builtins.int,
+                 version: _builtins.str,
+                 version_description: _builtins.str):
+        """
+        :param _builtins.str agent_version: Specifies the agent version.
+        :param _builtins.str arch: The plugin architecture.
+        :param _builtins.int cpu_limit: The single core CPU required to run plugins (0-100%).
+        :param _builtins.str id: The plugin ID.
+        :param _builtins.int memory_limit: The memory required to run plugin (MB).
+        :param _builtins.str name: The plugin name.
+        :param _builtins.str os_type: The type of operating system supported by plugin.
+        :param _builtins.str size: The plugin installation package size (MB).
+        :param _builtins.int update_time: The plugin update time.
+        :param _builtins.str version: The plugin version.
+        :param _builtins.str version_description: The plugin version information description.
+        """
+        pulumi.set(__self__, "agent_version", agent_version)
+        pulumi.set(__self__, "arch", arch)
+        pulumi.set(__self__, "cpu_limit", cpu_limit)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "memory_limit", memory_limit)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "version_description", version_description)
+
+    @_builtins.property
+    @pulumi.getter(name="agentVersion")
+    def agent_version(self) -> _builtins.str:
+        """
+        Specifies the agent version.
+        """
+        return pulumi.get(self, "agent_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def arch(self) -> _builtins.str:
+        """
+        The plugin architecture.
+        """
+        return pulumi.get(self, "arch")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuLimit")
+    def cpu_limit(self) -> _builtins.int:
+        """
+        The single core CPU required to run plugins (0-100%).
+        """
+        return pulumi.get(self, "cpu_limit")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The plugin ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimit")
+    def memory_limit(self) -> _builtins.int:
+        """
+        The memory required to run plugin (MB).
+        """
+        return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The plugin name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The type of operating system supported by plugin.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.str:
+        """
+        The plugin installation package size (MB).
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.int:
+        """
+        The plugin update time.
+        """
+        return pulumi.get(self, "update_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The plugin version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="versionDescription")
+    def version_description(self) -> _builtins.str:
+        """
+        The plugin version information description.
+        """
+        return pulumi.get(self, "version_description")
+
+
+@pulumi.output_type
+class GetPluginsDataListResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.str,
+                 description: _builtins.str,
+                 display_mode: _builtins.int,
+                 installed_attachment_num: _builtins.int,
+                 max_cpu_limit: _builtins.int,
+                 max_memory_limit: _builtins.int,
+                 max_size: _builtins.str,
+                 name: _builtins.str,
+                 tags: Sequence[_builtins.str],
+                 uninstall_attachment_num: _builtins.int):
+        """
+        :param _builtins.str code: Specifies the plugin code.
+        :param _builtins.str description: The plugin description.
+        :param _builtins.int display_mode: The plugin display mode.  
+               The valid values are as follows:
+               + **0**: All operation functions of the plugin are supported.
+               + **1**: Installation and uninstallation of plugins are not supported.
+               + **2**: All operation functions of the plugin are not supported.
+        :param _builtins.int installed_attachment_num: The number of hosts with installed plugins.
+        :param _builtins.int max_cpu_limit: The maximum single core CPU (0-100%) required to run the plugin in this type of plugin package.
+        :param _builtins.int max_memory_limit: The maximum amount of memory (MB) required to run the plugin in this type of plugin package.
+        :param _builtins.str max_size: The maximum plugin size (in MB) in this type of plugin package.
+        :param _builtins.str name: Specifies the plugin name.
+        :param Sequence[_builtins.str] tags: The plugin tags.
+        :param _builtins.int uninstall_attachment_num: The number of hosts without installed plugins, including hosts with plugin status
+               as uninstalled, hosts in installation, and hosts with failed installations.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_mode", display_mode)
+        pulumi.set(__self__, "installed_attachment_num", installed_attachment_num)
+        pulumi.set(__self__, "max_cpu_limit", max_cpu_limit)
+        pulumi.set(__self__, "max_memory_limit", max_memory_limit)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "uninstall_attachment_num", uninstall_attachment_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Specifies the plugin code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The plugin description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayMode")
+    def display_mode(self) -> _builtins.int:
+        """
+        The plugin display mode.  
+        The valid values are as follows:
+        + **0**: All operation functions of the plugin are supported.
+        + **1**: Installation and uninstallation of plugins are not supported.
+        + **2**: All operation functions of the plugin are not supported.
+        """
+        return pulumi.get(self, "display_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="installedAttachmentNum")
+    def installed_attachment_num(self) -> _builtins.int:
+        """
+        The number of hosts with installed plugins.
+        """
+        return pulumi.get(self, "installed_attachment_num")
+
+    @_builtins.property
+    @pulumi.getter(name="maxCpuLimit")
+    def max_cpu_limit(self) -> _builtins.int:
+        """
+        The maximum single core CPU (0-100%) required to run the plugin in this type of plugin package.
+        """
+        return pulumi.get(self, "max_cpu_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="maxMemoryLimit")
+    def max_memory_limit(self) -> _builtins.int:
+        """
+        The maximum amount of memory (MB) required to run the plugin in this type of plugin package.
+        """
+        return pulumi.get(self, "max_memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSize")
+    def max_size(self) -> _builtins.str:
+        """
+        The maximum plugin size (in MB) in this type of plugin package.
+        """
+        return pulumi.get(self, "max_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the plugin name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        The plugin tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="uninstallAttachmentNum")
+    def uninstall_attachment_num(self) -> _builtins.int:
+        """
+        The number of hosts without installed plugins, including hosts with plugin status
+        as uninstalled, hosts in installation, and hosts with failed installations.
+        """
+        return pulumi.get(self, "uninstall_attachment_num")
+
+
+@pulumi.output_type
 class GetPolicyGroupsDataListResult(dict):
     def __init__(__self__, *,
                  default_group: _builtins.bool,
@@ -6083,6 +25732,750 @@ class GetQuotasQuotaResult(dict):
 
 
 @pulumi.output_type
+class GetRansomwareBackupDetailChildrenResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 image_type: _builtins.str,
+                 name: _builtins.str,
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 resource_size: _builtins.int,
+                 resource_type: _builtins.str,
+                 status: _builtins.str,
+                 vault_id: _builtins.str):
+        """
+        :param _builtins.str id: The volume backup ID.
+        :param _builtins.str image_type: The backup type.
+        :param _builtins.str name: The disk backup name.
+        :param _builtins.str resource_id: The resource ID, corresponds to the host ID.
+        :param _builtins.str resource_name: The resource name, corresponds to the host name.
+        :param _builtins.int resource_size: The resource size.
+        :param _builtins.str resource_type: The resource type.
+        :param _builtins.str status: The status of the backup.
+        :param _builtins.str vault_id: The repository ID where the backup is located.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_size", resource_size)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vault_id", vault_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The volume backup ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        The backup type.
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The disk backup name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        The resource ID, corresponds to the host ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name, corresponds to the host name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSize")
+    def resource_size(self) -> _builtins.int:
+        """
+        The resource size.
+        """
+        return pulumi.get(self, "resource_size")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the backup.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultId")
+    def vault_id(self) -> _builtins.str:
+        """
+        The repository ID where the backup is located.
+        """
+        return pulumi.get(self, "vault_id")
+
+
+@pulumi.output_type
+class GetRansomwareBackupOperationLogsDataListResult(dict):
+    def __init__(__self__, *,
+                 backup_name: _builtins.str,
+                 ended_at: _builtins.str,
+                 error_infos: Sequence['outputs.GetRansomwareBackupOperationLogsDataListErrorInfoResult'],
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 process: _builtins.int,
+                 started_at: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str backup_name: The backup name.
+        :param _builtins.str ended_at: The task end time.
+        :param Sequence['GetRansomwareBackupOperationLogsDataListErrorInfoArgs'] error_infos: The failure information.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: The host name.
+        :param _builtins.int process: The restore progress (percentage).
+        :param _builtins.str started_at: The task start time.
+        :param _builtins.str status: Specifies the restore status.  
+               The valid values are as follows:
+               + **success**: Success.
+               + **skipped**: Skipped.
+               + **failed**: Failed.
+               + **running**: Running.
+               + **timeout**: Timeout.
+               + **waiting**: Waiting.
+        """
+        pulumi.set(__self__, "backup_name", backup_name)
+        pulumi.set(__self__, "ended_at", ended_at)
+        pulumi.set(__self__, "error_infos", error_infos)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "process", process)
+        pulumi.set(__self__, "started_at", started_at)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="backupName")
+    def backup_name(self) -> _builtins.str:
+        """
+        The backup name.
+        """
+        return pulumi.get(self, "backup_name")
+
+    @_builtins.property
+    @pulumi.getter(name="endedAt")
+    def ended_at(self) -> _builtins.str:
+        """
+        The task end time.
+        """
+        return pulumi.get(self, "ended_at")
+
+    @_builtins.property
+    @pulumi.getter(name="errorInfos")
+    def error_infos(self) -> Sequence['outputs.GetRansomwareBackupOperationLogsDataListErrorInfoResult']:
+        """
+        The failure information.
+        """
+        return pulumi.get(self, "error_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def process(self) -> _builtins.int:
+        """
+        The restore progress (percentage).
+        """
+        return pulumi.get(self, "process")
+
+    @_builtins.property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> _builtins.str:
+        """
+        The task start time.
+        """
+        return pulumi.get(self, "started_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the restore status.  
+        The valid values are as follows:
+        + **success**: Success.
+        + **skipped**: Skipped.
+        + **failed**: Failed.
+        + **running**: Running.
+        + **timeout**: Timeout.
+        + **waiting**: Waiting.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetRansomwareBackupOperationLogsDataListErrorInfoResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.str,
+                 message: _builtins.str):
+        """
+        :param _builtins.str code: The error code.
+        :param _builtins.str message: The error message.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "message", message)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        The error code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The error message.
+        """
+        return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class GetRansomwareBackupPoliciesDataListResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 operation_definitions: Sequence['outputs.GetRansomwareBackupPoliciesDataListOperationDefinitionResult'],
+                 operation_type: _builtins.str,
+                 triggers: Sequence['outputs.GetRansomwareBackupPoliciesDataListTriggerResult']):
+        """
+        :param _builtins.bool enabled: Is the policy enabled. The value can be **true** or **false**.
+        :param _builtins.str id: The scheduler ID.
+        :param _builtins.str name: The scheduler name.
+        :param Sequence['GetRansomwareBackupPoliciesDataListOperationDefinitionArgs'] operation_definitions: The policy attribute retention rules.
+        :param _builtins.str operation_type: The backup type. The value can be **backup**.
+        :param Sequence['GetRansomwareBackupPoliciesDataListTriggerArgs'] triggers: The backup policy time scheduling rules.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operation_definitions", operation_definitions)
+        pulumi.set(__self__, "operation_type", operation_type)
+        pulumi.set(__self__, "triggers", triggers)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Is the policy enabled. The value can be **true** or **false**.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The scheduler ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The scheduler name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operationDefinitions")
+    def operation_definitions(self) -> Sequence['outputs.GetRansomwareBackupPoliciesDataListOperationDefinitionResult']:
+        """
+        The policy attribute retention rules.
+        """
+        return pulumi.get(self, "operation_definitions")
+
+    @_builtins.property
+    @pulumi.getter(name="operationType")
+    def operation_type(self) -> _builtins.str:
+        """
+        The backup type. The value can be **backup**.
+        """
+        return pulumi.get(self, "operation_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def triggers(self) -> Sequence['outputs.GetRansomwareBackupPoliciesDataListTriggerResult']:
+        """
+        The backup policy time scheduling rules.
+        """
+        return pulumi.get(self, "triggers")
+
+
+@pulumi.output_type
+class GetRansomwareBackupPoliciesDataListOperationDefinitionResult(dict):
+    def __init__(__self__, *,
+                 day_backups: _builtins.int,
+                 max_backups: _builtins.int,
+                 month_backups: _builtins.int,
+                 retention_duration_days: _builtins.int,
+                 timezone: _builtins.str,
+                 week_backups: _builtins.int,
+                 year_backups: _builtins.int):
+        """
+        :param _builtins.int day_backups: The number of daily backups to be retained is not limited by the maximum number of backups to be
+               retained. The value ranges from `0` to `100`.
+        :param _builtins.int max_backups: The maximum number of backups that can be automatically backed up for a single backup object.
+               `-1` represents not cleaning according to the number of backups. If both this field and the `retention_duration_days`
+               field are empty, the backup will be permanently retained. The value is `-1` or `1` - `99,999`.
+        :param _builtins.int month_backups: The keep monthly backups, which are not limited by the maximum number of backups to be kept.
+               If this parameter is selected, the timezone must also be selected. The value ranges from `0` to `100`.
+        :param _builtins.int retention_duration_days: The backup retention duration, in days. The maximum support is `99,999` days.
+               `-1` represents not cleaning according to time. If both this field and the `max_backups` parameter are empty,
+               the backup will be permanently retained. The minimum value is `-1` and the maximum value is `99,999`
+        :param _builtins.str timezone: The user's time zone is in UTC+08:00 format.
+        :param _builtins.int week_backups: The keep the number of backups per week, which is not limited by the maximum number of backups to be
+               kept.
+        :param _builtins.int year_backups: The retain the number of backups per year, which is not limited by the maximum number of backups
+               retained. The value ranges from `0` to `100`.
+        """
+        pulumi.set(__self__, "day_backups", day_backups)
+        pulumi.set(__self__, "max_backups", max_backups)
+        pulumi.set(__self__, "month_backups", month_backups)
+        pulumi.set(__self__, "retention_duration_days", retention_duration_days)
+        pulumi.set(__self__, "timezone", timezone)
+        pulumi.set(__self__, "week_backups", week_backups)
+        pulumi.set(__self__, "year_backups", year_backups)
+
+    @_builtins.property
+    @pulumi.getter(name="dayBackups")
+    def day_backups(self) -> _builtins.int:
+        """
+        The number of daily backups to be retained is not limited by the maximum number of backups to be
+        retained. The value ranges from `0` to `100`.
+        """
+        return pulumi.get(self, "day_backups")
+
+    @_builtins.property
+    @pulumi.getter(name="maxBackups")
+    def max_backups(self) -> _builtins.int:
+        """
+        The maximum number of backups that can be automatically backed up for a single backup object.
+        `-1` represents not cleaning according to the number of backups. If both this field and the `retention_duration_days`
+        field are empty, the backup will be permanently retained. The value is `-1` or `1` - `99,999`.
+        """
+        return pulumi.get(self, "max_backups")
+
+    @_builtins.property
+    @pulumi.getter(name="monthBackups")
+    def month_backups(self) -> _builtins.int:
+        """
+        The keep monthly backups, which are not limited by the maximum number of backups to be kept.
+        If this parameter is selected, the timezone must also be selected. The value ranges from `0` to `100`.
+        """
+        return pulumi.get(self, "month_backups")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDurationDays")
+    def retention_duration_days(self) -> _builtins.int:
+        """
+        The backup retention duration, in days. The maximum support is `99,999` days.
+        `-1` represents not cleaning according to time. If both this field and the `max_backups` parameter are empty,
+        the backup will be permanently retained. The minimum value is `-1` and the maximum value is `99,999`
+        """
+        return pulumi.get(self, "retention_duration_days")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        """
+        The user's time zone is in UTC+08:00 format.
+        """
+        return pulumi.get(self, "timezone")
+
+    @_builtins.property
+    @pulumi.getter(name="weekBackups")
+    def week_backups(self) -> _builtins.int:
+        """
+        The keep the number of backups per week, which is not limited by the maximum number of backups to be
+        kept.
+        """
+        return pulumi.get(self, "week_backups")
+
+    @_builtins.property
+    @pulumi.getter(name="yearBackups")
+    def year_backups(self) -> _builtins.int:
+        """
+        The retain the number of backups per year, which is not limited by the maximum number of backups
+        retained. The value ranges from `0` to `100`.
+        """
+        return pulumi.get(self, "year_backups")
+
+
+@pulumi.output_type
+class GetRansomwareBackupPoliciesDataListTriggerResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 properties: Sequence['outputs.GetRansomwareBackupPoliciesDataListTriggerPropertyResult'],
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: The scheduler ID.
+        :param _builtins.str name: The scheduler name.
+        :param Sequence['GetRansomwareBackupPoliciesDataListTriggerPropertyArgs'] properties: The scheduler properties.
+        :param _builtins.str type: The scheduler type. Currently only supports **time*, Scheduled scheduling.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "properties", properties)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The scheduler ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The scheduler name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def properties(self) -> Sequence['outputs.GetRansomwareBackupPoliciesDataListTriggerPropertyResult']:
+        """
+        The scheduler properties.
+        """
+        return pulumi.get(self, "properties")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The scheduler type. Currently only supports **time*, Scheduled scheduling.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRansomwareBackupPoliciesDataListTriggerPropertyResult(dict):
+    def __init__(__self__, *,
+                 patterns: Sequence[_builtins.str],
+                 start_time: _builtins.str):
+        """
+        :param Sequence[_builtins.str] patterns: The scheduling strategy of scheduler.
+        :param _builtins.str start_time: The scheduler start time.
+        """
+        pulumi.set(__self__, "patterns", patterns)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def patterns(self) -> Sequence[_builtins.str]:
+        """
+        The scheduling strategy of scheduler.
+        """
+        return pulumi.get(self, "patterns")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        The scheduler start time.
+        """
+        return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetRansomwareBackupVaultsDataListResult(dict):
+    def __init__(__self__, *,
+                 backup_policy_enabled: _builtins.bool,
+                 backup_policy_id: _builtins.str,
+                 backup_policy_name: _builtins.str,
+                 resources_num: _builtins.int,
+                 vault_allocated: _builtins.int,
+                 vault_charging_mode: _builtins.str,
+                 vault_id: _builtins.str,
+                 vault_name: _builtins.str,
+                 vault_size: _builtins.int,
+                 vault_status: _builtins.str,
+                 vault_used: _builtins.int):
+        """
+        :param _builtins.bool backup_policy_enabled: Whether the backup policy is enabled.
+        :param _builtins.str backup_policy_id: The backup policy ID. If it is empty, it is in an unbound state. If it is not empty,
+               determine whether the policy is enabled through the `backup_policy_enabled` field.
+        :param _builtins.str backup_policy_name: The backup policy name.
+        :param _builtins.int resources_num: The number of bound servers.
+        :param _builtins.int vault_allocated: The allocated capacity in GB. Refers to the size of the bound server, for example, if one host is
+               bound and the host size is `40`G, then the allocated capacity is `40`G.
+        :param _builtins.str vault_charging_mode: The vault charging mode.  
+               The valid values are as follows:
+               + **post_paid**: Pay-per-use.
+               + **pre_paid**: Yearly/Monthly.
+        :param _builtins.str vault_id: Specifies the backup vault ID.
+        :param _builtins.str vault_name: Specifies the backup vault name.
+        :param _builtins.int vault_size: The total capacity of the vault in GB.
+        :param _builtins.str vault_status: The vault status.  
+               The valid values are as follows:
+               + **available**: Available.
+               + **lock**: Locked.
+               + **frozen**: Frozen.
+               + **deleting**: Deleting.
+               + **error**: Error.
+        :param _builtins.int vault_used: The used capacity in MB. Refers to the capacity occupied by existing backups, for example, if one host
+               is bound and there are already two backups with a capacity of `60`G, then the used capacity is `60`G.
+        """
+        pulumi.set(__self__, "backup_policy_enabled", backup_policy_enabled)
+        pulumi.set(__self__, "backup_policy_id", backup_policy_id)
+        pulumi.set(__self__, "backup_policy_name", backup_policy_name)
+        pulumi.set(__self__, "resources_num", resources_num)
+        pulumi.set(__self__, "vault_allocated", vault_allocated)
+        pulumi.set(__self__, "vault_charging_mode", vault_charging_mode)
+        pulumi.set(__self__, "vault_id", vault_id)
+        pulumi.set(__self__, "vault_name", vault_name)
+        pulumi.set(__self__, "vault_size", vault_size)
+        pulumi.set(__self__, "vault_status", vault_status)
+        pulumi.set(__self__, "vault_used", vault_used)
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyEnabled")
+    def backup_policy_enabled(self) -> _builtins.bool:
+        """
+        Whether the backup policy is enabled.
+        """
+        return pulumi.get(self, "backup_policy_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyId")
+    def backup_policy_id(self) -> _builtins.str:
+        """
+        The backup policy ID. If it is empty, it is in an unbound state. If it is not empty,
+        determine whether the policy is enabled through the `backup_policy_enabled` field.
+        """
+        return pulumi.get(self, "backup_policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyName")
+    def backup_policy_name(self) -> _builtins.str:
+        """
+        The backup policy name.
+        """
+        return pulumi.get(self, "backup_policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourcesNum")
+    def resources_num(self) -> _builtins.int:
+        """
+        The number of bound servers.
+        """
+        return pulumi.get(self, "resources_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultAllocated")
+    def vault_allocated(self) -> _builtins.int:
+        """
+        The allocated capacity in GB. Refers to the size of the bound server, for example, if one host is
+        bound and the host size is `40`G, then the allocated capacity is `40`G.
+        """
+        return pulumi.get(self, "vault_allocated")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultChargingMode")
+    def vault_charging_mode(self) -> _builtins.str:
+        """
+        The vault charging mode.  
+        The valid values are as follows:
+        + **post_paid**: Pay-per-use.
+        + **pre_paid**: Yearly/Monthly.
+        """
+        return pulumi.get(self, "vault_charging_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultId")
+    def vault_id(self) -> _builtins.str:
+        """
+        Specifies the backup vault ID.
+        """
+        return pulumi.get(self, "vault_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultName")
+    def vault_name(self) -> _builtins.str:
+        """
+        Specifies the backup vault name.
+        """
+        return pulumi.get(self, "vault_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultSize")
+    def vault_size(self) -> _builtins.int:
+        """
+        The total capacity of the vault in GB.
+        """
+        return pulumi.get(self, "vault_size")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultStatus")
+    def vault_status(self) -> _builtins.str:
+        """
+        The vault status.  
+        The valid values are as follows:
+        + **available**: Available.
+        + **lock**: Locked.
+        + **frozen**: Frozen.
+        + **deleting**: Deleting.
+        + **error**: Error.
+        """
+        return pulumi.get(self, "vault_status")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultUsed")
+    def vault_used(self) -> _builtins.int:
+        """
+        The used capacity in MB. Refers to the capacity occupied by existing backups, for example, if one host
+        is bound and there are already two backups with a capacity of `60`G, then the used capacity is `60`G.
+        """
+        return pulumi.get(self, "vault_used")
+
+
+@pulumi.output_type
+class GetRansomwareBackupsDataListResult(dict):
+    def __init__(__self__, *,
+                 backup_id: _builtins.str,
+                 backup_name: _builtins.str,
+                 backup_status: _builtins.str,
+                 backup_tag: _builtins.int,
+                 create_time: _builtins.str,
+                 os_images_datas: Sequence['outputs.GetRansomwareBackupsDataListOsImagesDataResult']):
+        """
+        :param _builtins.str backup_id: The backup ID.
+        :param _builtins.str backup_name: The backup name.
+        :param _builtins.str backup_status: The backup status.
+        :param _builtins.int backup_tag: The backup tag. Valid values are:
+               + **0**: Scheduled backup.
+               + **1**: Ransomware encryption backup.
+        :param _builtins.str create_time: The backup creation time.
+        :param Sequence['GetRansomwareBackupsDataListOsImagesDataArgs'] os_images_datas: The list of backup registered image IDs.
+        """
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "backup_name", backup_name)
+        pulumi.set(__self__, "backup_status", backup_status)
+        pulumi.set(__self__, "backup_tag", backup_tag)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "os_images_datas", os_images_datas)
+
+    @_builtins.property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> _builtins.str:
+        """
+        The backup ID.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @_builtins.property
+    @pulumi.getter(name="backupName")
+    def backup_name(self) -> _builtins.str:
+        """
+        The backup name.
+        """
+        return pulumi.get(self, "backup_name")
+
+    @_builtins.property
+    @pulumi.getter(name="backupStatus")
+    def backup_status(self) -> _builtins.str:
+        """
+        The backup status.
+        """
+        return pulumi.get(self, "backup_status")
+
+    @_builtins.property
+    @pulumi.getter(name="backupTag")
+    def backup_tag(self) -> _builtins.int:
+        """
+        The backup tag. Valid values are:
+        + **0**: Scheduled backup.
+        + **1**: Ransomware encryption backup.
+        """
+        return pulumi.get(self, "backup_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The backup creation time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="osImagesDatas")
+    def os_images_datas(self) -> Sequence['outputs.GetRansomwareBackupsDataListOsImagesDataResult']:
+        """
+        The list of backup registered image IDs.
+        """
+        return pulumi.get(self, "os_images_datas")
+
+
+@pulumi.output_type
+class GetRansomwareBackupsDataListOsImagesDataResult(dict):
+    def __init__(__self__, *,
+                 image_id: _builtins.str):
+        """
+        :param _builtins.str image_id: The backup registration image ID.
+        """
+        pulumi.set(__self__, "image_id", image_id)
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The backup registration image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+
+@pulumi.output_type
 class GetRansomwareProtectionPoliciesPolicyResult(dict):
     def __init__(__self__, *,
                  bait_protection_status: _builtins.str,
@@ -6281,6 +26674,832 @@ class GetRansomwareProtectionPoliciesPolicyProcessWhitelistResult(dict):
         The process path.
         """
         return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class GetRansomwareProtectionServersDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 agent_status: _builtins.str,
+                 agent_version: _builtins.str,
+                 backup_errors: Sequence['outputs.GetRansomwareProtectionServersDataListBackupErrorResult'],
+                 backup_policy_enabled: _builtins.bool,
+                 backup_policy_id: _builtins.str,
+                 backup_policy_name: _builtins.str,
+                 backup_protection_status: _builtins.str,
+                 count_backuped: _builtins.int,
+                 count_protect_event: _builtins.int,
+                 enterprise_project_id: _builtins.str,
+                 failed_decoy_dir: _builtins.str,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 host_id: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 host_source: _builtins.str,
+                 host_status: _builtins.str,
+                 os_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 project_id: _builtins.str,
+                 protect_policy_id: _builtins.str,
+                 protect_policy_name: _builtins.str,
+                 protect_status: _builtins.str,
+                 ransom_protection_fail_reason: _builtins.str,
+                 ransom_protection_status: _builtins.str,
+                 resources_num: _builtins.int,
+                 vault_allocated: _builtins.int,
+                 vault_charging_mode: _builtins.str,
+                 vault_id: _builtins.str,
+                 vault_name: _builtins.str,
+                 vault_size: _builtins.int,
+                 vault_status: _builtins.str,
+                 vault_used: _builtins.int,
+                 version: _builtins.str):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str agent_status: Specifies the agent status.
+               The valid values are as follows:
+               + **installed**
+               + **online**
+               + **offline**
+               + **install_failed**
+               + **installing**
+               + **not_installed**
+               
+               If you want to filter agents in all status except **online**, set this parameter to **not_online**.
+        :param _builtins.str agent_version: The agent version.
+        :param Sequence['GetRansomwareProtectionServersDataListBackupErrorArgs'] backup_errors: The backup error message.
+        :param _builtins.bool backup_policy_enabled: Whether the backup policy is enabled.
+        :param _builtins.str backup_policy_id: The backup policy ID.
+        :param _builtins.str backup_policy_name: The backup policy name.
+        :param _builtins.str backup_protection_status: Whether to enable backup.
+               The valid values are as follows:
+               + **failed_to_turn_on_backup**
+               + **closed**
+               + **opened**
+        :param _builtins.int count_backuped: The number of existing backups.
+        :param _builtins.int count_protect_event: The number of protection events.
+        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID.
+               This parameter is valid only when the enterprise project is enabled.
+               The default value is **0**, indicating the default enterprise project.
+               If you need to query data for all enterprise projects, the value is **all_granted_eps**.
+               If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+               the operation may fail due to insufficient permissions.
+        :param _builtins.str failed_decoy_dir: The directory where honeypot protection failed.
+        :param _builtins.str group_id: Specifies the server group ID.
+        :param _builtins.str group_name: Specifies the server group name.
+        :param _builtins.str host_id: Specifies the server ID.
+        :param _builtins.str host_ip: Specifies the server EIP.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str host_source: The server type.
+               The valid values are as follows:
+               + **ecs**
+               + **outside**
+               + **workspace**
+        :param _builtins.str host_status: Specifies the handling status.
+               The valid values are as follows:
+               + **ACTIVE**
+               + **SHUTOFF**
+        :param _builtins.str os_name: The OS name.
+        :param _builtins.str os_type: Specifies the OS type.
+               The valid values are as follows:
+               + **Linux**
+               + **Windows**
+        :param _builtins.str private_ip: Specifies the server private IP address.
+        :param _builtins.str project_id: The project ID.
+        :param _builtins.str protect_policy_id: The protection policy ID.
+        :param _builtins.str protect_policy_name: Specifies the ransomware protection policy name.
+        :param _builtins.str protect_status: The protection status.
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+        :param _builtins.str ransom_protection_fail_reason: The ransomware protection failure case.
+               The valid values are as follows:
+               + **driver_load_failed**: Driver loading failed.
+               + **protect_interrupted**: Protection interrupted.
+               + **decoy_deploy_totally_failed**: All honeypots failed to be deployed.
+               + **decoy_deploy_partially_failed**: Some honeypots failed to be deployed.
+        :param _builtins.str ransom_protection_status: Specifies the ransomware protection status.
+               The valid values are as follows:
+               + **closed**
+               + **opened**
+               + **opening**
+               + **closing**
+               + **protect_failed**
+               + **protect_degraded**
+        :param _builtins.int resources_num: The number of bound servers.
+        :param _builtins.int vault_allocated: The allocated bound server capacity, in GB.
+        :param _builtins.str vault_charging_mode: The vault pay mode.
+               The valid values are as follows:
+               + **post_paid**: Pay-per-use.
+               + **pre_paid**: Yearly/monthly.
+        :param _builtins.str vault_id: The vault ID.
+        :param _builtins.str vault_name: The vault name.
+        :param _builtins.int vault_size: The vault total capacity, in GB.
+        :param _builtins.str vault_status: The vault status.
+               The valid values are as follows:
+               + **available**
+               + **lock**
+               + **frozen**
+               + **deleting**
+               + **error**
+        :param _builtins.int vault_used: The vault used capacity, in MB.
+        :param _builtins.str version: The server protection version.
+               The valid values are as follows:
+               + **hss.version.null**
+               + **hss.version.basic**
+               + **hss.version.advanced**
+               + **hss.version.enterprise**
+               + **hss.version.premium**
+               + **hss.version.wtp**
+               + **hss.version.container.enterprise**
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "agent_status", agent_status)
+        pulumi.set(__self__, "agent_version", agent_version)
+        pulumi.set(__self__, "backup_errors", backup_errors)
+        pulumi.set(__self__, "backup_policy_enabled", backup_policy_enabled)
+        pulumi.set(__self__, "backup_policy_id", backup_policy_id)
+        pulumi.set(__self__, "backup_policy_name", backup_policy_name)
+        pulumi.set(__self__, "backup_protection_status", backup_protection_status)
+        pulumi.set(__self__, "count_backuped", count_backuped)
+        pulumi.set(__self__, "count_protect_event", count_protect_event)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "failed_decoy_dir", failed_decoy_dir)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "host_source", host_source)
+        pulumi.set(__self__, "host_status", host_status)
+        pulumi.set(__self__, "os_name", os_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "protect_policy_id", protect_policy_id)
+        pulumi.set(__self__, "protect_policy_name", protect_policy_name)
+        pulumi.set(__self__, "protect_status", protect_status)
+        pulumi.set(__self__, "ransom_protection_fail_reason", ransom_protection_fail_reason)
+        pulumi.set(__self__, "ransom_protection_status", ransom_protection_status)
+        pulumi.set(__self__, "resources_num", resources_num)
+        pulumi.set(__self__, "vault_allocated", vault_allocated)
+        pulumi.set(__self__, "vault_charging_mode", vault_charging_mode)
+        pulumi.set(__self__, "vault_id", vault_id)
+        pulumi.set(__self__, "vault_name", vault_name)
+        pulumi.set(__self__, "vault_size", vault_size)
+        pulumi.set(__self__, "vault_status", vault_status)
+        pulumi.set(__self__, "vault_used", vault_used)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="agentStatus")
+    def agent_status(self) -> _builtins.str:
+        """
+        Specifies the agent status.
+        The valid values are as follows:
+        + **installed**
+        + **online**
+        + **offline**
+        + **install_failed**
+        + **installing**
+        + **not_installed**
+
+        If you want to filter agents in all status except **online**, set this parameter to **not_online**.
+        """
+        return pulumi.get(self, "agent_status")
+
+    @_builtins.property
+    @pulumi.getter(name="agentVersion")
+    def agent_version(self) -> _builtins.str:
+        """
+        The agent version.
+        """
+        return pulumi.get(self, "agent_version")
+
+    @_builtins.property
+    @pulumi.getter(name="backupErrors")
+    def backup_errors(self) -> Sequence['outputs.GetRansomwareProtectionServersDataListBackupErrorResult']:
+        """
+        The backup error message.
+        """
+        return pulumi.get(self, "backup_errors")
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyEnabled")
+    def backup_policy_enabled(self) -> _builtins.bool:
+        """
+        Whether the backup policy is enabled.
+        """
+        return pulumi.get(self, "backup_policy_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyId")
+    def backup_policy_id(self) -> _builtins.str:
+        """
+        The backup policy ID.
+        """
+        return pulumi.get(self, "backup_policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="backupPolicyName")
+    def backup_policy_name(self) -> _builtins.str:
+        """
+        The backup policy name.
+        """
+        return pulumi.get(self, "backup_policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="backupProtectionStatus")
+    def backup_protection_status(self) -> _builtins.str:
+        """
+        Whether to enable backup.
+        The valid values are as follows:
+        + **failed_to_turn_on_backup**
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "backup_protection_status")
+
+    @_builtins.property
+    @pulumi.getter(name="countBackuped")
+    def count_backuped(self) -> _builtins.int:
+        """
+        The number of existing backups.
+        """
+        return pulumi.get(self, "count_backuped")
+
+    @_builtins.property
+    @pulumi.getter(name="countProtectEvent")
+    def count_protect_event(self) -> _builtins.int:
+        """
+        The number of protection events.
+        """
+        return pulumi.get(self, "count_protect_event")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Specifies the enterprise project ID.
+        This parameter is valid only when the enterprise project is enabled.
+        The default value is **0**, indicating the default enterprise project.
+        If you need to query data for all enterprise projects, the value is **all_granted_eps**.
+        If you only have permissions for a specific enterprise project, you need set the enterprise project ID. Otherwise,
+        the operation may fail due to insufficient permissions.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="failedDecoyDir")
+    def failed_decoy_dir(self) -> _builtins.str:
+        """
+        The directory where honeypot protection failed.
+        """
+        return pulumi.get(self, "failed_decoy_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        Specifies the server group ID.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        Specifies the server group name.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the server ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the server EIP.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostSource")
+    def host_source(self) -> _builtins.str:
+        """
+        The server type.
+        The valid values are as follows:
+        + **ecs**
+        + **outside**
+        + **workspace**
+        """
+        return pulumi.get(self, "host_source")
+
+    @_builtins.property
+    @pulumi.getter(name="hostStatus")
+    def host_status(self) -> _builtins.str:
+        """
+        Specifies the handling status.
+        The valid values are as follows:
+        + **ACTIVE**
+        + **SHUTOFF**
+        """
+        return pulumi.get(self, "host_status")
+
+    @_builtins.property
+    @pulumi.getter(name="osName")
+    def os_name(self) -> _builtins.str:
+        """
+        The OS name.
+        """
+        return pulumi.get(self, "os_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the OS type.
+        The valid values are as follows:
+        + **Linux**
+        + **Windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the server private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectPolicyId")
+    def protect_policy_id(self) -> _builtins.str:
+        """
+        The protection policy ID.
+        """
+        return pulumi.get(self, "protect_policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="protectPolicyName")
+    def protect_policy_name(self) -> _builtins.str:
+        """
+        Specifies the ransomware protection policy name.
+        """
+        return pulumi.get(self, "protect_policy_name")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        """
+        return pulumi.get(self, "protect_status")
+
+    @_builtins.property
+    @pulumi.getter(name="ransomProtectionFailReason")
+    def ransom_protection_fail_reason(self) -> _builtins.str:
+        """
+        The ransomware protection failure case.
+        The valid values are as follows:
+        + **driver_load_failed**: Driver loading failed.
+        + **protect_interrupted**: Protection interrupted.
+        + **decoy_deploy_totally_failed**: All honeypots failed to be deployed.
+        + **decoy_deploy_partially_failed**: Some honeypots failed to be deployed.
+        """
+        return pulumi.get(self, "ransom_protection_fail_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="ransomProtectionStatus")
+    def ransom_protection_status(self) -> _builtins.str:
+        """
+        Specifies the ransomware protection status.
+        The valid values are as follows:
+        + **closed**
+        + **opened**
+        + **opening**
+        + **closing**
+        + **protect_failed**
+        + **protect_degraded**
+        """
+        return pulumi.get(self, "ransom_protection_status")
+
+    @_builtins.property
+    @pulumi.getter(name="resourcesNum")
+    def resources_num(self) -> _builtins.int:
+        """
+        The number of bound servers.
+        """
+        return pulumi.get(self, "resources_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultAllocated")
+    def vault_allocated(self) -> _builtins.int:
+        """
+        The allocated bound server capacity, in GB.
+        """
+        return pulumi.get(self, "vault_allocated")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultChargingMode")
+    def vault_charging_mode(self) -> _builtins.str:
+        """
+        The vault pay mode.
+        The valid values are as follows:
+        + **post_paid**: Pay-per-use.
+        + **pre_paid**: Yearly/monthly.
+        """
+        return pulumi.get(self, "vault_charging_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultId")
+    def vault_id(self) -> _builtins.str:
+        """
+        The vault ID.
+        """
+        return pulumi.get(self, "vault_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultName")
+    def vault_name(self) -> _builtins.str:
+        """
+        The vault name.
+        """
+        return pulumi.get(self, "vault_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultSize")
+    def vault_size(self) -> _builtins.int:
+        """
+        The vault total capacity, in GB.
+        """
+        return pulumi.get(self, "vault_size")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultStatus")
+    def vault_status(self) -> _builtins.str:
+        """
+        The vault status.
+        The valid values are as follows:
+        + **available**
+        + **lock**
+        + **frozen**
+        + **deleting**
+        + **error**
+        """
+        return pulumi.get(self, "vault_status")
+
+    @_builtins.property
+    @pulumi.getter(name="vaultUsed")
+    def vault_used(self) -> _builtins.int:
+        """
+        The vault used capacity, in MB.
+        """
+        return pulumi.get(self, "vault_used")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The server protection version.
+        The valid values are as follows:
+        + **hss.version.null**
+        + **hss.version.basic**
+        + **hss.version.advanced**
+        + **hss.version.enterprise**
+        + **hss.version.premium**
+        + **hss.version.wtp**
+        + **hss.version.container.enterprise**
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetRansomwareProtectionServersDataListBackupErrorResult(dict):
+    def __init__(__self__, *,
+                 error_code: _builtins.int,
+                 error_description: _builtins.str):
+        """
+        :param _builtins.int error_code: The error code.
+               The valid values are as follows:
+               + **0**: No error information.
+               + **1**: Backup cannot be enabled because another vault han been bound.
+               + **2**: The number of backup vaults exceeds the upper limit.
+               + **3**: An exception occurs when the CBR API is called.
+        :param _builtins.str error_description: The error message.
+        """
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_description", error_description)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.int:
+        """
+        The error code.
+        The valid values are as follows:
+        + **0**: No error information.
+        + **1**: Backup cannot be enabled because another vault han been bound.
+        + **2**: The number of backup vaults exceeds the upper limit.
+        + **3**: An exception occurs when the CBR API is called.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorDescription")
+    def error_description(self) -> _builtins.str:
+        """
+        The error message.
+        """
+        return pulumi.get(self, "error_description")
+
+
+@pulumi.output_type
+class GetRaspEventsDataListResult(dict):
+    def __init__(__self__, *,
+                 app_stack: _builtins.str,
+                 attack_input_name: _builtins.str,
+                 attack_input_value: _builtins.str,
+                 attack_tag: _builtins.str,
+                 chk_probe: _builtins.str,
+                 chk_rule: _builtins.str,
+                 chk_rule_desc: _builtins.str,
+                 event_name: _builtins.str,
+                 exist_bug: _builtins.str,
+                 host_name: _builtins.int,
+                 private_ip: _builtins.str,
+                 query_string: _builtins.str,
+                 req_headers: _builtins.str,
+                 req_method: _builtins.str,
+                 req_params: _builtins.str,
+                 req_path: _builtins.str,
+                 req_protocol: _builtins.str,
+                 req_src_ip: _builtins.str,
+                 req_url: _builtins.str,
+                 severity: _builtins.str):
+        """
+        :param _builtins.str app_stack: The application call stack information.
+        :param _builtins.str attack_input_name: The attack affiliated field.
+        :param _builtins.str attack_input_value: The attack payload content.
+        :param _builtins.str attack_tag: Specifies the attack tag.
+               The valid values are as follows:
+               + **Attack Success**
+               + **Attack Attempt**
+               + **Attack Blocked**
+               + **Abnormal Behavior**
+               + **Collapsible Host**
+               + **System Vulnerability**
+        :param _builtins.str chk_probe: The probe identification.
+        :param _builtins.str chk_rule: The check rule identification.
+        :param _builtins.str chk_rule_desc: The check rule description.
+        :param _builtins.str event_name: The alarm name.
+        :param _builtins.str exist_bug: Whether the application exist a bug.
+        :param _builtins.int host_name: The host name.
+        :param _builtins.str private_ip: The host private IP address.
+        :param _builtins.str query_string: The query string.
+        :param _builtins.str req_headers: The web request header information.
+        :param _builtins.str req_method: The web request method.
+        :param _builtins.str req_params: The web request parameters.
+        :param _builtins.str req_path: The web request path.
+        :param _builtins.str req_protocol: The web request protocol.
+        :param _builtins.str req_src_ip: The source IP address.
+        :param _builtins.str req_url: The web request URL.
+        :param _builtins.str severity: Specifies the alarm severity.
+               The valid values are as follows:
+               + **0**: Info.
+               + **1**: Low level alarm.
+               + **2**: Medium level alarm.
+               + **3**: High level alarm.
+               + **4**: Critical.
+        """
+        pulumi.set(__self__, "app_stack", app_stack)
+        pulumi.set(__self__, "attack_input_name", attack_input_name)
+        pulumi.set(__self__, "attack_input_value", attack_input_value)
+        pulumi.set(__self__, "attack_tag", attack_tag)
+        pulumi.set(__self__, "chk_probe", chk_probe)
+        pulumi.set(__self__, "chk_rule", chk_rule)
+        pulumi.set(__self__, "chk_rule_desc", chk_rule_desc)
+        pulumi.set(__self__, "event_name", event_name)
+        pulumi.set(__self__, "exist_bug", exist_bug)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "query_string", query_string)
+        pulumi.set(__self__, "req_headers", req_headers)
+        pulumi.set(__self__, "req_method", req_method)
+        pulumi.set(__self__, "req_params", req_params)
+        pulumi.set(__self__, "req_path", req_path)
+        pulumi.set(__self__, "req_protocol", req_protocol)
+        pulumi.set(__self__, "req_src_ip", req_src_ip)
+        pulumi.set(__self__, "req_url", req_url)
+        pulumi.set(__self__, "severity", severity)
+
+    @_builtins.property
+    @pulumi.getter(name="appStack")
+    def app_stack(self) -> _builtins.str:
+        """
+        The application call stack information.
+        """
+        return pulumi.get(self, "app_stack")
+
+    @_builtins.property
+    @pulumi.getter(name="attackInputName")
+    def attack_input_name(self) -> _builtins.str:
+        """
+        The attack affiliated field.
+        """
+        return pulumi.get(self, "attack_input_name")
+
+    @_builtins.property
+    @pulumi.getter(name="attackInputValue")
+    def attack_input_value(self) -> _builtins.str:
+        """
+        The attack payload content.
+        """
+        return pulumi.get(self, "attack_input_value")
+
+    @_builtins.property
+    @pulumi.getter(name="attackTag")
+    def attack_tag(self) -> _builtins.str:
+        """
+        Specifies the attack tag.
+        The valid values are as follows:
+        + **Attack Success**
+        + **Attack Attempt**
+        + **Attack Blocked**
+        + **Abnormal Behavior**
+        + **Collapsible Host**
+        + **System Vulnerability**
+        """
+        return pulumi.get(self, "attack_tag")
+
+    @_builtins.property
+    @pulumi.getter(name="chkProbe")
+    def chk_probe(self) -> _builtins.str:
+        """
+        The probe identification.
+        """
+        return pulumi.get(self, "chk_probe")
+
+    @_builtins.property
+    @pulumi.getter(name="chkRule")
+    def chk_rule(self) -> _builtins.str:
+        """
+        The check rule identification.
+        """
+        return pulumi.get(self, "chk_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="chkRuleDesc")
+    def chk_rule_desc(self) -> _builtins.str:
+        """
+        The check rule description.
+        """
+        return pulumi.get(self, "chk_rule_desc")
+
+    @_builtins.property
+    @pulumi.getter(name="eventName")
+    def event_name(self) -> _builtins.str:
+        """
+        The alarm name.
+        """
+        return pulumi.get(self, "event_name")
+
+    @_builtins.property
+    @pulumi.getter(name="existBug")
+    def exist_bug(self) -> _builtins.str:
+        """
+        Whether the application exist a bug.
+        """
+        return pulumi.get(self, "exist_bug")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.int:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The host private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="queryString")
+    def query_string(self) -> _builtins.str:
+        """
+        The query string.
+        """
+        return pulumi.get(self, "query_string")
+
+    @_builtins.property
+    @pulumi.getter(name="reqHeaders")
+    def req_headers(self) -> _builtins.str:
+        """
+        The web request header information.
+        """
+        return pulumi.get(self, "req_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="reqMethod")
+    def req_method(self) -> _builtins.str:
+        """
+        The web request method.
+        """
+        return pulumi.get(self, "req_method")
+
+    @_builtins.property
+    @pulumi.getter(name="reqParams")
+    def req_params(self) -> _builtins.str:
+        """
+        The web request parameters.
+        """
+        return pulumi.get(self, "req_params")
+
+    @_builtins.property
+    @pulumi.getter(name="reqPath")
+    def req_path(self) -> _builtins.str:
+        """
+        The web request path.
+        """
+        return pulumi.get(self, "req_path")
+
+    @_builtins.property
+    @pulumi.getter(name="reqProtocol")
+    def req_protocol(self) -> _builtins.str:
+        """
+        The web request protocol.
+        """
+        return pulumi.get(self, "req_protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="reqSrcIp")
+    def req_src_ip(self) -> _builtins.str:
+        """
+        The source IP address.
+        """
+        return pulumi.get(self, "req_src_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="reqUrl")
+    def req_url(self) -> _builtins.str:
+        """
+        The web request URL.
+        """
+        return pulumi.get(self, "req_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> _builtins.str:
+        """
+        Specifies the alarm severity.
+        The valid values are as follows:
+        + **0**: Info.
+        + **1**: Low level alarm.
+        + **2**: Medium level alarm.
+        + **3**: High level alarm.
+        + **4**: Critical.
+        """
+        return pulumi.get(self, "severity")
 
 
 @pulumi.output_type
@@ -6909,6 +28128,86 @@ class GetResourceQuotasDataListAvailableResourcesListResult(dict):
 
 
 @pulumi.output_type
+class GetSettingDictionariesDataListResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.str,
+                 value: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str code: Specifies the dictionary item code.
+        :param _builtins.str value: The dictionary value (single value).
+        :param Sequence[_builtins.str] values: The dictionary values (multiple values).
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.str:
+        """
+        Specifies the dictionary item code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The dictionary value (single value).
+        """
+        return pulumi.get(self, "value")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The dictionary values (multiple values).
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetSettingDockerPluginInstallScriptDataListResult(dict):
+    def __init__(__self__, *,
+                 cmd: _builtins.str,
+                 package_download_url: _builtins.str,
+                 package_type: _builtins.str):
+        """
+        :param _builtins.str cmd: The command cmd.
+        :param _builtins.str package_download_url: The package download address.
+        :param _builtins.str package_type: The installation package type.
+        """
+        pulumi.set(__self__, "cmd", cmd)
+        pulumi.set(__self__, "package_download_url", package_download_url)
+        pulumi.set(__self__, "package_type", package_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def cmd(self) -> _builtins.str:
+        """
+        The command cmd.
+        """
+        return pulumi.get(self, "cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="packageDownloadUrl")
+    def package_download_url(self) -> _builtins.str:
+        """
+        The package download address.
+        """
+        return pulumi.get(self, "package_download_url")
+
+    @_builtins.property
+    @pulumi.getter(name="packageType")
+    def package_type(self) -> _builtins.str:
+        """
+        The installation package type.
+        """
+        return pulumi.get(self, "package_type")
+
+
+@pulumi.output_type
 class GetSettingLoginCommonIpsDataListResult(dict):
     def __init__(__self__, *,
                  host_id_lists: Sequence[_builtins.str],
@@ -6988,6 +28287,282 @@ class GetSettingLoginCommonLocationsDataListResult(dict):
         The total number of hosts in the common login location.
         """
         return pulumi.get(self, "total_num")
+
+
+@pulumi.output_type
+class GetSettingLoginWhiteIpsDataListResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 host_id_lists: Sequence[_builtins.str],
+                 total_num: _builtins.int,
+                 white_ip: _builtins.str):
+        """
+        :param _builtins.bool enabled: The login IP whitelist enabling status.
+               The valid values are as follows:
+               + **true**: Indicates enabled.
+               + **false**: Indicates disabled.
+        :param Sequence[_builtins.str] host_id_lists: The list of server IDs.
+        :param _builtins.int total_num: The total number of servers.
+        :param _builtins.str white_ip: Specifies the whitelist IP address or IP segment.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "host_id_lists", host_id_lists)
+        pulumi.set(__self__, "total_num", total_num)
+        pulumi.set(__self__, "white_ip", white_ip)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        The login IP whitelist enabling status.
+        The valid values are as follows:
+        + **true**: Indicates enabled.
+        + **false**: Indicates disabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIdLists")
+    def host_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of server IDs.
+        """
+        return pulumi.get(self, "host_id_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="totalNum")
+    def total_num(self) -> _builtins.int:
+        """
+        The total number of servers.
+        """
+        return pulumi.get(self, "total_num")
+
+    @_builtins.property
+    @pulumi.getter(name="whiteIp")
+    def white_ip(self) -> _builtins.str:
+        """
+        Specifies the whitelist IP address or IP segment.
+        """
+        return pulumi.get(self, "white_ip")
+
+
+@pulumi.output_type
+class GetSettingPluginsDataListResult(dict):
+    def __init__(__self__, *,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 plugin_name: _builtins.str,
+                 plugin_status: _builtins.str,
+                 plugin_version: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 upgrade_status: _builtins.str):
+        """
+        :param _builtins.str host_id: Specifies the server ID.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.str os_type: Specifies the OS type.
+               The valid values are as follows:
+               + **Linux**
+               + **Windows**
+        :param _builtins.str plugin_name: The plug-in name.
+        :param _builtins.str plugin_status: The plug-in status.
+        :param _builtins.str plugin_version: The plug-in version.
+        :param _builtins.str private_ip: Specifies the server private IP address.
+        :param _builtins.str public_ip: Specifies the server EIP.
+        :param _builtins.str upgrade_status: The plug-in upgrade status.
+        """
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "plugin_name", plugin_name)
+        pulumi.set(__self__, "plugin_status", plugin_status)
+        pulumi.set(__self__, "plugin_version", plugin_version)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "upgrade_status", upgrade_status)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the server ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the OS type.
+        The valid values are as follows:
+        + **Linux**
+        + **Windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> _builtins.str:
+        """
+        The plug-in name.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginStatus")
+    def plugin_status(self) -> _builtins.str:
+        """
+        The plug-in status.
+        """
+        return pulumi.get(self, "plugin_status")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> _builtins.str:
+        """
+        The plug-in version.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the server private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the server EIP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradeStatus")
+    def upgrade_status(self) -> _builtins.str:
+        """
+        The plug-in upgrade status.
+        """
+        return pulumi.get(self, "upgrade_status")
+
+
+@pulumi.output_type
+class GetSettingTwoFactorLoginHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 auth_switch: _builtins.bool,
+                 auth_type: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 outside_host: _builtins.bool,
+                 topic_display_name: _builtins.str,
+                 topic_urn: _builtins.str):
+        """
+        :param _builtins.bool auth_switch: Whether the two-factor authentication is enabled.
+        :param _builtins.str auth_type: The two-factor authentication type.
+               The valid values are as follows:
+               + **sms**: Indicates SMS and email verification.
+               + **code**: Indicates captcha code verification.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str os_type: The operating system type.
+               The valid values are as follows:
+               + **linux**
+               + **windows**
+        :param _builtins.bool outside_host: Whether the host is an external (non-HuaweiCloud) matchine.
+        :param _builtins.str topic_display_name: The SMN topic display name.
+        :param _builtins.str topic_urn: The SMN topic urn.
+        """
+        pulumi.set(__self__, "auth_switch", auth_switch)
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "outside_host", outside_host)
+        pulumi.set(__self__, "topic_display_name", topic_display_name)
+        pulumi.set(__self__, "topic_urn", topic_urn)
+
+    @_builtins.property
+    @pulumi.getter(name="authSwitch")
+    def auth_switch(self) -> _builtins.bool:
+        """
+        Whether the two-factor authentication is enabled.
+        """
+        return pulumi.get(self, "auth_switch")
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> _builtins.str:
+        """
+        The two-factor authentication type.
+        The valid values are as follows:
+        + **sms**: Indicates SMS and email verification.
+        + **code**: Indicates captcha code verification.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The operating system type.
+        The valid values are as follows:
+        + **linux**
+        + **windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="outsideHost")
+    def outside_host(self) -> _builtins.bool:
+        """
+        Whether the host is an external (non-HuaweiCloud) matchine.
+        """
+        return pulumi.get(self, "outside_host")
+
+    @_builtins.property
+    @pulumi.getter(name="topicDisplayName")
+    def topic_display_name(self) -> _builtins.str:
+        """
+        The SMN topic display name.
+        """
+        return pulumi.get(self, "topic_display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="topicUrn")
+    def topic_urn(self) -> _builtins.str:
+        """
+        The SMN topic urn.
+        """
+        return pulumi.get(self, "topic_urn")
 
 
 @pulumi.output_type
@@ -7748,6 +29323,706 @@ class GetVulnerabilityHandleHistoryDataListCveListResult(dict):
 
 
 @pulumi.output_type
+class GetVulnerabilityHostAppsDataListResult(dict):
+    def __init__(__self__, *,
+                 app_name: _builtins.str,
+                 paths: Sequence['outputs.GetVulnerabilityHostAppsDataListPathResult'],
+                 rule: _builtins.str):
+        """
+        :param _builtins.str app_name: The application name.
+        :param Sequence['GetVulnerabilityHostAppsDataListPathArgs'] paths: The list of software paths with vulnerabilities, when only querying vulnerability types such as
+               vulnerabilities and emergency vulnerabilities with software paths, this field exists.
+        :param _builtins.str rule: The matching rules for software hit vulnerabilities.
+        """
+        pulumi.set(__self__, "app_name", app_name)
+        pulumi.set(__self__, "paths", paths)
+        pulumi.set(__self__, "rule", rule)
+
+    @_builtins.property
+    @pulumi.getter(name="appName")
+    def app_name(self) -> _builtins.str:
+        """
+        The application name.
+        """
+        return pulumi.get(self, "app_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def paths(self) -> Sequence['outputs.GetVulnerabilityHostAppsDataListPathResult']:
+        """
+        The list of software paths with vulnerabilities, when only querying vulnerability types such as
+        vulnerabilities and emergency vulnerabilities with software paths, this field exists.
+        """
+        return pulumi.get(self, "paths")
+
+    @_builtins.property
+    @pulumi.getter
+    def rule(self) -> _builtins.str:
+        """
+        The matching rules for software hit vulnerabilities.
+        """
+        return pulumi.get(self, "rule")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostAppsDataListPathResult(dict):
+    def __init__(__self__, *,
+                 app_path: _builtins.str,
+                 app_version: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str app_path: The software paths with vulnerabilities.
+        :param _builtins.str app_version: The application version.
+        :param _builtins.str status: The vulnerability status.  
+               The valid values are as follows:
+               + **vul_status_unfix**: Indicates not fixed.
+               + **vul_status_ignored**: Indicates ignored.
+               + **vul_status_verified**: Indicates verification in progress.
+               + **vul_status_fixing**: Indicates fixing is in progress.
+               + **vul_status_fixed**: Indicates fix succeeded.
+               + **vul_status_reboot**: Indicates the issue is fixed and waiting for restart.
+               + **vul_status_failed**: Indicates the issue failed to be fixed.
+               + **vul_status_fix_after_reboot**: Indicates restart the host and try again.
+        """
+        pulumi.set(__self__, "app_path", app_path)
+        pulumi.set(__self__, "app_version", app_version)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="appPath")
+    def app_path(self) -> _builtins.str:
+        """
+        The software paths with vulnerabilities.
+        """
+        return pulumi.get(self, "app_path")
+
+    @_builtins.property
+    @pulumi.getter(name="appVersion")
+    def app_version(self) -> _builtins.str:
+        """
+        The application version.
+        """
+        return pulumi.get(self, "app_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The vulnerability status.  
+        The valid values are as follows:
+        + **vul_status_unfix**: Indicates not fixed.
+        + **vul_status_ignored**: Indicates ignored.
+        + **vul_status_verified**: Indicates verification in progress.
+        + **vul_status_fixing**: Indicates fixing is in progress.
+        + **vul_status_fixed**: Indicates fix succeeded.
+        + **vul_status_reboot**: Indicates the issue is fixed and waiting for restart.
+        + **vul_status_failed**: Indicates the issue failed to be fixed.
+        + **vul_status_fix_after_reboot**: Indicates restart the host and try again.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 asset_value: _builtins.str,
+                 group_id: _builtins.str,
+                 group_name: _builtins.str,
+                 handle_status: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 region_name: _builtins.str,
+                 scan_time: _builtins.int,
+                 score: _builtins.int,
+                 severity_level: _builtins.str,
+                 version: _builtins.str,
+                 vul_ids_infos: Sequence['outputs.GetVulnerabilityHostHostsDataListVulIdsInfoResult'],
+                 vul_num_with_repair_priority_lists: Sequence['outputs.GetVulnerabilityHostHostsDataListVulNumWithRepairPriorityListResult']):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str asset_value: Specifies the host asset importance.  
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param _builtins.str group_id: The ID of the server group.
+        :param _builtins.str group_name: Specifies the server group to which the host belongs.
+        :param _builtins.str handle_status: Specifies the disposal status of the host.  
+               The valid values are as follows:
+               + **unhandled**: Unhandled.
+               + **handled**: Handled.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str os_type: The operating system type of the host.
+        :param _builtins.str private_ip: Specifies the host private ip.
+        :param _builtins.str public_ip: Specifies the host public ip.
+        :param _builtins.str region_name: The region where the host is located.
+        :param _builtins.int scan_time: The scan time.
+        :param _builtins.int score: The host risk score.
+        :param _builtins.str severity_level: Specifies the vulnerability risk level.  
+               The valid values are as follows:
+               + **Critical**
+               + **High**
+               + **Medium**
+               + **Low**
+        :param _builtins.str version: The host quota version.
+        :param Sequence['GetVulnerabilityHostHostsDataListVulIdsInfoArgs'] vul_ids_infos: The list of vulnerability IDs for each type of vulnerability.
+        :param Sequence['GetVulnerabilityHostHostsDataListVulNumWithRepairPriorityListArgs'] vul_num_with_repair_priority_lists: The number of vulnerabilities under each vulnerability repair priority.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "handle_status", handle_status)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "scan_time", scan_time)
+        pulumi.set(__self__, "score", score)
+        pulumi.set(__self__, "severity_level", severity_level)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "vul_ids_infos", vul_ids_infos)
+        pulumi.set(__self__, "vul_num_with_repair_priority_lists", vul_num_with_repair_priority_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the host asset importance.  
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> _builtins.str:
+        """
+        The ID of the server group.
+        """
+        return pulumi.get(self, "group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        Specifies the server group to which the host belongs.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="handleStatus")
+    def handle_status(self) -> _builtins.str:
+        """
+        Specifies the disposal status of the host.  
+        The valid values are as follows:
+        + **unhandled**: Unhandled.
+        + **handled**: Handled.
+        """
+        return pulumi.get(self, "handle_status")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        The operating system type of the host.
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the host private ip.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the host public ip.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        The region where the host is located.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The scan time.
+        """
+        return pulumi.get(self, "scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def score(self) -> _builtins.int:
+        """
+        The host risk score.
+        """
+        return pulumi.get(self, "score")
+
+    @_builtins.property
+    @pulumi.getter(name="severityLevel")
+    def severity_level(self) -> _builtins.str:
+        """
+        Specifies the vulnerability risk level.  
+        The valid values are as follows:
+        + **Critical**
+        + **High**
+        + **Medium**
+        + **Low**
+        """
+        return pulumi.get(self, "severity_level")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The host quota version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="vulIdsInfos")
+    def vul_ids_infos(self) -> Sequence['outputs.GetVulnerabilityHostHostsDataListVulIdsInfoResult']:
+        """
+        The list of vulnerability IDs for each type of vulnerability.
+        """
+        return pulumi.get(self, "vul_ids_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNumWithRepairPriorityLists")
+    def vul_num_with_repair_priority_lists(self) -> Sequence['outputs.GetVulnerabilityHostHostsDataListVulNumWithRepairPriorityListResult']:
+        """
+        The number of vulnerabilities under each vulnerability repair priority.
+        """
+        return pulumi.get(self, "vul_num_with_repair_priority_lists")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostHostsDataListVulIdsInfoResult(dict):
+    def __init__(__self__, *,
+                 app_vul_id_lists: Sequence[_builtins.str],
+                 linux_vul_id_lists: Sequence[_builtins.str],
+                 urgent_vul_id_lists: Sequence[_builtins.str],
+                 webcms_vul_id_lists: Sequence[_builtins.str],
+                 windows_vul_id_lists: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] app_vul_id_lists: The list of vulnerability IDs for application vulnerabilities.
+        :param Sequence[_builtins.str] linux_vul_id_lists: The list of vulnerability IDs for Linux vulnerabilities.
+        :param Sequence[_builtins.str] urgent_vul_id_lists: The list of vulnerability IDs for emergency vulnerabilities.
+        :param Sequence[_builtins.str] webcms_vul_id_lists: The list of vulnerability IDs for Web-CMS vulnerabilities.
+        :param Sequence[_builtins.str] windows_vul_id_lists: The list of vulnerability IDs for Windows vulnerabilities.
+        """
+        pulumi.set(__self__, "app_vul_id_lists", app_vul_id_lists)
+        pulumi.set(__self__, "linux_vul_id_lists", linux_vul_id_lists)
+        pulumi.set(__self__, "urgent_vul_id_lists", urgent_vul_id_lists)
+        pulumi.set(__self__, "webcms_vul_id_lists", webcms_vul_id_lists)
+        pulumi.set(__self__, "windows_vul_id_lists", windows_vul_id_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="appVulIdLists")
+    def app_vul_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability IDs for application vulnerabilities.
+        """
+        return pulumi.get(self, "app_vul_id_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="linuxVulIdLists")
+    def linux_vul_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability IDs for Linux vulnerabilities.
+        """
+        return pulumi.get(self, "linux_vul_id_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="urgentVulIdLists")
+    def urgent_vul_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability IDs for emergency vulnerabilities.
+        """
+        return pulumi.get(self, "urgent_vul_id_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="webcmsVulIdLists")
+    def webcms_vul_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability IDs for Web-CMS vulnerabilities.
+        """
+        return pulumi.get(self, "webcms_vul_id_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="windowsVulIdLists")
+    def windows_vul_id_lists(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability IDs for Windows vulnerabilities.
+        """
+        return pulumi.get(self, "windows_vul_id_lists")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostHostsDataListVulNumWithRepairPriorityListResult(dict):
+    def __init__(__self__, *,
+                 repair_priority: _builtins.str,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.str repair_priority: The priority of vulnerability repair.
+        :param _builtins.int vul_num: The number of vulnerabilities under this priority.
+        """
+        pulumi.set(__self__, "repair_priority", repair_priority)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter(name="repairPriority")
+    def repair_priority(self) -> _builtins.str:
+        """
+        The priority of vulnerability repair.
+        """
+        return pulumi.get(self, "repair_priority")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities under this priority.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostVulnerabilitiesDataListResult(dict):
+    def __init__(__self__, *,
+                 asset_value: _builtins.str,
+                 cve_lists: Sequence['outputs.GetVulnerabilityHostVulnerabilitiesDataListCveListResult'],
+                 disabled_operate_types: Sequence['outputs.GetVulnerabilityHostVulnerabilitiesDataListDisabledOperateTypeResult'],
+                 first_scan_time: _builtins.int,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 is_affected_business: _builtins.bool,
+                 label_lists: Sequence[_builtins.str],
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 repair_priority: _builtins.str,
+                 repair_success_num: _builtins.int,
+                 scan_time: _builtins.int,
+                 status: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param _builtins.str asset_value: Specifies the host asset importance.
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param Sequence['GetVulnerabilityHostVulnerabilitiesDataListCveListArgs'] cve_lists: The CVE list.
+        :param Sequence['GetVulnerabilityHostVulnerabilitiesDataListDisabledOperateTypeArgs'] disabled_operate_types: The list of operation types of vulnerabilities that cannot be performed.
+        :param _builtins.int first_scan_time: The first scan time.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.bool is_affected_business: Does it affect the business. The valid value is **true** or **false**.
+        :param Sequence[_builtins.str] label_lists: Specifies the vulnerability label.
+        :param _builtins.str private_ip: The host private ip.
+        :param _builtins.str public_ip: The host public ip.
+        :param _builtins.str repair_priority: Specifies the vulnerability repair priority.
+               The valid values are as follows:
+               + **Critical**
+               + **High**
+               + **Medium**
+               + **Low**
+        :param _builtins.int repair_success_num: The current number of successful vulnerability fixes.
+        :param _builtins.int scan_time: The latest scanning time.
+        :param _builtins.str status: Specifies the vulnerability status.  
+               The valid values are as follows:
+               + **vul_status_unfix**: Indicates not fixed.
+               + **vul_status_ignored**: Indicates ignored.
+               + **vul_status_verified**: Indicates verification in progress.
+               + **vul_status_fixing**: Indicates fixing is in progress.
+               + **vul_status_fixed**: Indicates fix succeeded.
+               + **vul_status_reboot**: Indicates the issue is fixed and waiting for restart.
+               + **vul_status_failed**: Indicates the issue failed to be fixed.
+               + **vul_status_fix_after_reboot**: Indicates restart the host and try again.
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: Specifies the name of the vulnerability.
+        """
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "cve_lists", cve_lists)
+        pulumi.set(__self__, "disabled_operate_types", disabled_operate_types)
+        pulumi.set(__self__, "first_scan_time", first_scan_time)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "is_affected_business", is_affected_business)
+        pulumi.set(__self__, "label_lists", label_lists)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "repair_priority", repair_priority)
+        pulumi.set(__self__, "repair_success_num", repair_success_num)
+        pulumi.set(__self__, "scan_time", scan_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        Specifies the host asset importance.
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="cveLists")
+    def cve_lists(self) -> Sequence['outputs.GetVulnerabilityHostVulnerabilitiesDataListCveListResult']:
+        """
+        The CVE list.
+        """
+        return pulumi.get(self, "cve_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="disabledOperateTypes")
+    def disabled_operate_types(self) -> Sequence['outputs.GetVulnerabilityHostVulnerabilitiesDataListDisabledOperateTypeResult']:
+        """
+        The list of operation types of vulnerabilities that cannot be performed.
+        """
+        return pulumi.get(self, "disabled_operate_types")
+
+    @_builtins.property
+    @pulumi.getter(name="firstScanTime")
+    def first_scan_time(self) -> _builtins.int:
+        """
+        The first scan time.
+        """
+        return pulumi.get(self, "first_scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="isAffectedBusiness")
+    def is_affected_business(self) -> _builtins.bool:
+        """
+        Does it affect the business. The valid value is **true** or **false**.
+        """
+        return pulumi.get(self, "is_affected_business")
+
+    @_builtins.property
+    @pulumi.getter(name="labelLists")
+    def label_lists(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the vulnerability label.
+        """
+        return pulumi.get(self, "label_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The host private ip.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The host public ip.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="repairPriority")
+    def repair_priority(self) -> _builtins.str:
+        """
+        Specifies the vulnerability repair priority.
+        The valid values are as follows:
+        + **Critical**
+        + **High**
+        + **Medium**
+        + **Low**
+        """
+        return pulumi.get(self, "repair_priority")
+
+    @_builtins.property
+    @pulumi.getter(name="repairSuccessNum")
+    def repair_success_num(self) -> _builtins.int:
+        """
+        The current number of successful vulnerability fixes.
+        """
+        return pulumi.get(self, "repair_success_num")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The latest scanning time.
+        """
+        return pulumi.get(self, "scan_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the vulnerability status.  
+        The valid values are as follows:
+        + **vul_status_unfix**: Indicates not fixed.
+        + **vul_status_ignored**: Indicates ignored.
+        + **vul_status_verified**: Indicates verification in progress.
+        + **vul_status_fixing**: Indicates fixing is in progress.
+        + **vul_status_fixed**: Indicates fix succeeded.
+        + **vul_status_reboot**: Indicates the issue is fixed and waiting for restart.
+        + **vul_status_failed**: Indicates the issue failed to be fixed.
+        + **vul_status_fix_after_reboot**: Indicates restart the host and try again.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        Specifies the name of the vulnerability.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostVulnerabilitiesDataListCveListResult(dict):
+    def __init__(__self__, *,
+                 cve_id: _builtins.str,
+                 cvss: _builtins.int):
+        """
+        :param _builtins.str cve_id: Specifies the vulnerability CVE number.
+        :param _builtins.int cvss: The CVSS score.
+        """
+        pulumi.set(__self__, "cve_id", cve_id)
+        pulumi.set(__self__, "cvss", cvss)
+
+    @_builtins.property
+    @pulumi.getter(name="cveId")
+    def cve_id(self) -> _builtins.str:
+        """
+        Specifies the vulnerability CVE number.
+        """
+        return pulumi.get(self, "cve_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def cvss(self) -> _builtins.int:
+        """
+        The CVSS score.
+        """
+        return pulumi.get(self, "cvss")
+
+
+@pulumi.output_type
+class GetVulnerabilityHostVulnerabilitiesDataListDisabledOperateTypeResult(dict):
+    def __init__(__self__, *,
+                 operate_type: _builtins.str,
+                 reason: _builtins.str):
+        """
+        :param _builtins.str operate_type: The operation type.
+               The valid values are as follows:
+               + **ignore**
+               + **not_ignore**
+               + **immediate_repair**
+               + **manual_repair**
+               + **verify**
+               + **add_to_whitelist**
+        :param _builtins.str reason: The reason why the operation cannot be performed.
+        """
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> _builtins.str:
+        """
+        The operation type.
+        The valid values are as follows:
+        + **ignore**
+        + **not_ignore**
+        + **immediate_repair**
+        + **manual_repair**
+        + **verify**
+        + **add_to_whitelist**
+        """
+        return pulumi.get(self, "operate_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> _builtins.str:
+        """
+        The reason why the operation cannot be performed.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
 class GetVulnerabilityHostsDataListResult(dict):
     def __init__(__self__, *,
                  agent_id: _builtins.str,
@@ -8112,6 +30387,1034 @@ class GetVulnerabilityHostsDataListDisabledOperateTypeResult(dict):
 
 
 @pulumi.output_type
+class GetVulnerabilityScanTaskHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 asset_value: _builtins.str,
+                 failed_reasons: Sequence['outputs.GetVulnerabilityScanTaskHostsDataListFailedReasonResult'],
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 scan_status: _builtins.str,
+                 vul_scan_details: Sequence['outputs.GetVulnerabilityScanTaskHostsDataListVulScanDetailResult']):
+        """
+        :param _builtins.str asset_value: The asset importance.
+               The valid values are as follows:
+               + **important**
+               + **common**
+               + **test**
+        :param Sequence['GetVulnerabilityScanTaskHostsDataListFailedReasonArgs'] failed_reasons: The list of scan failure causes.
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: The host name.
+        :param _builtins.str private_ip: The host private IP address.
+        :param _builtins.str public_ip: The host EIP.
+        :param _builtins.str scan_status: Specifies the host scan status.
+               The valid values are as follows:
+               + **scanning**
+               + **success**
+               + **failed**
+        :param Sequence['GetVulnerabilityScanTaskHostsDataListVulScanDetailArgs'] vul_scan_details: The host scan details.
+        """
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "failed_reasons", failed_reasons)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "scan_status", scan_status)
+        pulumi.set(__self__, "vul_scan_details", vul_scan_details)
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The asset importance.
+        The valid values are as follows:
+        + **important**
+        + **common**
+        + **test**
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="failedReasons")
+    def failed_reasons(self) -> Sequence['outputs.GetVulnerabilityScanTaskHostsDataListFailedReasonResult']:
+        """
+        The list of scan failure causes.
+        """
+        return pulumi.get(self, "failed_reasons")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The host private IP address.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        The host EIP.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="scanStatus")
+    def scan_status(self) -> _builtins.str:
+        """
+        Specifies the host scan status.
+        The valid values are as follows:
+        + **scanning**
+        + **success**
+        + **failed**
+        """
+        return pulumi.get(self, "scan_status")
+
+    @_builtins.property
+    @pulumi.getter(name="vulScanDetails")
+    def vul_scan_details(self) -> Sequence['outputs.GetVulnerabilityScanTaskHostsDataListVulScanDetailResult']:
+        """
+        The host scan details.
+        """
+        return pulumi.get(self, "vul_scan_details")
+
+
+@pulumi.output_type
+class GetVulnerabilityScanTaskHostsDataListFailedReasonResult(dict):
+    def __init__(__self__, *,
+                 failed_reason: _builtins.str,
+                 vul_type: _builtins.str):
+        """
+        :param _builtins.str failed_reason: The cause of the scanning failure.
+               The field is available only for vulnerabilities that fail to be scanned.
+        :param _builtins.str vul_type: The vulnerability type.
+        """
+        pulumi.set(__self__, "failed_reason", failed_reason)
+        pulumi.set(__self__, "vul_type", vul_type)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> _builtins.str:
+        """
+        The cause of the scanning failure.
+        The field is available only for vulnerabilities that fail to be scanned.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="vulType")
+    def vul_type(self) -> _builtins.str:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "vul_type")
+
+
+@pulumi.output_type
+class GetVulnerabilityScanTaskHostsDataListVulScanDetailResult(dict):
+    def __init__(__self__, *,
+                 failed_reason: _builtins.str,
+                 scan_vul_lists: Sequence['outputs.GetVulnerabilityScanTaskHostsDataListVulScanDetailScanVulListResult'],
+                 status: _builtins.str,
+                 vul_type: _builtins.str):
+        """
+        :param _builtins.str failed_reason: The cause of the scanning failure.
+               The field is available only for vulnerabilities that fail to be scanned.
+        :param Sequence['GetVulnerabilityScanTaskHostsDataListVulScanDetailScanVulListArgs'] scan_vul_lists: The list of scan vulnerabilities.
+               The field is available only when the `vul_type` is set to **app_vul**.
+        :param _builtins.str status: The vulnerability scan status.
+        :param _builtins.str vul_type: The vulnerability type.
+        """
+        pulumi.set(__self__, "failed_reason", failed_reason)
+        pulumi.set(__self__, "scan_vul_lists", scan_vul_lists)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vul_type", vul_type)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> _builtins.str:
+        """
+        The cause of the scanning failure.
+        The field is available only for vulnerabilities that fail to be scanned.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter(name="scanVulLists")
+    def scan_vul_lists(self) -> Sequence['outputs.GetVulnerabilityScanTaskHostsDataListVulScanDetailScanVulListResult']:
+        """
+        The list of scan vulnerabilities.
+        The field is available only when the `vul_type` is set to **app_vul**.
+        """
+        return pulumi.get(self, "scan_vul_lists")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The vulnerability scan status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vulType")
+    def vul_type(self) -> _builtins.str:
+        """
+        The vulnerability type.
+        """
+        return pulumi.get(self, "vul_type")
+
+
+@pulumi.output_type
+class GetVulnerabilityScanTaskHostsDataListVulScanDetailScanVulListResult(dict):
+    def __init__(__self__, *,
+                 failed_reason: _builtins.str,
+                 status: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param _builtins.str failed_reason: The cause of the scanning failure.
+               The field is available only for vulnerabilities that fail to be scanned.
+        :param _builtins.str status: The vulnerability scan status.
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: The vulnerability name.
+        """
+        pulumi.set(__self__, "failed_reason", failed_reason)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter(name="failedReason")
+    def failed_reason(self) -> _builtins.str:
+        """
+        The cause of the scanning failure.
+        The field is available only for vulnerabilities that fail to be scanned.
+        """
+        return pulumi.get(self, "failed_reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The vulnerability scan status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        The vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetVulnerabilityScanTasksDataListResult(dict):
+    def __init__(__self__, *,
+                 end_time: _builtins.int,
+                 estimated_time: _builtins.int,
+                 failed_host_num: _builtins.int,
+                 id: _builtins.str,
+                 scan_type: _builtins.str,
+                 scan_vul_types: Sequence[_builtins.str],
+                 scanning_host_num: _builtins.int,
+                 start_time: _builtins.int,
+                 status: _builtins.str,
+                 success_host_num: _builtins.int):
+        """
+        :param _builtins.int end_time: The scan task end time.
+        :param _builtins.int estimated_time: The expected completion time.
+        :param _builtins.int failed_host_num: The number of hosts fail to be scanned.
+        :param _builtins.str id: The scan task ID.
+        :param _builtins.str scan_type: Specifies the scan task type.
+               The valid values are as follows:
+               + **manual**
+               + **schedule**
+        :param Sequence[_builtins.str] scan_vul_types: The list of vulnerability types scanned by the task.
+        :param _builtins.int scanning_host_num: The number of hosts are being scanned.
+        :param _builtins.int start_time: The scan task start time.
+        :param _builtins.str status: The scan task status.
+               The valid values are as follows:
+               + **running**
+               + **finished**
+        :param _builtins.int success_host_num: The number of hosts have been successfully scanned.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "estimated_time", estimated_time)
+        pulumi.set(__self__, "failed_host_num", failed_host_num)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "scan_type", scan_type)
+        pulumi.set(__self__, "scan_vul_types", scan_vul_types)
+        pulumi.set(__self__, "scanning_host_num", scanning_host_num)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "success_host_num", success_host_num)
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.int:
+        """
+        The scan task end time.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="estimatedTime")
+    def estimated_time(self) -> _builtins.int:
+        """
+        The expected completion time.
+        """
+        return pulumi.get(self, "estimated_time")
+
+    @_builtins.property
+    @pulumi.getter(name="failedHostNum")
+    def failed_host_num(self) -> _builtins.int:
+        """
+        The number of hosts fail to be scanned.
+        """
+        return pulumi.get(self, "failed_host_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The scan task ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> _builtins.str:
+        """
+        Specifies the scan task type.
+        The valid values are as follows:
+        + **manual**
+        + **schedule**
+        """
+        return pulumi.get(self, "scan_type")
+
+    @_builtins.property
+    @pulumi.getter(name="scanVulTypes")
+    def scan_vul_types(self) -> Sequence[_builtins.str]:
+        """
+        The list of vulnerability types scanned by the task.
+        """
+        return pulumi.get(self, "scan_vul_types")
+
+    @_builtins.property
+    @pulumi.getter(name="scanningHostNum")
+    def scanning_host_num(self) -> _builtins.int:
+        """
+        The number of hosts are being scanned.
+        """
+        return pulumi.get(self, "scanning_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.int:
+        """
+        The scan task start time.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The scan task status.
+        The valid values are as follows:
+        + **running**
+        + **finished**
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="successHostNum")
+    def success_host_num(self) -> _builtins.int:
+        """
+        The number of hosts have been successfully scanned.
+        """
+        return pulumi.get(self, "success_host_num")
+
+
+@pulumi.output_type
+class GetVulnerabilityStatisticsAffectedCceDisabledVulListResult(dict):
+    def __init__(__self__, *,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 operation_description: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: The host name.
+        :param _builtins.str operation_description: The operation prompt.
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: The vulnerability name.
+        """
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "operation_description", operation_description)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="operationDescription")
+    def operation_description(self) -> _builtins.str:
+        """
+        The operation prompt.
+        """
+        return pulumi.get(self, "operation_description")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        The vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetVulnerabilityStatisticsAffectedDataListResult(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 vul_num: _builtins.int):
+        """
+        :param _builtins.str type: Specifies the vulnerability type. This field is required when `select_type` is set to
+               **all_vul**.
+               The valid values are as follows:
+               + **linux_vul**: Linux vulnerability.
+               + **windows_vul**: Windows vulnerability.
+               + **web_cms**: Web-CMS vulnerability.
+               + **app_vul**: Application vulnerability.
+               + **urgent_vul**: Emergency vulnerability.
+               + **cluster_vul**: Cluster vulnerability.
+        :param _builtins.int vul_num: The number of vulnerabilities of this vulnerability type.
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vul_num", vul_num)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the vulnerability type. This field is required when `select_type` is set to
+        **all_vul**.
+        The valid values are as follows:
+        + **linux_vul**: Linux vulnerability.
+        + **windows_vul**: Windows vulnerability.
+        + **web_cms**: Web-CMS vulnerability.
+        + **app_vul**: Application vulnerability.
+        + **urgent_vul**: Emergency vulnerability.
+        + **cluster_vul**: Cluster vulnerability.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="vulNum")
+    def vul_num(self) -> _builtins.int:
+        """
+        The number of vulnerabilities of this vulnerability type.
+        """
+        return pulumi.get(self, "vul_num")
+
+
+@pulumi.output_type
+class GetVulnerabilityStatisticsAffectedDisabledOperateTypeResult(dict):
+    def __init__(__self__, *,
+                 operate_type: _builtins.str,
+                 reason: _builtins.str):
+        """
+        :param _builtins.str operate_type: The disabled operation type.  
+               The valid values are as follows:
+               + **immediate_repair**: Repair.
+        :param _builtins.str reason: The reason for disabling.
+        """
+        pulumi.set(__self__, "operate_type", operate_type)
+        pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter(name="operateType")
+    def operate_type(self) -> _builtins.str:
+        """
+        The disabled operation type.  
+        The valid values are as follows:
+        + **immediate_repair**: Repair.
+        """
+        return pulumi.get(self, "operate_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> _builtins.str:
+        """
+        The reason for disabling.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
+class GetVulnerabilityUrgentVulnerabilitiesDataListResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 failed_host_num: _builtins.int,
+                 hosts_nums: Sequence['outputs.GetVulnerabilityUrgentVulnerabilitiesDataListHostsNumResult'],
+                 label_lists: Sequence[_builtins.str],
+                 publish_time: _builtins.int,
+                 scan_status: _builtins.str,
+                 scan_time: _builtins.int,
+                 scanning_host_num: _builtins.int,
+                 severity_level: _builtins.str,
+                 solution_detail: _builtins.str,
+                 success_host_num: _builtins.int,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param _builtins.str description: The vulnerability description.
+        :param _builtins.int failed_host_num: The number of failed hosts scanned.
+        :param Sequence['GetVulnerabilityUrgentVulnerabilitiesDataListHostsNumArgs'] hosts_nums: The affects the number of hosts.
+        :param Sequence[_builtins.str] label_lists: The vulnerability label list.
+        :param _builtins.int publish_time: The vulnerability disclosure time.
+        :param _builtins.str scan_status: The vulnerability scan status.  
+               The valid values are as follows:
+               + **never_scan**
+               + **scanning**
+               + **failed**
+        :param _builtins.int scan_time: The latest scan time.
+        :param _builtins.int scanning_host_num: The number of hosts in the scanning state.
+        :param _builtins.str severity_level: Specifies the vulnerability risk level.  
+               The valid values are as follows:
+               + **Critical**: Vulnerability CVSS score greater than or equal to `9`. High risk corresponding to the console page.
+               + **High**: Vulnerability CVSS score greater than or equal to `7` and less than `9`. Medium risk corresponding to the
+               console page.
+               + **Medium**: Vulnerability CVSS score greater than or equal to `4` and less than `7`. Medium risk corresponding to
+               the console page.
+               + **Low**: Vulnerability CVSS score less than `4`. Low risk corresponding to the console page.
+        :param _builtins.str solution_detail: The solution.
+        :param _builtins.int success_host_num: The number of successfully scanned hosts.
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: Specifies the name of the vulnerability.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "failed_host_num", failed_host_num)
+        pulumi.set(__self__, "hosts_nums", hosts_nums)
+        pulumi.set(__self__, "label_lists", label_lists)
+        pulumi.set(__self__, "publish_time", publish_time)
+        pulumi.set(__self__, "scan_status", scan_status)
+        pulumi.set(__self__, "scan_time", scan_time)
+        pulumi.set(__self__, "scanning_host_num", scanning_host_num)
+        pulumi.set(__self__, "severity_level", severity_level)
+        pulumi.set(__self__, "solution_detail", solution_detail)
+        pulumi.set(__self__, "success_host_num", success_host_num)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The vulnerability description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="failedHostNum")
+    def failed_host_num(self) -> _builtins.int:
+        """
+        The number of failed hosts scanned.
+        """
+        return pulumi.get(self, "failed_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="hostsNums")
+    def hosts_nums(self) -> Sequence['outputs.GetVulnerabilityUrgentVulnerabilitiesDataListHostsNumResult']:
+        """
+        The affects the number of hosts.
+        """
+        return pulumi.get(self, "hosts_nums")
+
+    @_builtins.property
+    @pulumi.getter(name="labelLists")
+    def label_lists(self) -> Sequence[_builtins.str]:
+        """
+        The vulnerability label list.
+        """
+        return pulumi.get(self, "label_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="publishTime")
+    def publish_time(self) -> _builtins.int:
+        """
+        The vulnerability disclosure time.
+        """
+        return pulumi.get(self, "publish_time")
+
+    @_builtins.property
+    @pulumi.getter(name="scanStatus")
+    def scan_status(self) -> _builtins.str:
+        """
+        The vulnerability scan status.  
+        The valid values are as follows:
+        + **never_scan**
+        + **scanning**
+        + **failed**
+        """
+        return pulumi.get(self, "scan_status")
+
+    @_builtins.property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> _builtins.int:
+        """
+        The latest scan time.
+        """
+        return pulumi.get(self, "scan_time")
+
+    @_builtins.property
+    @pulumi.getter(name="scanningHostNum")
+    def scanning_host_num(self) -> _builtins.int:
+        """
+        The number of hosts in the scanning state.
+        """
+        return pulumi.get(self, "scanning_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="severityLevel")
+    def severity_level(self) -> _builtins.str:
+        """
+        Specifies the vulnerability risk level.  
+        The valid values are as follows:
+        + **Critical**: Vulnerability CVSS score greater than or equal to `9`. High risk corresponding to the console page.
+        + **High**: Vulnerability CVSS score greater than or equal to `7` and less than `9`. Medium risk corresponding to the
+        console page.
+        + **Medium**: Vulnerability CVSS score greater than or equal to `4` and less than `7`. Medium risk corresponding to
+        the console page.
+        + **Low**: Vulnerability CVSS score less than `4`. Low risk corresponding to the console page.
+        """
+        return pulumi.get(self, "severity_level")
+
+    @_builtins.property
+    @pulumi.getter(name="solutionDetail")
+    def solution_detail(self) -> _builtins.str:
+        """
+        The solution.
+        """
+        return pulumi.get(self, "solution_detail")
+
+    @_builtins.property
+    @pulumi.getter(name="successHostNum")
+    def success_host_num(self) -> _builtins.int:
+        """
+        The number of successfully scanned hosts.
+        """
+        return pulumi.get(self, "success_host_num")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        Specifies the name of the vulnerability.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetVulnerabilityUrgentVulnerabilitiesDataListHostsNumResult(dict):
+    def __init__(__self__, *,
+                 common: _builtins.int,
+                 important: _builtins.int,
+                 test: _builtins.int):
+        """
+        :param _builtins.int common: The general number of hosts.
+        :param _builtins.int important: The number of important hosts.
+        :param _builtins.int test: The number of test hosts.
+        """
+        pulumi.set(__self__, "common", common)
+        pulumi.set(__self__, "important", important)
+        pulumi.set(__self__, "test", test)
+
+    @_builtins.property
+    @pulumi.getter
+    def common(self) -> _builtins.int:
+        """
+        The general number of hosts.
+        """
+        return pulumi.get(self, "common")
+
+    @_builtins.property
+    @pulumi.getter
+    def important(self) -> _builtins.int:
+        """
+        The number of important hosts.
+        """
+        return pulumi.get(self, "important")
+
+    @_builtins.property
+    @pulumi.getter
+    def test(self) -> _builtins.int:
+        """
+        The number of test hosts.
+        """
+        return pulumi.get(self, "test")
+
+
+@pulumi.output_type
+class GetVulnerabilityWhiteListsDataListResult(dict):
+    def __init__(__self__, *,
+                 cves: Sequence['outputs.GetVulnerabilityWhiteListsDataListCfeResult'],
+                 description: _builtins.str,
+                 hosts: Sequence['outputs.GetVulnerabilityWhiteListsDataListHostResult'],
+                 id: _builtins.str,
+                 rule_type: _builtins.str,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str,
+                 vul_type: _builtins.str):
+        """
+        :param Sequence['GetVulnerabilityWhiteListsDataListCfeArgs'] cves: The CVE list corresponding to vulnerabilities.
+        :param _builtins.str description: The description information of whitelist.
+        :param Sequence['GetVulnerabilityWhiteListsDataListHostArgs'] hosts: When the whitelist rule is specified host, the specified host list.
+        :param _builtins.str id: The white list ID.
+        :param _builtins.str rule_type: The white list rule type.
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: Specifies the vulnerability name.
+        :param _builtins.str vul_type: Specifies the vulnerability type.  
+               Valid values are:
+               + **linux_vul**: Linux vulnerability.
+               + **windows_vul**: Windows vulnerability.
+               + **web_cms**: Web-CMS vulnerability.
+               + **app_vul**: Application vulnerability.
+        """
+        pulumi.set(__self__, "cves", cves)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "hosts", hosts)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "rule_type", rule_type)
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+        pulumi.set(__self__, "vul_type", vul_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def cves(self) -> Sequence['outputs.GetVulnerabilityWhiteListsDataListCfeResult']:
+        """
+        The CVE list corresponding to vulnerabilities.
+        """
+        return pulumi.get(self, "cves")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description information of whitelist.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def hosts(self) -> Sequence['outputs.GetVulnerabilityWhiteListsDataListHostResult']:
+        """
+        When the whitelist rule is specified host, the specified host list.
+        """
+        return pulumi.get(self, "hosts")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The white list ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleType")
+    def rule_type(self) -> _builtins.str:
+        """
+        The white list rule type.
+        """
+        return pulumi.get(self, "rule_type")
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        Specifies the vulnerability name.
+        """
+        return pulumi.get(self, "vul_name")
+
+    @_builtins.property
+    @pulumi.getter(name="vulType")
+    def vul_type(self) -> _builtins.str:
+        """
+        Specifies the vulnerability type.  
+        Valid values are:
+        + **linux_vul**: Linux vulnerability.
+        + **windows_vul**: Windows vulnerability.
+        + **web_cms**: Web-CMS vulnerability.
+        + **app_vul**: Application vulnerability.
+        """
+        return pulumi.get(self, "vul_type")
+
+
+@pulumi.output_type
+class GetVulnerabilityWhiteListsDataListCfeResult(dict):
+    def __init__(__self__, *,
+                 cve_id: _builtins.str,
+                 cvss: _builtins.float):
+        """
+        :param _builtins.str cve_id: The CVE ID.
+        :param _builtins.float cvss: The CVSS score of CVE.
+        """
+        pulumi.set(__self__, "cve_id", cve_id)
+        pulumi.set(__self__, "cvss", cvss)
+
+    @_builtins.property
+    @pulumi.getter(name="cveId")
+    def cve_id(self) -> _builtins.str:
+        """
+        The CVE ID.
+        """
+        return pulumi.get(self, "cve_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def cvss(self) -> _builtins.float:
+        """
+        The CVSS score of CVE.
+        """
+        return pulumi.get(self, "cvss")
+
+
+@pulumi.output_type
+class GetVulnerabilityWhiteListsDataListHostResult(dict):
+    def __init__(__self__, *,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str):
+        """
+        :param _builtins.str host_id: The host ID.
+        :param _builtins.str host_name: The host name.
+        """
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        The host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+
+@pulumi.output_type
+class GetVulnerabilityWhitelistOptionsDataListResult(dict):
+    def __init__(__self__, *,
+                 vul_id: _builtins.str,
+                 vul_name: _builtins.str):
+        """
+        :param _builtins.str vul_id: The vulnerability ID.
+        :param _builtins.str vul_name: Specifies the name of the vulnerability.
+        """
+        pulumi.set(__self__, "vul_id", vul_id)
+        pulumi.set(__self__, "vul_name", vul_name)
+
+    @_builtins.property
+    @pulumi.getter(name="vulId")
+    def vul_id(self) -> _builtins.str:
+        """
+        The vulnerability ID.
+        """
+        return pulumi.get(self, "vul_id")
+
+    @_builtins.property
+    @pulumi.getter(name="vulName")
+    def vul_name(self) -> _builtins.str:
+        """
+        Specifies the name of the vulnerability.
+        """
+        return pulumi.get(self, "vul_name")
+
+
+@pulumi.output_type
+class GetWebtamperHostManagementHostsDataListResult(dict):
+    def __init__(__self__, *,
+                 agent_id: _builtins.str,
+                 asset_value: _builtins.str,
+                 host_id: _builtins.str,
+                 host_name: _builtins.str,
+                 os_type: _builtins.str,
+                 private_ip: _builtins.str,
+                 public_ip: _builtins.str,
+                 web_app_lists: Sequence[_builtins.str]):
+        """
+        :param _builtins.str agent_id: The agent ID.
+        :param _builtins.str asset_value: The importance of assets. Valid values are:
+               + **important**: Important assets.
+               + **common**: Common assets.
+               + **test**: Test assets.
+        :param _builtins.str host_id: Specifies the host ID.
+        :param _builtins.str host_name: Specifies the host name.
+        :param _builtins.str os_type: Specifies the OS type. Valid values are:
+               + **Linux**
+               + **Windows**
+        :param _builtins.str private_ip: Specifies the private IP of the host.
+        :param _builtins.str public_ip: Specifies the public IP of the host.
+        :param Sequence[_builtins.str] web_app_lists: The web application list.
+        """
+        pulumi.set(__self__, "agent_id", agent_id)
+        pulumi.set(__self__, "asset_value", asset_value)
+        pulumi.set(__self__, "host_id", host_id)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "web_app_lists", web_app_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="agentId")
+    def agent_id(self) -> _builtins.str:
+        """
+        The agent ID.
+        """
+        return pulumi.get(self, "agent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="assetValue")
+    def asset_value(self) -> _builtins.str:
+        """
+        The importance of assets. Valid values are:
+        + **important**: Important assets.
+        + **common**: Common assets.
+        + **test**: Test assets.
+        """
+        return pulumi.get(self, "asset_value")
+
+    @_builtins.property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> _builtins.str:
+        """
+        Specifies the host ID.
+        """
+        return pulumi.get(self, "host_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> _builtins.str:
+        """
+        Specifies the OS type. Valid values are:
+        + **Linux**
+        + **Windows**
+        """
+        return pulumi.get(self, "os_type")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        Specifies the private IP of the host.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> _builtins.str:
+        """
+        Specifies the public IP of the host.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="webAppLists")
+    def web_app_lists(self) -> Sequence[_builtins.str]:
+        """
+        The web application list.
+        """
+        return pulumi.get(self, "web_app_lists")
+
+
+@pulumi.output_type
 class GetWebtamperHostsHostResult(dict):
     def __init__(__self__, *,
                  anti_tampering_times: _builtins.int,
@@ -8247,5 +31550,479 @@ class GetWebtamperHostsHostResult(dict):
         queried. The value can be **closed** or **opened**.
         """
         return pulumi.get(self, "rasp_protect_status")
+
+
+@pulumi.output_type
+class GetWebtamperImageOptionsDataListResult(dict):
+    def __init__(__self__, *,
+                 image_full_name: _builtins.str,
+                 image_id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_namespace: _builtins.str,
+                 image_version_lists: Sequence[_builtins.str],
+                 registry_name: _builtins.str,
+                 registry_type: _builtins.str):
+        """
+        :param _builtins.str image_full_name: The image full name.
+        :param _builtins.str image_id: The image ID.
+        :param _builtins.str image_name: Specifies the image name.
+        :param _builtins.str image_namespace: Specifies the organization name of the warehouse image.
+        :param Sequence[_builtins.str] image_version_lists: The image version list.
+        :param _builtins.str registry_name: Specifies the image warehouse name for the specified warehouse image.
+        :param _builtins.str registry_type: Specifies the image warehouse type for the warehouse image.
+        """
+        pulumi.set(__self__, "image_full_name", image_full_name)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_namespace", image_namespace)
+        pulumi.set(__self__, "image_version_lists", image_version_lists)
+        pulumi.set(__self__, "registry_name", registry_name)
+        pulumi.set(__self__, "registry_type", registry_type)
+
+    @_builtins.property
+    @pulumi.getter(name="imageFullName")
+    def image_full_name(self) -> _builtins.str:
+        """
+        The image full name.
+        """
+        return pulumi.get(self, "image_full_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> _builtins.str:
+        """
+        The image ID.
+        """
+        return pulumi.get(self, "image_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        """
+        Specifies the image name.
+        """
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imageNamespace")
+    def image_namespace(self) -> _builtins.str:
+        """
+        Specifies the organization name of the warehouse image.
+        """
+        return pulumi.get(self, "image_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="imageVersionLists")
+    def image_version_lists(self) -> Sequence[_builtins.str]:
+        """
+        The image version list.
+        """
+        return pulumi.get(self, "image_version_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="registryName")
+    def registry_name(self) -> _builtins.str:
+        """
+        Specifies the image warehouse name for the specified warehouse image.
+        """
+        return pulumi.get(self, "registry_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registryType")
+    def registry_type(self) -> _builtins.str:
+        """
+        Specifies the image warehouse type for the warehouse image.
+        """
+        return pulumi.get(self, "registry_type")
+
+
+@pulumi.output_type
+class GetWebtamperPolicyProtectDirInfoResult(dict):
+    def __init__(__self__, *,
+                 exclude_file_type: _builtins.str,
+                 protect_dir_lists: Sequence['outputs.GetWebtamperPolicyProtectDirInfoProtectDirListResult'],
+                 protect_mode: _builtins.str):
+        """
+        :param _builtins.str exclude_file_type: The excluded file types.
+        :param Sequence['GetWebtamperPolicyProtectDirInfoProtectDirListArgs'] protect_dir_lists: The list of protected directories.
+        :param _builtins.str protect_mode: The protection mode.  
+               + **recovery**: Intercept mode.
+               + **alarm**: Alarm mode, only Linux servers support alarm mode.
+        """
+        pulumi.set(__self__, "exclude_file_type", exclude_file_type)
+        pulumi.set(__self__, "protect_dir_lists", protect_dir_lists)
+        pulumi.set(__self__, "protect_mode", protect_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeFileType")
+    def exclude_file_type(self) -> _builtins.str:
+        """
+        The excluded file types.
+        """
+        return pulumi.get(self, "exclude_file_type")
+
+    @_builtins.property
+    @pulumi.getter(name="protectDirLists")
+    def protect_dir_lists(self) -> Sequence['outputs.GetWebtamperPolicyProtectDirInfoProtectDirListResult']:
+        """
+        The list of protected directories.
+        """
+        return pulumi.get(self, "protect_dir_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="protectMode")
+    def protect_mode(self) -> _builtins.str:
+        """
+        The protection mode.  
+        + **recovery**: Intercept mode.
+        + **alarm**: Alarm mode, only Linux servers support alarm mode.
+        """
+        return pulumi.get(self, "protect_mode")
+
+
+@pulumi.output_type
+class GetWebtamperPolicyProtectDirInfoProtectDirListResult(dict):
+    def __init__(__self__, *,
+                 error: _builtins.str,
+                 exclude_child_dir: _builtins.str,
+                 exclue_file_path: _builtins.str,
+                 local_backup_dir: _builtins.str,
+                 protect_dir: _builtins.str,
+                 protect_status: _builtins.str):
+        """
+        :param _builtins.str error: The failure reason. This exists when the protection status is **open_failed**.
+        :param _builtins.str exclude_child_dir: The excluded subdirectories.
+        :param _builtins.str exclue_file_path: The excluded file path.
+        :param _builtins.str local_backup_dir: The local backup path. Only Linux servers support setting a local backup path.
+        :param _builtins.str protect_dir: The protected directory.
+        :param _builtins.str protect_status: The protection status.  
+               The valid values are as follows:
+               + **closed**: Not enabled.
+               + **opened**: Protection in progress.
+               + **opening**: Enabling protection.
+               + **closing**: Disabling protection.
+               + **open_failed**: Protection failed.
+        """
+        pulumi.set(__self__, "error", error)
+        pulumi.set(__self__, "exclude_child_dir", exclude_child_dir)
+        pulumi.set(__self__, "exclue_file_path", exclue_file_path)
+        pulumi.set(__self__, "local_backup_dir", local_backup_dir)
+        pulumi.set(__self__, "protect_dir", protect_dir)
+        pulumi.set(__self__, "protect_status", protect_status)
+
+    @_builtins.property
+    @pulumi.getter
+    def error(self) -> _builtins.str:
+        """
+        The failure reason. This exists when the protection status is **open_failed**.
+        """
+        return pulumi.get(self, "error")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeChildDir")
+    def exclude_child_dir(self) -> _builtins.str:
+        """
+        The excluded subdirectories.
+        """
+        return pulumi.get(self, "exclude_child_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="exclueFilePath")
+    def exclue_file_path(self) -> _builtins.str:
+        """
+        The excluded file path.
+        """
+        return pulumi.get(self, "exclue_file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="localBackupDir")
+    def local_backup_dir(self) -> _builtins.str:
+        """
+        The local backup path. Only Linux servers support setting a local backup path.
+        """
+        return pulumi.get(self, "local_backup_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="protectDir")
+    def protect_dir(self) -> _builtins.str:
+        """
+        The protected directory.
+        """
+        return pulumi.get(self, "protect_dir")
+
+    @_builtins.property
+    @pulumi.getter(name="protectStatus")
+    def protect_status(self) -> _builtins.str:
+        """
+        The protection status.  
+        The valid values are as follows:
+        + **closed**: Not enabled.
+        + **opened**: Protection in progress.
+        + **opening**: Enabling protection.
+        + **closing**: Disabling protection.
+        + **open_failed**: Protection failed.
+        """
+        return pulumi.get(self, "protect_status")
+
+
+@pulumi.output_type
+class GetWebtamperPolicyTimingOffConfigInfoResult(dict):
+    def __init__(__self__, *,
+                 timing_range_lists: Sequence['outputs.GetWebtamperPolicyTimingOffConfigInfoTimingRangeListResult'],
+                 week_off_lists: Sequence[_builtins.int]):
+        """
+        :param Sequence['GetWebtamperPolicyTimingOffConfigInfoTimingRangeListArgs'] timing_range_lists: The automatic shutdown protection time periods.
+        :param Sequence[_builtins.int] week_off_lists: The automatic shutdown protection cycle list. `1` represents Monday, `2` represents Tuesday,
+               `3` represents Wednesday, `4` represents Thursday, `5` represents Friday, `6` represents Saturday,
+               `7` represents Sunday.
+        """
+        pulumi.set(__self__, "timing_range_lists", timing_range_lists)
+        pulumi.set(__self__, "week_off_lists", week_off_lists)
+
+    @_builtins.property
+    @pulumi.getter(name="timingRangeLists")
+    def timing_range_lists(self) -> Sequence['outputs.GetWebtamperPolicyTimingOffConfigInfoTimingRangeListResult']:
+        """
+        The automatic shutdown protection time periods.
+        """
+        return pulumi.get(self, "timing_range_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="weekOffLists")
+    def week_off_lists(self) -> Sequence[_builtins.int]:
+        """
+        The automatic shutdown protection cycle list. `1` represents Monday, `2` represents Tuesday,
+        `3` represents Wednesday, `4` represents Thursday, `5` represents Friday, `6` represents Saturday,
+        `7` represents Sunday.
+        """
+        return pulumi.get(self, "week_off_lists")
+
+
+@pulumi.output_type
+class GetWebtamperPolicyTimingOffConfigInfoTimingRangeListResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 time_range: _builtins.str):
+        """
+        :param _builtins.str description: The description of the automatic shutdown protection time period.
+        :param _builtins.str time_range: The automatic shutdown protection time range.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "time_range", time_range)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the automatic shutdown protection time period.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="timeRange")
+    def time_range(self) -> _builtins.str:
+        """
+        The automatic shutdown protection time range.
+        """
+        return pulumi.get(self, "time_range")
+
+
+@pulumi.output_type
+class GetWebtamperRaspProtectHistoryDataListResult(dict):
+    def __init__(__self__, *,
+                 alarm_level: _builtins.int,
+                 alarm_time: _builtins.int,
+                 attacked_url: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 source_ip: _builtins.str,
+                 threat_type: _builtins.str):
+        """
+        :param _builtins.int alarm_level: Specifies the alarm severity.
+               The valid values are as follows:
+               + **1**: Indicates critical
+               + **2**: Indicates major.
+               + **3**: Indicates minor.
+               + **4**: Indicates warning.
+        :param _builtins.int alarm_time: The alarm time, in milliseconds.
+        :param _builtins.str attacked_url: The attack source URL.
+        :param _builtins.str host_ip: The host IP address.
+        :param _builtins.str host_name: The host name.
+        :param _builtins.str source_ip: The attack source IP address.
+        :param _builtins.str threat_type: The threat type.
+        """
+        pulumi.set(__self__, "alarm_level", alarm_level)
+        pulumi.set(__self__, "alarm_time", alarm_time)
+        pulumi.set(__self__, "attacked_url", attacked_url)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "threat_type", threat_type)
+
+    @_builtins.property
+    @pulumi.getter(name="alarmLevel")
+    def alarm_level(self) -> _builtins.int:
+        """
+        Specifies the alarm severity.
+        The valid values are as follows:
+        + **1**: Indicates critical
+        + **2**: Indicates major.
+        + **3**: Indicates minor.
+        + **4**: Indicates warning.
+        """
+        return pulumi.get(self, "alarm_level")
+
+    @_builtins.property
+    @pulumi.getter(name="alarmTime")
+    def alarm_time(self) -> _builtins.int:
+        """
+        The alarm time, in milliseconds.
+        """
+        return pulumi.get(self, "alarm_time")
+
+    @_builtins.property
+    @pulumi.getter(name="attackedUrl")
+    def attacked_url(self) -> _builtins.str:
+        """
+        The attack source URL.
+        """
+        return pulumi.get(self, "attacked_url")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        The host IP address.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> _builtins.str:
+        """
+        The attack source IP address.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="threatType")
+    def threat_type(self) -> _builtins.str:
+        """
+        The threat type.
+        """
+        return pulumi.get(self, "threat_type")
+
+
+@pulumi.output_type
+class GetWebtamperStaticProtectHistoryDataListResult(dict):
+    def __init__(__self__, *,
+                 file_operation: _builtins.str,
+                 file_path: _builtins.str,
+                 host_ip: _builtins.str,
+                 host_name: _builtins.str,
+                 occur_time: _builtins.int,
+                 process_cmd: _builtins.str,
+                 process_id: _builtins.int,
+                 process_name: _builtins.str):
+        """
+        :param _builtins.str file_operation: Specifies the file operation.
+               The valid values are as follows:
+               + **add**
+               + **delete**
+               + **modify**
+               + **attribute**
+        :param _builtins.str file_path: Specifies the protection file path.
+        :param _builtins.str host_ip: Specifies the server EIP.
+        :param _builtins.str host_name: Specifies the server name.
+        :param _builtins.int occur_time: The detection time, in milliseconds.
+        :param _builtins.str process_cmd: The process command line.
+        :param _builtins.int process_id: The process ID.
+        :param _builtins.str process_name: The process name.
+        """
+        pulumi.set(__self__, "file_operation", file_operation)
+        pulumi.set(__self__, "file_path", file_path)
+        pulumi.set(__self__, "host_ip", host_ip)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "occur_time", occur_time)
+        pulumi.set(__self__, "process_cmd", process_cmd)
+        pulumi.set(__self__, "process_id", process_id)
+        pulumi.set(__self__, "process_name", process_name)
+
+    @_builtins.property
+    @pulumi.getter(name="fileOperation")
+    def file_operation(self) -> _builtins.str:
+        """
+        Specifies the file operation.
+        The valid values are as follows:
+        + **add**
+        + **delete**
+        + **modify**
+        + **attribute**
+        """
+        return pulumi.get(self, "file_operation")
+
+    @_builtins.property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> _builtins.str:
+        """
+        Specifies the protection file path.
+        """
+        return pulumi.get(self, "file_path")
+
+    @_builtins.property
+    @pulumi.getter(name="hostIp")
+    def host_ip(self) -> _builtins.str:
+        """
+        Specifies the server EIP.
+        """
+        return pulumi.get(self, "host_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        Specifies the server name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="occurTime")
+    def occur_time(self) -> _builtins.int:
+        """
+        The detection time, in milliseconds.
+        """
+        return pulumi.get(self, "occur_time")
+
+    @_builtins.property
+    @pulumi.getter(name="processCmd")
+    def process_cmd(self) -> _builtins.str:
+        """
+        The process command line.
+        """
+        return pulumi.get(self, "process_cmd")
+
+    @_builtins.property
+    @pulumi.getter(name="processId")
+    def process_id(self) -> _builtins.int:
+        """
+        The process ID.
+        """
+        return pulumi.get(self, "process_id")
+
+    @_builtins.property
+    @pulumi.getter(name="processName")
+    def process_name(self) -> _builtins.str:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_name")
 
 

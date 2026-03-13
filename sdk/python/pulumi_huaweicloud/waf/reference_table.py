@@ -27,6 +27,7 @@ class ReferenceTableArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReferenceTable resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the type of the reference table.
                The valid values are **url**, **user-agent**, **ip**, **params**, **cookie**, **referer** and **header**.
                Changing this parameter will create a new resource.
@@ -145,6 +146,7 @@ class _ReferenceTableState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ReferenceTable resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] conditions: Specifies the conditions of the reference table.
         :param pulumi.Input[_builtins.str] creation_time: The creation time of the reference table, in UTC format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the reference table.
@@ -311,19 +313,16 @@ class ReferenceTable(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/referenceTable:ReferenceTable test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/referenceTable:ReferenceTable test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -378,19 +377,16 @@ class ReferenceTable(pulumi.CustomResource):
 
         * Using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/referenceTable:ReferenceTable test <id>
         ```
 
         * Using `id` and `enterprise_project_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/referenceTable:ReferenceTable test <id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ReferenceTableArgs args: The arguments to use to populate this resource's properties.

@@ -32,6 +32,7 @@ class SnapshotV5Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SnapshotV5 resource.
+
         :param pulumi.Input[_builtins.str] volume_id: Specifies the ID of the source cloud disk for the snapshot.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the snapshot. Supports a maximum of `85` characters.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID for the snapshot.
@@ -200,6 +201,7 @@ class _SnapshotV5State:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotV5 resources.
+
         :param pulumi.Input[_builtins.str] availability_zone: The AZ to which the snapshot chain belongs.
         :param pulumi.Input[_builtins.str] category: The category of snapshot chain.
         :param pulumi.Input[_builtins.str] cmk_id: The key ID of the volume to which the snapshot belongs.
@@ -645,11 +647,10 @@ class SnapshotV5(pulumi.CustomResource):
 
         The EVS v5 snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotV5:SnapshotV5 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -705,11 +706,10 @@ class SnapshotV5(pulumi.CustomResource):
 
         The EVS v5 snapshot can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/snapshotV5:SnapshotV5 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotV5Args args: The arguments to use to populate this resource's properties.

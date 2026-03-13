@@ -94,7 +94,7 @@ def get_soc_components(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_soc_components(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_soc_components(workspace_id=workspace_id)
     ```
 
 
@@ -106,7 +106,7 @@ def get_soc_components(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getSocComponents:getSocComponents', __args__, opts=opts, typ=GetSocComponentsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getSocComponents:getSocComponents', __args__, opts=opts, typ=GetSocComponentsResult).value
 
     return AwaitableGetSocComponentsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -127,7 +127,7 @@ def get_soc_components_output(region: Optional[pulumi.Input[Optional[_builtins.s
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_soc_components(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_soc_components(workspace_id=workspace_id)
     ```
 
 
@@ -139,7 +139,7 @@ def get_soc_components_output(region: Optional[pulumi.Input[Optional[_builtins.s
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getSocComponents:getSocComponents', __args__, opts=opts, typ=GetSocComponentsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getSocComponents:getSocComponents', __args__, opts=opts, typ=GetSocComponentsResult)
     return __ret__.apply(lambda __response__: GetSocComponentsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id'),

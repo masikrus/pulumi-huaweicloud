@@ -169,7 +169,7 @@ def get_catalogues_search(analysis_version: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    example = huaweicloud.secmaster.get_catalogues_search(workspace_id=workspace_id)
+    example = huaweicloud.Secmaster.get_catalogues_search(workspace_id=workspace_id)
     ```
 
 
@@ -193,7 +193,7 @@ def get_catalogues_search(analysis_version: Optional[_builtins.str] = None,
     __args__['secondCatalogue'] = second_catalogue
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getCataloguesSearch:getCataloguesSearch', __args__, opts=opts, typ=GetCataloguesSearchResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getCataloguesSearch:getCataloguesSearch', __args__, opts=opts, typ=GetCataloguesSearchResult).value
 
     return AwaitableGetCataloguesSearchResult(
         analysis_version=pulumi.get(__ret__, 'analysis_version'),
@@ -226,7 +226,7 @@ def get_catalogues_search_output(analysis_version: Optional[pulumi.Input[Optiona
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    example = huaweicloud.secmaster.get_catalogues_search(workspace_id=workspace_id)
+    example = huaweicloud.Secmaster.get_catalogues_search(workspace_id=workspace_id)
     ```
 
 
@@ -250,7 +250,7 @@ def get_catalogues_search_output(analysis_version: Optional[pulumi.Input[Optiona
     __args__['secondCatalogue'] = second_catalogue
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getCataloguesSearch:getCataloguesSearch', __args__, opts=opts, typ=GetCataloguesSearchResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getCataloguesSearch:getCataloguesSearch', __args__, opts=opts, typ=GetCataloguesSearchResult)
     return __ret__.apply(lambda __response__: GetCataloguesSearchResult(
         analysis_version=pulumi.get(__response__, 'analysis_version'),
         catalogue_status=pulumi.get(__response__, 'catalogue_status'),

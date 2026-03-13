@@ -47,6 +47,7 @@ class VolumeArgs:
                  throughput: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Volume resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the availability zone for the disk.
                
                Changing this parameter will create a new resource.
@@ -635,6 +636,7 @@ class _VolumeState:
                  wwn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] all_metadata: The key-value pair disk metadata. Valid key-value pairs are as follows:
                + **__system__cmkid**: The encryption CMK ID in metadata. This attribute is used together with **__system__encrypted**
                for encryption.
@@ -1543,39 +1545,16 @@ class Volume(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/volume:Volume test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `cascade`, `period_unit`, `period`,
-
         `server_id`, `auto_renew`, and `charging_mode`. It is generally recommended running pulumi preview after importing a disk.
-
         You can then decide if changes should be applied to the disk, or the resource definition should be updated to align
-
         with the disk. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evs_volume" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cascade, period_unit, period, server_id, auto_renew, charging_mode, 
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1785,39 +1764,16 @@ class Volume(pulumi.CustomResource):
 
         Volumes can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Evs/volume:Volume test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `cascade`, `period_unit`, `period`,
-
         `server_id`, `auto_renew`, and `charging_mode`. It is generally recommended running pulumi preview after importing a disk.
-
         You can then decide if changes should be applied to the disk, or the resource definition should be updated to align
-
         with the disk. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_evs_volume" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cascade, period_unit, period, server_id, auto_renew, charging_mode, 
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class BatchUpdateVaultArgs:
                  threshold: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a BatchUpdateVault resource.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to execute the request.
                If omitted, the provider-level region will be used. Changing this will create new resource.
         :param pulumi.Input[_builtins.bool] smn_notify: Specifies whether to enable SMN notification for the vault.
@@ -96,6 +97,7 @@ class _BatchUpdateVaultState:
                  updated_vaults_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering BatchUpdateVault resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to execute the request.
                If omitted, the provider-level region will be used. Changing this will create new resource.
         :param pulumi.Input[_builtins.bool] smn_notify: Specifies whether to enable SMN notification for the vault.
@@ -200,6 +202,7 @@ class BatchUpdateVault(pulumi.CustomResource):
             threshold=80)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to execute the request.
@@ -229,6 +232,7 @@ class BatchUpdateVault(pulumi.CustomResource):
             smn_notify=True,
             threshold=80)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BatchUpdateVaultArgs args: The arguments to use to populate this resource's properties.

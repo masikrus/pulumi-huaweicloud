@@ -40,6 +40,7 @@ class InstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] available_zones: Indicates the ID of an AZ. The parameter value can not be left blank or an empty
                array. For details, see section Querying AZ Information.
         :param pulumi.Input[_builtins.str] engine: Indicates a message engine. Options: rabbitmq and kafka.
@@ -450,6 +451,7 @@ class _InstanceState:
                  vpc_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] access_user: Indicates a username. If the engine is rabbitmq, this parameter is mandatory. If
                the engine is kafka, this parameter is optional. A username consists of 4 to 64 characters and supports only letters,
                digits, and hyphens (-).
@@ -1070,6 +1072,7 @@ class Instance(pulumi.CustomResource):
             storage_spec_code=product1.storage_spec_code)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_user: Indicates a username. If the engine is rabbitmq, this parameter is mandatory. If
@@ -1182,6 +1185,7 @@ class Instance(pulumi.CustomResource):
             storage_space=product1.storage,
             storage_spec_code=product1.storage_spec_code)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

@@ -149,7 +149,7 @@ def get_data_classes(business_code: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_data_classes(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_data_classes(workspace_id=workspace_id)
     ```
 
 
@@ -170,7 +170,7 @@ def get_data_classes(business_code: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getDataClasses:getDataClasses', __args__, opts=opts, typ=GetDataClassesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getDataClasses:getDataClasses', __args__, opts=opts, typ=GetDataClassesResult).value
 
     return AwaitableGetDataClassesResult(
         business_code=pulumi.get(__ret__, 'business_code'),
@@ -199,7 +199,7 @@ def get_data_classes_output(business_code: Optional[pulumi.Input[Optional[_built
 
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
-    test = huaweicloud.secmaster.get_data_classes(workspace_id=workspace_id)
+    test = huaweicloud.Secmaster.get_data_classes(workspace_id=workspace_id)
     ```
 
 
@@ -220,7 +220,7 @@ def get_data_classes_output(business_code: Optional[pulumi.Input[Optional[_built
     __args__['region'] = region
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getDataClasses:getDataClasses', __args__, opts=opts, typ=GetDataClassesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getDataClasses:getDataClasses', __args__, opts=opts, typ=GetDataClassesResult)
     return __ret__.apply(lambda __response__: GetDataClassesResult(
         business_code=pulumi.get(__response__, 'business_code'),
         data_classes=pulumi.get(__response__, 'data_classes'),

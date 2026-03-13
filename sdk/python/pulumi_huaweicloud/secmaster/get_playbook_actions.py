@@ -105,7 +105,7 @@ def get_playbook_actions(region: Optional[_builtins.str] = None,
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     version_id = config.require_object("versionId")
-    test = huaweicloud.secmaster.get_playbook_actions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_actions(workspace_id=workspace_id,
         version_id=version_id)
     ```
 
@@ -120,7 +120,7 @@ def get_playbook_actions(region: Optional[_builtins.str] = None,
     __args__['versionId'] = version_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:secmaster/getPlaybookActions:getPlaybookActions', __args__, opts=opts, typ=GetPlaybookActionsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Secmaster/getPlaybookActions:getPlaybookActions', __args__, opts=opts, typ=GetPlaybookActionsResult).value
 
     return AwaitableGetPlaybookActionsResult(
         datas=pulumi.get(__ret__, 'datas'),
@@ -144,7 +144,7 @@ def get_playbook_actions_output(region: Optional[pulumi.Input[Optional[_builtins
     config = pulumi.Config()
     workspace_id = config.require_object("workspaceId")
     version_id = config.require_object("versionId")
-    test = huaweicloud.secmaster.get_playbook_actions(workspace_id=workspace_id,
+    test = huaweicloud.Secmaster.get_playbook_actions(workspace_id=workspace_id,
         version_id=version_id)
     ```
 
@@ -159,7 +159,7 @@ def get_playbook_actions_output(region: Optional[pulumi.Input[Optional[_builtins
     __args__['versionId'] = version_id
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:secmaster/getPlaybookActions:getPlaybookActions', __args__, opts=opts, typ=GetPlaybookActionsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Secmaster/getPlaybookActions:getPlaybookActions', __args__, opts=opts, typ=GetPlaybookActionsResult)
     return __ret__.apply(lambda __response__: GetPlaybookActionsResult(
         datas=pulumi.get(__response__, 'datas'),
         id=pulumi.get(__response__, 'id'),

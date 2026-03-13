@@ -26,6 +26,7 @@ class SystemPolicyAttachmentArgs:
                  policy_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a SystemPolicyAttachment resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] permission_set_id: Specifies the ID of the IAM Identity Center permission set.
@@ -86,6 +87,7 @@ class _SystemPolicyAttachmentState:
                  policy_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SystemPolicyAttachment resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SystemPolicyAttachmentAttachedPolicyArgs']]] attached_policies: All IAM managed system policies/roles attached to the permission set.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
@@ -157,7 +159,7 @@ class _SystemPolicyAttachmentState:
         pulumi.set(self, "policy_ids", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/systemPolicyAttachment:SystemPolicyAttachment")
+@pulumi.type_token("huaweicloud:Identitycenter/systemPolicyAttachment:SystemPolicyAttachment")
 class SystemPolicyAttachment(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -182,7 +184,7 @@ class SystemPolicyAttachment(pulumi.CustomResource):
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
         iam_policy_ids = config.require_object("iamPolicyIds")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.SystemPolicyAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -192,14 +194,12 @@ class SystemPolicyAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center system policy attachment can be imported using the `instance_id` and `permission_set_id` separated
-
         by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/systemPolicyAttachment:SystemPolicyAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/systemPolicyAttachment:SystemPolicyAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,7 +231,7 @@ class SystemPolicyAttachment(pulumi.CustomResource):
         config = pulumi.Config()
         permission_set_id = config.require_object("permissionSetId")
         iam_policy_ids = config.require_object("iamPolicyIds")
-        system = huaweicloud.identitycenter.get_instance()
+        system = huaweicloud.Identitycenter.get_instance()
         test = huaweicloud.identitycenter.SystemPolicyAttachment("test",
             instance_id=system.id,
             permission_set_id=permission_set_id,
@@ -241,14 +241,12 @@ class SystemPolicyAttachment(pulumi.CustomResource):
         ## Import
 
         The Identity Center system policy attachment can be imported using the `instance_id` and `permission_set_id` separated
-
         by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:identitycenter/systemPolicyAttachment:SystemPolicyAttachment test <instance_id>/<permission_set_id>
+        $ pulumi import huaweicloud:Identitycenter/systemPolicyAttachment:SystemPolicyAttachment test <instance_id>/<permission_set_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SystemPolicyAttachmentArgs args: The arguments to use to populate this resource's properties.
@@ -288,7 +286,7 @@ class SystemPolicyAttachment(pulumi.CustomResource):
             __props__.__dict__["policy_ids"] = policy_ids
             __props__.__dict__["attached_policies"] = None
         super(SystemPolicyAttachment, __self__).__init__(
-            'huaweicloud:identitycenter/systemPolicyAttachment:SystemPolicyAttachment',
+            'huaweicloud:Identitycenter/systemPolicyAttachment:SystemPolicyAttachment',
             resource_name,
             __props__,
             opts)

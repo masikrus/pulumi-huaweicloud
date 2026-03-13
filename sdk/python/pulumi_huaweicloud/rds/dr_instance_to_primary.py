@@ -24,6 +24,7 @@ class DrInstanceToPrimaryArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DrInstanceToPrimary resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS DR instance.
         :param pulumi.Input[_builtins.str] region: The region in which to create the RDS DR instance to primary resource. If omitted,
                the provider-level region will be used. Changing this creates a new resource.
@@ -77,6 +78,7 @@ class _DrInstanceToPrimaryState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DrInstanceToPrimary resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS DR instance.
         :param pulumi.Input[_builtins.str] region: The region in which to create the RDS DR instance to primary resource. If omitted,
                the provider-level region will be used. Changing this creates a new resource.
@@ -147,6 +149,7 @@ class DrInstanceToPrimary(pulumi.CustomResource):
         test = huaweicloud.rds.DrInstanceToPrimary("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of RDS DR instance.
@@ -172,6 +175,7 @@ class DrInstanceToPrimary(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.rds.DrInstanceToPrimary("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DrInstanceToPrimaryArgs args: The arguments to use to populate this resource's properties.

@@ -63,7 +63,11 @@ class GetFunctionTriggersResult:
 
     @_builtins.property
     @pulumi.getter(name="functionUrn")
-    def function_urn(self) -> _builtins.str:
+    def function_urn(self) -> Optional[_builtins.str]:
+        """
+        The URN of the function URN to which the triggers belong.  
+        This field is not empty only when the `function_urn` parameter is not specified.
+        """
         return pulumi.get(self, "function_urn")
 
     @_builtins.property
@@ -101,7 +105,7 @@ class GetFunctionTriggersResult:
     @pulumi.getter
     def triggers(self) -> Sequence['outputs.GetFunctionTriggersTriggerResult']:
         """
-        All triggers that match the filter parameters.
+        All triggers that match the filter parameters.  
         The triggers structure is documented below.
         """
         return pulumi.get(self, "triggers")
@@ -159,8 +163,8 @@ def get_function_triggers(end_time: Optional[_builtins.str] = None,
            The format is `YYYY-MM-DDThh:mm:ss{timezone}`.
            
            > The `status`, `start_time` and `end_time` parameters does not take effect for some triggers, e.g. `SMN`.
-    :param _builtins.str function_urn: Specifies the function URN to which the trigger belongs.
-    :param _builtins.str region: Specifies the region in which to query the data source.
+    :param _builtins.str function_urn: Specifies the URN of the function URN to which the triggers belong.
+    :param _builtins.str region: Specifies the region where the triggers are located.
            If omitted, the provider-level region will be used.
     :param _builtins.str start_time: Specifies start time of creation time of the function trigger.
            The format is `YYYY-MM-DDThh:mm:ss{timezone}`.
@@ -211,7 +215,7 @@ def get_function_triggers(end_time: Optional[_builtins.str] = None,
         triggers=pulumi.get(__ret__, 'triggers'),
         type=pulumi.get(__ret__, 'type'))
 def get_function_triggers_output(end_time: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 function_urn: Optional[pulumi.Input[_builtins.str]] = None,
+                                 function_urn: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  start_time: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  status: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -237,8 +241,8 @@ def get_function_triggers_output(end_time: Optional[pulumi.Input[Optional[_built
            The format is `YYYY-MM-DDThh:mm:ss{timezone}`.
            
            > The `status`, `start_time` and `end_time` parameters does not take effect for some triggers, e.g. `SMN`.
-    :param _builtins.str function_urn: Specifies the function URN to which the trigger belongs.
-    :param _builtins.str region: Specifies the region in which to query the data source.
+    :param _builtins.str function_urn: Specifies the URN of the function URN to which the triggers belong.
+    :param _builtins.str region: Specifies the region where the triggers are located.
            If omitted, the provider-level region will be used.
     :param _builtins.str start_time: Specifies start time of creation time of the function trigger.
            The format is `YYYY-MM-DDThh:mm:ss{timezone}`.

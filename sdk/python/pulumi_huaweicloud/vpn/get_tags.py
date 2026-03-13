@@ -94,7 +94,7 @@ def get_tags(region: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.vpn.get_tags(resource_type=resource_type)
+    test = huaweicloud.Vpn.get_tags(resource_type=resource_type)
     ```
 
 
@@ -107,7 +107,7 @@ def get_tags(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getTags:getTags', __args__, opts=opts, typ=GetTagsResult).value
 
     return AwaitableGetTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -128,7 +128,7 @@ def get_tags_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = No
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.vpn.get_tags(resource_type=resource_type)
+    test = huaweicloud.Vpn.get_tags(resource_type=resource_type)
     ```
 
 
@@ -141,7 +141,7 @@ def get_tags_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = No
     __args__['region'] = region
     __args__['resourceType'] = resource_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getTags:getTags', __args__, opts=opts, typ=GetTagsResult)
     return __ret__.apply(lambda __response__: GetTagsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

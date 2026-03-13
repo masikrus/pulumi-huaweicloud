@@ -25,6 +25,7 @@ class LogtankArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Logtank resource.
+
         :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of a loadbalancer. Changing this
                creates a new logtank
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of a log group. It is provided by other service.
@@ -98,6 +99,7 @@ class _LogtankState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Logtank resources.
+
         :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the ID of a loadbalancer. Changing this
                creates a new logtank
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of a log group. It is provided by other service.
@@ -199,11 +201,10 @@ class Logtank(pulumi.CustomResource):
 
         ELB logtank can be imported using the logtank ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/logtank:Logtank test 2f148a75-acd3-4ce7-8f63-d5c9fadab3a0
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,11 +244,10 @@ class Logtank(pulumi.CustomResource):
 
         ELB logtank can be imported using the logtank ID, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/logtank:Logtank test 2f148a75-acd3-4ce7-8f63-d5c9fadab3a0
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogtankArgs args: The arguments to use to populate this resource's properties.

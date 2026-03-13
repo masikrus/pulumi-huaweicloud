@@ -24,6 +24,7 @@ class InstanceUpgradeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceUpgrade resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] target_version: Specifies the target version.
@@ -82,6 +83,7 @@ class _InstanceUpgradeState:
                  target_version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceUpgrade resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDM instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -134,7 +136,7 @@ class _InstanceUpgradeState:
         pulumi.set(self, "target_version", value)
 
 
-@pulumi.type_token("huaweicloud:ddm/instanceUpgrade:InstanceUpgrade")
+@pulumi.type_token("huaweicloud:Ddm/instanceUpgrade:InstanceUpgrade")
 class InstanceUpgrade(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -163,6 +165,7 @@ class InstanceUpgrade(pulumi.CustomResource):
             instance_id=instance_id,
             target_version=target_version)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -197,6 +200,7 @@ class InstanceUpgrade(pulumi.CustomResource):
             instance_id=instance_id,
             target_version=target_version)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceUpgradeArgs args: The arguments to use to populate this resource's properties.
@@ -233,7 +237,7 @@ class InstanceUpgrade(pulumi.CustomResource):
                 raise TypeError("Missing required property 'target_version'")
             __props__.__dict__["target_version"] = target_version
         super(InstanceUpgrade, __self__).__init__(
-            'huaweicloud:ddm/instanceUpgrade:InstanceUpgrade',
+            'huaweicloud:Ddm/instanceUpgrade:InstanceUpgrade',
             resource_name,
             __props__,
             opts)

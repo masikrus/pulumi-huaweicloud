@@ -24,15 +24,20 @@ class BillingOptionArgs:
                  service_area: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a BillingOption resource.
-        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option. The value can be **flux** (traffic-based billing) or
-               **bw** (bandwidth-based billing, only for V2 and higher customers).
+
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option.  
+               The valid values are as follows:
+               + **flux**: traffic-based billing.
+               + **bw**: bandwidth-based billing, only for V2 and higher customers.
                
                > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
                the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
                00:00:00 (GMT+08:00) on the night of the day you submitted the changes. You can continue to make changes until that
                time when your most recently submitted change has taken effect.
-        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-        :param pulumi.Input[_builtins.str] service_area: Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode.  
+               Currently, only **base** (basic acceleration) is supported.
+        :param pulumi.Input[_builtins.str] service_area: Specifies the service area.  
+               Currentlt, only **mainland_china** (Chinese mainland) is supported.
         """
         pulumi.set(__self__, "charge_mode", charge_mode)
         pulumi.set(__self__, "product_type", product_type)
@@ -42,8 +47,10 @@ class BillingOptionArgs:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the billing option. The value can be **flux** (traffic-based billing) or
-        **bw** (bandwidth-based billing, only for V2 and higher customers).
+        Specifies the billing option.  
+        The valid values are as follows:
+        + **flux**: traffic-based billing.
+        + **bw**: bandwidth-based billing, only for V2 and higher customers.
 
         > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
         the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
@@ -60,7 +67,8 @@ class BillingOptionArgs:
     @pulumi.getter(name="productType")
     def product_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the product mode. Only **base** (basic acceleration) is supported.
+        Specifies the product mode.  
+        Currently, only **base** (basic acceleration) is supported.
         """
         return pulumi.get(self, "product_type")
 
@@ -72,7 +80,8 @@ class BillingOptionArgs:
     @pulumi.getter(name="serviceArea")
     def service_area(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        Specifies the service area.  
+        Currentlt, only **mainland_china** (Chinese mainland) is supported.
         """
         return pulumi.get(self, "service_area")
 
@@ -93,18 +102,23 @@ class _BillingOptionState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BillingOption resources.
-        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option. The value can be **flux** (traffic-based billing) or
-               **bw** (bandwidth-based billing, only for V2 and higher customers).
+
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option.  
+               The valid values are as follows:
+               + **flux**: traffic-based billing.
+               + **bw**: bandwidth-based billing, only for V2 and higher customers.
                
                > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
                the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
                00:00:00 (GMT+08:00) on the night of the day you submitted the changes. You can continue to make changes until that
                time when your most recently submitted change has taken effect.
-        :param pulumi.Input[_builtins.str] created_at: The creation time.
+        :param pulumi.Input[_builtins.str] created_at: The creation time, in RFC3339 format.
         :param pulumi.Input[_builtins.str] current_charge_mode: The billing option of the account.
-        :param pulumi.Input[_builtins.str] effective_time: The effective time of the option.
-        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-        :param pulumi.Input[_builtins.str] service_area: Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        :param pulumi.Input[_builtins.str] effective_time: The effective time, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode.  
+               Currently, only **base** (basic acceleration) is supported.
+        :param pulumi.Input[_builtins.str] service_area: Specifies the service area.  
+               Currentlt, only **mainland_china** (Chinese mainland) is supported.
         :param pulumi.Input[_builtins.str] status: The status.
         """
         if charge_mode is not None:
@@ -126,8 +140,10 @@ class _BillingOptionState:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the billing option. The value can be **flux** (traffic-based billing) or
-        **bw** (bandwidth-based billing, only for V2 and higher customers).
+        Specifies the billing option.  
+        The valid values are as follows:
+        + **flux**: traffic-based billing.
+        + **bw**: bandwidth-based billing, only for V2 and higher customers.
 
         > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
         the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
@@ -144,7 +160,7 @@ class _BillingOptionState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -168,7 +184,7 @@ class _BillingOptionState:
     @pulumi.getter(name="effectiveTime")
     def effective_time(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The effective time of the option.
+        The effective time, in RFC3339 format.
         """
         return pulumi.get(self, "effective_time")
 
@@ -180,7 +196,8 @@ class _BillingOptionState:
     @pulumi.getter(name="productType")
     def product_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the product mode. Only **base** (basic acceleration) is supported.
+        Specifies the product mode.  
+        Currently, only **base** (basic acceleration) is supported.
         """
         return pulumi.get(self, "product_type")
 
@@ -192,7 +209,8 @@ class _BillingOptionState:
     @pulumi.getter(name="serviceArea")
     def service_area(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        Specifies the service area.  
+        Currentlt, only **mainland_china** (Chinese mainland) is supported.
         """
         return pulumi.get(self, "service_area")
 
@@ -240,17 +258,22 @@ class BillingOption(pulumi.CustomResource):
             service_area="mainland_china")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option. The value can be **flux** (traffic-based billing) or
-               **bw** (bandwidth-based billing, only for V2 and higher customers).
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option.  
+               The valid values are as follows:
+               + **flux**: traffic-based billing.
+               + **bw**: bandwidth-based billing, only for V2 and higher customers.
                
                > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
                the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
                00:00:00 (GMT+08:00) on the night of the day you submitted the changes. You can continue to make changes until that
                time when your most recently submitted change has taken effect.
-        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-        :param pulumi.Input[_builtins.str] service_area: Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode.  
+               Currently, only **base** (basic acceleration) is supported.
+        :param pulumi.Input[_builtins.str] service_area: Specifies the service area.  
+               Currentlt, only **mainland_china** (Chinese mainland) is supported.
         """
         ...
     @overload
@@ -274,6 +297,7 @@ class BillingOption(pulumi.CustomResource):
             product_type="base",
             service_area="mainland_china")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BillingOptionArgs args: The arguments to use to populate this resource's properties.
@@ -339,18 +363,22 @@ class BillingOption(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option. The value can be **flux** (traffic-based billing) or
-               **bw** (bandwidth-based billing, only for V2 and higher customers).
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option.  
+               The valid values are as follows:
+               + **flux**: traffic-based billing.
+               + **bw**: bandwidth-based billing, only for V2 and higher customers.
                
                > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
                the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
                00:00:00 (GMT+08:00) on the night of the day you submitted the changes. You can continue to make changes until that
                time when your most recently submitted change has taken effect.
-        :param pulumi.Input[_builtins.str] created_at: The creation time.
+        :param pulumi.Input[_builtins.str] created_at: The creation time, in RFC3339 format.
         :param pulumi.Input[_builtins.str] current_charge_mode: The billing option of the account.
-        :param pulumi.Input[_builtins.str] effective_time: The effective time of the option.
-        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode. Only **base** (basic acceleration) is supported.
-        :param pulumi.Input[_builtins.str] service_area: Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        :param pulumi.Input[_builtins.str] effective_time: The effective time, in RFC3339 format.
+        :param pulumi.Input[_builtins.str] product_type: Specifies the product mode.  
+               Currently, only **base** (basic acceleration) is supported.
+        :param pulumi.Input[_builtins.str] service_area: Specifies the service area.  
+               Currentlt, only **mainland_china** (Chinese mainland) is supported.
         :param pulumi.Input[_builtins.str] status: The status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -370,8 +398,10 @@ class BillingOption(pulumi.CustomResource):
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the billing option. The value can be **flux** (traffic-based billing) or
-        **bw** (bandwidth-based billing, only for V2 and higher customers).
+        Specifies the billing option.  
+        The valid values are as follows:
+        + **flux**: traffic-based billing.
+        + **bw**: bandwidth-based billing, only for V2 and higher customers.
 
         > 1. If you change to be billed by peak bandwidth, your traffic package will be frozen. When you switch back,
         the traffic package still takes effect if it is within the required duration.<br> 2. The changes will take effect at
@@ -384,7 +414,7 @@ class BillingOption(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -400,7 +430,7 @@ class BillingOption(pulumi.CustomResource):
     @pulumi.getter(name="effectiveTime")
     def effective_time(self) -> pulumi.Output[_builtins.str]:
         """
-        The effective time of the option.
+        The effective time, in RFC3339 format.
         """
         return pulumi.get(self, "effective_time")
 
@@ -408,7 +438,8 @@ class BillingOption(pulumi.CustomResource):
     @pulumi.getter(name="productType")
     def product_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the product mode. Only **base** (basic acceleration) is supported.
+        Specifies the product mode.  
+        Currently, only **base** (basic acceleration) is supported.
         """
         return pulumi.get(self, "product_type")
 
@@ -416,7 +447,8 @@ class BillingOption(pulumi.CustomResource):
     @pulumi.getter(name="serviceArea")
     def service_area(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the service area. Only **mainland_china** (Chinese mainland) is supported.
+        Specifies the service area.  
+        Currentlt, only **mainland_china** (Chinese mainland) is supported.
         """
         return pulumi.get(self, "service_area")
 

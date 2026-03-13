@@ -26,6 +26,7 @@ class AccessControlAttributeConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessControlAttributeConfiguration resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the IAM Identity Center instance.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['AccessControlAttributeConfigurationAccessControlAttributeArgs']]] access_control_attributes: Specifies the properties of ABAC configuration in IAM Identity Center instance.
@@ -95,6 +96,7 @@ class _AccessControlAttributeConfigurationState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessControlAttributeConfiguration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AccessControlAttributeConfigurationAccessControlAttributeArgs']]] access_control_attributes: Specifies the properties of ABAC configuration in IAM Identity Center instance.
                The access_control_attributes structure is documented below.
                
@@ -157,7 +159,7 @@ class _AccessControlAttributeConfigurationState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:identitycenter/accessControlAttributeConfiguration:AccessControlAttributeConfiguration")
+@pulumi.type_token("huaweicloud:Identitycenter/accessControlAttributeConfiguration:AccessControlAttributeConfiguration")
 class AccessControlAttributeConfiguration(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -185,6 +187,7 @@ class AccessControlAttributeConfiguration(pulumi.CustomResource):
                 "values": ["${user:email}"],
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +227,7 @@ class AccessControlAttributeConfiguration(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AccessControlAttributeConfigurationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,7 +261,7 @@ class AccessControlAttributeConfiguration(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["region"] = region
         super(AccessControlAttributeConfiguration, __self__).__init__(
-            'huaweicloud:identitycenter/accessControlAttributeConfiguration:AccessControlAttributeConfiguration',
+            'huaweicloud:Identitycenter/accessControlAttributeConfiguration:AccessControlAttributeConfiguration',
             resource_name,
             __props__,
             opts)

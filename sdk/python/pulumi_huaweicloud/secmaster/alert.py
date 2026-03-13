@@ -21,13 +21,13 @@ __all__ = ['AlertArgs', 'Alert']
 @pulumi.input_type
 class AlertArgs:
     def __init__(__self__, *,
+                 alert_type_value: pulumi.Input['AlertAlertTypeValueArgs'],
                  data_source: pulumi.Input['AlertDataSourceArgs'],
                  description: pulumi.Input[_builtins.str],
                  first_occurrence_time: pulumi.Input[_builtins.str],
                  severity: pulumi.Input[_builtins.str],
                  stage: pulumi.Input[_builtins.str],
                  status: pulumi.Input[_builtins.str],
-                 type: pulumi.Input['AlertTypeArgs'],
                  verification_status: pulumi.Input[_builtins.str],
                  workspace_id: pulumi.Input[_builtins.str],
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
@@ -40,6 +40,9 @@ class AlertArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alert resource.
+
+        :param pulumi.Input['AlertAlertTypeValueArgs'] alert_type_value: Specifies the alert type configuration.
+               The type structure is documented below.
         :param pulumi.Input['AlertDataSourceArgs'] data_source: Specifies the data source configuration.
                The data_source structure is documented below.
                
@@ -53,8 +56,6 @@ class AlertArgs:
                and **Post-Incident-Activity**.
         :param pulumi.Input[_builtins.str] status: Specifies the alert status.
                The value can be: **Open**, **Block** and **Closed**.
-        :param pulumi.Input['AlertTypeArgs'] type: Specifies the alert type configuration.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the alert verification status.
                The value can be: **Unknown**, **Positive** and **False positive**.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the alert belongs.
@@ -76,13 +77,13 @@ class AlertArgs:
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         """
+        pulumi.set(__self__, "alert_type_value", alert_type_value)
         pulumi.set(__self__, "data_source", data_source)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "first_occurrence_time", first_occurrence_time)
         pulumi.set(__self__, "severity", severity)
         pulumi.set(__self__, "stage", stage)
         pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "verification_status", verification_status)
         pulumi.set(__self__, "workspace_id", workspace_id)
         if close_comment is not None:
@@ -101,6 +102,19 @@ class AlertArgs:
             pulumi.set(__self__, "owner", owner)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="AlertTypeValue")
+    def alert_type_value(self) -> pulumi.Input['AlertAlertTypeValueArgs']:
+        """
+        Specifies the alert type configuration.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "alert_type_value")
+
+    @alert_type_value.setter
+    def alert_type_value(self, value: pulumi.Input['AlertAlertTypeValueArgs']):
+        pulumi.set(self, "alert_type_value", value)
 
     @_builtins.property
     @pulumi.getter(name="dataSource")
@@ -180,19 +194,6 @@ class AlertArgs:
     @status.setter
     def status(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "status", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> pulumi.Input['AlertTypeArgs']:
-        """
-        Specifies the alert type configuration.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['AlertTypeArgs']):
-        pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="verificationStatus")
@@ -328,6 +329,7 @@ class AlertArgs:
 @pulumi.input_type
 class _AlertState:
     def __init__(__self__, *,
+                 alert_type_value: Optional[pulumi.Input['AlertAlertTypeValueArgs']] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -343,12 +345,14 @@ class _AlertState:
                  severity: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input['AlertTypeArgs']] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alert resources.
+
+        :param pulumi.Input['AlertAlertTypeValueArgs'] alert_type_value: Specifies the alert type configuration.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Alert_AlertType"></a>
@@ -378,8 +382,6 @@ class _AlertState:
                and **Post-Incident-Activity**.
         :param pulumi.Input[_builtins.str] status: Specifies the alert status.
                The value can be: **Open**, **Block** and **Closed**.
-        :param pulumi.Input['AlertTypeArgs'] type: Specifies the alert type configuration.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the alert verification status.
                The value can be: **Unknown**, **Positive** and **False positive**.
@@ -387,6 +389,8 @@ class _AlertState:
                
                Changing this parameter will create a new resource.
         """
+        if alert_type_value is not None:
+            pulumi.set(__self__, "alert_type_value", alert_type_value)
         if close_comment is not None:
             pulumi.set(__self__, "close_comment", close_comment)
         if close_reason is not None:
@@ -417,14 +421,25 @@ class _AlertState:
             pulumi.set(__self__, "stage", stage)
         if status is not None:
             pulumi.set(__self__, "status", status)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if verification_status is not None:
             pulumi.set(__self__, "verification_status", verification_status)
         if workspace_id is not None:
             pulumi.set(__self__, "workspace_id", workspace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="AlertTypeValue")
+    def alert_type_value(self) -> Optional[pulumi.Input['AlertAlertTypeValueArgs']]:
+        """
+        Specifies the alert type configuration.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "alert_type_value")
+
+    @alert_type_value.setter
+    def alert_type_value(self, value: Optional[pulumi.Input['AlertAlertTypeValueArgs']]):
+        pulumi.set(self, "alert_type_value", value)
 
     @_builtins.property
     @pulumi.getter(name="closeComment")
@@ -621,19 +636,6 @@ class _AlertState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input['AlertTypeArgs']]:
-        """
-        Specifies the alert type configuration.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input['AlertTypeArgs']]):
-        pulumi.set(self, "type", value)
-
-    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -673,12 +675,13 @@ class _AlertState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/alert:Alert")
+@pulumi.type_token("huaweicloud:Secmaster/alert:Alert")
 class Alert(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alert_type_value: Optional[pulumi.Input[Union['AlertAlertTypeValueArgs', 'AlertAlertTypeValueArgsDict']]] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  data_source: Optional[pulumi.Input[Union['AlertDataSourceArgs', 'AlertDataSourceArgsDict']]] = None,
@@ -693,7 +696,6 @@ class Alert(pulumi.CustomResource):
                  severity: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['AlertTypeArgs', 'AlertTypeArgsDict']]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -712,7 +714,7 @@ class Alert(pulumi.CustomResource):
             workspace_id=workspace_id,
             name="test",
             description="created by terraform",
-            type={
+            alert_type_value={
                 "category": "Abnormal network behavior",
                 "alert_type": "Abnormal access frequency of IP address",
             },
@@ -732,14 +734,15 @@ class Alert(pulumi.CustomResource):
 
         The indicator can be imported using the workspace ID and the alert ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/alert:Alert test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/alert:Alert test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['AlertAlertTypeValueArgs', 'AlertAlertTypeValueArgsDict']] alert_type_value: Specifies the alert type configuration.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Alert_AlertType"></a>
@@ -768,8 +771,6 @@ class Alert(pulumi.CustomResource):
                and **Post-Incident-Activity**.
         :param pulumi.Input[_builtins.str] status: Specifies the alert status.
                The value can be: **Open**, **Block** and **Closed**.
-        :param pulumi.Input[Union['AlertTypeArgs', 'AlertTypeArgsDict']] type: Specifies the alert type configuration.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the alert verification status.
                The value can be: **Unknown**, **Positive** and **False positive**.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of the workspace to which the alert belongs.
@@ -797,7 +798,7 @@ class Alert(pulumi.CustomResource):
             workspace_id=workspace_id,
             name="test",
             description="created by terraform",
-            type={
+            alert_type_value={
                 "category": "Abnormal network behavior",
                 "alert_type": "Abnormal access frequency of IP address",
             },
@@ -817,11 +818,10 @@ class Alert(pulumi.CustomResource):
 
         The indicator can be imported using the workspace ID and the alert ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/alert:Alert test <workspace_id>/<id>
+        $ pulumi import huaweicloud:Secmaster/alert:Alert test <workspace_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertArgs args: The arguments to use to populate this resource's properties.
@@ -838,6 +838,7 @@ class Alert(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alert_type_value: Optional[pulumi.Input[Union['AlertAlertTypeValueArgs', 'AlertAlertTypeValueArgsDict']]] = None,
                  close_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  close_reason: Optional[pulumi.Input[_builtins.str]] = None,
                  data_source: Optional[pulumi.Input[Union['AlertDataSourceArgs', 'AlertDataSourceArgsDict']]] = None,
@@ -852,7 +853,6 @@ class Alert(pulumi.CustomResource):
                  severity: Optional[pulumi.Input[_builtins.str]] = None,
                  stage: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[Union['AlertTypeArgs', 'AlertTypeArgsDict']]] = None,
                  verification_status: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -864,6 +864,9 @@ class Alert(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AlertArgs.__new__(AlertArgs)
 
+            if alert_type_value is None and not opts.urn:
+                raise TypeError("Missing required property 'alert_type_value'")
+            __props__.__dict__["alert_type_value"] = alert_type_value
             __props__.__dict__["close_comment"] = close_comment
             __props__.__dict__["close_reason"] = close_reason
             if data_source is None and not opts.urn:
@@ -890,9 +893,6 @@ class Alert(pulumi.CustomResource):
             if status is None and not opts.urn:
                 raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
-            if type is None and not opts.urn:
-                raise TypeError("Missing required property 'type'")
-            __props__.__dict__["type"] = type
             if verification_status is None and not opts.urn:
                 raise TypeError("Missing required property 'verification_status'")
             __props__.__dict__["verification_status"] = verification_status
@@ -902,7 +902,7 @@ class Alert(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(Alert, __self__).__init__(
-            'huaweicloud:secmaster/alert:Alert',
+            'huaweicloud:Secmaster/alert:Alert',
             resource_name,
             __props__,
             opts)
@@ -911,6 +911,7 @@ class Alert(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alert_type_value: Optional[pulumi.Input[Union['AlertAlertTypeValueArgs', 'AlertAlertTypeValueArgsDict']]] = None,
             close_comment: Optional[pulumi.Input[_builtins.str]] = None,
             close_reason: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -926,7 +927,6 @@ class Alert(pulumi.CustomResource):
             severity: Optional[pulumi.Input[_builtins.str]] = None,
             stage: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[Union['AlertTypeArgs', 'AlertTypeArgsDict']]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             verification_status: Optional[pulumi.Input[_builtins.str]] = None,
             workspace_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Alert':
@@ -937,6 +937,8 @@ class Alert(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['AlertAlertTypeValueArgs', 'AlertAlertTypeValueArgsDict']] alert_type_value: Specifies the alert type configuration.
+               The type structure is documented below.
         :param pulumi.Input[_builtins.str] close_comment: Specifies the close comment.
                
                <a name="Alert_AlertType"></a>
@@ -966,8 +968,6 @@ class Alert(pulumi.CustomResource):
                and **Post-Incident-Activity**.
         :param pulumi.Input[_builtins.str] status: Specifies the alert status.
                The value can be: **Open**, **Block** and **Closed**.
-        :param pulumi.Input[Union['AlertTypeArgs', 'AlertTypeArgsDict']] type: Specifies the alert type configuration.
-               The type structure is documented below.
         :param pulumi.Input[_builtins.str] updated_at: The updated time.
         :param pulumi.Input[_builtins.str] verification_status: Specifies the alert verification status.
                The value can be: **Unknown**, **Positive** and **False positive**.
@@ -979,6 +979,7 @@ class Alert(pulumi.CustomResource):
 
         __props__ = _AlertState.__new__(_AlertState)
 
+        __props__.__dict__["alert_type_value"] = alert_type_value
         __props__.__dict__["close_comment"] = close_comment
         __props__.__dict__["close_reason"] = close_reason
         __props__.__dict__["created_at"] = created_at
@@ -994,11 +995,19 @@ class Alert(pulumi.CustomResource):
         __props__.__dict__["severity"] = severity
         __props__.__dict__["stage"] = stage
         __props__.__dict__["status"] = status
-        __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["verification_status"] = verification_status
         __props__.__dict__["workspace_id"] = workspace_id
         return Alert(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AlertTypeValue")
+    def alert_type_value(self) -> pulumi.Output['outputs.AlertAlertTypeValue']:
+        """
+        Specifies the alert type configuration.
+        The type structure is documented below.
+        """
+        return pulumi.get(self, "alert_type_value")
 
     @_builtins.property
     @pulumi.getter(name="closeComment")
@@ -1133,15 +1142,6 @@ class Alert(pulumi.CustomResource):
         The value can be: **Open**, **Block** and **Closed**.
         """
         return pulumi.get(self, "status")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> pulumi.Output['outputs.AlertType']:
-        """
-        Specifies the alert type configuration.
-        The type structure is documented below.
-        """
-        return pulumi.get(self, "type")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

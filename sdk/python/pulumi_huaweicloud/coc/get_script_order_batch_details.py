@@ -113,7 +113,7 @@ def get_script_order_batch_details(batch_index: Optional[_builtins.int] = None,
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_batch_details(execute_uuid=execute_uuid,
+    test = huaweicloud.Coc.get_script_order_batch_details(execute_uuid=execute_uuid,
         batch_index=1)
     ```
 
@@ -133,7 +133,7 @@ def get_script_order_batch_details(batch_index: Optional[_builtins.int] = None,
     __args__['executeUuid'] = execute_uuid
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:coc/getScriptOrderBatchDetails:getScriptOrderBatchDetails', __args__, opts=opts, typ=GetScriptOrderBatchDetailsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Coc/getScriptOrderBatchDetails:getScriptOrderBatchDetails', __args__, opts=opts, typ=GetScriptOrderBatchDetailsResult).value
 
     return AwaitableGetScriptOrderBatchDetailsResult(
         batch_index=pulumi.get(__ret__, 'batch_index'),
@@ -156,7 +156,7 @@ def get_script_order_batch_details_output(batch_index: Optional[pulumi.Input[_bu
 
     config = pulumi.Config()
     execute_uuid = config.require_object("executeUuid")
-    test = huaweicloud.coc.get_script_order_batch_details(execute_uuid=execute_uuid,
+    test = huaweicloud.Coc.get_script_order_batch_details(execute_uuid=execute_uuid,
         batch_index=1)
     ```
 
@@ -176,7 +176,7 @@ def get_script_order_batch_details_output(batch_index: Optional[pulumi.Input[_bu
     __args__['executeUuid'] = execute_uuid
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:coc/getScriptOrderBatchDetails:getScriptOrderBatchDetails', __args__, opts=opts, typ=GetScriptOrderBatchDetailsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Coc/getScriptOrderBatchDetails:getScriptOrderBatchDetails', __args__, opts=opts, typ=GetScriptOrderBatchDetailsResult)
     return __ret__.apply(lambda __response__: GetScriptOrderBatchDetailsResult(
         batch_index=pulumi.get(__response__, 'batch_index'),
         execute_instances=pulumi.get(__response__, 'execute_instances'),

@@ -26,6 +26,7 @@ class ChangeSpecificationArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ChangeSpecification resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AAD instance ID.
         :param pulumi.Input['ChangeSpecificationUpgradeDataArgs'] upgrade_data: Specifies the upgrade data.
                
@@ -86,6 +87,7 @@ class _ChangeSpecificationState:
                  upgrade_data: Optional[pulumi.Input['ChangeSpecificationUpgradeDataArgs']] = None):
         """
         Input properties used for looking up and filtering ChangeSpecification resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AAD instance ID.
         :param pulumi.Input['ChangeSpecificationUpgradeDataArgs'] upgrade_data: Specifies the upgrade data.
                
@@ -180,6 +182,7 @@ class ChangeSpecification(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AAD instance ID.
@@ -225,6 +228,7 @@ class ChangeSpecification(pulumi.CustomResource):
                 "bind_domain_num": bind_domain_num,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ChangeSpecificationArgs args: The arguments to use to populate this resource's properties.

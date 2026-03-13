@@ -26,6 +26,7 @@ class RocketmqMessageOffsetResetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqMessageOffsetReset resource.
+
         :param pulumi.Input[_builtins.str] group: Specifies the group name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -130,6 +131,7 @@ class _RocketmqMessageOffsetResetState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqMessageOffsetReset resources.
+
         :param pulumi.Input[_builtins.str] group: Specifies the group name.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -260,6 +262,7 @@ class RocketmqMessageOffsetReset(pulumi.CustomResource):
             timestamp="0")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group: Specifies the group name.
@@ -303,6 +306,7 @@ class RocketmqMessageOffsetReset(pulumi.CustomResource):
             topic=topic,
             timestamp="0")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqMessageOffsetResetArgs args: The arguments to use to populate this resource's properties.

@@ -15,6 +15,38 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'SourceServerBtrfsListArgs',
+    'SourceServerBtrfsListArgsDict',
+    'SourceServerBtrfsListSubvolumnArgs',
+    'SourceServerBtrfsListSubvolumnArgsDict',
+    'SourceServerCheckArgs',
+    'SourceServerCheckArgsDict',
+    'SourceServerCurrentTaskArgs',
+    'SourceServerCurrentTaskArgsDict',
+    'SourceServerCurrentTaskCloneServerArgs',
+    'SourceServerCurrentTaskCloneServerArgsDict',
+    'SourceServerCurrentTaskTargetServerArgs',
+    'SourceServerCurrentTaskTargetServerArgsDict',
+    'SourceServerDiskArgs',
+    'SourceServerDiskArgsDict',
+    'SourceServerDiskPhysicalVolumeArgs',
+    'SourceServerDiskPhysicalVolumeArgsDict',
+    'SourceServerInitTargetServerArgs',
+    'SourceServerInitTargetServerArgsDict',
+    'SourceServerInitTargetServerDiskArgs',
+    'SourceServerInitTargetServerDiskArgsDict',
+    'SourceServerInitTargetServerDiskPhysicalVolumeArgs',
+    'SourceServerInitTargetServerDiskPhysicalVolumeArgsDict',
+    'SourceServerInitTargetServerVolumeGroupArgs',
+    'SourceServerInitTargetServerVolumeGroupArgsDict',
+    'SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs',
+    'SourceServerInitTargetServerVolumeGroupLogicalVolumeArgsDict',
+    'SourceServerNetworkArgs',
+    'SourceServerNetworkArgsDict',
+    'SourceServerVolumeGroupArgs',
+    'SourceServerVolumeGroupArgsDict',
+    'SourceServerVolumeGroupLogicalVolumeArgs',
+    'SourceServerVolumeGroupLogicalVolumeArgsDict',
     'TaskConfigurationArgs',
     'TaskConfigurationArgsDict',
     'TaskConsistencyResultReportConsistencyResultArgs',
@@ -27,28 +59,3350 @@ __all__ = [
     'TaskTargetServerDiskPhysicalVolumeArgsDict',
 ]
 
-MYPY = False
+class SourceServerBtrfsListArgsDict(TypedDict):
+    data_profile: pulumi.Input[_builtins.str]
+    """
+    Specifies the data profile (RAD).
+    """
+    default_subvol_mountpath: pulumi.Input[_builtins.str]
+    """
+    Specifies the mount path of the default subvolumn or Btrfs file system.
+    """
+    default_subvol_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the default subvolumn.
+    """
+    default_subvolid: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the default subvolumn.
+    """
+    device: pulumi.Input[_builtins.str]
+    """
+    Specifies the device names of the Btrfs file system.
+    """
+    g_vol_used_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the used space of the Btrfs volume.
+    """
+    global_reserve1: pulumi.Input[_builtins.str]
+    """
+    Specifies the Btrfs file system information.
+    """
+    label: pulumi.Input[_builtins.str]
+    """
+    Specifies the file system tag. If no tag exists, the value is an empty string.
+    """
+    metadata_profile: pulumi.Input[_builtins.str]
+    """
+    Specifies the metadata profile (RAD).
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name.
+    """
+    nodesize: pulumi.Input[_builtins.int]
+    """
+    Specifies the Btrfs node size.
+    """
+    sectorsize: pulumi.Input[_builtins.int]
+    """
+    Specifies the sector size.
+    """
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size.
+    """
+    subvolumns: pulumi.Input[Sequence[pulumi.Input['SourceServerBtrfsListSubvolumnArgsDict']]]
+    """
+    Specifies the subvolumn information.
+    The subvolumn structure is documented below.
 
-if not MYPY:
-    class TaskConfigurationArgsDict(TypedDict):
-        config_key: pulumi.Input[_builtins.str]
-        """
-        Specifies the advanced migration option.
-        The value can be **EXCLUDE_MIGRATE_PATH**, **SYNC_EXCLUDE_PATH**, **ONLY_SYNC_PATH** and so on.
-        """
-        config_value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value specified for the advanced migration option.
-        """
-        config_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the reserved field that describes the configuration status.
+    <a name="btrfs_list_subvolumn_struct"></a>
+    The `subvolumn` block supports:
+    """
+    system_profile: pulumi.Input[_builtins.str]
+    """
+    Specifies the file system profile (RAD).
+    """
+    uuid: pulumi.Input[_builtins.str]
+    """
+    Specifies the UUID of the parent volume.
+    """
 
-        <a name="target_server_disks_object"></a>
-        The `target_server_disks` block supports:
+@pulumi.input_type
+class SourceServerBtrfsListArgs:
+    def __init__(__self__, *,
+                 data_profile: pulumi.Input[_builtins.str],
+                 default_subvol_mountpath: pulumi.Input[_builtins.str],
+                 default_subvol_name: pulumi.Input[_builtins.str],
+                 default_subvolid: pulumi.Input[_builtins.str],
+                 device: pulumi.Input[_builtins.str],
+                 g_vol_used_size: pulumi.Input[_builtins.int],
+                 global_reserve1: pulumi.Input[_builtins.str],
+                 label: pulumi.Input[_builtins.str],
+                 metadata_profile: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 nodesize: pulumi.Input[_builtins.int],
+                 sectorsize: pulumi.Input[_builtins.int],
+                 size: pulumi.Input[_builtins.int],
+                 subvolumns: pulumi.Input[Sequence[pulumi.Input['SourceServerBtrfsListSubvolumnArgs']]],
+                 system_profile: pulumi.Input[_builtins.str],
+                 uuid: pulumi.Input[_builtins.str]):
         """
-elif False:
-    TaskConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] data_profile: Specifies the data profile (RAD).
+        :param pulumi.Input[_builtins.str] default_subvol_mountpath: Specifies the mount path of the default subvolumn or Btrfs file system.
+        :param pulumi.Input[_builtins.str] default_subvol_name: Specifies the name of the default subvolumn.
+        :param pulumi.Input[_builtins.str] default_subvolid: Specifies the ID of the default subvolumn.
+        :param pulumi.Input[_builtins.str] device: Specifies the device names of the Btrfs file system.
+        :param pulumi.Input[_builtins.int] g_vol_used_size: Specifies the used space of the Btrfs volume.
+        :param pulumi.Input[_builtins.str] global_reserve1: Specifies the Btrfs file system information.
+        :param pulumi.Input[_builtins.str] label: Specifies the file system tag. If no tag exists, the value is an empty string.
+        :param pulumi.Input[_builtins.str] metadata_profile: Specifies the metadata profile (RAD).
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.int] nodesize: Specifies the Btrfs node size.
+        :param pulumi.Input[_builtins.int] sectorsize: Specifies the sector size.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerBtrfsListSubvolumnArgs']]] subvolumns: Specifies the subvolumn information.
+               The subvolumn structure is documented below.
+               
+               <a name="btrfs_list_subvolumn_struct"></a>
+               The `subvolumn` block supports:
+        :param pulumi.Input[_builtins.str] system_profile: Specifies the file system profile (RAD).
+        :param pulumi.Input[_builtins.str] uuid: Specifies the UUID of the parent volume.
+        """
+        pulumi.set(__self__, "data_profile", data_profile)
+        pulumi.set(__self__, "default_subvol_mountpath", default_subvol_mountpath)
+        pulumi.set(__self__, "default_subvol_name", default_subvol_name)
+        pulumi.set(__self__, "default_subvolid", default_subvolid)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "g_vol_used_size", g_vol_used_size)
+        pulumi.set(__self__, "global_reserve1", global_reserve1)
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "metadata_profile", metadata_profile)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nodesize", nodesize)
+        pulumi.set(__self__, "sectorsize", sectorsize)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "subvolumns", subvolumns)
+        pulumi.set(__self__, "system_profile", system_profile)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="dataProfile")
+    def data_profile(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the data profile (RAD).
+        """
+        return pulumi.get(self, "data_profile")
+
+    @data_profile.setter
+    def data_profile(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "data_profile", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSubvolMountpath")
+    def default_subvol_mountpath(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the mount path of the default subvolumn or Btrfs file system.
+        """
+        return pulumi.get(self, "default_subvol_mountpath")
+
+    @default_subvol_mountpath.setter
+    def default_subvol_mountpath(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "default_subvol_mountpath", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSubvolName")
+    def default_subvol_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the default subvolumn.
+        """
+        return pulumi.get(self, "default_subvol_name")
+
+    @default_subvol_name.setter
+    def default_subvol_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "default_subvol_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSubvolid")
+    def default_subvolid(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of the default subvolumn.
+        """
+        return pulumi.get(self, "default_subvolid")
+
+    @default_subvolid.setter
+    def default_subvolid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "default_subvolid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the device names of the Btrfs file system.
+        """
+        return pulumi.get(self, "device")
+
+    @device.setter
+    def device(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "device", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gVolUsedSize")
+    def g_vol_used_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the used space of the Btrfs volume.
+        """
+        return pulumi.get(self, "g_vol_used_size")
+
+    @g_vol_used_size.setter
+    def g_vol_used_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "g_vol_used_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="globalReserve1")
+    def global_reserve1(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the Btrfs file system information.
+        """
+        return pulumi.get(self, "global_reserve1")
+
+    @global_reserve1.setter
+    def global_reserve1(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "global_reserve1", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def label(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the file system tag. If no tag exists, the value is an empty string.
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "label", value)
+
+    @_builtins.property
+    @pulumi.getter(name="metadataProfile")
+    def metadata_profile(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the metadata profile (RAD).
+        """
+        return pulumi.get(self, "metadata_profile")
+
+    @metadata_profile.setter
+    def metadata_profile(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "metadata_profile", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def nodesize(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the Btrfs node size.
+        """
+        return pulumi.get(self, "nodesize")
+
+    @nodesize.setter
+    def nodesize(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "nodesize", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sectorsize(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the sector size.
+        """
+        return pulumi.get(self, "sectorsize")
+
+    @sectorsize.setter
+    def sectorsize(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "sectorsize", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subvolumns(self) -> pulumi.Input[Sequence[pulumi.Input['SourceServerBtrfsListSubvolumnArgs']]]:
+        """
+        Specifies the subvolumn information.
+        The subvolumn structure is documented below.
+
+        <a name="btrfs_list_subvolumn_struct"></a>
+        The `subvolumn` block supports:
+        """
+        return pulumi.get(self, "subvolumns")
+
+    @subvolumns.setter
+    def subvolumns(self, value: pulumi.Input[Sequence[pulumi.Input['SourceServerBtrfsListSubvolumnArgs']]]):
+        pulumi.set(self, "subvolumns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="systemProfile")
+    def system_profile(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the file system profile (RAD).
+        """
+        return pulumi.get(self, "system_profile")
+
+    @system_profile.setter
+    def system_profile(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "system_profile", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the UUID of the parent volume.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uuid", value)
+
+
+class SourceServerBtrfsListSubvolumnArgsDict(TypedDict):
+    is_snapshot: pulumi.Input[_builtins.str]
+    """
+    Specifies whether the subvolumn is a snapshot.
+    """
+    parent_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the parent volume ID.
+    """
+    subvol_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the subvolumn ID.
+    """
+    subvol_mount_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the mount path of the subvolumn.
+
+    <a name="networks_struct"></a>
+    The `networks` block supports:
+    """
+    subvol_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the subvolumn name.
+    """
+    uuid: pulumi.Input[_builtins.str]
+    """
+    Specifies the UUID of the parent volume.
+    """
+
+@pulumi.input_type
+class SourceServerBtrfsListSubvolumnArgs:
+    def __init__(__self__, *,
+                 is_snapshot: pulumi.Input[_builtins.str],
+                 parent_id: pulumi.Input[_builtins.str],
+                 subvol_id: pulumi.Input[_builtins.str],
+                 subvol_mount_path: pulumi.Input[_builtins.str],
+                 subvol_name: pulumi.Input[_builtins.str],
+                 uuid: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] is_snapshot: Specifies whether the subvolumn is a snapshot.
+        :param pulumi.Input[_builtins.str] parent_id: Specifies the parent volume ID.
+        :param pulumi.Input[_builtins.str] subvol_id: Specifies the subvolumn ID.
+        :param pulumi.Input[_builtins.str] subvol_mount_path: Specifies the mount path of the subvolumn.
+               
+               <a name="networks_struct"></a>
+               The `networks` block supports:
+        :param pulumi.Input[_builtins.str] subvol_name: Specifies the subvolumn name.
+        :param pulumi.Input[_builtins.str] uuid: Specifies the UUID of the parent volume.
+        """
+        pulumi.set(__self__, "is_snapshot", is_snapshot)
+        pulumi.set(__self__, "parent_id", parent_id)
+        pulumi.set(__self__, "subvol_id", subvol_id)
+        pulumi.set(__self__, "subvol_mount_path", subvol_mount_path)
+        pulumi.set(__self__, "subvol_name", subvol_name)
+        pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="isSnapshot")
+    def is_snapshot(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies whether the subvolumn is a snapshot.
+        """
+        return pulumi.get(self, "is_snapshot")
+
+    @is_snapshot.setter
+    def is_snapshot(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "is_snapshot", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the parent volume ID.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @parent_id.setter
+    def parent_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "parent_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subvolId")
+    def subvol_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the subvolumn ID.
+        """
+        return pulumi.get(self, "subvol_id")
+
+    @subvol_id.setter
+    def subvol_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "subvol_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subvolMountPath")
+    def subvol_mount_path(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the mount path of the subvolumn.
+
+        <a name="networks_struct"></a>
+        The `networks` block supports:
+        """
+        return pulumi.get(self, "subvol_mount_path")
+
+    @subvol_mount_path.setter
+    def subvol_mount_path(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "subvol_mount_path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="subvolName")
+    def subvol_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the subvolumn name.
+        """
+        return pulumi.get(self, "subvol_name")
+
+    @subvol_name.setter
+    def subvol_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "subvol_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the UUID of the parent volume.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "uuid", value)
+
+
+class SourceServerCheckArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the returned error code.
+    """
+    error_or_warn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the returned error or warning.
+    """
+    error_params: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameters that failed the check.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    params: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the parameters.
+    """
+    result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the check result.
+    Values can be as follows:
+    + **OK**: The check is passed.
+    + **WARN**: A warning is generated.
+    + **ERROR**: The check fails.
+    """
+
+@pulumi.input_type
+class SourceServerCheckArgs:
+    def __init__(__self__, *,
+                 error_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 error_or_warn: Optional[pulumi.Input[_builtins.str]] = None,
+                 error_params: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 params: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 result: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] error_code: Indicates the returned error code.
+        :param pulumi.Input[_builtins.str] error_or_warn: Indicates the returned error or warning.
+        :param pulumi.Input[_builtins.str] error_params: Indicates the parameters that failed the check.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] params: Indicates the parameters.
+        :param pulumi.Input[_builtins.str] result: Indicates the check result.
+               Values can be as follows:
+               + **OK**: The check is passed.
+               + **WARN**: A warning is generated.
+               + **ERROR**: The check fails.
+        """
+        if error_code is not None:
+            pulumi.set(__self__, "error_code", error_code)
+        if error_or_warn is not None:
+            pulumi.set(__self__, "error_or_warn", error_or_warn)
+        if error_params is not None:
+            pulumi.set(__self__, "error_params", error_params)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if params is not None:
+            pulumi.set(__self__, "params", params)
+        if result is not None:
+            pulumi.set(__self__, "result", result)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the returned error code.
+        """
+        return pulumi.get(self, "error_code")
+
+    @error_code.setter
+    def error_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_code", value)
+
+    @_builtins.property
+    @pulumi.getter(name="errorOrWarn")
+    def error_or_warn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the returned error or warning.
+        """
+        return pulumi.get(self, "error_or_warn")
+
+    @error_or_warn.setter
+    def error_or_warn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_or_warn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="errorParams")
+    def error_params(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the parameters that failed the check.
+        """
+        return pulumi.get(self, "error_params")
+
+    @error_params.setter
+    def error_params(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_params", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def params(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Indicates the parameters.
+        """
+        return pulumi.get(self, "params")
+
+    @params.setter
+    def params(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "params", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the check result.
+        Values can be as follows:
+        + **OK**: The check is passed.
+        + **WARN**: A warning is generated.
+        + **ERROR**: The check fails.
+        """
+        return pulumi.get(self, "result")
+
+    @result.setter
+    def result(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "result", value)
+
+
+class SourceServerCurrentTaskArgsDict(TypedDict):
+    clone_servers: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskCloneServerArgsDict']]]]
+    """
+    Indicates the information about the cloned server.
+    The clone_server structure is documented below.
+    """
+    exist_server: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether an existing server is used as the target server.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical volume ID.
+    """
+    log_collect_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the log collection status.
+    """
+    migrate_speed: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the migration rate.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the project ID.
+    """
+    project_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the project name.
+    """
+    region_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the region ID.
+    """
+    speed_limit: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the migration rate limit.
+    """
+    start_date: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the start time.
+    """
+    start_target_server: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the target server is started.
+    """
+    state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the source server status.
+    Values can be as follows:
+    + **unavailable**: The source server fails the environment check.
+    + **waiting**: The source server is waiting for migration.
+    + **initialize**: The migration of the source server is being initialized.
+    + **replicate**: The source server is being replicated.
+    + **syncing**: The source server is being synchronized.
+    + **stopping**: The migration of the source server is being stopped.
+    + **stopped**: The migration of the source server is stopped.
+    + **deleting**: The source server record is being deleted.
+    + **error**: An error occurs during the migration of the source server.
+    + **cloning**: The target server for the source server is being cloned.
+    + **cutovering**: The target server for the source server is being launched.
+    + **finished**: The target server for the source server is launched.
+    + **clearing**: The snapshot resources are being cleared.
+    + **cleared**: The snapshot resources have been cleared.
+    + **clearfailed**: The snapshot resources fail to be cleared.
+    + **premigready**: The migration drill is ready.
+    + **premiging**: The migration drill is in progress.
+    + **premiged**: The migration drill has been completed.
+    + **premigfailed**: The migration drill fails.
+    """
+    target_servers: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskTargetServerArgsDict']]]]
+    """
+    Indicates the information about the target server.
+    The target_server structure is documented below.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the task type.
+    """
+    use_public_ip: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a public IP address is used for migration.
+    """
+    vm_template_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the server template ID.
+    """
+
+@pulumi.input_type
+class SourceServerCurrentTaskArgs:
+    def __init__(__self__, *,
+                 clone_servers: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskCloneServerArgs']]]] = None,
+                 exist_server: Optional[pulumi.Input[_builtins.bool]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 log_collect_status: Optional[pulumi.Input[_builtins.str]] = None,
+                 migrate_speed: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 region_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 speed_limit: Optional[pulumi.Input[_builtins.int]] = None,
+                 start_date: Optional[pulumi.Input[_builtins.int]] = None,
+                 start_target_server: Optional[pulumi.Input[_builtins.bool]] = None,
+                 state: Optional[pulumi.Input[_builtins.str]] = None,
+                 target_servers: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskTargetServerArgs']]]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 use_public_ip: Optional[pulumi.Input[_builtins.bool]] = None,
+                 vm_template_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskCloneServerArgs']]] clone_servers: Indicates the information about the cloned server.
+               The clone_server structure is documented below.
+        :param pulumi.Input[_builtins.bool] exist_server: Indicates whether an existing server is used as the target server.
+        :param pulumi.Input[_builtins.str] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.str] log_collect_status: Indicates the log collection status.
+        :param pulumi.Input[_builtins.int] migrate_speed: Indicates the migration rate.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.str] project_id: Indicates the project ID.
+        :param pulumi.Input[_builtins.str] project_name: Indicates the project name.
+        :param pulumi.Input[_builtins.str] region_id: Indicates the region ID.
+        :param pulumi.Input[_builtins.int] speed_limit: Indicates the migration rate limit.
+        :param pulumi.Input[_builtins.int] start_date: Indicates the start time.
+        :param pulumi.Input[_builtins.bool] start_target_server: Indicates whether the target server is started.
+        :param pulumi.Input[_builtins.str] state: Specifies the source server status.
+               Values can be as follows:
+               + **unavailable**: The source server fails the environment check.
+               + **waiting**: The source server is waiting for migration.
+               + **initialize**: The migration of the source server is being initialized.
+               + **replicate**: The source server is being replicated.
+               + **syncing**: The source server is being synchronized.
+               + **stopping**: The migration of the source server is being stopped.
+               + **stopped**: The migration of the source server is stopped.
+               + **deleting**: The source server record is being deleted.
+               + **error**: An error occurs during the migration of the source server.
+               + **cloning**: The target server for the source server is being cloned.
+               + **cutovering**: The target server for the source server is being launched.
+               + **finished**: The target server for the source server is launched.
+               + **clearing**: The snapshot resources are being cleared.
+               + **cleared**: The snapshot resources have been cleared.
+               + **clearfailed**: The snapshot resources fail to be cleared.
+               + **premigready**: The migration drill is ready.
+               + **premiging**: The migration drill is in progress.
+               + **premiged**: The migration drill has been completed.
+               + **premigfailed**: The migration drill fails.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskTargetServerArgs']]] target_servers: Indicates the information about the target server.
+               The target_server structure is documented below.
+        :param pulumi.Input[_builtins.str] type: Indicates the task type.
+        :param pulumi.Input[_builtins.bool] use_public_ip: Indicates whether a public IP address is used for migration.
+        :param pulumi.Input[_builtins.str] vm_template_id: Indicates the server template ID.
+        """
+        if clone_servers is not None:
+            pulumi.set(__self__, "clone_servers", clone_servers)
+        if exist_server is not None:
+            pulumi.set(__self__, "exist_server", exist_server)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if log_collect_status is not None:
+            pulumi.set(__self__, "log_collect_status", log_collect_status)
+        if migrate_speed is not None:
+            pulumi.set(__self__, "migrate_speed", migrate_speed)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if region_id is not None:
+            pulumi.set(__self__, "region_id", region_id)
+        if speed_limit is not None:
+            pulumi.set(__self__, "speed_limit", speed_limit)
+        if start_date is not None:
+            pulumi.set(__self__, "start_date", start_date)
+        if start_target_server is not None:
+            pulumi.set(__self__, "start_target_server", start_target_server)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if target_servers is not None:
+            pulumi.set(__self__, "target_servers", target_servers)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if use_public_ip is not None:
+            pulumi.set(__self__, "use_public_ip", use_public_ip)
+        if vm_template_id is not None:
+            pulumi.set(__self__, "vm_template_id", vm_template_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneServers")
+    def clone_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskCloneServerArgs']]]]:
+        """
+        Indicates the information about the cloned server.
+        The clone_server structure is documented below.
+        """
+        return pulumi.get(self, "clone_servers")
+
+    @clone_servers.setter
+    def clone_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskCloneServerArgs']]]]):
+        pulumi.set(self, "clone_servers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="existServer")
+    def exist_server(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether an existing server is used as the target server.
+        """
+        return pulumi.get(self, "exist_server")
+
+    @exist_server.setter
+    def exist_server(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "exist_server", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logCollectStatus")
+    def log_collect_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the log collection status.
+        """
+        return pulumi.get(self, "log_collect_status")
+
+    @log_collect_status.setter
+    def log_collect_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "log_collect_status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="migrateSpeed")
+    def migrate_speed(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the migration rate.
+        """
+        return pulumi.get(self, "migrate_speed")
+
+    @migrate_speed.setter
+    def migrate_speed(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "migrate_speed", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the project name.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+    @region_id.setter
+    def region_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="speedLimit")
+    def speed_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the migration rate limit.
+        """
+        return pulumi.get(self, "speed_limit")
+
+    @speed_limit.setter
+    def speed_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "speed_limit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startDate")
+    def start_date(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Indicates the start time.
+        """
+        return pulumi.get(self, "start_date")
+
+    @start_date.setter
+    def start_date(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "start_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startTargetServer")
+    def start_target_server(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether the target server is started.
+        """
+        return pulumi.get(self, "start_target_server")
+
+    @start_target_server.setter
+    def start_target_server(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "start_target_server", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the source server status.
+        Values can be as follows:
+        + **unavailable**: The source server fails the environment check.
+        + **waiting**: The source server is waiting for migration.
+        + **initialize**: The migration of the source server is being initialized.
+        + **replicate**: The source server is being replicated.
+        + **syncing**: The source server is being synchronized.
+        + **stopping**: The migration of the source server is being stopped.
+        + **stopped**: The migration of the source server is stopped.
+        + **deleting**: The source server record is being deleted.
+        + **error**: An error occurs during the migration of the source server.
+        + **cloning**: The target server for the source server is being cloned.
+        + **cutovering**: The target server for the source server is being launched.
+        + **finished**: The target server for the source server is launched.
+        + **clearing**: The snapshot resources are being cleared.
+        + **cleared**: The snapshot resources have been cleared.
+        + **clearfailed**: The snapshot resources fail to be cleared.
+        + **premigready**: The migration drill is ready.
+        + **premiging**: The migration drill is in progress.
+        + **premiged**: The migration drill has been completed.
+        + **premigfailed**: The migration drill fails.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetServers")
+    def target_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskTargetServerArgs']]]]:
+        """
+        Indicates the information about the target server.
+        The target_server structure is documented below.
+        """
+        return pulumi.get(self, "target_servers")
+
+    @target_servers.setter
+    def target_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerCurrentTaskTargetServerArgs']]]]):
+        pulumi.set(self, "target_servers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the task type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usePublicIp")
+    def use_public_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether a public IP address is used for migration.
+        """
+        return pulumi.get(self, "use_public_ip")
+
+    @use_public_ip.setter
+    def use_public_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_public_ip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vmTemplateId")
+    def vm_template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the server template ID.
+        """
+        return pulumi.get(self, "vm_template_id")
+
+    @vm_template_id.setter
+    def vm_template_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vm_template_id", value)
+
+
+class SourceServerCurrentTaskCloneServerArgsDict(TypedDict):
+    clone_error: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error returned for a clone failure.
+    """
+    clone_state: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the clone status.
+    """
+    error_msg: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error message returned for a clone failure.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    vm_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the cloned server.
+    """
+
+@pulumi.input_type
+class SourceServerCurrentTaskCloneServerArgs:
+    def __init__(__self__, *,
+                 clone_error: Optional[pulumi.Input[_builtins.str]] = None,
+                 clone_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 error_msg: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 vm_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] clone_error: Indicates the error returned for a clone failure.
+        :param pulumi.Input[_builtins.str] clone_state: Indicates the clone status.
+        :param pulumi.Input[_builtins.str] error_msg: Indicates the error message returned for a clone failure.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.str] vm_id: Indicates the ID of the cloned server.
+        """
+        if clone_error is not None:
+            pulumi.set(__self__, "clone_error", clone_error)
+        if clone_state is not None:
+            pulumi.set(__self__, "clone_state", clone_state)
+        if error_msg is not None:
+            pulumi.set(__self__, "error_msg", error_msg)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vm_id is not None:
+            pulumi.set(__self__, "vm_id", vm_id)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneError")
+    def clone_error(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the error returned for a clone failure.
+        """
+        return pulumi.get(self, "clone_error")
+
+    @clone_error.setter
+    def clone_error(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_error", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneState")
+    def clone_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the clone status.
+        """
+        return pulumi.get(self, "clone_state")
+
+    @clone_state.setter
+    def clone_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "clone_state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the error message returned for a clone failure.
+        """
+        return pulumi.get(self, "error_msg")
+
+    @error_msg.setter
+    def error_msg(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_msg", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vmId")
+    def vm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the ID of the cloned server.
+        """
+        return pulumi.get(self, "vm_id")
+
+    @vm_id.setter
+    def vm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vm_id", value)
+
+
+class SourceServerCurrentTaskTargetServerArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    vm_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the ID of the cloned server.
+    """
+
+@pulumi.input_type
+class SourceServerCurrentTaskTargetServerArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 vm_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.str] vm_id: Indicates the ID of the cloned server.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vm_id is not None:
+            pulumi.set(__self__, "vm_id", vm_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vmId")
+    def vm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the ID of the cloned server.
+        """
+        return pulumi.get(self, "vm_id")
+
+    @vm_id.setter
+    def vm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vm_id", value)
+
+
+class SourceServerDiskArgsDict(TypedDict):
+    device_use: pulumi.Input[_builtins.str]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name.
+    """
+    physical_volumes: pulumi.Input[Sequence[pulumi.Input['SourceServerDiskPhysicalVolumeArgsDict']]]
+    """
+    Specifies the information about physical partitions on the disk.
+    The physical_volumes structure is documented below.
+    """
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size.
+    """
+    used_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the used space.
+    """
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    inode_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    os_disk: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the disk is the system disk.
+    """
+    partition_style: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk partition type.
+    Values can be as follows:
+    + **MBR**: Master Boot Record (MBR).
+    + **GPT**: GUID Partition Table (GPT).
+
+    > This parameter is mandatory for source server registration.
+    """
+    relation_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the paired target server disk in Linux.
+    """
+
+@pulumi.input_type
+class SourceServerDiskArgs:
+    def __init__(__self__, *,
+                 device_use: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 physical_volumes: pulumi.Input[Sequence[pulumi.Input['SourceServerDiskPhysicalVolumeArgs']]],
+                 size: pulumi.Input[_builtins.int],
+                 used_size: pulumi.Input[_builtins.int],
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 os_disk: Optional[pulumi.Input[_builtins.bool]] = None,
+                 partition_style: Optional[pulumi.Input[_builtins.str]] = None,
+                 relation_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerDiskPhysicalVolumeArgs']]] physical_volumes: Specifies the information about physical partitions on the disk.
+               The physical_volumes structure is documented below.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.int] inode_size: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.bool] os_disk: Specifies whether the disk is the system disk.
+        :param pulumi.Input[_builtins.str] partition_style: Specifies the disk partition type.
+               Values can be as follows:
+               + **MBR**: Master Boot Record (MBR).
+               + **GPT**: GUID Partition Table (GPT).
+               
+               > This parameter is mandatory for source server registration.
+        :param pulumi.Input[_builtins.str] relation_name: Specifies the name of the paired target server disk in Linux.
+        """
+        pulumi.set(__self__, "device_use", device_use)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "physical_volumes", physical_volumes)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "used_size", used_size)
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if inode_size is not None:
+            pulumi.set(__self__, "inode_size", inode_size)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if os_disk is not None:
+            pulumi.set(__self__, "os_disk", os_disk)
+        if partition_style is not None:
+            pulumi.set(__self__, "partition_style", partition_style)
+        if relation_name is not None:
+            pulumi.set(__self__, "relation_name", relation_name)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="physicalVolumes")
+    def physical_volumes(self) -> pulumi.Input[Sequence[pulumi.Input['SourceServerDiskPhysicalVolumeArgs']]]:
+        """
+        Specifies the information about physical partitions on the disk.
+        The physical_volumes structure is documented below.
+        """
+        return pulumi.get(self, "physical_volumes")
+
+    @physical_volumes.setter
+    def physical_volumes(self, value: pulumi.Input[Sequence[pulumi.Input['SourceServerDiskPhysicalVolumeArgs']]]):
+        pulumi.set(self, "physical_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "used_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeSize")
+    def inode_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_size")
+
+    @inode_size.setter
+    def inode_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter(name="osDisk")
+    def os_disk(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the disk is the system disk.
+        """
+        return pulumi.get(self, "os_disk")
+
+    @os_disk.setter
+    def os_disk(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "os_disk", value)
+
+    @_builtins.property
+    @pulumi.getter(name="partitionStyle")
+    def partition_style(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the disk partition type.
+        Values can be as follows:
+        + **MBR**: Master Boot Record (MBR).
+        + **GPT**: GUID Partition Table (GPT).
+
+        > This parameter is mandatory for source server registration.
+        """
+        return pulumi.get(self, "partition_style")
+
+    @partition_style.setter
+    def partition_style(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "partition_style", value)
+
+    @_builtins.property
+    @pulumi.getter(name="relationName")
+    def relation_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name of the paired target server disk in Linux.
+        """
+        return pulumi.get(self, "relation_name")
+
+    @relation_name.setter
+    def relation_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "relation_name", value)
+
+
+class SourceServerDiskPhysicalVolumeArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    device_use: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    file_system: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file system.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the serial number.
+    """
+    inode_nums: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    inode_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    mount_point: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the mount point.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+    size_per_cluster: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size of each cluster.
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the UUID of the parent volume.
+    """
+
+@pulumi.input_type
+class SourceServerDiskPhysicalVolumeArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 device_use: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_system: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 index: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_nums: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 mount_point: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 size_per_cluster: Optional[pulumi.Input[_builtins.int]] = None,
+                 used_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.str] file_system: Specifies the file system.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.int] index: Specifies the serial number.
+        :param pulumi.Input[_builtins.int] inode_nums: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.int] inode_size: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.str] mount_point: Specifies the mount point.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] size_per_cluster: Specifies the size of each cluster.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        :param pulumi.Input[_builtins.str] uuid: Specifies the UUID of the parent volume.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if device_use is not None:
+            pulumi.set(__self__, "device_use", device_use)
+        if file_system is not None:
+            pulumi.set(__self__, "file_system", file_system)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if inode_nums is not None:
+            pulumi.set(__self__, "inode_nums", inode_nums)
+        if inode_size is not None:
+            pulumi.set(__self__, "inode_size", inode_size)
+        if mount_point is not None:
+            pulumi.set(__self__, "mount_point", mount_point)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if size_per_cluster is not None:
+            pulumi.set(__self__, "size_per_cluster", size_per_cluster)
+        if used_size is not None:
+            pulumi.set(__self__, "used_size", used_size)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fileSystem")
+    def file_system(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the file system.
+        """
+        return pulumi.get(self, "file_system")
+
+    @file_system.setter
+    def file_system(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "file_system", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the serial number.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeNums")
+    def inode_nums(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_nums")
+
+    @inode_nums.setter
+    def inode_nums(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_nums", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeSize")
+    def inode_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_size")
+
+    @inode_size.setter
+    def inode_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the mount point.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mount_point", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sizePerCluster")
+    def size_per_cluster(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size of each cluster.
+        """
+        return pulumi.get(self, "size_per_cluster")
+
+    @size_per_cluster.setter
+    def size_per_cluster(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size_per_cluster", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "used_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the UUID of the parent volume.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+
+class SourceServerInitTargetServerArgsDict(TypedDict):
+    disks: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskArgsDict']]]]
+    """
+    Specifies the disk information of the source server.
+    The disks structure is documented below.
+    """
+    volume_groups: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupArgsDict']]]]
+    """
+    Specifies the volume groups.
+    The volume_groups structure is documented below.
+
+    > This parameter is mandatory for Linux.
+    """
+
+@pulumi.input_type
+class SourceServerInitTargetServerArgs:
+    def __init__(__self__, *,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskArgs']]]] = None,
+                 volume_groups: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskArgs']]] disks: Specifies the disk information of the source server.
+               The disks structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupArgs']]] volume_groups: Specifies the volume groups.
+               The volume_groups structure is documented below.
+               
+               > This parameter is mandatory for Linux.
+        """
+        if disks is not None:
+            pulumi.set(__self__, "disks", disks)
+        if volume_groups is not None:
+            pulumi.set(__self__, "volume_groups", volume_groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskArgs']]]]:
+        """
+        Specifies the disk information of the source server.
+        The disks structure is documented below.
+        """
+        return pulumi.get(self, "disks")
+
+    @disks.setter
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskArgs']]]]):
+        pulumi.set(self, "disks", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumeGroups")
+    def volume_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupArgs']]]]:
+        """
+        Specifies the volume groups.
+        The volume_groups structure is documented below.
+
+        > This parameter is mandatory for Linux.
+        """
+        return pulumi.get(self, "volume_groups")
+
+    @volume_groups.setter
+    def volume_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupArgs']]]]):
+        pulumi.set(self, "volume_groups", value)
+
+
+class SourceServerInitTargetServerDiskArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    device_use: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    physical_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskPhysicalVolumeArgsDict']]]]
+    """
+    Specifies the information about physical partitions on the disk.
+    The physical_volumes structure is documented below.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space.
+    """
+
+@pulumi.input_type
+class SourceServerInitTargetServerDiskArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 device_use: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 physical_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskPhysicalVolumeArgs']]]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 used_size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskPhysicalVolumeArgs']]] physical_volumes: Specifies the information about physical partitions on the disk.
+               The physical_volumes structure is documented below.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if device_use is not None:
+            pulumi.set(__self__, "device_use", device_use)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if physical_volumes is not None:
+            pulumi.set(__self__, "physical_volumes", physical_volumes)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if used_size is not None:
+            pulumi.set(__self__, "used_size", used_size)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter(name="physicalVolumes")
+    def physical_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskPhysicalVolumeArgs']]]]:
+        """
+        Specifies the information about physical partitions on the disk.
+        The physical_volumes structure is documented below.
+        """
+        return pulumi.get(self, "physical_volumes")
+
+    @physical_volumes.setter
+    def physical_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerDiskPhysicalVolumeArgs']]]]):
+        pulumi.set(self, "physical_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "used_size", value)
+
+
+class SourceServerInitTargetServerDiskPhysicalVolumeArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    device_use: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    file_system: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file system.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    index: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the serial number.
+    """
+    inode_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    mount_point: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the mount point.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the UUID of the parent volume.
+    """
+
+@pulumi.input_type
+class SourceServerInitTargetServerDiskPhysicalVolumeArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 device_use: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_system: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 index: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 mount_point: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 used_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.str] file_system: Specifies the file system.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.int] index: Specifies the serial number.
+        :param pulumi.Input[_builtins.int] inode_size: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.str] mount_point: Specifies the mount point.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        :param pulumi.Input[_builtins.str] uuid: Specifies the UUID of the parent volume.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if device_use is not None:
+            pulumi.set(__self__, "device_use", device_use)
+        if file_system is not None:
+            pulumi.set(__self__, "file_system", file_system)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if inode_size is not None:
+            pulumi.set(__self__, "inode_size", inode_size)
+        if mount_point is not None:
+            pulumi.set(__self__, "mount_point", mount_point)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if used_size is not None:
+            pulumi.set(__self__, "used_size", used_size)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fileSystem")
+    def file_system(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the file system.
+        """
+        return pulumi.get(self, "file_system")
+
+    @file_system.setter
+    def file_system(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "file_system", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the serial number.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeSize")
+    def inode_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_size")
+
+    @inode_size.setter
+    def inode_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the mount point.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mount_point", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "used_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the UUID of the parent volume.
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+
+class SourceServerInitTargetServerVolumeGroupArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    components: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the physical volume information.
+    """
+    free_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the available space.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    logical_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupLogicalVolumeArgsDict']]]]
+    """
+    Specifies the logical volume information.
+    The logical_volumes structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+
+@pulumi.input_type
+class SourceServerInitTargetServerVolumeGroupArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 components: Optional[pulumi.Input[_builtins.str]] = None,
+                 free_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 logical_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs']]]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.str] components: Specifies the physical volume information.
+        :param pulumi.Input[_builtins.int] free_size: Specifies the available space.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs']]] logical_volumes: Specifies the logical volume information.
+               The logical_volumes structure is documented below.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if components is not None:
+            pulumi.set(__self__, "components", components)
+        if free_size is not None:
+            pulumi.set(__self__, "free_size", free_size)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if logical_volumes is not None:
+            pulumi.set(__self__, "logical_volumes", logical_volumes)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def components(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the physical volume information.
+        """
+        return pulumi.get(self, "components")
+
+    @components.setter
+    def components(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "components", value)
+
+    @_builtins.property
+    @pulumi.getter(name="freeSize")
+    def free_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the available space.
+        """
+        return pulumi.get(self, "free_size")
+
+    @free_size.setter
+    def free_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "free_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logicalVolumes")
+    def logical_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs']]]]:
+        """
+        Specifies the logical volume information.
+        The logical_volumes structure is documented below.
+        """
+        return pulumi.get(self, "logical_volumes")
+
+    @logical_volumes.setter
+    def logical_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs']]]]):
+        pulumi.set(self, "logical_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class SourceServerInitTargetServerVolumeGroupLogicalVolumeArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    block_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of blocks.
+    """
+    block_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the block size.
+    """
+    device_use: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    file_system: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the file system.
+    """
+    free_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the available space.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    inode_nums: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    inode_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    mount_point: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the mount point.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space.
+    """
+
+@pulumi.input_type
+class SourceServerInitTargetServerVolumeGroupLogicalVolumeArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 block_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 block_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 device_use: Optional[pulumi.Input[_builtins.str]] = None,
+                 file_system: Optional[pulumi.Input[_builtins.str]] = None,
+                 free_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_nums: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 mount_point: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 used_size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.int] block_count: Specifies the number of blocks.
+        :param pulumi.Input[_builtins.int] block_size: Specifies the block size.
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.str] file_system: Specifies the file system.
+        :param pulumi.Input[_builtins.int] free_size: Specifies the available space.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.int] inode_nums: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.int] inode_size: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.str] mount_point: Specifies the mount point.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if block_count is not None:
+            pulumi.set(__self__, "block_count", block_count)
+        if block_size is not None:
+            pulumi.set(__self__, "block_size", block_size)
+        if device_use is not None:
+            pulumi.set(__self__, "device_use", device_use)
+        if file_system is not None:
+            pulumi.set(__self__, "file_system", file_system)
+        if free_size is not None:
+            pulumi.set(__self__, "free_size", free_size)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if inode_nums is not None:
+            pulumi.set(__self__, "inode_nums", inode_nums)
+        if inode_size is not None:
+            pulumi.set(__self__, "inode_size", inode_size)
+        if mount_point is not None:
+            pulumi.set(__self__, "mount_point", mount_point)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if used_size is not None:
+            pulumi.set(__self__, "used_size", used_size)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockCount")
+    def block_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of blocks.
+        """
+        return pulumi.get(self, "block_count")
+
+    @block_count.setter
+    def block_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "block_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockSize")
+    def block_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the block size.
+        """
+        return pulumi.get(self, "block_size")
+
+    @block_size.setter
+    def block_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "block_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fileSystem")
+    def file_system(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the file system.
+        """
+        return pulumi.get(self, "file_system")
+
+    @file_system.setter
+    def file_system(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "file_system", value)
+
+    @_builtins.property
+    @pulumi.getter(name="freeSize")
+    def free_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the available space.
+        """
+        return pulumi.get(self, "free_size")
+
+    @free_size.setter
+    def free_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "free_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeNums")
+    def inode_nums(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_nums")
+
+    @inode_nums.setter
+    def inode_nums(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_nums", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeSize")
+    def inode_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_size")
+
+    @inode_size.setter
+    def inode_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the mount point.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mount_point", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "used_size", value)
+
+
+class SourceServerNetworkArgsDict(TypedDict):
+    gateway: pulumi.Input[_builtins.str]
+    """
+    Specifies the gateway.
+    """
+    ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address bound to the NIC.
+    """
+    mac: pulumi.Input[_builtins.str]
+    """
+    Specifies the MAC address.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name.
+    """
+    netmask: pulumi.Input[_builtins.str]
+    """
+    Specifies the subnet mask.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the logical volume ID.
+    """
+    ipv6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IPv6 address.
+    """
+    mtu: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the NIC MTU.
+
+    > This parameter is mandatory for Linux.
+    """
+
+@pulumi.input_type
+class SourceServerNetworkArgs:
+    def __init__(__self__, *,
+                 gateway: pulumi.Input[_builtins.str],
+                 ip: pulumi.Input[_builtins.str],
+                 mac: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 netmask: pulumi.Input[_builtins.str],
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ipv6: Optional[pulumi.Input[_builtins.str]] = None,
+                 mtu: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] gateway: Specifies the gateway.
+        :param pulumi.Input[_builtins.str] ip: Specifies the IP address bound to the NIC.
+        :param pulumi.Input[_builtins.str] mac: Specifies the MAC address.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.str] netmask: Specifies the subnet mask.
+        :param pulumi.Input[_builtins.str] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.str] ipv6: Specifies the IPv6 address.
+        :param pulumi.Input[_builtins.int] mtu: Specifies the NIC MTU.
+               
+               > This parameter is mandatory for Linux.
+        """
+        pulumi.set(__self__, "gateway", gateway)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "netmask", netmask)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
+        if mtu is not None:
+            pulumi.set(__self__, "mtu", mtu)
+
+    @_builtins.property
+    @pulumi.getter
+    def gateway(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the gateway.
+        """
+        return pulumi.get(self, "gateway")
+
+    @gateway.setter
+    def gateway(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "gateway", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ip(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the IP address bound to the NIC.
+        """
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "ip", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mac(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the MAC address.
+        """
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "mac", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def netmask(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the subnet mask.
+        """
+        return pulumi.get(self, "netmask")
+
+    @netmask.setter
+    def netmask(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "netmask", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IPv6 address.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @ipv6.setter
+    def ipv6(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ipv6", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mtu(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the NIC MTU.
+
+        > This parameter is mandatory for Linux.
+        """
+        return pulumi.get(self, "mtu")
+
+    @mtu.setter
+    def mtu(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "mtu", value)
+
+
+class SourceServerVolumeGroupArgsDict(TypedDict):
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    components: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the physical volume information.
+    """
+    free_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the available space.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    logical_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['SourceServerVolumeGroupLogicalVolumeArgsDict']]]]
+    """
+    Specifies the logical volume information.
+    The logical_volumes structure is documented below.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the size.
+    """
+
+@pulumi.input_type
+class SourceServerVolumeGroupArgs:
+    def __init__(__self__, *,
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 components: Optional[pulumi.Input[_builtins.str]] = None,
+                 free_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 logical_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerVolumeGroupLogicalVolumeArgs']]]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.str] components: Specifies the physical volume information.
+        :param pulumi.Input[_builtins.int] free_size: Specifies the available space.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceServerVolumeGroupLogicalVolumeArgs']]] logical_volumes: Specifies the logical volume information.
+               The logical_volumes structure is documented below.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        """
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if components is not None:
+            pulumi.set(__self__, "components", components)
+        if free_size is not None:
+            pulumi.set(__self__, "free_size", free_size)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if logical_volumes is not None:
+            pulumi.set(__self__, "logical_volumes", logical_volumes)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def components(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the physical volume information.
+        """
+        return pulumi.get(self, "components")
+
+    @components.setter
+    def components(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "components", value)
+
+    @_builtins.property
+    @pulumi.getter(name="freeSize")
+    def free_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the available space.
+        """
+        return pulumi.get(self, "free_size")
+
+    @free_size.setter
+    def free_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "free_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logicalVolumes")
+    def logical_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerVolumeGroupLogicalVolumeArgs']]]]:
+        """
+        Specifies the logical volume information.
+        The logical_volumes structure is documented below.
+        """
+        return pulumi.get(self, "logical_volumes")
+
+    @logical_volumes.setter
+    def logical_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SourceServerVolumeGroupLogicalVolumeArgs']]]]):
+        pulumi.set(self, "logical_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+
+class SourceServerVolumeGroupLogicalVolumeArgsDict(TypedDict):
+    file_system: pulumi.Input[_builtins.str]
+    """
+    Specifies the file system.
+    """
+    free_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the available space.
+    """
+    inode_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of inodes.
+    """
+    mount_point: pulumi.Input[_builtins.str]
+    """
+    Specifies the mount point.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name.
+    """
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the size.
+    """
+    used_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the used space.
+    """
+    adjust_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the new size.
+    """
+    block_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of blocks.
+    """
+    block_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the block size.
+    """
+    device_use: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the partition function.
+    Values can be general, boot, or OS partition.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the logical volume ID.
+    """
+    inode_nums: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of inodes.
+    """
+    need_migration: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the volume needs to be migrated.
+    """
+
+@pulumi.input_type
+class SourceServerVolumeGroupLogicalVolumeArgs:
+    def __init__(__self__, *,
+                 file_system: pulumi.Input[_builtins.str],
+                 free_size: pulumi.Input[_builtins.int],
+                 inode_size: pulumi.Input[_builtins.int],
+                 mount_point: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 size: pulumi.Input[_builtins.int],
+                 used_size: pulumi.Input[_builtins.int],
+                 adjust_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 block_count: Optional[pulumi.Input[_builtins.int]] = None,
+                 block_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 device_use: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 inode_nums: Optional[pulumi.Input[_builtins.int]] = None,
+                 need_migration: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] file_system: Specifies the file system.
+        :param pulumi.Input[_builtins.int] free_size: Specifies the available space.
+        :param pulumi.Input[_builtins.int] inode_size: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.str] mount_point: Specifies the mount point.
+        :param pulumi.Input[_builtins.str] name: Specifies the name.
+        :param pulumi.Input[_builtins.int] size: Specifies the size.
+        :param pulumi.Input[_builtins.int] used_size: Specifies the used space.
+        :param pulumi.Input[_builtins.int] adjust_size: Specifies the new size.
+        :param pulumi.Input[_builtins.int] block_count: Specifies the number of blocks.
+        :param pulumi.Input[_builtins.int] block_size: Specifies the block size.
+        :param pulumi.Input[_builtins.str] device_use: Specifies the partition function.
+               Values can be general, boot, or OS partition.
+        :param pulumi.Input[_builtins.int] id: Specifies the logical volume ID.
+        :param pulumi.Input[_builtins.int] inode_nums: Specifies the number of inodes.
+        :param pulumi.Input[_builtins.bool] need_migration: Specifies whether the volume needs to be migrated.
+        """
+        pulumi.set(__self__, "file_system", file_system)
+        pulumi.set(__self__, "free_size", free_size)
+        pulumi.set(__self__, "inode_size", inode_size)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "used_size", used_size)
+        if adjust_size is not None:
+            pulumi.set(__self__, "adjust_size", adjust_size)
+        if block_count is not None:
+            pulumi.set(__self__, "block_count", block_count)
+        if block_size is not None:
+            pulumi.set(__self__, "block_size", block_size)
+        if device_use is not None:
+            pulumi.set(__self__, "device_use", device_use)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if inode_nums is not None:
+            pulumi.set(__self__, "inode_nums", inode_nums)
+        if need_migration is not None:
+            pulumi.set(__self__, "need_migration", need_migration)
+
+    @_builtins.property
+    @pulumi.getter(name="fileSystem")
+    def file_system(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the file system.
+        """
+        return pulumi.get(self, "file_system")
+
+    @file_system.setter
+    def file_system(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "file_system", value)
+
+    @_builtins.property
+    @pulumi.getter(name="freeSize")
+    def free_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the available space.
+        """
+        return pulumi.get(self, "free_size")
+
+    @free_size.setter
+    def free_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "free_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeSize")
+    def inode_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_size")
+
+    @inode_size.setter
+    def inode_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "inode_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the mount point.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "mount_point", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usedSize")
+    def used_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the used space.
+        """
+        return pulumi.get(self, "used_size")
+
+    @used_size.setter
+    def used_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "used_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="adjustSize")
+    def adjust_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the new size.
+        """
+        return pulumi.get(self, "adjust_size")
+
+    @adjust_size.setter
+    def adjust_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "adjust_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockCount")
+    def block_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of blocks.
+        """
+        return pulumi.get(self, "block_count")
+
+    @block_count.setter
+    def block_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "block_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="blockSize")
+    def block_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the block size.
+        """
+        return pulumi.get(self, "block_size")
+
+    @block_size.setter
+    def block_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "block_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceUse")
+    def device_use(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the partition function.
+        Values can be general, boot, or OS partition.
+        """
+        return pulumi.get(self, "device_use")
+
+    @device_use.setter
+    def device_use(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "device_use", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the logical volume ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="inodeNums")
+    def inode_nums(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of inodes.
+        """
+        return pulumi.get(self, "inode_nums")
+
+    @inode_nums.setter
+    def inode_nums(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "inode_nums", value)
+
+    @_builtins.property
+    @pulumi.getter(name="needMigration")
+    def need_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the volume needs to be migrated.
+        """
+        return pulumi.get(self, "need_migration")
+
+    @need_migration.setter
+    def need_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "need_migration", value)
+
+
+class TaskConfigurationArgsDict(TypedDict):
+    config_key: pulumi.Input[_builtins.str]
+    """
+    Specifies the advanced migration option.
+    The value can be **EXCLUDE_MIGRATE_PATH**, **SYNC_EXCLUDE_PATH**, **ONLY_SYNC_PATH** and so on.
+    """
+    config_value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value specified for the advanced migration option.
+    """
+    config_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reserved field that describes the configuration status.
+
+    <a name="target_server_disks_object"></a>
+    The `target_server_disks` block supports:
+    """
 
 @pulumi.input_type
 class TaskConfigurationArgs:
@@ -111,30 +3465,27 @@ class TaskConfigurationArgs:
         pulumi.set(self, "config_status", value)
 
 
-if not MYPY:
-    class TaskConsistencyResultReportConsistencyResultArgsDict(TypedDict):
-        dir_check: pulumi.Input[_builtins.str]
-        """
-        Specifies the directory verified.
-        """
-        num_different_files: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of files inconsistent.
-        """
-        num_target_miss_files: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of files missing at the target.
-        """
-        num_target_more_files: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of files redundant at the target.
-        """
-        num_total_files: pulumi.Input[_builtins.int]
-        """
-        Specifies the total number of files verified.
-        """
-elif False:
-    TaskConsistencyResultReportConsistencyResultArgsDict: TypeAlias = Mapping[str, Any]
+class TaskConsistencyResultReportConsistencyResultArgsDict(TypedDict):
+    dir_check: pulumi.Input[_builtins.str]
+    """
+    Specifies the directory verified.
+    """
+    num_different_files: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of files inconsistent.
+    """
+    num_target_miss_files: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of files missing at the target.
+    """
+    num_target_more_files: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of files redundant at the target.
+    """
+    num_total_files: pulumi.Input[_builtins.int]
+    """
+    Specifies the total number of files verified.
+    """
 
 @pulumi.input_type
 class TaskConsistencyResultReportConsistencyResultArgs:
@@ -218,29 +3569,26 @@ class TaskConsistencyResultReportConsistencyResultArgs:
         pulumi.set(self, "num_total_files", value)
 
 
-if not MYPY:
-    class TaskSpeedLimitArgsDict(TypedDict):
-        end: pulumi.Input[_builtins.str]
-        """
-        Specifies the end time of a period. The format is **XX:XX**.
-        """
-        speed: pulumi.Input[_builtins.int]
-        """
-        Specifies the migration rate limit for the specified period, the unit is Mbit/s.
-        """
-        start: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time of a period. The format is **XX:XX**.
-        """
-        over_speed_threshold: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the overspeed threshold for stopping migration, the unit is percentage.
+class TaskSpeedLimitArgsDict(TypedDict):
+    end: pulumi.Input[_builtins.str]
+    """
+    Specifies the end time of a period. The format is **XX:XX**.
+    """
+    speed: pulumi.Input[_builtins.int]
+    """
+    Specifies the migration rate limit for the specified period, the unit is Mbit/s.
+    """
+    start: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time of a period. The format is **XX:XX**.
+    """
+    over_speed_threshold: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the overspeed threshold for stopping migration, the unit is percentage.
 
-        <a name="configurations_struct"></a>
-        The `configurations` block supports:
-        """
-elif False:
-    TaskSpeedLimitArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="configurations_struct"></a>
+    The `configurations` block supports:
+    """
 
 @pulumi.input_type
 class TaskSpeedLimitArgs:
@@ -316,43 +3664,40 @@ class TaskSpeedLimitArgs:
         pulumi.set(self, "over_speed_threshold", value)
 
 
-if not MYPY:
-    class TaskTargetServerDiskArgsDict(TypedDict):
-        device_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the partition type. The value can be **NORMAL** and **OS**.
-        Changing this parameter will create a new resource.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume name. In Windows, it indicates the drive letter,
-        and in Linux, it indicates the device ID, e.g. "/dev/sda1".
-        Changing this parameter will create a new resource.
-        """
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in MB. Changing this parameter will create a new resource.
-        """
-        disk_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the disk index, e.g. "0".
-        Changing this parameter will create a new resource.
-        """
-        physical_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['TaskTargetServerDiskPhysicalVolumeArgsDict']]]]
-        """
-        Specifies an array of physical volume information.
-        The object is documented below. Changing this parameter will create a new resource.
+class TaskTargetServerDiskArgsDict(TypedDict):
+    device_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the partition type. The value can be **NORMAL** and **OS**.
+    Changing this parameter will create a new resource.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume name. In Windows, it indicates the drive letter,
+    and in Linux, it indicates the device ID, e.g. "/dev/sda1".
+    Changing this parameter will create a new resource.
+    """
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in MB. Changing this parameter will create a new resource.
+    """
+    disk_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the disk index, e.g. "0".
+    Changing this parameter will create a new resource.
+    """
+    physical_volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['TaskTargetServerDiskPhysicalVolumeArgsDict']]]]
+    """
+    Specifies an array of physical volume information.
+    The object is documented below. Changing this parameter will create a new resource.
 
-        <a name="physical_volumes_object"></a>
-        The `physical_volumes` block supports:
-        """
-        used_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the used space in MB.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    TaskTargetServerDiskArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="physical_volumes_object"></a>
+    The `physical_volumes` block supports:
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space in MB.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class TaskTargetServerDiskArgs:
@@ -472,50 +3817,47 @@ class TaskTargetServerDiskArgs:
         pulumi.set(self, "used_size", value)
 
 
-if not MYPY:
-    class TaskTargetServerDiskPhysicalVolumeArgsDict(TypedDict):
-        device_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the partition type. The value can be **NORMAL** and **OS**.
-        Changing this parameter will create a new resource.
-        """
-        file_system: pulumi.Input[_builtins.str]
-        """
-        Specifies the file system type, e.g. "ext4".
-        Changing this parameter will create a new resource.
-        """
-        index: pulumi.Input[_builtins.int]
-        """
-        Specifies the serial number of the volume.
-        Changing this parameter will create a new resource.
-        """
-        mount_point: pulumi.Input[_builtins.str]
-        """
-        Specifies the mount point, e.g. "/".
-        Changing this parameter will create a new resource.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume name. In Windows, it indicates the drive letter,
-        and in Linux, it indicates the device ID, e.g. "/dev/sda1".
-        Changing this parameter will create a new resource.
-        """
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size in MB. Changing this parameter will create a new resource.
-        """
-        used_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the used space in MB.
-        Changing this parameter will create a new resource.
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the GUID of the volume.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    TaskTargetServerDiskPhysicalVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class TaskTargetServerDiskPhysicalVolumeArgsDict(TypedDict):
+    device_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the partition type. The value can be **NORMAL** and **OS**.
+    Changing this parameter will create a new resource.
+    """
+    file_system: pulumi.Input[_builtins.str]
+    """
+    Specifies the file system type, e.g. "ext4".
+    Changing this parameter will create a new resource.
+    """
+    index: pulumi.Input[_builtins.int]
+    """
+    Specifies the serial number of the volume.
+    Changing this parameter will create a new resource.
+    """
+    mount_point: pulumi.Input[_builtins.str]
+    """
+    Specifies the mount point, e.g. "/".
+    Changing this parameter will create a new resource.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume name. In Windows, it indicates the drive letter,
+    and in Linux, it indicates the device ID, e.g. "/dev/sda1".
+    Changing this parameter will create a new resource.
+    """
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size in MB. Changing this parameter will create a new resource.
+    """
+    used_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the used space in MB.
+    Changing this parameter will create a new resource.
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the GUID of the volume.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class TaskTargetServerDiskPhysicalVolumeArgs:

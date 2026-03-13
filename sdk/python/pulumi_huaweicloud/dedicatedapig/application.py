@@ -21,12 +21,15 @@ class ApplicationArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
                  app_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 app_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 app_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_action: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Application resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the application
                belongs.
                Changing this will create a new resource.
@@ -35,6 +38,14 @@ class ApplicationArgs:
                The valid length of each application code is limited from can contain `64` to `180`.
                The application code must start with a letter, digit, plus sign (+) or slash (/).
                Only letters, digits and following special special characters are allowed: `!@#$%+-_/=`.
+        :param pulumi.Input[_builtins.str] app_key: Specifies the APP key.  
+               The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+               hyphens (-) are allowed.
+               The key must start with a letter or digit.
+        :param pulumi.Input[_builtins.str] app_secret: Specifies the APP secret.  
+               The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+               are allowed.
+               The secret must start with a letter or digit.
         :param pulumi.Input[_builtins.str] description: Specifies the application description.  
                The description contain a maximum of `255` characters and the angle brackets (< and >) are not allowed.
                
@@ -47,12 +58,18 @@ class ApplicationArgs:
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] secret_action: Specifies the secret action to be done for the application.  
                The valid action is **RESET**.
+               When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+               the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
                
                > The `secret_action` is a one-time action.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if app_codes is not None:
             pulumi.set(__self__, "app_codes", app_codes)
+        if app_key is not None:
+            pulumi.set(__self__, "app_key", app_key)
+        if app_secret is not None:
+            pulumi.set(__self__, "app_secret", app_secret)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
@@ -91,6 +108,36 @@ class ApplicationArgs:
     @app_codes.setter
     def app_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "app_codes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="appKey")
+    def app_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the APP key.  
+        The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+        hyphens (-) are allowed.
+        The key must start with a letter or digit.
+        """
+        return pulumi.get(self, "app_key")
+
+    @app_key.setter
+    def app_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="appSecret")
+    def app_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the APP secret.  
+        The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+        are allowed.
+        The secret must start with a letter or digit.
+        """
+        return pulumi.get(self, "app_secret")
+
+    @app_secret.setter
+    def app_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "app_secret", value)
 
     @_builtins.property
     @pulumi.getter
@@ -141,6 +188,8 @@ class ApplicationArgs:
         """
         Specifies the secret action to be done for the application.  
         The valid action is **RESET**.
+        When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+        the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
 
         > The `secret_action` is a one-time action.
         """
@@ -166,13 +215,20 @@ class _ApplicationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Application resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] app_codes: Specifies an array of one or more application codes that the application has.  
                Up to five application codes can be created.
                The valid length of each application code is limited from can contain `64` to `180`.
                The application code must start with a letter, digit, plus sign (+) or slash (/).
                Only letters, digits and following special special characters are allowed: `!@#$%+-_/=`.
-        :param pulumi.Input[_builtins.str] app_key: App key.
-        :param pulumi.Input[_builtins.str] app_secret: App secret.
+        :param pulumi.Input[_builtins.str] app_key: Specifies the APP key.  
+               The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+               hyphens (-) are allowed.
+               The key must start with a letter or digit.
+        :param pulumi.Input[_builtins.str] app_secret: Specifies the APP secret.  
+               The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+               are allowed.
+               The secret must start with a letter or digit.
         :param pulumi.Input[_builtins.str] description: Specifies the application description.  
                The description contain a maximum of `255` characters and the angle brackets (< and >) are not allowed.
                
@@ -189,6 +245,8 @@ class _ApplicationState:
         :param pulumi.Input[_builtins.str] registration_time: the registration time.
         :param pulumi.Input[_builtins.str] secret_action: Specifies the secret action to be done for the application.  
                The valid action is **RESET**.
+               When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+               the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
                
                > The `secret_action` is a one-time action.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the application.
@@ -234,7 +292,10 @@ class _ApplicationState:
     @pulumi.getter(name="appKey")
     def app_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        App key.
+        Specifies the APP key.  
+        The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+        hyphens (-) are allowed.
+        The key must start with a letter or digit.
         """
         return pulumi.get(self, "app_key")
 
@@ -246,7 +307,10 @@ class _ApplicationState:
     @pulumi.getter(name="appSecret")
     def app_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        App secret.
+        Specifies the APP secret.  
+        The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+        are allowed.
+        The secret must start with a letter or digit.
         """
         return pulumi.get(self, "app_secret")
 
@@ -329,6 +393,8 @@ class _ApplicationState:
         """
         Specifies the secret action to be done for the application.  
         The valid action is **RESET**.
+        When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+        the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
 
         > The `secret_action` is a one-time action.
         """
@@ -358,6 +424,8 @@ class Application(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  app_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 app_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 app_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -392,6 +460,7 @@ class Application(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/application:Application test <instance_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] app_codes: Specifies an array of one or more application codes that the application has.  
@@ -399,6 +468,14 @@ class Application(pulumi.CustomResource):
                The valid length of each application code is limited from can contain `64` to `180`.
                The application code must start with a letter, digit, plus sign (+) or slash (/).
                Only letters, digits and following special special characters are allowed: `!@#$%+-_/=`.
+        :param pulumi.Input[_builtins.str] app_key: Specifies the APP key.  
+               The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+               hyphens (-) are allowed.
+               The key must start with a letter or digit.
+        :param pulumi.Input[_builtins.str] app_secret: Specifies the APP secret.  
+               The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+               are allowed.
+               The secret must start with a letter or digit.
         :param pulumi.Input[_builtins.str] description: Specifies the application description.  
                The description contain a maximum of `255` characters and the angle brackets (< and >) are not allowed.
                
@@ -414,6 +491,8 @@ class Application(pulumi.CustomResource):
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] secret_action: Specifies the secret action to be done for the application.  
                The valid action is **RESET**.
+               When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+               the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
                
                > The `secret_action` is a one-time action.
         """
@@ -451,6 +530,7 @@ class Application(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/application:Application test <instance_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ApplicationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -467,6 +547,8 @@ class Application(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  app_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 app_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 app_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -482,6 +564,8 @@ class Application(pulumi.CustomResource):
             __props__ = ApplicationArgs.__new__(ApplicationArgs)
 
             __props__.__dict__["app_codes"] = app_codes
+            __props__.__dict__["app_key"] = app_key
+            __props__.__dict__["app_secret"] = None if app_secret is None else pulumi.Output.secret(app_secret)
             __props__.__dict__["description"] = description
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -489,8 +573,6 @@ class Application(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_action"] = secret_action
-            __props__.__dict__["app_key"] = None
-            __props__.__dict__["app_secret"] = None
             __props__.__dict__["registration_time"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["appSecret"])
@@ -527,8 +609,14 @@ class Application(pulumi.CustomResource):
                The valid length of each application code is limited from can contain `64` to `180`.
                The application code must start with a letter, digit, plus sign (+) or slash (/).
                Only letters, digits and following special special characters are allowed: `!@#$%+-_/=`.
-        :param pulumi.Input[_builtins.str] app_key: App key.
-        :param pulumi.Input[_builtins.str] app_secret: App secret.
+        :param pulumi.Input[_builtins.str] app_key: Specifies the APP key.  
+               The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+               hyphens (-) are allowed.
+               The key must start with a letter or digit.
+        :param pulumi.Input[_builtins.str] app_secret: Specifies the APP secret.  
+               The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+               are allowed.
+               The secret must start with a letter or digit.
         :param pulumi.Input[_builtins.str] description: Specifies the application description.  
                The description contain a maximum of `255` characters and the angle brackets (< and >) are not allowed.
                
@@ -545,6 +633,8 @@ class Application(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] registration_time: the registration time.
         :param pulumi.Input[_builtins.str] secret_action: Specifies the secret action to be done for the application.  
                The valid action is **RESET**.
+               When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+               the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
                
                > The `secret_action` is a one-time action.
         :param pulumi.Input[_builtins.str] updated_at: The latest update time of the application.
@@ -581,7 +671,10 @@ class Application(pulumi.CustomResource):
     @pulumi.getter(name="appKey")
     def app_key(self) -> pulumi.Output[_builtins.str]:
         """
-        App key.
+        Specifies the APP key.  
+        The valid length is limited from `8` to `200`, only English letters, digits, underscores (_) and
+        hyphens (-) are allowed.
+        The key must start with a letter or digit.
         """
         return pulumi.get(self, "app_key")
 
@@ -589,7 +682,10 @@ class Application(pulumi.CustomResource):
     @pulumi.getter(name="appSecret")
     def app_secret(self) -> pulumi.Output[_builtins.str]:
         """
-        App secret.
+        Specifies the APP secret.  
+        The valid length is limited from `8` to `128`, only English letters, digits, special characters (`_-!@#$%`)
+        are allowed.
+        The secret must start with a letter or digit.
         """
         return pulumi.get(self, "app_secret")
 
@@ -648,6 +744,8 @@ class Application(pulumi.CustomResource):
         """
         Specifies the secret action to be done for the application.  
         The valid action is **RESET**.
+        When updating, if the `app_secret` parameter is specified in the script, using this parameter will reset the value of
+        the `app_secret`. Please use `lifecycle.ignore_changes` or manually synchronize the changes.
 
         > The `secret_action` is a one-time action.
         """

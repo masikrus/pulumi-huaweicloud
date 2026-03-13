@@ -37,6 +37,7 @@ class VpcChannelArgs:
                  unhealthy_threshold: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a VpcChannel resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the VPC channel
                belongs.
                Changing this will create a new resource.
@@ -328,6 +329,7 @@ class _VpcChannelState:
                  unhealthy_threshold: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering VpcChannel resources.
+
         :param pulumi.Input[_builtins.str] algorithm: Specifies the distribution algorithm.  
                The valid types are **WRR**, **WLC**, **SH** and **URI hashing**, defaults to **WRR**.
         :param pulumi.Input[_builtins.str] created_at: The time when the VPC channel was created.
@@ -695,6 +697,7 @@ class VpcChannel(pulumi.CustomResource):
         $ pulumi import huaweicloud:DedicatedApig/vpcChannel:VpcChannel test <instance_id>/<name>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: Specifies the distribution algorithm.  
@@ -790,6 +793,7 @@ class VpcChannel(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/vpcChannel:VpcChannel test <instance_id>/<name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcChannelArgs args: The arguments to use to populate this resource's properties.

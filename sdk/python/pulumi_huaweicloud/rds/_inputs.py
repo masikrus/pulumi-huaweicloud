@@ -19,6 +19,8 @@ __all__ = [
     'BackupDatabaseArgsDict',
     'Database_privilegeUserArgs',
     'Database_privilegeUserArgsDict',
+    'Database_privilegeUsersOriginArgs',
+    'Database_privilegeUsersOriginArgsDict',
     'InstanceBackupStrategyArgs',
     'InstanceBackupStrategyArgsDict',
     'InstanceDbArgs',
@@ -53,6 +55,8 @@ __all__ = [
     'InstanceVolumeArgsDict',
     'MysqlDatabasePrivilegeUserArgs',
     'MysqlDatabasePrivilegeUserArgsDict',
+    'MysqlDatabasePrivilegeUsersOriginArgs',
+    'MysqlDatabasePrivilegeUsersOriginArgsDict',
     'MysqlDatabaseTableRestoreDatabaseArgs',
     'MysqlDatabaseTableRestoreDatabaseArgsDict',
     'MysqlDatabaseTableRestoreRestoreTableArgs',
@@ -103,16 +107,11 @@ __all__ = [
     'SqlserverDatabasePrivilegeUserArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackupDatabaseArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Database to be backed up for Microsoft SQL Server.
-        """
-elif False:
-    BackupDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+class BackupDatabaseArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Database to be backed up for Microsoft SQL Server.
+    """
 
 @pulumi.input_type
 class BackupDatabaseArgs:
@@ -136,18 +135,15 @@ class BackupDatabaseArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class Database_privilegeUserArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the username of the database account.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the read-only permission.
-        """
-elif False:
-    Database_privilegeUserArgsDict: TypeAlias = Mapping[str, Any]
+class Database_privilegeUserArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The username of the database account.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the user has read-only permission.
+    """
 
 @pulumi.input_type
 class Database_privilegeUserArgs:
@@ -155,8 +151,8 @@ class Database_privilegeUserArgs:
                  name: pulumi.Input[_builtins.str],
                  readonly: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.str] name: Specifies the username of the database account.
-        :param pulumi.Input[_builtins.bool] readonly: Specifies the read-only permission.
+        :param pulumi.Input[_builtins.str] name: The username of the database account.
+        :param pulumi.Input[_builtins.bool] readonly: Whether the user has read-only permission.
         """
         pulumi.set(__self__, "name", name)
         if readonly is not None:
@@ -166,12 +162,61 @@ class Database_privilegeUserArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the username of the database account.
+        The username of the database account.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def readonly(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the user has read-only permission.
+        """
+        return pulumi.get(self, "readonly")
+
+    @readonly.setter
+    def readonly(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "readonly", value)
+
+
+class Database_privilegeUsersOriginArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the username of the database account.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the read-only permission.
+    """
+
+@pulumi.input_type
+class Database_privilegeUsersOriginArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 readonly: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Specifies the username of the database account.
+        :param pulumi.Input[_builtins.bool] readonly: Specifies the read-only permission.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if readonly is not None:
+            pulumi.set(__self__, "readonly", readonly)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the username of the database account.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
@@ -187,32 +232,29 @@ class Database_privilegeUserArgs:
         pulumi.set(self, "readonly", value)
 
 
-if not MYPY:
-    class InstanceBackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the backup time window. Automated backups will be triggered during the
-        backup time window. It must be a valid value in the **hh:mm-HH:MM**
-        format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and
-        MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:
-        00.
-        """
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the retention days for specific backup files. The value range is from 0 to 732.
+class InstanceBackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the backup time window. Automated backups will be triggered during the
+    backup time window. It must be a valid value in the **hh:mm-HH:MM**
+    format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and
+    MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:
+    00.
+    """
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the retention days for specific backup files. The value range is from 0 to 732.
 
-        > **NOTE:** Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup
-        policy.
-        """
-        period: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backup cycle. Automatic backups will be performed on the specified days of
-        the week, except when disabling the automatic backup policy. The value range is a comma-separated number, where each
-        number represents a day of the week. For example, a value of 1,2,3,4 would set the backup cycle to Monday, Tuesday,
-        Wednesday, and Thursday. The default value is 1,2,3,4,5,6,7.
-        """
-elif False:
-    InstanceBackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup
+    policy.
+    """
+    period: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backup cycle. Automatic backups will be performed on the specified days of
+    the week, except when disabling the automatic backup policy. The value range is a comma-separated number, where each
+    number represents a day of the week. For example, a value of 1,2,3,4 would set the backup cycle to Monday, Tuesday,
+    Wednesday, and Thursday. The default value is 1,2,3,4,5,6,7.
+    """
 
 @pulumi.input_type
 class InstanceBackupStrategyArgs:
@@ -288,39 +330,35 @@ class InstanceBackupStrategyArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class InstanceDbArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the DB engine. Available value are **MySQL**, **PostgreSQL**,
-        **SQLServer** and **MariaDB**. Changing this parameter will create a new resource.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version. Changing this parameter will create a new
-        resource. Available values detailed in
-        [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the database password. The value should contain 8 to 32 characters,
-        including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^*-_=+? You are advised
-        to enter a strong password to improve security, preventing security risks such as brute force cracking.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the database port.
-        + The MySQL database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system
-        and cannot be used). The default value is 3306.
-        + The PostgreSQL database port ranges from 2100 to 9500. The default value is 5432.
-        + The Microsoft SQL Server database port can be 1433 or ranges from 2100 to 9500, excluding 5355 and 5985. The
-        default value is 1433.
-        + The MariaDB database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system
-        and cannot be used). The default value is 3306.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceDbArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceDbArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the DB engine. Available value are **MySQL**, **PostgreSQL**,
+    **SQLServer** and **MariaDB**. Changing this parameter will create a new resource.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version. Changing this parameter will create a new
+    resource.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the database password. The value should contain 8 to 32 characters,
+    including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^*-_=+? You are advised
+    to enter a strong password to improve security, preventing security risks such as brute force cracking.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the database port.
+    + The MySQL database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system
+    and cannot be used). The default value is 3306.
+    + The PostgreSQL database port ranges from 2100 to 9500. The default value is 5432.
+    + The Microsoft SQL Server database port can be 1433 or ranges from 2100 to 9500, excluding 5355 and 5985. The
+    default value is 1433.
+    + The MariaDB database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system
+    and cannot be used). The default value is 3306.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceDbArgs:
@@ -334,8 +372,7 @@ class InstanceDbArgs:
         :param pulumi.Input[_builtins.str] type: Specifies the DB engine. Available value are **MySQL**, **PostgreSQL**,
                **SQLServer** and **MariaDB**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] version: Specifies the database version. Changing this parameter will create a new
-               resource. Available values detailed in
-               [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
+               resource.
         :param pulumi.Input[_builtins.str] password: Specifies the database password. The value should contain 8 to 32 characters,
                including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^*-_=+? You are advised
                to enter a strong password to improve security, preventing security risks such as brute force cracking.
@@ -375,8 +412,7 @@ class InstanceDbArgs:
     def version(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the database version. Changing this parameter will create a new
-        resource. Available values detailed in
-        [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
+        resource.
         """
         return pulumi.get(self, "version")
 
@@ -427,22 +463,19 @@ class InstanceDbArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class InstanceMsdtcHostArgsDict(TypedDict):
-        host_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the host name.
-        """
-        ip: pulumi.Input[_builtins.str]
-        """
-        Specifies the host IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the host ID.
-        """
-elif False:
-    InstanceMsdtcHostArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceMsdtcHostArgsDict(TypedDict):
+    host_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the host name.
+    """
+    ip: pulumi.Input[_builtins.str]
+    """
+    Specifies the host IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the host ID.
+    """
 
 @pulumi.input_type
 class InstanceMsdtcHostArgs:
@@ -497,37 +530,34 @@ class InstanceMsdtcHostArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstanceNodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the list of AZ name.
-        + If add standby node az to the list, then the instance will change from Single instance to Primary/Standby instance.
-        The value of `flavor` will be changed to the ha mode value, so the value of `flavor` in the script should be changed
-        to the ha mode value too.
-        + If change the standby node az, then the standby node will migrate to new az.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the host ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DB instance name. The DB instance name of the same type must be unique for
-        the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can
-        contain only letters, digits, hyphens (-), and underscores (_).
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node type. The value can be master or slave, indicating the primary node or standby node
-        respectively.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the node status.
-        """
-elif False:
-    InstanceNodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceNodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the list of AZ name.
+    + If add standby node az to the list, then the instance will change from Single instance to Primary/Standby instance.
+    The value of `flavor` will be changed to the ha mode value, so the value of `flavor` in the script should be changed
+    to the ha mode value too.
+    + If change the standby node az, then the standby node will migrate to new az.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the host ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DB instance name. The DB instance name of the same type must be unique for
+    the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can
+    contain only letters, digits, hyphens (-), and underscores (_).
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node type. The value can be master or slave, indicating the primary node or standby node
+    respectively.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the node status.
+    """
 
 @pulumi.input_type
 class InstanceNodeArgs:
@@ -630,22 +660,19 @@ class InstanceNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class InstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. Some of them needs the instance to be restarted
-        to take effect.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
+class InstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. Some of them needs the instance to be restarted
+    to take effect.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
 
-        <a name="RdsInstance_MsdtcHosts"></a>
-        The `msdtc_hosts` block supports:
-        """
-elif False:
-    InstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="RdsInstance_MsdtcHosts"></a>
+    The `msdtc_hosts` block supports:
+    """
 
 @pulumi.input_type
 class InstanceParameterArgs:
@@ -692,25 +719,22 @@ class InstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstanceRestoreArgsDict(TypedDict):
-        backup_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the backup used to restore data. Changing this
-        parameter will create a new resource.
-        """
-        instance_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the source DB instance ID. Changing this parameter will create
-        a new resource.
-        """
-        database_name: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the database to be restored. This parameter applies only to
-        Microsoft SQL Server databases. Changing this parameter will create a new resource.
-        """
-elif False:
-    InstanceRestoreArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceRestoreArgsDict(TypedDict):
+    backup_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the backup used to restore data. Changing this
+    parameter will create a new resource.
+    """
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the source DB instance ID. Changing this parameter will create
+    a new resource.
+    """
+    database_name: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the database to be restored. This parameter applies only to
+    Microsoft SQL Server databases. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class InstanceRestoreArgs:
@@ -771,18 +795,15 @@ class InstanceRestoreArgs:
         pulumi.set(self, "database_name", value)
 
 
-if not MYPY:
-    class InstanceStorageUsedSpaceArgsDict(TypedDict):
-        node_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the instance node ID.
-        """
-        used: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the used storage, in GB.
-        """
-elif False:
-    InstanceStorageUsedSpaceArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceStorageUsedSpaceArgsDict(TypedDict):
+    node_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the instance node ID.
+    """
+    used: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the used storage, in GB.
+    """
 
 @pulumi.input_type
 class InstanceStorageUsedSpaceArgs:
@@ -823,16 +844,13 @@ class InstanceStorageUsedSpaceArgs:
         pulumi.set(self, "used", value)
 
 
-if not MYPY:
-    class InstanceV3BackupStrategyArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        keep_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        schema: Required
-        """
-        period: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3BackupStrategyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3BackupStrategyArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    keep_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    schema: Required
+    """
+    period: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3BackupStrategyArgs:
@@ -880,15 +898,12 @@ class InstanceV3BackupStrategyArgs:
         pulumi.set(self, "period", value)
 
 
-if not MYPY:
-    class InstanceV3DbArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        version: pulumi.Input[_builtins.str]
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3DbArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3DbArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    version: pulumi.Input[_builtins.str]
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3DbArgs:
@@ -953,13 +968,10 @@ class InstanceV3DbArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class InstanceV3MsdtcHostArgsDict(TypedDict):
-        host_name: pulumi.Input[_builtins.str]
-        ip: pulumi.Input[_builtins.str]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3MsdtcHostArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3MsdtcHostArgsDict(TypedDict):
+    host_name: pulumi.Input[_builtins.str]
+    ip: pulumi.Input[_builtins.str]
+    id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3MsdtcHostArgs:
@@ -1000,15 +1012,12 @@ class InstanceV3MsdtcHostArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstanceV3NodeArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3NodeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3NodeArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3NodeArgs:
@@ -1075,12 +1084,9 @@ class InstanceV3NodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class InstanceV3ParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        value: pulumi.Input[_builtins.str]
-elif False:
-    InstanceV3ParameterArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3ParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    value: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class InstanceV3ParameterArgs:
@@ -1109,13 +1115,10 @@ class InstanceV3ParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class InstanceV3RestoreArgsDict(TypedDict):
-        backup_id: pulumi.Input[_builtins.str]
-        instance_id: pulumi.Input[_builtins.str]
-        database_name: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    InstanceV3RestoreArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3RestoreArgsDict(TypedDict):
+    backup_id: pulumi.Input[_builtins.str]
+    instance_id: pulumi.Input[_builtins.str]
+    database_name: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class InstanceV3RestoreArgs:
@@ -1156,12 +1159,9 @@ class InstanceV3RestoreArgs:
         pulumi.set(self, "database_name", value)
 
 
-if not MYPY:
-    class InstanceV3StorageUsedSpaceArgsDict(TypedDict):
-        node_id: NotRequired[pulumi.Input[_builtins.str]]
-        used: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    InstanceV3StorageUsedSpaceArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3StorageUsedSpaceArgsDict(TypedDict):
+    node_id: NotRequired[pulumi.Input[_builtins.str]]
+    used: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class InstanceV3StorageUsedSpaceArgs:
@@ -1192,15 +1192,12 @@ class InstanceV3StorageUsedSpaceArgs:
         pulumi.set(self, "used", value)
 
 
-if not MYPY:
-    class InstanceV3VolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        type: pulumi.Input[_builtins.str]
-        disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
-        limit_size: NotRequired[pulumi.Input[_builtins.int]]
-        trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    InstanceV3VolumeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceV3VolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    type: pulumi.Input[_builtins.str]
+    disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
+    limit_size: NotRequired[pulumi.Input[_builtins.int]]
+    trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class InstanceV3VolumeArgs:
@@ -1265,46 +1262,43 @@ class InstanceV3VolumeArgs:
         pulumi.set(self, "trigger_threshold", value)
 
 
-if not MYPY:
-    class InstanceVolumeArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a
-        multiple of 10 and greater than the original size.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. Its value can be any of the following and is
-        case-sensitive:
-        + **ULTRAHIGH**: SSD storage.
-        + **LOCALSSD**: local SSD storage.
-        + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
-        instances.
-        + **ESSD**: extreme SSD storage.
+class InstanceVolumeArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a
+    multiple of 10 and greater than the original size.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. Its value can be any of the following and is
+    case-sensitive:
+    + **ULTRAHIGH**: SSD storage.
+    + **LOCALSSD**: local SSD storage.
+    + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
+    instances.
+    + **ESSD**: extreme SSD storage.
 
-        Changing this parameter will create a new resource. For details about volume types, see
-        [DB Instance Storage Types](https://support.huaweicloud.com/intl/en-us/productdesc-rds/rds_01_0020.html).
-        """
-        disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the key ID for disk encryption.
-        Changing this parameter will create a new resource.
-        """
-        limit_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the upper limit of automatic expansion of storage, in GB.
-        """
-        trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the threshold to trigger automatic expansion.  
-        If the available storage drops to this threshold or `10` GB, the automatic expansion is triggered.
-        The valid values are as follows:
-        + **10**
-        + **15**
-        + **20**
-        """
-elif False:
-    InstanceVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource. For details about volume types, see
+    [DB Instance Storage Types](https://support.huaweicloud.com/intl/en-us/productdesc-rds/rds_01_0020.html).
+    """
+    disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key ID for disk encryption.
+    Changing this parameter will create a new resource.
+    """
+    limit_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the upper limit of automatic expansion of storage, in GB.
+    """
+    trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the threshold to trigger automatic expansion.  
+    If the available storage drops to this threshold or `10` GB, the automatic expansion is triggered.
+    The valid values are as follows:
+    + **10**
+    + **15**
+    + **20**
+    """
 
 @pulumi.input_type
 class InstanceVolumeArgs:
@@ -1423,22 +1417,20 @@ class InstanceVolumeArgs:
         pulumi.set(self, "trigger_threshold", value)
 
 
-if not MYPY:
-    class MysqlDatabasePrivilegeUserArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the username of the database account.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the read-only permission. The value can be:
-        + **true**: indicates the read-only permission.
-        + **false**: indicates the read and write permission.
+class MysqlDatabasePrivilegeUserArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the username of the database account.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the user has read-only permission.  
+    The valid values are as follows:
+    + **true**: The database grants the current user **read-only** permission.
+    + **false**: The database grants the current user **read-and-write** permission.
 
-        The default value is **false**.
-        """
-elif False:
-    MysqlDatabasePrivilegeUserArgsDict: TypeAlias = Mapping[str, Any]
+    The default value is **false**.
+    """
 
 @pulumi.input_type
 class MysqlDatabasePrivilegeUserArgs:
@@ -1447,9 +1439,10 @@ class MysqlDatabasePrivilegeUserArgs:
                  readonly: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Specifies the username of the database account.
-        :param pulumi.Input[_builtins.bool] readonly: Specifies the read-only permission. The value can be:
-               + **true**: indicates the read-only permission.
-               + **false**: indicates the read and write permission.
+        :param pulumi.Input[_builtins.bool] readonly: Specifies whether the user has read-only permission.  
+               The valid values are as follows:
+               + **true**: The database grants the current user **read-only** permission.
+               + **false**: The database grants the current user **read-and-write** permission.
                
                The default value is **false**.
         """
@@ -1473,9 +1466,10 @@ class MysqlDatabasePrivilegeUserArgs:
     @pulumi.getter
     def readonly(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies the read-only permission. The value can be:
-        + **true**: indicates the read-only permission.
-        + **false**: indicates the read and write permission.
+        Specifies whether the user has read-only permission.  
+        The valid values are as follows:
+        + **true**: The database grants the current user **read-only** permission.
+        + **false**: The database grants the current user **read-and-write** permission.
 
         The default value is **false**.
         """
@@ -1486,22 +1480,83 @@ class MysqlDatabasePrivilegeUserArgs:
         pulumi.set(self, "readonly", value)
 
 
-if not MYPY:
-    class MysqlDatabaseTableRestoreDatabaseArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table after restoration.
+class MysqlDatabasePrivilegeUsersOriginArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the username of the database account.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the user has read-only permission.  
+    The valid values are as follows:
+    + **true**: The database grants the current user **read-only** permission.
+    + **false**: The database grants the current user **read-and-write** permission.
 
-        Changing this creates a new resource.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table before restoration.
+    The default value is **false**.
+    """
 
-        Changing this creates a new resource.
+@pulumi.input_type
+class MysqlDatabasePrivilegeUsersOriginArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 readonly: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-elif False:
-    MysqlDatabaseTableRestoreDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] name: Specifies the username of the database account.
+        :param pulumi.Input[_builtins.bool] readonly: Specifies whether the user has read-only permission.  
+               The valid values are as follows:
+               + **true**: The database grants the current user **read-only** permission.
+               + **false**: The database grants the current user **read-and-write** permission.
+               
+               The default value is **false**.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if readonly is not None:
+            pulumi.set(__self__, "readonly", readonly)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the username of the database account.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def readonly(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether the user has read-only permission.  
+        The valid values are as follows:
+        + **true**: The database grants the current user **read-only** permission.
+        + **false**: The database grants the current user **read-and-write** permission.
+
+        The default value is **false**.
+        """
+        return pulumi.get(self, "readonly")
+
+    @readonly.setter
+    def readonly(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "readonly", value)
+
+
+class MysqlDatabaseTableRestoreDatabaseArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table after restoration.
+
+    Changing this creates a new resource.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table before restoration.
+
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MysqlDatabaseTableRestoreDatabaseArgs:
@@ -1548,26 +1603,23 @@ class MysqlDatabaseTableRestoreDatabaseArgs:
         pulumi.set(self, "old_name", value)
 
 
-if not MYPY:
-    class MysqlDatabaseTableRestoreRestoreTableArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name.
+class MysqlDatabaseTableRestoreRestoreTableArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name.
 
-        Changing this creates a new resource.
-        """
-        tables: pulumi.Input[Sequence[pulumi.Input['MysqlDatabaseTableRestoreRestoreTableTableArgsDict']]]
-        """
-        Specifies the tables.
-        The tables structure is documented below.
+    Changing this creates a new resource.
+    """
+    tables: pulumi.Input[Sequence[pulumi.Input['MysqlDatabaseTableRestoreRestoreTableTableArgsDict']]]
+    """
+    Specifies the tables.
+    The tables structure is documented below.
 
-        Changing this creates a new resource.
+    Changing this creates a new resource.
 
-        <a name="tables_struct"></a>
-        The `tables` block supports:
-        """
-elif False:
-    MysqlDatabaseTableRestoreRestoreTableArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="tables_struct"></a>
+    The `tables` block supports:
+    """
 
 @pulumi.input_type
 class MysqlDatabaseTableRestoreRestoreTableArgs:
@@ -1622,22 +1674,19 @@ class MysqlDatabaseTableRestoreRestoreTableArgs:
         pulumi.set(self, "tables", value)
 
 
-if not MYPY:
-    class MysqlDatabaseTableRestoreRestoreTableTableArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table after restoration.
+class MysqlDatabaseTableRestoreRestoreTableTableArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table after restoration.
 
-        Changing this creates a new resource.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table before restoration.
+    Changing this creates a new resource.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table before restoration.
 
-        Changing this creates a new resource.
-        """
-elif False:
-    MysqlDatabaseTableRestoreRestoreTableTableArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class MysqlDatabaseTableRestoreRestoreTableTableArgs:
@@ -1684,21 +1733,18 @@ class MysqlDatabaseTableRestoreRestoreTableTableArgs:
         pulumi.set(self, "old_name", value)
 
 
-if not MYPY:
-    class MysqlProxyMasterNodeWeightArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the node.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies the weight assigned to the node.
-        + If `route_mode` is `0`, the value is `0` to `1,000`.
-        + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
-        + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
-        """
-elif False:
-    MysqlProxyMasterNodeWeightArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlProxyMasterNodeWeightArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the node.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies the weight assigned to the node.
+    + If `route_mode` is `0`, the value is `0` to `1,000`.
+    + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
+    + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
+    """
 
 @pulumi.input_type
 class MysqlProxyMasterNodeWeightArgs:
@@ -1743,38 +1789,35 @@ class MysqlProxyMasterNodeWeightArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class MysqlProxyNodeArgsDict(TypedDict):
-        az_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the AZ where the proxy node is located.
-        """
-        frozen_flag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates whether the proxy node is frozen. The values can be:
-        + **0**: unfrozen.
-        + **1**: frozen.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the node.
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the role of the proxy node. The values can be:
-        + **master**: primary node.
-        + **slave**: standby node.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the proxy node status. The values can be:
-        + **NORMAL**: The node is normal.
-        + **ABNORMAL**: The node is abnormal.
-        + **CREATING**: The node is being created.
-        + **CREATEFAIL**: The node failed to be created.
-        """
-elif False:
-    MysqlProxyNodeArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlProxyNodeArgsDict(TypedDict):
+    az_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the AZ where the proxy node is located.
+    """
+    frozen_flag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates whether the proxy node is frozen. The values can be:
+    + **0**: unfrozen.
+    + **1**: frozen.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the node.
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the role of the proxy node. The values can be:
+    + **master**: primary node.
+    + **slave**: standby node.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the proxy node status. The values can be:
+    + **NORMAL**: The node is normal.
+    + **ABNORMAL**: The node is abnormal.
+    + **CREATING**: The node is being created.
+    + **CREATEFAIL**: The node failed to be created.
+    """
 
 @pulumi.input_type
 class MysqlProxyNodeArgs:
@@ -1879,21 +1922,18 @@ class MysqlProxyNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class MysqlProxyReadonlyNodesWeightArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the node.
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        Specifies the weight assigned to the node.
-        + If `route_mode` is `0`, the value is `0` to `1,000`.
-        + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
-        + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
-        """
-elif False:
-    MysqlProxyReadonlyNodesWeightArgsDict: TypeAlias = Mapping[str, Any]
+class MysqlProxyReadonlyNodesWeightArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the node.
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    Specifies the weight assigned to the node.
+    + If `route_mode` is `0`, the value is `0` to `1,000`.
+    + If `route_mode` is `1`, the value for the primary node is `0` and the value for read replicas is `0` or `1`.
+    + If `route_mode` is `2`, the value for the primary node is `1` and the value for read replicas is `0` or `1`.
+    """
 
 @pulumi.input_type
 class MysqlProxyReadonlyNodesWeightArgs:
@@ -1938,40 +1978,38 @@ class MysqlProxyReadonlyNodesWeightArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class ParametergroupConfigurationParameterArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter group description. It contains a maximum of 256 characters
-        and cannot contain the following special characters:>!<"&'= the value is left blank by default.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter group name. It contains a maximum of 64 characters.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the parameter is read-only.
-        """
-        restart_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a restart is required.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value range.
-        """
-elif False:
-    ParametergroupConfigurationParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupConfigurationParameterArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter group description. It contains a maximum of 256 characters
+    and cannot contain the following special characters:>!<"&'= the value is left blank by default.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter group name. It contains a maximum of 64 characters.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the parameter is read-only.
+    """
+    restart_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a restart is required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+    and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+    or **mariadb**.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value range.
+    """
 
 @pulumi.input_type
 class ParametergroupConfigurationParameterArgs:
@@ -1989,8 +2027,9 @@ class ParametergroupConfigurationParameterArgs:
         :param pulumi.Input[_builtins.str] name: Specifies the parameter group name. It contains a maximum of 64 characters.
         :param pulumi.Input[_builtins.bool] readonly: Indicates whether the parameter is read-only.
         :param pulumi.Input[_builtins.bool] restart_required: Indicates whether a restart is required.
-        :param pulumi.Input[_builtins.str] type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-               MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        :param pulumi.Input[_builtins.str] type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+               and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+               or **mariadb**.
         :param pulumi.Input[_builtins.str] value: Indicates the parameter value.
         :param pulumi.Input[_builtins.str] value_range: Indicates the parameter value range.
         """
@@ -2062,8 +2101,9 @@ class ParametergroupConfigurationParameterArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+        and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+        or **mariadb**.
         """
         return pulumi.get(self, "type")
 
@@ -2096,39 +2136,36 @@ class ParametergroupConfigurationParameterArgs:
         pulumi.set(self, "value_range", value)
 
 
-if not MYPY:
-    class ParametergroupCopyConfigurationParameterArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter group description. It contains a maximum of 256 characters
-        and cannot contain the following special characters:>!<"&'= the value is left blank by default.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter group name. It contains a maximum of 64 characters.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the parameter is read-only.
-        """
-        restart_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a restart is required.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter type.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value.
-        """
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter value range.
-        """
-elif False:
-    ParametergroupCopyConfigurationParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupCopyConfigurationParameterArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter group description. It contains a maximum of 256 characters
+    and cannot contain the following special characters:>!<"&'= the value is left blank by default.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter group name. It contains a maximum of 64 characters.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the parameter is read-only.
+    """
+    restart_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a restart is required.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter type.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value.
+    """
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter value range.
+    """
 
 @pulumi.input_type
 class ParametergroupCopyConfigurationParameterArgs:
@@ -2251,18 +2288,15 @@ class ParametergroupCopyConfigurationParameterArgs:
         pulumi.set(self, "value_range", value)
 
 
-if not MYPY:
-    class ParametergroupCopyDatastoreArgsDict(TypedDict):
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the parameter type.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the database version.
-        """
-elif False:
-    ParametergroupCopyDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupCopyDatastoreArgsDict(TypedDict):
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the parameter type.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the database version.
+    """
 
 @pulumi.input_type
 class ParametergroupCopyDatastoreArgs:
@@ -2303,23 +2337,21 @@ class ParametergroupCopyDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ParametergroupDatastoreArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the database version.
-        + MySQL databases support MySQL 5.6 and 5.7. Example value: 5.7.
-        + PostgreSQL databases support PostgreSQL 9.5 and 9.6. Example value: 9.5.
-        + Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE. Example value: 2014_SE.
-        + MariaDB databases support MariaDB 10.5. Example value: 10.5.
-        """
-elif False:
-    ParametergroupDatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupDatastoreArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+    and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+    or **mariadb**.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the database version.
+    + MySQL databases support MySQL 5.6 and 5.7. Example value: 5.7.
+    + PostgreSQL databases support PostgreSQL 9.5 and 9.6. Example value: 9.5.
+    + Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE. Example value: 2014_SE.
+    + MariaDB databases support MariaDB 10.5. Example value: 10.5.
+    """
 
 @pulumi.input_type
 class ParametergroupDatastoreArgs:
@@ -2327,8 +2359,9 @@ class ParametergroupDatastoreArgs:
                  type: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-               MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        :param pulumi.Input[_builtins.str] type: Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+               and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+               or **mariadb**.
         :param pulumi.Input[_builtins.str] version: Specifies the database version.
                + MySQL databases support MySQL 5.6 and 5.7. Example value: 5.7.
                + PostgreSQL databases support PostgreSQL 9.5 and 9.6. Example value: 9.5.
@@ -2342,8 +2375,9 @@ class ParametergroupDatastoreArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server and
-        MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**, or **mariadb**.
+        Specifies the DB engine. Currently, MySQL, PostgreSQL, Microsoft SQL Server
+        and MariaDB are supported. The value is case-insensitive and can be **mysql**, **postgresql**, **sqlserver**,
+        or **mariadb**.
         """
         return pulumi.get(self, "type")
 
@@ -2368,17 +2402,14 @@ class ParametergroupDatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ParametergroupV3ConfigurationParameterArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        restart_required: NotRequired[pulumi.Input[_builtins.bool]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        value_range: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ParametergroupV3ConfigurationParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupV3ConfigurationParameterArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    restart_required: NotRequired[pulumi.Input[_builtins.bool]]
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    value_range: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ParametergroupV3ConfigurationParameterArgs:
@@ -2469,12 +2500,9 @@ class ParametergroupV3ConfigurationParameterArgs:
         pulumi.set(self, "value_range", value)
 
 
-if not MYPY:
-    class ParametergroupV3DatastoreArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        version: pulumi.Input[_builtins.str]
-elif False:
-    ParametergroupV3DatastoreArgsDict: TypeAlias = Mapping[str, Any]
+class ParametergroupV3DatastoreArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    version: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class ParametergroupV3DatastoreArgs:
@@ -2503,42 +2531,39 @@ class ParametergroupV3DatastoreArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class PgAccountAttributeArgsDict(TypedDict):
-        rol_bypass_rls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user bypasses each row-level security policy.
-        """
-        rol_can_login: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user can log in to the database.
-        """
-        rol_conn_limit: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the maximum number of concurrent connections to a DB instance.
-        """
-        rol_create_db: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user can create a database.
-        """
-        rol_create_role: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user can create other sub-users.
-        """
-        rol_inherit: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user automatically inherits the permissions of the role to which the user belongs.
-        """
-        rol_replication: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether the user is a replication role.
-        """
-        rol_super: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether a user has the super-user permission.
-        """
-elif False:
-    PgAccountAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class PgAccountAttributeArgsDict(TypedDict):
+    rol_bypass_rls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user bypasses each row-level security policy.
+    """
+    rol_can_login: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user can log in to the database.
+    """
+    rol_conn_limit: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the maximum number of concurrent connections to a DB instance.
+    """
+    rol_create_db: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user can create a database.
+    """
+    rol_create_role: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user can create other sub-users.
+    """
+    rol_inherit: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user automatically inherits the permissions of the role to which the user belongs.
+    """
+    rol_replication: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether the user is a replication role.
+    """
+    rol_super: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether a user has the super-user permission.
+    """
 
 @pulumi.input_type
 class PgAccountAttributeArgs:
@@ -2675,24 +2700,21 @@ class PgAccountAttributeArgs:
         pulumi.set(self, "rol_super", value)
 
 
-if not MYPY:
-    class PgDatabasePrivilegeUserArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the username of the database account.
-        """
-        readonly: pulumi.Input[_builtins.bool]
-        """
-        Specifies the read-only permission. The value can be:
-        + **true**: indicates the read-only permission.
-        + **false**: indicates the read and write permission.
-        """
-        schema_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the schema.
-        """
-elif False:
-    PgDatabasePrivilegeUserArgsDict: TypeAlias = Mapping[str, Any]
+class PgDatabasePrivilegeUserArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the username of the database account.
+    """
+    readonly: pulumi.Input[_builtins.bool]
+    """
+    Specifies the read-only permission. The value can be:
+    + **true**: indicates the read-only permission.
+    + **false**: indicates the read and write permission.
+    """
+    schema_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the schema.
+    """
 
 @pulumi.input_type
 class PgDatabasePrivilegeUserArgs:
@@ -2750,18 +2772,15 @@ class PgDatabasePrivilegeUserArgs:
         pulumi.set(self, "schema_name", value)
 
 
-if not MYPY:
-    class PgDatabaseRestoreDatabaseArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the database after restoration.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the database before restoration.
-        """
-elif False:
-    PgDatabaseRestoreDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+class PgDatabaseRestoreDatabaseArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the database after restoration.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the database before restoration.
+    """
 
 @pulumi.input_type
 class PgDatabaseRestoreDatabaseArgs:
@@ -2800,41 +2819,38 @@ class PgDatabaseRestoreDatabaseArgs:
         pulumi.set(self, "old_name", value)
 
 
-if not MYPY:
-    class PgHbaHostBasedAuthenticationArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the client IP address.
-        + **0.0.0.0/0** indicates that the user can access the database from any IP address.
-        """
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the database name other than **template0** and **template1**.
-        + **all** indicates all databases of the DB instance.
-        + Use commas (,) to separate multiple databases.
-        """
-        method: pulumi.Input[_builtins.str]
-        """
-        Specifies the authentication mode. Value options: **reject**, **md5** and
-        **scram-sha-256**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the connection type. Value options: **host**, **hostssl** and **hostnossl**.
-        """
-        user: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a user other than **rdsAdmin**, **rdsMetric**, **rdsBackup**,
-        **rdsRepl** and **rdsProxy**.
-        + **all** indicates all database users of the DB instance.
-        + Use commas (,) to separate multiple user names.
-        """
-        mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subnet mask. It is mandatory when `address` does not contain mask.
-        """
-elif False:
-    PgHbaHostBasedAuthenticationArgsDict: TypeAlias = Mapping[str, Any]
+class PgHbaHostBasedAuthenticationArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the client IP address.
+    + **0.0.0.0/0** indicates that the user can access the database from any IP address.
+    """
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the database name other than **template0** and **template1**.
+    + **all** indicates all databases of the DB instance.
+    + Use commas (,) to separate multiple databases.
+    """
+    method: pulumi.Input[_builtins.str]
+    """
+    Specifies the authentication mode. Value options: **reject**, **md5** and
+    **scram-sha-256**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the connection type. Value options: **host**, **hostssl** and **hostnossl**.
+    """
+    user: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a user other than **rdsAdmin**, **rdsMetric**, **rdsBackup**,
+    **rdsRepl** and **rdsProxy**.
+    + **all** indicates all database users of the DB instance.
+    + Use commas (,) to separate multiple user names.
+    """
+    mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subnet mask. It is mandatory when `address` does not contain mask.
+    """
 
 @pulumi.input_type
 class PgHbaHostBasedAuthenticationArgs:
@@ -2948,22 +2964,19 @@ class PgHbaHostBasedAuthenticationArgs:
         pulumi.set(self, "mask", value)
 
 
-if not MYPY:
-    class PgTableRestoreDatabaseArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the database.
-        """
-        schemas: pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseSchemaArgsDict']]]
-        """
-        Specifies a list of schemas within the database.
-        The schemas structure is documented below.
+class PgTableRestoreDatabaseArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the database.
+    """
+    schemas: pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseSchemaArgsDict']]]
+    """
+    Specifies a list of schemas within the database.
+    The schemas structure is documented below.
 
-        <a name="schemas_struct"></a>
-        The `schemas` block supports:
-        """
-elif False:
-    PgTableRestoreDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="schemas_struct"></a>
+    The `schemas` block supports:
+    """
 
 @pulumi.input_type
 class PgTableRestoreDatabaseArgs:
@@ -3010,22 +3023,19 @@ class PgTableRestoreDatabaseArgs:
         pulumi.set(self, "schemas", value)
 
 
-if not MYPY:
-    class PgTableRestoreDatabaseSchemaArgsDict(TypedDict):
-        schema: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the schema.
-        """
-        tables: pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseSchemaTableArgsDict']]]
-        """
-        Specifies a list of tables to be restored.
-        The tables structure is documented below.
+class PgTableRestoreDatabaseSchemaArgsDict(TypedDict):
+    schema: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the schema.
+    """
+    tables: pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseSchemaTableArgsDict']]]
+    """
+    Specifies a list of tables to be restored.
+    The tables structure is documented below.
 
-        <a name="tables_struct"></a>
-        The `tables` block supports:
-        """
-elif False:
-    PgTableRestoreDatabaseSchemaArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="tables_struct"></a>
+    The `tables` block supports:
+    """
 
 @pulumi.input_type
 class PgTableRestoreDatabaseSchemaArgs:
@@ -3072,18 +3082,15 @@ class PgTableRestoreDatabaseSchemaArgs:
         pulumi.set(self, "tables", value)
 
 
-if not MYPY:
-    class PgTableRestoreDatabaseSchemaTableArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table after restoration.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the table before restoration.
-        """
-elif False:
-    PgTableRestoreDatabaseSchemaTableArgsDict: TypeAlias = Mapping[str, Any]
+class PgTableRestoreDatabaseSchemaTableArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table after restoration.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the table before restoration.
+    """
 
 @pulumi.input_type
 class PgTableRestoreDatabaseSchemaTableArgs:
@@ -3122,36 +3129,33 @@ class PgTableRestoreDatabaseSchemaTableArgs:
         pulumi.set(self, "old_name", value)
 
 
-if not MYPY:
-    class ReadReplicaInstanceDbArgsDict(TypedDict):
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the database port.
-        + The MySQL database port ranges from `1,024` to `65,535` (excluding `12,017` and `33,071`, which are occupied by
-        the RDS system and cannot be used). The default value is `3,306`.
-        + The PostgreSQL database port ranges from `2,100` to `9,500`. The default value is `5,432`.
-        + The Microsoft SQL Server database port can be `1,433` or ranges from `2,100` to `9,500`, excluding `5,355` and
-        `5,985`. The default value is `1,433`.
+class ReadReplicaInstanceDbArgsDict(TypedDict):
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the database port.
+    + The MySQL database port ranges from `1,024` to `65,535` (excluding `12,017` and `33,071`, which are occupied by
+    the RDS system and cannot be used). The default value is `3,306`.
+    + The PostgreSQL database port ranges from `2,100` to `9,500`. The default value is `5,432`.
+    + The Microsoft SQL Server database port can be `1,433` or ranges from `2,100` to `9,500`, excluding `5,355` and
+    `5,985`. The default value is `1,433`.
 
-        <a name="Rds_volume"></a>
-        The `volume` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the volume type. It must same with the type of the primary instance.
-        Its value can be any of the following and is case-sensitive:
-        + **ULTRAHIGH**: SSD storage.
-        + **LOCALSSD**: local SSD storage.
-        + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
-        instances.
-        + **ESSD**: extreme SSD storage.
+    <a name="Rds_volume"></a>
+    The `volume` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the volume type. It must same with the type of the primary instance.
+    Its value can be any of the following and is case-sensitive:
+    + **ULTRAHIGH**: SSD storage.
+    + **LOCALSSD**: local SSD storage.
+    + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
+    instances.
+    + **ESSD**: extreme SSD storage.
 
-        Changing this parameter will create a new resource.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        version: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    ReadReplicaInstanceDbArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    version: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class ReadReplicaInstanceDbArgs:
@@ -3248,19 +3252,16 @@ class ReadReplicaInstanceDbArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ReadReplicaInstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. Some of them needs the instance to be restarted
-        to take effect.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    ReadReplicaInstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ReadReplicaInstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. Some of them needs the instance to be restarted
+    to take effect.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+    """
 
 @pulumi.input_type
 class ReadReplicaInstanceParameterArgs:
@@ -3301,47 +3302,44 @@ class ReadReplicaInstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ReadReplicaInstanceVolumeArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume type. It must same with the type of the primary instance.
-        Its value can be any of the following and is case-sensitive:
-        + **ULTRAHIGH**: SSD storage.
-        + **LOCALSSD**: local SSD storage.
-        + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
-        instances.
-        + **ESSD**: extreme SSD storage.
+class ReadReplicaInstanceVolumeArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume type. It must same with the type of the primary instance.
+    Its value can be any of the following and is case-sensitive:
+    + **ULTRAHIGH**: SSD storage.
+    + **LOCALSSD**: local SSD storage.
+    + **CLOUDSSD**: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
+    instances.
+    + **ESSD**: extreme SSD storage.
 
-        Changing this parameter will create a new resource.
-        """
-        disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Computed
-        """
-        limit_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the upper limit of automatic expansion of storage, in GB.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the volume size. Its value range is from `40` GB to `4,000` GB. The value must
-        be a multiple of 10 and greater than the original size.
-        """
-        trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the threshold to trigger automatic expansion.  
-        If the available storage drops to this threshold or `10` GB, the automatic expansion is triggered.
-        The valid values are as follows:
-        + **10**
-        + **15**
-        + **20**
+    Changing this parameter will create a new resource.
+    """
+    disk_encryption_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Computed
+    """
+    limit_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the upper limit of automatic expansion of storage, in GB.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the volume size. Its value range is from `40` GB to `4,000` GB. The value must
+    be a multiple of 10 and greater than the original size.
+    """
+    trigger_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the threshold to trigger automatic expansion.  
+    If the available storage drops to this threshold or `10` GB, the automatic expansion is triggered.
+    The valid values are as follows:
+    + **10**
+    + **15**
+    + **20**
 
-        <a name="Rds_parameters"></a>
-        The `parameters` block supports:
-        """
-elif False:
-    ReadReplicaInstanceVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Rds_parameters"></a>
+    The `parameters` block supports:
+    """
 
 @pulumi.input_type
 class ReadReplicaInstanceVolumeArgs:
@@ -3463,18 +3461,15 @@ class ReadReplicaInstanceVolumeArgs:
         pulumi.set(self, "trigger_threshold", value)
 
 
-if not MYPY:
-    class RestoreReadReplicaDatabaseDatabaseArgsDict(TypedDict):
-        new_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the new database after the restoration.
-        """
-        old_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the original database to be restored.
-        """
-elif False:
-    RestoreReadReplicaDatabaseDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+class RestoreReadReplicaDatabaseDatabaseArgsDict(TypedDict):
+    new_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the new database after the restoration.
+    """
+    old_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the original database to be restored.
+    """
 
 @pulumi.input_type
 class RestoreReadReplicaDatabaseDatabaseArgs:
@@ -3513,22 +3508,19 @@ class RestoreReadReplicaDatabaseDatabaseArgs:
         pulumi.set(self, "old_name", value)
 
 
-if not MYPY:
-    class SqlserverDatabasePrivilegeUserArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the username of the database account.
-        """
-        readonly: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the read-only permission. Value options:
-        + **true**: indicates the read-only permission.
-        + **false**: indicates the read and write permission.
+class SqlserverDatabasePrivilegeUserArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the username of the database account.
+    """
+    readonly: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the read-only permission. Value options:
+    + **true**: indicates the read-only permission.
+    + **false**: indicates the read and write permission.
 
-        Defaults to **false**.
-        """
-elif False:
-    SqlserverDatabasePrivilegeUserArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to **false**.
+    """
 
 @pulumi.input_type
 class SqlserverDatabasePrivilegeUserArgs:

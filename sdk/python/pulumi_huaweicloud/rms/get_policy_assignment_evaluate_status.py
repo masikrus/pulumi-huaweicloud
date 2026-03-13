@@ -119,7 +119,7 @@ def get_policy_assignment_evaluate_status(policy_assignment_id: Optional[_builti
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_policy_assignment_evaluate_status(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_policy_assignment_evaluate_status(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -128,7 +128,7 @@ def get_policy_assignment_evaluate_status(policy_assignment_id: Optional[_builti
     __args__ = dict()
     __args__['policyAssignmentId'] = policy_assignment_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getPolicyAssignmentEvaluateStatus:getPolicyAssignmentEvaluateStatus', __args__, opts=opts, typ=GetPolicyAssignmentEvaluateStatusResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getPolicyAssignmentEvaluateStatus:getPolicyAssignmentEvaluateStatus', __args__, opts=opts, typ=GetPolicyAssignmentEvaluateStatusResult).value
 
     return AwaitableGetPolicyAssignmentEvaluateStatusResult(
         end_time=pulumi.get(__ret__, 'end_time'),
@@ -150,7 +150,7 @@ def get_policy_assignment_evaluate_status_output(policy_assignment_id: Optional[
 
     config = pulumi.Config()
     policy_assignment_id = config.require_object("policyAssignmentId")
-    test = huaweicloud.rms.get_policy_assignment_evaluate_status(policy_assignment_id=policy_assignment_id)
+    test = huaweicloud.Rms.get_policy_assignment_evaluate_status(policy_assignment_id=policy_assignment_id)
     ```
 
 
@@ -159,7 +159,7 @@ def get_policy_assignment_evaluate_status_output(policy_assignment_id: Optional[
     __args__ = dict()
     __args__['policyAssignmentId'] = policy_assignment_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getPolicyAssignmentEvaluateStatus:getPolicyAssignmentEvaluateStatus', __args__, opts=opts, typ=GetPolicyAssignmentEvaluateStatusResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getPolicyAssignmentEvaluateStatus:getPolicyAssignmentEvaluateStatus', __args__, opts=opts, typ=GetPolicyAssignmentEvaluateStatusResult)
     return __ret__.apply(lambda __response__: GetPolicyAssignmentEvaluateStatusResult(
         end_time=pulumi.get(__response__, 'end_time'),
         error_message=pulumi.get(__response__, 'error_message'),

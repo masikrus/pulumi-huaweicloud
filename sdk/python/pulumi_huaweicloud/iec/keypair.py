@@ -24,6 +24,7 @@ class KeypairArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Keypair resource.
+
         :param pulumi.Input[_builtins.str] name: Specifies a unique name for the keypair. This parameter can contain a maximum of
                64 characters, which may consist of letters, digits, underscores (_), and hyphens (-). Changing this parameter creates
                a new keypair resource.
@@ -89,6 +90,7 @@ class _KeypairState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Keypair resources.
+
         :param pulumi.Input[_builtins.str] fingerprint: The finger of iec keypair. The value contains a encoding type(SHA256) and a string of 43 characters.
         :param pulumi.Input[_builtins.str] name: Specifies a unique name for the keypair. This parameter can contain a maximum of
                64 characters, which may consist of letters, digits, underscores (_), and hyphens (-). Changing this parameter creates
@@ -186,11 +188,10 @@ class Keypair(pulumi.CustomResource):
 
         Keypairs can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/keypair:Keypair test_keypair iec-keypair-demo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,11 +225,10 @@ class Keypair(pulumi.CustomResource):
 
         Keypairs can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iec/keypair:Keypair test_keypair iec-keypair-demo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeypairArgs args: The arguments to use to populate this resource's properties.

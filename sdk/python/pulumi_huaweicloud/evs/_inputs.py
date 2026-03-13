@@ -43,44 +43,39 @@ __all__ = [
     'GetVolumesByTagsTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SnapshotV5SnapshotChainArgsDict(TypedDict):
-        availability_zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AZ to which the snapshot chain belongs.
-        """
-        capacity: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The total size of the snapshot chain.
-        """
-        category: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The category of snapshot chain.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time when the snapshot chain was created.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The snapshot chain ID.
-        """
-        snapshot_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of snapshots on the snapshot chain.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time when the snapshot chain was updated.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the source cloud disk for the snapshot.
-        """
-elif False:
-    SnapshotV5SnapshotChainArgsDict: TypeAlias = Mapping[str, Any]
+class SnapshotV5SnapshotChainArgsDict(TypedDict):
+    availability_zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AZ to which the snapshot chain belongs.
+    """
+    capacity: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The total size of the snapshot chain.
+    """
+    category: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The category of snapshot chain.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time when the snapshot chain was created.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The snapshot chain ID.
+    """
+    snapshot_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of snapshots on the snapshot chain.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time when the snapshot chain was updated.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the source cloud disk for the snapshot.
+    """
 
 @pulumi.input_type
 class SnapshotV5SnapshotChainArgs:
@@ -217,38 +212,35 @@ class SnapshotV5SnapshotChainArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VolumeAttachmentArgsDict(TypedDict):
-        attached_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time when the disk was attached.
-        """
-        attached_volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the attached disk.
-        """
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The device name.
-        """
-        host_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the physical host housing the cloud server to which the disk is attached.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the attachment information.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the server to which the disk is attached.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk ID.
-        """
-elif False:
-    VolumeAttachmentArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeAttachmentArgsDict(TypedDict):
+    attached_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time when the disk was attached.
+    """
+    attached_volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the attached disk.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The device name.
+    """
+    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the physical host housing the cloud server to which the disk is attached.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the attachment information.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the server to which the disk is attached.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk ID.
+    """
 
 @pulumi.input_type
 class VolumeAttachmentArgs:
@@ -369,22 +361,19 @@ class VolumeAttachmentArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VolumeIopsAttributeArgsDict(TypedDict):
-        frozened: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The frozen tag.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the attachment information.
-        """
-        total_val: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput.
-        """
-elif False:
-    VolumeIopsAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeIopsAttributeArgsDict(TypedDict):
+    frozened: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The frozen tag.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the attachment information.
+    """
+    total_val: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput.
+    """
 
 @pulumi.input_type
 class VolumeIopsAttributeArgs:
@@ -441,18 +430,15 @@ class VolumeIopsAttributeArgs:
         pulumi.set(self, "total_val", value)
 
 
-if not MYPY:
-    class VolumeLinkArgsDict(TypedDict):
-        href: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The corresponding shortcut link.
-        """
-        rel: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shortcut link marker name.
-        """
-elif False:
-    VolumeLinkArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeLinkArgsDict(TypedDict):
+    href: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The corresponding shortcut link.
+    """
+    rel: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shortcut link marker name.
+    """
 
 @pulumi.input_type
 class VolumeLinkArgs:
@@ -493,22 +479,19 @@ class VolumeLinkArgs:
         pulumi.set(self, "rel", value)
 
 
-if not MYPY:
-    class VolumeThroughputAttributeArgsDict(TypedDict):
-        frozened: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The frozen tag.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the attachment information.
-        """
-        total_val: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput.
-        """
-elif False:
-    VolumeThroughputAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeThroughputAttributeArgsDict(TypedDict):
+    frozened: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The frozen tag.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the attachment information.
+    """
+    total_val: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput.
+    """
 
 @pulumi.input_type
 class VolumeThroughputAttributeArgs:
@@ -565,18 +548,15 @@ class VolumeThroughputAttributeArgs:
         pulumi.set(self, "total_val", value)
 
 
-if not MYPY:
-    class VolumeTransferV3LinkArgsDict(TypedDict):
-        href: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The corresponding shortcut link.
-        """
-        rel: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shortcut link marker name.
-        """
-elif False:
-    VolumeTransferV3LinkArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeTransferV3LinkArgsDict(TypedDict):
+    href: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The corresponding shortcut link.
+    """
+    rel: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shortcut link marker name.
+    """
 
 @pulumi.input_type
 class VolumeTransferV3LinkArgs:
@@ -617,38 +597,35 @@ class VolumeTransferV3LinkArgs:
         pulumi.set(self, "rel", value)
 
 
-if not MYPY:
-    class VolumeV3AttachmentArgsDict(TypedDict):
-        attached_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time when the disk was attached.
-        """
-        attachment_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the attachment information.
-        """
-        device: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The device name.
-        """
-        host_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the physical host housing the cloud server to which the disk is attached.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The throughput ID.
-        """
-        server_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the server to which the disk is attached.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk ID.
-        """
-elif False:
-    VolumeV3AttachmentArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeV3AttachmentArgsDict(TypedDict):
+    attached_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time when the disk was attached.
+    """
+    attachment_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the attachment information.
+    """
+    device: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The device name.
+    """
+    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the physical host housing the cloud server to which the disk is attached.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The throughput ID.
+    """
+    server_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the server to which the disk is attached.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk ID.
+    """
 
 @pulumi.input_type
 class VolumeV3AttachmentArgs:
@@ -769,26 +746,23 @@ class VolumeV3AttachmentArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VolumeV3IopsAttributeArgsDict(TypedDict):
-        frozened: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The frozen tag.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The throughput ID.
-        """
-        total_val: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk ID.
-        """
-elif False:
-    VolumeV3IopsAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeV3IopsAttributeArgsDict(TypedDict):
+    frozened: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The frozen tag.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The throughput ID.
+    """
+    total_val: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk ID.
+    """
 
 @pulumi.input_type
 class VolumeV3IopsAttributeArgs:
@@ -861,18 +835,15 @@ class VolumeV3IopsAttributeArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VolumeV3LinkArgsDict(TypedDict):
-        href: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The corresponding shortcut link.
-        """
-        rel: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The shortcut link marker name.
-        """
-elif False:
-    VolumeV3LinkArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeV3LinkArgsDict(TypedDict):
+    href: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The corresponding shortcut link.
+    """
+    rel: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The shortcut link marker name.
+    """
 
 @pulumi.input_type
 class VolumeV3LinkArgs:
@@ -913,26 +884,23 @@ class VolumeV3LinkArgs:
         pulumi.set(self, "rel", value)
 
 
-if not MYPY:
-    class VolumeV3ThroughputAttributeArgsDict(TypedDict):
-        frozened: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        The frozen tag.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The throughput ID.
-        """
-        total_val: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The throughput.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The disk ID.
-        """
-elif False:
-    VolumeV3ThroughputAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class VolumeV3ThroughputAttributeArgsDict(TypedDict):
+    frozened: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    The frozen tag.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The throughput ID.
+    """
+    total_val: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The throughput.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The disk ID.
+    """
 
 @pulumi.input_type
 class VolumeV3ThroughputAttributeArgs:
@@ -1005,19 +973,16 @@ class VolumeV3ThroughputAttributeArgs:
         pulumi.set(self, "volume_id", value)
 
 
-if not MYPY:
-    class VolumesBatchExpandVolumeArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the volume ID.
-        """
-        new_size: pulumi.Input[_builtins.int]
-        """
-        Specifies the new size of the to-be-expanded volume, in GiB.
-        Must be greater than the current size. The maximum disk size: Data disk: `32,768` GiB, System disk: `1,024` GiB
-        """
-elif False:
-    VolumesBatchExpandVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class VolumesBatchExpandVolumeArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the volume ID.
+    """
+    new_size: pulumi.Input[_builtins.int]
+    """
+    Specifies the new size of the to-be-expanded volume, in GiB.
+    Must be greater than the current size. The maximum disk size: Data disk: `32,768` GiB, System disk: `1,024` GiB
+    """
 
 @pulumi.input_type
 class VolumesBatchExpandVolumeArgs:
@@ -1058,21 +1023,18 @@ class VolumesBatchExpandVolumeArgs:
         pulumi.set(self, "new_size", value)
 
 
-if not MYPY:
-    class GetVolumesByTagsMatchArgsDict(TypedDict):
-        key: NotRequired[_builtins.str]
-        """
-        Specifies the key of the resource match.
-        Supported keys: **resource_name**, **service_type**.
-        """
-        value: NotRequired[_builtins.str]
-        """
-        Specifies the value of the resource match.
-        The value, which can contain a maximum of `255` characters. If **resource_name** is specified for `key`,
-        the tag value uses a fuzzy match.
-        """
-elif False:
-    GetVolumesByTagsMatchArgsDict: TypeAlias = Mapping[str, Any]
+class GetVolumesByTagsMatchArgsDict(TypedDict):
+    key: NotRequired[_builtins.str]
+    """
+    Specifies the key of the resource match.
+    Supported keys: **resource_name**, **service_type**.
+    """
+    value: NotRequired[_builtins.str]
+    """
+    Specifies the value of the resource match.
+    The value, which can contain a maximum of `255` characters. If **resource_name** is specified for `key`,
+    the tag value uses a fuzzy match.
+    """
 
 @pulumi.input_type
 class GetVolumesByTagsMatchArgs:
@@ -1119,25 +1081,22 @@ class GetVolumesByTagsMatchArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetVolumesByTagsTagArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Specifies the key of the resource match.
-        Supported keys: **resource_name**, **service_type**.
-        """
-        values: Sequence[_builtins.str]
-        """
-        Specifies the list of values corresponding to the key.
-        A tag list can contain a maximum of `10` values. Tag values in a tag list must be unique.
-        If the tag value list is empty, disks that contain any key can be queried.
-        When there are multiple values and the key requirements are met, disks that have any of the specified values are queried.
+class GetVolumesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the resource match.
+    Supported keys: **resource_name**, **service_type**.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the list of values corresponding to the key.
+    A tag list can contain a maximum of `10` values. Tag values in a tag list must be unique.
+    If the tag value list is empty, disks that contain any key can be queried.
+    When there are multiple values and the key requirements are met, disks that have any of the specified values are queried.
 
-        <a name="matches_struct"></a>
-        The `matches` block supports:
-        """
-elif False:
-    GetVolumesByTagsTagArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="matches_struct"></a>
+    The `matches` block supports:
+    """
 
 @pulumi.input_type
 class GetVolumesByTagsTagArgs:

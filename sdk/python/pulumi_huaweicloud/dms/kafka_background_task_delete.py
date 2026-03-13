@@ -24,6 +24,7 @@ class KafkaBackgroundTaskDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KafkaBackgroundTaskDelete resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] task_id: Specifies the task ID.
@@ -86,6 +87,7 @@ class _KafkaBackgroundTaskDeleteState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KafkaBackgroundTaskDelete resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -169,6 +171,7 @@ class KafkaBackgroundTaskDelete(pulumi.CustomResource):
             task_id=task_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -201,6 +204,7 @@ class KafkaBackgroundTaskDelete(pulumi.CustomResource):
             instance_id=instance_id,
             task_id=task_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KafkaBackgroundTaskDeleteArgs args: The arguments to use to populate this resource's properties.

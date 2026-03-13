@@ -128,7 +128,7 @@ def get_resource_instances(matches: Optional[Sequence[Union['GetResourceInstance
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.vpn.get_resource_instances(resource_type=resource_type)
+    test = huaweicloud.Vpn.get_resource_instances(resource_type=resource_type)
     ```
 
 
@@ -159,7 +159,7 @@ def get_resource_instances(matches: Optional[Sequence[Union['GetResourceInstance
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vpn/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vpn/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult).value
 
     return AwaitableGetResourceInstancesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -186,7 +186,7 @@ def get_resource_instances_output(matches: Optional[pulumi.Input[Optional[Sequen
 
     config = pulumi.Config()
     resource_type = config.require_object("resourceType")
-    test = huaweicloud.vpn.get_resource_instances(resource_type=resource_type)
+    test = huaweicloud.Vpn.get_resource_instances(resource_type=resource_type)
     ```
 
 
@@ -217,7 +217,7 @@ def get_resource_instances_output(matches: Optional[pulumi.Input[Optional[Sequen
     __args__['tags'] = tags
     __args__['withoutAnyTag'] = without_any_tag
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vpn/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vpn/getResourceInstances:getResourceInstances', __args__, opts=opts, typ=GetResourceInstancesResult)
     return __ret__.apply(lambda __response__: GetResourceInstancesResult(
         id=pulumi.get(__response__, 'id'),
         matches=pulumi.get(__response__, 'matches'),

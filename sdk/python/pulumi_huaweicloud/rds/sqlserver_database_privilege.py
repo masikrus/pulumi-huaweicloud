@@ -28,6 +28,7 @@ class SqlserverDatabasePrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SqlserverDatabasePrivilege resource.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQL Server instance.
         :param pulumi.Input[Sequence[pulumi.Input['SqlserverDatabasePrivilegeUserArgs']]] users: Specifies the account that associated with the database
@@ -125,6 +126,7 @@ class _SqlserverDatabasePrivilegeState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['SqlserverDatabasePrivilegeUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering SqlserverDatabasePrivilege resources.
+
         :param pulumi.Input[_builtins.str] db_name: Specifies the database name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RDS SQL Server instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -260,11 +262,10 @@ class SqlserverDatabasePrivilege(pulumi.CustomResource):
 
         The RDS SQL Server database privilege can be imported using the `instance_id` and `db_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverDatabasePrivilege:SqlserverDatabasePrivilege test <instance_id>/<db_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,11 +321,10 @@ class SqlserverDatabasePrivilege(pulumi.CustomResource):
 
         The RDS SQL Server database privilege can be imported using the `instance_id` and `db_name` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/sqlserverDatabasePrivilege:SqlserverDatabasePrivilege test <instance_id>/<db_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqlserverDatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.

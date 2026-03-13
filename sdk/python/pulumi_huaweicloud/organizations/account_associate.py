@@ -23,6 +23,7 @@ class AccountAssociateArgs:
                  parent_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AccountAssociate resource.
+
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the account.
                
                Changing this parameter will create a new resource.
@@ -61,14 +62,16 @@ class AccountAssociateArgs:
 @pulumi.input_type
 class _AccountAssociateState:
     def __init__(__self__, *,
+                 account_associate_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  joined_at: Optional[pulumi.Input[_builtins.str]] = None,
                  joined_method: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 parent_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountAssociate resources.
+
+        :param pulumi.Input[_builtins.str] account_associate_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the account.
                
                Changing this parameter will create a new resource.
@@ -76,8 +79,9 @@ class _AccountAssociateState:
         :param pulumi.Input[_builtins.str] joined_method: Indicates how an account joined an organization.
         :param pulumi.Input[_builtins.str] name: Indicates the name of the account.
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of root or organizational unit in which you want to move the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
+        if account_associate_urn is not None:
+            pulumi.set(__self__, "account_associate_urn", account_associate_urn)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
         if joined_at is not None:
@@ -88,8 +92,18 @@ class _AccountAssociateState:
             pulumi.set(__self__, "name", name)
         if parent_id is not None:
             pulumi.set(__self__, "parent_id", parent_id)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountAssociateUrn")
+    def account_associate_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_associate_urn")
+
+    @account_associate_urn.setter
+    def account_associate_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "account_associate_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -153,20 +167,8 @@ class _AccountAssociateState:
     def parent_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "parent_id", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/accountAssociate:AccountAssociate")
+@pulumi.type_token("huaweicloud:Organizations/accountAssociate:AccountAssociate")
 class AccountAssociate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -196,11 +198,10 @@ class AccountAssociate(pulumi.CustomResource):
 
         The Organizations account associate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountAssociate:AccountAssociate test <id>
+        $ pulumi import huaweicloud:Organizations/accountAssociate:AccountAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -236,11 +237,10 @@ class AccountAssociate(pulumi.CustomResource):
 
         The Organizations account associate can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/accountAssociate:AccountAssociate test <id>
+        $ pulumi import huaweicloud:Organizations/accountAssociate:AccountAssociate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountAssociateArgs args: The arguments to use to populate this resource's properties.
@@ -274,12 +274,12 @@ class AccountAssociate(pulumi.CustomResource):
             if parent_id is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_id'")
             __props__.__dict__["parent_id"] = parent_id
+            __props__.__dict__["account_associate_urn"] = None
             __props__.__dict__["joined_at"] = None
             __props__.__dict__["joined_method"] = None
             __props__.__dict__["name"] = None
-            __props__.__dict__["urn"] = None
         super(AccountAssociate, __self__).__init__(
-            'huaweicloud:organizations/accountAssociate:AccountAssociate',
+            'huaweicloud:Organizations/accountAssociate:AccountAssociate',
             resource_name,
             __props__,
             opts)
@@ -288,12 +288,12 @@ class AccountAssociate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_associate_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_id: Optional[pulumi.Input[_builtins.str]] = None,
             joined_at: Optional[pulumi.Input[_builtins.str]] = None,
             joined_method: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
-            parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountAssociate':
+            parent_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'AccountAssociate':
         """
         Get an existing AccountAssociate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -301,6 +301,7 @@ class AccountAssociate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] account_associate_urn: Indicates the uniform resource name of the account.
         :param pulumi.Input[_builtins.str] account_id: Specifies the ID of the account.
                
                Changing this parameter will create a new resource.
@@ -308,19 +309,26 @@ class AccountAssociate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] joined_method: Indicates how an account joined an organization.
         :param pulumi.Input[_builtins.str] name: Indicates the name of the account.
         :param pulumi.Input[_builtins.str] parent_id: Specifies the ID of root or organizational unit in which you want to move the account.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountAssociateState.__new__(_AccountAssociateState)
 
+        __props__.__dict__["account_associate_urn"] = account_associate_urn
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["joined_at"] = joined_at
         __props__.__dict__["joined_method"] = joined_method
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_id"] = parent_id
-        __props__.__dict__["urn"] = urn
         return AccountAssociate(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AccountAssociateUrn")
+    def account_associate_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the account.
+        """
+        return pulumi.get(self, "account_associate_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountId")
@@ -363,12 +371,4 @@ class AccountAssociate(pulumi.CustomResource):
         Specifies the ID of root or organizational unit in which you want to move the account.
         """
         return pulumi.get(self, "parent_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the account.
-        """
-        return pulumi.get(self, "urn")
 

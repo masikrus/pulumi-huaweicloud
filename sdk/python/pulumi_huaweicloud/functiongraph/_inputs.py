@@ -27,6 +27,8 @@ __all__ = [
     'FunctionCustomImageArgsDict',
     'FunctionFuncMountArgs',
     'FunctionFuncMountArgsDict',
+    'FunctionFuncMountsOrderArgs',
+    'FunctionFuncMountsOrderArgsDict',
     'FunctionNetworkControllerArgs',
     'FunctionNetworkControllerArgsDict',
     'FunctionNetworkControllerTriggerAccessVpcArgs',
@@ -43,6 +45,8 @@ __all__ = [
     'FunctionV2CustomImageArgsDict',
     'FunctionV2FuncMountArgs',
     'FunctionV2FuncMountArgsDict',
+    'FunctionV2FuncMountsOrderArgs',
+    'FunctionV2FuncMountsOrderArgsDict',
     'FunctionV2NetworkControllerArgs',
     'FunctionV2NetworkControllerArgsDict',
     'FunctionV2NetworkControllerTriggerAccessVpcArgs',
@@ -77,30 +81,31 @@ __all__ = [
     'TriggerSmnArgsDict',
     'TriggerTimerArgs',
     'TriggerTimerArgsDict',
+    'GetResourcesFilterMatchArgs',
+    'GetResourcesFilterMatchArgsDict',
+    'GetResourcesFilterSysTagArgs',
+    'GetResourcesFilterSysTagArgsDict',
+    'GetResourcesFilterTagArgs',
+    'GetResourcesFilterTagArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ApplicationRepositoryArgsDict(TypedDict):
-        https_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP address of the repository.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The project ID of the repository.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The repository status.
-        """
-        web_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The repository link.
-        """
-elif False:
-    ApplicationRepositoryArgsDict: TypeAlias = Mapping[str, Any]
+class ApplicationRepositoryArgsDict(TypedDict):
+    https_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP address of the repository.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The project ID of the repository.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The repository status.
+    """
+    web_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The repository link.
+    """
 
 @pulumi.input_type
 class ApplicationRepositoryArgs:
@@ -173,42 +178,39 @@ class ApplicationRepositoryArgs:
         pulumi.set(self, "web_url", value)
 
 
-if not MYPY:
-    class ApplicationStackResourceArgsDict(TypedDict):
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The cloud service name.
-        """
-        href: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The hyperlink.
-        """
-        logical_resource_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The logical resource name.
-        """
-        logical_resource_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The logical resource type.
-        """
-        physical_resource_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The physical resource ID.
-        """
-        physical_resource_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The physical resource name.
-        """
-        resource_status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of resource.
-        """
-        status_message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status information.
-        """
-elif False:
-    ApplicationStackResourceArgsDict: TypeAlias = Mapping[str, Any]
+class ApplicationStackResourceArgsDict(TypedDict):
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The cloud service name.
+    """
+    href: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The hyperlink.
+    """
+    logical_resource_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The logical resource name.
+    """
+    logical_resource_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The logical resource type.
+    """
+    physical_resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The physical resource ID.
+    """
+    physical_resource_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The physical resource name.
+    """
+    resource_status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of resource.
+    """
+    status_message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status information.
+    """
 
 @pulumi.input_type
 class ApplicationStackResourceArgs:
@@ -345,31 +347,28 @@ class ApplicationStackResourceArgs:
         pulumi.set(self, "status_message", value)
 
 
-if not MYPY:
-    class AsyncInvokeConfigurationOnFailureArgsDict(TypedDict):
-        destination: pulumi.Input[_builtins.str]
-        """
-        Specifies the object type.  
-        The valid values are as follows:
-        + **OBS**
-        + **SMN**
-        + **DIS**
-        + **FunctionGraph**
-        """
-        param: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameters (map object in JSON format) corresponding to the target service.
-        + The **OBS** objects include: `bucket` (bucket name), `prefix` (object directory prefix) and `expires` (object
-        expiration time, the valid value ranges from `0` to `365`. If the value is `0`, the object will not expire.).
-        + The **SMN** objects include: `topic_urn`.
-        + The **DIS** objects include: `stream_name`.
-        + The **FunctionGraph** objects include: `func_urn` (function URN).
+class AsyncInvokeConfigurationOnFailureArgsDict(TypedDict):
+    destination: pulumi.Input[_builtins.str]
+    """
+    Specifies the object type.  
+    The valid values are as follows:
+    + **OBS**
+    + **SMN**
+    + **DIS**
+    + **FunctionGraph**
+    """
+    param: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameters (map object in JSON format) corresponding to the target service.
+    + The **OBS** objects include: `bucket` (bucket name), `prefix` (object directory prefix) and `expires` (object
+    expiration time, the valid value ranges from `0` to `365`. If the value is `0`, the object will not expire.).
+    + The **SMN** objects include: `topic_urn`.
+    + The **DIS** objects include: `stream_name`.
+    + The **FunctionGraph** objects include: `func_urn` (function URN).
 
-        > If you enable the destination function, you must be ensured that the agent contains the operation authority of the
-        corresponding service.
-        """
-elif False:
-    AsyncInvokeConfigurationOnFailureArgsDict: TypeAlias = Mapping[str, Any]
+    > If you enable the destination function, you must be ensured that the agent contains the operation authority of the
+    corresponding service.
+    """
 
 @pulumi.input_type
 class AsyncInvokeConfigurationOnFailureArgs:
@@ -434,31 +433,28 @@ class AsyncInvokeConfigurationOnFailureArgs:
         pulumi.set(self, "param", value)
 
 
-if not MYPY:
-    class AsyncInvokeConfigurationOnSuccessArgsDict(TypedDict):
-        destination: pulumi.Input[_builtins.str]
-        """
-        Specifies the object type.  
-        The valid values are as follows:
-        + **OBS**
-        + **SMN**
-        + **DIS**
-        + **FunctionGraph**
-        """
-        param: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameters (map object in JSON format) corresponding to the target service.
-        + The **OBS** objects include: `bucket` (bucket name), `prefix` (object directory prefix) and `expires` (object
-        expiration time, the valid value ranges from `0` to `365`. If the value is `0`, the object will not expire.).
-        + The **SMN** objects include: `topic_urn`.
-        + The **DIS** objects include: `stream_name`.
-        + The **FunctionGraph** objects include: `func_urn` (function URN).
+class AsyncInvokeConfigurationOnSuccessArgsDict(TypedDict):
+    destination: pulumi.Input[_builtins.str]
+    """
+    Specifies the object type.  
+    The valid values are as follows:
+    + **OBS**
+    + **SMN**
+    + **DIS**
+    + **FunctionGraph**
+    """
+    param: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameters (map object in JSON format) corresponding to the target service.
+    + The **OBS** objects include: `bucket` (bucket name), `prefix` (object directory prefix) and `expires` (object
+    expiration time, the valid value ranges from `0` to `365`. If the value is `0`, the object will not expire.).
+    + The **SMN** objects include: `topic_urn`.
+    + The **DIS** objects include: `stream_name`.
+    + The **FunctionGraph** objects include: `func_urn` (function URN).
 
-        > If you enable the destination function, you must be ensured that the agent contains the operation authority of the
-        corresponding service.
-        """
-elif False:
-    AsyncInvokeConfigurationOnSuccessArgsDict: TypeAlias = Mapping[str, Any]
+    > If you enable the destination function, you must be ensured that the agent contains the operation authority of the
+    corresponding service.
+    """
 
 @pulumi.input_type
 class AsyncInvokeConfigurationOnSuccessArgs:
@@ -523,43 +519,40 @@ class AsyncInvokeConfigurationOnSuccessArgs:
         pulumi.set(self, "param", value)
 
 
-if not MYPY:
-    class FunctionCustomImageArgsDict(TypedDict):
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the URL of SWR image, the URL must start with `swr.`.
-        """
-        args: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the command line arguments used to start the SWR image.  
-        If multiple arguments are separated by commas (,). e.g. `-args,value`.
-        If this parameter is not specified, the CMD in the image configuration will be used by default.
-        """
-        command: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the startup commands of the SWR image.  
-        Multiple commands are separated by commas (,). e.g. `/bin/sh`.
-        If this parameter is not specified, the entrypoint or CMD in the image configuration will be used by default.
-        """
-        user_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user group ID that used to run SWR image.
-        """
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user ID that used to run SWR image.
-        """
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the working directory of the SWR image.  
-        If not specified, the default value is `/`.
-        Currently, the folder path can only be set to `/` and it cannot be created or modified.
+class FunctionCustomImageArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the URL of SWR image, the URL must start with `swr.`.
+    """
+    args: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the command line arguments used to start the SWR image.  
+    If multiple arguments are separated by commas (,). e.g. `-args,value`.
+    If this parameter is not specified, the CMD in the image configuration will be used by default.
+    """
+    command: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the startup commands of the SWR image.  
+    Multiple commands are separated by commas (,). e.g. `/bin/sh`.
+    If this parameter is not specified, the entrypoint or CMD in the image configuration will be used by default.
+    """
+    user_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user group ID that used to run SWR image.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user ID that used to run SWR image.
+    """
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the working directory of the SWR image.  
+    If not specified, the default value is `/`.
+    Currently, the folder path can only be set to `/` and it cannot be created or modified.
 
-        <a name="function_versions"></a>
-        The `versions` block supports:
-        """
-elif False:
-    FunctionCustomImageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_versions"></a>
+    The `versions` block supports:
+    """
 
 @pulumi.input_type
 class FunctionCustomImageArgs:
@@ -681,36 +674,33 @@ class FunctionCustomImageArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class FunctionFuncMountArgsDict(TypedDict):
-        local_mount_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the function access path.
+class FunctionFuncMountArgsDict(TypedDict):
+    local_mount_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the function access path.
 
-        <a name="function_custom_image"></a>
-        The `custom_image` block supports:
-        """
-        mount_resource: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the mounted resource (corresponding cloud service).
-        """
-        mount_share_path: pulumi.Input[_builtins.str]
-        """
-        Specifies the remote mount path, e.g. **192.168.0.12:/data**.
-        """
-        mount_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the mount type.
-        + **sfs**
-        + **sfsTurbo**
-        + **ecs**
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The mount status.
-        """
-elif False:
-    FunctionFuncMountArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_custom_image"></a>
+    The `custom_image` block supports:
+    """
+    mount_resource: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the mounted resource (corresponding cloud service).
+    """
+    mount_share_path: pulumi.Input[_builtins.str]
+    """
+    Specifies the remote mount path, e.g. **192.168.0.12:/data**.
+    """
+    mount_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the mount type.
+    + **sfs**
+    + **sfsTurbo**
+    + **ecs**
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The mount status.
+    """
 
 @pulumi.input_type
 class FunctionFuncMountArgs:
@@ -807,22 +797,57 @@ class FunctionFuncMountArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class FunctionNetworkControllerArgsDict(TypedDict):
-        disable_public_network: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to disable the public network access.
+class FunctionFuncMountsOrderArgsDict(TypedDict):
+    local_mount_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the function access path.
 
-        <a name="function_network_controller_trigger_access_vpcs"></a>
-        The `trigger_access_vpcs` block supports:
+    <a name="function_custom_image"></a>
+    The `custom_image` block supports:
+    """
+
+@pulumi.input_type
+class FunctionFuncMountsOrderArgs:
+    def __init__(__self__, *,
+                 local_mount_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        trigger_access_vpcs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionNetworkControllerTriggerAccessVpcArgsDict']]]]
+        :param pulumi.Input[_builtins.str] local_mount_path: Specifies the function access path.
+               
+               <a name="function_custom_image"></a>
+               The `custom_image` block supports:
         """
-        Specifies the configuration of the VPCs that can trigger the function.  
-        The trigger_access_vpcs structure is documented below.
+        if local_mount_path is not None:
+            pulumi.set(__self__, "local_mount_path", local_mount_path)
+
+    @_builtins.property
+    @pulumi.getter(name="localMountPath")
+    def local_mount_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    FunctionNetworkControllerArgsDict: TypeAlias = Mapping[str, Any]
+        Specifies the function access path.
+
+        <a name="function_custom_image"></a>
+        The `custom_image` block supports:
+        """
+        return pulumi.get(self, "local_mount_path")
+
+    @local_mount_path.setter
+    def local_mount_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "local_mount_path", value)
+
+
+class FunctionNetworkControllerArgsDict(TypedDict):
+    disable_public_network: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to disable the public network access.
+
+    <a name="function_network_controller_trigger_access_vpcs"></a>
+    The `trigger_access_vpcs` block supports:
+    """
+    trigger_access_vpcs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionNetworkControllerTriggerAccessVpcArgsDict']]]]
+    """
+    Specifies the configuration of the VPCs that can trigger the function.  
+    The trigger_access_vpcs structure is documented below.
+    """
 
 @pulumi.input_type
 class FunctionNetworkControllerArgs:
@@ -871,18 +896,15 @@ class FunctionNetworkControllerArgs:
         pulumi.set(self, "trigger_access_vpcs", value)
 
 
-if not MYPY:
-    class FunctionNetworkControllerTriggerAccessVpcArgsDict(TypedDict):
-        vpc_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the VPC that can trigger the function.
-        """
-        vpc_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the VPC that can trigger the function.
-        """
-elif False:
-    FunctionNetworkControllerTriggerAccessVpcArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionNetworkControllerTriggerAccessVpcArgsDict(TypedDict):
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the VPC that can trigger the function.
+    """
+    vpc_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the VPC that can trigger the function.
+    """
 
 @pulumi.input_type
 class FunctionNetworkControllerTriggerAccessVpcArgs:
@@ -923,47 +945,44 @@ class FunctionNetworkControllerTriggerAccessVpcArgs:
         pulumi.set(self, "vpc_name", value)
 
 
-if not MYPY:
-    class FunctionReservedInstanceArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of reserved instance to which the policy belongs.  
-        The valid value is range from `0` to `1,000`.
+class FunctionReservedInstanceArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of reserved instance to which the policy belongs.  
+    The valid value is range from `0` to `1,000`.
 
-        > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
-        """
-        qualifier_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the version name or alias name.
-        """
-        qualifier_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the qualifier type of reserved instance.  
-        The valid values are as follows:
-        + **version**
-        + **alias**
+    > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
+    """
+    qualifier_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the version name or alias name.
+    """
+    qualifier_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the qualifier type of reserved instance.  
+    The valid values are as follows:
+    + **version**
+    + **alias**
 
-        > Reserved instances cannot be configured for both a function alias and the corresponding version.
-        <br>For example, if the alias of the `latest` version is `1.0` and reserved instances have been configured for this
-        version, no more instances can be configured for alias `1.0`.
-        """
-        idle_mode: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable the idle mode.  
-        Defaults to **false**.
-        If this parameter is enabled, reserved instances are initialized and the mode change needs some time to take effect.
-        You will still be billed at the price of reserved instances for non-idle mode in this period.
-        """
-        tactics_config: NotRequired[pulumi.Input['FunctionReservedInstanceTacticsConfigArgsDict']]
-        """
-        Specifies the auto scaling policies for reserved instance.  
-        The tactics_config structure is documented below.
+    > Reserved instances cannot be configured for both a function alias and the corresponding version.
+    <br>For example, if the alias of the `latest` version is `1.0` and reserved instances have been configured for this
+    version, no more instances can be configured for alias `1.0`.
+    """
+    idle_mode: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable the idle mode.  
+    Defaults to **false**.
+    If this parameter is enabled, reserved instances are initialized and the mode change needs some time to take effect.
+    You will still be billed at the price of reserved instances for non-idle mode in this period.
+    """
+    tactics_config: NotRequired[pulumi.Input['FunctionReservedInstanceTacticsConfigArgsDict']]
+    """
+    Specifies the auto scaling policies for reserved instance.  
+    The tactics_config structure is documented below.
 
-        <a name="function_reserved_instances_tactics_config"></a>
-        The `tactics_config` block supports:
-        """
-elif False:
-    FunctionReservedInstanceArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_reserved_instances_tactics_config"></a>
+    The `tactics_config` block supports:
+    """
 
 @pulumi.input_type
 class FunctionReservedInstanceArgs:
@@ -1083,26 +1102,23 @@ class FunctionReservedInstanceArgs:
         pulumi.set(self, "tactics_config", value)
 
 
-if not MYPY:
-    class FunctionReservedInstanceTacticsConfigArgsDict(TypedDict):
-        cron_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionReservedInstanceTacticsConfigCronConfigArgsDict']]]]
-        """
-        Specifies the list of scheduled policy configurations.  
-        The cron_configs structure is documented below.
-        """
-        metric_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionReservedInstanceTacticsConfigMetricConfigArgsDict']]]]
-        """
-        Specifies the list of metric policy configurations.  
-        The metric_configs structure is documented below.
+class FunctionReservedInstanceTacticsConfigArgsDict(TypedDict):
+    cron_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionReservedInstanceTacticsConfigCronConfigArgsDict']]]]
+    """
+    Specifies the list of scheduled policy configurations.  
+    The cron_configs structure is documented below.
+    """
+    metric_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionReservedInstanceTacticsConfigMetricConfigArgsDict']]]]
+    """
+    Specifies the list of metric policy configurations.  
+    The metric_configs structure is documented below.
 
-        > Submit a service ticket to open this function (metric policy), for the way please refer to
-        the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html).
+    > Submit a service ticket to open this function (metric policy), for the way please refer to
+    the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html).
 
-        <a name="function_reserved_instances_tactics_config_cron_configs"></a>
-        The `cron_configs` block supports:
-        """
-elif False:
-    FunctionReservedInstanceTacticsConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_reserved_instances_tactics_config_cron_configs"></a>
+    The `cron_configs` block supports:
+    """
 
 @pulumi.input_type
 class FunctionReservedInstanceTacticsConfigArgs:
@@ -1159,39 +1175,36 @@ class FunctionReservedInstanceTacticsConfigArgs:
         pulumi.set(self, "metric_configs", value)
 
 
-if not MYPY:
-    class FunctionReservedInstanceTacticsConfigCronConfigArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of reserved instance to which the policy belongs.  
-        The valid value is range from `0` to `1,000`.
+class FunctionReservedInstanceTacticsConfigCronConfigArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of reserved instance to which the policy belongs.  
+    The valid value is range from `0` to `1,000`.
 
-        > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
-        """
-        cron: pulumi.Input[_builtins.str]
-        """
-        Specifies the cron expression.  
-        For the syntax, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-functiongraph/functiongraph_01_0908.html).
-        """
-        expired_time: pulumi.Input[_builtins.int]
-        """
-        Specifies the expiration timestamp of the policy. The unit is `s`, e.g. **1740560074**.
+    > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
+    """
+    cron: pulumi.Input[_builtins.str]
+    """
+    Specifies the cron expression.  
+    For the syntax, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-functiongraph/functiongraph_01_0908.html).
+    """
+    expired_time: pulumi.Input[_builtins.int]
+    """
+    Specifies the expiration timestamp of the policy. The unit is `s`, e.g. **1740560074**.
 
-        <a name="function_reserved_instances_tactics_metric_configs"></a>
-        The `metric_configs` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of metric policy.  
-        The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
-        allowed. The name must start with a letter and ending with a letter or digit.
-        """
-        start_time: pulumi.Input[_builtins.int]
-        """
-        Specifies the effective timestamp of policy. The unit is `s`, e.g. **1740560074**.
-        """
-elif False:
-    FunctionReservedInstanceTacticsConfigCronConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_reserved_instances_tactics_metric_configs"></a>
+    The `metric_configs` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of metric policy.  
+    The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
+    allowed. The name must start with a letter and ending with a letter or digit.
+    """
+    start_time: pulumi.Input[_builtins.int]
+    """
+    Specifies the effective timestamp of policy. The unit is `s`, e.g. **1740560074**.
+    """
 
 @pulumi.input_type
 class FunctionReservedInstanceTacticsConfigCronConfigArgs:
@@ -1293,37 +1306,34 @@ class FunctionReservedInstanceTacticsConfigCronConfigArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class FunctionReservedInstanceTacticsConfigMetricConfigArgsDict(TypedDict):
-        min: pulumi.Input[_builtins.int]
-        """
-        Specifies the minimun of traffic.  
-        The valid value is range from `0` to `1,000`.
+class FunctionReservedInstanceTacticsConfigMetricConfigArgsDict(TypedDict):
+    min: pulumi.Input[_builtins.int]
+    """
+    Specifies the minimun of traffic.  
+    The valid value is range from `0` to `1,000`.
 
-        > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
+    > The number of reserved instances must be greater than or equal to the number of reserved instances in the basic configuration.
 
-        <a name="function_network_controller"></a>
-        The `network_controller` block supports:
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of metric policy.  
-        The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
-        allowed. The name must start with a letter and ending with a letter or digit.
-        """
-        threshold: pulumi.Input[_builtins.int]
-        """
-        Specifies the metric policy threshold.  
-        The valid value is range from `1` to `99`.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of metric policy.  
-        The valid value is as follows:
-        + **Concurrency**: Reserved instance usage.
-        """
-elif False:
-    FunctionReservedInstanceTacticsConfigMetricConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_network_controller"></a>
+    The `network_controller` block supports:
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of metric policy.  
+    The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
+    allowed. The name must start with a letter and ending with a letter or digit.
+    """
+    threshold: pulumi.Input[_builtins.int]
+    """
+    Specifies the metric policy threshold.  
+    The valid value is range from `1` to `99`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of metric policy.  
+    The valid value is as follows:
+    + **Concurrency**: Reserved instance usage.
+    """
 
 @pulumi.input_type
 class FunctionReservedInstanceTacticsConfigMetricConfigArgs:
@@ -1414,34 +1424,31 @@ class FunctionReservedInstanceTacticsConfigMetricConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class FunctionV2CustomImageArgsDict(TypedDict):
-        url: pulumi.Input[_builtins.str]
-        """
-        The URL of SWR image.
-        """
-        args: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The command line arguments used to start the SWR image.
-        """
-        command: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The startup commands of the SWR image.
-        """
-        user_group_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user group ID that used to run SWR image.
-        """
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The user ID that used to run SWR image.
-        """
-        working_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The working directory of the SWR image.
-        """
-elif False:
-    FunctionV2CustomImageArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2CustomImageArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    The URL of SWR image.
+    """
+    args: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The command line arguments used to start the SWR image.
+    """
+    command: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The startup commands of the SWR image.
+    """
+    user_group_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user group ID that used to run SWR image.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The user ID that used to run SWR image.
+    """
+    working_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The working directory of the SWR image.
+    """
 
 @pulumi.input_type
 class FunctionV2CustomImageArgs:
@@ -1545,30 +1552,27 @@ class FunctionV2CustomImageArgs:
         pulumi.set(self, "working_dir", value)
 
 
-if not MYPY:
-    class FunctionV2FuncMountArgsDict(TypedDict):
-        local_mount_path: pulumi.Input[_builtins.str]
-        """
-        The function access path.
-        """
-        mount_resource: pulumi.Input[_builtins.str]
-        """
-        The ID of the mounted resource (corresponding cloud service).
-        """
-        mount_share_path: pulumi.Input[_builtins.str]
-        """
-        The remote mount path.
-        """
-        mount_type: pulumi.Input[_builtins.str]
-        """
-        The mount type.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The mount status.
-        """
-elif False:
-    FunctionV2FuncMountArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2FuncMountArgsDict(TypedDict):
+    local_mount_path: pulumi.Input[_builtins.str]
+    """
+    The function access path.
+    """
+    mount_resource: pulumi.Input[_builtins.str]
+    """
+    The ID of the mounted resource (corresponding cloud service).
+    """
+    mount_share_path: pulumi.Input[_builtins.str]
+    """
+    The remote mount path.
+    """
+    mount_type: pulumi.Input[_builtins.str]
+    """
+    The mount type.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The mount status.
+    """
 
 @pulumi.input_type
 class FunctionV2FuncMountArgs:
@@ -1653,18 +1657,44 @@ class FunctionV2FuncMountArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class FunctionV2NetworkControllerArgsDict(TypedDict):
-        disable_public_network: NotRequired[pulumi.Input[_builtins.bool]]
+class FunctionV2FuncMountsOrderArgsDict(TypedDict):
+    local_mount_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The origin function access path.
+    """
+
+@pulumi.input_type
+class FunctionV2FuncMountsOrderArgs:
+    def __init__(__self__, *,
+                 local_mount_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Whether to disable the public network access.
+        :param pulumi.Input[_builtins.str] local_mount_path: The origin function access path.
         """
-        trigger_access_vpcs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2NetworkControllerTriggerAccessVpcArgsDict']]]]
+        if local_mount_path is not None:
+            pulumi.set(__self__, "local_mount_path", local_mount_path)
+
+    @_builtins.property
+    @pulumi.getter(name="localMountPath")
+    def local_mount_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The configuration of the VPCs that can trigger the function.
+        The origin function access path.
         """
-elif False:
-    FunctionV2NetworkControllerArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "local_mount_path")
+
+    @local_mount_path.setter
+    def local_mount_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "local_mount_path", value)
+
+
+class FunctionV2NetworkControllerArgsDict(TypedDict):
+    disable_public_network: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to disable the public network access.
+    """
+    trigger_access_vpcs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2NetworkControllerTriggerAccessVpcArgsDict']]]]
+    """
+    The configuration of the VPCs that can trigger the function.
+    """
 
 @pulumi.input_type
 class FunctionV2NetworkControllerArgs:
@@ -1705,18 +1735,15 @@ class FunctionV2NetworkControllerArgs:
         pulumi.set(self, "trigger_access_vpcs", value)
 
 
-if not MYPY:
-    class FunctionV2NetworkControllerTriggerAccessVpcArgsDict(TypedDict):
-        vpc_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the VPC that can trigger the function.
-        """
-        vpc_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the VPC that can trigger the function.
-        """
-elif False:
-    FunctionV2NetworkControllerTriggerAccessVpcArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2NetworkControllerTriggerAccessVpcArgsDict(TypedDict):
+    vpc_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the VPC that can trigger the function.
+    """
+    vpc_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the VPC that can trigger the function.
+    """
 
 @pulumi.input_type
 class FunctionV2NetworkControllerTriggerAccessVpcArgs:
@@ -1757,30 +1784,27 @@ class FunctionV2NetworkControllerTriggerAccessVpcArgs:
         pulumi.set(self, "vpc_name", value)
 
 
-if not MYPY:
-    class FunctionV2ReservedInstanceArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        The number of reserved instance.
-        """
-        qualifier_name: pulumi.Input[_builtins.str]
-        """
-        The version name or alias name.
-        """
-        qualifier_type: pulumi.Input[_builtins.str]
-        """
-        The qualifier type of reserved instance.
-        """
-        idle_mode: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to enable the idle mode.
-        """
-        tactics_config: NotRequired[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigArgsDict']]
-        """
-        The auto scaling policies for reserved instance.
-        """
-elif False:
-    FunctionV2ReservedInstanceArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2ReservedInstanceArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    The number of reserved instance.
+    """
+    qualifier_name: pulumi.Input[_builtins.str]
+    """
+    The version name or alias name.
+    """
+    qualifier_type: pulumi.Input[_builtins.str]
+    """
+    The qualifier type of reserved instance.
+    """
+    idle_mode: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to enable the idle mode.
+    """
+    tactics_config: NotRequired[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigArgsDict']]
+    """
+    The auto scaling policies for reserved instance.
+    """
 
 @pulumi.input_type
 class FunctionV2ReservedInstanceArgs:
@@ -1866,18 +1890,15 @@ class FunctionV2ReservedInstanceArgs:
         pulumi.set(self, "tactics_config", value)
 
 
-if not MYPY:
-    class FunctionV2ReservedInstanceTacticsConfigArgsDict(TypedDict):
-        cron_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigCronConfigArgsDict']]]]
-        """
-        The list of scheduled policy configurations.
-        """
-        metric_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigMetricConfigArgsDict']]]]
-        """
-        The list of metric policy configurations.
-        """
-elif False:
-    FunctionV2ReservedInstanceTacticsConfigArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2ReservedInstanceTacticsConfigArgsDict(TypedDict):
+    cron_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigCronConfigArgsDict']]]]
+    """
+    The list of scheduled policy configurations.
+    """
+    metric_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['FunctionV2ReservedInstanceTacticsConfigMetricConfigArgsDict']]]]
+    """
+    The list of metric policy configurations.
+    """
 
 @pulumi.input_type
 class FunctionV2ReservedInstanceTacticsConfigArgs:
@@ -1918,30 +1939,27 @@ class FunctionV2ReservedInstanceTacticsConfigArgs:
         pulumi.set(self, "metric_configs", value)
 
 
-if not MYPY:
-    class FunctionV2ReservedInstanceTacticsConfigCronConfigArgsDict(TypedDict):
-        count: pulumi.Input[_builtins.int]
-        """
-        The number of reserved instance to which the policy belongs.
-        """
-        cron: pulumi.Input[_builtins.str]
-        """
-        The cron expression.
-        """
-        expired_time: pulumi.Input[_builtins.int]
-        """
-        The expiration timestamp of the policy.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of scheduled policy configuration.
-        """
-        start_time: pulumi.Input[_builtins.int]
-        """
-        The effective timestamp of policy.
-        """
-elif False:
-    FunctionV2ReservedInstanceTacticsConfigCronConfigArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2ReservedInstanceTacticsConfigCronConfigArgsDict(TypedDict):
+    count: pulumi.Input[_builtins.int]
+    """
+    The number of reserved instance to which the policy belongs.
+    """
+    cron: pulumi.Input[_builtins.str]
+    """
+    The cron expression.
+    """
+    expired_time: pulumi.Input[_builtins.int]
+    """
+    The expiration timestamp of the policy.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of scheduled policy configuration.
+    """
+    start_time: pulumi.Input[_builtins.int]
+    """
+    The effective timestamp of policy.
+    """
 
 @pulumi.input_type
 class FunctionV2ReservedInstanceTacticsConfigCronConfigArgs:
@@ -2025,26 +2043,23 @@ class FunctionV2ReservedInstanceTacticsConfigCronConfigArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class FunctionV2ReservedInstanceTacticsConfigMetricConfigArgsDict(TypedDict):
-        min: pulumi.Input[_builtins.int]
-        """
-        The minimun of traffic.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of metric policy.
-        """
-        threshold: pulumi.Input[_builtins.int]
-        """
-        The metric policy threshold.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        The type of metric policy.
-        """
-elif False:
-    FunctionV2ReservedInstanceTacticsConfigMetricConfigArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2ReservedInstanceTacticsConfigMetricConfigArgsDict(TypedDict):
+    min: pulumi.Input[_builtins.int]
+    """
+    The minimun of traffic.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of metric policy.
+    """
+    threshold: pulumi.Input[_builtins.int]
+    """
+    The metric policy threshold.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The type of metric policy.
+    """
 
 @pulumi.input_type
 class FunctionV2ReservedInstanceTacticsConfigMetricConfigArgs:
@@ -2113,22 +2128,19 @@ class FunctionV2ReservedInstanceTacticsConfigMetricConfigArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class FunctionV2VersionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The version name.
-        """
-        aliases: NotRequired[pulumi.Input['FunctionV2VersionAliasesArgsDict']]
-        """
-        The aliases management for specified version.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The description of the version.
-        """
-elif False:
-    FunctionV2VersionArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2VersionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The version name.
+    """
+    aliases: NotRequired[pulumi.Input['FunctionV2VersionAliasesArgsDict']]
+    """
+    The aliases management for specified version.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The description of the version.
+    """
 
 @pulumi.input_type
 class FunctionV2VersionArgs:
@@ -2184,26 +2196,23 @@ class FunctionV2VersionArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class FunctionV2VersionAliasesArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the version alias.
-        """
-        additional_version_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The description of the version alias.
-        """
-        additional_version_weights: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The percentage grayscale configuration of the version alias.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The description of the version alias.
-        """
-elif False:
-    FunctionV2VersionAliasesArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionV2VersionAliasesArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the version alias.
+    """
+    additional_version_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The description of the version alias.
+    """
+    additional_version_weights: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The percentage grayscale configuration of the version alias.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The description of the version alias.
+    """
 
 @pulumi.input_type
 class FunctionV2VersionAliasesArgs:
@@ -2275,31 +2284,28 @@ class FunctionV2VersionAliasesArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class FunctionVersionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of metric policy.  
-        The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
-        allowed. The name must start with a letter and ending with a letter or digit.
-        """
-        aliases: NotRequired[pulumi.Input['FunctionVersionAliasesArgsDict']]
-        """
-        Specifies the aliases management for specified version.  
-        The aliases structure is documented below.
+class FunctionVersionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of metric policy.  
+    The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
+    allowed. The name must start with a letter and ending with a letter or digit.
+    """
+    aliases: NotRequired[pulumi.Input['FunctionVersionAliasesArgsDict']]
+    """
+    Specifies the aliases management for specified version.  
+    The aliases structure is documented below.
 
-        > 1. A version can configure at most **one** alias.
-        <br>2. A function can have a maximum of `10` aliases.
+    > 1. A version can configure at most **one** alias.
+    <br>2. A function can have a maximum of `10` aliases.
 
-        <a name="function_versions_aliases"></a>
-        The `aliases` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the version alias.
-        """
-elif False:
-    FunctionVersionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_versions_aliases"></a>
+    The `aliases` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the version alias.
+    """
 
 @pulumi.input_type
 class FunctionVersionArgs:
@@ -2373,35 +2379,32 @@ class FunctionVersionArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class FunctionVersionAliasesArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of metric policy.  
-        The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
-        allowed. The name must start with a letter and ending with a letter or digit.
-        """
-        additional_version_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the rule grayscale configuration of the version
-        alias, in JSON format.
+class FunctionVersionAliasesArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of metric policy.  
+    The valid length is limited from `1` to `60` characters, only letters, digits, hyphens (-), and underscores (_) are
+    allowed. The name must start with a letter and ending with a letter or digit.
+    """
+    additional_version_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the rule grayscale configuration of the version
+    alias, in JSON format.
 
-        > Only one of `additional_version_weights` and `additional_version_strategy` can be configured.
+    > Only one of `additional_version_weights` and `additional_version_strategy` can be configured.
 
-        <a name="function_reserved_instances"></a>
-        The `reserved_instances` block supports:
-        """
-        additional_version_weights: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the percentage grayscale configuration of the version
-        alias, in JSON format.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the version alias.
-        """
-elif False:
-    FunctionVersionAliasesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="function_reserved_instances"></a>
+    The `reserved_instances` block supports:
+    """
+    additional_version_weights: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the percentage grayscale configuration of the version
+    alias, in JSON format.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the version alias.
+    """
 
 @pulumi.input_type
 class FunctionVersionAliasesArgs:
@@ -2491,47 +2494,44 @@ class FunctionVersionAliasesArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class TriggerApigArgsDict(TypedDict):
-        api_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the API name. Changing this will create a new trigger resource.
-        """
-        env_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the API environment name.
-        Changing this will create a new trigger resource.
-        """
-        group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the APIG group to which the API belongs.
-        Changing this will create a new trigger resource.
-        """
-        instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the APIG dedicated instance to which the API belongs.
-        Required if the `type` is `DEDICATEDGATEWAY`. Changing this will create a new trigger resource.
-        """
-        request_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the request protocol of the API. The valid value are
-        **HTTP** and **HTTPS**. Default to **HTTPS**. Changing this will create a new trigger resource.
-        """
-        security_authentication: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the security authentication mode. The valid values
-        are **NONE**, **APP** and **IAM**, default to **IAM**. Changing this will create a new trigger resource.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for request sending. The valid value is range form
-        `1` to `60,000`, default to `5,000`. Changing this will create a new trigger resource.
+class TriggerApigArgsDict(TypedDict):
+    api_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the API name. Changing this will create a new trigger resource.
+    """
+    env_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the API environment name.
+    Changing this will create a new trigger resource.
+    """
+    group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the APIG group to which the API belongs.
+    Changing this will create a new trigger resource.
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the APIG dedicated instance to which the API belongs.
+    Required if the `type` is `DEDICATEDGATEWAY`. Changing this will create a new trigger resource.
+    """
+    request_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the request protocol of the API. The valid value are
+    **HTTP** and **HTTPS**. Default to **HTTPS**. Changing this will create a new trigger resource.
+    """
+    security_authentication: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the security authentication mode. The valid values
+    are **NONE**, **APP** and **IAM**, default to **IAM**. Changing this will create a new trigger resource.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for request sending. The valid value is range form
+    `1` to `60,000`, default to `5,000`. Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_lts"></a>
-        The `lts` block supports:
-        """
-elif False:
-    TriggerApigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_lts"></a>
+    The `lts` block supports:
+    """
 
 @pulumi.input_type
 class TriggerApigArgs:
@@ -2667,45 +2667,42 @@ class TriggerApigArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class TriggerDisArgsDict(TypedDict):
-        max_fetch_bytes: pulumi.Input[_builtins.int]
-        """
-        Specifies the maximum volume of data that can be obtained for a single
-        request, in Byte. Only the records with a size smaller than this value can be obtained.
-        The valid value is range from `1,024` to `4,194,304`.
-        Changing this will create a new trigger resource.
-        """
-        pull_period: pulumi.Input[_builtins.int]
-        """
-        Specifies the interval at which data is pulled from the specified stream.
-        The valid value is range from `2` to `60,000`.
-        Changing this will create a new trigger resource.
-        """
-        serial_enable: pulumi.Input[_builtins.bool]
-        """
-        Specifies the determines whether to pull data only after the data pulled
-        in the last period has been processed.
-        Changing this will create a new trigger resource.
+class TriggerDisArgsDict(TypedDict):
+    max_fetch_bytes: pulumi.Input[_builtins.int]
+    """
+    Specifies the maximum volume of data that can be obtained for a single
+    request, in Byte. Only the records with a size smaller than this value can be obtained.
+    The valid value is range from `1,024` to `4,194,304`.
+    Changing this will create a new trigger resource.
+    """
+    pull_period: pulumi.Input[_builtins.int]
+    """
+    Specifies the interval at which data is pulled from the specified stream.
+    The valid value is range from `2` to `60,000`.
+    Changing this will create a new trigger resource.
+    """
+    serial_enable: pulumi.Input[_builtins.bool]
+    """
+    Specifies the determines whether to pull data only after the data pulled
+    in the last period has been processed.
+    Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_kafka"></a>
-        The `kafka` block supports:
-        """
-        starting_position: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of starting position for DIS queue.
-        The valid values are as follows:
-        + **TRIM_HORIZON**: Starts reading from the earliest data stored in the partitions.
-        + **LATEST**: Starts reading from the latest data stored in the partitions.
-        Changing this will create a new trigger resource.
-        """
-        stream_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the DIS stream resource.
-        Changing this will create a new trigger resource.
-        """
-elif False:
-    TriggerDisArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_kafka"></a>
+    The `kafka` block supports:
+    """
+    starting_position: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of starting position for DIS queue.
+    The valid values are as follows:
+    + **TRIM_HORIZON**: Starts reading from the earliest data stored in the partitions.
+    + **LATEST**: Starts reading from the latest data stored in the partitions.
+    Changing this will create a new trigger resource.
+    """
+    stream_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the DIS stream resource.
+    Changing this will create a new trigger resource.
+    """
 
 @pulumi.input_type
 class TriggerDisArgs:
@@ -2819,39 +2816,36 @@ class TriggerDisArgs:
         pulumi.set(self, "stream_name", value)
 
 
-if not MYPY:
-    class TriggerKafkaArgsDict(TypedDict):
-        instance_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the APIG dedicated instance to which the API belongs.
-        Required if the `type` is `DEDICATEDGATEWAY`. Changing this will create a new trigger resource.
-        """
-        topic_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies one or more topic IDs of DMS kafka instance.
-        Changing this will create a new trigger resource.
-        """
-        batch_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the The number of messages consumed from the topic each time.
-        The valid value is range from `1` to `1,000`. Defaults to `100`.
-        Changing this will create a new trigger resource.
+class TriggerKafkaArgsDict(TypedDict):
+    instance_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the APIG dedicated instance to which the API belongs.
+    Required if the `type` is `DEDICATEDGATEWAY`. Changing this will create a new trigger resource.
+    """
+    topic_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies one or more topic IDs of DMS kafka instance.
+    Changing this will create a new trigger resource.
+    """
+    batch_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the The number of messages consumed from the topic each time.
+    The valid value is range from `1` to `1,000`. Defaults to `100`.
+    Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_apig"></a>
-        The `apig` block supports:
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password for logging in to the Kafka Manager.
-        Changing this will create a new trigger resource.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the username for logging in to the Kafka Manager.
-        Changing this will create a new trigger resource.
-        """
-elif False:
-    TriggerKafkaArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_apig"></a>
+    The `apig` block supports:
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password for logging in to the Kafka Manager.
+    Changing this will create a new trigger resource.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the username for logging in to the Kafka Manager.
+    Changing this will create a new trigger resource.
+    """
 
 @pulumi.input_type
 class TriggerKafkaArgs:
@@ -2956,20 +2950,17 @@ class TriggerKafkaArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class TriggerLtsArgsDict(TypedDict):
-        log_group_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log group ID.
-        Changing this will create a new trigger resource.
-        """
-        log_topic_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the log stream ID.
-        Changing this will create a new trigger resource.
-        """
-elif False:
-    TriggerLtsArgsDict: TypeAlias = Mapping[str, Any]
+class TriggerLtsArgsDict(TypedDict):
+    log_group_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log group ID.
+    Changing this will create a new trigger resource.
+    """
+    log_topic_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the log stream ID.
+    Changing this will create a new trigger resource.
+    """
 
 @pulumi.input_type
 class TriggerLtsArgs:
@@ -3012,44 +3003,41 @@ class TriggerLtsArgs:
         pulumi.set(self, "log_topic_id", value)
 
 
-if not MYPY:
-    class TriggerObsArgsDict(TypedDict):
-        bucket_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the OBS bucket name.
-        Changing this will create a new trigger resource.
-        """
-        event_notification_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the event notification name.
-        Changing this will create a new trigger resource.
-        """
-        events: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the events that can trigger functions.
-        Changing this will create a new trigger resource.
-        The valid values are as follows:
-        + **ObjectCreated**, **Put**, **Post**, **Copy** and **CompleteMultipartUpload**.
-        + **ObjectRemoved**, **Delete** and **DeleteMarkerCreated**.
+class TriggerObsArgsDict(TypedDict):
+    bucket_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the OBS bucket name.
+    Changing this will create a new trigger resource.
+    """
+    event_notification_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the event notification name.
+    Changing this will create a new trigger resource.
+    """
+    events: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the events that can trigger functions.
+    Changing this will create a new trigger resource.
+    The valid values are as follows:
+    + **ObjectCreated**, **Put**, **Post**, **Copy** and **CompleteMultipartUpload**.
+    + **ObjectRemoved**, **Delete** and **DeleteMarkerCreated**.
 
-        > **NOTE:** If **ObjectCreated** is configured, **Put**, **Post**, **Copy** and **CompleteMultipartUpload** cannot
-        be configured. If **ObjectRemoved** is configured, **Delete** and **DeleteMarkerCreated** cannot be configured.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the prefix to limit notifications to objects beginning with this keyword.
-        Changing this will create a new trigger resource.
-        """
-        suffix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the suffix to limit notifications to objects ending with this keyword.
-        Changing this will create a new trigger resource.
+    > **NOTE:** If **ObjectCreated** is configured, **Put**, **Post**, **Copy** and **CompleteMultipartUpload** cannot
+    be configured. If **ObjectRemoved** is configured, **Delete** and **DeleteMarkerCreated** cannot be configured.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the prefix to limit notifications to objects beginning with this keyword.
+    Changing this will create a new trigger resource.
+    """
+    suffix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the suffix to limit notifications to objects ending with this keyword.
+    Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_smn"></a>
-        The `smn` block supports:
-        """
-elif False:
-    TriggerObsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_smn"></a>
+    The `smn` block supports:
+    """
 
 @pulumi.input_type
 class TriggerObsArgs:
@@ -3163,18 +3151,15 @@ class TriggerObsArgs:
         pulumi.set(self, "suffix", value)
 
 
-if not MYPY:
-    class TriggerSmnArgsDict(TypedDict):
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the Uniform Resource Name (URN) for SMN topic.
-        Changing this will create a new trigger resource.
+class TriggerSmnArgsDict(TypedDict):
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the Uniform Resource Name (URN) for SMN topic.
+    Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_dis"></a>
-        The `dis` block supports:
-        """
-elif False:
-    TriggerSmnArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_dis"></a>
+    The `dis` block supports:
+    """
 
 @pulumi.input_type
 class TriggerSmnArgs:
@@ -3206,39 +3191,36 @@ class TriggerSmnArgs:
         pulumi.set(self, "topic_urn", value)
 
 
-if not MYPY:
-    class TriggerTimerArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the trigger name, which can contains of `1` to `64` characters.
-        The name must start with a letter, only letters, digits, hyphens (-) and underscores (_) are allowed.
-        Changing this will create a new trigger resource.
-        """
-        schedule: pulumi.Input[_builtins.str]
-        """
-        Specifies the time schedule.
-        For the rate type, schedule is composed of time and time unit.
-        The time unit supports minutes (m), hours (h) and days (d).
-        For the corn expression, please refer to the HuaweiCloud
-        [document](https://support.huaweicloud.com/en-us/usermanual-functiongraph/functiongraph_01_0908.html).
-        Changing this will create a new trigger resource.
-        """
-        schedule_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the time schedule.
-        The valid values are **Rate** and **Cron**.
-        Changing this will create a new trigger resource.
-        """
-        additional_information: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the event used by the timer to trigger the function.
-        Changing this will create a new trigger resource.
+class TriggerTimerArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the trigger name, which can contains of `1` to `64` characters.
+    The name must start with a letter, only letters, digits, hyphens (-) and underscores (_) are allowed.
+    Changing this will create a new trigger resource.
+    """
+    schedule: pulumi.Input[_builtins.str]
+    """
+    Specifies the time schedule.
+    For the rate type, schedule is composed of time and time unit.
+    The time unit supports minutes (m), hours (h) and days (d).
+    For the corn expression, please refer to the HuaweiCloud
+    [document](https://support.huaweicloud.com/en-us/usermanual-functiongraph/functiongraph_01_0908.html).
+    Changing this will create a new trigger resource.
+    """
+    schedule_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the time schedule.
+    The valid values are **Rate** and **Cron**.
+    Changing this will create a new trigger resource.
+    """
+    additional_information: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the event used by the timer to trigger the function.
+    Changing this will create a new trigger resource.
 
-        <a name="fgs_trigger_obs"></a>
-        The `obs` block supports:
-        """
-elif False:
-    TriggerTimerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="fgs_trigger_obs"></a>
+    The `obs` block supports:
+    """
 
 @pulumi.input_type
 class TriggerTimerArgs:
@@ -3332,5 +3314,158 @@ class TriggerTimerArgs:
     @additional_information.setter
     def additional_information(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "additional_information", value)
+
+
+class GetResourcesFilterMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the resource tag used to filter the target resources.
+    """
+    value: _builtins.str
+    """
+    The match value used to filter the target resources.  
+    The value is fuzzy match if `key` is **resource_name**.
+
+    <a name="fgs_resources_filter_tags"></a>
+    The `tags` block supports:
+    """
+
+@pulumi.input_type
+class GetResourcesFilterMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param _builtins.str value: The match value used to filter the target resources.  
+               The value is fuzzy match if `key` is **resource_name**.
+               
+               <a name="fgs_resources_filter_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The match value used to filter the target resources.  
+        The value is fuzzy match if `key` is **resource_name**.
+
+        <a name="fgs_resources_filter_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetResourcesFilterSysTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the resource tag used to filter the target resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    The values corresponding to the current key used to filter the target resources.
+    """
+
+@pulumi.input_type
+class GetResourcesFilterSysTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param Sequence[_builtins.str] values: The values corresponding to the current key used to filter the target resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values corresponding to the current key used to filter the target resources.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetResourcesFilterTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    The key of the resource tag used to filter the target resources.
+    """
+    values: Sequence[_builtins.str]
+    """
+    The values corresponding to the current key used to filter the target resources.
+    """
+
+@pulumi.input_type
+class GetResourcesFilterTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param Sequence[_builtins.str] values: The values corresponding to the current key used to filter the target resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values corresponding to the current key used to filter the target resources.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

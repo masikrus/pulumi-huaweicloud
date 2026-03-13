@@ -30,6 +30,7 @@ class PrivateDnatRuleArgs:
                  transit_service_port: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PrivateDnatRule resource.
+
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the private NAT gateway ID to which the DNAT rule belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] transit_ip_id: Specifies the ID of the transit IP for private NAT.
@@ -202,6 +203,7 @@ class _PrivateDnatRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateDnatRule resources.
+
         :param pulumi.Input[_builtins.str] backend_interface_id: Specifies the network interface ID of the transit IP for private NAT.  
                Exactly one of `backend_interface_id` and `backend_private_ip` must be set.
         :param pulumi.Input[_builtins.str] backend_private_ip: Specifies the private IP address of the backend instance.
@@ -509,11 +511,10 @@ class PrivateDnatRule(pulumi.CustomResource):
 
         DNAT rules can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateDnatRule:PrivateDnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -605,11 +606,10 @@ class PrivateDnatRule(pulumi.CustomResource):
 
         DNAT rules can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/privateDnatRule:PrivateDnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateDnatRuleArgs args: The arguments to use to populate this resource's properties.

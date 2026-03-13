@@ -171,7 +171,7 @@ def get_backup(id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     backup_id = config.require_object("backupId")
-    mybackup = huaweicloud.vbs.get_backup(id=backup_id)
+    mybackup = huaweicloud.Vbs.get_backup(id=backup_id)
     ```
 
 
@@ -191,7 +191,7 @@ def get_backup(id: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['volumeId'] = volume_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:vbs/getBackup:getBackup', __args__, opts=opts, typ=GetBackupResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Vbs/getBackup:getBackup', __args__, opts=opts, typ=GetBackupResult).value
 
     return AwaitableGetBackupResult(
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
@@ -225,7 +225,7 @@ def get_backup_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None
 
     config = pulumi.Config()
     backup_id = config.require_object("backupId")
-    mybackup = huaweicloud.vbs.get_backup(id=backup_id)
+    mybackup = huaweicloud.Vbs.get_backup(id=backup_id)
     ```
 
 
@@ -245,7 +245,7 @@ def get_backup_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None
     __args__['status'] = status
     __args__['volumeId'] = volume_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:vbs/getBackup:getBackup', __args__, opts=opts, typ=GetBackupResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Vbs/getBackup:getBackup', __args__, opts=opts, typ=GetBackupResult)
     return __ret__.apply(lambda __response__: GetBackupResult(
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         container=pulumi.get(__response__, 'container'),

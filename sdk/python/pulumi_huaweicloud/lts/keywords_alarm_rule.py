@@ -40,6 +40,7 @@ class KeywordsAlarmRuleArgs:
                  trigger_condition_frequency: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a KeywordsAlarmRule resource.
+
         :param pulumi.Input[_builtins.str] alarm_level: Specifies the alarm level.  
                The value can be: **INFO**, **MINOR**, **MAJOR** and **CRITICAL**.
         :param pulumi.Input['KeywordsAlarmRuleFrequencyArgs'] frequency: Specifies the alarm frequency configurations.
@@ -389,6 +390,7 @@ class _KeywordsAlarmRuleState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KeywordsAlarmRule resources.
+
         :param pulumi.Input[_builtins.str] alarm_action_rule_name: Specifies the name of the alarm action rule associated with
                the keyword alarm rule.
                This parameter is available only when `send_notifications` parameter is set to **true**.
@@ -833,39 +835,16 @@ class KeywordsAlarmRule(pulumi.CustomResource):
 
         The keywords alarm rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/keywordsAlarmRule:KeywordsAlarmRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `notification_save_rule.0.user_name`, `notification_save_rule.0.timezone,`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource definition should be updated to
-
         align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_keywords_alarm_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              notification_save_rule.0.user_name, notification_save_rule.0.timezone,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -961,39 +940,16 @@ class KeywordsAlarmRule(pulumi.CustomResource):
 
         The keywords alarm rule can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/keywordsAlarmRule:KeywordsAlarmRule test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `notification_save_rule.0.user_name`, `notification_save_rule.0.timezone,`.
-
         It is generally recommended running `pulumi preview` after importing a certificate.
-
         You can then decide if changes should be applied to the certificate, or the resource definition should be updated to
-
         align with the certificate. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_keywords_alarm_rule" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              notification_save_rule.0.user_name, notification_save_rule.0.timezone,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param KeywordsAlarmRuleArgs args: The arguments to use to populate this resource's properties.

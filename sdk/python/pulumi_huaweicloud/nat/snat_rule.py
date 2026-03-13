@@ -30,6 +30,7 @@ class SnatRuleArgs:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnatRule resource.
+
         :param pulumi.Input[_builtins.str] nat_gateway_id: Specifies the ID of the gateway to which the SNAT rule belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] cidr: Specifies the CIDR block connected by SNAT rule (DC side).  
@@ -208,6 +209,7 @@ class _SnatRuleState:
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnatRule resources.
+
         :param pulumi.Input[_builtins.str] cidr: Specifies the CIDR block connected by SNAT rule (DC side).  
                This parameter and `subnet_id` are alternative. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the SNAT rule.
@@ -500,11 +502,10 @@ class SnatRule(pulumi.CustomResource):
 
         The SNAT rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/snatRule:SnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -575,11 +576,10 @@ class SnatRule(pulumi.CustomResource):
 
         The SNAT rule can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Nat/snatRule:SnatRule test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnatRuleArgs args: The arguments to use to populate this resource's properties.

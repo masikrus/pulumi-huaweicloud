@@ -108,7 +108,7 @@ def get_pipeline_service_endpoints(module_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_service_endpoints(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_service_endpoints(project_id=codearts_project_id)
     ```
 
 
@@ -122,7 +122,7 @@ def get_pipeline_service_endpoints(module_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineServiceEndpoints:getPipelineServiceEndpoints', __args__, opts=opts, typ=GetPipelineServiceEndpointsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineServiceEndpoints:getPipelineServiceEndpoints', __args__, opts=opts, typ=GetPipelineServiceEndpointsResult).value
 
     return AwaitableGetPipelineServiceEndpointsResult(
         endpoints=pulumi.get(__ret__, 'endpoints'),
@@ -145,7 +145,7 @@ def get_pipeline_service_endpoints_output(module_id: Optional[pulumi.Input[Optio
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_service_endpoints(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_service_endpoints(project_id=codearts_project_id)
     ```
 
 
@@ -159,7 +159,7 @@ def get_pipeline_service_endpoints_output(module_id: Optional[pulumi.Input[Optio
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineServiceEndpoints:getPipelineServiceEndpoints', __args__, opts=opts, typ=GetPipelineServiceEndpointsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineServiceEndpoints:getPipelineServiceEndpoints', __args__, opts=opts, typ=GetPipelineServiceEndpointsResult)
     return __ret__.apply(lambda __response__: GetPipelineServiceEndpointsResult(
         endpoints=pulumi.get(__response__, 'endpoints'),
         id=pulumi.get(__response__, 'id'),

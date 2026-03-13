@@ -28,6 +28,7 @@ class DiagnosisTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DiagnosisTask resource.
+
         :param pulumi.Input[_builtins.str] begin_time: Specifies the start time of the diagnosis task, in RFC3339 format.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] end_time: Specifies the end time of the diagnosis task, in RFC3339 format.
@@ -126,6 +127,7 @@ class _DiagnosisTaskState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DiagnosisTask resources.
+
         :param pulumi.Input[_builtins.int] abnormal_item_sum: Indicates the total number of abnormal diagnosis items.
         :param pulumi.Input[_builtins.str] begin_time: Specifies the start time of the diagnosis task, in RFC3339 format.
                Changing this creates a new resource.
@@ -295,11 +297,10 @@ class DiagnosisTask(pulumi.CustomResource):
 
         The DCS diagnosis task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/diagnosisTask:DiagnosisTask test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -342,11 +343,10 @@ class DiagnosisTask(pulumi.CustomResource):
 
         The DCS diagnosis task can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/diagnosisTask:DiagnosisTask test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DiagnosisTaskArgs args: The arguments to use to populate this resource's properties.

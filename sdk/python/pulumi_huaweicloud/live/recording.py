@@ -32,6 +32,7 @@ class RecordingArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Recording resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name. To match all names, use an asterisk (*).
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
         :param pulumi.Input['RecordingObsArgs'] obs: Specifies the obs for storing recordings.
@@ -208,6 +209,7 @@ class _RecordingState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Recording resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name. To match all names, use an asterisk (*).
         :param pulumi.Input[_builtins.str] domain_name: Specifies the ingest domain name.
         :param pulumi.Input['RecordingFlvArgs'] flv: Specifies the FLV configuration rule for storing recording as FLV.
@@ -426,11 +428,10 @@ class Recording(pulumi.CustomResource):
 
         Recording templates can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/recording:Recording test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -500,11 +501,10 @@ class Recording(pulumi.CustomResource):
 
         Recording templates can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Live/recording:Recording test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecordingArgs args: The arguments to use to populate this resource's properties.

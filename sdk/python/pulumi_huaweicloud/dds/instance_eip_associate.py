@@ -25,6 +25,7 @@ class InstanceEipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceEipAssociate resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of a DDS instance node.
@@ -100,6 +101,7 @@ class _InstanceEipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceEipAssociate resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of a DDS instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of a DDS instance node.
@@ -206,11 +208,10 @@ class InstanceEipAssociate(pulumi.CustomResource):
 
         DDS instance node association information can be imported using `<instance_id>/<node_id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/instanceEipAssociate:InstanceEipAssociate test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,11 +255,10 @@ class InstanceEipAssociate(pulumi.CustomResource):
 
         DDS instance node association information can be imported using `<instance_id>/<node_id>`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dds/instanceEipAssociate:InstanceEipAssociate test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceEipAssociateArgs args: The arguments to use to populate this resource's properties.

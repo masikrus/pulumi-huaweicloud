@@ -85,7 +85,7 @@ def get_inspector_hosts(group_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_inspector_hosts()
+    test = huaweicloud.Codearts.get_inspector_hosts()
     ```
 
 
@@ -94,7 +94,7 @@ def get_inspector_hosts(group_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['groupId'] = group_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getInspectorHosts:getInspectorHosts', __args__, opts=opts, typ=GetInspectorHostsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getInspectorHosts:getInspectorHosts', __args__, opts=opts, typ=GetInspectorHostsResult).value
 
     return AwaitableGetInspectorHostsResult(
         group_id=pulumi.get(__ret__, 'group_id'),
@@ -111,7 +111,7 @@ def get_inspector_hosts_output(group_id: Optional[pulumi.Input[Optional[_builtin
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_inspector_hosts()
+    test = huaweicloud.Codearts.get_inspector_hosts()
     ```
 
 
@@ -120,7 +120,7 @@ def get_inspector_hosts_output(group_id: Optional[pulumi.Input[Optional[_builtin
     __args__ = dict()
     __args__['groupId'] = group_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getInspectorHosts:getInspectorHosts', __args__, opts=opts, typ=GetInspectorHostsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getInspectorHosts:getInspectorHosts', __args__, opts=opts, typ=GetInspectorHostsResult)
     return __ret__.apply(lambda __response__: GetInspectorHostsResult(
         group_id=pulumi.get(__response__, 'group_id'),
         hosts=pulumi.get(__response__, 'hosts'),

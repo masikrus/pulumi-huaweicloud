@@ -27,6 +27,7 @@ class KeypairAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KeypairAssociate resource.
+
         :param pulumi.Input[_builtins.str] keypair_name: Specifies the name of SSH keypair.
         :param pulumi.Input['KeypairAssociateServerArgs'] server: Specifies the ECS information that requires associating keypair.
                These public images which are not supported to associate keypair are as follows:
@@ -111,6 +112,7 @@ class _KeypairAssociateState:
                  server: Optional[pulumi.Input['KeypairAssociateServerArgs']] = None):
         """
         Input properties used for looking up and filtering KeypairAssociate resources.
+
         :param pulumi.Input[_builtins.str] keypair_name: Specifies the name of SSH keypair.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to query the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -256,6 +258,7 @@ class KeypairAssociate(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] keypair_name: Specifies the name of SSH keypair.
@@ -333,6 +336,7 @@ class KeypairAssociate(pulumi.CustomResource):
                 "id": server_id,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeypairAssociateArgs args: The arguments to use to populate this resource's properties.

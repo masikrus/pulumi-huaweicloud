@@ -138,7 +138,7 @@ def get_private_cas(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_private_cas()
+    test = huaweicloud.Ccm.get_private_cas()
     ```
 
 
@@ -173,7 +173,7 @@ def get_private_cas(name: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getPrivateCas:getPrivateCas', __args__, opts=opts, typ=GetPrivateCasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getPrivateCas:getPrivateCas', __args__, opts=opts, typ=GetPrivateCasResult).value
 
     return AwaitableGetPrivateCasResult(
         cas=pulumi.get(__ret__, 'cas'),
@@ -200,7 +200,7 @@ def get_private_cas_output(name: Optional[pulumi.Input[Optional[_builtins.str]]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.ccm.get_private_cas()
+    test = huaweicloud.Ccm.get_private_cas()
     ```
 
 
@@ -235,7 +235,7 @@ def get_private_cas_output(name: Optional[pulumi.Input[Optional[_builtins.str]]]
     __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getPrivateCas:getPrivateCas', __args__, opts=opts, typ=GetPrivateCasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getPrivateCas:getPrivateCas', __args__, opts=opts, typ=GetPrivateCasResult)
     return __ret__.apply(lambda __response__: GetPrivateCasResult(
         cas=pulumi.get(__response__, 'cas'),
         id=pulumi.get(__response__, 'id'),

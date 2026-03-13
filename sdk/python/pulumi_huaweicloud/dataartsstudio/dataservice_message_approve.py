@@ -26,6 +26,7 @@ class DataserviceMessageApproveArgs:
                  time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DataserviceMessageApprove resource.
+
         :param pulumi.Input[_builtins.str] message_id: Specifies the ID of the message (to be approved).  
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the workspace ID of the exclusive API to which the message
@@ -136,6 +137,7 @@ class _DataserviceMessageApproveState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DataserviceMessageApprove resources.
+
         :param pulumi.Input[_builtins.int] action: Specifies the approval action performed by the message.  
                The valid values are as follows:
                + **0**: Immediate approval.
@@ -275,6 +277,7 @@ class DataserviceMessageApprove(pulumi.CustomResource):
             action=0)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] action: Specifies the approval action performed by the message.  
@@ -325,6 +328,7 @@ class DataserviceMessageApprove(pulumi.CustomResource):
             message_id=message_id,
             action=0)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DataserviceMessageApproveArgs args: The arguments to use to populate this resource's properties.

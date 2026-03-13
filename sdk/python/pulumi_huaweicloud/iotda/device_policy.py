@@ -28,6 +28,7 @@ class DevicePolicyArgs:
                  space_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DevicePolicy resource.
+
         :param pulumi.Input[_builtins.str] policy_name: Specifies the device policy name. The length should not exceed `128`, and only
                combinations of letters, numbers, underscores (_), and hyphens (-) are allowed.
         :param pulumi.Input[Sequence[pulumi.Input['DevicePolicyStatementArgs']]] statements: Specifies the policy document.  
@@ -126,6 +127,7 @@ class _DevicePolicyState:
                  update_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DevicePolicy resources.
+
         :param pulumi.Input[_builtins.str] create_time: The creation time of the device policy.
                The format is **yyyyMMdd'T'HHmmss'Z'**. e.g. **20151212T121212Z**.
         :param pulumi.Input[_builtins.str] policy_name: Specifies the device policy name. The length should not exceed `128`, and only
@@ -298,11 +300,10 @@ class DevicePolicy(pulumi.CustomResource):
 
         The device policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/devicePolicy:DevicePolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -362,11 +363,10 @@ class DevicePolicy(pulumi.CustomResource):
 
         The device policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:IoTDA/devicePolicy:DevicePolicy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DevicePolicyArgs args: The arguments to use to populate this resource's properties.

@@ -87,17 +87,12 @@ __all__ = [
     'UpgradePackageFileLocationObsLocationArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BatchtaskTargetsFilterArgsDict(TypedDict):
-        group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the list of device group IDs for executing batch task. Batch task
-        will filter out devices within the groups as targets.
-        """
-elif False:
-    BatchtaskTargetsFilterArgsDict: TypeAlias = Mapping[str, Any]
+class BatchtaskTargetsFilterArgsDict(TypedDict):
+    group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the list of device group IDs for executing batch task. Batch task
+    will filter out devices within the groups as targets.
+    """
 
 @pulumi.input_type
 class BatchtaskTargetsFilterArgs:
@@ -123,52 +118,62 @@ class BatchtaskTargetsFilterArgs:
         pulumi.set(self, "group_ids", value)
 
 
-if not MYPY:
-    class BatchtaskTaskDetailArgsDict(TypedDict):
-        errors: NotRequired[pulumi.Input[Sequence[pulumi.Input['BatchtaskTaskDetailErrorArgsDict']]]]
-        """
-        Subtask execution failure information. The value only exists when the subtask fails.
-        The task_details structure is documented below.
-        """
-        output: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The output information of subtask execution. The value only exists when the subtask is successfully
-        executed, including device ID, space ID, device secret, and device fingerprint.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The execution status of subtask. The value can be **Success** or **Fail**.
-        """
-        target: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The goal of executing subtask. The value includes product ID and node ID.
-        """
-elif False:
-    BatchtaskTaskDetailArgsDict: TypeAlias = Mapping[str, Any]
+class BatchtaskTaskDetailArgsDict(TypedDict):
+    output_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The output information of subtask execution. The value only exists when the subtask is successfully
+    executed, including device ID, space ID, device secret, and device fingerprint.
+    """
+    errors: NotRequired[pulumi.Input[Sequence[pulumi.Input['BatchtaskTaskDetailErrorArgsDict']]]]
+    """
+    Subtask execution failure information. The value only exists when the subtask fails.
+    The task_details structure is documented below.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The execution status of subtask. The value can be **Success** or **Fail**.
+    """
+    target: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The goal of executing subtask. The value includes product ID and node ID.
+    """
 
 @pulumi.input_type
 class BatchtaskTaskDetailArgs:
     def __init__(__self__, *,
+                 output_value: Optional[pulumi.Input[_builtins.str]] = None,
                  errors: Optional[pulumi.Input[Sequence[pulumi.Input['BatchtaskTaskDetailErrorArgs']]]] = None,
-                 output: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  target: Optional[pulumi.Input[_builtins.str]] = None):
         """
+        :param pulumi.Input[_builtins.str] output_value: The output information of subtask execution. The value only exists when the subtask is successfully
+               executed, including device ID, space ID, device secret, and device fingerprint.
         :param pulumi.Input[Sequence[pulumi.Input['BatchtaskTaskDetailErrorArgs']]] errors: Subtask execution failure information. The value only exists when the subtask fails.
                The task_details structure is documented below.
-        :param pulumi.Input[_builtins.str] output: The output information of subtask execution. The value only exists when the subtask is successfully
-               executed, including device ID, space ID, device secret, and device fingerprint.
         :param pulumi.Input[_builtins.str] status: The execution status of subtask. The value can be **Success** or **Fail**.
         :param pulumi.Input[_builtins.str] target: The goal of executing subtask. The value includes product ID and node ID.
         """
+        if output_value is not None:
+            pulumi.set(__self__, "output_value", output_value)
         if errors is not None:
             pulumi.set(__self__, "errors", errors)
-        if output is not None:
-            pulumi.set(__self__, "output", output)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if target is not None:
             pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter(name="OutputValue")
+    def output_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The output information of subtask execution. The value only exists when the subtask is successfully
+        executed, including device ID, space ID, device secret, and device fingerprint.
+        """
+        return pulumi.get(self, "output_value")
+
+    @output_value.setter
+    def output_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "output_value", value)
 
     @_builtins.property
     @pulumi.getter
@@ -182,19 +187,6 @@ class BatchtaskTaskDetailArgs:
     @errors.setter
     def errors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BatchtaskTaskDetailErrorArgs']]]]):
         pulumi.set(self, "errors", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def output(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The output information of subtask execution. The value only exists when the subtask is successfully
-        executed, including device ID, space ID, device secret, and device fingerprint.
-        """
-        return pulumi.get(self, "output")
-
-    @output.setter
-    def output(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "output", value)
 
     @_builtins.property
     @pulumi.getter
@@ -221,18 +213,15 @@ class BatchtaskTaskDetailArgs:
         pulumi.set(self, "target", value)
 
 
-if not MYPY:
-    class BatchtaskTaskDetailErrorArgsDict(TypedDict):
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Subtask execution failure error code.
-        """
-        error_msg: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Subtask execution failure error message.
-        """
-elif False:
-    BatchtaskTaskDetailErrorArgsDict: TypeAlias = Mapping[str, Any]
+class BatchtaskTaskDetailErrorArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Subtask execution failure error code.
+    """
+    error_msg: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Subtask execution failure error message.
+    """
 
 @pulumi.input_type
 class BatchtaskTaskDetailErrorArgs:
@@ -273,22 +262,19 @@ class BatchtaskTaskDetailErrorArgs:
         pulumi.set(self, "error_msg", value)
 
 
-if not MYPY:
-    class BatchtaskTaskProgressArgsDict(TypedDict):
-        fail: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of subtasks that failed to execute.
-        """
-        success: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of successfully executed subtasks.
-        """
-        total: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The total number of subtasks.
-        """
-elif False:
-    BatchtaskTaskProgressArgsDict: TypeAlias = Mapping[str, Any]
+class BatchtaskTaskProgressArgsDict(TypedDict):
+    fail: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of subtasks that failed to execute.
+    """
+    success: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of successfully executed subtasks.
+    """
+    total: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The total number of subtasks.
+    """
 
 @pulumi.input_type
 class BatchtaskTaskProgressArgs:
@@ -345,67 +331,64 @@ class BatchtaskTaskProgressArgs:
         pulumi.set(self, "total", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of forwarding target. The options are as follows:
-        + **HTTP_FORWARDING**: The platform can push specified device data to a Third-party application (HTTP push).
-        You can set different addresses that different types of device data are pushed to.
-        + **DIS_FORWARDING**: DIS provides efficient collection, transmission, and distribution of real-time data. It also
-        provides an abundant selection of APIs to help you quickly create real-time data applications.
-        + **OBS_FORWARDING**: OBS is a stable, secure, cloud storage service that is scalable, efficient and easy-to-use.
-        It allows you to store any amount of unstructured data in any format, and provides REST APIs so you can access your
-        data from anywhere.
-        + **AMQP_FORWARDING**: AMQP provides a scalable, distributed message queue that supports high throughput with low
-        latency. AMQP is ready from the get-go and is O&M free.
-        + **DMS_KAFKA_FORWARDING**: Distributed Message Service (DMS) for Kafka features high throughput, concurrency, and
-        scalability. It is suitable for real-time data transmission, stream data processing, system decoupling,
-        and traffic balancing.
-        + **FUNCTIONGRAPH_FORWARDING**: By forwarding data to FunctionGraph service, you only need to write your business
-        function code and set the conditions for execution in FunctionGraph. There is no need to configure and manage
-        servers or other infrastructure. Functions will run in an elastic, maintenance-free, and highly reliable manner.
-        Currently, only standard and enterprise edition IoTDA instances are supported.
-        """
-        amqp_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetAmqpForwardingArgsDict']]
-        """
-        Specifies the detail of AMQP forwards. It is required when type
-        is `AMQP_FORWARDING`. The amqp_forwarding structure is documented below.
-        """
-        dis_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetDisForwardingArgsDict']]
-        """
-        Specifies the detail of the DIS forwards. It is required when type
-        is `DIS_FORWARDING`. The dis_forwarding structure is documented below.
-        """
-        fgs_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetFgsForwardingArgsDict']]
-        """
-        Specifies the detail of the FunctionGraph forwards. It is required when
-        type is **FUNCTIONGRAPH_FORWARDING**. The fgs_forwarding structure is documented below.
+class DataforwardingRuleTargetArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of forwarding target. The options are as follows:
+    + **HTTP_FORWARDING**: The platform can push specified device data to a Third-party application (HTTP push).
+    You can set different addresses that different types of device data are pushed to.
+    + **DIS_FORWARDING**: DIS provides efficient collection, transmission, and distribution of real-time data. It also
+    provides an abundant selection of APIs to help you quickly create real-time data applications.
+    + **OBS_FORWARDING**: OBS is a stable, secure, cloud storage service that is scalable, efficient and easy-to-use.
+    It allows you to store any amount of unstructured data in any format, and provides REST APIs so you can access your
+    data from anywhere.
+    + **AMQP_FORWARDING**: AMQP provides a scalable, distributed message queue that supports high throughput with low
+    latency. AMQP is ready from the get-go and is O&M free.
+    + **DMS_KAFKA_FORWARDING**: Distributed Message Service (DMS) for Kafka features high throughput, concurrency, and
+    scalability. It is suitable for real-time data transmission, stream data processing, system decoupling,
+    and traffic balancing.
+    + **FUNCTIONGRAPH_FORWARDING**: By forwarding data to FunctionGraph service, you only need to write your business
+    function code and set the conditions for execution in FunctionGraph. There is no need to configure and manage
+    servers or other infrastructure. Functions will run in an elastic, maintenance-free, and highly reliable manner.
+    Currently, only standard and enterprise edition IoTDA instances are supported.
+    """
+    amqp_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetAmqpForwardingArgsDict']]
+    """
+    Specifies the detail of AMQP forwards. It is required when type
+    is `AMQP_FORWARDING`. The amqp_forwarding structure is documented below.
+    """
+    dis_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetDisForwardingArgsDict']]
+    """
+    Specifies the detail of the DIS forwards. It is required when type
+    is `DIS_FORWARDING`. The dis_forwarding structure is documented below.
+    """
+    fgs_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetFgsForwardingArgsDict']]
+    """
+    Specifies the detail of the FunctionGraph forwards. It is required when
+    type is **FUNCTIONGRAPH_FORWARDING**. The fgs_forwarding structure is documented below.
 
-        <a name="IoTDA_http_forwarding"></a>
-        The `http_forwarding` block supports:
-        """
-        http_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetHttpForwardingArgsDict']]
-        """
-        Specifies the detail of the HTTP forwards. It is required when type
-        is `HTTP_FORWARDING`. The http_forwarding structure is documented below.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The resource ID in UUID format.
-        """
-        kafka_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetKafkaForwardingArgsDict']]
-        """
-        Specifies the detail of the KAFKA forwards. It is required when type
-        is `DMS_KAFKA_FORWARDING`. The properties structure is documented below.
-        """
-        obs_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetObsForwardingArgsDict']]
-        """
-        Specifies the detail of the OBS forwards. It is required when type
-        is `OBS_FORWARDING`. The obs_forwarding structure is documented below.
-        """
-elif False:
-    DataforwardingRuleTargetArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_http_forwarding"></a>
+    The `http_forwarding` block supports:
+    """
+    http_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetHttpForwardingArgsDict']]
+    """
+    Specifies the detail of the HTTP forwards. It is required when type
+    is `HTTP_FORWARDING`. The http_forwarding structure is documented below.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The resource ID in UUID format.
+    """
+    kafka_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetKafkaForwardingArgsDict']]
+    """
+    Specifies the detail of the KAFKA forwards. It is required when type
+    is `DMS_KAFKA_FORWARDING`. The properties structure is documented below.
+    """
+    obs_forwarding: NotRequired[pulumi.Input['DataforwardingRuleTargetObsForwardingArgsDict']]
+    """
+    Specifies the detail of the OBS forwards. It is required when type
+    is `OBS_FORWARDING`. The obs_forwarding structure is documented below.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetArgs:
@@ -591,17 +574,14 @@ class DataforwardingRuleTargetArgs:
         pulumi.set(self, "obs_forwarding", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetAmqpForwardingArgsDict(TypedDict):
-        queue_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the AMQP Queue name.
+class DataforwardingRuleTargetAmqpForwardingArgsDict(TypedDict):
+    queue_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the AMQP Queue name.
 
-        <a name="IoTDA_kafka_forwarding"></a>
-        The `kafka_forwarding` block supports:
-        """
-elif False:
-    DataforwardingRuleTargetAmqpForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_kafka_forwarding"></a>
+    The `kafka_forwarding` block supports:
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetAmqpForwardingArgs:
@@ -631,23 +611,20 @@ class DataforwardingRuleTargetAmqpForwardingArgs:
         pulumi.set(self, "queue_name", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetDisForwardingArgsDict(TypedDict):
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region to which the KAFKA belongs.
-        """
-        stream_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the DIS stream ID.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the project ID to which the KAFKA belongs.
-        If omitted, the default project in the region will be used.
-        """
-elif False:
-    DataforwardingRuleTargetDisForwardingArgsDict: TypeAlias = Mapping[str, Any]
+class DataforwardingRuleTargetDisForwardingArgsDict(TypedDict):
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region to which the KAFKA belongs.
+    """
+    stream_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the DIS stream ID.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID to which the KAFKA belongs.
+    If omitted, the default project in the region will be used.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetDisForwardingArgs:
@@ -704,21 +681,18 @@ class DataforwardingRuleTargetDisForwardingArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetFgsForwardingArgsDict(TypedDict):
-        func_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the function name.
+class DataforwardingRuleTargetFgsForwardingArgsDict(TypedDict):
+    func_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the function name.
 
-        <a name="IoTDA_forwarding_addresses"></a>
-        The `addresses` block supports:
-        """
-        func_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the function URN.
-        """
-elif False:
-    DataforwardingRuleTargetFgsForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_forwarding_addresses"></a>
+    The `addresses` block supports:
+    """
+    func_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the function URN.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetFgsForwardingArgs:
@@ -763,17 +737,14 @@ class DataforwardingRuleTargetFgsForwardingArgs:
         pulumi.set(self, "func_urn", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetHttpForwardingArgsDict(TypedDict):
-        url: pulumi.Input[_builtins.str]
-        """
-        Specifies the Push URL. The request method must is post.
+class DataforwardingRuleTargetHttpForwardingArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    Specifies the Push URL. The request method must is post.
 
-        <a name="IoTDA_dis_forwarding"></a>
-        The `dis_forwarding` block supports:
-        """
-elif False:
-    DataforwardingRuleTargetHttpForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_dis_forwarding"></a>
+    The `dis_forwarding` block supports:
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetHttpForwardingArgs:
@@ -803,39 +774,36 @@ class DataforwardingRuleTargetHttpForwardingArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetKafkaForwardingArgsDict(TypedDict):
-        addresses: pulumi.Input[Sequence[pulumi.Input['DataforwardingRuleTargetKafkaForwardingAddressArgsDict']]]
-        """
-        Specifies the list of the connected service addresses.
-        The addresses structure is documented below.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region to which the KAFKA belongs.
-        """
-        topic: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the password.
+class DataforwardingRuleTargetKafkaForwardingArgsDict(TypedDict):
+    addresses: pulumi.Input[Sequence[pulumi.Input['DataforwardingRuleTargetKafkaForwardingAddressArgsDict']]]
+    """
+    Specifies the list of the connected service addresses.
+    The addresses structure is documented below.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region to which the KAFKA belongs.
+    """
+    topic: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password.
 
-        <a name="IoTDA_fgs_forwarding"></a>
-        The `fgs_forwarding` block supports:
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the project ID to which the KAFKA belongs.
-        If omitted, the default project in the region will be used.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SASL user name.
-        """
-elif False:
-    DataforwardingRuleTargetKafkaForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_fgs_forwarding"></a>
+    The `fgs_forwarding` block supports:
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID to which the KAFKA belongs.
+    If omitted, the default project in the region will be used.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SASL user name.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetKafkaForwardingArgs:
@@ -947,24 +915,21 @@ class DataforwardingRuleTargetKafkaForwardingArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetKafkaForwardingAddressArgsDict(TypedDict):
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port of the connected service address.
-        """
-        domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the domain of the connected service address.
-        Exactly one of `ip` or `domain` must be provided.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the IP of the connected service address.
-        Exactly one of `ip` or `domain` must be provided.
-        """
-elif False:
-    DataforwardingRuleTargetKafkaForwardingAddressArgsDict: TypeAlias = Mapping[str, Any]
+class DataforwardingRuleTargetKafkaForwardingAddressArgsDict(TypedDict):
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port of the connected service address.
+    """
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the domain of the connected service address.
+    Exactly one of `ip` or `domain` must be provided.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP of the connected service address.
+    Exactly one of `ip` or `domain` must be provided.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetKafkaForwardingAddressArgs:
@@ -1024,35 +989,32 @@ class DataforwardingRuleTargetKafkaForwardingAddressArgs:
         pulumi.set(self, "ip", value)
 
 
-if not MYPY:
-    class DataforwardingRuleTargetObsForwardingArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Specifies the OBS Bucket.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region to which the KAFKA belongs.
-        """
-        custom_directory: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the custom directory for storing channel files. The ID contains a
-        maximum of `256` characters. Multi-level directories can be separated by (/), and cannot start or end with a slash (/),
-        and cannot contain more than two adjacent slashes (/). Only letters, digits, hyphens (-), underscores (_), slash (/)
-        and braces ({}) are allowed. Braces can be used only for the time template parameters. For example, if the custom
-        directory is in the format of {YYYY}/{MM}/{DD}/{HH}, data is generated in the directory based on the current
-        time(for example, 2022/06/14/10) when data is forwarded.
+class DataforwardingRuleTargetObsForwardingArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Specifies the OBS Bucket.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region to which the KAFKA belongs.
+    """
+    custom_directory: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the custom directory for storing channel files. The ID contains a
+    maximum of `256` characters. Multi-level directories can be separated by (/), and cannot start or end with a slash (/),
+    and cannot contain more than two adjacent slashes (/). Only letters, digits, hyphens (-), underscores (_), slash (/)
+    and braces ({}) are allowed. Braces can be used only for the time template parameters. For example, if the custom
+    directory is in the format of {YYYY}/{MM}/{DD}/{HH}, data is generated in the directory based on the current
+    time(for example, 2022/06/14/10) when data is forwarded.
 
-        <a name="IoTDA_amqp_forwarding"></a>
-        The `amqp_forwarding` block supports:
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the project ID to which the KAFKA belongs.
-        If omitted, the default project in the region will be used.
-        """
-elif False:
-    DataforwardingRuleTargetObsForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_amqp_forwarding"></a>
+    The `amqp_forwarding` block supports:
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID to which the KAFKA belongs.
+    If omitted, the default project in the region will be used.
+    """
 
 @pulumi.input_type
 class DataforwardingRuleTargetObsForwardingArgs:
@@ -1141,34 +1103,31 @@ class DataforwardingRuleTargetObsForwardingArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleActionArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the alarm. The options are as follows:
-        + **fault**: Report alarms.
-        + **recovery**: Clear alarms.
-        """
-        device_alarm: NotRequired[pulumi.Input['DeviceLinkageRuleActionDeviceAlarmArgsDict']]
-        """
-        Specifies the detail of device alarm. It is required when type
-        is `DEVICE_ALARM`. The device_alarm structure is documented below.
+class DeviceLinkageRuleActionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the alarm. The options are as follows:
+    + **fault**: Report alarms.
+    + **recovery**: Clear alarms.
+    """
+    device_alarm: NotRequired[pulumi.Input['DeviceLinkageRuleActionDeviceAlarmArgsDict']]
+    """
+    Specifies the detail of device alarm. It is required when type
+    is `DEVICE_ALARM`. The device_alarm structure is documented below.
 
-        <a name="IoTDA_device_command"></a>
-        The `device_command` block supports:
-        """
-        device_command: NotRequired[pulumi.Input['DeviceLinkageRuleActionDeviceCommandArgsDict']]
-        """
-        Specifies the detail of device command. It is required when type
-        is `DEVICE_CMD`. The device_command structure is documented below.
-        """
-        smn_forwarding: NotRequired[pulumi.Input['DeviceLinkageRuleActionSmnForwardingArgsDict']]
-        """
-        Specifies the detail of SMN notifications. It is required when type
-        is `SMN_FORWARDING`. The smn_forwarding structure is documented below.
-        """
-elif False:
-    DeviceLinkageRuleActionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_device_command"></a>
+    The `device_command` block supports:
+    """
+    device_command: NotRequired[pulumi.Input['DeviceLinkageRuleActionDeviceCommandArgsDict']]
+    """
+    Specifies the detail of device command. It is required when type
+    is `DEVICE_CMD`. The device_command structure is documented below.
+    """
+    smn_forwarding: NotRequired[pulumi.Input['DeviceLinkageRuleActionSmnForwardingArgsDict']]
+    """
+    Specifies the detail of SMN notifications. It is required when type
+    is `SMN_FORWARDING`. The smn_forwarding structure is documented below.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleActionArgs:
@@ -1256,43 +1215,40 @@ class DeviceLinkageRuleActionArgs:
         pulumi.set(self, "smn_forwarding", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleActionDeviceAlarmArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the alarm.
-        """
-        severity: pulumi.Input[_builtins.str]
-        """
-        Specifies the severity level of the alarm.
-        The valid values are **warning**, **minor**, **major** and **critical**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the alarm. The options are as follows:
-        + **fault**: Report alarms.
-        + **recovery**: Clear alarms.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the alarm.  
-        The value can contain a maximum of `256` characters.
+class DeviceLinkageRuleActionDeviceAlarmArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the alarm.
+    """
+    severity: pulumi.Input[_builtins.str]
+    """
+    Specifies the severity level of the alarm.
+    The valid values are **warning**, **minor**, **major** and **critical**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the alarm. The options are as follows:
+    + **fault**: Report alarms.
+    + **recovery**: Clear alarms.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the alarm.  
+    The value can contain a maximum of `256` characters.
 
-        <a name="IoTDA_effective_period"></a>
-        The `effective_period` block supports:
-        """
-        dimension: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the dimension of the alarm. Combine the alarm name and alarm level to
-        jointly identify an alarm.
-        The valid values are as follows:
-        + **device**: Device dimension
-        + **app**: Resource space dimension.
+    <a name="IoTDA_effective_period"></a>
+    The `effective_period` block supports:
+    """
+    dimension: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the dimension of the alarm. Combine the alarm name and alarm level to
+    jointly identify an alarm.
+    The valid values are as follows:
+    + **device**: Device dimension
+    + **app**: Resource space dimension.
 
-        If not specified, default to user dimension.
-        """
-elif False:
-    DeviceLinkageRuleActionDeviceAlarmArgsDict: TypeAlias = Mapping[str, Any]
+    If not specified, default to user dimension.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleActionDeviceAlarmArgs:
@@ -1404,67 +1360,64 @@ class DeviceLinkageRuleActionDeviceAlarmArgs:
         pulumi.set(self, "dimension", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleActionDeviceCommandArgsDict(TypedDict):
-        command_body: pulumi.Input[_builtins.str]
-        """
-        Specifies the command parameters, in json format.
-        + Example of device command using LWM2M protocol: `{"value":"1"}`, there are key-value pairs, each key is the
-        parameter name of the command in the product model.
-        + Example of device command using MQTT protocol: `{"header": {"mode": "ACK","from": "/users/testUser","method":
-        "SET_TEMPERATURE_READ_PERIOD","to":"/devices/{device_id }/services/{service_id}"},"body": {"value" : "1"}}`.
-        - **mode**: Required, whether the device needs to reply to the confirmation message after receiving the command.
-        The default is ACK mode. `ACK` indicates that the confirmation message needs to be replied,
-        `NOACK` indicates that the confirmation message does not need to be replied.
-        - **from**: Optional, the address of the command sender.
-        When the App initiates a request, the format is /users/{userId},
-        when the application server initiates a request, the format is /{serviceName},
-        and when the IoT platform initiates a request, the format is /cloud/{serviceName}.
-        - **to**: optional, the address of the command receiver, the format is /devices/{device_id}/services/{service_id}.
-        - **method**: optional, the command name defined in the product model.
-        - **body**: optional, the message body of the command, which contains key-value pairs, each key is the parameter
-        name of the command in the product model. The specific format requires application and device conventions.
-        """
-        command_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the command name.
-        """
-        device_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the device id which executes the command.
-        """
-        service_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the service id to which the command belongs.
-        """
-        buffer_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the cache time of device commands, in seconds. Representing the effective
-        time for the IoT platform to cache commands before issuing them to the device. After this time, the commands will no
-        longer be issued. The default value is `172,800` seconds (`48` hours). If set to `0`, the command will be immediately
-        issued to the device regardless of the command issuance mode set on the IoT platform.
-        """
-        mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the issuance mode of device commands, which is only valid when the value of
-        `buffer_timeout` is greater than `0`.
-        The valid values are as follows:
-        + **ACTIVE**: Active mode, the IoT platform actively issues commands to devices.
-        + **PASSIVE**: Passive mode, after the IoT platform creates device commands, it will directly cache the commands.
-        Wait until the device goes online again or reports the execution result of the previous command before issuing the
-        command.
+class DeviceLinkageRuleActionDeviceCommandArgsDict(TypedDict):
+    command_body: pulumi.Input[_builtins.str]
+    """
+    Specifies the command parameters, in json format.
+    + Example of device command using LWM2M protocol: `{"value":"1"}`, there are key-value pairs, each key is the
+    parameter name of the command in the product model.
+    + Example of device command using MQTT protocol: `{"header": {"mode": "ACK","from": "/users/testUser","method":
+    "SET_TEMPERATURE_READ_PERIOD","to":"/devices/{device_id }/services/{service_id}"},"body": {"value" : "1"}}`.
+    - **mode**: Required, whether the device needs to reply to the confirmation message after receiving the command.
+    The default is ACK mode. `ACK` indicates that the confirmation message needs to be replied,
+    `NOACK` indicates that the confirmation message does not need to be replied.
+    - **from**: Optional, the address of the command sender.
+    When the App initiates a request, the format is /users/{userId},
+    when the application server initiates a request, the format is /{serviceName},
+    and when the IoT platform initiates a request, the format is /cloud/{serviceName}.
+    - **to**: optional, the address of the command receiver, the format is /devices/{device_id}/services/{service_id}.
+    - **method**: optional, the command name defined in the product model.
+    - **body**: optional, the message body of the command, which contains key-value pairs, each key is the parameter
+    name of the command in the product model. The specific format requires application and device conventions.
+    """
+    command_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the command name.
+    """
+    device_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the device id which executes the command.
+    """
+    service_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the service id to which the command belongs.
+    """
+    buffer_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the cache time of device commands, in seconds. Representing the effective
+    time for the IoT platform to cache commands before issuing them to the device. After this time, the commands will no
+    longer be issued. The default value is `172,800` seconds (`48` hours). If set to `0`, the command will be immediately
+    issued to the device regardless of the command issuance mode set on the IoT platform.
+    """
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the issuance mode of device commands, which is only valid when the value of
+    `buffer_timeout` is greater than `0`.
+    The valid values are as follows:
+    + **ACTIVE**: Active mode, the IoT platform actively issues commands to devices.
+    + **PASSIVE**: Passive mode, after the IoT platform creates device commands, it will directly cache the commands.
+    Wait until the device goes online again or reports the execution result of the previous command before issuing the
+    command.
 
-        <a name="IoTDA_smn_forwarding"></a>
-        The `smn_forwarding` block supports:
-        """
-        response_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the effective time of the command response, in seconds. Indicating that
-        the device responds effectively within the `response_timeout` time after receiving the command. If no response is
-        received after this time, the command response is considered to have timed out. The default value is `1,800` seconds.
-        """
-elif False:
-    DeviceLinkageRuleActionDeviceCommandArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_smn_forwarding"></a>
+    The `smn_forwarding` block supports:
+    """
+    response_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the effective time of the command response, in seconds. Indicating that
+    the device responds effectively within the `response_timeout` time after receiving the command. If no response is
+    received after this time, the command response is considered to have timed out. The default value is `1,800` seconds.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleActionDeviceCommandArgs:
@@ -1639,42 +1592,39 @@ class DeviceLinkageRuleActionDeviceCommandArgs:
         pulumi.set(self, "response_timeout", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleActionSmnForwardingArgsDict(TypedDict):
-        message_title: pulumi.Input[_builtins.str]
-        """
-        Specifies the message title.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region to which the SMN belongs.
-        """
-        topic_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name of the SMN.
-        """
-        topic_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic URN of the SMN.
-        """
-        message_content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the message content.
-        """
-        message_template_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the template name corresponding to the SMN service.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the project ID to which the SMN belongs.
-        If omitted, the default project in the region will be used.
+class DeviceLinkageRuleActionSmnForwardingArgsDict(TypedDict):
+    message_title: pulumi.Input[_builtins.str]
+    """
+    Specifies the message title.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region to which the SMN belongs.
+    """
+    topic_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name of the SMN.
+    """
+    topic_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic URN of the SMN.
+    """
+    message_content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the message content.
+    """
+    message_template_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the template name corresponding to the SMN service.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the project ID to which the SMN belongs.
+    If omitted, the default project in the region will be used.
 
-        <a name="IoTDA_device_alarm"></a>
-        The `device_alarm` block supports:
-        """
-elif False:
-    DeviceLinkageRuleActionSmnForwardingArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_device_alarm"></a>
+    The `device_alarm` block supports:
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleActionSmnForwardingArgs:
@@ -1799,25 +1749,22 @@ class DeviceLinkageRuleActionSmnForwardingArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleEffectivePeriodArgsDict(TypedDict):
-        end_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the end time, in the format: `HH:mm`.
-        For example: `10:00`. If the end time is the same as the start time, the effective period is the whole day.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time, in the format: `HH:mm`.
-        For example: `03:00`.
-        """
-        days_of_week: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a list of days of week, separated by commas. 1 represents Sunday,
-        2 represents Monday, and so on. Defaults to `1,2,3,4,5,6,7` (every day).
-        """
-elif False:
-    DeviceLinkageRuleEffectivePeriodArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceLinkageRuleEffectivePeriodArgsDict(TypedDict):
+    end_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the end time, in the format: `HH:mm`.
+    For example: `10:00`. If the end time is the same as the start time, the effective period is the whole day.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time, in the format: `HH:mm`.
+    For example: `03:00`.
+    """
+    days_of_week: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a list of days of week, separated by commas. 1 represents Sunday,
+    2 represents Monday, and so on. Defaults to `1,2,3,4,5,6,7` (every day).
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleEffectivePeriodArgs:
@@ -1878,43 +1825,40 @@ class DeviceLinkageRuleEffectivePeriodArgs:
         pulumi.set(self, "days_of_week", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleTriggerArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the alarm. The options are as follows:
-        + **fault**: Report alarms.
-        + **recovery**: Clear alarms.
-        """
-        daily_timer_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDailyTimerConditionArgsDict']]
-        """
-        Specifies the condition triggered at specified time every day. It is
-        required when `type` is **DAILY_TIMER**.
-        The daily_timer_condition structure is documented below.
-        """
-        device_data_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDeviceDataConditionArgsDict']]
-        """
-        Specifies the condition triggered upon the property of device. It is
-        required when `type` is **DEVICE_DATA**.
-        The device_data_condition structure is documented below.
-        """
-        device_linkage_status_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgsDict']]
-        """
-        Specifies the condition triggered by device status. It is
-        required when `type` is **DEVICE_LINKAGE_STATUS**.
-        The device_linkage_status_condition structure is documented below.
+class DeviceLinkageRuleTriggerArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the alarm. The options are as follows:
+    + **fault**: Report alarms.
+    + **recovery**: Clear alarms.
+    """
+    daily_timer_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDailyTimerConditionArgsDict']]
+    """
+    Specifies the condition triggered at specified time every day. It is
+    required when `type` is **DAILY_TIMER**.
+    The daily_timer_condition structure is documented below.
+    """
+    device_data_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDeviceDataConditionArgsDict']]
+    """
+    Specifies the condition triggered upon the property of device. It is
+    required when `type` is **DEVICE_DATA**.
+    The device_data_condition structure is documented below.
+    """
+    device_linkage_status_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgsDict']]
+    """
+    Specifies the condition triggered by device status. It is
+    required when `type` is **DEVICE_LINKAGE_STATUS**.
+    The device_linkage_status_condition structure is documented below.
 
-        <a name="IoTDA_device_data_condition"></a>
-        The `device_data_condition` block supports:
-        """
-        simple_timer_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerSimpleTimerConditionArgsDict']]
-        """
-        Specifies the condition triggered by policy. It is required when `type`
-        is **SIMPLE_TIMER**.
-        The simple_timer_condition structure is documented below.
-        """
-elif False:
-    DeviceLinkageRuleTriggerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_device_data_condition"></a>
+    The `device_data_condition` block supports:
+    """
+    simple_timer_condition: NotRequired[pulumi.Input['DeviceLinkageRuleTriggerSimpleTimerConditionArgsDict']]
+    """
+    Specifies the condition triggered by policy. It is required when `type`
+    is **SIMPLE_TIMER**.
+    The simple_timer_condition structure is documented below.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleTriggerArgs:
@@ -2028,20 +1972,17 @@ class DeviceLinkageRuleTriggerArgs:
         pulumi.set(self, "simple_timer_condition", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleTriggerDailyTimerConditionArgsDict(TypedDict):
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time, in the format: `HH:mm`.
-        For example: `03:00`.
-        """
-        days_of_week: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a list of days of week, separated by commas. 1 represents Sunday,
-        2 represents Monday, and so on. Defaults to `1,2,3,4,5,6,7` (every day).
-        """
-elif False:
-    DeviceLinkageRuleTriggerDailyTimerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceLinkageRuleTriggerDailyTimerConditionArgsDict(TypedDict):
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time, in the format: `HH:mm`.
+    For example: `03:00`.
+    """
+    days_of_week: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a list of days of week, separated by commas. 1 represents Sunday,
+    2 represents Monday, and so on. Defaults to `1,2,3,4,5,6,7` (every day).
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleTriggerDailyTimerConditionArgs:
@@ -2085,62 +2026,59 @@ class DeviceLinkageRuleTriggerDailyTimerConditionArgs:
         pulumi.set(self, "days_of_week", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleTriggerDeviceDataConditionArgsDict(TypedDict):
-        operator: pulumi.Input[_builtins.str]
-        """
-        Specifies the data comparison operator. The valid values are: **>**, **<**,
-        **>=**, **<=**, **=**, **in** and **between**.
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        Specifies the path of the device property, in the format: **service_id/DataProperty**.
-        """
-        data_validatiy_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies data validity period, Unit is `seconds`. Defaults to `300`.
-        For example, if Data Validity Period is set to 30 minutes, a device generates data at 19:00, and the platform receives
-        the data at 20:00, the action is not triggered regardless of whether the conditions are met.
+class DeviceLinkageRuleTriggerDeviceDataConditionArgsDict(TypedDict):
+    operator: pulumi.Input[_builtins.str]
+    """
+    Specifies the data comparison operator. The valid values are: **>**, **<**,
+    **>=**, **<=**, **=**, **in** and **between**.
+    """
+    path: pulumi.Input[_builtins.str]
+    """
+    Specifies the path of the device property, in the format: **service_id/DataProperty**.
+    """
+    data_validatiy_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies data validity period, Unit is `seconds`. Defaults to `300`.
+    For example, if Data Validity Period is set to 30 minutes, a device generates data at 19:00, and the platform receives
+    the data at 20:00, the action is not triggered regardless of whether the conditions are met.
 
-        <a name="IoTDA_simple_timer_condition"></a>
-        The `simple_timer_condition` block supports:
-        """
-        device_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the device id which executes the command.
-        """
-        in_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the Rvalue of a data comparison expression. Only when the `operator` is
-        **in**, this field is valid and required, with a maximum of `20` characters, represents matching within the specified
-        values, e.g. **20,30,40**,
-        """
-        product_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the product ID. If this field is set and the `device_id` is empty, the
-        device attribute will trigger the matching of all devices under this product.
+    <a name="IoTDA_simple_timer_condition"></a>
+    The `simple_timer_condition` block supports:
+    """
+    device_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device id which executes the command.
+    """
+    in_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the Rvalue of a data comparison expression. Only when the `operator` is
+    **in**, this field is valid and required, with a maximum of `20` characters, represents matching within the specified
+    values, e.g. **20,30,40**,
+    """
+    product_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the product ID. If this field is set and the `device_id` is empty, the
+    device attribute will trigger the matching of all devices under this product.
 
-        > 1. `device_id` and `product_id` cannot be empty at the same time.<br/>2. If both the `device_id` and `product_id` are
-        set, the `device_id` field will prevail, and `product_id` will not take effect at this time.
-        """
-        trigger_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the trigger strategy. The options are as follows:
-        + **pulse**: When the data reported by the device meets the conditions, the rule can be triggered.
-        + **reverse**: Repetition suppression. For example, if an alarm is configured to be triggered when the battery level
-        is lower than 20%, the alarm will be triggered once the battery initially drops below 20% but will not be triggered
-        again each time the battery drops to a lower level.
+    > 1. `device_id` and `product_id` cannot be empty at the same time.<br/>2. If both the `device_id` and `product_id` are
+    set, the `device_id` field will prevail, and `product_id` will not take effect at this time.
+    """
+    trigger_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the trigger strategy. The options are as follows:
+    + **pulse**: When the data reported by the device meets the conditions, the rule can be triggered.
+    + **reverse**: Repetition suppression. For example, if an alarm is configured to be triggered when the battery level
+    is lower than 20%, the alarm will be triggered once the battery initially drops below 20% but will not be triggered
+    again each time the battery drops to a lower level.
 
-        Defaults to `pulse`.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Rvalue of a data comparison expression. When the `operator` is **between**,
-        the Rvalue represents the minimum and maximum values, separated by commas, such as **20,30**,
-        which means greater than or equal to `20` and less than `30`.
-        """
-elif False:
-    DeviceLinkageRuleTriggerDeviceDataConditionArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to `pulse`.
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Rvalue of a data comparison expression. When the `operator` is **between**,
+    the Rvalue represents the minimum and maximum values, separated by commas, such as **20,30**,
+    which means greater than or equal to `20` and less than `30`.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleTriggerDeviceDataConditionArgs:
@@ -2315,37 +2253,34 @@ class DeviceLinkageRuleTriggerDeviceDataConditionArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgsDict(TypedDict):
-        device_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the device id which executes the command.
-        """
-        duration: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the duration of device status. The valid value ranges from `0` to `60` minutes.
+class DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgsDict(TypedDict):
+    device_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device id which executes the command.
+    """
+    duration: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the duration of device status. The valid value ranges from `0` to `60` minutes.
 
-        <a name="IoTDA_actions"></a>
-        The `actions` block supports:
-        """
-        product_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the product ID. If this field is set and the `device_id` is empty, the
-        device attribute will trigger the matching of all devices under this product.
+    <a name="IoTDA_actions"></a>
+    The `actions` block supports:
+    """
+    product_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the product ID. If this field is set and the `device_id` is empty, the
+    device attribute will trigger the matching of all devices under this product.
 
-        > 1. `device_id` and `product_id` cannot be empty at the same time.<br/>2. If both the `device_id` and `product_id` are
-        set, the `device_id` field will prevail, and `product_id` will not take effect at this time.
-        """
-        status_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies device status list, separate multiple status with commas.
-        e.g. **ONLINE**, **OFFLINE**.
-        The valid device status values are as follows:
-        + **ONLINE**: Device online.
-        + **OFFLINE**: Device offline.
-        """
-elif False:
-    DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgsDict: TypeAlias = Mapping[str, Any]
+    > 1. `device_id` and `product_id` cannot be empty at the same time.<br/>2. If both the `device_id` and `product_id` are
+    set, the `device_id` field will prevail, and `product_id` will not take effect at this time.
+    """
+    status_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies device status list, separate multiple status with commas.
+    e.g. **ONLINE**, **OFFLINE**.
+    The valid device status values are as follows:
+    + **ONLINE**: Device online.
+    + **OFFLINE**: Device offline.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgs:
@@ -2440,26 +2375,23 @@ class DeviceLinkageRuleTriggerDeviceLinkageStatusConditionArgs:
         pulumi.set(self, "status_lists", value)
 
 
-if not MYPY:
-    class DeviceLinkageRuleTriggerSimpleTimerConditionArgsDict(TypedDict):
-        repeat_count: pulumi.Input[_builtins.int]
-        """
-        Specifies total number of repetition.
+class DeviceLinkageRuleTriggerSimpleTimerConditionArgsDict(TypedDict):
+    repeat_count: pulumi.Input[_builtins.int]
+    """
+    Specifies total number of repetition.
 
-        <a name="IoTDA_daily_timer_condition"></a>
-        The `daily_timer_condition` block supports:
-        """
-        repeat_interval: pulumi.Input[_builtins.int]
-        """
-        Specifies the interval of repetition, Unit is `minutes`.
-        """
-        start_time: pulumi.Input[_builtins.str]
-        """
-        Specifies the start time, in the format: `HH:mm`.
-        For example: `03:00`.
-        """
-elif False:
-    DeviceLinkageRuleTriggerSimpleTimerConditionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_daily_timer_condition"></a>
+    The `daily_timer_condition` block supports:
+    """
+    repeat_interval: pulumi.Input[_builtins.int]
+    """
+    Specifies the interval of repetition, Unit is `minutes`.
+    """
+    start_time: pulumi.Input[_builtins.str]
+    """
+    Specifies the start time, in the format: `HH:mm`.
+    For example: `03:00`.
+    """
 
 @pulumi.input_type
 class DeviceLinkageRuleTriggerSimpleTimerConditionArgs:
@@ -2521,22 +2453,19 @@ class DeviceLinkageRuleTriggerSimpleTimerConditionArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class DeviceMessageErrorInfoArgsDict(TypedDict):
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The abnormal information error code.  
-        The valid values are as follows:
-        + **IOTDA.014016**: Indicates that the device is not online.
-        + **IOTDA.014112**: Indicates that the device has not subscribed to the topic.
-        """
-        error_msg: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The abnormal information explanation. Includes instructions for devices not online and devices not
-        subscribed to the topic.
-        """
-elif False:
-    DeviceMessageErrorInfoArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceMessageErrorInfoArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The abnormal information error code.  
+    The valid values are as follows:
+    + **IOTDA.014016**: Indicates that the device is not online.
+    + **IOTDA.014112**: Indicates that the device has not subscribed to the topic.
+    """
+    error_msg: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The abnormal information explanation. Includes instructions for devices not online and devices not
+    subscribed to the topic.
+    """
 
 @pulumi.input_type
 class DeviceMessageErrorInfoArgs:
@@ -2585,31 +2514,28 @@ class DeviceMessageErrorInfoArgs:
         pulumi.set(self, "error_msg", value)
 
 
-if not MYPY:
-    class DeviceMessagePropertiesArgsDict(TypedDict):
-        correlation_data: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies relevant data in MQTT 5.0 request and response patterns.
-        The length should not exceed `128`, and only combinations of letters, numbers, underscores (_), and hyphens (-) are
-        allowed. Changing this parameter will create a new resource.
-        """
-        response_topic: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies response topic in MQTT 5.0 request and response patterns.
-        The length should not exceed 128, and only letters, numbers, and the following characters are allowed: `_-?=$#+/`.
-        Changing this parameter will create a new resource.
-        """
-        user_properties: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeviceMessagePropertiesUserPropertyArgsDict']]]]
-        """
-        Specifies user-defined attributes. The maximum number that can be
-        configured is `20`. Changing this parameter will create a new resource.
-        The user_properties structure is documented below.
+class DeviceMessagePropertiesArgsDict(TypedDict):
+    correlation_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies relevant data in MQTT 5.0 request and response patterns.
+    The length should not exceed `128`, and only combinations of letters, numbers, underscores (_), and hyphens (-) are
+    allowed. Changing this parameter will create a new resource.
+    """
+    response_topic: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies response topic in MQTT 5.0 request and response patterns.
+    The length should not exceed 128, and only letters, numbers, and the following characters are allowed: `_-?=$#+/`.
+    Changing this parameter will create a new resource.
+    """
+    user_properties: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeviceMessagePropertiesUserPropertyArgsDict']]]]
+    """
+    Specifies user-defined attributes. The maximum number that can be
+    configured is `20`. Changing this parameter will create a new resource.
+    The user_properties structure is documented below.
 
-        <a name="iotda_user_properties"></a>
-        The `user_properties` block supports:
-        """
-elif False:
-    DeviceMessagePropertiesArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="iotda_user_properties"></a>
+    The `user_properties` block supports:
+    """
 
 @pulumi.input_type
 class DeviceMessagePropertiesArgs:
@@ -2684,22 +2610,19 @@ class DeviceMessagePropertiesArgs:
         pulumi.set(self, "user_properties", value)
 
 
-if not MYPY:
-    class DeviceMessagePropertiesUserPropertyArgsDict(TypedDict):
-        prop_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies custom attribute key. The length should not exceed `128`, and only
-        combinations of letters, numbers, underscores (_), and hyphens (-) are allowed.
-        Changing this parameter will create a new resource.
-        """
-        prop_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies custom attribute value. The length should not exceed `128`, and
-        only Chinese, letters, numbers, and the following characters are allowed: `_? '#().,&%@!-`.
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    DeviceMessagePropertiesUserPropertyArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceMessagePropertiesUserPropertyArgsDict(TypedDict):
+    prop_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies custom attribute key. The length should not exceed `128`, and only
+    combinations of letters, numbers, underscores (_), and hyphens (-) are allowed.
+    Changing this parameter will create a new resource.
+    """
+    prop_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies custom attribute value. The length should not exceed `128`, and
+    only Chinese, letters, numbers, and the following characters are allowed: `_? '#().,&%@!-`.
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class DeviceMessagePropertiesUserPropertyArgs:
@@ -2748,34 +2671,31 @@ class DeviceMessagePropertiesUserPropertyArgs:
         pulumi.set(self, "prop_value", value)
 
 
-if not MYPY:
-    class DevicePolicyStatementArgsDict(TypedDict):
-        actions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the operations allowed or denied by the policy. This value is in string list
-        format, the format of a single operation is **service name:resource:operation**.
-        The valid values are as follows:
-        + **iotda:devices:publish**: The device uses MQTT protocol to publish messages.
-        + **iotda:devices:subscribe**: The device subscribes to messages using the MQTT protocol.
-        """
-        effect: pulumi.Input[_builtins.str]
-        """
-        Specifies whether to allow or deny the operation. When there are authorization
-        statements that both allow and deny, follow the principle of prioritizing denial.
-        The valid values are as follows:
-        + **ALLOW**
-        + **DENY**
-        """
-        resources: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies the resources that allow or deny operations to be performed on them.
-        This value is in string list format, the format of a single resource is **resource type:resource name**.
-        For example, the resources subscribed to by the device are **topic:/v1/${devices.deviceId}/test/hello**.
-        When using this parameter,
-        please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-iothub/iot_01_1114.html).
-        """
-elif False:
-    DevicePolicyStatementArgsDict: TypeAlias = Mapping[str, Any]
+class DevicePolicyStatementArgsDict(TypedDict):
+    actions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the operations allowed or denied by the policy. This value is in string list
+    format, the format of a single operation is **service name:resource:operation**.
+    The valid values are as follows:
+    + **iotda:devices:publish**: The device uses MQTT protocol to publish messages.
+    + **iotda:devices:subscribe**: The device subscribes to messages using the MQTT protocol.
+    """
+    effect: pulumi.Input[_builtins.str]
+    """
+    Specifies whether to allow or deny the operation. When there are authorization
+    statements that both allow and deny, follow the principle of prioritizing denial.
+    The valid values are as follows:
+    + **ALLOW**
+    + **DENY**
+    """
+    resources: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the resources that allow or deny operations to be performed on them.
+    This value is in string list format, the format of a single resource is **resource type:resource name**.
+    For example, the resources subscribed to by the device are **topic:/v1/${devices.deviceId}/test/hello**.
+    When using this parameter,
+    please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-iothub/iot_01_1114.html).
+    """
 
 @pulumi.input_type
 class DevicePolicyStatementArgs:
@@ -2853,20 +2773,17 @@ class DevicePolicyStatementArgs:
         pulumi.set(self, "resources", value)
 
 
-if not MYPY:
-    class DeviceProxyEffectiveTimeRangeArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the device proxy expiration time, must be greater than `start_time`,
-        using UTC time zone, the format is **yyyyMMdd'T'HHMmmss-Z**. e.g. **20250528T153000Z**.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the effective time of the device proxy, using UTC time zone,
-        the format is **yyyyMMdd'T'HHMmmss-Z**. e.g. **20250528T153000Z**.
-        """
-elif False:
-    DeviceProxyEffectiveTimeRangeArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceProxyEffectiveTimeRangeArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the device proxy expiration time, must be greater than `start_time`,
+    using UTC time zone, the format is **yyyyMMdd'T'HHMmmss-Z**. e.g. **20250528T153000Z**.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the effective time of the device proxy, using UTC time zone,
+    the format is **yyyyMMdd'T'HHMmmss-Z**. e.g. **20250528T153000Z**.
+    """
 
 @pulumi.input_type
 class DeviceProxyEffectiveTimeRangeArgs:
@@ -2911,21 +2828,18 @@ class DeviceProxyEffectiveTimeRangeArgs:
         pulumi.set(self, "start_time", value)
 
 
-if not MYPY:
-    class DeviceShadowArgsDict(TypedDict):
-        desired: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
-        """
-        Specifies the initial properties data of the device.
-        The each key is a parameter name of a property in the product model.
-        If you want to delete the entire `desired`, please enter an empty Map. e.g. **desired = {}**.
-        """
-        service_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the service ID of the device.
-        Which is defined in the product model associated with the device.
-        """
-elif False:
-    DeviceShadowArgsDict: TypeAlias = Mapping[str, Any]
+class DeviceShadowArgsDict(TypedDict):
+    desired: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
+    """
+    Specifies the initial properties data of the device.
+    The each key is a parameter name of a property in the product model.
+    If you want to delete the entire `desired`, please enter an empty Map. e.g. **desired = {}**.
+    """
+    service_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the service ID of the device.
+    Which is defined in the product model associated with the device.
+    """
 
 @pulumi.input_type
 class DeviceShadowArgs:
@@ -2970,50 +2884,47 @@ class DeviceShadowArgs:
         pulumi.set(self, "service_id", value)
 
 
-if not MYPY:
-    class ProductServiceArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Specifies the service ID. The ID contains a maximum of `64` characters. Only letters,
-        Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are allowed: `?'#().,&%@!`.
-        """
-        commands: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandArgsDict']]]]
-        """
-        Specifies the list of commands for the service.
-        The commands structure is documented below.
+class ProductServiceArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the service ID. The ID contains a maximum of `64` characters. Only letters,
+    Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are allowed: `?'#().,&%@!`.
+    """
+    commands: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandArgsDict']]]]
+    """
+    Specifies the list of commands for the service.
+    The commands structure is documented below.
 
-        <a name="IoTDA_service_properties"></a>
-        The `properties` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description contains a maximum of
-        `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
-        characters are allowed: `?'#().,&%@!`.
-        """
-        option: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether the device service is mandatory.
-        Currently, this field is not a functional field and is used only for identification.
-        The valid values are as follows:
-        + **Master**: The master service.
-        + **Mandatory**: The mandatory service.
-        + **Optional**:  The optional service.
+    <a name="IoTDA_service_properties"></a>
+    The `properties` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description contains a maximum of
+    `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
+    characters are allowed: `?'#().,&%@!`.
+    """
+    option: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the device service is mandatory.
+    Currently, this field is not a functional field and is used only for identification.
+    The valid values are as follows:
+    + **Master**: The master service.
+    + **Mandatory**: The mandatory service.
+    + **Optional**:  The optional service.
 
-        Defaults to **Optional**.
-        """
-        properties: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServicePropertyArgsDict']]]]
-        """
-        Specifies the list of properties for the service.
-        The properties structure is documented below.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the parameter.
-        The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
-        """
-elif False:
-    ProductServiceArgsDict: TypeAlias = Mapping[str, Any]
+    Defaults to **Optional**.
+    """
+    properties: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServicePropertyArgsDict']]]]
+    """
+    Specifies the list of properties for the service.
+    The properties structure is documented below.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the parameter.
+    The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
+    """
 
 @pulumi.input_type
 class ProductServiceArgs:
@@ -3149,29 +3060,26 @@ class ProductServiceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ProductServiceCommandArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter. The name contains a maximum of `64` characters.
-        Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
-        allowed: `?'#().,&%@!`.
-        """
-        paras: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandParaArgsDict']]]]
-        """
-        Specifies the list of parameters for the command.
-        The paras structure is documented below.
-        """
-        responses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandResponseArgsDict']]]]
-        """
-        Specifies the list of responses for the command.
-        The responses structure is documented below.
+class ProductServiceCommandArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter. The name contains a maximum of `64` characters.
+    Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
+    allowed: `?'#().,&%@!`.
+    """
+    paras: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandParaArgsDict']]]]
+    """
+    Specifies the list of parameters for the command.
+    The paras structure is documented below.
+    """
+    responses: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProductServiceCommandResponseArgsDict']]]]
+    """
+    Specifies the list of responses for the command.
+    The responses structure is documented below.
 
-        <a name="IoTDA_service_commands_properties"></a>
-        The `paras` and `responses` block supports:
-        """
-elif False:
-    ProductServiceCommandArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_service_commands_properties"></a>
+    The `paras` and `responses` block supports:
+    """
 
 @pulumi.input_type
 class ProductServiceCommandArgs:
@@ -3241,73 +3149,70 @@ class ProductServiceCommandArgs:
         pulumi.set(self, "responses", value)
 
 
-if not MYPY:
-    class ProductServiceCommandParaArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter. The name contains a maximum of `64` characters.
-        Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
-        allowed: `?'#().,&%@!`.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the parameter.
-        The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
-        """
-        default_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value of the device property.
-        This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
-        If this parameter is set value, the value will be written to the desired data of the device shadow when
-        the product is used to create a device. When the device goes online, the value will be delivered to the device.
+class ProductServiceCommandParaArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter. The name contains a maximum of `64` characters.
+    Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
+    allowed: `?'#().,&%@!`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the parameter.
+    The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value of the device property.
+    This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
+    If this parameter is set value, the value will be written to the desired data of the device shadow when
+    the product is used to create a device. When the device goes online, the value will be delivered to the device.
 
-        > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
+    > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
 
-        <a name="IoTDA_service_commands"></a>
-        The `commands` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description contains a maximum of
-        `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
-        characters are allowed: `?'#().,&%@!`.
-        """
-        enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values of the parameter.
-        """
-        max: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the max value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
-        """
-        max_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
-        **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        min: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the min value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the parameter is mandatory or not.
-        The default value is **false**.
-        """
-        step: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the step of the parameter when the `type` is **int** or **decimal**.
-        Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit of the parameter when the `type` is **int** or **decimal**.
-        The unit contains a maximum of 16 characters.
-        """
-elif False:
-    ProductServiceCommandParaArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_service_commands"></a>
+    The `commands` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description contains a maximum of
+    `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
+    characters are allowed: `?'#().,&%@!`.
+    """
+    enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values of the parameter.
+    """
+    max: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the max value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
+    """
+    max_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
+    **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    min: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the min value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the parameter is mandatory or not.
+    The default value is **false**.
+    """
+    step: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the step of the parameter when the `type` is **int** or **decimal**.
+    Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit of the parameter when the `type` is **int** or **decimal**.
+    The unit contains a maximum of 16 characters.
+    """
 
 @pulumi.input_type
 class ProductServiceCommandParaArgs:
@@ -3528,73 +3433,70 @@ class ProductServiceCommandParaArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ProductServiceCommandResponseArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter. The name contains a maximum of `64` characters.
-        Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
-        allowed: `?'#().,&%@!`.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the parameter.
-        The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
-        """
-        default_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value of the device property.
-        This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
-        If this parameter is set value, the value will be written to the desired data of the device shadow when
-        the product is used to create a device. When the device goes online, the value will be delivered to the device.
+class ProductServiceCommandResponseArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter. The name contains a maximum of `64` characters.
+    Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
+    allowed: `?'#().,&%@!`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the parameter.
+    The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value of the device property.
+    This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
+    If this parameter is set value, the value will be written to the desired data of the device shadow when
+    the product is used to create a device. When the device goes online, the value will be delivered to the device.
 
-        > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
+    > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
 
-        <a name="IoTDA_service_commands"></a>
-        The `commands` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description contains a maximum of
-        `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
-        characters are allowed: `?'#().,&%@!`.
-        """
-        enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values of the parameter.
-        """
-        max: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the max value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
-        """
-        max_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
-        **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        min: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the min value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the parameter is mandatory or not.
-        The default value is **false**.
-        """
-        step: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the step of the parameter when the `type` is **int** or **decimal**.
-        Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit of the parameter when the `type` is **int** or **decimal**.
-        The unit contains a maximum of 16 characters.
-        """
-elif False:
-    ProductServiceCommandResponseArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_service_commands"></a>
+    The `commands` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description contains a maximum of
+    `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
+    characters are allowed: `?'#().,&%@!`.
+    """
+    enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values of the parameter.
+    """
+    max: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the max value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
+    """
+    max_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
+    **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    min: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the min value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the parameter is mandatory or not.
+    The default value is **false**.
+    """
+    step: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the step of the parameter when the `type` is **int** or **decimal**.
+    Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit of the parameter when the `type` is **int** or **decimal**.
+    The unit contains a maximum of 16 characters.
+    """
 
 @pulumi.input_type
 class ProductServiceCommandResponseArgs:
@@ -3815,79 +3717,76 @@ class ProductServiceCommandResponseArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class ProductServicePropertyArgsDict(TypedDict):
-        method: pulumi.Input[_builtins.str]
-        """
-        Specifies the access mode of the device property.
-        The value can be **RWE**, **RW**, **RE**, **WE**, **R** (the property value can be read),
-        **W** (the property value can be written) or **E** (the property value can be subscribed to).
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the parameter. The name contains a maximum of `64` characters.
-        Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
-        allowed: `?'#().,&%@!`.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the type of the parameter.
-        The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
-        """
-        default_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value of the device property.
-        This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
-        If this parameter is set value, the value will be written to the desired data of the device shadow when
-        the product is used to create a device. When the device goes online, the value will be delivered to the device.
+class ProductServicePropertyArgsDict(TypedDict):
+    method: pulumi.Input[_builtins.str]
+    """
+    Specifies the access mode of the device property.
+    The value can be **RWE**, **RW**, **RE**, **WE**, **R** (the property value can be read),
+    **W** (the property value can be written) or **E** (the property value can be subscribed to).
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the parameter. The name contains a maximum of `64` characters.
+    Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special characters are
+    allowed: `?'#().,&%@!`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the type of the parameter.
+    The valid values are **int**, **decimal**, **string**, **DateTime**, **jsonObject** and **string list**.
+    """
+    default_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value of the device property.
+    This parameter allowed value is a JSON string. e.g. **{\\"foo\\":\\"bar\\"}**
+    If this parameter is set value, the value will be written to the desired data of the device shadow when
+    the product is used to create a device. When the device goes online, the value will be delivered to the device.
 
-        > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
+    > If you want to set this parameter, the `method` must set **RWE**, **RW**, **WE** or **W**.
 
-        <a name="IoTDA_service_commands"></a>
-        The `commands` block supports:
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description contains a maximum of
-        `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
-        characters are allowed: `?'#().,&%@!`.
-        """
-        enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of enumerated values of the parameter.
-        """
-        max: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the max value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
-        """
-        max_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
-        **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        min: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the min value of the parameter when the `type` is **int** or **decimal**.
-        Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
-        """
-        required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies the parameter is mandatory or not.
-        The default value is **false**.
-        """
-        step: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the step of the parameter when the `type` is **int** or **decimal**.
-        Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
-        """
-        unit: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the unit of the parameter when the `type` is **int** or **decimal**.
-        The unit contains a maximum of 16 characters.
-        """
-elif False:
-    ProductServicePropertyArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="IoTDA_service_commands"></a>
+    The `commands` block supports:
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description contains a maximum of
+    `128` characters. Only letters, Chinese characters, digits, hyphens (-), underscores (_) and the following special
+    characters are allowed: `?'#().,&%@!`.
+    """
+    enum_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of enumerated values of the parameter.
+    """
+    max: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the max value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"65535"**.
+    """
+    max_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the max length of the parameter when the `type` is **string**, **DateTime**,
+    **jsonObject** or **string list**. Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    min: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the min value of the parameter when the `type` is **int** or **decimal**.
+    Value range: -2147483647 ~ 2147483647. Defaults to **"0"**.
+    """
+    required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies the parameter is mandatory or not.
+    The default value is **false**.
+    """
+    step: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the step of the parameter when the `type` is **int** or **decimal**.
+    Value range: `0` ~ `2,147,483,647`. Defaults to `0`.
+    """
+    unit: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the unit of the parameter when the `type` is **int** or **decimal**.
+    The unit contains a maximum of 16 characters.
+    """
 
 @pulumi.input_type
 class ProductServicePropertyArgs:
@@ -4127,19 +4026,16 @@ class ProductServicePropertyArgs:
         pulumi.set(self, "unit", value)
 
 
-if not MYPY:
-    class UpgradePackageFileLocationArgsDict(TypedDict):
-        obs_location: NotRequired[pulumi.Input['UpgradePackageFileLocationObsLocationArgsDict']]
-        """
-        Specifies the location of the OBS object associated with the upgrade
-        package. Changing this parameter will create a new resource.
-        The obs_location structure is documented below.
+class UpgradePackageFileLocationArgsDict(TypedDict):
+    obs_location: NotRequired[pulumi.Input['UpgradePackageFileLocationObsLocationArgsDict']]
+    """
+    Specifies the location of the OBS object associated with the upgrade
+    package. Changing this parameter will create a new resource.
+    The obs_location structure is documented below.
 
-        <a name="iotda_upgrade_package_obs_location"></a>
-        The `obs_location` block supports:
-        """
-elif False:
-    UpgradePackageFileLocationArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="iotda_upgrade_package_obs_location"></a>
+    The `obs_location` block supports:
+    """
 
 @pulumi.input_type
 class UpgradePackageFileLocationArgs:
@@ -4174,37 +4070,34 @@ class UpgradePackageFileLocationArgs:
         pulumi.set(self, "obs_location", value)
 
 
-if not MYPY:
-    class UpgradePackageFileLocationObsLocationArgsDict(TypedDict):
-        bucket_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the OBS bucket where the upgrade package is located.
-        Changing this parameter will create a new resource.
-        """
-        object_key: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the OBS object where the upgrade package is located,
-        including the folder path. The maximum size of OBS objects is **1GB**, and only supports files in **.bin**, **.dav**,
-        **.tar**, **.gz**, **.zip**, **.gzip**, **.apk**, **.ta.gz**, **.tar.xz**, **.pack**, **.exe**, **.bat** and **.img**
-        formats. The valid length is limited from `1` to `1024`.
-        Changing this parameter will create a new resource.
-        """
-        region: pulumi.Input[_builtins.str]
-        """
-        Specifies the region where OBS is located.
-        Changing this parameter will create a new resource.
-        """
-        sign: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the signature value of the upgrade package calculated by SHA256 algorithm.
-        After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade notification to the
-        device, it will send the signature to the device.
-        The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
+class UpgradePackageFileLocationObsLocationArgsDict(TypedDict):
+    bucket_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the OBS bucket where the upgrade package is located.
+    Changing this parameter will create a new resource.
+    """
+    object_key: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the OBS object where the upgrade package is located,
+    including the folder path. The maximum size of OBS objects is **1GB**, and only supports files in **.bin**, **.dav**,
+    **.tar**, **.gz**, **.zip**, **.gzip**, **.apk**, **.ta.gz**, **.tar.xz**, **.pack**, **.exe**, **.bat** and **.img**
+    formats. The valid length is limited from `1` to `1024`.
+    Changing this parameter will create a new resource.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    Specifies the region where OBS is located.
+    Changing this parameter will create a new resource.
+    """
+    sign: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the signature value of the upgrade package calculated by SHA256
+    algorithm. After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade
+    notification to the device, it will send the signature to the device.
+    The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
 
-        Changing this parameter will create a new resource.
-        """
-elif False:
-    UpgradePackageFileLocationObsLocationArgsDict: TypeAlias = Mapping[str, Any]
+    Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class UpgradePackageFileLocationObsLocationArgs:
@@ -4223,9 +4116,9 @@ class UpgradePackageFileLocationObsLocationArgs:
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region where OBS is located.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] sign: Specifies the signature value of the upgrade package calculated by SHA256 algorithm.
-               After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade notification to the
-               device, it will send the signature to the device.
+        :param pulumi.Input[_builtins.str] sign: Specifies the signature value of the upgrade package calculated by SHA256
+               algorithm. After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade
+               notification to the device, it will send the signature to the device.
                The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
                
                Changing this parameter will create a new resource.
@@ -4282,9 +4175,9 @@ class UpgradePackageFileLocationObsLocationArgs:
     @pulumi.getter
     def sign(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the signature value of the upgrade package calculated by SHA256 algorithm.
-        After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade notification to the
-        device, it will send the signature to the device.
+        Specifies the signature value of the upgrade package calculated by SHA256
+        algorithm. After added the upgrade package and created the upgrade task, when the IoT platform issues an upgrade
+        notification to the device, it will send the signature to the device.
         The valid length is `64`, only letters `a(A)` to `f(F)` and digits are allowed.
 
         Changing this parameter will create a new resource.

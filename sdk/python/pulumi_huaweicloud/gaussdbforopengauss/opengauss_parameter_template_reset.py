@@ -23,6 +23,7 @@ class OpengaussParameterTemplateResetArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OpengaussParameterTemplateReset resource.
+
         :param pulumi.Input[_builtins.str] config_id: Specifies the ID of the source parameter template to be reset. Changing
                this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -66,6 +67,7 @@ class _OpengaussParameterTemplateResetState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpengaussParameterTemplateReset resources.
+
         :param pulumi.Input[_builtins.str] config_id: Specifies the ID of the source parameter template to be reset. Changing
                this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -126,6 +128,7 @@ class OpengaussParameterTemplateReset(pulumi.CustomResource):
         test = huaweicloud.gaussdbforopengauss.OpengaussParameterTemplateReset("test", config_id=config_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] config_id: Specifies the ID of the source parameter template to be reset. Changing
@@ -152,6 +155,7 @@ class OpengaussParameterTemplateReset(pulumi.CustomResource):
         config_id = config.require_object("configId")
         test = huaweicloud.gaussdbforopengauss.OpengaussParameterTemplateReset("test", config_id=config_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OpengaussParameterTemplateResetArgs args: The arguments to use to populate this resource's properties.

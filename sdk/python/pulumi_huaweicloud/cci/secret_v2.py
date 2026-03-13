@@ -28,6 +28,7 @@ class SecretV2Args:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretV2 resource.
+
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: Specifies the data of the CCI Secret.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the CCI Secret.
@@ -147,6 +148,7 @@ class _SecretV2State:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretV2 resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: The annotations of the CCI Secret.
         :param pulumi.Input[_builtins.str] api_version: The API version of the CCI Secret.
         :param pulumi.Input[_builtins.str] creation_timestamp: The creation timestamp of the CCI Secret.
@@ -383,6 +385,7 @@ class SecretV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SecretV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: Specifies the data of the CCI Secret.
@@ -399,6 +402,7 @@ class SecretV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SecretV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SecretV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -31,6 +31,7 @@ class PipelineTemplateArgs:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineTemplateVariableArgs']]]] = None):
         """
         The set of arguments for constructing a PipelineTemplate resource.
+
         :param pulumi.Input[_builtins.str] definition: Specifies the template definition JSON.
         :param pulumi.Input[_builtins.bool] is_show_source: Specifies whether to display the pipeline source.
         :param pulumi.Input[_builtins.str] language: Specifies the template language.
@@ -183,6 +184,7 @@ class _PipelineTemplateState:
                  variables: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineTemplateVariableArgs']]]] = None):
         """
         Input properties used for looking up and filtering PipelineTemplate resources.
+
         :param pulumi.Input[_builtins.int] create_time: Indicates the creation time.
         :param pulumi.Input[_builtins.str] creator_id: Indicates the creator.
         :param pulumi.Input[_builtins.str] definition: Specifies the template definition JSON.
@@ -423,7 +425,7 @@ class _PipelineTemplateState:
         pulumi.set(self, "variables", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/pipelineTemplate:PipelineTemplate")
+@pulumi.type_token("huaweicloud:Codearts/pipelineTemplate:PipelineTemplate")
 class PipelineTemplate(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -516,39 +518,16 @@ class PipelineTemplate(pulumi.CustomResource):
 
         The pipeline template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineTemplate:PipelineTemplate test <id>
+        $ pulumi import huaweicloud:Codearts/pipelineTemplate:PipelineTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `is_favorite`.
-
         It is generally recommended running `pulumi preview` after importing the template.
-
         You can then decide if changes should be applied to the template, or the resource definition should be updated to
-
         align with the template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_favorite,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -651,39 +630,16 @@ class PipelineTemplate(pulumi.CustomResource):
 
         The pipeline template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/pipelineTemplate:PipelineTemplate test <id>
+        $ pulumi import huaweicloud:Codearts/pipelineTemplate:PipelineTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `is_favorite`.
-
         It is generally recommended running `pulumi preview` after importing the template.
-
         You can then decide if changes should be applied to the template, or the resource definition should be updated to
-
         align with the template. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_pipeline_template" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_favorite,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PipelineTemplateArgs args: The arguments to use to populate this resource's properties.
@@ -739,7 +695,7 @@ class PipelineTemplate(pulumi.CustomResource):
             __props__.__dict__["update_time"] = None
             __props__.__dict__["updater_id"] = None
         super(PipelineTemplate, __self__).__init__(
-            'huaweicloud:codearts/pipelineTemplate:PipelineTemplate',
+            'huaweicloud:Codearts/pipelineTemplate:PipelineTemplate',
             resource_name,
             __props__,
             opts)

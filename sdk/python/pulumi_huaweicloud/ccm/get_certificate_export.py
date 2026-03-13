@@ -153,7 +153,7 @@ def get_certificate_export(certificate_id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     certificate_id = config.require_object("certificateId")
-    test = huaweicloud.ccm.get_certificate_export(certificate_id=certificate_id)
+    test = huaweicloud.Ccm.get_certificate_export(certificate_id=certificate_id)
     ```
 
 
@@ -165,7 +165,7 @@ def get_certificate_export(certificate_id: Optional[_builtins.str] = None,
     __args__['certificateId'] = certificate_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ccm/getCertificateExport:getCertificateExport', __args__, opts=opts, typ=GetCertificateExportResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ccm/getCertificateExport:getCertificateExport', __args__, opts=opts, typ=GetCertificateExportResult).value
 
     return AwaitableGetCertificateExportResult(
         certificate=pulumi.get(__ret__, 'certificate'),
@@ -191,7 +191,7 @@ def get_certificate_export_output(certificate_id: Optional[pulumi.Input[_builtin
 
     config = pulumi.Config()
     certificate_id = config.require_object("certificateId")
-    test = huaweicloud.ccm.get_certificate_export(certificate_id=certificate_id)
+    test = huaweicloud.Ccm.get_certificate_export(certificate_id=certificate_id)
     ```
 
 
@@ -203,7 +203,7 @@ def get_certificate_export_output(certificate_id: Optional[pulumi.Input[_builtin
     __args__['certificateId'] = certificate_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ccm/getCertificateExport:getCertificateExport', __args__, opts=opts, typ=GetCertificateExportResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ccm/getCertificateExport:getCertificateExport', __args__, opts=opts, typ=GetCertificateExportResult)
     return __ret__.apply(lambda __response__: GetCertificateExportResult(
         certificate=pulumi.get(__response__, 'certificate'),
         certificate_chain=pulumi.get(__response__, 'certificate_chain'),

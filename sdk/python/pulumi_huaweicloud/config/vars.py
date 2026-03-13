@@ -43,8 +43,12 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('agencyName')
 
     @_builtins.property
-    def assume_role(self) -> Optional[str]:
-        return __config__.get('assumeRole')
+    def assume_role_with_oidc(self) -> Optional[str]:
+        return __config__.get('assumeRoleWithOidc')
+
+    @_builtins.property
+    def assume_roles(self) -> Optional[str]:
+        return __config__.get('assumeRoles')
 
     @_builtins.property
     def auth_url(self) -> Optional[str]:
@@ -122,6 +126,13 @@ class _ExportableConfig(types.ModuleType):
         enterprise project id
         """
         return __config__.get('enterpriseProjectId')
+
+    @_builtins.property
+    def ignore_tags(self) -> Optional[str]:
+        """
+        The ignored tag keys of resources managed by this provider.
+        """
+        return __config__.get('ignoreTags')
 
     @_builtins.property
     def insecure(self) -> Optional[bool]:

@@ -47,6 +47,7 @@ __all__ = [
     'MemberReason',
     'MemberStatus',
     'MemberStatusReason',
+    'PoolAzAffinity',
     'PoolPersistence',
     'SecurityPolicyListener',
     'GetActiveStandbyPoolsPoolResult',
@@ -105,6 +106,7 @@ __all__ = [
     'GetLogtanksLogtankResult',
     'GetMonitorsMonitorResult',
     'GetPoolsPoolResult',
+    'GetPoolsPoolAzAffinityResult',
     'GetPoolsPoolListenerResult',
     'GetPoolsPoolLoadbalancerResult',
     'GetPoolsPoolMemberResult',
@@ -2374,6 +2376,160 @@ class MemberStatusReason(dict):
 
 
 @pulumi.output_type
+class PoolAzAffinity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "azMinimumHealthyMemberCount":
+            suggest = "az_minimum_healthy_member_count"
+        elif key == "azMinimumHealthyMemberPercentage":
+            suggest = "az_minimum_healthy_member_percentage"
+        elif key == "azUnhealthyFallbackStrategy":
+            suggest = "az_unhealthy_fallback_strategy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PoolAzAffinity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PoolAzAffinity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PoolAzAffinity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 az_minimum_healthy_member_count: Optional[_builtins.str] = None,
+                 az_minimum_healthy_member_percentage: Optional[_builtins.str] = None,
+                 az_unhealthy_fallback_strategy: Optional[_builtins.str] = None,
+                 enable: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str az_minimum_healthy_member_count: Specifies a number that is used to determine the health of an
+               AZ. If the number of healthy servers in the AZ of the load balancer falls below the specified value,
+               `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_count` shows the number of healthy servers
+               in a backend server group of an AZ. An integer ranging from **-1** to **10000**. An integer from **0** to **10000**
+               indicates the number of healthy servers in the AZ of the load balancer. **-1** indicates that
+               `az_minimum_healthy_member_percentage` takes effect.
+               + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+               be set to **-1** at the same time.
+               + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+               must be set to **-1**.
+        :param _builtins.str az_minimum_healthy_member_percentage: Specifies a percentage that is used to determine the
+               health of an AZ. If the percentage of healthy servers in the AZ of the load balancer falls below the specified value,
+               `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_percentage` shows the percentage of backend
+               servers that are healthy in a backend server group of an AZ. The number of healthy servers is rounded up. An integer
+               ranging from **-1** to **100**. An integer from **0** to **100** indicates the percentage of healthy servers in the AZ
+               of the load balancer. **-1** indicates that `az_minimum_healthy_member_count` takes effect.
+               + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+               be set to **-1** at the same time.
+               + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+               must be set to -1.
+        :param _builtins.str az_unhealthy_fallback_strategy: Specifies how traffic will be distributed across backend servers
+               in an AZ if the percentage or number of healthy servers in the AZ of the load balancer falls below the specified
+               value.
+               Value options:
+               + **forward_to_all_member_of_local_az**: forwards requests across all backend servers in the same AZ as the load
+               balancer, even if some servers are unhealthy.
+               + **forward_to_healthy_member_of_remote_az**: forwards requests across healthy backend servers in different AZs from
+               the load balancer.
+               + **forward_to_all_healthy_member**: forwards requests across healthy backend servers in all AZs.
+               + **forward_to_all_member**: forwards requests across all backend servers in all AZs, even if some servers are
+               unhealthy.
+               
+               Defaults to **forward_to_all_member_of_local_az**.
+        :param _builtins.str enable: Specifies whether to enable AZ affinity for the backend server group. If this parameter
+               is set to **true**, ELB forwards traffic across the backend servers in the same AZ as the load balancer.
+               + AZ affinity cannot be enabled for a backend server group that has IP as backend servers whose availability_zone is
+               not specified.
+               + AZ affinity cannot be enabled if the backend server is bound to a TLS listener.
+               + This parameter is available for backend server groups that are associated with **IP**, **UDP**, and
+               **TCP** listeners.
+               + If the parameter is set to **true**, parameter `minimum_healthy_member_count` will be ignored.
+               
+               Value options: **true**, **false**.
+        """
+        if az_minimum_healthy_member_count is not None:
+            pulumi.set(__self__, "az_minimum_healthy_member_count", az_minimum_healthy_member_count)
+        if az_minimum_healthy_member_percentage is not None:
+            pulumi.set(__self__, "az_minimum_healthy_member_percentage", az_minimum_healthy_member_percentage)
+        if az_unhealthy_fallback_strategy is not None:
+            pulumi.set(__self__, "az_unhealthy_fallback_strategy", az_unhealthy_fallback_strategy)
+        if enable is not None:
+            pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberCount")
+    def az_minimum_healthy_member_count(self) -> Optional[_builtins.str]:
+        """
+        Specifies a number that is used to determine the health of an
+        AZ. If the number of healthy servers in the AZ of the load balancer falls below the specified value,
+        `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_count` shows the number of healthy servers
+        in a backend server group of an AZ. An integer ranging from **-1** to **10000**. An integer from **0** to **10000**
+        indicates the number of healthy servers in the AZ of the load balancer. **-1** indicates that
+        `az_minimum_healthy_member_percentage` takes effect.
+        + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+        be set to **-1** at the same time.
+        + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+        must be set to **-1**.
+        """
+        return pulumi.get(self, "az_minimum_healthy_member_count")
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberPercentage")
+    def az_minimum_healthy_member_percentage(self) -> Optional[_builtins.str]:
+        """
+        Specifies a percentage that is used to determine the
+        health of an AZ. If the percentage of healthy servers in the AZ of the load balancer falls below the specified value,
+        `az_unhealthy_fallback_strategy` is triggered. `az_minimum_healthy_member_percentage` shows the percentage of backend
+        servers that are healthy in a backend server group of an AZ. The number of healthy servers is rounded up. An integer
+        ranging from **-1** to **100**. An integer from **0** to **100** indicates the percentage of healthy servers in the AZ
+        of the load balancer. **-1** indicates that `az_minimum_healthy_member_count` takes effect.
+        + If `enable` is set to **true**, `az_minimum_healthy_member_percentage` and `az_minimum_healthy_member_count` cannot
+        be set to **-1** at the same time.
+        + If `enable` is set to **true**, either `az_minimum_healthy_member_percentage` or `az_minimum_healthy_member_count`
+        must be set to -1.
+        """
+        return pulumi.get(self, "az_minimum_healthy_member_percentage")
+
+    @_builtins.property
+    @pulumi.getter(name="azUnhealthyFallbackStrategy")
+    def az_unhealthy_fallback_strategy(self) -> Optional[_builtins.str]:
+        """
+        Specifies how traffic will be distributed across backend servers
+        in an AZ if the percentage or number of healthy servers in the AZ of the load balancer falls below the specified
+        value.
+        Value options:
+        + **forward_to_all_member_of_local_az**: forwards requests across all backend servers in the same AZ as the load
+        balancer, even if some servers are unhealthy.
+        + **forward_to_healthy_member_of_remote_az**: forwards requests across healthy backend servers in different AZs from
+        the load balancer.
+        + **forward_to_all_healthy_member**: forwards requests across healthy backend servers in all AZs.
+        + **forward_to_all_member**: forwards requests across all backend servers in all AZs, even if some servers are
+        unhealthy.
+
+        Defaults to **forward_to_all_member_of_local_az**.
+        """
+        return pulumi.get(self, "az_unhealthy_fallback_strategy")
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether to enable AZ affinity for the backend server group. If this parameter
+        is set to **true**, ELB forwards traffic across the backend servers in the same AZ as the load balancer.
+        + AZ affinity cannot be enabled for a backend server group that has IP as backend servers whose availability_zone is
+        not specified.
+        + AZ affinity cannot be enabled if the backend server is bound to a TLS listener.
+        + This parameter is available for backend server groups that are associated with **IP**, **UDP**, and
+        **TCP** listeners.
+        + If the parameter is set to **true**, parameter `minimum_healthy_member_count` will be ignored.
+
+        Value options: **true**, **false**.
+        """
+        return pulumi.get(self, "enable")
+
+
+@pulumi.output_type
 class PoolPersistence(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2413,6 +2569,9 @@ class PoolPersistence(dict):
                defaults to `1`.
                + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
                and defaults to `1,440`.
+               
+               <a name="az_affinity_struct"></a>
+               The `az_affinity` block supports:
         """
         pulumi.set(__self__, "type", type)
         if cookie_name is not None:
@@ -2454,6 +2613,9 @@ class PoolPersistence(dict):
         defaults to `1`.
         + When the protocol of the backend server group is **HTTP** or **HTTPS**, the value ranges from `1` to `1,440`,
         and defaults to `1,440`.
+
+        <a name="az_affinity_struct"></a>
+        The `az_affinity` block supports:
         """
         return pulumi.get(self, "timeout")
 
@@ -3818,8 +3980,6 @@ class GetFlavorsFlavorResult(dict):
         :param _builtins.str type: Specifies the flavor type. Values options:
                + **L4**: indicates Layer-4 flavor.
                + **L7**: indicates Layer-7 flavor.
-               + **L4_elastic**: indicates minimum Layer-4 flavor for elastic scaling.
-               + **L7_elastic**: indicates minimum Layer-7 flavor for elastic scaling.
                + **L4_elastic_max**: indicates maximum Layer-4 flavor for elastic scaling.
                + **L7_elastic_max**: indicates maximum Layer-7 flavor for elastic scaling
         """
@@ -3944,8 +4104,6 @@ class GetFlavorsFlavorResult(dict):
         Specifies the flavor type. Values options:
         + **L4**: indicates Layer-4 flavor.
         + **L7**: indicates Layer-7 flavor.
-        + **L4_elastic**: indicates minimum Layer-4 flavor for elastic scaling.
-        + **L7_elastic**: indicates minimum Layer-7 flavor for elastic scaling.
         + **L4_elastic_max**: indicates maximum Layer-4 flavor for elastic scaling.
         + **L7_elastic_max**: indicates maximum Layer-7 flavor for elastic scaling
         """
@@ -6525,8 +6683,8 @@ class GetMonitorsMonitorResult(dict):
         :param _builtins.int timeout: Specifies the maximum time required for waiting for a response from the health check, in
                seconds.
         :param _builtins.str updated_at: The time when the health check was updated.
-        :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a slash
-               (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
+        :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a
+               slash(/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "domain_name", domain_name)
@@ -6670,8 +6828,8 @@ class GetMonitorsMonitorResult(dict):
     @pulumi.getter(name="urlPath")
     def url_path(self) -> _builtins.str:
         """
-        Specifies the HTTP request path for the health check. The value must start with a slash
-        (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
+        Specifies the HTTP request path for the health check. The value must start with a
+        slash(/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
         """
         return pulumi.get(self, "url_path")
 
@@ -6680,6 +6838,7 @@ class GetMonitorsMonitorResult(dict):
 class GetPoolsPoolResult(dict):
     def __init__(__self__, *,
                  any_port_enable: _builtins.bool,
+                 az_affinities: Sequence['outputs.GetPoolsPoolAzAffinityResult'],
                  connection_drain_enabled: _builtins.bool,
                  connection_drain_timeout: _builtins.int,
                  created_at: _builtins.str,
@@ -6711,6 +6870,8 @@ class GetPoolsPoolResult(dict):
                Value options:
                + **false**: Disable this option.
                + **true**: Enable this option.
+        :param Sequence['GetPoolsPoolAzAffinityArgs'] az_affinities: Specifies whether AZ affinity of a backend server group is enabled.
+               Value options: **enable=true**, **enable=false**.
         :param _builtins.bool connection_drain_enabled: Whether to enable delayed logout.
         :param _builtins.int connection_drain_timeout: The timeout of the delayed logout in seconds.
         :param _builtins.str created_at: The time when the backend server group was created
@@ -6746,6 +6907,7 @@ class GetPoolsPoolResult(dict):
         :param _builtins.str vpc_id: Specifies the ID of the VPC where the backend server group works.
         """
         pulumi.set(__self__, "any_port_enable", any_port_enable)
+        pulumi.set(__self__, "az_affinities", az_affinities)
         pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         pulumi.set(__self__, "created_at", created_at)
@@ -6783,6 +6945,15 @@ class GetPoolsPoolResult(dict):
         + **true**: Enable this option.
         """
         return pulumi.get(self, "any_port_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="azAffinities")
+    def az_affinities(self) -> Sequence['outputs.GetPoolsPoolAzAffinityResult']:
+        """
+        Specifies whether AZ affinity of a backend server group is enabled.
+        Value options: **enable=true**, **enable=false**.
+        """
+        return pulumi.get(self, "az_affinities")
 
     @_builtins.property
     @pulumi.getter(name="connectionDrainEnabled")
@@ -6998,6 +7169,59 @@ class GetPoolsPoolResult(dict):
         Specifies the ID of the VPC where the backend server group works.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetPoolsPoolAzAffinityResult(dict):
+    def __init__(__self__, *,
+                 az_minimum_healthy_member_count: _builtins.int,
+                 az_minimum_healthy_member_percentage: _builtins.int,
+                 az_unhealthy_fallback_strategy: _builtins.str,
+                 enable: _builtins.bool):
+        """
+        :param _builtins.int az_minimum_healthy_member_count: The number that is used to determine the health of an AZ.
+        :param _builtins.int az_minimum_healthy_member_percentage: The percentage that is used to determine the health of an AZ.
+        :param _builtins.str az_unhealthy_fallback_strategy: How traffic will be distributed across backend servers in an AZ if the percentage
+               or number of healthy servers in the AZ of the load balancer falls below the specified value.
+        :param _builtins.bool enable: Whether to enable AZ affinity for the backend server group.
+        """
+        pulumi.set(__self__, "az_minimum_healthy_member_count", az_minimum_healthy_member_count)
+        pulumi.set(__self__, "az_minimum_healthy_member_percentage", az_minimum_healthy_member_percentage)
+        pulumi.set(__self__, "az_unhealthy_fallback_strategy", az_unhealthy_fallback_strategy)
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberCount")
+    def az_minimum_healthy_member_count(self) -> _builtins.int:
+        """
+        The number that is used to determine the health of an AZ.
+        """
+        return pulumi.get(self, "az_minimum_healthy_member_count")
+
+    @_builtins.property
+    @pulumi.getter(name="azMinimumHealthyMemberPercentage")
+    def az_minimum_healthy_member_percentage(self) -> _builtins.int:
+        """
+        The percentage that is used to determine the health of an AZ.
+        """
+        return pulumi.get(self, "az_minimum_healthy_member_percentage")
+
+    @_builtins.property
+    @pulumi.getter(name="azUnhealthyFallbackStrategy")
+    def az_unhealthy_fallback_strategy(self) -> _builtins.str:
+        """
+        How traffic will be distributed across backend servers in an AZ if the percentage
+        or number of healthy servers in the AZ of the load balancer falls below the specified value.
+        """
+        return pulumi.get(self, "az_unhealthy_fallback_strategy")
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether to enable AZ affinity for the backend server group.
+        """
+        return pulumi.get(self, "enable")
 
 
 @pulumi.output_type

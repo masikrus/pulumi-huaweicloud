@@ -33,6 +33,7 @@ class DnatRuleV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DnatRuleV2 resource.
+
         :param pulumi.Input[_builtins.str] nat_gateway_id: The ID of the NAT gateway to which the DNAT rule belongs.
         :param pulumi.Input[_builtins.str] protocol: The protocol type.
         :param pulumi.Input[_builtins.str] description: The description of the DNAT rule.
@@ -235,6 +236,7 @@ class _DnatRuleV2State:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DnatRuleV2 resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the DNAT rule.
         :param pulumi.Input[_builtins.str] description: The description of the DNAT rule.
         :param pulumi.Input[_builtins.int] external_service_port: The port range used by Floating IP provide services for external systems.
@@ -499,6 +501,7 @@ class DnatRuleV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a DnatRuleV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the DNAT rule.
@@ -522,6 +525,7 @@ class DnatRuleV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a DnatRuleV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DnatRuleV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -35,6 +35,7 @@ class ImageTriggerArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageTrigger resource.
+
         :param pulumi.Input[_builtins.str] condition_type: Specifies the trigger condition type.
                Value options **all**, **tag**, **regular**.
                
@@ -332,6 +333,7 @@ class _ImageTriggerState:
                  workload_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ImageTrigger resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the cluster.
                It is required when type is set to `cce`.
                
@@ -697,14 +699,20 @@ class ImageTrigger(pulumi.CustomResource):
         ## Import
 
         The swr image trigger can be imported using the organization name, repository name
-
         and trigger name separated by a slash, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageTrigger:ImageTrigger test <organization_name>/<repository_name>/<trigger_name>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageTrigger:ImageTrigger test <organization_name>,<repository_name>,<trigger_name>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -795,14 +803,20 @@ class ImageTrigger(pulumi.CustomResource):
         ## Import
 
         The swr image trigger can be imported using the organization name, repository name
-
         and trigger name separated by a slash, e.g.:
 
-        bash
+        Only when repository name is with no slashes, can use slashes to separate.
 
         ```sh
         $ pulumi import huaweicloud:Swr/imageTrigger:ImageTrigger test <organization_name>/<repository_name>/<trigger_name>
         ```
+
+        Using comma to separate is available for repository name with slashes or not.
+
+        ```sh
+        $ pulumi import huaweicloud:Swr/imageTrigger:ImageTrigger test <organization_name>,<repository_name>,<trigger_name>
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageTriggerArgs args: The arguments to use to populate this resource's properties.

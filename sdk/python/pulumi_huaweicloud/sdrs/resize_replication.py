@@ -25,6 +25,7 @@ class ResizeReplicationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResizeReplication resource.
+
         :param pulumi.Input[_builtins.int] new_size: Specifies the new size of the replication pair's disk in GB.
                Must be greater than the current size.
         :param pulumi.Input[_builtins.str] replication_id: Specifies the ID of the replication pair to resize.
@@ -95,6 +96,7 @@ class _ResizeReplicationState:
                  replication_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResizeReplication resources.
+
         :param pulumi.Input[_builtins.int] new_size: Specifies the new size of the replication pair's disk in GB.
                Must be greater than the current size.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -158,7 +160,7 @@ class _ResizeReplicationState:
         pulumi.set(self, "replication_id", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/resizeReplication:ResizeReplication")
+@pulumi.type_token("huaweicloud:Sdrs/resizeReplication:ResizeReplication")
 class ResizeReplication(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -197,6 +199,7 @@ class ResizeReplication(pulumi.CustomResource):
             replication_id=replication_id,
             new_size=new_size)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -241,6 +244,7 @@ class ResizeReplication(pulumi.CustomResource):
             new_size=new_size)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ResizeReplicationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -278,7 +282,7 @@ class ResizeReplication(pulumi.CustomResource):
                 raise TypeError("Missing required property 'replication_id'")
             __props__.__dict__["replication_id"] = replication_id
         super(ResizeReplication, __self__).__init__(
-            'huaweicloud:sdrs/resizeReplication:ResizeReplication',
+            'huaweicloud:Sdrs/resizeReplication:ResizeReplication',
             resource_name,
             __props__,
             opts)

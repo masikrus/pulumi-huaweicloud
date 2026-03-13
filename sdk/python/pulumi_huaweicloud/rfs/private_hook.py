@@ -32,6 +32,7 @@ class PrivateHookArgs:
                  version_description: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateHook resource.
+
         :param pulumi.Input[_builtins.str] version: Specifies the version of the private hook.
                The version number must follow the **Semantic Version** rules.
         :param pulumi.Input['PrivateHookConfigurationArgs'] configuration: Specifies the configuration of the private hook, that can specify the target
@@ -259,6 +260,7 @@ class _PrivateHookState:
                  version_description: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateHook resources.
+
         :param pulumi.Input['PrivateHookConfigurationArgs'] configuration: Specifies the configuration of the private hook, that can specify the target
                resource stack where the private hook takes effect and the behavior of the resource stack after the private hook
                verification fails.
@@ -501,7 +503,7 @@ class _PrivateHookState:
         pulumi.set(self, "version_description", value)
 
 
-@pulumi.type_token("huaweicloud:rfs/privateHook:PrivateHook")
+@pulumi.type_token("huaweicloud:Rfs/privateHook:PrivateHook")
 class PrivateHook(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -573,39 +575,15 @@ class PrivateHook(pulumi.CustomResource):
 
         Private hooks can be imported using their `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rfs/privateHook:PrivateHook test <name>
+        $ pulumi import huaweicloud:Rfs/privateHook:PrivateHook test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `policy_uri`, `policy_body` and `keep_old_version`. It is generally
-
         recommended running `pulumi preview` after importing a hook. You can keep the resource the same with its definition bo
-
         choosing any of them to update. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rfs_private_hook" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              policy_uri,
-            
-              keep_old_version,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -718,39 +696,15 @@ class PrivateHook(pulumi.CustomResource):
 
         Private hooks can be imported using their `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rfs/privateHook:PrivateHook test <name>
+        $ pulumi import huaweicloud:Rfs/privateHook:PrivateHook test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response. The missing attributes include: `policy_uri`, `policy_body` and `keep_old_version`. It is generally
-
         recommended running `pulumi preview` after importing a hook. You can keep the resource the same with its definition bo
-
         choosing any of them to update. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rfs_private_hook" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              policy_uri,
-            
-              keep_old_version,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param PrivateHookArgs args: The arguments to use to populate this resource's properties.
@@ -799,7 +753,7 @@ class PrivateHook(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(PrivateHook, __self__).__init__(
-            'huaweicloud:rfs/privateHook:PrivateHook',
+            'huaweicloud:Rfs/privateHook:PrivateHook',
             resource_name,
             __props__,
             opts)

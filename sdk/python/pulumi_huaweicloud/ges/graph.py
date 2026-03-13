@@ -45,13 +45,15 @@ class GraphArgs:
                  vertex_id_type: Optional[pulumi.Input['GraphVertexIdTypeArgs']] = None):
         """
         The set of arguments for constructing a Graph resource.
+
         :param pulumi.Input[_builtins.str] crypt_algorithm: Graph instance cryptography algorithm.  
                Value options are as follows:
                + **generalCipher**: Chinese cryptographic algorithm.
                + **SMcompatible**: Commercial cryptography algorithm (compatible with international ones).
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance greatly.
+        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance
+               greatly.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] graph_size_type_index: Graph size type index.  
@@ -211,7 +213,8 @@ class GraphArgs:
     @pulumi.getter(name="enableHttps")
     def enable_https(self) -> pulumi.Input[_builtins.bool]:
         """
-        Whether to enable the security mode. This mode may damage GES performance greatly.
+        Whether to enable the security mode. This mode may damage GES performance
+        greatly.
 
         Changing this parameter will create a new resource.
         """
@@ -569,6 +572,7 @@ class _GraphState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Graph resources.
+
         :param pulumi.Input[_builtins.str] az_code: AZ code
         :param pulumi.Input[_builtins.str] cpu_arch: Graph instance's CPU architecture type.  
                The value can be **x86_64** or **aarch64**. The default value is **x86_64**.
@@ -590,7 +594,8 @@ class _GraphState:
                If the CSS is not deployed, the graph creation will fail.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance greatly.
+        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance
+               greatly.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] enable_hyg: Whether to enable HyG for the graph.
@@ -823,7 +828,8 @@ class _GraphState:
     @pulumi.getter(name="enableHttps")
     def enable_https(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether to enable the security mode. This mode may damage GES performance greatly.
+        Whether to enable the security mode. This mode may damage GES performance
+        greatly.
 
         Changing this parameter will create a new resource.
         """
@@ -1172,7 +1178,7 @@ class _GraphState:
         pulumi.set(self, "vpc_id", value)
 
 
-@pulumi.type_token("huaweicloud:ges/graph:Graph")
+@pulumi.type_token("huaweicloud:Ges/graph:Graph")
 class Graph(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1233,11 +1239,10 @@ class Graph(pulumi.CustomResource):
 
         The ges graph can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/graph:Graph test a0be840b-b223-48da-8b34-b8fee1b2e0ca
+        $ pulumi import huaweicloud:Ges/graph:Graph test a0be840b-b223-48da-8b34-b8fee1b2e0ca
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1261,7 +1266,8 @@ class Graph(pulumi.CustomResource):
                If the CSS is not deployed, the graph creation will fail.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance greatly.
+        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance
+               greatly.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] enable_hyg: Whether to enable HyG for the graph.
@@ -1385,11 +1391,10 @@ class Graph(pulumi.CustomResource):
 
         The ges graph can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:ges/graph:Graph test a0be840b-b223-48da-8b34-b8fee1b2e0ca
+        $ pulumi import huaweicloud:Ges/graph:Graph test a0be840b-b223-48da-8b34-b8fee1b2e0ca
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GraphArgs args: The arguments to use to populate this resource's properties.
@@ -1476,7 +1481,7 @@ class Graph(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["traffic_ip_lists"] = None
         super(Graph, __self__).__init__(
-            'huaweicloud:ges/graph:Graph',
+            'huaweicloud:Ges/graph:Graph',
             resource_name,
             __props__,
             opts)
@@ -1539,7 +1544,8 @@ class Graph(pulumi.CustomResource):
                If the CSS is not deployed, the graph creation will fail.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance greatly.
+        :param pulumi.Input[_builtins.bool] enable_https: Whether to enable the security mode. This mode may damage GES performance
+               greatly.
                
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] enable_hyg: Whether to enable HyG for the graph.
@@ -1735,7 +1741,8 @@ class Graph(pulumi.CustomResource):
     @pulumi.getter(name="enableHttps")
     def enable_https(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether to enable the security mode. This mode may damage GES performance greatly.
+        Whether to enable the security mode. This mode may damage GES performance
+        greatly.
 
         Changing this parameter will create a new resource.
         """

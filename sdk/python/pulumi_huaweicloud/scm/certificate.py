@@ -21,7 +21,7 @@ __all__ = ['CertificateArgs', 'Certificate']
 @pulumi.input_type
 class CertificateArgs:
     def __init__(__self__, *,
-                 certificate: pulumi.Input[_builtins.str],
+                 certificate_value: pulumi.Input[_builtins.str],
                  private_key: pulumi.Input[_builtins.str],
                  certificate_chain: Optional[pulumi.Input[_builtins.str]] = None,
                  enc_certificate: Optional[pulumi.Input[_builtins.str]] = None,
@@ -32,7 +32,8 @@ class CertificateArgs:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTargetArgs']]]] = None):
         """
         The set of arguments for constructing a Certificate resource.
-        :param pulumi.Input[_builtins.str] certificate: Specifies the content of the Certificate, PEM format.
+
+        :param pulumi.Input[_builtins.str] certificate_value: Specifies the content of the Certificate, PEM format.
                It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
                the certificate chain, then this field only takes the certificate itself.
                Changing this parameter will create a new resource.
@@ -68,7 +69,7 @@ class CertificateArgs:
                <a name="block_target"></a>
                The `target` block supports:
         """
-        pulumi.set(__self__, "certificate", certificate)
+        pulumi.set(__self__, "certificate_value", certificate_value)
         pulumi.set(__self__, "private_key", private_key)
         if certificate_chain is not None:
             pulumi.set(__self__, "certificate_chain", certificate_chain)
@@ -86,19 +87,19 @@ class CertificateArgs:
             pulumi.set(__self__, "targets", targets)
 
     @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the content of the Certificate, PEM format.
         It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
         the certificate chain, then this field only takes the certificate itself.
         Changing this parameter will create a new resource.
         """
-        return pulumi.get(self, "certificate")
+        return pulumi.get(self, "certificate_value")
 
-    @certificate.setter
-    def certificate(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "certificate", value)
+    @certificate_value.setter
+    def certificate_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "certificate_value", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
@@ -223,8 +224,8 @@ class CertificateArgs:
 @pulumi.input_type
 class _CertificateState:
     def __init__(__self__, *,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  authentifications: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_chain: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
                  domain_count: Optional[pulumi.Input[_builtins.int]] = None,
@@ -241,12 +242,13 @@ class _CertificateState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
-        :param pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]] authentifications: (List) Domain ownership verification information.
-               This is a list, each item of data is as follows:
-        :param pulumi.Input[_builtins.str] certificate: Specifies the content of the Certificate, PEM format.
+
+        :param pulumi.Input[_builtins.str] certificate_value: Specifies the content of the Certificate, PEM format.
                It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
                the certificate chain, then this field only takes the certificate itself.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]] authentifications: (List) Domain ownership verification information.
+               This is a list, each item of data is as follows:
         :param pulumi.Input[_builtins.str] certificate_chain: Specifies the chain of the certificate.
                It can passed by `certificate`. It can be extracted from the *server.crt* file in the Nginx directory,
                usually after the second paragraph is the certificate chain.
@@ -296,10 +298,10 @@ class _CertificateState:
                <a name="block_target"></a>
                The `target` block supports:
         """
+        if certificate_value is not None:
+            pulumi.set(__self__, "certificate_value", certificate_value)
         if authentifications is not None:
             pulumi.set(__self__, "authentifications", authentifications)
-        if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
         if certificate_chain is not None:
             pulumi.set(__self__, "certificate_chain", certificate_chain)
         if domain is not None:
@@ -330,6 +332,21 @@ class _CertificateState:
             pulumi.set(__self__, "targets", targets)
 
     @_builtins.property
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the content of the Certificate, PEM format.
+        It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
+        the certificate chain, then this field only takes the certificate itself.
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "certificate_value")
+
+    @certificate_value.setter
+    def certificate_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "certificate_value", value)
+
+    @_builtins.property
     @pulumi.getter
     def authentifications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]]]:
         """
@@ -341,21 +358,6 @@ class _CertificateState:
     @authentifications.setter
     def authentifications(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateAuthentificationArgs']]]]):
         pulumi.set(self, "authentifications", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Specifies the content of the Certificate, PEM format.
-        It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
-        the certificate chain, then this field only takes the certificate itself.
-        Changing this parameter will create a new resource.
-        """
-        return pulumi.get(self, "certificate")
-
-    @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateChain")
@@ -566,7 +568,7 @@ class Certificate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_chain: Optional[pulumi.Input[_builtins.str]] = None,
                  enc_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  enc_private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -577,6 +579,80 @@ class Certificate(pulumi.CustomResource):
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CertificateTargetArgs', 'CertificateTargetArgsDict']]]]] = None,
                  __props__=None):
         """
+        !> **WARNING:** It has been deprecated.
+
+        SSL Certificate Manager (SCM) allows you to purchase Secure Sockets Layer (SSL) certificates from the world's leading
+        digital certificate authorities (CAs), upload existing SSL certificates, and centrally manage all your SSL certificates
+        in one place.
+
+        ## Example Usage
+
+        ### Load the certificate contents from the local files
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        certificate1 = huaweicloud.scm.Certificate("certificate_1",
+            name="certificate_1",
+            certificate_value=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_server.key")["result"])
+        ```
+
+        ### Write the contents of the certificate into the Terraform script
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        certificate2 = huaweicloud.scm.Certificate("certificate_2",
+            name="certificate_2",
+            certificate_value=\"\"\"-----BEGIN CERTIFICATE-----
+        MIIC9DCCAl2gAwIBAgIUUcJZn3ep4l8iHu6lL/jE2UV+G8gwDQYJKoZIhvcNAQEL
+        ZWlqaW5nMQswC...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END CERTIFICATE----------
+        \"\"\",
+            certificate_chain=\"\"\"-----BEGIN CERTIFICATE-----
+        MIIC9DCCAl2gAwIBAgIUUcJZn3ep4l8iHu6lL/jE2UV+G8gwDQYJKoZIhvcNAQEL
+        BQAwgYsxCzAJB...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END CERTIFICATE----------
+        \"\"\",
+            private_key=\"\"\"-----BEGIN PRIVATE KEY-----
+        QWH3GbHx5bGQyexHj2hre4yEahn4dAKKdjSAMUuSfLWygp2pEdNFOegYTdqk/snv
+        mhNmxp74oUcVfi1Msw6KY2...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END PRIVATE KEY-----
+        \"\"\")
+        ```
+
+        ### Push the SSL certificate to another HUAWEI CLOUD service
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        # Load the certificate contents from the local files.
+        certificate3 = huaweicloud.scm.Certificate("certificate_3",
+            name="certificate_3",
+            certificate_value=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_server.key")["result"],
+            targets=[
+                {
+                    "projects": ["la-south-2"],
+                    "service": "ELB",
+                },
+                {
+                    "service": "CDN",
+                },
+            ])
+        ```
+
         ## Import
 
         Certificates can be imported using the `id`, e.g.
@@ -585,9 +661,10 @@ class Certificate(pulumi.CustomResource):
         $ pulumi import huaweicloud:Scm/certificate:Certificate certificate_1 scs1627959834994
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] certificate: Specifies the content of the Certificate, PEM format.
+        :param pulumi.Input[_builtins.str] certificate_value: Specifies the content of the Certificate, PEM format.
                It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
                the certificate chain, then this field only takes the certificate itself.
                Changing this parameter will create a new resource.
@@ -630,6 +707,80 @@ class Certificate(pulumi.CustomResource):
                  args: CertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        !> **WARNING:** It has been deprecated.
+
+        SSL Certificate Manager (SCM) allows you to purchase Secure Sockets Layer (SSL) certificates from the world's leading
+        digital certificate authorities (CAs), upload existing SSL certificates, and centrally manage all your SSL certificates
+        in one place.
+
+        ## Example Usage
+
+        ### Load the certificate contents from the local files
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        certificate1 = huaweicloud.scm.Certificate("certificate_1",
+            name="certificate_1",
+            certificate_value=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_server.key")["result"])
+        ```
+
+        ### Write the contents of the certificate into the Terraform script
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        certificate2 = huaweicloud.scm.Certificate("certificate_2",
+            name="certificate_2",
+            certificate_value=\"\"\"-----BEGIN CERTIFICATE-----
+        MIIC9DCCAl2gAwIBAgIUUcJZn3ep4l8iHu6lL/jE2UV+G8gwDQYJKoZIhvcNAQEL
+        ZWlqaW5nMQswC...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END CERTIFICATE----------
+        \"\"\",
+            certificate_chain=\"\"\"-----BEGIN CERTIFICATE-----
+        MIIC9DCCAl2gAwIBAgIUUcJZn3ep4l8iHu6lL/jE2UV+G8gwDQYJKoZIhvcNAQEL
+        BQAwgYsxCzAJB...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END CERTIFICATE----------
+        \"\"\",
+            private_key=\"\"\"-----BEGIN PRIVATE KEY-----
+        QWH3GbHx5bGQyexHj2hre4yEahn4dAKKdjSAMUuSfLWygp2pEdNFOegYTdqk/snv
+        mhNmxp74oUcVfi1Msw6KY2...
+        (This is an example, please replace it with a encrypted key of valid SSL certificate.)
+        -----END PRIVATE KEY-----
+        \"\"\")
+        ```
+
+        ### Push the SSL certificate to another HUAWEI CLOUD service
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        # Load the certificate contents from the local files.
+        certificate3 = huaweicloud.scm.Certificate("certificate_3",
+            name="certificate_3",
+            certificate_value=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca.crt")["result"],
+            certificate_chain=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_ca_chain.crt")["result"],
+            private_key=std.index.file(input="/usr/local/data/certificate/cert_xxx/xxx_server.key")["result"],
+            targets=[
+                {
+                    "projects": ["la-south-2"],
+                    "service": "ELB",
+                },
+                {
+                    "service": "CDN",
+                },
+            ])
+        ```
+
         ## Import
 
         Certificates can be imported using the `id`, e.g.
@@ -637,6 +788,7 @@ class Certificate(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:Scm/certificate:Certificate certificate_1 scs1627959834994
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.
@@ -653,7 +805,7 @@ class Certificate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate_chain: Optional[pulumi.Input[_builtins.str]] = None,
                  enc_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  enc_private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -671,9 +823,9 @@ class Certificate(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CertificateArgs.__new__(CertificateArgs)
 
-            if certificate is None and not opts.urn:
-                raise TypeError("Missing required property 'certificate'")
-            __props__.__dict__["certificate"] = certificate
+            if certificate_value is None and not opts.urn:
+                raise TypeError("Missing required property 'certificate_value'")
+            __props__.__dict__["certificate_value"] = certificate_value
             __props__.__dict__["certificate_chain"] = certificate_chain
             __props__.__dict__["enc_certificate"] = enc_certificate
             __props__.__dict__["enc_private_key"] = enc_private_key
@@ -701,8 +853,8 @@ class Certificate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_value: Optional[pulumi.Input[_builtins.str]] = None,
             authentifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CertificateAuthentificationArgs', 'CertificateAuthentificationArgsDict']]]]] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
             certificate_chain: Optional[pulumi.Input[_builtins.str]] = None,
             domain: Optional[pulumi.Input[_builtins.str]] = None,
             domain_count: Optional[pulumi.Input[_builtins.int]] = None,
@@ -724,12 +876,12 @@ class Certificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CertificateAuthentificationArgs', 'CertificateAuthentificationArgsDict']]]] authentifications: (List) Domain ownership verification information.
-               This is a list, each item of data is as follows:
-        :param pulumi.Input[_builtins.str] certificate: Specifies the content of the Certificate, PEM format.
+        :param pulumi.Input[_builtins.str] certificate_value: Specifies the content of the Certificate, PEM format.
                It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
                the certificate chain, then this field only takes the certificate itself.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CertificateAuthentificationArgs', 'CertificateAuthentificationArgsDict']]]] authentifications: (List) Domain ownership verification information.
+               This is a list, each item of data is as follows:
         :param pulumi.Input[_builtins.str] certificate_chain: Specifies the chain of the certificate.
                It can passed by `certificate`. It can be extracted from the *server.crt* file in the Nginx directory,
                usually after the second paragraph is the certificate chain.
@@ -783,8 +935,8 @@ class Certificate(pulumi.CustomResource):
 
         __props__ = _CertificateState.__new__(_CertificateState)
 
+        __props__.__dict__["certificate_value"] = certificate_value
         __props__.__dict__["authentifications"] = authentifications
-        __props__.__dict__["certificate"] = certificate
         __props__.__dict__["certificate_chain"] = certificate_chain
         __props__.__dict__["domain"] = domain
         __props__.__dict__["domain_count"] = domain_count
@@ -802,6 +954,17 @@ class Certificate(pulumi.CustomResource):
         return Certificate(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="CertificateValue")
+    def certificate_value(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies the content of the Certificate, PEM format.
+        It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
+        the certificate chain, then this field only takes the certificate itself.
+        Changing this parameter will create a new resource.
+        """
+        return pulumi.get(self, "certificate_value")
+
+    @_builtins.property
     @pulumi.getter
     def authentifications(self) -> pulumi.Output[Sequence['outputs.CertificateAuthentification']]:
         """
@@ -809,17 +972,6 @@ class Certificate(pulumi.CustomResource):
         This is a list, each item of data is as follows:
         """
         return pulumi.get(self, "authentifications")
-
-    @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Output[_builtins.str]:
-        """
-        Specifies the content of the Certificate, PEM format.
-        It can include intermediate certificates and root certificates. If the `certificate_chain` is passed into
-        the certificate chain, then this field only takes the certificate itself.
-        Changing this parameter will create a new resource.
-        """
-        return pulumi.get(self, "certificate")
 
     @_builtins.property
     @pulumi.getter(name="certificateChain")

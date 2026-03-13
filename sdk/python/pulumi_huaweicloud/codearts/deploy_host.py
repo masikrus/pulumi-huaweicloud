@@ -36,6 +36,7 @@ class DeployHostArgs:
                  sync: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DeployHost resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the CodeArts deploy group ID.
                
                Changing this parameter will create a new resource.
@@ -288,6 +289,7 @@ class _DeployHostState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployHost resources.
+
         :param pulumi.Input[_builtins.bool] as_proxy: Specifies whether the host is an agent host. Defaults to **false**.
                
                Changing this parameter will create a new resource.
@@ -599,7 +601,7 @@ class _DeployHostState:
         pulumi.set(self, "username", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployHost:DeployHost")
+@pulumi.type_token("huaweicloud:Codearts/deployHost:DeployHost")
 class DeployHost(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -706,45 +708,16 @@ class DeployHost(pulumi.CustomResource):
 
         The CodeArts deploy host resource can be imported using `group_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployHost:DeployHost test <group_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployHost:DeployHost test <group_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`, `private_key`, `install_icagent`
-
         and `sync`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_host" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-              private_key,
-            
-              install_icagent,
-            
-              sync,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -873,45 +846,16 @@ class DeployHost(pulumi.CustomResource):
 
         The CodeArts deploy host resource can be imported using `group_id` and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployHost:DeployHost test <group_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployHost:DeployHost test <group_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `password`, `private_key`, `install_icagent`
-
         and `sync`. It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_codearts_deploy_host" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              password,
-            
-              private_key,
-            
-              install_icagent,
-            
-              sync,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeployHostArgs args: The arguments to use to populate this resource's properties.
@@ -981,7 +925,7 @@ class DeployHost(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "privateKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DeployHost, __self__).__init__(
-            'huaweicloud:codearts/deployHost:DeployHost',
+            'huaweicloud:Codearts/deployHost:DeployHost',
             resource_name,
             __props__,
             opts)

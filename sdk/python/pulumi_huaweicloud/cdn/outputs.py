@@ -16,6 +16,8 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'CacheSharingGroupShareCacheRecord',
+    'CertificateAssociateDomainsForceRedirectConfig',
     'DomainCacheSettings',
     'DomainCacheSettingsRule',
     'DomainConfigs',
@@ -25,7 +27,7 @@ __all__ = [
     'DomainConfigsCacheUrlParameterFilter',
     'DomainConfigsClientCert',
     'DomainConfigsCompress',
-    'DomainConfigsErrorCodeCach',
+    'DomainConfigsErrorCodeCache',
     'DomainConfigsErrorCodeRedirectRule',
     'DomainConfigsFlexibleOrigin',
     'DomainConfigsFlexibleOriginBackSources',
@@ -73,7 +75,7 @@ __all__ = [
     'DomainV1ConfigsCacheUrlParameterFilter',
     'DomainV1ConfigsClientCert',
     'DomainV1ConfigsCompress',
-    'DomainV1ConfigsErrorCodeCach',
+    'DomainV1ConfigsErrorCodeCache',
     'DomainV1ConfigsErrorCodeRedirectRule',
     'DomainV1ConfigsFlexibleOrigin',
     'DomainV1ConfigsFlexibleOriginBackSources',
@@ -101,13 +103,155 @@ __all__ = [
     'DomainV1ConfigsVideoSeek',
     'DomainV1ConfigsWebsocket',
     'DomainV1Source',
+    'RuleEngineRuleAction',
+    'RuleEngineRuleActionAccessControl',
+    'RuleEngineRuleActionBrowserCacheRule',
+    'RuleEngineRuleActionCacheRule',
+    'RuleEngineRuleActionErrorCodeCache',
+    'RuleEngineRuleActionFlexibleOrigin',
+    'RuleEngineRuleActionHttpResponseHeader',
+    'RuleEngineRuleActionOriginRange',
+    'RuleEngineRuleActionOriginRequestHeader',
+    'RuleEngineRuleActionOriginRequestUrlRewrite',
+    'RuleEngineRuleActionRequestLimitRule',
+    'RuleEngineRuleActionRequestUrlRewrite',
+    'StatisticConfigurationConfigInfo',
+    'StatisticConfigurationConfigInfoUa',
+    'StatisticConfigurationConfigInfoUrl',
     'GetCacheHistoryTasksTaskResult',
+    'GetCacheSharingGroupsGroupResult',
+    'GetCacheSharingGroupsGroupShareCacheRecordResult',
     'GetCacheUrlTasksTaskResult',
     'GetDomainCertificatesDomainCertificateResult',
+    'GetDomainTagsTagResult',
+    'GetDomainTemplateApplyRecordsRecordResult',
+    'GetDomainTemplateApplyRecordsRecordResourceResult',
+    'GetDomainTemplatesTemplateResult',
     'GetDomainsDomainResult',
     'GetDomainsDomainSourceResult',
+    'GetIpInformationInformationResult',
     'GetLogsLogResult',
+    'GetQuotasQuotaResult',
+    'GetRuleEngineRulesRuleResult',
+    'GetRuleEngineRulesRuleActionResult',
+    'GetRuleEngineRulesRuleActionAccessControlResult',
+    'GetRuleEngineRulesRuleActionBrowserCacheRuleResult',
+    'GetRuleEngineRulesRuleActionCacheRuleResult',
+    'GetRuleEngineRulesRuleActionErrorCodeCacheResult',
+    'GetRuleEngineRulesRuleActionFlexibleOriginResult',
+    'GetRuleEngineRulesRuleActionHttpResponseHeaderResult',
+    'GetRuleEngineRulesRuleActionOriginRangeResult',
+    'GetRuleEngineRulesRuleActionOriginRequestHeaderResult',
+    'GetRuleEngineRulesRuleActionOriginRequestUrlRewriteResult',
+    'GetRuleEngineRulesRuleActionRequestLimitRuleResult',
+    'GetRuleEngineRulesRuleActionRequestUrlRewriteResult',
+    'GetStatisticConfigurationConfigurationResult',
+    'GetStatisticConfigurationConfigurationConfigInfoResult',
+    'GetStatisticConfigurationConfigurationConfigInfoUaResult',
+    'GetStatisticConfigurationConfigurationConfigInfoUrlResult',
+    'GetTopReferrerStatisticsStatisticResult',
+    'GetTopUrlStatisticsStatisticResult',
 ]
+
+@pulumi.output_type
+class CacheSharingGroupShareCacheRecord(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "domainName":
+            suggest = "domain_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CacheSharingGroupShareCacheRecord. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CacheSharingGroupShareCacheRecord.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CacheSharingGroupShareCacheRecord.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 domain_name: _builtins.str):
+        """
+        :param _builtins.str domain_name: Specifies the associated domain name.
+               
+               > The primary domain will not be automatically join the cache sharing, users need to explicitly declare in the
+               `share_cache_records` list.
+        """
+        pulumi.set(__self__, "domain_name", domain_name)
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        Specifies the associated domain name.
+
+        > The primary domain will not be automatically join the cache sharing, users need to explicitly declare in the
+        `share_cache_records` list.
+        """
+        return pulumi.get(self, "domain_name")
+
+
+@pulumi.output_type
+class CertificateAssociateDomainsForceRedirectConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "redirectType":
+            suggest = "redirect_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CertificateAssociateDomainsForceRedirectConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CertificateAssociateDomainsForceRedirectConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CertificateAssociateDomainsForceRedirectConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 switch: _builtins.int,
+                 redirect_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int switch: The force redirect switch.  
+               The valid values are as follows:
+               + **0**: Disable
+               + **1**: Enable
+        :param _builtins.str redirect_type: The redirect type.  
+               The valid values are as follows:
+               + **http**: Redirect to HTTP
+               + **https**: Redirect to HTTPS
+        """
+        pulumi.set(__self__, "switch", switch)
+        if redirect_type is not None:
+            pulumi.set(__self__, "redirect_type", redirect_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def switch(self) -> _builtins.int:
+        """
+        The force redirect switch.  
+        The valid values are as follows:
+        + **0**: Disable
+        + **1**: Enable
+        """
+        return pulumi.get(self, "switch")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectType")
+    def redirect_type(self) -> Optional[_builtins.str]:
+        """
+        The redirect type.  
+        The valid values are as follows:
+        + **http**: Redirect to HTTP
+        + **https**: Redirect to HTTPS
+        """
+        return pulumi.get(self, "redirect_type")
+
 
 @pulumi.output_type
 class DomainCacheSettings(dict):
@@ -210,15 +354,15 @@ class DomainCacheSettingsRule(dict):
                + If `rule_type` is set to **all** or **home_page**, keep this parameter empty.
                + If `rule_type` is set to **file_extension**, the value of this parameter is a list of file name
                extensions. A file name extension starts with a period (.). File name extensions are separated by semicolons (;),
-               for example, `.jpg;.zip;.exe`. Up to 20 file types are supported.
+               for example, `.jpg;.zip;.exe`. Up to `20` file types are supported.
                + If `rule_type` is set to **catalog**, the value of this parameter is a list of directories. A directory starts with
                a slash (/). Directories are separated by semicolons (;), for example, `/test/folder01;/test/folder02`.
-               Up to 20 directories are supported.
+               Up to `20` directories are supported.
                + If `rule_type` is set to **full_path**, the value must start with a slash (/) and cannot end with an asterisk.
                Example: `/test/index.html` or `/test/*.jpg`
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
-        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is 365 days.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
+        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is `365` days.
         :param _builtins.str ttl_type: Specifies the unit of the cache age. Possible values:
                + **s**: Second
                + **m**: Minute
@@ -232,7 +376,7 @@ class DomainCacheSettingsRule(dict):
                
                Defaults to **full_url**.
         :param _builtins.str url_parameter_value: Specifies the URL parameter values, which are separated by commas (,).
-               Up to 10 parameters can be set.
+               Up to `10` parameters can be set.
                This parameter is mandatory when `url_parameter_type` is set to **del_params** or **reserve_params**.
         """
         pulumi.set(__self__, "rule_type", rule_type)
@@ -271,10 +415,10 @@ class DomainCacheSettingsRule(dict):
         + If `rule_type` is set to **all** or **home_page**, keep this parameter empty.
         + If `rule_type` is set to **file_extension**, the value of this parameter is a list of file name
         extensions. A file name extension starts with a period (.). File name extensions are separated by semicolons (;),
-        for example, `.jpg;.zip;.exe`. Up to 20 file types are supported.
+        for example, `.jpg;.zip;.exe`. Up to `20` file types are supported.
         + If `rule_type` is set to **catalog**, the value of this parameter is a list of directories. A directory starts with
         a slash (/). Directories are separated by semicolons (;), for example, `/test/folder01;/test/folder02`.
-        Up to 20 directories are supported.
+        Up to `20` directories are supported.
         + If `rule_type` is set to **full_path**, the value must start with a slash (/) and cannot end with an asterisk.
         Example: `/test/index.html` or `/test/*.jpg`
         """
@@ -284,8 +428,8 @@ class DomainCacheSettingsRule(dict):
     @pulumi.getter
     def priority(self) -> Optional[_builtins.int]:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -293,7 +437,7 @@ class DomainCacheSettingsRule(dict):
     @pulumi.getter
     def ttl(self) -> Optional[_builtins.int]:
         """
-        Specifies the cache age. The maximum cache age is 365 days.
+        Specifies the cache age. The maximum cache age is `365` days.
         """
         return pulumi.get(self, "ttl")
 
@@ -328,7 +472,7 @@ class DomainCacheSettingsRule(dict):
     def url_parameter_value(self) -> Optional[_builtins.str]:
         """
         Specifies the URL parameter values, which are separated by commas (,).
-        Up to 10 parameters can be set.
+        Up to `10` parameters can be set.
         This parameter is mandatory when `url_parameter_type` is set to **del_params** or **reserve_params**.
         """
         return pulumi.get(self, "url_parameter_value")
@@ -410,7 +554,7 @@ class DomainConfigs(dict):
                  client_cert: Optional['outputs.DomainConfigsClientCert'] = None,
                  compress: Optional['outputs.DomainConfigsCompress'] = None,
                  description: Optional[_builtins.str] = None,
-                 error_code_caches: Optional[Sequence['outputs.DomainConfigsErrorCodeCach']] = None,
+                 error_code_caches: Optional[Sequence['outputs.DomainConfigsErrorCodeCache']] = None,
                  error_code_redirect_rules: Optional[Sequence['outputs.DomainConfigsErrorCodeRedirectRule']] = None,
                  flexible_origins: Optional[Sequence['outputs.DomainConfigsFlexibleOrigin']] = None,
                  force_redirect: Optional['outputs.DomainConfigsForceRedirect'] = None,
@@ -455,7 +599,7 @@ class DomainConfigs(dict):
         :param 'DomainConfigsCompressArgs' compress: Specifies the smart compression. The compress structure
                is documented below.
         :param _builtins.str description: Specifies the description of the domain. The value contains up to `200` characters.
-        :param Sequence['DomainConfigsErrorCodeCachArgs'] error_code_caches: Specifies the status code cache TTL.
+        :param Sequence['DomainConfigsErrorCodeCacheArgs'] error_code_caches: Specifies the status code cache TTL.
                The error_code_cache structure is documented below.
                
                > 1. The status code cache TTL cannot be configured for domain names with special configurations.
@@ -503,7 +647,7 @@ class DomainConfigs(dict):
         :param Sequence['DomainConfigsOriginRequestUrlRewriteArgs'] origin_request_url_rewrites: Specifies the rules of rewriting origin request URLs.
                The origin_request_url_rewrite structure is documented below.
                
-               > Up to 20 rules can be configured.
+               > Up to `20` rules can be configured.
         :param 'DomainConfigsQuicArgs' quic: Specifies the QUIC protocol. The quic structure is documented below.
                
                > This field can only be used when the HTTPS certificate is enabled. Disabling the HTTPS certificate will disable QUIC.
@@ -511,7 +655,8 @@ class DomainConfigs(dict):
                
                > The prerequisite for enabling range-based retrieval is that your origin site supports Range requests, that is, the
                HTTP request header contains the Range field. Otherwise, the back-to-origin may fail.
-        :param 'DomainConfigsRefererArgs' referer: Specifies the referer validation. The referer structure is documented below.
+        :param 'DomainConfigsRefererArgs' referer: Specifies the referer validation.
+               The referer structure is documented below.
                
                > You can define referer whitelists and blacklists to control who can access specific domain names.
         :param 'DomainConfigsRemoteAuthArgs' remote_auth: Specifies the remote authentication settings.
@@ -522,7 +667,7 @@ class DomainConfigs(dict):
         :param Sequence['DomainConfigsRequestLimitRuleArgs'] request_limit_rules: Specifies the request rate limiting rules.
                The request_limit_rules structure is documented below.
                
-               > Up to 60 request limit rules can be configured.
+               > Up to `60` request limit rules can be configured.
         :param Sequence['DomainConfigsRequestUrlRewriteArgs'] request_url_rewrites: Specifies the request url rewrite settings. Set access URL rewrite rules to
                redirect user requests to the URLs of cached resources.
                The request_url_rewrite structure is documented below.
@@ -687,7 +832,7 @@ class DomainConfigs(dict):
 
     @_builtins.property
     @pulumi.getter(name="errorCodeCaches")
-    def error_code_caches(self) -> Optional[Sequence['outputs.DomainConfigsErrorCodeCach']]:
+    def error_code_caches(self) -> Optional[Sequence['outputs.DomainConfigsErrorCodeCache']]:
         """
         Specifies the status code cache TTL.
         The error_code_cache structure is documented below.
@@ -828,7 +973,7 @@ class DomainConfigs(dict):
         Specifies the rules of rewriting origin request URLs.
         The origin_request_url_rewrite structure is documented below.
 
-        > Up to 20 rules can be configured.
+        > Up to `20` rules can be configured.
         """
         return pulumi.get(self, "origin_request_url_rewrites")
 
@@ -857,7 +1002,8 @@ class DomainConfigs(dict):
     @pulumi.getter
     def referer(self) -> Optional['outputs.DomainConfigsReferer']:
         """
-        Specifies the referer validation. The referer structure is documented below.
+        Specifies the referer validation.
+        The referer structure is documented below.
 
         > You can define referer whitelists and blacklists to control who can access specific domain names.
         """
@@ -882,7 +1028,7 @@ class DomainConfigs(dict):
         Specifies the request rate limiting rules.
         The request_limit_rules structure is documented below.
 
-        > Up to 60 request limit rules can be configured.
+        > Up to `60` request limit rules can be configured.
         """
         return pulumi.get(self, "request_limit_rules")
 
@@ -1130,7 +1276,7 @@ class DomainConfigsBrowserCacheRule(dict):
                + **never**: The browser does not cache resources.
         :param 'DomainConfigsBrowserCacheRuleConditionArgs' condition: Specifies matching condition.
                The condition structure is documented below.
-        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is 365 days.
+        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is `365` days.
         :param _builtins.str ttl_unit: Specifies the cache expiration time unit. Valid values are:
                + **s**: seconds.
                + **m**: minutes.
@@ -1173,7 +1319,7 @@ class DomainConfigsBrowserCacheRule(dict):
     @pulumi.getter
     def ttl(self) -> Optional[_builtins.int]:
         """
-        Specifies the cache age. The maximum cache age is 365 days.
+        Specifies the cache age. The maximum cache age is `365` days.
         """
         return pulumi.get(self, "ttl")
 
@@ -1227,8 +1373,8 @@ class DomainConfigsBrowserCacheRuleCondition(dict):
                + **catalog**: Match by directory.
                + **full_path**: Full path matching.
                + **home_page**: Match by homepage.
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         :param _builtins.str match_value: Specifies the cache match settings.
                + When `match_type` is set to **all**, this field does not need to be configured.
                + When `match_type` is set to **file_extension**, this field value is the file suffix. The first character of the
@@ -1268,8 +1414,8 @@ class DomainConfigsBrowserCacheRuleCondition(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -1381,6 +1527,13 @@ class DomainConfigsClientCert(dict):
                
                <a name="cache_settings_object"></a>
                The `cache_settings` block support:
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         :param _builtins.str trusted_cert: Specifies the client CA certificate content, only supports PEM format.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -1416,6 +1569,15 @@ class DomainConfigsClientCert(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
     @_builtins.property
@@ -1453,12 +1615,19 @@ class DomainConfigsCompress(dict):
                  type: Optional[_builtins.str] = None):
         """
         :param _builtins.bool enabled: Specifies whether to enable client cert settings.
-        :param _builtins.str file_type: Specifies the formats of files to be compressed. Enter up to 200 characters.
-               Multiple formats are separated by commas (,). Each format contains up to 50 characters.
+        :param _builtins.str file_type: Specifies the formats of files to be compressed. Enter up to `200` characters.
+               Multiple formats are separated by commas (,). Each format contains up to `50` characters.
                Defaults to **.js,.html,.css,.xml,.json,.shtml,.htm**.
                
                <a name="ip_frequency_limit_object"></a>
                The `ip_frequency_limit` block support:
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         :param _builtins.str type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -1485,8 +1654,8 @@ class DomainConfigsCompress(dict):
     @pulumi.getter(name="fileType")
     def file_type(self) -> Optional[_builtins.str]:
         """
-        Specifies the formats of files to be compressed. Enter up to 200 characters.
-        Multiple formats are separated by commas (,). Each format contains up to 50 characters.
+        Specifies the formats of files to be compressed. Enter up to `200` characters.
+        Multiple formats are separated by commas (,). Each format contains up to `50` characters.
         Defaults to **.js,.html,.css,.xml,.json,.shtml,.htm**.
 
         <a name="ip_frequency_limit_object"></a>
@@ -1497,6 +1666,15 @@ class DomainConfigsCompress(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
     @_builtins.property
@@ -1513,14 +1691,14 @@ class DomainConfigsCompress(dict):
 
 
 @pulumi.output_type
-class DomainConfigsErrorCodeCach(dict):
+class DomainConfigsErrorCodeCache(dict):
     def __init__(__self__, *,
                  code: _builtins.int,
                  ttl: _builtins.int):
         """
         :param _builtins.int code: Specifies the error code. Valid values are: **301**, **302**, **400**, **403**, **404**,
                **405**, **414**, **500**, **501**, **502**, **503**, and **504**.
-        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is 365 days.
+        :param _builtins.int ttl: Specifies the cache age. The maximum cache age is `365` days.
         """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "ttl", ttl)
@@ -1538,7 +1716,7 @@ class DomainConfigsErrorCodeCach(dict):
     @pulumi.getter
     def ttl(self) -> _builtins.int:
         """
-        Specifies the cache age. The maximum cache age is 365 days.
+        Specifies the cache age. The maximum cache age is `365` days.
         """
         return pulumi.get(self, "ttl")
 
@@ -1643,22 +1821,22 @@ class DomainConfigsFlexibleOrigin(dict):
                  priority: _builtins.int,
                  match_pattern: Optional[_builtins.str] = None):
         """
-        :param 'DomainConfigsFlexibleOriginBackSourcesArgs' back_sources: Specifies the back source information. The length of this array field cannot exceed `1`.
-               The back_sources structure is documented below.
+        :param 'DomainConfigsFlexibleOriginBackSourcesArgs' back_sources: Specifies the back source information. The length of this array field cannot
+               exceed `1`. The back_sources structure is documented below.
         :param _builtins.str match_type: Specifies the match type. Valid values are:
                + **all**: Match all files.
                + **file_extension**: Match by file suffix.
                + **catalog**: Match by directory.
                + **full_path**: Full path matching.
                + **home_page**: Match by homepage.
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         :param _builtins.str match_pattern: Specifies the URI match rule. The usage rules are as follows:
                + When `match_type` is set to **all**, set this field to empty.
                + When `match_type` is set to **file_extension**, the value of this field should start with a period (.).
-               Enter up to 20 file name extensions and use semicolons (;) to separate them. Example: **.jpg;.zip;.exe**.
+               Enter up to `20` file name extensions and use semicolons (;) to separate them. Example: **.jpg;.zip;.exe**.
                + When `match_type` is set to **file_path**, the value of this field should start with a slash (/).
-               Enter up to 20 paths and use semicolons (;) to separate them. Example: **/test/folder01;/test/folder02**.
+               Enter up to `20` paths and use semicolons (;) to separate them. Example: **/test/folder01;/test/folder02**.
                
                <a name="flexible_origin_back_sources_object"></a>
                The `back_sources` block support:
@@ -1673,8 +1851,8 @@ class DomainConfigsFlexibleOrigin(dict):
     @pulumi.getter(name="backSources")
     def back_sources(self) -> 'outputs.DomainConfigsFlexibleOriginBackSources':
         """
-        Specifies the back source information. The length of this array field cannot exceed `1`.
-        The back_sources structure is documented below.
+        Specifies the back source information. The length of this array field cannot
+        exceed `1`. The back_sources structure is documented below.
         """
         return pulumi.get(self, "back_sources")
 
@@ -1695,8 +1873,8 @@ class DomainConfigsFlexibleOrigin(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -1707,9 +1885,9 @@ class DomainConfigsFlexibleOrigin(dict):
         Specifies the URI match rule. The usage rules are as follows:
         + When `match_type` is set to **all**, set this field to empty.
         + When `match_type` is set to **file_extension**, the value of this field should start with a period (.).
-        Enter up to 20 file name extensions and use semicolons (;) to separate them. Example: **.jpg;.zip;.exe**.
+        Enter up to `20` file name extensions and use semicolons (;) to separate them. Example: **.jpg;.zip;.exe**.
         + When `match_type` is set to **file_path**, the value of this field should start with a slash (/).
-        Enter up to 20 paths and use semicolons (;) to separate them. Example: **/test/folder01;/test/folder02**.
+        Enter up to `20` paths and use semicolons (;) to separate them. Example: **/test/folder01;/test/folder02**.
 
         <a name="flexible_origin_back_sources_object"></a>
         The `back_sources` block support:
@@ -1864,6 +2042,13 @@ class DomainConfigsForceRedirect(dict):
                
                <a name="compress_object"></a>
                The `compress` blocks support:
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         :param _builtins.str type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -1901,6 +2086,15 @@ class DomainConfigsForceRedirect(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
     @_builtins.property
@@ -2395,8 +2589,8 @@ class DomainConfigsOriginRequestUrlRewrite(dict):
                + **catalog**: Match by directory.
                + **full_path**: Full path matching.
                + **home_page**: Match by homepage.
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         :param _builtins.str target_url: Specifies a URI starts with a slash (/) and does not contain `http://`, `https://`,
                or the domain name. The value contains up to `256` characters. The nth wildcard (*) field can be substituted with
                `$n`, where n = 1, 2, 3..., for example, `/newtest/$1/$2.jpg`.
@@ -2430,8 +2624,8 @@ class DomainConfigsOriginRequestUrlRewrite(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -2721,11 +2915,11 @@ class DomainConfigsRemoteAuthRemoteAuthRules(dict):
                <a name="add_custom_rules_object"></a>
                The `add_custom_args_rules` and `add_custom_headers_rules` block support:
         :param _builtins.str reserve_args: Specifies the reserve args. Multiple args are separated by vertical bars (|).
-               For example: **key1|key2**. This parameter is mandatory when `reserve_args_setting` is set to **reserve_specific_args**.
-               In other cases, this parameter is left blank.
-        :param _builtins.str reserve_headers: Specifies the reserve headers. Multiple headers are separated by vertical bars (|).
-               For example: **key1|key2**. This parameter is mandatory when `reserve_headers_setting` is set to **reserve_specific_headers**.
-               In other cases, this parameter is left blank.
+               For example: **key1|key2**. This parameter is mandatory when `reserve_args_setting` is set to
+               **reserve_specific_args**. In other cases, this parameter is left blank.
+        :param _builtins.str reserve_headers: Specifies the reserve headers. Multiple headers are separated by vertical
+               bars (|). For example: **key1|key2**. This parameter is mandatory when `reserve_headers_setting` is set to
+               **reserve_specific_headers**. In other cases, this parameter is left blank.
         :param _builtins.str specified_file_type: Specifies the specific file types. The value contains letters and digits.
                The value contains up to `512` characters. File types are not case-sensitive, and multiple file types are separated
                by vertical bars (|). For example: **jpg|MP4**. This parameter is mandatory when `file_type_setting` is set to
@@ -2880,8 +3074,8 @@ class DomainConfigsRemoteAuthRemoteAuthRules(dict):
     def reserve_args(self) -> Optional[_builtins.str]:
         """
         Specifies the reserve args. Multiple args are separated by vertical bars (|).
-        For example: **key1|key2**. This parameter is mandatory when `reserve_args_setting` is set to **reserve_specific_args**.
-        In other cases, this parameter is left blank.
+        For example: **key1|key2**. This parameter is mandatory when `reserve_args_setting` is set to
+        **reserve_specific_args**. In other cases, this parameter is left blank.
         """
         return pulumi.get(self, "reserve_args")
 
@@ -2889,9 +3083,9 @@ class DomainConfigsRemoteAuthRemoteAuthRules(dict):
     @pulumi.getter(name="reserveHeaders")
     def reserve_headers(self) -> Optional[_builtins.str]:
         """
-        Specifies the reserve headers. Multiple headers are separated by vertical bars (|).
-        For example: **key1|key2**. This parameter is mandatory when `reserve_headers_setting` is set to **reserve_specific_headers**.
-        In other cases, this parameter is left blank.
+        Specifies the reserve headers. Multiple headers are separated by vertical
+        bars (|). For example: **key1|key2**. This parameter is mandatory when `reserve_headers_setting` is set to
+        **reserve_specific_headers**. In other cases, this parameter is left blank.
         """
         return pulumi.get(self, "reserve_headers")
 
@@ -3076,8 +3270,8 @@ class DomainConfigsRequestLimitRule(dict):
                + **catalog**: Match by directory.
                + **full_path**: Full path matching.
                + **home_page**: Match by homepage.
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         :param _builtins.str type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -3145,8 +3339,8 @@ class DomainConfigsRequestLimitRule(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -3331,8 +3525,8 @@ class DomainConfigsRequestUrlRewriteCondition(dict):
                + **catalog**: Match by directory.
                + **full_path**: Full path matching.
                + **home_page**: Match by homepage.
-        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is 1.
-               A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        :param _builtins.int priority: Specifies the priority weight of this rule. The default value is `1`.
+               A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         :param _builtins.str match_value: Specifies the cache match settings.
                + When `match_type` is set to **all**, this field does not need to be configured.
                + When `match_type` is set to **file_extension**, this field value is the file suffix. The first character of the
@@ -3372,8 +3566,8 @@ class DomainConfigsRequestUrlRewriteCondition(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the priority weight of this rule. The default value is 1.
-        A larger value indicates a higher priority. The value ranges from 1 to 100. The weight values must be unique.
+        Specifies the priority weight of this rule. The default value is `1`.
+        A larger value indicates a higher priority. The value ranges from `1` to `100`. The weight values must be unique.
         """
         return pulumi.get(self, "priority")
 
@@ -3493,6 +3687,13 @@ class DomainConfigsSni(dict):
                
                <a name="request_url_rewrite_object"></a>
                The `request_url_rewrite` block support:
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         """
         pulumi.set(__self__, "enabled", enabled)
         if server_name is not None:
@@ -3526,6 +3727,15 @@ class DomainConfigsSni(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
 
@@ -3576,7 +3786,7 @@ class DomainConfigsUrlSigning(dict):
         :param _builtins.bool enabled: Specifies whether to enable client cert settings.
         :param _builtins.str backup_key: Specifies the standby authentication key contains `16` to `32` characters,
                including letters and digits.
-        :param _builtins.int expire_time: Specifies the expiration time. The value ranges from `0` to `31536000`, in seconds.
+        :param _builtins.int expire_time: Specifies the expiration time. The value ranges from `0` to `31,536,000`, in seconds.
                
                <a name="inherit_config_object"></a>
                The `inherit_config` blocks support:
@@ -3600,9 +3810,16 @@ class DomainConfigsUrlSigning(dict):
                The default value is **md5**. The valid values are as following:
                + **md5**
                + **sha256**
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         :param _builtins.str time_format: Specifies the time format. Possible values are:
-               **dec**: Decimal, can be used in Method A, Method B and Method C2.
-               **hex**: Hexadecimal, can be used in Method C1 and Method C2.
+               + **dec**: Decimal, can be used in Method A, Method B and Method C2.
+               + **hex**: Hexadecimal, can be used in Method C1 and Method C2.
         :param _builtins.str type: Specifies the blacklist and whitelist rule type. Valid values are:
                + **black**: Blacklist. Users in regions specified in the blacklist cannot access resources and status code `403` is
                returned.
@@ -3652,7 +3869,7 @@ class DomainConfigsUrlSigning(dict):
     @pulumi.getter(name="expireTime")
     def expire_time(self) -> Optional[_builtins.int]:
         """
-        Specifies the expiration time. The value ranges from `0` to `31536000`, in seconds.
+        Specifies the expiration time. The value ranges from `0` to `31,536,000`, in seconds.
 
         <a name="inherit_config_object"></a>
         The `inherit_config` blocks support:
@@ -3717,6 +3934,15 @@ class DomainConfigsUrlSigning(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
     @_builtins.property
@@ -3724,8 +3950,8 @@ class DomainConfigsUrlSigning(dict):
     def time_format(self) -> Optional[_builtins.str]:
         """
         Specifies the time format. Possible values are:
-        **dec**: Decimal, can be used in Method A, Method B and Method C2.
-        **hex**: Hexadecimal, can be used in Method C1 and Method C2.
+        + **dec**: Decimal, can be used in Method A, Method B and Method C2.
+        + **hex**: Hexadecimal, can be used in Method C1 and Method C2.
         """
         return pulumi.get(self, "time_format")
 
@@ -3783,6 +4009,13 @@ class DomainConfigsUrlSigningInheritConfig(dict):
                The valid values are **m3u8** and **mpd**. Separate multiple values with commas (,). e.g. **m3u8,mpd**.
                
                > This parameter is mandatory when authentication inheritance is enabled.
+        :param _builtins.str status: Specifies the status of the domain.
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               
+               <a name="sources_cdn_domain"></a>
+               The `sources` block supports:
         """
         pulumi.set(__self__, "enabled", enabled)
         if inherit_time_type is not None:
@@ -3830,6 +4063,15 @@ class DomainConfigsUrlSigningInheritConfig(dict):
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        Specifies the status of the domain.
+        The valid values are as follows:
+        + **online**
+        + **offline**
+
+        <a name="sources_cdn_domain"></a>
+        The `sources` block supports:
+        """
         return pulumi.get(self, "status")
 
 
@@ -4069,9 +4311,9 @@ class DomainRuleRule(dict):
                  rule_id: Optional[_builtins.str] = None):
         """
         :param Sequence['DomainRuleRuleActionArgs'] actions: Specifies a list of actions to be performed when the rules are met
-        :param _builtins.str name: Specifies the rule name. The valid length is limit from `1` to `50`.
-        :param _builtins.int priority: Specifies the rule priority. The valid value is limit from 1 to 100.
-        :param _builtins.str status: Specifies the rule status. Valid values are **on** and **off**.
+        :param _builtins.str name: The rule name. The valid length is limit from `1` to `50`.
+        :param _builtins.int priority: The rule priority. The valid value is limit from 1 to 100.
+        :param _builtins.str status: The rule status. Valid values are **on** and **off**.
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "conditions", conditions)
@@ -4098,7 +4340,7 @@ class DomainRuleRule(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the rule name. The valid length is limit from `1` to `50`.
+        The rule name. The valid length is limit from `1` to `50`.
         """
         return pulumi.get(self, "name")
 
@@ -4106,7 +4348,7 @@ class DomainRuleRule(dict):
     @pulumi.getter
     def priority(self) -> _builtins.int:
         """
-        Specifies the rule priority. The valid value is limit from 1 to 100.
+        The rule priority. The valid value is limit from 1 to 100.
         """
         return pulumi.get(self, "priority")
 
@@ -4114,7 +4356,7 @@ class DomainRuleRule(dict):
     @pulumi.getter
     def status(self) -> _builtins.str:
         """
-        Specifies the rule status. Valid values are **on** and **off**.
+        The rule status. Valid values are **on** and **off**.
         """
         return pulumi.get(self, "status")
 
@@ -5170,7 +5412,7 @@ class DomainV1Configs(dict):
                  client_cert: Optional['outputs.DomainV1ConfigsClientCert'] = None,
                  compress: Optional['outputs.DomainV1ConfigsCompress'] = None,
                  description: Optional[_builtins.str] = None,
-                 error_code_caches: Optional[Sequence['outputs.DomainV1ConfigsErrorCodeCach']] = None,
+                 error_code_caches: Optional[Sequence['outputs.DomainV1ConfigsErrorCodeCache']] = None,
                  error_code_redirect_rules: Optional[Sequence['outputs.DomainV1ConfigsErrorCodeRedirectRule']] = None,
                  flexible_origins: Optional[Sequence['outputs.DomainV1ConfigsFlexibleOrigin']] = None,
                  force_redirect: Optional['outputs.DomainV1ConfigsForceRedirect'] = None,
@@ -5306,7 +5548,7 @@ class DomainV1Configs(dict):
 
     @_builtins.property
     @pulumi.getter(name="errorCodeCaches")
-    def error_code_caches(self) -> Optional[Sequence['outputs.DomainV1ConfigsErrorCodeCach']]:
+    def error_code_caches(self) -> Optional[Sequence['outputs.DomainV1ConfigsErrorCodeCache']]:
         return pulumi.get(self, "error_code_caches")
 
     @_builtins.property
@@ -5753,7 +5995,7 @@ class DomainV1ConfigsCompress(dict):
 
 
 @pulumi.output_type
-class DomainV1ConfigsErrorCodeCach(dict):
+class DomainV1ConfigsErrorCodeCache(dict):
     def __init__(__self__, *,
                  code: _builtins.int,
                  ttl: _builtins.int):
@@ -7330,6 +7572,1162 @@ class DomainV1Source(dict):
 
 
 @pulumi.output_type
+class RuleEngineRuleAction(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessControl":
+            suggest = "access_control"
+        elif key == "browserCacheRule":
+            suggest = "browser_cache_rule"
+        elif key == "cacheRule":
+            suggest = "cache_rule"
+        elif key == "errorCodeCaches":
+            suggest = "error_code_caches"
+        elif key == "flexibleOrigins":
+            suggest = "flexible_origins"
+        elif key == "httpResponseHeaders":
+            suggest = "http_response_headers"
+        elif key == "originRange":
+            suggest = "origin_range"
+        elif key == "originRequestHeaders":
+            suggest = "origin_request_headers"
+        elif key == "originRequestUrlRewrite":
+            suggest = "origin_request_url_rewrite"
+        elif key == "requestLimitRule":
+            suggest = "request_limit_rule"
+        elif key == "requestUrlRewrite":
+            suggest = "request_url_rewrite"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleAction. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleAction.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleAction.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_control: Optional['outputs.RuleEngineRuleActionAccessControl'] = None,
+                 browser_cache_rule: Optional['outputs.RuleEngineRuleActionBrowserCacheRule'] = None,
+                 cache_rule: Optional['outputs.RuleEngineRuleActionCacheRule'] = None,
+                 error_code_caches: Optional[Sequence['outputs.RuleEngineRuleActionErrorCodeCache']] = None,
+                 flexible_origins: Optional[Sequence['outputs.RuleEngineRuleActionFlexibleOrigin']] = None,
+                 http_response_headers: Optional[Sequence['outputs.RuleEngineRuleActionHttpResponseHeader']] = None,
+                 origin_range: Optional['outputs.RuleEngineRuleActionOriginRange'] = None,
+                 origin_request_headers: Optional[Sequence['outputs.RuleEngineRuleActionOriginRequestHeader']] = None,
+                 origin_request_url_rewrite: Optional['outputs.RuleEngineRuleActionOriginRequestUrlRewrite'] = None,
+                 request_limit_rule: Optional['outputs.RuleEngineRuleActionRequestLimitRule'] = None,
+                 request_url_rewrite: Optional['outputs.RuleEngineRuleActionRequestUrlRewrite'] = None):
+        """
+        :param 'RuleEngineRuleActionAccessControlArgs' access_control: Specifies the access control configuration.  
+               The access_control structure is documented below.
+        :param 'RuleEngineRuleActionBrowserCacheRuleArgs' browser_cache_rule: Specifies the browser cache rule configuration.  
+               The browser_cache_rule structure is documented below.
+        :param 'RuleEngineRuleActionCacheRuleArgs' cache_rule: Specifies the cache rule configuration.  
+               The cache_rule structure is documented below.
+        :param Sequence['RuleEngineRuleActionErrorCodeCacheArgs'] error_code_caches: Specifies the list of error code cache configurations.  
+               The error_code_cache structure is documented below.
+        :param Sequence['RuleEngineRuleActionFlexibleOriginArgs'] flexible_origins: Specifies the list of flexible origin configurations.  
+               The flexible_origin structure is documented below.
+        :param Sequence['RuleEngineRuleActionHttpResponseHeaderArgs'] http_response_headers: Specifies the list of HTTP response header configurations.  
+               The http_response_header structure is documented below.
+        :param 'RuleEngineRuleActionOriginRangeArgs' origin_range: Specifies the origin range configuration.  
+               The error_code_cache structure is documented below.
+               
+               > Each of the above configuration items must be declared in a separate actions structure.
+               
+               <a name="cdn_rule_engine_rule_actions_flexible_origin"></a>
+               The `flexible_origin` block supports:
+        :param Sequence['RuleEngineRuleActionOriginRequestHeaderArgs'] origin_request_headers: Specifies the list of origin request header configurations.  
+               The origin_request_header structure is documented below.
+        :param 'RuleEngineRuleActionOriginRequestUrlRewriteArgs' origin_request_url_rewrite: Specifies the origin request URL rewrite configuration.  
+               The origin_request_url_rewrite structure is documented
+               below.
+        :param 'RuleEngineRuleActionRequestLimitRuleArgs' request_limit_rule: Specifies the request rate limit configuration.  
+               The request_limit_rule structure is documented below.
+        :param 'RuleEngineRuleActionRequestUrlRewriteArgs' request_url_rewrite: Specifies the access URL rewrite configuration.  
+               The request_url_rewrite structure is documented below.
+        """
+        if access_control is not None:
+            pulumi.set(__self__, "access_control", access_control)
+        if browser_cache_rule is not None:
+            pulumi.set(__self__, "browser_cache_rule", browser_cache_rule)
+        if cache_rule is not None:
+            pulumi.set(__self__, "cache_rule", cache_rule)
+        if error_code_caches is not None:
+            pulumi.set(__self__, "error_code_caches", error_code_caches)
+        if flexible_origins is not None:
+            pulumi.set(__self__, "flexible_origins", flexible_origins)
+        if http_response_headers is not None:
+            pulumi.set(__self__, "http_response_headers", http_response_headers)
+        if origin_range is not None:
+            pulumi.set(__self__, "origin_range", origin_range)
+        if origin_request_headers is not None:
+            pulumi.set(__self__, "origin_request_headers", origin_request_headers)
+        if origin_request_url_rewrite is not None:
+            pulumi.set(__self__, "origin_request_url_rewrite", origin_request_url_rewrite)
+        if request_limit_rule is not None:
+            pulumi.set(__self__, "request_limit_rule", request_limit_rule)
+        if request_url_rewrite is not None:
+            pulumi.set(__self__, "request_url_rewrite", request_url_rewrite)
+
+    @_builtins.property
+    @pulumi.getter(name="accessControl")
+    def access_control(self) -> Optional['outputs.RuleEngineRuleActionAccessControl']:
+        """
+        Specifies the access control configuration.  
+        The access_control structure is documented below.
+        """
+        return pulumi.get(self, "access_control")
+
+    @_builtins.property
+    @pulumi.getter(name="browserCacheRule")
+    def browser_cache_rule(self) -> Optional['outputs.RuleEngineRuleActionBrowserCacheRule']:
+        """
+        Specifies the browser cache rule configuration.  
+        The browser_cache_rule structure is documented below.
+        """
+        return pulumi.get(self, "browser_cache_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="cacheRule")
+    def cache_rule(self) -> Optional['outputs.RuleEngineRuleActionCacheRule']:
+        """
+        Specifies the cache rule configuration.  
+        The cache_rule structure is documented below.
+        """
+        return pulumi.get(self, "cache_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="errorCodeCaches")
+    def error_code_caches(self) -> Optional[Sequence['outputs.RuleEngineRuleActionErrorCodeCache']]:
+        """
+        Specifies the list of error code cache configurations.  
+        The error_code_cache structure is documented below.
+        """
+        return pulumi.get(self, "error_code_caches")
+
+    @_builtins.property
+    @pulumi.getter(name="flexibleOrigins")
+    def flexible_origins(self) -> Optional[Sequence['outputs.RuleEngineRuleActionFlexibleOrigin']]:
+        """
+        Specifies the list of flexible origin configurations.  
+        The flexible_origin structure is documented below.
+        """
+        return pulumi.get(self, "flexible_origins")
+
+    @_builtins.property
+    @pulumi.getter(name="httpResponseHeaders")
+    def http_response_headers(self) -> Optional[Sequence['outputs.RuleEngineRuleActionHttpResponseHeader']]:
+        """
+        Specifies the list of HTTP response header configurations.  
+        The http_response_header structure is documented below.
+        """
+        return pulumi.get(self, "http_response_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="originRange")
+    def origin_range(self) -> Optional['outputs.RuleEngineRuleActionOriginRange']:
+        """
+        Specifies the origin range configuration.  
+        The error_code_cache structure is documented below.
+
+        > Each of the above configuration items must be declared in a separate actions structure.
+
+        <a name="cdn_rule_engine_rule_actions_flexible_origin"></a>
+        The `flexible_origin` block supports:
+        """
+        return pulumi.get(self, "origin_range")
+
+    @_builtins.property
+    @pulumi.getter(name="originRequestHeaders")
+    def origin_request_headers(self) -> Optional[Sequence['outputs.RuleEngineRuleActionOriginRequestHeader']]:
+        """
+        Specifies the list of origin request header configurations.  
+        The origin_request_header structure is documented below.
+        """
+        return pulumi.get(self, "origin_request_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="originRequestUrlRewrite")
+    def origin_request_url_rewrite(self) -> Optional['outputs.RuleEngineRuleActionOriginRequestUrlRewrite']:
+        """
+        Specifies the origin request URL rewrite configuration.  
+        The origin_request_url_rewrite structure is documented
+        below.
+        """
+        return pulumi.get(self, "origin_request_url_rewrite")
+
+    @_builtins.property
+    @pulumi.getter(name="requestLimitRule")
+    def request_limit_rule(self) -> Optional['outputs.RuleEngineRuleActionRequestLimitRule']:
+        """
+        Specifies the request rate limit configuration.  
+        The request_limit_rule structure is documented below.
+        """
+        return pulumi.get(self, "request_limit_rule")
+
+    @_builtins.property
+    @pulumi.getter(name="requestUrlRewrite")
+    def request_url_rewrite(self) -> Optional['outputs.RuleEngineRuleActionRequestUrlRewrite']:
+        """
+        Specifies the access URL rewrite configuration.  
+        The request_url_rewrite structure is documented below.
+        """
+        return pulumi.get(self, "request_url_rewrite")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionAccessControl(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Specifies the access control type.  
+               The valid values are as follows:
+               + **block**
+               + **trust**
+               
+               <a name="cdn_rule_engine_rule_actions_request_limit_rule"></a>
+               The `request_limit_rule` block supports:
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the access control type.  
+        The valid values are as follows:
+        + **block**
+        + **trust**
+
+        <a name="cdn_rule_engine_rule_actions_request_limit_rule"></a>
+        The `request_limit_rule` block supports:
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionBrowserCacheRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheType":
+            suggest = "cache_type"
+        elif key == "ttlUnit":
+            suggest = "ttl_unit"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionBrowserCacheRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionBrowserCacheRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionBrowserCacheRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cache_type: _builtins.str,
+                 ttl: Optional[_builtins.int] = None,
+                 ttl_unit: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cache_type: Specifies the cache effective type.  
+               The valid values are as follows:
+               + **follow_origin**
+               + **ttl**
+               + **never**
+        :param _builtins.int ttl: Specifies the error code cache time.
+               
+               <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+               The `origin_range` block supports:
+        :param _builtins.str ttl_unit: Specifies the cache expiration time unit.  
+               The valid values are as follows:
+               + **s**
+               + **m**
+               + **h**
+               + **d**
+               
+               > Parameter `ttl` and `ttl_unit` can only be configured when the value of `cache_type` is **ttl**.
+               
+               <a name="cdn_rule_engine_rule_actions_error_code_cache"></a>
+               The `error_code_cache` block supports:
+        """
+        pulumi.set(__self__, "cache_type", cache_type)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if ttl_unit is not None:
+            pulumi.set(__self__, "ttl_unit", ttl_unit)
+
+    @_builtins.property
+    @pulumi.getter(name="cacheType")
+    def cache_type(self) -> _builtins.str:
+        """
+        Specifies the cache effective type.  
+        The valid values are as follows:
+        + **follow_origin**
+        + **ttl**
+        + **never**
+        """
+        return pulumi.get(self, "cache_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> Optional[_builtins.int]:
+        """
+        Specifies the error code cache time.
+
+        <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+        The `origin_range` block supports:
+        """
+        return pulumi.get(self, "ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="ttlUnit")
+    def ttl_unit(self) -> Optional[_builtins.str]:
+        """
+        Specifies the cache expiration time unit.  
+        The valid values are as follows:
+        + **s**
+        + **m**
+        + **h**
+        + **d**
+
+        > Parameter `ttl` and `ttl_unit` can only be configured when the value of `cache_type` is **ttl**.
+
+        <a name="cdn_rule_engine_rule_actions_error_code_cache"></a>
+        The `error_code_cache` block supports:
+        """
+        return pulumi.get(self, "ttl_unit")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionCacheRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "followOrigin":
+            suggest = "follow_origin"
+        elif key == "ttlUnit":
+            suggest = "ttl_unit"
+        elif key == "forceCache":
+            suggest = "force_cache"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionCacheRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionCacheRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionCacheRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 follow_origin: _builtins.str,
+                 ttl: _builtins.int,
+                 ttl_unit: _builtins.str,
+                 force_cache: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str follow_origin: Specifies the cache expiration time source.  
+               The valid values are as follows:
+               + **off**
+               + **on**
+               + **min_ttl**
+        :param _builtins.int ttl: Specifies the error code cache time.
+               
+               <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+               The `origin_range` block supports:
+        :param _builtins.str ttl_unit: Specifies the cache expiration time unit.  
+               The valid values are as follows:
+               + **s**
+               + **m**
+               + **h**
+               + **d**
+               
+               > Parameter `ttl` and `ttl_unit` can only be configured when the value of `cache_type` is **ttl**.
+               
+               <a name="cdn_rule_engine_rule_actions_error_code_cache"></a>
+               The `error_code_cache` block supports:
+        :param _builtins.str force_cache: Whether to enable forced caching.  
+               The valid values are as follows:
+               + **on**
+               + **off**
+               
+               <a name="cdn_rule_engine_rule_actions_request_url_rewrite"></a>
+               The `request_url_rewrite` block supports:
+        """
+        pulumi.set(__self__, "follow_origin", follow_origin)
+        pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "ttl_unit", ttl_unit)
+        if force_cache is not None:
+            pulumi.set(__self__, "force_cache", force_cache)
+
+    @_builtins.property
+    @pulumi.getter(name="followOrigin")
+    def follow_origin(self) -> _builtins.str:
+        """
+        Specifies the cache expiration time source.  
+        The valid values are as follows:
+        + **off**
+        + **on**
+        + **min_ttl**
+        """
+        return pulumi.get(self, "follow_origin")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.int:
+        """
+        Specifies the error code cache time.
+
+        <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+        The `origin_range` block supports:
+        """
+        return pulumi.get(self, "ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="ttlUnit")
+    def ttl_unit(self) -> _builtins.str:
+        """
+        Specifies the cache expiration time unit.  
+        The valid values are as follows:
+        + **s**
+        + **m**
+        + **h**
+        + **d**
+
+        > Parameter `ttl` and `ttl_unit` can only be configured when the value of `cache_type` is **ttl**.
+
+        <a name="cdn_rule_engine_rule_actions_error_code_cache"></a>
+        The `error_code_cache` block supports:
+        """
+        return pulumi.get(self, "ttl_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="forceCache")
+    def force_cache(self) -> Optional[_builtins.str]:
+        """
+        Whether to enable forced caching.  
+        The valid values are as follows:
+        + **on**
+        + **off**
+
+        <a name="cdn_rule_engine_rule_actions_request_url_rewrite"></a>
+        The `request_url_rewrite` block supports:
+        """
+        return pulumi.get(self, "force_cache")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionErrorCodeCache(dict):
+    def __init__(__self__, *,
+                 code: _builtins.int,
+                 ttl: _builtins.int):
+        """
+        :param _builtins.int code: Specifies the error code to be cached.  
+               The valid values are as follows:
+        :param _builtins.int ttl: Specifies the error code cache time.
+               
+               <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+               The `origin_range` block supports:
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.int:
+        """
+        Specifies the error code to be cached.  
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.int:
+        """
+        Specifies the error code cache time.
+
+        <a name="cdn_rule_engine_rule_actions_origin_range"></a>
+        The `origin_range` block supports:
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionFlexibleOrigin(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipOrDomain":
+            suggest = "ip_or_domain"
+        elif key == "sourcesType":
+            suggest = "sources_type"
+        elif key == "bucketAccessKey":
+            suggest = "bucket_access_key"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "bucketRegion":
+            suggest = "bucket_region"
+        elif key == "bucketSecretKey":
+            suggest = "bucket_secret_key"
+        elif key == "hostName":
+            suggest = "host_name"
+        elif key == "httpPort":
+            suggest = "http_port"
+        elif key == "httpsPort":
+            suggest = "https_port"
+        elif key == "obsBucketType":
+            suggest = "obs_bucket_type"
+        elif key == "originProtocol":
+            suggest = "origin_protocol"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionFlexibleOrigin. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionFlexibleOrigin.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionFlexibleOrigin.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ip_or_domain: _builtins.str,
+                 priority: _builtins.int,
+                 sources_type: _builtins.str,
+                 weight: _builtins.int,
+                 bucket_access_key: Optional[_builtins.str] = None,
+                 bucket_name: Optional[_builtins.str] = None,
+                 bucket_region: Optional[_builtins.str] = None,
+                 bucket_secret_key: Optional[_builtins.str] = None,
+                 host_name: Optional[_builtins.str] = None,
+                 http_port: Optional[_builtins.int] = None,
+                 https_port: Optional[_builtins.int] = None,
+                 obs_bucket_type: Optional[_builtins.str] = None,
+                 origin_protocol: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str ip_or_domain: Specifies the origin IP or domain name.
+        :param _builtins.int priority: Specifies the origin priority.  
+               The valid value is range from `1` to `100`.
+        :param _builtins.str sources_type: Specifies the source type.  
+               The valid values are as follows:
+               + **ipaddr**
+               + **domain**
+               + **obs_bucket**
+               + **third_bucket**
+        :param _builtins.int weight: Specifies the origin weight.  
+               The valid value is range from `1` to `100`.
+        :param _builtins.str bucket_access_key: Specifies the third-party object storage access key.
+        :param _builtins.str bucket_name: Specifies the third-party object storage name.
+        :param _builtins.str bucket_region: Specifies the third-party object storage region.
+        :param _builtins.str bucket_secret_key: Specifies the third-party object storage secret key.
+        :param _builtins.str host_name: Specifies the origin host name.
+        :param _builtins.int http_port: Specifies the HTTP port number.  
+               The valid value is range from `1` to `65,535`.
+        :param _builtins.int https_port: Specifies the HTTPS port number.  
+               The valid value is range from `1` to `65,535`.
+               
+               <a name="cdn_rule_engine_rule_actions_origin_request_header"></a>
+               The `origin_request_header` block supports:
+        :param _builtins.str obs_bucket_type: Specifies the OBS bucket type.  
+               The valid values are as follows:
+               + **private**
+               + **public**
+        :param _builtins.str origin_protocol: Specifies the origin protocol.  
+               The valid values are as follows:
+               + **follow**
+               + **http**
+               + **https**
+        """
+        pulumi.set(__self__, "ip_or_domain", ip_or_domain)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "sources_type", sources_type)
+        pulumi.set(__self__, "weight", weight)
+        if bucket_access_key is not None:
+            pulumi.set(__self__, "bucket_access_key", bucket_access_key)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if bucket_region is not None:
+            pulumi.set(__self__, "bucket_region", bucket_region)
+        if bucket_secret_key is not None:
+            pulumi.set(__self__, "bucket_secret_key", bucket_secret_key)
+        if host_name is not None:
+            pulumi.set(__self__, "host_name", host_name)
+        if http_port is not None:
+            pulumi.set(__self__, "http_port", http_port)
+        if https_port is not None:
+            pulumi.set(__self__, "https_port", https_port)
+        if obs_bucket_type is not None:
+            pulumi.set(__self__, "obs_bucket_type", obs_bucket_type)
+        if origin_protocol is not None:
+            pulumi.set(__self__, "origin_protocol", origin_protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="ipOrDomain")
+    def ip_or_domain(self) -> _builtins.str:
+        """
+        Specifies the origin IP or domain name.
+        """
+        return pulumi.get(self, "ip_or_domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        Specifies the origin priority.  
+        The valid value is range from `1` to `100`.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="sourcesType")
+    def sources_type(self) -> _builtins.str:
+        """
+        Specifies the source type.  
+        The valid values are as follows:
+        + **ipaddr**
+        + **domain**
+        + **obs_bucket**
+        + **third_bucket**
+        """
+        return pulumi.get(self, "sources_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def weight(self) -> _builtins.int:
+        """
+        Specifies the origin weight.  
+        The valid value is range from `1` to `100`.
+        """
+        return pulumi.get(self, "weight")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketAccessKey")
+    def bucket_access_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the third-party object storage access key.
+        """
+        return pulumi.get(self, "bucket_access_key")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the third-party object storage name.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> Optional[_builtins.str]:
+        """
+        Specifies the third-party object storage region.
+        """
+        return pulumi.get(self, "bucket_region")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketSecretKey")
+    def bucket_secret_key(self) -> Optional[_builtins.str]:
+        """
+        Specifies the third-party object storage secret key.
+        """
+        return pulumi.get(self, "bucket_secret_key")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the origin host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="httpPort")
+    def http_port(self) -> Optional[_builtins.int]:
+        """
+        Specifies the HTTP port number.  
+        The valid value is range from `1` to `65,535`.
+        """
+        return pulumi.get(self, "http_port")
+
+    @_builtins.property
+    @pulumi.getter(name="httpsPort")
+    def https_port(self) -> Optional[_builtins.int]:
+        """
+        Specifies the HTTPS port number.  
+        The valid value is range from `1` to `65,535`.
+
+        <a name="cdn_rule_engine_rule_actions_origin_request_header"></a>
+        The `origin_request_header` block supports:
+        """
+        return pulumi.get(self, "https_port")
+
+    @_builtins.property
+    @pulumi.getter(name="obsBucketType")
+    def obs_bucket_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the OBS bucket type.  
+        The valid values are as follows:
+        + **private**
+        + **public**
+        """
+        return pulumi.get(self, "obs_bucket_type")
+
+    @_builtins.property
+    @pulumi.getter(name="originProtocol")
+    def origin_protocol(self) -> Optional[_builtins.str]:
+        """
+        Specifies the origin protocol.  
+        The valid values are as follows:
+        + **follow**
+        + **http**
+        + **https**
+        """
+        return pulumi.get(self, "origin_protocol")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionHttpResponseHeader(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 name: _builtins.str,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str action: Specifies the operation type of setting HTTP response header.  
+               The valid values are as follows:
+               + **set**
+               + **delete**
+        :param _builtins.str name: Specifies the HTTP response header parameter name.
+        :param _builtins.str value: Specifies the HTTP response header parameter value.
+               
+               <a name="cdn_rule_engine_rule_actions_access_control"></a>
+               The `access_control` block supports:
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Specifies the operation type of setting HTTP response header.  
+        The valid values are as follows:
+        + **set**
+        + **delete**
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the HTTP response header parameter name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the HTTP response header parameter value.
+
+        <a name="cdn_rule_engine_rule_actions_access_control"></a>
+        The `access_control` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionOriginRange(dict):
+    def __init__(__self__, *,
+                 status: _builtins.str):
+        """
+        :param _builtins.str status: Specifies the origin range status.
+        """
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the origin range status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionOriginRequestHeader(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 name: _builtins.str,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str action: Specifies the operation type of setting HTTP response header.  
+               The valid values are as follows:
+               + **set**
+               + **delete**
+        :param _builtins.str name: Specifies the HTTP response header parameter name.
+        :param _builtins.str value: Specifies the HTTP response header parameter value.
+               
+               <a name="cdn_rule_engine_rule_actions_access_control"></a>
+               The `access_control` block supports:
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        Specifies the operation type of setting HTTP response header.  
+        The valid values are as follows:
+        + **set**
+        + **delete**
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the HTTP response header parameter name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Specifies the HTTP response header parameter value.
+
+        <a name="cdn_rule_engine_rule_actions_access_control"></a>
+        The `access_control` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionOriginRequestUrlRewrite(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "rewriteType":
+            suggest = "rewrite_type"
+        elif key == "targetUrl":
+            suggest = "target_url"
+        elif key == "sourceUrl":
+            suggest = "source_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionOriginRequestUrlRewrite. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionOriginRequestUrlRewrite.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionOriginRequestUrlRewrite.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 rewrite_type: _builtins.str,
+                 target_url: _builtins.str,
+                 source_url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str rewrite_type: Specifies the rewrite type.  
+               The valid values are as follows:
+               + **simple**
+               + **wildcard**
+               + **regex**
+        :param _builtins.str target_url: Specifies the target URL.
+        :param _builtins.str source_url: Specifies the source URL to be rewritten.
+               
+               > This parameter is required if the value of parameter `rewrite_type` is **wildcard**.
+               
+               <a name="cdn_rule_engine_rule_actions_cache_rule"></a>
+               The `cache_rule` block supports:
+        """
+        pulumi.set(__self__, "rewrite_type", rewrite_type)
+        pulumi.set(__self__, "target_url", target_url)
+        if source_url is not None:
+            pulumi.set(__self__, "source_url", source_url)
+
+    @_builtins.property
+    @pulumi.getter(name="rewriteType")
+    def rewrite_type(self) -> _builtins.str:
+        """
+        Specifies the rewrite type.  
+        The valid values are as follows:
+        + **simple**
+        + **wildcard**
+        + **regex**
+        """
+        return pulumi.get(self, "rewrite_type")
+
+    @_builtins.property
+    @pulumi.getter(name="targetUrl")
+    def target_url(self) -> _builtins.str:
+        """
+        Specifies the target URL.
+        """
+        return pulumi.get(self, "target_url")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceUrl")
+    def source_url(self) -> Optional[_builtins.str]:
+        """
+        Specifies the source URL to be rewritten.
+
+        > This parameter is required if the value of parameter `rewrite_type` is **wildcard**.
+
+        <a name="cdn_rule_engine_rule_actions_cache_rule"></a>
+        The `cache_rule` block supports:
+        """
+        return pulumi.get(self, "source_url")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionRequestLimitRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "limitRateAfter":
+            suggest = "limit_rate_after"
+        elif key == "limitRateValue":
+            suggest = "limit_rate_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionRequestLimitRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionRequestLimitRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionRequestLimitRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 limit_rate_after: _builtins.int,
+                 limit_rate_value: _builtins.int):
+        """
+        :param _builtins.int limit_rate_after: Specifies the rate limit condition.
+        :param _builtins.int limit_rate_value: Specifies the rate limit value.
+               
+               <a name="cdn_rule_engine_rule_actions_origin_request_url_rewrite"></a>
+               The `origin_request_url_rewrite` block supports:
+        """
+        pulumi.set(__self__, "limit_rate_after", limit_rate_after)
+        pulumi.set(__self__, "limit_rate_value", limit_rate_value)
+
+    @_builtins.property
+    @pulumi.getter(name="limitRateAfter")
+    def limit_rate_after(self) -> _builtins.int:
+        """
+        Specifies the rate limit condition.
+        """
+        return pulumi.get(self, "limit_rate_after")
+
+    @_builtins.property
+    @pulumi.getter(name="limitRateValue")
+    def limit_rate_value(self) -> _builtins.int:
+        """
+        Specifies the rate limit value.
+
+        <a name="cdn_rule_engine_rule_actions_origin_request_url_rewrite"></a>
+        The `origin_request_url_rewrite` block supports:
+        """
+        return pulumi.get(self, "limit_rate_value")
+
+
+@pulumi.output_type
+class RuleEngineRuleActionRequestUrlRewrite(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "executionMode":
+            suggest = "execution_mode"
+        elif key == "redirectUrl":
+            suggest = "redirect_url"
+        elif key == "redirectHost":
+            suggest = "redirect_host"
+        elif key == "redirectStatusCode":
+            suggest = "redirect_status_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RuleEngineRuleActionRequestUrlRewrite. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RuleEngineRuleActionRequestUrlRewrite.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RuleEngineRuleActionRequestUrlRewrite.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 execution_mode: _builtins.str,
+                 redirect_url: _builtins.str,
+                 redirect_host: Optional[_builtins.str] = None,
+                 redirect_status_code: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str execution_mode: Specifies the execution mode.  
+               The valid values are as follows:
+               + **redirect**
+               + **break**
+        :param _builtins.str redirect_url: Specifies the redirect URL.
+        :param _builtins.str redirect_host: Specifies the redirect host.
+               
+               > Parameter `redirect_status_code` and `redirect_host` can only be configured when the value of `cache_type` is
+               **redirect**.
+               
+               <a name="cdn_rule_engine_rule_actions_browser_cache_rule"></a>
+               The `browser_cache_rule` block supports:
+        :param _builtins.int redirect_status_code: Specifies the redirect status code.  
+               The valid values are as follows:
+        """
+        pulumi.set(__self__, "execution_mode", execution_mode)
+        pulumi.set(__self__, "redirect_url", redirect_url)
+        if redirect_host is not None:
+            pulumi.set(__self__, "redirect_host", redirect_host)
+        if redirect_status_code is not None:
+            pulumi.set(__self__, "redirect_status_code", redirect_status_code)
+
+    @_builtins.property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> _builtins.str:
+        """
+        Specifies the execution mode.  
+        The valid values are as follows:
+        + **redirect**
+        + **break**
+        """
+        return pulumi.get(self, "execution_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> _builtins.str:
+        """
+        Specifies the redirect URL.
+        """
+        return pulumi.get(self, "redirect_url")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectHost")
+    def redirect_host(self) -> Optional[_builtins.str]:
+        """
+        Specifies the redirect host.
+
+        > Parameter `redirect_status_code` and `redirect_host` can only be configured when the value of `cache_type` is
+        **redirect**.
+
+        <a name="cdn_rule_engine_rule_actions_browser_cache_rule"></a>
+        The `browser_cache_rule` block supports:
+        """
+        return pulumi.get(self, "redirect_host")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectStatusCode")
+    def redirect_status_code(self) -> Optional[_builtins.int]:
+        """
+        Specifies the redirect status code.  
+        The valid values are as follows:
+        """
+        return pulumi.get(self, "redirect_status_code")
+
+
+@pulumi.output_type
+class StatisticConfigurationConfigInfo(dict):
+    def __init__(__self__, *,
+                 ua: Optional['outputs.StatisticConfigurationConfigInfoUa'] = None,
+                 url: Optional['outputs.StatisticConfigurationConfigInfoUrl'] = None):
+        """
+        :param 'StatisticConfigurationConfigInfoUaArgs' ua: Specifies the top UA statistics configuration.  
+               The ua structure is documented below.
+               
+               <a name="cdn_statistic_configuration_url"></a>
+               The `url` block supports:
+        :param 'StatisticConfigurationConfigInfoUrlArgs' url: Specifies the top URL statistics configuration.  
+               The url structure is documented below.
+        """
+        if ua is not None:
+            pulumi.set(__self__, "ua", ua)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def ua(self) -> Optional['outputs.StatisticConfigurationConfigInfoUa']:
+        """
+        Specifies the top UA statistics configuration.  
+        The ua structure is documented below.
+
+        <a name="cdn_statistic_configuration_url"></a>
+        The `url` block supports:
+        """
+        return pulumi.get(self, "ua")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional['outputs.StatisticConfigurationConfigInfoUrl']:
+        """
+        Specifies the top URL statistics configuration.  
+        The url structure is documented below.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class StatisticConfigurationConfigInfoUa(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool):
+        """
+        :param _builtins.bool enable: Specifies whether to enable the top UA statistics configuration.
+        """
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Specifies whether to enable the top UA statistics configuration.
+        """
+        return pulumi.get(self, "enable")
+
+
+@pulumi.output_type
+class StatisticConfigurationConfigInfoUrl(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool):
+        """
+        :param _builtins.bool enable: Specifies whether to enable the top UA statistics configuration.
+        """
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Specifies whether to enable the top UA statistics configuration.
+        """
+        return pulumi.get(self, "enable")
+
+
+@pulumi.output_type
 class GetCacheHistoryTasksTaskResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -7342,18 +8740,24 @@ class GetCacheHistoryTasksTaskResult(dict):
                  task_type: _builtins.str,
                  total: _builtins.int):
         """
-        :param _builtins.str created_at: Indicates the time when the task was created.
-        :param _builtins.int failed: Indicates the number of URLs that failed to be processed.
-        :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-        :param _builtins.str id: Indicates the task ID.
-        :param _builtins.int processing: Indicates the number of URLs that are being processed.
-        :param _builtins.str status: Specifies the task status. Valid values are as follows:
+        :param _builtins.str created_at: The creation time, in RFC3339 format.
+        :param _builtins.int failed: The number of URLs that failed to be processed.
+        :param _builtins.str file_type: Specifies the file type.  
+               The valid values are as follows:
+               + **file**
+               + **directory**
+        :param _builtins.str id: The task ID.
+        :param _builtins.int processing: The number of URLs that are being processed.
+        :param _builtins.str status: Specifies the task status.  
+               The valid values are as follows:
                + **task_inprocess**: The task is being processed.
                + **task_done**: The task is completed.
-        :param _builtins.int succeed: Indicates the number of URLs processed.
-        :param _builtins.str task_type: Specifies the task type. Possible values: **refresh** (cache refresh) and
-               **preheating** (cache preheat).
-        :param _builtins.int total: Indicates the total number of URLs in the task.
+        :param _builtins.int succeed: The number of URLs processed.
+        :param _builtins.str task_type: Specifies the task type.  
+               The valid values are as follows:
+               + **refresh**: cache refresh.
+               + **preheating**: cache preheat.
+        :param _builtins.int total: The total number of URLs in the task.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "failed", failed)
@@ -7369,7 +8773,7 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        Indicates the time when the task was created.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -7377,7 +8781,7 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def failed(self) -> _builtins.int:
         """
-        Indicates the number of URLs that failed to be processed.
+        The number of URLs that failed to be processed.
         """
         return pulumi.get(self, "failed")
 
@@ -7385,7 +8789,10 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter(name="fileType")
     def file_type(self) -> _builtins.str:
         """
-        Specifies the file type. Possible values: **file** and **directory**.
+        Specifies the file type.  
+        The valid values are as follows:
+        + **file**
+        + **directory**
         """
         return pulumi.get(self, "file_type")
 
@@ -7393,7 +8800,7 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Indicates the task ID.
+        The task ID.
         """
         return pulumi.get(self, "id")
 
@@ -7401,7 +8808,7 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def processing(self) -> _builtins.int:
         """
-        Indicates the number of URLs that are being processed.
+        The number of URLs that are being processed.
         """
         return pulumi.get(self, "processing")
 
@@ -7409,7 +8816,8 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def status(self) -> _builtins.str:
         """
-        Specifies the task status. Valid values are as follows:
+        Specifies the task status.  
+        The valid values are as follows:
         + **task_inprocess**: The task is being processed.
         + **task_done**: The task is completed.
         """
@@ -7419,7 +8827,7 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def succeed(self) -> _builtins.int:
         """
-        Indicates the number of URLs processed.
+        The number of URLs processed.
         """
         return pulumi.get(self, "succeed")
 
@@ -7427,8 +8835,10 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter(name="taskType")
     def task_type(self) -> _builtins.str:
         """
-        Specifies the task type. Possible values: **refresh** (cache refresh) and
-        **preheating** (cache preheat).
+        Specifies the task type.  
+        The valid values are as follows:
+        + **refresh**: cache refresh.
+        + **preheating**: cache preheat.
         """
         return pulumi.get(self, "task_type")
 
@@ -7436,9 +8846,91 @@ class GetCacheHistoryTasksTaskResult(dict):
     @pulumi.getter
     def total(self) -> _builtins.int:
         """
-        Indicates the total number of URLs in the task.
+        The total number of URLs in the task.
         """
         return pulumi.get(self, "total")
+
+
+@pulumi.output_type
+class GetCacheSharingGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 group_name: _builtins.str,
+                 id: _builtins.str,
+                 primary_domain: _builtins.str,
+                 share_cache_records: Sequence['outputs.GetCacheSharingGroupsGroupShareCacheRecordResult']):
+        """
+        :param _builtins.str create_time: The creation time of the cache sharing group, in RFC3339 format.
+        :param _builtins.str group_name: The name of the cache sharing group.
+        :param _builtins.str id: The ID of the cache sharing group.
+        :param _builtins.str primary_domain: The primary domain name of the cache sharing group.
+        :param Sequence['GetCacheSharingGroupsGroupShareCacheRecordArgs'] share_cache_records: The list of associated domain names of the cache sharing group.  
+               The share_cache_records structure is documented below.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "primary_domain", primary_domain)
+        pulumi.set(__self__, "share_cache_records", share_cache_records)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the cache sharing group, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> _builtins.str:
+        """
+        The name of the cache sharing group.
+        """
+        return pulumi.get(self, "group_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the cache sharing group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryDomain")
+    def primary_domain(self) -> _builtins.str:
+        """
+        The primary domain name of the cache sharing group.
+        """
+        return pulumi.get(self, "primary_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="shareCacheRecords")
+    def share_cache_records(self) -> Sequence['outputs.GetCacheSharingGroupsGroupShareCacheRecordResult']:
+        """
+        The list of associated domain names of the cache sharing group.  
+        The share_cache_records structure is documented below.
+        """
+        return pulumi.get(self, "share_cache_records")
+
+
+@pulumi.output_type
+class GetCacheSharingGroupsGroupShareCacheRecordResult(dict):
+    def __init__(__self__, *,
+                 domain_name: _builtins.str):
+        """
+        :param _builtins.str domain_name: The associated domain name.
+        """
+        pulumi.set(__self__, "domain_name", domain_name)
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The associated domain name.
+        """
+        return pulumi.get(self, "domain_name")
 
 
 @pulumi.output_type
@@ -7454,17 +8946,29 @@ class GetCacheUrlTasksTaskResult(dict):
                  task_type: _builtins.str,
                  url: _builtins.str):
         """
-        :param _builtins.str created_at: Indicates the creation time.
-        :param _builtins.str file_type: Specifies the file type. Possible values: **file** and **directory**.
-        :param _builtins.int id: Indicates the URL ID.
-        :param _builtins.str mode: Indicates the directory refresh mode. Possible values: **all** (refresh all resources in the directory) and
-               **detect_modify_refresh** (refresh changed resources in the directory).
-        :param _builtins.str modify_time: Indicates the modification time.
-        :param _builtins.str status: Specifies the URL status. Possible values: **processing**, **succeed**, **failed**,
-               **waiting**, **refreshing**, and **preheating**.
-        :param _builtins.int task_id: Indicates the task ID.
-        :param _builtins.str task_type: Specifies the task type. Possible values: **REFRESH** (cache refresh) and
-               **PREHEATING** (cache preheat).
+        :param _builtins.str created_at: The creation time, in RFC3339 format.
+        :param _builtins.str file_type: Specifies the file type.
+               The valid values are as follows:
+               + **file**
+               + **directory**
+        :param _builtins.int id: The URL ID.
+        :param _builtins.str mode: The directory refresh mode.
+               + **all**: refresh all resources in the directory.
+               + **detect_modify_refresh**: refresh changed resources in the directory.
+        :param _builtins.str modify_time: The modification time, in RFC3339 format.
+        :param _builtins.str status: Specifies the URL status.  
+               The valid values are as follows:
+               + **processing**
+               + **succeed**
+               + **failed**
+               + **waiting**
+               + **refreshing**
+               + **preheating**
+        :param _builtins.int task_id: The task ID.
+        :param _builtins.str task_type: Specifies the task type.  
+               The valid values are as follows:
+               + **REFRESH**: cache refresh.
+               + **PREHEATING**: cache preheat.
         :param _builtins.str url: Specifies the refresh or preheat URL.
         """
         pulumi.set(__self__, "created_at", created_at)
@@ -7481,7 +8985,7 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        Indicates the creation time.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -7489,7 +8993,10 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter(name="fileType")
     def file_type(self) -> _builtins.str:
         """
-        Specifies the file type. Possible values: **file** and **directory**.
+        Specifies the file type.
+        The valid values are as follows:
+        + **file**
+        + **directory**
         """
         return pulumi.get(self, "file_type")
 
@@ -7497,7 +9004,7 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.int:
         """
-        Indicates the URL ID.
+        The URL ID.
         """
         return pulumi.get(self, "id")
 
@@ -7505,8 +9012,9 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Indicates the directory refresh mode. Possible values: **all** (refresh all resources in the directory) and
-        **detect_modify_refresh** (refresh changed resources in the directory).
+        The directory refresh mode.
+        + **all**: refresh all resources in the directory.
+        + **detect_modify_refresh**: refresh changed resources in the directory.
         """
         return pulumi.get(self, "mode")
 
@@ -7514,7 +9022,7 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter(name="modifyTime")
     def modify_time(self) -> _builtins.str:
         """
-        Indicates the modification time.
+        The modification time, in RFC3339 format.
         """
         return pulumi.get(self, "modify_time")
 
@@ -7522,8 +9030,14 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter
     def status(self) -> _builtins.str:
         """
-        Specifies the URL status. Possible values: **processing**, **succeed**, **failed**,
-        **waiting**, **refreshing**, and **preheating**.
+        Specifies the URL status.  
+        The valid values are as follows:
+        + **processing**
+        + **succeed**
+        + **failed**
+        + **waiting**
+        + **refreshing**
+        + **preheating**
         """
         return pulumi.get(self, "status")
 
@@ -7531,7 +9045,7 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter(name="taskId")
     def task_id(self) -> _builtins.int:
         """
-        Indicates the task ID.
+        The task ID.
         """
         return pulumi.get(self, "task_id")
 
@@ -7539,8 +9053,10 @@ class GetCacheUrlTasksTaskResult(dict):
     @pulumi.getter(name="taskType")
     def task_type(self) -> _builtins.str:
         """
-        Specifies the task type. Possible values: **REFRESH** (cache refresh) and
-        **PREHEATING** (cache preheat).
+        Specifies the task type.  
+        The valid values are as follows:
+        + **REFRESH**: cache refresh.
+        + **PREHEATING**: cache preheat.
         """
         return pulumi.get(self, "task_type")
 
@@ -7566,22 +9082,22 @@ class GetDomainCertificatesDomainCertificateResult(dict):
                  http2_enabled: _builtins.int,
                  https_status: _builtins.int):
         """
-        :param _builtins.str certificate_body: The content of the certificate used by the HTTPS protocol.
-        :param _builtins.str certificate_name: The certificate name.
-        :param _builtins.int certificate_source: The certificate type. The value can be:
+        :param _builtins.str certificate_body: The content of the certificate.
+        :param _builtins.str certificate_name: The name of the certificate.
+        :param _builtins.int certificate_source: The source type of the certificate.
                + **1**: Huawei-managed certificate.
                + **0**: Your own certificate.
-        :param _builtins.str domain_id: The ID of the CDN domain.
-        :param _builtins.str domain_name: The acceleration domain name.
-        :param _builtins.str expire_at: The expiration time.
-        :param _builtins.int force_redirect_https: Whether client requests are forced to be redirected. The value can be：
+        :param _builtins.str domain_id: The ID of the domain.
+        :param _builtins.str domain_name: The name of the domain.
+        :param _builtins.str expire_at: The expiration time, in RFC3339 format.
+        :param _builtins.int force_redirect_https: Whether client requests are forced to be redirected.
                + **0**: Client requests will not be forced to redirect.
                + **1**: Client requests will be forced to redirect.
                + **2**: Client requests will be forced to jump to HTTP.
-        :param _builtins.int http2_enabled: Whether HTTP2.0 is used. The value can be：
+        :param _builtins.int http2_enabled: Whether the HTTP/2 protocol is used.
                + **0**: Not use HTTP2.0.
                + **1**: Use HTTP2.0.
-        :param _builtins.int https_status: The status of the https. The value can be:
+        :param _builtins.int https_status: Whether the HTTPS certificate is enabled.
                + **0**: Do not enable HTTPS certificates.
                + **1**: Enable HTTPS acceleration and protocol follow back to origin.
                + **2**: Enable HTTPS acceleration and HTTP back to origin.
@@ -7600,7 +9116,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> _builtins.str:
         """
-        The content of the certificate used by the HTTPS protocol.
+        The content of the certificate.
         """
         return pulumi.get(self, "certificate_body")
 
@@ -7608,7 +9124,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="certificateName")
     def certificate_name(self) -> _builtins.str:
         """
-        The certificate name.
+        The name of the certificate.
         """
         return pulumi.get(self, "certificate_name")
 
@@ -7616,7 +9132,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="certificateSource")
     def certificate_source(self) -> _builtins.int:
         """
-        The certificate type. The value can be:
+        The source type of the certificate.
         + **1**: Huawei-managed certificate.
         + **0**: Your own certificate.
         """
@@ -7626,7 +9142,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="domainId")
     def domain_id(self) -> _builtins.str:
         """
-        The ID of the CDN domain.
+        The ID of the domain.
         """
         return pulumi.get(self, "domain_id")
 
@@ -7634,7 +9150,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="domainName")
     def domain_name(self) -> _builtins.str:
         """
-        The acceleration domain name.
+        The name of the domain.
         """
         return pulumi.get(self, "domain_name")
 
@@ -7642,7 +9158,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="expireAt")
     def expire_at(self) -> _builtins.str:
         """
-        The expiration time.
+        The expiration time, in RFC3339 format.
         """
         return pulumi.get(self, "expire_at")
 
@@ -7650,7 +9166,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="forceRedirectHttps")
     def force_redirect_https(self) -> _builtins.int:
         """
-        Whether client requests are forced to be redirected. The value can be：
+        Whether client requests are forced to be redirected.
         + **0**: Client requests will not be forced to redirect.
         + **1**: Client requests will be forced to redirect.
         + **2**: Client requests will be forced to jump to HTTP.
@@ -7661,7 +9177,7 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="http2Enabled")
     def http2_enabled(self) -> _builtins.int:
         """
-        Whether HTTP2.0 is used. The value can be：
+        Whether the HTTP/2 protocol is used.
         + **0**: Not use HTTP2.0.
         + **1**: Use HTTP2.0.
         """
@@ -7671,12 +9187,313 @@ class GetDomainCertificatesDomainCertificateResult(dict):
     @pulumi.getter(name="httpsStatus")
     def https_status(self) -> _builtins.int:
         """
-        The status of the https. The value can be:
+        Whether the HTTPS certificate is enabled.
         + **0**: Do not enable HTTPS certificates.
         + **1**: Enable HTTPS acceleration and protocol follow back to origin.
         + **2**: Enable HTTPS acceleration and HTTP back to origin.
         """
         return pulumi.get(self, "https_status")
+
+
+@pulumi.output_type
+class GetDomainTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the tag.
+        :param _builtins.str value: The value of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetDomainTemplateApplyRecordsRecordResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 apply_time: _builtins.str,
+                 configs: _builtins.str,
+                 description: _builtins.str,
+                 operator_id: _builtins.str,
+                 resources: Sequence['outputs.GetDomainTemplateApplyRecordsRecordResourceResult'],
+                 status: _builtins.str,
+                 template_id: _builtins.str,
+                 template_name: _builtins.str,
+                 type: _builtins.int):
+        """
+        :param _builtins.str account_id: The account ID.
+        :param _builtins.str apply_time: The time when the domain template was applied, in RFC3339 format.
+        :param _builtins.str configs: The configuration of the domain template, in JSON format.
+        :param _builtins.str description: The description of the domain template.
+        :param _builtins.str operator_id: The operation ID of the domain template.
+        :param Sequence['GetDomainTemplateApplyRecordsRecordResourceArgs'] resources: The list of resources to which the template was applied.  
+               The resources structure is documented below.
+        :param _builtins.str status: The status of applying the template to the domain.
+               + **success** - The template was applied successfully to the domain.
+               + **fail** - The template application to the domain failed.
+        :param _builtins.str template_id: The ID of the domain template.
+        :param _builtins.str template_name: The name of the domain template.
+        :param _builtins.int type: The type of the domain template.
+               + **1** - System preset template.
+               + **2** - Tenant custom template.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "apply_time", apply_time)
+        pulumi.set(__self__, "configs", configs)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "operator_id", operator_id)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "template_id", template_id)
+        pulumi.set(__self__, "template_name", template_name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter(name="applyTime")
+    def apply_time(self) -> _builtins.str:
+        """
+        The time when the domain template was applied, in RFC3339 format.
+        """
+        return pulumi.get(self, "apply_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def configs(self) -> _builtins.str:
+        """
+        The configuration of the domain template, in JSON format.
+        """
+        return pulumi.get(self, "configs")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the domain template.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="operatorId")
+    def operator_id(self) -> _builtins.str:
+        """
+        The operation ID of the domain template.
+        """
+        return pulumi.get(self, "operator_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetDomainTemplateApplyRecordsRecordResourceResult']:
+        """
+        The list of resources to which the template was applied.  
+        The resources structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of applying the template to the domain.
+        + **success** - The template was applied successfully to the domain.
+        + **fail** - The template application to the domain failed.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> _builtins.str:
+        """
+        The ID of the domain template.
+        """
+        return pulumi.get(self, "template_id")
+
+    @_builtins.property
+    @pulumi.getter(name="templateName")
+    def template_name(self) -> _builtins.str:
+        """
+        The name of the domain template.
+        """
+        return pulumi.get(self, "template_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.int:
+        """
+        The type of the domain template.
+        + **1** - System preset template.
+        + **2** - Tenant custom template.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetDomainTemplateApplyRecordsRecordResourceResult(dict):
+    def __init__(__self__, *,
+                 domain_name: _builtins.str,
+                 error_msg: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str domain_name: The domain name.
+        :param _builtins.str error_msg: The error message.
+        :param _builtins.str status: The status of applying the template to the domain.
+               + **success** - The template was applied successfully to the domain.
+               + **fail** - The template application to the domain failed.
+        """
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "error_msg", error_msg)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        The error message.
+        """
+        return pulumi.get(self, "error_msg")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of applying the template to the domain.
+        + **success** - The template was applied successfully to the domain.
+        + **fail** - The template application to the domain failed.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetDomainTemplatesTemplateResult(dict):
+    def __init__(__self__, *,
+                 account_id: _builtins.str,
+                 configs: _builtins.str,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 modify_time: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.int):
+        """
+        :param _builtins.str account_id: The account ID.
+        :param _builtins.str configs: The configuration of the domain template, in JSON format.
+        :param _builtins.str create_time: The creation time of the domain template, in RFC3339 format.
+        :param _builtins.str description: The description of the domain template.
+        :param _builtins.str id: The ID of the domain template.
+        :param _builtins.str modify_time: The modification time of the domain template, in RFC3339 format.
+        :param _builtins.str name: The name of the domain template.
+        :param _builtins.int type: The type of the domain template.  
+               Valid values are:
+               + **1** - System preset template.
+               + **2** - Tenant custom template.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "configs", configs)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> _builtins.str:
+        """
+        The account ID.
+        """
+        return pulumi.get(self, "account_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def configs(self) -> _builtins.str:
+        """
+        The configuration of the domain template, in JSON format.
+        """
+        return pulumi.get(self, "configs")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the domain template, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the domain template.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the domain template.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> _builtins.str:
+        """
+        The modification time of the domain template, in RFC3339 format.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the domain template.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.int:
+        """
+        The type of the domain template.  
+        Valid values are:
+        + **1** - System preset template.
+        + **2** - Tenant custom template.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -7704,52 +9521,62 @@ class GetDomainsDomainResult(dict):
                  type: _builtins.str,
                  updated_at: _builtins.str):
         """
-        :param _builtins.int auto_refresh_preheat: Whether to automatically refresh preheating. The valid values are as follows:
+        :param _builtins.int auto_refresh_preheat: Whether to automatically refresh preheating.  
                + **0**: Auto_refresh_preheat is off.
                + **1**: Auto_refresh_preheat is on.
         :param _builtins.str banned_reason: The reason why the domain was banned.
-        :param _builtins.str cname: The CNAME of the accelerate domain.
-        :param _builtins.str created_at: The creation time of accelerate domain.
-        :param _builtins.int disabled: Ban status. The valid values are as follows:
+        :param _builtins.str cname: The CNAME of the domain.
+        :param _builtins.str created_at: The creation time, in RFC3339 format.
+        :param _builtins.int disabled: The ban status of the domain.  
                + **0**: The domain is not banned.
                + **1**: The domain is banned.
-        :param Mapping[str, _builtins.str] domain_origin_host: The back-to-origin HOST configuration of accelerate domain.
+        :param Mapping[str, _builtins.str] domain_origin_host: The back-to-origin HOST configuration of accelerate domain.  
                The domain_origin_host structure is documented below.
-        :param _builtins.str domain_status: Specifies the status of accelerate domain.
-               The valid value can be **online**, **offline**, **configuring**, **configuring_failed**, **checking**,
-               **check_failed** or **deleting**.
-        :param _builtins.str enterprise_project_id: Specifies the enterprise project ID of the CDN domain.
+        :param _builtins.str domain_status: Specifies the status of the domain.  
+               The valid values are as follows:
+               + **online**
+               + **offline**
+               + **configuring**
+               + **configuring_failed**
+               + **checking**
+               + **check_failed**
+               + **deleting**
+        :param _builtins.str enterprise_project_id: Specifies the ID of the enterprise project to which the resource
+               belongs.
                When the user turns on the enterprise project function, this parameter takes effect,
                indicating that the project to which the resource belongs is queried.
                "all" indicates all projects.
-        :param _builtins.str follow_status: The status of back-to-source following.
+        :param _builtins.str follow_status: The status of back-to-source following.  
                The valid value can be **on** or **off**.
-        :param _builtins.int https_status: The status of the https. The valid values are as follows:
+        :param _builtins.int https_status: Whether the HTTPS protocol is enabled.  
                + **0**: Disable HTTPS acceleration.
                + **1**: Turn on HTTPS acceleration.
-        :param _builtins.str id: The ID of CDN domain.
-        :param _builtins.int locked: Lock status. The valid values are as follows:
+        :param _builtins.str id: The ID of the domain.
+        :param _builtins.int locked: The lock status of the domain.  
                + **0**: The domain is not locked
                + **1**: The domain is locked.
         :param _builtins.str locked_reason: The reason why the domain was locked.
-        :param _builtins.str name: Specifies the name of accelerate domain, using fuzzy matching.
+        :param _builtins.str name: Specifies the name of the domain, using fuzzy matching.  
                The valid length is limited from `1` to `255`.
-        :param _builtins.str origin_status: Whether to pause origin site return to origin.
+        :param _builtins.str origin_status: Whether to pause origin site return to origin.  
                The valid value can be **on** or **off**.
-        :param _builtins.bool range_based_retrieval_enabled: Whether to enable range-based retrieval.
+        :param _builtins.bool range_based_retrieval_enabled: Whether to enable range-based retrieval.  
                The valid value can be **true** or **false**.
-        :param _builtins.str service_area: Specifies the area covered by the accelerate service.
-               The valid value can be **mainland_china**, **outside_mainland_china** or **global**.
-        :param Sequence['GetDomainsDomainSourceArgs'] sources: An array of one or more objects specifies the domain of the origin server.
+        :param _builtins.str service_area: Specifies the accelerated coverage area for the domain.  
+               The valid values are as follows:
+               + **mainland_china**
+               + **outside_mainland_china**
+               + **global**
+        :param Sequence['GetDomainsDomainSourceArgs'] sources: An array of one or more objects specifies the domain of the origin server.  
                The sources structure is documented below.
         :param Mapping[str, _builtins.str] tags: The key/value pairs to associate with the domain.
-        :param _builtins.str type: Specifies the business type of accelerate domain.
-               The valid values are as follows;
+        :param _builtins.str type: Specifies the business type of the domain.  
+               The valid values are as follows:
                + **web**: Accelerate for the website.
                + **download**: Accelerate for file downloads.
                + **video**: Accelerate for on-demand.
                + **wholeSite**: Accelerate for the entire site.
-        :param _builtins.str updated_at: The update time of accelerate domain.
+        :param _builtins.str updated_at: The update time, in RFC3339 format.
         """
         pulumi.set(__self__, "auto_refresh_preheat", auto_refresh_preheat)
         pulumi.set(__self__, "banned_reason", banned_reason)
@@ -7777,7 +9604,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="autoRefreshPreheat")
     def auto_refresh_preheat(self) -> _builtins.int:
         """
-        Whether to automatically refresh preheating. The valid values are as follows:
+        Whether to automatically refresh preheating.  
         + **0**: Auto_refresh_preheat is off.
         + **1**: Auto_refresh_preheat is on.
         """
@@ -7795,7 +9622,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def cname(self) -> _builtins.str:
         """
-        The CNAME of the accelerate domain.
+        The CNAME of the domain.
         """
         return pulumi.get(self, "cname")
 
@@ -7803,7 +9630,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         """
-        The creation time of accelerate domain.
+        The creation time, in RFC3339 format.
         """
         return pulumi.get(self, "created_at")
 
@@ -7811,7 +9638,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def disabled(self) -> _builtins.int:
         """
-        Ban status. The valid values are as follows:
+        The ban status of the domain.  
         + **0**: The domain is not banned.
         + **1**: The domain is banned.
         """
@@ -7821,7 +9648,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="domainOriginHost")
     def domain_origin_host(self) -> Mapping[str, _builtins.str]:
         """
-        The back-to-origin HOST configuration of accelerate domain.
+        The back-to-origin HOST configuration of accelerate domain.  
         The domain_origin_host structure is documented below.
         """
         return pulumi.get(self, "domain_origin_host")
@@ -7830,9 +9657,15 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> _builtins.str:
         """
-        Specifies the status of accelerate domain.
-        The valid value can be **online**, **offline**, **configuring**, **configuring_failed**, **checking**,
-        **check_failed** or **deleting**.
+        Specifies the status of the domain.  
+        The valid values are as follows:
+        + **online**
+        + **offline**
+        + **configuring**
+        + **configuring_failed**
+        + **checking**
+        + **check_failed**
+        + **deleting**
         """
         return pulumi.get(self, "domain_status")
 
@@ -7840,7 +9673,8 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> _builtins.str:
         """
-        Specifies the enterprise project ID of the CDN domain.
+        Specifies the ID of the enterprise project to which the resource
+        belongs.
         When the user turns on the enterprise project function, this parameter takes effect,
         indicating that the project to which the resource belongs is queried.
         "all" indicates all projects.
@@ -7851,7 +9685,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="followStatus")
     def follow_status(self) -> _builtins.str:
         """
-        The status of back-to-source following.
+        The status of back-to-source following.  
         The valid value can be **on** or **off**.
         """
         return pulumi.get(self, "follow_status")
@@ -7860,7 +9694,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="httpsStatus")
     def https_status(self) -> _builtins.int:
         """
-        The status of the https. The valid values are as follows:
+        Whether the HTTPS protocol is enabled.  
         + **0**: Disable HTTPS acceleration.
         + **1**: Turn on HTTPS acceleration.
         """
@@ -7870,7 +9704,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The ID of CDN domain.
+        The ID of the domain.
         """
         return pulumi.get(self, "id")
 
@@ -7878,7 +9712,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def locked(self) -> _builtins.int:
         """
-        Lock status. The valid values are as follows:
+        The lock status of the domain.  
         + **0**: The domain is not locked
         + **1**: The domain is locked.
         """
@@ -7896,7 +9730,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the name of accelerate domain, using fuzzy matching.
+        Specifies the name of the domain, using fuzzy matching.  
         The valid length is limited from `1` to `255`.
         """
         return pulumi.get(self, "name")
@@ -7905,7 +9739,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="originStatus")
     def origin_status(self) -> _builtins.str:
         """
-        Whether to pause origin site return to origin.
+        Whether to pause origin site return to origin.  
         The valid value can be **on** or **off**.
         """
         return pulumi.get(self, "origin_status")
@@ -7914,7 +9748,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="rangeBasedRetrievalEnabled")
     def range_based_retrieval_enabled(self) -> _builtins.bool:
         """
-        Whether to enable range-based retrieval.
+        Whether to enable range-based retrieval.  
         The valid value can be **true** or **false**.
         """
         return pulumi.get(self, "range_based_retrieval_enabled")
@@ -7923,8 +9757,11 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="serviceArea")
     def service_area(self) -> _builtins.str:
         """
-        Specifies the area covered by the accelerate service.
-        The valid value can be **mainland_china**, **outside_mainland_china** or **global**.
+        Specifies the accelerated coverage area for the domain.  
+        The valid values are as follows:
+        + **mainland_china**
+        + **outside_mainland_china**
+        + **global**
         """
         return pulumi.get(self, "service_area")
 
@@ -7932,7 +9769,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def sources(self) -> Sequence['outputs.GetDomainsDomainSourceResult']:
         """
-        An array of one or more objects specifies the domain of the origin server.
+        An array of one or more objects specifies the domain of the origin server.  
         The sources structure is documented below.
         """
         return pulumi.get(self, "sources")
@@ -7949,8 +9786,8 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Specifies the business type of accelerate domain.
-        The valid values are as follows;
+        Specifies the business type of the domain.  
+        The valid values are as follows:
         + **web**: Accelerate for the website.
         + **download**: Accelerate for file downloads.
         + **video**: Accelerate for on-demand.
@@ -7962,7 +9799,7 @@ class GetDomainsDomainResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
-        The update time of accelerate domain.
+        The update time, in RFC3339 format.
         """
         return pulumi.get(self, "updated_at")
 
@@ -7975,13 +9812,16 @@ class GetDomainsDomainSourceResult(dict):
                  origin: _builtins.str,
                  origin_type: _builtins.str):
         """
-        :param _builtins.int active: Whether an origin server is active or standby. The valid values are ad follows:
+        :param _builtins.int active: Whether an origin server is active or standby.  
                + **1**: The origin source is primary source site.
                + **0**: The origin source is backup source site.
-        :param _builtins.bool obs_web_hosting_enabled: Whether to enable static website hosting for the OBS bucket.
+        :param _builtins.bool obs_web_hosting_enabled: Whether to enable static website hosting for the OBS bucket.  
                The valid value can be **true** or **false**.
         :param _builtins.str origin: The domain name or IP address of the origin server.
-        :param _builtins.str origin_type: The origin server type. The valid values can be **ipaddr**, **domain** or **obs_bucket**.
+        :param _builtins.str origin_type: The origin server type.  
+               + **ipaddr**
+               + **domain**
+               + **obs_bucket**
         """
         pulumi.set(__self__, "active", active)
         pulumi.set(__self__, "obs_web_hosting_enabled", obs_web_hosting_enabled)
@@ -7992,7 +9832,7 @@ class GetDomainsDomainSourceResult(dict):
     @pulumi.getter
     def active(self) -> _builtins.int:
         """
-        Whether an origin server is active or standby. The valid values are ad follows:
+        Whether an origin server is active or standby.  
         + **1**: The origin source is primary source site.
         + **0**: The origin source is backup source site.
         """
@@ -8002,7 +9842,7 @@ class GetDomainsDomainSourceResult(dict):
     @pulumi.getter(name="obsWebHostingEnabled")
     def obs_web_hosting_enabled(self) -> _builtins.bool:
         """
-        Whether to enable static website hosting for the OBS bucket.
+        Whether to enable static website hosting for the OBS bucket.  
         The valid value can be **true** or **false**.
         """
         return pulumi.get(self, "obs_web_hosting_enabled")
@@ -8019,9 +9859,84 @@ class GetDomainsDomainSourceResult(dict):
     @pulumi.getter(name="originType")
     def origin_type(self) -> _builtins.str:
         """
-        The origin server type. The valid values can be **ipaddr**, **domain** or **obs_bucket**.
+        The origin server type.  
+        + **ipaddr**
+        + **domain**
+        + **obs_bucket**
         """
         return pulumi.get(self, "origin_type")
+
+
+@pulumi.output_type
+class GetIpInformationInformationResult(dict):
+    def __init__(__self__, *,
+                 belongs: _builtins.bool,
+                 ip: _builtins.str,
+                 isp: _builtins.str,
+                 platform: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.bool belongs: Whether the IP belongs to CDN nodes.  
+               + **true**
+               + **false**
+        :param _builtins.str ip: The IP address to be queried.
+        :param _builtins.str isp: The ISP name.  
+               If the IP attribution is unknown, this field returns null.
+        :param _builtins.str platform: The platform name.  
+               If the IP attribution is unknown, this field returns null.
+        :param _builtins.str region: The province where the IP is located.  
+               "Unknown" indicates that the attribution is unknown.
+        """
+        pulumi.set(__self__, "belongs", belongs)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "isp", isp)
+        pulumi.set(__self__, "platform", platform)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter
+    def belongs(self) -> _builtins.bool:
+        """
+        Whether the IP belongs to CDN nodes.  
+        + **true**
+        + **false**
+        """
+        return pulumi.get(self, "belongs")
+
+    @_builtins.property
+    @pulumi.getter
+    def ip(self) -> _builtins.str:
+        """
+        The IP address to be queried.
+        """
+        return pulumi.get(self, "ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def isp(self) -> _builtins.str:
+        """
+        The ISP name.  
+        If the IP attribution is unknown, this field returns null.
+        """
+        return pulumi.get(self, "isp")
+
+    @_builtins.property
+    @pulumi.getter
+    def platform(self) -> _builtins.str:
+        """
+        The platform name.  
+        If the IP attribution is unknown, this field returns null.
+        """
+        return pulumi.get(self, "platform")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The province where the IP is located.  
+        "Unknown" indicates that the attribution is unknown.
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -8037,7 +9952,7 @@ class GetLogsLogResult(dict):
         :param _builtins.str domain_name: Specifies the domain name to which the logs belong.
         :param _builtins.int end_time: Specifies the end time for querying logs (excluding the end time point).
                The value is the millisecond timestamp of the hour. The maximum time span between the start time and
-               end time is 30 days.
+               end time is `30` days.
                If this parameter is left empty, the start time plus one day is used by default.
         :param _builtins.str link: The log file download link.
         :param _builtins.str name: The name of the log file.
@@ -8067,7 +9982,7 @@ class GetLogsLogResult(dict):
         """
         Specifies the end time for querying logs (excluding the end time point).
         The value is the millisecond timestamp of the hour. The maximum time span between the start time and
-        end time is 30 days.
+        end time is `30` days.
         If this parameter is left empty, the start time plus one day is used by default.
         """
         return pulumi.get(self, "end_time")
@@ -8105,5 +10020,1046 @@ class GetLogsLogResult(dict):
         If this parameter is left empty, **00:00:00** of the current day is used by default.
         """
         return pulumi.get(self, "start_time")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 limit: _builtins.int,
+                 type: _builtins.str,
+                 used: _builtins.int,
+                 user_domain_id: _builtins.str):
+        """
+        :param _builtins.int limit: The limit of the resource quota.
+        :param _builtins.str type: The type of the resource quota.
+        :param _builtins.int used: The used capacity of the resource quota.
+        :param _builtins.str user_domain_id: The domain ID of the user to which the resource quota belong.
+        """
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "used", used)
+        pulumi.set(__self__, "user_domain_id", user_domain_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def limit(self) -> _builtins.int:
+        """
+        The limit of the resource quota.
+        """
+        return pulumi.get(self, "limit")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the resource quota.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used capacity of the resource quota.
+        """
+        return pulumi.get(self, "used")
+
+    @_builtins.property
+    @pulumi.getter(name="userDomainId")
+    def user_domain_id(self) -> _builtins.str:
+        """
+        The domain ID of the user to which the resource quota belong.
+        """
+        return pulumi.get(self, "user_domain_id")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence['outputs.GetRuleEngineRulesRuleActionResult'],
+                 conditions: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 priority: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param Sequence['GetRuleEngineRulesRuleActionArgs'] actions: The list of actions to be performed when the rules are met.  
+               The actions structure is documented below.
+        :param _builtins.str conditions: The trigger conditions of the current rule, in JSON format.
+        :param _builtins.str id: The ID of the rule engine rule.
+        :param _builtins.str name: The HTTP response header parameter name.
+        :param _builtins.int priority: The origin priority.
+        :param _builtins.str status: The origin range status.
+        """
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def actions(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionResult']:
+        """
+        The list of actions to be performed when the rules are met.  
+        The actions structure is documented below.
+        """
+        return pulumi.get(self, "actions")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> _builtins.str:
+        """
+        The trigger conditions of the current rule, in JSON format.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the rule engine rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The HTTP response header parameter name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The origin priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The origin range status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionResult(dict):
+    def __init__(__self__, *,
+                 access_controls: Sequence['outputs.GetRuleEngineRulesRuleActionAccessControlResult'],
+                 browser_cache_rules: Sequence['outputs.GetRuleEngineRulesRuleActionBrowserCacheRuleResult'],
+                 cache_rules: Sequence['outputs.GetRuleEngineRulesRuleActionCacheRuleResult'],
+                 error_code_caches: Sequence['outputs.GetRuleEngineRulesRuleActionErrorCodeCacheResult'],
+                 flexible_origins: Sequence['outputs.GetRuleEngineRulesRuleActionFlexibleOriginResult'],
+                 http_response_headers: Sequence['outputs.GetRuleEngineRulesRuleActionHttpResponseHeaderResult'],
+                 origin_ranges: Sequence['outputs.GetRuleEngineRulesRuleActionOriginRangeResult'],
+                 origin_request_headers: Sequence['outputs.GetRuleEngineRulesRuleActionOriginRequestHeaderResult'],
+                 origin_request_url_rewrites: Sequence['outputs.GetRuleEngineRulesRuleActionOriginRequestUrlRewriteResult'],
+                 request_limit_rules: Sequence['outputs.GetRuleEngineRulesRuleActionRequestLimitRuleResult'],
+                 request_url_rewrites: Sequence['outputs.GetRuleEngineRulesRuleActionRequestUrlRewriteResult']):
+        """
+        :param Sequence['GetRuleEngineRulesRuleActionAccessControlArgs'] access_controls: The access control configuration.  
+               The access_control structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionBrowserCacheRuleArgs'] browser_cache_rules: The browser cache rule configuration.  
+               The browser_cache_rule structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionCacheRuleArgs'] cache_rules: The cache rule configuration.  
+               The cache_rule structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionErrorCodeCacheArgs'] error_code_caches: The list of error code cache configurations.  
+               The error_code_cache structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionFlexibleOriginArgs'] flexible_origins: The list of flexible origin configurations.  
+               The flexible_origin structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionHttpResponseHeaderArgs'] http_response_headers: The list of HTTP response header configurations.  
+               The http_response_header structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionOriginRangeArgs'] origin_ranges: The origin range configuration.  
+               The origin_range structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionOriginRequestHeaderArgs'] origin_request_headers: The list of origin request header configurations.  
+               The origin_request_header structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionOriginRequestUrlRewriteArgs'] origin_request_url_rewrites: The origin request URL rewrite configuration.  
+               The origin_request_url_rewrite structure is
+               documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionRequestLimitRuleArgs'] request_limit_rules: The request rate limit configuration.  
+               The request_limit_rule structure is documented below.
+        :param Sequence['GetRuleEngineRulesRuleActionRequestUrlRewriteArgs'] request_url_rewrites: The access URL rewrite configuration.  
+               The request_url_rewrite structure is documented below.
+        """
+        pulumi.set(__self__, "access_controls", access_controls)
+        pulumi.set(__self__, "browser_cache_rules", browser_cache_rules)
+        pulumi.set(__self__, "cache_rules", cache_rules)
+        pulumi.set(__self__, "error_code_caches", error_code_caches)
+        pulumi.set(__self__, "flexible_origins", flexible_origins)
+        pulumi.set(__self__, "http_response_headers", http_response_headers)
+        pulumi.set(__self__, "origin_ranges", origin_ranges)
+        pulumi.set(__self__, "origin_request_headers", origin_request_headers)
+        pulumi.set(__self__, "origin_request_url_rewrites", origin_request_url_rewrites)
+        pulumi.set(__self__, "request_limit_rules", request_limit_rules)
+        pulumi.set(__self__, "request_url_rewrites", request_url_rewrites)
+
+    @_builtins.property
+    @pulumi.getter(name="accessControls")
+    def access_controls(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionAccessControlResult']:
+        """
+        The access control configuration.  
+        The access_control structure is documented below.
+        """
+        return pulumi.get(self, "access_controls")
+
+    @_builtins.property
+    @pulumi.getter(name="browserCacheRules")
+    def browser_cache_rules(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionBrowserCacheRuleResult']:
+        """
+        The browser cache rule configuration.  
+        The browser_cache_rule structure is documented below.
+        """
+        return pulumi.get(self, "browser_cache_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="cacheRules")
+    def cache_rules(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionCacheRuleResult']:
+        """
+        The cache rule configuration.  
+        The cache_rule structure is documented below.
+        """
+        return pulumi.get(self, "cache_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="errorCodeCaches")
+    def error_code_caches(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionErrorCodeCacheResult']:
+        """
+        The list of error code cache configurations.  
+        The error_code_cache structure is documented below.
+        """
+        return pulumi.get(self, "error_code_caches")
+
+    @_builtins.property
+    @pulumi.getter(name="flexibleOrigins")
+    def flexible_origins(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionFlexibleOriginResult']:
+        """
+        The list of flexible origin configurations.  
+        The flexible_origin structure is documented below.
+        """
+        return pulumi.get(self, "flexible_origins")
+
+    @_builtins.property
+    @pulumi.getter(name="httpResponseHeaders")
+    def http_response_headers(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionHttpResponseHeaderResult']:
+        """
+        The list of HTTP response header configurations.  
+        The http_response_header structure is documented below.
+        """
+        return pulumi.get(self, "http_response_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="originRanges")
+    def origin_ranges(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionOriginRangeResult']:
+        """
+        The origin range configuration.  
+        The origin_range structure is documented below.
+        """
+        return pulumi.get(self, "origin_ranges")
+
+    @_builtins.property
+    @pulumi.getter(name="originRequestHeaders")
+    def origin_request_headers(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionOriginRequestHeaderResult']:
+        """
+        The list of origin request header configurations.  
+        The origin_request_header structure is documented below.
+        """
+        return pulumi.get(self, "origin_request_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="originRequestUrlRewrites")
+    def origin_request_url_rewrites(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionOriginRequestUrlRewriteResult']:
+        """
+        The origin request URL rewrite configuration.  
+        The origin_request_url_rewrite structure is
+        documented below.
+        """
+        return pulumi.get(self, "origin_request_url_rewrites")
+
+    @_builtins.property
+    @pulumi.getter(name="requestLimitRules")
+    def request_limit_rules(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionRequestLimitRuleResult']:
+        """
+        The request rate limit configuration.  
+        The request_limit_rule structure is documented below.
+        """
+        return pulumi.get(self, "request_limit_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="requestUrlRewrites")
+    def request_url_rewrites(self) -> Sequence['outputs.GetRuleEngineRulesRuleActionRequestUrlRewriteResult']:
+        """
+        The access URL rewrite configuration.  
+        The request_url_rewrite structure is documented below.
+        """
+        return pulumi.get(self, "request_url_rewrites")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionAccessControlResult(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: The access control type.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The access control type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionBrowserCacheRuleResult(dict):
+    def __init__(__self__, *,
+                 cache_type: _builtins.str,
+                 ttl: _builtins.int,
+                 ttl_unit: _builtins.str):
+        """
+        :param _builtins.str cache_type: The cache effective type.
+        :param _builtins.int ttl: The error code cache time.
+        :param _builtins.str ttl_unit: The cache expiration time unit.
+        """
+        pulumi.set(__self__, "cache_type", cache_type)
+        pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "ttl_unit", ttl_unit)
+
+    @_builtins.property
+    @pulumi.getter(name="cacheType")
+    def cache_type(self) -> _builtins.str:
+        """
+        The cache effective type.
+        """
+        return pulumi.get(self, "cache_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.int:
+        """
+        The error code cache time.
+        """
+        return pulumi.get(self, "ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="ttlUnit")
+    def ttl_unit(self) -> _builtins.str:
+        """
+        The cache expiration time unit.
+        """
+        return pulumi.get(self, "ttl_unit")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionCacheRuleResult(dict):
+    def __init__(__self__, *,
+                 follow_origin: _builtins.str,
+                 force_cache: _builtins.str,
+                 ttl: _builtins.int,
+                 ttl_unit: _builtins.str):
+        """
+        :param _builtins.str follow_origin: The cache expiration time source.
+        :param _builtins.str force_cache: Whether to enable forced caching.
+        :param _builtins.int ttl: The error code cache time.
+        :param _builtins.str ttl_unit: The cache expiration time unit.
+        """
+        pulumi.set(__self__, "follow_origin", follow_origin)
+        pulumi.set(__self__, "force_cache", force_cache)
+        pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "ttl_unit", ttl_unit)
+
+    @_builtins.property
+    @pulumi.getter(name="followOrigin")
+    def follow_origin(self) -> _builtins.str:
+        """
+        The cache expiration time source.
+        """
+        return pulumi.get(self, "follow_origin")
+
+    @_builtins.property
+    @pulumi.getter(name="forceCache")
+    def force_cache(self) -> _builtins.str:
+        """
+        Whether to enable forced caching.
+        """
+        return pulumi.get(self, "force_cache")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.int:
+        """
+        The error code cache time.
+        """
+        return pulumi.get(self, "ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="ttlUnit")
+    def ttl_unit(self) -> _builtins.str:
+        """
+        The cache expiration time unit.
+        """
+        return pulumi.get(self, "ttl_unit")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionErrorCodeCacheResult(dict):
+    def __init__(__self__, *,
+                 code: _builtins.int,
+                 ttl: _builtins.int):
+        """
+        :param _builtins.int code: The error code to be cached.
+        :param _builtins.int ttl: The error code cache time.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "ttl", ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> _builtins.int:
+        """
+        The error code to be cached.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> _builtins.int:
+        """
+        The error code cache time.
+        """
+        return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionFlexibleOriginResult(dict):
+    def __init__(__self__, *,
+                 bucket_access_key: _builtins.str,
+                 bucket_name: _builtins.str,
+                 bucket_region: _builtins.str,
+                 host_name: _builtins.str,
+                 http_port: _builtins.int,
+                 https_port: _builtins.int,
+                 ip_or_domain: _builtins.str,
+                 obs_bucket_type: _builtins.str,
+                 origin_protocol: _builtins.str,
+                 priority: _builtins.int,
+                 sources_type: _builtins.str,
+                 weight: _builtins.int):
+        """
+        :param _builtins.str bucket_access_key: The third-party object storage access key.
+        :param _builtins.str bucket_name: The third-party object storage name.
+        :param _builtins.str bucket_region: The third-party object storage region.
+        :param _builtins.str host_name: The origin host name.
+        :param _builtins.int http_port: The HTTP port number.
+        :param _builtins.int https_port: The HTTPS port number.
+        :param _builtins.str ip_or_domain: The origin IP or domain name.
+        :param _builtins.str obs_bucket_type: The OBS bucket type.
+        :param _builtins.str origin_protocol: The origin protocol.
+        :param _builtins.int priority: The origin priority.
+        :param _builtins.str sources_type: The source type.
+        :param _builtins.int weight: The origin weight.
+        """
+        pulumi.set(__self__, "bucket_access_key", bucket_access_key)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "bucket_region", bucket_region)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "http_port", http_port)
+        pulumi.set(__self__, "https_port", https_port)
+        pulumi.set(__self__, "ip_or_domain", ip_or_domain)
+        pulumi.set(__self__, "obs_bucket_type", obs_bucket_type)
+        pulumi.set(__self__, "origin_protocol", origin_protocol)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "sources_type", sources_type)
+        pulumi.set(__self__, "weight", weight)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketAccessKey")
+    def bucket_access_key(self) -> _builtins.str:
+        """
+        The third-party object storage access key.
+        """
+        return pulumi.get(self, "bucket_access_key")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> _builtins.str:
+        """
+        The third-party object storage name.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> _builtins.str:
+        """
+        The third-party object storage region.
+        """
+        return pulumi.get(self, "bucket_region")
+
+    @_builtins.property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> _builtins.str:
+        """
+        The origin host name.
+        """
+        return pulumi.get(self, "host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="httpPort")
+    def http_port(self) -> _builtins.int:
+        """
+        The HTTP port number.
+        """
+        return pulumi.get(self, "http_port")
+
+    @_builtins.property
+    @pulumi.getter(name="httpsPort")
+    def https_port(self) -> _builtins.int:
+        """
+        The HTTPS port number.
+        """
+        return pulumi.get(self, "https_port")
+
+    @_builtins.property
+    @pulumi.getter(name="ipOrDomain")
+    def ip_or_domain(self) -> _builtins.str:
+        """
+        The origin IP or domain name.
+        """
+        return pulumi.get(self, "ip_or_domain")
+
+    @_builtins.property
+    @pulumi.getter(name="obsBucketType")
+    def obs_bucket_type(self) -> _builtins.str:
+        """
+        The OBS bucket type.
+        """
+        return pulumi.get(self, "obs_bucket_type")
+
+    @_builtins.property
+    @pulumi.getter(name="originProtocol")
+    def origin_protocol(self) -> _builtins.str:
+        """
+        The origin protocol.
+        """
+        return pulumi.get(self, "origin_protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The origin priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="sourcesType")
+    def sources_type(self) -> _builtins.str:
+        """
+        The source type.
+        """
+        return pulumi.get(self, "sources_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def weight(self) -> _builtins.int:
+        """
+        The origin weight.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionHttpResponseHeaderResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str action: The operation type of setting HTTP response header.
+        :param _builtins.str name: The HTTP response header parameter name.
+        :param _builtins.str value: The HTTP response header parameter value.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The operation type of setting HTTP response header.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The HTTP response header parameter name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The HTTP response header parameter value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionOriginRangeResult(dict):
+    def __init__(__self__, *,
+                 status: _builtins.str):
+        """
+        :param _builtins.str status: The origin range status.
+        """
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The origin range status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionOriginRequestHeaderResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str action: The operation type of setting HTTP response header.
+        :param _builtins.str name: The HTTP response header parameter name.
+        :param _builtins.str value: The HTTP response header parameter value.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The operation type of setting HTTP response header.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The HTTP response header parameter name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The HTTP response header parameter value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionOriginRequestUrlRewriteResult(dict):
+    def __init__(__self__, *,
+                 rewrite_type: _builtins.str,
+                 source_url: _builtins.str,
+                 target_url: _builtins.str):
+        """
+        :param _builtins.str rewrite_type: The rewrite type.
+        :param _builtins.str source_url: The source URL to be rewritten.
+        :param _builtins.str target_url: The target URL.
+        """
+        pulumi.set(__self__, "rewrite_type", rewrite_type)
+        pulumi.set(__self__, "source_url", source_url)
+        pulumi.set(__self__, "target_url", target_url)
+
+    @_builtins.property
+    @pulumi.getter(name="rewriteType")
+    def rewrite_type(self) -> _builtins.str:
+        """
+        The rewrite type.
+        """
+        return pulumi.get(self, "rewrite_type")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceUrl")
+    def source_url(self) -> _builtins.str:
+        """
+        The source URL to be rewritten.
+        """
+        return pulumi.get(self, "source_url")
+
+    @_builtins.property
+    @pulumi.getter(name="targetUrl")
+    def target_url(self) -> _builtins.str:
+        """
+        The target URL.
+        """
+        return pulumi.get(self, "target_url")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionRequestLimitRuleResult(dict):
+    def __init__(__self__, *,
+                 limit_rate_after: _builtins.int,
+                 limit_rate_value: _builtins.int):
+        """
+        :param _builtins.int limit_rate_after: The rate limit condition.
+        :param _builtins.int limit_rate_value: The rate limit value.
+        """
+        pulumi.set(__self__, "limit_rate_after", limit_rate_after)
+        pulumi.set(__self__, "limit_rate_value", limit_rate_value)
+
+    @_builtins.property
+    @pulumi.getter(name="limitRateAfter")
+    def limit_rate_after(self) -> _builtins.int:
+        """
+        The rate limit condition.
+        """
+        return pulumi.get(self, "limit_rate_after")
+
+    @_builtins.property
+    @pulumi.getter(name="limitRateValue")
+    def limit_rate_value(self) -> _builtins.int:
+        """
+        The rate limit value.
+        """
+        return pulumi.get(self, "limit_rate_value")
+
+
+@pulumi.output_type
+class GetRuleEngineRulesRuleActionRequestUrlRewriteResult(dict):
+    def __init__(__self__, *,
+                 execution_mode: _builtins.str,
+                 redirect_host: _builtins.str,
+                 redirect_status_code: _builtins.int,
+                 redirect_url: _builtins.str):
+        """
+        :param _builtins.str execution_mode: The execution mode.
+        :param _builtins.str redirect_host: The redirect host.
+        :param _builtins.int redirect_status_code: The redirect status code.
+        :param _builtins.str redirect_url: The redirect URL.
+        """
+        pulumi.set(__self__, "execution_mode", execution_mode)
+        pulumi.set(__self__, "redirect_host", redirect_host)
+        pulumi.set(__self__, "redirect_status_code", redirect_status_code)
+        pulumi.set(__self__, "redirect_url", redirect_url)
+
+    @_builtins.property
+    @pulumi.getter(name="executionMode")
+    def execution_mode(self) -> _builtins.str:
+        """
+        The execution mode.
+        """
+        return pulumi.get(self, "execution_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectHost")
+    def redirect_host(self) -> _builtins.str:
+        """
+        The redirect host.
+        """
+        return pulumi.get(self, "redirect_host")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectStatusCode")
+    def redirect_status_code(self) -> _builtins.int:
+        """
+        The redirect status code.
+        """
+        return pulumi.get(self, "redirect_status_code")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> _builtins.str:
+        """
+        The redirect URL.
+        """
+        return pulumi.get(self, "redirect_url")
+
+
+@pulumi.output_type
+class GetStatisticConfigurationConfigurationResult(dict):
+    def __init__(__self__, *,
+                 config_infos: Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoResult'],
+                 config_type: _builtins.int,
+                 expired_time: _builtins.int,
+                 resource_name: _builtins.str,
+                 resource_type: _builtins.str):
+        """
+        :param Sequence['GetStatisticConfigurationConfigurationConfigInfoArgs'] config_infos: The statistics configuration information.  
+               The config_info structure is documented below.
+        :param _builtins.int config_type: Specifies the configuration category.  
+               The valid values are as follows:
+               + **0**: Hotspot statistics category.
+               + **1**: CES reporting category.
+        :param _builtins.int expired_time: The expiration time of the statistics configuration, in seconds timestamp.
+        :param _builtins.str resource_name: The resource name.  
+               Multiple domain names are separated by commas.
+        :param _builtins.str resource_type: The resource type.
+               + **domain**: The `resource_name` is a domain name.
+               + **account**: The `resource_name` is an account.
+        """
+        pulumi.set(__self__, "config_infos", config_infos)
+        pulumi.set(__self__, "config_type", config_type)
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @_builtins.property
+    @pulumi.getter(name="configInfos")
+    def config_infos(self) -> Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoResult']:
+        """
+        The statistics configuration information.  
+        The config_info structure is documented below.
+        """
+        return pulumi.get(self, "config_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="configType")
+    def config_type(self) -> _builtins.int:
+        """
+        Specifies the configuration category.  
+        The valid values are as follows:
+        + **0**: Hotspot statistics category.
+        + **1**: CES reporting category.
+        """
+        return pulumi.get(self, "config_type")
+
+    @_builtins.property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> _builtins.int:
+        """
+        The expiration time of the statistics configuration, in seconds timestamp.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        The resource name.  
+        Multiple domain names are separated by commas.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type.
+        + **domain**: The `resource_name` is a domain name.
+        + **account**: The `resource_name` is an account.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class GetStatisticConfigurationConfigurationConfigInfoResult(dict):
+    def __init__(__self__, *,
+                 uas: Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoUaResult'],
+                 urls: Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoUrlResult']):
+        """
+        :param Sequence['GetStatisticConfigurationConfigurationConfigInfoUaArgs'] uas: The top UA statistics configuration.  
+               The ua structure is documented below.
+        :param Sequence['GetStatisticConfigurationConfigurationConfigInfoUrlArgs'] urls: The top URL statistics configuration.  
+               The url structure is documented below.
+        """
+        pulumi.set(__self__, "uas", uas)
+        pulumi.set(__self__, "urls", urls)
+
+    @_builtins.property
+    @pulumi.getter
+    def uas(self) -> Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoUaResult']:
+        """
+        The top UA statistics configuration.  
+        The ua structure is documented below.
+        """
+        return pulumi.get(self, "uas")
+
+    @_builtins.property
+    @pulumi.getter
+    def urls(self) -> Sequence['outputs.GetStatisticConfigurationConfigurationConfigInfoUrlResult']:
+        """
+        The top URL statistics configuration.  
+        The url structure is documented below.
+        """
+        return pulumi.get(self, "urls")
+
+
+@pulumi.output_type
+class GetStatisticConfigurationConfigurationConfigInfoUaResult(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool):
+        """
+        :param _builtins.bool enable: Whether the top UA statistics configuration is enabled.
+        """
+        pulumi.set(__self__, "enable", enable)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether the top UA statistics configuration is enabled.
+        """
+        return pulumi.get(self, "enable")
+
+
+@pulumi.output_type
+class GetStatisticConfigurationConfigurationConfigInfoUrlResult(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool,
+                 limit: _builtins.int,
+                 sort_by_code: _builtins.bool):
+        """
+        :param _builtins.bool enable: Whether the top UA statistics configuration is enabled.
+        :param _builtins.int limit: The number of top URL statistics to report.
+        :param _builtins.bool sort_by_code: Whether to support reporting by status code.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "limit", limit)
+        pulumi.set(__self__, "sort_by_code", sort_by_code)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether the top UA statistics configuration is enabled.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter
+    def limit(self) -> _builtins.int:
+        """
+        The number of top URL statistics to report.
+        """
+        return pulumi.get(self, "limit")
+
+    @_builtins.property
+    @pulumi.getter(name="sortByCode")
+    def sort_by_code(self) -> _builtins.bool:
+        """
+        Whether to support reporting by status code.
+        """
+        return pulumi.get(self, "sort_by_code")
+
+
+@pulumi.output_type
+class GetTopReferrerStatisticsStatisticResult(dict):
+    def __init__(__self__, *,
+                 refer: _builtins.str,
+                 value: _builtins.int):
+        """
+        :param _builtins.str refer: The referrer value.
+        :param _builtins.int value: The value corresponding to the query type.
+        """
+        pulumi.set(__self__, "refer", refer)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def refer(self) -> _builtins.str:
+        """
+        The referrer value.
+        """
+        return pulumi.get(self, "refer")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.int:
+        """
+        The value corresponding to the query type.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTopUrlStatisticsStatisticResult(dict):
+    def __init__(__self__, *,
+                 end_time: _builtins.str,
+                 start_time: _builtins.str,
+                 stat_type: _builtins.str,
+                 url: _builtins.str,
+                 value: _builtins.int):
+        """
+        :param _builtins.str end_time: Specifies the end time of the query range, in RFC3339 format.  
+               The time must be set to twelve o'click in the evening, for example, **2022-10-30T00:00:00Z**.
+        :param _builtins.str start_time: Specifies the start time of the query range, in RFC3339 format.  
+               The time must be set to twelve o'click in the evening, for example, **2022-10-29T00:00:00Z**.
+        :param _builtins.str stat_type: Specifies the statistical type of the query.  
+               The valid values are as follows:
+               + **flux**: traffic (unit: Byte)
+               + **req_num**: total number of requests
+        :param _builtins.str url: The URL name.
+        :param _builtins.int value: The value corresponding to the query type.
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "stat_type", stat_type)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        Specifies the end time of the query range, in RFC3339 format.  
+        The time must be set to twelve o'click in the evening, for example, **2022-10-30T00:00:00Z**.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        Specifies the start time of the query range, in RFC3339 format.  
+        The time must be set to twelve o'click in the evening, for example, **2022-10-29T00:00:00Z**.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="statType")
+    def stat_type(self) -> _builtins.str:
+        """
+        Specifies the statistical type of the query.  
+        The valid values are as follows:
+        + **flux**: traffic (unit: Byte)
+        + **req_num**: total number of requests
+        """
+        return pulumi.get(self, "stat_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The URL name.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.int:
+        """
+        The value corresponding to the query type.
+        """
+        return pulumi.get(self, "value")
 
 

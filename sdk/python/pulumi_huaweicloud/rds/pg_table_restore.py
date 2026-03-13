@@ -28,6 +28,7 @@ class PgTableRestoreArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PgTableRestore resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseArgs']]] databases: Specifies the list of databases to restore.  
                The databases structure is documented below.
                
@@ -119,6 +120,7 @@ class _PgTableRestoreState:
                  restore_time: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PgTableRestore resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['PgTableRestoreDatabaseArgs']]] databases: Specifies the list of databases to restore.  
                The databases structure is documented below.
                
@@ -241,6 +243,7 @@ class PgTableRestore(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PgTableRestoreDatabaseArgs', 'PgTableRestoreDatabaseArgsDict']]]] databases: Specifies the list of databases to restore.  
@@ -284,6 +287,7 @@ class PgTableRestore(pulumi.CustomResource):
                 }],
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PgTableRestoreArgs args: The arguments to use to populate this resource's properties.

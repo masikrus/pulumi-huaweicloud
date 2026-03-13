@@ -37,6 +37,7 @@ class TableArgs:
                  with_column_header: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Table resource.
+
         :param pulumi.Input[_builtins.str] data_location: Specifies data storage location. Changing this parameter will create
                a newresource. The options are as follows:
                + **DLI**: Data stored in DLI tables is applicable to delay-sensitive services, such as interactive queries.
@@ -307,6 +308,7 @@ class _TableState:
                  with_column_header: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Table resources.
+
         :param pulumi.Input[_builtins.str] bucket_location: Specifies storage path of data which will be import to the OBS table.
                Changing this parameter will create a new resource.
                > If you need to import data stored in OBS to the OBS table, set this parameter to the path of a folder. If the table
@@ -617,14 +619,12 @@ class Table(pulumi.CustomResource):
         ## Import
 
         DLI table can be imported by `id`. It is composed of the name of database which table belongs and the name of table,
-
          separated by a slash. For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dli/table:Table example <database_name>/<table_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -705,14 +705,12 @@ class Table(pulumi.CustomResource):
         ## Import
 
         DLI table can be imported by `id`. It is composed of the name of database which table belongs and the name of table,
-
          separated by a slash. For example,
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dli/table:Table example <database_name>/<table_name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TableArgs args: The arguments to use to populate this resource's properties.

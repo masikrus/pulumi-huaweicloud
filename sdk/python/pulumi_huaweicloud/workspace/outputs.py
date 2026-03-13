@@ -36,18 +36,30 @@ __all__ = [
     'AppServerSchedulerHints',
     'ApplicationApplicationFileStore',
     'ApplicationApplicationFileStoreBucketStore',
+    'ApplicationBatchAuthorizeDelUser',
+    'ApplicationBatchAuthorizeUser',
+    'ApplicationBatchAutoInstallUser',
+    'ApplicationBatchPublishApplication',
     'ApplicationRuleDetail',
     'ApplicationRuleDetailPathRule',
     'ApplicationRuleDetailProductRule',
+    'AssistAuthConfigurationObjectManagementObject',
+    'AssistAuthConfigurationObjectManagementObjectsOrigin',
     'DesktopDataVolume',
     'DesktopNic',
     'DesktopPoolAuthorizedObject',
     'DesktopPoolAutoscalePolicy',
     'DesktopPoolDataVolume',
+    'DesktopPoolDataVolumesOrder',
     'DesktopPoolProduct',
     'DesktopPoolRootVolume',
     'DesktopPoolSecurityGroup',
     'DesktopRootVolume',
+    'DesktopUserBatchAttachDesktop',
+    'DesktopUserBatchAttachDesktopAttachUserInfo',
+    'DesktopUserBatchDetachDesktop',
+    'DesktopUserBatchDetachDesktopDetachUserInfo',
+    'GroupAuthorizationNotificationResendRecord',
     'PolicyGroupPolicy',
     'PolicyGroupPolicyAccessControl',
     'PolicyGroupTarget',
@@ -55,14 +67,18 @@ __all__ = [
     'ServiceDesktopSecurityGroup',
     'ServiceInfrastructureSecurityGroup',
     'ServiceOtpConfigInfo',
+    'SharedFolderAssignAddItem',
+    'SharedFolderAssignDelItem',
     'TerminalBindingBinding',
     'UserGroupUser',
+    'GetAdOusOuseResult',
     'GetAppAvailableVolumesVolumeTypeResult',
     'GetAppAvailableVolumesVolumeTypeVolumeTypeExtraSpecResult',
     'GetAppCenterAvailabilityZonesAvailabilityZoneResult',
     'GetAppCenterAvailabilityZonesAvailabilityZoneSoldOutResult',
     'GetAppConfigurationsConfigurationResult',
     'GetAppFlavorsFlavorResult',
+    'GetAppGroupAuthorizationNotificationRecordsRecordResult',
     'GetAppGroupAuthorizationsAuthorizationResult',
     'GetAppGroupsGroupResult',
     'GetAppHdaConfigurationsConfigurationResult',
@@ -75,15 +91,23 @@ __all__ = [
     'GetAppLatestAttachedApplicationsApplicationResult',
     'GetAppNasStoragesStorageResult',
     'GetAppNasStoragesStorageStorageMetadataResult',
+    'GetAppPolicyGroupsPolicyGroupResult',
+    'GetAppPolicyGroupsPolicyGroupTargetResult',
+    'GetAppPublishableApplicationsAppResult',
+    'GetAppPublishableApplicationsApplicationResult',
     'GetAppPublishableAppsAppResult',
+    'GetAppPublishableAppsApplicationResult',
     'GetAppScheduleTaskExecuteDetailsExecuteDetailResult',
     'GetAppScheduleTaskExecutionsExecutionResult',
     'GetAppScheduleTasksTaskResult',
+    'GetAppServerGroupTagsTagResult',
     'GetAppServerGroupsServerGroupResult',
     'GetAppServerGroupsServerGroupProductInfoResult',
     'GetAppServerGroupsServerGroupScalingPolicyResult',
     'GetAppServerGroupsServerGroupScalingPolicyScalingPolicyBySessionResult',
     'GetAppServerGroupsServerGroupTagResult',
+    'GetAppServerMetricDataMetricResult',
+    'GetAppServerMetricDataMetricDatapointResult',
     'GetAppServerQuotasQuotaResult',
     'GetAppServersServerResult',
     'GetAppServersServerFlavorResult',
@@ -93,9 +117,15 @@ __all__ = [
     'GetAppServersServerProductInfoResult',
     'GetAppServersServerTagResult',
     'GetAppSessionTypesSessionTypeResult',
+    'GetAppSharedFoldersSharedFolderResult',
     'GetAppStoragePoliciesPolicyResult',
     'GetAppWarehouseApplicationsApplicationResult',
+    'GetApplicationAuthorizationsAuthorizationResult',
     'GetApplicationCatalogsCatalogResult',
+    'GetApplicationRestrictedRulesRuleResult',
+    'GetApplicationRestrictedRulesRuleRuleResult',
+    'GetApplicationRestrictedRulesRuleRulePathRuleResult',
+    'GetApplicationRestrictedRulesRuleRuleProductRuleResult',
     'GetApplicationRulesRuleResult',
     'GetApplicationRulesRuleDetailResult',
     'GetApplicationRulesRuleDetailPathRuleResult',
@@ -103,8 +133,13 @@ __all__ = [
     'GetApplicationsApplicationResult',
     'GetApplicationsApplicationApplicationFileStoreResult',
     'GetApplicationsApplicationApplicationFileStoreBucketStoreResult',
+    'GetAssistAuthConfigurationAppliedObjectsObjectResult',
     'GetDesktopConnectionsDesktopConnectionResult',
     'GetDesktopConnectionsDesktopConnectionAttachUserResult',
+    'GetDesktopPoolAssociatedDesktopsDesktopResult',
+    'GetDesktopPoolAssociatedDesktopsDesktopDataVolumeResult',
+    'GetDesktopPoolAssociatedDesktopsDesktopProductResult',
+    'GetDesktopPoolAssociatedDesktopsDesktopRootVolumeResult',
     'GetDesktopPoolsDesktopPoolResult',
     'GetDesktopPoolsDesktopPoolAutoscalePolicyResult',
     'GetDesktopPoolsDesktopPoolDataVolumeResult',
@@ -128,14 +163,30 @@ __all__ = [
     'GetFlavorsFlavorResult',
     'GetHourPackagesHourPackageResult',
     'GetHourPackagesHourPackageDescriptionResult',
+    'GetOuUsersUserResult',
+    'GetOusOuseResult',
     'GetPolicyGroupsPolicyGroupResult',
     'GetPolicyGroupsPolicyGroupPolicyResult',
     'GetPolicyGroupsPolicyGroupTargetResult',
+    'GetQuotasQuotaResult',
+    'GetQuotasQuotaResourceResult',
+    'GetQuotasSiteQuotaResult',
+    'GetQuotasSiteQuotaResourceResult',
+    'GetScheduledTaskRecordDetailsDetailResult',
+    'GetScheduledTaskRecordsRecordResult',
+    'GetScheduledTasksTaskResult',
     'GetServiceAdDomainResult',
     'GetServiceDesktopSecurityGroupResult',
     'GetServiceInfrastructureSecurityGroupResult',
     'GetServiceOtpConfigInfoResult',
     'GetTagsTagResult',
+    'GetTenantConfigurationsConfigurationResult',
+    'GetTenantConfigurationsConfigurationValueResult',
+    'GetTimezonesTimeZoneResult',
+    'GetUserDesktopPoolAssociationsAssociationResult',
+    'GetUserDesktopPoolAssociationsAssociationDesktopPoolResult',
+    'GetUserGroupsGroupResult',
+    'GetUserGroupsGroupParentResult',
     'GetUsersUserResult',
     'GetVolumeProductsVolumeProductResult',
     'GetVolumeProductsVolumeProductNameResult',
@@ -1270,6 +1321,509 @@ class ApplicationApplicationFileStoreBucketStore(dict):
 
 
 @pulumi.output_type
+class ApplicationBatchAuthorizeDelUser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountType":
+            suggest = "account_type"
+        elif key == "platformType":
+            suggest = "platform_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationBatchAuthorizeDelUser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationBatchAuthorizeDelUser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationBatchAuthorizeDelUser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 account_type: _builtins.str,
+                 domain: Optional[_builtins.str] = None,
+                 platform_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account: Specifies the account name.
+        :param _builtins.str account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param _builtins.str domain: Specifies the domain name. Required for user groups.
+        :param _builtins.str platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        Specifies the account name.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        Specifies the account type.  
+        The valid values are as follows:
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain name. Required for user groups.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+
+@pulumi.output_type
+class ApplicationBatchAuthorizeUser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountType":
+            suggest = "account_type"
+        elif key == "platformType":
+            suggest = "platform_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationBatchAuthorizeUser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationBatchAuthorizeUser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationBatchAuthorizeUser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 account_type: _builtins.str,
+                 domain: Optional[_builtins.str] = None,
+                 platform_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account: Specifies the account name.
+        :param _builtins.str account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param _builtins.str domain: Specifies the domain name. Required for user groups.
+        :param _builtins.str platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        Specifies the account name.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        Specifies the account type.  
+        The valid values are as follows:
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain name. Required for user groups.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+
+@pulumi.output_type
+class ApplicationBatchAutoInstallUser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountType":
+            suggest = "account_type"
+        elif key == "platformType":
+            suggest = "platform_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationBatchAutoInstallUser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationBatchAutoInstallUser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationBatchAutoInstallUser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 account_type: _builtins.str,
+                 domain: Optional[_builtins.str] = None,
+                 platform_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account: Specifies the account name.  
+               The account format must be: account(group).
+        :param _builtins.str account_type: Specifies the account type.  
+               The valid values are as follows:
+               + **SIMPLE** - Simple user.
+               + **USER_GROUP** - User group.
+        :param _builtins.str domain: Specifies the domain name.  
+               Required for user groups, and defaults to local.com if not specified.
+        :param _builtins.str platform_type: Specifies the platform type.  
+               The valid values are as follows:
+               + **AD** - AD domain.
+               + **LOCAL** - LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if platform_type is not None:
+            pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        Specifies the account name.  
+        The account format must be: account(group).
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        Specifies the account type.  
+        The valid values are as follows:
+        + **SIMPLE** - Simple user.
+        + **USER_GROUP** - User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[_builtins.str]:
+        """
+        Specifies the domain name.  
+        Required for user groups, and defaults to local.com if not specified.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the platform type.  
+        The valid values are as follows:
+        + **AD** - AD domain.
+        + **LOCAL** - LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+
+@pulumi.output_type
+class ApplicationBatchPublishApplication(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "executePath":
+            suggest = "execute_path"
+        elif key == "sourceType":
+            suggest = "source_type"
+        elif key == "appExtendedInfo":
+            suggest = "app_extended_info"
+        elif key == "commandParam":
+            suggest = "command_param"
+        elif key == "iconIndex":
+            suggest = "icon_index"
+        elif key == "iconPath":
+            suggest = "icon_path"
+        elif key == "isPreBoot":
+            suggest = "is_pre_boot"
+        elif key == "sandboxEnable":
+            suggest = "sandbox_enable"
+        elif key == "sourceImageIds":
+            suggest = "source_image_ids"
+        elif key == "workPath":
+            suggest = "work_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApplicationBatchPublishApplication. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApplicationBatchPublishApplication.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApplicationBatchPublishApplication.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 execute_path: _builtins.str,
+                 name: _builtins.str,
+                 source_type: _builtins.int,
+                 app_extended_info: Optional[Mapping[str, _builtins.str]] = None,
+                 command_param: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None,
+                 icon_index: Optional[_builtins.int] = None,
+                 icon_path: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 is_pre_boot: Optional[_builtins.bool] = None,
+                 publisher: Optional[_builtins.str] = None,
+                 sandbox_enable: Optional[_builtins.bool] = None,
+                 source_image_ids: Optional[Sequence[_builtins.str]] = None,
+                 version: Optional[_builtins.str] = None,
+                 work_path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str execute_path: Specifies the execution path of the application.
+        :param _builtins.str name: Specifies the name of the application.  
+               The application name allows visible characters or spaces, but cannot be all spaces.
+               The length range is `1` to `64` characters.
+        :param _builtins.int source_type: Specifies the type of the application.  
+               The valid values are as follows:
+               + **2**: Private image APP.
+               + **3**: Custom APP.
+        :param Mapping[str, _builtins.str] app_extended_info: Specifies the extended information of the custom application.
+        :param _builtins.str command_param: Specifies the command line parameters used to start
+               the application.
+               If the `sandbox_enable` is set to **true**, the path of the application to be started must be enclosed in
+               double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        :param _builtins.str description: Specifies the description of the application.
+        :param _builtins.int icon_index: Specifies the icon index of the application.
+        :param _builtins.str icon_path: Specifies the path where the application icon is located.
+        :param _builtins.str id: The ID of the published application.
+        :param _builtins.bool is_pre_boot: Specifies whether to enable application pre-boot.  
+               Defaults to **false**.
+        :param _builtins.str publisher: Specifies the publisher of the application.  
+               If the `sandbox_enable` is set to **true**, this parameter value is the publisher of the sandboxed application.
+        :param _builtins.bool sandbox_enable: Specifies whether to run in sandbox mode.
+               Defaults to **false**.
+        :param Sequence[_builtins.str] source_image_ids: Specifies the list of image IDs to which the application
+               belongs.
+               The maximum length is `20`.
+               This parameter is required and available only when the `source_type` is `2`.
+        :param _builtins.str version: Specifies the version of the application.
+        :param _builtins.str work_path: Specifies the working directory of the application.
+        """
+        pulumi.set(__self__, "execute_path", execute_path)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_type", source_type)
+        if app_extended_info is not None:
+            pulumi.set(__self__, "app_extended_info", app_extended_info)
+        if command_param is not None:
+            pulumi.set(__self__, "command_param", command_param)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if icon_index is not None:
+            pulumi.set(__self__, "icon_index", icon_index)
+        if icon_path is not None:
+            pulumi.set(__self__, "icon_path", icon_path)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_pre_boot is not None:
+            pulumi.set(__self__, "is_pre_boot", is_pre_boot)
+        if publisher is not None:
+            pulumi.set(__self__, "publisher", publisher)
+        if sandbox_enable is not None:
+            pulumi.set(__self__, "sandbox_enable", sandbox_enable)
+        if source_image_ids is not None:
+            pulumi.set(__self__, "source_image_ids", source_image_ids)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if work_path is not None:
+            pulumi.set(__self__, "work_path", work_path)
+
+    @_builtins.property
+    @pulumi.getter(name="executePath")
+    def execute_path(self) -> _builtins.str:
+        """
+        Specifies the execution path of the application.
+        """
+        return pulumi.get(self, "execute_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the application.  
+        The application name allows visible characters or spaces, but cannot be all spaces.
+        The length range is `1` to `64` characters.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> _builtins.int:
+        """
+        Specifies the type of the application.  
+        The valid values are as follows:
+        + **2**: Private image APP.
+        + **3**: Custom APP.
+        """
+        return pulumi.get(self, "source_type")
+
+    @_builtins.property
+    @pulumi.getter(name="appExtendedInfo")
+    def app_extended_info(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Specifies the extended information of the custom application.
+        """
+        return pulumi.get(self, "app_extended_info")
+
+    @_builtins.property
+    @pulumi.getter(name="commandParam")
+    def command_param(self) -> Optional[_builtins.str]:
+        """
+        Specifies the command line parameters used to start
+        the application.
+        If the `sandbox_enable` is set to **true**, the path of the application to be started must be enclosed in
+        double quotation marks (""), e.g. `/box:DefaultBox "C:\\Program Files\\Internet Explorer\\iexplore.exe"`.
+        """
+        return pulumi.get(self, "command_param")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        Specifies the description of the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="iconIndex")
+    def icon_index(self) -> Optional[_builtins.int]:
+        """
+        Specifies the icon index of the application.
+        """
+        return pulumi.get(self, "icon_index")
+
+    @_builtins.property
+    @pulumi.getter(name="iconPath")
+    def icon_path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the path where the application icon is located.
+        """
+        return pulumi.get(self, "icon_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the published application.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isPreBoot")
+    def is_pre_boot(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to enable application pre-boot.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "is_pre_boot")
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> Optional[_builtins.str]:
+        """
+        Specifies the publisher of the application.  
+        If the `sandbox_enable` is set to **true**, this parameter value is the publisher of the sandboxed application.
+        """
+        return pulumi.get(self, "publisher")
+
+    @_builtins.property
+    @pulumi.getter(name="sandboxEnable")
+    def sandbox_enable(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to run in sandbox mode.
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "sandbox_enable")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceImageIds")
+    def source_image_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of image IDs to which the application
+        belongs.
+        The maximum length is `20`.
+        This parameter is required and available only when the `source_type` is `2`.
+        """
+        return pulumi.get(self, "source_image_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Specifies the version of the application.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workPath")
+    def work_path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the working directory of the application.
+        """
+        return pulumi.get(self, "work_path")
+
+
+@pulumi.output_type
 class ApplicationRuleDetail(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1528,12 +2082,113 @@ class ApplicationRuleDetailProductRule(dict):
 
 
 @pulumi.output_type
+class AssistAuthConfigurationObjectManagementObject(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: Specifies the ID of the binding object.
+        :param _builtins.str name: Specifies the name of the binding object.
+        :param _builtins.str type: Specifies the type of the binding object.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+               + **ALL** - All users
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Specifies the ID of the binding object.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the binding object.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of the binding object.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        + **ALL** - All users
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AssistAuthConfigurationObjectManagementObjectsOrigin(dict):
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Specifies the ID of the binding object.
+        :param _builtins.str name: Specifies the name of the binding object.
+        :param _builtins.str type: Specifies the type of the binding object.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+               + **ALL** - All users
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the binding object.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the binding object.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the binding object.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        + **ALL** - All users
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class DesktopDataVolume(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "createdAt":
             suggest = "created_at"
+        elif key == "kmsId":
+            suggest = "kms_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DesktopDataVolume. Access the value via the '{suggest}' property getter instead.")
@@ -1552,24 +2207,47 @@ class DesktopDataVolume(dict):
                  created_at: Optional[_builtins.str] = None,
                  device: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
-                 name: Optional[_builtins.str] = None):
+                 iops: Optional[_builtins.int] = None,
+                 kms_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 throughput: Optional[_builtins.int] = None):
         """
         :param _builtins.int size: Specifies the size of system volume, in GB.
                + For root volume, the valid value is range from `80` to `1,020`.
                + For data volume, the valid value is range from `10` to `8,200`.
-               
-               <a name="desktop_nic"></a>
-               The `nic` block supports:
         :param _builtins.str type: Specifies the type of system volume.
                The valid values are as follows:
                + **SAS**: High I/O disk type.
                + **SSD**: Ultra-high I/O disk type.
+               + **GPSSD**: General purpose SSD disk type.
+               + **GPSSD2**: General purpose SSD V2 disk type.
                
                > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
                error.
         :param _builtins.str created_at: The time that the volume was created.
         :param _builtins.str device: The device location to which the volume is attached.
         :param _builtins.str id: The volume ID.
+        :param _builtins.int iops: Specifies the IOPS of the volume.  
+               which is the number of read and write operations per second.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `3,000` to `12,800`.
+        :param _builtins.str kms_id: Specifies the KMS key ID used to encrypt the volume.
+               
+               <a name="desktop_nic"></a>
+               The `nic` block supports:
+        :param _builtins.str name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
+        :param _builtins.int throughput: Specifies the throughput of the volume.  
+               which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `125` to `1,000`.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -1579,8 +2257,14 @@ class DesktopDataVolume(dict):
             pulumi.set(__self__, "device", device)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_id is not None:
+            pulumi.set(__self__, "kms_id", kms_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if throughput is not None:
+            pulumi.set(__self__, "throughput", throughput)
 
     @_builtins.property
     @pulumi.getter
@@ -1589,9 +2273,6 @@ class DesktopDataVolume(dict):
         Specifies the size of system volume, in GB.
         + For root volume, the valid value is range from `80` to `1,020`.
         + For data volume, the valid value is range from `10` to `8,200`.
-
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
         """
         return pulumi.get(self, "size")
 
@@ -1603,6 +2284,8 @@ class DesktopDataVolume(dict):
         The valid values are as follows:
         + **SAS**: High I/O disk type.
         + **SSD**: Ultra-high I/O disk type.
+        + **GPSSD**: General purpose SSD disk type.
+        + **GPSSD2**: General purpose SSD V2 disk type.
 
         > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
         error.
@@ -1635,8 +2318,52 @@ class DesktopDataVolume(dict):
 
     @_builtins.property
     @pulumi.getter
+    def iops(self) -> Optional[_builtins.int]:
+        """
+        Specifies the IOPS of the volume.  
+        which is the number of read and write operations per second.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `3,000` to `12,800`.
+        """
+        return pulumi.get(self, "iops")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsId")
+    def kms_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the KMS key ID used to encrypt the volume.
+
+        <a name="desktop_nic"></a>
+        The `nic` block supports:
+        """
+        return pulumi.get(self, "kms_id")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def throughput(self) -> Optional[_builtins.int]:
+        """
+        Specifies the throughput of the volume.  
+        which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `125` to `1,000`.
+        """
+        return pulumi.get(self, "throughput")
 
 
 @pulumi.output_type
@@ -1810,11 +2537,10 @@ class DesktopPoolAutoscalePolicy(dict):
         :param _builtins.int min_idle: Specifies the desktops will be automatically created when the number of idle desktops is
                less than this value.
                The valid value ranges from `1` to `1,000`.
-        :param _builtins.int once_auto_created: Specifies the number of desktops automatically created at one time.  
-               The valid value ranges from `1` to `100`.
                
                <a name="desktop_pool_security_groups"></a>
                The `security_groups` block supports:
+        :param _builtins.int once_auto_created: The number of desktops automatically created at one time.
         """
         if autoscale_type is not None:
             pulumi.set(__self__, "autoscale_type", autoscale_type)
@@ -1852,6 +2578,9 @@ class DesktopPoolAutoscalePolicy(dict):
         Specifies the desktops will be automatically created when the number of idle desktops is
         less than this value.
         The valid value ranges from `1` to `1,000`.
+
+        <a name="desktop_pool_security_groups"></a>
+        The `security_groups` block supports:
         """
         return pulumi.get(self, "min_idle")
 
@@ -1859,11 +2588,7 @@ class DesktopPoolAutoscalePolicy(dict):
     @pulumi.getter(name="onceAutoCreated")
     def once_auto_created(self) -> Optional[_builtins.int]:
         """
-        Specifies the number of desktops automatically created at one time.  
-        The valid value ranges from `1` to `100`.
-
-        <a name="desktop_pool_security_groups"></a>
-        The `security_groups` block supports:
+        The number of desktops automatically created at one time.
         """
         return pulumi.get(self, "once_auto_created")
 
@@ -1923,6 +2648,53 @@ class DesktopPoolDataVolume(dict):
         Specifies the ID of the security group.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class DesktopPoolDataVolumesOrder(dict):
+    def __init__(__self__, *,
+                 size: Optional[_builtins.int] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int size: Specifies the size of the volume, in GB.
+               + For root volume, the valid value ranges from `80` to `1,020`.
+               + For data volume, the valid value ranges from `10` to `8,200`.
+               
+               <a name="desktop_pool_authorized_objects"></a>
+               The `authorized_objects` block supports:
+        :param _builtins.str type: Specifies the type of the volume.  
+               The valid values are as follows:
+               + **SAS**: High I/O disk type.
+               + **SSD**: Ultra-high I/O disk type.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[_builtins.int]:
+        """
+        Specifies the size of the volume, in GB.
+        + For root volume, the valid value ranges from `80` to `1,020`.
+        + For data volume, the valid value ranges from `10` to `8,200`.
+
+        <a name="desktop_pool_authorized_objects"></a>
+        The `authorized_objects` block supports:
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the volume.  
+        The valid values are as follows:
+        + **SAS**: High I/O disk type.
+        + **SSD**: Ultra-high I/O disk type.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -2115,6 +2887,8 @@ class DesktopRootVolume(dict):
         suggest = None
         if key == "createdAt":
             suggest = "created_at"
+        elif key == "kmsId":
+            suggest = "kms_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DesktopRootVolume. Access the value via the '{suggest}' property getter instead.")
@@ -2133,24 +2907,47 @@ class DesktopRootVolume(dict):
                  created_at: Optional[_builtins.str] = None,
                  device: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
-                 name: Optional[_builtins.str] = None):
+                 iops: Optional[_builtins.int] = None,
+                 kms_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 throughput: Optional[_builtins.int] = None):
         """
         :param _builtins.int size: Specifies the size of system volume, in GB.
                + For root volume, the valid value is range from `80` to `1,020`.
                + For data volume, the valid value is range from `10` to `8,200`.
-               
-               <a name="desktop_nic"></a>
-               The `nic` block supports:
         :param _builtins.str type: Specifies the type of system volume.
                The valid values are as follows:
                + **SAS**: High I/O disk type.
                + **SSD**: Ultra-high I/O disk type.
+               + **GPSSD**: General purpose SSD disk type.
+               + **GPSSD2**: General purpose SSD V2 disk type.
                
                > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
                error.
         :param _builtins.str created_at: The time that the volume was created.
         :param _builtins.str device: The device location to which the volume is attached.
         :param _builtins.str id: The volume ID.
+        :param _builtins.int iops: Specifies the IOPS of the volume.  
+               which is the number of read and write operations per second.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `3,000` to `12,800`.
+        :param _builtins.str kms_id: Specifies the KMS key ID used to encrypt the volume.
+               
+               <a name="desktop_nic"></a>
+               The `nic` block supports:
+        :param _builtins.str name: Specifies the desktop name.
+               The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+               The name must start with a letter or digit and cannot end with a hyphen.
+               
+               > Some images will cause the names in `.tfstate` file to be set to uppercase.
+               Although this will not cause changes by terraform commands, special processing is required when subsequent
+               resources reference this field.
+               
+               > Only desktops in the **ACTIVE** status support renaming.
+        :param _builtins.int throughput: Specifies the throughput of the volume.  
+               which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+               This parameter is only valid for GPSSD2 type volumes.
+               The valid value is range from `125` to `1,000`.
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
@@ -2160,8 +2957,14 @@ class DesktopRootVolume(dict):
             pulumi.set(__self__, "device", device)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_id is not None:
+            pulumi.set(__self__, "kms_id", kms_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if throughput is not None:
+            pulumi.set(__self__, "throughput", throughput)
 
     @_builtins.property
     @pulumi.getter
@@ -2170,9 +2973,6 @@ class DesktopRootVolume(dict):
         Specifies the size of system volume, in GB.
         + For root volume, the valid value is range from `80` to `1,020`.
         + For data volume, the valid value is range from `10` to `8,200`.
-
-        <a name="desktop_nic"></a>
-        The `nic` block supports:
         """
         return pulumi.get(self, "size")
 
@@ -2184,6 +2984,8 @@ class DesktopRootVolume(dict):
         The valid values are as follows:
         + **SAS**: High I/O disk type.
         + **SSD**: Ultra-high I/O disk type.
+        + **GPSSD**: General purpose SSD disk type.
+        + **GPSSD2**: General purpose SSD V2 disk type.
 
         > Updates are not supported for this parameter. Changing this will not create a new resource, but will throw an
         error.
@@ -2216,8 +3018,527 @@ class DesktopRootVolume(dict):
 
     @_builtins.property
     @pulumi.getter
+    def iops(self) -> Optional[_builtins.int]:
+        """
+        Specifies the IOPS of the volume.  
+        which is the number of read and write operations per second.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `3,000` to `12,800`.
+        """
+        return pulumi.get(self, "iops")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsId")
+    def kms_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the KMS key ID used to encrypt the volume.
+
+        <a name="desktop_nic"></a>
+        The `nic` block supports:
+        """
+        return pulumi.get(self, "kms_id")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the desktop name.
+        The name can contain `1` to `15` characters, only letters, digits and hyphens (-) are allowed.
+        The name must start with a letter or digit and cannot end with a hyphen.
+
+        > Some images will cause the names in `.tfstate` file to be set to uppercase.
+        Although this will not cause changes by terraform commands, special processing is required when subsequent
+        resources reference this field.
+
+        > Only desktops in the **ACTIVE** status support renaming.
+        """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def throughput(self) -> Optional[_builtins.int]:
+        """
+        Specifies the throughput of the volume.  
+        which is the amount of data successfully transmitted per second (read and write data), in MiB/s.
+        This parameter is only valid for GPSSD2 type volumes.
+        The valid value is range from `125` to `1,000`.
+        """
+        return pulumi.get(self, "throughput")
+
+
+@pulumi.output_type
+class DesktopUserBatchAttachDesktop(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "attachUserInfos":
+            suggest = "attach_user_infos"
+        elif key == "computerName":
+            suggest = "computer_name"
+        elif key == "desktopId":
+            suggest = "desktop_id"
+        elif key == "isClearData":
+            suggest = "is_clear_data"
+        elif key == "userEmail":
+            suggest = "user_email"
+        elif key == "userGroup":
+            suggest = "user_group"
+        elif key == "userName":
+            suggest = "user_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DesktopUserBatchAttachDesktop. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DesktopUserBatchAttachDesktop.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DesktopUserBatchAttachDesktop.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 attach_user_infos: Optional[Sequence['outputs.DesktopUserBatchAttachDesktopAttachUserInfo']] = None,
+                 computer_name: Optional[_builtins.str] = None,
+                 desktop_id: Optional[_builtins.str] = None,
+                 is_clear_data: Optional[_builtins.bool] = None,
+                 user_email: Optional[_builtins.str] = None,
+                 user_group: Optional[_builtins.str] = None,
+                 user_name: Optional[_builtins.str] = None):
+        """
+        :param Sequence['DesktopUserBatchAttachDesktopAttachUserInfoArgs'] attach_user_infos: The list of user information to be assigned.
+        :param _builtins.str computer_name: The desktop name.
+        :param _builtins.str desktop_id: The ID of the desktop to be assigned.
+        :param _builtins.bool is_clear_data: Whether to clean up desktop data when binding.
+        :param _builtins.str user_email: The email of user.
+        :param _builtins.str user_group: Schema: required.
+        :param _builtins.str user_name: The user to whom the desktop belongs.
+        """
+        if attach_user_infos is not None:
+            pulumi.set(__self__, "attach_user_infos", attach_user_infos)
+        if computer_name is not None:
+            pulumi.set(__self__, "computer_name", computer_name)
+        if desktop_id is not None:
+            pulumi.set(__self__, "desktop_id", desktop_id)
+        if is_clear_data is not None:
+            pulumi.set(__self__, "is_clear_data", is_clear_data)
+        if user_email is not None:
+            pulumi.set(__self__, "user_email", user_email)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="attachUserInfos")
+    def attach_user_infos(self) -> Optional[Sequence['outputs.DesktopUserBatchAttachDesktopAttachUserInfo']]:
+        """
+        The list of user information to be assigned.
+        """
+        return pulumi.get(self, "attach_user_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="computerName")
+    def computer_name(self) -> Optional[_builtins.str]:
+        """
+        The desktop name.
+        """
+        return pulumi.get(self, "computer_name")
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the desktop to be assigned.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isClearData")
+    def is_clear_data(self) -> Optional[_builtins.bool]:
+        """
+        Whether to clean up desktop data when binding.
+        """
+        return pulumi.get(self, "is_clear_data")
+
+    @_builtins.property
+    @pulumi.getter(name="userEmail")
+    def user_email(self) -> Optional[_builtins.str]:
+        """
+        The email of user.
+        """
+        return pulumi.get(self, "user_email")
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[_builtins.str]:
+        """
+        Schema: required.
+        """
+        return pulumi.get(self, "user_group")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[_builtins.str]:
+        """
+        The user to whom the desktop belongs.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class DesktopUserBatchAttachDesktopAttachUserInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "userGroup":
+            suggest = "user_group"
+        elif key == "userId":
+            suggest = "user_id"
+        elif key == "userName":
+            suggest = "user_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DesktopUserBatchAttachDesktopAttachUserInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DesktopUserBatchAttachDesktopAttachUserInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DesktopUserBatchAttachDesktopAttachUserInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None,
+                 user_group: Optional[_builtins.str] = None,
+                 user_id: Optional[_builtins.str] = None,
+                 user_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The object type.
+        :param _builtins.str user_group: The user group to which the desktop user belongs.
+        :param _builtins.str user_id: The id of the user.
+        :param _builtins.str user_name: The name of the desktop assignment object.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The object type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[_builtins.str]:
+        """
+        The user group to which the desktop user belongs.
+        """
+        return pulumi.get(self, "user_group")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the desktop assignment object.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class DesktopUserBatchDetachDesktop(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "desktopId":
+            suggest = "desktop_id"
+        elif key == "detachUserInfos":
+            suggest = "detach_user_infos"
+        elif key == "isDetachAllUsers":
+            suggest = "is_detach_all_users"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DesktopUserBatchDetachDesktop. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DesktopUserBatchDetachDesktop.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DesktopUserBatchDetachDesktop.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 desktop_id: Optional[_builtins.str] = None,
+                 detach_user_infos: Optional[Sequence['outputs.DesktopUserBatchDetachDesktopDetachUserInfo']] = None,
+                 is_detach_all_users: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str desktop_id: The ID of the desktop to be detached.
+        :param Sequence['DesktopUserBatchDetachDesktopDetachUserInfoArgs'] detach_user_infos: The list of users to be detached.
+        :param _builtins.bool is_detach_all_users: Whether to detach all users.
+        """
+        if desktop_id is not None:
+            pulumi.set(__self__, "desktop_id", desktop_id)
+        if detach_user_infos is not None:
+            pulumi.set(__self__, "detach_user_infos", detach_user_infos)
+        if is_detach_all_users is not None:
+            pulumi.set(__self__, "is_detach_all_users", is_detach_all_users)
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the desktop to be detached.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="detachUserInfos")
+    def detach_user_infos(self) -> Optional[Sequence['outputs.DesktopUserBatchDetachDesktopDetachUserInfo']]:
+        """
+        The list of users to be detached.
+        """
+        return pulumi.get(self, "detach_user_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="isDetachAllUsers")
+    def is_detach_all_users(self) -> Optional[_builtins.bool]:
+        """
+        Whether to detach all users.
+        """
+        return pulumi.get(self, "is_detach_all_users")
+
+
+@pulumi.output_type
+class DesktopUserBatchDetachDesktopDetachUserInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "userGroup":
+            suggest = "user_group"
+        elif key == "userId":
+            suggest = "user_id"
+        elif key == "userName":
+            suggest = "user_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DesktopUserBatchDetachDesktopDetachUserInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DesktopUserBatchDetachDesktopDetachUserInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DesktopUserBatchDetachDesktopDetachUserInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None,
+                 user_group: Optional[_builtins.str] = None,
+                 user_id: Optional[_builtins.str] = None,
+                 user_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of the object.
+        :param _builtins.str user_group: The user group which the user belongs to.
+        :param _builtins.str user_id: The ID of the user.
+        :param _builtins.str user_name: The name of the user or user group.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if user_group is not None:
+            pulumi.set(__self__, "user_group", user_group)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of the object.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userGroup")
+    def user_group(self) -> Optional[_builtins.str]:
+        """
+        The user group which the user belongs to.
+        """
+        return pulumi.get(self, "user_group")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the user or user group.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
+class GroupAuthorizationNotificationResendRecord(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountAuthName":
+            suggest = "account_auth_name"
+        elif key == "accountAuthType":
+            suggest = "account_auth_type"
+        elif key == "appGroupId":
+            suggest = "app_group_id"
+        elif key == "appGroupName":
+            suggest = "app_group_name"
+        elif key == "mailSendType":
+            suggest = "mail_send_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupAuthorizationNotificationResendRecord. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupAuthorizationNotificationResendRecord.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupAuthorizationNotificationResendRecord.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 account: Optional[_builtins.str] = None,
+                 account_auth_name: Optional[_builtins.str] = None,
+                 account_auth_type: Optional[_builtins.str] = None,
+                 app_group_id: Optional[_builtins.str] = None,
+                 app_group_name: Optional[_builtins.str] = None,
+                 mail_send_type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Specifies the ID of the authorization notification record or authorization
+               record.
+        :param _builtins.str account: Specifies the name of the authorized account.
+        :param _builtins.str account_auth_name: Specifies the name of the authorized object.
+        :param _builtins.str account_auth_type: Specifies the type of the authorized object.  
+               The valid values are as follows:
+               + **USER**
+               + **USER_GROUP**
+        :param _builtins.str app_group_id: Specifies the ID of the application group.
+        :param _builtins.str app_group_name: Specifies the name of the application group.
+        :param _builtins.str mail_send_type: Specifies the type of authorization notification.  
+               The valid values are as follows:
+               + **ADD_GROUP_AUTHORIZATION** - Add group authorization email.
+               + **DEL_GROUP_AUTHORIZATION** - Delete group authorization email.
+               + **ADD_GROUP_AUTHORIZATION_SMS** - Add group authorization SMS.
+               + **DEL_GROUP_AUTHORIZATION_SMS** - Delete group authorization SMS.
+               
+               > The parameters `mail_send_type`, `account`, `account_auth_type`, `account_auth_name`, `app_group_id`, and
+               `app_group_name` are valid only if `is_notification_record` is set to **true**.
+        """
+        pulumi.set(__self__, "id", id)
+        if account is not None:
+            pulumi.set(__self__, "account", account)
+        if account_auth_name is not None:
+            pulumi.set(__self__, "account_auth_name", account_auth_name)
+        if account_auth_type is not None:
+            pulumi.set(__self__, "account_auth_type", account_auth_type)
+        if app_group_id is not None:
+            pulumi.set(__self__, "app_group_id", app_group_id)
+        if app_group_name is not None:
+            pulumi.set(__self__, "app_group_name", app_group_name)
+        if mail_send_type is not None:
+            pulumi.set(__self__, "mail_send_type", mail_send_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Specifies the ID of the authorization notification record or authorization
+        record.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the authorized account.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthName")
+    def account_auth_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the authorized object.
+        """
+        return pulumi.get(self, "account_auth_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthType")
+    def account_auth_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of the authorized object.  
+        The valid values are as follows:
+        + **USER**
+        + **USER_GROUP**
+        """
+        return pulumi.get(self, "account_auth_type")
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupId")
+    def app_group_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the application group.
+        """
+        return pulumi.get(self, "app_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupName")
+    def app_group_name(self) -> Optional[_builtins.str]:
+        """
+        Specifies the name of the application group.
+        """
+        return pulumi.get(self, "app_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mailSendType")
+    def mail_send_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the type of authorization notification.  
+        The valid values are as follows:
+        + **ADD_GROUP_AUTHORIZATION** - Add group authorization email.
+        + **DEL_GROUP_AUTHORIZATION** - Delete group authorization email.
+        + **ADD_GROUP_AUTHORIZATION_SMS** - Add group authorization SMS.
+        + **DEL_GROUP_AUTHORIZATION_SMS** - Delete group authorization SMS.
+
+        > The parameters `mail_send_type`, `account`, `account_auth_type`, `account_auth_name`, `app_group_id`, and
+        `app_group_name` are valid only if `is_notification_record` is set to **true**.
+        """
+        return pulumi.get(self, "mail_send_type")
 
 
 @pulumi.output_type
@@ -2776,6 +4097,123 @@ class ServiceOtpConfigInfo(dict):
 
 
 @pulumi.output_type
+class SharedFolderAssignAddItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "attachType":
+            suggest = "attach_type"
+        elif key == "policyStatementId":
+            suggest = "policy_statement_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SharedFolderAssignAddItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SharedFolderAssignAddItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SharedFolderAssignAddItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 attach: _builtins.str,
+                 attach_type: _builtins.str,
+                 policy_statement_id: _builtins.str):
+        """
+        :param _builtins.str attach: Specifies the target.
+        :param _builtins.str attach_type: Specifies the associated object type.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+        :param _builtins.str policy_statement_id: Specifies the policy ID.
+        """
+        pulumi.set(__self__, "attach", attach)
+        pulumi.set(__self__, "attach_type", attach_type)
+        pulumi.set(__self__, "policy_statement_id", policy_statement_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attach(self) -> _builtins.str:
+        """
+        Specifies the target.
+        """
+        return pulumi.get(self, "attach")
+
+    @_builtins.property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> _builtins.str:
+        """
+        Specifies the associated object type.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        """
+        return pulumi.get(self, "attach_type")
+
+    @_builtins.property
+    @pulumi.getter(name="policyStatementId")
+    def policy_statement_id(self) -> _builtins.str:
+        """
+        Specifies the policy ID.
+        """
+        return pulumi.get(self, "policy_statement_id")
+
+
+@pulumi.output_type
+class SharedFolderAssignDelItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "attachType":
+            suggest = "attach_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SharedFolderAssignDelItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SharedFolderAssignDelItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SharedFolderAssignDelItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 attach: _builtins.str,
+                 attach_type: _builtins.str):
+        """
+        :param _builtins.str attach: Specifies the target.
+        :param _builtins.str attach_type: Specifies the associated object type.  
+               The valid values are as follows:
+               + **USER** - User
+               + **USER_GROUP** - User group
+        """
+        pulumi.set(__self__, "attach", attach)
+        pulumi.set(__self__, "attach_type", attach_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def attach(self) -> _builtins.str:
+        """
+        Specifies the target.
+        """
+        return pulumi.get(self, "attach")
+
+    @_builtins.property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> _builtins.str:
+        """
+        Specifies the associated object type.  
+        The valid values are as follows:
+        + **USER** - User
+        + **USER_GROUP** - User group
+        """
+        return pulumi.get(self, "attach_type")
+
+
+@pulumi.output_type
 class TerminalBindingBinding(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2940,6 +4378,35 @@ class UserGroupUser(dict):
         The number of desktops the user has.
         """
         return pulumi.get(self, "total_desktops")
+
+
+@pulumi.output_type
+class GetAdOusOuseResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 ou_dn: _builtins.str):
+        """
+        :param _builtins.str name: The name of the OU.
+        :param _builtins.str ou_dn: The distinguished name (DN) of the OU.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "ou_dn", ou_dn)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the OU.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ouDn")
+    def ou_dn(self) -> _builtins.str:
+        """
+        The distinguished name (DN) of the OU.
+        """
+        return pulumi.get(self, "ou_dn")
 
 
 @pulumi.output_type
@@ -3419,6 +4886,141 @@ class GetAppFlavorsFlavorResult(dict):
         The volume product type.
         """
         return pulumi.get(self, "volume_product_type")
+
+
+@pulumi.output_type
+class GetAppGroupAuthorizationNotificationRecordsRecordResult(dict):
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 account_auth_name: _builtins.str,
+                 account_auth_type: _builtins.str,
+                 app_group_id: _builtins.str,
+                 app_group_name: _builtins.str,
+                 error_msg: _builtins.str,
+                 id: _builtins.str,
+                 mail_send_result: _builtins.str,
+                 mail_send_type: _builtins.str,
+                 send_at: _builtins.str):
+        """
+        :param _builtins.str account: Specifies the name of the authorized user (group).  
+               Fuzzy search is supported.
+        :param _builtins.str account_auth_name: The name of the authorized object.
+        :param _builtins.str account_auth_type: The type of the account.
+               + **USER**
+               + **USER_GROUP**
+        :param _builtins.str app_group_id: Specifies the ID of the application group.
+        :param _builtins.str app_group_name: The name of the application group.
+        :param _builtins.str error_msg: The error message when the notification failed to be sent.
+        :param _builtins.str id: The ID of the record.
+        :param _builtins.str mail_send_result: Specifies the result of the notification sending.
+               The valid values are as follows:
+               + **SUCCESS**
+               + **FAIL**
+        :param _builtins.str mail_send_type: Specifies the type of authorization operation.  
+               The valid values are as follows:
+               + **ADD_GROUP_AUTHORIZATION**
+               + **DEL_GROUP_AUTHORIZATION**
+        :param _builtins.str send_at: The time when the authorization notification was sent.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_auth_name", account_auth_name)
+        pulumi.set(__self__, "account_auth_type", account_auth_type)
+        pulumi.set(__self__, "app_group_id", app_group_id)
+        pulumi.set(__self__, "app_group_name", app_group_name)
+        pulumi.set(__self__, "error_msg", error_msg)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mail_send_result", mail_send_result)
+        pulumi.set(__self__, "mail_send_type", mail_send_type)
+        pulumi.set(__self__, "send_at", send_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        Specifies the name of the authorized user (group).  
+        Fuzzy search is supported.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthName")
+    def account_auth_name(self) -> _builtins.str:
+        """
+        The name of the authorized object.
+        """
+        return pulumi.get(self, "account_auth_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountAuthType")
+    def account_auth_type(self) -> _builtins.str:
+        """
+        The type of the account.
+        + **USER**
+        + **USER_GROUP**
+        """
+        return pulumi.get(self, "account_auth_type")
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupId")
+    def app_group_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the application group.
+        """
+        return pulumi.get(self, "app_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="appGroupName")
+    def app_group_name(self) -> _builtins.str:
+        """
+        The name of the application group.
+        """
+        return pulumi.get(self, "app_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMsg")
+    def error_msg(self) -> _builtins.str:
+        """
+        The error message when the notification failed to be sent.
+        """
+        return pulumi.get(self, "error_msg")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the record.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="mailSendResult")
+    def mail_send_result(self) -> _builtins.str:
+        """
+        Specifies the result of the notification sending.
+        The valid values are as follows:
+        + **SUCCESS**
+        + **FAIL**
+        """
+        return pulumi.get(self, "mail_send_result")
+
+    @_builtins.property
+    @pulumi.getter(name="mailSendType")
+    def mail_send_type(self) -> _builtins.str:
+        """
+        Specifies the type of authorization operation.  
+        The valid values are as follows:
+        + **ADD_GROUP_AUTHORIZATION**
+        + **DEL_GROUP_AUTHORIZATION**
+        """
+        return pulumi.get(self, "mail_send_type")
+
+    @_builtins.property
+    @pulumi.getter(name="sendAt")
+    def send_at(self) -> _builtins.str:
+        """
+        The time when the authorization notification was sent.
+        """
+        return pulumi.get(self, "send_at")
 
 
 @pulumi.output_type
@@ -4373,7 +5975,538 @@ class GetAppNasStoragesStorageStorageMetadataResult(dict):
 
 
 @pulumi.output_type
+class GetAppPolicyGroupsPolicyGroupResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 policies: _builtins.str,
+                 priority: _builtins.int,
+                 targets: Sequence['outputs.GetAppPolicyGroupsPolicyGroupTargetResult'],
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: The creation time of the policy group, in RFC3339 format.
+        :param _builtins.str description: The description of the policy group.
+        :param _builtins.str id: The ID of the target object.
+        :param _builtins.str name: The name of the target object.
+        :param _builtins.str policies: The policies of the policy group, in JSON format.
+        :param _builtins.int priority: The priority of the policy group.
+        :param Sequence['GetAppPolicyGroupsPolicyGroupTargetArgs'] targets: The list of target objects.  
+               The targets structure is documented below.
+        :param _builtins.str updated_at: The latest update time of the policy group, in RFC3339 format.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The creation time of the policy group, in RFC3339 format.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the policy group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the target object.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the target object.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def policies(self) -> _builtins.str:
+        """
+        The policies of the policy group, in JSON format.
+        """
+        return pulumi.get(self, "policies")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The priority of the policy group.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.GetAppPolicyGroupsPolicyGroupTargetResult']:
+        """
+        The list of target objects.  
+        The targets structure is documented below.
+        """
+        return pulumi.get(self, "targets")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        The latest update time of the policy group, in RFC3339 format.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetAppPolicyGroupsPolicyGroupTargetResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the target object.
+        :param _builtins.str name: The name of the target object.
+        :param _builtins.str type: The type of the target object.  
+               + **USER**
+               + **USERGROUP**
+               + **APPGROUP**
+               + **OU**
+               + **ALL**
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the target object.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the target object.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the target object.  
+        + **USER**
+        + **USERGROUP**
+        + **APPGROUP**
+        + **OU**
+        + **ALL**
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAppPublishableApplicationsAppResult(dict):
+    def __init__(__self__, *,
+                 command_param: _builtins.str,
+                 description: _builtins.str,
+                 execute_path: _builtins.str,
+                 icon_index: _builtins.int,
+                 icon_path: _builtins.str,
+                 name: _builtins.str,
+                 publishable: _builtins.bool,
+                 publisher: _builtins.str,
+                 source_image_ids: Sequence[_builtins.str],
+                 version: _builtins.str,
+                 work_path: _builtins.str):
+        """
+        :param _builtins.str command_param: The command line arguments used to start the application.
+        :param _builtins.str description: The description of the the application.
+        :param _builtins.str execute_path: The execution path where the application is located.
+        :param _builtins.int icon_index: The index of the application icon.
+        :param _builtins.str icon_path: The path where the application icon is located.
+        :param _builtins.str name: The name of the the application.
+        :param _builtins.bool publishable: Whether the application can be published.
+        :param _builtins.str publisher: The publisher of the the application.
+        :param Sequence[_builtins.str] source_image_ids: The list of image IDs to which the application belongs.
+        :param _builtins.str version: The version of the the application.
+        :param _builtins.str work_path: The work path of the the application.
+        """
+        pulumi.set(__self__, "command_param", command_param)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "execute_path", execute_path)
+        pulumi.set(__self__, "icon_index", icon_index)
+        pulumi.set(__self__, "icon_path", icon_path)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "publishable", publishable)
+        pulumi.set(__self__, "publisher", publisher)
+        pulumi.set(__self__, "source_image_ids", source_image_ids)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "work_path", work_path)
+
+    @_builtins.property
+    @pulumi.getter(name="commandParam")
+    def command_param(self) -> _builtins.str:
+        """
+        The command line arguments used to start the application.
+        """
+        return pulumi.get(self, "command_param")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="executePath")
+    def execute_path(self) -> _builtins.str:
+        """
+        The execution path where the application is located.
+        """
+        return pulumi.get(self, "execute_path")
+
+    @_builtins.property
+    @pulumi.getter(name="iconIndex")
+    def icon_index(self) -> _builtins.int:
+        """
+        The index of the application icon.
+        """
+        return pulumi.get(self, "icon_index")
+
+    @_builtins.property
+    @pulumi.getter(name="iconPath")
+    def icon_path(self) -> _builtins.str:
+        """
+        The path where the application icon is located.
+        """
+        return pulumi.get(self, "icon_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the the application.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def publishable(self) -> _builtins.bool:
+        """
+        Whether the application can be published.
+        """
+        return pulumi.get(self, "publishable")
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> _builtins.str:
+        """
+        The publisher of the the application.
+        """
+        return pulumi.get(self, "publisher")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceImageIds")
+    def source_image_ids(self) -> Sequence[_builtins.str]:
+        """
+        The list of image IDs to which the application belongs.
+        """
+        return pulumi.get(self, "source_image_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the the application.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workPath")
+    def work_path(self) -> _builtins.str:
+        """
+        The work path of the the application.
+        """
+        return pulumi.get(self, "work_path")
+
+
+@pulumi.output_type
+class GetAppPublishableApplicationsApplicationResult(dict):
+    def __init__(__self__, *,
+                 command_param: _builtins.str,
+                 description: _builtins.str,
+                 execute_path: _builtins.str,
+                 icon_index: _builtins.int,
+                 icon_path: _builtins.str,
+                 name: _builtins.str,
+                 publishable: _builtins.bool,
+                 publisher: _builtins.str,
+                 source_image_ids: Sequence[_builtins.str],
+                 version: _builtins.str,
+                 work_path: _builtins.str):
+        """
+        :param _builtins.str command_param: The command line arguments used to start the application.
+        :param _builtins.str description: The description of the the application.
+        :param _builtins.str execute_path: The execution path where the application is located.
+        :param _builtins.int icon_index: The index of the application icon.
+        :param _builtins.str icon_path: The path where the application icon is located.
+        :param _builtins.str name: The name of the the application.
+        :param _builtins.bool publishable: Whether the application can be published.
+        :param _builtins.str publisher: The publisher of the the application.
+        :param Sequence[_builtins.str] source_image_ids: The list of image IDs to which the application belongs.
+        :param _builtins.str version: The version of the the application.
+        :param _builtins.str work_path: The work path of the the application.
+        """
+        pulumi.set(__self__, "command_param", command_param)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "execute_path", execute_path)
+        pulumi.set(__self__, "icon_index", icon_index)
+        pulumi.set(__self__, "icon_path", icon_path)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "publishable", publishable)
+        pulumi.set(__self__, "publisher", publisher)
+        pulumi.set(__self__, "source_image_ids", source_image_ids)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "work_path", work_path)
+
+    @_builtins.property
+    @pulumi.getter(name="commandParam")
+    def command_param(self) -> _builtins.str:
+        """
+        The command line arguments used to start the application.
+        """
+        return pulumi.get(self, "command_param")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="executePath")
+    def execute_path(self) -> _builtins.str:
+        """
+        The execution path where the application is located.
+        """
+        return pulumi.get(self, "execute_path")
+
+    @_builtins.property
+    @pulumi.getter(name="iconIndex")
+    def icon_index(self) -> _builtins.int:
+        """
+        The index of the application icon.
+        """
+        return pulumi.get(self, "icon_index")
+
+    @_builtins.property
+    @pulumi.getter(name="iconPath")
+    def icon_path(self) -> _builtins.str:
+        """
+        The path where the application icon is located.
+        """
+        return pulumi.get(self, "icon_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the the application.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def publishable(self) -> _builtins.bool:
+        """
+        Whether the application can be published.
+        """
+        return pulumi.get(self, "publishable")
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> _builtins.str:
+        """
+        The publisher of the the application.
+        """
+        return pulumi.get(self, "publisher")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceImageIds")
+    def source_image_ids(self) -> Sequence[_builtins.str]:
+        """
+        The list of image IDs to which the application belongs.
+        """
+        return pulumi.get(self, "source_image_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the the application.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workPath")
+    def work_path(self) -> _builtins.str:
+        """
+        The work path of the the application.
+        """
+        return pulumi.get(self, "work_path")
+
+
+@pulumi.output_type
 class GetAppPublishableAppsAppResult(dict):
+    def __init__(__self__, *,
+                 command_param: _builtins.str,
+                 description: _builtins.str,
+                 execute_path: _builtins.str,
+                 icon_index: _builtins.int,
+                 icon_path: _builtins.str,
+                 name: _builtins.str,
+                 publishable: _builtins.bool,
+                 publisher: _builtins.str,
+                 source_image_ids: Sequence[_builtins.str],
+                 version: _builtins.str,
+                 work_path: _builtins.str):
+        """
+        :param _builtins.str command_param: The command line arguments used to start the application.
+        :param _builtins.str description: The description of the the application.
+        :param _builtins.str execute_path: The execution path where the application is located.
+        :param _builtins.int icon_index: The index of the application icon.
+        :param _builtins.str icon_path: The path where the application icon is located.
+        :param _builtins.str name: The name of the the application.
+        :param _builtins.bool publishable: Whether the application can be published.
+        :param _builtins.str publisher: The publisher of the the application.
+        :param Sequence[_builtins.str] source_image_ids: The list of image IDs to which the application belongs.
+        :param _builtins.str version: The version of the the application.
+        :param _builtins.str work_path: The work path of the the application.
+        """
+        pulumi.set(__self__, "command_param", command_param)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "execute_path", execute_path)
+        pulumi.set(__self__, "icon_index", icon_index)
+        pulumi.set(__self__, "icon_path", icon_path)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "publishable", publishable)
+        pulumi.set(__self__, "publisher", publisher)
+        pulumi.set(__self__, "source_image_ids", source_image_ids)
+        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "work_path", work_path)
+
+    @_builtins.property
+    @pulumi.getter(name="commandParam")
+    def command_param(self) -> _builtins.str:
+        """
+        The command line arguments used to start the application.
+        """
+        return pulumi.get(self, "command_param")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the the application.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="executePath")
+    def execute_path(self) -> _builtins.str:
+        """
+        The execution path where the application is located.
+        """
+        return pulumi.get(self, "execute_path")
+
+    @_builtins.property
+    @pulumi.getter(name="iconIndex")
+    def icon_index(self) -> _builtins.int:
+        """
+        The index of the application icon.
+        """
+        return pulumi.get(self, "icon_index")
+
+    @_builtins.property
+    @pulumi.getter(name="iconPath")
+    def icon_path(self) -> _builtins.str:
+        """
+        The path where the application icon is located.
+        """
+        return pulumi.get(self, "icon_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the the application.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def publishable(self) -> _builtins.bool:
+        """
+        Whether the application can be published.
+        """
+        return pulumi.get(self, "publishable")
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> _builtins.str:
+        """
+        The publisher of the the application.
+        """
+        return pulumi.get(self, "publisher")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceImageIds")
+    def source_image_ids(self) -> Sequence[_builtins.str]:
+        """
+        The list of image IDs to which the application belongs.
+        """
+        return pulumi.get(self, "source_image_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version of the the application.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="workPath")
+    def work_path(self) -> _builtins.str:
+        """
+        The work path of the the application.
+        """
+        return pulumi.get(self, "work_path")
+
+
+@pulumi.output_type
+class GetAppPublishableAppsApplicationResult(dict):
     def __init__(__self__, *,
                  command_param: _builtins.str,
                  description: _builtins.str,
@@ -5033,6 +7166,35 @@ class GetAppScheduleTasksTaskResult(dict):
         The days of the week of the schedule task.
         """
         return pulumi.get(self, "week_list")
+
+
+@pulumi.output_type
+class GetAppServerGroupTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the tag.
+        :param Sequence[_builtins.str] values: The value list of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The value list of the tag.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -5822,6 +7984,148 @@ class GetAppServerGroupsServerGroupTagResult(dict):
         The value of the tag. The maximum length is 256 Unicode characters.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAppServerMetricDataMetricResult(dict):
+    def __init__(__self__, *,
+                 datapoints: Sequence['outputs.GetAppServerMetricDataMetricDatapointResult'],
+                 dimension_value: _builtins.str,
+                 metric_name: _builtins.str):
+        """
+        :param Sequence['GetAppServerMetricDataMetricDatapointArgs'] datapoints: The list of metric data points.  
+               The datapoints structure is documented below.
+        :param _builtins.str dimension_value: The dimension value.  
+               This field is valid only when querying GPU monitoring information.
+        :param _builtins.str metric_name: Specifies the name of the monitoring metric.
+               + For **SYS.ECS** namespace, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1002.html).
+               + For **AGT.ECS** namespace, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1003.html#section11).
+        """
+        pulumi.set(__self__, "datapoints", datapoints)
+        pulumi.set(__self__, "dimension_value", dimension_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def datapoints(self) -> Sequence['outputs.GetAppServerMetricDataMetricDatapointResult']:
+        """
+        The list of metric data points.  
+        The datapoints structure is documented below.
+        """
+        return pulumi.get(self, "datapoints")
+
+    @_builtins.property
+    @pulumi.getter(name="dimensionValue")
+    def dimension_value(self) -> _builtins.str:
+        """
+        The dimension value.  
+        This field is valid only when querying GPU monitoring information.
+        """
+        return pulumi.get(self, "dimension_value")
+
+    @_builtins.property
+    @pulumi.getter(name="metricName")
+    def metric_name(self) -> _builtins.str:
+        """
+        Specifies the name of the monitoring metric.
+        + For **SYS.ECS** namespace, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1002.html).
+        + For **AGT.ECS** namespace, please refer to the [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1003.html#section11).
+        """
+        return pulumi.get(self, "metric_name")
+
+
+@pulumi.output_type
+class GetAppServerMetricDataMetricDatapointResult(dict):
+    def __init__(__self__, *,
+                 average: _builtins.float,
+                 collection_time: _builtins.str,
+                 max: _builtins.float,
+                 min: _builtins.float,
+                 sum: _builtins.float,
+                 unit: _builtins.str,
+                 variance: _builtins.float):
+        """
+        :param _builtins.float average: The average value of the metric data within the aggregation period.  
+               This field is valid only when the `filter` is set to `average`.
+        :param _builtins.str collection_time: The collection time of the metric, in RFC3339 format.
+        :param _builtins.float max: The maximum value of the metric data within the aggregation period.  
+               This field is valid only when the `filter` is set to `max`.
+        :param _builtins.float min: The minimum value of the metric data within the aggregation period.  
+               This field is valid only when the `filter` is set to `min`.
+        :param _builtins.float sum: The sum value of the metric data within the aggregation period.  
+               This field is valid only when the `filter` is set to `sum`.
+        :param _builtins.str unit: The unit of the metric.
+        :param _builtins.float variance: The variance of the metric data within the aggregation period.  
+               This field is valid only when the `filter` is set to `variance`.
+        """
+        pulumi.set(__self__, "average", average)
+        pulumi.set(__self__, "collection_time", collection_time)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "sum", sum)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "variance", variance)
+
+    @_builtins.property
+    @pulumi.getter
+    def average(self) -> _builtins.float:
+        """
+        The average value of the metric data within the aggregation period.  
+        This field is valid only when the `filter` is set to `average`.
+        """
+        return pulumi.get(self, "average")
+
+    @_builtins.property
+    @pulumi.getter(name="collectionTime")
+    def collection_time(self) -> _builtins.str:
+        """
+        The collection time of the metric, in RFC3339 format.
+        """
+        return pulumi.get(self, "collection_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.float:
+        """
+        The maximum value of the metric data within the aggregation period.  
+        This field is valid only when the `filter` is set to `max`.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.float:
+        """
+        The minimum value of the metric data within the aggregation period.  
+        This field is valid only when the `filter` is set to `min`.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def sum(self) -> _builtins.float:
+        """
+        The sum value of the metric data within the aggregation period.  
+        This field is valid only when the `filter` is set to `sum`.
+        """
+        return pulumi.get(self, "sum")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The unit of the metric.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def variance(self) -> _builtins.float:
+        """
+        The variance of the metric data within the aggregation period.  
+        This field is valid only when the `filter` is set to `variance`.
+        """
+        return pulumi.get(self, "variance")
 
 
 @pulumi.output_type
@@ -7165,6 +9469,74 @@ class GetAppSessionTypesSessionTypeResult(dict):
 
 
 @pulumi.output_type
+class GetAppSharedFoldersSharedFolderResult(dict):
+    def __init__(__self__, *,
+                 claim_mode: _builtins.str,
+                 count: Mapping[str, _builtins.int],
+                 delimiter: _builtins.str,
+                 folder_path: _builtins.str,
+                 storage_claim_id: _builtins.str):
+        """
+        :param _builtins.str claim_mode: The storage claim type.
+               + **USER**: user directory
+               + **SHARE**: shared directory.
+        :param Mapping[str, _builtins.int] count: The number of associated users and user groups of the shared folder.  
+               It is a map with keys like `USER` and `USER_GROUP`, and values are integers representing the counts.
+        :param _builtins.str delimiter: The path delimiter.
+        :param _builtins.str folder_path: The storage object path.
+        :param _builtins.str storage_claim_id: Specifies the WKS storage directory claim ID.
+        """
+        pulumi.set(__self__, "claim_mode", claim_mode)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "folder_path", folder_path)
+        pulumi.set(__self__, "storage_claim_id", storage_claim_id)
+
+    @_builtins.property
+    @pulumi.getter(name="claimMode")
+    def claim_mode(self) -> _builtins.str:
+        """
+        The storage claim type.
+        + **USER**: user directory
+        + **SHARE**: shared directory.
+        """
+        return pulumi.get(self, "claim_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Mapping[str, _builtins.int]:
+        """
+        The number of associated users and user groups of the shared folder.  
+        It is a map with keys like `USER` and `USER_GROUP`, and values are integers representing the counts.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def delimiter(self) -> _builtins.str:
+        """
+        The path delimiter.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @_builtins.property
+    @pulumi.getter(name="folderPath")
+    def folder_path(self) -> _builtins.str:
+        """
+        The storage object path.
+        """
+        return pulumi.get(self, "folder_path")
+
+    @_builtins.property
+    @pulumi.getter(name="storageClaimId")
+    def storage_claim_id(self) -> _builtins.str:
+        """
+        Specifies the WKS storage directory claim ID.
+        """
+        return pulumi.get(self, "storage_claim_id")
+
+
+@pulumi.output_type
 class GetAppStoragePoliciesPolicyResult(dict):
     def __init__(__self__, *,
                  client_actions: Sequence[_builtins.str],
@@ -7396,6 +9768,65 @@ class GetAppWarehouseApplicationsApplicationResult(dict):
 
 
 @pulumi.output_type
+class GetApplicationAuthorizationsAuthorizationResult(dict):
+    def __init__(__self__, *,
+                 account: _builtins.str,
+                 account_type: _builtins.str,
+                 domain: _builtins.str,
+                 platform_type: _builtins.str):
+        """
+        :param _builtins.str account: The account information.
+        :param _builtins.str account_type: The account type.
+               + **SIMPLE**: Normal user.
+               + **USER_GROUP**: User group.
+        :param _builtins.str domain: The domain name.
+        :param _builtins.str platform_type: The platform type.
+               + **AD**: AD domain.
+               + **LOCAL**: LiteAs.
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "account_type", account_type)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "platform_type", platform_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def account(self) -> _builtins.str:
+        """
+        The account information.
+        """
+        return pulumi.get(self, "account")
+
+    @_builtins.property
+    @pulumi.getter(name="accountType")
+    def account_type(self) -> _builtins.str:
+        """
+        The account type.
+        + **SIMPLE**: Normal user.
+        + **USER_GROUP**: User group.
+        """
+        return pulumi.get(self, "account_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> _builtins.str:
+        """
+        The platform type.
+        + **AD**: AD domain.
+        + **LOCAL**: LiteAs.
+        """
+        return pulumi.get(self, "platform_type")
+
+
+@pulumi.output_type
 class GetApplicationCatalogsCatalogResult(dict):
     def __init__(__self__, *,
                  en: _builtins.str,
@@ -7433,6 +9864,244 @@ class GetApplicationCatalogsCatalogResult(dict):
         The catalog description in Chinese.
         """
         return pulumi.get(self, "zh")
+
+
+@pulumi.output_type
+class GetApplicationRestrictedRulesRuleResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 rule_source: _builtins.str,
+                 rules: Sequence['outputs.GetApplicationRestrictedRulesRuleRuleResult'],
+                 update_time: _builtins.str):
+        """
+        :param _builtins.str create_time: The create time of the restricted application rule, in RFC3339 format.
+        :param _builtins.str description: The description of the restricted application rule.
+        :param _builtins.str id: The ID of the restricted application rule.
+        :param _builtins.str name: Specifies the name of the restricted application rule to be queried.
+        :param _builtins.str rule_source: The source of the restricted application rule.
+        :param Sequence['GetApplicationRestrictedRulesRuleRuleArgs'] rules: The detail of the restricted application rule.  
+               The rule structure is documented below.
+        :param _builtins.str update_time: The update time of the restricted application rule, in RFC3339 format.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "rule_source", rule_source)
+        pulumi.set(__self__, "rules", rules)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The create time of the restricted application rule, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the restricted application rule.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the restricted application rule.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the restricted application rule to be queried.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleSource")
+    def rule_source(self) -> _builtins.str:
+        """
+        The source of the restricted application rule.
+        """
+        return pulumi.get(self, "rule_source")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> Sequence['outputs.GetApplicationRestrictedRulesRuleRuleResult']:
+        """
+        The detail of the restricted application rule.  
+        The rule structure is documented below.
+        """
+        return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The update time of the restricted application rule, in RFC3339 format.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetApplicationRestrictedRulesRuleRuleResult(dict):
+    def __init__(__self__, *,
+                 path_rules: Sequence['outputs.GetApplicationRestrictedRulesRuleRulePathRuleResult'],
+                 product_rules: Sequence['outputs.GetApplicationRestrictedRulesRuleRuleProductRuleResult'],
+                 scope: _builtins.str):
+        """
+        :param Sequence['GetApplicationRestrictedRulesRuleRulePathRuleArgs'] path_rules: The path rule configuration.  
+               The path_rule structure is documented below.
+        :param Sequence['GetApplicationRestrictedRulesRuleRuleProductRuleArgs'] product_rules: The product rule configuration.  
+               The product_rule structure is documented below.
+        :param _builtins.str scope: The scope of the rule.  
+               The valid values are as follows:
+               + **PRODUCT**
+               + **PATH**
+        """
+        pulumi.set(__self__, "path_rules", path_rules)
+        pulumi.set(__self__, "product_rules", product_rules)
+        pulumi.set(__self__, "scope", scope)
+
+    @_builtins.property
+    @pulumi.getter(name="pathRules")
+    def path_rules(self) -> Sequence['outputs.GetApplicationRestrictedRulesRuleRulePathRuleResult']:
+        """
+        The path rule configuration.  
+        The path_rule structure is documented below.
+        """
+        return pulumi.get(self, "path_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="productRules")
+    def product_rules(self) -> Sequence['outputs.GetApplicationRestrictedRulesRuleRuleProductRuleResult']:
+        """
+        The product rule configuration.  
+        The product_rule structure is documented below.
+        """
+        return pulumi.get(self, "product_rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        The scope of the rule.  
+        The valid values are as follows:
+        + **PRODUCT**
+        + **PATH**
+        """
+        return pulumi.get(self, "scope")
+
+
+@pulumi.output_type
+class GetApplicationRestrictedRulesRuleRulePathRuleResult(dict):
+    def __init__(__self__, *,
+                 path: _builtins.str):
+        """
+        :param _builtins.str path: The complete path.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The complete path.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class GetApplicationRestrictedRulesRuleRuleProductRuleResult(dict):
+    def __init__(__self__, *,
+                 identify_condition: _builtins.str,
+                 process_name: _builtins.str,
+                 product_name: _builtins.str,
+                 product_version: _builtins.str,
+                 publisher: _builtins.str,
+                 support_os: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str identify_condition: The identification condition.
+        :param _builtins.str process_name: The process name.
+        :param _builtins.str product_name: The product name.
+        :param _builtins.str product_version: The product version number.
+        :param _builtins.str publisher: The publisher name.
+        :param _builtins.str support_os: The supported operating system type.
+        :param _builtins.str version: The version number.
+        """
+        pulumi.set(__self__, "identify_condition", identify_condition)
+        pulumi.set(__self__, "process_name", process_name)
+        pulumi.set(__self__, "product_name", product_name)
+        pulumi.set(__self__, "product_version", product_version)
+        pulumi.set(__self__, "publisher", publisher)
+        pulumi.set(__self__, "support_os", support_os)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="identifyCondition")
+    def identify_condition(self) -> _builtins.str:
+        """
+        The identification condition.
+        """
+        return pulumi.get(self, "identify_condition")
+
+    @_builtins.property
+    @pulumi.getter(name="processName")
+    def process_name(self) -> _builtins.str:
+        """
+        The process name.
+        """
+        return pulumi.get(self, "process_name")
+
+    @_builtins.property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> _builtins.str:
+        """
+        The product name.
+        """
+        return pulumi.get(self, "product_name")
+
+    @_builtins.property
+    @pulumi.getter(name="productVersion")
+    def product_version(self) -> _builtins.str:
+        """
+        The product version number.
+        """
+        return pulumi.get(self, "product_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def publisher(self) -> _builtins.str:
+        """
+        The publisher name.
+        """
+        return pulumi.get(self, "publisher")
+
+    @_builtins.property
+    @pulumi.getter(name="supportOs")
+    def support_os(self) -> _builtins.str:
+        """
+        The supported operating system type.
+        """
+        return pulumi.get(self, "support_os")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version number.
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -7971,6 +10640,52 @@ class GetApplicationsApplicationApplicationFileStoreBucketStoreResult(dict):
 
 
 @pulumi.output_type
+class GetAssistAuthConfigurationAppliedObjectsObjectResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the user or user group.
+        :param _builtins.str name: The name of the user or user group.
+        :param _builtins.str type: The type of the binding object.
+               + **USER** - User
+               + **USER_GROUP** - User group
+               + **ALL** - All users
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the user or user group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the user or user group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the binding object.
+        + **USER** - User
+        + **USER_GROUP** - User group
+        + **ALL** - All users
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetDesktopConnectionsDesktopConnectionResult(dict):
     def __init__(__self__, *,
                  attach_users: Sequence['outputs.GetDesktopConnectionsDesktopConnectionAttachUserResult'],
@@ -8098,6 +10813,722 @@ class GetDesktopConnectionsDesktopConnectionAttachUserResult(dict):
         + **users**: Windows standard user group.
         """
         return pulumi.get(self, "user_group")
+
+
+@pulumi.output_type
+class GetDesktopPoolAssociatedDesktopsDesktopResult(dict):
+    def __init__(__self__, *,
+                 attach_state: _builtins.str,
+                 availability_zone: _builtins.str,
+                 bill_resource_id: _builtins.str,
+                 computer_name: _builtins.str,
+                 created: _builtins.str,
+                 data_volumes: Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopDataVolumeResult'],
+                 desktop_id: _builtins.str,
+                 desktop_type: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 in_maintenance_mode: _builtins.bool,
+                 ip_addresses: Sequence[_builtins.str],
+                 ipv4: _builtins.str,
+                 ipv6: _builtins.str,
+                 is_attaching_eip: _builtins.bool,
+                 is_support_internet: _builtins.bool,
+                 login_status: _builtins.str,
+                 os_host_name: _builtins.str,
+                 os_version: _builtins.str,
+                 product_id: _builtins.str,
+                 products: Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopProductResult'],
+                 root_volumes: Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopRootVolumeResult'],
+                 sid: _builtins.str,
+                 site_name: _builtins.str,
+                 site_type: _builtins.str,
+                 status: _builtins.str,
+                 subnet_id: _builtins.str,
+                 tags: Mapping[str, _builtins.str]):
+        """
+        :param _builtins.str attach_state: The attach state of the desktop.
+        :param _builtins.str availability_zone: The availability zone of the desktop.
+        :param _builtins.str bill_resource_id: The billing resource ID of the volume.
+        :param _builtins.str computer_name: The name of the desktop.
+        :param _builtins.str created: The creation time of the desktop.
+        :param Sequence['GetDesktopPoolAssociatedDesktopsDesktopDataVolumeArgs'] data_volumes: The list of data volumes of the desktop.  
+               The data_volumes structure is documented below.
+        :param _builtins.str desktop_id: The ID of the desktop.
+        :param _builtins.str desktop_type: The type of the desktop.
+        :param _builtins.str enterprise_project_id: The enterprise project ID of the desktop.
+        :param _builtins.bool in_maintenance_mode: Whether the desktop is in maintenance mode.
+        :param Sequence[_builtins.str] ip_addresses: The list of IP addresses of the desktop.
+        :param _builtins.str ipv4: The IPv4 address of the desktop.
+        :param _builtins.str ipv6: The IPv6 address of the desktop.
+        :param _builtins.bool is_attaching_eip: Whether the desktop is attaching an EIP.
+        :param _builtins.bool is_support_internet: Whether the desktop supports internet access.
+        :param _builtins.str login_status: The login status of the desktop.
+        :param _builtins.str os_host_name: The OS host name of the desktop.
+        :param _builtins.str os_version: The OS version of the desktop.
+        :param _builtins.str product_id: The product ID.
+        :param Sequence['GetDesktopPoolAssociatedDesktopsDesktopProductArgs'] products: The product information of the desktop.  
+               The product structure is documented below.
+        :param Sequence['GetDesktopPoolAssociatedDesktopsDesktopRootVolumeArgs'] root_volumes: The root volume information of the desktop.  
+               The root_volume structure is documented below.
+        :param _builtins.str sid: The SID of the desktop.
+        :param _builtins.str site_name: The site name of the desktop.
+        :param _builtins.str site_type: The site type of the desktop.
+        :param _builtins.str status: The status of the product.
+        :param _builtins.str subnet_id: The subnet ID of the desktop.
+        :param Mapping[str, _builtins.str] tags: The tags of the desktop.
+        """
+        pulumi.set(__self__, "attach_state", attach_state)
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "bill_resource_id", bill_resource_id)
+        pulumi.set(__self__, "computer_name", computer_name)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "data_volumes", data_volumes)
+        pulumi.set(__self__, "desktop_id", desktop_id)
+        pulumi.set(__self__, "desktop_type", desktop_type)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "in_maintenance_mode", in_maintenance_mode)
+        pulumi.set(__self__, "ip_addresses", ip_addresses)
+        pulumi.set(__self__, "ipv4", ipv4)
+        pulumi.set(__self__, "ipv6", ipv6)
+        pulumi.set(__self__, "is_attaching_eip", is_attaching_eip)
+        pulumi.set(__self__, "is_support_internet", is_support_internet)
+        pulumi.set(__self__, "login_status", login_status)
+        pulumi.set(__self__, "os_host_name", os_host_name)
+        pulumi.set(__self__, "os_version", os_version)
+        pulumi.set(__self__, "product_id", product_id)
+        pulumi.set(__self__, "products", products)
+        pulumi.set(__self__, "root_volumes", root_volumes)
+        pulumi.set(__self__, "sid", sid)
+        pulumi.set(__self__, "site_name", site_name)
+        pulumi.set(__self__, "site_type", site_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="attachState")
+    def attach_state(self) -> _builtins.str:
+        """
+        The attach state of the desktop.
+        """
+        return pulumi.get(self, "attach_state")
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        The availability zone of the desktop.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="billResourceId")
+    def bill_resource_id(self) -> _builtins.str:
+        """
+        The billing resource ID of the volume.
+        """
+        return pulumi.get(self, "bill_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="computerName")
+    def computer_name(self) -> _builtins.str:
+        """
+        The name of the desktop.
+        """
+        return pulumi.get(self, "computer_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> _builtins.str:
+        """
+        The creation time of the desktop.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter(name="dataVolumes")
+    def data_volumes(self) -> Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopDataVolumeResult']:
+        """
+        The list of data volumes of the desktop.  
+        The data_volumes structure is documented below.
+        """
+        return pulumi.get(self, "data_volumes")
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> _builtins.str:
+        """
+        The ID of the desktop.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="desktopType")
+    def desktop_type(self) -> _builtins.str:
+        """
+        The type of the desktop.
+        """
+        return pulumi.get(self, "desktop_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        The enterprise project ID of the desktop.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="inMaintenanceMode")
+    def in_maintenance_mode(self) -> _builtins.bool:
+        """
+        Whether the desktop is in maintenance mode.
+        """
+        return pulumi.get(self, "in_maintenance_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Sequence[_builtins.str]:
+        """
+        The list of IP addresses of the desktop.
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4(self) -> _builtins.str:
+        """
+        The IPv4 address of the desktop.
+        """
+        return pulumi.get(self, "ipv4")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> _builtins.str:
+        """
+        The IPv6 address of the desktop.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @_builtins.property
+    @pulumi.getter(name="isAttachingEip")
+    def is_attaching_eip(self) -> _builtins.bool:
+        """
+        Whether the desktop is attaching an EIP.
+        """
+        return pulumi.get(self, "is_attaching_eip")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupportInternet")
+    def is_support_internet(self) -> _builtins.bool:
+        """
+        Whether the desktop supports internet access.
+        """
+        return pulumi.get(self, "is_support_internet")
+
+    @_builtins.property
+    @pulumi.getter(name="loginStatus")
+    def login_status(self) -> _builtins.str:
+        """
+        The login status of the desktop.
+        """
+        return pulumi.get(self, "login_status")
+
+    @_builtins.property
+    @pulumi.getter(name="osHostName")
+    def os_host_name(self) -> _builtins.str:
+        """
+        The OS host name of the desktop.
+        """
+        return pulumi.get(self, "os_host_name")
+
+    @_builtins.property
+    @pulumi.getter(name="osVersion")
+    def os_version(self) -> _builtins.str:
+        """
+        The OS version of the desktop.
+        """
+        return pulumi.get(self, "os_version")
+
+    @_builtins.property
+    @pulumi.getter(name="productId")
+    def product_id(self) -> _builtins.str:
+        """
+        The product ID.
+        """
+        return pulumi.get(self, "product_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def products(self) -> Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopProductResult']:
+        """
+        The product information of the desktop.  
+        The product structure is documented below.
+        """
+        return pulumi.get(self, "products")
+
+    @_builtins.property
+    @pulumi.getter(name="rootVolumes")
+    def root_volumes(self) -> Sequence['outputs.GetDesktopPoolAssociatedDesktopsDesktopRootVolumeResult']:
+        """
+        The root volume information of the desktop.  
+        The root_volume structure is documented below.
+        """
+        return pulumi.get(self, "root_volumes")
+
+    @_builtins.property
+    @pulumi.getter
+    def sid(self) -> _builtins.str:
+        """
+        The SID of the desktop.
+        """
+        return pulumi.get(self, "sid")
+
+    @_builtins.property
+    @pulumi.getter(name="siteName")
+    def site_name(self) -> _builtins.str:
+        """
+        The site name of the desktop.
+        """
+        return pulumi.get(self, "site_name")
+
+    @_builtins.property
+    @pulumi.getter(name="siteType")
+    def site_type(self) -> _builtins.str:
+        """
+        The site type of the desktop.
+        """
+        return pulumi.get(self, "site_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the product.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> _builtins.str:
+        """
+        The subnet ID of the desktop.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, _builtins.str]:
+        """
+        The tags of the desktop.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetDesktopPoolAssociatedDesktopsDesktopDataVolumeResult(dict):
+    def __init__(__self__, *,
+                 bill_resource_id: _builtins.str,
+                 create_time: _builtins.str,
+                 device: _builtins.str,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 resource_spec_code: _builtins.str,
+                 size: _builtins.int,
+                 type: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str bill_resource_id: The billing resource ID of the volume.
+        :param _builtins.str create_time: The creation time of the volume.
+        :param _builtins.str device: The device name of the volume.
+        :param _builtins.str display_name: The display name of the volume.
+        :param _builtins.str id: The ID of the volume.
+        :param _builtins.str resource_spec_code: The resource specification code of the volume.
+        :param _builtins.int size: The size of the volume in GB.
+        :param _builtins.str type: The product type.
+        :param _builtins.str volume_id: The volume ID.
+        """
+        pulumi.set(__self__, "bill_resource_id", bill_resource_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter(name="billResourceId")
+    def bill_resource_id(self) -> _builtins.str:
+        """
+        The billing resource ID of the volume.
+        """
+        return pulumi.get(self, "bill_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the volume.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        The device name of the volume.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the volume.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the volume.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the volume.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The size of the volume in GB.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The product type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        The volume ID.
+        """
+        return pulumi.get(self, "volume_id")
+
+
+@pulumi.output_type
+class GetDesktopPoolAssociatedDesktopsDesktopProductResult(dict):
+    def __init__(__self__, *,
+                 architecture: _builtins.str,
+                 charge_mode: _builtins.str,
+                 cloud_service_type: _builtins.str,
+                 contain_data_disk: _builtins.bool,
+                 cpu: _builtins.str,
+                 descriptions: _builtins.str,
+                 flavor_id: _builtins.str,
+                 is_gpu: _builtins.bool,
+                 memory: _builtins.str,
+                 package_type: _builtins.str,
+                 product_id: _builtins.str,
+                 resource_type: _builtins.str,
+                 status: _builtins.str,
+                 system_disk_size: _builtins.str,
+                 system_disk_type: _builtins.str,
+                 type: _builtins.str,
+                 volume_product_type: _builtins.str):
+        """
+        :param _builtins.str architecture: The architecture of the product.
+        :param _builtins.str charge_mode: The charging mode.
+        :param _builtins.str cloud_service_type: The cloud service type.
+        :param _builtins.bool contain_data_disk: Whether the product contains data disk.
+        :param _builtins.str cpu: The CPU specification.
+        :param _builtins.str descriptions: The product description.
+        :param _builtins.str flavor_id: The flavor ID.
+        :param _builtins.bool is_gpu: Whether the product is GPU type.
+        :param _builtins.str memory: The memory specification.
+        :param _builtins.str package_type: The package type of the product.
+        :param _builtins.str product_id: The product ID.
+        :param _builtins.str resource_type: The resource type.
+        :param _builtins.str status: The status of the product.
+        :param _builtins.str system_disk_size: The system disk size.
+        :param _builtins.str system_disk_type: The system disk type.
+        :param _builtins.str type: The product type.
+        :param _builtins.str volume_product_type: The volume product type.
+        """
+        pulumi.set(__self__, "architecture", architecture)
+        pulumi.set(__self__, "charge_mode", charge_mode)
+        pulumi.set(__self__, "cloud_service_type", cloud_service_type)
+        pulumi.set(__self__, "contain_data_disk", contain_data_disk)
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "descriptions", descriptions)
+        pulumi.set(__self__, "flavor_id", flavor_id)
+        pulumi.set(__self__, "is_gpu", is_gpu)
+        pulumi.set(__self__, "memory", memory)
+        pulumi.set(__self__, "package_type", package_type)
+        pulumi.set(__self__, "product_id", product_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "system_disk_size", system_disk_size)
+        pulumi.set(__self__, "system_disk_type", system_disk_type)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "volume_product_type", volume_product_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def architecture(self) -> _builtins.str:
+        """
+        The architecture of the product.
+        """
+        return pulumi.get(self, "architecture")
+
+    @_builtins.property
+    @pulumi.getter(name="chargeMode")
+    def charge_mode(self) -> _builtins.str:
+        """
+        The charging mode.
+        """
+        return pulumi.get(self, "charge_mode")
+
+    @_builtins.property
+    @pulumi.getter(name="cloudServiceType")
+    def cloud_service_type(self) -> _builtins.str:
+        """
+        The cloud service type.
+        """
+        return pulumi.get(self, "cloud_service_type")
+
+    @_builtins.property
+    @pulumi.getter(name="containDataDisk")
+    def contain_data_disk(self) -> _builtins.bool:
+        """
+        Whether the product contains data disk.
+        """
+        return pulumi.get(self, "contain_data_disk")
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> _builtins.str:
+        """
+        The CPU specification.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def descriptions(self) -> _builtins.str:
+        """
+        The product description.
+        """
+        return pulumi.get(self, "descriptions")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorId")
+    def flavor_id(self) -> _builtins.str:
+        """
+        The flavor ID.
+        """
+        return pulumi.get(self, "flavor_id")
+
+    @_builtins.property
+    @pulumi.getter(name="isGpu")
+    def is_gpu(self) -> _builtins.bool:
+        """
+        Whether the product is GPU type.
+        """
+        return pulumi.get(self, "is_gpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> _builtins.str:
+        """
+        The memory specification.
+        """
+        return pulumi.get(self, "memory")
+
+    @_builtins.property
+    @pulumi.getter(name="packageType")
+    def package_type(self) -> _builtins.str:
+        """
+        The package type of the product.
+        """
+        return pulumi.get(self, "package_type")
+
+    @_builtins.property
+    @pulumi.getter(name="productId")
+    def product_id(self) -> _builtins.str:
+        """
+        The product ID.
+        """
+        return pulumi.get(self, "product_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> _builtins.str:
+        """
+        The resource type.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the product.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="systemDiskSize")
+    def system_disk_size(self) -> _builtins.str:
+        """
+        The system disk size.
+        """
+        return pulumi.get(self, "system_disk_size")
+
+    @_builtins.property
+    @pulumi.getter(name="systemDiskType")
+    def system_disk_type(self) -> _builtins.str:
+        """
+        The system disk type.
+        """
+        return pulumi.get(self, "system_disk_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The product type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeProductType")
+    def volume_product_type(self) -> _builtins.str:
+        """
+        The volume product type.
+        """
+        return pulumi.get(self, "volume_product_type")
+
+
+@pulumi.output_type
+class GetDesktopPoolAssociatedDesktopsDesktopRootVolumeResult(dict):
+    def __init__(__self__, *,
+                 bill_resource_id: _builtins.str,
+                 create_time: _builtins.str,
+                 device: _builtins.str,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 resource_spec_code: _builtins.str,
+                 size: _builtins.int,
+                 type: _builtins.str,
+                 volume_id: _builtins.str):
+        """
+        :param _builtins.str bill_resource_id: The billing resource ID of the volume.
+        :param _builtins.str create_time: The creation time of the volume.
+        :param _builtins.str device: The device name of the volume.
+        :param _builtins.str display_name: The display name of the volume.
+        :param _builtins.str id: The ID of the volume.
+        :param _builtins.str resource_spec_code: The resource specification code of the volume.
+        :param _builtins.int size: The size of the volume in GB.
+        :param _builtins.str type: The product type.
+        :param _builtins.str volume_id: The volume ID.
+        """
+        pulumi.set(__self__, "bill_resource_id", bill_resource_id)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "resource_spec_code", resource_spec_code)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "volume_id", volume_id)
+
+    @_builtins.property
+    @pulumi.getter(name="billResourceId")
+    def bill_resource_id(self) -> _builtins.str:
+        """
+        The billing resource ID of the volume.
+        """
+        return pulumi.get(self, "bill_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the volume.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        The device name of the volume.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the volume.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the volume.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceSpecCode")
+    def resource_spec_code(self) -> _builtins.str:
+        """
+        The resource specification code of the volume.
+        """
+        return pulumi.get(self, "resource_spec_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.int:
+        """
+        The size of the volume in GB.
+        """
+        return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The product type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        The volume ID.
+        """
+        return pulumi.get(self, "volume_id")
 
 
 @pulumi.output_type
@@ -9816,6 +13247,123 @@ class GetHourPackagesHourPackageDescriptionResult(dict):
 
 
 @pulumi.output_type
+class GetOuUsersUserResult(dict):
+    def __init__(__self__, *,
+                 expired_time: _builtins.str,
+                 has_existed: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param _builtins.str expired_time: The expiration time of the user.  
+               `-1` indicates that the user never expires.
+        :param _builtins.bool has_existed: Specifies whether the user already exists in the user list.  
+               If omitted, all users under the OU will be returned.
+        :param _builtins.str name: The name of the user.
+        """
+        pulumi.set(__self__, "expired_time", expired_time)
+        pulumi.set(__self__, "has_existed", has_existed)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> _builtins.str:
+        """
+        The expiration time of the user.  
+        `-1` indicates that the user never expires.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @_builtins.property
+    @pulumi.getter(name="hasExisted")
+    def has_existed(self) -> _builtins.bool:
+        """
+        Specifies whether the user already exists in the user list.  
+        If omitted, all users under the OU will be returned.
+        """
+        return pulumi.get(self, "has_existed")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetOusOuseResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 domain: _builtins.str,
+                 domain_id: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 ou_dn: _builtins.str):
+        """
+        :param _builtins.str description: The description of the OU.
+        :param _builtins.str domain: The AD domain name to which the OU belongs.
+        :param _builtins.str domain_id: The ID of the AD domain.
+        :param _builtins.str id: The ID of the OU.
+        :param _builtins.str name: The name of the OU.
+        :param _builtins.str ou_dn: The distinguished name (DN) of the OU.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "ou_dn", ou_dn)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the OU.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The AD domain name to which the OU belongs.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> _builtins.str:
+        """
+        The ID of the AD domain.
+        """
+        return pulumi.get(self, "domain_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the OU.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the OU.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ouDn")
+    def ou_dn(self) -> _builtins.str:
+        """
+        The distinguished name (DN) of the OU.
+        """
+        return pulumi.get(self, "ou_dn")
+
+
+@pulumi.output_type
 class GetPolicyGroupsPolicyGroupResult(dict):
     def __init__(__self__, *,
                  description: _builtins.str,
@@ -10097,6 +13645,643 @@ class GetPolicyGroupsPolicyGroupTargetResult(dict):
         The type of the target.
         """
         return pulumi.get(self, "target_type")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetQuotasQuotaResourceResult']):
+        """
+        :param Sequence['GetQuotasQuotaResourceArgs'] resources: The list of quota resources.  
+               The resources structure is documented above.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetQuotasQuotaResourceResult']:
+        """
+        The list of quota resources.  
+        The resources structure is documented above.
+        """
+        return pulumi.get(self, "resources")
+
+
+@pulumi.output_type
+class GetQuotasQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 unit: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int quota: The quota value.
+        :param _builtins.str type: The resource type.
+               + **general_instances**: Number of general desktops.
+               + **Memory**: Memory capacity.
+               + **cores**: Number of CPUs.
+               + **volumes**: Number of disks.
+               + **volume_gigabytes**: Disk capacity.
+               + **gpu_instances**: Number of GPU desktops.
+               + **deh**: Cloud office host.
+               + **users**: Number of users.
+               + **policy_groups**: Number of policy groups.
+               + **Cores**: Number of CPUs (used by quota tool).
+        :param _builtins.str unit: The quota unit.
+        :param _builtins.int used: The used quota value.
+        """
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The quota value.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The resource type.
+        + **general_instances**: Number of general desktops.
+        + **Memory**: Memory capacity.
+        + **cores**: Number of CPUs.
+        + **volumes**: Number of disks.
+        + **volume_gigabytes**: Disk capacity.
+        + **gpu_instances**: Number of GPU desktops.
+        + **deh**: Cloud office host.
+        + **users**: Number of users.
+        + **policy_groups**: Number of policy groups.
+        + **Cores**: Number of CPUs (used by quota tool).
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The quota unit.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used quota value.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetQuotasSiteQuotaResult(dict):
+    def __init__(__self__, *,
+                 resources: Sequence['outputs.GetQuotasSiteQuotaResourceResult'],
+                 site_id: _builtins.str):
+        """
+        :param Sequence['GetQuotasSiteQuotaResourceArgs'] resources: The list of quota resources.  
+               The resources structure is documented above.
+        :param _builtins.str site_id: The site ID.
+        """
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "site_id", site_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> Sequence['outputs.GetQuotasSiteQuotaResourceResult']:
+        """
+        The list of quota resources.  
+        The resources structure is documented above.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter(name="siteId")
+    def site_id(self) -> _builtins.str:
+        """
+        The site ID.
+        """
+        return pulumi.get(self, "site_id")
+
+
+@pulumi.output_type
+class GetQuotasSiteQuotaResourceResult(dict):
+    def __init__(__self__, *,
+                 quota: _builtins.int,
+                 type: _builtins.str,
+                 unit: _builtins.str,
+                 used: _builtins.int):
+        """
+        :param _builtins.int quota: The quota value.
+        :param _builtins.str type: The resource type.
+               + **general_instances**: Number of general desktops.
+               + **Memory**: Memory capacity.
+               + **cores**: Number of CPUs.
+               + **volumes**: Number of disks.
+               + **volume_gigabytes**: Disk capacity.
+               + **gpu_instances**: Number of GPU desktops.
+               + **deh**: Cloud office host.
+               + **users**: Number of users.
+               + **policy_groups**: Number of policy groups.
+               + **Cores**: Number of CPUs (used by quota tool).
+        :param _builtins.str unit: The quota unit.
+        :param _builtins.int used: The used quota value.
+        """
+        pulumi.set(__self__, "quota", quota)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit", unit)
+        pulumi.set(__self__, "used", used)
+
+    @_builtins.property
+    @pulumi.getter
+    def quota(self) -> _builtins.int:
+        """
+        The quota value.
+        """
+        return pulumi.get(self, "quota")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The resource type.
+        + **general_instances**: Number of general desktops.
+        + **Memory**: Memory capacity.
+        + **cores**: Number of CPUs.
+        + **volumes**: Number of disks.
+        + **volume_gigabytes**: Disk capacity.
+        + **gpu_instances**: Number of GPU desktops.
+        + **deh**: Cloud office host.
+        + **users**: Number of users.
+        + **policy_groups**: Number of policy groups.
+        + **Cores**: Number of CPUs (used by quota tool).
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The quota unit.
+        """
+        return pulumi.get(self, "unit")
+
+    @_builtins.property
+    @pulumi.getter
+    def used(self) -> _builtins.int:
+        """
+        The used quota value.
+        """
+        return pulumi.get(self, "used")
+
+
+@pulumi.output_type
+class GetScheduledTaskRecordDetailsDetailResult(dict):
+    def __init__(__self__, *,
+                 desktop_id: _builtins.str,
+                 desktop_name: _builtins.str,
+                 end_time: _builtins.str,
+                 exec_script_id: _builtins.str,
+                 exec_status: _builtins.str,
+                 fail_reason: _builtins.str,
+                 id: _builtins.str,
+                 record_id: _builtins.str,
+                 result_code: _builtins.str,
+                 start_time: _builtins.str,
+                 time_zone: _builtins.str):
+        """
+        :param _builtins.str desktop_id: The ID of the desktop.
+        :param _builtins.str desktop_name: The name of the desktop.
+        :param _builtins.str end_time: The execution end time, in RFC3339 format.
+        :param _builtins.str exec_script_id: The ID of the execution script.
+        :param _builtins.str exec_status: The execution status.
+        :param _builtins.str fail_reason: The failure or skip reason.
+        :param _builtins.str id: The ID of the scheduled task execution record detail.
+        :param _builtins.str record_id: Specifies the ID of the scheduled task execution record to be queried.
+        :param _builtins.str result_code: The error code of the failure or skip reason.
+        :param _builtins.str start_time: The execution start time, in RFC3339 format.
+        :param _builtins.str time_zone: The time zone information.
+        """
+        pulumi.set(__self__, "desktop_id", desktop_id)
+        pulumi.set(__self__, "desktop_name", desktop_name)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "exec_script_id", exec_script_id)
+        pulumi.set(__self__, "exec_status", exec_status)
+        pulumi.set(__self__, "fail_reason", fail_reason)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "record_id", record_id)
+        pulumi.set(__self__, "result_code", result_code)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "time_zone", time_zone)
+
+    @_builtins.property
+    @pulumi.getter(name="desktopId")
+    def desktop_id(self) -> _builtins.str:
+        """
+        The ID of the desktop.
+        """
+        return pulumi.get(self, "desktop_id")
+
+    @_builtins.property
+    @pulumi.getter(name="desktopName")
+    def desktop_name(self) -> _builtins.str:
+        """
+        The name of the desktop.
+        """
+        return pulumi.get(self, "desktop_name")
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        The execution end time, in RFC3339 format.
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="execScriptId")
+    def exec_script_id(self) -> _builtins.str:
+        """
+        The ID of the execution script.
+        """
+        return pulumi.get(self, "exec_script_id")
+
+    @_builtins.property
+    @pulumi.getter(name="execStatus")
+    def exec_status(self) -> _builtins.str:
+        """
+        The execution status.
+        """
+        return pulumi.get(self, "exec_status")
+
+    @_builtins.property
+    @pulumi.getter(name="failReason")
+    def fail_reason(self) -> _builtins.str:
+        """
+        The failure or skip reason.
+        """
+        return pulumi.get(self, "fail_reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the scheduled task execution record detail.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="recordId")
+    def record_id(self) -> _builtins.str:
+        """
+        Specifies the ID of the scheduled task execution record to be queried.
+        """
+        return pulumi.get(self, "record_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resultCode")
+    def result_code(self) -> _builtins.str:
+        """
+        The error code of the failure or skip reason.
+        """
+        return pulumi.get(self, "result_code")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        The execution start time, in RFC3339 format.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> _builtins.str:
+        """
+        The time zone information.
+        """
+        return pulumi.get(self, "time_zone")
+
+
+@pulumi.output_type
+class GetScheduledTaskRecordsRecordResult(dict):
+    def __init__(__self__, *,
+                 execute_object_type: _builtins.str,
+                 execute_task_id: _builtins.str,
+                 failed_num: _builtins.int,
+                 id: _builtins.str,
+                 life_cycle_type: _builtins.str,
+                 scheduled_type: _builtins.str,
+                 skip_num: _builtins.int,
+                 start_time: _builtins.str,
+                 status: _builtins.str,
+                 success_num: _builtins.int,
+                 task_type: _builtins.str,
+                 time_zone: _builtins.str):
+        """
+        :param _builtins.str execute_object_type: The object type of executing the scheduled task.
+        :param _builtins.str execute_task_id: The task ID of executing the scheduled task.
+        :param _builtins.int failed_num: The number of failed desktops.
+        :param _builtins.str id: The ID of the scheduled task execution record.
+        :param _builtins.str life_cycle_type: The trigger scenario type.
+        :param _builtins.str scheduled_type: The execution cycle type.
+               + **FIXED_TIME** - Specified time
+               + **DAY** - Daily
+               + **WEEK** - Weekly
+               + **MONTH** - Monthly
+        :param _builtins.int skip_num: The number of skipped desktops.
+        :param _builtins.str start_time: The execution time, in RFC3339 format.
+        :param _builtins.str status: The execution status of this execution.
+        :param _builtins.int success_num: The number of successful desktops.
+        :param _builtins.str task_type: The type of the scheduled task.
+               + **START** - Startup
+               + **STOP** - Shutdown
+               + **REBOOT** - Restart
+               + **HIBERNATE** - Hibernate
+               + **REBUILD** - Rebuild system disk
+        :param _builtins.str time_zone: The time zone information.
+        """
+        pulumi.set(__self__, "execute_object_type", execute_object_type)
+        pulumi.set(__self__, "execute_task_id", execute_task_id)
+        pulumi.set(__self__, "failed_num", failed_num)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "life_cycle_type", life_cycle_type)
+        pulumi.set(__self__, "scheduled_type", scheduled_type)
+        pulumi.set(__self__, "skip_num", skip_num)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "success_num", success_num)
+        pulumi.set(__self__, "task_type", task_type)
+        pulumi.set(__self__, "time_zone", time_zone)
+
+    @_builtins.property
+    @pulumi.getter(name="executeObjectType")
+    def execute_object_type(self) -> _builtins.str:
+        """
+        The object type of executing the scheduled task.
+        """
+        return pulumi.get(self, "execute_object_type")
+
+    @_builtins.property
+    @pulumi.getter(name="executeTaskId")
+    def execute_task_id(self) -> _builtins.str:
+        """
+        The task ID of executing the scheduled task.
+        """
+        return pulumi.get(self, "execute_task_id")
+
+    @_builtins.property
+    @pulumi.getter(name="failedNum")
+    def failed_num(self) -> _builtins.int:
+        """
+        The number of failed desktops.
+        """
+        return pulumi.get(self, "failed_num")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the scheduled task execution record.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lifeCycleType")
+    def life_cycle_type(self) -> _builtins.str:
+        """
+        The trigger scenario type.
+        """
+        return pulumi.get(self, "life_cycle_type")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledType")
+    def scheduled_type(self) -> _builtins.str:
+        """
+        The execution cycle type.
+        + **FIXED_TIME** - Specified time
+        + **DAY** - Daily
+        + **WEEK** - Weekly
+        + **MONTH** - Monthly
+        """
+        return pulumi.get(self, "scheduled_type")
+
+    @_builtins.property
+    @pulumi.getter(name="skipNum")
+    def skip_num(self) -> _builtins.int:
+        """
+        The number of skipped desktops.
+        """
+        return pulumi.get(self, "skip_num")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        The execution time, in RFC3339 format.
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The execution status of this execution.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="successNum")
+    def success_num(self) -> _builtins.int:
+        """
+        The number of successful desktops.
+        """
+        return pulumi.get(self, "success_num")
+
+    @_builtins.property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> _builtins.str:
+        """
+        The type of the scheduled task.
+        + **START** - Startup
+        + **STOP** - Shutdown
+        + **REBOOT** - Restart
+        + **HIBERNATE** - Hibernate
+        + **REBUILD** - Rebuild system disk
+        """
+        return pulumi.get(self, "task_type")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> _builtins.str:
+        """
+        The time zone information.
+        """
+        return pulumi.get(self, "time_zone")
+
+
+@pulumi.output_type
+class GetScheduledTasksTaskResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 enable: _builtins.bool,
+                 id: _builtins.str,
+                 last_status: _builtins.str,
+                 life_cycle_type: _builtins.str,
+                 name: _builtins.str,
+                 next_execution_time: _builtins.str,
+                 priority: _builtins.int,
+                 scheduled_type: _builtins.str,
+                 time_zone: _builtins.str,
+                 type: _builtins.str,
+                 wait_time: _builtins.int):
+        """
+        :param _builtins.str description: The description of the scheduled task.
+        :param _builtins.bool enable: Whether the scheduled task is enabled.
+        :param _builtins.str id: The ID of the scheduled task.
+        :param _builtins.str last_status: Specifies the last execution status of the scheduled task.  
+               The valid values are as follows:
+               + **SUCCESS**
+               + **SKIP**
+               + **FAIL**
+        :param _builtins.str life_cycle_type: The trigger scenario type of the scheduled task.
+        :param _builtins.str name: The name of the scheduled task.
+        :param _builtins.str next_execution_time: The next execution time of the scheduled task, format is **2006-01-02 15:04:05 GMT+08:00**.
+        :param _builtins.int priority: The priority of the scheduled task.
+        :param _builtins.str scheduled_type: Specifies the execution cycle type of the scheduled task.  
+               The valid values are as follows:
+               + **FIXED_TIME**
+               + **DAY**
+               + **WEEK**
+               + **MONTH**
+               + **LIFE_CYCLE**
+        :param _builtins.str time_zone: The time zone of the scheduled task.
+        :param _builtins.str type: The type of the scheduled task.
+        :param _builtins.int wait_time: The wait time after the trigger scenario for the scheduled task.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_status", last_status)
+        pulumi.set(__self__, "life_cycle_type", life_cycle_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "next_execution_time", next_execution_time)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "scheduled_type", scheduled_type)
+        pulumi.set(__self__, "time_zone", time_zone)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "wait_time", wait_time)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the scheduled task.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether the scheduled task is enabled.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the scheduled task.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastStatus")
+    def last_status(self) -> _builtins.str:
+        """
+        Specifies the last execution status of the scheduled task.  
+        The valid values are as follows:
+        + **SUCCESS**
+        + **SKIP**
+        + **FAIL**
+        """
+        return pulumi.get(self, "last_status")
+
+    @_builtins.property
+    @pulumi.getter(name="lifeCycleType")
+    def life_cycle_type(self) -> _builtins.str:
+        """
+        The trigger scenario type of the scheduled task.
+        """
+        return pulumi.get(self, "life_cycle_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the scheduled task.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nextExecutionTime")
+    def next_execution_time(self) -> _builtins.str:
+        """
+        The next execution time of the scheduled task, format is **2006-01-02 15:04:05 GMT+08:00**.
+        """
+        return pulumi.get(self, "next_execution_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.int:
+        """
+        The priority of the scheduled task.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledType")
+    def scheduled_type(self) -> _builtins.str:
+        """
+        Specifies the execution cycle type of the scheduled task.  
+        The valid values are as follows:
+        + **FIXED_TIME**
+        + **DAY**
+        + **WEEK**
+        + **MONTH**
+        + **LIFE_CYCLE**
+        """
+        return pulumi.get(self, "scheduled_type")
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> _builtins.str:
+        """
+        The time zone of the scheduled task.
+        """
+        return pulumi.get(self, "time_zone")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the scheduled task.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="waitTime")
+    def wait_time(self) -> _builtins.int:
+        """
+        The wait time after the trigger scenario for the scheduled task.
+        """
+        return pulumi.get(self, "wait_time")
 
 
 @pulumi.output_type
@@ -10406,6 +14591,479 @@ class GetTagsTagResult(dict):
         The values of the tag.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetTenantConfigurationsConfigurationResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 status: _builtins.str,
+                 values: Sequence['outputs.GetTenantConfigurationsConfigurationValueResult']):
+        """
+        :param _builtins.str id: The ID of the configuration.
+        :param _builtins.str name: The name of the configuration.
+        :param _builtins.str status: The status of the configuration.
+        :param Sequence['GetTenantConfigurationsConfigurationValueArgs'] values: The configuration values.  
+               The values structure is documented below.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the configuration.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the configuration.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The status of the configuration.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence['outputs.GetTenantConfigurationsConfigurationValueResult']:
+        """
+        The configuration values.  
+        The values structure is documented below.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetTenantConfigurationsConfigurationValueResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the configuration item.
+        :param _builtins.str value: The value of the configuration item.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the configuration item.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the configuration item.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTimezonesTimeZoneResult(dict):
+    def __init__(__self__, *,
+                 cn_description: _builtins.str,
+                 name: _builtins.str,
+                 offset: _builtins.str,
+                 us_description: _builtins.str):
+        """
+        :param _builtins.str cn_description: The Chinese description of the time zone.
+        :param _builtins.str name: The name of the time zone.
+        :param _builtins.str offset: The offset of the time zone.
+        :param _builtins.str us_description: The English description of the time zone.
+        """
+        pulumi.set(__self__, "cn_description", cn_description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "offset", offset)
+        pulumi.set(__self__, "us_description", us_description)
+
+    @_builtins.property
+    @pulumi.getter(name="cnDescription")
+    def cn_description(self) -> _builtins.str:
+        """
+        The Chinese description of the time zone.
+        """
+        return pulumi.get(self, "cn_description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the time zone.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def offset(self) -> _builtins.str:
+        """
+        The offset of the time zone.
+        """
+        return pulumi.get(self, "offset")
+
+    @_builtins.property
+    @pulumi.getter(name="usDescription")
+    def us_description(self) -> _builtins.str:
+        """
+        The English description of the time zone.
+        """
+        return pulumi.get(self, "us_description")
+
+
+@pulumi.output_type
+class GetUserDesktopPoolAssociationsAssociationResult(dict):
+    def __init__(__self__, *,
+                 desktop_pools: Sequence['outputs.GetUserDesktopPoolAssociationsAssociationDesktopPoolResult'],
+                 user_id: _builtins.str):
+        """
+        :param Sequence['GetUserDesktopPoolAssociationsAssociationDesktopPoolArgs'] desktop_pools: The list of desktop pools associated with the user.  
+               The desktop_pools structure is documented below.
+        :param _builtins.str user_id: The ID of the user.
+        """
+        pulumi.set(__self__, "desktop_pools", desktop_pools)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="desktopPools")
+    def desktop_pools(self) -> Sequence['outputs.GetUserDesktopPoolAssociationsAssociationDesktopPoolResult']:
+        """
+        The list of desktop pools associated with the user.  
+        The desktop_pools structure is documented below.
+        """
+        return pulumi.get(self, "desktop_pools")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        The ID of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetUserDesktopPoolAssociationsAssociationDesktopPoolResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 is_attached: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the desktop pool.
+        :param _builtins.bool is_attached: Whether a desktop is assigned.
+        :param _builtins.str name: The name of the desktop pool.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_attached", is_attached)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the desktop pool.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isAttached")
+    def is_attached(self) -> _builtins.bool:
+        """
+        Whether a desktop is assigned.
+        """
+        return pulumi.get(self, "is_attached")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the desktop pool.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetUserGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 domain: _builtins.str,
+                 group_dn: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 parents: Sequence['outputs.GetUserGroupsGroupParentResult'],
+                 platform_type: _builtins.str,
+                 realm_id: _builtins.str,
+                 sid: _builtins.str,
+                 total_desktops: _builtins.int,
+                 user_quantity: _builtins.int):
+        """
+        :param _builtins.str create_time: The creation time of the parent user group, in RFC3339 format.
+        :param _builtins.str description: The description of the parent user group.
+        :param _builtins.str domain: The domain name of the parent user group.
+        :param _builtins.str group_dn: The distinguished name of the parent user group.
+        :param _builtins.str id: The ID of the parent user group.
+        :param _builtins.str name: The name of the parent user group.
+        :param Sequence['GetUserGroupsGroupParentArgs'] parents: The parent user group of the user group.  
+               The parent structure is documented below.
+        :param _builtins.str platform_type: The type of the parent user group.
+        :param _builtins.str realm_id: The domain ID of the parent user group.
+        :param _builtins.str sid: The SID of the parent user group.
+        :param _builtins.int total_desktops: The number of users in the parent user group.
+        :param _builtins.int user_quantity: The number of users in the parent user group.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "group_dn", group_dn)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "parents", parents)
+        pulumi.set(__self__, "platform_type", platform_type)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "sid", sid)
+        pulumi.set(__self__, "total_desktops", total_desktops)
+        pulumi.set(__self__, "user_quantity", user_quantity)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the parent user group, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the parent user group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name of the parent user group.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="groupDn")
+    def group_dn(self) -> _builtins.str:
+        """
+        The distinguished name of the parent user group.
+        """
+        return pulumi.get(self, "group_dn")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the parent user group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the parent user group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def parents(self) -> Sequence['outputs.GetUserGroupsGroupParentResult']:
+        """
+        The parent user group of the user group.  
+        The parent structure is documented below.
+        """
+        return pulumi.get(self, "parents")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> _builtins.str:
+        """
+        The type of the parent user group.
+        """
+        return pulumi.get(self, "platform_type")
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> _builtins.str:
+        """
+        The domain ID of the parent user group.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def sid(self) -> _builtins.str:
+        """
+        The SID of the parent user group.
+        """
+        return pulumi.get(self, "sid")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDesktops")
+    def total_desktops(self) -> _builtins.int:
+        """
+        The number of users in the parent user group.
+        """
+        return pulumi.get(self, "total_desktops")
+
+    @_builtins.property
+    @pulumi.getter(name="userQuantity")
+    def user_quantity(self) -> _builtins.int:
+        """
+        The number of users in the parent user group.
+        """
+        return pulumi.get(self, "user_quantity")
+
+
+@pulumi.output_type
+class GetUserGroupsGroupParentResult(dict):
+    def __init__(__self__, *,
+                 create_time: _builtins.str,
+                 description: _builtins.str,
+                 domain: _builtins.str,
+                 group_dn: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 platform_type: _builtins.str,
+                 realm_id: _builtins.str,
+                 sid: _builtins.str,
+                 total_desktops: _builtins.int,
+                 user_quantity: _builtins.int):
+        """
+        :param _builtins.str create_time: The creation time of the parent user group, in RFC3339 format.
+        :param _builtins.str description: The description of the parent user group.
+        :param _builtins.str domain: The domain name of the parent user group.
+        :param _builtins.str group_dn: The distinguished name of the parent user group.
+        :param _builtins.str id: The ID of the parent user group.
+        :param _builtins.str name: The name of the parent user group.
+        :param _builtins.str platform_type: The type of the parent user group.
+        :param _builtins.str realm_id: The domain ID of the parent user group.
+        :param _builtins.str sid: The SID of the parent user group.
+        :param _builtins.int total_desktops: The number of users in the parent user group.
+        :param _builtins.int user_quantity: The number of users in the parent user group.
+        """
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "group_dn", group_dn)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "platform_type", platform_type)
+        pulumi.set(__self__, "realm_id", realm_id)
+        pulumi.set(__self__, "sid", sid)
+        pulumi.set(__self__, "total_desktops", total_desktops)
+        pulumi.set(__self__, "user_quantity", user_quantity)
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The creation time of the parent user group, in RFC3339 format.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the parent user group.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The domain name of the parent user group.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter(name="groupDn")
+    def group_dn(self) -> _builtins.str:
+        """
+        The distinguished name of the parent user group.
+        """
+        return pulumi.get(self, "group_dn")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the parent user group.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the parent user group.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="platformType")
+    def platform_type(self) -> _builtins.str:
+        """
+        The type of the parent user group.
+        """
+        return pulumi.get(self, "platform_type")
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> _builtins.str:
+        """
+        The domain ID of the parent user group.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def sid(self) -> _builtins.str:
+        """
+        The SID of the parent user group.
+        """
+        return pulumi.get(self, "sid")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDesktops")
+    def total_desktops(self) -> _builtins.int:
+        """
+        The number of users in the parent user group.
+        """
+        return pulumi.get(self, "total_desktops")
+
+    @_builtins.property
+    @pulumi.getter(name="userQuantity")
+    def user_quantity(self) -> _builtins.int:
+        """
+        The number of users in the parent user group.
+        """
+        return pulumi.get(self, "user_quantity")
 
 
 @pulumi.output_type

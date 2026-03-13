@@ -26,6 +26,7 @@ class CloudServiceAccessArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudServiceAccess resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AOM prometheus instance ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] service: Specifies the service name.
@@ -121,6 +122,7 @@ class _CloudServiceAccessState:
                  tag_sync: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudServiceAccess resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the instance belongs.
                Defaults to **0**. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the AOM prometheus instance ID.
@@ -244,11 +246,10 @@ class CloudServiceAccess(pulumi.CustomResource):
 
         The AOM cloud service access resource can be imported using `instance_id` and `service` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cloudServiceAccess:CloudServiceAccess test <instance_id>/<service>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,11 +293,10 @@ class CloudServiceAccess(pulumi.CustomResource):
 
         The AOM cloud service access resource can be imported using `instance_id` and `service` separated by a slash e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/cloudServiceAccess:CloudServiceAccess test <instance_id>/<service>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CloudServiceAccessArgs args: The arguments to use to populate this resource's properties.

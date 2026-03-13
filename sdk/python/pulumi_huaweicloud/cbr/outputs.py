@@ -29,6 +29,7 @@ __all__ = [
     'RestoreMapping',
     'VaultPolicy',
     'VaultResource',
+    'VaultResourcesOrigin',
     'GetAgentChecksAgentStatusResult',
     'GetAgentChecksAgentStatusAttrResult',
     'GetBackupChildrenResult',
@@ -1138,6 +1139,70 @@ class VaultResource(dict):
 
     def get(self, key: str, default = None) -> Any:
         VaultResource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 excludes: Optional[Sequence[_builtins.str]] = None,
+                 includes: Optional[Sequence[_builtins.str]] = None,
+                 server_id: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] excludes: Specifies the array of disk IDs which will be excluded in the backup.
+               Only **server** vault support this parameter.
+        :param Sequence[_builtins.str] includes: Specifies the array of disk or SFS file system IDs which will be included in the backup.
+               Only **disk** and **turbo** vault support this parameter.
+        :param _builtins.str server_id: Specifies the ID of the ECS instance to be backed up.
+        """
+        if excludes is not None:
+            pulumi.set(__self__, "excludes", excludes)
+        if includes is not None:
+            pulumi.set(__self__, "includes", includes)
+        if server_id is not None:
+            pulumi.set(__self__, "server_id", server_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def excludes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the array of disk IDs which will be excluded in the backup.
+        Only **server** vault support this parameter.
+        """
+        return pulumi.get(self, "excludes")
+
+    @_builtins.property
+    @pulumi.getter
+    def includes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the array of disk or SFS file system IDs which will be included in the backup.
+        Only **disk** and **turbo** vault support this parameter.
+        """
+        return pulumi.get(self, "includes")
+
+    @_builtins.property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the ID of the ECS instance to be backed up.
+        """
+        return pulumi.get(self, "server_id")
+
+
+@pulumi.output_type
+class VaultResourcesOrigin(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serverId":
+            suggest = "server_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VaultResourcesOrigin. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VaultResourcesOrigin.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VaultResourcesOrigin.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -5197,7 +5262,8 @@ class GetProtectableInstancesInstanceProtectableVaultBillingResult(dict):
                **app_consistent** (application consistency backup).
         :param _builtins.str frozen_scene: The scenario when an account is frozen.
         :param _builtins.bool is_multi_az: The multi-AZ attribute of a vault.
-        :param _builtins.str object_type: The object type, which can be **server**, **disk**, **turbo**, **workspace**, **vmware**, **rds**, or **file**.
+        :param _builtins.str object_type: The object type, which can be **server**, **disk**, **turbo**, **workspace**, **vmware**, **rds**,
+               or **file**.
         :param _builtins.str order_id: The order ID.
         :param _builtins.str product_id: The product ID.
         :param _builtins.str protect_type: The protection type, which can be **backup** or **replication**.
@@ -5278,7 +5344,8 @@ class GetProtectableInstancesInstanceProtectableVaultBillingResult(dict):
     @pulumi.getter(name="objectType")
     def object_type(self) -> _builtins.str:
         """
-        The object type, which can be **server**, **disk**, **turbo**, **workspace**, **vmware**, **rds**, or **file**.
+        The object type, which can be **server**, **disk**, **turbo**, **workspace**, **vmware**, **rds**,
+        or **file**.
         """
         return pulumi.get(self, "object_type")
 

@@ -32,6 +32,7 @@ class ScalingPolicyArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingPolicyRuleArgs']]]] = None):
         """
         The set of arguments for constructing a ScalingPolicy resource.
+
         :param pulumi.Input[_builtins.bool] auto_scaling_enable: Whether to enable the auto scaling policy.
         :param pulumi.Input[_builtins.str] cluster_id: The MRS cluster ID to which the auto scaling policy applies.
                
@@ -213,6 +214,7 @@ class _ScalingPolicyState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingPolicyRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScalingPolicy resources.
+
         :param pulumi.Input[_builtins.bool] auto_scaling_enable: Whether to enable the auto scaling policy.
         :param pulumi.Input[_builtins.str] cluster_id: The MRS cluster ID to which the auto scaling policy applies.
                
@@ -468,39 +470,16 @@ class ScalingPolicy(pulumi.CustomResource):
 
         The scaling policy of MapReduce cluster can be imported using `cluster_id`, `node_group`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/scalingPolicy:ScalingPolicy test <cluster_id>/<node_group>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `exec_scripts`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_scaling_policy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              exec_scripts,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -604,39 +583,16 @@ class ScalingPolicy(pulumi.CustomResource):
 
         The scaling policy of MapReduce cluster can be imported using `cluster_id`, `node_group`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Mrs/scalingPolicy:ScalingPolicy test <cluster_id>/<node_group>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `exec_scripts`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition
-
         should be updated to align with the resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_mapreduce_scaling_policy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              exec_scripts,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ScalingPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class TriggerArgs:
                  timer: Optional[pulumi.Input['TriggerTimerArgs']] = None):
         """
         The set of arguments for constructing a Trigger resource.
+
         :param pulumi.Input[_builtins.str] function_urn: Specifies the Uniform Resource Name (URN) of the function.
                Changing this will create a new trigger resource.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the function.
@@ -278,6 +279,7 @@ class _TriggerState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Trigger resources.
+
         :param pulumi.Input['TriggerApigArgs'] apig: Specifies the configuration of the shared APIG and dedicated APIG trigger.
                Changing this will create a new trigger resource.
                The object structure is documented below.
@@ -718,6 +720,7 @@ class Trigger(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['TriggerApigArgs', 'TriggerApigArgsDict']] apig: Specifies the configuration of the shared APIG and dedicated APIG trigger.
@@ -960,6 +963,7 @@ class Trigger(pulumi.CustomResource):
                 "log_topic_id": log_topic_id,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TriggerArgs args: The arguments to use to populate this resource's properties.

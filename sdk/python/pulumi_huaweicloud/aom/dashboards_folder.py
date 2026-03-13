@@ -25,6 +25,7 @@ class DashboardsFolderArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DashboardsFolder resource.
+
         :param pulumi.Input[_builtins.str] folder_title: Specifies the dashboards folder title.
         :param pulumi.Input[_builtins.bool] delete_all: Specifies whether to delete the dashboards when deleting folder. Defaults to **false**.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the folder belongs.
@@ -103,6 +104,7 @@ class _DashboardsFolderState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DashboardsFolder resources.
+
         :param pulumi.Input[_builtins.str] created_by: Indicates the creator of the folder.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dashboard_ids: Indicates the dashboard IDs under the folder.
         :param pulumi.Input[_builtins.bool] delete_all: Specifies whether to delete the dashboards when deleting folder. Defaults to **false**.
@@ -246,39 +248,16 @@ class DashboardsFolder(pulumi.CustomResource):
 
         The AOM dashboards folder resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/dashboardsFolder:DashboardsFolder test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `delete_all`.
-
         It is generally recommended running `pulumi preview` after importing a dashboards folder.
-
         You can then decide if changes should be applied to the dashboards folder, or the resource definition
-
         should be updated to align with the dashboards folder. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aom_dashboards_folder" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_all,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,39 +294,16 @@ class DashboardsFolder(pulumi.CustomResource):
 
         The AOM dashboards folder resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Aom/dashboardsFolder:DashboardsFolder test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from
-
         the API response. The missing attributes include: `delete_all`.
-
         It is generally recommended running `pulumi preview` after importing a dashboards folder.
-
         You can then decide if changes should be applied to the dashboards folder, or the resource definition
-
         should be updated to align with the dashboards folder. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_aom_dashboards_folder" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              delete_all,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DashboardsFolderArgs args: The arguments to use to populate this resource's properties.

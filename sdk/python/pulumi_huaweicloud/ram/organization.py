@@ -22,6 +22,7 @@ class OrganizationArgs:
                  enabled: pulumi.Input[_builtins.bool]):
         """
         The set of arguments for constructing a Organization resource.
+
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether sharing with organizations is enabled.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -45,6 +46,7 @@ class _OrganizationState:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether sharing with organizations is enabled.
         """
         if enabled is not None:
@@ -63,7 +65,7 @@ class _OrganizationState:
         pulumi.set(self, "enabled", value)
 
 
-@pulumi.type_token("huaweicloud:ram/organization:Organization")
+@pulumi.type_token("huaweicloud:Ram/organization:Organization")
 class Organization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -86,6 +88,7 @@ class Organization(pulumi.CustomResource):
 
         test = huaweicloud.ram.Organization("test", enabled=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -112,6 +115,7 @@ class Organization(pulumi.CustomResource):
 
         test = huaweicloud.ram.Organization("test", enabled=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.
@@ -142,7 +146,7 @@ class Organization(pulumi.CustomResource):
                 raise TypeError("Missing required property 'enabled'")
             __props__.__dict__["enabled"] = enabled
         super(Organization, __self__).__init__(
-            'huaweicloud:ram/organization:Organization',
+            'huaweicloud:Ram/organization:Organization',
             resource_name,
             __props__,
             opts)

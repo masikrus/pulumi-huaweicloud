@@ -26,6 +26,7 @@ class TurboDuTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboDuTask resource.
+
         :param pulumi.Input[_builtins.str] path: Specifies the full path to a legal directory in the file system.
                The length of a single level directory is not allowed to exceed `255`, and the length of the full path is not allowed
                to exceed `4,096`.
@@ -94,6 +95,7 @@ class _TurboDuTaskState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboDuTask resources.
+
         :param pulumi.Input[_builtins.str] begin_time: The start time of the DU task, in RFC3339 format.
         :param pulumi.Input[Sequence[pulumi.Input['TurboDuTaskDirUsageArgs']]] dir_usages: The direcrory resource usage (including subdirectories).
                The dir_usage structure is documented below.
@@ -258,11 +260,10 @@ class TurboDuTask(pulumi.CustomResource):
 
         The SFS Turbo DU task can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboDuTask:TurboDuTask test <share_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,11 +310,10 @@ class TurboDuTask(pulumi.CustomResource):
 
         The SFS Turbo DU task can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboDuTask:TurboDuTask test <share_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboDuTaskArgs args: The arguments to use to populate this resource's properties.

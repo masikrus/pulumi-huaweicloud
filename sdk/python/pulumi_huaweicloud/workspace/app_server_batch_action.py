@@ -26,6 +26,7 @@ class AppServerBatchActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AppServerBatchAction resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the batch operation (action)
                request.
         :param pulumi.Input[_builtins.str] type: Specifies the batch operation (action) type for the APP servers.  
@@ -35,6 +36,9 @@ class AppServerBatchActionArgs:
                + **batch-rejoin-domain**: Rejoin AD domain.
                + **batch-update-tsvi**: Update virtual session IP configuration.
                + **batch-maint**: Mark server maintenance status.
+               + **batch-reboot**: Reboot server.
+               + **batch-start**: Start server.
+               + **batch-stop**: Stop server.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the maximum number of retries for the batch operation (action) when
                encountering 409 conflict errors.
                The default value is **0**, which means no retry will be performed.
@@ -74,6 +78,9 @@ class AppServerBatchActionArgs:
         + **batch-rejoin-domain**: Rejoin AD domain.
         + **batch-update-tsvi**: Update virtual session IP configuration.
         + **batch-maint**: Mark server maintenance status.
+        + **batch-reboot**: Reboot server.
+        + **batch-start**: Start server.
+        + **batch-stop**: Stop server.
         """
         return pulumi.get(self, "type")
 
@@ -128,6 +135,7 @@ class _AppServerBatchActionState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AppServerBatchAction resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the batch operation (action)
                request.
         :param pulumi.Input[_builtins.int] max_retries: Specifies the maximum number of retries for the batch operation (action) when
@@ -142,6 +150,9 @@ class _AppServerBatchActionState:
                + **batch-rejoin-domain**: Rejoin AD domain.
                + **batch-update-tsvi**: Update virtual session IP configuration.
                + **batch-maint**: Mark server maintenance status.
+               + **batch-reboot**: Reboot server.
+               + **batch-start**: Start server.
+               + **batch-stop**: Stop server.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
@@ -214,6 +225,9 @@ class _AppServerBatchActionState:
         + **batch-rejoin-domain**: Rejoin AD domain.
         + **batch-update-tsvi**: Update virtual session IP configuration.
         + **batch-maint**: Mark server maintenance status.
+        + **batch-reboot**: Reboot server.
+        + **batch-start**: Start server.
+        + **batch-stop**: Stop server.
         """
         return pulumi.get(self, "type")
 
@@ -332,6 +346,57 @@ class AppServerBatchAction(pulumi.CustomResource):
             }))
         ```
 
+        ### Reboot Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        reboot = huaweicloud.workspace.AppServerBatchAction("reboot",
+            type="batch-reboot",
+            content=json.dumps({
+                "items": operate_server_ids,
+                "type": "SOFT",
+            }))
+        ```
+
+        ### Stop Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        stop = huaweicloud.workspace.AppServerBatchAction("stop",
+            type="batch-stop",
+            content=json.dumps({
+                "items": operate_server_ids,
+                "type": "SOFT",
+            }))
+        ```
+
+        ### Start Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        start = huaweicloud.workspace.AppServerBatchAction("start",
+            type="batch-start",
+            content=json.dumps({
+                "items": operate_server_ids,
+            }))
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: Specifies the JSON string content for the batch operation (action)
@@ -348,6 +413,9 @@ class AppServerBatchAction(pulumi.CustomResource):
                + **batch-rejoin-domain**: Rejoin AD domain.
                + **batch-update-tsvi**: Update virtual session IP configuration.
                + **batch-maint**: Mark server maintenance status.
+               + **batch-reboot**: Reboot server.
+               + **batch-start**: Start server.
+               + **batch-stop**: Stop server.
         """
         ...
     @overload
@@ -453,6 +521,57 @@ class AppServerBatchAction(pulumi.CustomResource):
             }))
         ```
 
+        ### Reboot Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        reboot = huaweicloud.workspace.AppServerBatchAction("reboot",
+            type="batch-reboot",
+            content=json.dumps({
+                "items": operate_server_ids,
+                "type": "SOFT",
+            }))
+        ```
+
+        ### Stop Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        stop = huaweicloud.workspace.AppServerBatchAction("stop",
+            type="batch-stop",
+            content=json.dumps({
+                "items": operate_server_ids,
+                "type": "SOFT",
+            }))
+        ```
+
+        ### Start Server
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        operate_server_ids = config.require_object("operateServerIds")
+        start = huaweicloud.workspace.AppServerBatchAction("start",
+            type="batch-start",
+            content=json.dumps({
+                "items": operate_server_ids,
+            }))
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param AppServerBatchActionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -527,6 +646,9 @@ class AppServerBatchAction(pulumi.CustomResource):
                + **batch-rejoin-domain**: Rejoin AD domain.
                + **batch-update-tsvi**: Update virtual session IP configuration.
                + **batch-maint**: Mark server maintenance status.
+               + **batch-reboot**: Reboot server.
+               + **batch-start**: Start server.
+               + **batch-stop**: Stop server.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -583,6 +705,9 @@ class AppServerBatchAction(pulumi.CustomResource):
         + **batch-rejoin-domain**: Rejoin AD domain.
         + **batch-update-tsvi**: Update virtual session IP configuration.
         + **batch-maint**: Mark server maintenance status.
+        + **batch-reboot**: Reboot server.
+        + **batch-start**: Start server.
+        + **batch-stop**: Stop server.
         """
         return pulumi.get(self, "type")
 

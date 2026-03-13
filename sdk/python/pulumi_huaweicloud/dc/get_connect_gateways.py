@@ -125,7 +125,7 @@ def get_connect_gateways(connect_gateway_ids: Optional[Sequence[_builtins.str]] 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_global_gateways()
+    test = huaweicloud.Dc.get_global_gateways()
     ```
 
 
@@ -145,7 +145,7 @@ def get_connect_gateways(connect_gateway_ids: Optional[Sequence[_builtins.str]] 
     __args__['sortDirs'] = sort_dirs
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getConnectGateways:getConnectGateways', __args__, opts=opts, typ=GetConnectGatewaysResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getConnectGateways:getConnectGateways', __args__, opts=opts, typ=GetConnectGatewaysResult).value
 
     return AwaitableGetConnectGatewaysResult(
         connect_gateway_ids=pulumi.get(__ret__, 'connect_gateway_ids'),
@@ -170,7 +170,7 @@ def get_connect_gateways_output(connect_gateway_ids: Optional[pulumi.Input[Optio
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_global_gateways()
+    test = huaweicloud.Dc.get_global_gateways()
     ```
 
 
@@ -190,7 +190,7 @@ def get_connect_gateways_output(connect_gateway_ids: Optional[pulumi.Input[Optio
     __args__['sortDirs'] = sort_dirs
     __args__['sortKey'] = sort_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getConnectGateways:getConnectGateways', __args__, opts=opts, typ=GetConnectGatewaysResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getConnectGateways:getConnectGateways', __args__, opts=opts, typ=GetConnectGatewaysResult)
     return __ret__.apply(lambda __response__: GetConnectGatewaysResult(
         connect_gateway_ids=pulumi.get(__response__, 'connect_gateway_ids'),
         connect_gateways=pulumi.get(__response__, 'connect_gateways'),

@@ -28,6 +28,7 @@ class LoginPolicyArgs:
                  show_recent_login_info: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a LoginPolicy resource.
+
         :param pulumi.Input[_builtins.int] account_validity_period: Specifies the validity period (days) to disable users
                if they have not logged in within the period. The valid value is range from `0` to `240`.
         :param pulumi.Input[_builtins.str] custom_info_for_login: Specifies the custom information that will be displayed
@@ -43,6 +44,10 @@ class LoginPolicyArgs:
                The valid value is range from `15` to `1,440`, defaults to `60`.
         :param pulumi.Input[_builtins.bool] show_recent_login_info: Specifies whether to display last login information upon successful login.
                The value can be **true** or **false**.
+               
+               > At least one parameter value must be **non-default**.<br>
+               When all configurations are equal to their default values, the resource will be deleted and the corresponding
+               record will be automatically removed from `terraform.tfstate` file.
         """
         if account_validity_period is not None:
             pulumi.set(__self__, "account_validity_period", account_validity_period)
@@ -144,6 +149,10 @@ class LoginPolicyArgs:
         """
         Specifies whether to display last login information upon successful login.
         The value can be **true** or **false**.
+
+        > At least one parameter value must be **non-default**.<br>
+        When all configurations are equal to their default values, the resource will be deleted and the corresponding
+        record will be automatically removed from `terraform.tfstate` file.
         """
         return pulumi.get(self, "show_recent_login_info")
 
@@ -164,6 +173,7 @@ class _LoginPolicyState:
                  show_recent_login_info: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering LoginPolicy resources.
+
         :param pulumi.Input[_builtins.int] account_validity_period: Specifies the validity period (days) to disable users
                if they have not logged in within the period. The valid value is range from `0` to `240`.
         :param pulumi.Input[_builtins.str] custom_info_for_login: Specifies the custom information that will be displayed
@@ -179,6 +189,10 @@ class _LoginPolicyState:
                The valid value is range from `15` to `1,440`, defaults to `60`.
         :param pulumi.Input[_builtins.bool] show_recent_login_info: Specifies whether to display last login information upon successful login.
                The value can be **true** or **false**.
+               
+               > At least one parameter value must be **non-default**.<br>
+               When all configurations are equal to their default values, the resource will be deleted and the corresponding
+               record will be automatically removed from `terraform.tfstate` file.
         """
         if account_validity_period is not None:
             pulumi.set(__self__, "account_validity_period", account_validity_period)
@@ -280,6 +294,10 @@ class _LoginPolicyState:
         """
         Specifies whether to display last login information upon successful login.
         The value can be **true** or **false**.
+
+        > At least one parameter value must be **non-default**.<br>
+        When all configurations are equal to their default values, the resource will be deleted and the corresponding
+        record will be automatically removed from `terraform.tfstate` file.
         """
         return pulumi.get(self, "show_recent_login_info")
 
@@ -303,6 +321,12 @@ class LoginPolicy(pulumi.CustomResource):
                  show_recent_login_info: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        Manages the configuration of account login policy within HuaweiCloud.
+
+        > You **must** have admin privileges to use this resource.<br>
+           This resource overwrites an existing configuration, make sure one resource per account.\\
+           During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ```python
@@ -316,18 +340,17 @@ class LoginPolicy(pulumi.CustomResource):
             period_with_login_failures=30,
             session_timeout=120,
             show_recent_login_info=True,
-            custom_info_for_login="hello Terraform")
+            custom_info_for_login="Hello Terraform")
         ```
 
         ## Import
 
-        Identity login policy can be imported using the account ID or domain ID, e.g.
-
-        bash
+        Identity login policy can be imported using the domain (account) ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/loginPolicy:LoginPolicy example <your account ID>
+        $ pulumi import huaweicloud:Iam/loginPolicy:LoginPolicy test <domain_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -346,6 +369,10 @@ class LoginPolicy(pulumi.CustomResource):
                The valid value is range from `15` to `1,440`, defaults to `60`.
         :param pulumi.Input[_builtins.bool] show_recent_login_info: Specifies whether to display last login information upon successful login.
                The value can be **true** or **false**.
+               
+               > At least one parameter value must be **non-default**.<br>
+               When all configurations are equal to their default values, the resource will be deleted and the corresponding
+               record will be automatically removed from `terraform.tfstate` file.
         """
         ...
     @overload
@@ -354,6 +381,12 @@ class LoginPolicy(pulumi.CustomResource):
                  args: Optional[LoginPolicyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages the configuration of account login policy within HuaweiCloud.
+
+        > You **must** have admin privileges to use this resource.<br>
+           This resource overwrites an existing configuration, make sure one resource per account.\\
+           During action `terraform destroy` it sets values the same as defaults for this resource.
+
         ## Example Usage
 
         ```python
@@ -367,18 +400,17 @@ class LoginPolicy(pulumi.CustomResource):
             period_with_login_failures=30,
             session_timeout=120,
             show_recent_login_info=True,
-            custom_info_for_login="hello Terraform")
+            custom_info_for_login="Hello Terraform")
         ```
 
         ## Import
 
-        Identity login policy can be imported using the account ID or domain ID, e.g.
-
-        bash
+        Identity login policy can be imported using the domain (account) ID, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:Iam/loginPolicy:LoginPolicy example <your account ID>
+        $ pulumi import huaweicloud:Iam/loginPolicy:LoginPolicy test <domain_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoginPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -457,6 +489,10 @@ class LoginPolicy(pulumi.CustomResource):
                The valid value is range from `15` to `1,440`, defaults to `60`.
         :param pulumi.Input[_builtins.bool] show_recent_login_info: Specifies whether to display last login information upon successful login.
                The value can be **true** or **false**.
+               
+               > At least one parameter value must be **non-default**.<br>
+               When all configurations are equal to their default values, the resource will be deleted and the corresponding
+               record will be automatically removed from `terraform.tfstate` file.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -532,6 +568,10 @@ class LoginPolicy(pulumi.CustomResource):
         """
         Specifies whether to display last login information upon successful login.
         The value can be **true** or **false**.
+
+        > At least one parameter value must be **non-default**.<br>
+        When all configurations are equal to their default values, the resource will be deleted and the corresponding
+        record will be automatically removed from `terraform.tfstate` file.
         """
         return pulumi.get(self, "show_recent_login_info")
 

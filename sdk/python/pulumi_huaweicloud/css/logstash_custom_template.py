@@ -26,6 +26,7 @@ class LogstashCustomTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstashCustomTemplate resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] configuration_name: Specifies the name of the configuration file you want to
@@ -128,6 +129,7 @@ class _LogstashCustomTemplateState:
                  template_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstashCustomTemplate resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS logstash cluster.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] conf_content: The configuration file content of the custom template.
@@ -285,43 +287,18 @@ class LogstashCustomTemplate(pulumi.CustomResource):
 
         The CSS logstash custom template can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashCustomTemplate:LogstashCustomTemplate test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `cluster_id`, `configuration_name`.
-
         It is generally recommended running `pulumi preview` after importing the CSS logstash custom template.
-
         You can then decide if changes should be applied to the CSS logstash custom template,
-
         or the CSS logstash custom template definition should be updated to align with the CSS logstash custom template.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_custom_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id, configuration_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -367,43 +344,18 @@ class LogstashCustomTemplate(pulumi.CustomResource):
 
         The CSS logstash custom template can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Css/logstashCustomTemplate:LogstashCustomTemplate test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `cluster_id`, `configuration_name`.
-
         It is generally recommended running `pulumi preview` after importing the CSS logstash custom template.
-
         You can then decide if changes should be applied to the CSS logstash custom template,
-
         or the CSS logstash custom template definition should be updated to align with the CSS logstash custom template.
-
         Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_css_logstash_custom_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              cluster_id, configuration_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LogstashCustomTemplateArgs args: The arguments to use to populate this resource's properties.

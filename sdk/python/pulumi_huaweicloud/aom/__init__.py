@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .alarm_action_rule import *
 from .alarm_group_rule import *
+from .alarm_inhibit_rule import *
 from .alarm_policy import *
 from .alarm_rule import *
 from .alarm_rule_v4 import *
@@ -24,16 +25,20 @@ from .dashboard import *
 from .dashboards_folder import *
 from .environment import *
 from .event_alarm_rule import *
+from .event_report import *
 from .get_access_codes import *
 from .get_aggregation_metrics import *
 from .get_alarm_action_rules import *
 from .get_alarm_group_rules import *
+from .get_alarm_notified_histories import *
 from .get_alarm_rules import *
 from .get_alarm_rules_templates import *
 from .get_alarm_silence_rules import *
 from .get_cloud_service_authorizations import *
 from .get_dashboards import *
 from .get_dashboards_folders import *
+from .get_event_statistic import *
+from .get_events import *
 from .get_message_templates import *
 from .get_multi_account_aggregation_rules import *
 from .get_organization_accounts import *
@@ -43,6 +48,9 @@ from .message_template import *
 from .multi_account_aggregation_rule import *
 from .prom_instance import *
 from .prometheus_instance import *
+from .recording_rule import *
 from .service_discovery_rule import *
+from .uniagent_batch_install import *
+from .uniagent_batch_upgrade import *
 from ._inputs import *
 from . import outputs

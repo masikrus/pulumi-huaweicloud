@@ -45,6 +45,7 @@ class FunctionArgs:
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountArgs']]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -81,6 +82,7 @@ class FunctionArgs:
                  xrole: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Function resource.
+
         :param pulumi.Input[_builtins.int] memory_size: Specifies the memory size allocated to the function, in MByte (MB).
         :param pulumi.Input[_builtins.str] runtime: Specifies the environment for executing the function.  
                The valid values are as follows:
@@ -131,6 +133,8 @@ class FunctionArgs:
                + **jar**: JAR file or java functions.
                + **obs**: function code stored in an OBS bucket.
                + **Custom-Image-Swr**: function code comes from the SWR custom image.
+               
+               > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         :param pulumi.Input[_builtins.str] code_url: Specifies the URL where the function code is stored in OBS.  
                Required if the `code_type` is set to **obs**.
         :param pulumi.Input[_builtins.int] concurrency_num: Specifies the number of concurrent requests of the function.  
@@ -180,6 +184,7 @@ class FunctionArgs:
                Required if the `code_type` is set to **inline**, **zip**, or **jar**.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountArgs']]] func_mounts: Specifies the list of function mount configurations.  
                The func_mounts structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: Specifies the version of the function framework.  
                The valid values are as follows:
                + **v1**: Hosts event-driven functions in a serverless context.
@@ -223,8 +228,8 @@ class FunctionArgs:
                This parameter is available only when `enable_lts_log` is set to **true**.
                
                > This parameter is only supported by the `v2` version of the function.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -258,7 +263,8 @@ class FunctionArgs:
                
                > Only Java runtime supports the configurations of the heartbeat and restore hook.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the function.
-        :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the key/value information defined for the function.  
+               The key/value data might be parsed with Terraform `jsonencode()` function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: Specifies the KMS key ID for encrypting the user data.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionVersionArgs']]] versions: Specifies the versions management of the function.  
                The versions structure is documented below.
@@ -312,6 +318,8 @@ class FunctionArgs:
             pulumi.set(__self__, "func_code", func_code)
         if func_mounts is not None:
             pulumi.set(__self__, "func_mounts", func_mounts)
+        if func_mounts_orders is not None:
+            pulumi.set(__self__, "func_mounts_orders", func_mounts_orders)
         if functiongraph_version is not None:
             pulumi.set(__self__, "functiongraph_version", functiongraph_version)
         if gpu_memory is not None:
@@ -529,6 +537,8 @@ class FunctionArgs:
         + **jar**: JAR file or java functions.
         + **obs**: function code stored in an OBS bucket.
         + **Custom-Image-Swr**: function code comes from the SWR custom image.
+
+        > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         """
         return pulumi.get(self, "code_type")
 
@@ -751,6 +761,18 @@ class FunctionArgs:
         pulumi.set(self, "func_mounts", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @func_mounts_orders.setter
+    def func_mounts_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]]):
+        pulumi.set(self, "func_mounts_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -940,8 +962,8 @@ class FunctionArgs:
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -1150,7 +1172,8 @@ class FunctionArgs:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The key/value information defined for the function.
+        Specifies the key/value information defined for the function.  
+        The key/value data might be parsed with Terraform `jsonencode()` function.
         """
         return pulumi.get(self, "user_data")
 
@@ -1212,6 +1235,7 @@ class FunctionArgs:
 @pulumi.input_type
 class _FunctionState:
     def __init__(__self__, *,
+                 function_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  agency: Optional[pulumi.Input[_builtins.str]] = None,
                  app: Optional[pulumi.Input[_builtins.str]] = None,
                  app_agency: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1233,6 +1257,7 @@ class _FunctionState:
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountArgs']]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1265,7 +1290,6 @@ class _FunctionState:
                  runtime: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None,
                  user_data: Optional[pulumi.Input[_builtins.str]] = None,
                  user_data_encrypt_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1274,6 +1298,8 @@ class _FunctionState:
                  xrole: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
+
+        :param pulumi.Input[_builtins.str] function_urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] agency: Specifies the agency configuration of the function.  
                This parameter is mandatory if the function needs to access other cloud services.
         :param pulumi.Input[_builtins.str] app: Specifies the group to which the function belongs.
@@ -1297,6 +1323,8 @@ class _FunctionState:
                + **jar**: JAR file or java functions.
                + **obs**: function code stored in an OBS bucket.
                + **Custom-Image-Swr**: function code comes from the SWR custom image.
+               
+               > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         :param pulumi.Input[_builtins.str] code_url: Specifies the URL where the function code is stored in OBS.  
                Required if the `code_type` is set to **obs**.
         :param pulumi.Input[_builtins.int] concurrency_num: Specifies the number of concurrent requests of the function.  
@@ -1346,6 +1374,7 @@ class _FunctionState:
                Required if the `code_type` is set to **inline**, **zip**, or **jar**.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountArgs']]] func_mounts: Specifies the list of function mount configurations.  
                The func_mounts structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: Specifies the version of the function framework.  
                The valid values are as follows:
                + **v1**: Hosts event-driven functions in a serverless context.
@@ -1389,8 +1418,8 @@ class _FunctionState:
                This parameter is available only when `enable_lts_log` is set to **true**.
                
                > This parameter is only supported by the `v2` version of the function.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -1451,8 +1480,8 @@ class _FunctionState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the function.
         :param pulumi.Input[_builtins.int] timeout: Specifies the timeout interval of the function, in seconds.  
                The value ranges from `3` to `259,200`.
-        :param pulumi.Input[_builtins.str] urn: The URN (Uniform Resource Name) of the function.
-        :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the key/value information defined for the function.  
+               The key/value data might be parsed with Terraform `jsonencode()` function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: Specifies the KMS key ID for encrypting the user data.
         :param pulumi.Input[_builtins.str] version: The version of the function.
         :param pulumi.Input[Sequence[pulumi.Input['FunctionVersionArgs']]] versions: Specifies the versions management of the function.  
@@ -1462,6 +1491,8 @@ class _FunctionState:
                add.
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the ID of the VPC that can trigger the function.
         """
+        if function_urn is not None:
+            pulumi.set(__self__, "function_urn", function_urn)
         if agency is not None:
             pulumi.set(__self__, "agency", agency)
         if app is not None:
@@ -1504,6 +1535,8 @@ class _FunctionState:
             pulumi.set(__self__, "func_code", func_code)
         if func_mounts is not None:
             pulumi.set(__self__, "func_mounts", func_mounts)
+        if func_mounts_orders is not None:
+            pulumi.set(__self__, "func_mounts_orders", func_mounts_orders)
         if functiongraph_version is not None:
             pulumi.set(__self__, "functiongraph_version", functiongraph_version)
         if gpu_memory is not None:
@@ -1571,8 +1604,6 @@ class _FunctionState:
             pulumi.set(__self__, "tags", tags)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
         if user_data is not None:
             pulumi.set(__self__, "user_data", user_data)
         if user_data_encrypt_kms_key_id is not None:
@@ -1588,6 +1619,18 @@ class _FunctionState:
             pulumi.log.warn("""xrole is deprecated: use agency instead""")
         if xrole is not None:
             pulumi.set(__self__, "xrole", xrole)
+
+    @_builtins.property
+    @pulumi.getter(name="FunctionUrn")
+    def function_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The URN (Uniform Resource Name) of the function.
+        """
+        return pulumi.get(self, "function_urn")
+
+    @function_urn.setter
+    def function_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "function_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1671,6 +1714,8 @@ class _FunctionState:
         + **jar**: JAR file or java functions.
         + **obs**: function code stored in an OBS bucket.
         + **Custom-Image-Swr**: function code comes from the SWR custom image.
+
+        > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         """
         return pulumi.get(self, "code_type")
 
@@ -1893,6 +1938,18 @@ class _FunctionState:
         pulumi.set(self, "func_mounts", value)
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @func_mounts_orders.setter
+    def func_mounts_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionFuncMountsOrderArgs']]]]):
+        pulumi.set(self, "func_mounts_orders", value)
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -2082,8 +2139,8 @@ class _FunctionState:
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -2349,22 +2406,11 @@ class _FunctionState:
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The URN (Uniform Resource Name) of the function.
-        """
-        return pulumi.get(self, "urn")
-
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-    @_builtins.property
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The key/value information defined for the function.
+        Specifies the key/value information defined for the function.  
+        The key/value data might be parsed with Terraform `jsonencode()` function.
         """
         return pulumi.get(self, "user_data")
 
@@ -2462,6 +2508,7 @@ class Function(pulumi.CustomResource):
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountArgs', 'FunctionFuncMountArgsDict']]]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountsOrderArgs', 'FunctionFuncMountsOrderArgsDict']]]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2513,6 +2560,30 @@ class Function(pulumi.CustomResource):
            For the regions that do not support this parameter, please use the lower version to deploy this resource.
 
         ## Example Usage
+
+        ### With base64 func code
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        agency_name = config.require_object("agencyName")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency=agency_name,
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"])
+        ```
 
         ### With text code
 
@@ -2570,6 +2641,149 @@ class Function(pulumi.CustomResource):
             })
         ```
 
+        ### Create function with a custom version and an alias for the latest version
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        with_alias = huaweicloud.functiongraph.Function("with_alias",
+            name=function_name,
+            app="default",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            versions=[
+                {
+                    "name": "latest",
+                    "aliases": {
+                        "name": "demo",
+                        "description": "This is a description of the alias demo under the version latest.",
+                    },
+                },
+                {
+                    "name": "v1.0",
+                    "description": "This is a description of the version v1.0.",
+                    "aliases": {
+                        "name": "v1_0-alias",
+                        "description": "This is a description of the alias v1_0-alias under the version v1.0.",
+                    },
+                },
+                {
+                    "name": "v2.0",
+                    "description": "This is a description of the version v2.0.",
+                    "aliases": {
+                        "name": "v2_0-alias",
+                        "description": "This is a description of the alias v2_0-alias under the version v2.0.",
+                        "additional_version_weights": json.dumps({
+                            "v1.0": 15,
+                        }),
+                    },
+                },
+                {
+                    "name": "v3.0",
+                    "description": "This is a description of the version v2.0.",
+                    "aliases": {
+                        "name": "v3_0-alias",
+                        "description": "This is a description of the alias v2_0-alias under the version v3.0.",
+                        "additional_version_strategy": json.dumps({
+                            "v2.0": {
+                                "combine_type": "or",
+                                "rules": [
+                                    {
+                                        "rule_type": "Header",
+                                        "param": "version",
+                                        "op": "=",
+                                        "value": "v2_value",
+                                    },
+                                    {
+                                        "rule_type": "Header",
+                                        "param": "Owner",
+                                        "op": "in",
+                                        "value": "terraform,administrator",
+                                    },
+                                ],
+                            },
+                        }),
+                    },
+                },
+            ])
+        ```
+
+        ### Create function with log group and stream
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        log_group_id = config.require_object("logGroupId")
+        log_stream_id = config.require_object("logStreamId")
+        log_group_name = config.require_object("logGroupName")
+        log_stream_name = config.require_object("logStreamName")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency="test",
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            enable_lts_log=True,
+            log_group_id=log_group_id,
+            log_stream_id=log_stream_id,
+            log_group_name=log_group_name,
+            log_stream_name=log_stream_name)
+        ```
+
+        ### With advanced configurations
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        agency_name = config.require_object("agencyName")
+        trigger_access_vpc_ids = config.require_object("triggerAccessVpcIds")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency=agency_name,
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            functiongraph_version="v2",
+            enable_dynamic_memory=True,
+            is_stateful_function=True,
+            network_controller={
+                "trigger_access_vpcs": [{
+                    "vpc_id": entry["value"],
+                } for entry in [{"key": k, "value": v} for k, v in trigger_access_vpc_ids.items()]],
+                "disable_public_network": True,
+            })
+        ```
+
         ### Create function with Java runtime and corresponding configuration
 
         ```python
@@ -2600,39 +2814,16 @@ class Function(pulumi.CustomResource):
 
         Functions can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/function:Function test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attributes are: `func_code`, `encrypted_user_data`, `tags`.
-
         It is generally recommended running `pulumi preview` after importing a function.
-
         You can then decide if changes should be applied to the function, or the resource definition should be updated to align
-
         with the function. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_function" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              app, func_code, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2659,6 +2850,8 @@ class Function(pulumi.CustomResource):
                + **jar**: JAR file or java functions.
                + **obs**: function code stored in an OBS bucket.
                + **Custom-Image-Swr**: function code comes from the SWR custom image.
+               
+               > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         :param pulumi.Input[_builtins.str] code_url: Specifies the URL where the function code is stored in OBS.  
                Required if the `code_type` is set to **obs**.
         :param pulumi.Input[_builtins.int] concurrency_num: Specifies the number of concurrent requests of the function.  
@@ -2708,6 +2901,7 @@ class Function(pulumi.CustomResource):
                Required if the `code_type` is set to **inline**, **zip**, or **jar**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountArgs', 'FunctionFuncMountArgsDict']]]] func_mounts: Specifies the list of function mount configurations.  
                The func_mounts structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountsOrderArgs', 'FunctionFuncMountsOrderArgsDict']]]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: Specifies the version of the function framework.  
                The valid values are as follows:
                + **v1**: Hosts event-driven functions in a serverless context.
@@ -2751,8 +2945,8 @@ class Function(pulumi.CustomResource):
                This parameter is available only when `enable_lts_log` is set to **true**.
                
                > This parameter is only supported by the `v2` version of the function.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -2813,7 +3007,8 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the function.
         :param pulumi.Input[_builtins.int] timeout: Specifies the timeout interval of the function, in seconds.  
                The value ranges from `3` to `259,200`.
-        :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the key/value information defined for the function.  
+               The key/value data might be parsed with Terraform `jsonencode()` function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: Specifies the KMS key ID for encrypting the user data.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionVersionArgs', 'FunctionVersionArgsDict']]]] versions: Specifies the versions management of the function.  
                The versions structure is documented below.
@@ -2841,6 +3036,30 @@ class Function(pulumi.CustomResource):
            For the regions that do not support this parameter, please use the lower version to deploy this resource.
 
         ## Example Usage
+
+        ### With base64 func code
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        agency_name = config.require_object("agencyName")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency=agency_name,
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"])
+        ```
 
         ### With text code
 
@@ -2898,6 +3117,149 @@ class Function(pulumi.CustomResource):
             })
         ```
 
+        ### Create function with a custom version and an alias for the latest version
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        with_alias = huaweicloud.functiongraph.Function("with_alias",
+            name=function_name,
+            app="default",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            versions=[
+                {
+                    "name": "latest",
+                    "aliases": {
+                        "name": "demo",
+                        "description": "This is a description of the alias demo under the version latest.",
+                    },
+                },
+                {
+                    "name": "v1.0",
+                    "description": "This is a description of the version v1.0.",
+                    "aliases": {
+                        "name": "v1_0-alias",
+                        "description": "This is a description of the alias v1_0-alias under the version v1.0.",
+                    },
+                },
+                {
+                    "name": "v2.0",
+                    "description": "This is a description of the version v2.0.",
+                    "aliases": {
+                        "name": "v2_0-alias",
+                        "description": "This is a description of the alias v2_0-alias under the version v2.0.",
+                        "additional_version_weights": json.dumps({
+                            "v1.0": 15,
+                        }),
+                    },
+                },
+                {
+                    "name": "v3.0",
+                    "description": "This is a description of the version v2.0.",
+                    "aliases": {
+                        "name": "v3_0-alias",
+                        "description": "This is a description of the alias v2_0-alias under the version v3.0.",
+                        "additional_version_strategy": json.dumps({
+                            "v2.0": {
+                                "combine_type": "or",
+                                "rules": [
+                                    {
+                                        "rule_type": "Header",
+                                        "param": "version",
+                                        "op": "=",
+                                        "value": "v2_value",
+                                    },
+                                    {
+                                        "rule_type": "Header",
+                                        "param": "Owner",
+                                        "op": "in",
+                                        "value": "terraform,administrator",
+                                    },
+                                ],
+                            },
+                        }),
+                    },
+                },
+            ])
+        ```
+
+        ### Create function with log group and stream
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        log_group_id = config.require_object("logGroupId")
+        log_stream_id = config.require_object("logStreamId")
+        log_group_name = config.require_object("logGroupName")
+        log_stream_name = config.require_object("logStreamName")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency="test",
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            enable_lts_log=True,
+            log_group_id=log_group_id,
+            log_stream_id=log_stream_id,
+            log_group_name=log_group_name,
+            log_stream_name=log_stream_name)
+        ```
+
+        ### With advanced configurations
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        function_name = config.require_object("functionName")
+        function_codes = config.require_object("functionCodes")
+        agency_name = config.require_object("agencyName")
+        trigger_access_vpc_ids = config.require_object("triggerAccessVpcIds")
+        test = huaweicloud.functiongraph.Function("test",
+            name=function_name,
+            app="default",
+            agency=agency_name,
+            description="function test",
+            handler="test.handler",
+            memory_size=128,
+            timeout=3,
+            runtime="Python2.7",
+            code_type="inline",
+            func_code=std.index.base64encode(input=function_codes)["result"],
+            functiongraph_version="v2",
+            enable_dynamic_memory=True,
+            is_stateful_function=True,
+            network_controller={
+                "trigger_access_vpcs": [{
+                    "vpc_id": entry["value"],
+                } for entry in [{"key": k, "value": v} for k, v in trigger_access_vpc_ids.items()]],
+                "disable_public_network": True,
+            })
+        ```
+
         ### Create function with Java runtime and corresponding configuration
 
         ```python
@@ -2928,39 +3290,16 @@ class Function(pulumi.CustomResource):
 
         Functions can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:FunctionGraph/function:Function test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attributes are: `func_code`, `encrypted_user_data`, `tags`.
-
         It is generally recommended running `pulumi preview` after importing a function.
-
         You can then decide if changes should be applied to the function, or the resource definition should be updated to align
-
         with the function. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_fgs_function" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              app, func_code, tags,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param FunctionArgs args: The arguments to use to populate this resource's properties.
@@ -2998,6 +3337,7 @@ class Function(pulumi.CustomResource):
                  ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
                  func_code: Optional[pulumi.Input[_builtins.str]] = None,
                  func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountArgs', 'FunctionFuncMountArgsDict']]]]] = None,
+                 func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountsOrderArgs', 'FunctionFuncMountsOrderArgsDict']]]]] = None,
                  functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
                  gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3065,6 +3405,7 @@ class Function(pulumi.CustomResource):
             __props__.__dict__["ephemeral_storage"] = ephemeral_storage
             __props__.__dict__["func_code"] = func_code
             __props__.__dict__["func_mounts"] = func_mounts
+            __props__.__dict__["func_mounts_orders"] = func_mounts_orders
             __props__.__dict__["functiongraph_version"] = functiongraph_version
             __props__.__dict__["gpu_memory"] = gpu_memory
             __props__.__dict__["gpu_type"] = gpu_type
@@ -3108,7 +3449,7 @@ class Function(pulumi.CustomResource):
             __props__.__dict__["versions"] = versions
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["xrole"] = xrole
-            __props__.__dict__["urn"] = None
+            __props__.__dict__["function_urn"] = None
             __props__.__dict__["version"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["encryptedUserData"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -3122,6 +3463,7 @@ class Function(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            function_urn: Optional[pulumi.Input[_builtins.str]] = None,
             agency: Optional[pulumi.Input[_builtins.str]] = None,
             app: Optional[pulumi.Input[_builtins.str]] = None,
             app_agency: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3143,6 +3485,7 @@ class Function(pulumi.CustomResource):
             ephemeral_storage: Optional[pulumi.Input[_builtins.int]] = None,
             func_code: Optional[pulumi.Input[_builtins.str]] = None,
             func_mounts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountArgs', 'FunctionFuncMountArgsDict']]]]] = None,
+            func_mounts_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountsOrderArgs', 'FunctionFuncMountsOrderArgsDict']]]]] = None,
             functiongraph_version: Optional[pulumi.Input[_builtins.str]] = None,
             gpu_memory: Optional[pulumi.Input[_builtins.int]] = None,
             gpu_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3175,7 +3518,6 @@ class Function(pulumi.CustomResource):
             runtime: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None,
             user_data: Optional[pulumi.Input[_builtins.str]] = None,
             user_data_encrypt_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -3189,6 +3531,7 @@ class Function(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] function_urn: The URN (Uniform Resource Name) of the function.
         :param pulumi.Input[_builtins.str] agency: Specifies the agency configuration of the function.  
                This parameter is mandatory if the function needs to access other cloud services.
         :param pulumi.Input[_builtins.str] app: Specifies the group to which the function belongs.
@@ -3212,6 +3555,8 @@ class Function(pulumi.CustomResource):
                + **jar**: JAR file or java functions.
                + **obs**: function code stored in an OBS bucket.
                + **Custom-Image-Swr**: function code comes from the SWR custom image.
+               
+               > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         :param pulumi.Input[_builtins.str] code_url: Specifies the URL where the function code is stored in OBS.  
                Required if the `code_type` is set to **obs**.
         :param pulumi.Input[_builtins.int] concurrency_num: Specifies the number of concurrent requests of the function.  
@@ -3261,6 +3606,7 @@ class Function(pulumi.CustomResource):
                Required if the `code_type` is set to **inline**, **zip**, or **jar**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountArgs', 'FunctionFuncMountArgsDict']]]] func_mounts: Specifies the list of function mount configurations.  
                The func_mounts structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionFuncMountsOrderArgs', 'FunctionFuncMountsOrderArgsDict']]]] func_mounts_orders: The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
         :param pulumi.Input[_builtins.str] functiongraph_version: Specifies the version of the function framework.  
                The valid values are as follows:
                + **v1**: Hosts event-driven functions in a serverless context.
@@ -3304,8 +3650,8 @@ class Function(pulumi.CustomResource):
                This parameter is available only when `enable_lts_log` is set to **true**.
                
                > This parameter is only supported by the `v2` version of the function.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with the new value next
-               time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] lts_custom_tag_origin: The script configuration value of this change is also the original value used for comparison with
+                the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         :param pulumi.Input[_builtins.str] max_instance_num: Specifies the maximum number of instances of the function.  
                The valid value is range from `-1` to `1,000`, defaults to `400`.
                + The minimum value is `-1` and means the number of instances is unlimited.
@@ -3366,8 +3712,8 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the function.
         :param pulumi.Input[_builtins.int] timeout: Specifies the timeout interval of the function, in seconds.  
                The value ranges from `3` to `259,200`.
-        :param pulumi.Input[_builtins.str] urn: The URN (Uniform Resource Name) of the function.
-        :param pulumi.Input[_builtins.str] user_data: The key/value information defined for the function.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the key/value information defined for the function.  
+               The key/value data might be parsed with Terraform `jsonencode()` function.
         :param pulumi.Input[_builtins.str] user_data_encrypt_kms_key_id: Specifies the KMS key ID for encrypting the user data.
         :param pulumi.Input[_builtins.str] version: The version of the function.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FunctionVersionArgs', 'FunctionVersionArgsDict']]]] versions: Specifies the versions management of the function.  
@@ -3381,6 +3727,7 @@ class Function(pulumi.CustomResource):
 
         __props__ = _FunctionState.__new__(_FunctionState)
 
+        __props__.__dict__["function_urn"] = function_urn
         __props__.__dict__["agency"] = agency
         __props__.__dict__["app"] = app
         __props__.__dict__["app_agency"] = app_agency
@@ -3402,6 +3749,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["ephemeral_storage"] = ephemeral_storage
         __props__.__dict__["func_code"] = func_code
         __props__.__dict__["func_mounts"] = func_mounts
+        __props__.__dict__["func_mounts_orders"] = func_mounts_orders
         __props__.__dict__["functiongraph_version"] = functiongraph_version
         __props__.__dict__["gpu_memory"] = gpu_memory
         __props__.__dict__["gpu_type"] = gpu_type
@@ -3434,7 +3782,6 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["runtime"] = runtime
         __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
-        __props__.__dict__["urn"] = urn
         __props__.__dict__["user_data"] = user_data
         __props__.__dict__["user_data_encrypt_kms_key_id"] = user_data_encrypt_kms_key_id
         __props__.__dict__["version"] = version
@@ -3442,6 +3789,14 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["xrole"] = xrole
         return Function(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="FunctionUrn")
+    def function_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The URN (Uniform Resource Name) of the function.
+        """
+        return pulumi.get(self, "function_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -3505,6 +3860,8 @@ class Function(pulumi.CustomResource):
         + **jar**: JAR file or java functions.
         + **obs**: function code stored in an OBS bucket.
         + **Custom-Image-Swr**: function code comes from the SWR custom image.
+
+        > The parameter `custom_image` is **Required** if `code_type` is **Custom-Image-Swr**.
         """
         return pulumi.get(self, "code_type")
 
@@ -3663,6 +4020,14 @@ class Function(pulumi.CustomResource):
         return pulumi.get(self, "func_mounts")
 
     @_builtins.property
+    @pulumi.getter(name="funcMountsOrders")
+    def func_mounts_orders(self) -> pulumi.Output[Sequence['outputs.FunctionFuncMountsOrder']]:
+        """
+        The origin list of function mount configuration that used to reorder the 'func_mounts' parameter.
+        """
+        return pulumi.get(self, "func_mounts_orders")
+
+    @_builtins.property
     @pulumi.getter(name="functiongraphVersion")
     def functiongraph_version(self) -> pulumi.Output[_builtins.str]:
         """
@@ -3800,8 +4165,8 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="ltsCustomTagOrigin")
     def lts_custom_tag_origin(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        The script configuration value of this change is also the original value used for comparison with the new value next
-        time the change is made. The corresponding parameter name is 'lts_custom_tag'.
+        The script configuration value of this change is also the original value used for comparison with
+         the new value next time the change is made. The corresponding parameter name is 'lts_custom_tag'.
         """
         return pulumi.get(self, "lts_custom_tag_origin")
 
@@ -3991,18 +4356,11 @@ class Function(pulumi.CustomResource):
         return pulumi.get(self, "timeout")
 
     @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        The URN (Uniform Resource Name) of the function.
-        """
-        return pulumi.get(self, "urn")
-
-    @_builtins.property
     @pulumi.getter(name="userData")
     def user_data(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The key/value information defined for the function.
+        Specifies the key/value information defined for the function.  
+        The key/value data might be parsed with Terraform `jsonencode()` function.
         """
         return pulumi.get(self, "user_data")
 

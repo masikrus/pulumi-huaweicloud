@@ -27,13 +27,16 @@ class GetProjectsResult:
     """
     A collection of values returned by getProjects.
     """
-    def __init__(__self__, id=None, name=None, projects=None):
+    def __init__(__self__, id=None, name=None, project_id=None, projects=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if projects and not isinstance(projects, list):
             raise TypeError("Expected argument 'projects' to be a list")
         pulumi.set(__self__, "projects", projects)
@@ -55,10 +58,16 @@ class GetProjectsResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
     @pulumi.getter
     def projects(self) -> Sequence['outputs.GetProjectsProjectResult']:
         """
         The details of the query projects. The structure is documented below.
+        The projects structure is documented below.
         """
         return pulumi.get(self, "projects")
 
@@ -71,10 +80,12 @@ class AwaitableGetProjectsResult(GetProjectsResult):
         return GetProjectsResult(
             id=self.id,
             name=self.name,
+            project_id=self.project_id,
             projects=self.projects)
 
 
 def get_projects(name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
     Use this data source to query the IAM project list within HuaweiCloud.
@@ -101,19 +112,34 @@ def get_projects(name: Optional[_builtins.str] = None,
     test = huaweicloud.Iam.get_projects(name="MOS")
     ```
 
+    ### Obtain project information by project id
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    project_id = config.require_object("projectId")
+    test = huaweicloud.Iam.get_projects(project_id=project_id)
+    ```
+
 
     :param _builtins.str name: Specifies the IAM project name to query.
+    :param _builtins.str project_id: Specifies the IAM project id to query. This parameter conflicts with `name`.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('huaweicloud:Iam/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult).value
 
     return AwaitableGetProjectsResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         projects=pulumi.get(__ret__, 'projects'))
 def get_projects_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                        project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     Use this data source to query the IAM project list within HuaweiCloud.
@@ -140,14 +166,28 @@ def get_projects_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     test = huaweicloud.Iam.get_projects(name="MOS")
     ```
 
+    ### Obtain project information by project id
+
+    ```python
+    import pulumi
+    import pulumi_huaweicloud as huaweicloud
+
+    config = pulumi.Config()
+    project_id = config.require_object("projectId")
+    test = huaweicloud.Iam.get_projects(project_id=project_id)
+    ```
+
 
     :param _builtins.str name: Specifies the IAM project name to query.
+    :param _builtins.str project_id: Specifies the IAM project id to query. This parameter conflicts with `name`.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:Iam/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
     return __ret__.apply(lambda __response__: GetProjectsResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
         projects=pulumi.get(__response__, 'projects')))

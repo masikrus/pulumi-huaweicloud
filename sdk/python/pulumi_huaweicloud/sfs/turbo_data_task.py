@@ -28,6 +28,7 @@ class TurboDataTaskArgs:
                  src_prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TurboDataTask resource.
+
         :param pulumi.Input[_builtins.str] dest_target: Specifies target end information of the data task.
                Changing this creates a new resource.
                Currently, the value only support keep the same as `src_target`.
@@ -196,6 +197,7 @@ class _TurboDataTaskState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TurboDataTask resources.
+
         :param pulumi.Input[_builtins.str] dest_prefix: Specifies destination path prefix of the data task.
                Changing this creates a new resource.
                Currently, the value only support keep the same as `src_prefix`.
@@ -459,11 +461,10 @@ class TurboDataTask(pulumi.CustomResource):
 
         The SFS Turbo data task can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboDataTask:TurboDataTask test <share_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -534,11 +535,10 @@ class TurboDataTask(pulumi.CustomResource):
 
         The SFS Turbo data task can be imported using the related `share_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Sfs/turboDataTask:TurboDataTask test <share_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TurboDataTaskArgs args: The arguments to use to populate this resource's properties.

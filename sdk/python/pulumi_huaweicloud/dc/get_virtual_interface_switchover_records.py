@@ -95,7 +95,7 @@ def get_virtual_interface_switchover_records(region: Optional[_builtins.str] = N
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_virtual_interface_switchover_records()
+    test = huaweicloud.Dc.get_virtual_interface_switchover_records()
     ```
 
 
@@ -107,7 +107,7 @@ def get_virtual_interface_switchover_records(region: Optional[_builtins.str] = N
     __args__['region'] = region
     __args__['resourceIds'] = resource_ids
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dc/getVirtualInterfaceSwitchoverRecords:getVirtualInterfaceSwitchoverRecords', __args__, opts=opts, typ=GetVirtualInterfaceSwitchoverRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dc/getVirtualInterfaceSwitchoverRecords:getVirtualInterfaceSwitchoverRecords', __args__, opts=opts, typ=GetVirtualInterfaceSwitchoverRecordsResult).value
 
     return AwaitableGetVirtualInterfaceSwitchoverRecordsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -126,7 +126,7 @@ def get_virtual_interface_switchover_records_output(region: Optional[pulumi.Inpu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.dc.get_virtual_interface_switchover_records()
+    test = huaweicloud.Dc.get_virtual_interface_switchover_records()
     ```
 
 
@@ -138,7 +138,7 @@ def get_virtual_interface_switchover_records_output(region: Optional[pulumi.Inpu
     __args__['region'] = region
     __args__['resourceIds'] = resource_ids
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dc/getVirtualInterfaceSwitchoverRecords:getVirtualInterfaceSwitchoverRecords', __args__, opts=opts, typ=GetVirtualInterfaceSwitchoverRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dc/getVirtualInterfaceSwitchoverRecords:getVirtualInterfaceSwitchoverRecords', __args__, opts=opts, typ=GetVirtualInterfaceSwitchoverRecordsResult)
     return __ret__.apply(lambda __response__: GetVirtualInterfaceSwitchoverRecordsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

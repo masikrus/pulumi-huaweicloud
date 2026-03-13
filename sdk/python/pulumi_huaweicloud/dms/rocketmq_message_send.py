@@ -29,6 +29,7 @@ class RocketmqMessageSendArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqMessageSend resource.
+
         :param pulumi.Input[_builtins.str] body: Specifies the content of the message to be sent.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance.
         :param pulumi.Input[_builtins.str] topic: Specifies the name of the topic to send the message.
@@ -140,6 +141,7 @@ class _RocketmqMessageSendState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqMessageSend resources.
+
         :param pulumi.Input[_builtins.str] body: Specifies the content of the message to be sent.
         :param pulumi.Input[_builtins.str] broker_name: The broker name of the message.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the RocketMQ instance.
@@ -334,11 +336,12 @@ class RocketmqMessageSend(pulumi.CustomResource):
             property_lists=[{
                 "name": entry["value"]["name"],
                 "value": entry["value"]["value"],
-            } for entry in [{"key": k, "value": v} for k, v in property_list]],
+            } for entry in [{"key": k, "value": v} for k, v in property_list.items()]],
             instance_id=instance_id,
             topic=topic_name,
             body=body)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -381,11 +384,12 @@ class RocketmqMessageSend(pulumi.CustomResource):
             property_lists=[{
                 "name": entry["value"]["name"],
                 "value": entry["value"]["value"],
-            } for entry in [{"key": k, "value": v} for k, v in property_list]],
+            } for entry in [{"key": k, "value": v} for k, v in property_list.items()]],
             instance_id=instance_id,
             topic=topic_name,
             body=body)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqMessageSendArgs args: The arguments to use to populate this resource's properties.

@@ -95,7 +95,7 @@ def get_eip_quotas(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_quotas()
+    test = huaweicloud.Global.get_eip_quotas()
     ```
 
 
@@ -108,7 +108,7 @@ def get_eip_quotas(region: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['types'] = types
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getEipQuotas:getEipQuotas', __args__, opts=opts, typ=GetEipQuotasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getEipQuotas:getEipQuotas', __args__, opts=opts, typ=GetEipQuotasResult).value
 
     return AwaitableGetEipQuotasResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_eip_quotas_output(region: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_quotas()
+    test = huaweicloud.Global.get_eip_quotas()
     ```
 
 
@@ -140,7 +140,7 @@ def get_eip_quotas_output(region: Optional[pulumi.Input[Optional[_builtins.str]]
     __args__['region'] = region
     __args__['types'] = types
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getEipQuotas:getEipQuotas', __args__, opts=opts, typ=GetEipQuotasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getEipQuotas:getEipQuotas', __args__, opts=opts, typ=GetEipQuotasResult)
     return __ret__.apply(lambda __response__: GetEipQuotasResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

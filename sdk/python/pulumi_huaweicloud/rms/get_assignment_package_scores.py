@@ -82,7 +82,7 @@ def get_assignment_package_scores(assignment_package_name: Optional[_builtins.st
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_scores()
+    test = huaweicloud.Rms.get_assignment_package_scores()
     ```
 
 
@@ -91,7 +91,7 @@ def get_assignment_package_scores(assignment_package_name: Optional[_builtins.st
     __args__ = dict()
     __args__['assignmentPackageName'] = assignment_package_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAssignmentPackageScores:getAssignmentPackageScores', __args__, opts=opts, typ=GetAssignmentPackageScoresResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAssignmentPackageScores:getAssignmentPackageScores', __args__, opts=opts, typ=GetAssignmentPackageScoresResult).value
 
     return AwaitableGetAssignmentPackageScoresResult(
         assignment_package_name=pulumi.get(__ret__, 'assignment_package_name'),
@@ -108,7 +108,7 @@ def get_assignment_package_scores_output(assignment_package_name: Optional[pulum
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_assignment_package_scores()
+    test = huaweicloud.Rms.get_assignment_package_scores()
     ```
 
 
@@ -117,7 +117,7 @@ def get_assignment_package_scores_output(assignment_package_name: Optional[pulum
     __args__ = dict()
     __args__['assignmentPackageName'] = assignment_package_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAssignmentPackageScores:getAssignmentPackageScores', __args__, opts=opts, typ=GetAssignmentPackageScoresResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAssignmentPackageScores:getAssignmentPackageScores', __args__, opts=opts, typ=GetAssignmentPackageScoresResult)
     return __ret__.apply(lambda __response__: GetAssignmentPackageScoresResult(
         assignment_package_name=pulumi.get(__response__, 'assignment_package_name'),
         id=pulumi.get(__response__, 'id'),

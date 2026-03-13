@@ -46,6 +46,7 @@ class MongoInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a MongoInstance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. For a three-AZ deployment instance,
                use commas (,) to separate the AZs, for example, `cn-north-4a,cn-north-4b,cn-north-4c`.
                Changing this parameter will create a new resource.
@@ -482,6 +483,7 @@ class _MongoInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MongoInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. For a three-AZ deployment instance,
@@ -1089,11 +1091,10 @@ class MongoInstance(pulumi.CustomResource):
 
         GaussDB mongo instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/mongoInstance:MongoInstance instance_1 2d3cb29c73754417bbbf46b1f856b371in10
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1207,11 +1208,10 @@ class MongoInstance(pulumi.CustomResource):
 
         GaussDB mongo instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/mongoInstance:MongoInstance instance_1 2d3cb29c73754417bbbf46b1f856b371in10
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MongoInstanceArgs args: The arguments to use to populate this resource's properties.

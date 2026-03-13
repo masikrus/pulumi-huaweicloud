@@ -29,6 +29,7 @@ class RuleInformationLeakagePreventionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RuleInformationLeakagePrevention resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the rule contents.
                + If `type` is set to **code**, valid values are **400**, **401**, **402**, **403**, **404**, **405**, **500**,
                **501**, **502**, **503**, **504** and **507**.
@@ -183,6 +184,7 @@ class _RuleInformationLeakagePreventionState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RuleInformationLeakagePrevention resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the rule contents.
                + If `type` is set to **code**, valid values are **400**, **401**, **402**, **403**, **404**, **405**, **500**,
                **501**, **502**, **503**, **504** and **507**.
@@ -392,19 +394,16 @@ class RuleInformationLeakagePrevention(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleInformationLeakagePrevention:RuleInformationLeakagePrevention test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleInformationLeakagePrevention:RuleInformationLeakagePrevention test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -468,19 +467,16 @@ class RuleInformationLeakagePrevention(pulumi.CustomResource):
 
         * Using `policy_id` and `rule_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleInformationLeakagePrevention:RuleInformationLeakagePrevention test <policy_id>/<rule_id>
         ```
 
         * Using `policy_id`, `rule_id` and `enterprise_project_id`, separated by slashes, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Waf/ruleInformationLeakagePrevention:RuleInformationLeakagePrevention test <policy_id>/<rule_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RuleInformationLeakagePreventionArgs args: The arguments to use to populate this resource's properties.

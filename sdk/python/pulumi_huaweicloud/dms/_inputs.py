@@ -15,6 +15,12 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'ConsumerGroupTopicBatchDeleteResultArgs',
+    'ConsumerGroupTopicBatchDeleteResultArgsDict',
+    'KafkaInstanceClusterArgs',
+    'KafkaInstanceClusterArgsDict',
+    'KafkaInstanceClusterBrokerArgs',
+    'KafkaInstanceClusterBrokerArgsDict',
     'KafkaInstanceCrossVpcAccessArgs',
     'KafkaInstanceCrossVpcAccessArgsDict',
     'KafkaInstanceParameterArgs',
@@ -83,34 +89,225 @@ __all__ = [
     'RocketmqUserGroupPermArgsDict',
     'RocketmqUserTopicPermArgs',
     'RocketmqUserTopicPermArgsDict',
+    'SmartConnectorValidateTaskArgs',
+    'SmartConnectorValidateTaskArgsDict',
+    'TopicMessageBatchDeletePartitionArgs',
+    'TopicMessageBatchDeletePartitionArgsDict',
+    'TopicMessageBatchDeleteResultArgs',
+    'TopicMessageBatchDeleteResultArgsDict',
 ]
 
-MYPY = False
+class ConsumerGroupTopicBatchDeleteResultArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The error code if the topic deletion failed.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the topic.
+    """
+    success: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the topic was deleted successfully.
+    """
 
-if not MYPY:
-    class KafkaInstanceCrossVpcAccessArgsDict(TypedDict):
-        advertised_ip: NotRequired[pulumi.Input[_builtins.str]]
+@pulumi.input_type
+class ConsumerGroupTopicBatchDeleteResultArgs:
+    def __init__(__self__, *,
+                 error_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 success: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        The advertised IP Address or domain name.
+        :param pulumi.Input[_builtins.str] error_code: The error code if the topic deletion failed.
+        :param pulumi.Input[_builtins.str] name: The name of the topic.
+        :param pulumi.Input[_builtins.bool] success: Whether the topic was deleted successfully.
+        """
+        if error_code is not None:
+            pulumi.set(__self__, "error_code", error_code)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if success is not None:
+            pulumi.set(__self__, "success", success)
 
-        <a name="dms_parameters"></a>
-        The `parameters` block supports:
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        lisenter_ip: NotRequired[pulumi.Input[_builtins.str]]
-        listener_ip: NotRequired[pulumi.Input[_builtins.str]]
+        The error code if the topic deletion failed.
         """
-        The listener IP address.
+        return pulumi.get(self, "error_code")
+
+    @error_code.setter
+    def error_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_code", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        port: NotRequired[pulumi.Input[_builtins.int]]
+        The name of the topic.
         """
-        The port number.
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def success(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
+        Whether the topic was deleted successfully.
         """
-        The port ID associated with the address.
+        return pulumi.get(self, "success")
+
+    @success.setter
+    def success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "success", value)
+
+
+class KafkaInstanceClusterArgsDict(TypedDict):
+    brokers: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaInstanceClusterBrokerArgsDict']]]]
+    """
+    The list of broker nodes in the cluster.  
+    The brokers structure is documented below.
+    """
+
+@pulumi.input_type
+class KafkaInstanceClusterArgs:
+    def __init__(__self__, *,
+                 brokers: Optional[pulumi.Input[Sequence[pulumi.Input['KafkaInstanceClusterBrokerArgs']]]] = None):
         """
-elif False:
-    KafkaInstanceCrossVpcAccessArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[Sequence[pulumi.Input['KafkaInstanceClusterBrokerArgs']]] brokers: The list of broker nodes in the cluster.  
+               The brokers structure is documented below.
+        """
+        if brokers is not None:
+            pulumi.set(__self__, "brokers", brokers)
+
+    @_builtins.property
+    @pulumi.getter
+    def brokers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KafkaInstanceClusterBrokerArgs']]]]:
+        """
+        The list of broker nodes in the cluster.  
+        The brokers structure is documented below.
+        """
+        return pulumi.get(self, "brokers")
+
+    @brokers.setter
+    def brokers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KafkaInstanceClusterBrokerArgs']]]]):
+        pulumi.set(self, "brokers", value)
+
+
+class KafkaInstanceClusterBrokerArgsDict(TypedDict):
+    broker_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the broker.
+    """
+    health: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the broker is healthy.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The host of the broker.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port of the broker.
+    """
+
+@pulumi.input_type
+class KafkaInstanceClusterBrokerArgs:
+    def __init__(__self__, *,
+                 broker_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 health: Optional[pulumi.Input[_builtins.bool]] = None,
+                 host: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] broker_id: The ID of the broker.
+        :param pulumi.Input[_builtins.bool] health: Whether the broker is healthy.
+        :param pulumi.Input[_builtins.str] host: The host of the broker.
+        :param pulumi.Input[_builtins.int] port: The port of the broker.
+        """
+        if broker_id is not None:
+            pulumi.set(__self__, "broker_id", broker_id)
+        if health is not None:
+            pulumi.set(__self__, "health", health)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerId")
+    def broker_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the broker.
+        """
+        return pulumi.get(self, "broker_id")
+
+    @broker_id.setter
+    def broker_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "broker_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the broker is healthy.
+        """
+        return pulumi.get(self, "health")
+
+    @health.setter
+    def health(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "health", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The host of the broker.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The port of the broker.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+
+class KafkaInstanceCrossVpcAccessArgsDict(TypedDict):
+    advertised_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The advertised IP Address or domain name.
+
+    <a name="dms_parameters"></a>
+    The `parameters` block supports:
+    """
+    lisenter_ip: NotRequired[pulumi.Input[_builtins.str]]
+    listener_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener IP address.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port of the broker.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID associated with the address.
+    """
 
 @pulumi.input_type
 class KafkaInstanceCrossVpcAccessArgs:
@@ -126,7 +323,7 @@ class KafkaInstanceCrossVpcAccessArgs:
                <a name="dms_parameters"></a>
                The `parameters` block supports:
         :param pulumi.Input[_builtins.str] listener_ip: The listener IP address.
-        :param pulumi.Input[_builtins.int] port: The port number.
+        :param pulumi.Input[_builtins.int] port: The port of the broker.
         :param pulumi.Input[_builtins.str] port_id: The port ID associated with the address.
         """
         if advertised_ip is not None:
@@ -184,7 +381,7 @@ class KafkaInstanceCrossVpcAccessArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The port number.
+        The port of the broker.
         """
         return pulumi.get(self, "port")
 
@@ -205,18 +402,19 @@ class KafkaInstanceCrossVpcAccessArgs:
         pulumi.set(self, "port_id", value)
 
 
-if not MYPY:
-    class KafkaInstanceParameterArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. Static parameter needs to restart the instance to take effect.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value.
-        """
-elif False:
-    KafkaInstanceParameterArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaInstanceParameterArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. Static parameter needs to restart the instance
+    to take effect.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value.
+
+    <a name="kafka_instance_port_protocol"></a>
+    The `port_protocol` block supports:
+    """
 
 @pulumi.input_type
 class KafkaInstanceParameterArgs:
@@ -224,8 +422,12 @@ class KafkaInstanceParameterArgs:
                  name: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] name: Specifies the parameter name. Static parameter needs to restart the instance to take effect.
+        :param pulumi.Input[_builtins.str] name: Specifies the parameter name. Static parameter needs to restart the instance
+               to take effect.
         :param pulumi.Input[_builtins.str] value: Specifies the parameter value.
+               
+               <a name="kafka_instance_port_protocol"></a>
+               The `port_protocol` block supports:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
@@ -234,7 +436,8 @@ class KafkaInstanceParameterArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the parameter name. Static parameter needs to restart the instance to take effect.
+        Specifies the parameter name. Static parameter needs to restart the instance
+        to take effect.
         """
         return pulumi.get(self, "name")
 
@@ -247,6 +450,9 @@ class KafkaInstanceParameterArgs:
     def value(self) -> pulumi.Input[_builtins.str]:
         """
         Specifies the parameter value.
+
+        <a name="kafka_instance_port_protocol"></a>
+        The `port_protocol` block supports:
         """
         return pulumi.get(self, "value")
 
@@ -255,82 +461,83 @@ class KafkaInstanceParameterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class KafkaInstancePortProtocolArgsDict(TypedDict):
-        private_plain_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private plain address.
-        """
-        private_plain_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private plain domain name.
-        """
-        private_plain_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the private plain enabled.
-        """
-        private_sasl_plaintext_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private sasl plaintext address.
-        """
-        private_sasl_plaintext_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private sasl plaintext domain name.
-        """
-        private_sasl_plaintext_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the private sasl plaintext enabled.
-        """
-        private_sasl_ssl_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private sasl ssl address.
-        """
-        private_sasl_ssl_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private sasl ssl domain name.
-        """
-        private_sasl_ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the private sasl ssl enabled.
-        """
-        public_plain_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public plain address.
-        """
-        public_plain_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public plain domain name.
-        """
-        public_plain_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the public plain enabled.
-        """
-        public_sasl_plaintext_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public sasl plaintext address.
-        """
-        public_sasl_plaintext_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public sasl plaintext domain name.
-        """
-        public_sasl_plaintext_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the public sasl plaintext enabled.
-        """
-        public_sasl_ssl_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public sasl ssl address.
-        """
-        public_sasl_ssl_domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public sasl ssl domain name.
-        """
-        public_sasl_ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the public sasl ssl enabled.
-        """
-elif False:
-    KafkaInstancePortProtocolArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaInstancePortProtocolArgsDict(TypedDict):
+    private_plain_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private plain address.
+    """
+    private_plain_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private plain domain name.
+    """
+    private_plain_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the private plaintext access is enabled.
+
+    > The private plaintext access and private SSL access cannot be disabled at the same time.
+    """
+    private_sasl_plaintext_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private sasl plaintext address.
+    """
+    private_sasl_plaintext_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private sasl plaintext domain name.
+    """
+    private_sasl_plaintext_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the private SASL plaintext access is enabled.
+    """
+    private_sasl_ssl_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private sasl ssl address.
+    """
+    private_sasl_ssl_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private sasl ssl domain name.
+    """
+    private_sasl_ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the private SASL SSL access is enabled.  
+    This parameter and `private_sasl_plaintext_enable` cannot be set to **true** at the same time.
+    """
+    public_plain_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public plain address.
+    """
+    public_plain_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public plain domain name.
+    """
+    public_plain_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the public plaintext access is enabled.
+    """
+    public_sasl_plaintext_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public sasl plaintext address.
+    """
+    public_sasl_plaintext_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public sasl plaintext domain name.
+    """
+    public_sasl_plaintext_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the public SASL plaintext access is enabled.
+    """
+    public_sasl_ssl_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public sasl ssl address.
+    """
+    public_sasl_ssl_domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public sasl ssl domain name.
+    """
+    public_sasl_ssl_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the public SASL SSL access is enabled.
+    This parameter and `public_sasl_plaintext_enable` cannot be set to **true** at the same time.
+    """
 
 @pulumi.input_type
 class KafkaInstancePortProtocolArgs:
@@ -356,22 +563,26 @@ class KafkaInstancePortProtocolArgs:
         """
         :param pulumi.Input[_builtins.str] private_plain_address: The private plain address.
         :param pulumi.Input[_builtins.str] private_plain_domain_name: The private plain domain name.
-        :param pulumi.Input[_builtins.bool] private_plain_enable: Whether the private plain enabled.
+        :param pulumi.Input[_builtins.bool] private_plain_enable: Specifies whether the private plaintext access is enabled.
+               
+               > The private plaintext access and private SSL access cannot be disabled at the same time.
         :param pulumi.Input[_builtins.str] private_sasl_plaintext_address: The private sasl plaintext address.
         :param pulumi.Input[_builtins.str] private_sasl_plaintext_domain_name: The private sasl plaintext domain name.
-        :param pulumi.Input[_builtins.bool] private_sasl_plaintext_enable: Whether the private sasl plaintext enabled.
+        :param pulumi.Input[_builtins.bool] private_sasl_plaintext_enable: Specifies whether the private SASL plaintext access is enabled.
         :param pulumi.Input[_builtins.str] private_sasl_ssl_address: The private sasl ssl address.
         :param pulumi.Input[_builtins.str] private_sasl_ssl_domain_name: The private sasl ssl domain name.
-        :param pulumi.Input[_builtins.bool] private_sasl_ssl_enable: Whether the private sasl ssl enabled.
+        :param pulumi.Input[_builtins.bool] private_sasl_ssl_enable: Specifies whether the private SASL SSL access is enabled.  
+               This parameter and `private_sasl_plaintext_enable` cannot be set to **true** at the same time.
         :param pulumi.Input[_builtins.str] public_plain_address: The public plain address.
         :param pulumi.Input[_builtins.str] public_plain_domain_name: The public plain domain name.
-        :param pulumi.Input[_builtins.bool] public_plain_enable: Whether the public plain enabled.
+        :param pulumi.Input[_builtins.bool] public_plain_enable: Specifies whether the public plaintext access is enabled.
         :param pulumi.Input[_builtins.str] public_sasl_plaintext_address: The public sasl plaintext address.
         :param pulumi.Input[_builtins.str] public_sasl_plaintext_domain_name: The public sasl plaintext domain name.
-        :param pulumi.Input[_builtins.bool] public_sasl_plaintext_enable: Whether the public sasl plaintext enabled.
+        :param pulumi.Input[_builtins.bool] public_sasl_plaintext_enable: Specifies whether the public SASL plaintext access is enabled.
         :param pulumi.Input[_builtins.str] public_sasl_ssl_address: The public sasl ssl address.
         :param pulumi.Input[_builtins.str] public_sasl_ssl_domain_name: The public sasl ssl domain name.
-        :param pulumi.Input[_builtins.bool] public_sasl_ssl_enable: Whether the public sasl ssl enabled.
+        :param pulumi.Input[_builtins.bool] public_sasl_ssl_enable: Specifies whether the public SASL SSL access is enabled.
+               This parameter and `public_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         if private_plain_address is not None:
             pulumi.set(__self__, "private_plain_address", private_plain_address)
@@ -438,7 +649,9 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="privatePlainEnable")
     def private_plain_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the private plain enabled.
+        Specifies whether the private plaintext access is enabled.
+
+        > The private plaintext access and private SSL access cannot be disabled at the same time.
         """
         return pulumi.get(self, "private_plain_enable")
 
@@ -474,7 +687,7 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="privateSaslPlaintextEnable")
     def private_sasl_plaintext_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the private sasl plaintext enabled.
+        Specifies whether the private SASL plaintext access is enabled.
         """
         return pulumi.get(self, "private_sasl_plaintext_enable")
 
@@ -510,7 +723,8 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="privateSaslSslEnable")
     def private_sasl_ssl_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the private sasl ssl enabled.
+        Specifies whether the private SASL SSL access is enabled.  
+        This parameter and `private_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         return pulumi.get(self, "private_sasl_ssl_enable")
 
@@ -546,7 +760,7 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="publicPlainEnable")
     def public_plain_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the public plain enabled.
+        Specifies whether the public plaintext access is enabled.
         """
         return pulumi.get(self, "public_plain_enable")
 
@@ -582,7 +796,7 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="publicSaslPlaintextEnable")
     def public_sasl_plaintext_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the public sasl plaintext enabled.
+        Specifies whether the public SASL plaintext access is enabled.
         """
         return pulumi.get(self, "public_sasl_plaintext_enable")
 
@@ -618,7 +832,8 @@ class KafkaInstancePortProtocolArgs:
     @pulumi.getter(name="publicSaslSslEnable")
     def public_sasl_ssl_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Whether the public sasl ssl enabled.
+        Specifies whether the public SASL SSL access is enabled.
+        This parameter and `public_sasl_plaintext_enable` cannot be set to **true** at the same time.
         """
         return pulumi.get(self, "public_sasl_ssl_enable")
 
@@ -627,27 +842,24 @@ class KafkaInstancePortProtocolArgs:
         pulumi.set(self, "public_sasl_ssl_enable", value)
 
 
-if not MYPY:
-    class KafkaMessageDiagnosisTaskDiagnosisDimensionListArgsDict(TypedDict):
-        abnormal_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of abnormal items in this diagnosis dimension.
-        """
-        diagnosis_item_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgsDict']]]]
-        """
-        Indicates the diagnosis items.
-        The diagnosis_item_list structure is documented below.
-        """
-        failed_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the total number of failed items in this diagnosis dimension.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis item name.
-        """
-elif False:
-    KafkaMessageDiagnosisTaskDiagnosisDimensionListArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaMessageDiagnosisTaskDiagnosisDimensionListArgsDict(TypedDict):
+    abnormal_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of abnormal items in this diagnosis dimension.
+    """
+    diagnosis_item_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgsDict']]]]
+    """
+    Indicates the diagnosis items.
+    The diagnosis_item_list structure is documented below.
+    """
+    failed_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the total number of failed items in this diagnosis dimension.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis item name.
+    """
 
 @pulumi.input_type
 class KafkaMessageDiagnosisTaskDiagnosisDimensionListArgs:
@@ -722,40 +934,37 @@ class KafkaMessageDiagnosisTaskDiagnosisDimensionListArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgsDict(TypedDict):
-        advice_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict']]]]
-        """
-        Indicates the suggestions for diagnosis exceptions.
-        The conclusion structure is documented below.
-        """
-        broker_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Indicates the brokers affected by the diagnosis exceptions.
-        """
-        cause_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict']]]]
-        """
-        Indicates the diagnosis exception causes.
-        The conclusion structure is documented below.
-        """
-        failed_partitions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Indicates the partitions that failed to be diagnosed.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis item name.
-        """
-        partitions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Indicates the partitions affected by the diagnosis exceptions.
-        """
-        result: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the diagnosis result.
-        """
-elif False:
-    KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgsDict(TypedDict):
+    advice_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict']]]]
+    """
+    Indicates the suggestions for diagnosis exceptions.
+    The conclusion structure is documented below.
+    """
+    broker_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Indicates the brokers affected by the diagnosis exceptions.
+    """
+    cause_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict']]]]
+    """
+    Indicates the diagnosis exception causes.
+    The conclusion structure is documented below.
+    """
+    failed_partitions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Indicates the partitions that failed to be diagnosed.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis item name.
+    """
+    partitions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Indicates the partitions affected by the diagnosis exceptions.
+    """
+    result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the diagnosis result.
+    """
 
 @pulumi.input_type
 class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgs:
@@ -880,18 +1089,15 @@ class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListArgs:
         pulumi.set(self, "result", value)
 
 
-if not MYPY:
-    class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the diagnosis conclusion ID.
-        """
-        params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the diagnosis conclusion parameters.
-        """
-elif False:
-    KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the diagnosis conclusion ID.
+    """
+    params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the diagnosis conclusion parameters.
+    """
 
 @pulumi.input_type
 class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdArgs:
@@ -932,18 +1138,15 @@ class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListAdviceIdAr
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the diagnosis conclusion ID.
-        """
-        params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Indicates the diagnosis conclusion parameters.
-        """
-elif False:
-    KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the diagnosis conclusion ID.
+    """
+    params: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Indicates the diagnosis conclusion parameters.
+    """
 
 @pulumi.input_type
 class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArgs:
@@ -984,22 +1187,19 @@ class KafkaMessageDiagnosisTaskDiagnosisDimensionListDiagnosisItemListCauseIdArg
         pulumi.set(self, "params", value)
 
 
-if not MYPY:
-    class KafkaMessageProducePropertyListArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the feature name.
-        + **KEY**: Specifies the message key.
-        + **PARTITION** : Specifies the partition to which the message will be sent.
-        Changing this creates a new resource.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the feature value.
-        Changing this creates a new resource.
-        """
-elif False:
-    KafkaMessageProducePropertyListArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaMessageProducePropertyListArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the feature name.
+    + **KEY**: Specifies the message key.
+    + **PARTITION** : Specifies the partition to which the message will be sent.
+    Changing this creates a new resource.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the feature value.
+    Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class KafkaMessageProducePropertyListArgs:
@@ -1046,36 +1246,33 @@ class KafkaMessageProducePropertyListArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class KafkaPartitionReassignReassignmentArgsDict(TypedDict):
-        topic: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name. Changing this creates a new resource.
-        """
-        assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaPartitionReassignReassignmentAssignmentArgsDict']]]]
-        """
-        Specifies the manually specified assignment plan.
-        It's **required** in **manually** specified assignment. Changing this creates a new resource.
-        The assignment structure is documented below.
+class KafkaPartitionReassignReassignmentArgsDict(TypedDict):
+    topic: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name. Changing this creates a new resource.
+    """
+    assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['KafkaPartitionReassignReassignmentAssignmentArgsDict']]]]
+    """
+    Specifies the manually specified assignment plan.
+    It's **required** in **manually** specified assignment. Changing this creates a new resource.
+    The assignment structure is documented below.
 
-        > If manually specified assignment and automatic assignment are both specified, only **manually** specified assignment
-        will take effect.
+    > If manually specified assignment and automatic assignment are both specified, only **manually** specified assignment
+    will take effect.
 
-        <a name="reassignments_assignment_struct"></a>
-        The `assignment` block supports:
-        """
-        brokers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the integer list of brokers to which partitions are reassigned.
-        It's **required** in **automatic** assignment. Changing this creates a new resource.
-        """
-        replication_factor: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the replication factor, which can be specified in
-        **automatic** assignment. Changing this creates a new resource.
-        """
-elif False:
-    KafkaPartitionReassignReassignmentArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="reassignments_assignment_struct"></a>
+    The `assignment` block supports:
+    """
+    brokers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the integer list of brokers to which partitions are reassigned.
+    It's **required** in **automatic** assignment. Changing this creates a new resource.
+    """
+    replication_factor: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the replication factor, which can be specified in
+    **automatic** assignment. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class KafkaPartitionReassignReassignmentArgs:
@@ -1167,20 +1364,17 @@ class KafkaPartitionReassignReassignmentArgs:
         pulumi.set(self, "replication_factor", value)
 
 
-if not MYPY:
-    class KafkaPartitionReassignReassignmentAssignmentArgsDict(TypedDict):
-        partition: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the partition number in manual assignment.
-        It's actually **required** in **manual** assignment plan. Changing this creates a new resource.
-        """
-        partition_brokers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the integer list of brokers to be assigned to a partition in
-        manual assignment. It's actually **required** in **manual** assignment plan. Changing this creates a new resource.
-        """
-elif False:
-    KafkaPartitionReassignReassignmentAssignmentArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaPartitionReassignReassignmentAssignmentArgsDict(TypedDict):
+    partition: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the partition number in manual assignment.
+    It's actually **required** in **manual** assignment plan. Changing this creates a new resource.
+    """
+    partition_brokers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the integer list of brokers to be assigned to a partition in
+    manual assignment. It's actually **required** in **manual** assignment plan. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class KafkaPartitionReassignReassignmentAssignmentArgs:
@@ -1225,21 +1419,18 @@ class KafkaPartitionReassignReassignmentAssignmentArgs:
         pulumi.set(self, "partition_brokers", value)
 
 
-if not MYPY:
-    class KafkaPermissionsPolicyArgsDict(TypedDict):
-        access_policy: pulumi.Input[_builtins.str]
-        """
-        Specifies the permissions type. The value can be:
-        + **all**: publish and subscribe permissions.
-        + **pub**: publish permissions.
-        + **sub**: subscribe permissions.
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the username.
-        """
-elif False:
-    KafkaPermissionsPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class KafkaPermissionsPolicyArgsDict(TypedDict):
+    access_policy: pulumi.Input[_builtins.str]
+    """
+    Specifies the permissions type. The value can be:
+    + **all**: publish and subscribe permissions.
+    + **pub**: publish permissions.
+    + **sub**: subscribe permissions.
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the username.
+    """
 
 @pulumi.input_type
 class KafkaPermissionsPolicyArgs:
@@ -1284,21 +1475,18 @@ class KafkaPermissionsPolicyArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class KafkaTopicConfigArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration name.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the configuration value.
+class KafkaTopicConfigArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the configuration value.
 
-        > When `name` is **max.message.bytes**, `value` ranges from `0` to `10,485,760`.
-        When `name` is **message.timestamp.type**, `value` can be **LogAppendTime** and **CreateTime**.
-        """
-elif False:
-    KafkaTopicConfigArgsDict: TypeAlias = Mapping[str, Any]
+    > When `name` is **max.message.bytes**, `value` ranges from `0` to `10,485,760`.
+    When `name` is **message.timestamp.type**, `value` can be **LogAppendTime** and **CreateTime**.
+    """
 
 @pulumi.input_type
 class KafkaTopicConfigArgs:
@@ -1343,108 +1531,105 @@ class KafkaTopicConfigArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class Kafkav2SmartConnectTaskDestinationTaskArgsDict(TypedDict):
-        access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the access key used to access the OBS bucket.
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        agency_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        schema: Internal
-        """
-        consumer_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the consumer strategy of the smart connect task.
-        Value options:
-        + **latest**: Read the latest data.
-        + **earliest**: Read the earliest data.
+class Kafkav2SmartConnectTaskDestinationTaskArgsDict(TypedDict):
+    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the access key used to access the OBS bucket.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    agency_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    schema: Internal
+    """
+    consumer_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the consumer strategy of the smart connect task.
+    Value options:
+    + **latest**: Read the latest data.
+    + **earliest**: Read the earliest data.
 
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        deliver_time_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the deliver time interval of the smart connect task.
-        It's **required** when `destination_type` is **OBS_SINK**.
-        The value should be between `30` and `900`. Changing this parameter will create a new resource.
-        """
-        destination_file_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the destination file type of the smart connect task.
-        Only **TEXT** is supported. Changing this parameter will create a new resource.
-        """
-        flush_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the flush size.
-        """
-        key_converter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the key converter.
-        """
-        kv_delimiter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the kv delimiter.
-        """
-        obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the obs bucket name of the smart connect task.
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        obs_part_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the size of each file to be uploaded.
-        """
-        obs_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the obs path of the smart connect task.
-        Obs path is separated by a slash. Changing this parameter will create a new resource.
-        """
-        partition_format: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the time directory format of the smart connect task.
-        Value options: **yyyy**, **yyyy/MM**, **yyyy/MM/dd**, **yyyy/MM/dd/HH**, **yyyy/MM/dd/HH/mm**.
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        partitioner_class: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the partitioner class.
-        """
-        record_delimiter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the record delimiter of the smart connect task.
-        Value options: **,**, **;**, **|**, **\\n**.
-        Changing this parameter will create a new resource.
-        """
-        schema_generator_class: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the schema generator class.
-        """
-        secret_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the secret access key used to access the OBS bucket.
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        store_keys: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to dump keys.
-        Changing this parameter will create a new resource.
-        """
-        timezone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the time zone.
-        """
-        value_converter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the value converter.
-        """
-elif False:
-    Kafkav2SmartConnectTaskDestinationTaskArgsDict: TypeAlias = Mapping[str, Any]
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    deliver_time_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the deliver time interval of the smart connect task.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    The value should be between `30` and `900`. Changing this parameter will create a new resource.
+    """
+    destination_file_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the destination file type of the smart connect task.
+    Only **TEXT** is supported. Changing this parameter will create a new resource.
+    """
+    flush_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the flush size.
+    """
+    key_converter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the key converter.
+    """
+    kv_delimiter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the kv delimiter.
+    """
+    obs_bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the obs bucket name of the smart connect task.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    obs_part_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the size of each file to be uploaded.
+    """
+    obs_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the obs path of the smart connect task.
+    Obs path is separated by a slash. Changing this parameter will create a new resource.
+    """
+    partition_format: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the time directory format of the smart connect task.
+    Value options: **yyyy**, **yyyy/MM**, **yyyy/MM/dd**, **yyyy/MM/dd/HH**, **yyyy/MM/dd/HH/mm**.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    partitioner_class: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the partitioner class.
+    """
+    record_delimiter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the record delimiter of the smart connect task.
+    Value options: **,**, **;**, **|**, **\\n**.
+    Changing this parameter will create a new resource.
+    """
+    schema_generator_class: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the schema generator class.
+    """
+    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the secret access key used to access the OBS bucket.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    store_keys: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to dump keys.
+    Changing this parameter will create a new resource.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the time zone.
+    """
+    value_converter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the value converter.
+    """
 
 @pulumi.input_type
 class Kafkav2SmartConnectTaskDestinationTaskArgs:
@@ -1801,117 +1986,114 @@ class Kafkav2SmartConnectTaskDestinationTaskArgs:
         pulumi.set(self, "value_converter", value)
 
 
-if not MYPY:
-    class Kafkav2SmartConnectTaskSourceTaskArgsDict(TypedDict):
-        compression_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the compression algorithm to use for copying messages.
-        Valid values are **none**, **gzip**, **snappy**, **lz4** and **zstd**.
-        Changing this parameter will create a new resource.
+class Kafkav2SmartConnectTaskSourceTaskArgsDict(TypedDict):
+    compression_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the compression algorithm to use for copying messages.
+    Valid values are **none**, **gzip**, **snappy**, **lz4** and **zstd**.
+    Changing this parameter will create a new resource.
 
-        <a name="dms_destination_task"></a>
-        The `destination_task` block supports:
-        """
-        consumer_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the consumer strategy of the smart connect task.
-        Value options:
-        + **latest**: Read the latest data.
-        + **earliest**: Read the earliest data.
+    <a name="dms_destination_task"></a>
+    The `destination_task` block supports:
+    """
+    consumer_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the consumer strategy of the smart connect task.
+    Value options:
+    + **latest**: Read the latest data.
+    + **earliest**: Read the earliest data.
 
-        It's **required** when `destination_type` is **OBS_SINK**.
-        Changing this parameter will create a new resource.
-        """
-        current_instance_alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the current Kafka instance alias.
-        Changing this parameter will create a new resource.
-        """
-        direction: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the sync direction. Valid values are:
-        + **pull**: Copy the data of the peer Kafka instance to the current Kafka instance.
-        + **push**: Copy the data of the current Kafka instance to the peer Kafka instance.
-        + **two-way**: Copy the data of the Kafka instances at both ends in both directions.
+    It's **required** when `destination_type` is **OBS_SINK**.
+    Changing this parameter will create a new resource.
+    """
+    current_instance_alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the current Kafka instance alias.
+    Changing this parameter will create a new resource.
+    """
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the sync direction. Valid values are:
+    + **pull**: Copy the data of the peer Kafka instance to the current Kafka instance.
+    + **push**: Copy the data of the current Kafka instance to the peer Kafka instance.
+    + **two-way**: Copy the data of the Kafka instances at both ends in both directions.
 
-        Changing this parameter will create a new resource.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka user password.
-        It's **required** when `security_protocol` is **SASL_SSL**. Changing this parameter will create a new resource.
-        """
-        peer_instance_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the peer Kafka instance address list.
-        Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka user password.
+    It's **required** when `security_protocol` is **SASL_SSL**. Changing this parameter will create a new resource.
+    """
+    peer_instance_addresses: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the peer Kafka instance address list.
+    Changing this parameter will create a new resource.
 
-        > Exactly one of `peer_instance_id` and `peer_instance_address` should be specified.
-        """
-        peer_instance_alias: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka instance alias.
-        Changing this parameter will create a new resource.
-        """
-        peer_instance_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka instance ID.
-        Changing this parameter will create a new resource.
-        """
-        provenance_header_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the message header contains the message source.
-        Changing this parameter will create a new resource.
-        """
-        rename_topic_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to rename the topic. If true, will add the
-        alias of the source Kafka instance before the target topic name to form a new name of the target topic.
-        Changing this parameter will create a new resource.
-        """
-        replication_factor: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of topic replicas. The value of this parameter
-        cannot exceed the number of brokers in the peer instance. Changing this parameter will create a new resource.
-        """
-        sasl_mechanism: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka authentication mode.
-        Changing this parameter will create a new resource.
-        """
-        security_protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka authentication. Valid values are:
-        + **SASL_SSL**: SASL_SSL is enabled.
-        + **PLAINTEXT**: SASL_SSL is disabled.
+    > Exactly one of `peer_instance_id` and `peer_instance_address` should be specified.
+    """
+    peer_instance_alias: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka instance alias.
+    Changing this parameter will create a new resource.
+    """
+    peer_instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka instance ID.
+    Changing this parameter will create a new resource.
+    """
+    provenance_header_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the message header contains the message
+    source. Changing this parameter will create a new resource.
+    """
+    rename_topic_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to rename the topic. If true, will add the
+    alias of the source Kafka instance before the target topic name to form a new name of the target topic.
+    Changing this parameter will create a new resource.
+    """
+    replication_factor: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of topic replicas. The value of this parameter
+    cannot exceed the number of brokers in the peer instance. Changing this parameter will create a new resource.
+    """
+    sasl_mechanism: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka authentication mode.
+    Changing this parameter will create a new resource.
+    """
+    security_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka authentication. Valid values are:
+    + **SASL_SSL**: SASL_SSL is enabled.
+    + **PLAINTEXT**: SASL_SSL is disabled.
 
-        Changing this parameter will create a new resource.
-        """
-        sync_consumer_offsets_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to sync the consumption progress.
-        Changing this parameter will create a new resource.
-        """
-        task_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of data replication tasks.
-        If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure here.
-        Changing this parameter will create a new resource.
-        """
-        topics_mappings: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the topic mapping string list, which is used to customize
-        the target topic name, e.g., topic-sc-1:topic-sc-2. Changing this parameter will create a new resource.
+    Changing this parameter will create a new resource.
+    """
+    sync_consumer_offsets_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to sync the consumption progress.
+    Changing this parameter will create a new resource.
+    """
+    task_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of data replication tasks.
+    If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure
+    here. Changing this parameter will create a new resource.
+    """
+    topics_mappings: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the topic mapping string list, which is used to customize
+    the target topic name, e.g., topic-sc-1:topic-sc-2. Changing this parameter will create a new resource.
 
-        > When `rename_topic_enabled` is true, `topics_mapping` can not be specified.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the peer Kafka user name.
-        It's **required** when `security_protocol` is **SASL_SSL**. Changing this parameter will create a new resource.
-        """
-elif False:
-    Kafkav2SmartConnectTaskSourceTaskArgsDict: TypeAlias = Mapping[str, Any]
+    > When `rename_topic_enabled` is true, `topics_mapping` can not be specified.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the peer Kafka user name.
+    It's **required** when `security_protocol` is **SASL_SSL**. Changing this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class Kafkav2SmartConnectTaskSourceTaskArgs:
@@ -1965,8 +2147,8 @@ class Kafkav2SmartConnectTaskSourceTaskArgs:
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] peer_instance_id: Specifies the peer Kafka instance ID.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.bool] provenance_header_enabled: Specifies whether the message header contains the message source.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.bool] provenance_header_enabled: Specifies whether the message header contains the message
+               source. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.bool] rename_topic_enabled: Specifies whether to rename the topic. If true, will add the
                alias of the source Kafka instance before the target topic name to form a new name of the target topic.
                Changing this parameter will create a new resource.
@@ -1982,8 +2164,8 @@ class Kafkav2SmartConnectTaskSourceTaskArgs:
         :param pulumi.Input[_builtins.bool] sync_consumer_offsets_enabled: Specifies whether to sync the consumption progress.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] task_num: Specifies the number of data replication tasks.
-               If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure here.
-               Changing this parameter will create a new resource.
+               If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure
+               here. Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] topics_mappings: Specifies the topic mapping string list, which is used to customize
                the target topic name, e.g., topic-sc-1:topic-sc-2. Changing this parameter will create a new resource.
                
@@ -2149,8 +2331,8 @@ class Kafkav2SmartConnectTaskSourceTaskArgs:
     @pulumi.getter(name="provenanceHeaderEnabled")
     def provenance_header_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies whether the message header contains the message source.
-        Changing this parameter will create a new resource.
+        Specifies whether the message header contains the message
+        source. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "provenance_header_enabled")
 
@@ -2232,8 +2414,8 @@ class Kafkav2SmartConnectTaskSourceTaskArgs:
     def task_num(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         Specifies the number of data replication tasks.
-        If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure here.
-        Changing this parameter will create a new resource.
+        If the `direction` is set to **two-way**, the actual number of tasks will be twice the number of tasks you configure
+        here. Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "task_num")
 
@@ -2270,26 +2452,23 @@ class Kafkav2SmartConnectTaskSourceTaskArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class RabbitmqExchangeBindingArgsDict(TypedDict):
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the destination.
-        """
-        destination_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the destination type.
-        """
-        properties_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the properties key.
-        """
-        routing_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the routin key.
-        """
-elif False:
-    RabbitmqExchangeBindingArgsDict: TypeAlias = Mapping[str, Any]
+class RabbitmqExchangeBindingArgsDict(TypedDict):
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the destination.
+    """
+    destination_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the destination type.
+    """
+    properties_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the properties key.
+    """
+    routing_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the routin key.
+    """
 
 @pulumi.input_type
 class RabbitmqExchangeBindingArgs:
@@ -2362,27 +2541,24 @@ class RabbitmqExchangeBindingArgs:
         pulumi.set(self, "routing_key", value)
 
 
-if not MYPY:
-    class RabbitmqQueueConsumerDetailArgsDict(TypedDict):
-        ack_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether manual acknowledgement is enabled on the consumer client.
-        """
-        channel_details: NotRequired[pulumi.Input[Sequence[pulumi.Input['RabbitmqQueueConsumerDetailChannelDetailArgsDict']]]]
-        """
-        Indicates the consumer connections.
-        The channel_details structure is documented below.
-        """
-        consumer_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the consumer tag.
-        """
-        prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the consumer client preset value.
-        """
-elif False:
-    RabbitmqQueueConsumerDetailArgsDict: TypeAlias = Mapping[str, Any]
+class RabbitmqQueueConsumerDetailArgsDict(TypedDict):
+    ack_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether manual acknowledgement is enabled on the consumer client.
+    """
+    channel_details: NotRequired[pulumi.Input[Sequence[pulumi.Input['RabbitmqQueueConsumerDetailChannelDetailArgsDict']]]]
+    """
+    Indicates the consumer connections.
+    The channel_details structure is documented below.
+    """
+    consumer_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the consumer tag.
+    """
+    prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the consumer client preset value.
+    """
 
 @pulumi.input_type
 class RabbitmqQueueConsumerDetailArgs:
@@ -2457,36 +2633,33 @@ class RabbitmqQueueConsumerDetailArgs:
         pulumi.set(self, "prefetch_count", value)
 
 
-if not MYPY:
-    class RabbitmqQueueConsumerDetailChannelDetailArgsDict(TypedDict):
-        connection_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the connection details.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the queue name.
-        Changing this creates a new resource.
-        """
-        number: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the channel quantity.
-        """
-        peer_host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the IP address of the connected consumer.
-        """
-        peer_port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the port of the process of the connected consumer.
-        """
-        user: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the consumer username. If ACL is enabled, the real username will be returned, otherwise null will
-        be returned.
-        """
-elif False:
-    RabbitmqQueueConsumerDetailChannelDetailArgsDict: TypeAlias = Mapping[str, Any]
+class RabbitmqQueueConsumerDetailChannelDetailArgsDict(TypedDict):
+    connection_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the connection details.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the queue name.
+    Changing this creates a new resource.
+    """
+    number: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the channel quantity.
+    """
+    peer_host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the IP address of the connected consumer.
+    """
+    peer_port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the port of the process of the connected consumer.
+    """
+    user: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the consumer username. If ACL is enabled, the real username will be returned, otherwise null will
+    be returned.
+    """
 
 @pulumi.input_type
 class RabbitmqQueueConsumerDetailChannelDetailArgs:
@@ -2595,30 +2768,27 @@ class RabbitmqQueueConsumerDetailChannelDetailArgs:
         pulumi.set(self, "user", value)
 
 
-if not MYPY:
-    class RabbitmqQueueQueueBindingArgsDict(TypedDict):
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the binding target name.
-        """
-        destination_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the binding target type.
-        """
-        properties_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the URL-translated routing key.
-        """
-        routing_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the binding key-value.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the exchange name.
-        """
-elif False:
-    RabbitmqQueueQueueBindingArgsDict: TypeAlias = Mapping[str, Any]
+class RabbitmqQueueQueueBindingArgsDict(TypedDict):
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the binding target name.
+    """
+    destination_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the binding target type.
+    """
+    properties_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the URL-translated routing key.
+    """
+    routing_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the binding key-value.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the exchange name.
+    """
 
 @pulumi.input_type
 class RabbitmqQueueQueueBindingArgs:
@@ -2707,26 +2877,23 @@ class RabbitmqQueueQueueBindingArgs:
         pulumi.set(self, "source", value)
 
 
-if not MYPY:
-    class RabbitmqUserVhostArgsDict(TypedDict):
-        conf: pulumi.Input[_builtins.str]
-        """
-        Specifies the granting resource permissions using regular expressions.
-        """
-        read: pulumi.Input[_builtins.str]
-        """
-        Specifies the granting resource read permissions using regular expressions.
-        """
-        vhost: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the virtual host to be granted permissions for.
-        """
-        write: pulumi.Input[_builtins.str]
-        """
-        Specifies the granting resource write permissions using regular expressions.
-        """
-elif False:
-    RabbitmqUserVhostArgsDict: TypeAlias = Mapping[str, Any]
+class RabbitmqUserVhostArgsDict(TypedDict):
+    conf: pulumi.Input[_builtins.str]
+    """
+    Specifies the granting resource permissions using regular expressions.
+    """
+    read: pulumi.Input[_builtins.str]
+    """
+    Specifies the granting resource read permissions using regular expressions.
+    """
+    vhost: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the virtual host to be granted permissions for.
+    """
+    write: pulumi.Input[_builtins.str]
+    """
+    Specifies the granting resource write permissions using regular expressions.
+    """
 
 @pulumi.input_type
 class RabbitmqUserVhostArgs:
@@ -2795,22 +2962,19 @@ class RabbitmqUserVhostArgs:
         pulumi.set(self, "write", value)
 
 
-if not MYPY:
-    class RocketmqConsumptionVerifyResendResultArgsDict(TypedDict):
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error code.
-        """
-        error_message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error message.
-        """
-        message_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the message ID.
-        """
-elif False:
-    RocketmqConsumptionVerifyResendResultArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqConsumptionVerifyResendResultArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error code.
+    """
+    error_message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error message.
+    """
+    message_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the message ID.
+    """
 
 @pulumi.input_type
 class RocketmqConsumptionVerifyResendResultArgs:
@@ -2867,22 +3031,19 @@ class RocketmqConsumptionVerifyResendResultArgs:
         pulumi.set(self, "message_id", value)
 
 
-if not MYPY:
-    class RocketmqDeadLetterResendResendResultArgsDict(TypedDict):
-        error_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error code.
-        """
-        error_message: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the error message.
-        """
-        message_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the message ID.
-        """
-elif False:
-    RocketmqDeadLetterResendResendResultArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqDeadLetterResendResendResultArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error code.
+    """
+    error_message: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the error message.
+    """
+    message_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the message ID.
+    """
 
 @pulumi.input_type
 class RocketmqDeadLetterResendResendResultArgs:
@@ -2939,20 +3100,17 @@ class RocketmqDeadLetterResendResendResultArgs:
         pulumi.set(self, "message_id", value)
 
 
-if not MYPY:
-    class RocketmqInstanceConfigArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the config name.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the config value.
+class RocketmqInstanceConfigArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the config name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the config value.
 
-        > When `name` is **fileReservedTime**, `value` ranges from `1` to `720` and unit is **hour**. Defaults to `48`.
-        """
-elif False:
-    RocketmqInstanceConfigArgsDict: TypeAlias = Mapping[str, Any]
+    > When `name` is **fileReservedTime**, `value` ranges from `1` to `720` and unit is **hour**. Defaults to `48`.
+    """
 
 @pulumi.input_type
 class RocketmqInstanceConfigArgs:
@@ -2995,27 +3153,24 @@ class RocketmqInstanceConfigArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class RocketmqInstanceCrossVpcAccessArgsDict(TypedDict):
-        advertised_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The advertised IP Address or domain name.
-        """
-        lisenter_ip: NotRequired[pulumi.Input[_builtins.str]]
-        listener_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The listener IP address.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port number.
-        """
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port ID associated with the address.
-        """
-elif False:
-    RocketmqInstanceCrossVpcAccessArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqInstanceCrossVpcAccessArgsDict(TypedDict):
+    advertised_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The advertised IP Address or domain name.
+    """
+    lisenter_ip: NotRequired[pulumi.Input[_builtins.str]]
+    listener_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The listener IP address.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port number.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID associated with the address.
+    """
 
 @pulumi.input_type
 class RocketmqInstanceCrossVpcAccessArgs:
@@ -3104,18 +3259,15 @@ class RocketmqInstanceCrossVpcAccessArgs:
         pulumi.set(self, "port_id", value)
 
 
-if not MYPY:
-    class RocketmqMessageSendPropertyListArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of the property.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the value of the property.
-        """
-elif False:
-    RocketmqMessageSendPropertyListArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqMessageSendPropertyListArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the property.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the value of the property.
+    """
 
 @pulumi.input_type
 class RocketmqMessageSendPropertyListArgs:
@@ -3154,31 +3306,28 @@ class RocketmqMessageSendPropertyListArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskBindingArgsDict(TypedDict):
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the message target. Changing this creates a new resource.
-        """
-        destination_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the message target type.
-        Changing this creates a new resource.
-        """
-        routing_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the routing key. Changing this creates a new resource.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the message source. Changing this creates a new resource.
-        """
-        vhost: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the virtual host name. Changing this creates a new resource.
-        """
-elif False:
-    RocketmqMigrationTaskBindingArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqMigrationTaskBindingArgsDict(TypedDict):
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the message target. Changing this creates a new resource.
+    """
+    destination_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the message target type.
+    Changing this creates a new resource.
+    """
+    routing_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the routing key. Changing this creates a new resource.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the message source. Changing this creates a new resource.
+    """
+    vhost: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the virtual host name. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskBindingArgs:
@@ -3269,30 +3418,27 @@ class RocketmqMigrationTaskBindingArgs:
         pulumi.set(self, "vhost", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskExchangeArgsDict(TypedDict):
-        durable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable data persistence.
-        Changing this creates a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the switch name. Changing this creates a new resource.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the exchange type. Changing this creates a new resource.
+class RocketmqMigrationTaskExchangeArgsDict(TypedDict):
+    durable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable data persistence.
+    Changing this creates a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the switch name. Changing this creates a new resource.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the exchange type. Changing this creates a new resource.
 
-        <a name="RocketMQ_migration_task_bindings"></a>
-        The `bindings` block supports:
-        """
-        vhost: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the virtual host name. Changing this creates a new resource.
-        """
-elif False:
-    RocketmqMigrationTaskExchangeArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="RocketMQ_migration_task_bindings"></a>
+    The `bindings` block supports:
+    """
+    vhost: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the virtual host name. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskExchangeArgs:
@@ -3373,23 +3519,20 @@ class RocketmqMigrationTaskExchangeArgs:
         pulumi.set(self, "vhost", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskQueueArgsDict(TypedDict):
-        durable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable data persistence.
-        Changing this creates a new resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the switch name. Changing this creates a new resource.
-        """
-        vhost: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the virtual host name. Changing this creates a new resource.
-        """
-elif False:
-    RocketmqMigrationTaskQueueArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqMigrationTaskQueueArgsDict(TypedDict):
+    durable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable data persistence.
+    Changing this creates a new resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the switch name. Changing this creates a new resource.
+    """
+    vhost: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the virtual host name. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskQueueArgs:
@@ -3448,53 +3591,50 @@ class RocketmqMigrationTaskQueueArgs:
         pulumi.set(self, "vhost", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskSubscriptionGroupArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the name of a consumer group.
-        Changing this creates a new resource.
-        """
-        consume_broadcast_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable broadcast.
-        Changing this creates a new resource.
-        """
-        consume_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable consumption.
-        Changing this creates a new resource.
-        """
-        consume_from_min_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable consumption from the earliest
-        offset. Changing this creates a new resource.
-        """
-        notify_consumerids_changed_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to notify changes of consumer IDs.
-        Changing this creates a new resource.
-        """
-        retry_max_times: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum number of consumption retries.
-        Changing this creates a new resource.
-        """
-        retry_queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of retry queues.
-        Changing this creates a new resource.
-        """
-        which_broker_when_consume_slow: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the ID of the broker selected for slow
-        consumption. Changing this creates a new resource.
+class RocketmqMigrationTaskSubscriptionGroupArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of a consumer group.
+    Changing this creates a new resource.
+    """
+    consume_broadcast_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable broadcast.
+    Changing this creates a new resource.
+    """
+    consume_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable consumption.
+    Changing this creates a new resource.
+    """
+    consume_from_min_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable consumption from the earliest
+    offset. Changing this creates a new resource.
+    """
+    notify_consumerids_changed_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to notify changes of consumer IDs.
+    Changing this creates a new resource.
+    """
+    retry_max_times: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum number of consumption retries.
+    Changing this creates a new resource.
+    """
+    retry_queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of retry queues.
+    Changing this creates a new resource.
+    """
+    which_broker_when_consume_slow: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the ID of the broker selected for slow
+    consumption. Changing this creates a new resource.
 
-        <a name="RocketMQ_migration_task_vhosts"></a>
-        The `vhosts` block supports:
-        """
-elif False:
-    RocketmqMigrationTaskSubscriptionGroupArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="RocketMQ_migration_task_vhosts"></a>
+    The `vhosts` block supports:
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskSubscriptionGroupArgs:
@@ -3652,46 +3792,43 @@ class RocketmqMigrationTaskSubscriptionGroupArgs:
         pulumi.set(self, "which_broker_when_consume_slow", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskTopicConfigArgsDict(TypedDict):
-        topic_name: pulumi.Input[_builtins.str]
-        """
-        Specifies the topic name. Changing this creates a new resource.
-        """
-        order: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether a message is an ordered message.
-        Changing this creates a new resource.
-        """
-        perm: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of permission. Changing this creates a new resource.
-        """
-        read_queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of read queues.
-        Changing this creates a new resource.
-        """
-        topic_filter_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the filter type of a topic.
-        Value options: **SINGLE_TAG**, **MULTI_TAG**. Changing this creates a new resource.
-        """
-        topic_sys_flag: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the system flag of a topic.
-        Changing this creates a new resource.
-        """
-        write_queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of write queues.
-        Changing this creates a new resource.
+class RocketmqMigrationTaskTopicConfigArgsDict(TypedDict):
+    topic_name: pulumi.Input[_builtins.str]
+    """
+    Specifies the topic name. Changing this creates a new resource.
+    """
+    order: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether a message is an ordered message.
+    Changing this creates a new resource.
+    """
+    perm: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of permission. Changing this creates a new resource.
+    """
+    read_queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of read queues.
+    Changing this creates a new resource.
+    """
+    topic_filter_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the filter type of a topic.
+    Value options: **SINGLE_TAG**, **MULTI_TAG**. Changing this creates a new resource.
+    """
+    topic_sys_flag: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the system flag of a topic.
+    Changing this creates a new resource.
+    """
+    write_queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of write queues.
+    Changing this creates a new resource.
 
-        <a name="RocketMQ_migration_task_subscription_groups"></a>
-        The `subscription_groups` block supports:
-        """
-elif False:
-    RocketmqMigrationTaskTopicConfigArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="RocketMQ_migration_task_subscription_groups"></a>
+    The `subscription_groups` block supports:
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskTopicConfigArgs:
@@ -3827,14 +3964,11 @@ class RocketmqMigrationTaskTopicConfigArgs:
         pulumi.set(self, "write_queue_num", value)
 
 
-if not MYPY:
-    class RocketmqMigrationTaskVhostArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the switch name. Changing this creates a new resource.
-        """
-elif False:
-    RocketmqMigrationTaskVhostArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqMigrationTaskVhostArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the switch name. Changing this creates a new resource.
+    """
 
 @pulumi.input_type
 class RocketmqMigrationTaskVhostArgs:
@@ -3859,25 +3993,22 @@ class RocketmqMigrationTaskVhostArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class RocketmqTopicBrokerArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the broker.
+class RocketmqTopicBrokerArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the broker.
 
-        <a name="DmsRocketMQTopic_QueueRef"></a>
-        The `queues` block supports:
-        """
-        read_queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the read queues number of the broker. It's useless when create a topic.
-        """
-        write_queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the read queues number of the broker. It's useless when create a topic.
-        """
-elif False:
-    RocketmqTopicBrokerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DmsRocketMQTopic_QueueRef"></a>
+    The `queues` block supports:
+    """
+    read_queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the read queues number of the broker. It's useless when create a topic.
+    """
+    write_queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the read queues number of the broker. It's useless when create a topic.
+    """
 
 @pulumi.input_type
 class RocketmqTopicBrokerArgs:
@@ -3940,18 +4071,15 @@ class RocketmqTopicBrokerArgs:
         pulumi.set(self, "write_queue_num", value)
 
 
-if not MYPY:
-    class RocketmqTopicQueueArgsDict(TypedDict):
-        broker: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the associated broker.
-        """
-        queue_num: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of the queues.
-        """
-elif False:
-    RocketmqTopicQueueArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqTopicQueueArgsDict(TypedDict):
+    broker: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the associated broker.
+    """
+    queue_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of the queues.
+    """
 
 @pulumi.input_type
 class RocketmqTopicQueueArgs:
@@ -3992,19 +4120,16 @@ class RocketmqTopicQueueArgs:
         pulumi.set(self, "queue_num", value)
 
 
-if not MYPY:
-    class RocketmqUserGroupPermArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of a topic or consumer group.
-        """
-        perm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the permissions of the topic or consumer group.
-        Value options: **PUB|SUB**, **PUB**, **SUB**, **DENY**.
-        """
-elif False:
-    RocketmqUserGroupPermArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqUserGroupPermArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of a topic or consumer group.
+    """
+    perm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the permissions of the topic or consumer group.
+    Value options: **PUB|SUB**, **PUB**, **SUB**, **DENY**.
+    """
 
 @pulumi.input_type
 class RocketmqUserGroupPermArgs:
@@ -4047,19 +4172,16 @@ class RocketmqUserGroupPermArgs:
         pulumi.set(self, "perm", value)
 
 
-if not MYPY:
-    class RocketmqUserTopicPermArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of a topic or consumer group.
-        """
-        perm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the permissions of the topic or consumer group.
-        Value options: **PUB|SUB**, **PUB**, **SUB**, **DENY**.
-        """
-elif False:
-    RocketmqUserTopicPermArgsDict: TypeAlias = Mapping[str, Any]
+class RocketmqUserTopicPermArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of a topic or consumer group.
+    """
+    perm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the permissions of the topic or consumer group.
+    Value options: **PUB|SUB**, **PUB**, **SUB**, **DENY**.
+    """
 
 @pulumi.input_type
 class RocketmqUserTopicPermArgs:
@@ -4100,5 +4222,554 @@ class RocketmqUserTopicPermArgs:
     @perm.setter
     def perm(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "perm", value)
+
+
+class SmartConnectorValidateTaskArgsDict(TypedDict):
+    bootstrap_servers: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the address of the peer instance.  
+    Multiple addresses are separated by commas (,).
+    """
+    cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias of the peer instance.
+    """
+    compression_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the compression algorithm of the Smart Connect task.  
+    The valid values are as follows:
+    + **none**
+    + **gzip**
+    + **snappy**
+    + **lz4**
+    + **zstd**
+    """
+    consumer_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the startup offset of the Smart Connect task.  
+    The valid values are as follows:
+    + **latest**
+    + **earliest**
+    """
+    current_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the alias of the current instance.
+    """
+    direction: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the synchronization direction of the Smart Connect task.  
+    The valid values are as follows:
+    + **push**
+    + **pull**
+    + **two-way**
+    """
+    instance_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the peer instance.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the password of the peer instance.
+    """
+    provenance_header_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to add source header.  
+    Defaults to **false**.
+    """
+    rename_topic_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to rename topic.  
+    Defaults to **false**. This parameter cannot together with `topics_mapping`.
+    """
+    replication_factor: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of replicas of the Smart Connect task.
+    """
+    sasl_mechanism: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication mechanism of the peer instance.  
+    The valid values are as follows:
+    + **SCRAM-SHA-512**
+    + **PLAIN**
+    """
+    security_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the authentication method of the peer instance.  
+    The valid values are as follows:
+    + **SASL_SSL**
+    + **PLAINTEXT**
+    + **SASL_PLAINTEXT**
+    """
+    sync_consumer_offsets_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to synchronize consumption
+    progress. Defaults to **false**.
+    """
+    task_num: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of tasks of the data replication.
+    """
+    topics_mapping: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the topics mapping of the Smart Connect task.  
+    The format is `source_topic_name:target_topic_name`, multiple topics are separated by commas (,).
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the username of the peer instance.
+    """
+
+@pulumi.input_type
+class SmartConnectorValidateTaskArgs:
+    def __init__(__self__, *,
+                 bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 compression_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 consumer_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 current_cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 direction: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 provenance_header_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 rename_topic_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
+                 sasl_mechanism: Optional[pulumi.Input[_builtins.str]] = None,
+                 security_protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 sync_consumer_offsets_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 task_num: Optional[pulumi.Input[_builtins.int]] = None,
+                 topics_mapping: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] bootstrap_servers: Specifies the address of the peer instance.  
+               Multiple addresses are separated by commas (,).
+        :param pulumi.Input[_builtins.str] cluster_name: Specifies the alias of the peer instance.
+        :param pulumi.Input[_builtins.str] compression_type: Specifies the compression algorithm of the Smart Connect task.  
+               The valid values are as follows:
+               + **none**
+               + **gzip**
+               + **snappy**
+               + **lz4**
+               + **zstd**
+        :param pulumi.Input[_builtins.str] consumer_strategy: Specifies the startup offset of the Smart Connect task.  
+               The valid values are as follows:
+               + **latest**
+               + **earliest**
+        :param pulumi.Input[_builtins.str] current_cluster_name: Specifies the alias of the current instance.
+        :param pulumi.Input[_builtins.str] direction: Specifies the synchronization direction of the Smart Connect task.  
+               The valid values are as follows:
+               + **push**
+               + **pull**
+               + **two-way**
+        :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the peer instance.
+        :param pulumi.Input[_builtins.str] password: Specifies the password of the peer instance.
+        :param pulumi.Input[_builtins.bool] provenance_header_enabled: Specifies whether to add source header.  
+               Defaults to **false**.
+        :param pulumi.Input[_builtins.bool] rename_topic_enabled: Specifies whether to rename topic.  
+               Defaults to **false**. This parameter cannot together with `topics_mapping`.
+        :param pulumi.Input[_builtins.int] replication_factor: Specifies the number of replicas of the Smart Connect task.
+        :param pulumi.Input[_builtins.str] sasl_mechanism: Specifies the authentication mechanism of the peer instance.  
+               The valid values are as follows:
+               + **SCRAM-SHA-512**
+               + **PLAIN**
+        :param pulumi.Input[_builtins.str] security_protocol: Specifies the authentication method of the peer instance.  
+               The valid values are as follows:
+               + **SASL_SSL**
+               + **PLAINTEXT**
+               + **SASL_PLAINTEXT**
+        :param pulumi.Input[_builtins.bool] sync_consumer_offsets_enabled: Specifies whether to synchronize consumption
+               progress. Defaults to **false**.
+        :param pulumi.Input[_builtins.int] task_num: Specifies the number of tasks of the data replication.
+        :param pulumi.Input[_builtins.str] topics_mapping: Specifies the topics mapping of the Smart Connect task.  
+               The format is `source_topic_name:target_topic_name`, multiple topics are separated by commas (,).
+        :param pulumi.Input[_builtins.str] user_name: Specifies the username of the peer instance.
+        """
+        if bootstrap_servers is not None:
+            pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if compression_type is not None:
+            pulumi.set(__self__, "compression_type", compression_type)
+        if consumer_strategy is not None:
+            pulumi.set(__self__, "consumer_strategy", consumer_strategy)
+        if current_cluster_name is not None:
+            pulumi.set(__self__, "current_cluster_name", current_cluster_name)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if provenance_header_enabled is not None:
+            pulumi.set(__self__, "provenance_header_enabled", provenance_header_enabled)
+        if rename_topic_enabled is not None:
+            pulumi.set(__self__, "rename_topic_enabled", rename_topic_enabled)
+        if replication_factor is not None:
+            pulumi.set(__self__, "replication_factor", replication_factor)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+        if sync_consumer_offsets_enabled is not None:
+            pulumi.set(__self__, "sync_consumer_offsets_enabled", sync_consumer_offsets_enabled)
+        if task_num is not None:
+            pulumi.set(__self__, "task_num", task_num)
+        if topics_mapping is not None:
+            pulumi.set(__self__, "topics_mapping", topics_mapping)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the address of the peer instance.  
+        Multiple addresses are separated by commas (,).
+        """
+        return pulumi.get(self, "bootstrap_servers")
+
+    @bootstrap_servers.setter
+    def bootstrap_servers(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bootstrap_servers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the alias of the peer instance.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="compressionType")
+    def compression_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the compression algorithm of the Smart Connect task.  
+        The valid values are as follows:
+        + **none**
+        + **gzip**
+        + **snappy**
+        + **lz4**
+        + **zstd**
+        """
+        return pulumi.get(self, "compression_type")
+
+    @compression_type.setter
+    def compression_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "compression_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="consumerStrategy")
+    def consumer_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the startup offset of the Smart Connect task.  
+        The valid values are as follows:
+        + **latest**
+        + **earliest**
+        """
+        return pulumi.get(self, "consumer_strategy")
+
+    @consumer_strategy.setter
+    def consumer_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "consumer_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="currentClusterName")
+    def current_cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the alias of the current instance.
+        """
+        return pulumi.get(self, "current_cluster_name")
+
+    @current_cluster_name.setter
+    def current_cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "current_cluster_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def direction(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the synchronization direction of the Smart Connect task.  
+        The valid values are as follows:
+        + **push**
+        + **pull**
+        + **two-way**
+        """
+        return pulumi.get(self, "direction")
+
+    @direction.setter
+    def direction(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "direction", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the peer instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the password of the peer instance.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="provenanceHeaderEnabled")
+    def provenance_header_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to add source header.  
+        Defaults to **false**.
+        """
+        return pulumi.get(self, "provenance_header_enabled")
+
+    @provenance_header_enabled.setter
+    def provenance_header_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "provenance_header_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="renameTopicEnabled")
+    def rename_topic_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to rename topic.  
+        Defaults to **false**. This parameter cannot together with `topics_mapping`.
+        """
+        return pulumi.get(self, "rename_topic_enabled")
+
+    @rename_topic_enabled.setter
+    def rename_topic_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "rename_topic_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of replicas of the Smart Connect task.
+        """
+        return pulumi.get(self, "replication_factor")
+
+    @replication_factor.setter
+    def replication_factor(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "replication_factor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the authentication mechanism of the peer instance.  
+        The valid values are as follows:
+        + **SCRAM-SHA-512**
+        + **PLAIN**
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @sasl_mechanism.setter
+    def sasl_mechanism(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "sasl_mechanism", value)
+
+    @_builtins.property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the authentication method of the peer instance.  
+        The valid values are as follows:
+        + **SASL_SSL**
+        + **PLAINTEXT**
+        + **SASL_PLAINTEXT**
+        """
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "security_protocol", value)
+
+    @_builtins.property
+    @pulumi.getter(name="syncConsumerOffsetsEnabled")
+    def sync_consumer_offsets_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies whether to synchronize consumption
+        progress. Defaults to **false**.
+        """
+        return pulumi.get(self, "sync_consumer_offsets_enabled")
+
+    @sync_consumer_offsets_enabled.setter
+    def sync_consumer_offsets_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "sync_consumer_offsets_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="taskNum")
+    def task_num(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of tasks of the data replication.
+        """
+        return pulumi.get(self, "task_num")
+
+    @task_num.setter
+    def task_num(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "task_num", value)
+
+    @_builtins.property
+    @pulumi.getter(name="topicsMapping")
+    def topics_mapping(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the topics mapping of the Smart Connect task.  
+        The format is `source_topic_name:target_topic_name`, multiple topics are separated by commas (,).
+        """
+        return pulumi.get(self, "topics_mapping")
+
+    @topics_mapping.setter
+    def topics_mapping(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "topics_mapping", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the username of the peer instance.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_name", value)
+
+
+class TopicMessageBatchDeletePartitionArgsDict(TypedDict):
+    offset: pulumi.Input[_builtins.int]
+    """
+    Specifies the offset of the message to be deleted.
+
+    > The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset
+    is `2` and the entered offset is `5`, the messages whose offset ranges from `2` to `4` will be deleted.
+    """
+    partition: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of the partition.
+    """
+
+@pulumi.input_type
+class TopicMessageBatchDeletePartitionArgs:
+    def __init__(__self__, *,
+                 offset: pulumi.Input[_builtins.int],
+                 partition: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] offset: Specifies the offset of the message to be deleted.
+               
+               > The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset
+               is `2` and the entered offset is `5`, the messages whose offset ranges from `2` to `4` will be deleted.
+        :param pulumi.Input[_builtins.int] partition: Specifies the number of the partition.
+        """
+        pulumi.set(__self__, "offset", offset)
+        pulumi.set(__self__, "partition", partition)
+
+    @_builtins.property
+    @pulumi.getter
+    def offset(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the offset of the message to be deleted.
+
+        > The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset
+        is `2` and the entered offset is `5`, the messages whose offset ranges from `2` to `4` will be deleted.
+        """
+        return pulumi.get(self, "offset")
+
+    @offset.setter
+    def offset(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "offset", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> pulumi.Input[_builtins.int]:
+        """
+        Specifies the number of the partition.
+        """
+        return pulumi.get(self, "partition")
+
+    @partition.setter
+    def partition(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "partition", value)
+
+
+class TopicMessageBatchDeleteResultArgsDict(TypedDict):
+    error_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The error code if the operation failed.
+    """
+    partition: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of the partition.
+    """
+    result: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The operation result.
+    """
+
+@pulumi.input_type
+class TopicMessageBatchDeleteResultArgs:
+    def __init__(__self__, *,
+                 error_code: Optional[pulumi.Input[_builtins.str]] = None,
+                 partition: Optional[pulumi.Input[_builtins.int]] = None,
+                 result: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] error_code: The error code if the operation failed.
+        :param pulumi.Input[_builtins.int] partition: Specifies the number of the partition.
+        :param pulumi.Input[_builtins.str] result: The operation result.
+        """
+        if error_code is not None:
+            pulumi.set(__self__, "error_code", error_code)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
+        if result is not None:
+            pulumi.set(__self__, "result", result)
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The error code if the operation failed.
+        """
+        return pulumi.get(self, "error_code")
+
+    @error_code.setter
+    def error_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "error_code", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def partition(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the number of the partition.
+        """
+        return pulumi.get(self, "partition")
+
+    @partition.setter
+    def partition(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "partition", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def result(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The operation result.
+        """
+        return pulumi.get(self, "result")
+
+    @result.setter
+    def result(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "result", value)
 
 

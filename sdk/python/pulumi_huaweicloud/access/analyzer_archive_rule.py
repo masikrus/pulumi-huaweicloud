@@ -87,17 +87,19 @@ class AnalyzerArchiveRuleArgs:
 @pulumi.input_type
 class _AnalyzerArchiveRuleState:
     def __init__(__self__, *,
+                 analyzer_archive_rule_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  analyzer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['AnalyzerArchiveRuleFilterArgs']]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AnalyzerArchiveRule resources.
         """
+        if analyzer_archive_rule_urn is not None:
+            pulumi.set(__self__, "analyzer_archive_rule_urn", analyzer_archive_rule_urn)
         if analyzer_id is not None:
             pulumi.set(__self__, "analyzer_id", analyzer_id)
         if created_at is not None:
@@ -112,8 +114,15 @@ class _AnalyzerArchiveRuleState:
             pulumi.set(__self__, "region", region)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="AnalyzerArchiveRuleUrn")
+    def analyzer_archive_rule_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "analyzer_archive_rule_urn")
+
+    @analyzer_archive_rule_urn.setter
+    def analyzer_archive_rule_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "analyzer_archive_rule_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="analyzerId")
@@ -178,17 +187,8 @@ class _AnalyzerArchiveRuleState:
     def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:access/analyzerArchiveRule:AnalyzerArchiveRule")
+@pulumi.type_token("huaweicloud:Access/analyzerArchiveRule:AnalyzerArchiveRule")
 class AnalyzerArchiveRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -202,6 +202,7 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
                  __props__=None):
         """
         Create a AnalyzerArchiveRule resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -213,6 +214,7 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AnalyzerArchiveRule resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AnalyzerArchiveRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -251,11 +253,11 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
             __props__.__dict__["filters"] = filters
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
+            __props__.__dict__["analyzer_archive_rule_urn"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["urn"] = None
         super(AnalyzerArchiveRule, __self__).__init__(
-            'huaweicloud:access/analyzerArchiveRule:AnalyzerArchiveRule',
+            'huaweicloud:Access/analyzerArchiveRule:AnalyzerArchiveRule',
             resource_name,
             __props__,
             opts)
@@ -264,14 +266,14 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            analyzer_archive_rule_urn: Optional[pulumi.Input[_builtins.str]] = None,
             analyzer_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AnalyzerArchiveRuleFilterArgs', 'AnalyzerArchiveRuleFilterArgsDict']]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'AnalyzerArchiveRule':
+            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'AnalyzerArchiveRule':
         """
         Get an existing AnalyzerArchiveRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -284,6 +286,7 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
 
         __props__ = _AnalyzerArchiveRuleState.__new__(_AnalyzerArchiveRuleState)
 
+        __props__.__dict__["analyzer_archive_rule_urn"] = analyzer_archive_rule_urn
         __props__.__dict__["analyzer_id"] = analyzer_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enable_force_new"] = enable_force_new
@@ -291,8 +294,12 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["updated_at"] = updated_at
-        __props__.__dict__["urn"] = urn
         return AnalyzerArchiveRule(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="AnalyzerArchiveRuleUrn")
+    def analyzer_archive_rule_urn(self) -> pulumi.Output[_builtins.str]:
+        return pulumi.get(self, "analyzer_archive_rule_urn")
 
     @_builtins.property
     @pulumi.getter(name="analyzerId")
@@ -328,9 +335,4 @@ class AnalyzerArchiveRule(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "updated_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        return pulumi.get(self, "urn")
 

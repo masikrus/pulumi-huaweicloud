@@ -29,10 +29,14 @@ class DomainV1Args:
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a DomainV1 resource.
+
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project that the resource belongs.
         :param pulumi.Input[_builtins.str] service_area: schema: Required
+        :param pulumi.Input[_builtins.str] status: The status of the domain.
         """
         pulumi.set(__self__, "sources", sources)
         pulumi.set(__self__, "type", type)
@@ -48,6 +52,8 @@ class DomainV1Args:
             pulumi.set(__self__, "name", name)
         if service_area is not None:
             pulumi.set(__self__, "service_area", service_area)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -99,6 +105,9 @@ class DomainV1Args:
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The enterprise project that the resource belongs.
+        """
         return pulumi.get(self, "enterprise_project_id")
 
     @enterprise_project_id.setter
@@ -128,6 +137,18 @@ class DomainV1Args:
 
     @_builtins.property
     @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "tags")
 
@@ -149,12 +170,18 @@ class _DomainV1State:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input['DomainV1SourceArgs']]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DomainV1 resources.
-        :param pulumi.Input[_builtins.str] domain_name: schema: Internal
+
+        :param pulumi.Input[_builtins.str] cname: The CNAME of the domain.
+        :param pulumi.Input[_builtins.str] domain_name: The name of the domain.
+        :param pulumi.Input[_builtins.str] domain_status: The status of the domain.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project that the resource belongs.
         :param pulumi.Input[_builtins.str] service_area: schema: Required
+        :param pulumi.Input[_builtins.str] status: The status of the domain.
         """
         if cache_settings is not None:
             pulumi.set(__self__, "cache_settings", cache_settings)
@@ -176,6 +203,8 @@ class _DomainV1State:
             pulumi.set(__self__, "service_area", service_area)
         if sources is not None:
             pulumi.set(__self__, "sources", sources)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -193,6 +222,9 @@ class _DomainV1State:
     @_builtins.property
     @pulumi.getter
     def cname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The CNAME of the domain.
+        """
         return pulumi.get(self, "cname")
 
     @cname.setter
@@ -212,7 +244,7 @@ class _DomainV1State:
     @pulumi.getter(name="domainName")
     def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        schema: Internal
+        The name of the domain.
         """
         return pulumi.get(self, "domain_name")
 
@@ -223,6 +255,9 @@ class _DomainV1State:
     @_builtins.property
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The status of the domain.
+        """
         return pulumi.get(self, "domain_status")
 
     @domain_status.setter
@@ -241,6 +276,9 @@ class _DomainV1State:
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The enterprise project that the resource belongs.
+        """
         return pulumi.get(self, "enterprise_project_id")
 
     @enterprise_project_id.setter
@@ -279,6 +317,18 @@ class _DomainV1State:
 
     @_builtins.property
     @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "tags")
 
@@ -309,14 +359,18 @@ class DomainV1(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainV1SourceArgs', 'DomainV1SourceArgsDict']]]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Create a DomainV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project that the resource belongs.
         :param pulumi.Input[_builtins.str] service_area: schema: Required
+        :param pulumi.Input[_builtins.str] status: The status of the domain.
         """
         ...
     @overload
@@ -326,6 +380,7 @@ class DomainV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a DomainV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DomainV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,6 +403,7 @@ class DomainV1(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_area: Optional[pulumi.Input[_builtins.str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainV1SourceArgs', 'DomainV1SourceArgsDict']]]]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -368,6 +424,7 @@ class DomainV1(pulumi.CustomResource):
             if sources is None and not opts.urn:
                 raise TypeError("Missing required property 'sources'")
             __props__.__dict__["sources"] = sources
+            __props__.__dict__["status"] = status
             __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -395,6 +452,7 @@ class DomainV1(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             service_area: Optional[pulumi.Input[_builtins.str]] = None,
             sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainV1SourceArgs', 'DomainV1SourceArgsDict']]]]] = None,
+            status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'DomainV1':
         """
@@ -404,8 +462,12 @@ class DomainV1(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] domain_name: schema: Internal
+        :param pulumi.Input[_builtins.str] cname: The CNAME of the domain.
+        :param pulumi.Input[_builtins.str] domain_name: The name of the domain.
+        :param pulumi.Input[_builtins.str] domain_status: The status of the domain.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project that the resource belongs.
         :param pulumi.Input[_builtins.str] service_area: schema: Required
+        :param pulumi.Input[_builtins.str] status: The status of the domain.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -421,6 +483,7 @@ class DomainV1(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["service_area"] = service_area
         __props__.__dict__["sources"] = sources
+        __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         return DomainV1(resource_name, opts=opts, __props__=__props__)
@@ -433,6 +496,9 @@ class DomainV1(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def cname(self) -> pulumi.Output[_builtins.str]:
+        """
+        The CNAME of the domain.
+        """
         return pulumi.get(self, "cname")
 
     @_builtins.property
@@ -444,13 +510,16 @@ class DomainV1(pulumi.CustomResource):
     @pulumi.getter(name="domainName")
     def domain_name(self) -> pulumi.Output[_builtins.str]:
         """
-        schema: Internal
+        The name of the domain.
         """
         return pulumi.get(self, "domain_name")
 
     @_builtins.property
     @pulumi.getter(name="domainStatus")
     def domain_status(self) -> pulumi.Output[_builtins.str]:
+        """
+        The status of the domain.
+        """
         return pulumi.get(self, "domain_status")
 
     @_builtins.property
@@ -461,6 +530,9 @@ class DomainV1(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The enterprise project that the resource belongs.
+        """
         return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
@@ -480,6 +552,14 @@ class DomainV1(pulumi.CustomResource):
     @pulumi.getter
     def sources(self) -> pulumi.Output[Sequence['outputs.DomainV1Source']]:
         return pulumi.get(self, "sources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[_builtins.str]:
+        """
+        The status of the domain.
+        """
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter

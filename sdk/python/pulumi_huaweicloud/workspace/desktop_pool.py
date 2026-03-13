@@ -32,6 +32,7 @@ class DesktopPoolArgs:
                  autoscale_policy: Optional[pulumi.Input['DesktopPoolAutoscalePolicyArgs']] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]]] = None,
+                 data_volumes_orders: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  desktop_name_policy_id: Optional[pulumi.Input[_builtins.str]] = None,
                  disconnected_retention_period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -47,6 +48,7 @@ class DesktopPoolArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DesktopPool resource.
+
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the desktop pool.
         :param pulumi.Input[_builtins.str] image_type: Specifies the image type of the desktop pool.  
                The valid values are as follows:
@@ -76,6 +78,16 @@ class DesktopPoolArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]] data_volumes: Specifies the list of the data volume configurations of
                the desktop pool.
                The data_volumes structure is documented below.
+               
+               > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+               an existing disk, the old disk will be deleted first before being added.
+               <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+               according to the order in the script. There is no guarantee that the disk you want to delete will be
+               the one you delete. Please delete them using other methods.
+               
+               > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+               <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
+        :param pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]] data_volumes_orders: The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the desktop pool.
         :param pulumi.Input[_builtins.str] desktop_name_policy_id: Specifies the ID of the policy to generate the desktop name.
         :param pulumi.Input[_builtins.int] disconnected_retention_period: Specifies the desktops and users disconnection retention period
@@ -90,8 +102,8 @@ class DesktopPoolArgs:
         :param pulumi.Input[_builtins.bool] in_maintenance_mode: Specifies whether to enable maintenance mode of the desktop pool.  
                Defaults to **false**.
                
-               <a name="desktop_pool_volume"></a>
-               The `root_volume` block supports:
+               <a name="desktop_pool_data_volumes"></a>
+               The `data_volumes` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the desktop pool.  
                The name valid length is limited from `1` to `15`, only Chinese and English characters, digits and hyphens (-) are allowed.
         :param pulumi.Input[_builtins.str] ou_name: Specifies the OU name corresponding to the AD server.  
@@ -119,6 +131,8 @@ class DesktopPoolArgs:
             pulumi.set(__self__, "availability_zone", availability_zone)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
+        if data_volumes_orders is not None:
+            pulumi.set(__self__, "data_volumes_orders", data_volumes_orders)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if desktop_name_policy_id is not None:
@@ -289,12 +303,33 @@ class DesktopPoolArgs:
         Specifies the list of the data volume configurations of
         the desktop pool.
         The data_volumes structure is documented below.
+
+        > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+        an existing disk, the old disk will be deleted first before being added.
+        <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+        according to the order in the script. There is no guarantee that the disk you want to delete will be
+        the one you delete. Please delete them using other methods.
+
+        > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+        <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
         """
         return pulumi.get(self, "data_volumes")
 
     @data_volumes.setter
     def data_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]]]):
         pulumi.set(self, "data_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataVolumesOrders")
+    def data_volumes_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]]:
+        """
+        The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
+        """
+        return pulumi.get(self, "data_volumes_orders")
+
+    @data_volumes_orders.setter
+    def data_volumes_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]]):
+        pulumi.set(self, "data_volumes_orders", value)
 
     @_builtins.property
     @pulumi.getter
@@ -378,8 +413,8 @@ class DesktopPoolArgs:
         Specifies whether to enable maintenance mode of the desktop pool.  
         Defaults to **false**.
 
-        <a name="desktop_pool_volume"></a>
-        The `root_volume` block supports:
+        <a name="desktop_pool_data_volumes"></a>
+        The `data_volumes` block supports:
         """
         return pulumi.get(self, "in_maintenance_mode")
 
@@ -473,6 +508,7 @@ class _DesktopPoolState:
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  created_time: Optional[pulumi.Input[_builtins.str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]]] = None,
+                 data_volumes_orders: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  desktop_name_policy_id: Optional[pulumi.Input[_builtins.str]] = None,
                  desktop_used: Optional[pulumi.Input[_builtins.int]] = None,
@@ -502,6 +538,7 @@ class _DesktopPoolState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DesktopPool resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DesktopPoolAuthorizedObjectArgs']]] authorized_objects: Specifies the list of the users or user groups
                to be authorized.
                The authorized_objects structure is documented below.
@@ -513,6 +550,16 @@ class _DesktopPoolState:
         :param pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]] data_volumes: Specifies the list of the data volume configurations of
                the desktop pool.
                The data_volumes structure is documented below.
+               
+               > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+               an existing disk, the old disk will be deleted first before being added.
+               <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+               according to the order in the script. There is no guarantee that the disk you want to delete will be
+               the one you delete. Please delete them using other methods.
+               
+               > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+               <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
+        :param pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]] data_volumes_orders: The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the desktop pool.
         :param pulumi.Input[_builtins.str] desktop_name_policy_id: Specifies the ID of the policy to generate the desktop name.
         :param pulumi.Input[_builtins.int] desktop_used: The number of desktops associated with the users under the desktop pool.
@@ -537,8 +584,8 @@ class _DesktopPoolState:
         :param pulumi.Input[_builtins.bool] in_maintenance_mode: Specifies whether to enable maintenance mode of the desktop pool.  
                Defaults to **false**.
                
-               <a name="desktop_pool_volume"></a>
-               The `root_volume` block supports:
+               <a name="desktop_pool_data_volumes"></a>
+               The `data_volumes` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the desktop pool.  
                The name valid length is limited from `1` to `15`, only Chinese and English characters, digits and hyphens (-) are allowed.
         :param pulumi.Input[_builtins.str] ou_name: Specifies the OU name corresponding to the AD server.  
@@ -582,6 +629,8 @@ class _DesktopPoolState:
             pulumi.set(__self__, "created_time", created_time)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
+        if data_volumes_orders is not None:
+            pulumi.set(__self__, "data_volumes_orders", data_volumes_orders)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if desktop_name_policy_id is not None:
@@ -696,12 +745,33 @@ class _DesktopPoolState:
         Specifies the list of the data volume configurations of
         the desktop pool.
         The data_volumes structure is documented below.
+
+        > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+        an existing disk, the old disk will be deleted first before being added.
+        <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+        according to the order in the script. There is no guarantee that the disk you want to delete will be
+        the one you delete. Please delete them using other methods.
+
+        > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+        <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
         """
         return pulumi.get(self, "data_volumes")
 
     @data_volumes.setter
     def data_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumeArgs']]]]):
         pulumi.set(self, "data_volumes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataVolumesOrders")
+    def data_volumes_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]]:
+        """
+        The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
+        """
+        return pulumi.get(self, "data_volumes_orders")
+
+    @data_volumes_orders.setter
+    def data_volumes_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DesktopPoolDataVolumesOrderArgs']]]]):
+        pulumi.set(self, "data_volumes_orders", value)
 
     @_builtins.property
     @pulumi.getter
@@ -872,8 +942,8 @@ class _DesktopPoolState:
         Specifies whether to enable maintenance mode of the desktop pool.  
         Defaults to **false**.
 
-        <a name="desktop_pool_volume"></a>
-        The `root_volume` block supports:
+        <a name="desktop_pool_data_volumes"></a>
+        The `data_volumes` block supports:
         """
         return pulumi.get(self, "in_maintenance_mode")
 
@@ -1067,6 +1137,7 @@ class DesktopPool(pulumi.CustomResource):
                  autoscale_policy: Optional[pulumi.Input[Union['DesktopPoolAutoscalePolicyArgs', 'DesktopPoolAutoscalePolicyArgsDict']]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumeArgs', 'DesktopPoolDataVolumeArgsDict']]]]] = None,
+                 data_volumes_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumesOrderArgs', 'DesktopPoolDataVolumesOrderArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  desktop_name_policy_id: Optional[pulumi.Input[_builtins.str]] = None,
                  disconnected_retention_period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1111,17 +1182,17 @@ class DesktopPool(pulumi.CustomResource):
         test = huaweicloud.workspace.DesktopPool("test",
             security_groups=[{
                 "id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in security_group_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in security_group_ids.items()]],
             data_volumes=[{
                 "type": "SAS",
                 "size": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in data_volume_sizes]],
+            } for entry in [{"key": k, "value": v} for k, v in data_volume_sizes.items()]],
             authorized_objects=[{
                 "object_id": entry["value"]["objectId"],
                 "object_type": entry["value"]["objectType"],
                 "object_name": entry["value"]["objectName"],
                 "user_group": entry["value"]["userGroup"],
-            } for entry in [{"key": k, "value": v} for k, v in authorized_object_list]],
+            } for entry in [{"key": k, "value": v} for k, v in authorized_object_list.items()]],
             name=desktop_pool_name,
             type="DYNAMIC",
             size=1,
@@ -1141,8 +1212,6 @@ class DesktopPool(pulumi.CustomResource):
 
         The desktop pool can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/desktopPool:DesktopPool test <id>
         ```
@@ -1150,34 +1219,12 @@ class DesktopPool(pulumi.CustomResource):
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `vpc_id`, `image_type`, `tags`, `ou_name`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_desktop_pool" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vpc_id, image_type, tags, ou_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1191,6 +1238,16 @@ class DesktopPool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumeArgs', 'DesktopPoolDataVolumeArgsDict']]]] data_volumes: Specifies the list of the data volume configurations of
                the desktop pool.
                The data_volumes structure is documented below.
+               
+               > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+               an existing disk, the old disk will be deleted first before being added.
+               <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+               according to the order in the script. There is no guarantee that the disk you want to delete will be
+               the one you delete. Please delete them using other methods.
+               
+               > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+               <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumesOrderArgs', 'DesktopPoolDataVolumesOrderArgsDict']]]] data_volumes_orders: The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the desktop pool.
         :param pulumi.Input[_builtins.str] desktop_name_policy_id: Specifies the ID of the policy to generate the desktop name.
         :param pulumi.Input[_builtins.int] disconnected_retention_period: Specifies the desktops and users disconnection retention period
@@ -1210,8 +1267,8 @@ class DesktopPool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] in_maintenance_mode: Specifies whether to enable maintenance mode of the desktop pool.  
                Defaults to **false**.
                
-               <a name="desktop_pool_volume"></a>
-               The `root_volume` block supports:
+               <a name="desktop_pool_data_volumes"></a>
+               The `data_volumes` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the desktop pool.  
                The name valid length is limited from `1` to `15`, only Chinese and English characters, digits and hyphens (-) are allowed.
         :param pulumi.Input[_builtins.str] ou_name: Specifies the OU name corresponding to the AD server.  
@@ -1267,17 +1324,17 @@ class DesktopPool(pulumi.CustomResource):
         test = huaweicloud.workspace.DesktopPool("test",
             security_groups=[{
                 "id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in security_group_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in security_group_ids.items()]],
             data_volumes=[{
                 "type": "SAS",
                 "size": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in data_volume_sizes]],
+            } for entry in [{"key": k, "value": v} for k, v in data_volume_sizes.items()]],
             authorized_objects=[{
                 "object_id": entry["value"]["objectId"],
                 "object_type": entry["value"]["objectType"],
                 "object_name": entry["value"]["objectName"],
                 "user_group": entry["value"]["userGroup"],
-            } for entry in [{"key": k, "value": v} for k, v in authorized_object_list]],
+            } for entry in [{"key": k, "value": v} for k, v in authorized_object_list.items()]],
             name=desktop_pool_name,
             type="DYNAMIC",
             size=1,
@@ -1297,8 +1354,6 @@ class DesktopPool(pulumi.CustomResource):
 
         The desktop pool can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/desktopPool:DesktopPool test <id>
         ```
@@ -1306,34 +1361,12 @@ class DesktopPool(pulumi.CustomResource):
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `vpc_id`, `image_type`, `tags`, `ou_name`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_workspace_desktop_pool" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              vpc_id, image_type, tags, ou_name,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DesktopPoolArgs args: The arguments to use to populate this resource's properties.
@@ -1354,6 +1387,7 @@ class DesktopPool(pulumi.CustomResource):
                  autoscale_policy: Optional[pulumi.Input[Union['DesktopPoolAutoscalePolicyArgs', 'DesktopPoolAutoscalePolicyArgsDict']]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumeArgs', 'DesktopPoolDataVolumeArgsDict']]]]] = None,
+                 data_volumes_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumesOrderArgs', 'DesktopPoolDataVolumesOrderArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  desktop_name_policy_id: Optional[pulumi.Input[_builtins.str]] = None,
                  disconnected_retention_period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1387,6 +1421,7 @@ class DesktopPool(pulumi.CustomResource):
             __props__.__dict__["autoscale_policy"] = autoscale_policy
             __props__.__dict__["availability_zone"] = availability_zone
             __props__.__dict__["data_volumes"] = data_volumes
+            __props__.__dict__["data_volumes_orders"] = data_volumes_orders
             __props__.__dict__["description"] = description
             __props__.__dict__["desktop_name_policy_id"] = desktop_name_policy_id
             __props__.__dict__["disconnected_retention_period"] = disconnected_retention_period
@@ -1444,6 +1479,7 @@ class DesktopPool(pulumi.CustomResource):
             availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
             created_time: Optional[pulumi.Input[_builtins.str]] = None,
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumeArgs', 'DesktopPoolDataVolumeArgsDict']]]]] = None,
+            data_volumes_orders: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumesOrderArgs', 'DesktopPoolDataVolumesOrderArgsDict']]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             desktop_name_policy_id: Optional[pulumi.Input[_builtins.str]] = None,
             desktop_used: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1489,6 +1525,16 @@ class DesktopPool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumeArgs', 'DesktopPoolDataVolumeArgsDict']]]] data_volumes: Specifies the list of the data volume configurations of
                the desktop pool.
                The data_volumes structure is documented below.
+               
+               > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+               an existing disk, the old disk will be deleted first before being added.
+               <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+               according to the order in the script. There is no guarantee that the disk you want to delete will be
+               the one you delete. Please delete them using other methods.
+               
+               > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+               <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DesktopPoolDataVolumesOrderArgs', 'DesktopPoolDataVolumesOrderArgsDict']]]] data_volumes_orders: The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the desktop pool.
         :param pulumi.Input[_builtins.str] desktop_name_policy_id: Specifies the ID of the policy to generate the desktop name.
         :param pulumi.Input[_builtins.int] desktop_used: The number of desktops associated with the users under the desktop pool.
@@ -1513,8 +1559,8 @@ class DesktopPool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] in_maintenance_mode: Specifies whether to enable maintenance mode of the desktop pool.  
                Defaults to **false**.
                
-               <a name="desktop_pool_volume"></a>
-               The `root_volume` block supports:
+               <a name="desktop_pool_data_volumes"></a>
+               The `data_volumes` block supports:
         :param pulumi.Input[_builtins.str] name: Specifies the name of the desktop pool.  
                The name valid length is limited from `1` to `15`, only Chinese and English characters, digits and hyphens (-) are allowed.
         :param pulumi.Input[_builtins.str] ou_name: Specifies the OU name corresponding to the AD server.  
@@ -1557,6 +1603,7 @@ class DesktopPool(pulumi.CustomResource):
         __props__.__dict__["availability_zone"] = availability_zone
         __props__.__dict__["created_time"] = created_time
         __props__.__dict__["data_volumes"] = data_volumes
+        __props__.__dict__["data_volumes_orders"] = data_volumes_orders
         __props__.__dict__["description"] = description
         __props__.__dict__["desktop_name_policy_id"] = desktop_name_policy_id
         __props__.__dict__["desktop_used"] = desktop_used
@@ -1629,8 +1676,25 @@ class DesktopPool(pulumi.CustomResource):
         Specifies the list of the data volume configurations of
         the desktop pool.
         The data_volumes structure is documented below.
+
+        > 1. Updating this parameter only adds or deletes disks, it does not expand the disk's capacity. If you modify
+        an existing disk, the old disk will be deleted first before being added.
+        <br/>2. When multiple disks of the same type and size exist, if you delete disks, they will be deleted
+        according to the order in the script. There is no guarantee that the disk you want to delete will be
+        the one you delete. Please delete them using other methods.
+
+        > 1. Currently, only one disk can be deleted or added at a time during the update phase.
+        <br/>2. Before adding the disks, please ensure that all desktops in the desktop pool are running.
         """
         return pulumi.get(self, "data_volumes")
+
+    @_builtins.property
+    @pulumi.getter(name="dataVolumesOrders")
+    def data_volumes_orders(self) -> pulumi.Output[Sequence['outputs.DesktopPoolDataVolumesOrder']]:
+        """
+        The origin list of data volume configuration that used to reorder the 'data_volumes' parameter.
+        """
+        return pulumi.get(self, "data_volumes_orders")
 
     @_builtins.property
     @pulumi.getter
@@ -1749,8 +1813,8 @@ class DesktopPool(pulumi.CustomResource):
         Specifies whether to enable maintenance mode of the desktop pool.  
         Defaults to **false**.
 
-        <a name="desktop_pool_volume"></a>
-        The `root_volume` block supports:
+        <a name="desktop_pool_data_volumes"></a>
+        The `data_volumes` block supports:
         """
         return pulumi.get(self, "in_maintenance_mode")
 

@@ -24,6 +24,7 @@ class VirtualInterfaceAccepterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VirtualInterfaceAccepter resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action on virtual interfaces created by other tenants.
                Valid values are **ACCEPTED** and **REJECTED**.
                
@@ -94,6 +95,7 @@ class _VirtualInterfaceAccepterState:
                  virtual_interface_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VirtualInterfaceAccepter resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action on virtual interfaces created by other tenants.
                Valid values are **ACCEPTED** and **REJECTED**.
                
@@ -158,7 +160,7 @@ class _VirtualInterfaceAccepterState:
         pulumi.set(self, "virtual_interface_id", value)
 
 
-@pulumi.type_token("huaweicloud:dc/virtualInterfaceAccepter:VirtualInterfaceAccepter")
+@pulumi.type_token("huaweicloud:Dc/virtualInterfaceAccepter:VirtualInterfaceAccepter")
 class VirtualInterfaceAccepter(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -185,6 +187,7 @@ class VirtualInterfaceAccepter(pulumi.CustomResource):
             virtual_interface_id=virtual_interface_id,
             action="ACCEPTED")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +227,7 @@ class VirtualInterfaceAccepter(pulumi.CustomResource):
             action="ACCEPTED")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param VirtualInterfaceAccepterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,7 +263,7 @@ class VirtualInterfaceAccepter(pulumi.CustomResource):
                 raise TypeError("Missing required property 'virtual_interface_id'")
             __props__.__dict__["virtual_interface_id"] = virtual_interface_id
         super(VirtualInterfaceAccepter, __self__).__init__(
-            'huaweicloud:dc/virtualInterfaceAccepter:VirtualInterfaceAccepter',
+            'huaweicloud:Dc/virtualInterfaceAccepter:VirtualInterfaceAccepter',
             resource_name,
             __props__,
             opts)

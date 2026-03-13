@@ -27,6 +27,7 @@ class ResourceRecorderArgs:
                  smn_channel: Optional[pulumi.Input['ResourceRecorderSmnChannelArgs']] = None):
         """
         The set of arguments for constructing a ResourceRecorder resource.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the IAM agency name which must include permissions
                for sending notifications through SMN and for writing data into OBS.
         :param pulumi.Input['ResourceRecorderSelectorArgs'] selector: Specifies configurations of resource selector.
@@ -115,6 +116,7 @@ class _ResourceRecorderState:
                  smn_channel: Optional[pulumi.Input['ResourceRecorderSmnChannelArgs']] = None):
         """
         Input properties used for looking up and filtering ResourceRecorder resources.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the IAM agency name which must include permissions
                for sending notifications through SMN and for writing data into OBS.
         :param pulumi.Input['ResourceRecorderObsChannelArgs'] obs_channel: Specifies configurations of the OBS bucket used for data dumping.
@@ -196,7 +198,7 @@ class _ResourceRecorderState:
         pulumi.set(self, "smn_channel", value)
 
 
-@pulumi.type_token("huaweicloud:rms/resourceRecorder:ResourceRecorder")
+@pulumi.type_token("huaweicloud:Rms/resourceRecorder:ResourceRecorder")
 class ResourceRecorder(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -269,11 +271,10 @@ class ResourceRecorder(pulumi.CustomResource):
 
         The recorder can be imported using **any string** as the resource ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceRecorder:ResourceRecorder test recorder
+        $ pulumi import huaweicloud:Rms/resourceRecorder:ResourceRecorder test recorder
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -359,11 +360,10 @@ class ResourceRecorder(pulumi.CustomResource):
 
         The recorder can be imported using **any string** as the resource ID, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceRecorder:ResourceRecorder test recorder
+        $ pulumi import huaweicloud:Rms/resourceRecorder:ResourceRecorder test recorder
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceRecorderArgs args: The arguments to use to populate this resource's properties.
@@ -402,7 +402,7 @@ class ResourceRecorder(pulumi.CustomResource):
             __props__.__dict__["selector"] = selector
             __props__.__dict__["smn_channel"] = smn_channel
         super(ResourceRecorder, __self__).__init__(
-            'huaweicloud:rms/resourceRecorder:ResourceRecorder',
+            'huaweicloud:Rms/resourceRecorder:ResourceRecorder',
             resource_name,
             __props__,
             opts)

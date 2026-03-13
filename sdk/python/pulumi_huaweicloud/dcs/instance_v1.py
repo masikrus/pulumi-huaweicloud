@@ -69,11 +69,12 @@ class InstanceV1Args:
                  ssl_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceV1WhitelistArgs']]]] = None):
         """
         The set of arguments for constructing a InstanceV1 resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: schema: Required
         :param pulumi.Input[_builtins.str] flavor: schema: Required
         """
@@ -652,11 +653,11 @@ class InstanceV1Args:
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "transparent_client_ip_enable")
 
     @transparent_client_ip_enable.setter
-    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "transparent_client_ip_enable", value)
 
     @_builtins.property
@@ -749,7 +750,7 @@ class _InstanceV1State:
                  subnet_name: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  used_memory: Optional[pulumi.Input[_builtins.int]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -759,6 +760,7 @@ class _InstanceV1State:
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceV1WhitelistArgs']]]] = None):
         """
         Input properties used for looking up and filtering InstanceV1 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: schema: Required
         :param pulumi.Input[_builtins.str] flavor: schema: Required
         """
@@ -1585,11 +1587,11 @@ class _InstanceV1State:
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def transparent_client_ip_enable(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "transparent_client_ip_enable")
 
     @transparent_client_ip_enable.setter
-    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def transparent_client_ip_enable(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "transparent_client_ip_enable", value)
 
     @_builtins.property
@@ -1711,13 +1713,14 @@ class InstanceV1(pulumi.CustomResource):
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceV1WhitelistArgs', 'InstanceV1WhitelistArgsDict']]]]] = None,
                  __props__=None):
         """
         Create a InstanceV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: schema: Required
@@ -1731,6 +1734,7 @@ class InstanceV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a InstanceV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param InstanceV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1793,7 +1797,7 @@ class InstanceV1(pulumi.CustomResource):
                  subnet_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+                 transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  whitelist_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  whitelists: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceV1WhitelistArgs', 'InstanceV1WhitelistArgsDict']]]]] = None,
@@ -1970,7 +1974,7 @@ class InstanceV1(pulumi.CustomResource):
             subnet_name: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             template_id: Optional[pulumi.Input[_builtins.str]] = None,
-            transparent_client_ip_enable: Optional[pulumi.Input[_builtins.bool]] = None,
+            transparent_client_ip_enable: Optional[pulumi.Input[_builtins.str]] = None,
             used_memory: Optional[pulumi.Input[_builtins.int]] = None,
             user_id: Optional[pulumi.Input[_builtins.str]] = None,
             user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2429,7 +2433,7 @@ class InstanceV1(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="transparentClientIpEnable")
-    def transparent_client_ip_enable(self) -> pulumi.Output[_builtins.bool]:
+    def transparent_client_ip_enable(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "transparent_client_ip_enable")
 
     @_builtins.property

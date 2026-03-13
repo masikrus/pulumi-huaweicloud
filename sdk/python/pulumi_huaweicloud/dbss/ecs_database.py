@@ -33,6 +33,7 @@ class EcsDatabaseArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EcsDatabase resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the DBSS instance ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] ip: Specifies the self built database IP address.
@@ -316,6 +317,7 @@ class _EcsDatabaseState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EcsDatabase resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] agent_urls: The unique ID of the agent.
         :param pulumi.Input[_builtins.str] audit_status: The database running status.
                The value can be **ACTIVE**, **SHUTOFF** or **ERROR**.
@@ -632,7 +634,7 @@ class _EcsDatabaseState:
         pulumi.set(self, "version", value)
 
 
-@pulumi.type_token("huaweicloud:dbss/ecsDatabase:EcsDatabase")
+@pulumi.type_token("huaweicloud:Dbss/ecsDatabase:EcsDatabase")
 class EcsDatabase(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -660,41 +662,17 @@ class EcsDatabase(pulumi.CustomResource):
 
         The resource can be imported using the related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dbss/ecsDatabase:EcsDatabase test <instance_id>/<id>
+        $ pulumi import huaweicloud:Dbss/ecsDatabase:EcsDatabase test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `lts_audit_switch`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dbss_ecs_database" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              lts_audit_switch,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -769,41 +747,17 @@ class EcsDatabase(pulumi.CustomResource):
 
         The resource can be imported using the related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dbss/ecsDatabase:EcsDatabase test <instance_id>/<id>
+        $ pulumi import huaweicloud:Dbss/ecsDatabase:EcsDatabase test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes include: `lts_audit_switch`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_dbss_ecs_database" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              lts_audit_switch,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param EcsDatabaseArgs args: The arguments to use to populate this resource's properties.
@@ -869,7 +823,7 @@ class EcsDatabase(pulumi.CustomResource):
             __props__.__dict__["audit_status"] = None
             __props__.__dict__["db_classification"] = None
         super(EcsDatabase, __self__).__init__(
-            'huaweicloud:dbss/ecsDatabase:EcsDatabase',
+            'huaweicloud:Dbss/ecsDatabase:EcsDatabase',
             resource_name,
             __props__,
             opts)

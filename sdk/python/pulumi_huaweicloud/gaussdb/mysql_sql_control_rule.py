@@ -27,6 +27,7 @@ class MysqlSqlControlRuleArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlSqlControlRule resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance.
                
                Changing this parameter will create a new resource.
@@ -152,6 +153,7 @@ class _MysqlSqlControlRuleState:
                  sql_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlSqlControlRule resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance.
                
                Changing this parameter will create a new resource.
@@ -307,14 +309,12 @@ class MysqlSqlControlRule(pulumi.CustomResource):
         ## Import
 
         The GaussDB MySQL SQL concurrency control rule can be imported using the `instance_id`,`node_id`,`sql_type` and
-
         `pattern` separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlSqlControlRule:MysqlSqlControlRule test <instance_id>/<node_id>/<sql_type>/<pattern>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -367,14 +367,12 @@ class MysqlSqlControlRule(pulumi.CustomResource):
         ## Import
 
         The GaussDB MySQL SQL concurrency control rule can be imported using the `instance_id`,`node_id`,`sql_type` and
-
         `pattern` separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlSqlControlRule:MysqlSqlControlRule test <instance_id>/<node_id>/<sql_type>/<pattern>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlSqlControlRuleArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class PhoneRestartArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PhoneRestart resource.
+
         :param pulumi.Input['PhoneRestartPhonesArgs'] phones: Specifies the CPH phones.
                The phones structure is documented below.
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the CPH phone.
@@ -106,6 +107,7 @@ class _PhoneRestartState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PhoneRestart resources.
+
         :param pulumi.Input[_builtins.str] image_id: Specifies the image ID of the CPH phone.
                
                <a name="phones_structure"></a>
@@ -177,7 +179,7 @@ class _PhoneRestartState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:cph/phoneRestart:PhoneRestart")
+@pulumi.type_token("huaweicloud:Cph/phoneRestart:PhoneRestart")
 class PhoneRestart(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -203,6 +205,7 @@ class PhoneRestart(pulumi.CustomResource):
             "phone_id": phone_id,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,6 +240,7 @@ class PhoneRestart(pulumi.CustomResource):
             "phone_id": phone_id,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PhoneRestartArgs args: The arguments to use to populate this resource's properties.
@@ -273,7 +277,7 @@ class PhoneRestart(pulumi.CustomResource):
             __props__.__dict__["phones"] = phones
             __props__.__dict__["region"] = region
         super(PhoneRestart, __self__).__init__(
-            'huaweicloud:cph/phoneRestart:PhoneRestart',
+            'huaweicloud:Cph/phoneRestart:PhoneRestart',
             resource_name,
             __props__,
             opts)

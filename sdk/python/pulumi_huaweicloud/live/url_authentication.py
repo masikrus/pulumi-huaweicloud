@@ -28,6 +28,7 @@ class UrlAuthenticationArgs:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UrlAuthentication resource.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] domain_name: Specifies the domain name to which the URL validation belongs.
@@ -175,6 +176,7 @@ class _UrlAuthenticationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UrlAuthentication resources.
+
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.int] check_level: Specifies the check level.
@@ -369,6 +371,7 @@ class UrlAuthentication(pulumi.CustomResource):
             app_name=app_name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] app_name: Specifies the application name.
@@ -426,6 +429,7 @@ class UrlAuthentication(pulumi.CustomResource):
             stream_name=stream_name,
             app_name=app_name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UrlAuthenticationArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class InstanceMinorVersionUpgradeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceMinorVersionUpgrade resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
         :param pulumi.Input[_builtins.bool] is_delayed: Specifies whether the upgrade is delayed to the maintenance window.
                + **true**: Specifies the upgrade is delayed and performed within the maintenance window.
@@ -98,6 +99,7 @@ class _InstanceMinorVersionUpgradeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceMinorVersionUpgrade resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
         :param pulumi.Input[_builtins.bool] is_delayed: Specifies whether the upgrade is delayed to the maintenance window.
                + **true**: Specifies the upgrade is delayed and performed within the maintenance window.
@@ -188,6 +190,7 @@ class InstanceMinorVersionUpgrade(pulumi.CustomResource):
         test = huaweicloud.rds.InstanceMinorVersionUpgrade("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -216,6 +219,7 @@ class InstanceMinorVersionUpgrade(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.rds.InstanceMinorVersionUpgrade("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceMinorVersionUpgradeArgs args: The arguments to use to populate this resource's properties.

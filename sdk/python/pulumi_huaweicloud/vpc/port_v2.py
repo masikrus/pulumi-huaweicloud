@@ -37,6 +37,7 @@ class PortV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PortV2 resource.
+
         :param pulumi.Input[_builtins.str] network_id: The ID of the network to attach the port to. Changing this creates a new
                port.
         :param pulumi.Input[Sequence[pulumi.Input['PortV2AllowedAddressPairArgs']]] allowed_address_pairs: An IP/MAC Address pair of additional IP addresses that can be active on
@@ -288,6 +289,7 @@ class _PortV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PortV2 resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_fixed_ips: The collection of Fixed IP addresses on the port in the order returned by the Network v2 API.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] all_security_group_ids: The collection of Security Group IDs on the port which have been explicitly and implicitly
                added.
@@ -592,11 +594,10 @@ class PortV2(pulumi.CustomResource):
 
         Ports can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/portV2:PortV2 port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -650,11 +651,10 @@ class PortV2(pulumi.CustomResource):
 
         Ports can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vpc/portV2:PortV2 port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PortV2Args args: The arguments to use to populate this resource's properties.

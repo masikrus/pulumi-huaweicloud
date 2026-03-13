@@ -19,24 +19,27 @@ __all__ = [
     'InstanceDataDiskArgsDict',
     'InstanceNicArgs',
     'InstanceNicArgsDict',
+    'InstanceRestartServerArgs',
+    'InstanceRestartServerArgsDict',
+    'OsReinstallOsReinstallValueArgs',
+    'OsReinstallOsReinstallValueArgsDict',
+    'OsReinstallOsReinstallValueMetadataArgs',
+    'OsReinstallOsReinstallValueMetadataArgsDict',
+    'GetInstanceRemotelyLoginAddressRemoteConsoleArgs',
+    'GetInstanceRemotelyLoginAddressRemoteConsoleArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class InstanceDataDiskArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Specifies the data disk size, in GB. The value ranges form 10 to 32768. Changing
-        this creates a new instance.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the BMS data disk type, which must be one of available disk types,
-        contains of *SSD*, *GPSSD* and *SAS*. Changing this creates a new instance.
-        """
-elif False:
-    InstanceDataDiskArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceDataDiskArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Specifies the data disk size, in GB. The value ranges form 10 to 32768. Changing
+    this creates a new instance.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the BMS data disk type, which must be one of available disk types,
+    contains of *SSD*, *GPSSD* and *SAS*. Changing this creates a new instance.
+    """
 
 @pulumi.input_type
 class InstanceDataDiskArgs:
@@ -79,26 +82,23 @@ class InstanceDataDiskArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class InstanceNicArgsDict(TypedDict):
-        subnet_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of subnet to attach to the instance.
-        """
-        ip_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies a fixed IPv4 address to be used on this network.
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The MAC address of the nic.
-        """
-        port_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port ID corresponding to the IP address.
-        """
-elif False:
-    InstanceNicArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceNicArgsDict(TypedDict):
+    subnet_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of subnet to attach to the instance.
+    """
+    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies a fixed IPv4 address to be used on this network.
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The MAC address of the nic.
+    """
+    port_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port ID corresponding to the IP address.
+    """
 
 @pulumi.input_type
 class InstanceNicArgs:
@@ -168,5 +168,355 @@ class InstanceNicArgs:
     @port_id.setter
     def port_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "port_id", value)
+
+
+class InstanceRestartServerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the BMS ID.
+    """
+
+@pulumi.input_type
+class InstanceRestartServerArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the BMS ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the BMS ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "id", value)
+
+
+class OsReinstallOsReinstallValueArgsDict(TypedDict):
+    admin_pass: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the initial password of the BMS administrator account. The
+    Linux administrator is **root**, and the Windows administrator is **Administrator**. Recommended password complexity
+    requirements are as follows:
+    + The password contains 8 to 26 characters.
+    + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+    characters **!@$%^-_=+[{}]:,./?**.
+    + The password cannot contain the username or the username in reverse.
+
+    > **NOTE:**
+    1.For Windows BMSs, the password cannot contain more than two consecutive characters in the username.
+    <br/>2.For Linux BMSs, `user_data` can be used to inject a password. In this case, `admin_pass` is invalid.
+    <br/>3.Either `admin_pass` or `key_name` can be set.
+    <br/>4.If both `admin_pass` and `key_name` are empty, `user_data` in metadata must be set.
+    """
+    key_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the key pair name.
+    """
+    metadata: NotRequired[pulumi.Input['OsReinstallOsReinstallValueMetadataArgsDict']]
+    """
+    Specifies the BMS metadata.
+    The metadata structure is documented below.
+
+    <a name="os_reinstall_metadata_struct"></a>
+    The `metadata` block supports:
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID.
+    """
+
+@pulumi.input_type
+class OsReinstallOsReinstallValueArgs:
+    def __init__(__self__, *,
+                 admin_pass: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 metadata: Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']] = None,
+                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] admin_pass: Specifies the initial password of the BMS administrator account. The
+               Linux administrator is **root**, and the Windows administrator is **Administrator**. Recommended password complexity
+               requirements are as follows:
+               + The password contains 8 to 26 characters.
+               + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+               characters **!@$%^-_=+[{}]:,./?**.
+               + The password cannot contain the username or the username in reverse.
+               
+               > **NOTE:**
+               1.For Windows BMSs, the password cannot contain more than two consecutive characters in the username.
+               <br/>2.For Linux BMSs, `user_data` can be used to inject a password. In this case, `admin_pass` is invalid.
+               <br/>3.Either `admin_pass` or `key_name` can be set.
+               <br/>4.If both `admin_pass` and `key_name` are empty, `user_data` in metadata must be set.
+        :param pulumi.Input[_builtins.str] key_name: Specifies the key pair name.
+        :param pulumi.Input['OsReinstallOsReinstallValueMetadataArgs'] metadata: Specifies the BMS metadata.
+               The metadata structure is documented below.
+               
+               <a name="os_reinstall_metadata_struct"></a>
+               The `metadata` block supports:
+        :param pulumi.Input[_builtins.str] user_id: Specifies the user ID.
+        """
+        if admin_pass is not None:
+            pulumi.set(__self__, "admin_pass", admin_pass)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter(name="adminPass")
+    def admin_pass(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the initial password of the BMS administrator account. The
+        Linux administrator is **root**, and the Windows administrator is **Administrator**. Recommended password complexity
+        requirements are as follows:
+        + The password contains 8 to 26 characters.
+        + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+        characters **!@$%^-_=+[{}]:,./?**.
+        + The password cannot contain the username or the username in reverse.
+
+        > **NOTE:**
+        1.For Windows BMSs, the password cannot contain more than two consecutive characters in the username.
+        <br/>2.For Linux BMSs, `user_data` can be used to inject a password. In this case, `admin_pass` is invalid.
+        <br/>3.Either `admin_pass` or `key_name` can be set.
+        <br/>4.If both `admin_pass` and `key_name` are empty, `user_data` in metadata must be set.
+        """
+        return pulumi.get(self, "admin_pass")
+
+    @admin_pass.setter
+    def admin_pass(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "admin_pass", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the key pair name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']]:
+        """
+        Specifies the BMS metadata.
+        The metadata structure is documented below.
+
+        <a name="os_reinstall_metadata_struct"></a>
+        The `metadata` block supports:
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input['OsReinstallOsReinstallValueMetadataArgs']]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the user ID.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_id", value)
+
+
+class OsReinstallOsReinstallValueMetadataArgsDict(TypedDict):
+    __system_cmkid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the CMK ID which is used for encryption. This parameter
+    is used with `__system__encrypted`.
+    """
+    __system_encrypted: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether the system disk is encrypted. The value can
+    be **0 (not encrypted)** or **1 (encrypted)**.
+    + If this parameter is not specified, the system disk will not be encrypted by default.
+    + If this parameter is set to **0**, `__system__cmkid` will be invalid.
+    """
+    __system_encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the encryption algorithms for encrypted
+    volumes. Value options: **AES_256**, **SM4**. Defaults to **AES_256**.
+    """
+    user_data: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Linux image root password injected during the BMS OS
+    reinstallation. It is a user-defined initial password. The password change script must be encoded using Base64.
+    Recommended password complexity requirements are as follows:
+    + Contains 8 to 26 characters.
+    + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+    **characters !@$%^-_=+[{}]:,./?**.
+    """
+
+@pulumi.input_type
+class OsReinstallOsReinstallValueMetadataArgs:
+    def __init__(__self__, *,
+                 __system_cmkid: Optional[pulumi.Input[_builtins.str]] = None,
+                 __system_encrypted: Optional[pulumi.Input[_builtins.str]] = None,
+                 __system_encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] __system_cmkid: Specifies the CMK ID which is used for encryption. This parameter
+               is used with `__system__encrypted`.
+        :param pulumi.Input[_builtins.str] __system_encrypted: Specifies whether the system disk is encrypted. The value can
+               be **0 (not encrypted)** or **1 (encrypted)**.
+               + If this parameter is not specified, the system disk will not be encrypted by default.
+               + If this parameter is set to **0**, `__system__cmkid` will be invalid.
+        :param pulumi.Input[_builtins.str] __system_encryption_algorithm: Specifies the encryption algorithms for encrypted
+               volumes. Value options: **AES_256**, **SM4**. Defaults to **AES_256**.
+        :param pulumi.Input[_builtins.str] user_data: Specifies the Linux image root password injected during the BMS OS
+               reinstallation. It is a user-defined initial password. The password change script must be encoded using Base64.
+               Recommended password complexity requirements are as follows:
+               + Contains 8 to 26 characters.
+               + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+               **characters !@$%^-_=+[{}]:,./?**.
+        """
+        if __system_cmkid is not None:
+            pulumi.set(__self__, "__system_cmkid", __system_cmkid)
+        if __system_encrypted is not None:
+            pulumi.set(__self__, "__system_encrypted", __system_encrypted)
+        if __system_encryption_algorithm is not None:
+            pulumi.set(__self__, "__system_encryption_algorithm", __system_encryption_algorithm)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemCmkid")
+    def __system_cmkid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the CMK ID which is used for encryption. This parameter
+        is used with `__system__encrypted`.
+        """
+        return pulumi.get(self, "__system_cmkid")
+
+    @__system_cmkid.setter
+    def __system_cmkid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_cmkid", value)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncrypted")
+    def __system_encrypted(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether the system disk is encrypted. The value can
+        be **0 (not encrypted)** or **1 (encrypted)**.
+        + If this parameter is not specified, the system disk will not be encrypted by default.
+        + If this parameter is set to **0**, `__system__cmkid` will be invalid.
+        """
+        return pulumi.get(self, "__system_encrypted")
+
+    @__system_encrypted.setter
+    def __system_encrypted(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter(name="__systemEncryptionAlgorithm")
+    def __system_encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the encryption algorithms for encrypted
+        volumes. Value options: **AES_256**, **SM4**. Defaults to **AES_256**.
+        """
+        return pulumi.get(self, "__system_encryption_algorithm")
+
+    @__system_encryption_algorithm.setter
+    def __system_encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "__system_encryption_algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the Linux image root password injected during the BMS OS
+        reinstallation. It is a user-defined initial password. The password change script must be encoded using Base64.
+        Recommended password complexity requirements are as follows:
+        + Contains 8 to 26 characters.
+        + Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special
+        **characters !@$%^-_=+[{}]:,./?**.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "user_data", value)
+
+
+class GetInstanceRemotelyLoginAddressRemoteConsoleArgsDict(TypedDict):
+    protocol: _builtins.str
+    """
+    Specifies the remote login protocol. Set it to **serial**.
+    """
+    type: _builtins.str
+    """
+    Specifies the remote login mode. Set it to **serial**.
+    """
+    url: _builtins.str
+    """
+    Indicates the remote login URL.
+    """
+
+@pulumi.input_type
+class GetInstanceRemotelyLoginAddressRemoteConsoleArgs:
+    def __init__(__self__, *,
+                 protocol: _builtins.str,
+                 type: _builtins.str,
+                 url: _builtins.str):
+        """
+        :param _builtins.str protocol: Specifies the remote login protocol. Set it to **serial**.
+        :param _builtins.str type: Specifies the remote login mode. Set it to **serial**.
+        :param _builtins.str url: Indicates the remote login URL.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        Specifies the remote login protocol. Set it to **serial**.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: _builtins.str):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the remote login mode. Set it to **serial**.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: _builtins.str):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Indicates the remote login URL.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: _builtins.str):
+        pulumi.set(self, "url", value)
 
 

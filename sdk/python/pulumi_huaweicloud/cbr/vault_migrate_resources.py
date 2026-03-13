@@ -26,6 +26,7 @@ class VaultMigrateResourcesArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VaultMigrateResources resource.
+
         :param pulumi.Input[_builtins.str] destination_vault_id: Specifies the destination vault ID where resources
                will be migrated to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] resource_ids: Specifies the IDs of the resources to be migrated.
@@ -112,6 +113,7 @@ class _VaultMigrateResourcesState:
                  vault_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VaultMigrateResources resources.
+
         :param pulumi.Input[_builtins.str] destination_vault_id: Specifies the destination vault ID where resources
                will be migrated to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] migrated_resources: The list of resources that have been successfully migrated.
@@ -239,6 +241,7 @@ class VaultMigrateResources(pulumi.CustomResource):
             resource_ids=resource_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] destination_vault_id: Specifies the destination vault ID where resources
@@ -275,6 +278,7 @@ class VaultMigrateResources(pulumi.CustomResource):
             destination_vault_id=destination_vault_id,
             resource_ids=resource_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VaultMigrateResourcesArgs args: The arguments to use to populate this resource's properties.

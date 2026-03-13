@@ -26,6 +26,7 @@ class IpsRuleModeChangeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpsRuleModeChange resource.
+
         :param pulumi.Input[_builtins.str] object_id: Specifies the protected object ID.
         :param pulumi.Input[_builtins.str] status: Specifies the IPS rule status.
                The valid value can be **OBSERVE**, **ENABLE**, **CLOSE**, **DEFAULT** or **ALL_DEFAULT**.
@@ -116,6 +117,7 @@ class _IpsRuleModeChangeState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpsRuleModeChange resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips_ids: Specifies the IPS rule ID list.
         :param pulumi.Input[_builtins.str] object_id: Specifies the protected object ID.
@@ -233,6 +235,7 @@ class IpsRuleModeChange(pulumi.CustomResource):
             status=status)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID.
@@ -271,6 +274,7 @@ class IpsRuleModeChange(pulumi.CustomResource):
             ips_ids=ips_ids,
             status=status)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpsRuleModeChangeArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class PluginArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Plugin resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the configuration details for plugin.
                + For `CORS` plugins, you can refer to this [document](https://support.huaweicloud.com/intl/en-us/usermanual-apig/apig_03_0021.html).
                + For `HTTP Response Header Management` plugins, you can refer to this [document](https://support.huaweicloud.com/intl/en-us/usermanual-apig/apig_03_0022.html).
@@ -202,6 +203,7 @@ class _PluginState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Plugin resources.
+
         :param pulumi.Input[_builtins.str] content: Specifies the configuration details for plugin.
                + For `CORS` plugins, you can refer to this [document](https://support.huaweicloud.com/intl/en-us/usermanual-apig/apig_03_0021.html).
                + For `HTTP Response Header Management` plugins, you can refer to this [document](https://support.huaweicloud.com/intl/en-us/usermanual-apig/apig_03_0022.html).
@@ -656,14 +658,12 @@ class Plugin(pulumi.CustomResource):
         ## Import
 
         Plugins can be imported using their related dedicated instance ID (`instance_id`) and their ID (`id`), separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/plugin:Plugin test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -962,14 +962,12 @@ class Plugin(pulumi.CustomResource):
         ## Import
 
         Plugins can be imported using their related dedicated instance ID (`instance_id`) and their ID (`id`), separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/plugin:Plugin test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PluginArgs args: The arguments to use to populate this resource's properties.

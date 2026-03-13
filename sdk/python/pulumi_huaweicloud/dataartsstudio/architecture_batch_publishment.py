@@ -30,6 +30,7 @@ class ArchitectureBatchPublishmentArgs:
                  schedule_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureBatchPublishment resource.
+
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] approver_user_name: Specifies the user name of the architecture reviewer.
@@ -170,6 +171,7 @@ class _ArchitectureBatchPublishmentState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureBatchPublishment resources.
+
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] approver_user_name: Specifies the user name of the architecture reviewer.
@@ -322,6 +324,28 @@ class ArchitectureBatchPublishment(pulumi.CustomResource):
         > 1. Before using this resource, please make sure that the current user has the approver permission.
         >       <br>2. Deleting this resource will take the published objects offline.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        workspace_id = config.require_object("workspaceId")
+        approver_user_id = config.require_object("approverUserId")
+        approver_user_name = config.require_object("approverUserName")
+        batch_publish_objects = config.require_object("batchPublishObjects")
+        test = huaweicloud.dataartsstudio.ArchitectureBatchPublishment("test",
+            biz_infos=[{
+                "biz_id": entry["value"]["object_id"],
+                "biz_type": entry["value"]["object_type"],
+            } for entry in [{"key": k, "value": v} for k, v in batch_publish_objects.items()]],
+            workspace_id=workspace_id,
+            approver_user_id=approver_user_id,
+            approver_user_name=approver_user_name)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] approver_user_id: Specifies the user ID of the architecture reviewer.
@@ -355,6 +379,28 @@ class ArchitectureBatchPublishment(pulumi.CustomResource):
 
         > 1. Before using this resource, please make sure that the current user has the approver permission.
         >       <br>2. Deleting this resource will take the published objects offline.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        workspace_id = config.require_object("workspaceId")
+        approver_user_id = config.require_object("approverUserId")
+        approver_user_name = config.require_object("approverUserName")
+        batch_publish_objects = config.require_object("batchPublishObjects")
+        test = huaweicloud.dataartsstudio.ArchitectureBatchPublishment("test",
+            biz_infos=[{
+                "biz_id": entry["value"]["object_id"],
+                "biz_type": entry["value"]["object_type"],
+            } for entry in [{"key": k, "value": v} for k, v in batch_publish_objects.items()]],
+            workspace_id=workspace_id,
+            approver_user_id=approver_user_id,
+            approver_user_name=approver_user_name)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureBatchPublishmentArgs args: The arguments to use to populate this resource's properties.

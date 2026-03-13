@@ -135,7 +135,7 @@ def get_schemas(instance_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
     ddm_schema_name = config.require_object("ddmSchemaName")
-    test = huaweicloud.ddm.get_schemas(instance_id=ddm_instance_id,
+    test = huaweicloud.Ddm.get_schemas(instance_id=ddm_instance_id,
         name=ddm_schema_name)
     ```
 
@@ -154,7 +154,7 @@ def get_schemas(instance_id: Optional[_builtins.str] = None,
     __args__['shardMode'] = shard_mode
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:ddm/getSchemas:getSchemas', __args__, opts=opts, typ=GetSchemasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Ddm/getSchemas:getSchemas', __args__, opts=opts, typ=GetSchemasResult).value
 
     return AwaitableGetSchemasResult(
         id=pulumi.get(__ret__, 'id'),
@@ -182,7 +182,7 @@ def get_schemas_output(instance_id: Optional[pulumi.Input[_builtins.str]] = None
     config = pulumi.Config()
     ddm_instance_id = config.require_object("ddmInstanceId")
     ddm_schema_name = config.require_object("ddmSchemaName")
-    test = huaweicloud.ddm.get_schemas(instance_id=ddm_instance_id,
+    test = huaweicloud.Ddm.get_schemas(instance_id=ddm_instance_id,
         name=ddm_schema_name)
     ```
 
@@ -201,7 +201,7 @@ def get_schemas_output(instance_id: Optional[pulumi.Input[_builtins.str]] = None
     __args__['shardMode'] = shard_mode
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:ddm/getSchemas:getSchemas', __args__, opts=opts, typ=GetSchemasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Ddm/getSchemas:getSchemas', __args__, opts=opts, typ=GetSchemasResult)
     return __ret__.apply(lambda __response__: GetSchemasResult(
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),

@@ -25,6 +25,7 @@ class KeypairArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Keypair resource.
+
         :param pulumi.Input[_builtins.str] key_file: Specifies the path of the created private key.
                The private key file (**.pem**) is created only after the resource is created.
                By default, the private key file will be created in the same folder as the current script file.
@@ -115,6 +116,7 @@ class _KeypairState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Keypair resources.
+
         :param pulumi.Input[_builtins.str] key_file: Specifies the path of the created private key.
                The private key file (**.pem**) is created only after the resource is created.
                By default, the private key file will be created in the same folder as the current script file.
@@ -240,11 +242,10 @@ class Keypair(pulumi.CustomResource):
 
         Keypairs can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/keypair:Keypair my-keypair test-keypair
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -301,11 +302,10 @@ class Keypair(pulumi.CustomResource):
 
         Keypairs can be imported using the `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/keypair:Keypair my-keypair test-keypair
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeypairArgs args: The arguments to use to populate this resource's properties.

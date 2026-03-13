@@ -24,6 +24,7 @@ class VolumeTransferAccepterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VolumeTransferAccepter resource.
+
         :param pulumi.Input[_builtins.str] auth_key: Specifies the identity authentication key for volume transfer.
                When creating the volume transfer, the value of this field will be returned.
                Changing this parameter will create a new resource.
@@ -86,6 +87,7 @@ class _VolumeTransferAccepterState:
                  transfer_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VolumeTransferAccepter resources.
+
         :param pulumi.Input[_builtins.str] auth_key: Specifies the identity authentication key for volume transfer.
                When creating the volume transfer, the value of this field will be returned.
                Changing this parameter will create a new resource.
@@ -172,6 +174,7 @@ class VolumeTransferAccepter(pulumi.CustomResource):
             auth_key=auth_key)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_key: Specifies the identity authentication key for volume transfer.
@@ -207,6 +210,7 @@ class VolumeTransferAccepter(pulumi.CustomResource):
             transfer_id=transfer_id,
             auth_key=auth_key)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeTransferAccepterArgs args: The arguments to use to populate this resource's properties.

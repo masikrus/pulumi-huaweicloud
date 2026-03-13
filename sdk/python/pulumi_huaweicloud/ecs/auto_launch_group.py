@@ -39,6 +39,7 @@ class AutoLaunchGroupArgs:
                  valid_until: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AutoLaunchGroup resource.
+
         :param pulumi.Input[_builtins.str] launch_template_id: Specifies the ID of launch template for instance.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] launch_template_version: Specifies the version of launch template for instance.
@@ -406,6 +407,7 @@ class _AutoLaunchGroupState:
                  valid_until: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AutoLaunchGroup resources.
+
         :param pulumi.Input[_builtins.str] allocation_strategy: Specifies the allocation strategy of the auto launch group.
                
                Valid values are:
@@ -886,41 +888,17 @@ class AutoLaunchGroup(pulumi.CustomResource):
 
         The auto launch group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/autoLaunchGroup:AutoLaunchGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `task_state`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_compute_auto_launch_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              task_state,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1029,41 +1007,17 @@ class AutoLaunchGroup(pulumi.CustomResource):
 
         The auto launch group can be imported using `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ecs/autoLaunchGroup:AutoLaunchGroup test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `task_state`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_compute_auto_launch_group" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              task_state,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AutoLaunchGroupArgs args: The arguments to use to populate this resource's properties.

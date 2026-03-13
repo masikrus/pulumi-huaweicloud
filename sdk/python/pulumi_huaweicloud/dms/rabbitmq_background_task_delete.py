@@ -24,6 +24,7 @@ class RabbitmqBackgroundTaskDeleteArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RabbitmqBackgroundTaskDelete resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] task_id: Specifies the task ID.
@@ -86,6 +87,7 @@ class _RabbitmqBackgroundTaskDeleteState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RabbitmqBackgroundTaskDelete resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -169,6 +171,7 @@ class RabbitmqBackgroundTaskDelete(pulumi.CustomResource):
             task_id=task_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
@@ -201,6 +204,7 @@ class RabbitmqBackgroundTaskDelete(pulumi.CustomResource):
             instance_id=instance_id,
             task_id=task_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RabbitmqBackgroundTaskDeleteArgs args: The arguments to use to populate this resource's properties.

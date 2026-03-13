@@ -106,7 +106,7 @@ def get_pipeline_queueing_records(pipeline_id: Optional[_builtins.str] = None,
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_queueing_records(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_queueing_records(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -121,7 +121,7 @@ def get_pipeline_queueing_records(pipeline_id: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineQueueingRecords:getPipelineQueueingRecords', __args__, opts=opts, typ=GetPipelineQueueingRecordsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineQueueingRecords:getPipelineQueueingRecords', __args__, opts=opts, typ=GetPipelineQueueingRecordsResult).value
 
     return AwaitableGetPipelineQueueingRecordsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -145,7 +145,7 @@ def get_pipeline_queueing_records_output(pipeline_id: Optional[pulumi.Input[_bui
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
     pipeline_id = config.require_object("pipelineId")
-    test = huaweicloud.codearts.get_pipeline_queueing_records(project_id=codearts_project_id,
+    test = huaweicloud.Codearts.get_pipeline_queueing_records(project_id=codearts_project_id,
         pipeline_id=pipeline_id)
     ```
 
@@ -160,7 +160,7 @@ def get_pipeline_queueing_records_output(pipeline_id: Optional[pulumi.Input[_bui
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineQueueingRecords:getPipelineQueueingRecords', __args__, opts=opts, typ=GetPipelineQueueingRecordsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineQueueingRecords:getPipelineQueueingRecords', __args__, opts=opts, typ=GetPipelineQueueingRecordsResult)
     return __ret__.apply(lambda __response__: GetPipelineQueueingRecordsResult(
         id=pulumi.get(__response__, 'id'),
         pipeline_id=pulumi.get(__response__, 'pipeline_id'),

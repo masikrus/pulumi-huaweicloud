@@ -21,28 +21,23 @@ __all__ = [
     'CertificateTargetArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CertificateAuthentificationArgsDict(TypedDict):
-        domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Domain name mapping to the verification value
-        """
-        record_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of a domain ownership verification value.
-        """
-        record_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of the domain name verification value.
-        """
-        record_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Domain verification value.
-        """
-elif False:
-    CertificateAuthentificationArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateAuthentificationArgsDict(TypedDict):
+    domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Domain name mapping to the verification value
+    """
+    record_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of a domain ownership verification value.
+    """
+    record_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of the domain name verification value.
+    """
+    record_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Domain verification value.
+    """
 
 @pulumi.input_type
 class CertificateAuthentificationArgs:
@@ -115,21 +110,18 @@ class CertificateAuthentificationArgs:
         pulumi.set(self, "record_value", value)
 
 
-if not MYPY:
-    class CertificateTargetArgsDict(TypedDict):
-        service: pulumi.Input[_builtins.str]
-        """
-        Specifies the service to which the certificate is pushed. The options include `CDN`,`WAF`
-        and `ELB`.
-        """
-        projects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the project where the service you want to push a certificate to. The same certificate
-        can be pushed repeatedly to the same WAF or ELB service in the same `project`, but the CDN service can only be pushed
-        once.
-        """
-elif False:
-    CertificateTargetArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateTargetArgsDict(TypedDict):
+    service: pulumi.Input[_builtins.str]
+    """
+    Specifies the service to which the certificate is pushed. The options include `CDN`,`WAF`
+    and `ELB`.
+    """
+    projects: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the project where the service you want to push a certificate to. The same certificate
+    can be pushed repeatedly to the same WAF or ELB service in the same `project`, but the CDN service can only be pushed
+    once.
+    """
 
 @pulumi.input_type
 class CertificateTargetArgs:

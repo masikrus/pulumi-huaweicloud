@@ -14,14 +14,17 @@ from .event_batch_action import *
 from .event_stream import *
 from .event_subscription import *
 from .event_subscription_batch_action import *
+from .event_subscription_target import *
 from .get_connections import *
 from .get_custom_event_channels import *
 from .get_custom_event_sources import *
 from .get_event_channels import *
 from .get_event_sources import *
 from .get_event_streams import *
+from .get_event_subscriptions import *
 from .get_event_target_catalogs import *
 from .get_eventrouter_availability_zones import *
 from .get_quotas import *
+from .get_traced_events import *
 from ._inputs import *
 from . import outputs

@@ -26,15 +26,24 @@ class AccessKeyArgs:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccessKey resource.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the ID of the user who is requesting to create an access key.
+
+        :param pulumi.Input[_builtins.str] user_id: Specifies the IAM user ID for which access key (AK/SK) to be created.  
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the access key.
-        :param pulumi.Input[_builtins.str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form
-               `keybase:some_person_that_exists`. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name that can save access key and access secret key.
-               Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key. It must be *active* or *inactive*. Default value
-               is *active*.
+        :param pulumi.Input[_builtins.str] pgp_key: Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+               secret key.
+               Changing this creates a new resource.
+               
+               > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
+        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name of the credentials (CSV) that can save access
+               key and access secret key.
+               Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key.  
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+               
+               Defaults to **active**.
         """
         pulumi.set(__self__, "user_id", user_id)
         if description is not None:
@@ -50,7 +59,7 @@ class AccessKeyArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the ID of the user who is requesting to create an access key.
+        Specifies the IAM user ID for which access key (AK/SK) to be created.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "user_id")
@@ -75,8 +84,11 @@ class AccessKeyArgs:
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Either a base-64 encoded PGP public key, or a keybase username in the form
-        `keybase:some_person_that_exists`. Changing this creates a new resource.
+        Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+        secret key.
+        Changing this creates a new resource.
+
+        > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
         """
         return pulumi.get(self, "pgp_key")
 
@@ -88,8 +100,9 @@ class AccessKeyArgs:
     @pulumi.getter(name="secretFile")
     def secret_file(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the file name that can save access key and access secret key.
-        Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
+        Specifies the file name of the credentials (CSV) that can save access
+        key and access secret key.
+        Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
         """
         return pulumi.get(self, "secret_file")
 
@@ -101,8 +114,12 @@ class AccessKeyArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the status of the access key. It must be *active* or *inactive*. Default value
-        is *active*.
+        Specifies the status of the access key.  
+        The valid values are as follows:
+        + **active**
+        + **inactive**
+
+        Defaults to **active**.
         """
         return pulumi.get(self, "status")
 
@@ -126,17 +143,30 @@ class _AccessKeyState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccessKey resources.
-        :param pulumi.Input[_builtins.str] create_time: The time when the access key was created.
+
+        :param pulumi.Input[_builtins.str] create_time: The creation time of the access key, in [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+               UTC format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the access key.
-        :param pulumi.Input[_builtins.str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret
-        :param pulumi.Input[_builtins.str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form
-               `keybase:some_person_that_exists`. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] secret: The access secret key. Setting the value only when writing to `secret_file` failed.
-        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name that can save access key and access secret key.
-               Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key. It must be *active* or *inactive*. Default value
-               is *active*.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the ID of the user who is requesting to create an access key.
+        :param pulumi.Input[_builtins.str] encrypted_secret: The encrypted secret, which encoded in base64.  
+               The encrypted secret may be decrypted using the command line, for example:
+               `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
+        :param pulumi.Input[_builtins.str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret.
+        :param pulumi.Input[_builtins.str] pgp_key: Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+               secret key.
+               Changing this creates a new resource.
+               
+               > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
+        :param pulumi.Input[_builtins.str] secret: The access secret key.
+        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name of the credentials (CSV) that can save access
+               key and access secret key.
+               Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key.  
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+               
+               Defaults to **active**.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the IAM user ID for which access key (AK/SK) to be created.  
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] user_name: The name of IAM user.
         """
@@ -165,7 +195,8 @@ class _AccessKeyState:
     @pulumi.getter(name="createTime")
     def create_time(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The time when the access key was created.
+        The creation time of the access key, in [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+        UTC format.
         """
         return pulumi.get(self, "create_time")
 
@@ -188,6 +219,11 @@ class _AccessKeyState:
     @_builtins.property
     @pulumi.getter(name="encryptedSecret")
     def encrypted_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The encrypted secret, which encoded in base64.  
+        The encrypted secret may be decrypted using the command line, for example:
+        `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
+        """
         return pulumi.get(self, "encrypted_secret")
 
     @encrypted_secret.setter
@@ -198,7 +234,7 @@ class _AccessKeyState:
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The fingerprint of the PGP key used to encrypt the secret
+        The fingerprint of the PGP key used to encrypt the secret.
         """
         return pulumi.get(self, "key_fingerprint")
 
@@ -210,8 +246,11 @@ class _AccessKeyState:
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Either a base-64 encoded PGP public key, or a keybase username in the form
-        `keybase:some_person_that_exists`. Changing this creates a new resource.
+        Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+        secret key.
+        Changing this creates a new resource.
+
+        > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
         """
         return pulumi.get(self, "pgp_key")
 
@@ -223,7 +262,7 @@ class _AccessKeyState:
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The access secret key. Setting the value only when writing to `secret_file` failed.
+        The access secret key.
         """
         return pulumi.get(self, "secret")
 
@@ -235,8 +274,9 @@ class _AccessKeyState:
     @pulumi.getter(name="secretFile")
     def secret_file(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the file name that can save access key and access secret key.
-        Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
+        Specifies the file name of the credentials (CSV) that can save access
+        key and access secret key.
+        Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
         """
         return pulumi.get(self, "secret_file")
 
@@ -248,8 +288,12 @@ class _AccessKeyState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the status of the access key. It must be *active* or *inactive*. Default value
-        is *active*.
+        Specifies the status of the access key.  
+        The valid values are as follows:
+        + **active**
+        + **inactive**
+
+        Defaults to **active**.
         """
         return pulumi.get(self, "status")
 
@@ -261,7 +305,7 @@ class _AccessKeyState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the ID of the user who is requesting to create an access key.
+        Specifies the IAM user ID for which access key (AK/SK) to be created.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "user_id")
@@ -302,29 +346,50 @@ class AccessKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an access key with a custom name in current execution directory
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        user_id = config.require_object("userId")
+        test = huaweicloud.iam.AccessKey("test",
+            user_id=user_id,
+            secret_file=std.index.abspath(input="./credentials.csv")["result"])
+        ```
+
+        ### Create an access key with the default name in current execution directory
+
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
-        user1_password = config.require_object("user1Password")
-        user1 = huaweicloud.iam.User("user_1",
-            name="user_1",
-            description="A user",
-            password=user1_password)
-        key1 = huaweicloud.iam.AccessKey("key_1", user_id=user1.id)
+        user_id = config.require_object("userId")
+        test = huaweicloud.iam.AccessKey("test", user_id=user_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the access key.
-        :param pulumi.Input[_builtins.str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form
-               `keybase:some_person_that_exists`. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name that can save access key and access secret key.
-               Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key. It must be *active* or *inactive*. Default value
-               is *active*.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the ID of the user who is requesting to create an access key.
+        :param pulumi.Input[_builtins.str] pgp_key: Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+               secret key.
+               Changing this creates a new resource.
+               
+               > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
+        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name of the credentials (CSV) that can save access
+               key and access secret key.
+               Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key.  
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+               
+               Defaults to **active**.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the IAM user ID for which access key (AK/SK) to be created.  
                Changing this creates a new resource.
         """
         ...
@@ -340,18 +405,31 @@ class AccessKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Create an access key with a custom name in current execution directory
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        user_id = config.require_object("userId")
+        test = huaweicloud.iam.AccessKey("test",
+            user_id=user_id,
+            secret_file=std.index.abspath(input="./credentials.csv")["result"])
+        ```
+
+        ### Create an access key with the default name in current execution directory
+
         ```python
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
         config = pulumi.Config()
-        user1_password = config.require_object("user1Password")
-        user1 = huaweicloud.iam.User("user_1",
-            name="user_1",
-            description="A user",
-            password=user1_password)
-        key1 = huaweicloud.iam.AccessKey("key_1", user_id=user1.id)
+        user_id = config.require_object("userId")
+        test = huaweicloud.iam.AccessKey("test", user_id=user_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccessKeyArgs args: The arguments to use to populate this resource's properties.
@@ -423,17 +501,29 @@ class AccessKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] create_time: The time when the access key was created.
+        :param pulumi.Input[_builtins.str] create_time: The creation time of the access key, in [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+               UTC format.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the access key.
-        :param pulumi.Input[_builtins.str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret
-        :param pulumi.Input[_builtins.str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form
-               `keybase:some_person_that_exists`. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] secret: The access secret key. Setting the value only when writing to `secret_file` failed.
-        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name that can save access key and access secret key.
-               Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key. It must be *active* or *inactive*. Default value
-               is *active*.
-        :param pulumi.Input[_builtins.str] user_id: Specifies the ID of the user who is requesting to create an access key.
+        :param pulumi.Input[_builtins.str] encrypted_secret: The encrypted secret, which encoded in base64.  
+               The encrypted secret may be decrypted using the command line, for example:
+               `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
+        :param pulumi.Input[_builtins.str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret.
+        :param pulumi.Input[_builtins.str] pgp_key: Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+               secret key.
+               Changing this creates a new resource.
+               
+               > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
+        :param pulumi.Input[_builtins.str] secret: The access secret key.
+        :param pulumi.Input[_builtins.str] secret_file: Specifies the file name of the credentials (CSV) that can save access
+               key and access secret key.
+               Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
+        :param pulumi.Input[_builtins.str] status: Specifies the status of the access key.  
+               The valid values are as follows:
+               + **active**
+               + **inactive**
+               
+               Defaults to **active**.
+        :param pulumi.Input[_builtins.str] user_id: Specifies the IAM user ID for which access key (AK/SK) to be created.  
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] user_name: The name of IAM user.
         """
@@ -457,7 +547,8 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter(name="createTime")
     def create_time(self) -> pulumi.Output[_builtins.str]:
         """
-        The time when the access key was created.
+        The creation time of the access key, in [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html)
+        UTC format.
         """
         return pulumi.get(self, "create_time")
 
@@ -472,13 +563,18 @@ class AccessKey(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="encryptedSecret")
     def encrypted_secret(self) -> pulumi.Output[_builtins.str]:
+        """
+        The encrypted secret, which encoded in base64.  
+        The encrypted secret may be decrypted using the command line, for example:
+        `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
+        """
         return pulumi.get(self, "encrypted_secret")
 
     @_builtins.property
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> pulumi.Output[_builtins.str]:
         """
-        The fingerprint of the PGP key used to encrypt the secret
+        The fingerprint of the PGP key used to encrypt the secret.
         """
         return pulumi.get(self, "key_fingerprint")
 
@@ -486,8 +582,11 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Either a base-64 encoded PGP public key, or a keybase username in the form
-        `keybase:some_person_that_exists`. Changing this creates a new resource.
+        Specifies the PGP public key (base64 encoded) used to encrypt the storaged
+        secret key.
+        Changing this creates a new resource.
+
+        > This input can also be the Keybase username, in the format: `keybase:some_person_that_exists`.
         """
         return pulumi.get(self, "pgp_key")
 
@@ -495,7 +594,7 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter
     def secret(self) -> pulumi.Output[_builtins.str]:
         """
-        The access secret key. Setting the value only when writing to `secret_file` failed.
+        The access secret key.
         """
         return pulumi.get(self, "secret")
 
@@ -503,8 +602,9 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter(name="secretFile")
     def secret_file(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the file name that can save access key and access secret key.
-        Defaults to *./credentials-{{user name}}.csv*. Changing this creates a new resource.
+        Specifies the file name of the credentials (CSV) that can save access
+        key and access secret key.
+        Defaults to **./credentials-{{user name}}.csv**. Changing this creates a new resource.
         """
         return pulumi.get(self, "secret_file")
 
@@ -512,8 +612,12 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the status of the access key. It must be *active* or *inactive*. Default value
-        is *active*.
+        Specifies the status of the access key.  
+        The valid values are as follows:
+        + **active**
+        + **inactive**
+
+        Defaults to **active**.
         """
         return pulumi.get(self, "status")
 
@@ -521,7 +625,7 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the ID of the user who is requesting to create an access key.
+        Specifies the IAM user ID for which access key (AK/SK) to be created.  
         Changing this creates a new resource.
         """
         return pulumi.get(self, "user_id")

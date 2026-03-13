@@ -28,6 +28,7 @@ class DeployApplicationDeployArgs:
                  trigger_source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DeployApplicationDeploy resource.
+
         :param pulumi.Input[_builtins.str] task_id: Specifies the deployment task ID.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['DeployApplicationDeployParamArgs']]] params: Specifies the parameters transferred during application deployment.
@@ -145,6 +146,7 @@ class _DeployApplicationDeployState:
                  trigger_source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeployApplicationDeploy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DeployApplicationDeployParamArgs']]] params: Specifies the parameters transferred during application deployment.
                Changing this creates a new resource.
                The params structure is documented below.
@@ -253,7 +255,7 @@ class _DeployApplicationDeployState:
         pulumi.set(self, "trigger_source", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/deployApplicationDeploy:DeployApplicationDeploy")
+@pulumi.type_token("huaweicloud:Codearts/deployApplicationDeploy:DeployApplicationDeploy")
 class DeployApplicationDeploy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -283,43 +285,19 @@ class DeployApplicationDeploy(pulumi.CustomResource):
 
         The application deployment record can be imported using `task_id`, and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationDeploy:DeployApplicationDeploy test <task_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationDeploy:DeployApplicationDeploy test <task_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `params`, `record_id` and `trigger_source`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
+        You can then decide if changes should be applied to the deployment record, or the resource definition should be updated
+        to align with the deployment record. Also you can ignore changes as below.
 
-        You can then decide if changes should be applied to the deployment record, or the resource definition should be updated to
-
-        align with the deployment record. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application_deploy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              params, record_id, trigger_source,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -368,43 +346,19 @@ class DeployApplicationDeploy(pulumi.CustomResource):
 
         The application deployment record can be imported using `task_id`, and `id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/deployApplicationDeploy:DeployApplicationDeploy test <task_id>/<id>
+        $ pulumi import huaweicloud:Codearts/deployApplicationDeploy:DeployApplicationDeploy test <task_id>/<id>
         ```
 
         Please add the followings if some attributes are missing when importing the resource.
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `params`, `record_id` and `trigger_source`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
+        You can then decide if changes should be applied to the deployment record, or the resource definition should be updated
+        to align with the deployment record. Also you can ignore changes as below.
 
-        You can then decide if changes should be applied to the deployment record, or the resource definition should be updated to
-
-        align with the deployment record. Also you can ignore changes as below.
-
-        hcl
-
-        resource "huaweicloud_codearts_deploy_application_deploy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              params, record_id, trigger_source,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DeployApplicationDeployArgs args: The arguments to use to populate this resource's properties.
@@ -443,7 +397,7 @@ class DeployApplicationDeploy(pulumi.CustomResource):
             __props__.__dict__["task_id"] = task_id
             __props__.__dict__["trigger_source"] = trigger_source
         super(DeployApplicationDeploy, __self__).__init__(
-            'huaweicloud:codearts/deployApplicationDeploy:DeployApplicationDeploy',
+            'huaweicloud:Codearts/deployApplicationDeploy:DeployApplicationDeploy',
             resource_name,
             __props__,
             opts)

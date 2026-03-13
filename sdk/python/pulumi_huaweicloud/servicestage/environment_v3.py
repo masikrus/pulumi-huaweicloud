@@ -28,6 +28,7 @@ class EnvironmentV3Args:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EnvironmentV3 resource.
+
         :param pulumi.Input[_builtins.str] vpc_id: Specifies the VPC ID to which the environment belongs.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] deploy_mode: Specifies the deploy mode of the environment.  
@@ -172,6 +173,7 @@ class _EnvironmentV3State:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EnvironmentV3 resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the environment, in RFC3339 format.
         :param pulumi.Input[_builtins.str] creator: The creator name of the environment.
         :param pulumi.Input[_builtins.str] deploy_mode: Specifies the deploy mode of the environment.  
@@ -390,11 +392,10 @@ class EnvironmentV3(pulumi.CustomResource):
 
         Environments can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environmentV3:EnvironmentV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -452,11 +453,10 @@ class EnvironmentV3(pulumi.CustomResource):
 
         Environments can be imported using their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ServiceStage/environmentV3:EnvironmentV3 test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentV3Args args: The arguments to use to populate this resource's properties.

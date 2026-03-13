@@ -29,6 +29,7 @@ class EcsSystemImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EcsSystemImage resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the source ECS instance ID used to create the image.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
@@ -232,6 +233,7 @@ class _EcsSystemImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EcsSystemImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __backup_id: The backup ID. If the image is not created by backup, the value is empty.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
@@ -1267,11 +1269,10 @@ class EcsSystemImage(pulumi.CustomResource):
 
         The IMS ECS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/ecsSystemImage:EcsSystemImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1321,11 +1322,10 @@ class EcsSystemImage(pulumi.CustomResource):
 
         The IMS ECS system image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/ecsSystemImage:EcsSystemImage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EcsSystemImageArgs args: The arguments to use to populate this resource's properties.

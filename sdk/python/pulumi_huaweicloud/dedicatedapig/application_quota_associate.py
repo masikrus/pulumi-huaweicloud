@@ -27,6 +27,7 @@ class ApplicationQuotaAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApplicationQuotaAssociate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ApplicationQuotaAssociateApplicationArgs']]] applications: Specifies the configuration of applications bound to the quota (policy).  
                The applications structure is documented below.
                
@@ -112,6 +113,7 @@ class _ApplicationQuotaAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApplicationQuotaAssociate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ApplicationQuotaAssociateApplicationArgs']]] applications: Specifies the configuration of applications bound to the quota (policy).  
                The applications structure is documented below.
                
@@ -225,7 +227,7 @@ class ApplicationQuotaAssociate(pulumi.CustomResource):
         test = huaweicloud.dedicatedapig.ApplicationQuotaAssociate("test",
             applications=[{
                 "id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in associated_application_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in associated_application_ids.items()]],
             instance_id=instance_id,
             quota_id=quota_id)
         ```
@@ -233,14 +235,12 @@ class ApplicationQuotaAssociate(pulumi.CustomResource):
         ## Import
 
         Quota associate relationship can be imported using related `instance_id` and `id` (also `quota_id`), separated by
-
         a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationQuotaAssociate:ApplicationQuotaAssociate test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,7 +286,7 @@ class ApplicationQuotaAssociate(pulumi.CustomResource):
         test = huaweicloud.dedicatedapig.ApplicationQuotaAssociate("test",
             applications=[{
                 "id": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in associated_application_ids]],
+            } for entry in [{"key": k, "value": v} for k, v in associated_application_ids.items()]],
             instance_id=instance_id,
             quota_id=quota_id)
         ```
@@ -294,14 +294,12 @@ class ApplicationQuotaAssociate(pulumi.CustomResource):
         ## Import
 
         Quota associate relationship can be imported using related `instance_id` and `id` (also `quota_id`), separated by
-
         a slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/applicationQuotaAssociate:ApplicationQuotaAssociate test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApplicationQuotaAssociateArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class PolicyArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input[_builtins.str] content: Specifies the policy text content to be added to the new policy. For details, see the
                following documents:
                <br/> For service control policy: [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-organizations/org_03_0033.html).
@@ -125,14 +126,16 @@ class PolicyArgs:
 @pulumi.input_type
 class _PolicyState:
     def __init__(__self__, *,
+                 policy_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  content: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
+        :param pulumi.Input[_builtins.str] policy_urn: Indicates the uniform resource name of the policy.
         :param pulumi.Input[_builtins.str] content: Specifies the policy text content to be added to the new policy. For details, see the
                following documents:
                <br/> For service control policy: [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-organizations/org_03_0033.html).
@@ -148,8 +151,9 @@ class _PolicyState:
                + **tag_policy**: tag policy.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the policy.
         """
+        if policy_urn is not None:
+            pulumi.set(__self__, "policy_urn", policy_urn)
         if content is not None:
             pulumi.set(__self__, "content", content)
         if description is not None:
@@ -160,8 +164,18 @@ class _PolicyState:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="PolicyUrn")
+    def policy_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the uniform resource name of the policy.
+        """
+        return pulumi.get(self, "policy_urn")
+
+    @policy_urn.setter
+    def policy_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy_urn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -233,20 +247,8 @@ class _PolicyState:
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the uniform resource name of the policy.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:organizations/policy:Policy")
+@pulumi.type_token("huaweicloud:Organizations/policy:Policy")
 class Policy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -307,11 +309,10 @@ class Policy(pulumi.CustomResource):
 
         The organizations policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/policy:Policy test <id>
+        $ pulumi import huaweicloud:Organizations/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -386,11 +387,10 @@ class Policy(pulumi.CustomResource):
 
         The organizations policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:organizations/policy:Policy test <id>
+        $ pulumi import huaweicloud:Organizations/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.
@@ -430,9 +430,9 @@ class Policy(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            __props__.__dict__["urn"] = None
+            __props__.__dict__["policy_urn"] = None
         super(Policy, __self__).__init__(
-            'huaweicloud:organizations/policy:Policy',
+            'huaweicloud:Organizations/policy:Policy',
             resource_name,
             __props__,
             opts)
@@ -441,12 +441,12 @@ class Policy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            policy_urn: Optional[pulumi.Input[_builtins.str]] = None,
             content: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'Policy':
+            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Policy':
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -454,6 +454,7 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] policy_urn: Indicates the uniform resource name of the policy.
         :param pulumi.Input[_builtins.str] content: Specifies the policy text content to be added to the new policy. For details, see the
                following documents:
                <br/> For service control policy: [documentation](https://support.huaweicloud.com/intl/en-us/usermanual-organizations/org_03_0033.html).
@@ -469,19 +470,26 @@ class Policy(pulumi.CustomResource):
                + **tag_policy**: tag policy.
                
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] urn: Indicates the uniform resource name of the policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PolicyState.__new__(_PolicyState)
 
+        __props__.__dict__["policy_urn"] = policy_urn
         __props__.__dict__["content"] = content
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
-        __props__.__dict__["urn"] = urn
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="PolicyUrn")
+    def policy_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the uniform resource name of the policy.
+        """
+        return pulumi.get(self, "policy_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -532,12 +540,4 @@ class Policy(pulumi.CustomResource):
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "type")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the uniform resource name of the policy.
-        """
-        return pulumi.get(self, "urn")
 

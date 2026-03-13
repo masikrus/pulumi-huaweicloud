@@ -25,6 +25,7 @@ class ProtectedInstanceDeleteNicArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ProtectedInstanceDeleteNic resource.
+
         :param pulumi.Input[_builtins.str] nic_id: Specifies the ID of the NIC port to delete.
         :param pulumi.Input[_builtins.str] protected_instance_id: Specifies the ID of the protected instance from which to
                delete the NIC.
@@ -95,6 +96,7 @@ class _ProtectedInstanceDeleteNicState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProtectedInstanceDeleteNic resources.
+
         :param pulumi.Input[_builtins.str] nic_id: Specifies the ID of the NIC port to delete.
         :param pulumi.Input[_builtins.str] protected_instance_id: Specifies the ID of the protected instance from which to
                delete the NIC.
@@ -158,7 +160,7 @@ class _ProtectedInstanceDeleteNicState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:sdrs/protectedInstanceDeleteNic:ProtectedInstanceDeleteNic")
+@pulumi.type_token("huaweicloud:Sdrs/protectedInstanceDeleteNic:ProtectedInstanceDeleteNic")
 class ProtectedInstanceDeleteNic(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -195,6 +197,7 @@ class ProtectedInstanceDeleteNic(pulumi.CustomResource):
             protected_instance_id=protected_instance_id,
             nic_id=nic_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,6 +240,7 @@ class ProtectedInstanceDeleteNic(pulumi.CustomResource):
             nic_id=nic_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param ProtectedInstanceDeleteNicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,7 +278,7 @@ class ProtectedInstanceDeleteNic(pulumi.CustomResource):
             __props__.__dict__["protected_instance_id"] = protected_instance_id
             __props__.__dict__["region"] = region
         super(ProtectedInstanceDeleteNic, __self__).__init__(
-            'huaweicloud:sdrs/protectedInstanceDeleteNic:ProtectedInstanceDeleteNic',
+            'huaweicloud:Sdrs/protectedInstanceDeleteNic:ProtectedInstanceDeleteNic',
             resource_name,
             __props__,
             opts)

@@ -26,6 +26,7 @@ class EipProtectionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EipProtection resource.
+
         :param pulumi.Input[_builtins.str] object_id: The protected object ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['EipProtectionProtectedEipArgs']]] protected_eips: The protected EIP configurations.
@@ -92,6 +93,7 @@ class _EipProtectionState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EipProtection resources.
+
         :param pulumi.Input[_builtins.str] object_id: The protected object ID.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['EipProtectionProtectedEipArgs']]] protected_eips: The protected EIP configurations.
@@ -168,15 +170,31 @@ class EipProtection(pulumi.CustomResource):
         > A protection object (`object_id`) can only create one `Cfw.EipProtection` resource for managing
         protected EIPs.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        object_id = config.require_object("objectId")
+        protected_eips = config.require_object("protectedEips")
+        test = huaweicloud.cfw.EipProtection("test",
+            protected_eips=[{
+                "id": entry["value"]["id"],
+                "public_ipv4": entry["value"]["ipv4_address"],
+            } for entry in [{"key": k, "value": v} for k, v in protected_eips.items()]],
+            object_id=object_id)
+        ```
+
         ## Import
 
         The protection resource can be imported using their `object_id` or `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/eipProtection:EipProtection test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,15 +220,31 @@ class EipProtection(pulumi.CustomResource):
         > A protection object (`object_id`) can only create one `Cfw.EipProtection` resource for managing
         protected EIPs.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        config = pulumi.Config()
+        object_id = config.require_object("objectId")
+        protected_eips = config.require_object("protectedEips")
+        test = huaweicloud.cfw.EipProtection("test",
+            protected_eips=[{
+                "id": entry["value"]["id"],
+                "public_ipv4": entry["value"]["ipv4_address"],
+            } for entry in [{"key": k, "value": v} for k, v in protected_eips.items()]],
+            object_id=object_id)
+        ```
+
         ## Import
 
         The protection resource can be imported using their `object_id` or `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cfw/eipProtection:EipProtection test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipProtectionArgs args: The arguments to use to populate this resource's properties.

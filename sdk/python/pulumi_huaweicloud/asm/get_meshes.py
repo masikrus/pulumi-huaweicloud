@@ -82,7 +82,7 @@ def get_meshes(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.asm.get_meshes()
+    test = huaweicloud.Asm.get_meshes()
     ```
 
 
@@ -92,7 +92,7 @@ def get_meshes(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:asm/getMeshes:getMeshes', __args__, opts=opts, typ=GetMeshesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Asm/getMeshes:getMeshes', __args__, opts=opts, typ=GetMeshesResult).value
 
     return AwaitableGetMeshesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_meshes_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.asm.get_meshes()
+    test = huaweicloud.Asm.get_meshes()
     ```
 
 
@@ -119,7 +119,7 @@ def get_meshes_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:asm/getMeshes:getMeshes', __args__, opts=opts, typ=GetMeshesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Asm/getMeshes:getMeshes', __args__, opts=opts, typ=GetMeshesResult)
     return __ret__.apply(lambda __response__: GetMeshesResult(
         id=pulumi.get(__response__, 'id'),
         items=pulumi.get(__response__, 'items'),

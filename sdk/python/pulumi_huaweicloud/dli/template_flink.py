@@ -27,6 +27,7 @@ class TemplateFlinkArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TemplateFlink resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the flink template.
         :param pulumi.Input[_builtins.str] name: The name of the flink template.
         :param pulumi.Input[_builtins.str] sql: The statement of the flink template.
@@ -123,6 +124,7 @@ class _TemplateFlinkState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TemplateFlink resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the flink template.
         :param pulumi.Input[_builtins.str] name: The name of the flink template.
         :param pulumi.Input[_builtins.str] sql: The statement of the flink template.
@@ -223,6 +225,7 @@ class TemplateFlink(pulumi.CustomResource):
                  __props__=None):
         """
         Create a TemplateFlink resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the flink template.
@@ -238,6 +241,7 @@ class TemplateFlink(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a TemplateFlink resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param TemplateFlinkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

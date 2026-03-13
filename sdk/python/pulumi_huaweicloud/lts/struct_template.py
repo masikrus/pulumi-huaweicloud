@@ -33,6 +33,7 @@ class StructTemplateArgs:
                  tokenizer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StructTemplate resource.
+
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of a log group. Changing this parameter will create
                a new resource.
         :param pulumi.Input[_builtins.str] log_stream_id: Specifies the ID of a log stream. Changing this parameter will create
@@ -191,6 +192,7 @@ class _StructTemplateState:
                  tokenizer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StructTemplate resources.
+
         :param pulumi.Input[_builtins.str] demo_log: The sample log event.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the ID of a log group. Changing this parameter will create
                a new resource.
@@ -409,14 +411,12 @@ class StructTemplate(pulumi.CustomResource):
         ## Import
 
         The structuring templates can be imported using the template ID, lts group ID and stream ID separated by the slashes,
-
         e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Lts/structTemplate:StructTemplate test <id>/<log_group_id>/<log_stream_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -479,14 +479,12 @@ class StructTemplate(pulumi.CustomResource):
         ## Import
 
         The structuring templates can be imported using the template ID, lts group ID and stream ID separated by the slashes,
-
         e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Lts/structTemplate:StructTemplate test <id>/<log_group_id>/<log_stream_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StructTemplateArgs args: The arguments to use to populate this resource's properties.

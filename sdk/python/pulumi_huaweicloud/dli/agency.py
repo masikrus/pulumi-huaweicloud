@@ -23,6 +23,7 @@ class AgencyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Agency resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The list of roles.  
                The options are as follows:
                + **te_admin**: Tenant Administrator permissions are required to access data from OBS to execute Flink jobs on DLI,
@@ -93,6 +94,7 @@ class _AgencyState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Agency resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The list of roles.  
@@ -206,11 +208,10 @@ class Agency(pulumi.CustomResource):
 
         The agency can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/agency:Agency test dli_admin_agency
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -264,11 +265,10 @@ class Agency(pulumi.CustomResource):
 
         The agency can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dli/agency:Agency test dli_admin_agency
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AgencyArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class AlertConvertIncidentArgs:
                  title: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlertConvertIncident resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ids: Specifies the IDs of the alerts to be converted into incidents.
         :param pulumi.Input['AlertConvertIncidentIncidentTypeArgs'] incident_type: Specifies the child incident type.
                
@@ -140,6 +141,7 @@ class _AlertConvertIncidentState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlertConvertIncident resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ids: Specifies the IDs of the alerts to be converted into incidents.
         :param pulumi.Input['AlertConvertIncidentIncidentTypeArgs'] incident_type: Specifies the child incident type.
                
@@ -243,7 +245,7 @@ class _AlertConvertIncidentState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/alertConvertIncident:AlertConvertIncident")
+@pulumi.type_token("huaweicloud:Secmaster/alertConvertIncident:AlertConvertIncident")
 class AlertConvertIncident(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -280,6 +282,7 @@ class AlertConvertIncident(pulumi.CustomResource):
                 "incident_type": "ACK Flood",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -327,6 +330,7 @@ class AlertConvertIncident(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param AlertConvertIncidentArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -370,7 +374,7 @@ class AlertConvertIncident(pulumi.CustomResource):
                 raise TypeError("Missing required property 'workspace_id'")
             __props__.__dict__["workspace_id"] = workspace_id
         super(AlertConvertIncident, __self__).__init__(
-            'huaweicloud:secmaster/alertConvertIncident:AlertConvertIncident',
+            'huaweicloud:Secmaster/alertConvertIncident:AlertConvertIncident',
             resource_name,
             __props__,
             opts)

@@ -34,6 +34,7 @@ class TranscodingTemplateGroupArgs:
                  watermark_template_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a TranscodingTemplateGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['TranscodingTemplateGroupQualityInfoArgs']]] quality_infos: Specifies the quality info list of the template group.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] audio_codec: Specifies the audio codec. The value can be: **AAC** and **HEAAC1**.
@@ -240,6 +241,7 @@ class _TranscodingTemplateGroupState:
                  watermark_template_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering TranscodingTemplateGroup resources.
+
         :param pulumi.Input[_builtins.str] audio_codec: Specifies the audio codec. The value can be: **AAC** and **HEAAC1**.
                Defaults to: **AAC**.
         :param pulumi.Input[_builtins.bool] auto_encrypt: Specifies whether to automatically encrypt. Before enabling, you need to configure
@@ -500,11 +502,10 @@ class TranscodingTemplateGroup(pulumi.CustomResource):
 
         VOD transcoding template groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/transcodingTemplateGroup:TranscodingTemplateGroup test 589e49809bb84447a759f6fa9aa19949
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -574,11 +575,10 @@ class TranscodingTemplateGroup(pulumi.CustomResource):
 
         VOD transcoding template groups can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Vod/transcodingTemplateGroup:TranscodingTemplateGroup test 589e49809bb84447a759f6fa9aa19949
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TranscodingTemplateGroupArgs args: The arguments to use to populate this resource's properties.

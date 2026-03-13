@@ -29,6 +29,7 @@ class PlaybookActionArgs:
                  sort_order: Optional[pulumi.Input[_builtins.float]] = None):
         """
         The set of arguments for constructing a PlaybookAction resource.
+
         :param pulumi.Input[_builtins.str] action_id: Specifies the workflow ID.
         :param pulumi.Input[_builtins.str] version_id: Specifies playbook version ID of the action.
                
@@ -177,6 +178,7 @@ class _PlaybookActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PlaybookAction resources.
+
         :param pulumi.Input[_builtins.str] action_id: Specifies the workflow ID.
         :param pulumi.Input[_builtins.str] action_type: Specifies the playbook action type.
                The value can be **AOP_WORKFLOW**.
@@ -357,7 +359,7 @@ class _PlaybookActionState:
         pulumi.set(self, "workspace_id", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/playbookAction:PlaybookAction")
+@pulumi.type_token("huaweicloud:Secmaster/playbookAction:PlaybookAction")
 class PlaybookAction(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -402,14 +404,12 @@ class PlaybookAction(pulumi.CustomResource):
         ## Import
 
         The playbookaction can be imported using the workspace ID, the playbook version ID and the playbook action ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookAction:PlaybookAction test <workspace_id>/<playbook_version_id>/<playbook_action_id>
+        $ pulumi import huaweicloud:Secmaster/playbookAction:PlaybookAction test <workspace_id>/<playbook_version_id>/<playbook_action_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -464,14 +464,12 @@ class PlaybookAction(pulumi.CustomResource):
         ## Import
 
         The playbookaction can be imported using the workspace ID, the playbook version ID and the playbook action ID,
-
         separated by slashes, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:secmaster/playbookAction:PlaybookAction test <workspace_id>/<playbook_version_id>/<playbook_action_id>
+        $ pulumi import huaweicloud:Secmaster/playbookAction:PlaybookAction test <workspace_id>/<playbook_version_id>/<playbook_action_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PlaybookActionArgs args: The arguments to use to populate this resource's properties.
@@ -523,7 +521,7 @@ class PlaybookAction(pulumi.CustomResource):
             __props__.__dict__["playbook_id"] = None
             __props__.__dict__["updated_at"] = None
         super(PlaybookAction, __self__).__init__(
-            'huaweicloud:secmaster/playbookAction:PlaybookAction',
+            'huaweicloud:Secmaster/playbookAction:PlaybookAction',
             resource_name,
             __props__,
             opts)

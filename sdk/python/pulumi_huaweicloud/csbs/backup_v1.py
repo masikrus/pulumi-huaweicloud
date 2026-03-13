@@ -225,7 +225,7 @@ class _BackupV1State:
         pulumi.set(self, "volume_backups", value)
 
 
-@pulumi.type_token("huaweicloud:csbs/backupV1:BackupV1")
+@pulumi.type_token("huaweicloud:Csbs/backupV1:BackupV1")
 class BackupV1(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -239,6 +239,7 @@ class BackupV1(pulumi.CustomResource):
                  __props__=None):
         """
         Create a BackupV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -250,6 +251,7 @@ class BackupV1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a BackupV1 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param BackupV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -293,7 +295,7 @@ class BackupV1(pulumi.CustomResource):
             __props__.__dict__["vm_metadatas"] = None
             __props__.__dict__["volume_backups"] = None
         super(BackupV1, __self__).__init__(
-            'huaweicloud:csbs/backupV1:BackupV1',
+            'huaweicloud:Csbs/backupV1:BackupV1',
             resource_name,
             __props__,
             opts)

@@ -21,21 +21,26 @@ class ResourceAggregatorArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ResourceAggregator resource.
+
         :param pulumi.Input[_builtins.str] type: Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
                Changing this parameter will create a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] account_ids: Specifies the source account list being aggregated.
                This parameter is only valid in **ACCOUNT** type.
         :param pulumi.Input[_builtins.str] name: Specifies the resource aggregator name.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregator.
         """
         pulumi.set(__self__, "type", type)
         if account_ids is not None:
             pulumi.set(__self__, "account_ids", account_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter
@@ -76,32 +81,61 @@ class ResourceAggregatorArgs:
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the aggregator.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _ResourceAggregatorState:
     def __init__(__self__, *,
+                 resource_aggregator_urn: Optional[pulumi.Input[_builtins.str]] = None,
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 urn: Optional[pulumi.Input[_builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResourceAggregator resources.
+
+        :param pulumi.Input[_builtins.str] resource_aggregator_urn: Indicates the resource aggregator identifier.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] account_ids: Specifies the source account list being aggregated.
                This parameter is only valid in **ACCOUNT** type.
         :param pulumi.Input[_builtins.str] name: Specifies the resource aggregator name.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregator.
         :param pulumi.Input[_builtins.str] type: Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] urn: Indicates the resource aggregator identifier.
         """
+        if resource_aggregator_urn is not None:
+            pulumi.set(__self__, "resource_aggregator_urn", resource_aggregator_urn)
         if account_ids is not None:
             pulumi.set(__self__, "account_ids", account_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
-        if urn is not None:
-            pulumi.set(__self__, "urn", urn)
+
+    @_builtins.property
+    @pulumi.getter(name="ResourceAggregatorUrn")
+    def resource_aggregator_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the resource aggregator identifier.
+        """
+        return pulumi.get(self, "resource_aggregator_urn")
+
+    @resource_aggregator_urn.setter
+    def resource_aggregator_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "resource_aggregator_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="accountIds")
@@ -131,6 +165,18 @@ class _ResourceAggregatorState:
 
     @_builtins.property
     @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the key/value pairs to associate with the aggregator.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
@@ -142,20 +188,8 @@ class _ResourceAggregatorState:
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
 
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Indicates the resource aggregator identifier.
-        """
-        return pulumi.get(self, "urn")
 
-    @urn.setter
-    def urn(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "urn", value)
-
-
-@pulumi.type_token("huaweicloud:rms/resourceAggregator:ResourceAggregator")
+@pulumi.type_token("huaweicloud:Rms/resourceAggregator:ResourceAggregator")
 class ResourceAggregator(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -163,6 +197,7 @@ class ResourceAggregator(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -202,11 +237,10 @@ class ResourceAggregator(pulumi.CustomResource):
 
         The aggregator can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceAggregator:ResourceAggregator example 5dbcb2e0804f46cfabea2a6a1a68b0ae
+        $ pulumi import huaweicloud:Rms/resourceAggregator:ResourceAggregator example 5dbcb2e0804f46cfabea2a6a1a68b0ae
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -214,6 +248,7 @@ class ResourceAggregator(pulumi.CustomResource):
                This parameter is only valid in **ACCOUNT** type.
         :param pulumi.Input[_builtins.str] name: Specifies the resource aggregator name.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregator.
         :param pulumi.Input[_builtins.str] type: Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
                Changing this parameter will create a new resource.
         """
@@ -260,11 +295,10 @@ class ResourceAggregator(pulumi.CustomResource):
 
         The aggregator can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/resourceAggregator:ResourceAggregator example 5dbcb2e0804f46cfabea2a6a1a68b0ae
+        $ pulumi import huaweicloud:Rms/resourceAggregator:ResourceAggregator example 5dbcb2e0804f46cfabea2a6a1a68b0ae
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourceAggregatorArgs args: The arguments to use to populate this resource's properties.
@@ -283,6 +317,7 @@ class ResourceAggregator(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -295,12 +330,13 @@ class ResourceAggregator(pulumi.CustomResource):
 
             __props__.__dict__["account_ids"] = account_ids
             __props__.__dict__["name"] = name
+            __props__.__dict__["tags"] = tags
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            __props__.__dict__["urn"] = None
+            __props__.__dict__["resource_aggregator_urn"] = None
         super(ResourceAggregator, __self__).__init__(
-            'huaweicloud:rms/resourceAggregator:ResourceAggregator',
+            'huaweicloud:Rms/resourceAggregator:ResourceAggregator',
             resource_name,
             __props__,
             opts)
@@ -309,10 +345,11 @@ class ResourceAggregator(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            resource_aggregator_urn: Optional[pulumi.Input[_builtins.str]] = None,
             account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            urn: Optional[pulumi.Input[_builtins.str]] = None) -> 'ResourceAggregator':
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'ResourceAggregator':
         """
         Get an existing ResourceAggregator resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -320,23 +357,33 @@ class ResourceAggregator(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] resource_aggregator_urn: Indicates the resource aggregator identifier.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] account_ids: Specifies the source account list being aggregated.
                This parameter is only valid in **ACCOUNT** type.
         :param pulumi.Input[_builtins.str] name: Specifies the resource aggregator name.
                Changing this parameter will create a new resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the aggregator.
         :param pulumi.Input[_builtins.str] type: Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
                Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] urn: Indicates the resource aggregator identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ResourceAggregatorState.__new__(_ResourceAggregatorState)
 
+        __props__.__dict__["resource_aggregator_urn"] = resource_aggregator_urn
         __props__.__dict__["account_ids"] = account_ids
         __props__.__dict__["name"] = name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
-        __props__.__dict__["urn"] = urn
         return ResourceAggregator(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="ResourceAggregatorUrn")
+    def resource_aggregator_urn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Indicates the resource aggregator identifier.
+        """
+        return pulumi.get(self, "resource_aggregator_urn")
 
     @_builtins.property
     @pulumi.getter(name="accountIds")
@@ -358,18 +405,18 @@ class ResourceAggregator(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        Specifies the key/value pairs to associate with the aggregator.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the resource aggregator type, which can be **ACCOUNT** or **ORGANIZATION**.
         Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "type")
-
-    @_builtins.property
-    @pulumi.getter
-    def urn(self) -> pulumi.Output[_builtins.str]:
-        """
-        Indicates the resource aggregator identifier.
-        """
-        return pulumi.get(self, "urn")
 

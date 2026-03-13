@@ -155,7 +155,7 @@ def get_backup_policy(id: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    csbs_policy = huaweicloud.csbs.get_backup_policy(id=policy_id)
+    csbs_policy = huaweicloud.Csbs.get_backup_policy(id=policy_id)
     ```
 
 
@@ -171,7 +171,7 @@ def get_backup_policy(id: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:csbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Csbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult).value
 
     return AwaitableGetBackupPolicyResult(
         common=pulumi.get(__ret__, 'common'),
@@ -201,7 +201,7 @@ def get_backup_policy_output(id: Optional[pulumi.Input[Optional[_builtins.str]]]
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    csbs_policy = huaweicloud.csbs.get_backup_policy(id=policy_id)
+    csbs_policy = huaweicloud.Csbs.get_backup_policy(id=policy_id)
     ```
 
 
@@ -217,7 +217,7 @@ def get_backup_policy_output(id: Optional[pulumi.Input[Optional[_builtins.str]]]
     __args__['region'] = region
     __args__['status'] = status
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:csbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Csbs/getBackupPolicy:getBackupPolicy', __args__, opts=opts, typ=GetBackupPolicyResult)
     return __ret__.apply(lambda __response__: GetBackupPolicyResult(
         common=pulumi.get(__response__, 'common'),
         description=pulumi.get(__response__, 'description'),

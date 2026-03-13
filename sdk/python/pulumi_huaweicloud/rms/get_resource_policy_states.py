@@ -100,7 +100,7 @@ def get_resource_policy_states(compliance_state: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
-    test = huaweicloud.rms.get_resource_policy_states(resource_id=resource_id)
+    test = huaweicloud.Rms.get_resource_policy_states(resource_id=resource_id)
     ```
 
 
@@ -111,7 +111,7 @@ def get_resource_policy_states(compliance_state: Optional[_builtins.str] = None,
     __args__['complianceState'] = compliance_state
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResourcePolicyStates:getResourcePolicyStates', __args__, opts=opts, typ=GetResourcePolicyStatesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResourcePolicyStates:getResourcePolicyStates', __args__, opts=opts, typ=GetResourcePolicyStatesResult).value
 
     return AwaitableGetResourcePolicyStatesResult(
         compliance_state=pulumi.get(__ret__, 'compliance_state'),
@@ -132,7 +132,7 @@ def get_resource_policy_states_output(compliance_state: Optional[pulumi.Input[Op
 
     config = pulumi.Config()
     resource_id = config.require_object("resourceId")
-    test = huaweicloud.rms.get_resource_policy_states(resource_id=resource_id)
+    test = huaweicloud.Rms.get_resource_policy_states(resource_id=resource_id)
     ```
 
 
@@ -143,7 +143,7 @@ def get_resource_policy_states_output(compliance_state: Optional[pulumi.Input[Op
     __args__['complianceState'] = compliance_state
     __args__['resourceId'] = resource_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResourcePolicyStates:getResourcePolicyStates', __args__, opts=opts, typ=GetResourcePolicyStatesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResourcePolicyStates:getResourcePolicyStates', __args__, opts=opts, typ=GetResourcePolicyStatesResult)
     return __ret__.apply(lambda __response__: GetResourcePolicyStatesResult(
         compliance_state=pulumi.get(__response__, 'compliance_state'),
         id=pulumi.get(__response__, 'id'),

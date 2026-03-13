@@ -29,14 +29,9 @@ __all__ = [
     'SiteConnectionV2DpdArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class IkePolicyLifetimeArgsDict(TypedDict):
-        units: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    IkePolicyLifetimeArgsDict: TypeAlias = Mapping[str, Any]
+class IkePolicyLifetimeArgsDict(TypedDict):
+    units: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class IkePolicyLifetimeArgs:
@@ -67,16 +62,13 @@ class IkePolicyLifetimeArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class IkePolicyV2LifetimeArgsDict(TypedDict):
-        units: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The value for the lifetime of the security association. Must be a positive integer. Default is
-        3600.
-        """
-elif False:
-    IkePolicyV2LifetimeArgsDict: TypeAlias = Mapping[str, Any]
+class IkePolicyV2LifetimeArgsDict(TypedDict):
+    units: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The value for the lifetime of the security association. Must be a positive integer. Default is
+    3600.
+    """
 
 @pulumi.input_type
 class IkePolicyV2LifetimeArgs:
@@ -115,12 +107,9 @@ class IkePolicyV2LifetimeArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class IpsecPolicyLifetimeArgsDict(TypedDict):
-        units: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    IpsecPolicyLifetimeArgsDict: TypeAlias = Mapping[str, Any]
+class IpsecPolicyLifetimeArgsDict(TypedDict):
+    units: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class IpsecPolicyLifetimeArgs:
@@ -151,16 +140,13 @@ class IpsecPolicyLifetimeArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class IpsecPolicyV2LifetimeArgsDict(TypedDict):
-        units: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The value for the lifetime of the security association. Must be a positive integer. Default is
-        3600.
-        """
-elif False:
-    IpsecPolicyV2LifetimeArgsDict: TypeAlias = Mapping[str, Any]
+class IpsecPolicyV2LifetimeArgsDict(TypedDict):
+    units: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The value for the lifetime of the security association. Must be a positive integer. Default is
+    3600.
+    """
 
 @pulumi.input_type
 class IpsecPolicyV2LifetimeArgs:
@@ -199,13 +185,10 @@ class IpsecPolicyV2LifetimeArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class SiteConnectionDpdArgsDict(TypedDict):
-        action: NotRequired[pulumi.Input[_builtins.str]]
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    SiteConnectionDpdArgsDict: TypeAlias = Mapping[str, Any]
+class SiteConnectionDpdArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
 
 @pulumi.input_type
 class SiteConnectionDpdArgs:
@@ -248,25 +231,22 @@ class SiteConnectionDpdArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class SiteConnectionV2DpdArgsDict(TypedDict):
-        action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The dead peer detection (DPD) action. A valid value is clear, hold, restart, disabled, or
-        restart-by-peer. Default value is hold.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The dead peer detection (DPD) interval, in seconds. A valid value is a positive integer.
-        Default is 30.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The dead peer detection (DPD) timeout in seconds. A valid value is a positive integer that
-        is greater than the DPD interval value. Default is 120.
-        """
-elif False:
-    SiteConnectionV2DpdArgsDict: TypeAlias = Mapping[str, Any]
+class SiteConnectionV2DpdArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The dead peer detection (DPD) action. A valid value is clear, hold, restart, disabled, or
+    restart-by-peer. Default value is hold.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The dead peer detection (DPD) interval, in seconds. A valid value is a positive integer.
+    Default is 30.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The dead peer detection (DPD) timeout in seconds. A valid value is a positive integer that
+    is greater than the DPD interval value. Default is 120.
+    """
 
 @pulumi.input_type
 class SiteConnectionV2DpdArgs:

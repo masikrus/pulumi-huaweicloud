@@ -29,6 +29,7 @@ class NotificationTemplateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationTemplate resource.
+
         :param pulumi.Input[_builtins.str] locale: Language.  
                Currently, the value can be **zh-cn** or **en-us**.
         :param pulumi.Input[_builtins.str] source: The source of the notification template.  
@@ -154,6 +155,7 @@ class _NotificationTemplateState:
                  templates: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationTemplateTemplateArgs']]]] = None):
         """
         Input properties used for looking up and filtering NotificationTemplate resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the notification template.  
                The value can contain 1 to 1024 characters, only chinese characters, digits, letters, and underscores (\\_),
                and can not start or end with an underscore (\\_).
@@ -320,11 +322,10 @@ class NotificationTemplate(pulumi.CustomResource):
 
         The LTS notification template can be imported using the `id` which equals `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/notificationTemplate:NotificationTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,11 +390,10 @@ class NotificationTemplate(pulumi.CustomResource):
 
         The LTS notification template can be imported using the `id` which equals `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/notificationTemplate:NotificationTemplate test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationTemplateArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class OrganizationPermissionsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OrganizationPermissions resource.
+
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization (namespace) to be accessed.
                Changing this creates a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['OrganizationPermissionsUserArgs']]] users: Specifies the users to access to the organization (namespace).
@@ -88,6 +89,7 @@ class _OrganizationPermissionsState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationPermissionsUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering OrganizationPermissions resources.
+
         :param pulumi.Input[_builtins.str] creator: The creator user name of the organization.
         :param pulumi.Input[_builtins.str] organization: Specifies the name of the organization (namespace) to be accessed.
                Changing this creates a new resource.
@@ -215,11 +217,10 @@ class OrganizationPermissions(pulumi.CustomResource):
 
         Organization Permissions can be imported using the `id` (organization name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Swr/organizationPermissions:OrganizationPermissions test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -269,11 +270,10 @@ class OrganizationPermissions(pulumi.CustomResource):
 
         Organization Permissions can be imported using the `id` (organization name), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Swr/organizationPermissions:OrganizationPermissions test terraform-test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrganizationPermissionsArgs args: The arguments to use to populate this resource's properties.

@@ -46,6 +46,7 @@ class InfluxInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a InfluxInstance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. For a three-AZ deployment instance,
                use commas (,) to separate the AZs, for example, `cn-north-4a,cn-north-4b,cn-north-4c`.
                Changing this parameter will create a new resource.
@@ -480,6 +481,7 @@ class _InfluxInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InfluxInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled.
                Valid values are **true** and **false**.
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name. For a three-AZ deployment instance,
@@ -1085,11 +1087,10 @@ class InfluxInstance(pulumi.CustomResource):
 
         GaussDB influx instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/influxInstance:InfluxInstance instance_1 e6f6b1fde738489793ce09320d732037in13
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1202,11 +1203,10 @@ class InfluxInstance(pulumi.CustomResource):
 
         GaussDB influx instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/influxInstance:InfluxInstance instance_1 e6f6b1fde738489793ce09320d732037in13
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InfluxInstanceArgs args: The arguments to use to populate this resource's properties.

@@ -47,6 +47,7 @@ class RedisInstanceArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RedisInstance resource.
+
         :param pulumi.Input[_builtins.str] availability_zone: Specifies the AZ name.
                See [Region and Endpoints](https://developer.huaweicloud.com/intl/en-us/endpoint?GaussDB%20NoSQL) for more detail.
                For a three-AZ deployment instance, use commas (,) to separate the AZs, for example, `cn-north-4a,cn-north-4b,cn-north-4c`.
@@ -511,6 +512,7 @@ class _RedisInstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RedisInstance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto renew is enabled. Valid values are "true" and "false".
                
                <a name="availability_zone_detail_struct"></a>
@@ -1118,11 +1120,10 @@ class RedisInstance(pulumi.CustomResource):
 
         GaussDB Redis instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/redisInstance:RedisInstance instance_1 d54b21f037ed447aad4bfd20927711c6in12
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1245,11 +1246,10 @@ class RedisInstance(pulumi.CustomResource):
 
         GaussDB Redis instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDBforNoSQL/redisInstance:RedisInstance instance_1 d54b21f037ed447aad4bfd20927711c6in12
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedisInstanceArgs args: The arguments to use to populate this resource's properties.

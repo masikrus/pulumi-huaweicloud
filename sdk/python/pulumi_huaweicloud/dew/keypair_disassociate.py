@@ -26,6 +26,7 @@ class KeypairDisassociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KeypairDisassociate resource.
+
         :param pulumi.Input['KeypairDisassociateServerArgs'] server: Specifies the ECS information that requires disassociating keypair.
                The server structure is documented below.
                
@@ -87,6 +88,7 @@ class _KeypairDisassociateState:
                  server: Optional[pulumi.Input['KeypairDisassociateServerArgs']] = None):
         """
         Input properties used for looking up and filtering KeypairDisassociate resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to query the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input['KeypairDisassociateServerArgs'] server: Specifies the ECS information that requires disassociating keypair.
@@ -195,6 +197,7 @@ class KeypairDisassociate(pulumi.CustomResource):
         })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to query the resource.
@@ -254,6 +257,7 @@ class KeypairDisassociate(pulumi.CustomResource):
             "id": server_id,
         })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeypairDisassociateArgs args: The arguments to use to populate this resource's properties.

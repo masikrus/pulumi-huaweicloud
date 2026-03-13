@@ -30,6 +30,7 @@ class ResourcePoolNodeBatchResizeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcePoolNodeBatchResize resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePoolNodeBatchResizeNodeArgs']]] nodes: Specifies the list of nodes to be scaled.  
                The nodes structure is documented below.
         :param pulumi.Input[_builtins.str] resource_pool_name: Specifies the resource pool name to which the resource nodes belong.
@@ -163,6 +164,7 @@ class _ResourcePoolNodeBatchResizeState:
                  target: Optional[pulumi.Input['ResourcePoolNodeBatchResizeTargetArgs']] = None):
         """
         Input properties used for looking up and filtering ResourcePoolNodeBatchResize resources.
+
         :param pulumi.Input[_builtins.str] billing: Specifies whether to automatically pay, in JSON format.  
                This parameter is **required** only when upgrading specification of the nodes and cannot be set when downgrading.
                
@@ -338,7 +340,7 @@ class ResourcePoolNodeBatchResize(pulumi.CustomResource):
         test = huaweicloud.modelarts.ResourcePoolNodeBatchResize("test",
             nodes=[{
                 "batch_uid": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in node_batch_uids]],
+            } for entry in [{"key": k, "value": v} for k, v in node_batch_uids.items()]],
             resource_pool_name=resource_pool_name,
             source={
                 "node_pool": source_node_pool_configuration["nodePool"],
@@ -360,6 +362,7 @@ class ResourcePoolNodeBatchResize(pulumi.CustomResource):
                 "autoPay": "1",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -408,7 +411,7 @@ class ResourcePoolNodeBatchResize(pulumi.CustomResource):
         test = huaweicloud.modelarts.ResourcePoolNodeBatchResize("test",
             nodes=[{
                 "batch_uid": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in node_batch_uids]],
+            } for entry in [{"key": k, "value": v} for k, v in node_batch_uids.items()]],
             resource_pool_name=resource_pool_name,
             source={
                 "node_pool": source_node_pool_configuration["nodePool"],
@@ -430,6 +433,7 @@ class ResourcePoolNodeBatchResize(pulumi.CustomResource):
                 "autoPay": "1",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ResourcePoolNodeBatchResizeArgs args: The arguments to use to populate this resource's properties.

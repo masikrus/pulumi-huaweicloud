@@ -24,6 +24,7 @@ class ImageShareArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ImageShare resource.
+
         :param pulumi.Input[_builtins.str] source_image_id: Specifies the ID of the source image. The source image must be in the
                same region as the current resource.
                
@@ -86,6 +87,7 @@ class _ImageShareState:
                  target_project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ImageShare resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] source_image_id: Specifies the ID of the source image. The source image must be in the
@@ -169,6 +171,7 @@ class ImageShare(pulumi.CustomResource):
             target_project_ids=target_project_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -201,6 +204,7 @@ class ImageShare(pulumi.CustomResource):
             source_image_id=source_image_id,
             target_project_ids=target_project_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageShareArgs args: The arguments to use to populate this resource's properties.

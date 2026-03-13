@@ -29,6 +29,7 @@ class ServiceV2Args:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ServiceV2 resource.
+
         :param pulumi.Input[_builtins.str] router_id: The ID of the router. Changing this creates a new service.
         :param pulumi.Input[_builtins.bool] admin_state_up: The administrative state of the resource. Can either be up(true) or down (false).
                Defaults to `true`. Changing this updates the administrative state of the existing service.
@@ -175,6 +176,7 @@ class _ServiceV2State:
                  value_specs: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ServiceV2 resources.
+
         :param pulumi.Input[_builtins.bool] admin_state_up: The administrative state of the resource. Can either be up(true) or down (false).
                Defaults to `true`. Changing this updates the administrative state of the existing service.
         :param pulumi.Input[_builtins.str] description: The human-readable description for the service. Changing this updates the description of
@@ -353,7 +355,7 @@ class _ServiceV2State:
         pulumi.set(self, "value_specs", value)
 
 
-@pulumi.type_token("huaweicloud:vpnaas/serviceV2:ServiceV2")
+@pulumi.type_token("huaweicloud:Vpnaas/serviceV2:ServiceV2")
 class ServiceV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -387,11 +389,10 @@ class ServiceV2(pulumi.CustomResource):
 
         Services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/serviceV2:ServiceV2 service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/serviceV2:ServiceV2 service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -432,11 +433,10 @@ class ServiceV2(pulumi.CustomResource):
 
         Services can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpnaas/serviceV2:ServiceV2 service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
+        $ pulumi import huaweicloud:Vpnaas/serviceV2:ServiceV2 service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceV2Args args: The arguments to use to populate this resource's properties.
@@ -484,7 +484,7 @@ class ServiceV2(pulumi.CustomResource):
             __props__.__dict__["external_v6_ip"] = None
             __props__.__dict__["status"] = None
         super(ServiceV2, __self__).__init__(
-            'huaweicloud:vpnaas/serviceV2:ServiceV2',
+            'huaweicloud:Vpnaas/serviceV2:ServiceV2',
             resource_name,
             __props__,
             opts)

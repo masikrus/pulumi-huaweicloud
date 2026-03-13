@@ -69,6 +69,7 @@ class InstanceArgs:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of AZ name.
                + If add standby node az to the list, then the instance will change from Single instance to Primary/Standby instance.
                The value of `flavor` will be changed to the ha mode value, so the value of `flavor` in the script should be changed
@@ -938,6 +939,7 @@ class _InstanceState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are "true" and "false".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of AZ name.
                + If add standby node az to the list, then the instance will change from Single instance to Primary/Standby instance.
@@ -2094,47 +2096,18 @@ class Instance(pulumi.CustomResource):
 
         RDS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/instance:Instance instance_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `db`, `restore`,`param_group_id`,
-
         `power_action`, `availability_zone`, `read_write_permissions`, `rotate_day`, `secret_id`, `secret_name`, `secret_version`,
-
         `dss_pool_id`, `lower_case_table_names`, `slow_log_show_original_status`, `charging_mode`, `period_unit`, `period`,
-
         `auto_renew`, `auto_pay`, `is_flexus`. It is generally recommended running `pulumi preview` after importing a RDS instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_instance" "instance_1" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "db", "restore", "param_group_id", "power_action", "availability_zone", "read_write_permissions", "rotate_day",
-            
-              "secret_id", "secret_name", "secret_version", "dss_pool_id", "lower_case_table_names", "slow_log_show_original_status",
-            
-              "charging_mode", "period_unit", "period", "auto_renew", "auto_pay", "is_flexus",
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2414,47 +2387,18 @@ class Instance(pulumi.CustomResource):
 
         RDS instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Rds/instance:Instance instance_1 <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `db`, `restore`,`param_group_id`,
-
         `power_action`, `availability_zone`, `read_write_permissions`, `rotate_day`, `secret_id`, `secret_name`, `secret_version`,
-
         `dss_pool_id`, `lower_case_table_names`, `slow_log_show_original_status`, `charging_mode`, `period_unit`, `period`,
-
         `auto_renew`, `auto_pay`, `is_flexus`. It is generally recommended running `pulumi preview` after importing a RDS instance.
-
         You can then decide if changes should be applied to the instance, or the resource definition should be updated to align
-
         with the instance. Also, you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rds_instance" "instance_1" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              "db", "restore", "param_group_id", "power_action", "availability_zone", "read_write_permissions", "rotate_day",
-            
-              "secret_id", "secret_name", "secret_version", "dss_pool_id", "lower_case_table_names", "slow_log_show_original_status",
-            
-              "charging_mode", "period_unit", "period", "auto_renew", "auto_pay", "is_flexus",
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

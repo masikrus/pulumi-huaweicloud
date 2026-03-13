@@ -48,6 +48,7 @@ class LoadbalancerCopyArgs:
                  waf_failure_action: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerCopy resource.
+
         :param pulumi.Input[_builtins.str] loadbalancer_id: Specifies the source load balancer ID.
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of AZ names.
@@ -558,6 +559,7 @@ class _LoadbalancerCopyState:
                  waf_failure_action: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerCopy resources.
+
         :param pulumi.Input[_builtins.str] auto_renew: Specifies whether auto-renew is enabled. Valid values are **true** and **false**.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] availability_zones: Specifies the list of AZ names.
                
@@ -585,7 +587,8 @@ class _LoadbalancerCopyState:
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the load balancer.
         :param pulumi.Input[_builtins.bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load
                balancer, listeners, unbind associated pools. Defaults to **false**.
-        :param pulumi.Input[_builtins.str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        :param pulumi.Input[_builtins.str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using
+               commas (,).
                The value can be:
                + **POLICE**: The load balancer is frozen due to security reasons.
                + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
@@ -889,7 +892,8 @@ class _LoadbalancerCopyState:
     @pulumi.getter(name="frozenScene")
     def frozen_scene(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        Indicates the scenario where the load balancer is frozen. Multiple values are separated using
+        commas (,).
         The value can be:
         + **POLICE**: The load balancer is frozen due to security reasons.
         + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
@@ -1294,43 +1298,17 @@ class LoadbalancerCopy(pulumi.CustomResource):
 
         The ELB load balancer copy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/loadbalancerCopy:LoadbalancerCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `loadbalancer_id`, `ipv6_bandwidth_id`,
-
         `deletion_protection_enable`, `reuse_pool`,  `period_unit`, `period`, `auto_renew` and `force_delete`. It is generally
-
         recommended running `pulumi preview` after importing a load balancer copy. You can then decide if changes should be applied
-
         to the load balancer copy, or the resource definition should be updated to align with the load balancer. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_loadbalancer_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              loadbalancer_id, ipv6_bandwidth_id, deletion_protection_enable, reuse_pool, period_unit, period, auto_renew,
-            
-              force_delete,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1444,43 +1422,17 @@ class LoadbalancerCopy(pulumi.CustomResource):
 
         The ELB load balancer copy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DedicatedElb/loadbalancerCopy:LoadbalancerCopy test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `loadbalancer_id`, `ipv6_bandwidth_id`,
-
         `deletion_protection_enable`, `reuse_pool`,  `period_unit`, `period`, `auto_renew` and `force_delete`. It is generally
-
         recommended running `pulumi preview` after importing a load balancer copy. You can then decide if changes should be applied
-
         to the load balancer copy, or the resource definition should be updated to align with the load balancer. Also you can
-
         ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_elb_loadbalancer_copy" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              loadbalancer_id, ipv6_bandwidth_id, deletion_protection_enable, reuse_pool, period_unit, period, auto_renew,
-            
-              force_delete,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerCopyArgs args: The arguments to use to populate this resource's properties.
@@ -1655,7 +1607,8 @@ class LoadbalancerCopy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID of the load balancer.
         :param pulumi.Input[_builtins.bool] force_delete: Specifies whether to forcibly delete the load balancer, remove the load
                balancer, listeners, unbind associated pools. Defaults to **false**.
-        :param pulumi.Input[_builtins.str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        :param pulumi.Input[_builtins.str] frozen_scene: Indicates the scenario where the load balancer is frozen. Multiple values are separated using
+               commas (,).
                The value can be:
                + **POLICE**: The load balancer is frozen due to security reasons.
                + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
@@ -1874,7 +1827,8 @@ class LoadbalancerCopy(pulumi.CustomResource):
     @pulumi.getter(name="frozenScene")
     def frozen_scene(self) -> pulumi.Output[_builtins.str]:
         """
-        Indicates the scenario where the load balancer is frozen. Multiple values are separated using commas (,).
+        Indicates the scenario where the load balancer is frozen. Multiple values are separated using
+        commas (,).
         The value can be:
         + **POLICE**: The load balancer is frozen due to security reasons.
         + **ILLEGAL**: The load balancer is frozen due to violation of laws and regulations.
@@ -1946,7 +1900,7 @@ class LoadbalancerCopy(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="l4FlavorId")
-    def l4_flavor_id(self) -> pulumi.Output[_builtins.str]:
+    def l4_flavor_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the Layer 4 specifications of the new load balancer. If it is not specified,
         the Layer 4 specifications of the original load balancer are used.
@@ -1955,7 +1909,7 @@ class LoadbalancerCopy(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="l7FlavorId")
-    def l7_flavor_id(self) -> pulumi.Output[_builtins.str]:
+    def l7_flavor_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the Layer 7 specifications of the new load balancer. If it is not specified,
         the Layer 7 specifications of the original load balancer are used.

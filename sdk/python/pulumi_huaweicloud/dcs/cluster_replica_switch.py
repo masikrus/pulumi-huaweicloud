@@ -26,6 +26,7 @@ class ClusterReplicaSwitchArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClusterReplicaSwitch resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the shard.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the node that is promoted to master.
@@ -109,6 +110,7 @@ class _ClusterReplicaSwitchState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterReplicaSwitch resources.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the shard.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the node that is promoted to master.
@@ -216,6 +218,7 @@ class ClusterReplicaSwitch(pulumi.CustomResource):
             node_id=node_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the shard.
@@ -248,6 +251,7 @@ class ClusterReplicaSwitch(pulumi.CustomResource):
             group_id=group_id,
             node_id=node_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterReplicaSwitchArgs args: The arguments to use to populate this resource's properties.

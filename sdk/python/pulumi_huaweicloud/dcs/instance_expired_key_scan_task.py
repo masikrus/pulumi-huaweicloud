@@ -24,6 +24,7 @@ class InstanceExpiredKeyScanTaskArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceExpiredKeyScanTask resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
@@ -83,6 +84,7 @@ class _InstanceExpiredKeyScanTaskState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceExpiredKeyScanTask resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the time when a scan task is created.
         :param pulumi.Input[_builtins.str] finished_at: Indicates the time when a scan task is complete.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
@@ -243,6 +245,7 @@ class InstanceExpiredKeyScanTask(pulumi.CustomResource):
         test = huaweicloud.dcs.InstanceExpiredKeyScanTask("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
@@ -268,6 +271,7 @@ class InstanceExpiredKeyScanTask(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.dcs.InstanceExpiredKeyScanTask("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceExpiredKeyScanTaskArgs args: The arguments to use to populate this resource's properties.

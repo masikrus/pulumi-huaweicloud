@@ -24,6 +24,7 @@ class UnsubscribePrepaidVolumeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UnsubscribePrepaidVolume resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] volume_ids: Specifies the volume IDs. A maximum of `60` volume IDs can be
                configured.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -81,6 +82,7 @@ class _UnsubscribePrepaidVolumeState:
                  volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering UnsubscribePrepaidVolume resources.
+
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used.
                Changing this creates a new resource.
@@ -160,6 +162,7 @@ class UnsubscribePrepaidVolume(pulumi.CustomResource):
         example = huaweicloud.evs.UnsubscribePrepaidVolume("example", volume_ids=volume_ids)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -192,6 +195,7 @@ class UnsubscribePrepaidVolume(pulumi.CustomResource):
         volume_ids = config.require_object("volumeIds")
         example = huaweicloud.evs.UnsubscribePrepaidVolume("example", volume_ids=volume_ids)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UnsubscribePrepaidVolumeArgs args: The arguments to use to populate this resource's properties.

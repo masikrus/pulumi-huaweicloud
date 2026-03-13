@@ -129,7 +129,7 @@ def get_rasp_policy_detail(enterprise_project_id: Optional[_builtins.str] = None
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    test = huaweicloud.hss.get_rasp_policy_detail(policy_id=policy_id)
+    test = huaweicloud.Hss.get_rasp_policy_detail(policy_id=policy_id)
     ```
 
 
@@ -144,7 +144,7 @@ def get_rasp_policy_detail(enterprise_project_id: Optional[_builtins.str] = None
     __args__['policyId'] = policy_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getRaspPolicyDetail:getRaspPolicyDetail', __args__, opts=opts, typ=GetRaspPolicyDetailResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getRaspPolicyDetail:getRaspPolicyDetail', __args__, opts=opts, typ=GetRaspPolicyDetailResult).value
 
     return AwaitableGetRaspPolicyDetailResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -169,7 +169,7 @@ def get_rasp_policy_detail_output(enterprise_project_id: Optional[pulumi.Input[O
 
     config = pulumi.Config()
     policy_id = config.require_object("policyId")
-    test = huaweicloud.hss.get_rasp_policy_detail(policy_id=policy_id)
+    test = huaweicloud.Hss.get_rasp_policy_detail(policy_id=policy_id)
     ```
 
 
@@ -184,7 +184,7 @@ def get_rasp_policy_detail_output(enterprise_project_id: Optional[pulumi.Input[O
     __args__['policyId'] = policy_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getRaspPolicyDetail:getRaspPolicyDetail', __args__, opts=opts, typ=GetRaspPolicyDetailResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getRaspPolicyDetail:getRaspPolicyDetail', __args__, opts=opts, typ=GetRaspPolicyDetailResult)
     return __ret__.apply(lambda __response__: GetRaspPolicyDetailResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

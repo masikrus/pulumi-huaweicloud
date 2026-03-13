@@ -35,6 +35,7 @@ class PolicyArgs:
                  time_zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input['PolicyBackupCycleArgs'] backup_cycle: Specifies the scheduling rule for the policy backup execution.
                The object structure is documented below.
         :param pulumi.Input[_builtins.str] type: Specifies the protection type of the policy.
@@ -275,6 +276,7 @@ class _PolicyState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
         :param pulumi.Input['PolicyBackupCycleArgs'] backup_cycle: Specifies the scheduling rule for the policy backup execution.
                The object structure is documented below.
         :param pulumi.Input[_builtins.int] backup_quantity: Specifies the maximum number of retained backups. The value ranges from `2` to
@@ -578,11 +580,10 @@ class Policy(pulumi.CustomResource):
 
         Policies can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -685,11 +686,10 @@ class Policy(pulumi.CustomResource):
 
         Policies can be imported by their `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Cbr/policy:Policy test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.

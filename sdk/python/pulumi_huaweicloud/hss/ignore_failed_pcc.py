@@ -26,6 +26,7 @@ class IgnoreFailedPccArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IgnoreFailedPcc resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type to perform.
                The valid values are:
                + **ignore**: Ignore the servers that fail the password complexity check.
@@ -137,6 +138,7 @@ class _IgnoreFailedPccState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IgnoreFailedPcc resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the action type to perform.
                The valid values are:
                + **ignore**: Ignore the servers that fail the password complexity check.
@@ -239,7 +241,7 @@ class _IgnoreFailedPccState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:hss/ignoreFailedPcc:IgnoreFailedPcc")
+@pulumi.type_token("huaweicloud:Hss/ignoreFailedPcc:IgnoreFailedPcc")
 class IgnoreFailedPcc(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -267,6 +269,7 @@ class IgnoreFailedPcc(pulumi.CustomResource):
             action="ignore",
             operate_all=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -311,6 +314,7 @@ class IgnoreFailedPcc(pulumi.CustomResource):
             operate_all=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param IgnoreFailedPccArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -348,7 +352,7 @@ class IgnoreFailedPcc(pulumi.CustomResource):
             __props__.__dict__["operate_all"] = operate_all
             __props__.__dict__["region"] = region
         super(IgnoreFailedPcc, __self__).__init__(
-            'huaweicloud:hss/ignoreFailedPcc:IgnoreFailedPcc',
+            'huaweicloud:Hss/ignoreFailedPcc:IgnoreFailedPcc',
             resource_name,
             __props__,
             opts)

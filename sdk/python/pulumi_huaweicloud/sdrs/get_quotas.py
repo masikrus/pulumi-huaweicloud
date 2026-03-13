@@ -82,7 +82,7 @@ def get_quotas(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_quotas()
+    test = huaweicloud.Sdrs.get_quotas()
     ```
 
 
@@ -92,7 +92,7 @@ def get_quotas(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:sdrs/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Sdrs/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult).value
 
     return AwaitableGetQuotasResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_quotas_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.sdrs.get_quotas()
+    test = huaweicloud.Sdrs.get_quotas()
     ```
 
 
@@ -119,7 +119,7 @@ def get_quotas_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:sdrs/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Sdrs/getQuotas:getQuotas', __args__, opts=opts, typ=GetQuotasResult)
     return __ret__.apply(lambda __response__: GetQuotasResult(
         id=pulumi.get(__response__, 'id'),
         quotas=pulumi.get(__response__, 'quotas'),

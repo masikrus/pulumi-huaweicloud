@@ -167,7 +167,7 @@ def get_resources(enterprise_project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resources(type="vpc.vpcs")
+    test = huaweicloud.Rms.get_resources(type="vpc.vpcs")
     ```
 
 
@@ -190,7 +190,7 @@ def get_resources(enterprise_project_id: Optional[_builtins.str] = None,
     __args__['tracked'] = tracked
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult).value
 
     return AwaitableGetResourcesResult(
         enterprise_project_id=pulumi.get(__ret__, 'enterprise_project_id'),
@@ -221,7 +221,7 @@ def get_resources_output(enterprise_project_id: Optional[pulumi.Input[Optional[_
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_resources(type="vpc.vpcs")
+    test = huaweicloud.Rms.get_resources(type="vpc.vpcs")
     ```
 
 
@@ -244,7 +244,7 @@ def get_resources_output(enterprise_project_id: Optional[pulumi.Input[Optional[_
     __args__['tracked'] = tracked
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getResources:getResources', __args__, opts=opts, typ=GetResourcesResult)
     return __ret__.apply(lambda __response__: GetResourcesResult(
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),
         id=pulumi.get(__response__, 'id'),

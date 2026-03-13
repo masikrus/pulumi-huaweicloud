@@ -20,7 +20,9 @@ __all__ = ['InterfaceAttachV2Args', 'InterfaceAttachV2']
 class InterfaceAttachV2Args:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -32,8 +34,12 @@ class InterfaceAttachV2Args:
         The set of arguments for constructing a InterfaceAttachV2 resource.
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if fixed_ip is not None:
             pulumi.set(__self__, "fixed_ip", fixed_ip)
+        if fixed_ipv6 is not None:
+            pulumi.set(__self__, "fixed_ipv6", fixed_ipv6)
         if ipv6_bandwidth_id is not None:
             pulumi.set(__self__, "ipv6_bandwidth_id", ipv6_bandwidth_id)
         if ipv6_enable is not None:
@@ -59,6 +65,15 @@ class InterfaceAttachV2Args:
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
     @pulumi.getter(name="fixedIp")
     def fixed_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "fixed_ip")
@@ -66,6 +81,15 @@ class InterfaceAttachV2Args:
     @fixed_ip.setter
     def fixed_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "fixed_ip", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedIpv6")
+    def fixed_ipv6(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "fixed_ipv6")
+
+    @fixed_ipv6.setter
+    def fixed_ipv6(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "fixed_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6BandwidthId")
@@ -134,6 +158,7 @@ class InterfaceAttachV2Args:
 @pulumi.input_type
 class _InterfaceAttachV2State:
     def __init__(__self__, *,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -148,6 +173,8 @@ class _InterfaceAttachV2State:
         """
         Input properties used for looking up and filtering InterfaceAttachV2 resources.
         """
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
         if fixed_ip is not None:
             pulumi.set(__self__, "fixed_ip", fixed_ip)
         if fixed_ipv6 is not None:
@@ -170,6 +197,15 @@ class _InterfaceAttachV2State:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
         if source_dest_check is not None:
             pulumi.set(__self__, "source_dest_check", source_dest_check)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete_on_termination", value)
 
     @_builtins.property
     @pulumi.getter(name="fixedIp")
@@ -277,7 +313,9 @@ class InterfaceAttachV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -289,6 +327,7 @@ class InterfaceAttachV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a InterfaceAttachV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -300,6 +339,7 @@ class InterfaceAttachV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a InterfaceAttachV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param InterfaceAttachV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,7 +355,9 @@ class InterfaceAttachV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
                  fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_bandwidth_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_enable: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -333,7 +375,9 @@ class InterfaceAttachV2(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InterfaceAttachV2Args.__new__(InterfaceAttachV2Args)
 
+            __props__.__dict__["delete_on_termination"] = delete_on_termination
             __props__.__dict__["fixed_ip"] = fixed_ip
+            __props__.__dict__["fixed_ipv6"] = fixed_ipv6
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
@@ -344,7 +388,6 @@ class InterfaceAttachV2(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["security_group_ids"] = security_group_ids
             __props__.__dict__["source_dest_check"] = source_dest_check
-            __props__.__dict__["fixed_ipv6"] = None
             __props__.__dict__["mac"] = None
         super(InterfaceAttachV2, __self__).__init__(
             'huaweicloud:Ecs/interfaceAttachV2:InterfaceAttachV2',
@@ -356,6 +399,7 @@ class InterfaceAttachV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_termination: Optional[pulumi.Input[_builtins.str]] = None,
             fixed_ip: Optional[pulumi.Input[_builtins.str]] = None,
             fixed_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -379,6 +423,7 @@ class InterfaceAttachV2(pulumi.CustomResource):
 
         __props__ = _InterfaceAttachV2State.__new__(_InterfaceAttachV2State)
 
+        __props__.__dict__["delete_on_termination"] = delete_on_termination
         __props__.__dict__["fixed_ip"] = fixed_ip
         __props__.__dict__["fixed_ipv6"] = fixed_ipv6
         __props__.__dict__["instance_id"] = instance_id
@@ -391,6 +436,11 @@ class InterfaceAttachV2(pulumi.CustomResource):
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["source_dest_check"] = source_dest_check
         return InterfaceAttachV2(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnTermination")
+    def delete_on_termination(self) -> pulumi.Output[_builtins.str]:
+        return pulumi.get(self, "delete_on_termination")
 
     @_builtins.property
     @pulumi.getter(name="fixedIp")

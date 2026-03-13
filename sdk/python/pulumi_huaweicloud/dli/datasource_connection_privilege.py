@@ -25,6 +25,7 @@ class DatasourceConnectionPrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatasourceConnectionPrivilege resource.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the connection to be granted.
                
                Changing this parameter will create a new resource.
@@ -107,6 +108,7 @@ class _DatasourceConnectionPrivilegeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatasourceConnectionPrivilege resources.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the connection to be granted.
                
                Changing this parameter will create a new resource.
@@ -215,14 +217,12 @@ class DatasourceConnectionPrivilege(pulumi.CustomResource):
         ## Import
 
         The datasource connection privilege detail can be imported using the `connection_id` and `project_id`, separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceConnectionPrivilege:DatasourceConnectionPrivilege test <connection_id>/<project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,14 +265,12 @@ class DatasourceConnectionPrivilege(pulumi.CustomResource):
         ## Import
 
         The datasource connection privilege detail can be imported using the `connection_id` and `project_id`, separated by a
-
         slash, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Dli/datasourceConnectionPrivilege:DatasourceConnectionPrivilege test <connection_id>/<project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatasourceConnectionPrivilegeArgs args: The arguments to use to populate this resource's properties.

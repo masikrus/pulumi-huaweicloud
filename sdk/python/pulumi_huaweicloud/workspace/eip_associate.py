@@ -24,6 +24,7 @@ class EipAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EipAssociate resource.
+
         :param pulumi.Input[_builtins.str] desktop_id: Specifies the desktop ID. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the EIP ID to associate. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to associate the EIP. If omitted, the provider-level
@@ -82,6 +83,7 @@ class _EipAssociateState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EipAssociate resources.
+
         :param pulumi.Input[_builtins.str] desktop_id: Specifies the desktop ID. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] eip_id: Specifies the EIP ID to associate. Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: The enterprise project ID to which the EIP associated.
@@ -195,11 +197,10 @@ class EipAssociate(pulumi.CustomResource):
 
         EIP association can be imported using the `desktop_id` and associated `eip_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/eipAssociate:EipAssociate test <desktop_id>/<eip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,11 +238,10 @@ class EipAssociate(pulumi.CustomResource):
 
         EIP association can be imported using the `desktop_id` and associated `eip_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Workspace/eipAssociate:EipAssociate test <desktop_id>/<eip_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EipAssociateArgs args: The arguments to use to populate this resource's properties.

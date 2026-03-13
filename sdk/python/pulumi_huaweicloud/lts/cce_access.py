@@ -39,6 +39,7 @@ class CceAccessArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CceAccess resource.
+
         :param pulumi.Input['CceAccessAccessConfigArgs'] access_config: Specifies the configurations of CCE access.
                The access_config structure is documented below.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the CCE cluster ID. Changing this creates a new resource.
@@ -371,6 +372,7 @@ class _CceAccessState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering CceAccess resources.
+
         :param pulumi.Input['CceAccessAccessConfigArgs'] access_config: Specifies the configurations of CCE access.
                The access_config structure is documented below.
         :param pulumi.Input[_builtins.str] access_type: The log access type.
@@ -879,41 +881,17 @@ class CceAccess(pulumi.CustomResource):
 
         The CCE access can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/cceAccess:CceAccess test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `processors`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_cce_access" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              processors,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1088,41 +1066,17 @@ class CceAccess(pulumi.CustomResource):
 
         The CCE access can be imported using `name`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Lts/cceAccess:CceAccess test <name>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason.
-
         The missing attributes include: `processors`.
-
         It is generally recommended running `pulumi preview` after importing the resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to
-
         align with the instance. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_lts_cce_access" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              processors,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param CceAccessArgs args: The arguments to use to populate this resource's properties.

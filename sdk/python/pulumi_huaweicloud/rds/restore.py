@@ -29,22 +29,23 @@ class RestoreArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Restore resource.
+
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the target instance ID.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
                specified when `type` is set to **backup** or left empty.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies only
-               to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-               specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-               databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-               database names can contain but cannot be the same as the original database names. Note the following when you are
-               specifying new database names:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies
+               only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+               parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+               specified, all databases are restored by default. You can enter multiple new database names and separate them with
+               commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+               following when you are specifying new database names:
                + New database names must be different from the original database names. If they are left blank, the original database
                names will be used for restoration by default.
-               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-               database names are unique.
-               + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-               exceed the database quota specified by **rds_databases_quota**.
+               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+               new database names are unique.
+               + The total number of new and existing databases on the existing or original DB instances where data is restored
+               cannotexceed the database quota specified by **rds_databases_quota**.
                + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
                **tempdb**, **model** and **resource**.
                + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -54,8 +55,9 @@ class RestoreArgs:
                restored.
         :param pulumi.Input[_builtins.str] region: The region in which to create the rds instance resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp format.
-               The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp
+               format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+               **timestamp**.
         :param pulumi.Input[_builtins.str] type: Specifies the restoration type. Value options:
                + **backup**: indicates using backup files for restoration.
                + **timestamp**: indicates the point-in-time restoration mode.
@@ -116,18 +118,18 @@ class RestoreArgs:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the databases that will be restored. This parameter applies only
-        to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-        specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-        databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-        database names can contain but cannot be the same as the original database names. Note the following when you are
-        specifying new database names:
+        Specifies the databases that will be restored. This parameter applies
+        only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+        parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+        specified, all databases are restored by default. You can enter multiple new database names and separate them with
+        commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+        following when you are specifying new database names:
         + New database names must be different from the original database names. If they are left blank, the original database
         names will be used for restoration by default.
-        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-        database names are unique.
-        + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-        exceed the database quota specified by **rds_databases_quota**.
+        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+        new database names are unique.
+        + The total number of new and existing databases on the existing or original DB instances where data is restored
+        cannotexceed the database quota specified by **rds_databases_quota**.
         + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
         **tempdb**, **model** and **resource**.
         + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -168,8 +170,9 @@ class RestoreArgs:
     @pulumi.getter(name="restoreTime")
     def restore_time(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the time point of data restoration in the UNIX timestamp format.
-        The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        Specifies the time point of data restoration in the UNIX timestamp
+        format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+        **timestamp**.
         """
         return pulumi.get(self, "restore_time")
 
@@ -205,20 +208,21 @@ class _RestoreState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Restore resources.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
                specified when `type` is set to **backup** or left empty.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies only
-               to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-               specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-               databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-               database names can contain but cannot be the same as the original database names. Note the following when you are
-               specifying new database names:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies
+               only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+               parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+               specified, all databases are restored by default. You can enter multiple new database names and separate them with
+               commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+               following when you are specifying new database names:
                + New database names must be different from the original database names. If they are left blank, the original database
                names will be used for restoration by default.
-               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-               database names are unique.
-               + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-               exceed the database quota specified by **rds_databases_quota**.
+               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+               new database names are unique.
+               + The total number of new and existing databases on the existing or original DB instances where data is restored
+               cannotexceed the database quota specified by **rds_databases_quota**.
                + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
                **tempdb**, **model** and **resource**.
                + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -228,8 +232,9 @@ class _RestoreState:
                restored.
         :param pulumi.Input[_builtins.str] region: The region in which to create the rds instance resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp format.
-               The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp
+               format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+               **timestamp**.
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the target instance ID.
         :param pulumi.Input[_builtins.str] type: Specifies the restoration type. Value options:
@@ -270,18 +275,18 @@ class _RestoreState:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Specifies the databases that will be restored. This parameter applies only
-        to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-        specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-        databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-        database names can contain but cannot be the same as the original database names. Note the following when you are
-        specifying new database names:
+        Specifies the databases that will be restored. This parameter applies
+        only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+        parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+        specified, all databases are restored by default. You can enter multiple new database names and separate them with
+        commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+        following when you are specifying new database names:
         + New database names must be different from the original database names. If they are left blank, the original database
         names will be used for restoration by default.
-        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-        database names are unique.
-        + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-        exceed the database quota specified by **rds_databases_quota**.
+        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+        new database names are unique.
+        + The total number of new and existing databases on the existing or original DB instances where data is restored
+        cannotexceed the database quota specified by **rds_databases_quota**.
         + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
         **tempdb**, **model** and **resource**.
         + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -322,8 +327,9 @@ class _RestoreState:
     @pulumi.getter(name="restoreTime")
     def restore_time(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Specifies the time point of data restoration in the UNIX timestamp format.
-        The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        Specifies the time point of data restoration in the UNIX timestamp
+        format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+        **timestamp**.
         """
         return pulumi.get(self, "restore_time")
 
@@ -423,22 +429,23 @@ class Restore(pulumi.CustomResource):
             restore_time=1673852043000)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
                specified when `type` is set to **backup** or left empty.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies only
-               to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-               specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-               databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-               database names can contain but cannot be the same as the original database names. Note the following when you are
-               specifying new database names:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies
+               only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+               parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+               specified, all databases are restored by default. You can enter multiple new database names and separate them with
+               commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+               following when you are specifying new database names:
                + New database names must be different from the original database names. If they are left blank, the original database
                names will be used for restoration by default.
-               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-               database names are unique.
-               + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-               exceed the database quota specified by **rds_databases_quota**.
+               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+               new database names are unique.
+               + The total number of new and existing databases on the existing or original DB instances where data is restored
+               cannotexceed the database quota specified by **rds_databases_quota**.
                + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
                **tempdb**, **model** and **resource**.
                + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -448,8 +455,9 @@ class Restore(pulumi.CustomResource):
                restored.
         :param pulumi.Input[_builtins.str] region: The region in which to create the rds instance resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp format.
-               The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp
+               format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+               **timestamp**.
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the target instance ID.
         :param pulumi.Input[_builtins.str] type: Specifies the restoration type. Value options:
@@ -499,6 +507,7 @@ class Restore(pulumi.CustomResource):
             type="timestamp",
             restore_time=1673852043000)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RestoreArgs args: The arguments to use to populate this resource's properties.
@@ -571,18 +580,18 @@ class Restore(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backup_id: Specifies the ID of the backup to be restored. This parameter must be
                specified when `type` is set to **backup** or left empty.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies only
-               to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-               specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-               databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-               database names can contain but cannot be the same as the original database names. Note the following when you are
-               specifying new database names:
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] database_name: Specifies the databases that will be restored. This parameter applies
+               only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+               parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+               specified, all databases are restored by default. You can enter multiple new database names and separate them with
+               commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+               following when you are specifying new database names:
                + New database names must be different from the original database names. If they are left blank, the original database
                names will be used for restoration by default.
-               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-               database names are unique.
-               + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-               exceed the database quota specified by **rds_databases_quota**.
+               + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+               new database names are unique.
+               + The total number of new and existing databases on the existing or original DB instances where data is restored
+               cannotexceed the database quota specified by **rds_databases_quota**.
                + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
                **tempdb**, **model** and **resource**.
                + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -592,8 +601,9 @@ class Restore(pulumi.CustomResource):
                restored.
         :param pulumi.Input[_builtins.str] region: The region in which to create the rds instance resource. If omitted, the
                provider-level region will be used. Changing this creates a new resource.
-        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp format.
-               The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        :param pulumi.Input[_builtins.int] restore_time: Specifies the time point of data restoration in the UNIX timestamp
+               format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+               **timestamp**.
         :param pulumi.Input[_builtins.str] source_instance_id: Specifies the source instance ID.
         :param pulumi.Input[_builtins.str] target_instance_id: Specifies the target instance ID.
         :param pulumi.Input[_builtins.str] type: Specifies the restoration type. Value options:
@@ -627,18 +637,18 @@ class Restore(pulumi.CustomResource):
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        Specifies the databases that will be restored. This parameter applies only
-        to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this parameter is
-        specified, you can restore all or specific databases and rename new databases. If this parameter is not specified, all
-        databases are restored by default. You can enter multiple new database names and separate them with commas (,). The new
-        database names can contain but cannot be the same as the original database names. Note the following when you are
-        specifying new database names:
+        Specifies the databases that will be restored. This parameter applies
+        only to the SQL Server DB engine. The key is the old database name, the value is the new database name. If this
+        parameter is specified, you can restore all or specific databases and rename new databases. If this parameter is not
+        specified, all databases are restored by default. You can enter multiple new database names and separate them with
+        commas (,). The new database names can contain but cannot be the same as the original database names. Note the
+        following when you are specifying new database names:
         + New database names must be different from the original database names. If they are left blank, the original database
         names will be used for restoration by default.
-        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the new
-        database names are unique.
-        + The total number of new and existing databases on the existing or original DB instances where data is restored cannot
-        exceed the database quota specified by **rds_databases_quota**.
+        + The case-sensitivity settings of the new databases are the same as those of the original databases. Make sure the
+        new database names are unique.
+        + The total number of new and existing databases on the existing or original DB instances where data is restored
+        cannotexceed the database quota specified by **rds_databases_quota**.
         + New database names cannot contain the following fields (case-insensitive): **rdsadmin**, **master**, **msdb**,
         **tempdb**, **model** and **resource**.
         + New database names must consist of `1` to `64` characters, including only letters, digits, underscores (_), and
@@ -667,8 +677,9 @@ class Restore(pulumi.CustomResource):
     @pulumi.getter(name="restoreTime")
     def restore_time(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Specifies the time point of data restoration in the UNIX timestamp format.
-        The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to **timestamp**.
+        Specifies the time point of data restoration in the UNIX timestamp
+        format. The unit is millisecond and the time zone is UTC. This parameter must be specified when `type` is set to
+        **timestamp**.
         """
         return pulumi.get(self, "restore_time")
 

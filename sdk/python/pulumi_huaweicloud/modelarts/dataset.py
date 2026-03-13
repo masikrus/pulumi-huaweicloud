@@ -33,6 +33,7 @@ class DatasetArgs:
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input['DatasetSchemaArgs']]]] = None):
         """
         The set of arguments for constructing a Dataset resource.
+
         :param pulumi.Input['DatasetDataSourceArgs'] data_source: Specifies the data sources which be used to imported the source data (such
                as pictures/files/audio, etc.) in this directory and subdirectories to the dataset. Structure is documented below.
                Changing this parameter will create a new resource.
@@ -243,6 +244,7 @@ class _DatasetState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Dataset resources.
+
         :param pulumi.Input[_builtins.str] created_at: The dataset creation time.
         :param pulumi.Input[_builtins.str] data_format: dataset format. Valid values include: `Default`, `CarbonData`: Carbon format(Supported only for
                table type datasets).
@@ -550,43 +552,17 @@ class Dataset(pulumi.CustomResource):
 
         The datasets can be imported by `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/dataset:Dataset test yiROKoTTjtwjvP71yLG
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `data_source.0.path`,
-
         `data_source.0.queue_name`, `data_source.0.database_name`, `data_source.0.table_name`, `data_source.0.cluster_id`,
-
         `data_source.0.user_name` and `data_source.0.password`. It is generally recommended running `pulumi preview` after
-
         importing a dataset. You can then decide if changes should be applied to the dataset, or the resource definition
-
         should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_dataset" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              data_source.0.path, data_source.0.queue_name, data_source.0.database_name, data_source.0.table_name,
-            
-              data_source.0.cluster_id, data_source.0.user_name, data_source.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -658,43 +634,17 @@ class Dataset(pulumi.CustomResource):
 
         The datasets can be imported by `id`.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:ModelArts/dataset:Dataset test yiROKoTTjtwjvP71yLG
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `data_source.0.path`,
-
         `data_source.0.queue_name`, `data_source.0.database_name`, `data_source.0.table_name`, `data_source.0.cluster_id`,
-
         `data_source.0.user_name` and `data_source.0.password`. It is generally recommended running `pulumi preview` after
-
         importing a dataset. You can then decide if changes should be applied to the dataset, or the resource definition
-
         should be updated to align with the dataset. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_modelarts_dataset" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              data_source.0.path, data_source.0.queue_name, data_source.0.database_name, data_source.0.table_name,
-            
-              data_source.0.cluster_id, data_source.0.user_name, data_source.0.password,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param DatasetArgs args: The arguments to use to populate this resource's properties.

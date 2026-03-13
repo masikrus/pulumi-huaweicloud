@@ -26,6 +26,7 @@ class TaskConsistencyResultReportArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TaskConsistencyResultReport resource.
+
         :param pulumi.Input[_builtins.str] task_id: Specifies the task ID.
         :param pulumi.Input[Sequence[pulumi.Input['TaskConsistencyResultReportConsistencyResultArgs']]] consistency_results: Specifies the consistency verification results.
                The consistency_result structure is documented below.
@@ -85,6 +86,7 @@ class _TaskConsistencyResultReportState:
                  task_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TaskConsistencyResultReport resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['TaskConsistencyResultReportConsistencyResultArgs']]] consistency_results: Specifies the consistency verification results.
                The consistency_result structure is documented below.
                
@@ -171,6 +173,7 @@ class TaskConsistencyResultReport(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['TaskConsistencyResultReportConsistencyResultArgs', 'TaskConsistencyResultReportConsistencyResultArgsDict']]]] consistency_results: Specifies the consistency verification results.
@@ -209,6 +212,7 @@ class TaskConsistencyResultReport(pulumi.CustomResource):
                 "num_target_more_files": 1,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TaskConsistencyResultReportArgs args: The arguments to use to populate this resource's properties.

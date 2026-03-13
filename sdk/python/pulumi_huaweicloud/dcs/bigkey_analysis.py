@@ -25,6 +25,7 @@ class BigkeyAnalysisArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BigkeyAnalysis resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the DCS instance.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -75,6 +76,7 @@ class _BigkeyAnalysisState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BigkeyAnalysis resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time of the big key analysis. The format is **yyyy-mm-dd hh:mm:ss**.
                The value is in UTC format.
         :param pulumi.Input[_builtins.str] finished_at: Indicates the time when the big key analysis ended. The format is **yyyy-mm-dd hh:mm:ss**.
@@ -264,11 +266,10 @@ class BigkeyAnalysis(pulumi.CustomResource):
 
         The big key analysis can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/bigkeyAnalysis:BigkeyAnalysis test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -301,11 +302,10 @@ class BigkeyAnalysis(pulumi.CustomResource):
 
         The big key analysis can be imported using `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Dcs/bigkeyAnalysis:BigkeyAnalysis test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BigkeyAnalysisArgs args: The arguments to use to populate this resource's properties.

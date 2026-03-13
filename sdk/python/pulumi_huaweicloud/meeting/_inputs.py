@@ -31,64 +31,59 @@ __all__ = [
     'ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ConferenceConfigurationArgsDict(TypedDict):
-        allow_guest_start: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to allow guests to start conferences (only valid for random
-        ID conferences).
-        """
-        callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the range to allow incoming calls.
-        + **0**: All users.
-        + **2**: Users within the enterprise.
-        + **3**: The invited user.
-        """
-        guest_password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the guest password (pure number which is `4` to `16` digits long).
-        """
-        is_auto_mute: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the soft terminal is automatically muted when the guest joins the
-        conference.
-        """
-        is_guest_free_password: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the guest is password-free (only valid for random
-        conferences).
-        """
-        is_hard_terminal_auto_mute: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the guest joins the conference, whether the hard
-        terminal is automatically muted.
-        """
-        is_send_calendar: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send conference calendar notifications.
-        """
-        is_send_notify: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send conference email notification.
-        """
-        is_send_sms: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to send conference SMS notification.
-        """
-        prolong_time: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the Automatically extend duration, the valid value is range from `0` to
-        `60`.
-        """
-        waiting_room_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to open the waiting room (only valid for RTC enterprises).
-        """
-elif False:
-    ConferenceConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class ConferenceConfigurationArgsDict(TypedDict):
+    allow_guest_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to allow guests to start conferences (only valid for random
+    ID conferences).
+    """
+    callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the range to allow incoming calls.
+    + **0**: All users.
+    + **2**: Users within the enterprise.
+    + **3**: The invited user.
+    """
+    guest_password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the guest password (pure number which is `4` to `16` digits long).
+    """
+    is_auto_mute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the soft terminal is automatically muted when the guest joins the
+    conference.
+    """
+    is_guest_free_password: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the guest is password-free (only valid for random
+    conferences).
+    """
+    is_hard_terminal_auto_mute: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the guest joins the conference, whether the hard
+    terminal is automatically muted.
+    """
+    is_send_calendar: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send conference calendar notifications.
+    """
+    is_send_notify: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send conference email notification.
+    """
+    is_send_sms: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to send conference SMS notification.
+    """
+    prolong_time: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the Automatically extend duration, the valid value is range from `0` to
+    `60`.
+    """
+    waiting_room_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to open the waiting room (only valid for RTC enterprises).
+    """
 
 @pulumi.input_type
 class ConferenceConfigurationArgs:
@@ -289,51 +284,48 @@ class ConferenceConfigurationArgs:
         pulumi.set(self, "waiting_room_enabled", value)
 
 
-if not MYPY:
-    class ConferenceCycleParamsArgsDict(TypedDict):
-        cycle: pulumi.Input[_builtins.str]
-        """
-        Specifies the period type. The valid values are as follows:
-        + **Day**
-        + **Week**
-        + **Month**
-        """
-        end_date: pulumi.Input[_builtins.str]
-        """
-        Specifies the end date of the recurring conference.
-        The format is `YYYY-MM-DD`.
-        """
-        pre_remind: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days for advance conference notice.
-        The valid value is range from `0` to `30`, defaults to `1`.
-        """
-        start_date: pulumi.Input[_builtins.str]
-        """
-        Specifies the start date of the recurring conference.
-        The format is `YYYY-MM-DD`.
-        """
-        interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the cycle interval.
-        For different `cycle` types, the value range of interval are as follows:
-        + **Day**: Means that it will be held every few days, and the valid value is range from `1` to `15`.
-        + **Week**: Means that it is held every few weeks, and the valid value is range from `1` to `5`.
-        + **Month**: Means every few months, the value range is `1` to `3`.
-        """
-        points: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
-        """
-        Specifies the conference point in the cycle. Only valid by **Week** and **Month**.
-        For different `cycle` types, the value range of elements are as follows:
-        + **Week**: The valid value is range from `0` to `6`. The `0` means Sunday, `6` means Saturday.
-        + **Month**: The valid range for the elements is `1` to `31`. If the value does not exist in the current month, the
-        value means the end of the month.
+class ConferenceCycleParamsArgsDict(TypedDict):
+    cycle: pulumi.Input[_builtins.str]
+    """
+    Specifies the period type. The valid values are as follows:
+    + **Day**
+    + **Week**
+    + **Month**
+    """
+    end_date: pulumi.Input[_builtins.str]
+    """
+    Specifies the end date of the recurring conference.
+    The format is `YYYY-MM-DD`.
+    """
+    pre_remind: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days for advance conference notice.
+    The valid value is range from `0` to `30`, defaults to `1`.
+    """
+    start_date: pulumi.Input[_builtins.str]
+    """
+    Specifies the start date of the recurring conference.
+    The format is `YYYY-MM-DD`.
+    """
+    interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the cycle interval.
+    For different `cycle` types, the value range of interval are as follows:
+    + **Day**: Means that it will be held every few days, and the valid value is range from `1` to `15`.
+    + **Week**: Means that it is held every few weeks, and the valid value is range from `1` to `5`.
+    + **Month**: Means every few months, the value range is `1` to `3`.
+    """
+    points: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]
+    """
+    Specifies the conference point in the cycle. Only valid by **Week** and **Month**.
+    For different `cycle` types, the value range of elements are as follows:
+    + **Week**: The valid value is range from `0` to `6`. The `0` means Sunday, `6` means Saturday.
+    + **Month**: The valid range for the elements is `1` to `31`. If the value does not exist in the current month, the
+    value means the end of the month.
 
-        <a name="conference_configuration"></a>
-        The `configuration` block supports:
-        """
-elif False:
-    ConferenceCycleParamsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="conference_configuration"></a>
+    The `configuration` block supports:
+    """
 
 @pulumi.input_type
 class ConferenceCycleParamsArgs:
@@ -468,18 +460,15 @@ class ConferenceCycleParamsArgs:
         pulumi.set(self, "points", value)
 
 
-if not MYPY:
-    class ConferenceJoinPasswordArgsDict(TypedDict):
-        guest: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password of the common participant.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password of the meeting host.
-        """
-elif False:
-    ConferenceJoinPasswordArgsDict: TypeAlias = Mapping[str, Any]
+class ConferenceJoinPasswordArgsDict(TypedDict):
+    guest: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password of the common participant.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password of the meeting host.
+    """
 
 @pulumi.input_type
 class ConferenceJoinPasswordArgs:
@@ -520,73 +509,70 @@ class ConferenceJoinPasswordArgs:
         pulumi.set(self, "host", value)
 
 
-if not MYPY:
-    class ConferenceParticipantArgsDict(TypedDict):
-        account_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the account ID of the participant.
-        """
-        email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the email address.
-        """
-        is_auto_invite: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies whether to automatically invite this participant when the conference
-        starts. The valid values are as follows:
-        + **0**: Do not automatically invite.
-        + **1**: Automatic invitation.
+class ConferenceParticipantArgsDict(TypedDict):
+    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the account ID of the participant.
+    """
+    email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the email address.
+    """
+    is_auto_invite: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies whether to automatically invite this participant when the conference
+    starts. The valid values are as follows:
+    + **0**: Do not automatically invite.
+    + **1**: Automatic invitation.
 
-        The default value is populated by enterprise-level configuration.
-        """
-        is_mute: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies whether the user needs to be automatically muted when joining the conference
-        (only effective when invited in the conference). The valid values are as follows:
-        + **0**: No mute.
-        + **1**: Mute.
+    The default value is populated by enterprise-level configuration.
+    """
+    is_mute: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies whether the user needs to be automatically muted when joining the conference
+    (only effective when invited in the conference). The valid values are as follows:
+    + **0**: No mute.
+    + **1**: Mute.
 
-        The default value is `0`.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the attendee name or nickname.  
-        The valid length is limited from `1` to `96`.
-        """
-        phone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the SIP or TEL number, maximum of 127 characters.
-        """
-        role: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the role in the conference. The valid values are as follows:
-        + **0**: Normal attendee.
-        + **1**: The conference chair.
-        """
-        sms: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the mobile number for SMS notification, maximum of 32 characters.
+    The default value is `0`.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the attendee name or nickname.  
+    The valid length is limited from `1` to `96`.
+    """
+    phone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the SIP or TEL number, maximum of 127 characters.
+    """
+    role: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the role in the conference. The valid values are as follows:
+    + **0**: Normal attendee.
+    + **1**: The conference chair.
+    """
+    sms: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the mobile number for SMS notification, maximum of 32 characters.
 
-        > At least one of `phone`, `email` and `sms` must be set.
+    > At least one of `phone`, `email` and `sms` must be set.
 
-        <a name="conference_cycle_params"></a>
-        The `cycle_params` block supports:
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the call-in type. The valid values are as follows:
-        + **normal**: The soft terminal.
-        + **terminal**: The conference room or hard terminal.
-        + **outside**: The outside participant.
-        + **mobile**: The user's landline phone.
-        + **ideahub**: The ideahub.
-        """
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user ID of the participant.
-        """
-elif False:
-    ConferenceParticipantArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="conference_cycle_params"></a>
+    The `cycle_params` block supports:
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the call-in type. The valid values are as follows:
+    + **normal**: The soft terminal.
+    + **terminal**: The conference room or hard terminal.
+    + **outside**: The outside participant.
+    + **mobile**: The user's landline phone.
+    + **ideahub**: The ideahub.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user ID of the participant.
+    """
 
 @pulumi.input_type
 class ConferenceParticipantArgs:
@@ -801,60 +787,57 @@ class ConferenceParticipantArgs:
         pulumi.set(self, "user_id", value)
 
 
-if not MYPY:
-    class ConferenceSubconferenceArgsDict(TypedDict):
-        end_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The sub-conference end time.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The sub-conference ID.
-        """
-        is_auto_record: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies whether the conference automatically starts recording, it only takes
-        effect when the recording type is:
-        + **1**: Automatically start recording.
-        + **0**: Do not start recording automatically.
+class ConferenceSubconferenceArgsDict(TypedDict):
+    end_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The sub-conference end time.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The sub-conference ID.
+    """
+    is_auto_record: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies whether the conference automatically starts recording, it only takes
+    effect when the recording type is:
+    + **1**: Automatically start recording.
+    + **0**: Do not start recording automatically.
 
-        The default value is `0` (not to start automatically).
-        """
-        media_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the conference media type list.
-        It consists of one or more enumerations, and the valid values are as follows:
-        + **Voice**: Voice.
-        + **Video**: SD video.
-        + **HDVideo**: High-definition video (mutually exclusive with Video, if Video and HDVideo are selected at the same
-        time, the system will select Video by default).
-        + **Data**: Multimedia (If omitted, the system configuration will determines whether to automatically add **Data**).
-        """
-        record_auth_type: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the recording authentication method.
-        + **0**: Viewable/downloadable via link.
-        + **1**: Enterprise users can watch/download.
-        + **2**: Attendees can watch/download.
+    The default value is `0` (not to start automatically).
+    """
+    media_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the conference media type list.
+    It consists of one or more enumerations, and the valid values are as follows:
+    + **Voice**: Voice.
+    + **Video**: SD video.
+    + **HDVideo**: High-definition video (mutually exclusive with Video, if Video and HDVideo are selected at the same
+    time, the system will select Video by default).
+    + **Data**: Multimedia (If omitted, the system configuration will determines whether to automatically add **Data**).
+    """
+    record_auth_type: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the recording authentication method.
+    + **0**: Viewable/downloadable via link.
+    + **1**: Enterprise users can watch/download.
+    + **2**: Attendees can watch/download.
 
-        Only available if `record_type` is `2` or `3`.
-        """
-        start_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the conference start time (UTC time).
-        The time format is `YYYY-MM-DD hh:mm`, e.g. `2006-01-02 15:04`.
-        There is no need to set if you book a cyclical conference.
+    Only available if `record_type` is `2` or `3`.
+    """
+    start_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the conference start time (UTC time).
+    The time format is `YYYY-MM-DD hh:mm`, e.g. `2006-01-02 15:04`.
+    There is no need to set if you book a cyclical conference.
 
-        > If you want to start a conference at `08:00` (UTC+8), you need to specify the time with `00:00`.
-        And the start time cannot be earlier than now.
-        """
-        subconfigurations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ConferenceSubconferenceSubconfigurationArgsDict']]]]
-        """
-        The other configuration information of periodic subconferences.
-        The object structure is documented below.
-        """
-elif False:
-    ConferenceSubconferenceArgsDict: TypeAlias = Mapping[str, Any]
+    > If you want to start a conference at `08:00` (UTC+8), you need to specify the time with `00:00`.
+    And the start time cannot be earlier than now.
+    """
+    subconfigurations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ConferenceSubconferenceSubconfigurationArgsDict']]]]
+    """
+    The other configuration information of periodic subconferences.
+    The object structure is documented below.
+    """
 
 @pulumi.input_type
 class ConferenceSubconferenceArgs:
@@ -1019,38 +1002,35 @@ class ConferenceSubconferenceArgs:
         pulumi.set(self, "subconfigurations", value)
 
 
-if not MYPY:
-    class ConferenceSubconferenceSubconfigurationArgsDict(TypedDict):
-        allow_guest_start: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to allow guests to start conferences (only valid for random
-        ID conferences).
-        """
-        audience_callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The range that the webinar audience is allowed to call in.
-        The valid values are as follows:
-        + **0**: All users.
-        + **2**: Users within the enterprise.
-        """
-        callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the range to allow incoming calls.
-        + **0**: All users.
-        + **2**: Users within the enterprise.
-        + **3**: The invited user.
-        """
-        show_audience_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict']]]]
-        """
-        The webinar Audience Display Strategy.
-        The object structure is documented below.
-        """
-        waiting_room_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to open the waiting room (only valid for RTC enterprises).
-        """
-elif False:
-    ConferenceSubconferenceSubconfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class ConferenceSubconferenceSubconfigurationArgsDict(TypedDict):
+    allow_guest_start: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to allow guests to start conferences (only valid for random
+    ID conferences).
+    """
+    audience_callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The range that the webinar audience is allowed to call in.
+    The valid values are as follows:
+    + **0**: All users.
+    + **2**: Users within the enterprise.
+    """
+    callin_restriction: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the range to allow incoming calls.
+    + **0**: All users.
+    + **2**: Users within the enterprise.
+    + **3**: The invited user.
+    """
+    show_audience_policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict']]]]
+    """
+    The webinar Audience Display Strategy.
+    The object structure is documented below.
+    """
+    waiting_room_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to open the waiting room (only valid for RTC enterprises).
+    """
 
 @pulumi.input_type
 class ConferenceSubconferenceSubconfigurationArgs:
@@ -1155,26 +1135,23 @@ class ConferenceSubconferenceSubconfigurationArgs:
         pulumi.set(self, "waiting_room_enabled", value)
 
 
-if not MYPY:
-    class ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict(TypedDict):
-        base_audience_count: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the basic number of people, the valid values is range from `0` to `10,000`.
-        """
-        mode: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Audience display strategy: The server is used to calculate the number of audiences and send it to the client
-        to control the audience display.
-        + **0**: Do not display.
-        + **1**: Multiply display the number of participants, based on the real-time number of participants or the cumulative
-        number of participants, the multiplication setting can be performed.
-        """
-        multiple: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the multiplier. The valid values is range from `0` to `10`, it can be set to 1 decimal place.
-        """
-elif False:
-    ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict: TypeAlias = Mapping[str, Any]
+class ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgsDict(TypedDict):
+    base_audience_count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the basic number of people, the valid values is range from `0` to `10,000`.
+    """
+    mode: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Audience display strategy: The server is used to calculate the number of audiences and send it to the client
+    to control the audience display.
+    + **0**: Do not display.
+    + **1**: Multiply display the number of participants, based on the real-time number of participants or the cumulative
+    number of participants, the multiplication setting can be performed.
+    """
+    multiple: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the multiplier. The valid values is range from `0` to `10`, it can be set to 1 decimal place.
+    """
 
 @pulumi.input_type
 class ConferenceSubconferenceSubconfigurationShowAudiencePolicyArgs:

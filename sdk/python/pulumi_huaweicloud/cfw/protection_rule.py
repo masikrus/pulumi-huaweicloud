@@ -42,6 +42,7 @@ class ProtectionRuleArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ProtectionRule resource.
+
         :param pulumi.Input[_builtins.int] action_type: The action type.
         :param pulumi.Input[_builtins.int] address_type: The address type.
         :param pulumi.Input['ProtectionRuleDestinationArgs'] destination: The destination configuration.
@@ -336,6 +337,7 @@ class _ProtectionRuleState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProtectionRule resources.
+
         :param pulumi.Input[_builtins.int] action_type: The action type.
         :param pulumi.Input[_builtins.int] address_type: The address type.
         :param pulumi.Input[_builtins.str] description: The description.
@@ -1007,6 +1009,7 @@ class ProtectionRule(pulumi.CustomResource):
         $ pulumi import huaweicloud:Cfw/protectionRule:ProtectionRule test <object_id>/<id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] action_type: The action type.
@@ -1397,6 +1400,7 @@ class ProtectionRule(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:Cfw/protectionRule:ProtectionRule test <object_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProtectionRuleArgs args: The arguments to use to populate this resource's properties.

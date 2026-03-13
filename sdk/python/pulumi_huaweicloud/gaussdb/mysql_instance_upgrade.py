@@ -24,6 +24,7 @@ class MysqlInstanceUpgradeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlInstanceUpgrade resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance will be upgraded with a delay. Value options:
@@ -91,6 +92,7 @@ class _MysqlInstanceUpgradeState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlInstanceUpgrade resources.
+
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance will be upgraded with a delay. Value options:
                + **true**: The instance will be upgraded during the specified maintenance window.
                + **false(default)**: The instance will be upgraded immediately.
@@ -175,6 +177,7 @@ class MysqlInstanceUpgrade(pulumi.CustomResource):
         test = huaweicloud.gaussdb.MysqlInstanceUpgrade("test", instance_id=instance_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delay: Specifies whether the instance will be upgraded with a delay. Value options:
@@ -206,6 +209,7 @@ class MysqlInstanceUpgrade(pulumi.CustomResource):
         instance_id = config.require_object("instanceId")
         test = huaweicloud.gaussdb.MysqlInstanceUpgrade("test", instance_id=instance_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlInstanceUpgradeArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class SnapshotRestoreArgs:
                  rename_replacement: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnapshotRestore resource.
+
         :param pulumi.Input[_builtins.str] snapshot_id: Specifies the ID of the snapshot to be restored.
         :param pulumi.Input[_builtins.str] source_cluster_id: Specifies the source cluster ID.
         :param pulumi.Input[_builtins.str] target_cluster_id: Specifies the target cluster ID.
@@ -178,6 +179,7 @@ class _SnapshotRestoreState:
                  target_cluster_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnapshotRestore resources.
+
         :param pulumi.Input[_builtins.str] indices: Name of an index to be restored. Multiple indexes are separated by
                commas (,). By default, all indexes are restored.You can use `*` to match multiple indexes. For example, if you
                specify `2018-06*`, then the data of the indexes with the prefix 2018-06 will be restored. The value can contain
@@ -351,6 +353,7 @@ class SnapshotRestore(pulumi.CustomResource):
             snapshot_id=snapshot_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] indices: Name of an index to be restored. Multiple indexes are separated by
@@ -395,6 +398,7 @@ class SnapshotRestore(pulumi.CustomResource):
             target_cluster_id=source_cluster_id,
             snapshot_id=snapshot_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotRestoreArgs args: The arguments to use to populate this resource's properties.

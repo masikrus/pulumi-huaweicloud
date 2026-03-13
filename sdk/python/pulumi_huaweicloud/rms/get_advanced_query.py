@@ -88,6 +88,8 @@ def get_advanced_query(expression: Optional[_builtins.str] = None,
     """
     Use this data source to do an RMS advanced query.
 
+    ## Example Usage
+
 
     :param _builtins.str expression: Specifies the expression of the query.
            
@@ -96,7 +98,7 @@ def get_advanced_query(expression: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['expression'] = expression
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getAdvancedQuery:getAdvancedQuery', __args__, opts=opts, typ=GetAdvancedQueryResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getAdvancedQuery:getAdvancedQuery', __args__, opts=opts, typ=GetAdvancedQueryResult).value
 
     return AwaitableGetAdvancedQueryResult(
         expression=pulumi.get(__ret__, 'expression'),
@@ -108,6 +110,8 @@ def get_advanced_query_output(expression: Optional[pulumi.Input[_builtins.str]] 
     """
     Use this data source to do an RMS advanced query.
 
+    ## Example Usage
+
 
     :param _builtins.str expression: Specifies the expression of the query.
            
@@ -116,7 +120,7 @@ def get_advanced_query_output(expression: Optional[pulumi.Input[_builtins.str]] 
     __args__ = dict()
     __args__['expression'] = expression
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getAdvancedQuery:getAdvancedQuery', __args__, opts=opts, typ=GetAdvancedQueryResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getAdvancedQuery:getAdvancedQuery', __args__, opts=opts, typ=GetAdvancedQueryResult)
     return __ret__.apply(lambda __response__: GetAdvancedQueryResult(
         expression=pulumi.get(__response__, 'expression'),
         id=pulumi.get(__response__, 'id'),

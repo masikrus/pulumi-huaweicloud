@@ -157,7 +157,7 @@ def get_operation_logs(end_time: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_operation_logs(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_operation_logs(instance_id=instance_id)
     ```
 
 
@@ -196,7 +196,7 @@ def get_operation_logs(end_time: Optional[_builtins.str] = None,
     __args__['timeRange'] = time_range
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:dbss/getOperationLogs:getOperationLogs', __args__, opts=opts, typ=GetOperationLogsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Dbss/getOperationLogs:getOperationLogs', __args__, opts=opts, typ=GetOperationLogsResult).value
 
     return AwaitableGetOperationLogsResult(
         end_time=pulumi.get(__ret__, 'end_time'),
@@ -229,7 +229,7 @@ def get_operation_logs_output(end_time: Optional[pulumi.Input[Optional[_builtins
 
     config = pulumi.Config()
     instance_id = config.require_object("instanceId")
-    test = huaweicloud.dbss.get_operation_logs(instance_id=instance_id)
+    test = huaweicloud.Dbss.get_operation_logs(instance_id=instance_id)
     ```
 
 
@@ -268,7 +268,7 @@ def get_operation_logs_output(end_time: Optional[pulumi.Input[Optional[_builtins
     __args__['timeRange'] = time_range
     __args__['userName'] = user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:dbss/getOperationLogs:getOperationLogs', __args__, opts=opts, typ=GetOperationLogsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Dbss/getOperationLogs:getOperationLogs', __args__, opts=opts, typ=GetOperationLogsResult)
     return __ret__.apply(lambda __response__: GetOperationLogsResult(
         end_time=pulumi.get(__response__, 'end_time'),
         id=pulumi.get(__response__, 'id'),

@@ -19,43 +19,48 @@ __all__ = [
     'InstanceHostPropertyArgsDict',
     'InstanceHostPropertyAvailableInstanceCapacityArgs',
     'InstanceHostPropertyAvailableInstanceCapacityArgsDict',
+    'GetInstancesByTagsMatchArgs',
+    'GetInstancesByTagsMatchArgsDict',
+    'GetInstancesByTagsNotTagArgs',
+    'GetInstancesByTagsNotTagArgsDict',
+    'GetInstancesByTagsNotTagsAnyArgs',
+    'GetInstancesByTagsNotTagsAnyArgsDict',
+    'GetInstancesByTagsTagArgs',
+    'GetInstancesByTagsTagArgsDict',
+    'GetInstancesByTagsTagsAnyArgs',
+    'GetInstancesByTagsTagsAnyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class InstanceHostPropertyArgsDict(TypedDict):
-        available_instance_capacities: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceHostPropertyAvailableInstanceCapacityArgsDict']]]]
-        """
-        Indicates the flavors of ECSs placed on the dedicated host.
-        The available_instance_capacities structure is documented below.
-        """
-        cores: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of physical cores on the dedicated host.
-        """
-        host_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of the dedicated host.
-        """
-        host_type_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the name of the dedicated host type.
-        """
-        memory: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the size of physical memory on the dedicated host.
-        """
-        sockets: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of physical sockets on the dedicated host.
-        """
-        vcpus: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Indicates the number of vCPUs on the dedicated host.
-        """
-elif False:
-    InstanceHostPropertyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceHostPropertyArgsDict(TypedDict):
+    available_instance_capacities: NotRequired[pulumi.Input[Sequence[pulumi.Input['InstanceHostPropertyAvailableInstanceCapacityArgsDict']]]]
+    """
+    Indicates the flavors of ECSs placed on the dedicated host.
+    The available_instance_capacities structure is documented below.
+    """
+    cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of physical cores on the dedicated host.
+    """
+    host_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of the dedicated host.
+    """
+    host_type_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the name of the dedicated host type.
+    """
+    memory: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the size of physical memory on the dedicated host.
+    """
+    sockets: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of physical sockets on the dedicated host.
+    """
+    vcpus: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Indicates the number of vCPUs on the dedicated host.
+    """
 
 @pulumi.input_type
 class InstanceHostPropertyArgs:
@@ -178,14 +183,11 @@ class InstanceHostPropertyArgs:
         pulumi.set(self, "vcpus", value)
 
 
-if not MYPY:
-    class InstanceHostPropertyAvailableInstanceCapacityArgsDict(TypedDict):
-        flavor: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Indicates the specifications of ECSs that can be created.
-        """
-elif False:
-    InstanceHostPropertyAvailableInstanceCapacityArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceHostPropertyAvailableInstanceCapacityArgsDict(TypedDict):
+    flavor: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the specifications of ECSs that can be created.
+    """
 
 @pulumi.input_type
 class InstanceHostPropertyAvailableInstanceCapacityArgs:
@@ -208,5 +210,249 @@ class InstanceHostPropertyAvailableInstanceCapacityArgs:
     @flavor.setter
     def flavor(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "flavor", value)
+
+
+class GetInstancesByTagsMatchArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    value: _builtins.str
+    """
+    Specifies the tag value.
+
+    <a name="tags_struct"></a>
+    The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsMatchArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param _builtins.str value: Specifies the tag value.
+               
+               <a name="tags_struct"></a>
+               The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+
+        <a name="tags_struct"></a>
+        The `tags`, `not_tags`, `tags_any` and `not_tags_any` block supports:
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: _builtins.str):
+        pulumi.set(self, "value", value)
+
+
+class GetInstancesByTagsNotTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsNotTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetInstancesByTagsNotTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsNotTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetInstancesByTagsTagArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsTagArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
+
+
+class GetInstancesByTagsTagsAnyArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Specifies the key of the tag.
+    """
+    values: Sequence[_builtins.str]
+    """
+    Specifies the values of the tag.
+    """
+
+@pulumi.input_type
+class GetInstancesByTagsTagsAnyArgs:
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the key of the tag.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: _builtins.str):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

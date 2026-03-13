@@ -161,8 +161,8 @@ def get_users(display_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
-    test = huaweicloud.identitycenter.get_users(identity_store_id=system.identity_store_id)
+    system = huaweicloud.Identitycenter.get_instance()
+    test = huaweicloud.Identitycenter.get_users(identity_store_id=system.identity_store_id)
     ```
 
 
@@ -185,7 +185,7 @@ def get_users(display_name: Optional[_builtins.str] = None,
     __args__['region'] = region
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:identitycenter/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Identitycenter/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
     return AwaitableGetUsersResult(
         display_name=pulumi.get(__ret__, 'display_name'),
@@ -214,8 +214,8 @@ def get_users_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    system = huaweicloud.identitycenter.get_instance()
-    test = huaweicloud.identitycenter.get_users(identity_store_id=system.identity_store_id)
+    system = huaweicloud.Identitycenter.get_instance()
+    test = huaweicloud.Identitycenter.get_users(identity_store_id=system.identity_store_id)
     ```
 
 
@@ -238,7 +238,7 @@ def get_users_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]
     __args__['region'] = region
     __args__['userName'] = user_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:identitycenter/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Identitycenter/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         display_name=pulumi.get(__response__, 'display_name'),
         email=pulumi.get(__response__, 'email'),

@@ -21,28 +21,23 @@ __all__ = [
     'StackAgencyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class PrivateHookConfigurationArgsDict(TypedDict):
-        failure_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the behavior after private hook verification fails.  
-        The valid values are as follows:
-        + **FAIL**: The resource stack will stop deploying after this private hook verification fails, and the resource stack
-        status will be updated to DEPLOYMENT_FAILED.
-        + **WARN**: After this private hook verification fails, only a warning message will be displayed through the resource
-        stack event, but it will not affect the resource stack deployment.
-        """
-        target_stacks: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the target resource stack for the private hook to take effect.  
-        The valid values are as follows:
-        + **NONE**: This private hook will not be applied to any resource stack.
-        + **ALL**: This private hook will be applied to all resource stacks under the account.
-        """
-elif False:
-    PrivateHookConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateHookConfigurationArgsDict(TypedDict):
+    failure_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the behavior after private hook verification fails.  
+    The valid values are as follows:
+    + **FAIL**: The resource stack will stop deploying after this private hook verification fails, and the resource stack
+    status will be updated to DEPLOYMENT_FAILED.
+    + **WARN**: After this private hook verification fails, only a warning message will be displayed through the resource
+    stack event, but it will not affect the resource stack deployment.
+    """
+    target_stacks: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the target resource stack for the private hook to take effect.  
+    The valid values are as follows:
+    + **NONE**: This private hook will not be applied to any resource stack.
+    + **ALL**: This private hook will be applied to all resource stacks under the account.
+    """
 
 @pulumi.input_type
 class PrivateHookConfigurationArgs:
@@ -99,20 +94,17 @@ class PrivateHookConfigurationArgs:
         pulumi.set(self, "target_stacks", value)
 
 
-if not MYPY:
-    class StackAgencyArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of IAM agency authorized to IAC account.  
-        Change this parameter will create a new resource.
-        """
-        provider_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the provider corresponding to the IAM agency.  
-        Change this parameter will create a new resource.
-        """
-elif False:
-    StackAgencyArgsDict: TypeAlias = Mapping[str, Any]
+class StackAgencyArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of IAM agency authorized to IAC account.  
+    Change this parameter will create a new resource.
+    """
+    provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the provider corresponding to the IAM agency.  
+    Change this parameter will create a new resource.
+    """
 
 @pulumi.input_type
 class StackAgencyArgs:

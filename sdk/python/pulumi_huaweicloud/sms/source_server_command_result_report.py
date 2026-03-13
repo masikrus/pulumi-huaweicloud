@@ -26,6 +26,7 @@ class SourceServerCommandResultReportArgs:
                  enable_force_new: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SourceServerCommandResultReport resource.
+
         :param pulumi.Input[_builtins.str] command_name: Specifies the command name.
                Values can be **START**, **STOP**, **DELETE**, **SYNC**, **UPLOAD_LOG** and **RSET_LOG_ACL**.
         :param pulumi.Input[_builtins.str] result: Specifies the command execution result.
@@ -114,6 +115,7 @@ class _SourceServerCommandResultReportState:
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SourceServerCommandResultReport resources.
+
         :param pulumi.Input[_builtins.str] command_name: Specifies the command name.
                Values can be **START**, **STOP**, **DELETE**, **SYNC**, **UPLOAD_LOG** and **RSET_LOG_ACL**.
         :param pulumi.Input[_builtins.str] result: Specifies the command execution result.
@@ -231,6 +233,7 @@ class SourceServerCommandResultReport(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] command_name: Specifies the command name.
@@ -270,6 +273,7 @@ class SourceServerCommandResultReport(pulumi.CustomResource):
                 "msg": "test",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SourceServerCommandResultReportArgs args: The arguments to use to populate this resource's properties.

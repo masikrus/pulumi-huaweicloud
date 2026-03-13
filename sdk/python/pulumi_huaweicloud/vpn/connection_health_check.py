@@ -23,6 +23,7 @@ class ConnectionHealthCheckArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ConnectionHealthCheck resource.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the VPN connection to monitor.
                
                Changing this parameter will create a new resource.
@@ -71,6 +72,7 @@ class _ConnectionHealthCheckState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConnectionHealthCheck resources.
+
         :param pulumi.Input[_builtins.str] connection_id: Specifies the ID of the VPN connection to monitor.
                
                Changing this parameter will create a new resource.
@@ -155,7 +157,7 @@ class _ConnectionHealthCheckState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/connectionHealthCheck:ConnectionHealthCheck")
+@pulumi.type_token("huaweicloud:Vpn/connectionHealthCheck:ConnectionHealthCheck")
 class ConnectionHealthCheck(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -182,11 +184,10 @@ class ConnectionHealthCheck(pulumi.CustomResource):
 
         The health check can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/connectionHealthCheck:ConnectionHealthCheck test <id>
+        $ pulumi import huaweicloud:Vpn/connectionHealthCheck:ConnectionHealthCheck test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,11 +221,10 @@ class ConnectionHealthCheck(pulumi.CustomResource):
 
         The health check can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/connectionHealthCheck:ConnectionHealthCheck test <id>
+        $ pulumi import huaweicloud:Vpn/connectionHealthCheck:ConnectionHealthCheck test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionHealthCheckArgs args: The arguments to use to populate this resource's properties.
@@ -260,7 +260,7 @@ class ConnectionHealthCheck(pulumi.CustomResource):
             __props__.__dict__["source_ip"] = None
             __props__.__dict__["status"] = None
         super(ConnectionHealthCheck, __self__).__init__(
-            'huaweicloud:vpn/connectionHealthCheck:ConnectionHealthCheck',
+            'huaweicloud:Vpn/connectionHealthCheck:ConnectionHealthCheck',
             resource_name,
             __props__,
             opts)

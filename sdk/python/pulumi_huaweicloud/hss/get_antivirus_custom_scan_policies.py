@@ -118,7 +118,7 @@ def get_antivirus_custom_scan_policies(enterprise_project_id: Optional[_builtins
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_custom_scan_policies()
+    test = huaweicloud.Hss.get_antivirus_custom_scan_policies()
     ```
 
 
@@ -137,7 +137,7 @@ def get_antivirus_custom_scan_policies(enterprise_project_id: Optional[_builtins
     __args__['policyName'] = policy_name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getAntivirusCustomScanPolicies:getAntivirusCustomScanPolicies', __args__, opts=opts, typ=GetAntivirusCustomScanPoliciesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getAntivirusCustomScanPolicies:getAntivirusCustomScanPolicies', __args__, opts=opts, typ=GetAntivirusCustomScanPoliciesResult).value
 
     return AwaitableGetAntivirusCustomScanPoliciesResult(
         data_lists=pulumi.get(__ret__, 'data_lists'),
@@ -159,7 +159,7 @@ def get_antivirus_custom_scan_policies_output(enterprise_project_id: Optional[pu
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_antivirus_custom_scan_policies()
+    test = huaweicloud.Hss.get_antivirus_custom_scan_policies()
     ```
 
 
@@ -178,7 +178,7 @@ def get_antivirus_custom_scan_policies_output(enterprise_project_id: Optional[pu
     __args__['policyName'] = policy_name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getAntivirusCustomScanPolicies:getAntivirusCustomScanPolicies', __args__, opts=opts, typ=GetAntivirusCustomScanPoliciesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getAntivirusCustomScanPolicies:getAntivirusCustomScanPolicies', __args__, opts=opts, typ=GetAntivirusCustomScanPoliciesResult)
     return __ret__.apply(lambda __response__: GetAntivirusCustomScanPoliciesResult(
         data_lists=pulumi.get(__response__, 'data_lists'),
         enterprise_project_id=pulumi.get(__response__, 'enterprise_project_id'),

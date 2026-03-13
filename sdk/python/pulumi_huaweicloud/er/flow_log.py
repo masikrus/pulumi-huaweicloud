@@ -31,6 +31,7 @@ class FlowLogArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FlowLog resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the ER instance to which the flow log belongs.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] log_group_id: Specifies the LTS log group ID.
@@ -214,6 +215,7 @@ class _FlowLogState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FlowLog resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the flow log.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the flow log.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable the flow log function. The default value is **true**.
@@ -478,11 +480,10 @@ class FlowLog(pulumi.CustomResource):
 
         The flow log can be imported using the related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/flowLog:FlowLog test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -543,11 +544,10 @@ class FlowLog(pulumi.CustomResource):
 
         The flow log can be imported using the related `instance_id` and their `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Er/flowLog:FlowLog test <instance_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FlowLogArgs args: The arguments to use to populate this resource's properties.

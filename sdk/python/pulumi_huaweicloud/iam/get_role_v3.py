@@ -26,7 +26,7 @@ class GetRoleV3Result:
     """
     A collection of values returned by getRoleV3.
     """
-    def __init__(__self__, catalog=None, description=None, display_name=None, id=None, name=None, policy=None, type=None):
+    def __init__(__self__, catalog=None, description=None, display_name=None, id=None, name=None, policy=None, role_id=None, type=None):
         if catalog and not isinstance(catalog, str):
             raise TypeError("Expected argument 'catalog' to be a str")
         pulumi.set(__self__, "catalog", catalog)
@@ -45,6 +45,9 @@ class GetRoleV3Result:
         if policy and not isinstance(policy, str):
             raise TypeError("Expected argument 'policy' to be a str")
         pulumi.set(__self__, "policy", policy)
+        if role_id and not isinstance(role_id, str):
+            raise TypeError("Expected argument 'role_id' to be a str")
+        pulumi.set(__self__, "role_id", role_id)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -83,6 +86,11 @@ class GetRoleV3Result:
         return pulumi.get(self, "policy")
 
     @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "role_id")
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
         return pulumi.get(self, "type")
@@ -100,11 +108,13 @@ class AwaitableGetRoleV3Result(GetRoleV3Result):
             id=self.id,
             name=self.name,
             policy=self.policy,
+            role_id=self.role_id,
             type=self.type)
 
 
 def get_role_v3(display_name: Optional[_builtins.str] = None,
                 name: Optional[_builtins.str] = None,
+                role_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleV3Result:
     """
     Use this data source to access information about an existing resource.
@@ -112,6 +122,7 @@ def get_role_v3(display_name: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['name'] = name
+    __args__['roleId'] = role_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('huaweicloud:Iam/getRoleV3:getRoleV3', __args__, opts=opts, typ=GetRoleV3Result).value
 
@@ -122,9 +133,11 @@ def get_role_v3(display_name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         policy=pulumi.get(__ret__, 'policy'),
+        role_id=pulumi.get(__ret__, 'role_id'),
         type=pulumi.get(__ret__, 'type'))
 def get_role_v3_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                       role_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRoleV3Result]:
     """
     Use this data source to access information about an existing resource.
@@ -132,6 +145,7 @@ def get_role_v3_output(display_name: Optional[pulumi.Input[Optional[_builtins.st
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['name'] = name
+    __args__['roleId'] = role_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('huaweicloud:Iam/getRoleV3:getRoleV3', __args__, opts=opts, typ=GetRoleV3Result)
     return __ret__.apply(lambda __response__: GetRoleV3Result(
@@ -141,4 +155,5 @@ def get_role_v3_output(display_name: Optional[pulumi.Input[Optional[_builtins.st
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         policy=pulumi.get(__response__, 'policy'),
+        role_id=pulumi.get(__response__, 'role_id'),
         type=pulumi.get(__response__, 'type')))

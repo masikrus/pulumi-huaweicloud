@@ -26,6 +26,7 @@ class MysqlInstanceNodeConfigArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlInstanceNodeConfig resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] node_id: Specifies the ID of the GaussDB MySQL instance node. Changing this parameter
@@ -130,6 +131,7 @@ class _MysqlInstanceNodeConfigState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlInstanceNodeConfig resources.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
                will create a new resource.
         :param pulumi.Input[_builtins.str] name: Specifies the node name. The value can contain **4** to **128** characters. Only digits,
@@ -261,11 +263,10 @@ class MysqlInstanceNodeConfig(pulumi.CustomResource):
 
         The GaussDB MySQL instance node config can be imported using the `instance_id` and `node_id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlInstanceNodeConfig:MysqlInstanceNodeConfig test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -313,11 +314,10 @@ class MysqlInstanceNodeConfig(pulumi.CustomResource):
 
         The GaussDB MySQL instance node config can be imported using the `instance_id` and `node_id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlInstanceNodeConfig:MysqlInstanceNodeConfig test <instance_id>/<node_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MysqlInstanceNodeConfigArgs args: The arguments to use to populate this resource's properties.

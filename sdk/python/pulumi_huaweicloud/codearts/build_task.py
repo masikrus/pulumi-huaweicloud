@@ -38,6 +38,7 @@ class BuildTaskArgs:
                  triggers: Optional[pulumi.Input[Sequence[pulumi.Input['BuildTaskTriggerArgs']]]] = None):
         """
         The set of arguments for constructing a BuildTask resource.
+
         :param pulumi.Input[_builtins.str] arch: Specifies the architecture of the build machine.
         :param pulumi.Input[_builtins.str] project_id: Specifies the CodeArts project ID.
                Changing this creates a new resource.
@@ -308,6 +309,7 @@ class _BuildTaskState:
                  triggers: Optional[pulumi.Input[Sequence[pulumi.Input['BuildTaskTriggerArgs']]]] = None):
         """
         Input properties used for looking up and filtering BuildTask resources.
+
         :param pulumi.Input[_builtins.str] arch: Specifies the architecture of the build machine.
         :param pulumi.Input[_builtins.str] auto_update_sub_module: Specifies whether to automatically update submodules.
         :param pulumi.Input[_builtins.str] build_config_type: Specifies the build task configuration type.
@@ -560,7 +562,7 @@ class _BuildTaskState:
         pulumi.set(self, "triggers", value)
 
 
-@pulumi.type_token("huaweicloud:codearts/buildTask:BuildTask")
+@pulumi.type_token("huaweicloud:Codearts/buildTask:BuildTask")
 class BuildTask(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -615,11 +617,10 @@ class BuildTask(pulumi.CustomResource):
 
         The build task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/buildTask:BuildTask test <id>
+        $ pulumi import huaweicloud:Codearts/buildTask:BuildTask test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -691,11 +692,10 @@ class BuildTask(pulumi.CustomResource):
 
         The build task can be imported using `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:codearts/buildTask:BuildTask test <id>
+        $ pulumi import huaweicloud:Codearts/buildTask:BuildTask test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BuildTaskArgs args: The arguments to use to populate this resource's properties.
@@ -756,7 +756,7 @@ class BuildTask(pulumi.CustomResource):
             __props__.__dict__["steps"] = steps
             __props__.__dict__["triggers"] = triggers
         super(BuildTask, __self__).__init__(
-            'huaweicloud:codearts/buildTask:BuildTask',
+            'huaweicloud:Codearts/buildTask:BuildTask',
             resource_name,
             __props__,
             opts)

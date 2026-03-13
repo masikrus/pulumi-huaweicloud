@@ -30,6 +30,7 @@ class ClusterAzMigrateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClusterAzMigrate resource.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.str] instance_type: Specifies the node type of the AZ to be switched.
@@ -180,6 +181,7 @@ class _ClusterAzMigrateState:
                  target_az: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterAzMigrate resources.
+
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the ID of the CSS cluster.
         :param pulumi.Input[_builtins.bool] indices_backup_check: Specifies whether to perform backup verification.
@@ -360,6 +362,7 @@ class ClusterAzMigrate(pulumi.CustomResource):
             indices_backup_check=True)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] agency: Specifies the IAM agency used to access CSS.
@@ -402,6 +405,7 @@ class ClusterAzMigrate(pulumi.CustomResource):
             agency=agency,
             indices_backup_check=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterAzMigrateArgs args: The arguments to use to populate this resource's properties.

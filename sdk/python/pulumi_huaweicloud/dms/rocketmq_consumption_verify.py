@@ -29,6 +29,7 @@ class RocketmqConsumptionVerifyArgs:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RocketmqConsumptionVerify resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the instance ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] client_id: Specifies the client ID.
@@ -147,6 +148,7 @@ class _RocketmqConsumptionVerifyState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RocketmqConsumptionVerify resources.
+
         :param pulumi.Input[_builtins.str] client_id: Specifies the client ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] group: Specifies the group name.
@@ -307,6 +309,7 @@ class RocketmqConsumptionVerify(pulumi.CustomResource):
             message_id_lists=message_id_list)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: Specifies the client ID.
@@ -351,6 +354,7 @@ class RocketmqConsumptionVerify(pulumi.CustomResource):
             client_id=client_id,
             message_id_lists=message_id_list)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RocketmqConsumptionVerifyArgs args: The arguments to use to populate this resource's properties.

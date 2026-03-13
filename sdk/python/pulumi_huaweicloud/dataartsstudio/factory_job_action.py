@@ -26,6 +26,7 @@ class FactoryJobActionArgs:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FactoryJobAction resource.
+
         :param pulumi.Input[_builtins.str] action: Specified the action type of the job.  
                The valid values are as follows:
                + **start**
@@ -140,6 +141,7 @@ class _FactoryJobActionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FactoryJobAction resources.
+
         :param pulumi.Input[_builtins.str] action: Specified the action type of the job.  
                The valid values are as follows:
                + **start**
@@ -304,6 +306,7 @@ class FactoryJobAction(pulumi.CustomResource):
             process_type="BATCH")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specified the action type of the job.  
@@ -352,6 +355,7 @@ class FactoryJobAction(pulumi.CustomResource):
             job_name=job_name,
             process_type="BATCH")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FactoryJobActionArgs args: The arguments to use to populate this resource's properties.

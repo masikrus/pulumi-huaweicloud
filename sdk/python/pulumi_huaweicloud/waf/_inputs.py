@@ -17,12 +17,42 @@ from .. import _utilities
 __all__ = [
     'AddressGroupRuleArgs',
     'AddressGroupRuleArgsDict',
+    'BatchCreateAntileakageRulesActionArgs',
+    'BatchCreateAntileakageRulesActionArgsDict',
+    'BatchCreateCcRulesActionArgs',
+    'BatchCreateCcRulesActionArgsDict',
+    'BatchCreateCcRulesActionDetailArgs',
+    'BatchCreateCcRulesActionDetailArgsDict',
+    'BatchCreateCcRulesActionDetailResponseArgs',
+    'BatchCreateCcRulesActionDetailResponseArgsDict',
+    'BatchCreateCcRulesConditionArgs',
+    'BatchCreateCcRulesConditionArgsDict',
+    'BatchCreateCcRulesTagConditionArgs',
+    'BatchCreateCcRulesTagConditionArgsDict',
+    'BatchCreateCustomRulesActionArgs',
+    'BatchCreateCustomRulesActionArgsDict',
+    'BatchCreateCustomRulesConditionArgs',
+    'BatchCreateCustomRulesConditionArgsDict',
+    'BatchCreateIgnoreRulesAdvancedArgs',
+    'BatchCreateIgnoreRulesAdvancedArgsDict',
+    'BatchCreateIgnoreRulesConditionArgs',
+    'BatchCreateIgnoreRulesConditionArgsDict',
+    'BatchCreateIpReputationRulesActionArgs',
+    'BatchCreateIpReputationRulesActionArgsDict',
+    'BatchDeleteAlarmNotificationsAlertNoticeConfigArgs',
+    'BatchDeleteAlarmNotificationsAlertNoticeConfigArgsDict',
+    'BatchUpdateWhiteblackipRulesPolicyRuleIdArgs',
+    'BatchUpdateWhiteblackipRulesPolicyRuleIdArgsDict',
+    'CcProtectionRuleBatchDeletePolicyRuleIdArgs',
+    'CcProtectionRuleBatchDeletePolicyRuleIdArgsDict',
     'CloudInstanceBandwidthExpackProductArgs',
     'CloudInstanceBandwidthExpackProductArgsDict',
     'CloudInstanceDomainExpackProductArgs',
     'CloudInstanceDomainExpackProductArgsDict',
     'CloudInstanceRuleExpackProductArgs',
     'CloudInstanceRuleExpackProductArgsDict',
+    'DedicatedAgencyRoleListArgs',
+    'DedicatedAgencyRoleListArgsDict',
     'DedicatedDomainBlockPageArgs',
     'DedicatedDomainBlockPageArgsDict',
     'DedicatedDomainBlockPageCustomPageArgs',
@@ -39,14 +69,24 @@ __all__ = [
     'DedicatedDomainTimeoutSettingsArgsDict',
     'DedicatedDomainTrafficMarkArgs',
     'DedicatedDomainTrafficMarkArgsDict',
+    'DedicatedInstanceActionHostArgs',
+    'DedicatedInstanceActionHostArgsDict',
     'DomainCustomPageArgs',
     'DomainCustomPageArgsDict',
+    'DomainRouteUpdateRouteArgs',
+    'DomainRouteUpdateRouteArgsDict',
+    'DomainRouteUpdateRouteServerArgs',
+    'DomainRouteUpdateRouteServerArgsDict',
     'DomainServerArgs',
     'DomainServerArgsDict',
     'DomainTimeoutSettingsArgs',
     'DomainTimeoutSettingsArgsDict',
     'DomainTrafficMarkArgs',
     'DomainTrafficMarkArgsDict',
+    'GeoIpRuleBatchUpdatePolicyRuleIdArgs',
+    'GeoIpRuleBatchUpdatePolicyRuleIdArgsDict',
+    'IpIntelligenceRuleActionArgs',
+    'IpIntelligenceRuleActionArgsDict',
     'PolicyBindHostArgs',
     'PolicyBindHostArgsDict',
     'PolicyOptionArgs',
@@ -61,28 +101,23 @@ __all__ = [
     'RulePreciseProtectionConditionArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AddressGroupRuleArgsDict(TypedDict):
-        policy_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of policy.
-        """
-        policy_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of policy.
-        """
-        rule_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of rule.
-        """
-        rule_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of rule.
-        """
-elif False:
-    AddressGroupRuleArgsDict: TypeAlias = Mapping[str, Any]
+class AddressGroupRuleArgsDict(TypedDict):
+    policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of policy.
+    """
+    policy_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of policy.
+    """
+    rule_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of rule.
+    """
+    rule_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of rule.
+    """
 
 @pulumi.input_type
 class AddressGroupRuleArgs:
@@ -155,20 +190,1056 @@ class AddressGroupRuleArgs:
         pulumi.set(self, "rule_name", value)
 
 
-if not MYPY:
-    class CloudInstanceBandwidthExpackProductArgsDict(TypedDict):
-        resource_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of extended packages.
-        + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
-        `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
-        + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
-        + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
+class BatchCreateAntileakageRulesActionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the action to take when the rule is matched.
+    The value can be:
+    + **block**: Block the request
+    + **log**: Log the request only
+    """
 
-        > The `resource_size` cannot be reduced below `1`.
+@pulumi.input_type
+class BatchCreateAntileakageRulesActionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str]):
         """
-elif False:
-    CloudInstanceBandwidthExpackProductArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **log**: Log the request only
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+
+class BatchCreateCcRulesActionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type to match against. The value can be **referer**.
+    """
+    detail: NotRequired[pulumi.Input['BatchCreateCcRulesActionDetailArgsDict']]
+    """
+    Specifies the detailed action configuration. The returned blocking page is
+    only required when the protection action (`category`) is selected as either `block` or `dynamic_block`.
+    + If you need the system's default blocking page to be returned, you do not need to pass this parameter.
+    + If users want to protect against a custom blocking page, they can configure this setting.
+
+    The detail structure is documented below.
+
+    <a name="Action_detail"></a>
+    The `detail` block supports:
+    """
+
+@pulumi.input_type
+class BatchCreateCcRulesActionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str],
+                 detail: Optional[pulumi.Input['BatchCreateCcRulesActionDetailArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the field type to match against. The value can be **referer**.
+        :param pulumi.Input['BatchCreateCcRulesActionDetailArgs'] detail: Specifies the detailed action configuration. The returned blocking page is
+               only required when the protection action (`category`) is selected as either `block` or `dynamic_block`.
+               + If you need the system's default blocking page to be returned, you do not need to pass this parameter.
+               + If users want to protect against a custom blocking page, they can configure this setting.
+               
+               The detail structure is documented below.
+               
+               <a name="Action_detail"></a>
+               The `detail` block supports:
+        """
+        pulumi.set(__self__, "category", category)
+        if detail is not None:
+            pulumi.set(__self__, "detail", detail)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def detail(self) -> Optional[pulumi.Input['BatchCreateCcRulesActionDetailArgs']]:
+        """
+        Specifies the detailed action configuration. The returned blocking page is
+        only required when the protection action (`category`) is selected as either `block` or `dynamic_block`.
+        + If you need the system's default blocking page to be returned, you do not need to pass this parameter.
+        + If users want to protect against a custom blocking page, they can configure this setting.
+
+        The detail structure is documented below.
+
+        <a name="Action_detail"></a>
+        The `detail` block supports:
+        """
+        return pulumi.get(self, "detail")
+
+    @detail.setter
+    def detail(self, value: Optional[pulumi.Input['BatchCreateCcRulesActionDetailArgs']]):
+        pulumi.set(self, "detail", value)
+
+
+class BatchCreateCcRulesActionDetailArgsDict(TypedDict):
+    response: NotRequired[pulumi.Input['BatchCreateCcRulesActionDetailResponseArgsDict']]
+    """
+    Specifies the custom response configuration.
+    The response structure is documented below.
+
+    <a name="Response"></a>
+    The `response` block supports:
+    """
+
+@pulumi.input_type
+class BatchCreateCcRulesActionDetailArgs:
+    def __init__(__self__, *,
+                 response: Optional[pulumi.Input['BatchCreateCcRulesActionDetailResponseArgs']] = None):
+        """
+        :param pulumi.Input['BatchCreateCcRulesActionDetailResponseArgs'] response: Specifies the custom response configuration.
+               The response structure is documented below.
+               
+               <a name="Response"></a>
+               The `response` block supports:
+        """
+        if response is not None:
+            pulumi.set(__self__, "response", response)
+
+    @_builtins.property
+    @pulumi.getter
+    def response(self) -> Optional[pulumi.Input['BatchCreateCcRulesActionDetailResponseArgs']]:
+        """
+        Specifies the custom response configuration.
+        The response structure is documented below.
+
+        <a name="Response"></a>
+        The `response` block supports:
+        """
+        return pulumi.get(self, "response")
+
+    @response.setter
+    def response(self, value: Optional[pulumi.Input['BatchCreateCcRulesActionDetailResponseArgs']]):
+        pulumi.set(self, "response", value)
+
+
+class BatchCreateCcRulesActionDetailResponseArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content of the response.
+
+    <a name="Tag_condition"></a>
+    The `tag_condition` block supports:
+    """
+    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content type of the response.
+    The value can be **application/json**, **text/html**, or **text/xml**.
+    """
+
+@pulumi.input_type
+class BatchCreateCcRulesActionDetailResponseArgs:
+    def __init__(__self__, *,
+                 content: Optional[pulumi.Input[_builtins.str]] = None,
+                 content_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] content: Specifies the content of the response.
+               
+               <a name="Tag_condition"></a>
+               The `tag_condition` block supports:
+        :param pulumi.Input[_builtins.str] content_type: Specifies the content type of the response.
+               The value can be **application/json**, **text/html**, or **text/xml**.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if content_type is not None:
+            pulumi.set(__self__, "content_type", content_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the content of the response.
+
+        <a name="Tag_condition"></a>
+        The `tag_condition` block supports:
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "content", value)
+
+    @_builtins.property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the content type of the response.
+        The value can be **application/json**, **text/html**, or **text/xml**.
+        """
+        return pulumi.get(self, "content_type")
+
+    @content_type.setter
+    def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "content_type", value)
+
+
+class BatchCreateCcRulesConditionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type to match against. The value can be **referer**.
+    """
+    logic_operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the matching logic operation.
+    The available values depend on the `category`:
+    + For **url**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**,
+    **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+    **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**
+    + For **ip** or **ipv6**: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+    + For **params**, **cookie**, or **header**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+    **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+    **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**
+    """
+    contents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the content to match against.
+    """
+    index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield name when `category` is **params**, **cookie**,
+    or **header**.
+    For other categories, leave this empty.
+
+    <a name="Rule_action"></a>
+    The `action` block supports:
+    """
+    value_list_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reference table ID.
+    Required when `logic_operation` ends with **any** or **all**.
+    """
+
+@pulumi.input_type
+class BatchCreateCcRulesConditionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str],
+                 logic_operation: pulumi.Input[_builtins.str],
+                 contents: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 index: Optional[pulumi.Input[_builtins.str]] = None,
+                 value_list_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the field type to match against. The value can be **referer**.
+        :param pulumi.Input[_builtins.str] logic_operation: Specifies the matching logic operation.
+               The available values depend on the `category`:
+               + For **url**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**,
+               **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+               **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**
+               + For **ip** or **ipv6**: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+               + For **params**, **cookie**, or **header**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+               **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+               **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the content to match against.
+        :param pulumi.Input[_builtins.str] index: Specifies the subfield name when `category` is **params**, **cookie**,
+               or **header**.
+               For other categories, leave this empty.
+               
+               <a name="Rule_action"></a>
+               The `action` block supports:
+        :param pulumi.Input[_builtins.str] value_list_id: Specifies the reference table ID.
+               Required when `logic_operation` ends with **any** or **all**.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if value_list_id is not None:
+            pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the matching logic operation.
+        The available values depend on the `category`:
+        + For **url**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**,
+        **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+        **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**
+        + For **ip** or **ipv6**: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+        + For **params**, **cookie**, or **header**: **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+        **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+        **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @logic_operation.setter
+    def logic_operation(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "logic_operation", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the content to match against.
+        """
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "contents", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subfield name when `category` is **params**, **cookie**,
+        or **header**.
+        For other categories, leave this empty.
+
+        <a name="Rule_action"></a>
+        The `action` block supports:
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the reference table ID.
+        Required when `logic_operation` ends with **any** or **all**.
+        """
+        return pulumi.get(self, "value_list_id")
+
+    @value_list_id.setter
+    def value_list_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value_list_id", value)
+
+
+class BatchCreateCcRulesTagConditionArgsDict(TypedDict):
+    category: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the field type to match against. The value can be **referer**.
+    """
+    contents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the content to match against.
+    """
+
+@pulumi.input_type
+class BatchCreateCcRulesTagConditionArgs:
+    def __init__(__self__, *,
+                 category: Optional[pulumi.Input[_builtins.str]] = None,
+                 contents: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the field type to match against. The value can be **referer**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the content to match against.
+        """
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the field type to match against. The value can be **referer**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the content to match against.
+        """
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "contents", value)
+
+
+class BatchCreateCustomRulesActionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the action to take when the rule is matched.
+    The value can be:
+    + **block**: Block the request
+    + **pass**: Allow the request
+    + **log**: Log the request only
+    """
+    followed_action_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the attack penalty rule.
+    This parameter is valid only when `category` is set to **block**.
+    """
+
+@pulumi.input_type
+class BatchCreateCustomRulesActionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str],
+                 followed_action_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **pass**: Allow the request
+               + **log**: Log the request only
+        :param pulumi.Input[_builtins.str] followed_action_id: Specifies the ID of the attack penalty rule.
+               This parameter is valid only when `category` is set to **block**.
+        """
+        pulumi.set(__self__, "category", category)
+        if followed_action_id is not None:
+            pulumi.set(__self__, "followed_action_id", followed_action_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **pass**: Allow the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter(name="followedActionId")
+    def followed_action_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the ID of the attack penalty rule.
+        This parameter is valid only when `category` is set to **block**.
+        """
+        return pulumi.get(self, "followed_action_id")
+
+    @followed_action_id.setter
+    def followed_action_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "followed_action_id", value)
+
+
+class BatchCreateCustomRulesConditionArgsDict(TypedDict):
+    category: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the action to take when the rule is matched.
+    The value can be:
+    + **block**: Block the request
+    + **pass**: Allow the request
+    + **log**: Log the request only
+    """
+    contents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the content to match against.
+    This parameter is required when `logic_operation` does not end with **any** or **all**.
+    """
+    index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield name.
+    + When `category` is **params**, **header**, or **cookie**, the value of `index` is custom subfield.
+    + For other `category` values, leave this empty.
+    """
+    logic_operation: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the matching logic operation.
+    + When `category` is **url**, **user-agent**, or **referer**, the value can be: **equal**, **not_equal**, **contain**,
+    **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+    **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+    **len_greater**, **len_less**, **len_equal**, **len_not_equal**
+    + When `category` is **ip**, the value can be: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+    + When `category` is **method**, the value can be: **equal**, **not_equal**
+    + When `category` is **request_line** or **request**, the value can be: **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**
+    + When `category` is **params**, **header**, or **cookie**, the value can be: **contain**, **not_contain**, **equal**,
+    **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+    **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+    **len_greater**, **len_less**, **len_equal**, **len_not_equal**, **num_greater**, **num_less**, **num_equal**,
+    **num_not_equal**, **exist**, **not_exist**
+    """
+    value_list_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reference table ID.
+    This parameter is required when `logic_operation` ends with **any** or **all**.
+
+    <a name="Rule_action"></a>
+    The `action` block supports:
+    """
+
+@pulumi.input_type
+class BatchCreateCustomRulesConditionArgs:
+    def __init__(__self__, *,
+                 category: Optional[pulumi.Input[_builtins.str]] = None,
+                 contents: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 index: Optional[pulumi.Input[_builtins.str]] = None,
+                 logic_operation: Optional[pulumi.Input[_builtins.str]] = None,
+                 value_list_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the action to take when the rule is matched.
+               The value can be:
+               + **block**: Block the request
+               + **pass**: Allow the request
+               + **log**: Log the request only
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the content to match against.
+               This parameter is required when `logic_operation` does not end with **any** or **all**.
+        :param pulumi.Input[_builtins.str] index: Specifies the subfield name.
+               + When `category` is **params**, **header**, or **cookie**, the value of `index` is custom subfield.
+               + For other `category` values, leave this empty.
+        :param pulumi.Input[_builtins.str] logic_operation: Specifies the matching logic operation.
+               + When `category` is **url**, **user-agent**, or **referer**, the value can be: **equal**, **not_equal**, **contain**,
+               **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+               **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+               **len_greater**, **len_less**, **len_equal**, **len_not_equal**
+               + When `category` is **ip**, the value can be: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+               + When `category` is **method**, the value can be: **equal**, **not_equal**
+               + When `category` is **request_line** or **request**, the value can be: **len_greater**, **len_less**, **len_equal**,
+               **len_not_equal**
+               + When `category` is **params**, **header**, or **cookie**, the value can be: **contain**, **not_contain**, **equal**,
+               **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+               **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+               **len_greater**, **len_less**, **len_equal**, **len_not_equal**, **num_greater**, **num_less**, **num_equal**,
+               **num_not_equal**, **exist**, **not_exist**
+        :param pulumi.Input[_builtins.str] value_list_id: Specifies the reference table ID.
+               This parameter is required when `logic_operation` ends with **any** or **all**.
+               
+               <a name="Rule_action"></a>
+               The `action` block supports:
+        """
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if logic_operation is not None:
+            pulumi.set(__self__, "logic_operation", logic_operation)
+        if value_list_id is not None:
+            pulumi.set(__self__, "value_list_id", value_list_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the action to take when the rule is matched.
+        The value can be:
+        + **block**: Block the request
+        + **pass**: Allow the request
+        + **log**: Log the request only
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the content to match against.
+        This parameter is required when `logic_operation` does not end with **any** or **all**.
+        """
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "contents", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subfield name.
+        + When `category` is **params**, **header**, or **cookie**, the value of `index` is custom subfield.
+        + For other `category` values, leave this empty.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "index", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the matching logic operation.
+        + When `category` is **url**, **user-agent**, or **referer**, the value can be: **equal**, **not_equal**, **contain**,
+        **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+        **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+        **len_greater**, **len_less**, **len_equal**, **len_not_equal**
+        + When `category` is **ip**, the value can be: **equal**, **not_equal**, **equal_any**, **not_equal_all**
+        + When `category` is **method**, the value can be: **equal**, **not_equal**
+        + When `category` is **request_line** or **request**, the value can be: **len_greater**, **len_less**, **len_equal**,
+        **len_not_equal**
+        + When `category` is **params**, **header**, or **cookie**, the value can be: **contain**, **not_contain**, **equal**,
+        **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**,
+        **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+        **len_greater**, **len_less**, **len_equal**, **len_not_equal**, **num_greater**, **num_less**, **num_equal**,
+        **num_not_equal**, **exist**, **not_exist**
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @logic_operation.setter
+    def logic_operation(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "logic_operation", value)
+
+    @_builtins.property
+    @pulumi.getter(name="valueListId")
+    def value_list_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the reference table ID.
+        This parameter is required when `logic_operation` ends with **any** or **all**.
+
+        <a name="Rule_action"></a>
+        The `action` block supports:
+        """
+        return pulumi.get(self, "value_list_id")
+
+    @value_list_id.setter
+    def value_list_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "value_list_id", value)
+
+
+class BatchCreateIgnoreRulesAdvancedArgsDict(TypedDict):
+    contents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the content of the condition.
+    The array length is limited to `1`. The content format varies depending on the field type.
+    For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+    when the `category` is **url**, the content format must be a standard URL;
+    when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+    """
+    index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield name.
+    When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+    When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+    when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+    custom subfield.
+    """
+
+@pulumi.input_type
+class BatchCreateIgnoreRulesAdvancedArgs:
+    def __init__(__self__, *,
+                 contents: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 index: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the content of the condition.
+               The array length is limited to `1`. The content format varies depending on the field type.
+               For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+               when the `category` is **url**, the content format must be a standard URL;
+               when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        :param pulumi.Input[_builtins.str] index: Specifies the subfield name.
+               When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+               When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+               when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+               custom subfield.
+        """
+        if contents is not None:
+            pulumi.set(__self__, "contents", contents)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the content of the condition.
+        The array length is limited to `1`. The content format varies depending on the field type.
+        For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+        when the `category` is **url**, the content format must be a standard URL;
+        when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        """
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "contents", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subfield name.
+        When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+        When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+        when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+        custom subfield.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "index", value)
+
+
+class BatchCreateIgnoreRulesConditionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type.
+    The value can be: **ip**, **url**, **params**, **cookie**, or **header**.
+    """
+    contents: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the content of the condition.
+    The array length is limited to `1`. The content format varies depending on the field type.
+    For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+    when the `category` is **url**, the content format must be a standard URL;
+    when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+    """
+    logic_operation: pulumi.Input[_builtins.str]
+    """
+    Specifies the matching logic.
+    The matching logic varies depending on the field type.
+    When the `category` is **ip**, the matching logic supports **equal** and **not_equal**.
+    When the `category` is **url**, **header**, **params**, or **cookie**, the matching logic supports **equal**,
+    **not_equal**, **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **regular_match**,
+    and **regular_not_match**.
+    """
+    check_all_indexes_logic: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies how to check subfields.
+    When using custom subfields or `category` is **url** or **ip**, the `check_all_indexes_logic` parameter is not required.
+    In other cases, the value can be:
+    """
+    index: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield name.
+    When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+    When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+    when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+    custom subfield.
+    """
+
+@pulumi.input_type
+class BatchCreateIgnoreRulesConditionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str],
+                 contents: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 logic_operation: pulumi.Input[_builtins.str],
+                 check_all_indexes_logic: Optional[pulumi.Input[_builtins.int]] = None,
+                 index: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the field type.
+               The value can be: **ip**, **url**, **params**, **cookie**, or **header**.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] contents: Specifies the content of the condition.
+               The array length is limited to `1`. The content format varies depending on the field type.
+               For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+               when the `category` is **url**, the content format must be a standard URL;
+               when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        :param pulumi.Input[_builtins.str] logic_operation: Specifies the matching logic.
+               The matching logic varies depending on the field type.
+               When the `category` is **ip**, the matching logic supports **equal** and **not_equal**.
+               When the `category` is **url**, **header**, **params**, or **cookie**, the matching logic supports **equal**,
+               **not_equal**, **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **regular_match**,
+               and **regular_not_match**.
+        :param pulumi.Input[_builtins.int] check_all_indexes_logic: Specifies how to check subfields.
+               When using custom subfields or `category` is **url** or **ip**, the `check_all_indexes_logic` parameter is not required.
+               In other cases, the value can be:
+        :param pulumi.Input[_builtins.str] index: Specifies the subfield name.
+               When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+               When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+               when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+               custom subfield.
+        """
+        pulumi.set(__self__, "category", category)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "logic_operation", logic_operation)
+        if check_all_indexes_logic is not None:
+            pulumi.set(__self__, "check_all_indexes_logic", check_all_indexes_logic)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the field type.
+        The value can be: **ip**, **url**, **params**, **cookie**, or **header**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def contents(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Specifies the content of the condition.
+        The array length is limited to `1`. The content format varies depending on the field type.
+        For example, when the `category` is **ip**, the content format must be an IP address or a range of IP addresses;
+        when the `category` is **url**, the content format must be a standard URL;
+        when the `category` is **params**, **cookie**, or **header**, there are no restrictions on the content format.
+        """
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "contents", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logicOperation")
+    def logic_operation(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the matching logic.
+        The matching logic varies depending on the field type.
+        When the `category` is **ip**, the matching logic supports **equal** and **not_equal**.
+        When the `category` is **url**, **header**, **params**, or **cookie**, the matching logic supports **equal**,
+        **not_equal**, **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **regular_match**,
+        and **regular_not_match**.
+        """
+        return pulumi.get(self, "logic_operation")
+
+    @logic_operation.setter
+    def logic_operation(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "logic_operation", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkAllIndexesLogic")
+    def check_all_indexes_logic(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies how to check subfields.
+        When using custom subfields or `category` is **url** or **ip**, the `check_all_indexes_logic` parameter is not required.
+        In other cases, the value can be:
+        """
+        return pulumi.get(self, "check_all_indexes_logic")
+
+    @check_all_indexes_logic.setter
+    def check_all_indexes_logic(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "check_all_indexes_logic", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the subfield name.
+        When the `category` is **ip** and the subfield is the client's IP, the `index` parameter is not required.
+        When the subfield type is **X-Forwarded-For**, the value is **x-forwarded-for**;
+        when the `category` is **params**, **header**, or **cookie** and the subfield is custom, the value of `index` is the
+        custom subfield.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "index", value)
+
+
+class BatchCreateIpReputationRulesActionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the action to take when the IP reputation rule is triggered.
+    Valid values are **pass**, **log**, and **block**.
+    """
+
+@pulumi.input_type
+class BatchCreateIpReputationRulesActionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] category: Specifies the action to take when the IP reputation rule is triggered.
+               Valid values are **pass**, **log**, and **block**.
+        """
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the action to take when the IP reputation rule is triggered.
+        Valid values are **pass**, **log**, and **block**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+
+class BatchDeleteAlarmNotificationsAlertNoticeConfigArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the alarm notification.
+    """
+
+@pulumi.input_type
+class BatchDeleteAlarmNotificationsAlertNoticeConfigArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] id: Specifies the ID of the alarm notification.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the ID of the alarm notification.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "id", value)
+
+
+class BatchUpdateWhiteblackipRulesPolicyRuleIdArgsDict(TypedDict):
+    policy_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the policy ID.
+    """
+    rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the rule IDs.
+    """
+
+@pulumi.input_type
+class BatchUpdateWhiteblackipRulesPolicyRuleIdArgs:
+    def __init__(__self__, *,
+                 policy_id: pulumi.Input[_builtins.str],
+                 rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] policy_id: Specifies the policy ID.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rule_ids: Specifies the rule IDs.
+        """
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the policy ID.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @policy_id.setter
+    def policy_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "policy_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Specifies the rule IDs.
+        """
+        return pulumi.get(self, "rule_ids")
+
+    @rule_ids.setter
+    def rule_ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "rule_ids", value)
+
+
+class CcProtectionRuleBatchDeletePolicyRuleIdArgsDict(TypedDict):
+    policy_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the policy ID to which the CC protection rule belongs.
+    """
+    rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies the ID list of the CC protection rule.
+    """
+
+@pulumi.input_type
+class CcProtectionRuleBatchDeletePolicyRuleIdArgs:
+    def __init__(__self__, *,
+                 policy_id: pulumi.Input[_builtins.str],
+                 rule_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[_builtins.str] policy_id: Specifies the policy ID to which the CC protection rule belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rule_ids: Specifies the ID list of the CC protection rule.
+        """
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the policy ID to which the CC protection rule belongs.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @policy_id.setter
+    def policy_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "policy_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        Specifies the ID list of the CC protection rule.
+        """
+        return pulumi.get(self, "rule_ids")
+
+    @rule_ids.setter
+    def rule_ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "rule_ids", value)
+
+
+class CloudInstanceBandwidthExpackProductArgsDict(TypedDict):
+    resource_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of extended packages.
+    + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
+    `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
+    + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
+    + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
+
+    > The `resource_size` cannot be reduced below `1`.
+    """
 
 @pulumi.input_type
 class CloudInstanceBandwidthExpackProductArgs:
@@ -205,20 +1276,17 @@ class CloudInstanceBandwidthExpackProductArgs:
         pulumi.set(self, "resource_size", value)
 
 
-if not MYPY:
-    class CloudInstanceDomainExpackProductArgsDict(TypedDict):
-        resource_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of extended packages.
-        + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
-        `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
-        + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
-        + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
+class CloudInstanceDomainExpackProductArgsDict(TypedDict):
+    resource_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of extended packages.
+    + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
+    `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
+    + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
+    + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
 
-        > The `resource_size` cannot be reduced below `1`.
-        """
-elif False:
-    CloudInstanceDomainExpackProductArgsDict: TypeAlias = Mapping[str, Any]
+    > The `resource_size` cannot be reduced below `1`.
+    """
 
 @pulumi.input_type
 class CloudInstanceDomainExpackProductArgs:
@@ -255,20 +1323,17 @@ class CloudInstanceDomainExpackProductArgs:
         pulumi.set(self, "resource_size", value)
 
 
-if not MYPY:
-    class CloudInstanceRuleExpackProductArgsDict(TypedDict):
-        resource_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of extended packages.
-        + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
-        `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
-        + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
-        + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
+class CloudInstanceRuleExpackProductArgsDict(TypedDict):
+    resource_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of extended packages.
+    + For bandwidth extended packages, each package will support `1,000` QPS or `20` Mbits/s (outside HUAWEI Cloud) and
+    `50` Mbits/s (inside HUAWEI Cloud) bandwidth.
+    + For domain extended packages, each package will support `10` domain names (only one level-1 domain is supported).
+    + For rule extended packages, each package will support `10` protection rules (only IP black/white list is supported).
 
-        > The `resource_size` cannot be reduced below `1`.
-        """
-elif False:
-    CloudInstanceRuleExpackProductArgsDict: TypeAlias = Mapping[str, Any]
+    > The `resource_size` cannot be reduced below `1`.
+    """
 
 @pulumi.input_type
 class CloudInstanceRuleExpackProductArgs:
@@ -305,29 +1370,135 @@ class CloudInstanceRuleExpackProductArgs:
         pulumi.set(self, "resource_size", value)
 
 
-if not MYPY:
-    class DedicatedDomainBlockPageArgsDict(TypedDict):
-        custom_pages: NotRequired[pulumi.Input[Sequence[pulumi.Input['DedicatedDomainBlockPageCustomPageArgsDict']]]]
-        """
-        Specifies the custom page. Only supports one custom alarm page.
-        The custom_page structure is documented below.
-        """
-        redirect_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the URL of the redirected page. The root domain name of the redirection
-        address must be the name of the currently protected domain (including a wildcard domain name).
-        The available **${http_host}** can be used to indicate the currently protected domain name and port.
-        For example: **${http_host}/error.html**.
+class DedicatedAgencyRoleListArgsDict(TypedDict):
+    catalog: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The catalog.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The description.
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display name.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The role ID.
+    """
+    is_granted: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether it is granted.
+    """
 
-        > The fields `redirect_url` and `custom_page` are mutually exclusive and cannot be specified simultaneously.
+@pulumi.input_type
+class DedicatedAgencyRoleListArgs:
+    def __init__(__self__, *,
+                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_granted: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        template: NotRequired[pulumi.Input[_builtins.str]]
+        :param pulumi.Input[_builtins.str] catalog: The catalog.
+        :param pulumi.Input[_builtins.str] description: The description.
+        :param pulumi.Input[_builtins.str] display_name: The display name.
+        :param pulumi.Input[_builtins.str] id: The role ID.
+        :param pulumi.Input[_builtins.bool] is_granted: Whether it is granted.
         """
-        Template name. Enter **default** for the default page. Enter **custom** for the customized alarm page.
-        Enter **redirect** for the redirection page.
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_granted is not None:
+            pulumi.set(__self__, "is_granted", is_granted)
+
+    @_builtins.property
+    @pulumi.getter
+    def catalog(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-elif False:
-    DedicatedDomainBlockPageArgsDict: TypeAlias = Mapping[str, Any]
+        The catalog.
+        """
+        return pulumi.get(self, "catalog")
+
+    @catalog.setter
+    def catalog(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "catalog", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "display_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The role ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isGranted")
+    def is_granted(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether it is granted.
+        """
+        return pulumi.get(self, "is_granted")
+
+    @is_granted.setter
+    def is_granted(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_granted", value)
+
+
+class DedicatedDomainBlockPageArgsDict(TypedDict):
+    custom_pages: NotRequired[pulumi.Input[Sequence[pulumi.Input['DedicatedDomainBlockPageCustomPageArgsDict']]]]
+    """
+    Specifies the custom page. Only supports one custom alarm page.
+    The custom_page structure is documented below.
+    """
+    redirect_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the URL of the redirected page. The root domain name of the redirection
+    address must be the name of the currently protected domain (including a wildcard domain name).
+    The available **${http_host}** can be used to indicate the currently protected domain name and port.
+    For example: **${http_host}/error.html**.
+
+    > The fields `redirect_url` and `custom_page` are mutually exclusive and cannot be specified simultaneously.
+    """
+    template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template name. Enter **default** for the default page. Enter **custom** for the customized alarm page.
+    Enter **redirect** for the redirection page.
+    """
 
 @pulumi.input_type
 class DedicatedDomainBlockPageArgs:
@@ -398,22 +1569,19 @@ class DedicatedDomainBlockPageArgs:
         pulumi.set(self, "template", value)
 
 
-if not MYPY:
-    class DedicatedDomainBlockPageCustomPageArgsDict(TypedDict):
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The page content based on the selected page type.
-        """
-        content_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The content type of the custom alarm page. The value can be **text/html**, **text/xml** or **application/json**.
-        """
-        status_code: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status code.
-        """
-elif False:
-    DedicatedDomainBlockPageCustomPageArgsDict: TypeAlias = Mapping[str, Any]
+class DedicatedDomainBlockPageCustomPageArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The page content based on the selected page type.
+    """
+    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The content type of the custom alarm page. The value can be **text/html**, **text/xml** or **application/json**.
+    """
+    status_code: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status code.
+    """
 
 @pulumi.input_type
 class DedicatedDomainBlockPageCustomPageArgs:
@@ -470,52 +1638,49 @@ class DedicatedDomainBlockPageCustomPageArgs:
         pulumi.set(self, "status_code", value)
 
 
-if not MYPY:
-    class DedicatedDomainConnectionProtectionArgsDict(TypedDict):
-        duration: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the protection duration (s) for connection protection. During this period, WAF
-        stops forwarding website requests. Valid value ranges from `0` to `2,147,483,647`.
-        """
-        error_percentage: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Specifies the `502`/`504` error percentage. A breakdown protection is triggered
-        when the `502`/`504` error threshold and percentage threshold have been reached. Valid value ranges from `0` to `99`.
-        """
-        error_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the `502`/`504` error threshold for every 30 seconds. Valid value ranges
-        from `0` to `2,147,483,647`.
-        """
-        initial_downtime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the breakdown duration (s) when the breakdown is triggered for the first
-        time. Valid value ranges from `0` to `2,147,483,647`.
-        """
-        multiplier_for_consecutive_breakdowns: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the maximum multiplier for consecutive breakdowns
-        that occur within an hour. Valid value ranges from `0` to `2,147,483,647`.
-        For example: Assume that you set the initial downtime to `180s` and the maximum multiplier to `3`. If the breakdown
-        protection is triggered for the second time, the website downtime is 360s (180s X 2).
-        If the breakdown protection is triggered for the third or fourth time, the website downtime is 540s (180s x 3).
-        The breakdowns are calculated every one hour.
-        """
-        pending_url_request_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the pending URL request threshold. Connection protection
-        is triggered when the number of read URL requests reaches the threshold you configure. Valid value ranges from `0` to
-        `2,147,483,647`.
-        """
-        status: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to enable connection protection. Defaults to **false**.
+class DedicatedDomainConnectionProtectionArgsDict(TypedDict):
+    duration: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the protection duration (s) for connection protection. During this period, WAF
+    stops forwarding website requests. Valid value ranges from `0` to `2,147,483,647`.
+    """
+    error_percentage: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Specifies the `502`/`504` error percentage. A breakdown protection is triggered
+    when the `502`/`504` error threshold and percentage threshold have been reached. Valid value ranges from `0` to `99`.
+    """
+    error_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the `502`/`504` error threshold for every 30 seconds. Valid value ranges
+    from `0` to `2,147,483,647`.
+    """
+    initial_downtime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the breakdown duration (s) when the breakdown is triggered for the first
+    time. Valid value ranges from `0` to `2,147,483,647`.
+    """
+    multiplier_for_consecutive_breakdowns: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the maximum multiplier for consecutive breakdowns
+    that occur within an hour. Valid value ranges from `0` to `2,147,483,647`.
+    For example: Assume that you set the initial downtime to `180s` and the maximum multiplier to `3`. If the breakdown
+    protection is triggered for the second time, the website downtime is 360s (180s X 2).
+    If the breakdown protection is triggered for the third or fourth time, the website downtime is 540s (180s x 3).
+    The breakdowns are calculated every one hour.
+    """
+    pending_url_request_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the pending URL request threshold. Connection protection
+    is triggered when the number of read URL requests reaches the threshold you configure. Valid value ranges from `0` to
+    `2,147,483,647`.
+    """
+    status: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to enable connection protection. Defaults to **false**.
 
-        <a name="DedicatedDomain_timeout_settings"></a>
-        The `timeout_settings` block supports:
-        """
-elif False:
-    DedicatedDomainConnectionProtectionArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DedicatedDomain_timeout_settings"></a>
+    The `timeout_settings` block supports:
+    """
 
 @pulumi.input_type
 class DedicatedDomainConnectionProtectionArgs:
@@ -664,29 +1829,26 @@ class DedicatedDomainConnectionProtectionArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class DedicatedDomainCustomPageArgsDict(TypedDict):
-        block_page_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the content type of the custom alarm page.
-        The value can be **text/html**, **text/xml** or **application/json**.
-        """
-        http_return_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the HTTP return code.
-        The value can be a positive integer in the range of `200`-`599` except `408`, `444` and `499`.
-        """
-        page_content: pulumi.Input[_builtins.str]
-        """
-        Specifies the page content. The page content based on the selected page type.
-        The available **${waf_event_id}** in the page content indicates an event ID, and only one **${waf_event_id}** variable
-        can be available.
+class DedicatedDomainCustomPageArgsDict(TypedDict):
+    block_page_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the content type of the custom alarm page.
+    The value can be **text/html**, **text/xml** or **application/json**.
+    """
+    http_return_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the HTTP return code.
+    The value can be a positive integer in the range of `200`-`599` except `408`, `444` and `499`.
+    """
+    page_content: pulumi.Input[_builtins.str]
+    """
+    Specifies the page content. The page content based on the selected page type.
+    The available **${waf_event_id}** in the page content indicates an event ID, and only one **${waf_event_id}** variable
+    can be available.
 
-        <a name="DedicatedDomain_connection_protection"></a>
-        The `connection_protection` block supports:
-        """
-elif False:
-    DedicatedDomainCustomPageArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DedicatedDomain_connection_protection"></a>
+    The `connection_protection` block supports:
+    """
 
 @pulumi.input_type
 class DedicatedDomainCustomPageArgs:
@@ -754,37 +1916,34 @@ class DedicatedDomainCustomPageArgs:
         pulumi.set(self, "page_content", value)
 
 
-if not MYPY:
-    class DedicatedDomainFlagArgsDict(TypedDict):
-        cname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The CNAME record being used. Valid values are **old** and **new**.
-        """
-        ipv6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Whether IPv6 protection is supported. Valid values are **true** and **false**.
-        """
-        is_dual_az: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Whether WAF support Multi-AZ DR. Valid values are **true** and **false**.
-        """
-        pci3ds: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the status of the PCI 3DS compliance certification check. The options
-        include **true** and **false**. This parameter must be used together with `tls` and `cipher`.
+class DedicatedDomainFlagArgsDict(TypedDict):
+    cname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The CNAME record being used. Valid values are **old** and **new**.
+    """
+    ipv6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Whether IPv6 protection is supported. Valid values are **true** and **false**.
+    """
+    is_dual_az: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Whether WAF support Multi-AZ DR. Valid values are **true** and **false**.
+    """
+    pci3ds: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the status of the PCI 3DS compliance certification check. The options
+    include **true** and **false**. This parameter must be used together with `tls` and `cipher`.
 
-        > **NOTE:** Tls must be set to **TLS v1.2**, and cipher must be set to **cipher_2**. The PCI 3DS compliance certification
-        check cannot be disabled after being enabled.
-        """
-        pci_dss: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the status of the PCI DSS compliance certification check. The options
-        include **true** and **false**. This parameter must be used together with `tls` and `cipher`.
+    > **NOTE:** Tls must be set to **TLS v1.2**, and cipher must be set to **cipher_2**. The PCI 3DS compliance certification
+    check cannot be disabled after being enabled.
+    """
+    pci_dss: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the status of the PCI DSS compliance certification check. The options
+    include **true** and **false**. This parameter must be used together with `tls` and `cipher`.
 
-        > **NOTE:** Tls must be set to **TLS v1.2**, and cipher must be set to **cipher_2**.
-        """
-elif False:
-    DedicatedDomainFlagArgsDict: TypeAlias = Mapping[str, Any]
+    > **NOTE:** Tls must be set to **TLS v1.2**, and cipher must be set to **cipher_2**.
+    """
 
 @pulumi.input_type
 class DedicatedDomainFlagArgs:
@@ -887,41 +2046,38 @@ class DedicatedDomainFlagArgs:
         pulumi.set(self, "pci_dss", value)
 
 
-if not MYPY:
-    class DedicatedDomainServerArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address or domain name of the web server accessed by the
-        client. For example, `192.168.1.1` or `www.example.com`.
-        """
-        client_protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type of the client. The options include **HTTP**
-        and **HTTPS**.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port number used by the web server. The value ranges from `0` to `65,535`.
+class DedicatedDomainServerArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address or domain name of the web server accessed by the
+    client. For example, `192.168.1.1` or `www.example.com`.
+    """
+    client_protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type of the client. The options include **HTTP**
+    and **HTTPS**.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port number used by the web server. The value ranges from `0` to `65,535`.
 
-        <a name="DedicatedDomain_custom_page"></a>
-        The `custom_page` block supports:
-        """
-        server_protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol used by WAF to forward client requests to the
-        server. The valid values are **HTTP** and **HTTPS**.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the server network type, IPv4 or IPv6.
-        Valid values are **ipv4** and **ipv6**.
-        """
-        vpc_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the VPC used by the server.
-        """
-elif False:
-    DedicatedDomainServerArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DedicatedDomain_custom_page"></a>
+    The `custom_page` block supports:
+    """
+    server_protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol used by WAF to forward client requests to the
+    server. The valid values are **HTTP** and **HTTPS**.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the server network type, IPv4 or IPv6.
+    Valid values are **ipv4** and **ipv6**.
+    """
+    vpc_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the VPC used by the server.
+    """
 
 @pulumi.input_type
 class DedicatedDomainServerArgs:
@@ -1034,28 +2190,25 @@ class DedicatedDomainServerArgs:
         pulumi.set(self, "vpc_id", value)
 
 
-if not MYPY:
-    class DedicatedDomainTimeoutSettingsArgsDict(TypedDict):
-        connection_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to connect to the origin server. The unit is second.
-        Valid value ranges from `0` to `180`.
-        """
-        read_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to receive responses from the origin server.
-        The unit is second. Valid value ranges from `0` to `3,600`.
-        """
-        write_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to send requests to the origin server. The unit is second.
-        Valid value ranges from `0` to `3,600`.
+class DedicatedDomainTimeoutSettingsArgsDict(TypedDict):
+    connection_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to connect to the origin server. The unit is second.
+    Valid value ranges from `0` to `180`.
+    """
+    read_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to receive responses from the origin server.
+    The unit is second. Valid value ranges from `0` to `3,600`.
+    """
+    write_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to send requests to the origin server. The unit is second.
+    Valid value ranges from `0` to `3,600`.
 
-        <a name="DedicatedDomain_traffic_mark"></a>
-        The `traffic_mark` block supports:
-        """
-elif False:
-    DedicatedDomainTimeoutSettingsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="DedicatedDomain_traffic_mark"></a>
+    The `traffic_mark` block supports:
+    """
 
 @pulumi.input_type
 class DedicatedDomainTimeoutSettingsArgs:
@@ -1124,31 +2277,28 @@ class DedicatedDomainTimeoutSettingsArgs:
         pulumi.set(self, "write_timeout", value)
 
 
-if not MYPY:
-    class DedicatedDomainTrafficMarkArgsDict(TypedDict):
-        ip_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the IP tags. HTTP request header field of the original client IP address.
-        This field is used to store the real IP address of the client. After the configuration, WAF preferentially reads the
-        configured field to obtain the real IP address of the client. If multiple fields are configured, WAF reads the IP
-        address list in order. Note:
-        + If you want to use a TCP connection IP address as the client IP address, set IP Tag to `$remote_addr`.
-        + If WAF does not obtain the real IP address of a client from fields you configure, WAF reads the `cdn-src-ip`,
-        `x-real-ip`, `x-forwarded-for` and `$remote_addr` fields in sequence to read the client IP address.
-        """
-        session_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the session tag. This tag is used by known attack source rules to block
-        malicious attacks based on cookie attributes. This parameter must be configured in known attack source rules to block
-        requests based on cookie attributes.
-        """
-        user_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user tag. This tag is used by known attack source rules to block malicious
-        attacks based on params attributes. This parameter must be configured to block requests based on the params attributes.
-        """
-elif False:
-    DedicatedDomainTrafficMarkArgsDict: TypeAlias = Mapping[str, Any]
+class DedicatedDomainTrafficMarkArgsDict(TypedDict):
+    ip_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the IP tags. HTTP request header field of the original client IP address.
+    This field is used to store the real IP address of the client. After the configuration, WAF preferentially reads the
+    configured field to obtain the real IP address of the client. If multiple fields are configured, WAF reads the IP
+    address list in order. Note:
+    + If you want to use a TCP connection IP address as the client IP address, set IP Tag to `$remote_addr`.
+    + If WAF does not obtain the real IP address of a client from fields you configure, WAF reads the `cdn-src-ip`,
+    `x-real-ip`, `x-forwarded-for` and `$remote_addr` fields in sequence to read the client IP address.
+    """
+    session_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the session tag. This tag is used by known attack source rules to block
+    malicious attacks based on cookie attributes. This parameter must be configured in known attack source rules to block
+    requests based on cookie attributes.
+    """
+    user_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user tag. This tag is used by known attack source rules to block malicious
+    attacks based on params attributes. This parameter must be configured to block requests based on the params attributes.
+    """
 
 @pulumi.input_type
 class DedicatedDomainTrafficMarkArgs:
@@ -1223,29 +2373,75 @@ class DedicatedDomainTrafficMarkArgs:
         pulumi.set(self, "user_tag", value)
 
 
-if not MYPY:
-    class DomainCustomPageArgsDict(TypedDict):
-        block_page_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the content type of the custom alarm page.
-        The value can be **text/html**, **text/xml** or **application/json**.
-        """
-        http_return_code: pulumi.Input[_builtins.str]
-        """
-        Specifies the HTTP return code.
-        The value can be a positive integer in the range of `200` to `599` except `408`, `444` and `499`.
-        """
-        page_content: pulumi.Input[_builtins.str]
-        """
-        Specifies the page content. The page content based on the selected page type.
-        The available **${waf_event_id}** in the page content indicates an event ID, and only one **${waf_event_id}** variable
-        can be available.
+class DedicatedInstanceActionHostArgsDict(TypedDict):
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protected domain name.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the protected domain.
+    """
 
-        <a name="Domain_timeout_settings"></a>
-        The `timeout_settings` block supports:
+@pulumi.input_type
+class DedicatedInstanceActionHostArgs:
+    def __init__(__self__, *,
+                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-elif False:
-    DomainCustomPageArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] hostname: The protected domain name.
+        :param pulumi.Input[_builtins.str] id: The ID of the protected domain.
+        """
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The protected domain name.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hostname", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the protected domain.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+
+class DomainCustomPageArgsDict(TypedDict):
+    block_page_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the content type of the custom alarm page.
+    The value can be **text/html**, **text/xml** or **application/json**.
+    """
+    http_return_code: pulumi.Input[_builtins.str]
+    """
+    Specifies the HTTP return code.
+    The value can be a positive integer in the range of `200` to `599` except `408`, `444` and `499`.
+    """
+    page_content: pulumi.Input[_builtins.str]
+    """
+    Specifies the page content. The page content based on the selected page type.
+    The available **${waf_event_id}** in the page content indicates an event ID, and only one **${waf_event_id}** variable
+    can be available.
+
+    <a name="Domain_timeout_settings"></a>
+    The `timeout_settings` block supports:
+    """
 
 @pulumi.input_type
 class DomainCustomPageArgs:
@@ -1313,43 +2509,197 @@ class DomainCustomPageArgs:
         pulumi.set(self, "page_content", value)
 
 
-if not MYPY:
-    class DomainServerArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        Specifies the IP address or domain name of the web server that the client accesses.
-        """
-        client_protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol type of the client. The options include **HTTP** and **HTTPS**.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        Specifies the port number used by the web server. The value ranges from `0` to `65,535`,
-        for example, `8,080`.
-        """
-        server_protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the protocol used by WAF to forward client requests to the server.
-        The options include **HTTP** and **HTTPS**.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the server network type. Valid values are: **ipv4** and **ipv6**.
-        + When this field is set to **ipv4**, `address` must be set to an IPv4 address.
-        + When this field is set to **ipv6**, `address` must be set to an IPv6 address.
-        """
-        weight: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the load balancing algorithm will assign requests to the origin
-        site according to this weight.
-        Defaults to `1`.
+class DomainRouteUpdateRouteArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the name of the WAF cluster.
+    """
+    servers: pulumi.Input[Sequence[pulumi.Input['DomainRouteUpdateRouteServerArgsDict']]]
+    """
+    Specifies the list of protected domain source site server information.
 
-        <a name="Domain_custom_page"></a>
-        The `custom_page` block supports:
+    The servers structure is documented below.
+    """
+    cname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the cname suffix of the WAF cluster.
+
+    <a name="domain_route_update_servers"></a>
+    The `servers` block supports:
+    """
+
+@pulumi.input_type
+class DomainRouteUpdateRouteArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 servers: pulumi.Input[Sequence[pulumi.Input['DomainRouteUpdateRouteServerArgs']]],
+                 cname: Optional[pulumi.Input[_builtins.str]] = None):
         """
-elif False:
-    DomainServerArgsDict: TypeAlias = Mapping[str, Any]
+        :param pulumi.Input[_builtins.str] name: Specifies the name of the WAF cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['DomainRouteUpdateRouteServerArgs']]] servers: Specifies the list of protected domain source site server information.
+               
+               The servers structure is documented below.
+        :param pulumi.Input[_builtins.str] cname: Specifies the cname suffix of the WAF cluster.
+               
+               <a name="domain_route_update_servers"></a>
+               The `servers` block supports:
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "servers", servers)
+        if cname is not None:
+            pulumi.set(__self__, "cname", cname)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the name of the WAF cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def servers(self) -> pulumi.Input[Sequence[pulumi.Input['DomainRouteUpdateRouteServerArgs']]]:
+        """
+        Specifies the list of protected domain source site server information.
+
+        The servers structure is documented below.
+        """
+        return pulumi.get(self, "servers")
+
+    @servers.setter
+    def servers(self, value: pulumi.Input[Sequence[pulumi.Input['DomainRouteUpdateRouteServerArgs']]]):
+        pulumi.set(self, "servers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the cname suffix of the WAF cluster.
+
+        <a name="domain_route_update_servers"></a>
+        The `servers` block supports:
+        """
+        return pulumi.get(self, "cname")
+
+    @cname.setter
+    def cname(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cname", value)
+
+
+class DomainRouteUpdateRouteServerArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the IP address of the source server for client access.
+    """
+    back_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the protocol for WAF to forward client requests to the
+    protected domain origin server. The valid values are **HTTP** and **HTTPS**.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the business port for WAF to forward client requests to the source
+    service.
+    """
+
+@pulumi.input_type
+class DomainRouteUpdateRouteServerArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[_builtins.str]] = None,
+                 back_protocol: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] address: Specifies the IP address of the source server for client access.
+        :param pulumi.Input[_builtins.str] back_protocol: Specifies the protocol for WAF to forward client requests to the
+               protected domain origin server. The valid values are **HTTP** and **HTTPS**.
+        :param pulumi.Input[_builtins.int] port: Specifies the business port for WAF to forward client requests to the source
+               service.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if back_protocol is not None:
+            pulumi.set(__self__, "back_protocol", back_protocol)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the IP address of the source server for client access.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="backProtocol")
+    def back_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the protocol for WAF to forward client requests to the
+        protected domain origin server. The valid values are **HTTP** and **HTTPS**.
+        """
+        return pulumi.get(self, "back_protocol")
+
+    @back_protocol.setter
+    def back_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "back_protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the business port for WAF to forward client requests to the source
+        service.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+
+class DomainServerArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    Specifies the IP address or domain name of the web server that the client accesses.
+    """
+    client_protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol type of the client. The options include **HTTP** and **HTTPS**.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    Specifies the port number used by the web server. The value ranges from `0` to `65,535`,
+    for example, `8,080`.
+    """
+    server_protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the protocol used by WAF to forward client requests to the server.
+    The options include **HTTP** and **HTTPS**.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the server network type. Valid values are: **ipv4** and **ipv6**.
+    + When this field is set to **ipv4**, `address` must be set to an IPv4 address.
+    + When this field is set to **ipv6**, `address` must be set to an IPv6 address.
+    """
+    weight: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the load balancing algorithm will assign requests to the origin
+    site according to this weight.
+    Defaults to `1`.
+
+    <a name="Domain_custom_page"></a>
+    The `custom_page` block supports:
+    """
 
 @pulumi.input_type
 class DomainServerArgs:
@@ -1468,28 +2818,25 @@ class DomainServerArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class DomainTimeoutSettingsArgsDict(TypedDict):
-        connection_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to connect to the origin server. The unit is second.
-        Valid value ranges from `0` to `180`.
-        """
-        read_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to receive responses from the origin server.
-        The unit is second. Valid value ranges from `0` to `3,600`.
-        """
-        write_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the timeout for WAF to send requests to the origin server. The unit is second.
-        Valid value ranges from `0` to `3,600`.
+class DomainTimeoutSettingsArgsDict(TypedDict):
+    connection_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to connect to the origin server. The unit is second.
+    Valid value ranges from `0` to `180`.
+    """
+    read_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to receive responses from the origin server.
+    The unit is second. Valid value ranges from `0` to `3,600`.
+    """
+    write_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the timeout for WAF to send requests to the origin server. The unit is second.
+    Valid value ranges from `0` to `3,600`.
 
-        <a name="Domain_traffic_mark"></a>
-        The `traffic_mark` block supports:
-        """
-elif False:
-    DomainTimeoutSettingsArgsDict: TypeAlias = Mapping[str, Any]
+    <a name="Domain_traffic_mark"></a>
+    The `traffic_mark` block supports:
+    """
 
 @pulumi.input_type
 class DomainTimeoutSettingsArgs:
@@ -1558,33 +2905,30 @@ class DomainTimeoutSettingsArgs:
         pulumi.set(self, "write_timeout", value)
 
 
-if not MYPY:
-    class DomainTrafficMarkArgsDict(TypedDict):
-        ip_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the IP tags. HTTP request header field of the original client IP address.
-        This field is used to store the real IP address of the client. After the configuration, WAF preferentially reads the
-        configured field to obtain the real IP address of the client. If multiple fields are configured, WAF reads the IP
-        address list in order. Note:
-        + If you want to use a TCP connection IP address as the client IP address, set IP Tag to **$remote_addr**.
-        + If WAF does not obtain the real IP address of a client from fields you configure, WAF reads the **cdn-src-ip**,
-        **x-real-ip**, **x-forwarded-for** and **$remote_addr** fields in sequence to read the client IP address.
-        + When the website setting `proxy` is configured as **false**, this field does not take effect,
-        and the client IP is only obtained through the `$remote_addr` field.
-        """
-        session_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the session tag. This tag is used by known attack source rules to block
-        malicious attacks based on cookie attributes. This parameter must be configured in known attack source rules to block
-        requests based on cookie attributes.
-        """
-        user_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user tag. This tag is used by known attack source rules to block malicious
-        attacks based on params attributes. This parameter must be configured to block requests based on the params attributes.
-        """
-elif False:
-    DomainTrafficMarkArgsDict: TypeAlias = Mapping[str, Any]
+class DomainTrafficMarkArgsDict(TypedDict):
+    ip_tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the IP tags. HTTP request header field of the original client IP address.
+    This field is used to store the real IP address of the client. After the configuration, WAF preferentially reads the
+    configured field to obtain the real IP address of the client. If multiple fields are configured, WAF reads the IP
+    address list in order. Note:
+    + If you want to use a TCP connection IP address as the client IP address, set IP Tag to **$remote_addr**.
+    + If WAF does not obtain the real IP address of a client from fields you configure, WAF reads the **cdn-src-ip**,
+    **x-real-ip**, **x-forwarded-for** and **$remote_addr** fields in sequence to read the client IP address.
+    + When the website setting `proxy` is configured as **false**, this field does not take effect,
+    and the client IP is only obtained through the `$remote_addr` field.
+    """
+    session_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the session tag. This tag is used by known attack source rules to block
+    malicious attacks based on cookie attributes. This parameter must be configured in known attack source rules to block
+    requests based on cookie attributes.
+    """
+    user_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user tag. This tag is used by known attack source rules to block malicious
+    attacks based on params attributes. This parameter must be configured to block requests based on the params attributes.
+    """
 
 @pulumi.input_type
 class DomainTrafficMarkArgs:
@@ -1663,27 +3007,104 @@ class DomainTrafficMarkArgs:
         pulumi.set(self, "user_tag", value)
 
 
-if not MYPY:
-    class PolicyBindHostArgsDict(TypedDict):
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
+class GeoIpRuleBatchUpdatePolicyRuleIdArgsDict(TypedDict):
+    policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the policy ID to which the geo IP rule belongs.
+    """
+    rule_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the ID list of the geo IP rule.
+    """
+
+@pulumi.input_type
+class GeoIpRuleBatchUpdatePolicyRuleIdArgs:
+    def __init__(__self__, *,
+                 policy_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
-        The domain name.
+        :param pulumi.Input[_builtins.str] policy_id: Specifies the policy ID to which the geo IP rule belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rule_ids: Specifies the ID list of the geo IP rule.
         """
-        id: NotRequired[pulumi.Input[_builtins.str]]
+        if policy_id is not None:
+            pulumi.set(__self__, "policy_id", policy_id)
+        if rule_ids is not None:
+            pulumi.set(__self__, "rule_ids", rule_ids)
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The domain name ID.
+        Specifies the policy ID to which the geo IP rule belongs.
         """
-        mode: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "policy_id")
+
+    @policy_id.setter
+    def policy_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "policy_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleIds")
+    def rule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The special domain name mode. This attribute is only valid for dedicated mode.
+        Specifies the ID list of the geo IP rule.
         """
-        waf_type: NotRequired[pulumi.Input[_builtins.str]]
+        return pulumi.get(self, "rule_ids")
+
+    @rule_ids.setter
+    def rule_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "rule_ids", value)
+
+
+class IpIntelligenceRuleActionArgsDict(TypedDict):
+    category: pulumi.Input[_builtins.str]
+    """
+    Specifies the protective action type.
+    The value can be **log** **block** or **pass**.
+    """
+
+@pulumi.input_type
+class IpIntelligenceRuleActionArgs:
+    def __init__(__self__, *,
+                 category: pulumi.Input[_builtins.str]):
         """
-        The deployment mode of WAF instance that is used for the domain name. The value can be **cloud** for
-        cloud WAF or **premium** for dedicated WAF instances.
+        :param pulumi.Input[_builtins.str] category: Specifies the protective action type.
+               The value can be **log** **block** or **pass**.
         """
-elif False:
-    PolicyBindHostArgsDict: TypeAlias = Mapping[str, Any]
+        pulumi.set(__self__, "category", category)
+
+    @_builtins.property
+    @pulumi.getter
+    def category(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the protective action type.
+        The value can be **log** **block** or **pass**.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "category", value)
+
+
+class PolicyBindHostArgsDict(TypedDict):
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain name.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The domain name ID.
+    """
+    mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The special domain name mode. This attribute is only valid for dedicated mode.
+    """
+    waf_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The deployment mode of WAF instance that is used for the domain name. The value can be **cloud** for
+    cloud WAF or **premium** for dedicated WAF instances.
+    """
 
 @pulumi.input_type
 class PolicyBindHostArgs:
@@ -1758,93 +3179,90 @@ class PolicyBindHostArgs:
         pulumi.set(self, "waf_type", value)
 
 
-if not MYPY:
-    class PolicyOptionArgsDict(TypedDict):
-        anti_crawler: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the javascript anti-crawler is enabled. Defaults to **false**.
-        """
-        basic_web_protection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether basic web protection is enabled. Defaults to **false**.
-        """
-        blacklist: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the blacklist and whitelist protection is enabled.
-        Defaults to **false**.
-        """
-        bot_enable: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the anti-crawler protection is enabled. Defaults to **false**.
-        """
-        cc_attack_protection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the cc attack protection rules are enabled.
-        Defaults to **false**.
-        """
-        crawler: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        schema: Deprecated
-        """
-        crawler_engine: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the search engine is enabled. Defaults to **false**.
-        """
-        crawler_other: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether other crawler check is enabled. Defaults to **false**.
-        """
-        crawler_scanner: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the anti-crawler detection is enabled. Defaults to **false**.
-        """
-        crawler_script: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the script tool is enabled. Defaults to **false**.
-        """
-        data_masking: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether data masking is enabled. Defaults to **false**.
-        """
-        false_alarm_masking: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether false alarm masking is enabled. Defaults to **false**.
-        """
-        general_check: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the general check in basic web protection is enabled.
-        Defaults to **false**.
-        """
-        geolocation_access_control: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the geolocation access control is enabled.
-        Defaults to **false**.
-        """
-        information_leakage_prevention: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the information leakage prevention is enabled.
-        Defaults to **false**.
-        """
-        known_attack_source: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the known attack source is enabled. Defaults to **false**.
-        """
-        precise_protection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the precise protection is enabled. Defaults to **false**.
-        """
-        web_tamper_protection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the web tamper protection is enabled.
-        Defaults to **false**.
-        """
-        webshell: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether the web shell detection in basic web protection is enabled.
-        Defaults to **false**.
-        """
-elif False:
-    PolicyOptionArgsDict: TypeAlias = Mapping[str, Any]
+class PolicyOptionArgsDict(TypedDict):
+    anti_crawler: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the javascript anti-crawler is enabled. Defaults to **false**.
+    """
+    basic_web_protection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether basic web protection is enabled. Defaults to **false**.
+    """
+    blacklist: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the blacklist and whitelist protection is enabled.
+    Defaults to **false**.
+    """
+    bot_enable: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the anti-crawler protection is enabled. Defaults to **false**.
+    """
+    cc_attack_protection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the cc attack protection rules are enabled.
+    Defaults to **false**.
+    """
+    crawler: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    schema: Deprecated
+    """
+    crawler_engine: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the search engine is enabled. Defaults to **false**.
+    """
+    crawler_other: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether other crawler check is enabled. Defaults to **false**.
+    """
+    crawler_scanner: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the anti-crawler detection is enabled. Defaults to **false**.
+    """
+    crawler_script: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the script tool is enabled. Defaults to **false**.
+    """
+    data_masking: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether data masking is enabled. Defaults to **false**.
+    """
+    false_alarm_masking: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether false alarm masking is enabled. Defaults to **false**.
+    """
+    general_check: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the general check in basic web protection is enabled.
+    Defaults to **false**.
+    """
+    geolocation_access_control: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the geolocation access control is enabled.
+    Defaults to **false**.
+    """
+    information_leakage_prevention: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the information leakage prevention is enabled.
+    Defaults to **false**.
+    """
+    known_attack_source: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the known attack source is enabled. Defaults to **false**.
+    """
+    precise_protection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the precise protection is enabled. Defaults to **false**.
+    """
+    web_tamper_protection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the web tamper protection is enabled.
+    Defaults to **false**.
+    """
+    webshell: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether the web shell detection in basic web protection is enabled.
+    Defaults to **false**.
+    """
 
 @pulumi.input_type
 class PolicyOptionArgs:
@@ -2171,31 +3589,28 @@ class PolicyOptionArgs:
         pulumi.set(self, "webshell", value)
 
 
-if not MYPY:
-    class RuleAntiCrawlerConditionArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the field type. The valid values are **url** and **user-agent**.
-        """
-        logic: pulumi.Input[_builtins.str]
-        """
-        Specifies the logic for matching the condition. The valid values are **contain**,
-        **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
-        **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any** and
-        **not_suffix_all**.
-        """
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the content of the condition.
-        It is valid and required when the `logic` does not end with `any` or `all`.
-        """
-        reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the reference table ID.
-        It is valid and required when the `logic` end with `any` or `all`.
-        """
-elif False:
-    RuleAntiCrawlerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class RuleAntiCrawlerConditionArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type. The valid values are **url** and **user-agent**.
+    """
+    logic: pulumi.Input[_builtins.str]
+    """
+    Specifies the logic for matching the condition. The valid values are **contain**,
+    **not_contain**, **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
+    **not_contain_all**, **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any** and
+    **not_suffix_all**.
+    """
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content of the condition.
+    It is valid and required when the `logic` does not end with `any` or `all`.
+    """
+    reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reference table ID.
+    It is valid and required when the `logic` end with `any` or `all`.
+    """
 
 @pulumi.input_type
 class RuleAntiCrawlerConditionArgs:
@@ -2276,50 +3691,47 @@ class RuleAntiCrawlerConditionArgs:
         pulumi.set(self, "reference_table_id", value)
 
 
-if not MYPY:
-    class RuleCcProtectionConditionArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the field type.
-        The value can be **url**, **ip**, **ipv6**, **params**, **cookie**, **header** or **response_code**.
-        """
-        logic: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition matching logic.
+class RuleCcProtectionConditionArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type.
+    The value can be **url**, **ip**, **ipv6**, **params**, **cookie**, **header** or **response_code**.
+    """
+    logic: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition matching logic.
 
-        + If `field` is set to **url**: Valid values are **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
-        **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
-        **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
-        **len_greater**, **len_less**, **len_equal** and **len_not_equal**.
+    + If `field` is set to **url**: Valid values are **contain**, **not_contain**, **equal**, **not_equal**, **prefix**,
+    **not_prefix**, **suffix**, **not_suffix**, **contain_any**, **not_contain_all**, **equal_any**, **not_equal_all**,
+    **equal_any**, **not_equal_all**, **prefix_any**, **not_prefix_all**, **suffix_any**, **not_suffix_all**,
+    **len_greater**, **len_less**, **len_equal** and **len_not_equal**.
 
-        + If `field` is set to **ip** or **ipv6**: Valid values are **equal**, **not_equal**, **equal_any** and
-        **not_equal_all**.
+    + If `field` is set to **ip** or **ipv6**: Valid values are **equal**, **not_equal**, **equal_any** and
+    **not_equal_all**.
 
-        + If `field` is set to **response_code**: Valid values are **equal** and **not_equal**.
+    + If `field` is set to **response_code**: Valid values are **equal** and **not_equal**.
 
-        + If `field` is set to **params**, **cookie** or **header**: Valid values are **contain**, **not_contain**,
-        **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
-        **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
-        **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
-        **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist** and **not_exist**.
-        """
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the content of the match condition.
-        It is required when the `logic` does not end with **any** or **all**.
-        """
-        reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the reference table ID.
-        It is required when the `logic` end with **any** or **all**.
-        """
-        subfield: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subfield of the condition.
-        It is required when `field` is set to **params**, **header** or **cookie**.
-        """
-elif False:
-    RuleCcProtectionConditionArgsDict: TypeAlias = Mapping[str, Any]
+    + If `field` is set to **params**, **cookie** or **header**: Valid values are **contain**, **not_contain**,
+    **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
+    **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+    **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist** and **not_exist**.
+    """
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content of the match condition.
+    It is required when the `logic` does not end with **any** or **all**.
+    """
+    reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reference table ID.
+    It is required when the `logic` end with **any** or **all**.
+    """
+    subfield: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield of the condition.
+    It is required when `field` is set to **params**, **header** or **cookie**.
+    """
 
 @pulumi.input_type
 class RuleCcProtectionConditionArgs:
@@ -2446,47 +3858,44 @@ class RuleCcProtectionConditionArgs:
         pulumi.set(self, "subfield", value)
 
 
-if not MYPY:
-    class RuleGlobalProtectionWhitelistConditionArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
-        """
-        Specifies the content of the match condition.
+class RuleGlobalProtectionWhitelistConditionArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    """
+    Specifies the content of the match condition.
 
-        + If `field` is set to **ip**, the value must be an IP address or IP address range.
+    + If `field` is set to **ip**, the value must be an IP address or IP address range.
 
-        + If `field` is set to **url**, the value must be in the standard URL format.
+    + If `field` is set to **url**, the value must be in the standard URL format.
 
-        + If `field` is set to **params** or **cookie** or **header**, the content format is not limited.
-        """
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the field type. The value can be **ip**, **url**, **params**, **cookie**
-        or **header**.
-        """
-        logic: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition matching logic.
+    + If `field` is set to **params** or **cookie** or **header**, the content format is not limited.
+    """
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the field type. The value can be **ip**, **url**, **params**, **cookie**
+    or **header**.
+    """
+    logic: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition matching logic.
 
-        + If `field` is set to **ip**: Valid values are **equal** and **not_equal**.
+    + If `field` is set to **ip**: Valid values are **equal** and **not_equal**.
 
-        + If `field` is set to **url** or **header** or **params** or **cookie**: Valid values are **equal**, **not_equal**,
-        **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix** and **not_suffix**.
-        """
-        subfield: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subfield of the condition.
+    + If `field` is set to **url** or **header** or **params** or **cookie**: Valid values are **equal**, **not_equal**,
+    **contain**, **not_contain**, **prefix**, **not_prefix**, **suffix** and **not_suffix**.
+    """
+    subfield: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield of the condition.
 
-        + If `field` is set to **ip** and the subfield is the client IP address, the parameter is not required.
+    + If `field` is set to **ip** and the subfield is the client IP address, the parameter is not required.
 
-        + If `field` is set to **ip** and the subfield is X-Forwarded-For, the parameter is required and the value should be
-        **x-forwarded-for**.
+    + If `field` is set to **ip** and the subfield is X-Forwarded-For, the parameter is required and the value should be
+    **x-forwarded-for**.
 
-        + If `field` is set to **params**, **header** or **cookie**, the parameter is required and the value is user-defined.
+    + If `field` is set to **params**, **header** or **cookie**, the parameter is required and the value is user-defined.
 
-        + If `field` is set to **url**, the parameter cannot be specified.
-        """
-elif False:
-    RuleGlobalProtectionWhitelistConditionArgsDict: TypeAlias = Mapping[str, Any]
+    + If `field` is set to **url**, the parameter cannot be specified.
+    """
 
 @pulumi.input_type
 class RuleGlobalProtectionWhitelistConditionArgs:
@@ -2598,59 +4007,56 @@ class RuleGlobalProtectionWhitelistConditionArgs:
         pulumi.set(self, "subfield", value)
 
 
-if not MYPY:
-    class RulePreciseProtectionConditionArgsDict(TypedDict):
-        field: pulumi.Input[_builtins.str]
-        """
-        Specifies the field of the condition. Valid values are **url**, **user-agent**,
-        **referer**, **ip**, **method**, **request_line**, **request**, **params**, **cookie**, **header**.
-        """
-        logic: pulumi.Input[_builtins.str]
-        """
-        Specifies the condition matching logic.
+class RulePreciseProtectionConditionArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Specifies the field of the condition. Valid values are **url**, **user-agent**,
+    **referer**, **ip**, **method**, **request_line**, **request**, **params**, **cookie**, **header**.
+    """
+    logic: pulumi.Input[_builtins.str]
+    """
+    Specifies the condition matching logic.
 
-        + If `field` is set to **url** or **user-agent** or **referer**: Valid values are **contain**, **not_contain**,
-        **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
-        **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
-        **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
-        **len_not_equal**.
+    + If `field` is set to **url** or **user-agent** or **referer**: Valid values are **contain**, **not_contain**,
+    **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
+    **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+    **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**.
 
-        + If `field` is set to **ip**: Valid values are **equal**, **not_equal**, **equal_any**, **not_equal_all**.
+    + If `field` is set to **ip**: Valid values are **equal**, **not_equal**, **equal_any**, **not_equal_all**.
 
-        + If `field` is set to **method**: Valid values are **equal**, **not_equal**.
+    + If `field` is set to **method**: Valid values are **equal**, **not_equal**.
 
-        + If `field` is set to **request_line** or **request**: Valid values are **len_greater**, **len_less**, **len_equal**,
-        **len_not_equal**.
+    + If `field` is set to **request_line** or **request**: Valid values are **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**.
 
-        + If `field` is set to **params** or **cookie** or **header**: Valid values are **contain**, **not_contain**,
-        **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
-        **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
-        **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
-        **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**.
-        """
-        content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the content of the match condition. It is required when the `logic`
-        does not end with **any** or **all**.
-        """
-        reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the reference table id. It is required when the `logic`
-        end with **any** or **all**. The type of reference table should be consistent with the type of `field`.
-        """
-        subfield: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the subfield of the condition. The parameter is required when `field`
-        is set to **params**, **header** and **cookie**.
+    + If `field` is set to **params** or **cookie** or **header**: Valid values are **contain**, **not_contain**,
+    **equal**, **not_equal**, **prefix**, **not_prefix**, **suffix**, **not_suffix**, **contain_any**,
+    **not_contain_all**, **equal_any**, **not_equal_all**, **equal_any**, **not_equal_all**, **prefix_any**,
+    **not_prefix_all**, **suffix_any**, **not_suffix_all**, **len_greater**, **len_less**, **len_equal**,
+    **len_not_equal**, **num_greater**, **num_less**, **num_equal**, **num_not_equal**, **exist**, **not_exist**.
+    """
+    content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the content of the match condition. It is required when the `logic`
+    does not end with **any** or **all**.
+    """
+    reference_table_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the reference table id. It is required when the `logic`
+    end with **any** or **all**. The type of reference table should be consistent with the type of `field`.
+    """
+    subfield: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the subfield of the condition. The parameter is required when `field`
+    is set to **params**, **header** and **cookie**.
 
-        + If `field` is set to **cookie**: The parameter indicates cookie name.
+    + If `field` is set to **cookie**: The parameter indicates cookie name.
 
-        + If `field` is set to **params**: The parameter indicates param name.
+    + If `field` is set to **params**: The parameter indicates param name.
 
-        + If `field` is set to **header**: The parameter indicates an option in the header.
-        """
-elif False:
-    RulePreciseProtectionConditionArgsDict: TypeAlias = Mapping[str, Any]
+    + If `field` is set to **header**: The parameter indicates an option in the header.
+    """
 
 @pulumi.input_type
 class RulePreciseProtectionConditionArgs:

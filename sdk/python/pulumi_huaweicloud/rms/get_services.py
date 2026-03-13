@@ -98,7 +98,7 @@ def get_services(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_services(name="ecs")
+    test = huaweicloud.Rms.get_services(name="ecs")
     ```
 
 
@@ -110,7 +110,7 @@ def get_services(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['track'] = track
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:rms/getServices:getServices', __args__, opts=opts, typ=GetServicesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Rms/getServices:getServices', __args__, opts=opts, typ=GetServicesResult).value
 
     return AwaitableGetServicesResult(
         id=pulumi.get(__ret__, 'id'),
@@ -129,7 +129,7 @@ def get_services_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.rms.get_services(name="ecs")
+    test = huaweicloud.Rms.get_services(name="ecs")
     ```
 
 
@@ -141,7 +141,7 @@ def get_services_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = 
     __args__['name'] = name
     __args__['track'] = track
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:rms/getServices:getServices', __args__, opts=opts, typ=GetServicesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Rms/getServices:getServices', __args__, opts=opts, typ=GetServicesResult)
     return __ret__.apply(lambda __response__: GetServicesResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

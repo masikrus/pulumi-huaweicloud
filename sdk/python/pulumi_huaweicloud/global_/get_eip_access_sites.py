@@ -114,7 +114,7 @@ def get_eip_access_sites(iec_az_code: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eip_access_sites()
+    all = huaweicloud.Global.get_eip_access_sites()
     ```
 
     ### Get specific global EIP access sites through proxy region
@@ -123,7 +123,7 @@ def get_eip_access_sites(iec_az_code: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_access_sites(proxy_region="cn-south-1")
+    test = huaweicloud.Global.get_eip_access_sites(proxy_region="cn-south-1")
     ```
 
 
@@ -136,7 +136,7 @@ def get_eip_access_sites(iec_az_code: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['proxyRegion'] = proxy_region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getEipAccessSites:getEipAccessSites', __args__, opts=opts, typ=GetEipAccessSitesResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getEipAccessSites:getEipAccessSites', __args__, opts=opts, typ=GetEipAccessSitesResult).value
 
     return AwaitableGetEipAccessSitesResult(
         access_sites=pulumi.get(__ret__, 'access_sites'),
@@ -159,7 +159,7 @@ def get_eip_access_sites_output(iec_az_code: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eip_access_sites()
+    all = huaweicloud.Global.get_eip_access_sites()
     ```
 
     ### Get specific global EIP access sites through proxy region
@@ -168,7 +168,7 @@ def get_eip_access_sites_output(iec_az_code: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eip_access_sites(proxy_region="cn-south-1")
+    test = huaweicloud.Global.get_eip_access_sites(proxy_region="cn-south-1")
     ```
 
 
@@ -181,7 +181,7 @@ def get_eip_access_sites_output(iec_az_code: Optional[pulumi.Input[Optional[_bui
     __args__['name'] = name
     __args__['proxyRegion'] = proxy_region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getEipAccessSites:getEipAccessSites', __args__, opts=opts, typ=GetEipAccessSitesResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getEipAccessSites:getEipAccessSites', __args__, opts=opts, typ=GetEipAccessSitesResult)
     return __ret__.apply(lambda __response__: GetEipAccessSitesResult(
         access_sites=pulumi.get(__response__, 'access_sites'),
         id=pulumi.get(__response__, 'id'),

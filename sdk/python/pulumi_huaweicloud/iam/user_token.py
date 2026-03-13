@@ -22,19 +22,23 @@ class UserTokenArgs:
                  account_name: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  user_name: pulumi.Input[_builtins.str],
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  project_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserToken resource.
+
         :param pulumi.Input[_builtins.str] account_name: Specifies the account name to which the IAM user belongs.
                Changing this will create a new token.
         :param pulumi.Input[_builtins.str] password: Specifies the IAM user password. Changing this will create a new token.
         :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to global
-               services, otherwise the token applies to project-level services. Changing this will create a new token.
+        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to
+               global services, otherwise the token applies to project-level services. Changing this will create a new token.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "user_name", user_name)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
 
@@ -76,11 +80,20 @@ class UserTokenArgs:
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the project name. If it is blank, the token applies to global
-        services, otherwise the token applies to project-level services. Changing this will create a new token.
+        Specifies the project name. If it is blank, the token applies to
+        global services, otherwise the token applies to project-level services. Changing this will create a new token.
         """
         return pulumi.get(self, "project_name")
 
@@ -93,6 +106,7 @@ class UserTokenArgs:
 class _UserTokenState:
     def __init__(__self__, *,
                  account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  expires_at: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  project_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -100,17 +114,20 @@ class _UserTokenState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserToken resources.
+
         :param pulumi.Input[_builtins.str] account_name: Specifies the account name to which the IAM user belongs.
                Changing this will create a new token.
         :param pulumi.Input[_builtins.str] expires_at: The Time when the token will expire. The value is a UTC time in the YYYY-MM-DDTHH:mm:ss.ssssssZ format.
         :param pulumi.Input[_builtins.str] password: Specifies the IAM user password. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to global
-               services, otherwise the token applies to project-level services. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] token: The token. Validity period is 24 hours.
+        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to
+               global services, otherwise the token applies to project-level services. Changing this will create a new token.
+        :param pulumi.Input[_builtins.str] token: The token of the IAM user. The valid period is `24` hours.
         :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name. Changing this will create a new token.
         """
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
         if password is not None:
@@ -134,6 +151,15 @@ class _UserTokenState:
     @account_name.setter
     def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "account_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
@@ -163,8 +189,8 @@ class _UserTokenState:
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the project name. If it is blank, the token applies to global
-        services, otherwise the token applies to project-level services. Changing this will create a new token.
+        Specifies the project name. If it is blank, the token applies to
+        global services, otherwise the token applies to project-level services. Changing this will create a new token.
         """
         return pulumi.get(self, "project_name")
 
@@ -176,7 +202,7 @@ class _UserTokenState:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The token. Validity period is 24 hours.
+        The token of the IAM user. The valid period is `24` hours.
         """
         return pulumi.get(self, "token")
 
@@ -204,6 +230,7 @@ class UserToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  project_name: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -213,6 +240,9 @@ class UserToken(pulumi.CustomResource):
 
         ->**Note** The token can not be destroyed. It will be invalid after expiration time. If password or AK/SK is changed,
         the token valid time will last less than 30 minutes.
+
+        ->**Note** This resource is a one-time action resource for creating a token. Deleting this resource will not clear the
+        corresponding request record, but will only remove the resource information from the tfstate file.
 
         ## Example Usage
 
@@ -230,13 +260,14 @@ class UserToken(pulumi.CustomResource):
             password=password)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account_name: Specifies the account name to which the IAM user belongs.
                Changing this will create a new token.
         :param pulumi.Input[_builtins.str] password: Specifies the IAM user password. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to global
-               services, otherwise the token applies to project-level services. Changing this will create a new token.
+        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to
+               global services, otherwise the token applies to project-level services. Changing this will create a new token.
         :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name. Changing this will create a new token.
         """
         ...
@@ -251,6 +282,9 @@ class UserToken(pulumi.CustomResource):
         ->**Note** The token can not be destroyed. It will be invalid after expiration time. If password or AK/SK is changed,
         the token valid time will last less than 30 minutes.
 
+        ->**Note** This resource is a one-time action resource for creating a token. Deleting this resource will not clear the
+        corresponding request record, but will only remove the resource information from the tfstate file.
+
         ## Example Usage
 
         ```python
@@ -266,6 +300,7 @@ class UserToken(pulumi.CustomResource):
             user_name=user_name,
             password=password)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserTokenArgs args: The arguments to use to populate this resource's properties.
@@ -283,6 +318,7 @@ class UserToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  project_name: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -298,6 +334,7 @@ class UserToken(pulumi.CustomResource):
             if account_name is None and not opts.urn:
                 raise TypeError("Missing required property 'account_name'")
             __props__.__dict__["account_name"] = account_name
+            __props__.__dict__["enable_force_new"] = enable_force_new
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -320,6 +357,7 @@ class UserToken(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account_name: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             expires_at: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
             project_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -336,9 +374,9 @@ class UserToken(pulumi.CustomResource):
                Changing this will create a new token.
         :param pulumi.Input[_builtins.str] expires_at: The Time when the token will expire. The value is a UTC time in the YYYY-MM-DDTHH:mm:ss.ssssssZ format.
         :param pulumi.Input[_builtins.str] password: Specifies the IAM user password. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to global
-               services, otherwise the token applies to project-level services. Changing this will create a new token.
-        :param pulumi.Input[_builtins.str] token: The token. Validity period is 24 hours.
+        :param pulumi.Input[_builtins.str] project_name: Specifies the project name. If it is blank, the token applies to
+               global services, otherwise the token applies to project-level services. Changing this will create a new token.
+        :param pulumi.Input[_builtins.str] token: The token of the IAM user. The valid period is `24` hours.
         :param pulumi.Input[_builtins.str] user_name: Specifies the IAM user name. Changing this will create a new token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -346,6 +384,7 @@ class UserToken(pulumi.CustomResource):
         __props__ = _UserTokenState.__new__(_UserTokenState)
 
         __props__.__dict__["account_name"] = account_name
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["password"] = password
         __props__.__dict__["project_name"] = project_name
@@ -361,6 +400,11 @@ class UserToken(pulumi.CustomResource):
         Changing this will create a new token.
         """
         return pulumi.get(self, "account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
@@ -382,8 +426,8 @@ class UserToken(pulumi.CustomResource):
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the project name. If it is blank, the token applies to global
-        services, otherwise the token applies to project-level services. Changing this will create a new token.
+        Specifies the project name. If it is blank, the token applies to
+        global services, otherwise the token applies to project-level services. Changing this will create a new token.
         """
         return pulumi.get(self, "project_name")
 
@@ -391,7 +435,7 @@ class UserToken(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[_builtins.str]:
         """
-        The token. Validity period is 24 hours.
+        The token of the IAM user. The valid period is `24` hours.
         """
         return pulumi.get(self, "token")
 

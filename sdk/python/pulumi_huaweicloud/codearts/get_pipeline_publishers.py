@@ -96,7 +96,7 @@ def get_pipeline_publishers(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_publishers()
+    test = huaweicloud.Codearts.get_pipeline_publishers()
     ```
 
 
@@ -108,7 +108,7 @@ def get_pipeline_publishers(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelinePublishers:getPipelinePublishers', __args__, opts=opts, typ=GetPipelinePublishersResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelinePublishers:getPipelinePublishers', __args__, opts=opts, typ=GetPipelinePublishersResult).value
 
     return AwaitableGetPipelinePublishersResult(
         id=pulumi.get(__ret__, 'id'),
@@ -127,7 +127,7 @@ def get_pipeline_publishers_output(name: Optional[pulumi.Input[Optional[_builtin
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.codearts.get_pipeline_publishers()
+    test = huaweicloud.Codearts.get_pipeline_publishers()
     ```
 
 
@@ -139,7 +139,7 @@ def get_pipeline_publishers_output(name: Optional[pulumi.Input[Optional[_builtin
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelinePublishers:getPipelinePublishers', __args__, opts=opts, typ=GetPipelinePublishersResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelinePublishers:getPipelinePublishers', __args__, opts=opts, typ=GetPipelinePublishersResult)
     return __ret__.apply(lambda __response__: GetPipelinePublishersResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

@@ -34,6 +34,7 @@ class BackupPolicyArgs:
                  week_frequencies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a BackupPolicy resource.
+
         :param pulumi.Input[_builtins.str] retain_first_backup: Specifies whether to retain the first backup in the current month. Possible
                values are Y or N.
         :param pulumi.Input[_builtins.str] start_time: Specifies the start time(UTC) of the backup job. The value is in the HH:mm format.
@@ -237,6 +238,7 @@ class _BackupPolicyState:
                  week_frequencies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering BackupPolicy resources.
+
         :param pulumi.Input[_builtins.int] frequency: Specifies the backup interval. The value is in the range of `1` to `14` days.
                Either this field or `week_frequency` must be specified.
         :param pulumi.Input[_builtins.str] name: Specifies the policy name. The value is a string of 1 to 64 characters that can contain
@@ -440,7 +442,7 @@ class _BackupPolicyState:
         pulumi.set(self, "week_frequencies", value)
 
 
-@pulumi.type_token("huaweicloud:vbs/backupPolicy:BackupPolicy")
+@pulumi.type_token("huaweicloud:Vbs/backupPolicy:BackupPolicy")
 class BackupPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -506,11 +508,10 @@ class BackupPolicy(pulumi.CustomResource):
 
         Backup Policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vbs/backupPolicy:BackupPolicy vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+        $ pulumi import huaweicloud:Vbs/backupPolicy:BackupPolicy vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -590,11 +591,10 @@ class BackupPolicy(pulumi.CustomResource):
 
         Backup Policy can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vbs/backupPolicy:BackupPolicy vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+        $ pulumi import huaweicloud:Vbs/backupPolicy:BackupPolicy vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackupPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -648,7 +648,7 @@ class BackupPolicy(pulumi.CustomResource):
             __props__.__dict__["week_frequencies"] = week_frequencies
             __props__.__dict__["policy_resource_count"] = None
         super(BackupPolicy, __self__).__init__(
-            'huaweicloud:vbs/backupPolicy:BackupPolicy',
+            'huaweicloud:Vbs/backupPolicy:BackupPolicy',
             resource_name,
             __props__,
             opts)

@@ -82,7 +82,7 @@ def get_internet_bandwidth_tags(region: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_internet_bandwidth_tags()
+    test = huaweicloud.Global.get_internet_bandwidth_tags()
     ```
 
 
@@ -92,7 +92,7 @@ def get_internet_bandwidth_tags(region: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getInternetBandwidthTags:getInternetBandwidthTags', __args__, opts=opts, typ=GetInternetBandwidthTagsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getInternetBandwidthTags:getInternetBandwidthTags', __args__, opts=opts, typ=GetInternetBandwidthTagsResult).value
 
     return AwaitableGetInternetBandwidthTagsResult(
         id=pulumi.get(__ret__, 'id'),
@@ -109,7 +109,7 @@ def get_internet_bandwidth_tags_output(region: Optional[pulumi.Input[Optional[_b
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_internet_bandwidth_tags()
+    test = huaweicloud.Global.get_internet_bandwidth_tags()
     ```
 
 
@@ -119,7 +119,7 @@ def get_internet_bandwidth_tags_output(region: Optional[pulumi.Input[Optional[_b
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getInternetBandwidthTags:getInternetBandwidthTags', __args__, opts=opts, typ=GetInternetBandwidthTagsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getInternetBandwidthTags:getInternetBandwidthTags', __args__, opts=opts, typ=GetInternetBandwidthTagsResult)
     return __ret__.apply(lambda __response__: GetInternetBandwidthTagsResult(
         id=pulumi.get(__response__, 'id'),
         region=pulumi.get(__response__, 'region'),

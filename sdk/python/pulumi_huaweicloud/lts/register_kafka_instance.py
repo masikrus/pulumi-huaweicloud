@@ -28,6 +28,7 @@ class RegisterKafkaInstanceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RegisterKafkaInstance resource.
+
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the Kafka instance to be registered to the LTS.
         :param pulumi.Input[_builtins.str] kafka_name: Specifies the name of the Kafka instance to be registered to the LTS.
         :param pulumi.Input['RegisterKafkaInstanceConnectInfoArgs'] connect_info: Specifies the connection information of the Kafka instance to be
@@ -124,6 +125,7 @@ class _RegisterKafkaInstanceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RegisterKafkaInstance resources.
+
         :param pulumi.Input['RegisterKafkaInstanceConnectInfoArgs'] connect_info: Specifies the connection information of the Kafka instance to be
                registered to the LTS.
                The connect_info structure is documented below.
@@ -253,6 +255,7 @@ class RegisterKafkaInstance(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['RegisterKafkaInstanceConnectInfoArgs', 'RegisterKafkaInstanceConnectInfoArgsDict']] connect_info: Specifies the connection information of the Kafka instance to be
@@ -301,6 +304,7 @@ class RegisterKafkaInstance(pulumi.CustomResource):
                 "pwd": kafka_instance_access_password,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RegisterKafkaInstanceArgs args: The arguments to use to populate this resource's properties.

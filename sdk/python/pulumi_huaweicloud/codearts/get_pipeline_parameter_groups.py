@@ -108,7 +108,7 @@ def get_pipeline_parameter_groups(name: Optional[_builtins.str] = None,
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_parameter_groups(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_parameter_groups(project_id=codearts_project_id)
     ```
 
 
@@ -122,7 +122,7 @@ def get_pipeline_parameter_groups(name: Optional[_builtins.str] = None,
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:codearts/getPipelineParameterGroups:getPipelineParameterGroups', __args__, opts=opts, typ=GetPipelineParameterGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Codearts/getPipelineParameterGroups:getPipelineParameterGroups', __args__, opts=opts, typ=GetPipelineParameterGroupsResult).value
 
     return AwaitableGetPipelineParameterGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
@@ -145,7 +145,7 @@ def get_pipeline_parameter_groups_output(name: Optional[pulumi.Input[Optional[_b
 
     config = pulumi.Config()
     codearts_project_id = config.require_object("codeartsProjectId")
-    test = huaweicloud.codearts.get_pipeline_parameter_groups(project_id=codearts_project_id)
+    test = huaweicloud.Codearts.get_pipeline_parameter_groups(project_id=codearts_project_id)
     ```
 
 
@@ -159,7 +159,7 @@ def get_pipeline_parameter_groups_output(name: Optional[pulumi.Input[Optional[_b
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:codearts/getPipelineParameterGroups:getPipelineParameterGroups', __args__, opts=opts, typ=GetPipelineParameterGroupsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Codearts/getPipelineParameterGroups:getPipelineParameterGroups', __args__, opts=opts, typ=GetPipelineParameterGroupsResult)
     return __ret__.apply(lambda __response__: GetPipelineParameterGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
         id=pulumi.get(__response__, 'id'),

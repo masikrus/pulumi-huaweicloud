@@ -30,6 +30,7 @@ class MysqlParameterTemplateArgs:
                  source_configuration_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlParameterTemplate resource.
+
         :param pulumi.Input[_builtins.str] datastore_engine: Specifies the DB engine. Currently, only **gaussdb-mysql** is supported.
                
                Changing this parameter will create a new resource.
@@ -238,6 +239,7 @@ class _MysqlParameterTemplateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlParameterTemplate resources.
+
         :param pulumi.Input[_builtins.str] created_at: Indicates the creation time in the **yyyy-MM-ddTHH:mm:ssZ** format.
                T is the separator between calendar and hourly notation of time. Z indicates the time zone offset.
         :param pulumi.Input[_builtins.str] datastore_engine: Specifies the DB engine. Currently, only **gaussdb-mysql** is supported.
@@ -526,41 +528,17 @@ class MysqlParameterTemplate(pulumi.CustomResource):
 
         The GaussDB Mysql parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlParameterTemplate:MysqlParameterTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_configuration_id`, `instance_id`
-
         and `instance_configuration_id`. It is generally recommended running `pulumi preview` after importing an GaussDB MySQL
-
         parameter template. You can then decide if changes should be applied to the GaussDB MySQL parameter template, or the
-
         GaussDB MySQL parameter template definition should be updated to align with the instance. Also, you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_parameter_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_configuration_id, instance_id, instance_configuration_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -653,41 +631,17 @@ class MysqlParameterTemplate(pulumi.CustomResource):
 
         The GaussDB Mysql parameter template can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlParameterTemplate:MysqlParameterTemplate test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `source_configuration_id`, `instance_id`
-
         and `instance_configuration_id`. It is generally recommended running `pulumi preview` after importing an GaussDB MySQL
-
         parameter template. You can then decide if changes should be applied to the GaussDB MySQL parameter template, or the
-
         GaussDB MySQL parameter template definition should be updated to align with the instance. Also, you can ignore changes
-
         as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_parameter_template" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              source_configuration_id, instance_id, instance_configuration_id,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MysqlParameterTemplateArgs args: The arguments to use to populate this resource's properties.

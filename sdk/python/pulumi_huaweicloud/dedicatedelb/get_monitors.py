@@ -130,8 +130,8 @@ class GetMonitorsResult:
     @pulumi.getter(name="maxRetriesDown")
     def max_retries_down(self) -> Optional[_builtins.int]:
         """
-        The number of consecutive health checks when the health check result of a backend server changes from
-        **ONLINE** to **OFFLINE**.
+        The number of consecutive health checks when the health check result of a backend server changes
+        from **ONLINE** to **OFFLINE**.
         """
         return pulumi.get(self, "max_retries_down")
 
@@ -292,8 +292,8 @@ def get_monitors(domain_name: Optional[_builtins.str] = None,
            + A value range, for example, **200**-**204**
     :param _builtins.int timeout: Specifies the maximum time required for waiting for a response from the health check, in
            seconds.
-    :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a slash
-           (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
+    :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a
+           slash(/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name
@@ -388,8 +388,8 @@ def get_monitors_output(domain_name: Optional[pulumi.Input[Optional[_builtins.st
            + A value range, for example, **200**-**204**
     :param _builtins.int timeout: Specifies the maximum time required for waiting for a response from the health check, in
            seconds.
-    :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a slash
-           (/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
+    :param _builtins.str url_path: Specifies the HTTP request path for the health check. The value must start with a
+           slash(/), and the default value is **/**. This parameter is available only when type is set to **HTTP**.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name

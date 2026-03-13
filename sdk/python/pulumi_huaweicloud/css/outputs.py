@@ -21,6 +21,7 @@ __all__ = [
     'ClusterClientNodeConfigVolume',
     'ClusterColdNodeConfig',
     'ClusterColdNodeConfigVolume',
+    'ClusterDiskEncryption',
     'ClusterEssNodeConfig',
     'ClusterEssNodeConfigVolume',
     'ClusterKibanaPublicAccess',
@@ -36,6 +37,7 @@ __all__ = [
     'ClusterV1ClientNodeConfigVolume',
     'ClusterV1ColdNodeConfig',
     'ClusterV1ColdNodeConfigVolume',
+    'ClusterV1DiskEncryption',
     'ClusterV1EssNodeConfig',
     'ClusterV1EssNodeConfigVolume',
     'ClusterV1KibanaPublicAccess',
@@ -130,6 +132,9 @@ class ClusterBackupStrategy(dict):
                
                > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
                automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
+               
+               <a name="disk_encryption_struct"></a>
+               The `disk_encryption` block supports:
         :param _builtins.str backup_path: Specifies the storage path of the snapshot in the OBS bucket.
         :param _builtins.str bucket: Specifies the OBS bucket used for index data backup. If there is snapshot data in an OBS
                bucket, only the OBS bucket is used and cannot be changed.
@@ -168,6 +173,9 @@ class ClusterBackupStrategy(dict):
 
         > **NOTE:**  If the `bucket`, `backup_path`, and `agency` parameters are empty at the same time, the system will
         automatically create an OBS bucket and IAM agent, otherwise the configured parameter values will be used.
+
+        <a name="disk_encryption_struct"></a>
+        The `disk_encryption` block supports:
         """
         return pulumi.get(self, "agency")
 
@@ -521,6 +529,78 @@ class ClusterColdNodeConfigVolume(dict):
         The `public_access` block supports:
         """
         return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class ClusterDiskEncryption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "systemCmkId":
+            suggest = "system_cmk_id"
+        elif key == "systemEncrypted":
+            suggest = "system_encrypted"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterDiskEncryption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterDiskEncryption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterDiskEncryption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 system_cmk_id: Optional[_builtins.str] = None,
+                 system_encrypted: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str system_cmk_id: Specifies the disk key ID. This parameter is valid only when
+               `system_encrypted` is set to **1**. If the KMS key used by the cluster is disabled, the cluster cannot be scaled or
+               upgraded, its node specifications or AZs cannot be changed, and its nodes cannot be replaced (by specifying the nodes
+               that need replacement). To solve this problem, you will have to create a new cluster and migrate your data to that new
+               cluster. Set a key that meets the following requirements:
+               + Cryptographic algorithm: **AES**.
+               + Key usage: **ENCRYPT_DECRYPT**.
+        :param _builtins.str system_encrypted: Specifies whether disk encryption is enabled. KMS is used to
+               encrypt the data disks of cluster nodes to ensure the security of stored data. Disk encryption and decryption do not
+               alter cluster management or O&M processes. However, they do increase the system's processing load, potentially affecting
+               the system's operational performance. Value options:
+               + **0**: Disable disk encryption.
+               + **1**: Enable disk encryption.
+        """
+        if system_cmk_id is not None:
+            pulumi.set(__self__, "system_cmk_id", system_cmk_id)
+        if system_encrypted is not None:
+            pulumi.set(__self__, "system_encrypted", system_encrypted)
+
+    @_builtins.property
+    @pulumi.getter(name="systemCmkId")
+    def system_cmk_id(self) -> Optional[_builtins.str]:
+        """
+        Specifies the disk key ID. This parameter is valid only when
+        `system_encrypted` is set to **1**. If the KMS key used by the cluster is disabled, the cluster cannot be scaled or
+        upgraded, its node specifications or AZs cannot be changed, and its nodes cannot be replaced (by specifying the nodes
+        that need replacement). To solve this problem, you will have to create a new cluster and migrate your data to that new
+        cluster. Set a key that meets the following requirements:
+        + Cryptographic algorithm: **AES**.
+        + Key usage: **ENCRYPT_DECRYPT**.
+        """
+        return pulumi.get(self, "system_cmk_id")
+
+    @_builtins.property
+    @pulumi.getter(name="systemEncrypted")
+    def system_encrypted(self) -> Optional[_builtins.str]:
+        """
+        Specifies whether disk encryption is enabled. KMS is used to
+        encrypt the data disks of cluster nodes to ensure the security of stored data. Disk encryption and decryption do not
+        alter cluster management or O&M processes. However, they do increase the system's processing load, potentially affecting
+        the system's operational performance. Value options:
+        + **0**: Disable disk encryption.
+        + **1**: Enable disk encryption.
+        """
+        return pulumi.get(self, "system_encrypted")
 
 
 @pulumi.output_type
@@ -1591,6 +1671,46 @@ class ClusterV1ColdNodeConfigVolume(dict):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> _builtins.str:
         return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class ClusterV1DiskEncryption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "systemCmkId":
+            suggest = "system_cmk_id"
+        elif key == "systemEncrypted":
+            suggest = "system_encrypted"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterV1DiskEncryption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterV1DiskEncryption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterV1DiskEncryption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 system_cmk_id: Optional[_builtins.str] = None,
+                 system_encrypted: Optional[_builtins.str] = None):
+        if system_cmk_id is not None:
+            pulumi.set(__self__, "system_cmk_id", system_cmk_id)
+        if system_encrypted is not None:
+            pulumi.set(__self__, "system_encrypted", system_encrypted)
+
+    @_builtins.property
+    @pulumi.getter(name="systemCmkId")
+    def system_cmk_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "system_cmk_id")
+
+    @_builtins.property
+    @pulumi.getter(name="systemEncrypted")
+    def system_encrypted(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "system_encrypted")
 
 
 @pulumi.output_type

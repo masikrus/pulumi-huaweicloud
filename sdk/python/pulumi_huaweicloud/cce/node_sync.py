@@ -25,6 +25,7 @@ class NodeSyncArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodeSync resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.str] node_id: Specifies the node ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the node sync resource.
@@ -93,6 +94,7 @@ class _NodeSyncState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodeSync resources.
+
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
         :param pulumi.Input[_builtins.str] node_id: Specifies the node ID.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the node sync resource.
@@ -186,6 +188,7 @@ class NodeSync(pulumi.CustomResource):
 
         > Deleting node sync is not supported, it will only be removed from the state.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: Specifies the cluster ID.
@@ -219,6 +222,7 @@ class NodeSync(pulumi.CustomResource):
         ```
 
         > Deleting node sync is not supported, it will only be removed from the state.
+
 
         :param str resource_name: The name of the resource.
         :param NodeSyncArgs args: The arguments to use to populate this resource's properties.

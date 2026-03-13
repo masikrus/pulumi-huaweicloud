@@ -27,38 +27,33 @@ __all__ = [
     'ApiRequestParameterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ApiBackendParameterArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter name. A parameter name consists of 1–32 characters, starting with
-        a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Specifies the parameter value, which is a string of not more than 255 characters. The
-        value varies depending on the parameter type:
-        + 'REQUEST': parameter name in `request_parameter`
-        + 'CONSTANT': real value of the parameter
-        + 'SYSTEM': gateway parameter name
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description cannot exceed 255
-        characters.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the parameter type, which can be 'REQUEST', 'CONSTANT', or 'SYSTEM'.
-        """
-elif False:
-    ApiBackendParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ApiBackendParameterArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter name. A parameter name consists of 1–32 characters, starting with
+    a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Specifies the parameter value, which is a string of not more than 255 characters. The
+    value varies depending on the parameter type:
+    + 'REQUEST': parameter name in `request_parameter`
+    + 'CONSTANT': real value of the parameter
+    + 'SYSTEM': gateway parameter name
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description cannot exceed 255
+    characters.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the parameter type, which can be 'REQUEST', 'CONSTANT', or 'SYSTEM'.
+    """
 
 @pulumi.input_type
 class ApiBackendParameterArgs:
@@ -156,26 +151,23 @@ class ApiBackendParameterArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class ApiFunctionBackendArgsDict(TypedDict):
-        function_urn: pulumi.Input[_builtins.str]
-        """
-        Specifies the function URN.
-        """
-        invocation_type: pulumi.Input[_builtins.str]
-        """
-        Specifies the invocation mode, which can be 'async' or 'sync'.
-        """
-        version: pulumi.Input[_builtins.str]
-        """
-        Specifies the function version.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Timeout duration (in ms) for API Gateway to request for FunctionGraph. Defaults to 50000.
-        """
-elif False:
-    ApiFunctionBackendArgsDict: TypeAlias = Mapping[str, Any]
+class ApiFunctionBackendArgsDict(TypedDict):
+    function_urn: pulumi.Input[_builtins.str]
+    """
+    Specifies the function URN.
+    """
+    invocation_type: pulumi.Input[_builtins.str]
+    """
+    Specifies the invocation mode, which can be 'async' or 'sync'.
+    """
+    version: pulumi.Input[_builtins.str]
+    """
+    Specifies the function version.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Timeout duration (in ms) for API Gateway to request for FunctionGraph. Defaults to 50000.
+    """
 
 @pulumi.input_type
 class ApiFunctionBackendArgs:
@@ -245,37 +237,34 @@ class ApiFunctionBackendArgs:
         pulumi.set(self, "timeout", value)
 
 
-if not MYPY:
-    class ApiHttpBackendArgsDict(TypedDict):
-        method: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request method, including 'GET','POST','PUT' and etc..
-        """
-        protocol: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request protocol. The value can be 'HTTP' and 'HTTPS'.
-        """
-        uri: pulumi.Input[_builtins.str]
-        """
-        Specifies the backend request path. The value must comply with URI specifications.
-        """
-        timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Timeout duration (in ms) for API Gateway to request for the backend service. Defaults to
-        50000.
-        """
-        url_domain: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the backend service address. An endpoint URL is in the format of
-        "domain name (or IP address):port number", with up to 255 characters. This parameter and `vpc_channel` are
-        alternative.
-        """
-        vpc_channel: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the VPC channel ID. This parameter and `url_domain` are alternative.
-        """
-elif False:
-    ApiHttpBackendArgsDict: TypeAlias = Mapping[str, Any]
+class ApiHttpBackendArgsDict(TypedDict):
+    method: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request method, including 'GET','POST','PUT' and etc..
+    """
+    protocol: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request protocol. The value can be 'HTTP' and 'HTTPS'.
+    """
+    uri: pulumi.Input[_builtins.str]
+    """
+    Specifies the backend request path. The value must comply with URI specifications.
+    """
+    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Timeout duration (in ms) for API Gateway to request for the backend service. Defaults to
+    50000.
+    """
+    url_domain: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the backend service address. An endpoint URL is in the format of
+    "domain name (or IP address):port number", with up to 255 characters. This parameter and `vpc_channel` are
+    alternative.
+    """
+    vpc_channel: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the VPC channel ID. This parameter and `url_domain` are alternative.
+    """
 
 @pulumi.input_type
 class ApiHttpBackendArgs:
@@ -383,23 +372,20 @@ class ApiHttpBackendArgs:
         pulumi.set(self, "vpc_channel", value)
 
 
-if not MYPY:
-    class ApiMockBackendArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the Mock backend. The description cannot exceed 255
-        characters.
-        """
-        result_content: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the return result.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the version of the Mock backend.
-        """
-elif False:
-    ApiMockBackendArgsDict: TypeAlias = Mapping[str, Any]
+class ApiMockBackendArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the Mock backend. The description cannot exceed 255
+    characters.
+    """
+    result_content: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the return result.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the version of the Mock backend.
+    """
 
 @pulumi.input_type
 class ApiMockBackendArgs:
@@ -458,36 +444,33 @@ class ApiMockBackendArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ApiRequestParameterArgsDict(TypedDict):
-        location: pulumi.Input[_builtins.str]
-        """
-        Specifies the input parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Specifies the input parameter name. A parameter name consists of 1–32 characters, starting
-        with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.
-        """
-        required: pulumi.Input[_builtins.bool]
-        """
-        Specifies whether the parameter is mandatory or not.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Specifies the input parameter type, which can be 'STRING' or 'NUMBER'.
-        """
-        default: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default value when the parameter is optional.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the description of the parameter. The description cannot exceed 255
-        characters.
-        """
-elif False:
-    ApiRequestParameterArgsDict: TypeAlias = Mapping[str, Any]
+class ApiRequestParameterArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    Specifies the input parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Specifies the input parameter name. A parameter name consists of 1–32 characters, starting
+    with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.
+    """
+    required: pulumi.Input[_builtins.bool]
+    """
+    Specifies whether the parameter is mandatory or not.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Specifies the input parameter type, which can be 'STRING' or 'NUMBER'.
+    """
+    default: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default value when the parameter is optional.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the description of the parameter. The description cannot exceed 255
+    characters.
+    """
 
 @pulumi.input_type
 class ApiRequestParameterArgs:

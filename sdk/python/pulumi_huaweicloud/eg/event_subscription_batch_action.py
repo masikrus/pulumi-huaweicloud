@@ -26,6 +26,7 @@ class EventSubscriptionBatchActionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EventSubscriptionBatchAction resource.
+
         :param pulumi.Input[_builtins.str] operation: Specifies whether to enable the event subscription.
                The valid values are as follows:
                + **ENABLE**
@@ -124,6 +125,7 @@ class _EventSubscriptionBatchActionState:
                  subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering EventSubscriptionBatchAction resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
                subscriptions belong.
                This parameter is only valid for enterprise users.
@@ -245,6 +247,7 @@ class EventSubscriptionBatchAction(pulumi.CustomResource):
             operation="ENABLE")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project to which the
@@ -284,6 +287,7 @@ class EventSubscriptionBatchAction(pulumi.CustomResource):
             subscription_ids=subscription_ids,
             operation="ENABLE")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EventSubscriptionBatchActionArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class EndpointConnectionManagementArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EndpointConnectionManagement resource.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type endpoint connection.
                The valid values are as follows:
                + **receive**
@@ -109,6 +110,7 @@ class _EndpointConnectionManagementState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EndpointConnectionManagement resources.
+
         :param pulumi.Input[_builtins.str] action: Specifies the operation type endpoint connection.
                The valid values are as follows:
                + **receive**
@@ -232,6 +234,7 @@ class EndpointConnectionManagement(pulumi.CustomResource):
             endpoint_id=endpoint_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Specifies the operation type endpoint connection.
@@ -271,6 +274,7 @@ class EndpointConnectionManagement(pulumi.CustomResource):
             action="receive",
             endpoint_id=endpoint_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EndpointConnectionManagementArgs args: The arguments to use to populate this resource's properties.

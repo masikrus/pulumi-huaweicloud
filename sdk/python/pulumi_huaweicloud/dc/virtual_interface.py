@@ -34,6 +34,7 @@ class VirtualInterfaceArgs:
                  enable_bfd: Optional[pulumi.Input[_builtins.bool]] = None,
                  enable_nqa: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 extend_attribute: Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']] = None,
                  gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  lag_id: Optional[pulumi.Input[_builtins.str]] = None,
                  local_gateway_v4_ip: Optional[pulumi.Input[_builtins.str]] = None,
@@ -50,6 +51,7 @@ class VirtualInterfaceArgs:
                  vgw_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VirtualInterface resource.
+
         :param pulumi.Input[_builtins.int] bandwidth: Specifies the bandwidth of the virtual interface. The unit is Mbit/s.
                The size range depends on the direct connection.
         :param pulumi.Input[_builtins.str] direct_connect_id: Specifies the ID of the direct connection associated with the
@@ -88,6 +90,11 @@ class VirtualInterfaceArgs:
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the virtual
                interface belongs. This field is valid only when `resource_tenant_id` is not specified.
                Changing this will create a new resource.
+        :param pulumi.Input['VirtualInterfaceExtendAttributeArgs'] extend_attribute: The extended parameter information.
+               The extend_attribute structure is documented below.
+               
+               <a name="DCVirtualInterface_extend_attribute"></a>
+               The `extend_attribute` block supports:
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the ID of the gateway associated with the virtual
                interface (the ID of the global DC gateway).
                This field is required when `service_type` is set to **GDGW**.
@@ -159,6 +166,8 @@ class VirtualInterfaceArgs:
             pulumi.set(__self__, "enable_nqa", enable_nqa)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        if extend_attribute is not None:
+            pulumi.set(__self__, "extend_attribute", extend_attribute)
         if gateway_id is not None:
             pulumi.set(__self__, "gateway_id", gateway_id)
         if lag_id is not None:
@@ -368,6 +377,22 @@ class VirtualInterfaceArgs:
     @enterprise_project_id.setter
     def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extendAttribute")
+    def extend_attribute(self) -> Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]:
+        """
+        The extended parameter information.
+        The extend_attribute structure is documented below.
+
+        <a name="DCVirtualInterface_extend_attribute"></a>
+        The `extend_attribute` block supports:
+        """
+        return pulumi.get(self, "extend_attribute")
+
+    @extend_attribute.setter
+    def extend_attribute(self, value: Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]):
+        pulumi.set(self, "extend_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="gatewayId")
@@ -589,7 +614,7 @@ class _VirtualInterfaceState:
                  enable_bfd: Optional[pulumi.Input[_builtins.bool]] = None,
                  enable_nqa: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 extend_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]]] = None,
+                 extend_attribute: Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']] = None,
                  gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ies_id: Optional[pulumi.Input[_builtins.str]] = None,
                  lag_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -618,6 +643,7 @@ class _VirtualInterfaceState:
                  vlan: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering VirtualInterface resources.
+
         :param pulumi.Input[_builtins.str] address_family: Specifies the service type of the virtual interface.
                The valid values are **ipv4** and **ipv6**. Defaults to **ipv4**.
                Changing this will create a new resource.
@@ -646,8 +672,11 @@ class _VirtualInterfaceState:
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the virtual
                interface belongs. This field is valid only when `resource_tenant_id` is not specified.
                Changing this will create a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]] extend_attributes: The extended parameter information.
+        :param pulumi.Input['VirtualInterfaceExtendAttributeArgs'] extend_attribute: The extended parameter information.
                The extend_attribute structure is documented below.
+               
+               <a name="DCVirtualInterface_extend_attribute"></a>
+               The `extend_attribute` block supports:
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the ID of the gateway associated with the virtual
                interface (the ID of the global DC gateway).
                This field is required when `service_type` is set to **GDGW**.
@@ -745,8 +774,8 @@ class _VirtualInterfaceState:
             pulumi.set(__self__, "enable_nqa", enable_nqa)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
-        if extend_attributes is not None:
-            pulumi.set(__self__, "extend_attributes", extend_attributes)
+        if extend_attribute is not None:
+            pulumi.set(__self__, "extend_attribute", extend_attribute)
         if gateway_id is not None:
             pulumi.set(__self__, "gateway_id", gateway_id)
         if ies_id is not None:
@@ -961,17 +990,20 @@ class _VirtualInterfaceState:
         pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="extendAttributes")
-    def extend_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]]]:
+    @pulumi.getter(name="extendAttribute")
+    def extend_attribute(self) -> Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]:
         """
         The extended parameter information.
         The extend_attribute structure is documented below.
-        """
-        return pulumi.get(self, "extend_attributes")
 
-    @extend_attributes.setter
-    def extend_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]]]):
-        pulumi.set(self, "extend_attributes", value)
+        <a name="DCVirtualInterface_extend_attribute"></a>
+        The `extend_attribute` block supports:
+        """
+        return pulumi.get(self, "extend_attribute")
+
+    @extend_attribute.setter
+    def extend_attribute(self, value: Optional[pulumi.Input['VirtualInterfaceExtendAttributeArgs']]):
+        pulumi.set(self, "extend_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="gatewayId")
@@ -1332,7 +1364,7 @@ class _VirtualInterfaceState:
         pulumi.set(self, "vlan", value)
 
 
-@pulumi.type_token("huaweicloud:dc/virtualInterface:VirtualInterface")
+@pulumi.type_token("huaweicloud:Dc/virtualInterface:VirtualInterface")
 class VirtualInterface(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -1347,6 +1379,7 @@ class VirtualInterface(pulumi.CustomResource):
                  enable_bfd: Optional[pulumi.Input[_builtins.bool]] = None,
                  enable_nqa: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 extend_attribute: Optional[pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']]] = None,
                  gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  lag_id: Optional[pulumi.Input[_builtins.str]] = None,
                  local_gateway_v4_ip: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1392,7 +1425,15 @@ class VirtualInterface(pulumi.CustomResource):
             remote_ep_groups=["1.1.1.0/30"],
             address_family="ipv4",
             local_gateway_v4_ip="1.1.1.1/30",
-            remote_gateway_v4_ip="1.1.1.2/30")
+            remote_gateway_v4_ip="1.1.1.2/30",
+            enable_bfd=True,
+            extend_attribute={
+                "ha_type": "bfd",
+                "ha_mode": "auto_single",
+                "min_rx_interval": 1000,
+                "min_tx_interval": 1000,
+                "detect_multiplier": 3,
+            })
         ```
 
         ### Create a DC virtual interface with GDGW service type
@@ -1417,7 +1458,15 @@ class VirtualInterface(pulumi.CustomResource):
             remote_ep_groups=["1.1.1.0/30"],
             address_family="ipv4",
             local_gateway_v4_ip="1.1.1.1/30",
-            remote_gateway_v4_ip="1.1.1.2/30")
+            remote_gateway_v4_ip="1.1.1.2/30",
+            enable_bfd=True,
+            extend_attribute={
+                "ha_type": "bfd",
+                "ha_mode": "auto_single",
+                "min_rx_interval": 1000,
+                "min_tx_interval": 1000,
+                "detect_multiplier": 3,
+            })
         ```
 
         ## Import
@@ -1425,38 +1474,28 @@ class VirtualInterface(pulumi.CustomResource):
         Virtual interfaces can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:dc/virtualInterface:VirtualInterface test 5bb22e82-5b07-4845-bd1b-b064eca92e0a
+        $ pulumi import huaweicloud:Dc/virtualInterface:VirtualInterface test 5bb22e82-5b07-4845-bd1b-b064eca92e0a
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `resource_tenant_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dc_virtual_interface" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               resource_tenant_id,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1485,6 +1524,11 @@ class VirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the virtual
                interface belongs. This field is valid only when `resource_tenant_id` is not specified.
                Changing this will create a new resource.
+        :param pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']] extend_attribute: The extended parameter information.
+               The extend_attribute structure is documented below.
+               
+               <a name="DCVirtualInterface_extend_attribute"></a>
+               The `extend_attribute` block supports:
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the ID of the gateway associated with the virtual
                interface (the ID of the global DC gateway).
                This field is required when `service_type` is set to **GDGW**.
@@ -1581,7 +1625,15 @@ class VirtualInterface(pulumi.CustomResource):
             remote_ep_groups=["1.1.1.0/30"],
             address_family="ipv4",
             local_gateway_v4_ip="1.1.1.1/30",
-            remote_gateway_v4_ip="1.1.1.2/30")
+            remote_gateway_v4_ip="1.1.1.2/30",
+            enable_bfd=True,
+            extend_attribute={
+                "ha_type": "bfd",
+                "ha_mode": "auto_single",
+                "min_rx_interval": 1000,
+                "min_tx_interval": 1000,
+                "detect_multiplier": 3,
+            })
         ```
 
         ### Create a DC virtual interface with GDGW service type
@@ -1606,7 +1658,15 @@ class VirtualInterface(pulumi.CustomResource):
             remote_ep_groups=["1.1.1.0/30"],
             address_family="ipv4",
             local_gateway_v4_ip="1.1.1.1/30",
-            remote_gateway_v4_ip="1.1.1.2/30")
+            remote_gateway_v4_ip="1.1.1.2/30",
+            enable_bfd=True,
+            extend_attribute={
+                "ha_type": "bfd",
+                "ha_mode": "auto_single",
+                "min_rx_interval": 1000,
+                "min_tx_interval": 1000,
+                "detect_multiplier": 3,
+            })
         ```
 
         ## Import
@@ -1614,38 +1674,28 @@ class VirtualInterface(pulumi.CustomResource):
         Virtual interfaces can be imported using their `id`, e.g.
 
         ```sh
-        $ pulumi import huaweicloud:dc/virtualInterface:VirtualInterface test 5bb22e82-5b07-4845-bd1b-b064eca92e0a
+        $ pulumi import huaweicloud:Dc/virtualInterface:VirtualInterface test 5bb22e82-5b07-4845-bd1b-b064eca92e0a
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include:
-
         `resource_tenant_id`.
-
         It is generally recommended running `pulumi preview` after importing a resource.
-
         You can then decide if changes should be applied to the resource, or the resource definition should be updated to align
-
         with the resource. Also, you can ignore changes as below.
 
-        bash
-
+        ```sh
         resource "huaweicloud_dc_virtual_interface" "test" {
-
             ...
 
           lifecycle {
-
             ignore_changes = [
-            
               resource_tenant_id,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param VirtualInterfaceArgs args: The arguments to use to populate this resource's properties.
@@ -1671,6 +1721,7 @@ class VirtualInterface(pulumi.CustomResource):
                  enable_bfd: Optional[pulumi.Input[_builtins.bool]] = None,
                  enable_nqa: Optional[pulumi.Input[_builtins.bool]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 extend_attribute: Optional[pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']]] = None,
                  gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  lag_id: Optional[pulumi.Input[_builtins.str]] = None,
                  local_gateway_v4_ip: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1711,6 +1762,7 @@ class VirtualInterface(pulumi.CustomResource):
             __props__.__dict__["enable_bfd"] = enable_bfd
             __props__.__dict__["enable_nqa"] = enable_nqa
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
+            __props__.__dict__["extend_attribute"] = extend_attribute
             __props__.__dict__["gateway_id"] = gateway_id
             __props__.__dict__["lag_id"] = lag_id
             __props__.__dict__["local_gateway_v4_ip"] = local_gateway_v4_ip
@@ -1740,7 +1792,6 @@ class VirtualInterface(pulumi.CustomResource):
             __props__.__dict__["bgp_route_limit"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["device_id"] = None
-            __props__.__dict__["extend_attributes"] = None
             __props__.__dict__["ies_id"] = None
             __props__.__dict__["lgw_id"] = None
             __props__.__dict__["rate_limit"] = None
@@ -1750,7 +1801,7 @@ class VirtualInterface(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["vif_peers"] = None
         super(VirtualInterface, __self__).__init__(
-            'huaweicloud:dc/virtualInterface:VirtualInterface',
+            'huaweicloud:Dc/virtualInterface:VirtualInterface',
             resource_name,
             __props__,
             opts)
@@ -1771,7 +1822,7 @@ class VirtualInterface(pulumi.CustomResource):
             enable_bfd: Optional[pulumi.Input[_builtins.bool]] = None,
             enable_nqa: Optional[pulumi.Input[_builtins.bool]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            extend_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']]]]] = None,
+            extend_attribute: Optional[pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']]] = None,
             gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
             ies_id: Optional[pulumi.Input[_builtins.str]] = None,
             lag_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1833,8 +1884,11 @@ class VirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the enterprise project ID to which the virtual
                interface belongs. This field is valid only when `resource_tenant_id` is not specified.
                Changing this will create a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']]]] extend_attributes: The extended parameter information.
+        :param pulumi.Input[Union['VirtualInterfaceExtendAttributeArgs', 'VirtualInterfaceExtendAttributeArgsDict']] extend_attribute: The extended parameter information.
                The extend_attribute structure is documented below.
+               
+               <a name="DCVirtualInterface_extend_attribute"></a>
+               The `extend_attribute` block supports:
         :param pulumi.Input[_builtins.str] gateway_id: Specifies the ID of the gateway associated with the virtual
                interface (the ID of the global DC gateway).
                This field is required when `service_type` is set to **GDGW**.
@@ -1924,7 +1978,7 @@ class VirtualInterface(pulumi.CustomResource):
         __props__.__dict__["enable_bfd"] = enable_bfd
         __props__.__dict__["enable_nqa"] = enable_nqa
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
-        __props__.__dict__["extend_attributes"] = extend_attributes
+        __props__.__dict__["extend_attribute"] = extend_attribute
         __props__.__dict__["gateway_id"] = gateway_id
         __props__.__dict__["ies_id"] = ies_id
         __props__.__dict__["lag_id"] = lag_id
@@ -2066,13 +2120,16 @@ class VirtualInterface(pulumi.CustomResource):
         return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
-    @pulumi.getter(name="extendAttributes")
-    def extend_attributes(self) -> pulumi.Output[Sequence['outputs.VirtualInterfaceExtendAttribute']]:
+    @pulumi.getter(name="extendAttribute")
+    def extend_attribute(self) -> pulumi.Output['outputs.VirtualInterfaceExtendAttribute']:
         """
         The extended parameter information.
         The extend_attribute structure is documented below.
+
+        <a name="DCVirtualInterface_extend_attribute"></a>
+        The `extend_attribute` block supports:
         """
-        return pulumi.get(self, "extend_attributes")
+        return pulumi.get(self, "extend_attribute")
 
     @_builtins.property
     @pulumi.getter(name="gatewayId")

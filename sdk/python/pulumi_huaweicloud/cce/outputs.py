@@ -16,6 +16,8 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AccessPolicyAccessScope',
+    'AccessPolicyPrincipal',
     'AddonValues',
     'AutopilotClusterAuthentication',
     'AutopilotClusterConfigurationsOverride',
@@ -28,6 +30,12 @@ __all__ = [
     'AutopilotClusterServiceNetwork',
     'AutopilotClusterStatus',
     'AutopilotClusterStatusEndpoint',
+    'AutopilotClusterUpgradeAddon',
+    'AutopilotClusterUpgradeAddonValues',
+    'AutopilotClusterUpgradeStrategy',
+    'AutopilotClusterUpgradeStrategyInPlaceRollingUpdate',
+    'AutopilotReleaseParameters',
+    'AutopilotReleaseValues',
     'ClusterCertificateCluster',
     'ClusterCertificateUser',
     'ClusterComponentConfiguration',
@@ -45,6 +53,7 @@ __all__ = [
     'ClusterV3EncryptionConfig',
     'ClusterV3ExtendParam',
     'ClusterV3Master',
+    'ImageCacheBuildingConfig',
     'NodeAttachDataVolume',
     'NodeAttachExtensionNic',
     'NodeAttachHostnameConfig',
@@ -90,6 +99,8 @@ __all__ = [
     'NodeV3StorageSelector',
     'NodeV3Taint',
     'NodesRemoveNode',
+    'ReleaseParameters',
+    'ReleaseValues',
     'GetAddonTemplateSupportVersionResult',
     'GetAddonsItemResult',
     'GetAddonsItemMetadataResult',
@@ -97,15 +108,32 @@ __all__ = [
     'GetAddonsItemStatusResult',
     'GetAddonsItemStatusCurrentVersionResult',
     'GetAddonsItemStatusCurrentVersionSupportVersionResult',
+    'GetAutopilotAccessPoliciesAccessPolicyListResult',
+    'GetAutopilotAccessPoliciesAccessPolicyListAccessScopeResult',
+    'GetAutopilotAccessPoliciesAccessPolicyListPrincipalResult',
     'GetAutopilotAddonTemplatesTemplateResult',
     'GetAutopilotAddonTemplatesTemplateVersionResult',
     'GetAutopilotAddonTemplatesTemplateVersionSupportVersionResult',
+    'GetAutopilotAddonsItemResult',
+    'GetAutopilotAddonsItemMetadataResult',
+    'GetAutopilotAddonsItemSpecResult',
+    'GetAutopilotAddonsItemStatusResult',
+    'GetAutopilotAddonsItemStatusCurrentVersionResult',
+    'GetAutopilotAddonsItemStatusCurrentVersionSupportVersionResult',
+    'GetAutopilotChartsChartResult',
     'GetAutopilotClusterCertificateClusterResult',
     'GetAutopilotClusterCertificateClusterClusterResult',
     'GetAutopilotClusterCertificateContextResult',
     'GetAutopilotClusterCertificateContextContextResult',
     'GetAutopilotClusterCertificateUserResult',
     'GetAutopilotClusterCertificateUserUserResult',
+    'GetAutopilotClusterLogConfigsLogConfigResult',
+    'GetAutopilotClusterUpgradeInfoMetadataResult',
+    'GetAutopilotClusterUpgradeInfoSpecResult',
+    'GetAutopilotClusterUpgradeInfoSpecLastUpgradeInfoResult',
+    'GetAutopilotClusterUpgradeInfoSpecUpgradeFeatureGateResult',
+    'GetAutopilotClusterUpgradeInfoSpecVersionInfoResult',
+    'GetAutopilotClusterUpgradeInfoStatusResult',
     'GetAutopilotClustersClusterResult',
     'GetAutopilotClustersClusterAuthenticationResult',
     'GetAutopilotClustersClusterConfigurationsOverrideResult',
@@ -118,6 +146,7 @@ __all__ = [
     'GetAutopilotClustersClusterServiceNetworkResult',
     'GetAutopilotClustersClusterStatusResult',
     'GetAutopilotClustersClusterStatusEndpointResult',
+    'GetAutopilotReleasesReleaseResult',
     'GetChartsChartResult',
     'GetClusterCertificateClusterResult',
     'GetClusterCertificateUserResult',
@@ -142,9 +171,18 @@ __all__ = [
     'GetClustersClusterCertificateUserResult',
     'GetClustersClusterEndpointResult',
     'GetClustersClusterMasterResult',
+    'GetFlavorSpecificationsClusterFlavorSpecResult',
+    'GetFlavorSpecificationsClusterFlavorSpecAvailableMasterFlavorResult',
+    'GetImageCachesImageCacheResult',
+    'GetImageCachesImageCacheBuildingConfigResult',
     'GetNodeDataVolumeResult',
     'GetNodeHostnameConfigResult',
     'GetNodePoolDataVolumeResult',
+    'GetNodePoolExtensionScaleGroupResult',
+    'GetNodePoolExtensionScaleGroupMetadataResult',
+    'GetNodePoolExtensionScaleGroupSpecResult',
+    'GetNodePoolExtensionScaleGroupSpecAutoscalingResult',
+    'GetNodePoolExtensionScaleGroupSpecCapacityReservationSpecificationResult',
     'GetNodePoolHostnameConfigResult',
     'GetNodePoolRootVolumeResult',
     'GetNodeRootVolumeResult',
@@ -155,7 +193,71 @@ __all__ = [
     'GetNodesNodeDataVolumeResult',
     'GetNodesNodeHostnameConfigResult',
     'GetNodesNodeRootVolumeResult',
+    'GetReleasesReleaseResult',
 ]
+
+@pulumi.output_type
+class AccessPolicyAccessScope(dict):
+    def __init__(__self__, *,
+                 namespaces: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] namespaces: Specifies the list of cluster namespaces.
+               Wildcards (*) are allowed to indicate all namespaces. If different clusters are selected,
+               the namespace list can be a collection of multiple clusters. When RBAC authorization is used,
+               CCE automatically checks whether the namespaces exist in the clusters.
+               
+               <a name="cce_access_policy_principal"></a>
+               The `principal` block supports:
+        """
+        pulumi.set(__self__, "namespaces", namespaces)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespaces(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of cluster namespaces.
+        Wildcards (*) are allowed to indicate all namespaces. If different clusters are selected,
+        the namespace list can be a collection of multiple clusters. When RBAC authorization is used,
+        CCE automatically checks whether the namespaces exist in the clusters.
+
+        <a name="cce_access_policy_principal"></a>
+        The `principal` block supports:
+        """
+        return pulumi.get(self, "namespaces")
+
+
+@pulumi.output_type
+class AccessPolicyPrincipal(dict):
+    def __init__(__self__, *,
+                 ids: Sequence[_builtins.str],
+                 type: _builtins.str):
+        """
+        :param Sequence[_builtins.str] ids: Specifies the list of IDs of authorized objects.
+               Enter the IDs based on the object type, user, user group, and agency account.
+        :param _builtins.str type: Specifies the type of the authorization object.
+               The value can be: **user**, **group**, **agency**.
+        """
+        pulumi.set(__self__, "ids", ids)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def ids(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the list of IDs of authorized objects.
+        Enter the IDs based on the object type, user, user group, and agency account.
+        """
+        return pulumi.get(self, "ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of the authorization object.
+        The value can be: **user**, **group**, **agency**.
+        """
+        return pulumi.get(self, "type")
+
 
 @pulumi.output_type
 class AddonValues(dict):
@@ -648,6 +750,398 @@ class AutopilotClusterStatusEndpoint(dict):
         The phase of the cluster.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class AutopilotClusterUpgradeAddon(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addonTemplateName":
+            suggest = "addon_template_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotClusterUpgradeAddon. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotClusterUpgradeAddon.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotClusterUpgradeAddon.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addon_template_name: _builtins.str,
+                 operation: _builtins.str,
+                 version: _builtins.str,
+                 values: Optional['outputs.AutopilotClusterUpgradeAddonValues'] = None):
+        """
+        :param _builtins.str addon_template_name: Specifies the add-on name.
+        :param _builtins.str operation: Specifies the execution action.
+               For current upgrades, the value can be **patch**.
+        :param _builtins.str version: Specifies the target add-on version.
+               The target add-on version must match the target cluster version.
+        :param 'AutopilotClusterUpgradeAddonValuesArgs' values: Specifies the add-on template installation parameters.
+               These parameters vary depending on the add-on. The values is documented below.
+               
+               <a name="values"></a>
+               The `values` block supports:
+        """
+        pulumi.set(__self__, "addon_template_name", addon_template_name)
+        pulumi.set(__self__, "operation", operation)
+        pulumi.set(__self__, "version", version)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateName")
+    def addon_template_name(self) -> _builtins.str:
+        """
+        Specifies the add-on name.
+        """
+        return pulumi.get(self, "addon_template_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operation(self) -> _builtins.str:
+        """
+        Specifies the execution action.
+        For current upgrades, the value can be **patch**.
+        """
+        return pulumi.get(self, "operation")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Specifies the target add-on version.
+        The target add-on version must match the target cluster version.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional['outputs.AutopilotClusterUpgradeAddonValues']:
+        """
+        Specifies the add-on template installation parameters.
+        These parameters vary depending on the add-on. The values is documented below.
+
+        <a name="values"></a>
+        The `values` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class AutopilotClusterUpgradeAddonValues(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "basicJson":
+            suggest = "basic_json"
+        elif key == "customJson":
+            suggest = "custom_json"
+        elif key == "flavorJson":
+            suggest = "flavor_json"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotClusterUpgradeAddonValues. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotClusterUpgradeAddonValues.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotClusterUpgradeAddonValues.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 basic_json: Optional[_builtins.str] = None,
+                 custom_json: Optional[_builtins.str] = None,
+                 flavor_json: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str basic_json: Specifies the json string vary depending on the add-on.
+        :param _builtins.str custom_json: Specifies the json string vary depending on the add-on.
+        :param _builtins.str flavor_json: Specifies the json string vary depending on the add-on.
+               
+               > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+               the add-on type and version. For more detailed description of add-ons
+               see add-ons description
+               
+               <a name="strategy"></a>
+               The `strategy` block supports:
+        """
+        if basic_json is not None:
+            pulumi.set(__self__, "basic_json", basic_json)
+        if custom_json is not None:
+            pulumi.set(__self__, "custom_json", custom_json)
+        if flavor_json is not None:
+            pulumi.set(__self__, "flavor_json", flavor_json)
+
+    @_builtins.property
+    @pulumi.getter(name="basicJson")
+    def basic_json(self) -> Optional[_builtins.str]:
+        """
+        Specifies the json string vary depending on the add-on.
+        """
+        return pulumi.get(self, "basic_json")
+
+    @_builtins.property
+    @pulumi.getter(name="customJson")
+    def custom_json(self) -> Optional[_builtins.str]:
+        """
+        Specifies the json string vary depending on the add-on.
+        """
+        return pulumi.get(self, "custom_json")
+
+    @_builtins.property
+    @pulumi.getter(name="flavorJson")
+    def flavor_json(self) -> Optional[_builtins.str]:
+        """
+        Specifies the json string vary depending on the add-on.
+
+        > Arguments which can be passed to the `basic_json`, `custom_json` and `flavor_json` add-on parameters depends on
+        the add-on type and version. For more detailed description of add-ons
+        see add-ons description
+
+        <a name="strategy"></a>
+        The `strategy` block supports:
+        """
+        return pulumi.get(self, "flavor_json")
+
+
+@pulumi.output_type
+class AutopilotClusterUpgradeStrategy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inPlaceRollingUpdate":
+            suggest = "in_place_rolling_update"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotClusterUpgradeStrategy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotClusterUpgradeStrategy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotClusterUpgradeStrategy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 in_place_rolling_update: Optional['outputs.AutopilotClusterUpgradeStrategyInPlaceRollingUpdate'] = None):
+        """
+        :param _builtins.str type: Specifies the upgrade strategy type.
+               The value can be **inPlaceRollingUpdate**.
+        :param 'AutopilotClusterUpgradeStrategyInPlaceRollingUpdateArgs' in_place_rolling_update: Specifies the in-place upgrade settings.
+               It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+               The in_place_rolling_update structure is documented below.
+               
+               <a name="in_place_rolling_update"></a>
+               The `in_place_rolling_update` block supports:
+        """
+        pulumi.set(__self__, "type", type)
+        if in_place_rolling_update is not None:
+            pulumi.set(__self__, "in_place_rolling_update", in_place_rolling_update)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the upgrade strategy type.
+        The value can be **inPlaceRollingUpdate**.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="inPlaceRollingUpdate")
+    def in_place_rolling_update(self) -> Optional['outputs.AutopilotClusterUpgradeStrategyInPlaceRollingUpdate']:
+        """
+        Specifies the in-place upgrade settings.
+        It's mandatory when the `type` is set to **inPlaceRollingUpdate**.
+        The in_place_rolling_update structure is documented below.
+
+        <a name="in_place_rolling_update"></a>
+        The `in_place_rolling_update` block supports:
+        """
+        return pulumi.get(self, "in_place_rolling_update")
+
+
+@pulumi.output_type
+class AutopilotClusterUpgradeStrategyInPlaceRollingUpdate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "userDefinedStep":
+            suggest = "user_defined_step"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotClusterUpgradeStrategyInPlaceRollingUpdate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotClusterUpgradeStrategyInPlaceRollingUpdate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotClusterUpgradeStrategyInPlaceRollingUpdate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 user_defined_step: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int user_defined_step: Specifies the node upgrade step.
+               The value ranges from **1** to **40**. The recommended value is **20**.
+        """
+        if user_defined_step is not None:
+            pulumi.set(__self__, "user_defined_step", user_defined_step)
+
+    @_builtins.property
+    @pulumi.getter(name="userDefinedStep")
+    def user_defined_step(self) -> Optional[_builtins.int]:
+        """
+        Specifies the node upgrade step.
+        The value ranges from **1** to **40**. The recommended value is **20**.
+        """
+        return pulumi.get(self, "user_defined_step")
+
+
+@pulumi.output_type
+class AutopilotReleaseParameters(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dryRun":
+            suggest = "dry_run"
+        elif key == "includeHooks":
+            suggest = "include_hooks"
+        elif key == "nameTemplate":
+            suggest = "name_template"
+        elif key == "noHooks":
+            suggest = "no_hooks"
+        elif key == "releaseVersion":
+            suggest = "release_version"
+        elif key == "resetValues":
+            suggest = "reset_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotReleaseParameters. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotReleaseParameters.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotReleaseParameters.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dry_run: Optional[_builtins.bool] = None,
+                 include_hooks: Optional[_builtins.bool] = None,
+                 name_template: Optional[_builtins.str] = None,
+                 no_hooks: Optional[_builtins.bool] = None,
+                 recreate: Optional[_builtins.bool] = None,
+                 release_version: Optional[_builtins.int] = None,
+                 replace: Optional[_builtins.bool] = None,
+                 reset_values: Optional[_builtins.bool] = None):
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if include_hooks is not None:
+            pulumi.set(__self__, "include_hooks", include_hooks)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+        if no_hooks is not None:
+            pulumi.set(__self__, "no_hooks", no_hooks)
+        if recreate is not None:
+            pulumi.set(__self__, "recreate", recreate)
+        if release_version is not None:
+            pulumi.set(__self__, "release_version", release_version)
+        if replace is not None:
+            pulumi.set(__self__, "replace", replace)
+        if reset_values is not None:
+            pulumi.set(__self__, "reset_values", reset_values)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "dry_run")
+
+    @_builtins.property
+    @pulumi.getter(name="includeHooks")
+    def include_hooks(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "include_hooks")
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "name_template")
+
+    @_builtins.property
+    @pulumi.getter(name="noHooks")
+    def no_hooks(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "no_hooks")
+
+    @_builtins.property
+    @pulumi.getter
+    def recreate(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "recreate")
+
+    @_builtins.property
+    @pulumi.getter(name="releaseVersion")
+    def release_version(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "release_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def replace(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "replace")
+
+    @_builtins.property
+    @pulumi.getter(name="resetValues")
+    def reset_values(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "reset_values")
+
+
+@pulumi.output_type
+class AutopilotReleaseValues(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imagePullPolicy":
+            suggest = "image_pull_policy"
+        elif key == "imageTag":
+            suggest = "image_tag"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutopilotReleaseValues. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutopilotReleaseValues.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutopilotReleaseValues.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_pull_policy: Optional[_builtins.str] = None,
+                 image_tag: Optional[_builtins.str] = None):
+        if image_pull_policy is not None:
+            pulumi.set(__self__, "image_pull_policy", image_pull_policy)
+        if image_tag is not None:
+            pulumi.set(__self__, "image_tag", image_tag)
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullPolicy")
+    def image_pull_policy(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "image_pull_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="imageTag")
+    def image_tag(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "image_tag")
 
 
 @pulumi.output_type
@@ -1620,6 +2114,59 @@ class ClusterV3Master(dict):
 
 
 @pulumi.output_type
+class ImageCacheBuildingConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imagePullSecrets":
+            suggest = "image_pull_secrets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImageCacheBuildingConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImageCacheBuildingConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImageCacheBuildingConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cluster: _builtins.str,
+                 image_pull_secrets: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str cluster: Specifies the ID of a CCE Autopilot cluster where a temporary pod
+               is started for creating an image cache.
+        :param Sequence[_builtins.str] image_pull_secrets: Specifies the list of access credentials for downloading
+               the images to be cached. If no access credential is specified or no valid credential is available,
+               only public images can be downloaded.
+        """
+        pulumi.set(__self__, "cluster", cluster)
+        if image_pull_secrets is not None:
+            pulumi.set(__self__, "image_pull_secrets", image_pull_secrets)
+
+    @_builtins.property
+    @pulumi.getter
+    def cluster(self) -> _builtins.str:
+        """
+        Specifies the ID of a CCE Autopilot cluster where a temporary pod
+        is started for creating an image cache.
+        """
+        return pulumi.get(self, "cluster")
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullSecrets")
+    def image_pull_secrets(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Specifies the list of access credentials for downloading
+        the images to be cached. If no access credential is specified or no valid credential is available,
+        only public images can be downloaded.
+        """
+        return pulumi.get(self, "image_pull_secrets")
+
+
+@pulumi.output_type
 class NodeAttachDataVolume(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2556,6 +3103,8 @@ class NodeExtendParams(dict):
                in GB.
         :param _builtins.int kube_reserved_mem: Specifies the reserved node memory, which is reserved for
                Kubernetes-related components.
+        :param _builtins.str market_type: Specifies the market type. When creating a spot node,
+               this parameter should be set to **spot**.
         :param _builtins.int max_pods: Specifies the maximum number of instances a node is allowed to create.
         :param _builtins.str nic_threshold: Specifies the ENI pre-binding thresholds.
                Example setting: **"0.3:0.6"**.
@@ -2568,6 +3117,7 @@ class NodeExtendParams(dict):
                The input value can be a Base64 encoded string or not.
         :param _builtins.str security_reinforcement_type: Specifies the security reinforcement type.
                The value can be: **null** or **cybersecurity**.
+        :param _builtins.str spot_price: Specifies the highest price per hour a user accepts for a spot node.
         :param _builtins.int system_reserved_mem: Specifies the reserved node memory, which is reserved
                value for system components.
         """
@@ -2627,6 +3177,10 @@ class NodeExtendParams(dict):
     @_builtins.property
     @pulumi.getter(name="marketType")
     def market_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the market type. When creating a spot node,
+        this parameter should be set to **spot**.
+        """
         return pulumi.get(self, "market_type")
 
     @_builtins.property
@@ -2693,6 +3247,9 @@ class NodeExtendParams(dict):
     @_builtins.property
     @pulumi.getter(name="spotPrice")
     def spot_price(self) -> Optional[_builtins.str]:
+        """
+        Specifies the highest price per hour a user accepts for a spot node.
+        """
         return pulumi.get(self, "spot_price")
 
     @_builtins.property
@@ -2796,7 +3353,8 @@ class NodePoolDataVolume(dict):
                  kms_key_id: Optional[_builtins.str] = None,
                  throughput: Optional[_builtins.int] = None):
         """
-        :param _builtins.int size: Specifies the disk size in GB.
+        :param _builtins.int size: Specifies the size of a virtual space. Only an integer percentage is supported.
+               Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param _builtins.str volumetype: Specifies the disk type.
         :param _builtins.str dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
         :param Mapping[str, _builtins.str] extend_params: Specifies the disk expansion parameters.
@@ -2807,7 +3365,11 @@ class NodePoolDataVolume(dict):
         :param _builtins.int throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
                
-               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever.
+               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+               ever.
+               
+               <a name="taints_struct"></a>
+               The `taints` block supports:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "volumetype", volumetype)
@@ -2830,7 +3392,8 @@ class NodePoolDataVolume(dict):
     @pulumi.getter
     def size(self) -> _builtins.int:
         """
-        Specifies the disk size in GB.
+        Specifies the size of a virtual space. Only an integer percentage is supported.
+        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         """
         return pulumi.get(self, "size")
 
@@ -2896,7 +3459,11 @@ class NodePoolDataVolume(dict):
         Specifies the throughput of the disk in MiB/s,
         required when `volumetype` is **GPSSD2**.
 
-        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever.
+        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+        ever.
+
+        <a name="taints_struct"></a>
+        The `taints` block supports:
         """
         return pulumi.get(self, "throughput")
 
@@ -2960,6 +3527,8 @@ class NodePoolExtendParams(dict):
                in GB.
         :param _builtins.int kube_reserved_mem: Specifies the reserved node memory, which is reserved for
                Kubernetes-related components.
+        :param _builtins.str market_type: Specifies the market type. When creating a spot node pool,
+               this parameter should be set to **spot**.
         :param _builtins.int max_pods: Specifies the maximum number of instances a node is allowed to create.
         :param _builtins.str nic_threshold: Specifies the ENI pre-binding thresholds.
                Example setting: **"0.3:0.6"**.
@@ -2972,6 +3541,10 @@ class NodePoolExtendParams(dict):
                The input value can be a Base64 encoded string or not.
         :param _builtins.str security_reinforcement_type: Specifies the security reinforcement type.
                The value can be: **null** or **cybersecurity**.
+        :param _builtins.str spot_price: Specifies the highest price per hour a user accepts for a spot node.
+               
+               <a name="storage_struct"></a>
+               The `storage` block supports:
         :param _builtins.int system_reserved_mem: Specifies the reserved node memory, which is reserved
                value for system components.
         """
@@ -3031,6 +3604,10 @@ class NodePoolExtendParams(dict):
     @_builtins.property
     @pulumi.getter(name="marketType")
     def market_type(self) -> Optional[_builtins.str]:
+        """
+        Specifies the market type. When creating a spot node pool,
+        this parameter should be set to **spot**.
+        """
         return pulumi.get(self, "market_type")
 
     @_builtins.property
@@ -3097,6 +3674,12 @@ class NodePoolExtendParams(dict):
     @_builtins.property
     @pulumi.getter(name="spotPrice")
     def spot_price(self) -> Optional[_builtins.str]:
+        """
+        Specifies the highest price per hour a user accepts for a spot node.
+
+        <a name="storage_struct"></a>
+        The `storage` block supports:
+        """
         return pulumi.get(self, "spot_price")
 
     @_builtins.property
@@ -3115,13 +3698,13 @@ class NodePoolExtensionScaleGroup(dict):
                  metadata: Optional['outputs.NodePoolExtensionScaleGroupMetadata'] = None,
                  spec: Optional['outputs.NodePoolExtensionScaleGroupSpec'] = None):
         """
-        :param 'NodePoolExtensionScaleGroupMetadataArgs' metadata: The basic information about the extended scaling group.
-               The object structure is documented below.
+        :param 'NodePoolExtensionScaleGroupMetadataArgs' metadata: Specifies the basic information about the extended scaling group.
+               The metadata structure is documented below.
         :param 'NodePoolExtensionScaleGroupSpecArgs' spec: Specifies the configurations of the extended scaling group,
                which carry different configurations from those of the default scaling group.
-               The object structure is documented below.
+               The spec structure is documented below.
                
-               <a name="metadata"></a>
+               <a name="metadata_struct"></a>
                The `metadata` block supports:
         """
         if metadata is not None:
@@ -3133,8 +3716,8 @@ class NodePoolExtensionScaleGroup(dict):
     @pulumi.getter
     def metadata(self) -> Optional['outputs.NodePoolExtensionScaleGroupMetadata']:
         """
-        The basic information about the extended scaling group.
-        The object structure is documented below.
+        Specifies the basic information about the extended scaling group.
+        The metadata structure is documented below.
         """
         return pulumi.get(self, "metadata")
 
@@ -3144,9 +3727,9 @@ class NodePoolExtensionScaleGroup(dict):
         """
         Specifies the configurations of the extended scaling group,
         which carry different configurations from those of the default scaling group.
-        The object structure is documented below.
+        The spec structure is documented below.
 
-        <a name="metadata"></a>
+        <a name="metadata_struct"></a>
         The `metadata` block supports:
         """
         return pulumi.get(self, "spec")
@@ -3158,7 +3741,12 @@ class NodePoolExtensionScaleGroupMetadata(dict):
                  name: _builtins.str,
                  uid: Optional[_builtins.str] = None):
         """
-        :param _builtins.str name: Specifies the node pool name.
+        :param _builtins.str name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param _builtins.str uid: The ID of the extended scaling group.
         """
         pulumi.set(__self__, "name", name)
@@ -3169,7 +3757,12 @@ class NodePoolExtensionScaleGroupMetadata(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the node pool name.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -3208,15 +3801,15 @@ class NodePoolExtensionScaleGroupSpec(dict):
                  flavor: Optional[_builtins.str] = None):
         """
         :param 'NodePoolExtensionScaleGroupSpecAutoscalingArgs' autoscaling: Specifies the auto scaling configurations of the extended scaling group.
-               The object structure is documented below.
+               The autoscaling structure is documented below.
                
-               <a name="capacity_reservation_specification"></a>
+               <a name="capacity_reservation_specification_struct"></a>
                The `capacity_reservation_specification` block supports:
         :param _builtins.str az: Specifies the availability zone of a node.
                If this parameter is not specified or left blank, the default scaling group configurations take effect.
         :param 'NodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs' capacity_reservation_specification: Specifies the capacity reservation
                configurations of the extended scaling group.
-               The object structure is documented below.
+               The capacity_reservation_specification structure is documented below.
         :param _builtins.str flavor: Specifies the node flavor.
         """
         if autoscaling is not None:
@@ -3233,9 +3826,9 @@ class NodePoolExtensionScaleGroupSpec(dict):
     def autoscaling(self) -> Optional['outputs.NodePoolExtensionScaleGroupSpecAutoscaling']:
         """
         Specifies the auto scaling configurations of the extended scaling group.
-        The object structure is documented below.
+        The autoscaling structure is documented below.
 
-        <a name="capacity_reservation_specification"></a>
+        <a name="capacity_reservation_specification_struct"></a>
         The `capacity_reservation_specification` block supports:
         """
         return pulumi.get(self, "autoscaling")
@@ -3255,7 +3848,7 @@ class NodePoolExtensionScaleGroupSpec(dict):
         """
         Specifies the capacity reservation
         configurations of the extended scaling group.
-        The object structure is documented below.
+        The capacity_reservation_specification structure is documented below.
         """
         return pulumi.get(self, "capacity_reservation_specification")
 
@@ -3300,8 +3893,11 @@ class NodePoolExtensionScaleGroupSpecAutoscaling(dict):
         :param _builtins.bool enable: Specifies whether to enable auto scaling for the scaling group, defaults to **false**.
         :param _builtins.int extension_priority: Specifies the priority of the scaling group, defaults to **0**.
                A higher value indicates a greater priority.
-        :param _builtins.int max_node_count: Specifies the maximum number of nodes allowed if auto scaling is enabled.
-        :param _builtins.int min_node_count: Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        :param _builtins.int max_node_count: Specifies the maximum number of nodes that can be retained in the scaling group
+               during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+               than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
+        :param _builtins.int min_node_count: Specifies the minimum number of nodes in the scaling group during auto scaling.
+               The value must be greater than **0**.
         """
         if enable is not None:
             pulumi.set(__self__, "enable", enable)
@@ -3333,7 +3929,9 @@ class NodePoolExtensionScaleGroupSpecAutoscaling(dict):
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> Optional[_builtins.int]:
         """
-        Specifies the maximum number of nodes allowed if auto scaling is enabled.
+        Specifies the maximum number of nodes that can be retained in the scaling group
+        during auto-scaling. The value must be greater than or equal to that of `min_node_count`, and can neither be greater
+        than the maximum number of nodes allowed by the cluster nor the maximum number of nodes in the node pool.
         """
         return pulumi.get(self, "max_node_count")
 
@@ -3341,7 +3939,8 @@ class NodePoolExtensionScaleGroupSpecAutoscaling(dict):
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> Optional[_builtins.int]:
         """
-        Specifies the minimum number of nodes allowed if auto scaling is enabled.
+        Specifies the minimum number of nodes in the scaling group during auto scaling.
+        The value must be greater than **0**.
         """
         return pulumi.get(self, "min_node_count")
 
@@ -3352,12 +3951,13 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecification(dict):
                  id: Optional[_builtins.str] = None,
                  preference: Optional[_builtins.str] = None):
         """
-        :param _builtins.str id: The resource ID in UUID format.
+        :param _builtins.str id: Specifies the private pool ID.
+               The parameter value can be ignored when preference is set to none.
         :param _builtins.str preference: Specifies the capacity of a private storage pool. If the value is none,
                the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
                In this case, the `id` cannot be left blank.
                
-               <a name="autoscaling"></a>
+               <a name="autoscaling_struct"></a>
                The `autoscaling` block supports:
         """
         if id is not None:
@@ -3369,7 +3969,8 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecification(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        The resource ID in UUID format.
+        Specifies the private pool ID.
+        The parameter value can be ignored when preference is set to none.
         """
         return pulumi.get(self, "id")
 
@@ -3381,7 +3982,7 @@ class NodePoolExtensionScaleGroupSpecCapacityReservationSpecification(dict):
         the capacity reservation is not specified. If the value is targeted, the capacity reservation is specified.
         In this case, the `id` cannot be left blank.
 
-        <a name="autoscaling"></a>
+        <a name="autoscaling_struct"></a>
         The `autoscaling` block supports:
         """
         return pulumi.get(self, "preference")
@@ -3392,7 +3993,21 @@ class NodePoolHostnameConfig(dict):
     def __init__(__self__, *,
                  type: _builtins.str):
         """
-        :param _builtins.str type: Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        :param _builtins.str type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         pulumi.set(__self__, "type", type)
 
@@ -3400,7 +4015,21 @@ class NodePoolHostnameConfig(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Specifies the node pool type. Possible values are: **vm** and **ElasticBMS**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -3478,7 +4107,8 @@ class NodePoolRootVolume(dict):
                  kms_key_id: Optional[_builtins.str] = None,
                  throughput: Optional[_builtins.int] = None):
         """
-        :param _builtins.int size: Specifies the disk size in GB.
+        :param _builtins.int size: Specifies the size of a virtual space. Only an integer percentage is supported.
+               Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param _builtins.str volumetype: Specifies the disk type.
         :param _builtins.str dss_pool_id: Specifies the DSS pool ID. This field is used only for dedicated storage.
         :param Mapping[str, _builtins.str] extend_params: Specifies the disk expansion parameters.
@@ -3488,6 +4118,12 @@ class NodePoolRootVolume(dict):
         :param _builtins.str kms_key_id: Specifies the KMS key ID. This is used to encrypt the volume.
         :param _builtins.int throughput: Specifies the throughput of the disk in MiB/s,
                required when `volumetype` is **GPSSD2**.
+               
+               > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+               ever.
+               
+               <a name="taints_struct"></a>
+               The `taints` block supports:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "volumetype", volumetype)
@@ -3510,7 +4146,8 @@ class NodePoolRootVolume(dict):
     @pulumi.getter
     def size(self) -> _builtins.int:
         """
-        Specifies the disk size in GB.
+        Specifies the size of a virtual space. Only an integer percentage is supported.
+        Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         """
         return pulumi.get(self, "size")
 
@@ -3575,6 +4212,12 @@ class NodePoolRootVolume(dict):
         """
         Specifies the throughput of the disk in MiB/s,
         required when `volumetype` is **GPSSD2**.
+
+        > You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time
+        ever.
+
+        <a name="taints_struct"></a>
+        The `taints` block supports:
         """
         return pulumi.get(self, "throughput")
 
@@ -3585,10 +4228,15 @@ class NodePoolStorage(dict):
                  groups: Sequence['outputs.NodePoolStorageGroup'],
                  selectors: Sequence['outputs.NodePoolStorageSelector']):
         """
-        :param Sequence['NodePoolStorageGroupArgs'] groups: Specifies the storage group consists of multiple storage devices.
-               This is used to divide storage space. Structure is documented below.
-        :param Sequence['NodePoolStorageSelectorArgs'] selectors: Specifies the disk selection.
-               Matched disks are managed according to match labels and storage type. Structure is documented below.
+        :param Sequence['NodePoolStorageGroupArgs'] groups: Specifies the storage group consists of multiple storage devices. This is used to divide
+               storage space.
+               The groups structure is documented below.
+               
+               <a name="selectors_struct"></a>
+               The `selectors` block supports:
+        :param Sequence['NodePoolStorageSelectorArgs'] selectors: Specifies the disk selection. Matched disks are managed according to match labels and
+               storage type.
+               The selectors structure is documented below.
         """
         pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "selectors", selectors)
@@ -3597,8 +4245,12 @@ class NodePoolStorage(dict):
     @pulumi.getter
     def groups(self) -> Sequence['outputs.NodePoolStorageGroup']:
         """
-        Specifies the storage group consists of multiple storage devices.
-        This is used to divide storage space. Structure is documented below.
+        Specifies the storage group consists of multiple storage devices. This is used to divide
+        storage space.
+        The groups structure is documented below.
+
+        <a name="selectors_struct"></a>
+        The `selectors` block supports:
         """
         return pulumi.get(self, "groups")
 
@@ -3606,8 +4258,9 @@ class NodePoolStorage(dict):
     @pulumi.getter
     def selectors(self) -> Sequence['outputs.NodePoolStorageSelector']:
         """
-        Specifies the disk selection.
-        Matched disks are managed according to match labels and storage type. Structure is documented below.
+        Specifies the disk selection. Matched disks are managed according to match labels and
+        storage type.
+        The selectors structure is documented below.
         """
         return pulumi.get(self, "selectors")
 
@@ -3645,14 +4298,17 @@ class NodePoolStorageGroup(dict):
                The value cannot be default and can contain a maximum of 55 characters.
                Only digits, lowercase letters, and hyphens (-) are allowed.
                
-               <a name="spec"></a>
+               <a name="spec_struct"></a>
                The `spec` block supports:
-        :param Sequence[_builtins.str] selector_names: Specifies the list of names of selectors to match.
-               This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-               but a selector can match only one group.
+        :param Sequence[_builtins.str] selector_names: Specifies the list of names of selectors to match. This parameter corresponds to
+               name in `selectors`. A group can match multiple selectors, but a selector can match only one group.
         :param Sequence['NodePoolStorageGroupVirtualSpaceArgs'] virtual_spaces: Specifies the detailed management of space configuration in a group.
-        :param _builtins.bool cce_managed: Specifies the whether the storage space is for **kubernetes** and
-               **runtime** components. Only one group can be set to true. The default value is **false**.
+               The virtual_spaces structure is documented below.
+               
+               <a name="virtual_spaces_struct"></a>
+               The `virtual_spaces` block supports:
+        :param _builtins.bool cce_managed: Specifies the whether the storage space is for **kubernetes** and **runtime**
+               components. Only one group can be set to true. The default value is **false**.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "selector_names", selector_names)
@@ -3668,7 +4324,7 @@ class NodePoolStorageGroup(dict):
         The value cannot be default and can contain a maximum of 55 characters.
         Only digits, lowercase letters, and hyphens (-) are allowed.
 
-        <a name="spec"></a>
+        <a name="spec_struct"></a>
         The `spec` block supports:
         """
         return pulumi.get(self, "name")
@@ -3677,9 +4333,8 @@ class NodePoolStorageGroup(dict):
     @pulumi.getter(name="selectorNames")
     def selector_names(self) -> Sequence[_builtins.str]:
         """
-        Specifies the list of names of selectors to match.
-        This parameter corresponds to name in `selectors`. A group can match multiple selectors,
-        but a selector can match only one group.
+        Specifies the list of names of selectors to match. This parameter corresponds to
+        name in `selectors`. A group can match multiple selectors, but a selector can match only one group.
         """
         return pulumi.get(self, "selector_names")
 
@@ -3688,6 +4343,10 @@ class NodePoolStorageGroup(dict):
     def virtual_spaces(self) -> Sequence['outputs.NodePoolStorageGroupVirtualSpace']:
         """
         Specifies the detailed management of space configuration in a group.
+        The virtual_spaces structure is documented below.
+
+        <a name="virtual_spaces_struct"></a>
+        The `virtual_spaces` block supports:
         """
         return pulumi.get(self, "virtual_spaces")
 
@@ -3695,8 +4354,8 @@ class NodePoolStorageGroup(dict):
     @pulumi.getter(name="cceManaged")
     def cce_managed(self) -> Optional[_builtins.bool]:
         """
-        Specifies the whether the storage space is for **kubernetes** and
-        **runtime** components. Only one group can be set to true. The default value is **false**.
+        Specifies the whether the storage space is for **kubernetes** and **runtime**
+        components. Only one group can be set to true. The default value is **false**.
         """
         return pulumi.get(self, "cce_managed")
 
@@ -3731,8 +4390,12 @@ class NodePoolStorageGroupVirtualSpace(dict):
                  lvm_path: Optional[_builtins.str] = None,
                  runtime_lv_type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str name: Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-               and **user** are supported.
+        :param _builtins.str name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
         :param _builtins.str size: Specifies the size of a virtual space. Only an integer percentage is supported.
                Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
         :param _builtins.str lvm_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
@@ -3742,7 +4405,7 @@ class NodePoolStorageGroupVirtualSpace(dict):
         :param _builtins.str runtime_lv_type: Specifies the LVM write mode, values can be **linear** and **striped**.
                This parameter takes effect only in **runtime** configuration.
                
-               <a name="hostname_config"></a>
+               <a name="hostname_config_struct"></a>
                The `hostname_config` block supports:
         """
         pulumi.set(__self__, "name", name)
@@ -3758,8 +4421,12 @@ class NodePoolStorageGroupVirtualSpace(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
-        and **user** are supported.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -3797,7 +4464,7 @@ class NodePoolStorageGroupVirtualSpace(dict):
         Specifies the LVM write mode, values can be **linear** and **striped**.
         This parameter takes effect only in **runtime** configuration.
 
-        <a name="hostname_config"></a>
+        <a name="hostname_config_struct"></a>
         The `hostname_config` block supports:
         """
         return pulumi.get(self, "runtime_lv_type")
@@ -3839,21 +4506,40 @@ class NodePoolStorageSelector(dict):
                  match_label_volume_type: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str name: Specifies the selector name, used as the index of `selector_names`
-               in storage group. The name of each selector must be unique.
-        :param _builtins.str match_label_count: Specifies the number of disks to be selected. If omitted,
-               all disks of this type are selected.
-        :param _builtins.str match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted
-               disk.
+        :param _builtins.str name: Specifies the name of an extended scaling group.
+               The value cannot be default and can contain a maximum of 55 characters.
+               Only digits, lowercase letters, and hyphens (-) are allowed.
+               
+               <a name="spec_struct"></a>
+               The `spec` block supports:
+        :param _builtins.str match_label_count: Specifies the number of disks to be selected. If omitted, all disks of this
+               type are selected.
+               
+               <a name="groups_struct"></a>
+               The `groups` block supports:
+        :param _builtins.str match_label_metadata_cmkid: Specifies the customer master key ID of an encrypted disk.
         :param _builtins.str match_label_metadata_encrypted: Specifies the disk encryption identifier.
                Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
                If omitted, whether the disk is encrypted is not limited.
-        :param _builtins.str match_label_size: Specifies the matched disk size. If omitted,
-               the disk size is not limited. Example: 100.
-        :param _builtins.str match_label_volume_type: Specifies the EVS disk type. Currently,
-               **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
-        :param _builtins.str type: Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-               The default value is **evs**.
+        :param _builtins.str match_label_size: Specifies the matched disk size. If omitted, the disk size is not limited.
+               Example: 100.
+        :param _builtins.str match_label_volume_type: Specifies the EVS disk type. Currently, **SSD**, **GPSSD**, and **SAS**
+               are supported. If omitted, the disk type is not limited.
+        :param _builtins.str type: Specifies the hostname type of the kubernetes node.
+               The value can be:
+               + **privateIp**: The Kubernetes node is named after its IP address.
+               + **cceNodeName**: The Kubernetes node is named after the CCE node.
+               
+               If `hostname_config` not specified, the default value is **privateIp**.
+               
+               ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+               The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+               after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+               each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+               characters is a lowercase letter or a digit ranging from 0 to 9.
+               
+               <a name="extension_scale_groups_struct"></a>
+               The `extension_scale_groups` block supports:
         """
         pulumi.set(__self__, "name", name)
         if match_label_count is not None:
@@ -3873,8 +4559,12 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Specifies the selector name, used as the index of `selector_names`
-        in storage group. The name of each selector must be unique.
+        Specifies the name of an extended scaling group.
+        The value cannot be default and can contain a maximum of 55 characters.
+        Only digits, lowercase letters, and hyphens (-) are allowed.
+
+        <a name="spec_struct"></a>
+        The `spec` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -3882,8 +4572,11 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter(name="matchLabelCount")
     def match_label_count(self) -> Optional[_builtins.str]:
         """
-        Specifies the number of disks to be selected. If omitted,
-        all disks of this type are selected.
+        Specifies the number of disks to be selected. If omitted, all disks of this
+        type are selected.
+
+        <a name="groups_struct"></a>
+        The `groups` block supports:
         """
         return pulumi.get(self, "match_label_count")
 
@@ -3891,8 +4584,7 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter(name="matchLabelMetadataCmkid")
     def match_label_metadata_cmkid(self) -> Optional[_builtins.str]:
         """
-        Specifies the customer master key ID of an encrypted
-        disk.
+        Specifies the customer master key ID of an encrypted disk.
         """
         return pulumi.get(self, "match_label_metadata_cmkid")
 
@@ -3910,8 +4602,8 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter(name="matchLabelSize")
     def match_label_size(self) -> Optional[_builtins.str]:
         """
-        Specifies the matched disk size. If omitted,
-        the disk size is not limited. Example: 100.
+        Specifies the matched disk size. If omitted, the disk size is not limited.
+        Example: 100.
         """
         return pulumi.get(self, "match_label_size")
 
@@ -3919,8 +4611,8 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter(name="matchLabelVolumeType")
     def match_label_volume_type(self) -> Optional[_builtins.str]:
         """
-        Specifies the EVS disk type. Currently,
-        **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+        Specifies the EVS disk type. Currently, **SSD**, **GPSSD**, and **SAS**
+        are supported. If omitted, the disk type is not limited.
         """
         return pulumi.get(self, "match_label_volume_type")
 
@@ -3928,8 +4620,21 @@ class NodePoolStorageSelector(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
-        The default value is **evs**.
+        Specifies the hostname type of the kubernetes node.
+        The value can be:
+        + **privateIp**: The Kubernetes node is named after its IP address.
+        + **cceNodeName**: The Kubernetes node is named after the CCE node.
+
+        If `hostname_config` not specified, the default value is **privateIp**.
+
+        ~>For a node which is configured using cceNodeName, the name is the same as the Kubernetes node name and the ECS name.
+        The node name cannot be changed. If the ECS name is changed on the ECS console, the node name will retain unchanged
+        after ECS synchronization. To avoid a conflict between Kubernetes nodes, the system automatically adds a suffix to
+        each node name. The suffix is in the format of A hyphen (-) Five random characters. The value of the random
+        characters is a lowercase letter or a digit ranging from 0 to 9.
+
+        <a name="extension_scale_groups_struct"></a>
+        The `extension_scale_groups` block supports:
         """
         return pulumi.get(self, "type")
 
@@ -3943,7 +4648,7 @@ class NodePoolTaint(dict):
         """
         :param _builtins.str effect: Available options are NoSchedule, PreferNoSchedule, and NoExecute.
                
-               <a name="extend_params"></a>
+               <a name="extend_params_struct"></a>
                The `extend_params` block supports:
         :param _builtins.str key: A key must contain 1 to 63 characters starting with a letter or digit. Only letters,
                digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the
@@ -3961,7 +4666,7 @@ class NodePoolTaint(dict):
         """
         Available options are NoSchedule, PreferNoSchedule, and NoExecute.
 
-        <a name="extend_params"></a>
+        <a name="extend_params_struct"></a>
         The `extend_params` block supports:
         """
         return pulumi.get(self, "effect")
@@ -5187,6 +5892,178 @@ class NodesRemoveNode(dict):
 
 
 @pulumi.output_type
+class ReleaseParameters(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dryRun":
+            suggest = "dry_run"
+        elif key == "includeHooks":
+            suggest = "include_hooks"
+        elif key == "nameTemplate":
+            suggest = "name_template"
+        elif key == "noHooks":
+            suggest = "no_hooks"
+        elif key == "releaseVersion":
+            suggest = "release_version"
+        elif key == "resetValues":
+            suggest = "reset_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ReleaseParameters. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ReleaseParameters.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ReleaseParameters.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dry_run: Optional[_builtins.bool] = None,
+                 include_hooks: Optional[_builtins.bool] = None,
+                 name_template: Optional[_builtins.str] = None,
+                 no_hooks: Optional[_builtins.bool] = None,
+                 recreate: Optional[_builtins.bool] = None,
+                 release_version: Optional[_builtins.int] = None,
+                 replace: Optional[_builtins.bool] = None,
+                 reset_values: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.bool dry_run: Specifies whether to dry run. IF set to **true**,
+               only chart parameters are verified, and installation is not performed.
+        :param _builtins.bool include_hooks: Specifies whether to enable hooks during an update or deletion.
+        :param _builtins.str name_template: Specifies the release name template.
+        :param _builtins.bool no_hooks: Specifies whether to disable hooks during installation.
+        :param _builtins.bool recreate: Specifies whether to rebuild the release.
+        :param _builtins.int release_version: Specifies the version of the rollback release.
+        :param _builtins.bool replace: Specifies whether to replace the release with the same name.
+        :param _builtins.bool reset_values: Specifies whether to reset values during an update.
+        """
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if include_hooks is not None:
+            pulumi.set(__self__, "include_hooks", include_hooks)
+        if name_template is not None:
+            pulumi.set(__self__, "name_template", name_template)
+        if no_hooks is not None:
+            pulumi.set(__self__, "no_hooks", no_hooks)
+        if recreate is not None:
+            pulumi.set(__self__, "recreate", recreate)
+        if release_version is not None:
+            pulumi.set(__self__, "release_version", release_version)
+        if replace is not None:
+            pulumi.set(__self__, "replace", replace)
+        if reset_values is not None:
+            pulumi.set(__self__, "reset_values", reset_values)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to dry run. IF set to **true**,
+        only chart parameters are verified, and installation is not performed.
+        """
+        return pulumi.get(self, "dry_run")
+
+    @_builtins.property
+    @pulumi.getter(name="includeHooks")
+    def include_hooks(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to enable hooks during an update or deletion.
+        """
+        return pulumi.get(self, "include_hooks")
+
+    @_builtins.property
+    @pulumi.getter(name="nameTemplate")
+    def name_template(self) -> Optional[_builtins.str]:
+        """
+        Specifies the release name template.
+        """
+        return pulumi.get(self, "name_template")
+
+    @_builtins.property
+    @pulumi.getter(name="noHooks")
+    def no_hooks(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to disable hooks during installation.
+        """
+        return pulumi.get(self, "no_hooks")
+
+    @_builtins.property
+    @pulumi.getter
+    def recreate(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to rebuild the release.
+        """
+        return pulumi.get(self, "recreate")
+
+    @_builtins.property
+    @pulumi.getter(name="releaseVersion")
+    def release_version(self) -> Optional[_builtins.int]:
+        """
+        Specifies the version of the rollback release.
+        """
+        return pulumi.get(self, "release_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def replace(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to replace the release with the same name.
+        """
+        return pulumi.get(self, "replace")
+
+    @_builtins.property
+    @pulumi.getter(name="resetValues")
+    def reset_values(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether to reset values during an update.
+        """
+        return pulumi.get(self, "reset_values")
+
+
+@pulumi.output_type
+class ReleaseValues(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imagePullPolicy":
+            suggest = "image_pull_policy"
+        elif key == "imageTag":
+            suggest = "image_tag"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ReleaseValues. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ReleaseValues.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ReleaseValues.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_pull_policy: Optional[_builtins.str] = None,
+                 image_tag: Optional[_builtins.str] = None):
+        if image_pull_policy is not None:
+            pulumi.set(__self__, "image_pull_policy", image_pull_policy)
+        if image_tag is not None:
+            pulumi.set(__self__, "image_tag", image_tag)
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullPolicy")
+    def image_pull_policy(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "image_pull_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="imageTag")
+    def image_tag(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "image_tag")
+
+
+@pulumi.output_type
 class GetAddonTemplateSupportVersionResult(dict):
     def __init__(__self__, *,
                  bare_metals: Sequence[_builtins.str],
@@ -5643,6 +6520,174 @@ class GetAddonsItemStatusCurrentVersionSupportVersionResult(dict):
 
 
 @pulumi.output_type
+class GetAutopilotAccessPoliciesAccessPolicyListResult(dict):
+    def __init__(__self__, *,
+                 access_scopes: Sequence['outputs.GetAutopilotAccessPoliciesAccessPolicyListAccessScopeResult'],
+                 api_version: _builtins.str,
+                 clusters: Sequence[_builtins.str],
+                 create_time: _builtins.str,
+                 kind: _builtins.str,
+                 name: _builtins.str,
+                 policy_id: _builtins.str,
+                 policy_type: _builtins.str,
+                 principals: Sequence['outputs.GetAutopilotAccessPoliciesAccessPolicyListPrincipalResult'],
+                 update_time: _builtins.str):
+        """
+        :param Sequence['GetAutopilotAccessPoliciesAccessPolicyListAccessScopeArgs'] access_scopes: The access scope, which is used to specify the cluster and namespace to be authorized.
+               The access_scope structure is documented below.
+        :param _builtins.str api_version: The API version.
+        :param Sequence[_builtins.str] clusters: The list of cluster IDs.
+        :param _builtins.str create_time: The access policy create time.
+        :param _builtins.str kind: The API type.
+        :param _builtins.str name: The access policy name.
+        :param _builtins.str policy_id: The access policy id.
+        :param _builtins.str policy_type: The access policy type.
+        :param Sequence['GetAutopilotAccessPoliciesAccessPolicyListPrincipalArgs'] principals: The authorization object.
+               The principal structure is documented below.
+        :param _builtins.str update_time: The access policy update time.
+        """
+        pulumi.set(__self__, "access_scopes", access_scopes)
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "clusters", clusters)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policy_id", policy_id)
+        pulumi.set(__self__, "policy_type", policy_type)
+        pulumi.set(__self__, "principals", principals)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @_builtins.property
+    @pulumi.getter(name="accessScopes")
+    def access_scopes(self) -> Sequence['outputs.GetAutopilotAccessPoliciesAccessPolicyListAccessScopeResult']:
+        """
+        The access scope, which is used to specify the cluster and namespace to be authorized.
+        The access_scope structure is documented below.
+        """
+        return pulumi.get(self, "access_scopes")
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> _builtins.str:
+        """
+        The API version.
+        """
+        return pulumi.get(self, "api_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def clusters(self) -> Sequence[_builtins.str]:
+        """
+        The list of cluster IDs.
+        """
+        return pulumi.get(self, "clusters")
+
+    @_builtins.property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> _builtins.str:
+        """
+        The access policy create time.
+        """
+        return pulumi.get(self, "create_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        """
+        The API type.
+        """
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The access policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> _builtins.str:
+        """
+        The access policy id.
+        """
+        return pulumi.get(self, "policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> _builtins.str:
+        """
+        The access policy type.
+        """
+        return pulumi.get(self, "policy_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def principals(self) -> Sequence['outputs.GetAutopilotAccessPoliciesAccessPolicyListPrincipalResult']:
+        """
+        The authorization object.
+        The principal structure is documented below.
+        """
+        return pulumi.get(self, "principals")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> _builtins.str:
+        """
+        The access policy update time.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetAutopilotAccessPoliciesAccessPolicyListAccessScopeResult(dict):
+    def __init__(__self__, *,
+                 namespaces: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] namespaces: The list of cluster namespaces.
+        """
+        pulumi.set(__self__, "namespaces", namespaces)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespaces(self) -> Sequence[_builtins.str]:
+        """
+        The list of cluster namespaces.
+        """
+        return pulumi.get(self, "namespaces")
+
+
+@pulumi.output_type
+class GetAutopilotAccessPoliciesAccessPolicyListPrincipalResult(dict):
+    def __init__(__self__, *,
+                 ids: Sequence[_builtins.str],
+                 type: _builtins.str):
+        """
+        :param Sequence[_builtins.str] ids: The ist of IDs of authorized objects.
+        :param _builtins.str type: The type of the authorization object
+        """
+        pulumi.set(__self__, "ids", ids)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def ids(self) -> Sequence[_builtins.str]:
+        """
+        The ist of IDs of authorized objects.
+        """
+        return pulumi.get(self, "ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the authorization object
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetAutopilotAddonTemplatesTemplateResult(dict):
     def __init__(__self__, *,
                  alias: _builtins.str,
@@ -5829,6 +6874,605 @@ class GetAutopilotAddonTemplatesTemplateVersionSupportVersionResult(dict):
 
 
 @pulumi.output_type
+class GetAutopilotAddonsItemResult(dict):
+    def __init__(__self__, *,
+                 api_version: _builtins.str,
+                 kind: _builtins.str,
+                 metadatas: Sequence['outputs.GetAutopilotAddonsItemMetadataResult'],
+                 specs: Sequence['outputs.GetAutopilotAddonsItemSpecResult'],
+                 statuses: Sequence['outputs.GetAutopilotAddonsItemStatusResult']):
+        """
+        :param _builtins.str api_version: The API version.
+        :param _builtins.str kind: The API type.
+        :param Sequence['GetAutopilotAddonsItemMetadataArgs'] metadatas: The metadata of the add-on instance.
+        :param Sequence['GetAutopilotAddonsItemSpecArgs'] specs: The detailed description of the add-on instance.
+        :param Sequence['GetAutopilotAddonsItemStatusArgs'] statuses: The statuses of add-on instances.
+        """
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "metadatas", metadatas)
+        pulumi.set(__self__, "specs", specs)
+        pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> _builtins.str:
+        """
+        The API version.
+        """
+        return pulumi.get(self, "api_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def kind(self) -> _builtins.str:
+        """
+        The API type.
+        """
+        return pulumi.get(self, "kind")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadatas(self) -> Sequence['outputs.GetAutopilotAddonsItemMetadataResult']:
+        """
+        The metadata of the add-on instance.
+        """
+        return pulumi.get(self, "metadatas")
+
+    @_builtins.property
+    @pulumi.getter
+    def specs(self) -> Sequence['outputs.GetAutopilotAddonsItemSpecResult']:
+        """
+        The detailed description of the add-on instance.
+        """
+        return pulumi.get(self, "specs")
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> Sequence['outputs.GetAutopilotAddonsItemStatusResult']:
+        """
+        The statuses of add-on instances.
+        """
+        return pulumi.get(self, "statuses")
+
+
+@pulumi.output_type
+class GetAutopilotAddonsItemMetadataResult(dict):
+    def __init__(__self__, *,
+                 alias: _builtins.str,
+                 annotations: Mapping[str, _builtins.str],
+                 creation_timestamp: _builtins.str,
+                 labels: Mapping[str, _builtins.str],
+                 name: _builtins.str,
+                 uid: _builtins.str,
+                 update_timestamp: _builtins.str):
+        """
+        :param _builtins.str alias: The add-on instance alias.
+        :param Mapping[str, _builtins.str] annotations: The add-on annotations in the format of key/value pairs.
+        :param _builtins.str creation_timestamp: The creation time.
+        :param Mapping[str, _builtins.str] labels: The add-on labels in key/value pairs.
+        :param _builtins.str name: The add-on instance name.
+        :param _builtins.str uid: The add-on instance ID.
+        :param _builtins.str update_timestamp: The update time.
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "annotations", annotations)
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "update_timestamp", update_timestamp)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> _builtins.str:
+        """
+        The add-on instance alias.
+        """
+        return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Mapping[str, _builtins.str]:
+        """
+        The add-on annotations in the format of key/value pairs.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "creation_timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, _builtins.str]:
+        """
+        The add-on labels in key/value pairs.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The add-on instance name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The add-on instance ID.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTimestamp")
+    def update_timestamp(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_timestamp")
+
+
+@pulumi.output_type
+class GetAutopilotAddonsItemSpecResult(dict):
+    def __init__(__self__, *,
+                 addon_template_labels: Sequence[_builtins.str],
+                 addon_template_logo: _builtins.str,
+                 addon_template_name: _builtins.str,
+                 addon_template_type: _builtins.str,
+                 cluster_id: _builtins.str,
+                 description: _builtins.str,
+                 values: Mapping[str, _builtins.str],
+                 version: _builtins.str):
+        """
+        :param Sequence[_builtins.str] addon_template_labels: The labels of the add-on template.
+        :param _builtins.str addon_template_logo: The URL for obtaining the add-on template logo.
+        :param _builtins.str addon_template_name: Specifies the name of the add-on.
+        :param _builtins.str addon_template_type: The add-on type.
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str description: The add-on description.
+        :param Mapping[str, _builtins.str] values: The add-on installation parameters.
+        :param _builtins.str version: The add-on version.
+        """
+        pulumi.set(__self__, "addon_template_labels", addon_template_labels)
+        pulumi.set(__self__, "addon_template_logo", addon_template_logo)
+        pulumi.set(__self__, "addon_template_name", addon_template_name)
+        pulumi.set(__self__, "addon_template_type", addon_template_type)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "values", values)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateLabels")
+    def addon_template_labels(self) -> Sequence[_builtins.str]:
+        """
+        The labels of the add-on template.
+        """
+        return pulumi.get(self, "addon_template_labels")
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateLogo")
+    def addon_template_logo(self) -> _builtins.str:
+        """
+        The URL for obtaining the add-on template logo.
+        """
+        return pulumi.get(self, "addon_template_logo")
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateName")
+    def addon_template_name(self) -> _builtins.str:
+        """
+        Specifies the name of the add-on.
+        """
+        return pulumi.get(self, "addon_template_name")
+
+    @_builtins.property
+    @pulumi.getter(name="addonTemplateType")
+    def addon_template_type(self) -> _builtins.str:
+        """
+        The add-on type.
+        """
+        return pulumi.get(self, "addon_template_type")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The add-on description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Mapping[str, _builtins.str]:
+        """
+        The add-on installation parameters.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The add-on version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAutopilotAddonsItemStatusResult(dict):
+    def __init__(__self__, *,
+                 current_versions: Sequence['outputs.GetAutopilotAddonsItemStatusCurrentVersionResult'],
+                 is_rollbackable: _builtins.bool,
+                 message: _builtins.str,
+                 previous_version: _builtins.str,
+                 reason: _builtins.str,
+                 status: _builtins.str,
+                 target_versions: Sequence[_builtins.str]):
+        """
+        :param Sequence['GetAutopilotAddonsItemStatusCurrentVersionArgs'] current_versions: The information about the current add-on version.
+        :param _builtins.bool is_rollbackable: Whether the add-on version can be rolled back to the source version.
+        :param _builtins.str message: The installation error details.
+        :param _builtins.str previous_version: The add-on version before upgrade or rollback
+        :param _builtins.str reason: The cause of the add-on installation failure.
+        :param _builtins.str status: The statuses of add-on instances.
+        :param Sequence[_builtins.str] target_versions: The versions to which the current add-on version can be upgraded.
+        """
+        pulumi.set(__self__, "current_versions", current_versions)
+        pulumi.set(__self__, "is_rollbackable", is_rollbackable)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "previous_version", previous_version)
+        pulumi.set(__self__, "reason", reason)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "target_versions", target_versions)
+
+    @_builtins.property
+    @pulumi.getter(name="currentVersions")
+    def current_versions(self) -> Sequence['outputs.GetAutopilotAddonsItemStatusCurrentVersionResult']:
+        """
+        The information about the current add-on version.
+        """
+        return pulumi.get(self, "current_versions")
+
+    @_builtins.property
+    @pulumi.getter(name="isRollbackable")
+    def is_rollbackable(self) -> _builtins.bool:
+        """
+        Whether the add-on version can be rolled back to the source version.
+        """
+        return pulumi.get(self, "is_rollbackable")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The installation error details.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter(name="previousVersion")
+    def previous_version(self) -> _builtins.str:
+        """
+        The add-on version before upgrade or rollback
+        """
+        return pulumi.get(self, "previous_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> _builtins.str:
+        """
+        The cause of the add-on installation failure.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The statuses of add-on instances.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="targetVersions")
+    def target_versions(self) -> Sequence[_builtins.str]:
+        """
+        The versions to which the current add-on version can be upgraded.
+        """
+        return pulumi.get(self, "target_versions")
+
+
+@pulumi.output_type
+class GetAutopilotAddonsItemStatusCurrentVersionResult(dict):
+    def __init__(__self__, *,
+                 creation_timestamp: _builtins.str,
+                 input: Mapping[str, _builtins.str],
+                 stable: _builtins.bool,
+                 support_versions: Sequence['outputs.GetAutopilotAddonsItemStatusCurrentVersionSupportVersionResult'],
+                 translate: Mapping[str, _builtins.str],
+                 update_timestamp: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str creation_timestamp: The creation time.
+        :param Mapping[str, _builtins.str] input: The add-on installation parameters.
+        :param _builtins.bool stable: Whether the add-on version is a stable release.
+        :param Sequence['GetAutopilotAddonsItemStatusCurrentVersionSupportVersionArgs'] support_versions: The cluster versions that support the add-on.
+        :param Mapping[str, _builtins.str] translate: The translation information used by the GUI.
+        :param _builtins.str update_timestamp: The update time.
+        :param _builtins.str version: The add-on version.
+        """
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        pulumi.set(__self__, "input", input)
+        pulumi.set(__self__, "stable", stable)
+        pulumi.set(__self__, "support_versions", support_versions)
+        pulumi.set(__self__, "translate", translate)
+        pulumi.set(__self__, "update_timestamp", update_timestamp)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "creation_timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def input(self) -> Mapping[str, _builtins.str]:
+        """
+        The add-on installation parameters.
+        """
+        return pulumi.get(self, "input")
+
+    @_builtins.property
+    @pulumi.getter
+    def stable(self) -> _builtins.bool:
+        """
+        Whether the add-on version is a stable release.
+        """
+        return pulumi.get(self, "stable")
+
+    @_builtins.property
+    @pulumi.getter(name="supportVersions")
+    def support_versions(self) -> Sequence['outputs.GetAutopilotAddonsItemStatusCurrentVersionSupportVersionResult']:
+        """
+        The cluster versions that support the add-on.
+        """
+        return pulumi.get(self, "support_versions")
+
+    @_builtins.property
+    @pulumi.getter
+    def translate(self) -> Mapping[str, _builtins.str]:
+        """
+        The translation information used by the GUI.
+        """
+        return pulumi.get(self, "translate")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTimestamp")
+    def update_timestamp(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The add-on version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetAutopilotAddonsItemStatusCurrentVersionSupportVersionResult(dict):
+    def __init__(__self__, *,
+                 categories: Sequence[_builtins.str],
+                 cluster_type: _builtins.str,
+                 cluster_versions: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] categories: The current support version category.
+        :param _builtins.str cluster_type: The cluster type that supports the add-on.
+        :param Sequence[_builtins.str] cluster_versions: The cluster versions that support the add-on. The value is a regular expression.
+        """
+        pulumi.set(__self__, "categories", categories)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "cluster_versions", cluster_versions)
+
+    @_builtins.property
+    @pulumi.getter
+    def categories(self) -> Sequence[_builtins.str]:
+        """
+        The current support version category.
+        """
+        return pulumi.get(self, "categories")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> _builtins.str:
+        """
+        The cluster type that supports the add-on.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterVersions")
+    def cluster_versions(self) -> Sequence[_builtins.str]:
+        """
+        The cluster versions that support the add-on. The value is a regular expression.
+        """
+        return pulumi.get(self, "cluster_versions")
+
+
+@pulumi.output_type
+class GetAutopilotChartsChartResult(dict):
+    def __init__(__self__, *,
+                 chart_url: _builtins.str,
+                 create_at: _builtins.str,
+                 description: _builtins.str,
+                 icon_url: _builtins.str,
+                 id: _builtins.str,
+                 instruction: _builtins.str,
+                 name: _builtins.str,
+                 public: _builtins.bool,
+                 source: _builtins.str,
+                 translate: _builtins.str,
+                 update_at: _builtins.str,
+                 values: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str chart_url: The chart URL.
+        :param _builtins.str create_at: The creation time.
+        :param _builtins.str description: The description of the chart.
+        :param _builtins.str icon_url: The icon URL.
+        :param _builtins.str id: The chart ID.
+        :param _builtins.str instruction: The instruction of the chart.
+        :param _builtins.str name: The chart name.
+        :param _builtins.bool public: Whether the chart is public.
+        :param _builtins.str source: The source of the chart.
+        :param _builtins.str translate: The translation sources of the chart.
+        :param _builtins.str update_at: The update time.
+        :param _builtins.str values: The values of the chart.
+        :param _builtins.str version: The chart version.
+        """
+        pulumi.set(__self__, "chart_url", chart_url)
+        pulumi.set(__self__, "create_at", create_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "icon_url", icon_url)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instruction", instruction)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "translate", translate)
+        pulumi.set(__self__, "update_at", update_at)
+        pulumi.set(__self__, "values", values)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="chartUrl")
+    def chart_url(self) -> _builtins.str:
+        """
+        The chart URL.
+        """
+        return pulumi.get(self, "chart_url")
+
+    @_builtins.property
+    @pulumi.getter(name="createAt")
+    def create_at(self) -> _builtins.str:
+        """
+        The creation time.
+        """
+        return pulumi.get(self, "create_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The description of the chart.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="iconUrl")
+    def icon_url(self) -> _builtins.str:
+        """
+        The icon URL.
+        """
+        return pulumi.get(self, "icon_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The chart ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def instruction(self) -> _builtins.str:
+        """
+        The instruction of the chart.
+        """
+        return pulumi.get(self, "instruction")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The chart name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> _builtins.bool:
+        """
+        Whether the chart is public.
+        """
+        return pulumi.get(self, "public")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        The source of the chart.
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter
+    def translate(self) -> _builtins.str:
+        """
+        The translation sources of the chart.
+        """
+        return pulumi.get(self, "translate")
+
+    @_builtins.property
+    @pulumi.getter(name="updateAt")
+    def update_at(self) -> _builtins.str:
+        """
+        The update time.
+        """
+        return pulumi.get(self, "update_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> _builtins.str:
+        """
+        The values of the chart.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The chart version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetAutopilotClusterCertificateClusterResult(dict):
     def __init__(__self__, *,
                  clusters: Sequence['outputs.GetAutopilotClusterCertificateClusterClusterResult'],
@@ -6011,6 +7655,318 @@ class GetAutopilotClusterCertificateUserUserResult(dict):
         The client key data of the cluster certificate.
         """
         return pulumi.get(self, "client_key_data")
+
+
+@pulumi.output_type
+class GetAutopilotClusterLogConfigsLogConfigResult(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool,
+                 name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.bool enable: Whether to enable log collection.
+        :param _builtins.str name: Last config server name.
+        :param _builtins.str type: Specifies the type of log config. Value options:
+               + **control**: specifies the logs of the control plane components.
+               + **audit**: specifies the audit logs on the control plane.
+               + **system-addon**: s ecifies the logs of the system add-ons.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether to enable log collection.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Last config server name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Specifies the type of log config. Value options:
+        + **control**: specifies the logs of the control plane components.
+        + **audit**: specifies the audit logs on the control plane.
+        + **system-addon**: s ecifies the logs of the system add-ons.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoMetadataResult(dict):
+    def __init__(__self__, *,
+                 annotations: Mapping[str, _builtins.str],
+                 creation_timestamp: _builtins.str,
+                 labels: Mapping[str, _builtins.str],
+                 name: _builtins.str,
+                 uid: _builtins.str,
+                 update_timestamp: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] annotations: Resource annotations, which consist of key/value pairs.
+        :param _builtins.str creation_timestamp: Creation time.
+        :param Mapping[str, _builtins.str] labels: Resource labels, in key/value pair format. These are reserved fields in the interface
+               and will not take effect.
+        :param _builtins.str name: Resource name.
+        :param _builtins.str uid: Unique ID identifier.
+        :param _builtins.str update_timestamp: Update time.
+        """
+        pulumi.set(__self__, "annotations", annotations)
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+        pulumi.set(__self__, "update_timestamp", update_timestamp)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Mapping[str, _builtins.str]:
+        """
+        Resource annotations, which consist of key/value pairs.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> _builtins.str:
+        """
+        Creation time.
+        """
+        return pulumi.get(self, "creation_timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, _builtins.str]:
+        """
+        Resource labels, in key/value pair format. These are reserved fields in the interface
+        and will not take effect.
+        """
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Resource name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        Unique ID identifier.
+        """
+        return pulumi.get(self, "uid")
+
+    @_builtins.property
+    @pulumi.getter(name="updateTimestamp")
+    def update_timestamp(self) -> _builtins.str:
+        """
+        Update time.
+        """
+        return pulumi.get(self, "update_timestamp")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoSpecResult(dict):
+    def __init__(__self__, *,
+                 last_upgrade_infos: Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecLastUpgradeInfoResult'],
+                 upgrade_feature_gates: Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecUpgradeFeatureGateResult'],
+                 version_infos: Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecVersionInfoResult']):
+        """
+        :param Sequence['GetAutopilotClusterUpgradeInfoSpecLastUpgradeInfoArgs'] last_upgrade_infos: Last cluster upgrade information.
+        :param Sequence['GetAutopilotClusterUpgradeInfoSpecUpgradeFeatureGateArgs'] upgrade_feature_gates: Cluster upgrade feature switches.
+        :param Sequence['GetAutopilotClusterUpgradeInfoSpecVersionInfoArgs'] version_infos: Version information.
+        """
+        pulumi.set(__self__, "last_upgrade_infos", last_upgrade_infos)
+        pulumi.set(__self__, "upgrade_feature_gates", upgrade_feature_gates)
+        pulumi.set(__self__, "version_infos", version_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="lastUpgradeInfos")
+    def last_upgrade_infos(self) -> Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecLastUpgradeInfoResult']:
+        """
+        Last cluster upgrade information.
+        """
+        return pulumi.get(self, "last_upgrade_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradeFeatureGates")
+    def upgrade_feature_gates(self) -> Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecUpgradeFeatureGateResult']:
+        """
+        Cluster upgrade feature switches.
+        """
+        return pulumi.get(self, "upgrade_feature_gates")
+
+    @_builtins.property
+    @pulumi.getter(name="versionInfos")
+    def version_infos(self) -> Sequence['outputs.GetAutopilotClusterUpgradeInfoSpecVersionInfoResult']:
+        """
+        Version information.
+        """
+        return pulumi.get(self, "version_infos")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoSpecLastUpgradeInfoResult(dict):
+    def __init__(__self__, *,
+                 completion_time: _builtins.str,
+                 phase: _builtins.str,
+                 progress: _builtins.str):
+        """
+        :param _builtins.str completion_time: Upgrade task end time.
+        :param _builtins.str phase: Upgrade task status. Possible values: Init, Running, Pause, Success, Failed.
+        :param _builtins.str progress: Upgrade task progress.
+        """
+        pulumi.set(__self__, "completion_time", completion_time)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "progress", progress)
+
+    @_builtins.property
+    @pulumi.getter(name="completionTime")
+    def completion_time(self) -> _builtins.str:
+        """
+        Upgrade task end time.
+        """
+        return pulumi.get(self, "completion_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def phase(self) -> _builtins.str:
+        """
+        Upgrade task status. Possible values: Init, Running, Pause, Success, Failed.
+        """
+        return pulumi.get(self, "phase")
+
+    @_builtins.property
+    @pulumi.getter
+    def progress(self) -> _builtins.str:
+        """
+        Upgrade task progress.
+        """
+        return pulumi.get(self, "progress")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoSpecUpgradeFeatureGateResult(dict):
+    def __init__(__self__, *,
+                 support_upgrade_page_v4: _builtins.bool):
+        """
+        :param _builtins.bool support_upgrade_page_v4: Whether the cluster upgrade Console interface supports version V4.
+               This field is generally used by the CCE Console.
+        """
+        pulumi.set(__self__, "support_upgrade_page_v4", support_upgrade_page_v4)
+
+    @_builtins.property
+    @pulumi.getter(name="supportUpgradePageV4")
+    def support_upgrade_page_v4(self) -> _builtins.bool:
+        """
+        Whether the cluster upgrade Console interface supports version V4.
+        This field is generally used by the CCE Console.
+        """
+        return pulumi.get(self, "support_upgrade_page_v4")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoSpecVersionInfoResult(dict):
+    def __init__(__self__, *,
+                 patch: _builtins.str,
+                 release: _builtins.str,
+                 suggest_patch: _builtins.str,
+                 target_versions: Sequence[_builtins.str]):
+        """
+        :param _builtins.str patch: Patch version number, e.g., r0.
+        :param _builtins.str release: Official version number, e.g., v1.19.10.
+        :param _builtins.str suggest_patch: Recommended target patch version number, e.g., r0.
+        :param Sequence[_builtins.str] target_versions: Upgrade target version collection.
+        """
+        pulumi.set(__self__, "patch", patch)
+        pulumi.set(__self__, "release", release)
+        pulumi.set(__self__, "suggest_patch", suggest_patch)
+        pulumi.set(__self__, "target_versions", target_versions)
+
+    @_builtins.property
+    @pulumi.getter
+    def patch(self) -> _builtins.str:
+        """
+        Patch version number, e.g., r0.
+        """
+        return pulumi.get(self, "patch")
+
+    @_builtins.property
+    @pulumi.getter
+    def release(self) -> _builtins.str:
+        """
+        Official version number, e.g., v1.19.10.
+        """
+        return pulumi.get(self, "release")
+
+    @_builtins.property
+    @pulumi.getter(name="suggestPatch")
+    def suggest_patch(self) -> _builtins.str:
+        """
+        Recommended target patch version number, e.g., r0.
+        """
+        return pulumi.get(self, "suggest_patch")
+
+    @_builtins.property
+    @pulumi.getter(name="targetVersions")
+    def target_versions(self) -> Sequence[_builtins.str]:
+        """
+        Upgrade target version collection.
+        """
+        return pulumi.get(self, "target_versions")
+
+
+@pulumi.output_type
+class GetAutopilotClusterUpgradeInfoStatusResult(dict):
+    def __init__(__self__, *,
+                 completion_time: _builtins.str,
+                 phase: _builtins.str,
+                 progress: _builtins.str):
+        """
+        :param _builtins.str completion_time: Upgrade task end time.
+        :param _builtins.str phase: Upgrade task status. Possible values: Init, Running, Pause, Success, Failed.
+        :param _builtins.str progress: Upgrade task progress.
+        """
+        pulumi.set(__self__, "completion_time", completion_time)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "progress", progress)
+
+    @_builtins.property
+    @pulumi.getter(name="completionTime")
+    def completion_time(self) -> _builtins.str:
+        """
+        Upgrade task end time.
+        """
+        return pulumi.get(self, "completion_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def phase(self) -> _builtins.str:
+        """
+        Upgrade task status. Possible values: Init, Running, Pause, Success, Failed.
+        """
+        return pulumi.get(self, "phase")
+
+    @_builtins.property
+    @pulumi.getter
+    def progress(self) -> _builtins.str:
+        """
+        Upgrade task progress.
+        """
+        return pulumi.get(self, "progress")
 
 
 @pulumi.output_type
@@ -6601,6 +8557,189 @@ class GetAutopilotClustersClusterStatusEndpointResult(dict):
         The URL of the endpoint.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetAutopilotReleasesReleaseResult(dict):
+    def __init__(__self__, *,
+                 chart_name: _builtins.str,
+                 chart_public: _builtins.bool,
+                 chart_version: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 create_at: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 namespace: _builtins.str,
+                 parameters: _builtins.str,
+                 resources: _builtins.str,
+                 status: _builtins.str,
+                 status_description: _builtins.str,
+                 update_at: _builtins.str,
+                 values: _builtins.str,
+                 version: _builtins.int):
+        """
+        :param _builtins.str chart_name: The chart name.
+        :param _builtins.bool chart_public: The chart is public or not.
+        :param _builtins.str chart_version: The chart version.
+        :param _builtins.str cluster_id: Specifies the cluster ID.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str create_at: The creation time of release.
+        :param _builtins.str description: The release description.
+        :param _builtins.str name: The release name.
+        :param _builtins.str namespace: Specifies the namespace corresponding to the template.
+        :param _builtins.str parameters: The release parameters.
+        :param _builtins.str resources: The release resources.
+        :param _builtins.str status: The release status.
+        :param _builtins.str status_description: The release status description.
+        :param _builtins.str update_at: The update time of release.
+        :param _builtins.str values: The release values.
+        :param _builtins.int version: The release version.
+        """
+        pulumi.set(__self__, "chart_name", chart_name)
+        pulumi.set(__self__, "chart_public", chart_public)
+        pulumi.set(__self__, "chart_version", chart_version)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_at", create_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "status_description", status_description)
+        pulumi.set(__self__, "update_at", update_at)
+        pulumi.set(__self__, "values", values)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="chartName")
+    def chart_name(self) -> _builtins.str:
+        """
+        The chart name.
+        """
+        return pulumi.get(self, "chart_name")
+
+    @_builtins.property
+    @pulumi.getter(name="chartPublic")
+    def chart_public(self) -> _builtins.bool:
+        """
+        The chart is public or not.
+        """
+        return pulumi.get(self, "chart_public")
+
+    @_builtins.property
+    @pulumi.getter(name="chartVersion")
+    def chart_version(self) -> _builtins.str:
+        """
+        The chart version.
+        """
+        return pulumi.get(self, "chart_version")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createAt")
+    def create_at(self) -> _builtins.str:
+        """
+        The creation time of release.
+        """
+        return pulumi.get(self, "create_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The release description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The release name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace corresponding to the template.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> _builtins.str:
+        """
+        The release parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> _builtins.str:
+        """
+        The release resources.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The release status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="statusDescription")
+    def status_description(self) -> _builtins.str:
+        """
+        The release status description.
+        """
+        return pulumi.get(self, "status_description")
+
+    @_builtins.property
+    @pulumi.getter(name="updateAt")
+    def update_at(self) -> _builtins.str:
+        """
+        The update time of release.
+        """
+        return pulumi.get(self, "update_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> _builtins.str:
+        """
+        The release values.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        The release version.
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -7799,6 +9938,247 @@ class GetClustersClusterMasterResult(dict):
 
 
 @pulumi.output_type
+class GetFlavorSpecificationsClusterFlavorSpecResult(dict):
+    def __init__(__self__, *,
+                 available_master_flavors: Sequence['outputs.GetFlavorSpecificationsClusterFlavorSpecAvailableMasterFlavorResult'],
+                 is_sold_out: _builtins.bool,
+                 is_support_multi_az: _builtins.bool,
+                 name: _builtins.str,
+                 node_capacity: _builtins.int):
+        """
+        :param Sequence['GetFlavorSpecificationsClusterFlavorSpecAvailableMasterFlavorArgs'] available_master_flavors: The control plane node details.
+        :param _builtins.bool is_sold_out: Whether the cluster flavors are sold out.
+        :param _builtins.bool is_support_multi_az: Whether the control plane nodes in a cluster can be deployed in different AZs.
+        :param _builtins.str name: The control plane node flavor name.
+        :param _builtins.int node_capacity: The number of nodes in a cluster.
+        """
+        pulumi.set(__self__, "available_master_flavors", available_master_flavors)
+        pulumi.set(__self__, "is_sold_out", is_sold_out)
+        pulumi.set(__self__, "is_support_multi_az", is_support_multi_az)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_capacity", node_capacity)
+
+    @_builtins.property
+    @pulumi.getter(name="availableMasterFlavors")
+    def available_master_flavors(self) -> Sequence['outputs.GetFlavorSpecificationsClusterFlavorSpecAvailableMasterFlavorResult']:
+        """
+        The control plane node details.
+        """
+        return pulumi.get(self, "available_master_flavors")
+
+    @_builtins.property
+    @pulumi.getter(name="isSoldOut")
+    def is_sold_out(self) -> _builtins.bool:
+        """
+        Whether the cluster flavors are sold out.
+        """
+        return pulumi.get(self, "is_sold_out")
+
+    @_builtins.property
+    @pulumi.getter(name="isSupportMultiAz")
+    def is_support_multi_az(self) -> _builtins.bool:
+        """
+        Whether the control plane nodes in a cluster can be deployed in different AZs.
+        """
+        return pulumi.get(self, "is_support_multi_az")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The control plane node flavor name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCapacity")
+    def node_capacity(self) -> _builtins.int:
+        """
+        The number of nodes in a cluster.
+        """
+        return pulumi.get(self, "node_capacity")
+
+
+@pulumi.output_type
+class GetFlavorSpecificationsClusterFlavorSpecAvailableMasterFlavorResult(dict):
+    def __init__(__self__, *,
+                 az_fault_domains: Mapping[str, Sequence[_builtins.str]],
+                 azs: Sequence[_builtins.str],
+                 name: _builtins.str):
+        """
+        :param Mapping[str, Sequence[_builtins.str]] az_fault_domains: The fault domains supported by the AZs where control plane nodes reside.
+        :param Sequence[_builtins.str] azs: The AZs supported by control plane nodes.
+        :param _builtins.str name: The control plane node flavor name.
+        """
+        pulumi.set(__self__, "az_fault_domains", az_fault_domains)
+        pulumi.set(__self__, "azs", azs)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="azFaultDomains")
+    def az_fault_domains(self) -> Mapping[str, Sequence[_builtins.str]]:
+        """
+        The fault domains supported by the AZs where control plane nodes reside.
+        """
+        return pulumi.get(self, "az_fault_domains")
+
+    @_builtins.property
+    @pulumi.getter
+    def azs(self) -> Sequence[_builtins.str]:
+        """
+        The AZs supported by control plane nodes.
+        """
+        return pulumi.get(self, "azs")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The control plane node flavor name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetImageCachesImageCacheResult(dict):
+    def __init__(__self__, *,
+                 building_configs: Sequence['outputs.GetImageCachesImageCacheBuildingConfigResult'],
+                 created_at: _builtins.str,
+                 id: _builtins.str,
+                 image_cache_size: _builtins.int,
+                 images: Sequence[_builtins.str],
+                 message: _builtins.str,
+                 name: _builtins.str,
+                 retention_days: _builtins.int,
+                 status: _builtins.str):
+        """
+        :param Sequence['GetImageCachesImageCacheBuildingConfigArgs'] building_configs: The configuration for creating an image cache.
+               The building_config is documented below.
+        :param _builtins.str created_at: The image caches create time.
+        :param _builtins.str id: The image caches id.
+        :param _builtins.int image_cache_size: The evs size in image caches.
+        :param Sequence[_builtins.str] images: The image list in image caches.
+        :param _builtins.str message: The messages in image caches.
+        :param _builtins.str name: Specifies the name of image.
+        :param _builtins.int retention_days: The retention days in image caches.
+        :param _builtins.str status: The image caches status.
+        """
+        pulumi.set(__self__, "building_configs", building_configs)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_cache_size", image_cache_size)
+        pulumi.set(__self__, "images", images)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="buildingConfigs")
+    def building_configs(self) -> Sequence['outputs.GetImageCachesImageCacheBuildingConfigResult']:
+        """
+        The configuration for creating an image cache.
+        The building_config is documented below.
+        """
+        return pulumi.get(self, "building_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The image caches create time.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The image caches id.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageCacheSize")
+    def image_cache_size(self) -> _builtins.int:
+        """
+        The evs size in image caches.
+        """
+        return pulumi.get(self, "image_cache_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def images(self) -> Sequence[_builtins.str]:
+        """
+        The image list in image caches.
+        """
+        return pulumi.get(self, "images")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> _builtins.str:
+        """
+        The messages in image caches.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of image.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        The retention days in image caches.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The image caches status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetImageCachesImageCacheBuildingConfigResult(dict):
+    def __init__(__self__, *,
+                 cluster: _builtins.str,
+                 image_pull_secrets: Sequence[_builtins.str]):
+        """
+        :param _builtins.str cluster: The ID of a CCE Autopilot cluster where a temporary pod is started for creating an image cache.
+        :param Sequence[_builtins.str] image_pull_secrets: The list of access credentials for downloading the images to be cached. If no access credential
+               is specified or no valid credential is available, only public images can be downloaded.
+        """
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "image_pull_secrets", image_pull_secrets)
+
+    @_builtins.property
+    @pulumi.getter
+    def cluster(self) -> _builtins.str:
+        """
+        The ID of a CCE Autopilot cluster where a temporary pod is started for creating an image cache.
+        """
+        return pulumi.get(self, "cluster")
+
+    @_builtins.property
+    @pulumi.getter(name="imagePullSecrets")
+    def image_pull_secrets(self) -> Sequence[_builtins.str]:
+        """
+        The list of access credentials for downloading the images to be cached. If no access credential
+        is specified or no valid credential is available, only public images can be downloaded.
+        """
+        return pulumi.get(self, "image_pull_secrets")
+
+
+@pulumi.output_type
 class GetNodeDataVolumeResult(dict):
     def __init__(__self__, *,
                  extend_params: Mapping[str, _builtins.str],
@@ -7894,6 +10274,205 @@ class GetNodePoolDataVolumeResult(dict):
         Disk type.
         """
         return pulumi.get(self, "volumetype")
+
+
+@pulumi.output_type
+class GetNodePoolExtensionScaleGroupResult(dict):
+    def __init__(__self__, *,
+                 metadatas: Sequence['outputs.GetNodePoolExtensionScaleGroupMetadataResult'],
+                 specs: Sequence['outputs.GetNodePoolExtensionScaleGroupSpecResult']):
+        """
+        :param Sequence['GetNodePoolExtensionScaleGroupMetadataArgs'] metadatas: The basic information about the extended scaling group.
+               The metadata structure is documented below.
+        :param Sequence['GetNodePoolExtensionScaleGroupSpecArgs'] specs: The configurations of the extended scaling group, which carry different configurations from those of the
+               default scaling group.
+               The spec structure is documented below.
+        """
+        pulumi.set(__self__, "metadatas", metadatas)
+        pulumi.set(__self__, "specs", specs)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadatas(self) -> Sequence['outputs.GetNodePoolExtensionScaleGroupMetadataResult']:
+        """
+        The basic information about the extended scaling group.
+        The metadata structure is documented below.
+        """
+        return pulumi.get(self, "metadatas")
+
+    @_builtins.property
+    @pulumi.getter
+    def specs(self) -> Sequence['outputs.GetNodePoolExtensionScaleGroupSpecResult']:
+        """
+        The configurations of the extended scaling group, which carry different configurations from those of the
+        default scaling group.
+        The spec structure is documented below.
+        """
+        return pulumi.get(self, "specs")
+
+
+@pulumi.output_type
+class GetNodePoolExtensionScaleGroupMetadataResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 uid: _builtins.str):
+        """
+        :param _builtins.str name: Specifies the name of the node pool.
+        :param _builtins.str uid: The extended scaling group UUID.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "uid", uid)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Specifies the name of the node pool.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def uid(self) -> _builtins.str:
+        """
+        The extended scaling group UUID.
+        """
+        return pulumi.get(self, "uid")
+
+
+@pulumi.output_type
+class GetNodePoolExtensionScaleGroupSpecResult(dict):
+    def __init__(__self__, *,
+                 autoscalings: Sequence['outputs.GetNodePoolExtensionScaleGroupSpecAutoscalingResult'],
+                 az: _builtins.str,
+                 capacity_reservation_specifications: Sequence['outputs.GetNodePoolExtensionScaleGroupSpecCapacityReservationSpecificationResult'],
+                 flavor: _builtins.str):
+        """
+        :param Sequence['GetNodePoolExtensionScaleGroupSpecAutoscalingArgs'] autoscalings: The auto-scaling configurations of the extended scaling group.
+               The autoscaling structure is documented below.
+        :param _builtins.str az: The availability zone of a node.
+        :param Sequence['GetNodePoolExtensionScaleGroupSpecCapacityReservationSpecificationArgs'] capacity_reservation_specifications: The capacity reservation configurations of the extended scaling group.
+               The capacity_reservation_specification structure is documented below.
+        :param _builtins.str flavor: The node flavor.
+        """
+        pulumi.set(__self__, "autoscalings", autoscalings)
+        pulumi.set(__self__, "az", az)
+        pulumi.set(__self__, "capacity_reservation_specifications", capacity_reservation_specifications)
+        pulumi.set(__self__, "flavor", flavor)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscalings(self) -> Sequence['outputs.GetNodePoolExtensionScaleGroupSpecAutoscalingResult']:
+        """
+        The auto-scaling configurations of the extended scaling group.
+        The autoscaling structure is documented below.
+        """
+        return pulumi.get(self, "autoscalings")
+
+    @_builtins.property
+    @pulumi.getter
+    def az(self) -> _builtins.str:
+        """
+        The availability zone of a node.
+        """
+        return pulumi.get(self, "az")
+
+    @_builtins.property
+    @pulumi.getter(name="capacityReservationSpecifications")
+    def capacity_reservation_specifications(self) -> Sequence['outputs.GetNodePoolExtensionScaleGroupSpecCapacityReservationSpecificationResult']:
+        """
+        The capacity reservation configurations of the extended scaling group.
+        The capacity_reservation_specification structure is documented below.
+        """
+        return pulumi.get(self, "capacity_reservation_specifications")
+
+    @_builtins.property
+    @pulumi.getter
+    def flavor(self) -> _builtins.str:
+        """
+        The node flavor.
+        """
+        return pulumi.get(self, "flavor")
+
+
+@pulumi.output_type
+class GetNodePoolExtensionScaleGroupSpecAutoscalingResult(dict):
+    def __init__(__self__, *,
+                 enable: _builtins.bool,
+                 extension_priority: _builtins.int,
+                 max_node_count: _builtins.int,
+                 min_node_count: _builtins.int):
+        """
+        :param _builtins.bool enable: Whether to enable auto-scaling for the scaling group.
+        :param _builtins.int extension_priority: The priority of the scaling group. A higher value indicates a greater priority.
+        :param _builtins.int max_node_count: The maximum number of nodes that can be retained in the scaling group during auto-scaling.
+        :param _builtins.int min_node_count: The minimum number of nodes in the scaling group during auto-scaling.
+        """
+        pulumi.set(__self__, "enable", enable)
+        pulumi.set(__self__, "extension_priority", extension_priority)
+        pulumi.set(__self__, "max_node_count", max_node_count)
+        pulumi.set(__self__, "min_node_count", min_node_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def enable(self) -> _builtins.bool:
+        """
+        Whether to enable auto-scaling for the scaling group.
+        """
+        return pulumi.get(self, "enable")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionPriority")
+    def extension_priority(self) -> _builtins.int:
+        """
+        The priority of the scaling group. A higher value indicates a greater priority.
+        """
+        return pulumi.get(self, "extension_priority")
+
+    @_builtins.property
+    @pulumi.getter(name="maxNodeCount")
+    def max_node_count(self) -> _builtins.int:
+        """
+        The maximum number of nodes that can be retained in the scaling group during auto-scaling.
+        """
+        return pulumi.get(self, "max_node_count")
+
+    @_builtins.property
+    @pulumi.getter(name="minNodeCount")
+    def min_node_count(self) -> _builtins.int:
+        """
+        The minimum number of nodes in the scaling group during auto-scaling.
+        """
+        return pulumi.get(self, "min_node_count")
+
+
+@pulumi.output_type
+class GetNodePoolExtensionScaleGroupSpecCapacityReservationSpecificationResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 preference: _builtins.str):
+        """
+        :param _builtins.str id: The private pool ID.
+        :param _builtins.str preference: The capacity of a private storage pool.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "preference", preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The private pool ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def preference(self) -> _builtins.str:
+        """
+        The capacity of a private storage pool.
+        """
+        return pulumi.get(self, "preference")
 
 
 @pulumi.output_type
@@ -8361,5 +10940,188 @@ class GetNodesNodeRootVolumeResult(dict):
         Disk type.
         """
         return pulumi.get(self, "volumetype")
+
+
+@pulumi.output_type
+class GetReleasesReleaseResult(dict):
+    def __init__(__self__, *,
+                 chart_name: _builtins.str,
+                 chart_public: _builtins.bool,
+                 chart_version: _builtins.str,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 create_at: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 namespace: _builtins.str,
+                 parameters: _builtins.str,
+                 resources: _builtins.str,
+                 status: _builtins.str,
+                 status_description: _builtins.str,
+                 update_at: _builtins.str,
+                 values: _builtins.str,
+                 version: _builtins.int):
+        """
+        :param _builtins.str chart_name: The chart name.
+        :param _builtins.bool chart_public: Whether the chart is public.
+        :param _builtins.str chart_version: The chart version.
+        :param _builtins.str cluster_id: Specifies the ID of CCE cluster.
+        :param _builtins.str cluster_name: The cluster name.
+        :param _builtins.str create_at: The creation time of release.
+        :param _builtins.str description: The release description.
+        :param _builtins.str name: The release name.
+        :param _builtins.str namespace: Specifies the namespace corresponding to the template.
+        :param _builtins.str parameters: The release parameters.
+        :param _builtins.str resources: The release resources.
+        :param _builtins.str status: The release status.
+        :param _builtins.str status_description: The release status description.
+        :param _builtins.str update_at: The update time of release.
+        :param _builtins.str values: The release values.
+        :param _builtins.int version: The release version.
+        """
+        pulumi.set(__self__, "chart_name", chart_name)
+        pulumi.set(__self__, "chart_public", chart_public)
+        pulumi.set(__self__, "chart_version", chart_version)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "create_at", create_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "status_description", status_description)
+        pulumi.set(__self__, "update_at", update_at)
+        pulumi.set(__self__, "values", values)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="chartName")
+    def chart_name(self) -> _builtins.str:
+        """
+        The chart name.
+        """
+        return pulumi.get(self, "chart_name")
+
+    @_builtins.property
+    @pulumi.getter(name="chartPublic")
+    def chart_public(self) -> _builtins.bool:
+        """
+        Whether the chart is public.
+        """
+        return pulumi.get(self, "chart_public")
+
+    @_builtins.property
+    @pulumi.getter(name="chartVersion")
+    def chart_version(self) -> _builtins.str:
+        """
+        The chart version.
+        """
+        return pulumi.get(self, "chart_version")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        Specifies the ID of CCE cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="createAt")
+    def create_at(self) -> _builtins.str:
+        """
+        The creation time of release.
+        """
+        return pulumi.get(self, "create_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The release description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The release name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> _builtins.str:
+        """
+        Specifies the namespace corresponding to the template.
+        """
+        return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> _builtins.str:
+        """
+        The release parameters.
+        """
+        return pulumi.get(self, "parameters")
+
+    @_builtins.property
+    @pulumi.getter
+    def resources(self) -> _builtins.str:
+        """
+        The release resources.
+        """
+        return pulumi.get(self, "resources")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The release status.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="statusDescription")
+    def status_description(self) -> _builtins.str:
+        """
+        The release status description.
+        """
+        return pulumi.get(self, "status_description")
+
+    @_builtins.property
+    @pulumi.getter(name="updateAt")
+    def update_at(self) -> _builtins.str:
+        """
+        The update time of release.
+        """
+        return pulumi.get(self, "update_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> _builtins.str:
+        """
+        The release values.
+        """
+        return pulumi.get(self, "values")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.int:
+        """
+        The release version.
+        """
+        return pulumi.get(self, "version")
 
 

@@ -261,7 +261,7 @@ class _BackupV2State:
         pulumi.set(self, "volume_id", value)
 
 
-@pulumi.type_token("huaweicloud:vbs/backupV2:BackupV2")
+@pulumi.type_token("huaweicloud:Vbs/backupV2:BackupV2")
 class BackupV2(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -276,6 +276,7 @@ class BackupV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a BackupV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -287,6 +288,7 @@ class BackupV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a BackupV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param BackupV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -333,7 +335,7 @@ class BackupV2(pulumi.CustomResource):
             __props__.__dict__["size"] = None
             __props__.__dict__["status"] = None
         super(BackupV2, __self__).__init__(
-            'huaweicloud:vbs/backupV2:BackupV2',
+            'huaweicloud:Vbs/backupV2:BackupV2',
             resource_name,
             __props__,
             opts)

@@ -30,6 +30,7 @@ class GroupDomainAssociateArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupDomainAssociate resource.
+
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group to associate with the domain name.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the group belongs.
         :param pulumi.Input[_builtins.str] url_domain: Specifies the associated domain name.
@@ -210,6 +211,7 @@ class _GroupDomainAssociateState:
                  url_domain: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupDomainAssociate resources.
+
         :param pulumi.Input[_builtins.str] domain_id: The associated domain ID.
         :param pulumi.Input[_builtins.str] group_id: Specifies the ID of the group to associate with the domain name.
         :param pulumi.Input[_builtins.int] ingress_http_port: Specifies the HTTP protocol inbound access port bound to the domain name.  
@@ -441,44 +443,19 @@ class GroupDomainAssociate(pulumi.CustomResource):
         ## Import
 
         Associated information for the specified domain and group can be imported using resource `id` (consists of
-
         `instance_id`, `group_id` and `url_domain`, separated by the slashes (/)), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/groupDomainAssociate:GroupDomainAssociate test <instance_id>/<group_id>/<url_domain>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes includes: `is_http_redirect_to_https`.
-
         It is generally recommended running `pulumi preview` after importing this resource.
-
         You can then decide if changes should be applied to the resource, or the definition should be updated to align with the
-
         resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_apig_group_domain_associate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_http_redirect_to_https,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -546,44 +523,19 @@ class GroupDomainAssociate(pulumi.CustomResource):
         ## Import
 
         Associated information for the specified domain and group can be imported using resource `id` (consists of
-
         `instance_id`, `group_id` and `url_domain`, separated by the slashes (/)), e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/groupDomainAssociate:GroupDomainAssociate test <instance_id>/<group_id>/<url_domain>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response.
-
         The missing attributes includes: `is_http_redirect_to_https`.
-
         It is generally recommended running `pulumi preview` after importing this resource.
-
         You can then decide if changes should be applied to the resource, or the definition should be updated to align with the
-
         resource. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_apig_group_domain_associate" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              is_http_redirect_to_https,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param GroupDomainAssociateArgs args: The arguments to use to populate this resource's properties.

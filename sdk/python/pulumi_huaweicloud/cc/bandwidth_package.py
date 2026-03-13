@@ -25,6 +25,7 @@ class BandwidthPackageArgs:
                  local_area_id: pulumi.Input[_builtins.str],
                  remote_area_id: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  interflow_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,64 +37,68 @@ class BandwidthPackageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a BandwidthPackage resource.
-        :param pulumi.Input[_builtins.int] bandwidth: Bandwidth in the bandwidth package.
-        :param pulumi.Input[_builtins.str] billing_mode: Billing mode of the bandwidth package.  
-               The options are as follows:
-               + **3**: pay-per-use for the Chinese Mainland website.
-               + **4**: pay-per-use for the International website.
-               + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-               + **6**: 95th percentile bandwidth billing for the International website.
+
+        :param pulumi.Input[_builtins.int] bandwidth: Specifies the bandwidth capacity specified for the bandwidth package.
+        :param pulumi.Input[_builtins.str] billing_mode: Specifies the billing mode of the bandwidth package. Valid values are:
+               + **3**: pay-per-use on the Chinese mainland website
+               + **4**: pay-per-use on the International website
+               + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+               + **6**: 95th percentile bandwidth billing on the International website
                
                > This argument can only be modified to **5** and **6**.
-        :param pulumi.Input[_builtins.str] charge_mode: Billing option of the bandwidth package.  
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option of the bandwidth package.
                Valid value is **bandwidth**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] local_area_id: The local area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_area_id: The remote area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] description: The description about the bandwidth package.  
-               The description can contain a maximum of 85 characters.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: ID of the enterprise project that the bandwidth package
-               belongs to. Value 0 indicates the default enterprise project.
-        :param pulumi.Input[_builtins.str] interflow_mode: Interflow mode of the bandwidth package.
-               Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] name: The bandwidth package name.  
-               The name can contain a maximum of `64` characters.
-        :param pulumi.Input[_builtins.str] project_id: Project ID.
+        :param pulumi.Input[_builtins.str] local_area_id: Specifies the local area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] remote_area_id: Specifies the remote area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] description: Specifies the description about the bandwidth package.
+               Angle brackets (`<>`) are not allowed.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project that the bandwidth package
+               belongs to.
+        :param pulumi.Input[_builtins.str] interflow_mode: Specifies the bandwidth package applicability.
+               Valid values are **Area** and **Region**, defaults to **Area**.
+        :param pulumi.Input[_builtins.str] name: The bandwidth package name.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
                If omitted, the provider-level project ID will be used.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] resource_id: ID of the resource that the bandwidth package is bound to.
-        :param pulumi.Input[_builtins.str] resource_type: Type of the resource that the bandwidth package is bound to.  
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource that the bandwidth package is bound to.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource that the bandwidth package is bound to.
                Valid value is **cloud_connection**.
-        :param pulumi.Input[_builtins.str] spec_code: Specification code of the bandwidth package.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] spec_code: Specifies the specification code of the bandwidth package.
                If the value of `interflow_mode` is **Area**, the values are as follows:
-               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
                + **bandwidth.aptoap**: Asia Pacific on the International website.
-               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
                + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
                + **bandwidth.cmtocm**: Chinese mainland on the International website.
                + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-               website.
+               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+               International website.
                + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
                website.
                + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -105,8 +110,9 @@ class BandwidthPackageArgs:
                International website.
                + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
                
-               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the bandwidth package.
+               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+               e.g. **Beijing4toGuangzhou**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the bandwidth package.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "billing_mode", billing_mode)
@@ -115,6 +121,8 @@ class BandwidthPackageArgs:
         pulumi.set(__self__, "remote_area_id", remote_area_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if interflow_mode is not None:
@@ -138,7 +146,7 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def bandwidth(self) -> pulumi.Input[_builtins.int]:
         """
-        Bandwidth in the bandwidth package.
+        Specifies the bandwidth capacity specified for the bandwidth package.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -150,12 +158,11 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="billingMode")
     def billing_mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Billing mode of the bandwidth package.  
-        The options are as follows:
-        + **3**: pay-per-use for the Chinese Mainland website.
-        + **4**: pay-per-use for the International website.
-        + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-        + **6**: 95th percentile bandwidth billing for the International website.
+        Specifies the billing mode of the bandwidth package. Valid values are:
+        + **3**: pay-per-use on the Chinese mainland website
+        + **4**: pay-per-use on the International website
+        + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+        + **6**: 95th percentile bandwidth billing on the International website
 
         > This argument can only be modified to **5** and **6**.
         """
@@ -169,10 +176,8 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Billing option of the bandwidth package.  
+        Specifies the billing option of the bandwidth package.
         Valid value is **bandwidth**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "charge_mode")
 
@@ -184,11 +189,13 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="localAreaId")
     def local_area_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The local area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the local area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "local_area_id")
 
@@ -200,11 +207,13 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="remoteAreaId")
     def remote_area_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The remote area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the remote area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "remote_area_id")
 
@@ -216,8 +225,8 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The description about the bandwidth package.  
-        The description can contain a maximum of 85 characters.
+        Specifies the description about the bandwidth package.
+        Angle brackets (`<>`) are not allowed.
         """
         return pulumi.get(self, "description")
 
@@ -226,11 +235,20 @@ class BandwidthPackageArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the enterprise project that the bandwidth package
-        belongs to. Value 0 indicates the default enterprise project.
+        Specifies the ID of the enterprise project that the bandwidth package
+        belongs to.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -242,8 +260,8 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="interflowMode")
     def interflow_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Interflow mode of the bandwidth package.
-        Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
+        Specifies the bandwidth package applicability.
+        Valid values are **Area** and **Region**, defaults to **Area**.
         """
         return pulumi.get(self, "interflow_mode")
 
@@ -255,8 +273,7 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The bandwidth package name.  
-        The name can contain a maximum of `64` characters.
+        The bandwidth package name.
         """
         return pulumi.get(self, "name")
 
@@ -268,9 +285,8 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Project ID.
+        Specifies the project ID.
         If omitted, the provider-level project ID will be used.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -295,7 +311,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the resource that the bandwidth package is bound to.
+        Specifies the ID of the resource that the bandwidth package is bound to.
         """
         return pulumi.get(self, "resource_id")
 
@@ -307,7 +323,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="resourceType")
     def resource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the resource that the bandwidth package is bound to.  
+        Specifies the type of the resource that the bandwidth package is bound to.
         Valid value is **cloud_connection**.
         """
         return pulumi.get(self, "resource_type")
@@ -320,25 +336,29 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="specCode")
     def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specification code of the bandwidth package.
-        Changing this parameter will create a new resource.
+        Specifies the specification code of the bandwidth package.
         If the value of `interflow_mode` is **Area**, the values are as follows:
-        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
         + **bandwidth.aptoap**: Asia Pacific on the International website.
-        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
         + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
         + **bandwidth.cmtocm**: Chinese mainland on the International website.
         + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-        website.
+        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+        International website.
         + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
         website.
         + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -350,7 +370,8 @@ class BandwidthPackageArgs:
         International website.
         + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
 
-        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
+        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+        e.g. **Beijing4toGuangzhou**.
         """
         return pulumi.get(self, "spec_code")
 
@@ -362,7 +383,7 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The key/value pairs to associate with the bandwidth package.
+        Specifies the key/value pairs to associate with the bandwidth package.
         """
         return pulumi.get(self, "tags")
 
@@ -378,6 +399,7 @@ class _BandwidthPackageState:
                  billing_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  charge_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  interflow_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  local_area_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -392,64 +414,68 @@ class _BandwidthPackageState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering BandwidthPackage resources.
-        :param pulumi.Input[_builtins.int] bandwidth: Bandwidth in the bandwidth package.
-        :param pulumi.Input[_builtins.str] billing_mode: Billing mode of the bandwidth package.  
-               The options are as follows:
-               + **3**: pay-per-use for the Chinese Mainland website.
-               + **4**: pay-per-use for the International website.
-               + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-               + **6**: 95th percentile bandwidth billing for the International website.
+
+        :param pulumi.Input[_builtins.int] bandwidth: Specifies the bandwidth capacity specified for the bandwidth package.
+        :param pulumi.Input[_builtins.str] billing_mode: Specifies the billing mode of the bandwidth package. Valid values are:
+               + **3**: pay-per-use on the Chinese mainland website
+               + **4**: pay-per-use on the International website
+               + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+               + **6**: 95th percentile bandwidth billing on the International website
                
                > This argument can only be modified to **5** and **6**.
-        :param pulumi.Input[_builtins.str] charge_mode: Billing option of the bandwidth package.  
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option of the bandwidth package.
                Valid value is **bandwidth**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] description: The description about the bandwidth package.  
-               The description can contain a maximum of 85 characters.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: ID of the enterprise project that the bandwidth package
-               belongs to. Value 0 indicates the default enterprise project.
-        :param pulumi.Input[_builtins.str] interflow_mode: Interflow mode of the bandwidth package.
-               Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] local_area_id: The local area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] name: The bandwidth package name.  
-               The name can contain a maximum of `64` characters.
-        :param pulumi.Input[_builtins.str] project_id: Project ID.
+        :param pulumi.Input[_builtins.str] description: Specifies the description about the bandwidth package.
+               Angle brackets (`<>`) are not allowed.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project that the bandwidth package
+               belongs to.
+        :param pulumi.Input[_builtins.str] interflow_mode: Specifies the bandwidth package applicability.
+               Valid values are **Area** and **Region**, defaults to **Area**.
+        :param pulumi.Input[_builtins.str] local_area_id: Specifies the local area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] name: The bandwidth package name.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
                If omitted, the provider-level project ID will be used.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_area_id: The remote area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] resource_id: ID of the resource that the bandwidth package is bound to.
-        :param pulumi.Input[_builtins.str] resource_type: Type of the resource that the bandwidth package is bound to.  
+        :param pulumi.Input[_builtins.str] remote_area_id: Specifies the remote area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource that the bandwidth package is bound to.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource that the bandwidth package is bound to.
                Valid value is **cloud_connection**.
-        :param pulumi.Input[_builtins.str] spec_code: Specification code of the bandwidth package.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] spec_code: Specifies the specification code of the bandwidth package.
                If the value of `interflow_mode` is **Area**, the values are as follows:
-               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
                + **bandwidth.aptoap**: Asia Pacific on the International website.
-               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
                + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
                + **bandwidth.cmtocm**: Chinese mainland on the International website.
                + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-               website.
+               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+               International website.
                + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
                website.
                + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -461,11 +487,12 @@ class _BandwidthPackageState:
                International website.
                + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
                
-               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
-        :param pulumi.Input[_builtins.str] status: Bandwidth package status.  
+               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+               e.g. **Beijing4toGuangzhou**.
+        :param pulumi.Input[_builtins.str] status: The bandwidth package status.
                The valid value are as follows:
                + **ACTIVE**: Bandwidth packages are available.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the bandwidth package.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the bandwidth package.
         """
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
@@ -475,6 +502,8 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "charge_mode", charge_mode)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_force_new is not None:
+            pulumi.set(__self__, "enable_force_new", enable_force_new)
         if enterprise_project_id is not None:
             pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if interflow_mode is not None:
@@ -504,7 +533,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Bandwidth in the bandwidth package.
+        Specifies the bandwidth capacity specified for the bandwidth package.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -516,12 +545,11 @@ class _BandwidthPackageState:
     @pulumi.getter(name="billingMode")
     def billing_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Billing mode of the bandwidth package.  
-        The options are as follows:
-        + **3**: pay-per-use for the Chinese Mainland website.
-        + **4**: pay-per-use for the International website.
-        + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-        + **6**: 95th percentile bandwidth billing for the International website.
+        Specifies the billing mode of the bandwidth package. Valid values are:
+        + **3**: pay-per-use on the Chinese mainland website
+        + **4**: pay-per-use on the International website
+        + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+        + **6**: 95th percentile bandwidth billing on the International website
 
         > This argument can only be modified to **5** and **6**.
         """
@@ -535,10 +563,8 @@ class _BandwidthPackageState:
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Billing option of the bandwidth package.  
+        Specifies the billing option of the bandwidth package.
         Valid value is **bandwidth**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "charge_mode")
 
@@ -550,8 +576,8 @@ class _BandwidthPackageState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The description about the bandwidth package.  
-        The description can contain a maximum of 85 characters.
+        Specifies the description about the bandwidth package.
+        Angle brackets (`<>`) are not allowed.
         """
         return pulumi.get(self, "description")
 
@@ -560,11 +586,20 @@ class _BandwidthPackageState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
+
+    @enable_force_new.setter
+    def enable_force_new(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enable_force_new", value)
+
+    @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the enterprise project that the bandwidth package
-        belongs to. Value 0 indicates the default enterprise project.
+        Specifies the ID of the enterprise project that the bandwidth package
+        belongs to.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -576,8 +611,8 @@ class _BandwidthPackageState:
     @pulumi.getter(name="interflowMode")
     def interflow_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Interflow mode of the bandwidth package.
-        Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
+        Specifies the bandwidth package applicability.
+        Valid values are **Area** and **Region**, defaults to **Area**.
         """
         return pulumi.get(self, "interflow_mode")
 
@@ -589,11 +624,13 @@ class _BandwidthPackageState:
     @pulumi.getter(name="localAreaId")
     def local_area_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The local area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the local area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "local_area_id")
 
@@ -605,8 +642,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The bandwidth package name.  
-        The name can contain a maximum of `64` characters.
+        The bandwidth package name.
         """
         return pulumi.get(self, "name")
 
@@ -618,9 +654,8 @@ class _BandwidthPackageState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Project ID.
+        Specifies the project ID.
         If omitted, the provider-level project ID will be used.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -645,11 +680,13 @@ class _BandwidthPackageState:
     @pulumi.getter(name="remoteAreaId")
     def remote_area_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The remote area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the remote area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "remote_area_id")
 
@@ -661,7 +698,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the resource that the bandwidth package is bound to.
+        Specifies the ID of the resource that the bandwidth package is bound to.
         """
         return pulumi.get(self, "resource_id")
 
@@ -673,7 +710,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="resourceType")
     def resource_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of the resource that the bandwidth package is bound to.  
+        Specifies the type of the resource that the bandwidth package is bound to.
         Valid value is **cloud_connection**.
         """
         return pulumi.get(self, "resource_type")
@@ -686,25 +723,29 @@ class _BandwidthPackageState:
     @pulumi.getter(name="specCode")
     def spec_code(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specification code of the bandwidth package.
-        Changing this parameter will create a new resource.
+        Specifies the specification code of the bandwidth package.
         If the value of `interflow_mode` is **Area**, the values are as follows:
-        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
         + **bandwidth.aptoap**: Asia Pacific on the International website.
-        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
         + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
         + **bandwidth.cmtocm**: Chinese mainland on the International website.
         + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-        website.
+        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+        International website.
         + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
         website.
         + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -716,7 +757,8 @@ class _BandwidthPackageState:
         International website.
         + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
 
-        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
+        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+        e.g. **Beijing4toGuangzhou**.
         """
         return pulumi.get(self, "spec_code")
 
@@ -728,7 +770,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Bandwidth package status.  
+        The bandwidth package status.
         The valid value are as follows:
         + **ACTIVE**: Bandwidth packages are available.
         """
@@ -742,7 +784,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The key/value pairs to associate with the bandwidth package.
+        Specifies the key/value pairs to associate with the bandwidth package.
         """
         return pulumi.get(self, "tags")
 
@@ -761,6 +803,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  billing_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  charge_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  interflow_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  local_area_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -774,7 +817,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages a bandwidth package resource of Cloud Connect within HuaweiCloud.
+        Manages a bandwidth package resource of Cloud connect within HuaweiCloud.
 
         ## Example Usage
 
@@ -782,8 +825,10 @@ class BandwidthPackage(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
+        config = pulumi.Config()
+        name = config.require_object("name")
         test = huaweicloud.cc.BandwidthPackage("test",
-            name="demo",
+            name=name,
             local_area_id="Chinese-Mainland",
             remote_area_id="Chinese-Mainland",
             charge_mode="bandwidth",
@@ -800,72 +845,74 @@ class BandwidthPackage(pulumi.CustomResource):
 
         The bandwidth package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cc/bandwidthPackage:BandwidthPackage test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Cc/bandwidthPackage:BandwidthPackage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] bandwidth: Bandwidth in the bandwidth package.
-        :param pulumi.Input[_builtins.str] billing_mode: Billing mode of the bandwidth package.  
-               The options are as follows:
-               + **3**: pay-per-use for the Chinese Mainland website.
-               + **4**: pay-per-use for the International website.
-               + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-               + **6**: 95th percentile bandwidth billing for the International website.
+        :param pulumi.Input[_builtins.int] bandwidth: Specifies the bandwidth capacity specified for the bandwidth package.
+        :param pulumi.Input[_builtins.str] billing_mode: Specifies the billing mode of the bandwidth package. Valid values are:
+               + **3**: pay-per-use on the Chinese mainland website
+               + **4**: pay-per-use on the International website
+               + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+               + **6**: 95th percentile bandwidth billing on the International website
                
                > This argument can only be modified to **5** and **6**.
-        :param pulumi.Input[_builtins.str] charge_mode: Billing option of the bandwidth package.  
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option of the bandwidth package.
                Valid value is **bandwidth**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] description: The description about the bandwidth package.  
-               The description can contain a maximum of 85 characters.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: ID of the enterprise project that the bandwidth package
-               belongs to. Value 0 indicates the default enterprise project.
-        :param pulumi.Input[_builtins.str] interflow_mode: Interflow mode of the bandwidth package.
-               Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] local_area_id: The local area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] name: The bandwidth package name.  
-               The name can contain a maximum of `64` characters.
-        :param pulumi.Input[_builtins.str] project_id: Project ID.
+        :param pulumi.Input[_builtins.str] description: Specifies the description about the bandwidth package.
+               Angle brackets (`<>`) are not allowed.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project that the bandwidth package
+               belongs to.
+        :param pulumi.Input[_builtins.str] interflow_mode: Specifies the bandwidth package applicability.
+               Valid values are **Area** and **Region**, defaults to **Area**.
+        :param pulumi.Input[_builtins.str] local_area_id: Specifies the local area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] name: The bandwidth package name.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
                If omitted, the provider-level project ID will be used.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_area_id: The remote area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] resource_id: ID of the resource that the bandwidth package is bound to.
-        :param pulumi.Input[_builtins.str] resource_type: Type of the resource that the bandwidth package is bound to.  
+        :param pulumi.Input[_builtins.str] remote_area_id: Specifies the remote area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource that the bandwidth package is bound to.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource that the bandwidth package is bound to.
                Valid value is **cloud_connection**.
-        :param pulumi.Input[_builtins.str] spec_code: Specification code of the bandwidth package.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] spec_code: Specifies the specification code of the bandwidth package.
                If the value of `interflow_mode` is **Area**, the values are as follows:
-               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
                + **bandwidth.aptoap**: Asia Pacific on the International website.
-               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
                + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
                + **bandwidth.cmtocm**: Chinese mainland on the International website.
                + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-               website.
+               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+               International website.
                + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
                website.
                + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -877,8 +924,9 @@ class BandwidthPackage(pulumi.CustomResource):
                International website.
                + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
                
-               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the bandwidth package.
+               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+               e.g. **Beijing4toGuangzhou**.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the bandwidth package.
         """
         ...
     @overload
@@ -887,7 +935,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  args: BandwidthPackageArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a bandwidth package resource of Cloud Connect within HuaweiCloud.
+        Manages a bandwidth package resource of Cloud connect within HuaweiCloud.
 
         ## Example Usage
 
@@ -895,8 +943,10 @@ class BandwidthPackage(pulumi.CustomResource):
         import pulumi
         import pulumi_huaweicloud as huaweicloud
 
+        config = pulumi.Config()
+        name = config.require_object("name")
         test = huaweicloud.cc.BandwidthPackage("test",
-            name="demo",
+            name=name,
             local_area_id="Chinese-Mainland",
             remote_area_id="Chinese-Mainland",
             charge_mode="bandwidth",
@@ -913,11 +963,10 @@ class BandwidthPackage(pulumi.CustomResource):
 
         The bandwidth package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:Cc/bandwidthPackage:BandwidthPackage test 0ce123456a00f2591fabc00385ff1234
+        $ pulumi import huaweicloud:Cc/bandwidthPackage:BandwidthPackage test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BandwidthPackageArgs args: The arguments to use to populate this resource's properties.
@@ -938,6 +987,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  billing_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  charge_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
                  enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  interflow_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  local_area_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -968,6 +1018,7 @@ class BandwidthPackage(pulumi.CustomResource):
                 raise TypeError("Missing required property 'charge_mode'")
             __props__.__dict__["charge_mode"] = charge_mode
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_force_new"] = enable_force_new
             __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             __props__.__dict__["interflow_mode"] = interflow_mode
             if local_area_id is None and not opts.urn:
@@ -998,6 +1049,7 @@ class BandwidthPackage(pulumi.CustomResource):
             billing_mode: Optional[pulumi.Input[_builtins.str]] = None,
             charge_mode: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            enable_force_new: Optional[pulumi.Input[_builtins.str]] = None,
             enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             interflow_mode: Optional[pulumi.Input[_builtins.str]] = None,
             local_area_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1017,64 +1069,67 @@ class BandwidthPackage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] bandwidth: Bandwidth in the bandwidth package.
-        :param pulumi.Input[_builtins.str] billing_mode: Billing mode of the bandwidth package.  
-               The options are as follows:
-               + **3**: pay-per-use for the Chinese Mainland website.
-               + **4**: pay-per-use for the International website.
-               + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-               + **6**: 95th percentile bandwidth billing for the International website.
+        :param pulumi.Input[_builtins.int] bandwidth: Specifies the bandwidth capacity specified for the bandwidth package.
+        :param pulumi.Input[_builtins.str] billing_mode: Specifies the billing mode of the bandwidth package. Valid values are:
+               + **3**: pay-per-use on the Chinese mainland website
+               + **4**: pay-per-use on the International website
+               + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+               + **6**: 95th percentile bandwidth billing on the International website
                
                > This argument can only be modified to **5** and **6**.
-        :param pulumi.Input[_builtins.str] charge_mode: Billing option of the bandwidth package.  
+        :param pulumi.Input[_builtins.str] charge_mode: Specifies the billing option of the bandwidth package.
                Valid value is **bandwidth**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] description: The description about the bandwidth package.  
-               The description can contain a maximum of 85 characters.
-        :param pulumi.Input[_builtins.str] enterprise_project_id: ID of the enterprise project that the bandwidth package
-               belongs to. Value 0 indicates the default enterprise project.
-        :param pulumi.Input[_builtins.str] interflow_mode: Interflow mode of the bandwidth package.
-               Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] local_area_id: The local area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] name: The bandwidth package name.  
-               The name can contain a maximum of `64` characters.
-        :param pulumi.Input[_builtins.str] project_id: Project ID.
+        :param pulumi.Input[_builtins.str] description: Specifies the description about the bandwidth package.
+               Angle brackets (`<>`) are not allowed.
+        :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project that the bandwidth package
+               belongs to.
+        :param pulumi.Input[_builtins.str] interflow_mode: Specifies the bandwidth package applicability.
+               Valid values are **Area** and **Region**, defaults to **Area**.
+        :param pulumi.Input[_builtins.str] local_area_id: Specifies the local area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] name: The bandwidth package name.
+        :param pulumi.Input[_builtins.str] project_id: Specifies the project ID.
                If omitted, the provider-level project ID will be used.
-               Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
                If omitted, the provider-level region will be used. Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] remote_area_id: The remote area ID.  
-               Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-               **Eastern-Latin-America** and **Northern-Latin-America**.
-               
-               Changing this parameter will create a new resource.
-        :param pulumi.Input[_builtins.str] resource_id: ID of the resource that the bandwidth package is bound to.
-        :param pulumi.Input[_builtins.str] resource_type: Type of the resource that the bandwidth package is bound to.  
+        :param pulumi.Input[_builtins.str] remote_area_id: Specifies the remote area ID. Valid values are:
+               + **Chinese-Mainland**: Chinese mainland
+               + **Asia-Pacific**: Asia Pacific
+               + **Africa**: Africa
+               + **Western-Latin-America**: Western Latin America
+               + **Eastern-Latin-America**: Eastern Latin America
+               + **Northern-Latin-America**: Northern Latin America
+        :param pulumi.Input[_builtins.str] resource_id: Specifies the ID of the resource that the bandwidth package is bound to.
+        :param pulumi.Input[_builtins.str] resource_type: Specifies the type of the resource that the bandwidth package is bound to.
                Valid value is **cloud_connection**.
-        :param pulumi.Input[_builtins.str] spec_code: Specification code of the bandwidth package.
-               Changing this parameter will create a new resource.
+        :param pulumi.Input[_builtins.str] spec_code: Specifies the specification code of the bandwidth package.
                If the value of `interflow_mode` is **Area**, the values are as follows:
-               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
                + **bandwidth.aptoap**: Asia Pacific on the International website.
-               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+               + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+               website.
+               + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+               website.
                + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
                + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
                + **bandwidth.cmtocm**: Chinese mainland on the International website.
                + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
                website.
-               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-               website.
+               + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+               International website.
                + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
                website.
                + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -1086,11 +1141,12 @@ class BandwidthPackage(pulumi.CustomResource):
                International website.
                + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
                
-               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
-        :param pulumi.Input[_builtins.str] status: Bandwidth package status.  
+               If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+               e.g. **Beijing4toGuangzhou**.
+        :param pulumi.Input[_builtins.str] status: The bandwidth package status.
                The valid value are as follows:
                + **ACTIVE**: Bandwidth packages are available.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: The key/value pairs to associate with the bandwidth package.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies the key/value pairs to associate with the bandwidth package.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1100,6 +1156,7 @@ class BandwidthPackage(pulumi.CustomResource):
         __props__.__dict__["billing_mode"] = billing_mode
         __props__.__dict__["charge_mode"] = charge_mode
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_force_new"] = enable_force_new
         __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["interflow_mode"] = interflow_mode
         __props__.__dict__["local_area_id"] = local_area_id
@@ -1118,7 +1175,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def bandwidth(self) -> pulumi.Output[_builtins.int]:
         """
-        Bandwidth in the bandwidth package.
+        Specifies the bandwidth capacity specified for the bandwidth package.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -1126,12 +1183,11 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="billingMode")
     def billing_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        Billing mode of the bandwidth package.  
-        The options are as follows:
-        + **3**: pay-per-use for the Chinese Mainland website.
-        + **4**: pay-per-use for the International website.
-        + **5**: 95th percentile bandwidth billing for the Chinese Mainland website.
-        + **6**: 95th percentile bandwidth billing for the International website.
+        Specifies the billing mode of the bandwidth package. Valid values are:
+        + **3**: pay-per-use on the Chinese mainland website
+        + **4**: pay-per-use on the International website
+        + **5**: 95th percentile bandwidth billing on the Chinese mainland website
+        + **6**: 95th percentile bandwidth billing on the International website
 
         > This argument can only be modified to **5** and **6**.
         """
@@ -1141,10 +1197,8 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="chargeMode")
     def charge_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        Billing option of the bandwidth package.  
+        Specifies the billing option of the bandwidth package.
         Valid value is **bandwidth**.
-
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "charge_mode")
 
@@ -1152,17 +1206,22 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:
         """
-        The description about the bandwidth package.  
-        The description can contain a maximum of 85 characters.
+        Specifies the description about the bandwidth package.
+        Angle brackets (`<>`) are not allowed.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="enableForceNew")
+    def enable_force_new(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "enable_force_new")
 
     @_builtins.property
     @pulumi.getter(name="enterpriseProjectId")
     def enterprise_project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        ID of the enterprise project that the bandwidth package
-        belongs to. Value 0 indicates the default enterprise project.
+        Specifies the ID of the enterprise project that the bandwidth package
+        belongs to.
         """
         return pulumi.get(self, "enterprise_project_id")
 
@@ -1170,8 +1229,8 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="interflowMode")
     def interflow_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        Interflow mode of the bandwidth package.
-        Valid values are **Area** and **Region**, defaults to **Area**. Changing this parameter will create a new resource.
+        Specifies the bandwidth package applicability.
+        Valid values are **Area** and **Region**, defaults to **Area**.
         """
         return pulumi.get(self, "interflow_mode")
 
@@ -1179,11 +1238,13 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="localAreaId")
     def local_area_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The local area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the local area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "local_area_id")
 
@@ -1191,8 +1252,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The bandwidth package name.  
-        The name can contain a maximum of `64` characters.
+        The bandwidth package name.
         """
         return pulumi.get(self, "name")
 
@@ -1200,9 +1260,8 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Project ID.
+        Specifies the project ID.
         If omitted, the provider-level project ID will be used.
-        Changing this parameter will create a new resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -1219,11 +1278,13 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="remoteAreaId")
     def remote_area_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The remote area ID.  
-        Valid values are **Chinese-Mainland**, **Asia-Pacific**, **Africa**, **Western-Latin-America**,
-        **Eastern-Latin-America** and **Northern-Latin-America**.
-
-        Changing this parameter will create a new resource.
+        Specifies the remote area ID. Valid values are:
+        + **Chinese-Mainland**: Chinese mainland
+        + **Asia-Pacific**: Asia Pacific
+        + **Africa**: Africa
+        + **Western-Latin-America**: Western Latin America
+        + **Eastern-Latin-America**: Eastern Latin America
+        + **Northern-Latin-America**: Northern Latin America
         """
         return pulumi.get(self, "remote_area_id")
 
@@ -1231,7 +1292,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> pulumi.Output[_builtins.str]:
         """
-        ID of the resource that the bandwidth package is bound to.
+        Specifies the ID of the resource that the bandwidth package is bound to.
         """
         return pulumi.get(self, "resource_id")
 
@@ -1239,7 +1300,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="resourceType")
     def resource_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of the resource that the bandwidth package is bound to.  
+        Specifies the type of the resource that the bandwidth package is bound to.
         Valid value is **cloud_connection**.
         """
         return pulumi.get(self, "resource_type")
@@ -1248,25 +1309,29 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="specCode")
     def spec_code(self) -> pulumi.Output[_builtins.str]:
         """
-        Specification code of the bandwidth package.
-        Changing this parameter will create a new resource.
+        Specifies the specification code of the bandwidth package.
         If the value of `interflow_mode` is **Area**, the values are as follows:
-        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftoela**: Southern Africa-Eastern Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aftonla**: Southern Africa-Northern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aftowla**: Southern Africa-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.aptoaf**: Asia Pacific-Southern Africa on the International website.
         + **bandwidth.aptoap**: Asia Pacific on the International website.
-        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International website.
-        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International website.
+        + **bandwidth.aptoela**: Asia Pacific-Eastern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptonla**: Asia Pacific-Northern Latin America on both the Chinese Mainland website and International
+        website.
+        + **bandwidth.aptowla**: Asia Pacific-Western Latin America on both the Chinese Mainland website and International
+        website.
         + **bandwidth.cmtoaf**: Chinese mainland-Southern Africa on the International website.
         + **bandwidth.cmtoap**: Chinese mainland-Asia Pacific on the International website.
         + **bandwidth.cmtocm**: Chinese mainland on the International website.
         + **bandwidth.cmtoela**: Chinese mainland-Eastern Latin America on both the Chinese Mainland website and International
         website.
-        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and International
-        website.
+        + **bandwidth.cmtonla**: Chinese mainland-Northern Latin America on both the Chinese Mainland website and
+        International website.
         + **bandwidth.cmtowla**: Chinese mainland-Western Latin America on both the Chinese Mainland website and International
         website.
         + **bandwidth.elatoela**: Eastern Latin America on both the Chinese Mainland website and International website.
@@ -1278,7 +1343,8 @@ class BandwidthPackage(pulumi.CustomResource):
         International website.
         + **bandwidth.wlatowla**: Western Latin America on both the Chinese Mainland website and International website.
 
-        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions, e.g. **Beijing4toGuangzhou**.
+        If the value of `interflow_mode` is **Region**, the value depends on the specified interflow regions,
+        e.g. **Beijing4toGuangzhou**.
         """
         return pulumi.get(self, "spec_code")
 
@@ -1286,7 +1352,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Bandwidth package status.  
+        The bandwidth package status.
         The valid value are as follows:
         + **ACTIVE**: Bandwidth packages are available.
         """
@@ -1296,7 +1362,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        The key/value pairs to associate with the bandwidth package.
+        Specifies the key/value pairs to associate with the bandwidth package.
         """
         return pulumi.get(self, "tags")
 

@@ -23,6 +23,7 @@ class ScheduledTaskCancelArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScheduledTaskCancel resource.
+
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID.
                Changing this creates a new resource.
         :param pulumi.Input[_builtins.str] region: Specifies the region in which to create the resource.
@@ -76,6 +77,7 @@ class _ScheduledTaskCancelState:
                  start_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScheduledTaskCancel resources.
+
         :param pulumi.Input[_builtins.str] create_time: Indicates the create time.
         :param pulumi.Input[_builtins.str] end_time: Indicates the end time.
         :param pulumi.Input[_builtins.str] instance_id: Indicates the instance ID.
@@ -258,6 +260,7 @@ class ScheduledTaskCancel(pulumi.CustomResource):
         test = huaweicloud.dds.ScheduledTaskCancel("test", job_id=job_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] job_id: Specifies the task ID.
@@ -285,6 +288,7 @@ class ScheduledTaskCancel(pulumi.CustomResource):
         job_id = config.require_object("jobId")
         test = huaweicloud.dds.ScheduledTaskCancel("test", job_id=job_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScheduledTaskCancelArgs args: The arguments to use to populate this resource's properties.

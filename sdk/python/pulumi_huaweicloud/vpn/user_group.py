@@ -29,6 +29,7 @@ class UserGroupArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['UserGroupUserArgs']]]] = None):
         """
         The set of arguments for constructing a UserGroup resource.
+
         :param pulumi.Input[_builtins.str] vpn_server_id: Specifies the VPN server ID.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the user group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the user group.
@@ -144,6 +145,7 @@ class _UserGroupState:
                  vpn_server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserGroup resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the user group.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the user group.
@@ -305,7 +307,7 @@ class _UserGroupState:
         pulumi.set(self, "vpn_server_id", value)
 
 
-@pulumi.type_token("huaweicloud:vpn/userGroup:UserGroup")
+@pulumi.type_token("huaweicloud:Vpn/userGroup:UserGroup")
 class UserGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -369,11 +371,10 @@ class UserGroup(pulumi.CustomResource):
 
         The user group can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/userGroup:UserGroup test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/userGroup:UserGroup test <vpn_server_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -446,11 +447,10 @@ class UserGroup(pulumi.CustomResource):
 
         The user group can be imported using `vpn_server_id` and `id`, separated by a slash (/), e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:vpn/userGroup:UserGroup test <vpn_server_id>/<id>
+        $ pulumi import huaweicloud:Vpn/userGroup:UserGroup test <vpn_server_id>/<id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserGroupArgs args: The arguments to use to populate this resource's properties.
@@ -495,7 +495,7 @@ class UserGroup(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["user_number"] = None
         super(UserGroup, __self__).__init__(
-            'huaweicloud:vpn/userGroup:UserGroup',
+            'huaweicloud:Vpn/userGroup:UserGroup',
             resource_name,
             __props__,
             opts)

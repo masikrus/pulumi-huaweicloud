@@ -189,7 +189,7 @@ def get_eips(associate_instance_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eips()
+    all = huaweicloud.Global.get_eips()
     ```
 
     ### Get specific global EIPs
@@ -198,7 +198,7 @@ def get_eips(associate_instance_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eips(status="inuse")
+    test = huaweicloud.Global.get_eips(status="inuse")
     ```
 
 
@@ -229,7 +229,7 @@ def get_eips(associate_instance_id: Optional[_builtins.str] = None,
     __args__['status'] = status
     __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:global/getEips:getEips', __args__, opts=opts, typ=GetEipsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Global/getEips:getEips', __args__, opts=opts, typ=GetEipsResult).value
 
     return AwaitableGetEipsResult(
         associate_instance_id=pulumi.get(__ret__, 'associate_instance_id'),
@@ -264,7 +264,7 @@ def get_eips_output(associate_instance_id: Optional[pulumi.Input[Optional[_built
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    all = huaweicloud.global.get_eips()
+    all = huaweicloud.Global.get_eips()
     ```
 
     ### Get specific global EIPs
@@ -273,7 +273,7 @@ def get_eips_output(associate_instance_id: Optional[pulumi.Input[Optional[_built
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.global.get_eips(status="inuse")
+    test = huaweicloud.Global.get_eips(status="inuse")
     ```
 
 
@@ -304,7 +304,7 @@ def get_eips_output(associate_instance_id: Optional[pulumi.Input[Optional[_built
     __args__['status'] = status
     __args__['tags'] = tags
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:global/getEips:getEips', __args__, opts=opts, typ=GetEipsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Global/getEips:getEips', __args__, opts=opts, typ=GetEipsResult)
     return __ret__.apply(lambda __response__: GetEipsResult(
         associate_instance_id=pulumi.get(__response__, 'associate_instance_id'),
         associate_instance_type=pulumi.get(__response__, 'associate_instance_type'),

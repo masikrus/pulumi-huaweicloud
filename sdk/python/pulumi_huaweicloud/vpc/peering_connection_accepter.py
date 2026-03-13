@@ -24,6 +24,7 @@ class PeeringConnectionAccepterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PeeringConnectionAccepter resource.
+
         :param pulumi.Input[_builtins.str] vpc_peering_connection_id: The VPC Peering Connection ID to manage. Changing this
                creates a new VPC peering connection accepter.
         :param pulumi.Input[_builtins.bool] accept: Whether or not to accept the peering request. Defaults to `false`.
@@ -89,6 +90,7 @@ class _PeeringConnectionAccepterState:
                  vpc_peering_connection_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PeeringConnectionAccepter resources.
+
         :param pulumi.Input[_builtins.bool] accept: Whether or not to accept the peering request. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: The description of the VPC peering connection.
         :param pulumi.Input[_builtins.str] name: The VPC peering connection name.
@@ -242,7 +244,47 @@ class PeeringConnectionAccepter(pulumi.CustomResource):
                  vpc_peering_connection_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a PeeringConnectionAccepter resource with the given unique name, props, and options.
+        Provides a resource to manage the accepter's side of a VPC Peering Connection.
+
+        > **NOTE:** When a cross-tenant (requester's tenant differs from the accepter's tenant) VPC Peering Connection
+          is created, a VPC Peering Connection resource is automatically created in the accepter's account.
+          The requester can use the `Vpc.PeeringConnection` resource to manage its side of the connection and
+          the accepter can use the `Vpc.PeeringConnectionAccepter` resource to accept its side of the connection
+          into management.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        vpc_main = huaweicloud.vpc.Vpc("vpc_main",
+            name=vpc_name,
+            cidr=vpc_cidr)
+        vpc_peer = huaweicloud.vpc.Vpc("vpc_peer",
+            name=peer_vpc_name,
+            cidr=peer_vpc_cidr)
+        # Requester's side of the connection.
+        peering = huaweicloud.vpc.PeeringConnection("peering",
+            name=peer_name,
+            vpc_id=vpc_main.id,
+            peer_vpc_id=vpc_peer.id,
+            peer_tenant_id=tenant_id)
+        # Accepter's side of the connection.
+        peer = huaweicloud.vpc.PeeringConnectionAccepter("peer",
+            accept=True,
+            vpc_peering_connection_id=peering.id)
+        ```
+
+        ## Removing Vpc.PeeringConnectionAccepter from your configuration
+
+        HuaweiCloud allows a cross-tenant VPC Peering Connection to be deleted from either the requester's or accepter's side.
+        However, Terraform only allows the VPC Peering Connection to be deleted from the requester's side by removing the
+        corresponding `Vpc.PeeringConnection` resource from your configuration.
+        Removing a `Vpc.PeeringConnectionAccepter` resource from your configuration will remove it from your
+        state file and management, but will not destroy the VPC Peering Connection.
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accept: Whether or not to accept the peering request. Defaults to `false`.
@@ -258,7 +300,47 @@ class PeeringConnectionAccepter(pulumi.CustomResource):
                  args: PeeringConnectionAccepterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PeeringConnectionAccepter resource with the given unique name, props, and options.
+        Provides a resource to manage the accepter's side of a VPC Peering Connection.
+
+        > **NOTE:** When a cross-tenant (requester's tenant differs from the accepter's tenant) VPC Peering Connection
+          is created, a VPC Peering Connection resource is automatically created in the accepter's account.
+          The requester can use the `Vpc.PeeringConnection` resource to manage its side of the connection and
+          the accepter can use the `Vpc.PeeringConnectionAccepter` resource to accept its side of the connection
+          into management.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        vpc_main = huaweicloud.vpc.Vpc("vpc_main",
+            name=vpc_name,
+            cidr=vpc_cidr)
+        vpc_peer = huaweicloud.vpc.Vpc("vpc_peer",
+            name=peer_vpc_name,
+            cidr=peer_vpc_cidr)
+        # Requester's side of the connection.
+        peering = huaweicloud.vpc.PeeringConnection("peering",
+            name=peer_name,
+            vpc_id=vpc_main.id,
+            peer_vpc_id=vpc_peer.id,
+            peer_tenant_id=tenant_id)
+        # Accepter's side of the connection.
+        peer = huaweicloud.vpc.PeeringConnectionAccepter("peer",
+            accept=True,
+            vpc_peering_connection_id=peering.id)
+        ```
+
+        ## Removing Vpc.PeeringConnectionAccepter from your configuration
+
+        HuaweiCloud allows a cross-tenant VPC Peering Connection to be deleted from either the requester's or accepter's side.
+        However, Terraform only allows the VPC Peering Connection to be deleted from the requester's side by removing the
+        corresponding `Vpc.PeeringConnection` resource from your configuration.
+        Removing a `Vpc.PeeringConnectionAccepter` resource from your configuration will remove it from your
+        state file and management, but will not destroy the VPC Peering Connection.
+
+
         :param str resource_name: The name of the resource.
         :param PeeringConnectionAccepterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

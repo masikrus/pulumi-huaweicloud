@@ -29,6 +29,7 @@ class PostPaidOrderArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PostPaidOrder resource.
+
         :param pulumi.Input[_builtins.str] operate_type: Specifies the operate type.
                The value can be: **create** and **addition**.
         :param pulumi.Input[Sequence[pulumi.Input['PostPaidOrderProductListArgs']]] product_lists: Specifies the product list.
@@ -139,6 +140,7 @@ class _PostPaidOrderState:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PostPaidOrder resources.
+
         :param pulumi.Input[_builtins.str] operate_type: Specifies the operate type.
                The value can be: **create** and **addition**.
         :param pulumi.Input[Sequence[pulumi.Input['PostPaidOrderProductListArgs']]] product_lists: Specifies the product list.
@@ -238,7 +240,7 @@ class _PostPaidOrderState:
         pulumi.set(self, "tags", value)
 
 
-@pulumi.type_token("huaweicloud:secmaster/postPaidOrder:PostPaidOrder")
+@pulumi.type_token("huaweicloud:Secmaster/postPaidOrder:PostPaidOrder")
 class PostPaidOrder(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -276,6 +278,7 @@ class PostPaidOrder(pulumi.CustomResource):
             "usage_factor": "duration",
         }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -323,6 +326,7 @@ class PostPaidOrder(pulumi.CustomResource):
         }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param PostPaidOrderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -360,7 +364,7 @@ class PostPaidOrder(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
         super(PostPaidOrder, __self__).__init__(
-            'huaweicloud:secmaster/postPaidOrder:PostPaidOrder',
+            'huaweicloud:Secmaster/postPaidOrder:PostPaidOrder',
             resource_name,
             __props__,
             opts)

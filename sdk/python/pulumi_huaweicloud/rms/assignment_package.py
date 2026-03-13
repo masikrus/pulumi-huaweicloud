@@ -29,6 +29,7 @@ class AssignmentPackageArgs:
                  vars_structures: Optional[pulumi.Input[Sequence[pulumi.Input['AssignmentPackageVarsStructureArgs']]]] = None):
         """
         The set of arguments for constructing a AssignmentPackage resource.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name. The agency needs to authorize RFS to invoke
                the Config APIs for creating, updating, deleting an assignment. It contains 1 to 64 characters.
                
@@ -175,6 +176,7 @@ class _AssignmentPackageState:
                  vars_structures: Optional[pulumi.Input[Sequence[pulumi.Input['AssignmentPackageVarsStructureArgs']]]] = None):
         """
         Input properties used for looking up and filtering AssignmentPackage resources.
+
         :param pulumi.Input[_builtins.str] agency_name: Specifies the agency name. The agency needs to authorize RFS to invoke
                the Config APIs for creating, updating, deleting an assignment. It contains 1 to 64 characters.
                
@@ -366,7 +368,7 @@ class _AssignmentPackageState:
         pulumi.set(self, "vars_structures", value)
 
 
-@pulumi.type_token("huaweicloud:rms/assignmentPackage:AssignmentPackage")
+@pulumi.type_token("huaweicloud:Rms/assignmentPackage:AssignmentPackage")
 class AssignmentPackage(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -382,43 +384,36 @@ class AssignmentPackage(pulumi.CustomResource):
         """
         Manages a RMS assignment package resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        test = huaweicloud.Rms.get_assignment_package_templates()
+        test_assignment_package = huaweicloud.rms.AssignmentPackage("test",
+            vars_structures=[{"key": k, "value": v} for k, v in test.templates[0].parameters.items()].apply(lambda entries: [{
+                "varKey": entry["value"].name,
+                "varValue": entry["value"].default_value,
+            } for entry in entries]),
+            name="test",
+            template_key=test.templates[0].template_key)
+        ```
+
         ## Import
 
         The RMS assignment package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/assignmentPackage:AssignmentPackage test <id>
+        $ pulumi import huaweicloud:Rms/assignmentPackage:AssignmentPackage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `agency_name`, `template_key`,
-
         `template_body`, `template_uri`. It is generally recommended running `pulumi preview` after importing a RMS assignment
-
         package. You can then decide if changes should be applied to the RMS assignment package, or the resource definition
-
         should be updated to align with the RMS assignment package. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rms_assignment_package" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency_name, template_key, template_body, template_uri,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -457,43 +452,36 @@ class AssignmentPackage(pulumi.CustomResource):
         """
         Manages a RMS assignment package resource within HuaweiCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_huaweicloud as huaweicloud
+
+        test = huaweicloud.Rms.get_assignment_package_templates()
+        test_assignment_package = huaweicloud.rms.AssignmentPackage("test",
+            vars_structures=[{"key": k, "value": v} for k, v in test.templates[0].parameters.items()].apply(lambda entries: [{
+                "varKey": entry["value"].name,
+                "varValue": entry["value"].default_value,
+            } for entry in entries]),
+            name="test",
+            template_key=test.templates[0].template_key)
+        ```
+
         ## Import
 
         The RMS assignment package can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:rms/assignmentPackage:AssignmentPackage test <id>
+        $ pulumi import huaweicloud:Rms/assignmentPackage:AssignmentPackage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `agency_name`, `template_key`,
-
         `template_body`, `template_uri`. It is generally recommended running `pulumi preview` after importing a RMS assignment
-
         package. You can then decide if changes should be applied to the RMS assignment package, or the resource definition
-
         should be updated to align with the RMS assignment package. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_rms_assignment_package" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              agency_name, template_key, template_body, template_uri,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param AssignmentPackageArgs args: The arguments to use to populate this resource's properties.
@@ -536,7 +524,7 @@ class AssignmentPackage(pulumi.CustomResource):
             __props__.__dict__["stack_name"] = None
             __props__.__dict__["status"] = None
         super(AssignmentPackage, __self__).__init__(
-            'huaweicloud:rms/assignmentPackage:AssignmentPackage',
+            'huaweicloud:Rms/assignmentPackage:AssignmentPackage',
             resource_name,
             __props__,
             opts)

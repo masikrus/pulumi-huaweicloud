@@ -26,10 +26,12 @@ class NotificationRuleArgs:
                  scope: pulumi.Input['NotificationRuleScopeArgs'],
                  trigger_policy: pulumi.Input['NotificationRuleTriggerPolicyArgs'],
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationRule resource.
+
         :param pulumi.Input[_builtins.str] event_name: Specifies the trigger event of the event notification.  
                Multiple events are separated by commas (,). e.g. **Healthy,Pulled**.
                The valid values are as follows:
@@ -52,6 +54,7 @@ class NotificationRuleArgs:
                
                <a name="notification_rule_notification"></a>
                The `notification` block supports:
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the notification rule belongs.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the event notification rule. The name must be unique.  
                Changing this creates a new resource.
                The valid length is limited from `1` to `64`, only English letters, digits, underscores (_) and hyphens (-) are
@@ -67,6 +70,8 @@ class NotificationRuleArgs:
         pulumi.set(__self__, "trigger_policy", trigger_policy)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region is not None:
@@ -150,6 +155,18 @@ class NotificationRuleArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the notification rule belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -184,6 +201,7 @@ class NotificationRuleArgs:
 class _NotificationRuleState:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  event_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  notification: Optional[pulumi.Input['NotificationRuleNotificationArgs']] = None,
@@ -192,10 +210,12 @@ class _NotificationRuleState:
                  trigger_policy: Optional[pulumi.Input['NotificationRuleTriggerPolicyArgs']] = None):
         """
         Input properties used for looking up and filtering NotificationRule resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether to enable the event notification rule. Defaults to **false**.
                
                <a name="notification_rule_notification"></a>
                The `notification` block supports:
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the notification rule belongs.
         :param pulumi.Input[_builtins.str] event_name: Specifies the trigger event of the event notification.  
                Multiple events are separated by commas (,). e.g. **Healthy,Pulled**.
                The valid values are as follows:
@@ -225,6 +245,8 @@ class _NotificationRuleState:
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if enterprise_project_id is not None:
+            pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
         if event_name is not None:
             pulumi.set(__self__, "event_name", event_name)
         if name is not None:
@@ -252,6 +274,18 @@ class _NotificationRuleState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the notification rule belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @enterprise_project_id.setter
+    def enterprise_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "enterprise_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="eventName")
@@ -346,13 +380,14 @@ class _NotificationRuleState:
         pulumi.set(self, "trigger_policy", value)
 
 
-@pulumi.type_token("huaweicloud:cae/notificationRule:NotificationRule")
+@pulumi.type_token("huaweicloud:Cae/notificationRule:NotificationRule")
 class NotificationRule(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  event_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  notification: Optional[pulumi.Input[Union['NotificationRuleNotificationArgs', 'NotificationRuleNotificationArgsDict']]] = None,
@@ -396,11 +431,10 @@ class NotificationRule(pulumi.CustomResource):
 
         The event notification rule resource can be imported using `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/notificationRule:NotificationRule test <name>
+        $ pulumi import huaweicloud:Cae/notificationRule:NotificationRule test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -408,6 +442,7 @@ class NotificationRule(pulumi.CustomResource):
                
                <a name="notification_rule_notification"></a>
                The `notification` block supports:
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the notification rule belongs.
         :param pulumi.Input[_builtins.str] event_name: Specifies the trigger event of the event notification.  
                Multiple events are separated by commas (,). e.g. **Healthy,Pulled**.
                The valid values are as follows:
@@ -477,11 +512,10 @@ class NotificationRule(pulumi.CustomResource):
 
         The event notification rule resource can be imported using `name`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:cae/notificationRule:NotificationRule test <name>
+        $ pulumi import huaweicloud:Cae/notificationRule:NotificationRule test <name>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationRuleArgs args: The arguments to use to populate this resource's properties.
@@ -499,6 +533,7 @@ class NotificationRule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  event_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  notification: Optional[pulumi.Input[Union['NotificationRuleNotificationArgs', 'NotificationRuleNotificationArgsDict']]] = None,
@@ -515,6 +550,7 @@ class NotificationRule(pulumi.CustomResource):
             __props__ = NotificationRuleArgs.__new__(NotificationRuleArgs)
 
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["enterprise_project_id"] = enterprise_project_id
             if event_name is None and not opts.urn:
                 raise TypeError("Missing required property 'event_name'")
             __props__.__dict__["event_name"] = event_name
@@ -530,7 +566,7 @@ class NotificationRule(pulumi.CustomResource):
                 raise TypeError("Missing required property 'trigger_policy'")
             __props__.__dict__["trigger_policy"] = trigger_policy
         super(NotificationRule, __self__).__init__(
-            'huaweicloud:cae/notificationRule:NotificationRule',
+            'huaweicloud:Cae/notificationRule:NotificationRule',
             resource_name,
             __props__,
             opts)
@@ -540,6 +576,7 @@ class NotificationRule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            enterprise_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             event_name: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             notification: Optional[pulumi.Input[Union['NotificationRuleNotificationArgs', 'NotificationRuleNotificationArgsDict']]] = None,
@@ -557,6 +594,7 @@ class NotificationRule(pulumi.CustomResource):
                
                <a name="notification_rule_notification"></a>
                The `notification` block supports:
+        :param pulumi.Input[_builtins.str] enterprise_project_id: The ID of the enterprise project to which the notification rule belongs.
         :param pulumi.Input[_builtins.str] event_name: Specifies the trigger event of the event notification.  
                Multiple events are separated by commas (,). e.g. **Healthy,Pulled**.
                The valid values are as follows:
@@ -589,6 +627,7 @@ class NotificationRule(pulumi.CustomResource):
         __props__ = _NotificationRuleState.__new__(_NotificationRuleState)
 
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["enterprise_project_id"] = enterprise_project_id
         __props__.__dict__["event_name"] = event_name
         __props__.__dict__["name"] = name
         __props__.__dict__["notification"] = notification
@@ -607,6 +646,14 @@ class NotificationRule(pulumi.CustomResource):
         The `notification` block supports:
         """
         return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the enterprise project to which the notification rule belongs.
+        """
+        return pulumi.get(self, "enterprise_project_id")
 
     @_builtins.property
     @pulumi.getter(name="eventName")

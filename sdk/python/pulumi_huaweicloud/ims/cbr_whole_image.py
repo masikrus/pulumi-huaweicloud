@@ -30,6 +30,7 @@ class CbrWholeImageArgs:
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CbrWholeImage resource.
+
         :param pulumi.Input[_builtins.str] backup_id: Specifies the CBR instance backup ID used to create the image.
                Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the image.
@@ -248,6 +249,7 @@ class _CbrWholeImageState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CbrWholeImage resources.
+
         :param pulumi.Input[_builtins.str] __account_code: The charging identifier for the image.
         :param pulumi.Input[_builtins.str] __image_displayname: The name for external display.
         :param pulumi.Input[_builtins.str] __image_size: The size of the image file, in bytes unit.
@@ -1287,37 +1289,27 @@ class CbrWholeImage(pulumi.CustomResource):
 
         The IMS CBR whole image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/cbrWholeImage:CbrWholeImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_delete_backup`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_cbr_whole_image" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               is_delete_backup,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1371,37 +1363,27 @@ class CbrWholeImage(pulumi.CustomResource):
 
         The IMS CBR whole image resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Ims/cbrWholeImage:CbrWholeImage test <id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
-
         API response, security or some other reason. The missing attributes include: `is_delete_backup`.
-
         It is generally recommended running `pulumi preview` after importing the resource. You can then decide if changes should
-
         be applied to the resource, or the resource definition should be updated to align with the image. Also, you can ignore
-
         changes as below.
 
+        ```sh
         resource "huaweicloud_ims_cbr_whole_image" "test" {
-
             ...
-
           lifecycle {
-
             ignore_changes = [
-            
               is_delete_backup,
-            
             ]
-
           }
-
         }
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param CbrWholeImageArgs args: The arguments to use to populate this resource's properties.

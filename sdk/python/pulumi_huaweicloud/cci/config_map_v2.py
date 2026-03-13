@@ -27,6 +27,7 @@ class ConfigMapV2Args:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ConfigMapV2 resource.
+
         :param pulumi.Input[_builtins.str] namespace: Specifies the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] binary_data: Specifies the binary data of the CCI ConfigMap.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: Specifies the data of the CCI ConfigMap.
@@ -130,6 +131,7 @@ class _ConfigMapV2State:
                  uid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConfigMapV2 resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: The annotations of the CCI ConfigMap.
         :param pulumi.Input[_builtins.str] api_version: The API version of the CCI ConfigMap.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] binary_data: Specifies the binary data of the CCI ConfigMap.
@@ -350,6 +352,7 @@ class ConfigMapV2(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ConfigMapV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] binary_data: Specifies the binary data of the CCI ConfigMap.
@@ -365,6 +368,7 @@ class ConfigMapV2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ConfigMapV2 resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ConfigMapV2Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

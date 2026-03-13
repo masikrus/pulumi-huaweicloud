@@ -22,6 +22,7 @@ __all__ = [
     'AsyncInvokeConfigurationOnSuccess',
     'FunctionCustomImage',
     'FunctionFuncMount',
+    'FunctionFuncMountsOrder',
     'FunctionNetworkController',
     'FunctionNetworkControllerTriggerAccessVpc',
     'FunctionReservedInstance',
@@ -30,6 +31,7 @@ __all__ = [
     'FunctionReservedInstanceTacticsConfigMetricConfig',
     'FunctionV2CustomImage',
     'FunctionV2FuncMount',
+    'FunctionV2FuncMountsOrder',
     'FunctionV2NetworkController',
     'FunctionV2NetworkControllerTriggerAccessVpc',
     'FunctionV2ReservedInstance',
@@ -49,6 +51,11 @@ __all__ = [
     'TriggerTimer',
     'GetApplicationTemplatesTemplateResult',
     'GetApplicationsApplicationResult',
+    'GetAsyncInvocationsInvocationResult',
+    'GetAsyncInvokeConfigurationsConfigurationResult',
+    'GetAsyncInvokeConfigurationsConfigurationDestinationConfigResult',
+    'GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnFailureResult',
+    'GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnSuccessResult',
     'GetDependenciesPackageResult',
     'GetDependenciesPackageVersionResult',
     'GetDependencyVersionsVersionResult',
@@ -60,6 +67,14 @@ __all__ = [
     'GetQuotasQuotaResult',
     'GetResourceTagsSysTagResult',
     'GetResourceTagsTagResult',
+    'GetResourcesFilterMatchResult',
+    'GetResourcesFilterResourceResult',
+    'GetResourcesFilterResourceSysTagResult',
+    'GetResourcesFilterResourceTagResult',
+    'GetResourcesFilterSysTagResult',
+    'GetResourcesFilterTagResult',
+    'GetRuntimeTypesTypeResult',
+    'GetServiceTrustedAgenciesAgencyResult',
 ]
 
 @pulumi.output_type
@@ -593,6 +608,48 @@ class FunctionFuncMount(dict):
         The mount status.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class FunctionFuncMountsOrder(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "localMountPath":
+            suggest = "local_mount_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FunctionFuncMountsOrder. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FunctionFuncMountsOrder.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FunctionFuncMountsOrder.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 local_mount_path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str local_mount_path: Specifies the function access path.
+               
+               <a name="function_custom_image"></a>
+               The `custom_image` block supports:
+        """
+        if local_mount_path is not None:
+            pulumi.set(__self__, "local_mount_path", local_mount_path)
+
+    @_builtins.property
+    @pulumi.getter(name="localMountPath")
+    def local_mount_path(self) -> Optional[_builtins.str]:
+        """
+        Specifies the function access path.
+
+        <a name="function_custom_image"></a>
+        The `custom_image` block supports:
+        """
+        return pulumi.get(self, "local_mount_path")
 
 
 @pulumi.output_type
@@ -1245,6 +1302,42 @@ class FunctionV2FuncMount(dict):
         The mount status.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class FunctionV2FuncMountsOrder(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "localMountPath":
+            suggest = "local_mount_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FunctionV2FuncMountsOrder. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FunctionV2FuncMountsOrder.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FunctionV2FuncMountsOrder.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 local_mount_path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str local_mount_path: The origin function access path.
+        """
+        if local_mount_path is not None:
+            pulumi.set(__self__, "local_mount_path", local_mount_path)
+
+    @_builtins.property
+    @pulumi.getter(name="localMountPath")
+    def local_mount_path(self) -> Optional[_builtins.str]:
+        """
+        The origin function access path.
+        """
+        return pulumi.get(self, "local_mount_path")
 
 
 @pulumi.output_type
@@ -2723,6 +2816,284 @@ class GetApplicationsApplicationResult(dict):
 
 
 @pulumi.output_type
+class GetAsyncInvocationsInvocationResult(dict):
+    def __init__(__self__, *,
+                 end_time: _builtins.str,
+                 error_code: _builtins.str,
+                 error_message: _builtins.str,
+                 request_id: _builtins.str,
+                 start_time: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str end_time: The end time of the async invocation, in RFC3339 format (UTC time).
+        :param _builtins.str error_code: The error code of the async invocation.
+        :param _builtins.str error_message: The error message of the async invocation.
+        :param _builtins.str request_id: Specifies the specified request ID of async invocation to be queried.
+        :param _builtins.str start_time: The start time of the async invocation, in RFC3339 format (UTC time).
+        :param _builtins.str status: Specifies the status of async invocations to be queried.  
+               The valid values are as follows:
+               + **WAIT**
+               + **RUNNING**
+               + **SUCCESS**
+               + **FAIL**
+               + **DISCARD**
+        """
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "request_id", request_id)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> _builtins.str:
+        """
+        The end time of the async invocation, in RFC3339 format (UTC time).
+        """
+        return pulumi.get(self, "end_time")
+
+    @_builtins.property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> _builtins.str:
+        """
+        The error code of the async invocation.
+        """
+        return pulumi.get(self, "error_code")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        The error message of the async invocation.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="requestId")
+    def request_id(self) -> _builtins.str:
+        """
+        Specifies the specified request ID of async invocation to be queried.
+        """
+        return pulumi.get(self, "request_id")
+
+    @_builtins.property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> _builtins.str:
+        """
+        The start time of the async invocation, in RFC3339 format (UTC time).
+        """
+        return pulumi.get(self, "start_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Specifies the status of async invocations to be queried.  
+        The valid values are as follows:
+        + **WAIT**
+        + **RUNNING**
+        + **SUCCESS**
+        + **FAIL**
+        + **DISCARD**
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetAsyncInvokeConfigurationsConfigurationResult(dict):
+    def __init__(__self__, *,
+                 created_time: _builtins.str,
+                 destination_configs: Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigResult'],
+                 enable_async_status_log: _builtins.bool,
+                 func_urn: _builtins.str,
+                 last_modified: _builtins.str,
+                 max_async_event_age_in_seconds: _builtins.int,
+                 max_async_retry_attempts: _builtins.int):
+        """
+        :param _builtins.str created_time: The creation time of the async invoke configuration.
+        :param Sequence['GetAsyncInvokeConfigurationsConfigurationDestinationConfigArgs'] destination_configs: The destination configuration for async invoke.  
+               The destination_config structure is documented below.
+        :param _builtins.bool enable_async_status_log: Whether async invoke status persistence is enabled.
+        :param _builtins.str func_urn: The function URN.
+        :param _builtins.str last_modified: The last modification time of the async invoke configuration.
+        :param _builtins.int max_async_event_age_in_seconds: The maximum validity period of a message.
+        :param _builtins.int max_async_retry_attempts: The maximum number of retry attempts to be made if asynchronous invocation fails.
+        """
+        pulumi.set(__self__, "created_time", created_time)
+        pulumi.set(__self__, "destination_configs", destination_configs)
+        pulumi.set(__self__, "enable_async_status_log", enable_async_status_log)
+        pulumi.set(__self__, "func_urn", func_urn)
+        pulumi.set(__self__, "last_modified", last_modified)
+        pulumi.set(__self__, "max_async_event_age_in_seconds", max_async_event_age_in_seconds)
+        pulumi.set(__self__, "max_async_retry_attempts", max_async_retry_attempts)
+
+    @_builtins.property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> _builtins.str:
+        """
+        The creation time of the async invoke configuration.
+        """
+        return pulumi.get(self, "created_time")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationConfigs")
+    def destination_configs(self) -> Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigResult']:
+        """
+        The destination configuration for async invoke.  
+        The destination_config structure is documented below.
+        """
+        return pulumi.get(self, "destination_configs")
+
+    @_builtins.property
+    @pulumi.getter(name="enableAsyncStatusLog")
+    def enable_async_status_log(self) -> _builtins.bool:
+        """
+        Whether async invoke status persistence is enabled.
+        """
+        return pulumi.get(self, "enable_async_status_log")
+
+    @_builtins.property
+    @pulumi.getter(name="funcUrn")
+    def func_urn(self) -> _builtins.str:
+        """
+        The function URN.
+        """
+        return pulumi.get(self, "func_urn")
+
+    @_builtins.property
+    @pulumi.getter(name="lastModified")
+    def last_modified(self) -> _builtins.str:
+        """
+        The last modification time of the async invoke configuration.
+        """
+        return pulumi.get(self, "last_modified")
+
+    @_builtins.property
+    @pulumi.getter(name="maxAsyncEventAgeInSeconds")
+    def max_async_event_age_in_seconds(self) -> _builtins.int:
+        """
+        The maximum validity period of a message.
+        """
+        return pulumi.get(self, "max_async_event_age_in_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="maxAsyncRetryAttempts")
+    def max_async_retry_attempts(self) -> _builtins.int:
+        """
+        The maximum number of retry attempts to be made if asynchronous invocation fails.
+        """
+        return pulumi.get(self, "max_async_retry_attempts")
+
+
+@pulumi.output_type
+class GetAsyncInvokeConfigurationsConfigurationDestinationConfigResult(dict):
+    def __init__(__self__, *,
+                 on_failures: Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnFailureResult'],
+                 on_successes: Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnSuccessResult']):
+        """
+        :param Sequence['GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnFailureArgs'] on_failures: The target to be invoked when a function fails to be executed.  
+               The on_failure structure is documented below.
+        :param Sequence['GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnSuccessArgs'] on_successes: The target to be invoked when a function is successfully executed.  
+               The on_success structure is documented below.
+        """
+        pulumi.set(__self__, "on_failures", on_failures)
+        pulumi.set(__self__, "on_successes", on_successes)
+
+    @_builtins.property
+    @pulumi.getter(name="onFailures")
+    def on_failures(self) -> Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnFailureResult']:
+        """
+        The target to be invoked when a function fails to be executed.  
+        The on_failure structure is documented below.
+        """
+        return pulumi.get(self, "on_failures")
+
+    @_builtins.property
+    @pulumi.getter(name="onSuccesses")
+    def on_successes(self) -> Sequence['outputs.GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnSuccessResult']:
+        """
+        The target to be invoked when a function is successfully executed.  
+        The on_success structure is documented below.
+        """
+        return pulumi.get(self, "on_successes")
+
+
+@pulumi.output_type
+class GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnFailureResult(dict):
+    def __init__(__self__, *,
+                 destination: _builtins.str,
+                 param: _builtins.str):
+        """
+        :param _builtins.str destination: The target type.
+               + **OBS**
+               + **SMN**
+               + **DIS**
+               + **FunctionGraph**
+        :param _builtins.str param: The parameters corresponding to the target service, in JSON format.
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "param", param)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> _builtins.str:
+        """
+        The target type.
+        + **OBS**
+        + **SMN**
+        + **DIS**
+        + **FunctionGraph**
+        """
+        return pulumi.get(self, "destination")
+
+    @_builtins.property
+    @pulumi.getter
+    def param(self) -> _builtins.str:
+        """
+        The parameters corresponding to the target service, in JSON format.
+        """
+        return pulumi.get(self, "param")
+
+
+@pulumi.output_type
+class GetAsyncInvokeConfigurationsConfigurationDestinationConfigOnSuccessResult(dict):
+    def __init__(__self__, *,
+                 destination: _builtins.str,
+                 param: _builtins.str):
+        """
+        :param _builtins.str destination: The target type.
+               + **OBS**
+               + **SMN**
+               + **DIS**
+               + **FunctionGraph**
+        :param _builtins.str param: The parameters corresponding to the target service, in JSON format.
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "param", param)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> _builtins.str:
+        """
+        The target type.
+        + **OBS**
+        + **SMN**
+        + **DIS**
+        + **FunctionGraph**
+        """
+        return pulumi.get(self, "destination")
+
+    @_builtins.property
+    @pulumi.getter
+    def param(self) -> _builtins.str:
+        """
+        The parameters corresponding to the target service, in JSON format.
+        """
+        return pulumi.get(self, "param")
+
+
+@pulumi.output_type
 class GetDependenciesPackageResult(dict):
     def __init__(__self__, *,
                  etag: _builtins.str,
@@ -3163,13 +3534,15 @@ class GetFunctionTriggersTriggerResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
                  event_data: _builtins.str,
+                 function_urn: _builtins.str,
                  id: _builtins.str,
                  status: _builtins.str,
                  type: _builtins.str,
                  updated_at: _builtins.str):
         """
         :param _builtins.str created_at: The creation time of the function trigger, in RFC3339 format.
-        :param _builtins.str event_data: The detailed configuration of the function trigger.
+        :param _builtins.str event_data: The detailed configuration of the function trigger, in JSON format.
+        :param _builtins.str function_urn: Specifies the URN of the function URN to which the triggers belong.
         :param _builtins.str id: The ID of the function trigger.
         :param _builtins.str status: Specifies status of the function trigger.
                The valid values are as follows:
@@ -3198,6 +3571,7 @@ class GetFunctionTriggersTriggerResult(dict):
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "event_data", event_data)
+        pulumi.set(__self__, "function_urn", function_urn)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
@@ -3215,9 +3589,17 @@ class GetFunctionTriggersTriggerResult(dict):
     @pulumi.getter(name="eventData")
     def event_data(self) -> _builtins.str:
         """
-        The detailed configuration of the function trigger.
+        The detailed configuration of the function trigger, in JSON format.
         """
         return pulumi.get(self, "event_data")
+
+    @_builtins.property
+    @pulumi.getter(name="functionUrn")
+    def function_urn(self) -> _builtins.str:
+        """
+        Specifies the URN of the function URN to which the triggers belong.
+        """
+        return pulumi.get(self, "function_urn")
 
     @_builtins.property
     @pulumi.getter
@@ -3732,5 +4114,304 @@ class GetResourceTagsTagResult(dict):
         The values of the tag.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesFilterMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param _builtins.str value: The match value used to filter the target resources.  
+               The value is fuzzy match if `key` is **resource_name**.
+               
+               <a name="fgs_resources_filter_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The match value used to filter the target resources.  
+        The value is fuzzy match if `key` is **resource_name**.
+
+        <a name="fgs_resources_filter_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesFilterResourceResult(dict):
+    def __init__(__self__, *,
+                 detail: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 sys_tags: Sequence['outputs.GetResourcesFilterResourceSysTagResult'],
+                 tags: Sequence['outputs.GetResourcesFilterResourceTagResult']):
+        """
+        :param _builtins.str detail: The detailed information of the resource, in JSON format.
+        :param _builtins.str id: The ID of the resource.
+        :param _builtins.str name: The name of the resource.
+        :param Sequence['GetResourcesFilterResourceSysTagArgs'] sys_tags: The system tags of the resource.
+        :param Sequence['GetResourcesFilterResourceTagArgs'] tags: Specifies the resource tags used to filter the target resources.  
+               The tags structure is documented below.
+               
+               <a name="fgs_resources_filter_matches"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "detail", detail)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "sys_tags", sys_tags)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def detail(self) -> _builtins.str:
+        """
+        The detailed information of the resource, in JSON format.
+        """
+        return pulumi.get(self, "detail")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the resource.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="sysTags")
+    def sys_tags(self) -> Sequence['outputs.GetResourcesFilterResourceSysTagResult']:
+        """
+        The system tags of the resource.
+        """
+        return pulumi.get(self, "sys_tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResourcesFilterResourceTagResult']:
+        """
+        Specifies the resource tags used to filter the target resources.  
+        The tags structure is documented below.
+
+        <a name="fgs_resources_filter_matches"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetResourcesFilterResourceSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param _builtins.str value: The match value used to filter the target resources.  
+               The value is fuzzy match if `key` is **resource_name**.
+               
+               <a name="fgs_resources_filter_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The match value used to filter the target resources.  
+        The value is fuzzy match if `key` is **resource_name**.
+
+        <a name="fgs_resources_filter_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesFilterResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param _builtins.str value: The match value used to filter the target resources.  
+               The value is fuzzy match if `key` is **resource_name**.
+               
+               <a name="fgs_resources_filter_tags"></a>
+               The `tags` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The match value used to filter the target resources.  
+        The value is fuzzy match if `key` is **resource_name**.
+
+        <a name="fgs_resources_filter_tags"></a>
+        The `tags` block supports:
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesFilterSysTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param Sequence[_builtins.str] values: The values corresponding to the current key used to filter the target resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values corresponding to the current key used to filter the target resources.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesFilterTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: The key of the resource tag used to filter the target resources.
+        :param Sequence[_builtins.str] values: The values corresponding to the current key used to filter the target resources.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The key of the resource tag used to filter the target resources.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The values corresponding to the current key used to filter the target resources.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetRuntimeTypesTypeResult(dict):
+    def __init__(__self__, *,
+                 display_name: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str display_name: The display name of the runtime.
+        :param _builtins.str type: The type of the runtime.
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The display name of the runtime.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the runtime.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetServiceTrustedAgenciesAgencyResult(dict):
+    def __init__(__self__, *,
+                 expire_time: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str expire_time: The expiration time of the trusted agency.  
+               When the agency never expires, the value is empty string.
+        :param _builtins.str name: The name of the trusted agency.
+        """
+        pulumi.set(__self__, "expire_time", expire_time)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="expireTime")
+    def expire_time(self) -> _builtins.str:
+        """
+        The expiration time of the trusted agency.  
+        When the agency never expires, the value is empty string.
+        """
+        return pulumi.get(self, "expire_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the trusted agency.
+        """
+        return pulumi.get(self, "name")
 
 

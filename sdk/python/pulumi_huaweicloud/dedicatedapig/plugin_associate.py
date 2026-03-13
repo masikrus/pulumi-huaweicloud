@@ -23,9 +23,11 @@ class PluginAssociateArgs:
                  env_id: pulumi.Input[_builtins.str],
                  instance_id: pulumi.Input[_builtins.str],
                  plugin_id: pulumi.Input[_builtins.str],
+                 api_ids_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PluginAssociate resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the API IDs bound by the plugin.
         :param pulumi.Input[_builtins.str] env_id: The environment ID where the API was published.
                Changing this will create a new resource.
@@ -34,6 +36,8 @@ class PluginAssociateArgs:
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] plugin_id: Specifies the plugin ID for APIs binding.  
                Changing this will create a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] region: Specifies the region where the plugin and the APIs are located.  
                If omitted, the provider-level region will be used. Changing this will create a new resource.
         """
@@ -41,6 +45,8 @@ class PluginAssociateArgs:
         pulumi.set(__self__, "env_id", env_id)
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "plugin_id", plugin_id)
+        if api_ids_origins is not None:
+            pulumi.set(__self__, "api_ids_origins", api_ids_origins)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -97,6 +103,19 @@ class PluginAssociateArgs:
         pulumi.set(self, "plugin_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="apiIdsOrigins")
+    def api_ids_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
+        """
+        return pulumi.get(self, "api_ids_origins")
+
+    @api_ids_origins.setter
+    def api_ids_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "api_ids_origins", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -114,13 +133,17 @@ class PluginAssociateArgs:
 class _PluginAssociateState:
     def __init__(__self__, *,
                  api_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 api_ids_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  env_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PluginAssociate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the API IDs bound by the plugin.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] env_id: The environment ID where the API was published.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the APIs and the
@@ -133,6 +156,8 @@ class _PluginAssociateState:
         """
         if api_ids is not None:
             pulumi.set(__self__, "api_ids", api_ids)
+        if api_ids_origins is not None:
+            pulumi.set(__self__, "api_ids_origins", api_ids_origins)
         if env_id is not None:
             pulumi.set(__self__, "env_id", env_id)
         if instance_id is not None:
@@ -153,6 +178,19 @@ class _PluginAssociateState:
     @api_ids.setter
     def api_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "api_ids", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiIdsOrigins")
+    def api_ids_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
+        """
+        return pulumi.get(self, "api_ids_origins")
+
+    @api_ids_origins.setter
+    def api_ids_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "api_ids_origins", value)
 
     @_builtins.property
     @pulumi.getter(name="envId")
@@ -215,16 +253,20 @@ class PluginAssociate(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 api_ids_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  env_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Use this resource to bind the APIs to the plugin within HuaweiCloud.
+        Use this resource to bind the APIs to the specified plugin within HuaweiCloud.
 
-        > A published API can only create one `DedicatedApig.PluginAssociate` resource.
-           For each type of plugin, the API can only bind at most one.
+        > Before binding the API(s), please make sure all APIs have been published, otherwise you will receive a service error.
+
+        > If this resource was imported and no changes were deployed before deletion (a change must be triggered to apply the
+           `api_ids` configured in the script), terraform will delete all bound APIs for current configured plugin in
+           specified publish environment. Otherwise, terraform will only delete the bound API(s) managed by the last change.
 
         ## Example Usage
 
@@ -235,30 +277,30 @@ class PluginAssociate(pulumi.CustomResource):
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
         plugin_id = config.require_object("pluginId")
-        publish_environment_id = config.require_object("publishEnvironmentId")
-        bind_api_ids = config.require_object("bindApiIds")
-        test = huaweicloud.dedicatedapig.PluginAssociate("test",
+        published_env_id = config.require_object("publishedEnvId")
+        published_api_ids = config.require_object("publishedApiIds")
+        test = huaweicloud.dedicatedapig.PluginBatchApisAssociate("test",
             instance_id=instance_id,
             plugin_id=plugin_id,
-            env_id=publish_environment_id,
-            api_ids=bind_api_ids)
+            env_id=published_env_id,
+            api_ids=published_api_ids)
         ```
 
         ## Import
 
         Associate resources can be imported using their related dedicated instance ID of plugin (`instance_id`), `plugin_id` and
-
         `env_id`, separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/pluginAssociate:PluginAssociate test <instance_id>/<plugin_id>/<env_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the API IDs bound by the plugin.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] env_id: The environment ID where the API was published.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the APIs and the
@@ -276,10 +318,13 @@ class PluginAssociate(pulumi.CustomResource):
                  args: PluginAssociateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Use this resource to bind the APIs to the plugin within HuaweiCloud.
+        Use this resource to bind the APIs to the specified plugin within HuaweiCloud.
 
-        > A published API can only create one `DedicatedApig.PluginAssociate` resource.
-           For each type of plugin, the API can only bind at most one.
+        > Before binding the API(s), please make sure all APIs have been published, otherwise you will receive a service error.
+
+        > If this resource was imported and no changes were deployed before deletion (a change must be triggered to apply the
+           `api_ids` configured in the script), terraform will delete all bound APIs for current configured plugin in
+           specified publish environment. Otherwise, terraform will only delete the bound API(s) managed by the last change.
 
         ## Example Usage
 
@@ -290,26 +335,24 @@ class PluginAssociate(pulumi.CustomResource):
         config = pulumi.Config()
         instance_id = config.require_object("instanceId")
         plugin_id = config.require_object("pluginId")
-        publish_environment_id = config.require_object("publishEnvironmentId")
-        bind_api_ids = config.require_object("bindApiIds")
-        test = huaweicloud.dedicatedapig.PluginAssociate("test",
+        published_env_id = config.require_object("publishedEnvId")
+        published_api_ids = config.require_object("publishedApiIds")
+        test = huaweicloud.dedicatedapig.PluginBatchApisAssociate("test",
             instance_id=instance_id,
             plugin_id=plugin_id,
-            env_id=publish_environment_id,
-            api_ids=bind_api_ids)
+            env_id=published_env_id,
+            api_ids=published_api_ids)
         ```
 
         ## Import
 
         Associate resources can be imported using their related dedicated instance ID of plugin (`instance_id`), `plugin_id` and
-
         `env_id`, separated by slashes, e.g.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/pluginAssociate:PluginAssociate test <instance_id>/<plugin_id>/<env_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PluginAssociateArgs args: The arguments to use to populate this resource's properties.
@@ -327,6 +370,7 @@ class PluginAssociate(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 api_ids_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  env_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -343,6 +387,7 @@ class PluginAssociate(pulumi.CustomResource):
             if api_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'api_ids'")
             __props__.__dict__["api_ids"] = api_ids
+            __props__.__dict__["api_ids_origins"] = api_ids_origins
             if env_id is None and not opts.urn:
                 raise TypeError("Missing required property 'env_id'")
             __props__.__dict__["env_id"] = env_id
@@ -364,6 +409,7 @@ class PluginAssociate(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             api_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            api_ids_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             env_id: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -376,6 +422,8 @@ class PluginAssociate(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids: Specifies the API IDs bound by the plugin.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_ids_origins: The script configuration value of this change is also the original value used for comparison with
+               the new value next time the change is made. The corresponding parameter name is 'api_ids'.
         :param pulumi.Input[_builtins.str] env_id: The environment ID where the API was published.
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the dedicated instance to which the APIs and the
@@ -391,6 +439,7 @@ class PluginAssociate(pulumi.CustomResource):
         __props__ = _PluginAssociateState.__new__(_PluginAssociateState)
 
         __props__.__dict__["api_ids"] = api_ids
+        __props__.__dict__["api_ids_origins"] = api_ids_origins
         __props__.__dict__["env_id"] = env_id
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["plugin_id"] = plugin_id
@@ -404,6 +453,15 @@ class PluginAssociate(pulumi.CustomResource):
         Specifies the API IDs bound by the plugin.
         """
         return pulumi.get(self, "api_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="apiIdsOrigins")
+    def api_ids_origins(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The script configuration value of this change is also the original value used for comparison with
+        the new value next time the change is made. The corresponding parameter name is 'api_ids'.
+        """
+        return pulumi.get(self, "api_ids_origins")
 
     @_builtins.property
     @pulumi.getter(name="envId")

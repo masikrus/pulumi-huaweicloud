@@ -118,7 +118,7 @@ def get_setting_login_common_locations(area_code: Optional[_builtins.int] = None
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_setting_login_common_locations()
+    test = huaweicloud.Hss.get_setting_login_common_locations()
     ```
 
 
@@ -137,7 +137,7 @@ def get_setting_login_common_locations(area_code: Optional[_builtins.int] = None
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('huaweicloud:hss/getSettingLoginCommonLocations:getSettingLoginCommonLocations', __args__, opts=opts, typ=GetSettingLoginCommonLocationsResult).value
+    __ret__ = pulumi.runtime.invoke('huaweicloud:Hss/getSettingLoginCommonLocations:getSettingLoginCommonLocations', __args__, opts=opts, typ=GetSettingLoginCommonLocationsResult).value
 
     return AwaitableGetSettingLoginCommonLocationsResult(
         area_code=pulumi.get(__ret__, 'area_code'),
@@ -159,7 +159,7 @@ def get_setting_login_common_locations_output(area_code: Optional[pulumi.Input[O
     import pulumi
     import pulumi_huaweicloud as huaweicloud
 
-    test = huaweicloud.hss.get_setting_login_common_locations()
+    test = huaweicloud.Hss.get_setting_login_common_locations()
     ```
 
 
@@ -178,7 +178,7 @@ def get_setting_login_common_locations_output(area_code: Optional[pulumi.Input[O
     __args__['enterpriseProjectId'] = enterprise_project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('huaweicloud:hss/getSettingLoginCommonLocations:getSettingLoginCommonLocations', __args__, opts=opts, typ=GetSettingLoginCommonLocationsResult)
+    __ret__ = pulumi.runtime.invoke_output('huaweicloud:Hss/getSettingLoginCommonLocations:getSettingLoginCommonLocations', __args__, opts=opts, typ=GetSettingLoginCommonLocationsResult)
     return __ret__.apply(lambda __response__: GetSettingLoginCommonLocationsResult(
         area_code=pulumi.get(__response__, 'area_code'),
         data_lists=pulumi.get(__response__, 'data_lists'),

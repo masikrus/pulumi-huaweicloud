@@ -17,15 +17,28 @@ from . import outputs
 
 __all__ = [
     'MessagePublishMessageAttribute',
+    'NotifyPolicyPolling',
+    'NotifyPolicyPollingSubscription',
     'SubscriptionExtension',
     'SubscriptionFilterPolicy',
     'SubscriptionFilterPolicyFilterPolicy',
     'SubscriptionV2Extension',
     'SubscriptionV2FilterPolicy',
+    'TopicSubscriberFilterPolicy',
+    'GetAuthorizedCloudServicesCloudServiceResult',
     'GetLogtanksLogtankResult',
     'GetMessageTemplatesTemplateResult',
+    'GetResourcesByTagsMatchResult',
+    'GetResourcesByTagsNotTagResult',
+    'GetResourcesByTagsNotTagsAnyResult',
+    'GetResourcesByTagsResourceResult',
+    'GetResourcesByTagsResourceResourceDetailResult',
+    'GetResourcesByTagsResourceTagResult',
+    'GetResourcesByTagsTagResult',
+    'GetResourcesByTagsTagsAnyResult',
     'GetSubscriptionsSubscriptionResult',
     'GetSubscriptionsSubscriptionFilterPoliceResult',
+    'GetTagsTagResult',
     'GetTopicSubscriptionsSubscriptionResult',
     'GetTopicSubscriptionsSubscriptionFilterPoliceResult',
     'GetTopicsTopicResult',
@@ -98,6 +111,144 @@ class MessagePublishMessageAttribute(dict):
         + When the `type` is **PROTOCOL**, the `values` is a string array of supported protocol types.
         """
         return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class NotifyPolicyPolling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "subscriptionUrns":
+            suggest = "subscription_urns"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotifyPolicyPolling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotifyPolicyPolling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotifyPolicyPolling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 order: _builtins.int,
+                 subscription_urns: Sequence[_builtins.str],
+                 subscriptions: Optional[Sequence['outputs.NotifyPolicyPollingSubscription']] = None):
+        """
+        :param _builtins.int order: Specifies the sequence number of the subscription endpoint being polled.
+        :param Sequence[_builtins.str] subscription_urns: Specifies the URN list of subscription endpoints.
+        :param Sequence['NotifyPolicyPollingSubscriptionArgs'] subscriptions: Indicates the URN list of subscription endpoints.
+               The subscriptions structure is documented below.
+        """
+        pulumi.set(__self__, "order", order)
+        pulumi.set(__self__, "subscription_urns", subscription_urns)
+        if subscriptions is not None:
+            pulumi.set(__self__, "subscriptions", subscriptions)
+
+    @_builtins.property
+    @pulumi.getter
+    def order(self) -> _builtins.int:
+        """
+        Specifies the sequence number of the subscription endpoint being polled.
+        """
+        return pulumi.get(self, "order")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionUrns")
+    def subscription_urns(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the URN list of subscription endpoints.
+        """
+        return pulumi.get(self, "subscription_urns")
+
+    @_builtins.property
+    @pulumi.getter
+    def subscriptions(self) -> Optional[Sequence['outputs.NotifyPolicyPollingSubscription']]:
+        """
+        Indicates the URN list of subscription endpoints.
+        The subscriptions structure is documented below.
+        """
+        return pulumi.get(self, "subscriptions")
+
+
+@pulumi.output_type
+class NotifyPolicyPollingSubscription(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "subscriptionUrn":
+            suggest = "subscription_urn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotifyPolicyPollingSubscription. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotifyPolicyPollingSubscription.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotifyPolicyPollingSubscription.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoint: Optional[_builtins.str] = None,
+                 remark: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.int] = None,
+                 subscription_urn: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str endpoint: Indicates the URN list of subscription endpoints.
+        :param _builtins.str remark: Indicates the remark.
+        :param _builtins.int status: Indicates the subscription status. The value can be:
+               + **0**: indicates the subscription has not been confirmed.
+               + **1**: indicates that the subscription has been confirmed.
+               + **3**: indicates that the subscription has been canceled.
+        :param _builtins.str subscription_urn: Indicates the sequence number of the subscription endpoint being polled.
+        """
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if remark is not None:
+            pulumi.set(__self__, "remark", remark)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if subscription_urn is not None:
+            pulumi.set(__self__, "subscription_urn", subscription_urn)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[_builtins.str]:
+        """
+        Indicates the URN list of subscription endpoints.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def remark(self) -> Optional[_builtins.str]:
+        """
+        Indicates the remark.
+        """
+        return pulumi.get(self, "remark")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.int]:
+        """
+        Indicates the subscription status. The value can be:
+        + **0**: indicates the subscription has not been confirmed.
+        + **1**: indicates that the subscription has been confirmed.
+        + **3**: indicates that the subscription has been canceled.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionUrn")
+    def subscription_urn(self) -> Optional[_builtins.str]:
+        """
+        Indicates the sequence number of the subscription endpoint being polled.
+        """
+        return pulumi.get(self, "subscription_urn")
 
 
 @pulumi.output_type
@@ -457,6 +608,83 @@ class SubscriptionV2FilterPolicy(dict):
 
 
 @pulumi.output_type
+class TopicSubscriberFilterPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "stringEquals":
+            suggest = "string_equals"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TopicSubscriberFilterPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TopicSubscriberFilterPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TopicSubscriberFilterPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 string_equals: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str name: Indicates the filter policy name.
+        :param Sequence[_builtins.str] string_equals: Indicates the string array for exact match.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if string_equals is not None:
+            pulumi.set(__self__, "string_equals", string_equals)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Indicates the filter policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="stringEquals")
+    def string_equals(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Indicates the string array for exact match.
+        """
+        return pulumi.get(self, "string_equals")
+
+
+@pulumi.output_type
+class GetAuthorizedCloudServicesCloudServiceResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 show_name: _builtins.str):
+        """
+        :param _builtins.str name: Indicates the cloud service name.
+        :param _builtins.str show_name: Indicates the display name of a cloud service.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "show_name", show_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Indicates the cloud service name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="showName")
+    def show_name(self) -> _builtins.str:
+        """
+        Indicates the display name of a cloud service.
+        """
+        return pulumi.get(self, "show_name")
+
+
+@pulumi.output_type
 class GetLogtanksLogtankResult(dict):
     def __init__(__self__, *,
                  created_at: _builtins.str,
@@ -594,6 +822,400 @@ class GetMessageTemplatesTemplateResult(dict):
 
 
 @pulumi.output_type
+class GetResourcesByTagsMatchResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param _builtins.str value: Specifies the tag value.
+               + It can contain a maximum of 255 Unicode characters.
+               + This field cannot be left blank.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+        + It can contain a maximum of 255 Unicode characters.
+        + This field cannot be left blank.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesByTagsNotTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsNotTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_details: Sequence['outputs.GetResourcesByTagsResourceResourceDetailResult'],
+                 resource_id: _builtins.str,
+                 resource_name: _builtins.str,
+                 tags: Sequence['outputs.GetResourcesByTagsResourceTagResult']):
+        """
+        :param Sequence['GetResourcesByTagsResourceResourceDetailArgs'] resource_details: Indicates the resource details.
+               The resource_detail structure is documented below.
+        :param _builtins.str resource_id: Indicates the resource ID.
+        :param _builtins.str resource_name: Indicates the resource name.
+        :param Sequence['GetResourcesByTagsResourceTagArgs'] tags: Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+               a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+               Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+               are in AND relationship, and values in one tag are in OR relationship.
+               The tags structure is documented below.
+        """
+        pulumi.set(__self__, "resource_details", resource_details)
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_name", resource_name)
+        pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="resourceDetails")
+    def resource_details(self) -> Sequence['outputs.GetResourcesByTagsResourceResourceDetailResult']:
+        """
+        Indicates the resource details.
+        The resource_detail structure is documented below.
+        """
+        return pulumi.get(self, "resource_details")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> _builtins.str:
+        """
+        Indicates the resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="resourceName")
+    def resource_name(self) -> _builtins.str:
+        """
+        Indicates the resource name.
+        """
+        return pulumi.get(self, "resource_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetResourcesByTagsResourceTagResult']:
+        """
+        Specifies the tags. A maximum of 10 keys can be queried at a time, and each key can contain
+        a maximum of 10 values. The structure body must be included. The tag key cannot be left blank or be an empty string.
+        Each tag key must be unique, and each tag value of a tag must also be unique. Resources identified by different keys
+        are in AND relationship, and values in one tag are in OR relationship.
+        The tags structure is documented below.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetResourcesByTagsResourceResourceDetailResult(dict):
+    def __init__(__self__, *,
+                 detail_id: _builtins.str,
+                 display_name: _builtins.str,
+                 enterprise_project_id: _builtins.str,
+                 topic_urn: _builtins.str):
+        """
+        :param _builtins.str detail_id: Indicates the details ID.
+        :param _builtins.str display_name: Indicates the display name.
+        :param _builtins.str enterprise_project_id: Indicates the enterprise project ID.
+        :param _builtins.str topic_urn: Indicates the unique identifier of the topic.
+        """
+        pulumi.set(__self__, "detail_id", detail_id)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "enterprise_project_id", enterprise_project_id)
+        pulumi.set(__self__, "topic_urn", topic_urn)
+
+    @_builtins.property
+    @pulumi.getter(name="detailId")
+    def detail_id(self) -> _builtins.str:
+        """
+        Indicates the details ID.
+        """
+        return pulumi.get(self, "detail_id")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Indicates the display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="enterpriseProjectId")
+    def enterprise_project_id(self) -> _builtins.str:
+        """
+        Indicates the enterprise project ID.
+        """
+        return pulumi.get(self, "enterprise_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="topicUrn")
+    def topic_urn(self) -> _builtins.str:
+        """
+        Indicates the unique identifier of the topic.
+        """
+        return pulumi.get(self, "topic_urn")
+
+
+@pulumi.output_type
+class GetResourcesByTagsResourceTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param _builtins.str value: Specifies the tag value.
+               + It can contain a maximum of 255 Unicode characters.
+               + This field cannot be left blank.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Specifies the tag value.
+        + It can contain a maximum of 255 Unicode characters.
+        + This field cannot be left blank.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetResourcesByTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetResourcesByTagsTagsAnyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Specifies the tag key.
+               + The key must be unique, and the value is used for matching.
+               + The key field is a fixed dictionary value.
+               + key cannot be left blank.
+        :param Sequence[_builtins.str] values: Specifies the values of the tag.
+               + Each tag contains a maximum of 10 values.
+               + Values of the same tag must be unique.
+               + It can contain a maximum of 255 Unicode characters.
+               + If this parameter is left blank, any value can be used.
+               + All values of a tag key are in the OR relationship.
+               
+               <a name="matches_struct"></a>
+               The `matches` block supports:
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Specifies the tag key.
+        + The key must be unique, and the value is used for matching.
+        + The key field is a fixed dictionary value.
+        + key cannot be left blank.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Specifies the values of the tag.
+        + Each tag contains a maximum of 10 values.
+        + Values of the same tag must be unique.
+        + It can contain a maximum of 255 Unicode characters.
+        + If this parameter is left blank, any value can be used.
+        + All values of a tag key are in the OR relationship.
+
+        <a name="matches_struct"></a>
+        The `matches` block supports:
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
 class GetSubscriptionsSubscriptionResult(dict):
     def __init__(__self__, *,
                  endpoint: _builtins.str,
@@ -727,6 +1349,35 @@ class GetSubscriptionsSubscriptionFilterPoliceResult(dict):
         The string array for exact match.
         """
         return pulumi.get(self, "string_equals")
+
+
+@pulumi.output_type
+class GetTagsTagResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str key: Indicates the tag key.
+        :param Sequence[_builtins.str] values: Indicates the tag values.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Indicates the tag key.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        Indicates the tag values.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

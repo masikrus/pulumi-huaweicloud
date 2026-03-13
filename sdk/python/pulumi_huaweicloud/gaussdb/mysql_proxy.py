@@ -43,6 +43,7 @@ class MysqlProxyArgs:
                  transaction_split: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MysqlProxy resource.
+
         :param pulumi.Input[_builtins.str] flavor: Specifies the flavor of the proxy. Changing this parameter will create a new
                resource.
         :param pulumi.Input[_builtins.str] instance_id: Specifies the ID of the GaussDB MySQL instance. Changing this parameter
@@ -459,6 +460,7 @@ class _MysqlProxyState:
                  transaction_split: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MysqlProxy resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['MysqlProxyAccessControlIpListArgs']]] access_control_ip_lists: Specifies the list of IP addresses that control access. A maximum of
                `300` IP addresses or CIDR blocks can be added.
                The access_control_ip_list structure is documented below.
@@ -973,39 +975,16 @@ class MysqlProxy(pulumi.CustomResource):
 
         The GaussDB MySQL proxy can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlProxy:MysqlProxy test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `new_node_weight`, `proxy_mode`, `readonly_nodes_weight` and `parameters`. It is
-
         generally recommended running `pulumi preview` after importing a GaussDB MySQL proxy. You can then decide if changes
-
         should be applied to the GaussDB MySQL proxy, or the resource definition should be updated to align with the GaussDB
-
         MySQL proxy. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_proxy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              new_node_weight, proxy_mode, readonly_nodes_weight, parameters,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1100,39 +1079,16 @@ class MysqlProxy(pulumi.CustomResource):
 
         The GaussDB MySQL proxy can be imported using the `instance_id` and `id` separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:GaussDB/mysqlProxy:MysqlProxy test <instance_id>/<id>
         ```
 
         Note that the imported state may not be identical to your resource definition, due to the attribute missing from the
-
         API response. The missing attribute is: `new_node_weight`, `proxy_mode`, `readonly_nodes_weight` and `parameters`. It is
-
         generally recommended running `pulumi preview` after importing a GaussDB MySQL proxy. You can then decide if changes
-
         should be applied to the GaussDB MySQL proxy, or the resource definition should be updated to align with the GaussDB
-
         MySQL proxy. Also you can ignore changes as below.
 
-        hcl
-
-        resource "huaweicloud_gaussdb_mysql_proxy" "test" {
-
-          ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              new_node_weight, proxy_mode, readonly_nodes_weight, parameters,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param MysqlProxyArgs args: The arguments to use to populate this resource's properties.

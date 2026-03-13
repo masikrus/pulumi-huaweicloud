@@ -29,6 +29,7 @@ class ArchitectureProcessArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ArchitectureProcess resource.
+
         :param pulumi.Input[_builtins.str] owner: Specifies the name of person responsible for process. The responsible person must exist
                in the system.
         :param pulumi.Input[_builtins.str] workspace_id: Specifies the ID of DataArts Studio workspace.
@@ -185,6 +186,7 @@ class _ArchitectureProcessState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ArchitectureProcess resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] childrens: The name list of subordinate process.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the process.
         :param pulumi.Input[_builtins.str] created_by: The creator of the process.
@@ -472,11 +474,10 @@ class ArchitectureProcess(pulumi.CustomResource):
 
         The DataArts architecture process can be imported using `workspace_id` and `qualified_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureProcess:ArchitectureProcess test <workspace_id>/<qualified_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -546,11 +547,10 @@ class ArchitectureProcess(pulumi.CustomResource):
 
         The DataArts architecture process can be imported using `workspace_id` and `qualified_id`, separated by a slash, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:DataArtsStudio/architectureProcess:ArchitectureProcess test <workspace_id>/<qualified_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ArchitectureProcessArgs args: The arguments to use to populate this resource's properties.

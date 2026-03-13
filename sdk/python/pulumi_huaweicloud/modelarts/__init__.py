@@ -27,6 +27,7 @@ from .get_workspaces import *
 from .model import *
 from .network import *
 from .node_batch_delete_v2 import *
+from .node_batch_reboot import *
 from .node_batch_unsubscribe_v2 import *
 from .notebook import *
 from .notebook_mount_storage import *

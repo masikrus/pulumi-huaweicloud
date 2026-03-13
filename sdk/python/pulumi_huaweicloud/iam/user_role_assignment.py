@@ -24,6 +24,7 @@ class UserRoleAssignmentArgs:
                  user_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a UserRoleAssignment resource.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project
                to assign the role in. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
@@ -83,6 +84,7 @@ class _UserRoleAssignmentState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserRoleAssignment resources.
+
         :param pulumi.Input[_builtins.str] enterprise_project_id: Specifies the ID of the enterprise project
                to assign the role in. Changing this parameter will create a new resource.
         :param pulumi.Input[_builtins.str] role_id: Specifies the role to assign.
@@ -177,11 +179,10 @@ class UserRoleAssignment(pulumi.CustomResource):
 
         The role assignments can be imported using the `user_id`, `role_id` and  `enterprise_project_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/userRoleAssignment:UserRoleAssignment test <user_id>/<role_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,11 +229,10 @@ class UserRoleAssignment(pulumi.CustomResource):
 
         The role assignments can be imported using the `user_id`, `role_id` and  `enterprise_project_id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import huaweicloud:Iam/userRoleAssignment:UserRoleAssignment test <user_id>/<role_id>/<enterprise_project_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserRoleAssignmentArgs args: The arguments to use to populate this resource's properties.

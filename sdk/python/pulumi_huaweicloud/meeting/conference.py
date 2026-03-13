@@ -47,6 +47,7 @@ class ConferenceArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Conference resource.
+
         :param pulumi.Input[_builtins.int] duration: Specifies the duration of the conference, in minutes.
                The valid value is range from `15` to `1,440`, defaults to `30`.
                
@@ -579,6 +580,7 @@ class _ConferenceState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Conference resources.
+
         :param pulumi.Input[_builtins.str] access_number: The access number of the conference.
         :param pulumi.Input[_builtins.str] account_name: Specifies the (HUAWEI Cloud meeting) user account name to which the
                meeting initiator belongs. Changing this parameter will create a new resource.
@@ -1257,25 +1259,24 @@ class Conference(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Using this resource to book a conference within HuaweiCloud.
+
+        > Using duplicate conference IDs (in the Console) will make terraform resource state (behavior) inconsistent.
+
         ## Example Usage
 
         ## Import
 
         Conferences (only scheduled conference and progressing conference) can be imported using their `id` and authorization
-
         parameters, separated by slashes, e.g.
 
         Import a conference and authenticated by account.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/conference:Conference test <id>/<account_name>/<account_password>
         ```
 
         Import a conference and authenticated by `APP ID`/`APP Key`.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/conference:Conference test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
@@ -1284,26 +1285,8 @@ class Conference(pulumi.CustomResource):
         The slashes cannot be missing even corporation ID and user ID are empty.
 
         Note that importing is not supported for expired conferences and the start time of the meeting is not imported along
-
         with it. You can ignore this change as below.
 
-        hcl
-
-        resource "huaweicloud_meeting_conference" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              start_time,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1406,25 +1389,24 @@ class Conference(pulumi.CustomResource):
                  args: ConferenceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Using this resource to book a conference within HuaweiCloud.
+
+        > Using duplicate conference IDs (in the Console) will make terraform resource state (behavior) inconsistent.
+
         ## Example Usage
 
         ## Import
 
         Conferences (only scheduled conference and progressing conference) can be imported using their `id` and authorization
-
         parameters, separated by slashes, e.g.
 
         Import a conference and authenticated by account.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/conference:Conference test <id>/<account_name>/<account_password>
         ```
 
         Import a conference and authenticated by `APP ID`/`APP Key`.
-
-        bash
 
         ```sh
         $ pulumi import huaweicloud:Meeting/conference:Conference test <id>/<app_id>/<app_key>/<corp_id>/<user_id>
@@ -1433,26 +1415,8 @@ class Conference(pulumi.CustomResource):
         The slashes cannot be missing even corporation ID and user ID are empty.
 
         Note that importing is not supported for expired conferences and the start time of the meeting is not imported along
-
         with it. You can ignore this change as below.
 
-        hcl
-
-        resource "huaweicloud_meeting_conference" "test" {
-
-            ...
-
-          lifecycle {
-
-            ignore_changes = [
-            
-              start_time,
-            
-            ]
-
-          }
-
-        }
 
         :param str resource_name: The name of the resource.
         :param ConferenceArgs args: The arguments to use to populate this resource's properties.

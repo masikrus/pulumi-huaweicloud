@@ -29,6 +29,7 @@ class ApiPublishmentArgs:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ApiPublishment resource.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be published or already published.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] env_id: Specifies the ID of the environmentto which the current version of the API
@@ -146,6 +147,7 @@ class _ApiPublishmentState:
                  version_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApiPublishment resources.
+
         :param pulumi.Input[_builtins.str] api_id: Specifies the ID of the API to be published or already published.  
                Changing this will create a new resource.
         :param pulumi.Input[_builtins.str] description: Specifies the description of the current publishment.
@@ -327,6 +329,11 @@ class ApiPublishment(pulumi.CustomResource):
                  version_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Using this resource to publish an API to the environment or manage a historical publish version within HuaweiCloud.
+
+        > If you republish on the same environment or switch versions through other ways (such as console) after the API is
+        published through terraform, the current resource attributes will be affected, resulting in data inconsistency.
+
         ## Example Usage
 
         ### Publish a new version of the API
@@ -370,6 +377,7 @@ class ApiPublishment(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/apiPublishment:ApiPublishment test <instance_id>/<env_id>/<api_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -393,6 +401,11 @@ class ApiPublishment(pulumi.CustomResource):
                  args: ApiPublishmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Using this resource to publish an API to the environment or manage a historical publish version within HuaweiCloud.
+
+        > If you republish on the same environment or switch versions through other ways (such as console) after the API is
+        published through terraform, the current resource attributes will be affected, resulting in data inconsistency.
+
         ## Example Usage
 
         ### Publish a new version of the API
@@ -436,6 +449,7 @@ class ApiPublishment(pulumi.CustomResource):
         ```sh
         $ pulumi import huaweicloud:DedicatedApig/apiPublishment:ApiPublishment test <instance_id>/<env_id>/<api_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ApiPublishmentArgs args: The arguments to use to populate this resource's properties.

@@ -25,27 +25,24 @@ __all__ = [
     'OrganizationPermissionsSelfPermissionArgsDict',
     'OrganizationPermissionsUserArgs',
     'OrganizationPermissionsUserArgsDict',
+    'TemporaryLoginCommandAuthArgs',
+    'TemporaryLoginCommandAuthArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ImagePermissionsSelfPermissionArgsDict(TypedDict):
-        permission: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the user permission of the existing HuaweiCloud user.
-        The values can be **Manage**, **Write** and **Read**.
-        """
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the ID of the existing HuaweiCloud user.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the existing HuaweiCloud user.
-        """
-elif False:
-    ImagePermissionsSelfPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class ImagePermissionsSelfPermissionArgsDict(TypedDict):
+    permission: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the user permission of the existing HuaweiCloud user.
+    The values can be **Manage**, **Write** and **Read**.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the ID of the existing HuaweiCloud user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the existing HuaweiCloud user.
+    """
 
 @pulumi.input_type
 class ImagePermissionsSelfPermissionArgs:
@@ -104,23 +101,20 @@ class ImagePermissionsSelfPermissionArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class ImagePermissionsUserArgsDict(TypedDict):
-        permission: pulumi.Input[_builtins.str]
-        """
-        Specifies the user permission of the existing HuaweiCloud user.
-        The values can be **Manage**, **Write** and **Read**.
-        """
-        user_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the existing HuaweiCloud user.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the existing HuaweiCloud user.
-        """
-elif False:
-    ImagePermissionsUserArgsDict: TypeAlias = Mapping[str, Any]
+class ImagePermissionsUserArgsDict(TypedDict):
+    permission: pulumi.Input[_builtins.str]
+    """
+    Specifies the user permission of the existing HuaweiCloud user.
+    The values can be **Manage**, **Write** and **Read**.
+    """
+    user_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the existing HuaweiCloud user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the existing HuaweiCloud user.
+    """
 
 @pulumi.input_type
 class ImagePermissionsUserArgs:
@@ -177,20 +171,17 @@ class ImagePermissionsUserArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class ImageRetentionPolicyTagSelectorArgsDict(TypedDict):
-        kind: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Matching rule. Value options: **label**, **regexp**.
-        """
-        pattern: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the Matching pattern.
-        + If kind is set to `label`, set this parameter to specific image tags.
-        + If kind is set to `regexp`, set this parameter to a regular expression.
-        """
-elif False:
-    ImageRetentionPolicyTagSelectorArgsDict: TypeAlias = Mapping[str, Any]
+class ImageRetentionPolicyTagSelectorArgsDict(TypedDict):
+    kind: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Matching rule. Value options: **label**, **regexp**.
+    """
+    pattern: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the Matching pattern.
+    + If kind is set to `label`, set this parameter to specific image tags.
+    + If kind is set to `regexp`, set this parameter to a regular expression.
+    """
 
 @pulumi.input_type
 class ImageRetentionPolicyTagSelectorArgs:
@@ -235,22 +226,19 @@ class ImageRetentionPolicyTagSelectorArgs:
         pulumi.set(self, "pattern", value)
 
 
-if not MYPY:
-    class OrganizationPermissionsSelfPermissionArgsDict(TypedDict):
-        permission: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The permission of current user.
-        """
-        user_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of current user.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of current user.
-        """
-elif False:
-    OrganizationPermissionsSelfPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationPermissionsSelfPermissionArgsDict(TypedDict):
+    permission: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The permission of current user.
+    """
+    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of current user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of current user.
+    """
 
 @pulumi.input_type
 class OrganizationPermissionsSelfPermissionArgs:
@@ -307,23 +295,20 @@ class OrganizationPermissionsSelfPermissionArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class OrganizationPermissionsUserArgsDict(TypedDict):
-        permission: pulumi.Input[_builtins.str]
-        """
-        Specifies the permission of the existing HuaweiCloud user.
-        The values can be **Manage**, **Write** and **Read**.
-        """
-        user_id: pulumi.Input[_builtins.str]
-        """
-        Specifies the ID of the existing HuaweiCloud user.
-        """
-        user_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the existing HuaweiCloud user.
-        """
-elif False:
-    OrganizationPermissionsUserArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationPermissionsUserArgsDict(TypedDict):
+    permission: pulumi.Input[_builtins.str]
+    """
+    Specifies the permission of the existing HuaweiCloud user.
+    The values can be **Manage**, **Write** and **Read**.
+    """
+    user_id: pulumi.Input[_builtins.str]
+    """
+    Specifies the ID of the existing HuaweiCloud user.
+    """
+    user_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the existing HuaweiCloud user.
+    """
 
 @pulumi.input_type
 class OrganizationPermissionsUserArgs:
@@ -378,5 +363,54 @@ class OrganizationPermissionsUserArgs:
     @user_name.setter
     def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "user_name", value)
+
+
+class TemporaryLoginCommandAuthArgsDict(TypedDict):
+    auth: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the base64-encoded authentication information.
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Indicates the authentication information key.
+    """
+
+@pulumi.input_type
+class TemporaryLoginCommandAuthArgs:
+    def __init__(__self__, *,
+                 auth: Optional[pulumi.Input[_builtins.str]] = None,
+                 key: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] auth: Indicates the base64-encoded authentication information.
+        :param pulumi.Input[_builtins.str] key: Indicates the authentication information key.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def auth(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the base64-encoded authentication information.
+        """
+        return pulumi.get(self, "auth")
+
+    @auth.setter
+    def auth(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "auth", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Indicates the authentication information key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
 
 

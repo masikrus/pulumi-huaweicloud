@@ -25,6 +25,7 @@ class AssetObsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AssetObs resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the bucket name.
                
                Changing this parameter will create a new resource.
@@ -105,6 +106,7 @@ class _AssetObsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AssetObs resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: Specifies the bucket name.
                
                Changing this parameter will create a new resource.
@@ -178,7 +180,7 @@ class _AssetObsState:
         pulumi.set(self, "region", value)
 
 
-@pulumi.type_token("huaweicloud:dsc/assetObs:AssetObs")
+@pulumi.type_token("huaweicloud:Dsc/assetObs:AssetObs")
 class AssetObs(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -211,11 +213,10 @@ class AssetObs(pulumi.CustomResource):
 
         The OBS asset resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/assetObs:AssetObs test <id>
+        $ pulumi import huaweicloud:Dsc/assetObs:AssetObs test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,11 +258,10 @@ class AssetObs(pulumi.CustomResource):
 
         The OBS asset resource can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
-        $ pulumi import huaweicloud:dsc/assetObs:AssetObs test <id>
+        $ pulumi import huaweicloud:Dsc/assetObs:AssetObs test <id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AssetObsArgs args: The arguments to use to populate this resource's properties.
@@ -300,7 +300,7 @@ class AssetObs(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
         super(AssetObs, __self__).__init__(
-            'huaweicloud:dsc/assetObs:AssetObs',
+            'huaweicloud:Dsc/assetObs:AssetObs',
             resource_name,
             __props__,
             opts)
